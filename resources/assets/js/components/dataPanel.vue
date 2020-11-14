@@ -590,7 +590,6 @@
   import _ from 'lodash';
   import jsonExcel from 'vue-json-excel';
   import appModal from '../components/modal';
-  import contextMenu from 'vue-context-menu';
   import Cleave from 'vue-cleave-component';
 
   export default {
@@ -598,7 +597,6 @@
     components: {
       jsonExcel,
       appModal,
-      contextMenu,
       Cleave
     },
     data() {

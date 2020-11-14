@@ -7,7 +7,7 @@ export function initialize(store, router) {
   router.beforeEach((to, from, next) => {
 		window.scrollTo(0, 0);
 		document.body.classList.remove("modal-open");
-
+		store.commit('global/setLoading', true);
 		store.commit('auth/setRedirect', from.fullPath);
 		
 		const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
@@ -26,6 +26,10 @@ export function initialize(store, router) {
 		next();
 	});
 
+	router.afterEach((to, from)=>{
+		store.commit('global/setLoading', false)
+	})
+	
 	if (store.state.auth.currentUser) {
 		setAuthorization(store.state.auth.currentUser.token);
   }

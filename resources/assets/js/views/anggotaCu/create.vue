@@ -688,105 +688,137 @@
 			</div>
 
 			<!-- if cu -->
-			<div class="card" v-if="currentUser && currentUser.id_cu != 0">
-				<div class="card-header bg-white">
-					<h5 class="card-title">CU</h5>
+			<div v-if="currentUser && currentUser.id_cu != 0">
+				<!-- anggota keluar -->
+				<div class="card">
+					<div class="card-header bg-white">
+						<h5 class="card-title">Keanggotaan Sebelumnya</h5>
+					</div>
+
+					<data-table :items="itemDataCu" :columnData="columnDataCu" :itemDataStat="itemDataCuStat">
+						<template slot="item-desktop" slot-scope="props">
+							<tr :class="{ 'bg-info': selectedItemCu.index === props.index + 1 }" class="text-nowrap" @click="selectedCuRow(props.index,props.item)" v-if="props.item">
+								<td>{{ props.index + 1 }}</td>
+								<td>
+									<check-value :value="props.item.cu.name" v-if="props.item.cu"></check-value>
+									<span v-else>-</span>
+								</td>
+								<td>
+									<check-value :value="props.item.tp.name" v-if="props.item.tp"></check-value>
+									<span v-else>-</span>
+								</td>
+								<td><check-value :value="props.item.no_ba"></check-value></td>
+								<td><check-value :value="props.item.keterangan_masuk"></check-value></td>
+								<td v-html="$options.filters.date(props.item.tanggal_masuk)" class="text-nowrap"></td>
+								<td><check-value :value="props.item.keterangan_keluar"></check-value></td>
+								<td v-html="$options.filters.date(props.item.tanggal_keluar)" class="text-nowrap"></td>
+							</tr>
+						</template>	
+					</data-table>
+
 				</div>
-				<div class="card-body">
-					
-						<div class="row">
-							
-							<!-- tp -->
-							<div class="col-sm-4">
-								<div class="form-group" :class="{'has-error' : errors.has('form.tp_id')}">
+				<!-- form anggota -->
+				<div class="card">
 
-									<!-- title -->
-									<h6 :class="{ 'text-danger' : errors.has('form.tp_id')}">
-										<i class="icon-cross2" v-if="errors.has('form.tp_id')"></i>
-										TP/KP: <wajib-badge></wajib-badge>
-									</h6>
+					<div class="card-header bg-white">
+						<h5 class="card-title">CU</h5>
+					</div>
+					<div class="card-body">
+						
+							<div class="row">
+								
+								<!-- tp -->
+								<div class="col-sm-4">
+									<div class="form-group" :class="{'has-error' : errors.has('form.tp_id')}">
 
-									<!-- select -->
-									<select class="form-control" name="id_tp" v-model="form.tp_id" data-width="100%" v-validate="'required'" data-vv-as="TP/KP">
-										<option disabled value="">Silahkan pilih TP/KP</option>
-										<option v-for="(tp, index) in modelTp" :key="index" :value="tp.id">{{tp.name}}</option>
-									</select>
+										<!-- title -->
+										<h6 :class="{ 'text-danger' : errors.has('form.tp_id')}">
+											<i class="icon-cross2" v-if="errors.has('form.tp_id')"></i>
+											TP/KP: <wajib-badge></wajib-badge>
+										</h6>
 
-									<!-- error message -->
-									<small class="text-muted text-danger" v-if="errors.has('form.tp_id')">
-										<i class="icon-arrow-small-right"></i> {{ errors.first('form.tp_id') }}
-									</small>
-									<small class="text-muted" v-else>&nbsp;</small>
+										<!-- select -->
+										<select class="form-control" name="id_tp" v-model="form.tp_id" data-width="100%" v-validate="'required'" data-vv-as="TP/KP">
+											<option disabled value="">Silahkan pilih TP/KP</option>
+											<option v-for="(tp, index) in modelTp" :key="index" :value="tp.id">{{tp.name}}</option>
+										</select>
+
+										<!-- error message -->
+										<small class="text-muted text-danger" v-if="errors.has('form.tp_id')">
+											<i class="icon-arrow-small-right"></i> {{ errors.first('form.tp_id') }}
+										</small>
+										<small class="text-muted" v-else>&nbsp;</small>
+									</div>
 								</div>
-							</div>
 
-							<!-- no_ba -->
-							<div class="col-md-4">
-								<div class="form-group" :class="{'has-error' : errors.has('form.no_ba')}">
+								<!-- no_ba -->
+								<div class="col-md-4">
+									<div class="form-group" :class="{'has-error' : errors.has('form.no_ba')}">
 
-									<!-- title -->
-									<h6 :class="{ 'text-danger' : errors.has('form.no_ba')}">
-									<i class="icon-cross2" v-if="errors.has('form.no_ba')"></i>
-									No. BA: <wajib-badge></wajib-badge></h6>
+										<!-- title -->
+										<h6 :class="{ 'text-danger' : errors.has('form.no_ba')}">
+										<i class="icon-cross2" v-if="errors.has('form.no_ba')"></i>
+										No. BA: <wajib-badge></wajib-badge></h6>
 
-									<!-- text -->
-									<cleave 
-									name="no_ba"
-									v-model="form.no_ba" 
-									class="form-control" 
-									:options="cleaveOption.number16"
-									placeholder="Silahkan masukkan no buku anggota"
-									v-validate="'required'" data-vv-as="No. Buku Anggota"></cleave>
+										<!-- text -->
+										<cleave 
+										name="no_ba"
+										v-model="form.no_ba" 
+										class="form-control" 
+										:options="cleaveOption.number16"
+										placeholder="Silahkan masukkan no buku anggota"
+										v-validate="'required'" data-vv-as="No. Buku Anggota"></cleave>
 
-									<!-- error message -->
-									<small class="text-muted text-danger" v-if="errors.has('form.no_ba')">
-										<i class="icon-arrow-small-right"></i> {{ errors.first('form.no_ba') }}
-									</small>
-									<small class="text-muted" v-else>&nbsp;</small>
+										<!-- error message -->
+										<small class="text-muted text-danger" v-if="errors.has('form.no_ba')">
+											<i class="icon-arrow-small-right"></i> {{ errors.first('form.no_ba') }}
+										</small>
+										<small class="text-muted" v-else>&nbsp;</small>
 
+									</div>
 								</div>
-							</div>
 
-							<!-- tanggal_masuk -->
-							<div class="col-md-4">
-								<div class="form-group" :class="{'has-error' : errors.has('form.tanggal_masuk')}">
+								<!-- tanggal_masuk -->
+								<div class="col-md-4">
+									<div class="form-group" :class="{'has-error' : errors.has('form.tanggal_masuk')}">
 
-									<!-- title -->
-									<h6 :class="{ 'text-danger' : errors.has('form.tanggal_masuk')}">
-									<i class="icon-cross2" v-if="errors.has('form.tanggal_masuk')"></i>
-									Tgl. Jadi Anggota: <wajib-badge></wajib-badge></h6>
+										<!-- title -->
+										<h6 :class="{ 'text-danger' : errors.has('form.tanggal_masuk')}">
+										<i class="icon-cross2" v-if="errors.has('form.tanggal_masuk')"></i>
+										Tgl. Jadi Anggota: <wajib-badge></wajib-badge></h6>
 
-									<!-- text -->
-									<date-picker @dateSelected="form.tanggal_masuk = $event" :defaultDate="form.tanggal_masuk"></date-picker>	
-									<input v-model="form.tanggal_masuk" v-show="false" v-validate="'required'" data-vv-as="Tgl. Jadi Anggota"/>
+										<!-- text -->
+										<date-picker @dateSelected="form.tanggal_masuk = $event" :defaultDate="form.tanggal_masuk"></date-picker>	
+										<input v-model="form.tanggal_masuk" v-show="false" v-validate="'required'" data-vv-as="Tgl. Jadi Anggota"/>
 
-									<!-- error message -->
-									<small class="text-muted text-danger" v-if="errors.has('form.tanggal_masuk')">
-										<i class="icon-arrow-small-right"></i> {{ errors.first('form.tanggal_masuk') }}
-									</small>
-									<small class="text-muted" v-else>&nbsp;</small>
+										<!-- error message -->
+										<small class="text-muted text-danger" v-if="errors.has('form.tanggal_masuk')">
+											<i class="icon-arrow-small-right"></i> {{ errors.first('form.tanggal_masuk') }}
+										</small>
+										<small class="text-muted" v-else>&nbsp;</small>
 
+									</div>
 								</div>
-							</div>
 
-							<!-- keterangan_masuk -->
-							<div class="col-md-12">
-								<div class="form-group" >
+								<!-- keterangan_masuk -->
+								<div class="col-md-12">
+									<div class="form-group" >
 
-									<!-- title -->
-									<h6>
-									Keterangan Jadi Anggota:</h6>
+										<!-- title -->
+										<h6>
+										Keterangan Jadi Anggota:</h6>
 
-									<!-- text -->
-									<input type="text" name="keterangan_masuk" class="form-control" placeholder="Silahkan masukkan keterangan masuk" v-model="form.keterangan_masuk">
-									
+										<!-- text -->
+										<input type="text" name="keterangan_masuk" class="form-control" placeholder="Silahkan masukkan keterangan masuk" v-model="form.keterangan_masuk">
+										
 
+									</div>
 								</div>
+
+								<div class="col-sm-12"><hr/></div>
+
 							</div>
-
-							<div class="col-sm-12"><hr/></div>
-
-						</div>
+					</div>
 				</div>
 			</div>
 
@@ -833,10 +865,11 @@
 							<td><check-value :value="props.item.no_ba"></check-value></td>
 							<td><check-value :value="props.item.keterangan_masuk"></check-value></td>
 							<td v-html="$options.filters.date(props.item.tanggal_masuk)" class="text-nowrap"></td>
+							<td><check-value :value="props.item.keterangan_keluar"></check-value></td>
+							<td v-html="$options.filters.date(props.item.tanggal_keluar)" class="text-nowrap"></td>
 						</tr>
 					</template>	
 				</data-table>
-
 			</div>
 
 			<!-- form info -->
@@ -972,6 +1005,8 @@
 					{ title: 'No. BA' },
 					{ title: 'Keterangan' },
 					{ title: 'Tgl. Jadi Anggota' },
+					{ title: 'Keterangan Keluar' },
+					{ title: 'Tgl. Keluar Anggota' },
 				],
 				modalShow: false,
 				modalState: '',
@@ -1059,11 +1094,20 @@
 				}else{
 					let data = _.find(this.form.anggota_cu_cu,{'cu_id':this.currentUser.id_cu});
 
-					if(data){
+					if(!data.tanggal_keluar){
 						this.form.tp_id = data.tp_id;
 						this.form.no_ba = data.no_ba;
 						this.form.tanggal_masuk = data.tanggal_masuk;
 						this.form.keterangan_masuk = data.keterangan_masuk;
+					}else{
+						this.itemDataCu = [];
+						var valData;
+
+						if(this.form.anggota_cu_cu){
+							for(valData of this.form.anggota_cu_cu){
+								this.itemDataCu.push(valData);
+							}
+						}
 					}
 				}
 

@@ -33,805 +33,124 @@
 						</div>
 					</div>
 
-					<!-- main panel -->
-					<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="form">
+					<!-- main form -->
+					<div class="card">
+						<div class="card-body">
+							<div class="row">
 
-						<!-- main form -->
-						<div class="card">
-							<div class="card-body">
-								<div class="row">
+								<!-- CU -->
+								<div class="col-md-4" v-if="currentUser.id_cu === 0">
+									<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
 
-									<!-- CU -->
-									<div class="col-md-4" v-if="currentUser.id_cu === 0">
-										<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
+										<!-- title -->
+										<h5 :class="{ 'text-danger' : errors.has('form.id_cu')}">
+											<i class="icon-cross2" v-if="errors.has('form.id_cu')"></i>
+											CU: <wajib-badge></wajib-badge>
+										</h5>
 
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.id_cu')}">
-												<i class="icon-cross2" v-if="errors.has('form.id_cu')"></i>
-												CU: <wajib-badge></wajib-badge>
-											</h5>
-
-											<!-- select -->
-											<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" @change="changeCu($event.target.value)" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
-												<option disabled value="0">Silahkan pilih CU</option>
-												<option v-for="(cu, index) in modelCU" :value="cu.id" :key="index">{{cu.name}}</option>
-											</select>
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- tp -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.id_tp')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.id_tp')}">
-												<i class="icon-cross2" v-if="errors.has('form.id_tp')"></i>
-												TP: <wajib-badge></wajib-badge>
-											</h5>
-
-											<!-- select -->
-										<select class="form-control" name="id_tp" v-model="form.id_tp" data-width="100%" v-validate="'required'" data-vv-as="TP" @change="changeTp($event.target.value)" :disabled="!isModelTp">
-											<option disabled value="">
-												<span v-if="modelTpStat === 'loading'">Mohon tunggu...</span>
-												<span v-else>Silahkan pilih TP/KP</span>
-											</option>
-											<option value="konsolidasi" v-if="$route.meta.mode != 'editTp'">Konsolidasi</option>
-											<option disabled value="">----------------</option>
-											<option v-for="(tp, index) in modelTp" :value="tp.id" :key="index">{{tp.name}}</option>
+										<!-- select -->
+										<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" @change="changeCu($event.target.value)" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
+											<option disabled value="0">Silahkan pilih CU</option>
+											<option v-for="(cu, index) in modelCU" :value="cu.id" :key="index">{{cu.name}}</option>
 										</select>
 
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.id_tp')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_tp') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
+										<!-- error message -->
+										<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
+											<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
+										</small>
+										<small class="text-muted" v-else>&nbsp;</small>
 									</div>
-
-									<!-- periode -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.periode')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.periode')}">
-												<i class="icon-cross2 d-none d-sm-block" v-if="errors.has('form.periode')"></i>
-												Periode: <wajib-badge></wajib-badge>
-											</h5>
-
-											<!-- input -->
-											<date-picker @dateSelected="form.periode = $event" :defaultDate="form.periode"></date-picker>	
-											<input v-model="form.periode" v-show="false" v-validate="'required'" data-vv-as="Periode"/>
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.periode')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.periode') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
 								</div>
+
+								<!-- tp -->
+								<div class="col-md-4">
+									<div class="form-group" :class="{'has-error' : errors.has('form.id_tp')}">
+
+										<!-- title -->
+										<h5 :class="{ 'text-danger' : errors.has('form.id_tp')}">
+											<i class="icon-cross2" v-if="errors.has('form.id_tp')"></i>
+											TP: <wajib-badge></wajib-badge>
+										</h5>
+
+										<!-- select -->
+									<select class="form-control" name="id_tp" v-model="form.id_tp" data-width="100%" v-validate="'required'" data-vv-as="TP" @change="changeTp($event.target.value)" :disabled="!isModelTp">
+										<option disabled value="">
+											<span v-if="modelTpStat === 'loading'">Mohon tunggu...</span>
+											<span v-else>Silahkan pilih TP/KP</span>
+										</option>
+										<option value="konsolidasi" v-if="$route.meta.mode != 'editTp'">Konsolidasi</option>
+										<option disabled value="">----------------</option>
+										<option v-for="(tp, index) in modelTp" :value="tp.id" :key="index">{{tp.name}}</option>
+									</select>
+
+										<!-- error message -->
+										<small class="text-muted text-danger" v-if="errors.has('form.id_tp')">
+											<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_tp') }}
+										</small>
+										<small class="text-muted" v-else>&nbsp;</small>
+									</div>
+								</div>
+
+								<!-- periode -->
+								<div class="col-md-4">
+									<div class="form-group" :class="{'has-error' : errors.has('form.periode')}">
+
+										<!-- title -->
+										<h5 :class="{ 'text-danger' : errors.has('form.periode')}">
+											<i class="icon-cross2 d-none d-sm-block" v-if="errors.has('form.periode')"></i>
+											Periode: <wajib-badge></wajib-badge>
+										</h5>
+
+										<!-- input -->
+										<date-picker @dateSelected="form.periode = $event" :defaultDate="form.periode"></date-picker>	
+										<input name="periode" v-model="form.periode" v-show="false" v-validate="'required'" data-vv-as="Periode"/>
+
+										<!-- error message -->
+										<small class="text-muted text-danger" v-if="errors.has('form.periode')">
+											<i class="icon-arrow-small-right"></i> {{ errors.first('form.periode') }}
+										</small>
+										<small class="text-muted" v-else>&nbsp;</small>
+									</div>
+								</div>
+
 							</div>
 						</div>
-
-						<div class="card">
-							<div class="card-body">
-								<div class="row">
-
-									<!-- l_biasa -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Lelaki Biasa</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.l_biasa" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah lelaki biasa"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- l_lbiasa -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Lelaki Luar Biasa</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.l_lbiasa" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah lelaki luar biasa"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- p_biasa -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Perempuan Biasa</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.p_biasa" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah perempuan biasa"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- p_lbiasa -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Perempuan Luar Biasa</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.p_lbiasa" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah anggota perempuan luar biasa"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- total anggota lalu -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Total Anggota Tahun Lalu <info-icon :message="'Anggota tahun lalu dari bulan yang sama dengan periode laporan ini.'"></info-icon></h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.total_anggota_lalu" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan total anggota tahun lalu"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- separator -->
-									<div class="col-md-12"><hr></div>
-
-									<!-- aset -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Aset</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.aset" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah aset"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- aset tahun lalu -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Aset Tahun Lalu <info-icon :message="'Aset tahun lalu dari periode laporan ini.'"></info-icon></h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.aset_lalu" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah aset"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- aset masalah  -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Aset Masalah <info-icon :message="'Nilai dari investasi CU Primer yang sudah tidak menghasilkan dan atau saldo dari piutang anggota yang sudah berhenti tetapi simpanannya tidak tersedia untuk pelunasan piutang tersebut.'"></info-icon></h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.aset_masalah" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah aset masalah"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- aset tidak menghasilkan  -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Aset Tidak Menghasilkan</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.aset_tidak_menghasilkan" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah aset tidak menghasilkan"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- aset likuid tidak menghasilkan  -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Aset Likuid Tidak Menghasilkan</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.aset_likuid_tidak_menghasilkan" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah aset tidak menghasilkan"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- investasi likuid  -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Investasi Likuid</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.investasi_likuid" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah investasi likuid"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- aktiva lancar  -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Aktiva Lancar</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.aktiva_lancar" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah aktiva lancar"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- separator -->
-									<div class="col-md-12"><hr></div>
-
-									<!-- simpanan saham  -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Simp. Saham</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.simpanan_saham" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah simp. saham"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- simpanan non saham unggulan -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Simp. Non Saham (Unggulan)</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.nonsaham_unggulan" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah simp. non saham (unggulan)"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- simpanan non saham unggulan -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Simp. Non Saham (Harian & Deposito) <info-icon :message="'Seluruh simpanan non-saham (Harian & Deposito) kecuali simpanan unggulan.'"></info-icon></h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.nonsaham_harian" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah simp. non saham (harian & deposito)"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- simpanan saham tahun lalu -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Simp. Saham Tahun Lalu <info-icon :message="'Simpanan saham tahun lalu dari bulan yang sama/bulan ini.'"></info-icon></h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.simpanan_saham_lalu" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah simp. saham tahun lalu"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- simpanan saham tahun lalu bulan desember -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Simp. Saham Tahun Lalu Bulan Des <info-icon :message="'Simpanan saham bulan desember tahun lalu.'"></info-icon></h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.simpanan_saham_des" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah simp. saham tahun lalu bulan desember"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- separator -->
-									<div class="col-md-12"><hr></div>
-
-									<!-- hutang spd -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Hutang SPD</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.hutang_spd" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah hutang spd"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- total hutang pihak ke-3 -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Total Hutang Pihak Ke-3 <info-icon :message="'Hutang di Puskopdit BKCU Kalimantan dan lembaga lain.'"></info-icon></h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.total_hutang_pihak3" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan total hutang pihak ke-3"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- hutang tidak berbiaya < 30 hari-->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Hutang Tidak Berbiaya &lt; 30 Hari </h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.hutang_tidak_berbiaya_30hari" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah hutang tidak berbiaya < 30 hari"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- piutang beredar -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Piutang Beredar </h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.piutang_beredar" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah piutang beredar"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- piutang lalai 1-12 bulan -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Piutang Lalai 1-12 Bulan </h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.piutang_lalai_1bulan" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah piutang lalai 1-12 bulan"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- piutang beredar -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Piutang Lalai &gt; 12 Bulan</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.piutang_lalai_12bulan" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah piutang lalai &gt; 12 bulan"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- separator -->
-									<div class="col-md-12"><hr></div>
-
-									<!-- dcu -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Cadangan Umum</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.dcu" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah cadangan umum"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- dcr -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Cadangan Resiko</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.dcr" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah cadangan resiko"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- dana gedung -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Dana Gedung</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.dana_gedung" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah dana gedung"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- donasi -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Donasi</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.donasi" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah donasi"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- beban peny. cadangan resiko -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Beban Peny. Cadangan Resiko</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.beban_penyisihan_dcr" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah beban peny. cadangan resiko"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- separator -->
-									<div class="col-md-12"><hr></div>
-
-									<!-- total pendapatan -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Total pendapatan</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.total_pendapatan" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan total pendapatan"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- total biaya -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Total Biaya</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.total_biaya" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan total biaya"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- shu -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Sisa Hasil Usaha (SHU)</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.shu" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah sisa hasil usaha (SHU)"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- shu lalu -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Sisa Hasil Usaha (SHU) Tahun Lalu</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.shu_lalu" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah sisa hasil usaha (SHU) tahun lalu"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- bjs saham -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>BJS Saham</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.bjs_saham" 
-												class="form-control" 
-												:options="cleaveOption.numeric"
-												placeholder="Silahkan masukkan jumlah bsj saham"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- separator -->
-									<div class="col-md-12"><hr></div>
-
-									<!-- inflasi -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Inflasi</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.laju_inflasi" 
-												class="form-control" 
-												:options="cleaveOption.numeric2"
-												placeholder="Silahkan masukkan jumlah inflasi"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-									<!-- harga pasar -->
-									<div class="col-md-4">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Harga Pasar</h5>
-
-											<!-- text -->
-											<cleave 
-												v-model="form.harga_pasar" 
-												class="form-control" 
-												:options="cleaveOption.numeric2"
-												placeholder="Silahkan masukkan harga pasar"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">&nbsp;</small>	
-										</div>
-									</div>
-
-								</div>
-							</div>
+					</div>
+					
+					<!-- <div class="alert alert-warning alert-styled-left">
+						<span class="font-weight-semibold">Perhatian!</span> Silahkan memilih salah satu jenis laporan cu yang ingin di isi. 
+						<br/>
+						Terdapat 2 jenis yaitu form CoA yang terdiri dari charts of accounts yang akan otomatis nanti menjadi laporan statistik. Kemudian ada form statistik yang akan menjadi laporan statistik tapi tidak memiliki informasi detail charts of accounts.
+					</div> -->
+
+					<!-- <div class="nav-tabs-responsive mb-3">
+						<ul class="nav nav-tabs nav-tabs-solid nav-justified bg-light">
+							<li class="nav-item">
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'coa'}" @click.prevent="changeTab('coa')"><i class="icon-notebook mr-2"></i> Form CoA</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'statistik'}" @click.prevent="changeTab('statistik')"><i class="icon-stats-growth mr-2"></i> Form Statistik</a>
+							</li>
+						</ul>
+					</div> -->
+					
+					<!-- <transition enter-active-class="animated fadeIn" mode="out-in">
+						<div v-show="tabName == 'coa'">
+							<form-coa @back="back" :modelCoa="modelCoa" :modelCoaStat="modelCoaStat" v-if="modelCoaStat == 'success'"></form-coa>
 						</div>
+					</transition>
 
-						<!-- form info -->
-						<form-info></form-info>	
-
-						<!-- form button -->
-						<div class="card card-body">
-							<form-button
-								:cancelState="'methods'"
-								:formValidation="'form'"
-								@cancelClick="back"></form-button>
+					<transition enter-active-class="animated fadeIn" mode="out-in">
+						<div v-show="tabName == 'statistik'">
+							<form-konsolidasi @back="back"></form-konsolidasi>
 						</div>
+					</transition> -->
 
-					</form>
+					<form-konsolidasi @back="back"></form-konsolidasi>
 					
 				</div>
 			</div>
 		</div>
-
-		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :color="modalColor" @batal="modalTutup" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup"  @backgroundClick="modalBackgroundClick">
-			
-		</app-modal>
 
 	</div>
 </template>
@@ -841,28 +160,26 @@
 	import _ from 'lodash';
 	import pageHeader from "../../components/pageHeader.vue";
 	import infoIcon from "../../components/infoIcon.vue";
-	import { toMulipartedForm } from '../../helpers/form';
-	import appImageUpload from '../../components/ImageUpload.vue';
-	import appModal from '../../components/modal';
 	import message from "../../components/message.vue";
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
 	import Cleave from 'vue-cleave-component';
 	import wajibBadge from "../../components/wajibBadge.vue";
 	import DatePicker from "../../components/datePicker.vue";
+	import formKonsolidasi from "./formKonsolidasi";
+	import formCoa from "./formCoa";
 
 	export default {
 		components: {
 			pageHeader,
-			appModal,
-			appImageUpload,
 			message,
 			formButton,
 			formInfo,
-			Cleave,
 			infoIcon,
 			wajibBadge,
-			DatePicker
+			DatePicker,
+			formKonsolidasi,
+			formCoa
 		},
 		data() {
 			return {
@@ -871,13 +188,9 @@
 				titleIcon: '',
 				level2Title: 'Laporan CU',
 				kelas: 'laporanCu',
+				tabName: 'coa',
 				idLaporanTp: '',
 				isModelTp: false,
-				modalShow: false,
-				modalState: '',
-				modalTitle: '',
-				modalColor: '',
-				modalContent: '',
 				submited: false,
 				cleaveOption: {
           date:{
@@ -957,18 +270,6 @@
 					this.idLaporanTp = this.form.id;
 				}
 			},
-			updateStat(value){
-				this.modalShow = true;
-				this.modalState = value;
-				this.modalColor = '';
-
-				if(value === "success"){
-					this.modalTitle = this.updateResponse.message;
-				}else{
-					this.modalTitle = 'Oops terjadi kesalahan :(';
-					this.modalContent = this.updateResponse;
-				}
-			}
     },
 		methods: {
 			checkProfileIdCU(){
@@ -1012,6 +313,7 @@
 					this.$store.dispatch(this.kelas + '/create');
 				}
 				this.fetchCu();
+				this.$store.dispatch('coa/get');
 			},
 			fetchCu(){
 				if(this.modelCuStat != 'success'){
@@ -1023,12 +325,15 @@
 				this.changeCu(this.form.tp.id_cu);
 				this.$store.dispatch('laporanTp/listLaporanTp', [this.form.tp.id_cu, this.form.periode]);
 			},
+			changeTab(value) {
+				this.tabName = value;
+			},
 			changeCu(id){
 				this.$store.dispatch('tp/getCu',id);
 				let model = _.find(this.modelCU, function(o){
 					return o.id == id
 				});
-				this.form.no_ba = model.no_ba;
+				this.form.no_ba = model ? model.no_ba : '';
 			},
 			changeTp(id){
 				if(id == 0){
@@ -1055,34 +360,6 @@
 					}
 				}
 			},
-			save() {
-				if(this.currentUser.id_cu != 0){
-					this.form.id_cu = this.currentUser.id_cu;
-				}
-				this.$validator.validateAll('form').then((result) => {
-					if (result) {
-						if(this.$route.meta.mode === 'edit'){
-							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, this.form]);
-						}else if(this.$route.meta.mode === 'editTp'){
-							this.$store.dispatch(this.kelas + '/updateTp', [this.$route.params.id, this.form]);
-						}else if(this.$route.meta.mode === 'editDraft'){
-							this.$store.dispatch(this.kelas + '/updateDraft', [this.$route.params.id, this.form]);
-						}else if(this.$route.meta.mode === 'editTpDraft'){
-							this.$store.dispatch(this.kelas + '/updateTpDraft', [this.$route.params.id, this.form]);
-						}else{
-							if(this.form.id_tp == 'konsolidasi'){
-								this.$store.dispatch(this.kelas + '/store', this.form);
-							}else{
-								this.$store.dispatch(this.kelas + '/storeTp', this.form);
-							}
-						}
-						this.submited = false;
-					}else{
-						window.scrollTo(0, 0);
-						this.submited = true;
-					}
-				});
-			},
 			back(){
 				if(this.$route.meta.mode === 'edit'){
 					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu, tp: 'konsolidasi'}});
@@ -1106,24 +383,6 @@
 					}else{
 						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu, tp: this.form.id_tp}});
 					}
-				}
-			},
-			modalTutup() {
- 				if(this.updateStat === 'success'){
-					this.back();
-				}
-
-				this.modalShow = false;
-				this.submitedKategori = false;
-				this.submitedPenulis = false;
-			},
-			modalBackgroundClick(){
-				if(this.modalState === 'success'){
-					this.modalTutup;
-				}else if(this.modalState === 'loading'){
-					// do nothing
-				}else{
-					this.modalShow = false
 				}
 			},
 		},
@@ -1150,6 +409,10 @@
 			...mapGetters('tp',{
 				modelTp: 'dataS',
 				modelTpStat: 'dataStatS',
+			}),
+			...mapGetters('coa',{
+				modelCoa: 'dataS2',
+				modelCoaStat: 'dataStatS2',
 			}),
 		}
 	}

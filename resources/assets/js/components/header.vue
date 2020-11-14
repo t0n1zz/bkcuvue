@@ -934,6 +934,14 @@
 								<i class="icon-collaboration"></i> Monitoring
 							</router-link>
 
+							<!-- divider -->
+							<div class="dropdown-divider" v-if="currentUser.can['index_coa']"></div> 
+
+							<!-- coa -->
+							<router-link :to="{ name: 'coa'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_coa']">
+								<i class="icon-notebook"></i> CoA
+							</router-link>
+
 						</div>
 					</li>
 
@@ -1201,13 +1209,13 @@
 				}
 			},
 			dropdown(value){
-				if(this.isFromLogin){
+				// if(this.isFromLogin){
 					if(this.dropdownMenu2 != value){
 						this.dropdownMenu2 = value;
 					}else{
 						this.dropdownMenu2 = '';
 					}
-				}
+				// }
 			},
 			goToProfil(){
 				this.$router.push({name: 'profile', params: {id: this.currentUser.id}});

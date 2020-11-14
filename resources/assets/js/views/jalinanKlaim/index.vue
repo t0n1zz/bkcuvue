@@ -162,7 +162,7 @@
 			}
 		},
 		created(){
-			this.checkUser('index_anggota_cu',this.$route.params.cu);
+			this.checkUser('index_jalinan_klaim',this.$route.params.cu);
 			if(this.currentUser.id_cu == 0){
 				this.changeTab('menunggu');
 			}else{

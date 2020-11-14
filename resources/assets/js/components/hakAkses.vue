@@ -1,7 +1,7 @@
 <template>
 <div>
 
-	<div class="row">
+	<div class="row" v-if="dataStat == 'success'">
 
 		<div class="col-lg-12" v-if="isPeran">
 			<div class="form-group">
@@ -72,6 +72,32 @@
 		</div>
 
 	</div>
+
+	<div class="row" v-else-if="dataStat == 'loading'">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-body">
+					<h4>Mohon tunggu...</h4>
+					<div class="progress">
+						<div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
+							<span class="sr-only">100% Complete</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row" v-else>
+		<div class="col-12">
+			<div class="card">
+				<div class="card-body">
+					<h4>Oops terjadi kesalahan</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>	
 </template>
 
@@ -1114,6 +1140,46 @@
 						]
 					},
 					{
+						name: 'CoA',
+						keterangan: 'Mengelola data charts of accounts',
+						icon: 'icon-notebook',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_coa',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'CoA'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_coa',
+								icon: 'icon-plus3',
+								tipe: 'bkcu',
+								value: false,
+								group: 'CoA'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_coa',
+								icon: 'icon-pencil',
+								tipe: 'bkcu',
+								value: false,
+								group: 'CoA'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_coa',
+								icon: 'icon-bin2',
+								tipe: 'bkcu',
+								value: false,
+								group: 'CoA'
+							}
+						]
+					},
+					{
 						name: 'User',
 						keterangan: 'Mengelola data user pada SIMO',
 						icon: 'icon-users',
@@ -1371,6 +1437,11 @@
 						'destroy_laporan_tp',
 						'upload_laporan_tp',
 						'diskusi_laporan_tp',
+
+						'index_coa',
+						'create_coa',
+						'update_coa',
+						'destroy_coa',
 					],
 					penuhCU: [
 						'index_artikel',
@@ -1463,6 +1534,8 @@
 						'destroy_laporan_tp',
 						'upload_laporan_tp',
 						'diskusi_laporan_tp',
+
+						'index_coa',
 					],
 					monitoring: [
 						'index_artikel',
@@ -1492,7 +1565,8 @@
 						'index_aset_tetap_lokasi',
 						'index_mitra_orang',
 						'index_mitra_lembaga',
-						'index_saran'
+						'index_saran',
+						'index_coa',
 					],
 					tataKelola: [
 						'index_laporan_cu',
@@ -1518,6 +1592,8 @@
 						'create_monitoring',
 						'update_monitoring',
 						'destroy_monitoring',
+
+						'index_coa',
 					],
 					organisasiBKCU: [
 						'index_tempat',

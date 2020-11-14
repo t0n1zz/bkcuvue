@@ -299,7 +299,7 @@
           :selectedItem="selectedItem"
           :form="modalHakAksesForm"
           :tipeUser="tipeUser"
-          :data-stat="hakAksesStat"
+          :dataStat="hakAksesStat"
           :isPeran="false"
           @hakForm="hakForm"
         ></hak-akses-form>
@@ -313,7 +313,7 @@
             <i class="icon-cross"></i> Tutup
           </button>
 
-          <button type="submit" class="btn btn-primary" @click="modalConfirmOk">
+          <button type="submit" class="btn btn-primary" @click="modalConfirmOk" v-if="hakAksesStat == 'success'">
             <i class="icon-floppy-disk"></i> Simpan
           </button>
         </div>
@@ -324,7 +324,7 @@
             <i class="icon-cross"></i> Tutup
           </button>
 
-          <button type="submit" class="btn btn-primary btn-block pb-2" @click="modalConfirmOk">
+          <button type="submit" class="btn btn-primary btn-block pb-2" @click="modalConfirmOk" v-if="hakAksesStat == 'success'">
             <i class="icon-floppy-disk"></i> Simpan
           </button>
         </div>

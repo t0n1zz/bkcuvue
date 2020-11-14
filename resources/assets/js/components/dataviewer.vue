@@ -307,7 +307,7 @@
           </tbody>
 
           <!-- data body -->
-          <tbody v-for="(items,index) in groupData" :key="index" v-else-if="itemDataStat === 'success'" @contextmenu.prevent = "$refs.menu.open">
+          <tbody v-for="(items,index) in groupData" :key="index" v-else-if="itemDataStat === 'success'">
             <tr class="active border-double" v-if="group.show">
               <td :colspan="columnData.length">
                 Kelompok {{ group.title }}: <b>{{index}}</b>
@@ -326,12 +326,6 @@
           </tbody>
         </table>
       </div>
-
-      <!-- table context menu -->
-      <context-menu ref="menu">
-        <!-- slot button -->
-        <slot name="button-context"></slot>
-      </context-menu>
 
       <!-- footer info -->
       <div class="panel-footer hidden-print">
@@ -767,7 +761,6 @@
   import _ from 'lodash';
   import jsonExcel from 'vue-json-excel';
   import appModal from '../components/modal';
-  import contextMenu from 'vue-context-menu';
   import Cleave from 'vue-cleave-component';
 
   export default {
@@ -775,7 +768,6 @@
     components: {
       jsonExcel,
       appModal,
-      contextMenu,
       Cleave
     },
     data() {

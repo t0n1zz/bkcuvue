@@ -9,6 +9,7 @@ export const global = {
     idTp: '',
     message: '',
     messageType: '',
+    isLoading: '',
   },
 
   // getters
@@ -18,6 +19,7 @@ export const global = {
     idTp: state => state.idTp,
     message: state => state.message,
     messageType: state => state.messageType,
+    isLoading: state => state.isLoading,
   },
 
   // actions
@@ -58,7 +60,12 @@ export const global = {
     resetMessage({commit}){
       commit('setMessage','');
       commit('setMessageType','');
-    }
+    },
+
+    // change data
+    setLoading({commit}, type){
+      commit('setLoading', type);
+    },
   },
 
   // mutations
@@ -77,6 +84,9 @@ export const global = {
     },
     setMessageType ( state, type ){
       state.messageType = type;
+    },
+    setLoading ( state, type ){
+      state.isLoading = type;
     },
   }
 }

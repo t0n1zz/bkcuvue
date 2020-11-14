@@ -9,17 +9,17 @@
 			<template slot="button-desktop">
 
 				<!-- tambah -->
-				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['create_artikel_penulis']">
+				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['create_artikel_kategori']">
 					<i class="icon-plus3"></i> Tambah
 				</router-link>
 
 				<!-- ubah-->
-				<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['update_artikel_penulis']" :disabled="!selectedItem.id">
+				<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['update_artikel_kategori']" :disabled="!selectedItem.id">
 					<i class="icon-pencil5"></i> Ubah
 				</button>
 
 				<!-- hapus -->
-				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['destroy_artikel_penulis']" :disabled="!selectedItem.id">
+				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['destroy_artikel_kategori']" :disabled="!selectedItem.id">
 					<i class="icon-bin2"></i> Hapus
 				</button>
 
@@ -29,17 +29,17 @@
 			<template slot="button-mobile">
 
 				<!-- tambah -->
-				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['create_artikel_penulis']">
+				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['create_artikel_kategori']">
 					<i class="icon-plus3"></i> Tambah
 				</router-link>
 
 				<!-- ubah-->
-				<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['update_artikel_penulis']" :disabled="!selectedItem.id">
+				<button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['update_artikel_kategori']" :disabled="!selectedItem.id">
 					<i class="icon-pencil5"></i> Ubah
 				</button>
 
 				<!-- hapus -->
-				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_artikel_penulis']" :disabled="!selectedItem.id">
+				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_artikel_kategori']" :disabled="!selectedItem.id">
 					<i class="icon-bin2"></i> Hapus
 				</button>
 				
@@ -191,7 +191,7 @@
 				if(value === "success"){
 					this.modalTitle = this.updateMessage.message;
 					this.modalContent = '';
-					this.fetch();
+					this.fetch(this.query);
 				}else if(value === "fail"){
 					this.modalContent = this.updateMessage;
 				}else{

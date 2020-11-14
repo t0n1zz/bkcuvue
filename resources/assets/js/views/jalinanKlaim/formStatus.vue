@@ -21,7 +21,7 @@
     <!-- pengajuan -->
     <transition enter-active-class="animated fadeIn" mode="out-in">
 			<div v-show="tabName == 'pengajuan'">
-        <form @submit.prevent="save" data-vv-scope="formStatus">
+        <form @submit.prevent="save" data-vv-scope="formStatus" autocomplete="off">
         <!-- message -->
         <message v-if="errors.any('formStatus') && submited" :title="'Oops, terjadi kesalahan'" :errorItem="errors.items">
         </message>

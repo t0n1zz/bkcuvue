@@ -664,6 +664,7 @@ class AnggotaCuController extends Controller{
 
 	private function syncCu($request, $kelas)
 	{
+		// if by user bkcu
 		if($request->anggota_cu_cu){
 			$cus = $request->anggota_cu_cu;
 			foreach($kelas->anggota_cu_cu as $aV){ $aTmp1[] = $aV['id']; }
@@ -702,19 +703,32 @@ class AnggotaCuController extends Controller{
 			}
 		}
 		
+		// if by user cu
 		if($request->id_cu){
 			$kelasCu = AnggotaCuCu::where('anggota_cu_id',$kelas->id)->where('cu_id', $request->id_cu)->first();
 
 			if($kelasCu){
-				$kelasCu = AnggotaCuCu::where('anggota_cu_id',$kelas->id)->where('cu_id', $request->id_cu);
-				$kelasCu->update([
-					'anggota_cu_id' => $kelas->id,
-					'cu_id' => $request->id_cu,
-					'tp_id' => $request->tp_id,
-					'no_ba' => $request->no_ba,
-					'tanggal_masuk' => $request->tanggal_masuk,
-					'keterangan_masuk' => $request->keterangan_masuk,
-				]);
+				$kelasCuCu = AnggotaCuCu::where('anggota_cu_id',$kelas->id)->where('cu_id', $request->id_cu)->whereNull('tanggal_keluar')->first();
+				
+				if($kelasCuCu){
+					$kelasCuCu->update([
+						'anggota_cu_id' => $kelas->id,
+						'cu_id' => $request->id_cu,
+						'tp_id' => $request->tp_id,
+						'no_ba' => $request->no_ba,
+						'tanggal_masuk' => $request->tanggal_masuk,
+						'keterangan_masuk' => $request->keterangan_masuk,
+					]);
+				}else{
+					AnggotaCuCu::create([
+						'anggota_cu_id' => $kelas->id,
+						'cu_id' => $request->id_cu,
+						'tp_id' => $request->tp_id,
+						'no_ba' => $request->no_ba,
+						'tanggal_masuk' => $request->tanggal_masuk,
+						'keterangan_masuk' => $request->keterangan_masuk
+					]);
+				}
 			}else{
 				AnggotaCuCu::create([
 					'anggota_cu_id' => $kelas->id,

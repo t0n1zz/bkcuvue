@@ -205,7 +205,8 @@
 
 										<hak-akses 
 										:isPeran="true"
-										:tipeUser="tipeUser" 
+										:tipeUser="tipeUser"
+										:dataStat="'success'" 
 										@hakForm="hakForm"
 										></hak-akses>
 									</div>

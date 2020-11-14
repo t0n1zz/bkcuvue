@@ -212,7 +212,7 @@
 				kelas: 'anggotaCu',
 				id_local: '',
 				formState: '',
-				formModel: [],
+				formModel: {},
 				selectedItem: {},
 				columnData:[
 					{ title: 'No.' },

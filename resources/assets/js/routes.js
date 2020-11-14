@@ -1,81 +1,161 @@
 import header from './components/header.vue';
 import footer from './components/footer.vue';
 import login from './views/login.vue';
-import dashboard from './views/dashboard.vue';
-import notification from './views/sistem/notification.vue';
-import changelog from './views/sistem/changelog.vue';
-import saran from './views/saran/index.vue';
-import errorLog from './views/errorLog/index.vue';
-import activityLog from './views/user/indexAktivitas.vue';
-import pengumuman from './views/pengumuman/index.vue';
-import notFound from './views/notFound.vue';
-import artikel from './views/artikel/index.vue';
-import artikel_form from './views/artikel/form.vue';
-import artikelPenulis from './views/artikelPenulis/index.vue';
-import artikelPenulis_form from './views/artikelPenulis/form.vue';
-import artikelKategori from './views/artikelKategori/index.vue';
-import artikelKategori_form from './views/artikelKategori/form.vue';
-import artikelSimo from './views/artikelSimo/index.vue';
-import artikelSimo_form from './views/artikelSimo/form.vue';
-import laporanCu from './views/laporanCu/index.vue';
-import laporanCu_form from './views/laporanCu/form.vue';
-import laporanCu_detail from './views/laporanCu/detail.vue';
-import laporanCu_draft from './views/laporanCu/draft.vue';
-import laporanTp_draft from './views/laporanCu/draftTp.vue';
-import laporanGerakan from './views/laporanGerakan/index.vue';
-import kegiatanBKCU from './views/kegiatanBKCU/index.vue';
-import kegiatanBKCU_form from './views/kegiatanBKCU/form.vue';
-import kegiatanBKCU_detail from './views/kegiatanBKCU/detail.vue';
-import tempat from './views/tempat/index.vue';
-import tempat_form from './views/tempat/form.vue';
-import cu from './views/cu/index.vue';
-import cu_form from './views/cu/form.vue';
-import tp from './views/tp/index.vue';
-import tp_form from './views/tp/form.vue';
-import aktivis from './views/aktivis/index.vue';
-import aktivis_form from './views/aktivis/form.vue';
-import aktivis_riwayat from './views/aktivis/riwayat.vue';
-import asetTetap from './views/asetTetap/index.vue';
-import asetTetap_form from './views/asetTetap/form.vue';
-import asetTetap_detail from './views/asetTetap/detail.vue';
-import asetTetapJenis from './views/asetTetapJenis/index.vue';
-import asetTetapJenis_form from './views/asetTetapJenis/create.vue';
-import asetTetapKelompok from './views/asetTetapKelompok/index.vue';
-import asetTetapKelompok_form from './views/asetTetapKelompok/create.vue';
-import asetTetapGolongan from './views/asetTetapGolongan/index.vue';
-import asetTetapGolongan_form from './views/asetTetapGolongan/create.vue';
-import asetTetapLokasi from './views/asetTetapLokasi/index.vue';
-import asetTetapLokasi_form from './views/asetTetapLokasi/create.vue';
-import mitraOrang from './views/mitraOrang/index.vue';
-import mitraOrang_form from './views/mitraOrang/form.vue';
-import mitraLembaga from './views/mitraLembaga/index.vue';
-import mitraLembaga_form from './views/mitraLembaga/form.vue';
-import anggotaCu from './views/anggotaCu/index.vue';
-import anggotaCu_form from './views/anggotaCu/form.vue';
-import anggotaCu_produk from './views/anggotaCu/produk.vue';
-import anggotaCuDraft from './views/anggotaCuDraft/index.vue';
-import anggotaCuDraft_form from './views/anggotaCuDraft/form.vue';
-import anggotaProdukCuDraft from './views/anggotaProdukCuDraft/index.vue';
-import anggotaProdukCuDraft_form from './views/anggotaProdukCuDraft/form.vue';
-import saldo from './views/saldo/index.vue';
-import jalinanKlaim from './views/jalinanKlaim/index.vue';
-import jalinanKlaim_form from './views/jalinanKlaim/form.vue';
-import jalinanCair from './views/jalinanCair/index.vue';
-import jalinanLaporan_KlaimCu from './views/jalinanLaporan/cu.vue';
-import jalinanLaporan_KlaimPenyebab from './views/jalinanLaporan/penyebab.vue';
-import jalinanLaporan_KlaimUsia from './views/jalinanLaporan/usia.vue';
-import jalinanLaporan_KlaimLama from './views/jalinanLaporan/lama.vue';
-import produkCu from './views/produkCu/index.vue';
-import produkCu_form from './views/produkCu/form.vue';
-import user from './views/user/index.vue';
-import user_form from './views/user/form.vue';
-import user_aktivitas from './views/user/aktivitas.vue';
-import profile from './views/user/profile.vue';
-import assesmentAccess from './views/assesmentAccess/index.vue';
-import assesmentAccess_form from './views/assesmentAccess/form.vue';
-import monitoring from './views/monitoring/index.vue';
-import monitoring_form from './views/monitoring/form.vue';
-import monitoring_detail from './views/monitoring/detail.vue';
+// import dashboard from './views/dashboard.vue';
+// import notification from './views/sistem/notification.vue';
+// import changelog from './views/sistem/changelog.vue';
+// import saran from './views/saran/index.vue';
+// import errorLog from './views/errorLog/index.vue';
+// import activityLog from './views/user/indexAktivitas.vue';
+// import pengumuman from './views/pengumuman/index.vue';
+// import notFound from './views/notFound.vue';
+// import artikel from './views/artikel/index.vue';
+// import artikel_form from './views/artikel/form.vue';
+// import artikelPenulis from './views/artikelPenulis/index.vue';
+// import artikelPenulis_form from './views/artikelPenulis/form.vue';
+// import artikelKategori from './views/artikelKategori/index.vue';
+// import artikelKategori_form from './views/artikelKategori/form.vue';
+// import artikelSimo from './views/artikelSimo/index.vue';
+// import artikelSimo_form from './views/artikelSimo/form.vue';
+// import laporanCu from './views/laporanCu/index.vue';
+// import laporanCu_form from './views/laporanCu/form.vue';
+// import laporanCu_detail from './views/laporanCu/detail.vue';
+// import laporanCu_draft from './views/laporanCu/draft.vue';
+// import laporanTp_draft from './views/laporanCu/draftTp.vue';
+// import laporanGerakan from './views/laporanGerakan/index.vue';
+// import coa from './views/coa/index.vue';
+// import coa_form from './views/coa/form.vue';
+// import kegiatanBKCU from './views/kegiatanBKCU/index.vue';
+// import kegiatanBKCU_form from './views/kegiatanBKCU/form.vue';
+// import kegiatanBKCU_detail from './views/kegiatanBKCU/detail.vue';
+// import tempat from './views/tempat/index.vue';
+// import tempat_form from './views/tempat/form.vue';
+// import cu from './views/cu/index.vue';
+// import cu_form from './views/cu/form.vue';
+// import tp from './views/tp/index.vue';
+// import tp_form from './views/tp/form.vue';
+// import aktivis from './views/aktivis/index.vue';
+// import aktivis_form from './views/aktivis/form.vue';
+// import aktivis_riwayat from './views/aktivis/riwayat.vue';
+// import asetTetap from './views/asetTetap/index.vue';
+// import asetTetap_form from './views/asetTetap/form.vue';
+// import asetTetap_detail from './views/asetTetap/detail.vue';
+// import asetTetapJenis from './views/asetTetapJenis/index.vue';
+// import asetTetapJenis_form from './views/asetTetapJenis/create.vue';
+// import asetTetapKelompok from './views/asetTetapKelompok/index.vue';
+// import asetTetapKelompok_form from './views/asetTetapKelompok/create.vue';
+// import asetTetapGolongan from './views/asetTetapGolongan/index.vue';
+// import asetTetapGolongan_form from './views/asetTetapGolongan/create.vue';
+// import asetTetapLokasi from './views/asetTetapLokasi/index.vue';
+// import asetTetapLokasi_form from './views/asetTetapLokasi/create.vue';
+// import mitraOrang from './views/mitraOrang/index.vue';
+// import mitraOrang_form from './views/mitraOrang/form.vue';
+// import mitraLembaga from './views/mitraLembaga/index.vue';
+// import mitraLembaga_form from './views/mitraLembaga/form.vue';
+// import anggotaCu from './views/anggotaCu/index.vue';
+// import anggotaCu_form from './views/anggotaCu/form.vue';
+// import anggotaCu_produk from './views/anggotaCu/produk.vue';
+// import anggotaCuDraft from './views/anggotaCuDraft/index.vue';
+// import anggotaCuDraft_form from './views/anggotaCuDraft/form.vue';
+// import anggotaProdukCuDraft from './views/anggotaProdukCuDraft/index.vue';
+// import anggotaProdukCuDraft_form from './views/anggotaProdukCuDraft/form.vue';
+// import saldo from './views/saldo/index.vue';
+// import jalinanKlaim from './views/jalinanKlaim/index.vue';
+// import jalinanKlaim_form from './views/jalinanKlaim/form.vue';
+// import jalinanCair from './views/jalinanCair/index.vue';
+// import jalinanLaporan_KlaimCu from './views/jalinanLaporan/cu.vue';
+// import jalinanLaporan_KlaimPenyebab from './views/jalinanLaporan/penyebab.vue';
+// import jalinanLaporan_KlaimUsia from './views/jalinanLaporan/usia.vue';
+// import jalinanLaporan_KlaimLama from './views/jalinanLaporan/lama.vue';
+// import produkCu from './views/produkCu/index.vue';
+// import produkCu_form from './views/produkCu/form.vue';
+// import user from './views/user/index.vue';
+// import user_form from './views/user/form.vue';
+// import user_aktivitas from './views/user/aktivitas.vue';
+// import profile from './views/user/profile.vue';
+// import assesmentAccess from './views/assesmentAccess/index.vue';
+// import assesmentAccess_form from './views/assesmentAccess/form.vue';
+// import monitoring from './views/monitoring/index.vue';
+// import monitoring_form from './views/monitoring/form.vue';
+// import monitoring_detail from './views/monitoring/detail.vue';
+
+const dashboard = () => import('./views/dashboard.vue');
+const notification = () => import('./views/sistem/notification.vue');
+const changelog = () => import('./views/sistem/changelog.vue');
+const saran = () => import('./views/saran/index.vue');
+const errorLog = () => import('./views/errorLog/index.vue');
+const activityLog = () => import('./views/user/indexAktivitas.vue');
+const pengumuman = () => import('./views/pengumuman/index.vue');
+const notFound = () => import('./views/notFound.vue');
+const artikel = () => import('./views/artikel/index.vue');
+const artikel_form = () => import('./views/artikel/form.vue');
+const artikelPenulis = () => import('./views/artikelPenulis/index.vue');
+const artikelPenulis_form = () => import('./views/artikelPenulis/form.vue');
+const artikelKategori = () => import('./views/artikelKategori/index.vue');
+const artikelKategori_form = () => import('./views/artikelKategori/form.vue');
+const artikelSimo = () => import('./views/artikelSimo/index.vue');
+const artikelSimo_form = () => import('./views/artikelSimo/form.vue');
+const laporanCu = () => import('./views/laporanCu/index.vue');
+const laporanCu_form = () => import('./views/laporanCu/form.vue');
+const laporanCu_detail = () => import('./views/laporanCu/detail.vue');
+const laporanCu_draft = () => import('./views/laporanCu/draft.vue');
+const laporanTp_draft = () => import('./views/laporanCu/draftTp.vue');
+const laporanGerakan = () => import('./views/laporanGerakan/index.vue');
+const coa = () => import('./views/coa/index.vue');
+const coa_form = () => import('./views/coa/form.vue');
+const kegiatanBKCU = () => import('./views/kegiatanBKCU/index.vue');
+const kegiatanBKCU_form = () => import('./views/kegiatanBKCU/form.vue');
+const kegiatanBKCU_detail = () => import('./views/kegiatanBKCU/detail.vue');
+const tempat = () => import('./views/tempat/index.vue');
+const tempat_form = () => import('./views/tempat/form.vue');
+const cu = () => import('./views/cu/index.vue');
+const cu_form = () => import('./views/cu/form.vue');
+const tp = () => import('./views/tp/index.vue');
+const tp_form = () => import('./views/tp/form.vue');
+const aktivis = () => import('./views/aktivis/index.vue');
+const aktivis_form = () => import('./views/aktivis/form.vue');
+const aktivis_riwayat = () => import('./views/aktivis/riwayat.vue');
+const asetTetap = () => import('./views/asetTetap/index.vue');
+const asetTetap_form = () => import('./views/asetTetap/form.vue');
+const asetTetap_detail = () => import('./views/asetTetap/detail.vue');
+const asetTetapJenis = () => import('./views/asetTetapJenis/index.vue');
+const asetTetapJenis_form = () => import('./views/asetTetapJenis/create.vue');
+const asetTetapKelompok = () => import('./views/asetTetapKelompok/index.vue');
+const asetTetapKelompok_form = () => import('./views/asetTetapKelompok/create.vue');
+const asetTetapGolongan = () => import('./views/asetTetapGolongan/index.vue');
+const asetTetapGolongan_form = () => import('./views/asetTetapGolongan/create.vue');
+const asetTetapLokasi = () => import('./views/asetTetapLokasi/index.vue');
+const asetTetapLokasi_form = () => import('./views/asetTetapLokasi/create.vue');
+const mitraOrang = () => import('./views/mitraOrang/index.vue');
+const mitraOrang_form = () => import('./views/mitraOrang/form.vue');
+const mitraLembaga = () => import('./views/mitraLembaga/index.vue');
+const mitraLembaga_form = () => import('./views/mitraLembaga/form.vue');
+const anggotaCu = () => import('./views/anggotaCu/index.vue');
+const anggotaCu_form = () => import('./views/anggotaCu/form.vue');
+const anggotaCu_produk = () => import('./views/anggotaCu/produk.vue');
+const anggotaCuDraft = () => import('./views/anggotaCuDraft/index.vue');
+const anggotaCuDraft_form = () => import('./views/anggotaCuDraft/form.vue');
+const anggotaProdukCuDraft = () => import('./views/anggotaProdukCuDraft/index.vue');
+const anggotaProdukCuDraft_form = () => import('./views/anggotaProdukCuDraft/form.vue');
+const saldo = () => import('./views/saldo/index.vue');
+const jalinanKlaim = () => import('./views/jalinanKlaim/index.vue');
+const jalinanKlaim_form = () => import('./views/jalinanKlaim/form.vue');
+const jalinanCair = () => import('./views/jalinanCair/index.vue');
+const jalinanLaporan_KlaimCu = () => import('./views/jalinanLaporan/cu.vue');
+const jalinanLaporan_KlaimPenyebab = () => import('./views/jalinanLaporan/penyebab.vue');
+const jalinanLaporan_KlaimUsia = () => import('./views/jalinanLaporan/usia.vue');
+const jalinanLaporan_KlaimLama = () => import('./views/jalinanLaporan/lama.vue');
+const produkCu = () => import('./views/produkCu/index.vue');
+const produkCu_form = () => import('./views/produkCu/form.vue');
+const user = () => import('./views/user/index.vue');
+const user_form = () => import('./views/user/form.vue');
+const user_aktivitas = () => import('./views/user/aktivitas.vue');
+const profile = () => import('./views/user/profile.vue');
+const assesmentAccess = () => import('./views/assesmentAccess/index.vue');
+const assesmentAccess_form = () => import('./views/assesmentAccess/form.vue');
+const monitoring = () => import('./views/monitoring/index.vue');
+const monitoring_form = () => import('./views/monitoring/form.vue');
+const monitoring_detail = () => import('./views/monitoring/detail.vue');
 
 const routes = [
 
@@ -684,6 +764,20 @@ const routes = [
 		name: 'laporanTpEditDraft', 
 		components: { default: laporanCu_form, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true, mode:'editDraftTp' } },		
+
+	// coa
+	{ path: '/coa',
+		name: 'coa', 
+		components: { default: coa, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true }},
+	{ path: '/coa/create',
+		name: 'coaCreate', 
+		components: { default: coa_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/coa/edit/:id',
+		name: 'coaEdit', 
+		components: { default: coa_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'edit' }},
 ]
 
 export default routes

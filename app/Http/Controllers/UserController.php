@@ -64,7 +64,6 @@ class UserController extends Controller
 		'update_anggota_cu',
 		'destroy_anggota_cu',
 		'upload_anggota_cu',
-		'upload_anggota_cu_produk',
 
 		'index_saldo',
 		'create_saldo',
@@ -164,6 +163,11 @@ class UserController extends Controller
 		'destroy_laporan_tp',
 		'upload_laporan_tp',
 		'diskusi_laporan_tp',
+
+		'index_coa',
+		'create_coa',
+		'update_coa',
+		'destroy_coa',
 	];
 
 	public function index()

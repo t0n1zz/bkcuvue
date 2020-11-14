@@ -17,6 +17,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import VueCkeditor from 'vue-ckeditor5';
 import VueHtmlToPaper from 'vue-html-to-paper';
 import "babel-polyfill";
+// import { initProgress } from './helpers/progressbar.js';
 
 Validator.localize('id', id); //localization
 Vue.use(VueRouter);
@@ -70,6 +71,8 @@ const router = new VueRouter({
   mode: 'history',
   routes
 });
+
+// initProgress(router);
 
 initialize(store, router);
 

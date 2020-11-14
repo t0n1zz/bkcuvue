@@ -671,6 +671,25 @@ Route::group(['middleware'=>'jwt.auth'],function(){
         Route::delete('/laporanTpDraft/destroyAll', 'LaporanTpDraftController@destroyAll');
         Route::get('/laporanTpDraft/count', 'LaporanTpDraftController@count');
     });
+    
+    //coa
+    Route::get('/coa/history', 'CoaController@history');
+    Route::group(['middleware' => ['permission:index_coa']], function () {
+        Route::get('/coa', 'CoaController@index');
+        Route::get('/coa/get', 'CoaController@get');
+    });
+    Route::group(['middleware' => ['permission:create_coa']], function () {
+        Route::get('/coa/create', 'CoaController@create');
+        Route::post('/coa/store', 'CoaController@store');
+    });
+    Route::group(['middleware' => ['permission:update_coa']], function () {
+        Route::get('/coa/edit/{id}', 'CoaController@edit');
+        Route::post('/coa/update/{id}', 'CoaController@update');
+    });
+    Route::group(['middleware' => ['permission:destroy_coa']], function () {
+        Route::delete('/coa/{id}', 'CoaController@destroy');
+    });
+
 
     //saran
     Route::group(['middleware' => ['permission:index_saran']], function () {

@@ -318,10 +318,10 @@ class PublicController extends Controller
 		// 	]);
 
 		// create permission
-        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_pertemuan_bkcu']); 
-        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_pertemuan_bkcu']); 
-        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_pertemuan_bkcu']); 
-		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_pertemuan_bkcu']);
+        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_coa']); 
+        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_coa']); 
+        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_coa']); 
+		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_coa']);
 		
 		// give permission
 		// $users = App\User::where('id','!=',1)->where('id_cu',0)->get();

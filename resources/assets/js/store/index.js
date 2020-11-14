@@ -22,6 +22,7 @@ import { villages } from './modules/villages';
 import { laporanCu } from './modules/laporanCu';
 import { laporanCuDiskusi } from './modules/laporanCuDiskusi';
 import { laporanTp } from './modules/laporanTp';
+import { coa } from './modules/coa';
 import { aktivis } from './modules/aktivis';
 import { asetTetap } from './modules/asetTetap';
 import { asetTetapGolongan } from './modules/asetTetapGolongan';
@@ -67,6 +68,7 @@ export default new Vuex.Store({
 		 laporanCu,
 		 laporanCuDiskusi,
 		 laporanTp,
+		 coa,
 		 aktivis,
 		 asetTetap,
 		 asetTetapGolongan,

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<form @submit.prevent="save" data-vv-scope="formProduk">
+		<form @submit.prevent="save" data-vv-scope="formProduk" autocomplete="off">
 
 		<!-- message -->
 		<message v-if="message.show" @close="messageClose" :title="'Oops terjadi kesalahan'" :errorData="message.content" :showDebug="false">
