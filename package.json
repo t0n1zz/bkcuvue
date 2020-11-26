@@ -51,12 +51,13 @@
         "vue-echarts": "^3.1.3",
         "vue-echarts-v3": "^1.0.19",
         "vue-html-to-paper": "^1.1.1",
+        "vue-html2canvas": "0.0.4",
         "vue-json-excel": "^0.2.98",
         "vue-katex": "^0.1.4",
         "vue-pdf": "^4.0.7",
         "vue-router": "^3.1.3",
         "vue-truncate-collapsed": "^1.9.0",
-        "vue2-datepicker": "^3.4.1",
+        "vue2-datepicker": "^3.7.0",
         "vue2-filters": "^0.3.0",
         "vuex": "^3.1.2"
     }

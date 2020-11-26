@@ -33,6 +33,8 @@
 </template>
 
 <script type="text/javascript">
+  import FileSaver from 'file-saver';
+  
   export default {
     props: ['image','name'],
     methods: {

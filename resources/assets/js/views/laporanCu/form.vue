@@ -121,9 +121,9 @@
 						<span class="font-weight-semibold">Perhatian!</span> Silahkan memilih salah satu jenis laporan cu yang ingin di isi. 
 						<br/>
 						Terdapat 2 jenis yaitu form CoA yang terdiri dari charts of accounts yang akan otomatis nanti menjadi laporan statistik. Kemudian ada form statistik yang akan menjadi laporan statistik tapi tidak memiliki informasi detail charts of accounts.
-					</div> -->
+					</div>
 
-					<!-- <div class="nav-tabs-responsive mb-3">
+					<div class="nav-tabs-responsive mb-3">
 						<ul class="nav nav-tabs nav-tabs-solid nav-justified bg-light">
 							<li class="nav-item">
 								<a href="#" class="nav-link" :class="{'active' : tabName == 'coa'}" @click.prevent="changeTab('coa')"><i class="icon-notebook mr-2"></i> Form CoA</a>
@@ -132,9 +132,9 @@
 								<a href="#" class="nav-link" :class="{'active' : tabName == 'statistik'}" @click.prevent="changeTab('statistik')"><i class="icon-stats-growth mr-2"></i> Form Statistik</a>
 							</li>
 						</ul>
-					</div> -->
+					</div>
 					
-					<!-- <transition enter-active-class="animated fadeIn" mode="out-in">
+					<transition enter-active-class="animated fadeIn" mode="out-in">
 						<div v-show="tabName == 'coa'">
 							<form-coa @back="back" :modelCoa="modelCoa" :modelCoaStat="modelCoaStat" v-if="modelCoaStat == 'success'"></form-coa>
 						</div>

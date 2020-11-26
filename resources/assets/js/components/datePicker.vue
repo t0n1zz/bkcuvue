@@ -1,4 +1,7 @@
 <template>
+
+    <!-- jika tidak muncul:
+    ganti z-index di node-module di index.css nya -->
     <DatePicker  @change="onChanged" class="w-100" v-model="time" format="DD-MM-YYYY" value-type="format" placeholder="Pilih Tanggal" :editable="true"></DatePicker>
 </template>
 

@@ -15,9 +15,18 @@ mix.autoload({
  |
  */
 
+mix.webpackConfig({
+  output: {
+      publicPath: '/',
+      chunkFilename: 'js/components/[name].[hash].js',
+  }
+});
+
 // main vue 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+   .sass('resources/assets/sass/app.scss', 'public/css')
+   .version();
+
 
 // for admin   
 mix.styles([

@@ -49,7 +49,7 @@ class Helper{
 				$imageData = $request;
 				list($width, $height) = getimagesize($imageData);
 	
-				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid();
+				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),20,'') . '_' .uniqid();
 				
 				$fileName =  $formatedName. '.jpg';
 				$fileName2 =  $formatedName. 'n.jpg';
@@ -100,7 +100,7 @@ class Helper{
 				$imageData = $request;
 				list($width, $height) = getimagesize($imageData);
 	
-				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid();
+				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),20,'') . '_' .uniqid();
 				
 				$fileName =  $formatedName. '.jpg';
 	

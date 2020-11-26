@@ -16,7 +16,6 @@
       </ul>
     </div>
     <!-- navbar -->
-
     
     <!-- pengajuan -->
     <transition enter-active-class="animated fadeIn" mode="out-in">
@@ -861,7 +860,7 @@
   import Cleave from 'vue-cleave-component';
 	import message from "../../components/message.vue";
   import formInfo from "../../components/formInfo.vue";
-  import identitas from "../../components/identitas.vue";
+  import identitas from "../../components/identitasAnggotaCu.vue";
   import checkValue from "../../components/checkValue.vue";
   import dataTable from '../../components/datatable.vue';
   import infoIcon from "../../components/infoIcon.vue";

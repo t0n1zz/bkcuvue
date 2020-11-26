@@ -10,62 +10,64 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// BKCU
-$appRoutes = function() {
-	// home
-	Route::get('/',array( 'as' => 'home','uses' => 'PublicController@index'));
-
-	// tentang kami
-	Route::get('/tentang_kami/profile',array( 'as' => 'profile','uses' => 'PublicController@profile'));
-
-	// artikel
-	Route::get('/artikel',array( 'as' => 'artikel','uses' => 'PublicController@artikel'));
-	Route::get('/artikel/cari',array( 'as' => 'artikel.cari','uses' => 'PublicController@artikelCari'));
-	Route::get('/artikel/lihat/{slug}',array( 'as' => 'artikel.lihat','uses' => 'PublicController@artikelLihat'));
-	Route::get('/artikel/kategori/{slug}',array( 'as' => 'artikel.kategori','uses' => 'PublicController@artikelKategori'));
-    Route::get('/artikel/penulis/{slug}',array( 'as' => 'artikel.penulis','uses' => 'PublicController@artikelPenulis'));
-    
-	// cu
-	Route::get('/cu',array( 'as' => 'cu','uses' => 'PublicController@cu'));
-
-	// kegiatan
-	Route::get('/kegiatan/diklat/{periode}',array( 'as' => 'diklat','uses' => 'PublicController@diklat'));
-	Route::get('/kegiatan/diklat/lihat/{slug}',array( 'as' => 'diklat.lihat','uses' => 'PublicController@diklatLihat'));
+Route::group(['middleware' => 'throttle:60,10'], function () {
 	
-	// dokumen
-	Route::get('dokumen',array('as' => 'dokumen','uses' => 'PublicController@dokumen'));
-	Route::get('download/{filename}',array('as' => 'file','uses' => 'PublicController@download_file'));
+	// BKCU
+	$appRoutes = function() {
+		// home
+		Route::get('/',array( 'as' => 'home','uses' => 'PublicController@index'));
 
-	// panduan
-	Route::get('panduan',array( 'as' => 'panduan','uses' => 'PublicController@panduan'));
-};
+		// tentang kami
+		Route::get('/tentang_kami/profile',array( 'as' => 'profile','uses' => 'PublicController@profile'));
 
-Route::group(array('domain' => 'bkcuvue.test'), $appRoutes);
+		// artikel
+		Route::get('/artikel',array( 'as' => 'artikel','uses' => 'PublicController@artikel'));
+		Route::get('/artikel/cari',array( 'as' => 'artikel.cari','uses' => 'PublicController@artikelCari'));
+		Route::get('/artikel/lihat/{slug}',array( 'as' => 'artikel.lihat','uses' => 'PublicController@artikelLihat'));
+		Route::get('/artikel/kategori/{slug}',array( 'as' => 'artikel.kategori','uses' => 'PublicController@artikelKategori'));
+			Route::get('/artikel/penulis/{slug}',array( 'as' => 'artikel.penulis','uses' => 'PublicController@artikelPenulis'));
+			
+		// cu
+		Route::get('/cu',array( 'as' => 'cu','uses' => 'PublicController@cu'));
 
-// cu
-$appSubRoutes = function() {
-	// home
-	Route::get('/',array( 'as' => 'home.cu','uses' => 'PublicCuController@index'));
+		// kegiatan
+		Route::get('/kegiatan/diklat/{periode}',array( 'as' => 'diklat','uses' => 'PublicController@diklat'));
+		Route::get('/kegiatan/diklat/lihat/{slug}',array( 'as' => 'diklat.lihat','uses' => 'PublicController@diklatLihat'));
+		
+		// dokumen
+		Route::get('dokumen',array('as' => 'dokumen','uses' => 'PublicController@dokumen'));
+		Route::get('download/{filename}',array('as' => 'file','uses' => 'PublicController@download_file'));
 
-	// artikel
-	Route::get('/artikel',array( 'as' => 'artikel.cu','uses' => 'PublicCuController@artikel'));
-	Route::get('/artikel/cari',array( 'as' => 'artikel.cari.cu','uses' => 'PublicCuController@artikelCari'));
-	Route::get('/artikel/lihat/{slug}',array( 'as' => 'artikel.lihat.cu','uses' => 'PublicCuController@artikelLihat'));
-	Route::get('/artikel/kategori/{slug}',array( 'as' => 'artikel.kategori.cu','uses' => 'PublicCuController@artikelKategori'));
-	Route::get('/artikel/penulis/{slug}',array( 'as' => 'artikel.penulis.cu','uses' => 'PublicCuController@artikelPenulis'));
-	// tp
-	Route::get('/tp',array( 'as' => 'tp','uses' => 'PublicCuController@tp'));
+		// panduan
+		Route::get('panduan',array( 'as' => 'panduan','uses' => 'PublicController@panduan'));
+	};
 
-	// produk
-	Route::get('/produk',array( 'as' => 'produk','uses' => 'PublicCuController@produk'));
-};
+	Route::group(array('domain' => 'bkcuvue.test'), $appRoutes);
 
-Route::group(array('domain' => '{cu}.bkcuvue.test'), $appSubRoutes);
+	// cu
+	$appSubRoutes = function() {
+		// home
+		Route::get('/',array( 'as' => 'home.cu','uses' => 'PublicCuController@index'));
 
-// admins
-Route::get('/admins/{vue?}','PublicController@admins')->where('vue', '^(?!.*api).*$[\/\w\.-]*');
+		// artikel
+		Route::get('/artikel',array( 'as' => 'artikel.cu','uses' => 'PublicCuController@artikel'));
+		Route::get('/artikel/cari',array( 'as' => 'artikel.cari.cu','uses' => 'PublicCuController@artikelCari'));
+		Route::get('/artikel/lihat/{slug}',array( 'as' => 'artikel.lihat.cu','uses' => 'PublicCuController@artikelLihat'));
+		Route::get('/artikel/kategori/{slug}',array( 'as' => 'artikel.kategori.cu','uses' => 'PublicCuController@artikelKategori'));
+		Route::get('/artikel/penulis/{slug}',array( 'as' => 'artikel.penulis.cu','uses' => 'PublicCuController@artikelPenulis'));
+		// tp
+		Route::get('/tp',array( 'as' => 'tp','uses' => 'PublicCuController@tp'));
 
-// test route
-Route::get('/testroute','PublicController@testroute');
+		// produk
+		Route::get('/produk',array( 'as' => 'produk','uses' => 'PublicCuController@produk'));
+	};
 
+	Route::group(array('domain' => '{cu}.bkcuvue.test'), $appSubRoutes);
 
+	// admins
+	Route::get('/admins/{vue?}','PublicController@admins')->where('vue', '^(?!.*api).*$[\/\w\.-]*');
+
+	// test route
+	Route::get('/testroute','PublicController@testroute');
+
+});

@@ -16,6 +16,7 @@ import VTooltip from 'v-tooltip';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import VueCkeditor from 'vue-ckeditor5';
 import VueHtmlToPaper from 'vue-html-to-paper';
+import VueHtml2Canvas from 'vue-html2canvas';
 import "babel-polyfill";
 // import { initProgress } from './helpers/progressbar.js';
 
@@ -60,6 +61,7 @@ const printOpt = {
   ]
 };
 Vue.use(VueHtmlToPaper, printOpt);
+Vue.use(VueHtml2Canvas);
 
 window.moment = moment; // handling date formating
 window.moment.locale('id'); // handling date formating locale

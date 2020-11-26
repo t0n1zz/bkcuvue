@@ -1533,6 +1533,9 @@ class JalinanKlaimController extends Controller{
 			// 		$kelas->tanggal_meninggal = NULL;
 			// 	}
 			// }
+		}else {
+			$kelas->tanggal_meninggal = $tanggal;
+			$kelas->tanggal_cacat = $tanggal;
 		}
 		
 		$kelas->update();

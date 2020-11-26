@@ -299,7 +299,7 @@
 						<check-value :value="props.item.anggota_cu.ahli_waris" v-if="props.item.anggota_cu"></check-value>
 					</td>
           <td v-if="!columnData[27].hide">
-						<check-value :value="props.item.anggota_cu.provinces.name" v-if="props.item.anggota_cu"></check-value>
+						<check-value :value="props.item.anggota_cu.provinces.name" v-if="props.item.anggota_cu && props.item.anggota_cu.provinces"></check-value>
 						<span v-else>-</span>	
 					</td>
           <td v-if="!columnData[28].hide">
