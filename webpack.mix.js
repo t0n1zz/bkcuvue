@@ -18,7 +18,7 @@ mix.autoload({
 mix.webpackConfig({
   output: {
       publicPath: '/',
-      chunkFilename: 'js/components/[name].[hash].js',
+      chunkFilename: 'js/components/[name].js?id=[chunkhash]',
   }
 });
 

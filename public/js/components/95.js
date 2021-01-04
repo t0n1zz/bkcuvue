@@ -1541,6 +1541,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -1739,6 +1764,79 @@ var staticRenderFns = [
                       "a",
                       {
                         staticClass: "text-default",
+                        attrs: { "data-toggle": "collapse", href: "#v336" }
+                      },
+                      [
+                        _vm._v("Version 3.3.6"),
+                        _c("small", { staticClass: "text-muted" }, [
+                          _vm._v(" / 5 Desember 2020")
+                        ])
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "collapse show",
+                    attrs: {
+                      id: "v336",
+                      "data-parent": "#accordion-control-right"
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("p", { staticClass: "mb-3" }, [
+                        _vm._v(
+                          "Update versi menawarkan peningkatan performa, keamanan dan perbaikan bug\n                    "
+                        ),
+                        _c("br"),
+                        _c("br"),
+                        _vm._v(
+                          "\n                    Berikut adalah rincian perubahan pada versi ini:"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "list" }, [
+                        _c("li", [
+                          _vm._v(
+                            "Penambahan fitur untuk membuat QR Code secara banyak pada aset tetap"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", [
+                          _vm._v(
+                            "Pengoptimalisasian akses aplikasi menjadi lebih cepat khususnya dalam jaringan internet yang lambat"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", [
+                          _vm._v(
+                            "Peningkatan sistem keamanan terhadap serangan DDoS"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", [
+                          _vm._v("Perbaikan pada pengubahan hak akses user")
+                        ]),
+                        _vm._v(" "),
+                        _c("li", [
+                          _vm._v("Perbaikan bug tampilan dibeberapa bagian")
+                        ])
+                      ])
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-header" }, [
+                  _c("h5", { staticClass: "card-title" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "text-default collapsed",
                         attrs: { "data-toggle": "collapse", href: "#v335" }
                       },
                       [
@@ -1754,7 +1852,7 @@ var staticRenderFns = [
                 _c(
                   "div",
                   {
-                    staticClass: "collapse show",
+                    staticClass: "collapse",
                     attrs: {
                       id: "v335",
                       "data-parent": "#accordion-control-right"

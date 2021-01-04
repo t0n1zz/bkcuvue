@@ -1093,7 +1093,7 @@
 		},
 		data(){
 			return{
-				clientVersion: '3.3.5',
+				clientVersion: '3.3.6',
 				dropdownMenu1: '',
 				dropdownMenu2: '',
 				state: '',

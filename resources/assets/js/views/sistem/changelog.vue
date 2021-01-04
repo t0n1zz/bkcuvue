@@ -10,14 +10,39 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.3.6 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#v336">Version 3.3.6<small class="text-muted"> / 5 Desember 2020</small></a> </h5>
+                </div>
+
+                <div id="v336" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi menawarkan peningkatan performa, keamanan dan perbaikan bug
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan fitur untuk membuat QR Code secara banyak pada aset tetap</li>
+                      <li>Pengoptimalisasian akses aplikasi menjadi lebih cepat khususnya dalam jaringan internet yang lambat</li>
+                      <li>Peningkatan sistem keamanan terhadap serangan DDoS</li>
+                      <li>Perbaikan pada pengubahan hak akses user</li>
+                      <li>Perbaikan bug tampilan dibeberapa bagian</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.3.6 -->
+
               <!-- Version 3.3.5 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#v335">Version 3.3.5<small class="text-muted"> / 24 Oktober 2020</small></a> </h5>
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v335">Version 3.3.5<small class="text-muted"> / 24 Oktober 2020</small></a> </h5>
                 </div>
 
-                <div id="v335" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="v335" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi menawarkan perbaikan dan peningkatan pada self assesment dan penambahan fitur untuk mengisi dan mengupload transaksi anggota CU
                     <br/><br/>

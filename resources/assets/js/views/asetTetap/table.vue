@@ -36,6 +36,10 @@
 					<i class="icon-qrcode"></i> Buat QR Code
 				</button>
 
+				<button @click.prevent="modalOpen('qrCodeAll')" class="btn btn-light mb-1">
+					<i class="icon-qrcode"></i> QR Code Pada Tabel
+				</button>
+
 				<!-- hapus -->
 				<button @click.prevent="modalOpen('hapus')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['destroy_aset_tetap']" :disabled="!selectedItem.id">
 					<i class="icon-bin2"></i> Hapus
@@ -72,6 +76,10 @@
 				<!-- qr code -->
 				<button @click.prevent="modalOpen('qrCode')" class="btn btn-light btn-block mb-1" :disabled="!selectedItem.id">
 					<i class="icon-qrcode"></i> Buat QR Code
+				</button>
+
+				<button @click.prevent="modalOpen('qrCodeAll')" class="btn btn-light btn-block mb-1">
+					<i class="icon-qrcode"></i> QR Code Pada Tabel
 				</button>
 
 				<!-- hapus -->
@@ -166,6 +174,10 @@
 				<qr-code :selectedItem="selectedItem" @tutup="modalTutup"></qr-code>
 			</template>
 
+			<template slot=modal-body3>
+				<qr-code-all :itemData="itemData" @tutup="modalTutup"></qr-code-all>
+			</template>
+
 		</app-modal>
 
 	</div>
@@ -180,6 +192,7 @@
 	import formKondisi from "./formKondisi.vue";
 	import formDetail from "./formDetail.vue";
 	import qrCode from './qrCode.vue';
+	import qrCodeAll from './qrCodeAll.vue';
 
 	export default {
 		components: {
@@ -189,7 +202,8 @@
 			formLokasi,
 			formKondisi,
 			formDetail,
-			qrCode
+			qrCode,
+			qrCodeAll,
 		},
 		props:['title','kelas'],
 		data() {
@@ -461,6 +475,11 @@
 					this.modalState = 'normal2';
 					this.modalColor = 'bg-primary';
 					this.modalSize = "";
+				} else if (state == 'qrCodeAll'){
+					this.modalTitle = 'QR Code pada tabel';
+					this.modalState = 'normal3';
+					this.modalColor = 'bg-primary';
+					this.modalSize = "modal-full";
 				}
 			},
 			modalTutup() {

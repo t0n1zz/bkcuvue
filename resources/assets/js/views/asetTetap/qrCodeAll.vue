@@ -15,16 +15,18 @@
 
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 			<div v-show="tabName == 'qrBig'">
-				<div ref="qrBig" id="qrBig">
-					<div class="d-flex align-items-end">
-						<qrcode-vue :value="qrValue" :size="'130'" :renderAs="'svg'" level="M" class="mr-3 mt-2 ml-2 mb-2"></qrcode-vue>
-						<div>
-							<ul class="list list-unstyled mb-0">
-								<li class="mt-0"><b style="font-size: 24px;"><span style="color:red;">Puskopdit</span></b></li>
-								<li class="mt-0"><b style="font-size: 24px;"><span style="color:blue;">BKCU Kalimantan SKD</span></b></li>
-								<li class="mt-0"><b style="font-size: 18px;">Kode: {{ selectedItem.kode }}</b></li>
-								<li class="mt-0"><b style="font-size: 18px;">Nama: {{ selectedItem.name }}</b></li>
-							</ul>	
+				<div class="row" ref="qrBig" id="qrBig" >
+					<div class="col-md-6" v-for="(item, index) in itemData.data" :key="index">						
+						<div class="d-flex align-items-end">
+							<qrcode-vue :value="'puskopditbkcukalimantan.org/admins/asetTetap/detail/' + item.kode" :size="'130'" :renderAs="'svg'" level="M" class="mr-3 mt-2 ml-2 mb-2"></qrcode-vue>
+							<div>
+								<ul class="list list-unstyled mb-2">
+									<li class="mt-0"><b style="font-size: 1.5em;"><span style="color:red;">Puskopdit</span></b></li>
+									<li class="mt-0"><b style="font-size: 1.5em;"><span style="color:blue;">BKCU Kalimantan SKD</span></b></li>
+									<li class="mt-0"><b style="font-size: 1em;">Kode: {{ item.kode }}</b></li>
+									<li class="mt-0"><b style="font-size: 1em;">Nama: {{ item.name }}</b></li>
+								</ul>	
+							</div>
 						</div>
 					</div>
 				</div>
@@ -33,15 +35,17 @@
 
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 			<div v-show="tabName == 'qrSmall'" class="align-items-center">
-				<div ref="qrSmall" id="qrSmall">
-					<div class="d-flex justify-content-center">
-						<div>
-							<qrcode-vue :value="qrValue" :size="'150'" :renderAs="'svg'" level="M" class="mt-2"></qrcode-vue>
-							<ul class="list list-unstyled mb-0 mt-1">
-								<li class="mt-0 mb-0"><b style="font-size: 10px;"><span style="color:red;">Puskopdit</span> <span style="color:blue;">BKCU Kalimantan SKD</span></b></li>
-								<li class="mt-0"><b style="font-size: 12px;">Kode: {{ selectedItem.kode }}</b></li>
-								<li class="mt-0"><b style="font-size: 12px;">Nama: {{ selectedItem.name }}</b></li>
-							</ul>	
+				<div class="row" ref="qrSmall" id="qrSmall" >
+					<div class="col-md-3" v-for="(item, index) in itemData.data" :key="index">
+						<div class="d-flex justify-content-center">
+							<div>
+								<qrcode-vue :value="'puskopditbkcukalimantan.org/admins/asetTetap/detail/' + item.kode" :size="'150'" :renderAs="'svg'" level="M" class="mt-2"></qrcode-vue>
+								<ul class="list list-unstyled mb-0 mt-1">
+									<li class="mt-0 mb-0"><b style="font-size: 0.8em;"><span style="color:red;">Puskopdit</span> <span style="color:blue;">BKCU Kalimantan SKD</span></b></li>
+									<li class="mt-0"><b style="font-size: 0.7em;">Kode: {{ item.kode }}</b></li>
+									<li class="mt-0"><b style="font-size: 0.7em;">Nama: {{ item.name }}</b></li>
+								</ul>	
+							</div>
 						</div>
 					</div>
 				</div>
@@ -80,16 +84,13 @@
 		components: {
 			QrcodeVue,
 		},
-		props:['selectedItem'],
+		props:['itemData'],
 		data() {
 			return {
 				tabName: 'qrBig',
-				qrValue: '',
 			}
 		},
-		created(){
-			this.qrValue = 'puskopditbkcukalimantan.org/admins/asetTetap/detail/' + this.selectedItem.kode;
-		},
+		created(){},
 		methods: {
 			changeTab(value) {
 				this.tabName = value;
@@ -108,7 +109,7 @@
 					this.output = await this.$html2canvas(this.$refs.qrSmall, options);
 				}
 				
-				FileSaver.saveAs(this.output, this.selectedItem.kode);
+				FileSaver.saveAs(this.output, 'aset tetap halaman ' + this.itemData.current_page);
 			},
 			tutup(){
 				this.$emit('tutup');
