@@ -1769,7 +1769,7 @@ var staticRenderFns = [
                       [
                         _vm._v("Version 3.3.6"),
                         _c("small", { staticClass: "text-muted" }, [
-                          _vm._v(" / 5 Desember 2020")
+                          _vm._v(" / 4 Januari 2021")
                         ])
                       ]
                     )

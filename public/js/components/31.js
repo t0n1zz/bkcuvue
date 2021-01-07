@@ -524,21 +524,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           name: 'Verifikasi Pengurus',
           key: 'verifikasi_pengurus_jalinan_klaim',
           icon: 'icon-file-eye',
-          tipe: 'bkcu approve',
+          tipe: 'bkcu',
           value: false,
           group: ''
         }, {
           name: 'Verifikasi Pengawas',
           key: 'verifikasi_pengawas_jalinan_klaim',
           icon: 'icon-file-eye',
-          tipe: 'bkcu approve',
+          tipe: 'bkcu',
           value: false,
           group: ''
         }, {
           name: 'Verifikasi Manajemen',
           key: 'verifikasi_manajemen_jalinan_klaim',
           icon: 'icon-file-eye',
-          tipe: 'bkcu approve',
+          tipe: 'bkcu',
           value: false,
           group: ''
         }]
@@ -1188,7 +1188,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.checkPeran(value);
     },
     checkChange: function checkChange() {
+      this.checkVerifikasiJalinan();
       this.emitData(this.hakForm);
+    },
+    checkVerifikasiJalinan: function checkVerifikasiJalinan() {
+      if (this.hakForm.includes('verifikasi_pengurus_jalinan_klaim')) {
+        console.log('verifikasi_pengurus_jalinan_klaim');
+      } else if (this.hakForm.includes('verifikasi_pengawas_jalinan_klaim')) {
+        console.log('verifikasi_pengawas_jalinan_klaim');
+      } else if (this.hakForm.includes('verifikasi_manajemen_jalinan_klaim')) {
+        console.log('verifikasi_manajemen_jalinan_klaim');
+      }
     },
     changePeran: function changePeran(value) {
       if (this.tipeUser == 'cu') {
@@ -1619,9 +1629,9 @@ var render = function() {
                           _vm._l(akses.permission, function(permission) {
                             return _vm.tipeUser == permission.tipe ||
                               permission.tipe == "all" ||
-                              permission.tipe == "bkcu approve"
+                              permission.tipe == "bkcu"
                               ? _c("div", { staticClass: "col-sm-3 mb-2" }, [
-                                  permission.tipe == "bkcu approve"
+                                  permission.tipe == "bkcu"
                                     ? _c("div", [
                                         _vm.currentUser.id_cu == 0
                                           ? _c(

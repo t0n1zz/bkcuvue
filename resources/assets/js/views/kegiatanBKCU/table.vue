@@ -2,7 +2,7 @@
 	<div>
 
 		<!-- main panel -->
-		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :isNoButtonRow="isNoButtonRow" :dataview="dataview" @fetch="fetch">
+		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl"  :isNoButtonRow="isNoButtonRow" :dataview="dataview" @fetch="fetch">
 
 			<!-- button desktop -->
 			<template slot="button-desktop">
@@ -318,6 +318,7 @@
 				},
 				dataview: '',
 				isNoButtonRow:'',
+				excelDownloadUrl:'',
 				columnData: [
 					{
 						title: 'No.',
@@ -496,13 +497,16 @@
 
 				if(this.$route.params.periode == 'semua'){
 					this.$store.dispatch(this.kelas + '/index', [params, this.$route.params.tipe]);
+					this.excelDownloadUrl = this.kelas;
 				}else if(this.$route.meta.mode == 'jalan'){
 					this.$store.dispatch(this.kelas + '/indexJalan', params);
 					this.dataview = 'grid';
 					this.isNoButtonRow = true;
 					this.query.limit = 15;
+					this.excelDownloadUrl = this.kelas + '/indexJalan';
 				}else{
 					this.$store.dispatch(this.kelas + '/indexPeriode', [params,  this.$route.params.tipe, this.$route.params.periode]);
+					this.excelDownloadUrl = this.kelas + '/indexPeriode/' + this.$route.params.periode;
 				}
 
 			},

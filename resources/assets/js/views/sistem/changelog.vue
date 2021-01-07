@@ -14,7 +14,7 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#v336">Version 3.3.6<small class="text-muted"> / 5 Desember 2020</small></a> </h5>
+                    <a data-toggle="collapse" class="text-default" href="#v336">Version 3.3.6<small class="text-muted"> / 4 Januari 2021</small></a> </h5>
                 </div>
 
                 <div id="v336" class="collapse show" data-parent="#accordion-control-right" style="">

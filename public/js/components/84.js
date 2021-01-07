@@ -575,6 +575,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       },
       dataview: '',
       isNoButtonRow: '',
+      excelDownloadUrl: '',
       columnData: [{
         title: 'No.',
         name: 'No.'
@@ -737,13 +738,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (this.$route.params.periode == 'semua') {
         this.$store.dispatch(this.kelas + '/index', [params, this.$route.params.tipe]);
+        this.excelDownloadUrl = this.kelas;
       } else if (this.$route.meta.mode == 'jalan') {
         this.$store.dispatch(this.kelas + '/indexJalan', params);
         this.dataview = 'grid';
         this.isNoButtonRow = true;
         this.query.limit = 15;
+        this.excelDownloadUrl = this.kelas + '/indexJalan';
       } else {
         this.$store.dispatch(this.kelas + '/indexPeriode', [params, this.$route.params.tipe, this.$route.params.periode]);
+        this.excelDownloadUrl = this.kelas + '/indexPeriode/' + this.$route.params.periode;
       }
     },
     selectedRow: function selectedRow(item) {
@@ -1139,6 +1143,7 @@ var render = function() {
             itemData: _vm.itemData,
             query: _vm.query,
             itemDataStat: _vm.itemDataStat,
+            excelDownloadUrl: _vm.excelDownloadUrl,
             isNoButtonRow: _vm.isNoButtonRow,
             dataview: _vm.dataview
           },

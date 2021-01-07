@@ -733,6 +733,24 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
             Route::delete('/pengumuman/{id}', 'PengumumanController@destroy');
         });
 
+        //pemilihan
+        Route::group(['middleware' => ['permission:index_pemilihan', 'permission:user_pemilihan']], function () {
+            Route::get('/pemilihan/index/{id}', 'PemilihanController@index');
+            Route::get('/pemilihan/indexCalon/{id}', 'PemilihanController@indexCalon');
+            Route::get('/pemilihan/indexUser/{id}', 'PemilihanController@indexUser');
+            Route::get('/pemilihan/checkUser/{pemilihan_id}', 'PemilihanController@checkUser');
+        });
+        Route::group(['middleware' => ['permission:update_pemilihan']], function () {
+            Route::get('/pemilihan/edit/{id}', 'PemilihanController@edit');
+            Route::post('/pemilihan/update/{id}', 'PemilihanController@update');
+        });
+        Route::group(['middleware' => ['permission:destroy_pemilihan']], function () {
+            Route::delete('/pemilihan/{id}', 'PemilihanController@destroy');
+        });
+        Route::group(['middleware' => ['permission:user_pemilihan']], function () {
+            Route::post('/pemilihan/storePilihan', 'PemilihanController@storePilihan');
+        });
+
         // puskopdit
         Route::get('/pus', 'PusController@index');
         Route::get('/pus_all', 'PusController@indexAll');

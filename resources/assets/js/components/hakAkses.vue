@@ -48,8 +48,8 @@
 					<span>{{ akses.keterangan }}</span>
 					<hr class="mt-1" />
 					<div class="row">
-						<div class="col-sm-3 mb-2" v-for="permission in akses.permission" v-if="tipeUser == permission.tipe || permission.tipe == 'all' || permission.tipe == 'bkcu approve'">
-							<div v-if="permission.tipe == 'bkcu approve'">
+						<div class="col-sm-3 mb-2" v-for="permission in akses.permission" v-if="tipeUser == permission.tipe || permission.tipe == 'all' || permission.tipe == 'bkcu'">
+							<div v-if="permission.tipe == 'bkcu'">
 								<div class="form-check" v-if="currentUser.id_cu == 0">
 									<label style="cursor:pointer;">
 										<input type="checkbox" class="form-check-input" :value="permission.key" v-model="hakForm" v-if="permission.type != 'empty'" @change="checkChange()">
@@ -565,7 +565,7 @@
 								name: 'Verifikasi Pengurus',
 								key: 'verifikasi_pengurus_jalinan_klaim',
 								icon: 'icon-file-eye',
-								tipe: 'bkcu approve',
+								tipe: 'bkcu',
 								value: false,
 								group: ''
 							},
@@ -573,7 +573,7 @@
 								name: 'Verifikasi Pengawas',
 								key: 'verifikasi_pengawas_jalinan_klaim',
 								icon: 'icon-file-eye',
-								tipe: 'bkcu approve',
+								tipe: 'bkcu',
 								value: false,
 								group: ''
 							},
@@ -581,7 +581,7 @@
 								name: 'Verifikasi Manajemen',
 								key: 'verifikasi_manajemen_jalinan_klaim',
 								icon: 'icon-file-eye',
-								tipe: 'bkcu approve',
+								tipe: 'bkcu',
 								value: false,
 								group: ''
 							}
@@ -1768,7 +1768,20 @@
 				this.checkPeran(value);
 			},
 			checkChange(){
+				this.checkVerifikasiJalinan();
 				this.emitData(this.hakForm);
+			},
+			checkVerifikasiJalinan(){
+				if(this.hakForm.includes('verifikasi_pengurus_jalinan_klaim')){
+					console.log('verifikasi_pengurus_jalinan_klaim');
+
+				}else if(this.hakForm.includes('verifikasi_pengawas_jalinan_klaim')){
+					console.log('verifikasi_pengawas_jalinan_klaim');
+
+				}else if(this.hakForm.includes('verifikasi_manajemen_jalinan_klaim')){
+					console.log('verifikasi_manajemen_jalinan_klaim');
+	
+				}
 			},
 			changePeran(value){
 				if(this.tipeUser == 'cu'){
