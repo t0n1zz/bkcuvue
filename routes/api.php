@@ -11,6 +11,11 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/me', 'AuthController@me');
     });
 
+    //pemilihan
+    Route::get('/pemilihan/indexCalon/{name}', 'PemilihanController@indexCalon');
+    Route::get('/pemilihan/indexSuara/{id}', 'PemilihanController@indexSuara');
+    Route::post('/pemilihan/storePilihan', 'PemilihanController@storePilihan');
+
     Route::group(['middleware'=>'jwt.auth'],function(){
     // Route::group(['prefix'=>'v1'],function(){
 
@@ -485,14 +490,12 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/anggotaCu/cariDataBA/{cu}/{noba}', 'AnggotaCuController@cariDataBA');
         Route::get('/anggotaCu/indexProduk/{id}/cu/{cu}', 'AnggotaProdukCuController@index');
         Route::get('/anggotaCu/indexProdukSaldo/{id}', 'AnggotaProdukCuController@indexSaldo'); 
-        Route::group(['middleware' => ['permission:index_anggota_cu']], function () {
-            Route::get('/anggotaCu', 'AnggotaCuController@index');
-            Route::get('/anggotaCu/keluar', 'AnggotaCuController@indexKeluar');
-            Route::get('/anggotaCu/indexMeninggal', 'AnggotaCuController@indexMeninggal');
-            Route::get('/anggotaCu/indexCu/{cu}/{tp}', 'AnggotaCuController@indexCu'); 
-            Route::get('/anggotaCu/indexCuKeluar/{cu}/{tp}', 'AnggotaCuController@indexCuKeluar'); 
-            Route::get('/anggotaCu/indexCuMeninggal/{cu}/{tp}', 'AnggotaCuController@indexCuMeninggal');  
-        });
+        Route::get('/anggotaCu', 'AnggotaCuController@index');
+        Route::get('/anggotaCu/indexCu/{cu}/{tp}', 'AnggotaCuController@indexCu'); 
+        Route::get('/anggotaCu/keluar', 'AnggotaCuController@indexKeluar');
+        Route::get('/anggotaCu/indexMeninggal', 'AnggotaCuController@indexMeninggal');
+        Route::get('/anggotaCu/indexCuKeluar/{cu}/{tp}', 'AnggotaCuController@indexCuKeluar'); 
+        Route::get('/anggotaCu/indexCuMeninggal/{cu}/{tp}', 'AnggotaCuController@indexCuMeninggal');  
         Route::group(['middleware' => ['permission:create_anggota_cu']], function () {
             Route::get('/anggotaCu/create', 'AnggotaCuController@create');
             Route::post('/anggotaCu/store', 'AnggotaCuController@store');
@@ -734,21 +737,23 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         });
 
         //pemilihan
-        Route::group(['middleware' => ['permission:index_pemilihan', 'permission:user_pemilihan']], function () {
-            Route::get('/pemilihan/index/{id}', 'PemilihanController@index');
-            Route::get('/pemilihan/indexCalon/{id}', 'PemilihanController@indexCalon');
+        Route::group(['middleware' => ['permission:index_pemilihan']], function () {
+            Route::get('/pemilihan', 'PemilihanController@index');
+            Route::get('/pemilihan/indexPemilihan', 'PemilihanController@indexPemilihan');
             Route::get('/pemilihan/indexUser/{id}', 'PemilihanController@indexUser');
             Route::get('/pemilihan/checkUser/{pemilihan_id}', 'PemilihanController@checkUser');
+        });
+        Route::group(['middleware' => ['permission:create_pemilihan']], function () {
+            Route::get('/pemilihan/create', 'PemilihanController@create');
+            Route::post('/pemilihan/store', 'PemilihanController@store');
         });
         Route::group(['middleware' => ['permission:update_pemilihan']], function () {
             Route::get('/pemilihan/edit/{id}', 'PemilihanController@edit');
             Route::post('/pemilihan/update/{id}', 'PemilihanController@update');
+            Route::get('/pemilihan/updateStatus/{id}', 'PemilihanController@updateStatus');
         });
         Route::group(['middleware' => ['permission:destroy_pemilihan']], function () {
             Route::delete('/pemilihan/{id}', 'PemilihanController@destroy');
-        });
-        Route::group(['middleware' => ['permission:user_pemilihan']], function () {
-            Route::post('/pemilihan/storePilihan', 'PemilihanController@storePilihan');
         });
 
         // puskopdit

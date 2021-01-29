@@ -686,7 +686,7 @@
             <li class="nav-item">
               <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'meninggal'}" @click.prevent="changeTabDokumen('meninggal')"><i class="icon-person mr-2"></i> Keterangan Meninggal Dunia</a>
             </li>
-            <li class="nav-item" v-if="selected.status_klaim != 0">
+            <li class="nav-item">
               <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'ktp'}" @click.prevent="changeTabDokumen('ktp')"><i class="icon-vcard mr-2"></i> Identitas Diri</a>
             </li>
             <li class="nav-item">

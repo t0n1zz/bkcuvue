@@ -1,0 +1,279 @@
+<template>
+	<div>
+		<form @submit.prevent="save" data-vv-scope="formCalon">
+
+		<div class="card" v-if="formCalon.aktivis_id">
+			<div class="card-header bg-info text-white header-elements-inline">
+				<h6 class="card-title"></h6>
+				<div class="header-elements" v-if="mode != 'edit'">
+					<button type="button" class="btn btn-danger" @click.prevent="deleteSelected"><i class="icon-cross2 mr-2"></i> Batal</button>
+				</div>
+			</div>
+			<div class="card-body">
+				<div class="media flex-column flex-sm-row mt-0">
+					<div class="mr-sm-3 mb-2 mb-sm-0">
+						<div class="card-img-actions">
+								<img :src="'/images/aktivis/' + formCalon.gambar + '.jpg'" class="img-fluid img-preview rounded" v-if="formCalon.gambar" >
+								<img :src="'/images/no_image.jpg'" class="img-fluid img-preview rounded" v-else>
+						</div>
+					</div>
+
+					<div class="media-body">
+						<ul class="list list-unstyled mb-0">
+							<li><b>Nama:</b> {{ formCalon.name }}</li>
+							<li><b>Lembaga:</b> {{ formCalon.lembaga }}</li>
+							<li><b>Email:</b> {{ formCalon.email }}</li>
+							<li><b>Hp:</b> {{ formCalon.hp }}</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- if asal dalam -->
+		<data-viewer :title="'Aktivis'" :columnData="columnDataDalam" :itemData="itemDataDalam" :query="query" :itemDataStat="itemDataDalamStat" @fetch="fetchDalam" :isDasar="'true'" :isNoButtonRow="'true'" v-if="formCalon.aktivis_id == '' && mode == 'create'">
+
+			<!-- item  -->
+			<template slot="item-desktop" slot-scope="props">
+				<tr :class="{ 'bg-info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)">
+					<td>
+						{{ props.index + 1 + (+itemDataDalam.current_page-1) * +itemDataDalam.per_page + '.'}}
+					</td>
+					<td>
+						<img :src="'/images/' + kelas + '/' + props.item.gambar + 'n.jpg'" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+						<img :src="'/images/no_image.jpg'" class="img-rounded img-fluid wmin-sm" v-else>
+					</td>
+					<td>
+						<check-value :value="props.item.name"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.kelamin"></check-value>
+					</td>
+					<td>
+						<span v-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 1">
+							<check-value :value="props.item.pekerjaan_aktif.cu.name" v-if="props.item.pekerjaan_aktif.cu"></check-value>
+							<span v-else>-</span>
+						</span>
+						<span v-else-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 2">
+							<check-value :value="props.item.pekerjaan_aktif.lembaga_lain.name" v-if="props.item.pekerjaan_aktif.lembaga_lain"></check-value>
+							<span v-else>-</span>
+						</span>
+						<span v-else-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 3">
+							Puskopdit BKCU Kalimantan
+						</span>
+						<span v-else>-</span>
+					</td>
+					<td v-html="$options.filters.checkTingkatAktivis(props.item.pekerjaan_aktif.tingkat)">
+					</td>
+					<td>
+						<check-value :value="props.item.pekerjaan_aktif.name" v-if="props.item.pekerjaan_aktif"></check-value>
+						<span v-else>-</span>
+					</td>
+					<td>
+						<check-value :value="props.item.pendidikan_tertinggi.tingkat" v-if="props.item.pendidikan_tertinggi"></check-value>
+						<span v-else>-</span>
+					</td>
+					<td>
+						<check-value :value="props.item.pendidikan_tertinggi.name" v-if="props.item.pendidikan_tertinggi"></check-value>
+						<span v-else>-</span>
+					</td>
+					<td v-html="$options.filters.date(props.item.tanggal_lahir)">
+					</td>
+					<td>
+						<check-value :value="props.item.tempat_lahir"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.agama"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.status"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.provinces.name" v-if="props.item.provinces"></check-value>
+						<span v-else>-</span>	
+					</td>
+					<td>
+						<check-value :value="props.item.regencies.name" v-if="props.item.regencies"></check-value>
+						<span v-else>-</span>	
+					</td>
+					<td>
+						<check-value :value="props.item.districts.name" v-if="props.item.districts"></check-value>
+						<span v-else>-</span>	
+					</td>
+					<td>
+						<check-value :value="props.item.villages.name" v-if="props.item.villages"></check-value>
+						<span v-else>-</span>	
+					</td>
+					<td>
+						<check-value :value="props.item.alamat"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.email"></check-value>
+					</td>
+					<td>
+						<check-value :value="props.item.hp"></check-value>
+					</td>
+				</tr>
+			</template>
+
+		</data-viewer>
+
+		<!-- message -->
+		<message v-if="errors.any('formCalon') && submited" :title="'Oops terjadi kesalahan'" :errorItem="errors.items">
+		</message>
+		<!-- divider -->
+		<hr>
+		
+		<!-- tombol desktop-->
+		<div class="text-center d-none d-md-block">
+			<button type="button" class="btn btn-light" @click.prevent="tutup">
+				<i class="icon-cross"></i> Tutup</button>
+
+			<button type="submit" class="btn btn-primary" :disabled="formCalon.aktivis_id == ''">
+				<i class="icon-floppy-disk"></i> Simpan</button>
+		</div>  
+
+		<!-- tombol mobile-->
+		<div class="d-block d-md-none">
+			<button type="submit" class="btn btn-primary btn-block pb-2" :disabled="formCalon.aktivis_id == ''">
+				<i class="icon-floppy-disk"></i> Simpan</button>
+
+			<button type="button" class="btn btn-light btn-block pb-2" @click.prevent="tutup">
+				<i class="icon-cross"></i> Tutup</button>
+		</div>
+
+		</form> 
+
+	</div>
+</template>
+
+<script>
+	import { mapGetters } from 'vuex';
+	import checkValue from '../../components/checkValue.vue';
+	import DataViewer from '../../components/dataviewer2.vue';
+	import message from "../../components/message.vue";
+
+	export default {
+		props: ['mode','selected'],
+		components: {
+			DataViewer,
+			checkValue,
+			message
+		},
+		data() {
+			return {
+				title: '',
+				kelas: 'aktivis',
+				selectedItem: [],
+				formCalon:{
+					aktivis_id: '',
+					name: '',
+					lembaga: '',
+					gambar: '',
+				},
+				query: {
+					order_column: "name",
+					order_direction: "asc",
+					filter_match: "and",
+					limit: 5,
+					page: 1
+				},
+				columnDataDalam: [
+					{ title: 'No.' },
+					{ title: 'Foto' },
+					{
+						title: 'Nama',
+						name: 'name',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						filterDefault: true
+					},
+					{ title: 'Gender' },
+					{ title: 'CU' },
+					{ title: 'Tingkat' },
+					{ title: 'Jabatan' },
+					{ title: 'Pendidikan'},
+					{ title: 'Jurusan' },
+					{ title: 'Tgl. Lahir' },
+					{ title: 'Tempat Lahir' },
+					{ title: 'Agama' },
+					{ title: 'Status' },
+					{ title: 'Provinsi' },
+					{ title: 'Kabupaten/Kota' },
+					{ title: 'Kecamatan'},
+					{ title: 'Kelurahan' },
+					{ title: 'Alamat' },
+					{ title: 'Email' },
+					{ title: 'Hp' },
+				],
+				submited: false,
+			}
+		},
+		created(){
+			if(this.mode == 'edit'){
+				this.formCalon = Object.assign({}, this.selected);
+			}else{
+				this.fetch();
+			}
+		},
+		methods: {
+			fetch(){
+				this.$store.commit('aktivis/setDataS',[]);
+				this.$store.commit('aktivis/setDataStatS','');
+
+				this.deleteSelected();
+				this.fetchDalam(this.query);
+			},
+			fetchDalam(params){
+				this.$store.dispatch('aktivis/index', [params,'semua','aktif']);
+			},
+			deleteSelected(){
+				this.formCalon.aktivis_id = '';
+				this.selectedItem = '';
+			},
+			selectedRow(item){
+				this.selectedItem = item;
+				this.formCalon.aktivis_id = item.id;
+				this.formCalon.name = item.name;
+				this.formCalon.gambar = item.gambar;
+				this.formCalon.email = item.email != '' ? item.email : '-';
+				this.formCalon.hp = item.hp != '' ? item.hp : '-';
+				
+				if(item.pekerjaan_aktif.tipe == 1){
+					this.formCalon.lembaga = item.pekerjaan_aktif.cu.name
+				}else{
+					this.formCalon.lembaga = "Puskopdit BKCU Kalimantan"
+				}
+			},
+			save(){
+				this.$validator.validateAll('formCalon').then((result) => {
+					if (result) {
+						if(this.mode == 'edit'){
+							this.$emit('editCalon',this.formCalon);
+						}else{
+							this.$emit('createCalon',this.formCalon);
+						}
+						this.submited = false;
+					}else{
+						this.submited = true;
+					}	
+				});
+			},
+			tutup(){
+				this.$emit('tutup');
+			}
+		},
+		computed: {
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
+			}),
+			...mapGetters('aktivis',{
+				itemDataDalam: 'dataS',
+				itemDataDalamStat: 'dataStatS'
+			}),
+		}
+	}
+</script>

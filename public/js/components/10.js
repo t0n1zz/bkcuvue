@@ -7049,30 +7049,26 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm.selected.status_klaim != 0
-                          ? _c("li", { staticClass: "nav-item" }, [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "nav-link",
-                                  class: {
-                                    active: _vm.tabNameDokumen == "ktp"
-                                  },
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      return _vm.changeTabDokumen("ktp")
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("i", { staticClass: "icon-vcard mr-2" }),
-                                  _vm._v(" Identitas Diri")
-                                ]
-                              )
-                            ])
-                          : _vm._e(),
+                        _c("li", { staticClass: "nav-item" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "nav-link",
+                              class: { active: _vm.tabNameDokumen == "ktp" },
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.changeTabDokumen("ktp")
+                                }
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "icon-vcard mr-2" }),
+                              _vm._v(" Identitas Diri")
+                            ]
+                          )
+                        ]),
                         _vm._v(" "),
                         _c("li", { staticClass: "nav-item" }, [
                           _c(

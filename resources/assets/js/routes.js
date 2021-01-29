@@ -156,6 +156,10 @@ const assesmentAccess_form = () => import('./views/assesmentAccess/form.vue');
 const monitoring = () => import('./views/monitoring/index.vue');
 const monitoring_form = () => import('./views/monitoring/form.vue');
 const monitoring_detail = () => import('./views/monitoring/detail.vue');
+const pemilihan = () => import('./views/pemilihan/index.vue');
+const pemilihan_form = () => import('./views/pemilihan/form.vue');
+const pemilihan_detail = () => import('./views/pemilihan/detail.vue');
+const pemilihan_pilih = () => import('./views/pemilihan/pilih.vue');
 
 const routes = [
 
@@ -683,6 +687,27 @@ const routes = [
 		components: { default: monitoring_detail, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true } },
 
+	// kegiatan bkcu
+	{ path: '/pemilihan',
+		name: 'pemilihan', 
+		components: { default: pemilihan, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true }},	
+	{ path: '/pemilihan/create',
+		name: 'pemilihanCreate', 
+		components: { default: pemilihan_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/pemilihan/edit/:id',
+		name: 'pemilihanEdit', 
+		components: { default: pemilihan_form, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true, mode:'edit' } },
+	{ path: '/pemilihan/detail/:id',
+		name: 'pemilihanDetail', 
+		components: { default: pemilihan_detail, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true } },
+	{ path: '/pilih/:name',
+		name: 'pemilihanPilih', 
+		components: { default: pemilihan_pilih },
+		meta: { requiresAuth: false } },	
 
 	// laporan cu
 	// bkcu default route

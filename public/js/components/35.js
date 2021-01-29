@@ -1518,6 +1518,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -2224,14 +2226,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.item.status == '2') {
         if (this.currentUser.id_cu == 0) {
           this.$store.dispatch(this.kelas + '/indexPeserta', [params, this.item.id]);
-          this.excelDownloadUrl = this.kelas + '/indexPeserta';
+          this.excelDownloadUrl = this.kelas + '/indexPeserta/' + this.item.id;
         } else {
           this.$store.dispatch(this.kelas + '/indexPesertaCu', [params, this.item.id, this.currentUser.id_cu]);
-          this.excelDownloadUrl = this.kelas + '/indexPesertaCu/' + this.$route.params.cu;
+          this.excelDownloadUrl = this.kelas + '/indexPesertaCu/' + +this.item.id + '/' + this.$route.params.cu;
         }
       } else {
         this.$store.dispatch(this.kelas + '/indexPeserta', [params, this.item.id]);
-        this.excelDownloadUrl = this.kelas + '/indexPeserta';
+        this.excelDownloadUrl = this.kelas + '/indexPeserta/' + this.item.id;
       }
     },
     fetchPesertaHadir: function fetchPesertaHadir(params) {
@@ -2397,7 +2399,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         if (this.countPeserta >= this.item.peserta_max) {
           this.modalState = 'content-tutup';
           this.modalColor = '';
-          this.modalTitle = 'Pertemuan sudah penuh';
+          this.modalTitle = 'Diklat sudah penuh';
           this.modalContent = 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena kuota peserta pada diklat ini sudah terpenuhi.';
         }
 
@@ -4436,6 +4438,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       formPeserta: {
         aktivis_id: '',
         kegiatan_id: '',
+        cu_id: '',
         keterangan: '',
         tingkat: '',
         name_nametag: '',
@@ -4511,6 +4514,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.formPeserta = this.selected;
       this.formPeserta.tingkat = this.selected.aktivis.pekerjaan_aktif.tingkat;
       this.formPeserta.jabatan = this.selected.aktivis.pekerjaan_aktif.name;
+      this.formPeserta.cu_id = this.selected.aktivis.pekerjaan_aktif.id_tempat;
 
       if (this.selected.aktivis.pendidikan_tertinggi) {
         this.formPeserta.pendidikan = this.selected.aktivis.pendidikan_tertinggi.tingkat + ' ' + this.selected.aktivis.pendidikan_tertinggi.name;
@@ -4590,6 +4594,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.formPeserta.aktivis_id = item.id;
         this.formPeserta.kegiatan_id = this.item.id;
         this.formPeserta.jabatan = item.pekerjaan_aktif.name;
+        this.formPeserta.cu_id = item.pekerjaan_aktif.id_tempat;
 
         if (item.pendidikan_tertinggi) {
           this.formPeserta.pendidikan = item.pendidikan_tertinggi.tingkat + ' ' + item.pendidikan_tertinggi.name;
@@ -6886,7 +6891,8 @@ var render = function() {
                                     "\n\t\t\t\t\t\t\t\t\t\tTerdaftar\n\t\t\t\t\t\t\t\t\t\t"
                                   ),
                                   _vm.countPesertaStat == "success" &&
-                                  _vm.countPeserta > 0
+                                  _vm.countPeserta > 0 &&
+                                  _vm.currentUser.id_cu == 0
                                     ? _c(
                                         "span",
                                         {
@@ -10987,7 +10993,7 @@ var render = function() {
                                                       disabled:
                                                         !_vm.selectedItem.id ||
                                                         _vm.selectedItem
-                                                          .status != 1
+                                                          .status != 2
                                                     },
                                                     on: {
                                                       click: function($event) {
@@ -11021,7 +11027,7 @@ var render = function() {
                                                       disabled:
                                                         !_vm.selectedItem.id ||
                                                         _vm.selectedItem
-                                                          .status != 1
+                                                          .status != 2
                                                     },
                                                     on: {
                                                       click: function($event) {
@@ -11071,10 +11077,7 @@ var render = function() {
                                           ],
                                           2
                                         )
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _vm.currentUser.id_cu != 0
-                                      ? _c(
+                                      : _c(
                                           "template",
                                           { slot: "button-mobile" },
                                           [
@@ -11246,7 +11249,6 @@ var render = function() {
                                           ],
                                           2
                                         )
-                                      : _vm._e()
                                   ],
                                   2
                                 )

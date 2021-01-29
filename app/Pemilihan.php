@@ -21,7 +21,7 @@ class Pemilihan extends Model {
 
     
     protected $fillable = [
-      'id_cu','name','status','created_at','updated_at','deleted_at','suara','suara_ok'
+        'id_cu','name','status','created_at','updated_at','deleted_at','suara','suara_ok'
     ];
 
     protected $allowedFilters = [
@@ -43,7 +43,7 @@ class Pemilihan extends Model {
     }
 
     public function calon(){
-        return $this->belongsToMany('App\Aktivis','pemilihan_calon')->withPivot('skor')->withTimestamps();
+        return $this->belongsToMany('App\Aktivis','pemilihan_calon')->withPivot('id','skor')->withTimestamps();
     }
 
     public function hasCalon(){

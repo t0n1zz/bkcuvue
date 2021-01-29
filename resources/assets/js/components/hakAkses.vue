@@ -52,14 +52,14 @@
 							<div v-if="permission.tipe == 'bkcu'">
 								<div class="form-check" v-if="currentUser.id_cu == 0">
 									<label style="cursor:pointer;">
-										<input type="checkbox" class="form-check-input" :value="permission.key" v-model="hakForm" v-if="permission.type != 'empty'" @change="checkChange()">
+										<input type="checkbox" class="form-check-input" :value="permission.key" v-model="hakForm" v-if="permission.type != 'empty'" @change="checkChange($event.target.value)">
 										<i :class="permission.icon"></i> &nbsp; {{ permission.name }}
 									</label>
 								</div>
 							</div>
 							<div class="form-check" v-else>
 								<label style="cursor:pointer;">
-									<input type="checkbox" class="form-check-input" :value="permission.key" v-model="hakForm" v-if="permission.type != 'empty'" @change="checkChange()">
+									<input type="checkbox" class="form-check-input" :value="permission.key" v-model="hakForm" v-if="permission.type != 'empty'" @change="checkChange($event.target.value)">
 									<i :class="permission.icon"></i> &nbsp; {{ permission.name }}
 								</label>
 							</div>
@@ -456,6 +456,46 @@
 								tipe: 'all',
 								value: false,
 								group: 'Tempat'
+							}
+						]
+					},
+					{
+						name: 'Pemilihan',
+						keterangan: 'Mengelola data untuk melakukan pemilihan',
+						icon: 'icon-location4',
+						secondRow: true,
+						tipe: 'bkcu',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_pemilihan',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Pemilihan'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_pemilihan',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Pemilihan'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_pemilihan',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+								group: 'Pemilihan'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_pemilihan',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Pemilihan'
 							}
 						]
 					},
@@ -1767,20 +1807,17 @@
 				this.$emit('hakForm',value);
 				this.checkPeran(value);
 			},
-			checkChange(){
-				this.checkVerifikasiJalinan();
+			checkChange(value){
+				this.checkChangeJALINAN(value);
 				this.emitData(this.hakForm);
 			},
-			checkVerifikasiJalinan(){
-				if(this.hakForm.includes('verifikasi_pengurus_jalinan_klaim')){
-					console.log('verifikasi_pengurus_jalinan_klaim');
-
-				}else if(this.hakForm.includes('verifikasi_pengawas_jalinan_klaim')){
-					console.log('verifikasi_pengawas_jalinan_klaim');
-
-				}else if(this.hakForm.includes('verifikasi_manajemen_jalinan_klaim')){
-					console.log('verifikasi_manajemen_jalinan_klaim');
-	
+			checkChangeJALINAN(value){
+				if(value == 'verifikasi_pengurus_jalinan_klaim'){
+					this.hakForm = _.pull(this.hakForm, 'verifikasi_pengawas_jalinan_klaim','verifikasi_manajemen_jalinan_klaim');
+				}else if(value == 'verifikasi_pengawas_jalinan_klaim'){
+					this.hakForm = _.pull(this.hakForm, 'verifikasi_pengurus_jalinan_klaim','verifikasi_manajemen_jalinan_klaim');
+				}else if(value == 'verifikasi_manajemen_jalinan_klaim'){
+					this.hakForm = _.pull(this.hakForm, 'verifikasi_pengawas_jalinan_klaim','verifikasi_pengurus_jalinan_klaim');
 				}
 			},
 			changePeran(value){

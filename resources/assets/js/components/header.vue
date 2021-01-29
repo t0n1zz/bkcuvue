@@ -27,7 +27,7 @@
 				<span class="navbar-text ml-lg-3 mr-lg-auto">
 					<span class="badge bg-success-400">
 						<span v-if="currentUser && currentUser.id_cu != 0">CU {{currentUser.cu.name.toUpperCase()}}</span>
-						<span v-else-if="currentUser && currentUser.id_cu == 0">PUSKOPDIT BKCU KALIMANTAN</span>
+						<span v-else-if="currentUser && currentUser.id_cu == 0">PUSKOPCUINA</span>
 					</span>
 				</span>
 
@@ -82,8 +82,8 @@
 											<div class="media-title pb-1" :class="{'text-muted' : notif.read_at != null}">
 												<span class="font-size-sm"> 
 													<span v-if="notif.data.tipe == 'laporanCu' || notif.data.tipe == 'laporanTp' "><i class="icon-stats-bars2"></i> Laporan Statistik CU</span>
-													<span v-else-if="notif.data.tipe == 'diklatBKCU'"><i class="icon-graduation2"></i> Diklat BKCU</span>
-													<span v-else-if="notif.data.tipe == 'pertemuanBKCU'"><i class="icon-ungroup"></i> Pertemuan BKCU</span>
+													<span v-else-if="notif.data.tipe == 'diklatBKCU'"><i class="icon-graduation2"></i> Diklat PUSKOPCUINA</span>
+													<span v-else-if="notif.data.tipe == 'pertemuanBKCU'"><i class="icon-ungroup"></i> Pertemuan PUSKOPCUINA</span>
 													<span v-else-if="notif.data.tipe == 'selfAssesment'"><i class="icon-reading"></i> Self Assesment ACCESS</span>
 													<span v-else-if="notif.data.tipe == 'monitoring'"><i class="icon-collaboration"></i> Monitoring</span>
 													<span v-else-if="notif.data.tipe == 'klaimJALINAN'"><i class="icon-accessibility2"></i> Klaim JALINAN</span>
@@ -215,7 +215,7 @@
 										Semua CU
 									</router-link>
 									<router-link :to="{ name: 'artikelCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser">
-										Puskopdit BKCU Kalimantan
+										PUSKOPCUINA
 									</router-link>
 
 									<!-- divider -->
@@ -247,7 +247,7 @@
 										Semua CU
 									</router-link>
 									<router-link :to="{ name: 'artikelKategoriCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser">
-										Puskopdit BKCU Kalimantan
+										PUSKOPCUINA
 									</router-link>
 
 									<!-- divider -->
@@ -279,7 +279,7 @@
 										Semua CU
 									</router-link>
 									<router-link :to="{ name: 'artikelPenulisCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact>
-										Puskopdit BKCU Kalimantan
+										PUSKOPCUINA
 									</router-link>
 
 									<!-- divider -->
@@ -314,7 +314,7 @@
 										Semua CU
 									</router-link>
 									<router-link :to="{ name: 'pengumumanCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact>
-										Puskopdit BKCU Kalimantan
+										PUSKOPCUINA
 									</router-link>
 
 									<!-- divider -->
@@ -354,12 +354,12 @@
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'tambahKegiatan'}">
 									<!-- tambah diklat bkcu -->
 									<router-link :to="{ name:'kegiatanBKCUCreate', params:{tipe: 'diklat_bkcu'}  }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0">
-										Diklat BKCU
+										Diklat PUSKOPCUINA
 									</router-link>
 
 									<!-- tambah pertemuan bkcu -->
 									<router-link :to="{ name:'kegiatanBKCUCreate', params:{tipe: 'pertemuan_bkcu'} }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0">
-										Pertemuan BKCU
+										Pertemuan PUSKOPCUINA
 									</router-link>
 
 									<!-- tambah tempat -->
@@ -374,12 +374,12 @@
 
 							<!-- diklat bkcu -->
 							<router-link :to="{ name: 'kegiatanBKCU', params:{tipe: 'diklat_bkcu', periode: momentYear() }}" class="dropdown-item" active-class="active" exact>
-								<i class="icon-graduation2"></i> Diklat BKCU
+								<i class="icon-graduation2"></i> Diklat PUSKOPCUINA
 							</router-link>
 
 							<!-- pertemuan bkcu -->
 							<router-link :to="{ name: 'kegiatanBKCU', params:{tipe: 'pertemuan_bkcu', periode: momentYear() }}" class="dropdown-item" active-class="active" exact>
-								<i class="icon-ungroup"></i> Pertemuan BKCU
+								<i class="icon-ungroup"></i> Pertemuan PUSKOPCUINA
 							</router-link>
 
 							<router-link :to="{ name: 'kegiatanBKCUJalan' }" class="dropdown-item" active-class="active" exact>
@@ -730,6 +730,11 @@
 
 								</div>
 							</div>
+
+							<!-- pemilihan -->
+							<router-link :to="{ name: 'pemilihan' }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_pemilihan'] && currentUser.id_cu == 0">
+								<i class="icon-quill4"></i> Pemilihan
+							</router-link>
 						
 							<!-- divider -->
 							<div class="dropdown-divider" v-if="currentUser.can['index_aset_tetap'] || currentUser.can['index_aset_tetap_jenis'] || currentUser.can['index_aset_tetap_lokasi']"></div> 
@@ -764,8 +769,11 @@
 								</div>
 							</div>	
 
+							
+
 							<!-- divider -->
 							<div class="dropdown-divider" v-if="currentUser.can['index_mitra_orang'] || currentUser.can['index_mitra_lembaga']"></div> 
+							
 
 							<div class="dropdown-submenu" v-if="currentUser.can['index_mitra_orang'] || currentUser.can['index_mitra_lembaga']" :class="{'show' : dropdownMenu2 == 'mitra'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('mitra')">
@@ -992,7 +1000,7 @@
 										Semua CU
 									</router-link>
 									<router-link :to="{ name: 'userCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser">
-										Puskopdit BKCU Kalimantan
+										PUSKOPCUINA
 									</router-link>
 
 									<!-- divider -->

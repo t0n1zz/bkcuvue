@@ -157,8 +157,8 @@
                         / Bobot Skor CU: {{ (nilaiBobotCUP1A + nilaiBobotCUP1B + nilaiBobotCUP1C + nilaiBobotCUP1D + nilaiBobotCUP1E + nilaiBobotCUP1F) | round(2) }}%
                       </li>
                       <li>
-                        Skor BKCU: {{ nilaiSkorBKCUP1A + nilaiSkorBKCUP1B + nilaiSkorBKCUP1C + nilaiSkorBKCUP1D + nilaiSkorBKCUP1E + nilaiSkorBKCUP1F }}
-                        / Bobot Skor BKCU: {{ (nilaiBobotBKCUP1A + nilaiBobotBKCUP1B + nilaiBobotBKCUP1C + nilaiBobotBKCUP1D + nilaiBobotBKCUP1E + nilaiBobotBKCUP1F) | round(2) }}%
+                        Skor PUSKOPCUINA: {{ nilaiSkorBKCUP1A + nilaiSkorBKCUP1B + nilaiSkorBKCUP1C + nilaiSkorBKCUP1D + nilaiSkorBKCUP1E + nilaiSkorBKCUP1F }}
+                        / Bobot Skor PUSKOPCUINA: {{ (nilaiBobotBKCUP1A + nilaiBobotBKCUP1B + nilaiBobotBKCUP1C + nilaiBobotBKCUP1D + nilaiBobotBKCUP1E + nilaiBobotBKCUP1F) | round(2) }}%
                       </li>
                     </ul>
                   </div>
@@ -178,7 +178,7 @@
                     <hr class="mt-1 mb-1" />
                     <ul class="list-inline mb-0">
                       <li>Skor CU: {{ nilaiSkorCUP2A + nilaiSkorCUP2B }} / Bobot Skor CU: {{ (nilaiBobotCUP2A + nilaiBobotCUP2B) | round(2) }}%</li>
-                      <li>Skor BKCU: {{ nilaiSkorBKCUP2A + nilaiSkorBKCUP2B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP2A + nilaiBobotBKCUP2B) | round(2) }}%</li>
+                      <li>Skor PUSKOPCUINA: {{ nilaiSkorBKCUP2A + nilaiSkorBKCUP2B }} / Bobot Skor PUSKOPCUINA: {{ (nilaiBobotBKCUP2A + nilaiBobotBKCUP2B) | round(2) }}%</li>
                     </ul>
                   </div>
                 </li>
@@ -197,7 +197,7 @@
                     <hr class="mt-1 mb-1" />
                     <ul class="list-inline mb-0">
                       <li>Skor CU: {{ nilaiSkorCUP3A + nilaiSkorCUP3B }} / Bobot Skor CU: {{ (nilaiBobotCUP3A + nilaiBobotCUP3B) | round(2) }}%</li>
-                      <li>Skor BKCU: {{ nilaiSkorBKCUP3A + nilaiSkorBKCUP3B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP3A + nilaiBobotBKCUP3B) | round(2) }}%</li>
+                      <li>Skor PUSKOPCUINA: {{ nilaiSkorBKCUP3A + nilaiSkorBKCUP3B }} / Bobot Skor PUSKOPCUINA: {{ (nilaiBobotBKCUP3A + nilaiBobotBKCUP3B) | round(2) }}%</li>
                     </ul>
                   </div>
                 </li>
@@ -216,7 +216,7 @@
                     <hr class="mt-1 mb-1" />
                     <ul class="list-inline mb-0">
                       <li>Skor CU: {{ nilaiSkorCUP4A + nilaiSkorCUP4B }} / Bobot Skor CU: {{ (nilaiBobotCUP4A + nilaiBobotCUP4B) | round(2) }}%</li>
-                      <li>Skor BKCU: {{ nilaiSkorBKCUP4A + nilaiSkorBKCUP4B }} / Bobot Skor BKCU: {{ (nilaiBobotBKCUP4A + nilaiBobotBKCUP4B) | round(2) }}%</li>
+                      <li>Skor PUSKOPCUINA: {{ nilaiSkorBKCUP4A + nilaiSkorBKCUP4B }} / Bobot Skor PUSKOPCUINA: {{ (nilaiBobotBKCUP4A + nilaiBobotBKCUP4B) | round(2) }}%</li>
                     </ul>
                   </div>
                 </li>
@@ -239,8 +239,8 @@
                         Total Bobot Skor CU: {{ totalBobotCU() }}%
                       </li>
                       <li>
-                        Total Skor BKCU: {{ totalSkorBKCU() }} /
-                        Total Bobot Skor BKCU: {{ totalBobotBKCU() }}%
+                        Total Skor PUSKOPCUINA: {{ totalSkorBKCU() }} /
+                        Total Bobot Skor PUSKOPCUINA: {{ totalBobotBKCU() }}%
                       </li>
                     </ul>
                   </div>

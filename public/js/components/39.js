@@ -256,6 +256,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -873,7 +874,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       } else if (state == 'catatan') {
         this.modalState = 'normal1';
         this.modalColor = 'bg-primary';
-        this.modalTitle = !selectedItem.catatan ? 'Tambah Catatan BKCU' : 'Ubah Catatan BKCU';
+        this.modalTitle = !selectedItem.catatan ? 'Tambah Catatan PUSKOPCUINA' : 'Ubah Catatan PUSKOPCUINA';
         this.modalButton = 'Ok';
         this.modalSize = 'modal-lg';
         this.modalFormState = 'catatan';
@@ -1990,7 +1991,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("pic", {
                           attrs: {
-                            title: "PIC BKCU",
+                            title: "PIC PUSKOPCUINA",
                             itemData: _vm.item.aktivis_bkcu,
                             itemDataStat: _vm.itemStat
                           }
@@ -2430,7 +2431,7 @@ var render = function() {
                                                             [
                                                               _c("h5", [
                                                                 _vm._v(
-                                                                  "Catatan BKCU:"
+                                                                  "Catatan PUSKOPCUINA:"
                                                                 )
                                                               ]),
                                                               _vm._v(" "),
@@ -2519,7 +2520,7 @@ var render = function() {
                                                                             }
                                                                           ),
                                                                           _vm._v(
-                                                                            " Tambah Catatan BKCU"
+                                                                            " Tambah Catatan PUSKOPCUINA"
                                                                           )
                                                                         ]
                                                                       )
@@ -2534,7 +2535,7 @@ var render = function() {
                                                                             }
                                                                           ),
                                                                           _vm._v(
-                                                                            " Ubah Catatan BKCU"
+                                                                            " Ubah Catatan PUSKOPCUINA"
                                                                           )
                                                                         ]
                                                                       )
@@ -2656,7 +2657,7 @@ var render = function() {
                                                                             }
                                                                           ),
                                                                           _vm._v(
-                                                                            " Tambah Catatan BKCU"
+                                                                            " Tambah Catatan PUSKOPCUINA"
                                                                           )
                                                                         ]
                                                                       )
@@ -2671,7 +2672,7 @@ var render = function() {
                                                                             }
                                                                           ),
                                                                           _vm._v(
-                                                                            " Ubah Catatan BKCU"
+                                                                            " Ubah Catatan PUSKOPCUINA"
                                                                           )
                                                                         ]
                                                                       )

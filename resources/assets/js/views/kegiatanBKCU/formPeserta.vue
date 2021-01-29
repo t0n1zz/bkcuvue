@@ -267,6 +267,7 @@
 				formPeserta:{
 					aktivis_id: '',
 					kegiatan_id: '',
+					cu_id: '',
 					keterangan: '',
 					tingkat: '',
 					name_nametag: '',
@@ -331,6 +332,7 @@
 				this.formPeserta = this.selected;
 				this.formPeserta.tingkat = this.selected.aktivis.pekerjaan_aktif.tingkat;
 				this.formPeserta.jabatan = this.selected.aktivis.pekerjaan_aktif.name;
+				this.formPeserta.cu_id = this.selected.aktivis.pekerjaan_aktif.id_tempat;
 				if(this.selected.aktivis.pendidikan_tertinggi){
 					this.formPeserta.pendidikan = this.selected.aktivis.pendidikan_tertinggi.tingkat + ' ' + this.selected.aktivis.pendidikan_tertinggi.name;
 				}
@@ -405,6 +407,7 @@
 					this.formPeserta.aktivis_id = item.id;
 					this.formPeserta.kegiatan_id = this.item.id;
 					this.formPeserta.jabatan = item.pekerjaan_aktif.name;
+					this.formPeserta.cu_id = item.pekerjaan_aktif.id_tempat;
 					if(item.pendidikan_tertinggi){
 						this.formPeserta.pendidikan = item.pendidikan_tertinggi.tingkat + ' ' + item.pendidikan_tertinggi.name;
 					}

@@ -130,7 +130,7 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.id_aktivis_bkcu')}">
 												<i class="icon-cross2" v-if="errors.has('form.id_aktivis_bkcu')"></i>
-												PIC BKCU: <wajib-badge></wajib-badge>
+												PIC PUSKOPCUINA: <wajib-badge></wajib-badge>
 											</h5>
 
 											<!-- select -->

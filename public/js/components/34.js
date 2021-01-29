@@ -16152,7 +16152,7 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("li", [
                                         _vm._v(
-                                          "\n                        Skor BKCU: " +
+                                          "\n                        Skor PUSKOPCUINA: " +
                                             _vm._s(
                                               _vm.nilaiSkorBKCUP1A +
                                                 _vm.nilaiSkorBKCUP1B +
@@ -16161,7 +16161,7 @@ var render = function() {
                                                 _vm.nilaiSkorBKCUP1E +
                                                 _vm.nilaiSkorBKCUP1F
                                             ) +
-                                            "\n                        / Bobot Skor BKCU: " +
+                                            "\n                        / Bobot Skor PUSKOPCUINA: " +
                                             _vm._s(
                                               _vm._f("round")(
                                                 _vm.nilaiBobotBKCUP1A +
@@ -16236,12 +16236,12 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("li", [
                                         _vm._v(
-                                          "Skor BKCU: " +
+                                          "Skor PUSKOPCUINA: " +
                                             _vm._s(
                                               _vm.nilaiSkorBKCUP2A +
                                                 _vm.nilaiSkorBKCUP2B
                                             ) +
-                                            " / Bobot Skor BKCU: " +
+                                            " / Bobot Skor PUSKOPCUINA: " +
                                             _vm._s(
                                               _vm._f("round")(
                                                 _vm.nilaiBobotBKCUP2A +
@@ -16312,12 +16312,12 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("li", [
                                         _vm._v(
-                                          "Skor BKCU: " +
+                                          "Skor PUSKOPCUINA: " +
                                             _vm._s(
                                               _vm.nilaiSkorBKCUP3A +
                                                 _vm.nilaiSkorBKCUP3B
                                             ) +
-                                            " / Bobot Skor BKCU: " +
+                                            " / Bobot Skor PUSKOPCUINA: " +
                                             _vm._s(
                                               _vm._f("round")(
                                                 _vm.nilaiBobotBKCUP3A +
@@ -16388,12 +16388,12 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("li", [
                                         _vm._v(
-                                          "Skor BKCU: " +
+                                          "Skor PUSKOPCUINA: " +
                                             _vm._s(
                                               _vm.nilaiSkorBKCUP4A +
                                                 _vm.nilaiSkorBKCUP4B
                                             ) +
-                                            " / Bobot Skor BKCU: " +
+                                            " / Bobot Skor PUSKOPCUINA: " +
                                             _vm._s(
                                               _vm._f("round")(
                                                 _vm.nilaiBobotBKCUP4A +
@@ -16455,9 +16455,9 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("li", [
                                         _vm._v(
-                                          "\n                        Total Skor BKCU: " +
+                                          "\n                        Total Skor PUSKOPCUINA: " +
                                             _vm._s(_vm.totalSkorBKCU()) +
-                                            " /\n                        Total Bobot Skor BKCU: " +
+                                            " /\n                        Total Bobot Skor PUSKOPCUINA: " +
                                             _vm._s(_vm.totalBobotBKCU()) +
                                             "%\n                      "
                                         )
@@ -17625,9 +17625,9 @@ var render = function() {
                         _vm._v(" "),
                         _c("li", [
                           _vm._v(
-                            "Skor BKCU: " +
+                            "Skor PUSKOPCUINA: " +
                               _vm._s(_vm.skorBKCUA()) +
-                              " / Bobot Skor BKCU: " +
+                              " / Bobot Skor PUSKOPCUINA: " +
                               _vm._s(_vm.bobotBKCUA()) +
                               "%"
                           )
@@ -17857,9 +17857,7 @@ var render = function() {
                               "div",
                               { staticClass: "col-md-12" },
                               [
-                                _c("h5", [
-                                  _vm._v("Penilaian BKCU Kalimantan:")
-                                ]),
+                                _c("h5", [_vm._v("Penilaian PUSKOPCUINA:")]),
                                 _vm._v(" "),
                                 _c("penilaian-bkcu", {
                                   attrs: {
@@ -17886,9 +17884,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-6" }, [
                               _c("div", { staticClass: "form-group" }, [
-                                _c("h5", [
-                                  _vm._v("Keterangan BKCU Kalimantan:")
-                                ]),
+                                _c("h5", [_vm._v("Keterangan PUSKOPCUINA:")]),
                                 _vm._v(" "),
                                 _c("textarea", {
                                   directives: [
@@ -17929,9 +17925,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-6" }, [
                               _c("div", { staticClass: "form-group" }, [
-                                _c("h5", [
-                                  _vm._v("Rekomendasi BKCU Kalimantan:")
-                                ]),
+                                _c("h5", [_vm._v("Rekomendasi PUSKOPCUINA:")]),
                                 _vm._v(" "),
                                 _c("textarea", {
                                   directives: [
@@ -18258,7 +18252,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -18287,7 +18281,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -18333,7 +18327,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -18480,9 +18474,9 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("li", [
                                   _vm._v(
-                                    "Skor BKCU: " +
+                                    "Skor PUSKOPCUINA: " +
                                       _vm._s(_vm.skorBKCUB()) +
-                                      " / Bobot Skor BKCU: " +
+                                      " / Bobot Skor PUSKOPCUINA: " +
                                       _vm._s(_vm.bobotBKCUB()) +
                                       "% "
                                   )
@@ -18742,7 +18736,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -18771,7 +18765,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -18817,7 +18811,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -19156,7 +19150,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -19185,7 +19179,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -19231,7 +19225,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -19566,7 +19560,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -19595,7 +19589,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -19641,7 +19635,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -19972,7 +19966,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -20001,7 +19995,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -20047,7 +20041,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -20194,9 +20188,9 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("li", [
                                   _vm._v(
-                                    "Skor BKCU: " +
+                                    "Skor PUSKOPCUINA: " +
                                       _vm._s(_vm.skorBKCUC()) +
-                                      " / Bobot Skor BKCU: " +
+                                      " / Bobot Skor PUSKOPCUINA: " +
                                       _vm._s(_vm.bobotBKCUC()) +
                                       "% "
                                   )
@@ -20459,7 +20453,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -20488,7 +20482,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -20534,7 +20528,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -20869,7 +20863,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -20898,7 +20892,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -20944,7 +20938,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -21091,9 +21085,9 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("li", [
                                   _vm._v(
-                                    "Skor BKCU: " +
+                                    "Skor PUSKOPCUINA: " +
                                       _vm._s(_vm.skorBKCUD()) +
-                                      " / Bobot Skor BKCU: " +
+                                      " / Bobot Skor PUSKOPCUINA: " +
                                       _vm._s(_vm.bobotBKCUD()) +
                                       "% "
                                   )
@@ -21379,7 +21373,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -21408,7 +21402,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -21454,7 +21448,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -21794,7 +21788,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -21823,7 +21817,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -21869,7 +21863,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -22017,9 +22011,9 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("li", [
                                   _vm._v(
-                                    "Skor BKCU: " +
+                                    "Skor PUSKOPCUINA: " +
                                       _vm._s(_vm.skorBKCUE()) +
-                                      " / Bobot Skor BKCU: " +
+                                      " / Bobot Skor PUSKOPCUINA: " +
                                       _vm._s(_vm.bobotBKCUE()) +
                                       "% "
                                   )
@@ -22286,7 +22280,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -22315,7 +22309,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -22361,7 +22355,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -22509,9 +22503,9 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("li", [
                                   _vm._v(
-                                    "Skor BKCU: " +
+                                    "Skor PUSKOPCUINA: " +
                                       _vm._s(_vm.skorBKCUF()) +
-                                      " / Bobot Skor BKCU: " +
+                                      " / Bobot Skor PUSKOPCUINA: " +
                                       _vm._s(_vm.bobotBKCUF()) +
                                       "% "
                                   )
@@ -22765,7 +22759,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -22794,7 +22788,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -22840,7 +22834,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -23182,7 +23176,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -23211,7 +23205,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -23257,7 +23251,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -23610,9 +23604,9 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("li", [
                                   _vm._v(
-                                    "\n\t\t\t\t\t\t\tSkor BKCU: " +
+                                    "\n\t\t\t\t\t\t\tSkor PUSKOPCUINA: " +
                                       _vm._s(_vm.skorBKCUA()) +
-                                      " / Bobot Skor BKCU: " +
+                                      " / Bobot Skor PUSKOPCUINA: " +
                                       _vm._s(_vm.bobotBKCUA()) +
                                       "% \n\t\t\t\t\t\t"
                                   )
@@ -23763,7 +23757,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -23792,7 +23786,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -23838,7 +23832,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -24066,7 +24060,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -24095,7 +24089,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -24141,7 +24135,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -24369,7 +24363,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -24398,7 +24392,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -24444,7 +24438,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -24672,7 +24666,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -24701,7 +24695,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -24747,7 +24741,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -24977,7 +24971,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -25006,7 +25000,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -25052,7 +25046,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -25282,7 +25276,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -25311,7 +25305,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -25357,7 +25351,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -25585,7 +25579,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -25614,7 +25608,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -25660,7 +25654,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -25888,7 +25882,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -25917,7 +25911,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -25963,7 +25957,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -26191,7 +26185,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -26220,7 +26214,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -26266,7 +26260,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -26494,7 +26488,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -26523,7 +26517,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -26569,7 +26563,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -26798,7 +26792,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -26827,7 +26821,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -26873,7 +26867,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -27021,9 +27015,9 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("li", [
                                   _vm._v(
-                                    "\n\t\t\t\t\t\t\tSkor BKCU: " +
+                                    "\n\t\t\t\t\t\t\tSkor PUSKOPCUINA: " +
                                       _vm._s(_vm.skorBKCUB()) +
-                                      " / Bobot Skor BKCU: " +
+                                      " / Bobot Skor PUSKOPCUINA: " +
                                       _vm._s(_vm.bobotBKCUB()) +
                                       "% \n\t\t\t\t\t\t"
                                   )
@@ -27174,7 +27168,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -27203,7 +27197,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -27249,7 +27243,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -27479,7 +27473,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -27508,7 +27502,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -27554,7 +27548,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -27783,7 +27777,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -27812,7 +27806,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -27858,7 +27852,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -28089,7 +28083,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -28118,7 +28112,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -28164,7 +28158,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -28395,7 +28389,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -28424,7 +28418,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -28470,7 +28464,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -28701,7 +28695,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -28730,7 +28724,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -28776,7 +28770,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -29005,7 +28999,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -29034,7 +29028,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -29080,7 +29074,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -29309,7 +29303,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -29338,7 +29332,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -29384,7 +29378,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -29615,7 +29609,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -29644,7 +29638,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -29690,7 +29684,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -29921,7 +29915,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -29950,7 +29944,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -29996,7 +29990,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -30227,7 +30221,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -30256,7 +30250,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -30302,7 +30296,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -30533,7 +30527,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -30562,7 +30556,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -30608,7 +30602,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -30839,7 +30833,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -30868,7 +30862,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -30914,7 +30908,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -31145,7 +31139,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -31174,7 +31168,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -31220,7 +31214,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -31448,7 +31442,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -31477,7 +31471,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -31523,7 +31517,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -31754,7 +31748,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -31783,7 +31777,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -31829,7 +31823,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -32144,9 +32138,9 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("li", [
                                   _vm._v(
-                                    "\n\t\t\t\t\t\t\tSkor BKCU: " +
+                                    "\n\t\t\t\t\t\t\tSkor PUSKOPCUINA: " +
                                       _vm._s(_vm.skorBKCUA()) +
-                                      " / \t\n\t\t\t\t\t\t\tBobot Skor BKCU: " +
+                                      " / \t\n\t\t\t\t\t\t\tBobot Skor PUSKOPCUINA: " +
                                       _vm._s(_vm.bobotBKCUA()) +
                                       "%\n\t\t\t\t\t\t"
                                   )
@@ -32299,7 +32293,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -32328,7 +32322,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -32374,7 +32368,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -32602,7 +32596,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -32631,7 +32625,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -32677,7 +32671,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -32905,7 +32899,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -32934,7 +32928,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -32980,7 +32974,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -33209,7 +33203,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -33238,7 +33232,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -33284,7 +33278,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -33514,7 +33508,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -33543,7 +33537,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -33589,7 +33583,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -33819,7 +33813,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -33848,7 +33842,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -33894,7 +33888,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -34124,7 +34118,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -34153,7 +34147,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -34199,7 +34193,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -34429,7 +34423,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -34458,7 +34452,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -34504,7 +34498,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -34732,7 +34726,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -34761,7 +34755,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -34807,7 +34801,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -34954,9 +34948,9 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("li", [
                                   _vm._v(
-                                    "\n\t\t\t\t\t\t\tSkor BKCU: " +
+                                    "\n\t\t\t\t\t\t\tSkor PUSKOPCUINA: " +
                                       _vm._s(_vm.skorBKCUB()) +
-                                      " / \n\t\t\t\t\t\t\tBobot Skor BKCU: " +
+                                      " / \n\t\t\t\t\t\t\tBobot Skor PUSKOPCUINA: " +
                                       _vm._s(_vm.bobotBKCUB()) +
                                       "% \n\t\t\t\t\t\t"
                                   )
@@ -35107,7 +35101,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -35136,7 +35130,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -35182,7 +35176,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -35412,7 +35406,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -35441,7 +35435,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -35487,7 +35481,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -35716,7 +35710,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -35745,7 +35739,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -35791,7 +35785,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -36019,7 +36013,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -36048,7 +36042,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -36094,7 +36088,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -36323,7 +36317,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -36352,7 +36346,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -36398,7 +36392,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -36627,7 +36621,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -36656,7 +36650,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -36702,7 +36696,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -36931,7 +36925,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -36960,7 +36954,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -37006,7 +37000,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -37235,7 +37229,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -37264,7 +37258,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -37310,7 +37304,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -37541,7 +37535,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -37570,7 +37564,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -37616,7 +37610,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -37845,7 +37839,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -37874,7 +37868,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -37920,7 +37914,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -38151,7 +38145,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -38180,7 +38174,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -38226,7 +38220,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -38457,7 +38451,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -38486,7 +38480,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -38532,7 +38526,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -38763,7 +38757,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -38792,7 +38786,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -38838,7 +38832,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -39067,7 +39061,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -39096,7 +39090,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -39142,7 +39136,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -39369,7 +39363,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -39398,7 +39392,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -39444,7 +39438,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -39673,7 +39667,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -39702,7 +39696,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -39748,7 +39742,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -39977,7 +39971,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -40006,7 +40000,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -40052,7 +40046,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -40369,9 +40363,9 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("li", [
                                   _vm._v(
-                                    "\n\t\t\t\t\t\t\tSkor BKCU: " +
+                                    "\n\t\t\t\t\t\t\tSkor PUSKOPCUINA: " +
                                       _vm._s(_vm.skorBKCUA()) +
-                                      " / \t\n\t\t\t\t\t\t\tBobot Skor BKCU: " +
+                                      " / \t\n\t\t\t\t\t\t\tBobot Skor PUSKOPCUINA: " +
                                       _vm._s(_vm.bobotBKCUA()) +
                                       "% \n\t\t\t\t\t\t"
                                   )
@@ -40522,7 +40516,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -40551,7 +40545,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -40597,7 +40591,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -40825,7 +40819,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -40854,7 +40848,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -40900,7 +40894,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -41130,7 +41124,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -41159,7 +41153,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -41205,7 +41199,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -41433,7 +41427,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -41462,7 +41456,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -41508,7 +41502,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -41736,7 +41730,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -41765,7 +41759,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -41811,7 +41805,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -42039,7 +42033,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -42068,7 +42062,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -42114,7 +42108,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -42344,7 +42338,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -42373,7 +42367,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -42419,7 +42413,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -42647,7 +42641,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -42676,7 +42670,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -42722,7 +42716,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -42950,7 +42944,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -42979,7 +42973,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -43025,7 +43019,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -43253,7 +43247,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -43282,7 +43276,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -43328,7 +43322,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -43476,9 +43470,9 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("li", [
                                   _vm._v(
-                                    "\n\t\t\t\t\t\t\tSkor BKCU: " +
+                                    "\n\t\t\t\t\t\t\tSkor PUSKOPCUINA: " +
                                       _vm._s(_vm.skorBKCUB()) +
-                                      " / \n\t\t\t\t\t\t\tBobot Skor BKCU: " +
+                                      " / \n\t\t\t\t\t\t\tBobot Skor PUSKOPCUINA: " +
                                       _vm._s(_vm.bobotBKCUB()) +
                                       "% \n\t\t\t\t\t\t"
                                   )
@@ -43629,7 +43623,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -43658,7 +43652,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -43704,7 +43698,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -43933,7 +43927,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -43962,7 +43956,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -44008,7 +44002,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -44237,7 +44231,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -44266,7 +44260,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -44312,7 +44306,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -44541,7 +44535,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -44570,7 +44564,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -44616,7 +44610,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -44845,7 +44839,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -44874,7 +44868,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -44920,7 +44914,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -45149,7 +45143,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -45178,7 +45172,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -45224,7 +45218,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -45455,7 +45449,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -45484,7 +45478,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -45530,7 +45524,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -45759,7 +45753,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -45788,7 +45782,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -45834,7 +45828,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -46063,7 +46057,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -46092,7 +46086,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -46138,7 +46132,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -46367,7 +46361,7 @@ var render = function() {
                                   { staticClass: "col-md-12" },
                                   [
                                     _c("h5", [
-                                      _vm._v("Penilaian BKCU Kalimantan:")
+                                      _vm._v("Penilaian PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("penilaian-bkcu", {
@@ -46396,7 +46390,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Keterangan BKCU Kalimantan:")
+                                      _vm._v("Keterangan PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -46442,7 +46436,7 @@ var render = function() {
                                 _c("div", { staticClass: "col-md-6" }, [
                                   _c("div", { staticClass: "form-group" }, [
                                     _c("h5", [
-                                      _vm._v("Rekomendasi BKCU Kalimantan:")
+                                      _vm._v("Rekomendasi PUSKOPCUINA:")
                                     ]),
                                     _vm._v(" "),
                                     _c("textarea", {
@@ -46807,7 +46801,7 @@ var render = function() {
           _vm._v(" "),
           _c("p", [
             _vm._v(
-              "Berdasarkan pengisian indikator di masing-masing perspektif yang telah diperiksa oleh Puskopdit BKCU Kalimantan, maka dapat disimpulkan bahwa"
+              "Berdasarkan pengisian indikator di masing-masing perspektif yang telah diperiksa oleh PUSKOPCUINA, maka dapat disimpulkan bahwa"
             )
           ]),
           _vm._v(" "),
@@ -46983,7 +46977,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "bg-brown" }, [
       _c("tr", { staticClass: "text-nowarp" }, [
-        _c("th", [_vm._v("BRANDING BKCU")]),
+        _c("th", [_vm._v("BRANDING PUSKOPCUINA")]),
         _vm._v(" "),
         _c("th", [_vm._v("NILAI")]),
         _vm._v(" "),

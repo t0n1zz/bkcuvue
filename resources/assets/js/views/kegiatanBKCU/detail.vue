@@ -29,6 +29,7 @@
 								<div class="card-header">
 									<h5 class="card-title">{{ item.name }}</h5>	
 								</div>
+								
 							</div>
 						</div>
 
@@ -70,6 +71,7 @@
 										</button>
 
 										<!-- daftar -->
+										
 										<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambahPeserta')" v-if="currentUser.id_cu == 0">
 											<i class="icon-people"></i> Daftar Peserta Diklat
 										</button>
@@ -328,7 +330,7 @@
 
 										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'pesertaTerdaftar'}" @click.prevent="changeTab('pesertaTerdaftar')"><i class="icon-people mr-2"></i>
 											Terdaftar
-											<span class="badge badge-dark ml-2" v-if="countPesertaStat == 'success' && countPeserta> 0">{{ countPeserta }}</span>
+											<span class="badge badge-dark ml-2" v-if="countPesertaStat == 'success' && countPeserta > 0 && currentUser.id_cu == 0">{{ countPeserta }}</span>
 										</a></li>
 
 										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'pesertaHadir'}" @click.prevent="changeTab('pesertaHadir')"><i class="icon-accessibility mr-2"></i>
@@ -809,11 +811,11 @@
 											</template>
 
 											<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahPeserta')"
-											:disabled="!selectedItem.id || selectedItem.status != 1" v-if="item.status == 2 && selectedItem.status != 3" >
+											:disabled="!selectedItem.id || selectedItem.status != 2" v-if="item.status == 2 && selectedItem.status != 3" >
 												<i class="icon-pencil5"></i> Ubah
 											</button>
 											
-											<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusPeserta')" :disabled="!selectedItem.id || selectedItem.status != 1" v-if="item.status == 2 && selectedItem.status != 3">
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusPeserta')" :disabled="!selectedItem.id || selectedItem.status != 2" v-if="item.status == 2 && selectedItem.status != 3">
 												<i class="icon-bin2"></i> Hapus
 											</button>
 
@@ -821,7 +823,7 @@
 												<i class="icon-eye"></i> Lihat Alasan Penolakan
 											</button>
 										</template>
-										<template slot="button-mobile" v-if="currentUser.id_cu != 0">
+										<template slot="button-mobile" v-else>
 											<template v-if="item.tipe == 'diklat_bkcu'">
 												<button class="btn bg-warning-400 btn-block mb-1" @click.prevent="modalOpen('tambahPeserta')" v-if="currentUser.can && currentUser.can['index_diklat_bkcu'] && item.status == 2">
 													<i class="icon-people"></i> Daftar Peserta
@@ -2006,14 +2008,14 @@
 				if(this.item.status == '2'){
 					if(this.currentUser.id_cu == 0){
 						this.$store.dispatch(this.kelas + '/indexPeserta', [params,this.item.id]);
-						this.excelDownloadUrl = this.kelas + '/indexPeserta';					
+						this.excelDownloadUrl = this.kelas + '/indexPeserta/' + this.item.id;					
 					}else{
 						this.$store.dispatch(this.kelas + '/indexPesertaCu', [params,this.item.id, this.currentUser.id_cu]);
-						this.excelDownloadUrl = this.kelas + '/indexPesertaCu/' + this.$route.params.cu;
+						this.excelDownloadUrl = this.kelas + '/indexPesertaCu/' + + this.item.id + '/' + this.$route.params.cu;
 					}
 				}else{
 					this.$store.dispatch(this.kelas + '/indexPeserta', [params,this.item.id]);
-					this.excelDownloadUrl = this.kelas + '/indexPeserta';	
+					this.excelDownloadUrl = this.kelas + '/indexPeserta/' + this.item.id;
 				}
 			},
 			fetchPesertaHadir(params){
@@ -2168,14 +2170,13 @@
 						this.modalState = 'content-tutup';
 						this.modalColor = '';
 
-						this.modalTitle = 'Pertemuan sudah penuh';
+						this.modalTitle = 'Diklat sudah penuh';
 						this.modalContent = 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena kuota peserta pada diklat ini sudah terpenuhi.';
 					}
 					
 					if(this.itemDataPesertaTerdaftar.data.length >= this.item.peserta_max_cu && this.currentUser.id_cu != 0){
 						this.modalState = 'content-tutup';
 						this.modalColor = '';
-
 						this.modalTitle = 'CU anda tidak bisa mendaftarkan peserta lagi';
 						this.modalContent = 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena jumlah maksimal peserta per CU adalah ' + this.item.peserta_max_cu + ' orang.';
 					}else{

@@ -150,6 +150,11 @@ class UserController extends Controller
 		'update_tempat',
 		'destroy_tempat',
 
+		'index_pemilihan',
+		'create_pemilihan',
+		'update_pemilihan',
+		'destroy_pemilihan',
+
 		'index_laporan_cu',
 		'create_laporan_cu',
 		'update_laporan_cu',

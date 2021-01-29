@@ -413,42 +413,61 @@ class KegiatanBKCUController extends Controller{
 
 	public function storePeserta(Request $request, $kegiatan_tipe, $id)
 	{
-		$kelas = KegiatanPeserta::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id ]);
+		$id_cu = Auth::user()->id_cu;
+		$kegiatan = Kegiatan::findOrFail($id);
 
-		$id_cu = Auth::user()->getIdCu();
 		if($id_cu != 0){
+			$pesertaTerdaftar = $table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->whereHas('aktivis.pekerjaan', function($query) use ($id_cu){
+				$query->where('tipe','1')->where('id_tempat',$id_cu);
+			})->count();
+		}else{
+			$pesertaTerdaftar = $table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->whereHas('aktivis.pekerjaan', function($query) use ($id_cu){
+				$query->where('tipe','3')->where('id_tempat',$id_cu);
+			})->count();
+		}
 
-			// check interval
-			$dataPeserta = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->where('kegiatan_id', $id)->whereHas('aktivis.pekerjaan_aktif.cu', function($query) use($id_cu){
-				$query->where('id', $id_cu);
-			})->orderBy('created_at','desc')->first();
-			$time = \Carbon\Carbon::now();
-	
-			// send notif if interval different is more than 2 hours
-			if($dataPeserta){
-				$diff = $time->diffInHours($dataPeserta->created_at);
-				if($diff > 2){
+		if($pesertaTerdaftar <  $kegiatan->peserta_max_cu){
+			$kelas = KegiatanPeserta::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id ]);
+
+			if($id_cu != 0){
+				// check interval
+				$dataPeserta = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->where('kegiatan_id', $id)->whereHas('aktivis.pekerjaan_aktif.cu', function($query) use($id_cu){
+					$query->where('id', $id_cu);
+				})->orderBy('created_at','desc')->first();
+				$time = \Carbon\Carbon::now();
+		
+				// send notif if interval different is more than 2 hours
+				if($dataPeserta){
+					$diff = $time->diffInHours($dataPeserta->created_at);
+					if($diff > 2){
+						if($kegiatan_tipe == 'diklat_bkcu'){
+							NotificationHelper::diklat_bkcu($id_cu, $id,'menambah peserta');
+						}else{
+							NotificationHelper::pertemuan_bkcu($id_cu, $id,'menambah peserta');
+						}
+					}
+				}else{
 					if($kegiatan_tipe == 'diklat_bkcu'){
 						NotificationHelper::diklat_bkcu($id_cu, $id,'menambah peserta');
 					}else{
 						NotificationHelper::pertemuan_bkcu($id_cu, $id,'menambah peserta');
 					}
 				}
-			}else{
-				if($kegiatan_tipe == 'diklat_bkcu'){
-					NotificationHelper::diklat_bkcu($id_cu, $id,'menambah peserta');
-				}else{
-					NotificationHelper::pertemuan_bkcu($id_cu, $id,'menambah peserta');
-				}
 			}
+			
+			return response()
+				->json([
+					'saved' => true,
+					'message' => 'Peserta ' . $this->message. ' berhasil ditambah',
+					'id' => $kelas->id
+				]);	
+		}else{
+			return response()
+				->json([
+					'saved' => false,
+					'message' => 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena jumlah maksimal peserta per CU adalah ' . $kegiatan->peserta_max_cu . ' orang.',
+				]);	
 		}
-		
-		return response()
-			->json([
-				'saved' => true,
-				'message' => 'Peserta ' . $this->message. ' berhasil ditambah',
-				'id' => $kelas->id
-			]);	
 	}
 
 	public function storeMateri(Request $request, $kegiatan_tipe, $id)

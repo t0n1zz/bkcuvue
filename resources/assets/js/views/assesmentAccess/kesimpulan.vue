@@ -63,12 +63,12 @@
 				</div>
 
 				<br/>
-				<p>Berdasarkan pengisian indikator di masing-masing perspektif yang telah diperiksa oleh Puskopdit BKCU Kalimantan, maka dapat disimpulkan bahwa</p>
+				<p>Berdasarkan pengisian indikator di masing-masing perspektif yang telah diperiksa oleh PUSKOPCUINA, maka dapat disimpulkan bahwa</p>
 				<div class="table-responsive">
 					<table class="table table-bordered">
 						<thead class="bg-brown">
 							<tr class="text-nowarp">
-								<th>BRANDING BKCU</th>
+								<th>BRANDING PUSKOPCUINA</th>
 								<th>NILAI</th>
 								<th>KESEPADANAN (%)</th>
 							</tr>

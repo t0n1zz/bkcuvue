@@ -431,6 +431,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           group: 'Tempat'
         }]
       }, {
+        name: 'Pemilihan',
+        keterangan: 'Mengelola data untuk melakukan pemilihan',
+        icon: 'icon-location4',
+        secondRow: true,
+        tipe: 'bkcu',
+        permission: [{
+          name: 'Lihat',
+          key: 'index_pemilihan',
+          icon: 'icon-eye',
+          tipe: 'all',
+          value: false,
+          group: 'Pemilihan'
+        }, {
+          name: 'Tambah',
+          key: 'create_pemilihan',
+          icon: 'icon-plus3',
+          tipe: 'all',
+          value: false,
+          group: 'Pemilihan'
+        }, {
+          name: 'Ubah',
+          key: 'update_pemilihan',
+          icon: 'icon-pencil',
+          tipe: 'all',
+          value: false,
+          group: 'Pemilihan'
+        }, {
+          name: 'Hapus',
+          key: 'destroy_pemilihan',
+          icon: 'icon-bin2',
+          tipe: 'all',
+          value: false,
+          group: 'Pemilihan'
+        }]
+      }, {
         name: 'Anggota CU',
         keterangan: 'Mengelola data anggota per-CU',
         icon: 'icon-man-woman',
@@ -1187,17 +1222,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$emit('hakForm', value);
       this.checkPeran(value);
     },
-    checkChange: function checkChange() {
-      this.checkVerifikasiJalinan();
+    checkChange: function checkChange(value) {
+      this.checkChangeJALINAN(value);
       this.emitData(this.hakForm);
     },
-    checkVerifikasiJalinan: function checkVerifikasiJalinan() {
-      if (this.hakForm.includes('verifikasi_pengurus_jalinan_klaim')) {
-        console.log('verifikasi_pengurus_jalinan_klaim');
-      } else if (this.hakForm.includes('verifikasi_pengawas_jalinan_klaim')) {
-        console.log('verifikasi_pengawas_jalinan_klaim');
-      } else if (this.hakForm.includes('verifikasi_manajemen_jalinan_klaim')) {
-        console.log('verifikasi_manajemen_jalinan_klaim');
+    checkChangeJALINAN: function checkChangeJALINAN(value) {
+      if (value == 'verifikasi_pengurus_jalinan_klaim') {
+        this.hakForm = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.pull(this.hakForm, 'verifikasi_pengawas_jalinan_klaim', 'verifikasi_manajemen_jalinan_klaim');
+      } else if (value == 'verifikasi_pengawas_jalinan_klaim') {
+        this.hakForm = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.pull(this.hakForm, 'verifikasi_pengurus_jalinan_klaim', 'verifikasi_manajemen_jalinan_klaim');
+      } else if (value == 'verifikasi_manajemen_jalinan_klaim') {
+        this.hakForm = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.pull(this.hakForm, 'verifikasi_pengawas_jalinan_klaim', 'verifikasi_pengurus_jalinan_klaim');
       }
     },
     changePeran: function changePeran(value) {
@@ -1723,7 +1758,10 @@ var render = function() {
                                                                 }
                                                               },
                                                               function($event) {
-                                                                return _vm.checkChange()
+                                                                return _vm.checkChange(
+                                                                  $event.target
+                                                                    .value
+                                                                )
                                                               }
                                                             ]
                                                           }
@@ -1814,7 +1852,9 @@ var render = function() {
                                                         }
                                                       },
                                                       function($event) {
-                                                        return _vm.checkChange()
+                                                        return _vm.checkChange(
+                                                          $event.target.value
+                                                        )
                                                       }
                                                     ]
                                                   }

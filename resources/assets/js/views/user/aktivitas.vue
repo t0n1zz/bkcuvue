@@ -146,6 +146,7 @@
 				currentUser: 'currentUser'
 			}),
 			...mapGetters('user',{
+				itemData: 'data',
 				itemDataStat: 'dataStat',
 				activity: 'dataS',
 				activityStat: 'dataStatS',

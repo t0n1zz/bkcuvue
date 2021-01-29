@@ -666,6 +666,8 @@ class AnggotaCuController extends Controller{
 	{
 		// if by user bkcu
 		if($request->anggota_cu_cu){
+			$aTmp1 = [];
+			$aTmp2 = [];
 			$cus = $request->anggota_cu_cu;
 			foreach($kelas->anggota_cu_cu as $aV){ $aTmp1[] = $aV['id']; }
 			foreach($request->anggota_cu_cu as $aV){ 

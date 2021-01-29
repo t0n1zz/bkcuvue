@@ -890,15 +890,11 @@
 				if(this.currentUser.id_cu == 0){
 					this.$router.push({name: this.kelas + 'Cu', params:{cu:'semua', tp:'semua'}});
 				}else{
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu, tp:'semua'}});
 				}
 			},
-			modalOpen(state, isMobile, itemMobile) {
-
-			},
-			modalConfirmOk() {
-
-			},
+			modalOpen(state, isMobile, itemMobile) {},
+			modalConfirmOk() {},
 			modalTutup() {
 				if(this.updateStat === 'success'){
 					this.back();

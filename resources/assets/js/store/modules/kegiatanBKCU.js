@@ -436,6 +436,7 @@ export const kegiatanBKCU = {
             commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
+            commit('setUpdate', response.data);
             commit('setUpdateStat', 'fail');
           }
         })

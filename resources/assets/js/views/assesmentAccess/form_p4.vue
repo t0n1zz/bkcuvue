@@ -31,8 +31,8 @@
 								Bobot Skor CU: {{ bobotCUA() }}% 
 							</li>
 							<li>
-								Skor BKCU: {{ skorBKCUA() }} / 	
-								Bobot Skor BKCU: {{ bobotBKCUA() }}% 
+								Skor PUSKOPCUINA: {{ skorBKCUA() }} / 	
+								Bobot Skor PUSKOPCUINA: {{ bobotBKCUA() }}% 
 							</li>
 						</ul>	
 					</div>
@@ -82,7 +82,7 @@
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
-									<h5>Penilaian BKCU Kalimantan:</h5>
+									<h5>Penilaian PUSKOPCUINA:</h5>
 									<!-- penilaian -->
 									<penilaian-bkcu
 										:form="form.p4.p4a1_bkcu_penilaian" 
@@ -94,7 +94,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Keterangan BKCU Kalimantan:</h5>
+										<h5>Keterangan PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -105,7 +105,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Rekomendasi BKCU Kalimantan:</h5>
+										<h5>Rekomendasi PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -182,7 +182,7 @@
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
-									<h5>Penilaian BKCU Kalimantan:</h5>
+									<h5>Penilaian PUSKOPCUINA:</h5>
 									<!-- penilaian -->
 									<penilaian-bkcu
 										:form="form.p4.p4a2_bkcu_penilaian" 
@@ -194,7 +194,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Keterangan BKCU Kalimantan:</h5>
+										<h5>Keterangan PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -205,7 +205,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Rekomendasi BKCU Kalimantan:</h5>
+										<h5>Rekomendasi PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -282,7 +282,7 @@
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
-									<h5>Penilaian BKCU Kalimantan:</h5>
+									<h5>Penilaian PUSKOPCUINA:</h5>
 									<!-- penilaian -->
 									<penilaian-bkcu
 										:form="form.p4.p4a3_bkcu_penilaian" 
@@ -294,7 +294,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Keterangan BKCU Kalimantan:</h5>
+										<h5>Keterangan PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -305,7 +305,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Rekomendasi BKCU Kalimantan:</h5>
+										<h5>Rekomendasi PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -382,7 +382,7 @@
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
-									<h5>Penilaian BKCU Kalimantan:</h5>
+									<h5>Penilaian PUSKOPCUINA:</h5>
 									<!-- penilaian -->
 									<penilaian-bkcu
 										:form="form.p4.p4a4_bkcu_penilaian" 
@@ -394,7 +394,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Keterangan BKCU Kalimantan:</h5>
+										<h5>Keterangan PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -405,7 +405,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Rekomendasi BKCU Kalimantan:</h5>
+										<h5>Rekomendasi PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -482,7 +482,7 @@
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
-									<h5>Penilaian BKCU Kalimantan:</h5>
+									<h5>Penilaian PUSKOPCUINA:</h5>
 									<!-- penilaian -->
 									<penilaian-bkcu
 										:form="form.p4.p4a5_bkcu_penilaian" 
@@ -494,7 +494,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Keterangan BKCU Kalimantan:</h5>
+										<h5>Keterangan PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -505,7 +505,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Rekomendasi BKCU Kalimantan:</h5>
+										<h5>Rekomendasi PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -582,7 +582,7 @@
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
-									<h5>Penilaian BKCU Kalimantan:</h5>
+									<h5>Penilaian PUSKOPCUINA:</h5>
 									<!-- penilaian -->
 									<penilaian-bkcu
 										:form="form.p4.p4a6_bkcu_penilaian" 
@@ -594,7 +594,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Keterangan BKCU Kalimantan:</h5>
+										<h5>Keterangan PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -605,7 +605,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Rekomendasi BKCU Kalimantan:</h5>
+										<h5>Rekomendasi PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -682,7 +682,7 @@
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
-									<h5>Penilaian BKCU Kalimantan:</h5>
+									<h5>Penilaian PUSKOPCUINA:</h5>
 									<!-- penilaian -->
 									<penilaian-bkcu
 										:form="form.p4.p4a7_bkcu_penilaian" 
@@ -694,7 +694,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Keterangan BKCU Kalimantan:</h5>
+										<h5>Keterangan PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -705,7 +705,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Rekomendasi BKCU Kalimantan:</h5>
+										<h5>Rekomendasi PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -782,7 +782,7 @@
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
-									<h5>Penilaian BKCU Kalimantan:</h5>
+									<h5>Penilaian PUSKOPCUINA:</h5>
 									<!-- penilaian -->
 									<penilaian-bkcu
 										:form="form.p4.p4a8_bkcu_penilaian" 
@@ -794,7 +794,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Keterangan BKCU Kalimantan:</h5>
+										<h5>Keterangan PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -805,7 +805,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Rekomendasi BKCU Kalimantan:</h5>
+										<h5>Rekomendasi PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -882,7 +882,7 @@
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
-									<h5>Penilaian BKCU Kalimantan:</h5>
+									<h5>Penilaian PUSKOPCUINA:</h5>
 									<!-- penilaian -->
 									<penilaian-bkcu
 										:form="form.p4.p4a9_bkcu_penilaian" 
@@ -894,7 +894,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Keterangan BKCU Kalimantan:</h5>
+										<h5>Keterangan PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -905,7 +905,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Rekomendasi BKCU Kalimantan:</h5>
+										<h5>Rekomendasi PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -982,7 +982,7 @@
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
-									<h5>Penilaian BKCU Kalimantan:</h5>
+									<h5>Penilaian PUSKOPCUINA:</h5>
 									<!-- penilaian -->
 									<penilaian-bkcu
 										:form="form.p4.p4a10_bkcu_penilaian" 
@@ -994,7 +994,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Keterangan BKCU Kalimantan:</h5>
+										<h5>Keterangan PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -1005,7 +1005,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Rekomendasi BKCU Kalimantan:</h5>
+										<h5>Rekomendasi PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -1056,8 +1056,8 @@
 								Bobot Skor CU: {{ bobotCUB() }}% 
 								</li>
 							<li>
-								Skor BKCU: {{ skorBKCUB() }} / 
-								Bobot Skor BKCU: {{ bobotBKCUB() }}% 
+								Skor PUSKOPCUINA: {{ skorBKCUB() }} / 
+								Bobot Skor PUSKOPCUINA: {{ bobotBKCUB() }}% 
 							</li>
 						</ul>	
 					</div>
@@ -1108,7 +1108,7 @@
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
-									<h5>Penilaian BKCU Kalimantan:</h5>
+									<h5>Penilaian PUSKOPCUINA:</h5>
 									<!-- penilaian -->
 									<penilaian-bkcu
 										:form="form.p4.p4b11_bkcu_penilaian" 
@@ -1120,7 +1120,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Keterangan BKCU Kalimantan:</h5>
+										<h5>Keterangan PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -1131,7 +1131,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Rekomendasi BKCU Kalimantan:</h5>
+										<h5>Rekomendasi PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -1210,7 +1210,7 @@
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
-									<h5>Penilaian BKCU Kalimantan:</h5>
+									<h5>Penilaian PUSKOPCUINA:</h5>
 									<!-- penilaian -->
 									<penilaian-bkcu
 										:form="form.p4.p4b12_bkcu_penilaian" 
@@ -1222,7 +1222,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Keterangan BKCU Kalimantan:</h5>
+										<h5>Keterangan PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -1233,7 +1233,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Rekomendasi BKCU Kalimantan:</h5>
+										<h5>Rekomendasi PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -1312,7 +1312,7 @@
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
-									<h5>Penilaian BKCU Kalimantan:</h5>
+									<h5>Penilaian PUSKOPCUINA:</h5>
 									<!-- penilaian -->
 									<penilaian-bkcu
 										:form="form.p4.p4b13_bkcu_penilaian" 
@@ -1324,7 +1324,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Keterangan BKCU Kalimantan:</h5>
+										<h5>Keterangan PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -1335,7 +1335,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Rekomendasi BKCU Kalimantan:</h5>
+										<h5>Rekomendasi PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -1414,7 +1414,7 @@
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
-									<h5>Penilaian BKCU Kalimantan:</h5>
+									<h5>Penilaian PUSKOPCUINA:</h5>
 									<!-- penilaian -->
 									<penilaian-bkcu
 										:form="form.p4.p4b14_bkcu_penilaian" 
@@ -1426,7 +1426,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Keterangan BKCU Kalimantan:</h5>
+										<h5>Keterangan PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -1437,7 +1437,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Rekomendasi BKCU Kalimantan:</h5>
+										<h5>Rekomendasi PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -1516,7 +1516,7 @@
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
-									<h5>Penilaian BKCU Kalimantan:</h5>
+									<h5>Penilaian PUSKOPCUINA:</h5>
 									<!-- penilaian -->
 									<penilaian-bkcu
 										:form="form.p4.p4b15_bkcu_penilaian" 
@@ -1528,7 +1528,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Keterangan BKCU Kalimantan:</h5>
+										<h5>Keterangan PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -1539,7 +1539,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Rekomendasi BKCU Kalimantan:</h5>
+										<h5>Rekomendasi PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -1618,7 +1618,7 @@
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
-									<h5>Penilaian BKCU Kalimantan:</h5>
+									<h5>Penilaian PUSKOPCUINA:</h5>
 									<!-- penilaian -->
 									<penilaian-bkcu
 										:form="form.p4.p4b16_bkcu_penilaian" 
@@ -1630,7 +1630,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Keterangan BKCU Kalimantan:</h5>
+										<h5>Keterangan PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -1641,7 +1641,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Rekomendasi BKCU Kalimantan:</h5>
+										<h5>Rekomendasi PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -1720,7 +1720,7 @@
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
-									<h5>Penilaian BKCU Kalimantan:</h5>
+									<h5>Penilaian PUSKOPCUINA:</h5>
 									<!-- penilaian -->
 									<penilaian-bkcu
 										:form="form.p4.p4b17_bkcu_penilaian" 
@@ -1732,7 +1732,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Keterangan BKCU Kalimantan:</h5>
+										<h5>Keterangan PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -1743,7 +1743,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Rekomendasi BKCU Kalimantan:</h5>
+										<h5>Rekomendasi PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -1822,7 +1822,7 @@
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
-									<h5>Penilaian BKCU Kalimantan:</h5>
+									<h5>Penilaian PUSKOPCUINA:</h5>
 									<!-- penilaian -->
 									<penilaian-bkcu
 										:form="form.p4.p4b18_bkcu_penilaian" 
@@ -1834,7 +1834,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Keterangan BKCU Kalimantan:</h5>
+										<h5>Keterangan PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -1845,7 +1845,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Rekomendasi BKCU Kalimantan:</h5>
+										<h5>Rekomendasi PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -1924,7 +1924,7 @@
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
-									<h5>Penilaian BKCU Kalimantan:</h5>
+									<h5>Penilaian PUSKOPCUINA:</h5>
 									<!-- penilaian -->
 									<penilaian-bkcu
 										:form="form.p4.p4b19_bkcu_penilaian" 
@@ -1936,7 +1936,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Keterangan BKCU Kalimantan:</h5>
+										<h5>Keterangan PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -1947,7 +1947,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Rekomendasi BKCU Kalimantan:</h5>
+										<h5>Rekomendasi PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -2026,7 +2026,7 @@
 							<div class="row">
 								<div class="col-md-12"><hr/></div>
 								<div class="col-md-12">
-									<h5>Penilaian BKCU Kalimantan:</h5>
+									<h5>Penilaian PUSKOPCUINA:</h5>
 									<!-- penilaian -->
 									<penilaian-bkcu
 										:form="form.p4.p4b20_bkcu_penilaian" 
@@ -2038,7 +2038,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Keterangan BKCU Kalimantan:</h5>
+										<h5>Keterangan PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 
@@ -2049,7 +2049,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h5>Rekomendasi BKCU Kalimantan:</h5>
+										<h5>Rekomendasi PUSKOPCUINA:</h5>
 										<!-- textarea -->
 										<textarea rows="6" 
 										type="text" 

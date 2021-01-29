@@ -776,8 +776,7 @@ var render = function() {
               staticClass: "mb-3",
               class: {
                 "col-sm-6": this.currentUser.id_cu == 0,
-                "col-sm-12": this.currentUser.id_cu != 0,
-                "col-sm-12": this.isCu
+                "col-sm-12": this.currentUser.id_cu != 0
               }
             },
             [
