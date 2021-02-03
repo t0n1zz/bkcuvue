@@ -14,131 +14,190 @@
 					</message>
 
 					<template v-if="formStat == 'success'">	
-						<!-- informasi umum -->
+						<!-- navbar -->
 						<div class="card">
-							<div class="card-header bg-white">
-								<h5 class="card-title">Info Pemilihan</h5>
+							<div class="nav-tabs-responsive">
+								<ul class="nav nav-tabs nav-tabs-solid  bg-light nav-justified mb-0">
+
+									<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'info'}" @click.prevent="changeTab('info')"><i class="icon-menu7 mr-2"></i>
+										Info
+									</a></li>
+
+									<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'skor'}" @click.prevent="changeTab('skor')"><i class="icon-equalizer mr-2"></i>
+										Skor
+									</a></li>
+			
+								</ul>
 							</div>
-							<div class="card-body">
-								<div class="row">
-									<!-- nama -->
-									<div class="col-md-12 form-group">
-										<!-- title -->
-										<h5>Nama:</h5>
-
-										<!-- text -->
-										<input type="text" name="name" class="form-control" v-model="form.name" disabled>
-									</div>
-
-									<!-- total suara -->
-									<div class="col-md-6 form-group">
-										<!-- title -->
-										<h5>Total Suara:</h5>
-
-										<!-- text -->
-										<input type="text" name="suara" class="form-control" v-model="form.suara" disabled>
-									</div>
-
-									<!-- suara ok -->
-									<div class="col-md-6 form-group">
-										<!-- title -->
-										<h5>Suara Masuk:</h5>
-
-										<!-- text -->
-										<input type="text" name="suara_ok" class="form-control" v-model="form.suara_ok" disabled>
-									</div>
-
-								</div>	
-							</div>
-						</div>
-
-						<!-- calon -->
-						<div class="card">
-							<div class="card-header bg-white">
-								<h5 class="card-title">Calon</h5>
-							</div>
-
-							<data-table :items="itemDataCalon" :columnData="columnDataCalon" :itemDataStat="itemDataCalonStat">
-								<template slot="item-desktop" slot-scope="props">
-									<tr class="text-nowrap" v-if="props.item">
-										<td>{{ props.index + 1 }}</td>
-										<td>
-											<img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
-											<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
-										</td>
-										<td>{{ props.item.name }}</td>
-										<td>{{ props.item.tanggal_lahir }}</td>
-										<td>{{ props.item.tempat_lahir }}</td>
-										<td>{{ props.item.status }}</td>
-										<td>{{ props.item.pendidikan }}</td>
-									</tr>
-								</template>	
-							</data-table>
 
 						</div>
 
-						<!-- suara -->
-						<div class="card">
-							<div class="card-header bg-white">
-								<h5 class="card-title">Suara</h5>
-							</div>
+						<!-- info -->
+						<transition enter-active-class="animated fadeIn" mode="out-in">
+								<div v-show="tabName == 'info'">
+									<!-- informasi umum -->
+									<div class="card">
+										<div class="card-header bg-white header-elements-inline">
+											<h5 class="card-title">Pemilihan</h5>
+											<div class="header-elements">
+												 <button type="button" class="btn btn-light btn-icon mb-1" @click.prevent="fetch()">
+														<i class="icon-sync"></i>
+													</button>
+											</div>
+										</div>
+										<div class="card-body">
+											<div class="row">
+												<!-- nama -->
+												<div class="col-md-6 form-group">
+													<!-- title -->
+													<h5>Nama:</h5>
 
-							<data-table :items="itemDataSuara" :columnData="columnDataSuara" :itemDataStat="itemDataSuaraStat">
-								<template slot="item-desktop" slot-scope="props">
-									<tr class="text-nowrap" v-if="props.item">
-										<td>{{ props.index + 1 }}</td>
-										<td>{{ props.item.link }}</td>
-										<td>
-											<a class="btn btn-light mb-1" :href="props.item.link" target="_blank">
-												<i class="icon-copy3"></i> Buka
-											</a>	
-										</td>
-									</tr>
-								</template>	
-							</data-table>
+													<!-- text -->
+													<input type="text" name="name" class="form-control" v-model="form.name" disabled>
+												</div>
 
-						</div>
+												<!-- nama -->
+												<div class="col-md-6 form-group">
+													<!-- title -->
+													<h5>CU:</h5>
+
+													<!-- text -->
+													<input type="text" name="cu" class="form-control" v-model="form.cu.name" disabled v-if="form.cu">
+
+													<input type="text" name="cu" class="form-control" value="PUSKOPCUINA" disabled v-else>
+												</div>
+
+												<!-- total suara -->
+												<div class="col-md-6 form-group">
+													<!-- title -->
+													<h5>Total Suara:</h5>
+
+													<!-- text -->
+													<input type="text" name="suara" class="form-control" v-model="form.suara" disabled>
+												</div>
+
+												<!-- suara ok -->
+												<div class="col-md-6 form-group">
+													<!-- title -->
+													<h5>Suara Masuk:</h5>
+
+													<!-- text -->
+													<input type="text" name="suara_ok" class="form-control" v-model="form.suara_ok" disabled>
+												</div>
+
+											</div>	
+										</div>
+									</div>
+
+									<!-- calon -->
+									
+									<div class="card">
+										<div class="card-header bg-white header-elements-inline">
+											<h5 class="card-title">Calon</h5>
+											<div class="header-elements">
+												 <button type="button" class="btn btn-light btn-icon mb-1" @click.prevent="fetch()">
+														<i class="icon-sync"></i>
+													</button>
+											</div>
+										</div>
+
+										<data-table :items="itemDataCalon" :columnData="columnDataCalon" :itemDataStat="itemDataCalonStat">
+											<template slot="item-desktop" slot-scope="props">
+												<tr class="text-nowrap" v-if="props.item">
+													<td>{{ props.index + 1 }}</td>
+													<td>
+														<img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+														<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+													</td>
+													<td>{{ props.item.name }}</td>
+													<td>{{ props.item.tanggal_lahir }}</td>
+													<td>{{ props.item.tempat_lahir }}</td>
+													<td>{{ props.item.status }}</td>
+													<td>{{ props.item.pendidikan }}</td>
+												</tr>
+											</template>	
+										</data-table>
+
+									</div>
+
+									<!-- suara -->
+									<div class="card">
+										<div class="card-header bg-white header-elements-inline">
+											<h5 class="card-title">Suara</h5>
+											<div class="header-elements">
+												 <button type="button" class="btn btn-light btn-icon mb-1" @click.prevent="fetch()">
+														<i class="icon-sync"></i>
+													</button>
+											</div>
+										</div>
+
+										<data-table :items="itemDataSuara" :columnData="columnDataSuara" :itemDataStat="itemDataSuaraStat">
+											<template slot="item-desktop" slot-scope="props">
+												<tr class="text-nowrap" v-if="props.item">
+													<td>{{ props.index + 1 }}</td>
+													<td>{{ props.item.link }}</td>
+													<td>
+														<span v-if="props.item.pemilihan_calon_id" class="bg-orange-400 text-highlight"><i class="icon-check"></i></span>
+														<span v-else class="bg-teal-300 text-highlight"><i class="icon-cross3"></i></span>
+													</td>
+													<td>
+														<a class="btn btn-light mb-1" :href="props.item.link" target="_blank">
+															<i class="icon-copy3"></i> Buka
+														</a>	
+													</td>
+												</tr>
+											</template>	
+										</data-table>
+
+									</div>
+								</div>
+						</transition>	
 
 						<!-- skor -->
-						<div class="card " v-if="form.calon">
-							<div class="card-header bg-white header-elements-inline">
-								<h5 class="card-title">Perolehan Skor</h5>
-								<div class="header-elements">
-									<span class="badge badge-success">
-										Suara Masuk: {{ form.suara_ok }}
-									</span> 
-									&nbsp;
-									<span class="badge badge-primary">
-										Total Suara: {{ form.suara }}
-									</span>
-								</div>
-							</div>
-							<div class="card-body">
-								<div v-for="(p, index) in form.calon" :key="index">
-									<div class="card card-body">
-										<div class="row">
-											<div class="col-sm-3 mb-1 mt-1">
-												<b>{{ p.name }}</b>
+						<transition enter-active-class="animated fadeIn" mode="out-in">
+								<div v-show="tabName == 'skor'">
+									<!-- skor -->
+									<div class="card " v-if="form.calon">
+										<div class="card-header bg-white header-elements-inline">
+											<h5 class="card-title">Perolehan Skor</h5>
+											<div class="header-elements">
+												<span class="badge badge-success">
+													Suara Masuk: {{ form.suara_ok }}
+												</span> 
+												&nbsp;
+												<span class="badge badge-primary">
+													Total Suara: {{ form.suara }}
+												</span>
 											</div>
-											<div class="col-sm-8 mb-1 mt-1">
-												<div class="progress">
-													<div class="progress-bar-striped bg-success" :style="{width: Math.round((p.pivot.skor / form.suara) * 100) + '%'}">
-														<span class="text-default font-size-lg">
-															&nbsp;
-															<b>{{ Math.round((p.pivot.skor / form.suara) * 100) + '%' }}</b>
-															&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
-														</span>
+										</div>
+										<div class="card-body">
+											<div v-for="(p, index) in form.calon" :key="index">
+												<div class="card card-body">
+													<div class="row">
+														<div class="col-sm-3 mb-1 mt-1">
+															<b>{{ p.name }}</b>
+														</div>
+														<div class="col-sm-8 mb-1 mt-1">
+															<div class="progress">
+																<div class="progress-bar-striped bg-success" :style="{width: Math.round((p.pivot.skor / form.suara) * 100) + '%'}">
+																	<span class="text-default font-size-lg">
+																		&nbsp;
+																		<b>{{ Math.round((p.pivot.skor / form.suara) * 100) + '%' }}</b>
+																		&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
+																	</span>
+																</div>
+															</div>	
+														</div>
+														<div class="col-sm-1 mb-1 mt-1">
+															{{ p.pivot.skor }} / {{ form.suara }}
+														</div>
 													</div>
-												</div>	
-											</div>
-											<div class="col-sm-1 mb-1 mt-1">
-												{{ p.pivot.skor }} / {{ form.suara }}
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-						</div>
+						</transition>
 					</template>
 
 					<div v-else-if="formStat == 'loading'">
@@ -174,6 +233,9 @@
 	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
 	import dataTable from '../../components/datatable.vue';
+	import { PusherAuth } from '../../helpers/pusherAuth.js';
+	import Echo from 'laravel-echo';
+	import Pusher from "pusher-js";
 	
 	export default {
 		components: {
@@ -189,6 +251,7 @@
 				level: 2,
 				level2Title: 'Pemilihan',
 				kelas: 'pemilihan',
+				tabName: 'info',
 				columnDataCalon:[
 					{ title: 'No.' },
 					{ title: 'Foto' },
@@ -203,6 +266,7 @@
 				columnDataSuara:[
 					{ title: 'No.' },
 					{ title: 'Link' },
+					{ title: 'Memilih' },
 					{ title: 'Buka' },
 				],
 				itemDataSuara: [],
@@ -211,6 +275,19 @@
 		},
 		created(){
 			this.fetch();
+		},
+		mounted(){
+			PusherAuth();
+			window.Echo.private(`pemilihan.channel.` + this.$route.params.id)
+			.listen('PemilihanEvent',(data) => {  
+				console.log(data);    
+				var p;
+				for (p of this.form.calon) {
+					if(p.pivot.id == data.pemilihan_calon_id){
+						p.pivot.skor = data.skor;
+					}
+				}
+			});
 		},
 		watch: {
 			// check route changes
@@ -242,6 +319,7 @@
 					for (valSuara of this.form.has_suara) {
 						let formData2 = {};
 						formData2.link = window.location.origin + '/admins/pilih/' + valSuara.name;
+						formData2.pemilihan_calon_id = valSuara.pemilihan_calon_id;
 					
 						this.itemDataSuara.push(formData2);
 					}
@@ -254,6 +332,9 @@
 			},
 			back(){
 				this.$router.push({name: this.kelas });
+			},
+			changeTab(value){
+				this.tabName = value;
 			},
 		},
 		computed: {

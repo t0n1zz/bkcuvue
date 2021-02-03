@@ -732,7 +732,34 @@
 							</div>
 
 							<!-- pemilihan -->
-							<router-link :to="{ name: 'pemilihan' }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_pemilihan'] && currentUser.id_cu == 0">
+							<!-- if bkcu account -->
+							<div class="dropdown-submenu" v-if="currentUser.can['index_pemilihan'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu2 == 'pemilihan'}">
+								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('pemilihan')">
+									<i class="icon-quill4"></i> Pemilihan
+								</a>
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'pemilihan'}">
+									
+									<router-link :to="{ name: 'pemilihan', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
+										Semua CU
+									</router-link>
+									<router-link :to="{ name: 'pemilihan', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser">
+										PUSKOPCUINA
+									</router-link>
+
+									<!-- divider -->
+									<div class="dropdown-divider"></div> 
+
+									<template v-for="(cu, index) in modelCu">
+										<router-link :to="{ name: 'pemilihan', params:{cu: cu.id} }" class="dropdown-item" active-class="active" exact v-if="cu" :key="index">
+											CU {{ cu.name }}
+										</router-link>
+									</template>
+
+								</div>
+							</div>
+
+							<!-- if cu account -->
+							<router-link :to="{ name: 'pemilihan', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_pemilihan'] && currentUser.id_cu != 0">
 								<i class="icon-quill4"></i> Pemilihan
 							</router-link>
 						

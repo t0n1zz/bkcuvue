@@ -61,14 +61,18 @@
 					<td v-if="!columnData[2].hide">
 						<check-value :value="props.item.name"></check-value>
 					</td>
-					<td v-if="!columnData[3].hide">
-						<check-value :value="props.item.suara"></check-value>
+					<td v-if="!columnData[3].hide && !columnData[3].disable">
+						<check-value :value="props.item.cu.name" v-if="props.item.cu"></check-value>
+						<span v-else>PUSKOPCUINA</span>
 					</td>
 					<td v-if="!columnData[4].hide">
+						<check-value :value="props.item.suara"></check-value>
+					</td>
+					<td v-if="!columnData[5].hide">
 						<check-value :value="props.item.suara_ok"></check-value>
 					</td>
-					<td v-if="!columnData[5].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[6].hide">
+					<td v-if="!columnData[6].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[7].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -131,6 +135,14 @@
 						disable: false,
 						filter: true,
 						filterDefault: true
+					},
+					{
+						title: 'CU',
+						name: 'cu.name',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: true,
 					},
 					{
 						title: 'Suara',
@@ -203,8 +215,18 @@
     },
 		methods: {
 			fetch(params){
-				this.$store.dispatch(this.kelas + '/index', params);
-				this.excelDownloadUrl = this.kelas;
+				if(this.$route.params.cu == 'semua'){
+					this.disableColumnCu(false);
+					this.$store.dispatch(this.kelas + '/index', params);
+					this.excelDownloadUrl = this.kelas;
+				}else{
+					this.disableColumnCu(true);
+					this.$store.dispatch(this.kelas + '/indexCu', [params,this.$route.params.cu]);
+					this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu;
+				}
+			},
+			disableColumnCu(status){
+				this.columnData[3].disable = status;
 			},
 			selectedRow(item){
 				this.selectedItem = item;

@@ -52,6 +52,21 @@ export const pemilihan = {
         });
     },
 
+    indexCu( { commit }, [p, id] ){
+      commit('setDataStatS', 'loading');
+      
+      
+      PemilihanAPI.indexCu( p , id )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     indexPemilihan( { commit } ){
       commit('setDataStatS2', 'loading');
       

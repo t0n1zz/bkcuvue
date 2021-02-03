@@ -445,6 +445,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -690,7 +718,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return moment().year();
     }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('pemilihan', {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+    currentUser: 'currentUser'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('cu', {
+    modelCU: 'headerDataS',
+    modelCUStat: 'headerDataStatS'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('pemilihan', {
     form: 'data',
     formStat: 'dataStat',
     modelPemilihan: 'dataS2',
@@ -872,6 +905,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -890,6 +950,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       selectedItem: [],
       formCalon: {
         aktivis_id: '',
+        pengusung_cu_id: '',
         name: '',
         lembaga: '',
         gambar: ''
@@ -978,13 +1039,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.formCalon.aktivis_id = item.id;
       this.formCalon.name = item.name;
       this.formCalon.gambar = item.gambar;
-      this.formCalon.email = item.email != '' ? item.email : '-';
-      this.formCalon.hp = item.hp != '' ? item.hp : '-';
+      this.formCalon.status = item.status;
+      this.formCalon.tanggal_lahir = item.tanggal_lahir != '' ? item.tanggal_lahir : '-';
+      this.formCalon.tempat_lahir = item.tempat_lahir != '' ? item.tempat_lahir : '-';
 
-      if (item.pekerjaan_aktif.tipe == 1) {
-        this.formCalon.lembaga = item.pekerjaan_aktif.cu.name;
-      } else {
-        this.formCalon.lembaga = "Puskopdit BKCU Kalimantan";
+      if (item.pendidikan_tertinggi) {
+        this.formCalon.pendidikan = item.pendidikan_tertinggi.tingkat + ' ' + item.pendidikan_tertinggi.name;
       }
     },
     save: function save() {
@@ -1008,11 +1068,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$emit('tutup');
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
     currentUser: 'currentUser'
   })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('aktivis', {
     itemDataDalam: 'dataS',
     itemDataDalamStat: 'dataStatS'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('cu', {
+    modelCU: 'headerDataS',
+    modelCUStat: 'headerDataStatS'
   }))
 });
 
@@ -1364,7 +1427,7 @@ var render = function() {
                         "div",
                         { staticClass: "row" },
                         [
-                          _c("div", { staticClass: "col-md-12" }, [
+                          _c("div", { staticClass: "col-md-6" }, [
                             _c(
                               "div",
                               {
@@ -1451,6 +1514,178 @@ var render = function() {
                               ]
                             )
                           ]),
+                          _vm._v(" "),
+                          _vm.currentUser.id_cu === 0
+                            ? _c("div", { staticClass: "col-md-6" }, [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "form-group",
+                                    class: {
+                                      "has-error": _vm.errors.has("form.id_cu")
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "h5",
+                                      {
+                                        class: {
+                                          "text-danger": _vm.errors.has(
+                                            "form.id_cu"
+                                          )
+                                        }
+                                      },
+                                      [
+                                        _vm.errors.has("form.id_cu")
+                                          ? _c("i", {
+                                              staticClass: "icon-cross2"
+                                            })
+                                          : _vm._e(),
+                                        _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tCU: "),
+                                        _c("wajib-badge")
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.form.id_cu,
+                                            expression: "form.id_cu"
+                                          },
+                                          {
+                                            name: "validate",
+                                            rawName: "v-validate",
+                                            value: "required",
+                                            expression: "'required'"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: {
+                                          name: "id_cu",
+                                          "data-width": "100%",
+                                          "data-vv-as": "CU",
+                                          disabled: _vm.modelCU.length === 0
+                                        },
+                                        on: {
+                                          change: [
+                                            function($event) {
+                                              var $$selectedVal = Array.prototype.filter
+                                                .call(
+                                                  $event.target.options,
+                                                  function(o) {
+                                                    return o.selected
+                                                  }
+                                                )
+                                                .map(function(o) {
+                                                  var val =
+                                                    "_value" in o
+                                                      ? o._value
+                                                      : o.value
+                                                  return val
+                                                })
+                                              _vm.$set(
+                                                _vm.form,
+                                                "id_cu",
+                                                $event.target.multiple
+                                                  ? $$selectedVal
+                                                  : $$selectedVal[0]
+                                              )
+                                            },
+                                            function($event) {
+                                              return _vm.changeCU(
+                                                $event.target.value
+                                              )
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "option",
+                                          {
+                                            attrs: { disabled: "", value: "" }
+                                          },
+                                          [
+                                            _vm.modelCUStat === "loading"
+                                              ? _c("span", [
+                                                  _vm._v("Mohon tunggu...")
+                                                ])
+                                              : _c("span", [
+                                                  _vm._v("Silahkan pilih CU")
+                                                ])
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "0" } },
+                                          [
+                                            _vm.currentUser.pus
+                                              ? _c("span", [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.currentUser.pus.name
+                                                    )
+                                                  )
+                                                ])
+                                              : _c("span", [
+                                                  _vm._v("Puskopdit")
+                                                ])
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm._l(_vm.modelCU, function(
+                                          cu,
+                                          index
+                                        ) {
+                                          return _c(
+                                            "option",
+                                            {
+                                              key: index,
+                                              domProps: { value: cu.id }
+                                            },
+                                            [_vm._v(_vm._s(cu.name))]
+                                          )
+                                        })
+                                      ],
+                                      2
+                                    ),
+                                    _vm._v(" "),
+                                    _vm.errors.has("form.id_cu")
+                                      ? _c(
+                                          "small",
+                                          {
+                                            staticClass:
+                                              "text-muted text-danger"
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "icon-arrow-small-right"
+                                            }),
+                                            _vm._v(
+                                              " " +
+                                                _vm._s(
+                                                  _vm.errors.first("form.id_cu")
+                                                ) +
+                                                "\n\t\t\t\t\t\t\t\t\t\t"
+                                            )
+                                          ]
+                                        )
+                                      : _c(
+                                          "small",
+                                          { staticClass: "text-muted" },
+                                          [_vm._v(" ")]
+                                        )
+                                  ]
+                                )
+                              ])
+                            : _vm._e(),
                           _vm._v(" "),
                           _vm.$route.meta.mode != "edit"
                             ? [
@@ -2097,18 +2332,23 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("li", [
-                          _c("b", [_vm._v("Lembaga:")]),
-                          _vm._v(" " + _vm._s(_vm.formCalon.lembaga))
+                          _c("b", [_vm._v("Tanggal Lahir:")]),
+                          _vm._v(" " + _vm._s(_vm.formCalon.tanggal_lahir))
                         ]),
                         _vm._v(" "),
                         _c("li", [
-                          _c("b", [_vm._v("Email:")]),
-                          _vm._v(" " + _vm._s(_vm.formCalon.email))
+                          _c("b", [_vm._v("Tempat Lahir:")]),
+                          _vm._v(" " + _vm._s(_vm.formCalon.tempat_lahir))
                         ]),
                         _vm._v(" "),
                         _c("li", [
-                          _c("b", [_vm._v("Hp:")]),
-                          _vm._v(" " + _vm._s(_vm.formCalon.hp))
+                          _c("b", [_vm._v("Status:")]),
+                          _vm._v(" " + _vm._s(_vm.formCalon.status))
+                        ]),
+                        _vm._v(" "),
+                        _c("li", [
+                          _c("b", [_vm._v("Pendidikan:")]),
+                          _vm._v(" " + _vm._s(_vm.formCalon.pendidikan))
                         ])
                       ])
                     ])
@@ -2449,6 +2689,103 @@ var render = function() {
               }
             })
           : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "form-group",
+            class: { "has-error": _vm.errors.has("formCalon.pengusung_cu_id") }
+          },
+          [
+            _c(
+              "h5",
+              {
+                class: {
+                  "text-danger": _vm.errors.has("formCalon.pengusung_cu_id")
+                }
+              },
+              [
+                _vm.errors.has("formCalon.pengusung_cu_id")
+                  ? _c("i", { staticClass: "icon-cross2" })
+                  : _vm._e(),
+                _vm._v("\n\t\t\tCU Pengusung: "),
+                _c("wajib-badge")
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.formCalon.pengusung_cu_id,
+                    expression: "formCalon.pengusung_cu_id"
+                  },
+                  {
+                    name: "validate",
+                    rawName: "v-validate",
+                    value: "required",
+                    expression: "'required'"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  name: "pengusung_cu_id",
+                  "data-width": "100%",
+                  "data-vv-as": "CU",
+                  disabled: _vm.modelCU.length === 0
+                },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.formCalon,
+                      "pengusung_cu_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { disabled: "", value: "" } }, [
+                  _vm.modelCUStat === "loading"
+                    ? _c("span", [_vm._v("Mohon tunggu...")])
+                    : _c("span", [_vm._v("Silahkan pilih CU")])
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.modelCU, function(cu, index) {
+                  return _c(
+                    "option",
+                    { key: index, domProps: { value: cu.id } },
+                    [_vm._v(_vm._s(cu.name))]
+                  )
+                })
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _vm.errors.has("formCalon.pengusung_cu_id")
+              ? _c("small", { staticClass: "text-muted text-danger" }, [
+                  _c("i", { staticClass: "icon-arrow-small-right" }),
+                  _vm._v(
+                    " " +
+                      _vm._s(_vm.errors.first("formCalon.pengusung_cu_id")) +
+                      "\n\t\t"
+                  )
+                ])
+              : _c("small", { staticClass: "text-muted" }, [_vm._v(" ")])
+          ]
+        ),
         _vm._v(" "),
         _c("hr"),
         _vm._v(" "),

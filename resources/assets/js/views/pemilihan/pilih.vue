@@ -97,7 +97,7 @@
 									</div>
 								</div>
 								<!-- skor -->
-								<div class="card ">
+								<!-- <div class="card ">
 									<div class="card-header bg-white header-elements-inline">
 										<h5 class="card-title">Perolehan Skor</h5>
 										<div class="header-elements">
@@ -135,7 +135,7 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 

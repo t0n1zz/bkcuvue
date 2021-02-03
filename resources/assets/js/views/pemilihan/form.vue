@@ -24,7 +24,7 @@
 								<div class="row">
 
 									<!-- name -->
-									<div class="col-md-12">
+									<div class="col-md-6">
 										<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
 
 											<!-- title -->
@@ -38,6 +38,34 @@
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.name')">
 												<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- CU -->
+									<div class="col-md-6" v-if="currentUser.id_cu === 0">
+										<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.id_cu')}">
+												<i class="icon-cross2" v-if="errors.has('form.id_cu')"></i>
+												CU: <wajib-badge></wajib-badge>
+											</h5>
+
+											<!-- select -->
+											<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0" @change="changeCU($event.target.value)">
+												<option disabled value="">
+													<span v-if="modelCUStat === 'loading'">Mohon tunggu...</span>
+													<span v-else>Silahkan pilih CU</span>
+												</option>
+												<option value="0"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>Puskopdit</span></option>
+												<option v-for="(cu, index) in modelCU" :value="cu.id" :key="index">{{cu.name}}</option>
+											</select>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
@@ -428,6 +456,13 @@
 			}
 		},
 		computed: {
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
+			}),
+			...mapGetters('cu',{
+				modelCU: 'headerDataS',
+				modelCUStat: 'headerDataStatS',
+			}),
 			...mapGetters('pemilihan',{
 				form: 'data',
 				formStat: 'dataStat',

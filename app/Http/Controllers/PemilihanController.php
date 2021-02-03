@@ -12,7 +12,7 @@ use App\PemilihanSuara;
 use App\Support\Helper;
 use Illuminate\Http\Request;
 use App\Support\NotificationHelper;
-use App\Events\PemilihanCalonEvent;
+use App\Events\PemilihanEvent;
 
 class PemilihanController extends Controller{
 
@@ -20,7 +20,17 @@ class PemilihanController extends Controller{
 
 	public function index()
 	{
-		$table_data = Pemilihan::withCount('hasCalon')->withCount('hasSuara')->advancedFilter();
+		$table_data = Pemilihan::withCount('cu','hasCalon')->withCount('hasSuara')->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexCu($id)
+	{
+		$table_data = Pemilihan::withCount('hasCalon')->where('id_cu', $id)->withCount('hasSuara')->advancedFilter();
 
 		return response()
 		->json([
@@ -172,7 +182,7 @@ class PemilihanController extends Controller{
 					$kelasPemilihan->suara_ok = $suara_ok;
 					$kelasPemilihan->update();
 					
-					event(new PemilihanCalonEvent($skor, $request->pemilihan_calon_id));
+					event(new PemilihanEvent($skor, $kelasPemilihan->id, $kelasCalon->id));
 
 					Aktivis::flushCache();
 					
@@ -204,7 +214,7 @@ class PemilihanController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = Pemilihan::with('calon.pekerjaan_aktif.cu','calon.pendidikan_tertinggi','hasSuara')->findOrFail($id);
+		$kelas = Pemilihan::with('calon.pekerjaan_aktif.cu','calon.pendidikan_tertinggi','cu','hasSuara')->findOrFail($id);
 
 		return response()
 				->json([

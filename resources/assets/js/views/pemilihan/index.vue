@@ -16,6 +16,13 @@
 					<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
 					</message>
 
+					<!-- select data -->
+					<select-cu 
+						:kelas="kelas"
+						:path="selectCuPath"
+						:isPus="true"
+						v-if="currentUser.id_cu == 0"></select-cu>
+
 					<!-- table data -->
 					<table-data 
 						:title="title" 
@@ -30,6 +37,7 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import pageHeader from "../../components/pageHeader.vue";
+	import selectCu from "../../components/selectCu.vue";
 	import tableData from "./table.vue";
 	import message from "../../components/message.vue";
 	
@@ -37,6 +45,7 @@
 		components: {
 			pageHeader,
 			tableData,
+			selectCu,
 			message,
 		},
 		data() {
@@ -45,10 +54,11 @@
 				kelas: 'pemilihan',
 				titleDesc: 'Mengelola data pemilihan PUSKOPCUINA',
 				titleIcon: 'icon-quill4',
+				selectCuPath: 'pemilihanCu',
 			}
 		},
 		created(){
-			this.fetch();
+			this.checkUser('index_pemilihan',this.$route.params.cu);
 		},
 		watch: {
 			// check route changes
@@ -57,9 +67,23 @@
 			},
 		},
 		methods: {
-			fetch(){}
+			checkUser(permission,id_cu){
+				if(this.currentUser){
+					if(!this.currentUser.can || !this.currentUser.can[permission]){
+						this.$router.push('/notFound');
+					}
+					if(!id_cu || this.currentUser.id_cu){
+						if(this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu){
+							this.$router.push('/notFound');
+						}
+					}
+				}
+			}
 		},
 		computed: {
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
+			}),
 			...mapGetters('pemilihan',{
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS'

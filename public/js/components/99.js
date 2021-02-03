@@ -661,9 +661,7 @@ var render = function() {
                                 ? _c("check-value", {
                                     attrs: { value: props.item.cu.name }
                                   })
-                                : _c("span", [
-                                    _vm._v("Puskopdit BKCU Kalimantan")
-                                  ])
+                                : _c("span", [_vm._v("PUSKOPCUINA")])
                             ],
                             1
                           )

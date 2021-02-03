@@ -29,7 +29,6 @@
 			</div>
 		</div>		
 
-		<!-- cu mobile -->
 		<div class="card d-block d-md-none d-print-none">
 			<div class="card-body">  
 				<!-- select -->

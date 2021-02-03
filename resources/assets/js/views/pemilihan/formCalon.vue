@@ -21,9 +21,10 @@
 					<div class="media-body">
 						<ul class="list list-unstyled mb-0">
 							<li><b>Nama:</b> {{ formCalon.name }}</li>
-							<li><b>Lembaga:</b> {{ formCalon.lembaga }}</li>
-							<li><b>Email:</b> {{ formCalon.email }}</li>
-							<li><b>Hp:</b> {{ formCalon.hp }}</li>
+							<li><b>Tanggal Lahir:</b> {{ formCalon.tanggal_lahir }}</li>
+							<li><b>Tempat Lahir:</b> {{ formCalon.tempat_lahir }}</li>
+							<li><b>Status:</b> {{ formCalon.status }}</li>
+							<li><b>Pendidikan:</b> {{ formCalon.pendidikan }}</li>
 						</ul>
 					</div>
 				</div>
@@ -122,6 +123,32 @@
 		<message v-if="errors.any('formCalon') && submited" :title="'Oops terjadi kesalahan'" :errorItem="errors.items">
 		</message>
 		<!-- divider -->
+
+		<!-- CU -->
+		<div class="form-group" :class="{'has-error' : errors.has('formCalon.pengusung_cu_id')}">
+
+			<!-- title -->
+			<h5 :class="{ 'text-danger' : errors.has('formCalon.pengusung_cu_id')}">
+				<i class="icon-cross2" v-if="errors.has('formCalon.pengusung_cu_id')"></i>
+				CU Pengusung: <wajib-badge></wajib-badge>
+			</h5>
+
+			<!-- select -->
+			<select class="form-control" name="pengusung_cu_id" v-model="formCalon.pengusung_cu_id" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
+				<option disabled value="">
+					<span v-if="modelCUStat === 'loading'">Mohon tunggu...</span>
+					<span v-else>Silahkan pilih CU</span>
+				</option>
+				<option v-for="(cu, index) in modelCU" :value="cu.id" :key="index">{{cu.name}}</option>
+			</select>
+
+			<!-- error message -->
+			<small class="text-muted text-danger" v-if="errors.has('formCalon.pengusung_cu_id')">
+				<i class="icon-arrow-small-right"></i> {{ errors.first('formCalon.pengusung_cu_id') }}
+			</small>
+			<small class="text-muted" v-else>&nbsp;</small>
+		</div>
+
 		<hr>
 		
 		<!-- tombol desktop-->
@@ -167,6 +194,7 @@
 				selectedItem: [],
 				formCalon:{
 					aktivis_id: '',
+					pengusung_cu_id: '',
 					name: '',
 					lembaga: '',
 					gambar: '',
@@ -239,13 +267,11 @@
 				this.formCalon.aktivis_id = item.id;
 				this.formCalon.name = item.name;
 				this.formCalon.gambar = item.gambar;
-				this.formCalon.email = item.email != '' ? item.email : '-';
-				this.formCalon.hp = item.hp != '' ? item.hp : '-';
-				
-				if(item.pekerjaan_aktif.tipe == 1){
-					this.formCalon.lembaga = item.pekerjaan_aktif.cu.name
-				}else{
-					this.formCalon.lembaga = "Puskopdit BKCU Kalimantan"
+				this.formCalon.status = item.status;
+				this.formCalon.tanggal_lahir = item.tanggal_lahir != '' ? item.tanggal_lahir : '-';
+				this.formCalon.tempat_lahir = item.tempat_lahir != '' ? item.tempat_lahir : '-';
+				if(item.pendidikan_tertinggi){
+					this.formCalon.pendidikan = item.pendidikan_tertinggi.tingkat + ' ' + item.pendidikan_tertinggi.name
 				}
 			},
 			save(){
@@ -273,6 +299,10 @@
 			...mapGetters('aktivis',{
 				itemDataDalam: 'dataS',
 				itemDataDalamStat: 'dataStatS'
+			}),
+			...mapGetters('cu',{
+				modelCU: 'headerDataS',
+				modelCUStat: 'headerDataStatS',
 			}),
 		}
 	}

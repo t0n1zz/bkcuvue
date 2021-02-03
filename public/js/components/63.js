@@ -1323,10 +1323,13 @@ var render = function() {
                                           : _c("span", [_vm._v("Puskopdit")])
                                       ]),
                                       _vm._v(" "),
-                                      _vm._l(_vm.modelCU, function(cu) {
+                                      _vm._l(_vm.modelCU, function(cu, index) {
                                         return _c(
                                           "option",
-                                          { domProps: { value: cu.id } },
+                                          {
+                                            key: index,
+                                            domProps: { value: cu.id }
+                                          },
                                           [_vm._v(_vm._s(cu.name))]
                                         )
                                       })

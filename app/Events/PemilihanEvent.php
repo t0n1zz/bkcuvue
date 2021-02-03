@@ -10,20 +10,22 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class PemilihanCalonEvent implements ShouldBroadcast
+class PemilihanEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $skor;
+    public $pemilihan_id;
     public $pemilihan_calon_id;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($skor, $pemilihan_calon_id)
+    public function __construct($skor, $pemilihan_id, $pemilihan_calon_id)
     {
         $this->skor = $skor;
+        $this->pemilihan_id = $pemilihan_id;
         $this->pemilihan_calon_id = $pemilihan_calon_id;
     }
 
@@ -34,6 +36,6 @@ class PemilihanCalonEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('pemilihanCalon.channel.' .$this->pemilihan_calon_id);
+        return new PrivateChannel('pemilihan.channel.' .$this->pemilihan_id);
     }
 }

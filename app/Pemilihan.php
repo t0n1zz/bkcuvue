@@ -42,8 +42,13 @@ class Pemilihan extends Model {
         ];
     }
 
+    public function Cu()
+    {
+        return $this->belongsTo('App\Cu','id_cu','id')->select('id','no_ba','name');
+    }
+
     public function calon(){
-        return $this->belongsToMany('App\Aktivis','pemilihan_calon')->withPivot('id','skor')->withTimestamps();
+        return $this->belongsToMany('App\Aktivis','pemilihan_calon')->withPivot('id','skor','pengusung_cu_id')->withTimestamps();
     }
 
     public function hasCalon(){

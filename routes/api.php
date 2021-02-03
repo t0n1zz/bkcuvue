@@ -739,6 +739,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         //pemilihan
         Route::group(['middleware' => ['permission:index_pemilihan']], function () {
             Route::get('/pemilihan', 'PemilihanController@index');
+            Route::get('/pemilihan/indexCu/{id}', 'PemilihanController@indexCu');
             Route::get('/pemilihan/indexPemilihan', 'PemilihanController@indexPemilihan');
             Route::get('/pemilihan/indexUser/{id}', 'PemilihanController@indexUser');
             Route::get('/pemilihan/checkUser/{pemilihan_id}', 'PemilihanController@checkUser');

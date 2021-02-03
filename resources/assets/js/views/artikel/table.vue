@@ -94,7 +94,7 @@
 					</td> 
 					<td v-if="!columnData[5].hide && !columnData[5].disable">
 						<check-value :value="props.item.cu.name" v-if="props.item.cu"></check-value>
-						<span v-else>Puskopdit BKCU Kalimantan</span>
+						<span v-else>PUSKOPCUINA</span>
 					</td>
 					<td v-if="!columnData[6].hide" v-html="$options.filters.checkStatus(props.item.terbitkan)"></td>
 					<td v-if="!columnData[7].hide" v-html="$options.filters.checkStatus(props.item.utamakan)"></td>

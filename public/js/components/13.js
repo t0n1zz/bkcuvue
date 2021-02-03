@@ -264,7 +264,7 @@ var render = function() {
                                 ? _c("span", [
                                     _vm._v(_vm._s(_vm.currentUser.pus.name))
                                   ])
-                                : _c("span", [_vm._v("Puskopdit")])
+                                : _c("span", [_vm._v("PUSKOPCUINA")])
                             ])
                           : _vm._e(),
                         _vm._v(" "),

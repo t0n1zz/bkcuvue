@@ -688,7 +688,7 @@ const routes = [
 		meta: { requiresAuth: true } },
 
 	// kegiatan bkcu
-	{ path: '/pemilihan',
+	{ path: '/pemilihan/:cu',
 		name: 'pemilihan', 
 		components: { default: pemilihan, 'header': header, 'footer': footer  },
 		meta: { requiresAuth: true }},	

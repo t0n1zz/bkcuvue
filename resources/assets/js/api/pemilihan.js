@@ -4,6 +4,10 @@ export default {
     return axios.get('/api/pemilihan', {params: p});
   },
 
+  indexCu: function( p, id ){
+    return axios.get('/api/pemilihan/indexCu/' + id, {params: p});
+  },
+
   indexPemilihan: function(){
     return axios.get('/api/pemilihan/indexPemilihan');
   },
