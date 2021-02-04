@@ -768,25 +768,6 @@
 			}
 		},
 		methods: {
-			cariData(nik){
-				this.nik = nik;
-				this.$store.dispatch(this.kelas + '/cariData', nik);
-			},
-			changeStatusNIK(value){
-				this.nik == '';
-				this.statusNIK = value;
-				this.$store.dispatch(this.kelas + '/resetData');
-			},
-			nikNew(value){
-				this.nik = value;
-				this.$store.dispatch(this.kelas + '/cariData', value);
-			},
-			selectedRow(item) {
-        this.selectedItem = item;
-			},
-			changeTab(value) {
-				this.tabName = value;
-			},
 			fetch(){
 				this.resetData();
 
@@ -811,6 +792,9 @@
 					if(this.$route.meta.mode == 'createNIK'){
 						this.cariData(this.$route.params.nik)
 						this.isEdit = true;
+					}else if(this.$route.meta.mode == 'createId'){
+						this.cariDataId(this.$route.params.id)
+						this.isEdit = true;
 					}
 				}
 			},
@@ -821,6 +805,28 @@
 					this.anggota_cu_cu_id = this.$route.params.cu;
 					this.tipe = this.$route.params.tipe;
 				}
+			},
+			cariData(nik){
+				this.nik = nik;
+				this.$store.dispatch(this.kelas + '/cariData', nik);
+			},
+			cariDataId(id){
+				this.$store.dispatch(this.kelas + '/cariDataId', id);
+			},
+			changeStatusNIK(value){
+				this.nik == '';
+				this.statusNIK = value;
+				this.$store.dispatch(this.kelas + '/resetData');
+			},
+			nikNew(value){
+				this.nik = value;
+				this.$store.dispatch(this.kelas + '/cariData', value);
+			},
+			selectedRow(item) {
+        this.selectedItem = item;
+			},
+			changeTab(value) {
+				this.tabName = value;
 			},
 			changeTipe(value){
 				if(value == 'cacat'){
@@ -836,6 +842,8 @@
 				let _nik = '';
 				if(this.$route.meta.mode === 'edit'){
 					_nik = this.$route.params.nik;
+				}else if(this.$route.meta.mode === 'createId'){
+					_nik = this.itemData.nik;
 				}else{
 					_nik = this.nik;
 				}

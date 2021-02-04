@@ -590,6 +590,10 @@ const routes = [
 		name: 'jalinanKlaimCreateNik', 
 		components: { default: jalinanKlaim_form, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true, mode:'createNIK' }},	
+	{ path: '/jalinan/klaim/createId/:id',
+		name: 'jalinanKlaimCreateId', 
+		components: { default: jalinanKlaim_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'createId' }},	
 	{ path: '/jalinan/klaim/create/nik/:nik',
 		name: 'jalinanKlaimCreateNIK', 
 		components: { default: jalinanKlaim_form, 'header': header, 'footer': footer },
@@ -688,7 +692,7 @@ const routes = [
 		meta: { requiresAuth: true } },
 
 	// kegiatan bkcu
-	{ path: '/pemilihan/:cu',
+	{ path: '/pemilihan/cu/:cu',
 		name: 'pemilihan', 
 		components: { default: pemilihan, 'header': header, 'footer': footer  },
 		meta: { requiresAuth: true }},	

@@ -10,14 +10,41 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.3.7 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#v337">Version 3.3.7<small class="text-muted"> / 4 Februari 2021</small></a> </h5>
+                </div>
+
+                <div id="v337" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi menawarkan perbaikan pada klaim JALINAN dan menawarkan fitur baru yaitu pemilihan pengurus dan pengawas
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan fitur untuk melakukan pemilihan untuk aktivis CU yang bisa digunakan untuk melaksanakan pemilihan online untuk pengurus dan pengawas</li>
+                      <li>Penambahan fitur untuk melihat informasi klaim JALINAN secara detail bagi CU</li>
+                      <li>Penambahan fitur pada lihat klaim dan analisis klaim untuk bagian dokumen hanya menampilkan dokumen yang dilampirkan/diupload saja. Apabila tidak ada dokumen maka tombol untuk melihat dokumen tersebut tidak muncul</li>
+                      <li>Penambahan fitur pada analisis klaim yaitu melakukan penolakan klaim terhadap klaim yang salah pilih atau salah input dan berhasil masuk sampai ke bagian menunggu dari proses klaim JALINAN</li>
+                      <li>Perbaikan bug pada Klaim JALINAN</li>
+                      <li>Perbaikan bug pada hak akses</li>
+                      <li>Perbaikan bug tampilan dibeberapa bagian</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.3.6 -->
+
               <!-- Version 3.3.6 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#v336">Version 3.3.6<small class="text-muted"> / 4 Januari 2021</small></a> </h5>
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v336">Version 3.3.6<small class="text-muted"> / 4 Januari 2021</small></a> </h5>
                 </div>
 
-                <div id="v336" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="v336" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi menawarkan peningkatan performa, keamanan dan perbaikan bug
                     <br/><br/>

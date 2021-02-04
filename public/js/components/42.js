@@ -272,6 +272,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -295,7 +300,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       cuWidgetRoute: {},
       tpWidgetRoute: {},
       produkCuWidgetRoute: {},
-      aktivisWidgetRoute: {}
+      aktivisWidgetRoute: {},
+      pemilihanWidgetRoute: {}
     }, _defineProperty(_ref, "produkCuWidgetRoute", {}), _defineProperty(_ref, "mitraPerseoranganWidgetRoute", {}), _defineProperty(_ref, "mitraLembagaWidgetRoute", {}), _defineProperty(_ref, "userWidgetRoute", {}), _defineProperty(_ref, "laporanCUWidgetRoute", {}), _defineProperty(_ref, "laporanGerakanWidgetRoute", {}), _defineProperty(_ref, "assesmentAccessWidgetRoute", {}), _defineProperty(_ref, "monitoringAccessWidgetRoute", {}), _ref;
   },
   created: function created() {
@@ -404,6 +410,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             cu: this.currentUser.id_cu
           }
         };
+        this.pemilihanWidgetRoute = {
+          name: 'pemilihan',
+          params: {
+            cu: this.currentUser.id_cu
+          }
+        };
         this.laporanCUWidgetRoute = {
           name: 'laporanCuCu',
           params: {
@@ -453,6 +465,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         };
         this.produkCuWidgetRoute = {
           name: 'produkCuCu',
+          params: {
+            cu: 'semua'
+          }
+        };
+        this.pemilihanWidgetRoute = {
+          name: 'pemilihan',
           params: {
             cu: 'semua'
           }
@@ -2321,6 +2339,31 @@ var render = function() {
                 title: "Aktivis",
                 color: "bg-indigo-400",
                 icon: "icon-user-tie"
+              }
+            })
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_pemilihan"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.pemilihanWidgetRoute)
+              }
+            }
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Pemilihan",
+                color: "bg-warning-400",
+                icon: "icon-quill4"
               }
             })
           ],

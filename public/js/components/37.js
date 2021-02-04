@@ -10539,6 +10539,7 @@ var render = function() {
                     return _c(
                       "div",
                       {
+                        key: index,
                         staticClass: "card border-left-primary rounded-left-0"
                       },
                       [

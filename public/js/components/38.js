@@ -1654,9 +1654,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       } else if (type == 'jalinan') {
         this.$router.push({
-          name: "jalinanKlaimCreateNIK",
+          name: "jalinanKlaimCreateId",
           params: {
-            nik: id.replace(/\s/g, "").replace(/[^\x00-\x7F]/g, "")
+            id: id
           }
         });
       }
@@ -3544,11 +3544,11 @@ var render = function() {
                     "button",
                     {
                       staticClass: "btn btn-light btn-icon mb-1",
-                      attrs: { disabled: !_vm.selectedItem.nik },
+                      attrs: { disabled: !_vm.selectedItem.id },
                       on: {
                         click: function($event) {
                           $event.preventDefault()
-                          return _vm.ubahData(_vm.selectedItem.nik, "jalinan")
+                          return _vm.ubahData(_vm.selectedItem.id, "jalinan")
                         }
                       }
                     },

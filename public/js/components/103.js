@@ -222,6 +222,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -272,6 +275,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         hide: false,
         disable: false,
         filter: true
+      }, {
+        title: 'Tingkat',
+        name: 'tingkat',
+        tipe: 'string',
+        sort: false,
+        hide: false,
+        disable: false,
+        filter: false
       }, {
         title: 'Suara',
         name: 'suara',
@@ -588,7 +599,7 @@ var render = function() {
                             "td",
                             [
                               _c("check-value", {
-                                attrs: { value: props.item.suara }
+                                attrs: { value: props.item.tingkat }
                               })
                             ],
                             1
@@ -600,7 +611,7 @@ var render = function() {
                             "td",
                             [
                               _c("check-value", {
-                                attrs: { value: props.item.suara_ok }
+                                attrs: { value: props.item.suara }
                               })
                             ],
                             1
@@ -608,6 +619,18 @@ var render = function() {
                         : _vm._e(),
                       _vm._v(" "),
                       !_vm.columnData[6].hide
+                        ? _c(
+                            "td",
+                            [
+                              _c("check-value", {
+                                attrs: { value: props.item.suara_ok }
+                              })
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[7].hide
                         ? _c("td", {
                             domProps: {
                               innerHTML: _vm._s(
@@ -619,7 +642,7 @@ var render = function() {
                           })
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[7].hide
+                      !_vm.columnData[8].hide
                         ? _c("td", [
                             props.item.created_at !== props.item.updated_at
                               ? _c("span", {

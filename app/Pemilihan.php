@@ -21,11 +21,11 @@ class Pemilihan extends Model {
 
     
     protected $fillable = [
-        'id_cu','name','status','created_at','updated_at','deleted_at','suara','suara_ok'
+        'id_cu','name','status','created_at','updated_at','deleted_at','suara','suara_ok','tingkat'
     ];
 
     protected $allowedFilters = [
-        'id','id_cu','name','status','created_at','updated_at','deleted_at','suara','suara_ok',
+        'id','id_cu','name','status','created_at','updated_at','deleted_at','suara','suara_ok','tingkat',
 
         'cu.name',
     ];
@@ -38,7 +38,7 @@ class Pemilihan extends Model {
     
     public static function initialize(){
         return [
-            'id_cu' => '', 'name' => '', 'status' => '',  'suara' => '',  'suara_ok' => '', 
+            'id_cu' => '', 'name' => '', 'status' => '',  'suara' => '',  'suara_ok' => '', 'tingkat' => ''
         ];
     }
 

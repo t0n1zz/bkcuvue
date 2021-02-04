@@ -66,13 +66,16 @@
 						<span v-else>PUSKOPCUINA</span>
 					</td>
 					<td v-if="!columnData[4].hide">
-						<check-value :value="props.item.suara"></check-value>
+						<check-value :value="props.item.tingkat"></check-value>
 					</td>
 					<td v-if="!columnData[5].hide">
+						<check-value :value="props.item.suara"></check-value>
+					</td>
+					<td v-if="!columnData[6].hide">
 						<check-value :value="props.item.suara_ok"></check-value>
 					</td>
-					<td v-if="!columnData[6].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[7].hide">
+					<td v-if="!columnData[7].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[8].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -143,6 +146,15 @@
 						hide: false,
 						disable: false,
 						filter: true,
+					},
+					{
+						title: 'Tingkat',
+						name: 'tingkat',
+						tipe: 'string',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: false,
 					},
 					{
 						title: 'Suara',

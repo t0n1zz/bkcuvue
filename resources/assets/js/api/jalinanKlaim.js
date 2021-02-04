@@ -116,6 +116,10 @@ export default {
     return axios.get('/api/jalinanKlaim/cariData/' + nik);
   },
 
+  cariDataId: function( id ){
+    return axios.get('/api/jalinanKlaim/cariDataId/' + id);
+  },
+
   cekData: function( id ){
     return axios.get('/api/jalinanKlaim/cekData/' + id);
   },

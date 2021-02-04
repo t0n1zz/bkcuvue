@@ -48,8 +48,8 @@
 					<span>{{ akses.keterangan }}</span>
 					<hr class="mt-1" />
 					<div class="row">
-						<div class="col-sm-3 mb-2" v-for="permission in akses.permission" v-if="tipeUser == permission.tipe || permission.tipe == 'all' || permission.tipe == 'bkcu'">
-							<div v-if="permission.tipe == 'bkcu'">
+						<div class="col-sm-3 mb-2" v-for="permission in akses.permission" v-if="tipeUser == permission.tipe || permission.tipe == 'all' || permission.tipe == 'bkcu approve'">
+							<div v-if="permission.tipe == 'bkcu approve'">
 								<div class="form-check" v-if="currentUser.id_cu == 0">
 									<label style="cursor:pointer;">
 										<input type="checkbox" class="form-check-input" :value="permission.key" v-model="hakForm" v-if="permission.type != 'empty'" @change="checkChange($event.target.value)">
@@ -462,9 +462,9 @@
 					{
 						name: 'Pemilihan',
 						keterangan: 'Mengelola data untuk melakukan pemilihan',
-						icon: 'icon-location4',
+						icon: 'icon-quill4',
 						secondRow: true,
-						tipe: 'bkcu',
+						tipe: 'all',
 						permission: [{
 								name: 'Lihat',
 								key: 'index_pemilihan',
@@ -605,7 +605,7 @@
 								name: 'Verifikasi Pengurus',
 								key: 'verifikasi_pengurus_jalinan_klaim',
 								icon: 'icon-file-eye',
-								tipe: 'bkcu',
+								tipe: 'bkcu approve',
 								value: false,
 								group: ''
 							},
@@ -613,7 +613,7 @@
 								name: 'Verifikasi Pengawas',
 								key: 'verifikasi_pengawas_jalinan_klaim',
 								icon: 'icon-file-eye',
-								tipe: 'bkcu',
+								tipe: 'bkcu approve',
 								value: false,
 								group: ''
 							},
@@ -621,7 +621,7 @@
 								name: 'Verifikasi Manajemen',
 								key: 'verifikasi_manajemen_jalinan_klaim',
 								icon: 'icon-file-eye',
-								tipe: 'bkcu',
+								tipe: 'bkcu approve',
 								value: false,
 								group: ''
 							}

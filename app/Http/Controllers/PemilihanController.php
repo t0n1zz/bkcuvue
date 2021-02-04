@@ -22,6 +22,10 @@ class PemilihanController extends Controller{
 	{
 		$table_data = Pemilihan::withCount('cu','hasCalon')->withCount('hasSuara')->advancedFilter();
 
+		foreach($table_data as $t){
+			$t->tingkat = $this->checkTingkat($t->tingkat);
+		}
+
 		return response()
 		->json([
 			'model' => $table_data
@@ -31,6 +35,10 @@ class PemilihanController extends Controller{
 	public function indexCu($id)
 	{
 		$table_data = Pemilihan::withCount('hasCalon')->where('id_cu', $id)->withCount('hasSuara')->advancedFilter();
+
+		foreach($table_data as $t){
+			$t->tingkat = $this->checkTingkat($t->tingkat);
+		}
 
 		return response()
 		->json([
@@ -216,6 +224,8 @@ class PemilihanController extends Controller{
 	{
 		$kelas = Pemilihan::with('calon.pekerjaan_aktif.cu','calon.pendidikan_tertinggi','cu','hasSuara')->findOrFail($id);
 
+		$kelas->tingkat = $this->checkTingkat($kelas->tingkat);
+
 		return response()
 				->json([
 						'form' => $kelas,
@@ -305,5 +315,35 @@ class PemilihanController extends Controller{
 			->json([
 					'model' => $table_data
 			]);
+	}
+
+	public function checkTingkat($value){
+		if ($value == 1) {
+			$value = 'Pengurus';
+		} else if($value == 2) {
+			$value = 'Pengawas';
+		}	else if($value == 3) {
+			$value = 'Komite';
+		} else if($value == 4) {
+			$value = 'Penasihat';
+		} else if($value == 5) {
+			$value = 'Senior Manajer';
+		} else if($value == 6) {
+			$value = 'Manajer';
+		} else if($value == 7) {
+			$value = 'Supervisor';
+		} else if($value == 8) {
+			$value = 'Staf';
+		} else if($value == 9) {
+			$value = 'Kontrak';
+		} else if($value == 10) {
+			$value = 'Kolektor';
+		} else if($value == 11) {
+			$value = 'Kelompok Inti';
+		} else {
+			$value = '-';
+		}
+
+		return $value;
 	}
 }

@@ -56,7 +56,7 @@
 													<input type="text" name="name" class="form-control" v-model="form.name" disabled>
 												</div>
 
-												<!-- nama -->
+												<!-- cu -->
 												<div class="col-md-6 form-group">
 													<!-- title -->
 													<h5>CU:</h5>
@@ -67,8 +67,17 @@
 													<input type="text" name="cu" class="form-control" value="PUSKOPCUINA" disabled v-else>
 												</div>
 
+												<!-- tingkat -->
+												<div class="col-md-4 form-group">
+													<!-- title -->
+													<h5>Tingkat:</h5>
+
+													<!-- text -->
+													<input type="text" name="tingkat" class="form-control" v-model="form.tingkat" disabled>
+												</div>
+
 												<!-- total suara -->
-												<div class="col-md-6 form-group">
+												<div class="col-md-4 form-group">
 													<!-- title -->
 													<h5>Total Suara:</h5>
 
@@ -77,7 +86,7 @@
 												</div>
 
 												<!-- suara ok -->
-												<div class="col-md-6 form-group">
+												<div class="col-md-4 form-group">
 													<!-- title -->
 													<h5>Suara Masuk:</h5>
 

@@ -552,6 +552,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
             Route::get('/jalinanKlaim/status/{status}/{awal}/{akhir}', 'JalinanKlaimController@index');
             Route::get('/jalinanKlaim/indexCu/{cu}/tp/{tp}/status/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexCu'); 
             Route::get('/jalinanKlaim/cariData/{nik}', 'JalinanKlaimController@cariData');
+            Route::get('/jalinanKlaim/cariDataId/{id}', 'JalinanKlaimController@cariDataId');
         });
         Route::group(['middleware' => ['permission:create_jalinan_klaim']], function () {
             Route::get('/jalinanKlaim/create', 'JalinanKlaimController@create');

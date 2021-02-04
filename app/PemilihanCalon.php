@@ -4,14 +4,16 @@ namespace App;
 use illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use App\Support\Dataviewer;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PemilihanCalon extends Model {
 
-    use LogsActivity, Dataviewer;
+    use LogsActivity, Dataviewer, SoftDeletes;
 
     protected $table = 'pemilihan_calon';
     protected static $logFillable = true;
     protected static $logOnlyDirty = true;
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'aktivis_id','pemilihan_id','pengusung_cu_id','skor','created_at','updated_at'

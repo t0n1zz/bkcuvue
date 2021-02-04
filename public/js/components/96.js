@@ -859,25 +859,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   },
   methods: {
-    cariData: function cariData(nik) {
-      this.nik = nik;
-      this.$store.dispatch(this.kelas + '/cariData', nik);
-    },
-    changeStatusNIK: function changeStatusNIK(value) {
-      this.nik == '';
-      this.statusNIK = value;
-      this.$store.dispatch(this.kelas + '/resetData');
-    },
-    nikNew: function nikNew(value) {
-      this.nik = value;
-      this.$store.dispatch(this.kelas + '/cariData', value);
-    },
-    selectedRow: function selectedRow(item) {
-      this.selectedItem = item;
-    },
-    changeTab: function changeTab(value) {
-      this.tabName = value;
-    },
     fetch: function fetch() {
       this.resetData();
 
@@ -900,6 +881,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (this.$route.meta.mode == 'createNIK') {
           this.cariData(this.$route.params.nik);
           this.isEdit = true;
+        } else if (this.$route.meta.mode == 'createId') {
+          this.cariDataId(this.$route.params.id);
+          this.isEdit = true;
         }
       }
     },
@@ -910,6 +894,28 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         this.anggota_cu_cu_id = this.$route.params.cu;
         this.tipe = this.$route.params.tipe;
       }
+    },
+    cariData: function cariData(nik) {
+      this.nik = nik;
+      this.$store.dispatch(this.kelas + '/cariData', nik);
+    },
+    cariDataId: function cariDataId(id) {
+      this.$store.dispatch(this.kelas + '/cariDataId', id);
+    },
+    changeStatusNIK: function changeStatusNIK(value) {
+      this.nik == '';
+      this.statusNIK = value;
+      this.$store.dispatch(this.kelas + '/resetData');
+    },
+    nikNew: function nikNew(value) {
+      this.nik = value;
+      this.$store.dispatch(this.kelas + '/cariData', value);
+    },
+    selectedRow: function selectedRow(item) {
+      this.selectedItem = item;
+    },
+    changeTab: function changeTab(value) {
+      this.tabName = value;
     },
     changeTipe: function changeTipe(value) {
       if (value == 'cacat') {
@@ -927,6 +933,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       if (this.$route.meta.mode === 'edit') {
         _nik = this.$route.params.nik;
+      } else if (this.$route.meta.mode === 'createId') {
+        _nik = this.itemData.nik;
       } else {
         _nik = this.nik;
       }

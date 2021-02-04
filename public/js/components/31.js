@@ -433,9 +433,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, {
         name: 'Pemilihan',
         keterangan: 'Mengelola data untuk melakukan pemilihan',
-        icon: 'icon-location4',
+        icon: 'icon-quill4',
         secondRow: true,
-        tipe: 'bkcu',
+        tipe: 'all',
         permission: [{
           name: 'Lihat',
           key: 'index_pemilihan',
@@ -559,21 +559,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           name: 'Verifikasi Pengurus',
           key: 'verifikasi_pengurus_jalinan_klaim',
           icon: 'icon-file-eye',
-          tipe: 'bkcu',
+          tipe: 'bkcu approve',
           value: false,
           group: ''
         }, {
           name: 'Verifikasi Pengawas',
           key: 'verifikasi_pengawas_jalinan_klaim',
           icon: 'icon-file-eye',
-          tipe: 'bkcu',
+          tipe: 'bkcu approve',
           value: false,
           group: ''
         }, {
           name: 'Verifikasi Manajemen',
           key: 'verifikasi_manajemen_jalinan_klaim',
           icon: 'icon-file-eye',
-          tipe: 'bkcu',
+          tipe: 'bkcu approve',
           value: false,
           group: ''
         }]
@@ -1664,9 +1664,9 @@ var render = function() {
                           _vm._l(akses.permission, function(permission) {
                             return _vm.tipeUser == permission.tipe ||
                               permission.tipe == "all" ||
-                              permission.tipe == "bkcu"
+                              permission.tipe == "bkcu approve"
                               ? _c("div", { staticClass: "col-sm-3 mb-2" }, [
-                                  permission.tipe == "bkcu"
+                                  permission.tipe == "bkcu approve"
                                     ? _c("div", [
                                         _vm.currentUser.id_cu == 0
                                           ? _c(

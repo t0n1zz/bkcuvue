@@ -463,6 +463,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1114,7 +1123,45 @@ var render = function() {
                                   _vm._v(" "),
                                   _c(
                                     "div",
-                                    { staticClass: "col-md-6 form-group" },
+                                    { staticClass: "col-md-4 form-group" },
+                                    [
+                                      _c("h5", [_vm._v("Tingkat:")]),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.form.tingkat,
+                                            expression: "form.tingkat"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: {
+                                          type: "text",
+                                          name: "tingkat",
+                                          disabled: ""
+                                        },
+                                        domProps: { value: _vm.form.tingkat },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.form,
+                                              "tingkat",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "col-md-4 form-group" },
                                     [
                                       _c("h5", [_vm._v("Total Suara:")]),
                                       _vm._v(" "),
@@ -1152,7 +1199,7 @@ var render = function() {
                                   _vm._v(" "),
                                   _c(
                                     "div",
-                                    { staticClass: "col-md-6 form-group" },
+                                    { staticClass: "col-md-4 form-group" },
                                     [
                                       _c("h5", [_vm._v("Suara Masuk:")]),
                                       _vm._v(" "),

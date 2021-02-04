@@ -1418,6 +1418,14 @@ class JalinanKlaimController extends Controller{
 			$kelas->tunas_disetujui = NULL;
 			$kelas->lintang_disetujui = NULL;
 			$kelas->tanggal_pencairan = NULL;
+		}else if($kelas->status_klaim == 31){
+			$message = "Klaim JALINAN ditolak";
+			$kelas->status_klaim = 3;
+			$kelas->keterangan_klaim = 'Klaim Ditolak Karena Salah Memilih Anggota';
+			$kelas->tunas_disetujui = NULL;
+			$kelas->lintang_disetujui = NULL;
+			$kelas->tanggal_pencairan = NULL;
+			$this->updateStatusAnggotaCu($kelas->anggota_cu_id, NULL, NULL);
 		}else if($kelas->status_klaim == 4){
 			$message = "Klaim JALINAN disetujui";
 			$kelas->keterangan_klaim = $request->keterangan_klaim;
@@ -1427,8 +1435,6 @@ class JalinanKlaimController extends Controller{
 		}
 		
 		$kelas->update();
-
-		// $this->updateStatusAnggotaCu($kelas->anggota_cu_id, $request->tipe, $request->tanggal_mati);
 		
 		$this->storeStatusJalinan($kelas->id, $request->cu_id, $request->status);
 
@@ -1712,6 +1718,16 @@ class JalinanKlaimController extends Controller{
 					'option' => []
 			]);
 		}
+	}
+
+	public function cariDataId($id)
+	{
+		$table_data = AnggotaCu::with('anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_produk_cu','Villages','Districts','Regencies','Provinces')->where('id',$id)->first();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
 	}
 
 	public function cekData($id){

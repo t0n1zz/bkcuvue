@@ -1567,6 +1567,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -1765,6 +1792,85 @@ var staticRenderFns = [
                       "a",
                       {
                         staticClass: "text-default",
+                        attrs: { "data-toggle": "collapse", href: "#v337" }
+                      },
+                      [
+                        _vm._v("Version 3.3.7"),
+                        _c("small", { staticClass: "text-muted" }, [
+                          _vm._v(" / 4 Februari 2021")
+                        ])
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "collapse show",
+                    attrs: {
+                      id: "v337",
+                      "data-parent": "#accordion-control-right"
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("p", { staticClass: "mb-3" }, [
+                        _vm._v(
+                          "Update versi menawarkan perbaikan pada klaim JALINAN dan menawarkan fitur baru yaitu pemilihan pengurus dan pengawas\n                    "
+                        ),
+                        _c("br"),
+                        _c("br"),
+                        _vm._v(
+                          "\n                    Berikut adalah rincian perubahan pada versi ini:"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "list" }, [
+                        _c("li", [
+                          _vm._v(
+                            "Penambahan fitur untuk melakukan pemilihan untuk aktivis CU yang bisa digunakan untuk melaksanakan pemilihan online untuk pengurus dan pengawas"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", [
+                          _vm._v(
+                            "Penambahan fitur untuk melihat informasi klaim JALINAN secara detail bagi CU"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", [
+                          _vm._v(
+                            "Penambahan fitur pada lihat klaim dan analisis klaim untuk bagian dokumen hanya menampilkan dokumen yang dilampirkan/diupload saja. Apabila tidak ada dokumen maka tombol untuk melihat dokumen tersebut tidak muncul"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", [
+                          _vm._v(
+                            "Penambahan fitur pada analisis klaim yaitu melakukan penolakan klaim terhadap klaim yang salah pilih atau salah input dan berhasil masuk sampai ke bagian menunggu dari proses klaim JALINAN"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", [_vm._v("Perbaikan bug pada Klaim JALINAN")]),
+                        _vm._v(" "),
+                        _c("li", [_vm._v("Perbaikan bug pada hak akses")]),
+                        _vm._v(" "),
+                        _c("li", [
+                          _vm._v("Perbaikan bug tampilan dibeberapa bagian")
+                        ])
+                      ])
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-header" }, [
+                  _c("h5", { staticClass: "card-title" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "text-default collapsed",
                         attrs: { "data-toggle": "collapse", href: "#v336" }
                       },
                       [
@@ -1780,7 +1886,7 @@ var staticRenderFns = [
                 _c(
                   "div",
                   {
-                    staticClass: "collapse show",
+                    staticClass: "collapse",
                     attrs: {
                       id: "v336",
                       "data-parent": "#accordion-control-right"

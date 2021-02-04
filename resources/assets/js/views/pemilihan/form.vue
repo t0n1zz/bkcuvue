@@ -24,7 +24,7 @@
 								<div class="row">
 
 									<!-- name -->
-									<div class="col-md-6">
+									<div class="col-md-4">
 										<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
 
 											<!-- title -->
@@ -44,7 +44,7 @@
 									</div>
 
 									<!-- CU -->
-									<div class="col-md-6" v-if="currentUser.id_cu === 0">
+									<div class="col-md-4" v-if="currentUser.id_cu === 0">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
 
 											<!-- title -->
@@ -66,6 +66,40 @@
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
 												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- tingkat -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.tingkat')}">
+
+											<!-- title -->
+											<h6 :class="{ 'text-danger' : errors.has('form.tingkat')}">
+												<i class="icon-cross2" v-if="errors.has('form.tingkat')"></i>
+												Tingkat: <wajib-badge></wajib-badge>
+											</h6>
+
+											<!-- select -->
+											<select class="form-control" name="pekerjaan_tingkat" v-model="form.tingkat" data-width="100%" v-validate="'required'" data-vv-as="Tingkat Pekerjaan">
+												<option disabled value="">Silahkan pilih tingkat pekerjaan</option>
+												<option value="1">Pengurus</option>
+												<option value="2">Pengawas</option>
+												<option value="3">Komite</option>
+												<option value="4">Penasihat</option>
+												<option value="5">Senior Manajer (General Manager, CEO, Deputy)</option>
+												<option value="6">Manajer</option>
+												<option value="7">Supervisor (Kepala Bagian, Kepala Divisi, Kepala/Koordinator TP, Kepala Bidang)</option>
+												<option value="8">Staf</option>
+												<option value="9">Kontrak</option>
+												<option value="10">Kolektor</option>
+												<option value="11">Kelompok Inti</option>
+											</select>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.tingkat')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.tingkat') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>

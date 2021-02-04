@@ -3,7 +3,7 @@
 		<!-- itemdata -->
 		<div v-if="itemDataStat == 'success'">
 			<div v-if="itemData.length > 0">
-				<div class="card border-left-primary rounded-left-0" v-for="(revisi,index) in history" >
+				<div class="card border-left-primary rounded-left-0" v-for="(revisi,index) in history" :key="index">
 					<div class="card-header bg-white header-elements-sm-inline">
 						<h6 class="card-title">
 							&nbsp;

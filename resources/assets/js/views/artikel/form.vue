@@ -481,7 +481,7 @@
 				}else{
 					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
 				}
-			},
+		},
 			modalTutup() {
  				if(this.updateStat === 'success'){
 					this.back();
