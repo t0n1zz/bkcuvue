@@ -14,7 +14,7 @@
 
   <div class="container clearfix">
     <h1>Profile</h1>
-    <span>Pengenalan singkat mengenai Puskopdit BKCU Kalimantan</span>
+    <span>Pengenalan singkat mengenai PUSKOPCUINA</span>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="#">Home</a></li>
       <li class="breadcrumb-item">Tentang Kami</li>
@@ -35,8 +35,8 @@
       <div class="col_full">
 
         <div class="heading-block center nobottomborder">
-          <h2>Puskopdit BKCU Kalimantan</h2>
-          <span>Pengenalan singkat mengenai Puskopdit BKCU Kalimantan</span>
+          <h2>PUSKOPCUINA</h2>
+          <span>Pengenalan singkat mengenai PUSKOPCUINA</span>
         </div>
 
         <div class="fslider" data-pagi="false" data-animation="fade">
@@ -79,11 +79,11 @@
 
       <div class="promo promo-light bottommargin">
         <h3>Siapakah Kami?</h3>
-        Puskopdit BKCU Kalimantan (awalnya BK3D Kalbar) berdiri pada tanggal 27 November 1988 di Pontianak.<br/>
-        Sebagai credit union sekunder,Puskopdit BKCU Kalimantan aktif mempromosikan dan memfasilitasi berdirinya credit union - credit union primer.<br/>
+        PUSKOPCUINA (awalnya BK3D Kalbar) berdiri pada tanggal 27 November 1988 di Pontianak.<br/>
+        PUSKOPCUINA aktif mempromosikan dan memfasilitasi berdirinya credit union - credit union primer.<br/>
         <br/>
-        Jaringan Puskopdit BKCU Kalimantan tersebar hampir ke seluruh wilayah Republik Indonesia.<br/>
-        Mayoritas credit union anggota Puskopdit BKCU Kalimantan berkembang dengan baik;aset dan jumlah anggota cukup kencang peningkatannya.<br/><br/>
+        Jaringan PUSKOPCUINA tersebar hampir ke seluruh wilayah Republik Indonesia.<br/>
+        Mayoritas credit union anggota PUSKOPCUINA berkembang dengan baik;aset dan jumlah anggota cukup kencang peningkatannya.<br/><br/>
         Walaupun demikian, kami tetap menyadari masih diperlukan pembenahan-pembenahan baik internal maupun eksternal pada masa yang akan datang agar credit union mampu menghadapi berbagai dinamika yang terjadi.
       </div>
 
@@ -101,7 +101,7 @@
             <a href="#"><i class="icon-support"></i></a>
           </div>
           <h3>Keuangan</h3>
-          <p>Layanan keuangan berupa simpanan dan pinjaman kepada Credit Union anggota Puskopdit BKCU Kalimantan.</p>
+          <p>Layanan keuangan berupa simpanan dan pinjaman kepada Credit Union anggota PUSKOPCUINA.</p>
         </div>
       </div>
 
@@ -143,7 +143,7 @@
             <a href="#"><i class="icon-health"></i></a>
           </div>
           <h3>Monitoring dan Evaluasi</h3>
-          <p>Kami memperhatikan dan memastikan Credit Union anggota Puskopdit BKCU Kalimantan agar dapat terus beroperasi dengan maksimal</p>
+          <p>Kami memperhatikan dan memastikan Credit Union anggota PUSKOPCUINA agar dapat terus beroperasi dengan maksimal</p>
         </div>
       </div>
 
@@ -234,7 +234,7 @@ $('#google-map4').gMap({
         {
             latitude: -0.039133,
             longitude: 109.349122,
-            html: "Puskopdit BKCU Kalimantan",
+            html: "PUSKOPCUINA",
         }
     ],
     icon: {

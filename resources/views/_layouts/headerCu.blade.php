@@ -9,7 +9,7 @@
       ============================================= -->
       <div class="top-links">
         <ul>
-          <li><a href="{{ route('home') }}">Puskopdit BKCU Kalimantan</a></li>
+          <li><a href="{{ route('home') }}">PUSKOPCUINA</a></li>
         </ul>
       </div><!-- .top-links end -->
 
@@ -21,11 +21,11 @@
         ============================================= -->
         <div id="top-social">
           <ul>
-            <li><a href="https://www.facebook.com/PuskopditBKCUKalimantan/?rf=547963498564679" class="si-facebook" target="_blank"><span class="ts-icon"><i class="icon-facebook"></i></span><span class="ts-text">Facebook</span></a></li>
+            <li><a href="https://www.facebook.com/puskopcuina" class="si-facebook" target="_blank"><span class="ts-icon"><i class="icon-facebook"></i></span><span class="ts-text">Facebook</span></a></li>
 
-            <li><a href="https://twitter.com/bkcu_kalimantan" class="si-twitter"><span class="ts-icon" target="_blank"><i class="icon-twitter"></i></span><span class="ts-text">Twitter</span></a></li>
+            <li><a href="https://twitter.com/puskopcuina" class="si-twitter"><span class="ts-icon" target="_blank"><i class="icon-twitter"></i></span><span class="ts-text">Twitter</span></a></li>
 
-            <li><a href="https://www.instagram.com/bkcukalimantan/?hl=id" class="si-instagram" target="_blank"><span class="ts-icon"><i class="icon-instagram2"></i></span><span class="ts-text">Instagram</span></a></li>
+            <li><a href="https://www.instagram.com/puskopcuina/" class="si-instagram" target="_blank"><span class="ts-icon"><i class="icon-instagram2"></i></span><span class="ts-text">Instagram</span></a></li>
 
             <li><a href="tel:+62561765591" class="si-call"><span class="ts-icon"><i class="icon-call"></i></span><span class="ts-text">+62 561-765591</span></a></li>
 

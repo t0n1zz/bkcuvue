@@ -37,7 +37,7 @@
 							{{ currentUser.aktivis && currentUser.aktivis.pekerjaan_aktif ? currentUser.aktivis.pekerjaan_aktif.name : '' }}
 							<br/>
 							<b>Dari:</b>
-							{{ currentUser && currentUser.id_cu != 0 ? currentUser.cu.name : 'Puskopdit BKCU Kalimantan' }}
+							{{ currentUser && currentUser.id_cu != 0 ? currentUser.cu.name : 'PUSKOPCUINA' }}
 							<br/>
 						</div>
 					</div>

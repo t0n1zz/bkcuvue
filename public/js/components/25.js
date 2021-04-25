@@ -1237,16 +1237,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_message_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/message.vue */ "./resources/assets/js/components/message.vue");
 /* harmony import */ var _components_datatable_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/datatable.vue */ "./resources/assets/js/components/datatable.vue");
 /* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
-/* harmony import */ var _helpers_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../helpers/form */ "./resources/assets/js/helpers/form.js");
-/* harmony import */ var _components_ImageUpload_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/ImageUpload.vue */ "./resources/assets/js/components/ImageUpload.vue");
-/* harmony import */ var _formPekerjaan_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./formPekerjaan.vue */ "./resources/assets/js/views/aktivis/formPekerjaan.vue");
-/* harmony import */ var _formPendidikan_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./formPendidikan.vue */ "./resources/assets/js/views/aktivis/formPendidikan.vue");
-/* harmony import */ var _formOrganisasi_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./formOrganisasi.vue */ "./resources/assets/js/views/aktivis/formOrganisasi.vue");
-/* harmony import */ var _formDiklat_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./formDiklat.vue */ "./resources/assets/js/views/aktivis/formDiklat.vue");
-/* harmony import */ var _components_formButton_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/formButton.vue */ "./resources/assets/js/components/formButton.vue");
-/* harmony import */ var _components_formInfo_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../components/formInfo.vue */ "./resources/assets/js/components/formInfo.vue");
-/* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
-/* harmony import */ var _components_identitas2_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../components/identitas2.vue */ "./resources/assets/js/components/identitas2.vue");
+/* harmony import */ var _components_ImageUpload_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/ImageUpload.vue */ "./resources/assets/js/components/ImageUpload.vue");
+/* harmony import */ var _formPekerjaan_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./formPekerjaan.vue */ "./resources/assets/js/views/aktivis/formPekerjaan.vue");
+/* harmony import */ var _formPendidikan_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./formPendidikan.vue */ "./resources/assets/js/views/aktivis/formPendidikan.vue");
+/* harmony import */ var _formOrganisasi_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./formOrganisasi.vue */ "./resources/assets/js/views/aktivis/formOrganisasi.vue");
+/* harmony import */ var _formDiklat_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./formDiklat.vue */ "./resources/assets/js/views/aktivis/formDiklat.vue");
+/* harmony import */ var _components_formButton_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/formButton.vue */ "./resources/assets/js/components/formButton.vue");
+/* harmony import */ var _components_formInfo_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/formInfo.vue */ "./resources/assets/js/components/formInfo.vue");
+/* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
+/* harmony import */ var _components_identitas2_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../components/identitas2.vue */ "./resources/assets/js/components/identitas2.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1660,7 +1659,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1681,15 +1693,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     message: _components_message_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     dataTable: _components_datatable_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     appModal: _components_modal__WEBPACK_IMPORTED_MODULE_4__["default"],
-    appImageUpload: _components_ImageUpload_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
-    formInfo: _components_formInfo_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
-    formButton: _components_formButton_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
-    formPekerjaan: _formPekerjaan_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
-    formPendidikan: _formPendidikan_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
-    formOrganisasi: _formOrganisasi_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
-    formDiklat: _formDiklat_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
-    checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
-    identitas: _components_identitas2_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
+    appImageUpload: _components_ImageUpload_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    formInfo: _components_formInfo_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
+    formButton: _components_formButton_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+    formPekerjaan: _formPekerjaan_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    formPendidikan: _formPendidikan_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+    formOrganisasi: _formOrganisasi_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
+    formDiklat: _formDiklat_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
+    checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
+    identitas: _components_identitas2_vue__WEBPACK_IMPORTED_MODULE_13__["default"]
   },
   data: function data() {
     return {
@@ -3150,7 +3162,7 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("option", { attrs: { value: "0" } }, [
-                          _vm._v("Puskopdit BKCU Kalimantan")
+                          _vm._v("PUSKOPCUINA")
                         ]),
                         _vm._v(" "),
                         _vm.$route.meta.mode != "create"
@@ -4583,9 +4595,7 @@ var render = function() {
                                 ? _c("span", [
                                     _vm._v(_vm._s(props.item.lembaga_lain))
                                   ])
-                                : _c("span", [
-                                    _vm._v("Puskopdit BKCU Kalimantan")
-                                  ])
+                                : _c("span", [_vm._v("PUSKOPCUINA")])
                             ]),
                             _vm._v(" "),
                             _c("td", {
@@ -5397,9 +5407,7 @@ var render = function() {
                               props.item.kegiatan_id != 0
                                 ? _c("span", [
                                     props.item.kegiatan.tipe == "diklat_bkcu"
-                                      ? _c("span", [
-                                          _vm._v("Puskopdit BKCU Kalimantan")
-                                        ])
+                                      ? _c("span", [_vm._v("PUSKOPCUINA")])
                                       : _vm._e()
                                   ])
                                 : props.item.kegiatan_id == 0
@@ -5420,8 +5428,8 @@ var render = function() {
                                     [
                                       _vm._l(
                                         props.item.kegiatan.panitia_dalam,
-                                        function(panitiaD) {
-                                          return _c("span", [
+                                        function(panitiaD, index) {
+                                          return _c("span", { key: index }, [
                                             panitiaD.pivot.peran ==
                                             "fasilitator"
                                               ? _c("span", [
@@ -5436,8 +5444,8 @@ var render = function() {
                                       _vm._v(" "),
                                       _vm._l(
                                         props.item.kegiatan.panitia_luar,
-                                        function(panitiaL) {
-                                          return _c("span", [
+                                        function(panitiaL, index) {
+                                          return _c("span", { key: index }, [
                                             panitiaL.pivot.peran ==
                                             "fasilitator"
                                               ? _c("span", [
@@ -5464,30 +5472,66 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("td", [
-                              props.item.datang
-                                ? _c("span", {
-                                    domProps: {
-                                      innerHTML: _vm._s(
-                                        _vm.$options.filters.date(
-                                          props.item.datang
-                                        )
-                                      )
-                                    }
-                                  })
+                              props.item.kegiatan_id != 0
+                                ? _c("span", [
+                                    props.item.kegiatan
+                                      ? _c("span", {
+                                          domProps: {
+                                            innerHTML: _vm._s(
+                                              _vm.$options.filters.date(
+                                                props.item.kegiatan.mulai
+                                              )
+                                            )
+                                          }
+                                        })
+                                      : _c("span", [_vm._v("-")])
+                                  ])
+                                : props.item.kegiatan_id == 0
+                                ? _c("span", [
+                                    props.item.datang
+                                      ? _c("span", {
+                                          domProps: {
+                                            innerHTML: _vm._s(
+                                              _vm.$options.filters.date(
+                                                props.item.datang
+                                              )
+                                            )
+                                          }
+                                        })
+                                      : _c("span", [_vm._v("-")])
+                                  ])
                                 : _c("span", [_vm._v("-")])
                             ]),
                             _vm._v(" "),
                             _c("td", [
-                              props.item.pulang
-                                ? _c("span", {
-                                    domProps: {
-                                      innerHTML: _vm._s(
-                                        _vm.$options.filters.date(
-                                          props.item.pulang
-                                        )
-                                      )
-                                    }
-                                  })
+                              props.item.kegiatan_id != 0
+                                ? _c("span", [
+                                    props.item.kegiatan
+                                      ? _c("span", {
+                                          domProps: {
+                                            innerHTML: _vm._s(
+                                              _vm.$options.filters.date(
+                                                props.item.kegiatan.selesai
+                                              )
+                                            )
+                                          }
+                                        })
+                                      : _c("span", [_vm._v("-")])
+                                  ])
+                                : props.item.kegiatan_id == 0
+                                ? _c("span", [
+                                    props.item.pulang
+                                      ? _c("span", {
+                                          domProps: {
+                                            innerHTML: _vm._s(
+                                              _vm.$options.filters.date(
+                                                props.item.pulang
+                                              )
+                                            )
+                                          }
+                                        })
+                                      : _c("span", [_vm._v("-")])
+                                  ])
                                 : _c("span", [_vm._v("-")])
                             ])
                           ]

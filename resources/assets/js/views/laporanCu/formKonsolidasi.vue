@@ -369,7 +369,7 @@
 							<div class="form-group">
 
 								<!-- title -->
-								<h5>Total Hutang Pihak Ke-3 <info-icon :message="'Hutang di Puskopdit BKCU Kalimantan dan lembaga lain.'"></info-icon></h5>
+								<h5>Total Hutang Pihak Ke-3 <info-icon :message="'Hutang di PUSKOPCUINA dan lembaga lain.'"></info-icon></h5>
 
 								<!-- text -->
 								<cleave 

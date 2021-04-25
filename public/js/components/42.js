@@ -1672,7 +1672,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         title: 'Selamat Datang Di SIMO',
         content: '<h5 class="d-none d-md-block">Sistem Informasi Manajemen Organisasi yang menyimpan dan mengolah data CU dalam gerakan PUSKOPCUINA.</h5> Baru pertama kali masuk ke SIMO? <br/>agar tidak bingung silahkan membaca panduan terlebih dahulu',
         isButton: true,
-        buttonUrl: 'https://puskopditbkcukalimantan.org/panduan',
+        buttonUrl: 'https://puskopcuina.org/panduan',
         buttonTitle: '<i class="icon-book mr-2"></i>Panduan',
         style: {
           'background-image': 'url("/images/welcomeSIMO.png")',

@@ -50,7 +50,7 @@
           ============================================= -->
           <div class="top-links">
             <ul>
-              <li><a href="https://puskopditbkcukalimantan.org">Kembali ke Website Puskopdit BKCU Kalimantan</a></li>
+              <li><a href="https://puskopcuina.org">Kembali ke Website PUSKOPCUINA</a></li>
             </ul>
           </div><!-- .top-links end -->
 
@@ -66,7 +66,7 @@
       <div class="container clearfix">
         <h1>Halaman Tidak Ditemukan</h1>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="https://puskopditbkcukalimantan.org">Home</a></li>
+          <li class="breadcrumb-item"><a href="https://puskopcuina.org">Home</a></li>
           <li class="breadcrumb-item active" aria-current="page">404</li>
         </ol>
       </div>
@@ -116,22 +116,22 @@
         <div class="container clearfix">
 
           <div class="col_half">
-            Copyrights &copy; <?php echo date("Y") ?> All Rights Reserved by Puskopdit BKCU Kalimantan<br>
+            Copyrights &copy; <?php echo date("Y") ?> All Rights Reserved by PUSKOPCUINA<br>
           </div>
 
           <div class="col_half col_last tright">
             <div class="fright clearfix">
-              <a href="https://www.facebook.com/PuskopditBKCUKalimantan/?rf=547963498564679" class="social-icon si-small si-borderless si-facebook" target="_blank">
+              <a href="https://www.facebook.com/puskopcuina" class="social-icon si-small si-borderless si-facebook" target="_blank">
                 <i class="icon-facebook"></i>
                 <i class="icon-facebook"></i>
               </a>
 
-              <a href="https://twitter.com/bkcu_kalimantan" class="social-icon si-small si-borderless si-twitter" target="_blank">
+              <a href="https://twitter.com/puskopcuina" class="social-icon si-small si-borderless si-twitter" target="_blank">
                 <i class="icon-twitter"></i>
                 <i class="icon-twitter"></i>
               </a>
 
-              <a href="https://www.instagram.com/bkcukalimantan/?hl=id" class="social-icon si-small si-borderless si-instagram" target="_blank">
+              <a href="https://www.instagram.com/puskopcuina/" class="social-icon si-small si-borderless si-instagram" target="_blank">
                 <i class="icon-instagram2"></i>
                 <i class="icon-instagram2"></i>
               </a>

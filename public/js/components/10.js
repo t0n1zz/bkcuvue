@@ -6205,15 +6205,13 @@ var render = function() {
                                               _vm._v(
                                                 "\n                        Tanggal Cacat: "
                                               ),
-                                              _vm.selectedData.anggota_cu
-                                                .tanggal_cacat
+                                              _vm.selectedData.tanggal_mati
                                                 ? _c("span", {
                                                     domProps: {
                                                       innerHTML: _vm._s(
                                                         _vm.$options.filters.date(
                                                           _vm.selectedData
-                                                            .anggota_cu
-                                                            .tanggal_cacat
+                                                            .tanggal_mati
                                                         )
                                                       )
                                                     }
@@ -6231,8 +6229,7 @@ var render = function() {
                                                       innerHTML: _vm._s(
                                                         _vm.$options.filters.ageDiff(
                                                           _vm.selectedData
-                                                            .anggota_cu
-                                                            .tanggal_meninggal,
+                                                            .tanggal_mati,
                                                           _vm.selectedData
                                                             .anggota_cu
                                                             .tanggal_lahir
@@ -6247,15 +6244,13 @@ var render = function() {
                                               _vm._v(
                                                 "\n                        Tanggal Meninggal: "
                                               ),
-                                              _vm.selectedData.anggota_cu
-                                                .tanggal_meninggal
+                                              _vm.selectedData.tanggal_mati
                                                 ? _c("span", {
                                                     domProps: {
                                                       innerHTML: _vm._s(
                                                         _vm.$options.filters.date(
                                                           _vm.selectedData
-                                                            .anggota_cu
-                                                            .tanggal_meninggal
+                                                            .tanggal_mati
                                                         )
                                                       )
                                                     }
@@ -9194,7 +9189,7 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "Kami mengucapkan terima kasih atas kerjasama dan kepercayaannya telah menjadi anggota Puskopdit BKCU Kalimantan terutama dalam kegiatan pengembangan JALINAN semoga kerjasama ini semakin terjalin dengan baik dimasa yang akan datang"
+                          "Kami mengucapkan terima kasih atas kerjasama dan kepercayaannya telah menjadi anggota PUSKOPCUINA terutama dalam kegiatan pengembangan JALINAN semoga kerjasama ini semakin terjalin dengan baik dimasa yang akan datang"
                         )
                       ]
                     ),

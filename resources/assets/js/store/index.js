@@ -36,6 +36,7 @@ import { mitraOrang } from './modules/mitraOrang';
 import { mitraLembaga } from './modules/mitraLembaga';
 import { anggotaCu } from './modules/anggotaCu';
 import { jalinanKlaim } from './modules/jalinanKlaim';
+import { jalinanIuran } from './modules/jalinanIuran';
 import { produkCu } from './modules/produkCu';
 import { kegiatanBKCU } from './modules/kegiatanBKCU';
 import { tempat } from './modules/tempat';
@@ -83,6 +84,7 @@ export default new Vuex.Store({
 		 mitraLembaga,
 		 anggotaCu,
 		 jalinanKlaim,
+		 jalinanIuran,
 		 produkCu,
 		 kegiatanBKCU,
 		 tempat,

@@ -86,7 +86,7 @@
 							<span v-else>-</span>
 						</span>
 						<span v-else-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 3">
-							Puskopdit BKCU Kalimantan
+							PUSKOPCUINA
 						</span>
 						<span v-else>-</span>
 					</td>
@@ -350,7 +350,7 @@
 				}else if(this.selected.aktivis.pekerjaan_aktif.tipe == 2){
 					this.formPeserta.lembaga = this.selected.aktivis.pekerjaan_aktif.lembaga_lain.name
 				}else if(this.selected.aktivis.pekerjaan_aktif.tipe == 3){
-					this.formPeserta.lembaga = "Puskopdit BKCU Kalimantan"
+					this.formPeserta.lembaga = "PUSKOPCUINA"
 				}
 			}else{
 				var i;
@@ -425,7 +425,7 @@
 					}else if(item.pekerjaan_aktif.tipe == 2){
 						this.formPeserta.lembaga = item.pekerjaan_aktif.lembaga_lain.name
 					}else if(item.pekerjaan_aktif.tipe == 3){
-						this.formPeserta.lembaga = "Puskopdit BKCU Kalimantan"
+						this.formPeserta.lembaga = "PUSKOPCUINA"
 					}
 					this.message.show = false;
 				}else{

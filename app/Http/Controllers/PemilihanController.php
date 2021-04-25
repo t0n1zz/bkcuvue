@@ -121,7 +121,7 @@ class PemilihanController extends Controller{
 				'status' => '0'
 			]);
 
-			for ($x = 0; $x <= $request->suara; $x++) {
+			for ($x = 1; $x <= $request->suara; $x++) {
 				PemilihanSuara::create([
 					'pemilihan_id' => $kelas->id,
 					'name' => bin2hex(random_bytes(4))
@@ -153,6 +153,7 @@ class PemilihanController extends Controller{
 			foreach($request->calon as $calon){
 				$calonArray[$calon['aktivis_id']] = [
 					'skor' => 0,
+					'pengusung_cu_id' => $calon['pengusung_cu_id']
 				];
 			}
 

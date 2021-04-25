@@ -20,7 +20,7 @@ class NotificationHelper{
 	{
 		if(Auth::user()->id_cu == 0){
 			$users = User::permission(['index_laporan_cu'])->where('id_cu', $request->id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
-			$cu_name = ' (Puskopdit BKCU Kalimantan) ';
+			$cu_name = ' (PUSKOPCUINA) ';
 		}else{
 			$users = User::permission(['index_laporan_cu'])->where('id_cu', 0)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();
 			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
@@ -39,7 +39,7 @@ class NotificationHelper{
 	{
 		if(Auth::user()->id_cu == 0){
 			$users = User::permission(['index_laporan_cu'])->where('id_cu', $request->id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
-			$cu_name = ' (Puskopdit BKCU Kalimantan) ';
+			$cu_name = ' (PUSKOPCUINA) ';
 		}else{
 			$users = User::permission(['index_laporan_cu'])->where('id_cu', 0)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();
 			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
@@ -58,7 +58,7 @@ class NotificationHelper{
 	{
 		if(Auth::user()->id_cu == 0){
 			$users = User::permission(['index_laporan_cu'])->where('id_cu', $request->id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
-			$cu_name = ' (Puskopdit BKCU Kalimantan) ';
+			$cu_name = ' (PUSKOPCUINA) ';
 		}else{
 			$users = User::permission(['index_laporan_cu'])->where('id_cu', 0)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();
 			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
@@ -78,7 +78,7 @@ class NotificationHelper{
 	{
 		if(Auth::user()->id_cu == 0){
 			$users = User::permission(['index_laporan_cu'])->where('id_cu', $request->id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
-			$cu_name = ' (Puskopdit BKCU Kalimantan) ';
+			$cu_name = ' (PUSKOPCUINA) ';
 		}else{
 			$users = User::permission(['index_laporan_cu'])->where('id_cu', 0)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();
 			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
@@ -98,7 +98,7 @@ class NotificationHelper{
 	{
 		if(Auth::user()->id_cu == 0){
 			$users = User::permission(['index_laporan_cu'])->where('id_cu', $id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
-			$cu_name = ' (Puskopdit BKCU Kalimantan) ';
+			$cu_name = ' (PUSKOPCUINA) ';
 		}else{
 			$users = User::permission(['index_laporan_cu'])->where('id_cu', 0)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();
 			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
@@ -129,7 +129,7 @@ class NotificationHelper{
 	{
 		if(Auth::user()->id_cu == 0){
 			$users = User::permission(['index_laporan_cu'])->where('id_cu', $id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
-			$cu_name = ' (Puskopdit BKCU Kalimantan) ';
+			$cu_name = ' (PUSKOPCUINA) ';
 		}else{
 			$users = User::permission(['index_laporan_cu'])->where('id_cu', 0)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();
 			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
@@ -158,7 +158,7 @@ class NotificationHelper{
 	{
 		if(Auth::user()->id_cu == 0){
 			$users = User::permission(['index_assesment_access'])->where('id_cu', $request->id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
-			$cu_name = ' (Puskopdit BKCU Kalimantan) ';
+			$cu_name = ' (PUSKOPCUINA) ';
 		}else{
 			$users = User::permission(['index_assesment_access'])->where('id_cu', 0)->where('status',1)->get();
 			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
@@ -177,7 +177,7 @@ class NotificationHelper{
 	{
 		if(Auth::user()->id_cu == 0){
 			$users = User::permission(['index_assesment_access'])->where('id_cu', $request->id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
-			$cu_name = ' (Puskopdit BKCU Kalimantan) ';
+			$cu_name = ' (PUSKOPCUINA) ';
 		}else{
 			$users = User::permission(['index_assesment_access'])->where('id_cu', 0)->where('status',1)->get();
 			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
@@ -196,7 +196,7 @@ class NotificationHelper{
 	{
 		if(Auth::user()->id_cu == 0){
 			$users = User::permission(['index_assesment_access'])->where('id_cu', $request->id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
-			$cu_name = ' (Puskopdit BKCU Kalimantan) ';
+			$cu_name = ' (PUSKOPCUINA) ';
 		}else{
 			$users = User::permission(['index_assesment_access'])->where('id_cu', 0)->where('status',1)->get();
 			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();

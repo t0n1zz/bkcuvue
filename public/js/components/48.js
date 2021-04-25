@@ -507,6 +507,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -986,7 +987,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         aktivis_id: '',
         pengusung_cu_id: '',
         name: '',
-        lembaga: '',
         gambar: ''
       },
       query: {
@@ -1668,7 +1668,7 @@ var render = function() {
                                                   )
                                                 ])
                                               : _c("span", [
-                                                  _vm._v("Puskopdit")
+                                                  _vm._v("PUSKOPCUINA")
                                                 ])
                                           ]
                                         ),
@@ -1941,7 +1941,8 @@ var render = function() {
                                             "data-width": "100%",
                                             "data-vv-as": "Penulis",
                                             disabled:
-                                              _vm.modelPemilihan.length === 0
+                                              _vm.modelPemilihanStat ===
+                                              "loading"
                                           },
                                           on: {
                                             change: function($event) {
@@ -2295,6 +2296,12 @@ var render = function() {
                                         _vm._v(" "),
                                         _c("td", [
                                           _vm._v(_vm._s(props.item.name))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("td", [
+                                          _vm._v(
+                                            _vm._s(props.item.pengusung_cu_id)
+                                          )
                                         ]),
                                         _vm._v(" "),
                                         _c("td", [
@@ -2678,7 +2685,7 @@ var render = function() {
                                   props.item.pekerjaan_aktif.tipe == 3
                                 ? _c("span", [
                                     _vm._v(
-                                      "\n\t\t\t\t\t\tPuskopdit BKCU Kalimantan\n\t\t\t\t\t"
+                                      "\n\t\t\t\t\t\tPUSKOPCUINA\n\t\t\t\t\t"
                                     )
                                   ])
                                 : _c("span", [_vm._v("-")])
@@ -2870,7 +2877,7 @@ var render = function() {
                 ],
                 null,
                 false,
-                3737184240
+                3084181168
               )
             })
           : _vm._e(),

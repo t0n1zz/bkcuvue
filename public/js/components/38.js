@@ -1533,26 +1533,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   created: function created() {
     this.fetch(this.query);
-    this.excelUploads = [{
-      enabled: true,
-      url: 'anggotaCu/uploadExcel',
-      format_url: 'formatAnggotaCu.xlsx',
-      next_page_route: 'anggotaCuCuDraft',
-      params: {
-        cu: this.$route.params.cu,
-        tp: 'semua'
-      },
-      button: 'Upload Anggota CU'
-    }, {
-      enabled: true,
-      url: 'anggotaCu/uploadExcelProduk',
-      format_url: 'formatProdukAnggotaCu.xlsx',
-      next_page_route: 'anggotaProdukCuDraft',
-      params: {
-        cu: this.$route.params.cu
-      },
-      button: 'Upload Produk Anggota CU'
-    }];
+
+    if (this.currentUser.can['upload_anggota_cu']) {
+      this.excelUploads = [{
+        enabled: true,
+        url: 'anggotaCu/uploadExcel',
+        format_url: 'formatAnggotaCu.xlsx',
+        next_page_route: 'anggotaCuCuDraft',
+        params: {
+          cu: this.$route.params.cu,
+          tp: 'semua'
+        },
+        button: 'Upload Anggota CU'
+      }, {
+        enabled: true,
+        url: 'anggotaCu/uploadExcelProduk',
+        format_url: 'formatProdukAnggotaCu.xlsx',
+        next_page_route: 'anggotaProdukCuDraft',
+        params: {
+          cu: this.$route.params.cu
+        },
+        button: 'Upload Produk Anggota CU'
+      }];
+    }
   },
   watch: {
     // check route changes

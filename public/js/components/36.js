@@ -1904,7 +1904,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                 } else if (valDalam.pekerjaan_aktif.tipe == 2) {
                   formData.lembaga = valDalam.pekerjaan_aktif.lembaga_lain.name;
                 } else if (valDalam.pekerjaan_aktif.tipe == 3) {
-                  formData.lembaga = "Puskopdit BKCU Kalimantan";
+                  formData.lembaga = "PUSKOPCUINA";
                 }
               }
 
@@ -2857,7 +2857,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         } else if (item.pekerjaan_aktif.tipe == 2) {
           this.formPanitia.lembaga = item.pekerjaan_aktif.lembaga_lain.name;
         } else if (item.pekerjaan_aktif.tipe == 3) {
-          this.formPanitia.lembaga = "Puskopdit BKCU Kalimantan";
+          this.formPanitia.lembaga = "PUSKOPCUINA";
         }
       } else {
         this.formPanitia.lembaga = item.lembaga != '' ? item.lembaga : '-';
@@ -8047,7 +8047,7 @@ var render = function() {
                                   props.item.pekerjaan_aktif.tipe == 3
                                 ? _c("span", [
                                     _vm._v(
-                                      "\n\t\t\t\t\t\tPuskopdit BKCU Kalimantan\n\t\t\t\t\t"
+                                      "\n\t\t\t\t\t\tPUSKOPCUINA\n\t\t\t\t\t"
                                     )
                                   ])
                                 : _c("span", [_vm._v("-")])
@@ -8239,7 +8239,7 @@ var render = function() {
                 ],
                 null,
                 false,
-                3737184240
+                3084181168
               )
             })
           : _vm._e(),

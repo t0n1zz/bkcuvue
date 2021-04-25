@@ -212,6 +212,48 @@ export const anggotaCu = {
         });
     },
 
+    getCu( { commit }, id ){
+      commit('setDataStatS', 'loading');
+      
+      AnggotaCuAPI.getCu( id )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+    
+    getCuKeluar( { commit }, id ){
+      commit('setDataStatS2', 'loading');
+      
+      AnggotaCuAPI.getCuKeluar( id )
+        .then( function( response ){
+        commit('setDataS2', response.data.model );
+          commit('setDataStatS2', 'success');
+        })
+        .catch( error => {
+          commit('setDataS2', error.response);
+          commit('setDataStatS2', 'fail');
+        });
+    },
+
+    getCuJalinan( { commit }, [ id, bulan, tahun ] ){
+      commit('setDataStatS', 'loading');
+      
+      AnggotaCuAPI.getCuJalinan( id, bulan, tahun )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     cariDataKTP( {commit}, nik ){
       commit('setDataStat', 'loading');
       

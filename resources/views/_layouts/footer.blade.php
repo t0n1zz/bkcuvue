@@ -12,7 +12,7 @@
         <div class="col_half">
 
           <div class="widget clearfix">
-            <h4>Puskopdit BKCU Kalimantan </h4>
+            <h4>PUSKOPCUINA </h4>
             <p>Merupakan lembaga yang tercipta dari kumpulan beberapa <strong>Credit Union (CU)</strong> di Indonesia yang memiliki pandangan yang sama dalam membantu anggota untuk membantu dirinya sendiri dan memberikan dampak positif bagi masyarakat sekitar.</p>
 
             <div style="background: url({{ asset('images/map.png') }}) no-repeat center center; background-size: 100%;">
@@ -38,7 +38,7 @@
             @if($subdomain)
               <div class="col_full">
                 <ul>
-                  <li><a href="{{ route('home') }}">Puskopdit BKCU Kalimantan</a></li>
+                  <li><a href="{{ route('home') }}">PUSKOPCUINA</a></li>
                   <li><a href="{{ route('home.cu', $subdomain) }}">CU {{ ucwords(str_replace('-', ' ', $subdomain)) }}</a></li>
                   <li><a href="{{ route('artikel.cu', $subdomain) }}">Artikel</a></li>
                   <li><a href="{{ route('tp', $subdomain) }}">Tempat/Kantor Pelayanan</a></li>
@@ -71,7 +71,6 @@
             <h4>Jaringan External</h4>
 
             <ul>
-              <li><a href="http://www.cucoindo.org/" target="_blank">INKOPDIT</a></li>
               <li><a href="http://www.aaccu.coop/" target="_blank">ACCU</a></li>
               <li><a href="http://woccu.org/" target="_blank">WOCCU</a></li>
             </ul>
@@ -90,7 +89,7 @@
 
             <div class="col-lg-12">
               <h4>DATA PERIODE {{ date('F Y',strtotime($dataGerakan->periode)) }}</h4>
-              <p>Data akumulasi dari gerakan Puskopdit BKCU Kalimantan per {{ date('F Y',strtotime($dataGerakan->periode)) }}</p>
+              <p>Data akumulasi dari gerakan PUSKOPCUINA per {{ date('F Y',strtotime($dataGerakan->periode)) }}</p>
             </div>
 
             <div class="col-lg-6 bottommargin-sm">
@@ -110,7 +109,7 @@
 
             <div class="col-lg-6 bottommargin-sm">
               <div class="counter counter-small"><span data-from="50" data-to="{{ $manajemenBKCUCount }}" data-refresh-interval="100" data-speed="2000" data-comma="true"></span></div>
-              <h5 class="nobottommargin">Manajemen Puskopdit BKCU Kalimantan</h5>
+              <h5 class="nobottommargin">Manajemen PUSKOPCUINA</h5>
             </div> 
 
           </div>
@@ -131,22 +130,22 @@
     <div class="container clearfix">
 
       <div class="col_half">
-        Copyrights &copy; <?php echo date("Y") ?> All Rights Reserved by Puskopdit BKCU Kalimantan<br>
+        Copyrights &copy; <?php echo date("Y") ?> All Rights Reserved by PUSKOPCUINA<br>
       </div>
 
       <div class="col_half col_last tright">
         <div class="fright clearfix">
-          <a href="https://www.facebook.com/PuskopditBKCUKalimantan/?rf=547963498564679" class="social-icon si-small si-borderless si-facebook" target="_blank">
+          <a href="https://www.facebook.com/puskopcuina" class="social-icon si-small si-borderless si-facebook" target="_blank">
             <i class="icon-facebook"></i>
             <i class="icon-facebook"></i>
           </a>
 
-          <a href="https://twitter.com/bkcu_kalimantan" class="social-icon si-small si-borderless si-twitter" target="_blank">
+          <a href="https://twitter.com/puskopcuina" class="social-icon si-small si-borderless si-twitter" target="_blank">
             <i class="icon-twitter"></i>
             <i class="icon-twitter"></i>
           </a>
 
-          <a href="https://www.instagram.com/bkcukalimantan/?hl=id" class="social-icon si-small si-borderless si-instagram" target="_blank">
+          <a href="https://www.instagram.com/puskopcuina/" class="social-icon si-small si-borderless si-instagram" target="_blank">
             <i class="icon-instagram2"></i>
             <i class="icon-instagram2"></i>
           </a>

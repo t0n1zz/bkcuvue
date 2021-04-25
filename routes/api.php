@@ -184,6 +184,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
 
         // produk
         Route::get('/produkcu/getCu/{id}', 'ProdukCuController@getCu');
+        Route::get('/produkcu/getCuJalinan/{id}', 'ProdukCuController@getCuJalinan');
         Route::get('/produkcu/getSimpananCu/{id}', 'ProdukCuController@getSimpananCu');
         Route::get('/produkcu/getPinjamanCu/{id}', 'ProdukCuController@getPinjamanCu');
         Route::get('/produkcu/count', 'ProdukCuController@count');
@@ -446,8 +447,8 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
 
         // mitra perserorangan
         Route::get('/mitraOrang/history', 'MitraOrangController@history');
+        Route::get('/mitraOrang', 'MitraOrangController@index');
         Route::group(['middleware' => ['permission:index_mitra_orang']], function () {
-            Route::get('/mitraOrang', 'MitraOrangController@index');
             Route::get('/mitraOrang/count', 'MitraOrangController@count');
         });
         Route::group(['middleware' => ['permission:create_mitra_orang']], function () {
@@ -465,8 +466,8 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
 
         // mitra lembaga
         Route::get('/mitraLembaga/history', 'MitraLembagaController@history');
+        Route::get('/mitraLembaga', 'MitraLembagaController@index');
         Route::group(['middleware' => ['permission:index_mitra_lembaga']], function () {
-            Route::get('/mitraLembaga', 'MitraLembagaController@index');
             Route::get('/mitraLembaga/count', 'MitraLembagaController@count');
         });
         Route::group(['middleware' => ['permission:create_mitra_lembaga']], function () {
@@ -496,6 +497,9 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/anggotaCu/indexMeninggal', 'AnggotaCuController@indexMeninggal');
         Route::get('/anggotaCu/indexCuKeluar/{cu}/{tp}', 'AnggotaCuController@indexCuKeluar'); 
         Route::get('/anggotaCu/indexCuMeninggal/{cu}/{tp}', 'AnggotaCuController@indexCuMeninggal');  
+        Route::get('/anggotaCu/getCu/{cu}', 'AnggotaCuController@getCu');  
+        Route::get('/anggotaCu/getCuJalinan/{cu}/{bulan}/{tahun}', 'AnggotaCuController@getCuJalinan');  
+        Route::get('/anggotaCu/getCuKeluar/{cu}', 'AnggotaCuController@getCuKeluar');  
         Route::group(['middleware' => ['permission:create_anggota_cu']], function () {
             Route::get('/anggotaCu/create', 'AnggotaCuController@create');
             Route::post('/anggotaCu/store', 'AnggotaCuController@store');
@@ -583,6 +587,23 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
             Route::get('/jalinanKlaim/indexLaporanUsiaDetail/{cu}/{status}/{dari}/{ke}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanUsiaDetail');
             Route::get('/jalinanKlaim/indexLaporanLama/{cu}/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanLama');
             Route::get('/jalinanKlaim/indexLaporanLamaDetail/{cu}/{status}/{dari}/{ke}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanLamaDetail');
+        });
+
+        //jalinan iuran
+        Route::group(['middleware' => ['permission:index_jalinan_iuran']], function () {
+            Route::get('/jalinanIuran', 'JalinanIuranController@index');
+            Route::get('/jalinanIuran/indexCu/{id}', 'JalinanIuranController@indexCu');
+            Route::get('/jalinanIuran/edit/{id}', 'JalinanIuranController@edit');
+        });
+        Route::group(['middleware' => ['permission:create_jalinan_iuran']], function () {
+            Route::get('/jalinanIuran/create/{cu}/{bulan}/{tahun}', 'JalinanIuranController@create');
+            Route::post('/jalinanIuran/store', 'JalinanIuranController@store');
+        });
+        Route::group(['middleware' => ['permission:update_jalinan_iuran']], function () {
+            Route::get('/jalinanIuran/updateStatus/{id}', 'JalinanIuranController@updateStatus');
+        });
+        Route::group(['middleware' => ['permission:destroy_jalinan_iuran']], function () {
+            Route::delete('/jalinanIuran/{id}', 'JalinanIuranController@destroy');
         });
 
         //laporan cu

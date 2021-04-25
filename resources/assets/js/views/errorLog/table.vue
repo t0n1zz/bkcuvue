@@ -47,7 +47,7 @@
 					</td>
 					<td v-if="!columnData[2].hide">
 						<check-value :value="props.item.user.cu.name" v-if="props.item.user && props.item.user.cu"></check-value>
-						<span v-else>Puskopdit BKCU Kalimantan</span>
+						<span v-else>PUSKOPCUINA</span>
 					</td>
 					<td v-if="!columnData[3].hide">
 						<check-value :value="props.item.status"></check-value>

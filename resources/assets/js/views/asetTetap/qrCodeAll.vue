@@ -18,7 +18,7 @@
 				<div class="row" ref="qrBig" id="qrBig" >
 					<div class="col-md-6" v-for="(item, index) in itemData.data" :key="index">						
 						<div class="d-flex align-items-end">
-							<qrcode-vue :value="'puskopditbkcukalimantan.org/admins/asetTetap/detail/' + item.kode" :size="'130'" :renderAs="'svg'" level="M" class="mr-3 mt-2 ml-2 mb-2"></qrcode-vue>
+							<qrcode-vue :value="'puskopcuina.org/admins/asetTetap/detail/' + item.kode" :size="'130'" :renderAs="'svg'" level="M" class="mr-3 mt-2 ml-2 mb-2"></qrcode-vue>
 							<div>
 								<ul class="list list-unstyled mb-2">
 									<li class="mt-0"><b style="font-size: 1.5em;"><span style="color:blue;">PUSKOPCUINA</span></b></li>
@@ -38,7 +38,7 @@
 					<div class="col-md-3" v-for="(item, index) in itemData.data" :key="index">
 						<div class="d-flex justify-content-center">
 							<div>
-								<qrcode-vue :value="'puskopditbkcukalimantan.org/admins/asetTetap/detail/' + item.kode" :size="'150'" :renderAs="'svg'" level="M" class="mt-2"></qrcode-vue>
+								<qrcode-vue :value="'puskopcuina.org/admins/asetTetap/detail/' + item.kode" :size="'150'" :renderAs="'svg'" level="M" class="mt-2"></qrcode-vue>
 								<ul class="list list-unstyled mb-0 mt-1">
 									<li class="mt-0 mb-0"><b style="font-size: 0.8em;"><span style="color:blue;">PUSKOPCUINA</span></b></li>
 									<li class="mt-0"><b style="font-size: 0.7em;">Kode: {{ item.kode }}</b></li>

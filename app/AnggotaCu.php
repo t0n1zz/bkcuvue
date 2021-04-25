@@ -41,7 +41,7 @@ class AnggotaCu extends BaseEloquent {
     );
     
     protected $fillable = [
-        'nik','name','ahli_waris','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','jabatan','penghasilan','pengeluaran','pendidikan','organisasi','kontak','id_villages','id_districts','id_regencies','id_provinces','gambar','npwp','tanggal_meninggal','tanggal_cacat','pekerjaan','suku','nama_ibu','kk','kontak_ahli_waris','rt','rw'
+        'nik','name','ahli_waris','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','jabatan','penghasilan','pengeluaran','pendidikan','organisasi','kontak','id_villages','id_districts','id_regencies','id_provinces','gambar','npwp','tanggal_meninggal','tanggal_cacat','pekerjaan','suku','nama_ibu','kk','kontak_ahli_waris','rt','rw','status_jalinan'
     ];
 
     protected $allowedFilters = [
@@ -72,6 +72,10 @@ class AnggotaCu extends BaseEloquent {
 
     public function anggota_cu_cu_not_keluar(){
         return $this->hasMany('App\AnggotaCuCu','anggota_cu_id','id')->whereNull('tanggal_keluar');
+    }
+
+    public function anggota_cu_cu_not_keluar_single(){
+        return $this->belongsTo('App\AnggotaCuCu','id','anggota_cu_id')->whereNull('tanggal_keluar')->select('id','anggota_cu_id','tanggal_masuk','tanggal_keluar','no_ba','cu_id');
     }
 
     public function anggota_cu_cu_keluar(){
@@ -117,6 +121,7 @@ class AnggotaCu extends BaseEloquent {
             return $this->belongsToMany('App\ProdukCu','anggota_produk_cu')->select('produk_cu.id','anggota_produk_cu.id','id_cu','kode_produk','name','jalinan','tipe')->where('id_cu',$id)->withPivot('id','no_rek','saldo','tanggal','lama_pinjaman')->orderBy('anggota_produk_cu.tanggal','desc')->withTimestamps();
         }
     }
+    
 
     public function status_jalinan()
     {

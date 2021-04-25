@@ -306,6 +306,8 @@
 			formStat(value){
 				if(value === "success"){	
 					var valCalon;
+					this.itemDataCalon = [];
+					this.itemDataSuara = [];
 					for (valCalon of this.form.calon) {
 						let formData = {};
 						formData.aktivis_id = valCalon.id;
@@ -320,7 +322,7 @@
 						}else{
 							formData.pendidikan = "";
 						}
-					
+
 						this.itemDataCalon.push(formData);
 					}
 

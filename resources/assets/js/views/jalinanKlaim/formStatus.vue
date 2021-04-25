@@ -364,13 +364,13 @@
                     <div v-if="selectedData.tipe == 'CACAT'">
                       <h3 class="mb-0" >Usia Cacat: <span v-if="selectedData.anggota_cu" v-html="$options.filters.ageDiff(selectedData.anggota_cu.tanggal_cacat,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
                       <span>
-                        Tanggal Cacat: <span v-if="selectedData.anggota_cu.tanggal_cacat" v-html="$options.filters.date(selectedData.anggota_cu.tanggal_cacat)"></span> 
+                        Tanggal Cacat: <span v-if="selectedData.tanggal_mati" v-html="$options.filters.date(selectedData.tanggal_mati)"></span> 
                       </span>
                     </div>
                     <div v-else-if="selectedData.tipe == 'MENINGGAL'">
-                      <h3 class="mb-0" >Usia Meninggal: <span v-if="selectedData.anggota_cu_cu" v-html="$options.filters.ageDiff(selectedData.anggota_cu.tanggal_meninggal,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
+                      <h3 class="mb-0" >Usia Meninggal: <span v-if="selectedData.anggota_cu_cu" v-html="$options.filters.ageDiff(selectedData.tanggal_mati,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
                       <span>
-                        Tanggal Meninggal: <span v-if="selectedData.anggota_cu.tanggal_meninggal" v-html="$options.filters.date(selectedData.anggota_cu.tanggal_meninggal)"></span> 
+                        Tanggal Meninggal: <span v-if="selectedData.tanggal_mati" v-html="$options.filters.date(selectedData.tanggal_mati)"></span> 
                       </span>
                     </div>
                   </div>   

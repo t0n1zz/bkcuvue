@@ -416,57 +416,67 @@ class KegiatanBKCUController extends Controller{
 		$id_cu = Auth::user()->id_cu;
 		$kegiatan = Kegiatan::findOrFail($id);
 
-		if($id_cu != 0){
-			$pesertaTerdaftar = $table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->whereHas('aktivis.pekerjaan', function($query) use ($id_cu){
-				$query->where('tipe','1')->where('id_tempat',$id_cu);
-			})->count();
-		}else{
-			$pesertaTerdaftar = $table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->whereHas('aktivis.pekerjaan', function($query) use ($id_cu){
-				$query->where('tipe','3')->where('id_tempat',$id_cu);
-			})->count();
-		}
-
-		if($pesertaTerdaftar <  $kegiatan->peserta_max_cu){
-			$kelas = KegiatanPeserta::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id ]);
-
-			if($id_cu != 0){
-				// check interval
-				$dataPeserta = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->where('kegiatan_id', $id)->whereHas('aktivis.pekerjaan_aktif.cu', function($query) use($id_cu){
-					$query->where('id', $id_cu);
-				})->orderBy('created_at','desc')->first();
-				$time = \Carbon\Carbon::now();
+		$semuaPesertaTerdaftar = $table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->count();
 		
-				// send notif if interval different is more than 2 hours
-				if($dataPeserta){
-					$diff = $time->diffInHours($dataPeserta->created_at);
-					if($diff > 2){
+		if($semuaPesertaTerdaftar < $kegiatan->peserta_max){
+			if($id_cu != 0){
+				$pesertaTerdaftar = $table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->whereHas('aktivis.pekerjaan', function($query) use ($id_cu){
+					$query->where('tipe','1')->where('id_tempat',$id_cu);
+				})->count();
+			}else{
+				$pesertaTerdaftar = $table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->whereHas('aktivis.pekerjaan', function($query) use ($id_cu){
+					$query->where('tipe','3')->where('id_tempat',$id_cu);
+				})->count();
+			}
+	
+			if($pesertaTerdaftar <  $kegiatan->peserta_max_cu){
+				$kelas = KegiatanPeserta::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id ]);
+	
+				if($id_cu != 0){
+					// check interval
+					$dataPeserta = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->where('kegiatan_id', $id)->whereHas('aktivis.pekerjaan_aktif.cu', function($query) use($id_cu){
+						$query->where('id', $id_cu);
+					})->orderBy('created_at','desc')->first();
+					$time = \Carbon\Carbon::now();
+			
+					// send notif if interval different is more than 2 hours
+					if($dataPeserta){
+						$diff = $time->diffInHours($dataPeserta->created_at);
+						if($diff > 2){
+							if($kegiatan_tipe == 'diklat_bkcu'){
+								NotificationHelper::diklat_bkcu($id_cu, $id,'menambah peserta');
+							}else{
+								NotificationHelper::pertemuan_bkcu($id_cu, $id,'menambah peserta');
+							}
+						}
+					}else{
 						if($kegiatan_tipe == 'diklat_bkcu'){
 							NotificationHelper::diklat_bkcu($id_cu, $id,'menambah peserta');
 						}else{
 							NotificationHelper::pertemuan_bkcu($id_cu, $id,'menambah peserta');
 						}
 					}
-				}else{
-					if($kegiatan_tipe == 'diklat_bkcu'){
-						NotificationHelper::diklat_bkcu($id_cu, $id,'menambah peserta');
-					}else{
-						NotificationHelper::pertemuan_bkcu($id_cu, $id,'menambah peserta');
-					}
 				}
+				
+				return response()
+					->json([
+						'saved' => true,
+						'message' => 'Peserta ' . $this->message. ' berhasil ditambah',
+						'id' => $kelas->id
+					]);	
+			}else{
+				return response()
+					->json([
+						'saved' => false,
+						'message' => 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena jumlah maksimal peserta per CU adalah ' . $kegiatan->peserta_max_cu . ' orang.',
+					]);	
 			}
-			
-			return response()
-				->json([
-					'saved' => true,
-					'message' => 'Peserta ' . $this->message. ' berhasil ditambah',
-					'id' => $kelas->id
-				]);	
 		}else{
 			return response()
-				->json([
-					'saved' => false,
-					'message' => 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena jumlah maksimal peserta per CU adalah ' . $kegiatan->peserta_max_cu . ' orang.',
-				]);	
+					->json([
+						'saved' => false,
+						'message' => 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena jumlah maksimal peserta adalah ' . $kegiatan->peserta_max,
+					]);	
 		}
 	}
 
@@ -475,6 +485,7 @@ class KegiatanBKCUController extends Controller{
 		$name = $request->name;
 		$format = $request->format;
 		$formatedName = '';
+		$fileExtension = 'link';
 		
 		if($format == 'upload'){
 			$file = $request->content;
@@ -488,6 +499,7 @@ class KegiatanBKCUController extends Controller{
 			if($fileExtension != 'pdf'){
 				$formatedName = Helper::image_processing($materipath,$this->width,$this->height,$file,'',$name);
 			}else{
+				// TODO : BUGGGG
 				$filename = $file->getClientOriginalName();
 				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.'.$kegiatan_tipe;
 				$file->move($materipath,$formatedName);

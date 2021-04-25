@@ -32,6 +32,18 @@ export default {
     return axios.get('/api/anggotaCu/indexProdukSaldo/' + id, {params: p});
   },
 
+  getCu: function( id ){
+    return axios.get('/api/anggotaCu/getCu/' + id);
+  },
+
+  getCuKeluar: function( id ){
+    return axios.get('/api/anggotaCu/getCuKeluar/' + id);
+  },
+
+  getCuJalinan: function( id, bulan, tahun ){
+    return axios.get('/api/anggotaCu/getCuJalinan/' + id + '/' + bulan + '/' + tahun);
+  },
+
   detail: function( id ){
     return axios.get('/api/anggotaCu/detail/' + id);
   },

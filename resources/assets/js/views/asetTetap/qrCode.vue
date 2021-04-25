@@ -87,7 +87,7 @@
 			}
 		},
 		created(){
-			this.qrValue = 'puskopditbkcukalimantan.org/admins/asetTetap/detail/' + this.selectedItem.kode;
+			this.qrValue = 'puskopcuina.org/admins/asetTetap/detail/' + this.selectedItem.kode;
 		},
 		methods: {
 			changeTab(value) {

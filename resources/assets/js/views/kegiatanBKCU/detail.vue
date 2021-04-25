@@ -391,7 +391,7 @@
 															<span v-else>-</span>
 														</span>
 														<span v-else-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 3">
-															Puskopdit BKCU Kalimantan
+															PUSKOPCUINA
 														</span>
 														<span v-else>-</span>
 													</td>
@@ -459,9 +459,9 @@
 														<div class="row">
 															<div class="col-md-6">
 																<div class="d-none d-sm-block">
-																	<button type="button" class="btn btn-light mb-1" @click.prevent="downloadMateri(props.item.tipe != 'pdf' ? props.item.filename + '.jpg' : props.item.filename)" v-if="props.item.format == 'upload'"><i class="icon-file-download"></i> Unduh</button>
+																	<button type="button" class="btn btn-light mb-1" @click.prevent="downloadMateri(props.item.tipe != 'pdf' ? props.item.filename + '.jpg' : props.item.filename)" v-if="props.item.format == 'upload'"><i class="icon-file-eye"></i> Lihat</button>
 
-																	<a type="button" class="btn btn-light mb-1" :href="props.item.link" target="_blank" v-else-if="props.item.format == 'link'"><i class="icon-file-download"></i> Unduh</a>
+																	<a type="button" class="btn btn-light mb-1" :href="props.item.link" target="_blank" v-else-if="props.item.format == 'link'"><i class="icon-file-eye"></i> Lihat</a>
 																</div>
 
 																<div class="d-block d-sm-none text-center">
@@ -470,9 +470,9 @@
 																	<span class="badge badge-secondary" v-html="$options.filters.dateTime(props.item.created_at)">
 																	</span>
 
-																	<button type="button" class="btn btn-light btn-block mt-2 mb-1" @click.prevent="downloadMateri(props.item.tipe != 'pdf' ? props.item.filename + '.jpg' : props.item.filename)" v-if="props.item.format == 'upload'"><i class="icon-file-download"></i> Unduh</button>
+																	<button type="button" class="btn btn-light btn-block mt-2 mb-1" @click.prevent="downloadMateri(props.item.tipe != 'pdf' ? props.item.filename + '.jpg' : props.item.filename)" v-if="props.item.format == 'upload'"><i class="icon-file-eye"></i> Lihat</button>
 
-																	<a type="button" class="btn btn-light btn-block mt-2 mb-1" :href="props.item.link" target="_blank" v-else-if="props.item.format == 'link'"><i class="icon-file-download"></i> Unduh</a>
+																	<a type="button" class="btn btn-light btn-block mt-2 mb-1" :href="props.item.link" target="_blank" v-else-if="props.item.format == 'link'"><i class="icon-file-eye"></i> Lihat</a>
 																
 																</div>
 															</div>
@@ -811,7 +811,7 @@
 											</template>
 
 											<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahPeserta')"
-											:disabled="!selectedItem.id || selectedItem.status != 2" v-if="item.status == 2 && selectedItem.status != 3" >
+											:disabled="!selectedItem.id || selectedItem.status != 2" v-if="item.status == 2 && selectedItem.status != 3">
 												<i class="icon-pencil5"></i> Ubah
 											</button>
 											
@@ -891,7 +891,7 @@
 														<span v-else>-</span>
 													</span>
 													<span v-else-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tipe == 3">
-														Puskopdit BKCU Kalimantan
+														PUSKOPCUINA
 													</span>
 													<span v-else>-</span>
 												</td>
@@ -987,7 +987,7 @@
 														<span v-else>-</span>
 													</span>
 													<span v-else-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tipe == 3">
-														Puskopdit BKCU Kalimantan
+														PUSKOPCUINA
 													</span>
 													<span v-else>-</span>
 												</td>

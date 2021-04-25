@@ -91,7 +91,7 @@
 							<span v-else>-</span>
 						</span>
 						<span v-else-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 3">
-							Puskopdit BKCU Kalimantan
+							PUSKOPCUINA
 						</span>
 						<span v-else>-</span>
 					</td>
@@ -512,7 +512,7 @@
 					}else if(item.pekerjaan_aktif.tipe == 2){
 						this.formPanitia.lembaga = item.pekerjaan_aktif.lembaga_lain.name
 					}else if(item.pekerjaan_aktif.tipe == 3){
-						this.formPanitia.lembaga = "Puskopdit BKCU Kalimantan"
+						this.formPanitia.lembaga = "PUSKOPCUINA"
 					}
 				}else{
 					this.formPanitia.lembaga = item.lembaga != '' ? item.lembaga : '-';

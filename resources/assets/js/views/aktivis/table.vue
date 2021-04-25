@@ -100,7 +100,7 @@
 							<span v-else>-</span>
 						</span>
 						<span v-else-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 3">
-							Puskopdit BKCU Kalimantan
+							PUSKOPCUINA
 						</span>
 						<span v-else>-</span>
 					</td>
@@ -120,7 +120,7 @@
 							<span v-else>-</span>
 						</span>
 						<span v-else-if="props.item.pekerjaan_tidak_aktif && props.item.pekerjaan_tidak_aktif.tipe == 3">
-							Puskopdit BKCU Kalimantan
+							PUSKOPCUINA
 						</span>
 						<span v-else>-</span>
 					</td>

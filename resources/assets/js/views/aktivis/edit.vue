@@ -115,7 +115,7 @@
 								<td>
 									<span v-if="props.item.tipe == 1"><span v-if="props.item.cu">{{ props.item.cu.name }}</span></span>
 									<span v-else-if="props.item.tipe == 2">{{ props.item.lembaga_lain }}</span>
-									<span v-else>Puskopdit BKCU Kalimantan</span>
+									<span v-else>PUSKOPCUINA</span>
 								</td>
 								<td>{{ props.item.mulai }}</td>
 								<td>

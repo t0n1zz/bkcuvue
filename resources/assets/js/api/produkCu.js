@@ -12,6 +12,10 @@ export default {
     return axios.get('/api/produkcu/getCu/' + id);
   },
 
+  getCuJalinan: function( id ){
+    return axios.get('/api/produkcu/getCuJalinan/' + id);
+  },
+
   getSimpananCu: function( id ){
     return axios.get('/api/produkcu/getSimpananCu/' + id);
   },

@@ -12,7 +12,7 @@
       <img src="{{ asset('images/panduan/laporanGerakan.png') }}" class="img-thumbnail" alt="">
     </div>
     <p>
-        Halaman aktivis menampilkan semua laporan statistik gerakan per-periode yang merupakan konsolidasi dari laporan keuangan CU - CU anggota Puskopdit BKCU Kalimantan. Dibagian pertama terdapat grafik interaktif yang bisa diatur parameternya untuk melihat perkembangan secara gerakan<span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">1</span>, kemudian dipanel samping akan ada ringkasan tabel perkembangan per-periode terbaru yang ada pada SIMO <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">2</span>, dan dibawahnya terdapat tabel yang menampilkan laporan statistik gerakan untuk periode-periode sebelumnya <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">3</span>.
+        Halaman aktivis menampilkan semua laporan statistik gerakan per-periode yang merupakan konsolidasi dari laporan keuangan CU - CU anggota PUSKOPCUINA. Dibagian pertama terdapat grafik interaktif yang bisa diatur parameternya untuk melihat perkembangan secara gerakan<span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">1</span>, kemudian dipanel samping akan ada ringkasan tabel perkembangan per-periode terbaru yang ada pada SIMO <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">2</span>, dan dibawahnya terdapat tabel yang menampilkan laporan statistik gerakan untuk periode-periode sebelumnya <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">3</span>.
     </p>
 
     <p>Berikut adalah rincian masing-masing tombol</p>

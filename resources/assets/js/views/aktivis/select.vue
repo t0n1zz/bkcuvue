@@ -18,7 +18,7 @@
 								<option disabled value="">Silahkan pilih data</option>
 								<slot></slot>
 								<option value="semua">Semua CU</option>
-								<option value="0" v-if="isPus"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>Puskopdit</span></option>
+								<option value="0" v-if="isPus"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>PUSKOPCUINA</span></option>
 								<option disabled value="">----------------</option>
 								<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
 							</select>
@@ -89,7 +89,7 @@
 						<select class="form-control" name="idCu" v-model="idCu" data-width="100%" :disabled="modelCUStat === 'loading'">
 							<option disabled value="">Silahkan pilih data</option>
 							<option value="semua">Semua CU</option>
-							<option value="0" v-if="isPus"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>Puskopdit</span></option>
+							<option value="0" v-if="isPus"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>PUSKOPCUINA</span></option>
 							<option disabled value="">----------------</option>
 							<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
 						</select>

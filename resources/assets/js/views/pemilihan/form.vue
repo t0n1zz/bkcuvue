@@ -59,7 +59,7 @@
 													<span v-if="modelCUStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih CU</span>
 												</option>
-												<option value="0"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>Puskopdit</span></option>
+												<option value="0"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>PUSKOPCUINA</span></option>
 												<option v-for="(cu, index) in modelCU" :value="cu.id" :key="index">{{cu.name}}</option>
 											</select>
 
@@ -117,7 +117,7 @@
 												</h5>
 
 												<!-- select -->
-												<select class="form-control"  name="sumberSuara" v-model="form.sumberSuara" data-width="100%" v-validate="'required'" data-vv-as="Penulis" :disabled="modelPemilihan.length === 0">
+												<select class="form-control"  name="sumberSuara" v-model="form.sumberSuara" data-width="100%" v-validate="'required'" data-vv-as="Penulis" :disabled="modelPemilihanStat === 'loading'">
 													<option disabled value="">
 														<span v-if="modelPemilihanStat === 'loading'">Mohon tunggu...</span>
 														<span v-else>Silahkan pilih sumber data suara</span>
@@ -204,6 +204,7 @@
 											<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
 										</td>
 										<td>{{ props.item.name }}</td>
+										<td>{{ props.item.pengusung_cu_id }}</td>
 										<td>{{ props.item.tanggal_lahir }}</td>
 										<td>{{ props.item.tempat_lahir }}</td>
 										<td>{{ props.item.status }}</td>

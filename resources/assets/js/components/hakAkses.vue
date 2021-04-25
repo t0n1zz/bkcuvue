@@ -628,6 +628,46 @@
 						]
 					},
 					{
+						name: 'Iuran JALINAN',
+						keterangan: 'Mengelola data iuran JALINAN',
+						icon: 'icon-clipboard6',
+						secondRow: false,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_jalinan_iuran',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Iuran JALINAN'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_jalinan_iuran',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Iuran JALINAN'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_jalinan_iuran',
+								icon: 'icon-pencil',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Iuran JALINAN'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_jalinan_iuran',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Iuran JALINAN'
+							},
+						]
+					},
+					{
 						name: 'CU',
 						keterangan: 'Mengelola data profil CU yang juga akan muncul di website',
 						icon: 'icon-office',
@@ -1392,6 +1432,11 @@
 						'destroy_jalinan_klaim',
 						'laporan_jalinan_klaim',
 						'pencairan_jalinan_klaim',
+
+						'index_jalinan_iuran',
+						'create_jalinan_iuran',
+						'update_jalinan_klaim',
+						'destroy_jalinan_iuran',
 						
 						'index_cu',
 						'create_cu',
@@ -1530,6 +1575,10 @@
 						'destroy_jalinan_klaim',
 						'laporan_jalinan_klaim',
 
+						'index_jalinan_iuran',
+						'create_jalinan_iuran',
+						'destroy_jalinan_iuran',
+
 						'index_cu',
 						'update_cu',
 
@@ -1587,6 +1636,7 @@
 						'index_saldo',
 						'index_jalinan_klaim',
 						'laporan_jalinan_klaim',
+						'index_jalinan_iuran',
 						'index_cu',
 						'index_tp',
 						'index_aktivis',
@@ -1662,6 +1712,11 @@
 						'update_aktivis',
 						'destroy_aktivis',
 
+						'index_pemilihan',
+						'create_pemilihan',
+						'update_pemilihan',
+						'destroy_pemilihan',
+
 						'index_aset_tetap',
 						'create_aset_tetap',
 						'update_aset_tetap',
@@ -1710,6 +1765,11 @@
 						'create_anggota_cu',
 						'update_anggota_cu',
 						'destroy_anggota_cu',
+
+						'index_pemilihan',
+						'create_pemilihan',
+						'update_pemilihan',
+						'destroy_pemilihan',
 
 						'index_aktivis',
 						'create_aktivis',
@@ -1790,6 +1850,10 @@
 						'update_jalinan_klaim',
 						'destroy_jalinan_klaim',
 						'laporan_jalinan_klaim',
+						'index_jalinan_iuran',
+						'create_jalinan_iuran',
+						'update_jalinan_iuran',
+						'destroy_jalinan_iuran',
 					],
 				}
 			}

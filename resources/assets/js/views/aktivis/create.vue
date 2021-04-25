@@ -415,7 +415,7 @@
 													<span v-if="modelCuStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih CU</span>
 												</option>
-												<option value="0">CU BUKAN ANGGOTA PUSKOPDIT BKCU KALIMANTAN</option>
+												<option value="0">CU BUKAN ANGGOTA PUSKOPCUINA</option>
 												<option disabled value="-">---------------</option>
 												<option v-for="(cu, index) in modelCu" :value="cu.id" :key="index">{{cu.name}}</option>
 											</select>
@@ -501,7 +501,7 @@
 										<span v-if="modelCuStat === 'loading'">Mohon tunggu...</span>
 										<span v-else>Silahkan pilih tempat bekerja</span>
 									</option>
-									<option value="0">Puskopdit BKCU Kalimantan</option>
+									<option value="0">PUSKOPCUINA</option>
 									<option v-for="(cu, index) in modelCu" :value="cu.id" :key="index">{{cu.name}}</option>
 								</select>
 
@@ -556,6 +556,8 @@
 									<option value="7">Supervisor (Kepala Bagian, Kepala Divisi, Kepala/Koordinator TP, Kepala Bidang)</option>
 									<option value="8">Staf</option>
 									<option value="9">Kontrak</option>
+									<option value="10">Kolektor</option>
+									<option value="11">Kelompok Inti</option>
 								</select>
 
 								<!-- error message -->

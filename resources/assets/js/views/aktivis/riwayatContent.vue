@@ -76,7 +76,7 @@
 								<span v-if="props.item.tp">| {{ props.item.tp.name }}</span>
 							</span>
 							<span v-else-if="props.item.tipe == 2">{{ props.item.lembaga_lain }}</span>
-							<span v-else>Puskopdit BKCU Kalimantan</span>
+							<span v-else>PUSKOPCUINA</span>
 						</td>
 						<td v-html="$options.filters.date(props.item.mulai)"></td>
 						<td>
@@ -325,7 +325,7 @@
 						</td>
 						<td>
 							<span v-if="props.item.kegiatan_id != 0">
-								<span v-if="props.item.kegiatan.tipe == 'diklat_bkcu'">Puskopdit BKCU Kalimantan</span>
+								<span v-if="props.item.kegiatan.tipe == 'diklat_bkcu'">PUSKOPCUINA</span>
 							</span>
 							<span v-else-if="props.item.kegiatan_id == 0">
 								{{ props.item.lembaga }}
@@ -334,10 +334,10 @@
 						</td>
 						<td>
 							<span v-if="props.item.kegiatan_id != 0">
-								<span v-for="panitiaD in props.item.kegiatan.panitia_dalam">
+								<span v-for="(panitiaD, index) in props.item.kegiatan.panitia_dalam" :key="index">
 									<span v-if="panitiaD.pivot.peran == 'fasilitator'">{{ panitiaD.name + ', ' }}</span>
 								</span>
-								<span v-for="panitiaL in props.item.kegiatan.panitia_luar">
+								<span v-for="(panitiaL, index) in props.item.kegiatan.panitia_luar" :key="index">
 									<span v-if="panitiaL.pivot.peran == 'fasilitator'">{{ panitiaL.name + ', ' }}</span>
 								</span>
 							</span>
@@ -347,12 +347,26 @@
 							<span v-else>-</span>
 						</td>
 						<td>
-							<span v-html="$options.filters.date(props.item.datang)" v-if="props.item.datang"></span>
+							<span v-if="props.item.kegiatan_id != 0">
+								<span v-html="$options.filters.date(props.item.kegiatan.mulai)" v-if="props.item.kegiatan"></span>
+								<span v-else>-</span>
+							</span>		
+							<span v-else-if="props.item.kegiatan_id == 0">
+								<span v-html="$options.filters.date(props.item.datang)" v-if="props.item.datang"></span>
+								<span v-else>-</span>
+							</span>
 							<span v-else>-</span>
 						</td>
 						<td>
-							<span v-html="$options.filters.date(props.item.pulang)" v-if="props.item.pulang"></span>
-							<span v-else>-</span>
+							<span v-if="props.item.kegiatan_id != 0">
+								<span v-html="$options.filters.date(props.item.kegiatan.selesai)" v-if="props.item.kegiatan"></span>
+								<span v-else>-</span>
+							</span>		
+							<span v-else-if="props.item.kegiatan_id == 0">
+								<span v-html="$options.filters.date(props.item.pulang)" v-if="props.item.pulang"></span>
+								<span v-else>-</span>
+							</span>
+							<span v-else>-</span>	
 						</td>
 					</tr>
 				</template>	
@@ -411,7 +425,6 @@
 	import message from "../../components/message.vue";
 	import dataTable from '../../components/datatable.vue';
 	import appModal from '../../components/modal';
-	import { toMulipartedForm } from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
 	import formPekerjaan from "./formPekerjaan.vue";
 	import formPendidikan from "./formPendidikan.vue";

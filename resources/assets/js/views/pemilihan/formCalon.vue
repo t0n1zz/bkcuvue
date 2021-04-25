@@ -1,4 +1,4 @@
-<template>
+6204045305820001<template>
 	<div>
 		<form @submit.prevent="save" data-vv-scope="formCalon">
 
@@ -60,7 +60,7 @@
 							<span v-else>-</span>
 						</span>
 						<span v-else-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 3">
-							Puskopdit BKCU Kalimantan
+							PUSKOPCUINA
 						</span>
 						<span v-else>-</span>
 					</td>
@@ -196,7 +196,6 @@
 					aktivis_id: '',
 					pengusung_cu_id: '',
 					name: '',
-					lembaga: '',
 					gambar: '',
 				},
 				query: {

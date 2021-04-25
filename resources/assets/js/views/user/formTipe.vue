@@ -25,7 +25,7 @@
 					<!-- select -->
 					<select name="cu" data-width="100%" class="form-control" v-model="formData.id_cu" @change="changeCU($event.target.value)">
 						<option disabled value="">Silahkan pilih CU</option>
-						<option value="0">Puskopdit BKCU Kalimantan</option>
+						<option value="0">PUSKOPCUINA</option>
 						<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
 					</select>
 
@@ -69,7 +69,7 @@
 									<span v-else>-</span>
 								</span>
 								<span v-else-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 3">
-									Puskopdit BKCU Kalimantan
+									PUSKOPCUINA
 								</span>
 								<span v-else>-</span>
 							</td>

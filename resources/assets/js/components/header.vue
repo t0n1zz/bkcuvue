@@ -35,7 +35,7 @@
 
 					<!-- panduan -->
 					<li class="nav-item">
-						<a href="https://puskopditbkcukalimantan.org/panduan" class="navbar-nav-link " target="_blank">
+						<a href="https://puskopcuina.org/panduan" class="navbar-nav-link " target="_blank">
 							<i class="icon-book mr-2"></i>Panduan
 						</a>
 					</li>
@@ -398,7 +398,7 @@
 					</li>
 
 					<!-- anggota cu -->
-					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_anggota_cu'] || currentUser.can['create_jalinan_klaim'] || currentUser.can['index_anggota_cu'] || currentUser.can['index_saldo'] || currentUser.can['index_jalinan_klaim']">
+					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_anggota_cu'] || currentUser.can['create_jalinan_klaim'] || currentUser.can['index_anggota_cu'] || currentUser.can['index_saldo'] || currentUser.can['index_jalinan_klaim'] || currentUser.can['index_jalinan_iuran']">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-man-woman mr-2"></i>
 							Anggota CU
@@ -420,6 +420,11 @@
 									<!-- tambah klaim jalinan -->
 									<router-link :to="{ name:'jalinanKlaimCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_jalinan_klaim']">
 										Klaim JALINAN
+									</router-link>
+
+									<!-- tambah klaim jalinan -->
+									<router-link :to="{ name:'jalinanIuranCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_jalinan_iuran']">
+										Iuran JALINAN
 									</router-link>
 								</div>
 							</div>		
@@ -521,12 +526,43 @@
 
 								</div>
 							</div>
+
+							<!-- divider -->
+							<div class="dropdown-divider" v-if="currentUser.can['index_jalinan_iuran']"></div> 
+
+							<!-- if bkcu account -->
+							<div class="dropdown-submenu" v-if="currentUser.can['index_jalinan_iuran'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu2 == 'jalinan_iuran'}">
+								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('jalinan_iuran')">
+									<i class="icon-clipboard6"></i> Iuran JALINAN
+								</a>
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'jalinan_iuran'}">
+
+									<router-link :to="{ name: 'jalinanIuranCu', params:{cu:'semua'} }" class="dropdown-item" active-class="active" exact >
+										Semua CU
+									</router-link>
+
+									<!-- divider -->
+									<div class="dropdown-divider"></div> 
+
+									<template v-for="(cu, index) in modelCu">
+										<router-link :to="{ name: 'jalinanIuranCu', params:{cu: cu.id} }" class="dropdown-item" active-class="active" exact v-if="cu" :key="index">
+											CU {{ cu.name }}
+										</router-link>
+									</template>
+
+								</div>
+							</div>
+
+							<!-- if cu account -->
+							<router-link :to="{ name: 'jalinanIuranCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_jalinan_iuran']  && currentUser.id_cu != 0">
+								<i class="icon-accessibility2"></i> Iuran JALINAN
+							</router-link>
 							
 						</div>
 					</li>
 
 					<!-- organisasi -->
-					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_cu'] || currentUser.can['create_tp'] || currentUser.can['create_aktivis'] || currentUser.can['create_produk_cu'] || currentUser.can['create_mitra_orang'] ||  currentUser.can['create_mitra_lembaga'] || currentUser.can['index_cu'] || currentUser.can['index_tp'] || currentUser.can['index_aktivis'] || currentUser.can['index_produk_cu'] || currentUser.can['index_mitra_orang']">
+					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_cu'] || currentUser.can['create_tp'] || currentUser.can['create_aktivis'] || currentUser.can['create_produk_cu'] || currentUser.can['create_mitra_orang'] ||  currentUser.can['create_mitra_lembaga'] | currentUser.can['create_pemilihan'] || currentUser.can['index_cu'] || currentUser.can['index_tp'] || currentUser.can['index_aktivis'] || currentUser.can['index_produk_cu'] || currentUser.can['index_mitra_orang'] || currentUser.can['index_pemilihan']">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-library2 mr-2"></i>
 							Organisasi
@@ -559,6 +595,11 @@
 										<!-- tambah aktivis -->
 										<router-link :to="{ name:'aktivisCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_aktivis']">
 											Aktivis
+										</router-link>
+
+										<!-- tambah aktivis -->
+										<router-link :to="{ name:'pemilihanCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_pemilihan']">
+											Pemilihan
 										</router-link>
 
 										<!-- tambah aset tetap -->
@@ -1128,7 +1169,7 @@
 		},
 		data(){
 			return{
-				clientVersion: '3.3.7',
+				clientVersion: '3.3.8',
 				dropdownMenu1: '',
 				dropdownMenu2: '',
 				state: '',

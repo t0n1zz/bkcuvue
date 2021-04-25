@@ -3808,8 +3808,7 @@ var render = function() {
                           _vm._v("Total Hutang Pihak Ke-3 "),
                           _c("info-icon", {
                             attrs: {
-                              message:
-                                "Hutang di Puskopdit BKCU Kalimantan dan lembaga lain."
+                              message: "Hutang di PUSKOPCUINA dan lembaga lain."
                             }
                           })
                         ],

@@ -12,7 +12,7 @@
       <img src="{{ asset('images/panduan/diklatBKCU.png') }}" class="img-thumbnail" alt="">
     </div>
     <p>
-        Halaman diklat BKCU menampilkan semua diklat yang diselenggarakan oleh Puskopdit BKCU Kalimantan. Di halaman ini pengguna dapat mendaftarkan Aktivis CU untuk mengikuti diklat yang diselenggarakan.
+        Halaman diklat BKCU menampilkan semua diklat yang diselenggarakan oleh PUSKOPCUINA. Di halaman ini pengguna dapat mendaftarkan Aktivis CU untuk mengikuti diklat yang diselenggarakan.
     </p>
 
     <h6>A. Bagaimana cara mendaftar diklat BKCU?</h6>
@@ -49,7 +49,7 @@
     </ol>
 
     <p>
-      Setelah mendaftarkan peserta, maka semua peserta yang didaftarkan oleh pengguna akan muncul di tabel peserta dan disana pengguna bisa menambah peserta, mengubah informasi khusus dan menghapus peserta dari diklat. Semua peserta yang didaftarkan akan berstatus <span class="badge badge-info">MENUNGGU</span> dan akan berubah nanti ketika bagian Diklat Puskopdit BKCU Kalimantan melakukan verifikasi dan mengubah status dari peserta. Masing-masing CU akan mendapatkan <a href="#komponen-notifikasi">notifikasi</a> ketika terjadi perubahan status peserta serta akan juga muncul di <a href="#dashboard">dashboard</a> 
+      Setelah mendaftarkan peserta, maka semua peserta yang didaftarkan oleh pengguna akan muncul di tabel peserta dan disana pengguna bisa menambah peserta, mengubah informasi khusus dan menghapus peserta dari diklat. Semua peserta yang didaftarkan akan berstatus <span class="badge badge-info">MENUNGGU</span> dan akan berubah nanti ketika bagian Diklat PUSKOPCUINA melakukan verifikasi dan mengubah status dari peserta. Masing-masing CU akan mendapatkan <a href="#komponen-notifikasi">notifikasi</a> ketika terjadi perubahan status peserta serta akan juga muncul di <a href="#dashboard">dashboard</a> 
     </p>
 
     <div class="mb-3 text-center">

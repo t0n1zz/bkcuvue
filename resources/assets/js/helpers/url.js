@@ -5,7 +5,7 @@ switch( process.env.NODE_ENV){
     api_url = 'https://bkcuvue.test/api/';
   break;
   case 'production': 
-    api_url = 'https://puskopditbkcukalimantan.org/api/';
+    api_url = 'https://puskopcuina.org/api/';
   break;   
 }
 

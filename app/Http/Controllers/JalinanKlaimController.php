@@ -1198,36 +1198,46 @@ class JalinanKlaimController extends Controller{
 				$spma_2 = '';	
 		}
 
-		$kelas = JalinanKlaim::create($request->except('dokumen_ktp','dokumen_meninggal','dokumen_pinjaman_1','dokumen_pinjaman_2','dokumen_pinjaman_3','dokumen_pinjaman_4','dokumen_pinjaman_5','dokumen_pinjaman_6','buku_simpanan_1','buku_simpanan_2','buku_simpanan_3','buku_simpanan_4','buku_simpanan_5','buku_pinjaman_1','buku_pinjaman_2','buku_pinjaman_3','spma_1','spma_2') + [
-			'dokumen_ktp' => $dokumen_ktp,
-			'dokumen_meninggal' => $dokumen_meninggal,
-			'dokumen_pinjaman_1' => $dokumen_pinjaman_1,
-			'dokumen_pinjaman_2' => $dokumen_pinjaman_2,
-			'dokumen_pinjaman_3' => $dokumen_pinjaman_3,
-			'dokumen_pinjaman_4' => $dokumen_pinjaman_4,
-			'dokumen_pinjaman_5' => $dokumen_pinjaman_5,
-			'dokumen_pinjaman_6' => $dokumen_pinjaman_6,
-			'buku_simpanan_1' => $buku_simpanan_1,
-			'buku_simpanan_2' => $buku_simpanan_2,
-			'buku_simpanan_3' => $buku_simpanan_3,
-			'buku_simpanan_4' => $buku_simpanan_4,
-			'buku_simpanan_5' => $buku_simpanan_5,
-			'buku_pinjaman_1' => $buku_pinjaman_1,
-			'buku_pinjaman_2' => $buku_pinjaman_2,
-			'buku_pinjaman_3' => $buku_pinjaman_3,
-			'spma_1' => $spma_1,
-			'spma_2' => $spma_2,
-		]);
+		\DB::beginTransaction(); 
+		try{
 
-		$this->updateStatusAnggotaCu($request->anggota_cu_id, $request->tipe, $request->tanggal_mati);
+			$kelas = JalinanKlaim::create($request->except('dokumen_ktp','dokumen_meninggal','dokumen_pinjaman_1','dokumen_pinjaman_2','dokumen_pinjaman_3','dokumen_pinjaman_4','dokumen_pinjaman_5','dokumen_pinjaman_6','buku_simpanan_1','buku_simpanan_2','buku_simpanan_3','buku_simpanan_4','buku_simpanan_5','buku_pinjaman_1','buku_pinjaman_2','buku_pinjaman_3','spma_1','spma_2') + [
+				'dokumen_ktp' => $dokumen_ktp,
+				'dokumen_meninggal' => $dokumen_meninggal,
+				'dokumen_pinjaman_1' => $dokumen_pinjaman_1,
+				'dokumen_pinjaman_2' => $dokumen_pinjaman_2,
+				'dokumen_pinjaman_3' => $dokumen_pinjaman_3,
+				'dokumen_pinjaman_4' => $dokumen_pinjaman_4,
+				'dokumen_pinjaman_5' => $dokumen_pinjaman_5,
+				'dokumen_pinjaman_6' => $dokumen_pinjaman_6,
+				'buku_simpanan_1' => $buku_simpanan_1,
+				'buku_simpanan_2' => $buku_simpanan_2,
+				'buku_simpanan_3' => $buku_simpanan_3,
+				'buku_simpanan_4' => $buku_simpanan_4,
+				'buku_simpanan_5' => $buku_simpanan_5,
+				'buku_pinjaman_1' => $buku_pinjaman_1,
+				'buku_pinjaman_2' => $buku_pinjaman_2,
+				'buku_pinjaman_3' => $buku_pinjaman_3,
+				'spma_1' => $spma_1,
+				'spma_2' => $spma_2,
+			]);
 
-		$this->storeStatusJalinan($kelas->id, $request->cu_id, $request->status_klaim);
-		
-		return response()
-			->json([
-				'saved' => true,
-				'message' => $this->message. ' berhasil ditambah'
-			]);	
+			$this->updateStatusAnggotaCu($request->anggota_cu_id, $request->tipe, $request->tanggal_mati);
+
+			$this->storeStatusJalinan($kelas->id, $request->cu_id, $request->status_klaim);
+
+			\DB::commit();
+			
+			return response()
+				->json([
+					'saved' => true,
+					'message' => $this->message. ' berhasil ditambah'
+				]);	
+
+		} catch (\Exception $e){
+			\DB::rollBack();
+			abort(500, $e->getMessage());
+		}
 	}
 
 	public function storeStatusJalinan($id, $cu, $status){
@@ -1251,9 +1261,15 @@ class JalinanKlaimController extends Controller{
 
 	public function edit($nik, $cu, $tipe)
 	{
-		$kelas = JalinanKlaim::with('anggota_cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->where('anggota_cu_cu_id', $cu)->where('tipe', $tipe)->whereHas('anggota_cu', function($query) use ($nik){ 
+		$kelas = JalinanKlaim::with('anggota_cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')
+		->where(function($query){
+			$query->where('keterangan_klaim','!=','Klaim Ditolak Karena Salah Memilih Anggota')->orWhere('keterangan_klaim', NULL);
+		})
+		->where('anggota_cu_cu_id', $cu)
+		->where('tipe', $tipe)->whereHas('anggota_cu', function($query) use ($nik){ 
 			$query->where('nik',$nik); 
 		})->first();
+
 
 		if($kelas){
 			return response()
@@ -1362,34 +1378,44 @@ class JalinanKlaimController extends Controller{
 		else
 			$spma_2 = '';
 
-		$kelas->update($request->except('dokumen_ktp','dokumen_meninggal','dokumen_pinjaman_1','dokumen_pinjaman_2','dokumen_pinjaman_3','dokumen_pinjaman_4','dokumen_pinjaman_5','dokumen_pinjaman_6','buku_simpanan_1','buku_simpanan_2','buku_simpanan_3','buku_simpanan_4','buku_simpanan_5','buku_pinjaman_1','buku_pinjaman_2','buku_pinjaman_3','spma_1','spma_1') + [
-			'dokumen_ktp' => $dokumen_ktp,
-			'dokumen_meninggal' => $dokumen_meninggal,
-			'dokumen_pinjaman_1' => $dokumen_pinjaman_1,
-			'dokumen_pinjaman_2' => $dokumen_pinjaman_2,
-			'dokumen_pinjaman_3' => $dokumen_pinjaman_3,
-			'dokumen_pinjaman_4' => $dokumen_pinjaman_4,
-			'dokumen_pinjaman_5' => $dokumen_pinjaman_5,
-			'dokumen_pinjaman_6' => $dokumen_pinjaman_6,
-			'buku_simpanan_1' => $buku_simpanan_1,
-			'buku_simpanan_2' => $buku_simpanan_2,
-			'buku_simpanan_3' => $buku_simpanan_3,
-			'buku_simpanan_4' => $buku_simpanan_4,
-			'buku_simpanan_5' => $buku_simpanan_5,
-			'buku_pinjaman_1' => $buku_pinjaman_1,
-			'buku_pinjaman_2' => $buku_pinjaman_2,
-			'buku_pinjaman_3' => $buku_pinjaman_3,
-			'spma_1' => $spma_1,
-			'spma_2' => $spma_2,
-		]);	
+		\DB::beginTransaction(); 
+		try{
 
-		$this->updateStatusAnggotaCu($anggota_cu_id, $request->tipe, $request->tanggal_mati);
+			$kelas->update($request->except('dokumen_ktp','dokumen_meninggal','dokumen_pinjaman_1','dokumen_pinjaman_2','dokumen_pinjaman_3','dokumen_pinjaman_4','dokumen_pinjaman_5','dokumen_pinjaman_6','buku_simpanan_1','buku_simpanan_2','buku_simpanan_3','buku_simpanan_4','buku_simpanan_5','buku_pinjaman_1','buku_pinjaman_2','buku_pinjaman_3','spma_1','spma_1') + [
+				'dokumen_ktp' => $dokumen_ktp,
+				'dokumen_meninggal' => $dokumen_meninggal,
+				'dokumen_pinjaman_1' => $dokumen_pinjaman_1,
+				'dokumen_pinjaman_2' => $dokumen_pinjaman_2,
+				'dokumen_pinjaman_3' => $dokumen_pinjaman_3,
+				'dokumen_pinjaman_4' => $dokumen_pinjaman_4,
+				'dokumen_pinjaman_5' => $dokumen_pinjaman_5,
+				'dokumen_pinjaman_6' => $dokumen_pinjaman_6,
+				'buku_simpanan_1' => $buku_simpanan_1,
+				'buku_simpanan_2' => $buku_simpanan_2,
+				'buku_simpanan_3' => $buku_simpanan_3,
+				'buku_simpanan_4' => $buku_simpanan_4,
+				'buku_simpanan_5' => $buku_simpanan_5,
+				'buku_pinjaman_1' => $buku_pinjaman_1,
+				'buku_pinjaman_2' => $buku_pinjaman_2,
+				'buku_pinjaman_3' => $buku_pinjaman_3,
+				'spma_1' => $spma_1,
+				'spma_2' => $spma_2,
+			]);	
 
-		return response()
-			->json([
-				'saved' => true,
-				'message' => $this->message. ' berhasil diubah'
-			]);
+			$this->updateStatusAnggotaCu($anggota_cu_id, $request->tipe, $request->tanggal_mati);
+
+			\DB::commit();
+
+			return response()
+				->json([
+					'saved' => true,
+					'message' => $this->message. ' berhasil diubah'
+				]);
+
+		} catch (\Exception $e){
+			\DB::rollBack();
+			abort(500, $e->getMessage());
+		}
 	}
 
 	public function updateStatus(Request $request, $id)
@@ -1661,15 +1687,24 @@ class JalinanKlaimController extends Controller{
 			File::delete($this->imagepath . $kelas->spma_2 . '.jpg');
 		}
 
-		$kelas->delete();
+		\DB::beginTransaction(); 
+		try{
 
-		$this->updateStatusAnggotaCu($anggota_cu_id, NULL, NULL);
+			$kelas->delete();
 
-		return response()
-			->json([
-				'deleted' => true,
-				'message' => $this->message. ' berhasil dihapus'
-			]);
+			$this->updateStatusAnggotaCu($anggota_cu_id, NULL, NULL);
+
+			\DB::commit();
+			
+			return response()
+				->json([
+					'deleted' => true,
+					'message' => $this->message. ' berhasil dihapus'
+				]);
+		} catch (\Exception $e){
+			\DB::rollBack();
+			abort(500, $e->getMessage());
+		}
 	}
 
 	public function count()

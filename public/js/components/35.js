@@ -4534,7 +4534,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       } else if (this.selected.aktivis.pekerjaan_aktif.tipe == 2) {
         this.formPeserta.lembaga = this.selected.aktivis.pekerjaan_aktif.lembaga_lain.name;
       } else if (this.selected.aktivis.pekerjaan_aktif.tipe == 3) {
-        this.formPeserta.lembaga = "Puskopdit BKCU Kalimantan";
+        this.formPeserta.lembaga = "PUSKOPCUINA";
       }
     } else {
       var i;
@@ -4614,7 +4614,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         } else if (item.pekerjaan_aktif.tipe == 2) {
           this.formPeserta.lembaga = item.pekerjaan_aktif.lembaga_lain.name;
         } else if (item.pekerjaan_aktif.tipe == 3) {
-          this.formPeserta.lembaga = "Puskopdit BKCU Kalimantan";
+          this.formPeserta.lembaga = "PUSKOPCUINA";
         }
 
         this.message.show = false;
@@ -7194,7 +7194,7 @@ var render = function() {
                                                                   .tipe == 3
                                                               ? _c("span", [
                                                                   _vm._v(
-                                                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tPuskopdit BKCU Kalimantan\n\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tPUSKOPCUINA\n\t\t\t\t\t\t\t\t\t\t\t\t\t"
                                                                   )
                                                                 ])
                                                               : _c("span", [
@@ -7315,7 +7315,7 @@ var render = function() {
                                         ],
                                         null,
                                         false,
-                                        3933157209
+                                        4144858265
                                       )
                                     })
                                   ],
@@ -7545,10 +7545,10 @@ var render = function() {
                                                                     [
                                                                       _c("i", {
                                                                         staticClass:
-                                                                          "icon-file-download"
+                                                                          "icon-file-eye"
                                                                       }),
                                                                       _vm._v(
-                                                                        " Unduh"
+                                                                        " Lihat"
                                                                       )
                                                                     ]
                                                                   )
@@ -7574,10 +7574,10 @@ var render = function() {
                                                                     [
                                                                       _c("i", {
                                                                         staticClass:
-                                                                          "icon-file-download"
+                                                                          "icon-file-eye"
                                                                       }),
                                                                       _vm._v(
-                                                                        " Unduh"
+                                                                        " Lihat"
                                                                       )
                                                                     ]
                                                                   )
@@ -7662,10 +7662,10 @@ var render = function() {
                                                                     [
                                                                       _c("i", {
                                                                         staticClass:
-                                                                          "icon-file-download"
+                                                                          "icon-file-eye"
                                                                       }),
                                                                       _vm._v(
-                                                                        " Unduh"
+                                                                        " Lihat"
                                                                       )
                                                                     ]
                                                                   )
@@ -7691,10 +7691,10 @@ var render = function() {
                                                                     [
                                                                       _c("i", {
                                                                         staticClass:
-                                                                          "icon-file-download"
+                                                                          "icon-file-eye"
                                                                       }),
                                                                       _vm._v(
-                                                                        " Unduh"
+                                                                        " Lihat"
                                                                       )
                                                                     ]
                                                                   )
@@ -10301,7 +10301,7 @@ var render = function() {
                                                                   .tipe == 3
                                                               ? _c("span", [
                                                                   _vm._v(
-                                                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t\tPuskopdit BKCU Kalimantan\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t\tPUSKOPCUINA\n\t\t\t\t\t\t\t\t\t\t\t\t"
                                                                   )
                                                                 ])
                                                               : _c("span", [
@@ -10631,7 +10631,7 @@ var render = function() {
                                       ],
                                       null,
                                       false,
-                                      693935439
+                                      1579556623
                                     )
                                   },
                                   [
@@ -11574,7 +11574,7 @@ var render = function() {
                                                                 .tipe == 3
                                                             ? _c("span", [
                                                                 _vm._v(
-                                                                  "\n\t\t\t\t\t\t\t\t\t\t\t\t\tPuskopdit BKCU Kalimantan\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                                  "\n\t\t\t\t\t\t\t\t\t\t\t\t\tPUSKOPCUINA\n\t\t\t\t\t\t\t\t\t\t\t\t"
                                                                 )
                                                               ])
                                                             : _c("span", [
@@ -11881,7 +11881,7 @@ var render = function() {
                                     ],
                                     null,
                                     false,
-                                    3825772618
+                                    3482834570
                                   )
                                 })
                               ],
@@ -12993,7 +12993,7 @@ var render = function() {
                       _vm._s(
                         _vm.currentUser && _vm.currentUser.id_cu != 0
                           ? _vm.currentUser.cu.name
-                          : "Puskopdit BKCU Kalimantan"
+                          : "PUSKOPCUINA"
                       ) +
                       "\n\t\t\t\t\t\t\t"
                   ),
@@ -15926,7 +15926,7 @@ var render = function() {
                                       props.item.pekerjaan_aktif.tipe == 3
                                     ? _c("span", [
                                         _vm._v(
-                                          "\n\t\t\t\t\t\tPuskopdit BKCU Kalimantan\n\t\t\t\t\t"
+                                          "\n\t\t\t\t\t\tPUSKOPCUINA\n\t\t\t\t\t"
                                         )
                                       ])
                                     : _c("span", [_vm._v("-")])
@@ -16045,7 +16045,7 @@ var render = function() {
                 ],
                 null,
                 false,
-                1502979600
+                3568210896
               )
             })
           : _vm._e(),

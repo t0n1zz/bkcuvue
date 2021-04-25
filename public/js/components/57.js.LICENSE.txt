@@ -1,0 +1,11 @@
+/*!
+ * vue-truncate-collapsed v1.9.0
+ * (c) 2018-present João Vitor Cavalcante
+ * Released under the MIT License.
+ */
+
+/**
+  * Hopper 0.3.4
+  * (c) 2019
+    * @license MIT
+    */

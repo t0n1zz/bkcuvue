@@ -602,7 +602,7 @@ switch ("development") {
     break;
 
   case 'production':
-    api_url = 'https://puskopditbkcukalimantan.org/api/';
+    api_url = 'https://puskopcuina.org/api/';
     break;
 }
 
