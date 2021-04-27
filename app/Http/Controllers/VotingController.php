@@ -6,25 +6,21 @@ use Auth;
 use File;
 use Image;
 use App\Aktivis;
-use App\Pemilihan;
-use App\PemilihanCalon;
-use App\PemilihanSuara;
+use App\Voting;
+use App\VotingPilihan;
+use App\VotingSuara;
 use App\Support\Helper;
 use Illuminate\Http\Request;
 use App\Support\NotificationHelper;
-use App\Events\PemilihanEvent;
+use App\Events\VotingEvent;
 
-class PemilihanController extends Controller{
+class VotingController extends Controller{
 
-	protected $message = "Pemilihan";
+	protected $message = "Voting";
 
 	public function index()
 	{
-		$table_data = Pemilihan::withCount('cu','hasCalon')->withCount('hasSuara')->advancedFilter();
-
-		foreach($table_data as $t){
-			$t->tingkat = $this->checkTingkat($t->tingkat);
-		}
+		$table_data = Voting::withCount('cu','hasPilihan')->withCount('hasSuara')->advancedFilter();
 
 		return response()
 		->json([
@@ -34,11 +30,8 @@ class PemilihanController extends Controller{
 
 	public function indexCu($id)
 	{
-		$table_data = Pemilihan::withCount('hasCalon')->where('id_cu', $id)->withCount('hasSuara')->advancedFilter();
+		$table_data = Voting::withCount('hasPilihan')->where('id_cu', $id)->withCount('hasSuara')->advancedFilter();
 
-		foreach($table_data as $t){
-			$t->tingkat = $this->checkTingkat($t->tingkat);
-		}
 
 		return response()
 		->json([
@@ -46,9 +39,9 @@ class PemilihanController extends Controller{
 		]);
 	}
 
-	public function indexPemilihan()
+	public function indexVoting()
 	{
-		$table_data = Pemilihan::get();
+		$table_data = Voting::get();
 
 		return response()
 		->json([
@@ -60,14 +53,14 @@ class PemilihanController extends Controller{
 	{
 		$table_data = [];
 		$form = '';
-		$suaras = PemilihanSuara::where('name', $name)->get();
+		$suaras = VotingSuara::where('name', $name)->get();
 
 		foreach($suaras as $suara){
-		$pemilihan = Pemilihan::with('calon.pekerjaan_aktif.cu','calon.pendidikan_tertinggi')->where('id', $suara->pemilihan_id)->where('status',1)->first();
+		$pemilihan = Voting::with('calon.pekerjaan_aktif.cu','calon.pendidikan_tertinggi')->where('id', $suara->pemilihan_id)->where('status',1)->first();
 
 			if($pemilihan){
 				$table_data = $pemilihan;
-				$form = PemilihanSuara::with('calon.aktivis.pekerjaan_aktif.cu','calon.aktivis.pendidikan_tertinggi')->where('name', $name)->where('pemilihan_id', $pemilihan->id)->first();
+				$form = VotingSuara::with('calon.aktivis.pekerjaan_aktif.cu','calon.aktivis.pendidikan_tertinggi')->where('name', $name)->where('pemilihan_id', $pemilihan->id)->first();
 			}
 		}
 		
@@ -80,7 +73,7 @@ class PemilihanController extends Controller{
 
 	public function indexSuara($id)
 	{
-		$table_data = PemilihanCalon::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('pemilihan_id', $id)->get();
+		$table_data = VotingPilihan::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('pemilihan_id', $id)->get();
 
 		return response()
 		->json([
@@ -91,7 +84,7 @@ class PemilihanController extends Controller{
 	public function checkUser($pemilihan_id)
 	{
 		$user_id = Auth::user()->id_cu;
-		$table_data = PemilihanSuara::where('pemilihan_id',$pemilihan_id)->where('user_id',$user_id)->first();
+		$table_data = VotingSuara::where('pemilihan_id',$pemilihan_id)->where('user_id',$user_id)->first();
 
 		return response()
 		->json([
@@ -103,44 +96,44 @@ class PemilihanController extends Controller{
 	{
 		return response()
 			->json([
-					'form' => Pemilihan::initialize(),
-					'rules' => Pemilihan::$rules,
+					'form' => Voting::initialize(),
+					'rules' => Voting::$rules,
 					'option' => []
 			]);
 	}
 
 	public function store(Request $request)
 	{		
-		$this->validate($request,Pemilihan::$rules);
+		$this->validate($request,Voting::$rules);
 
 		$name = $request->name;
 
 		if($request->sumberSuara == 0){
-			$kelas = Pemilihan::create($request->except('id_cu','status') + [
+			$kelas = Voting::create($request->except('id_cu','status') + [
 				'id_cu' => Auth::user()->id_cu,
 				'status' => '0'
 			]);
 
 			for ($x = 1; $x <= $request->suara; $x++) {
-				PemilihanSuara::create([
+				VotingSuara::create([
 					'pemilihan_id' => $kelas->id,
 					'name' => bin2hex(random_bytes(4))
 				]);
 			}
 		}else{
-			$kelasPemilihan = Pemilihan::findOrFail($request->sumberSuara);
-			$suara = $kelasPemilihan->suara;
+			$kelasVoting = Voting::findOrFail($request->sumberSuara);
+			$suara = $kelasVoting->suara;
 
-			$kelas = Pemilihan::create($request->except('id_cu','status','suara') + [
+			$kelas = Voting::create($request->except('id_cu','status','suara') + [
 				'id_cu' => Auth::user()->id_cu,
 				'status' => '0',
 				'suara' => $suara
 			]);
 
-			$kelasSuara = PemilihanSuara::where('pemilihan_id',$kelasPemilihan->id)->get();
+			$kelasSuara = VotingSuara::where('pemilihan_id',$kelasVoting->id)->get();
 			
 			foreach($kelasSuara as $dataSuara){
-				PemilihanSuara::create([
+				VotingSuara::create([
 					'pemilihan_id' => $kelas->id,
 					'name' => $dataSuara->name
 				]);
@@ -170,15 +163,15 @@ class PemilihanController extends Controller{
 
 	public function storePilihan(Request $request)
 	{	
-		$pemilihan = Pemilihan::findOrFail($request->pemilihan_id);
+		$pemilihan = Voting::findOrFail($request->pemilihan_id);
 
 		if($pemilihan->status == 1){
-			$cekSuara = PemilihanSuara::where('pemilihan_id',$request->pemilihan_id)->where('name',$request->name)->where('pemilihan_calon_id',null)->first();
+			$cekSuara = VotingSuara::where('pemilihan_id',$request->pemilihan_id)->where('name',$request->name)->where('pemilihan_calon_id',null)->first();
 	
 			if($cekSuara){
 				\DB::beginTransaction(); 
 				try{
-					$kelasCalon = PemilihanCalon::findOrFail($request->pemilihan_calon_id);
+					$kelasCalon = VotingPilihan::findOrFail($request->pemilihan_calon_id);
 					$skor = $kelasCalon->skor + 1;
 					$kelasCalon->skor = $skor;
 					$kelasCalon->update();
@@ -186,12 +179,12 @@ class PemilihanController extends Controller{
 					$cekSuara->pemilihan_calon_id = $request->pemilihan_calon_id;
 					$cekSuara->update();
 	
-					$kelasPemilihan = Pemilihan::findOrFail($request->pemilihan_id);
-					$suara_ok = $kelasPemilihan->suara_ok + 1;
-					$kelasPemilihan->suara_ok = $suara_ok;
-					$kelasPemilihan->update();
+					$kelasVoting = Voting::findOrFail($request->pemilihan_id);
+					$suara_ok = $kelasVoting->suara_ok + 1;
+					$kelasVoting->suara_ok = $suara_ok;
+					$kelasVoting->update();
 					
-					event(new PemilihanEvent($skor, $kelasPemilihan->id, $kelasCalon->id));
+					event(new VotingEvent($skor, $kelasVoting->id, $kelasCalon->id));
 
 					Aktivis::flushCache();
 					
@@ -199,7 +192,7 @@ class PemilihanController extends Controller{
 					return response()
 						->json([
 							'saved' => true,
-							'message' => 'Pemilihan telah berhasil dilakukan.',
+							'message' => 'Voting telah berhasil dilakukan.',
 						]);	
 				} catch (\Exception $e){
 					\DB::rollBack();
@@ -223,9 +216,8 @@ class PemilihanController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = Pemilihan::with('calon.pekerjaan_aktif.cu','calon.pendidikan_tertinggi','cu','hasSuara')->findOrFail($id);
+		$kelas = Voting::with('calon.pekerjaan_aktif.cu','calon.pendidikan_tertinggi','cu','hasSuara')->findOrFail($id);
 
-		$kelas->tingkat = $this->checkTingkat($kelas->tingkat);
 
 		return response()
 				->json([
@@ -236,11 +228,11 @@ class PemilihanController extends Controller{
 
 	public function update(Request $request, $id)
 	{
-		$this->validate($request, Pemilihan::$rules);
+		$this->validate($request, Voting::$rules);
 
 		$name = $request->name;
 
-		$kelas = Pemilihan::findOrFail($id);
+		$kelas = Voting::findOrFail($id);
 
 		if($request->calon){
 			$calonArray = array();
@@ -263,13 +255,13 @@ class PemilihanController extends Controller{
 
 	public function updateStatus($id)
 	{
-		$kelas = Pemilihan::findOrFail($id);
+		$kelas = Voting::findOrFail($id);
 
 		if($kelas->status == 1){
 			$kelas->status  = 0;
 		}else{
 			$kelas->status  = 1;
-			Pemilihan::where('id','!=', $kelas->id)->update(['status' => 0]);
+			Voting::where('id','!=', $kelas->id)->update(['status' => 0]);
 		}
 
 		$kelas->update();
@@ -283,11 +275,8 @@ class PemilihanController extends Controller{
 
 	public function destroy($id)
 	{
-		$kelas = Pemilihan::findOrFail($id);
+		$kelas = Voting::findOrFail($id);
 		$name = $kelas->name;
-
-		$kelas->calon()->sync([]);
-
 		$kelas->delete();
 
 		return response()
@@ -298,9 +287,9 @@ class PemilihanController extends Controller{
 	}
 
 
-	public function countCalon($id)
+	public function countPilihan($id)
 	{
-			$table_data = PemilihanCalon::where('pemilihan_id',$id)->count();
+			$table_data = VotingPilihan::where('voting_id',$id)->count();
 			
 			return response()
 			->json([
@@ -310,41 +299,11 @@ class PemilihanController extends Controller{
 
 	public function countSuara($id)
 	{
-			$table_data = PemilihanSuara::where('pemilihan_id',$id)->count();
+			$table_data = VotingSuara::where('voting_id',$id)->count();
 			
 			return response()
 			->json([
 					'model' => $table_data
 			]);
-	}
-
-	public function checkTingkat($value){
-		if ($value == 1) {
-			$value = 'Pengurus';
-		} else if($value == 2) {
-			$value = 'Pengawas';
-		}	else if($value == 3) {
-			$value = 'Komite';
-		} else if($value == 4) {
-			$value = 'Penasihat';
-		} else if($value == 5) {
-			$value = 'Senior Manajer';
-		} else if($value == 6) {
-			$value = 'Manajer';
-		} else if($value == 7) {
-			$value = 'Supervisor';
-		} else if($value == 8) {
-			$value = 'Staf';
-		} else if($value == 9) {
-			$value = 'Kontrak';
-		} else if($value == 10) {
-			$value = 'Kolektor';
-		} else if($value == 11) {
-			$value = 'Kelompok Inti';
-		} else {
-			$value = '-';
-		}
-
-		return $value;
 	}
 }

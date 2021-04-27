@@ -16,6 +16,11 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
     Route::get('/pemilihan/indexSuara/{id}', 'PemilihanController@indexSuara');
     Route::post('/pemilihan/storePilihan', 'PemilihanController@storePilihan');
 
+    //voting
+    Route::get('/voting/indexPilihan/{name}', 'VotingController@indexPilihan');
+    Route::get('/voting/indexSuara/{id}', 'VotingController@indexSuara');
+    Route::post('/voting/storePilihan', 'VotingController@storePilihan');
+
     Route::group(['middleware'=>'jwt.auth'],function(){
     // Route::group(['prefix'=>'v1'],function(){
 
@@ -777,6 +782,27 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         });
         Route::group(['middleware' => ['permission:destroy_pemilihan']], function () {
             Route::delete('/pemilihan/{id}', 'PemilihanController@destroy');
+        });
+
+        //voting
+        Route::group(['middleware' => ['permission:index_voting']], function () {
+            Route::get('/voting', 'VotingController@index');
+            Route::get('/voting/indexCu/{id}', 'VotingController@indexCu');
+            Route::get('/voting/indexPemilihan', 'VotingController@indexPemilihan');
+            Route::get('/voting/indexUser/{id}', 'VotingController@indexUser');
+            Route::get('/voting/checkUser/{voting_id}', 'VotingController@checkUser');
+        });
+        Route::group(['middleware' => ['permission:create_voting']], function () {
+            Route::get('/voting/create', 'VotingController@create');
+            Route::post('/voting/store', 'VotingController@store');
+        });
+        Route::group(['middleware' => ['permission:update_voting']], function () {
+            Route::get('/voting/edit/{id}', 'VotingController@edit');
+            Route::post('/voting/update/{id}', 'VotingController@update');
+            Route::get('/voting/updateStatus/{id}', 'VotingController@updateStatus');
+        });
+        Route::group(['middleware' => ['permission:destroy_voting']], function () {
+            Route::delete('/voting/{id}', 'VotingController@destroy');
         });
 
         // puskopdit
