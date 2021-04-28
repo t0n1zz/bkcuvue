@@ -20,7 +20,7 @@ class VotingController extends Controller{
 
 	public function index()
 	{
-		$table_data = Voting::withCount('cu','hasPilihan')->withCount('hasSuara')->advancedFilter();
+		$table_data = Voting::with('cu')->withCount('hasPilihan')->withCount('hasSuara')->advancedFilter();
 
 		return response()
 		->json([
@@ -49,18 +49,18 @@ class VotingController extends Controller{
 		]);
 	}
 
-	public function indexCalon($name)
+	public function indexPilihan($name)
 	{
 		$table_data = [];
 		$form = '';
 		$suaras = VotingSuara::where('name', $name)->get();
 
 		foreach($suaras as $suara){
-		$pemilihan = Voting::with('calon.pekerjaan_aktif.cu','calon.pendidikan_tertinggi')->where('id', $suara->pemilihan_id)->where('status',1)->first();
+		$voting = Voting::where('id', $suara->voting_id)->where('status',1)->first();
 
-			if($pemilihan){
-				$table_data = $pemilihan;
-				$form = VotingSuara::with('calon.aktivis.pekerjaan_aktif.cu','calon.aktivis.pendidikan_tertinggi')->where('name', $name)->where('pemilihan_id', $pemilihan->id)->first();
+			if($voting){
+				$table_data = $voting;
+				$form = VotingSuara::where('name', $name)->where('voting_id', $voting->id)->first();
 			}
 		}
 		
@@ -73,7 +73,7 @@ class VotingController extends Controller{
 
 	public function indexSuara($id)
 	{
-		$table_data = VotingPilihan::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('pemilihan_id', $id)->get();
+		$table_data = VotingPilihan::where('voting_id', $id)->get();
 
 		return response()
 		->json([
@@ -81,10 +81,10 @@ class VotingController extends Controller{
 		]);
 	}
 
-	public function checkUser($pemilihan_id)
+	public function checkUser($voting_id)
 	{
 		$user_id = Auth::user()->id_cu;
-		$table_data = VotingSuara::where('pemilihan_id',$pemilihan_id)->where('user_id',$user_id)->first();
+		$table_data = VotingSuara::where('voting_id',$voting_id)->where('user_id',$user_id)->first();
 
 		return response()
 		->json([
@@ -109,14 +109,13 @@ class VotingController extends Controller{
 		$name = $request->name;
 
 		if($request->sumberSuara == 0){
-			$kelas = Voting::create($request->except('id_cu','status') + [
-				'id_cu' => Auth::user()->id_cu,
+			$kelas = Voting::create($request->except('status') + [
 				'status' => '0'
 			]);
 
 			for ($x = 1; $x <= $request->suara; $x++) {
 				VotingSuara::create([
-					'pemilihan_id' => $kelas->id,
+					'voting_id' => $kelas->id,
 					'name' => bin2hex(random_bytes(4))
 				]);
 			}
@@ -124,17 +123,16 @@ class VotingController extends Controller{
 			$kelasVoting = Voting::findOrFail($request->sumberSuara);
 			$suara = $kelasVoting->suara;
 
-			$kelas = Voting::create($request->except('id_cu','status','suara') + [
-				'id_cu' => Auth::user()->id_cu,
+			$kelas = Voting::create($request->except('status','suara') + [
 				'status' => '0',
 				'suara' => $suara
 			]);
 
-			$kelasSuara = VotingSuara::where('pemilihan_id',$kelasVoting->id)->get();
+			$kelasSuara = VotingSuara::where('voting_id',$kelasVoting->id)->get();
 			
 			foreach($kelasSuara as $dataSuara){
 				VotingSuara::create([
-					'pemilihan_id' => $kelas->id,
+					'voting_id' => $kelas->id,
 					'name' => $dataSuara->name
 				]);
 			}
@@ -163,23 +161,23 @@ class VotingController extends Controller{
 
 	public function storePilihan(Request $request)
 	{	
-		$pemilihan = Voting::findOrFail($request->pemilihan_id);
+		$voting = Voting::findOrFail($request->voting_id);
 
-		if($pemilihan->status == 1){
-			$cekSuara = VotingSuara::where('pemilihan_id',$request->pemilihan_id)->where('name',$request->name)->where('pemilihan_calon_id',null)->first();
+		if($voting->status == 1){
+			$cekSuara = VotingSuara::where('voting_id',$request->voting_id)->where('name',$request->name)->where('voting_calon_id',null)->first();
 	
 			if($cekSuara){
 				\DB::beginTransaction(); 
 				try{
-					$kelasCalon = VotingPilihan::findOrFail($request->pemilihan_calon_id);
+					$kelasCalon = VotingPilihan::findOrFail($request->voting_calon_id);
 					$skor = $kelasCalon->skor + 1;
 					$kelasCalon->skor = $skor;
 					$kelasCalon->update();
 			
-					$cekSuara->pemilihan_calon_id = $request->pemilihan_calon_id;
+					$cekSuara->voting_calon_id = $request->voting_calon_id;
 					$cekSuara->update();
 	
-					$kelasVoting = Voting::findOrFail($request->pemilihan_id);
+					$kelasVoting = Voting::findOrFail($request->voting_id);
 					$suara_ok = $kelasVoting->suara_ok + 1;
 					$kelasVoting->suara_ok = $suara_ok;
 					$kelasVoting->update();
@@ -202,14 +200,14 @@ class VotingController extends Controller{
 				return response()
 					->json([
 						'saved' => false,
-						'message' => 'Maaf, anda sudah melakukan pemilihan'
+						'message' => 'Maaf, anda sudah melakukan voting'
 					]);	
 			}
 		}else{
 			return response()
 					->json([
 						'saved' => false,
-						'message' => 'Maaf, pemilihan belum aktif'
+						'message' => 'Maaf, voting belum aktif'
 					]);
 		}
 	}

@@ -50,9 +50,9 @@
 		},
 		data() {
 			return {
-				title: 'Pemilihan PUSKOPCUINA',
+				title: 'Pemilihan',
 				kelas: 'pemilihan',
-				titleDesc: 'Mengelola data pemilihan PUSKOPCUINA',
+				titleDesc: 'Mengelola data pemilihan',
 				titleIcon: 'icon-quill4',
 				selectCuPath: 'pemilihanCu',
 			}

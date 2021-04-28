@@ -70,9 +70,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      title: 'Pemilihan PUSKOPCUINA',
+      title: 'Pemilihan',
       kelas: 'pemilihan',
-      titleDesc: 'Mengelola data pemilihan PUSKOPCUINA',
+      titleDesc: 'Mengelola data pemilihan',
       titleIcon: 'icon-quill4',
       selectCuPath: 'pemilihanCu'
     };

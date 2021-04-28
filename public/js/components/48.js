@@ -680,9 +680,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     back: function back() {
-      this.$router.push({
-        name: this.kelas
-      });
+      if (this.currentUser.id_cu == 0) {
+        this.$router.push({
+          name: this.kelas,
+          params: {
+            cu: 'semua'
+          }
+        });
+      } else {
+        this.$router.push({
+          name: this.kelas,
+          params: {
+            cu: this.currentUser.id_cu
+          }
+        });
+      }
     },
     selectedRow: function selectedRow(item, index) {
       this.selectedItemCalon = item;
@@ -2005,25 +2017,25 @@ var render = function() {
                                           ),
                                           _vm._v(" "),
                                           _vm._l(_vm.modelPemilihan, function(
-                                            pemilihan
+                                            pemilihan,
+                                            index
                                           ) {
-                                            return pemilihan
-                                              ? _c(
-                                                  "option",
-                                                  {
-                                                    domProps: {
-                                                      value: pemilihan.id
-                                                    }
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      _vm._s(pemilihan.name) +
-                                                        " | jumlah suara: " +
-                                                        _vm._s(pemilihan.suara)
-                                                    )
-                                                  ]
+                                            return _c(
+                                              "option",
+                                              {
+                                                key: index,
+                                                domProps: {
+                                                  value: pemilihan.id
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(pemilihan.name) +
+                                                    " | jumlah suara: " +
+                                                    _vm._s(pemilihan.suara)
                                                 )
-                                              : _vm._e()
+                                              ]
+                                            )
                                           })
                                         ],
                                         2

@@ -159,6 +159,11 @@ class UserController extends Controller
 		'update_pemilihan',
 		'destroy_pemilihan',
 
+		'index_voting',
+		'create_voting',
+		'update_voting',
+		'destroy_voting',
+
 		'index_laporan_cu',
 		'create_laporan_cu',
 		'update_laporan_cu',

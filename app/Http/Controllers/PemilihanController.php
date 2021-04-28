@@ -20,7 +20,7 @@ class PemilihanController extends Controller{
 
 	public function index()
 	{
-		$table_data = Pemilihan::withCount('cu','hasCalon')->withCount('hasSuara')->advancedFilter();
+		$table_data = Pemilihan::with('cu')->withCount('hasCalon')->withCount('hasSuara')->advancedFilter();
 
 		foreach($table_data as $t){
 			$t->tingkat = $this->checkTingkat($t->tingkat);
@@ -116,8 +116,7 @@ class PemilihanController extends Controller{
 		$name = $request->name;
 
 		if($request->sumberSuara == 0){
-			$kelas = Pemilihan::create($request->except('id_cu','status') + [
-				'id_cu' => Auth::user()->id_cu,
+			$kelas = Pemilihan::create($request->except('status') + [
 				'status' => '0'
 			]);
 
@@ -131,8 +130,7 @@ class PemilihanController extends Controller{
 			$kelasPemilihan = Pemilihan::findOrFail($request->sumberSuara);
 			$suara = $kelasPemilihan->suara;
 
-			$kelas = Pemilihan::create($request->except('id_cu','status','suara') + [
-				'id_cu' => Auth::user()->id_cu,
+			$kelas = Pemilihan::create($request->except('status','suara') + [
 				'status' => '0',
 				'suara' => $suara
 			]);

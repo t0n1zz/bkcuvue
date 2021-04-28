@@ -41,6 +41,7 @@ import { produkCu } from './modules/produkCu';
 import { kegiatanBKCU } from './modules/kegiatanBKCU';
 import { tempat } from './modules/tempat';
 import { pemilihan } from './modules/pemilihan';
+import { voting } from './modules/voting';
 import { notification } from './modules/notification';
 import { saran } from './modules/saran';
 import { errorLog } from './modules/errorLog';
@@ -89,6 +90,7 @@ export default new Vuex.Store({
 		 kegiatanBKCU,
 		 tempat,
 		 pemilihan,
+		 voting,
 		 notification,
 		 saran,
 		 errorLog

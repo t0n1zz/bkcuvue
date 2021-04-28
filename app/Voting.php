@@ -21,24 +21,24 @@ class Voting extends Model {
 
     
     protected $fillable = [
-        'id_cu','name','status','created_at','updated_at','deleted_at','suara','suara_ok'
+        'id_cu','id_kegiatan','name','name_kegiatan','status','created_at','updated_at','deleted_at','suara','suara_ok'
     ];
 
     protected $allowedFilters = [
-        'id','id_cu','name','status','created_at','updated_at','deleted_at','suara','suara_ok',
+        'id','id_cu','id_kegiatan','name','name_kegiatan','status','created_at','updated_at','deleted_at','suara','suara_ok',
 
         'cu.name',
     ];
 
     protected $orderable = [
-        'id','id_cu','name','status','created_at','updated_at','deleted_at','suara','suara_ok',
+        'id','id_cu','id_kegiatan','name','name_kegiatan','status','created_at','updated_at','deleted_at','suara','suara_ok',
 
         'cu.name',
     ];
     
     public static function initialize(){
         return [
-            'id_cu' => '', 'name' => '', 'status' => '',  'suara' => '',  'suara_ok' => '', 'sumberSuara' => '0'
+            'id_cu' => '','id_kegiatan' =>'', 'name' => '','name_kegiatan', 'status' => '',  'suara' => '',  'suara_ok' => '', 'sumberSuara' => '0'
         ];
     }
 

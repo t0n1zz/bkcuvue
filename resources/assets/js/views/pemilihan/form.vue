@@ -124,7 +124,7 @@
 													</option>
 													<option value="0">Data Suara Baru</option>
 													<option disabled value="">----------------</option>
-													<option v-for="pemilihan in modelPemilihan" v-if="pemilihan" :value="pemilihan.id">{{pemilihan.name}} | jumlah suara: {{pemilihan.suara}}</option>
+													<option v-for="(pemilihan, index) in modelPemilihan" :value="pemilihan.id" :key="index">{{pemilihan.name}} | jumlah suara: {{pemilihan.suara}}</option>
 												</select>
 
 												<!-- error message -->
@@ -420,7 +420,11 @@
 				});
 			},
 			back(){
-				this.$router.push({name: this.kelas });
+				if(this.currentUser.id_cu == 0){
+					this.$router.push({name: this.kelas, params:{cu:'semua'}});
+				}else{
+					this.$router.push({name: this.kelas, params:{cu: this.currentUser.id_cu}});
+				}
 			},
 			selectedRow(item,index){
 				this.selectedItemCalon = item;

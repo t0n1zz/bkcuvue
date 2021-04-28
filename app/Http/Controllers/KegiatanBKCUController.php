@@ -501,7 +501,7 @@ class KegiatanBKCUController extends Controller{
 			}else{
 				// TODO : BUGGGG
 				$filename = $file->getClientOriginalName();
-				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.'.$kegiatan_tipe;
+				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). $fileExtension;
 				$file->move($materipath,$formatedName);
 			}
 		}
@@ -591,7 +591,7 @@ class KegiatanBKCUController extends Controller{
 			}
 			
 			$filename = $file->getClientOriginalName();
-			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.'.$kegiatan_tipe;
+			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.'.$fileExtension;
 			$file->move($materipath,$formatedName);
 		}
 
@@ -625,7 +625,7 @@ class KegiatanBKCUController extends Controller{
 			
 			$fileExtension = $file->getClientOriginalExtension();
 			$filename = $file->getClientOriginalName();
-			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.'.$kegiatan_tipe;
+			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.'.$fileExtension;
 			$file->move($materipath,$formatedName);
 		}
 

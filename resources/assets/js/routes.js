@@ -83,6 +83,10 @@ const pemilihan = () => import('./views/pemilihan/index.vue');
 const pemilihan_form = () => import('./views/pemilihan/form.vue');
 const pemilihan_detail = () => import('./views/pemilihan/detail.vue');
 const pemilihan_pilih = () => import('./views/pemilihan/pilih.vue');
+const voting = () => import('./views/voting/index.vue');
+const voting_form = () => import('./views/voting/form.vue');
+const voting_detail = () => import('./views/voting/detail.vue');
+const voting_pilih = () => import('./views/voting/pilih.vue');
 const jalinanIuran = () => import('./views/jalinanIuran/index.vue');
 const jalinanIuran_form = () => import('./views/jalinanIuran/form.vue');
 const jalinanIuran_detail = () => import('./views/jalinanIuran/detail.vue');
@@ -651,6 +655,28 @@ const routes = [
 	{ path: '/pilih/:name',
 		name: 'pemilihanPilih', 
 		components: { default: pemilihan_pilih },
+		meta: { requiresAuth: false } },	
+
+	// voting
+	{ path: '/voting/cu/:cu',
+		name: 'voting', 
+		components: { default: voting, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true }},	
+	{ path: '/voting/create',
+		name: 'votingCreate', 
+		components: { default: voting_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/voting/edit/:id',
+		name: 'votingEdit', 
+		components: { default: voting_form, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true, mode:'edit' } },
+	{ path: '/voting/detail/:id',
+		name: 'votingDetail', 
+		components: { default: voting_detail, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true } },
+	{ path: '/pilih/:name',
+		name: 'votingPilih', 
+		components: { default: voting_pilih },
 		meta: { requiresAuth: false } },	
 
 	// laporan cu

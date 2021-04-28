@@ -22,6 +22,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
     Route::post('/voting/storePilihan', 'VotingController@storePilihan');
 
     Route::group(['middleware'=>'jwt.auth'],function(){
+        
     // Route::group(['prefix'=>'v1'],function(){
 
         // auth

@@ -460,6 +460,46 @@
 						]
 					},
 					{
+						name: 'Voting',
+						keterangan: 'Mengelola data untuk melakukan voting',
+						icon: 'icon-point-up',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_voting',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Voting'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_voting',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Voting'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_voting',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+								group: 'Voting'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_voting',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Voting'
+							}
+						]
+					},
+					{
 						name: 'Pemilihan',
 						keterangan: 'Mengelola data untuk melakukan pemilihan',
 						icon: 'icon-quill4',
@@ -1509,6 +1549,16 @@
 						'update_tempat',
 						'destroy_tempat',
 
+						'index_pemilihan',
+						'create_pemilihan',
+						'update_pemilihan',
+						'destroy_pemilihan',
+
+						'index_voting',
+						'create_voting',
+						'update_voting',
+						'destroy_voting',
+
 						'index_laporan_cu',
 						'create_laporan_cu',
 						'update_laporan_cu',
@@ -1563,6 +1613,16 @@
 						'create_anggota_cu',
 						'update_anggota_cu',
 						'destroy_anggota_cu',
+
+						'index_pemilihan',
+						'create_pemilihan',
+						'update_pemilihan',
+						'destroy_pemilihan',
+
+						'index_voting',
+						'create_voting',
+						'update_voting',
+						'destroy_voting',
 
 						'index_saldo',
 						'create_saldo',
@@ -1632,6 +1692,8 @@
 						'index_artikel_penulis',
 						'index_artikel_kategori',
 						'index_pengumuman',
+						'index_pemilihan',
+						'index_voting',
 						'index_anggota_cu',
 						'index_saldo',
 						'index_jalinan_klaim',
@@ -1684,6 +1746,8 @@
 						'destroy_monitoring',
 
 						'index_coa',
+						'index_pemilihan',
+						'index_voting',
 					],
 					organisasiBKCU: [
 						'index_tempat',
@@ -1805,6 +1869,11 @@
 						'update_aktivis',
 						'destroy_aktivis',
 
+						'index_voting',
+						'create_voting',
+						'update_voting',
+						'destroy_voting',
+
 						'index_mitra_orang',
 						'create_mitra_orang',
 						'update_mitra_orang',
@@ -1818,6 +1887,11 @@
 					kegiatanCU:[
 						'index_diklat_bkcu',
 						'index_pertemuan_bkcu',
+
+						'index_voting',
+						'create_voting',
+						'update_voting',
+						'destroy_voting',
 					],
 					publikasi: [
 						'index_artikel',
