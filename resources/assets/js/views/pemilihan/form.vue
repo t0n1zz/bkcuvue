@@ -136,7 +136,7 @@
 										</div>
 
 										<!-- suara -->
-										<div class="col-md-12" v-if="modelPemilihanStat == 'success' && form.sumberSuara == 0">
+										<div class="col-md-12" v-if="modelPemilihanStat == 'success' && form.sumberSuara === '0'">
 											<div class="form-group" :class="{'has-error' : errors.has('form.suara')}">
 
 												<!-- title -->
@@ -355,6 +355,11 @@
 			next(vm => vm.fetch());
 		},
 		watch: {
+			formStat(value){
+				if(value === "success"){
+					this.form.id_cu = this.currentUser.id_cu;	
+				}
+			},
 			updateStat(value){
 				this.modalShow = true;
 				this.modalState = value;
@@ -370,7 +375,11 @@
     },
 		methods: {
 			fetch(){
-				this.$store.dispatch(this.kelas + '/indexPemilihan');
+				if(this.currentUser.id_cu == 0){
+					this.$store.dispatch(this.kelas + '/indexPemilihan');
+				}else{
+					this.$store.dispatch(this.kelas + '/indexPemilihanCu', this.currentUser.id_cu);
+				}
 
 				if(this.$route.meta.mode == 'edit'){
 					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	

@@ -10,14 +10,37 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.3.9 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#v339">Version 3.3.9<small class="text-muted"> / 15 Mei 2021</small></a> </h5>
+                </div>
+
+                <div id="v339" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi menambahkan fitur untuk voting dan perbaikan pada pemilihan
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan fitur untuk melakukan voting yang dapat digunakan untuk melakukan pengambilan suara pada sebuah keputusan di kegiatan</li>
+                      <li>Penambahan fitur untuk melakukan download file excel pada daftar suara di pemilihan</li>
+                      <li>Perbaikan tampilan pada pemilihan</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.3.9 -->
+
               <!-- Version 3.3.8 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#v338">Version 3.3.8<small class="text-muted"> / 25 April 2021</small></a> </h5>
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v338">Version 3.3.8<small class="text-muted"> / 25 April 2021</small></a> </h5>
                 </div>
 
-                <div id="v338" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="v338" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi mengenai perubahan sistem untuk menyesuaikan dengan perubahan nama lembaga dan alamat domain. Serta ada perbaikan pada beberapa bagian
                     <br/><br/>

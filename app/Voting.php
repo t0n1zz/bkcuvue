@@ -38,7 +38,7 @@ class Voting extends Model {
     
     public static function initialize(){
         return [
-            'id_cu' => '','id_kegiatan' =>'', 'name' => '','name_kegiatan', 'status' => '',  'suara' => '',  'suara_ok' => '', 'sumberSuara' => '0'
+            'id_cu' => '','id_kegiatan' =>'', 'name' => '','name_kegiatan', 'status' => '',  'suara' => '',  'suara_ok' => '', 'sumberSuara' => ''
         ];
     }
 
@@ -47,11 +47,16 @@ class Voting extends Model {
         return $this->belongsTo('App\Cu','id_cu','id')->select('id','no_ba','name');
     }
 
-    public function hasPilihan(){
-        return $this->hasMany('App\VotingPilihan','pemilihan_id','id');
+    public function kegiatan()
+    {
+        return $this->belongsTo('App\Kegiatan','id_kegiatan','id')->select('id','name');
+    }
+
+    public function pilihan(){
+        return $this->hasMany('App\VotingPilihan','voting_id','id');
     }
 
     public function hasSuara(){
-        return $this->hasMany('App\VotingSuara','pemilihan_id','id');
+        return $this->hasMany('App\VotingSuara','voting_id','id');
     }
 }

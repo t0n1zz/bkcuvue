@@ -81,6 +81,20 @@ export const pemilihan = {
         });
     },
 
+    indexPemilihanCu( { commit }, id ){
+      commit('setDataStatS2', 'loading');
+      
+      PemilihanAPI.indexPemilihanCu( id )
+        .then( function( response ){
+          commit('setDataS2', response.data.model );
+          commit('setDataStatS2', 'success');
+        })
+        .catch( error => {
+          commit('setDataS2', error.response);
+          commit('setDataStatS2', 'fail');
+        });
+    },
+
     indexCalon( { commit }, name ){
       commit('setDataStatS', 'loading');
       commit('setDataStat', 'loading');
@@ -203,30 +217,10 @@ export const pemilihan = {
         });
     },
 
-    // update data
-    update( {commit, state, dispatch}, [id, form] ){
+    updateStatus( {commit, state, dispatch}, [id, cu] ){
       commit('setUpdateStat', 'loading');
 
-      PemilihanAPI.update( id, form )
-        .then( function( response ){
-          if(response.data.saved){
-            commit('setUpdate', response.data);
-            commit('setUpdateStat', 'success');
-          }else{
-            commit('setUpdate', response.data);
-            commit('setUpdateStat', 'fail');
-          }
-        })
-        .catch(error => {
-          commit('setUpdate', error.response);   
-          commit('setUpdateStat', 'fail');
-        });
-    },
-
-    updateStatus( {commit, state, dispatch}, id ){
-      commit('setUpdateStat', 'loading');
-
-      PemilihanAPI.updateStatus( id )
+      PemilihanAPI.updateStatus( id, cu )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);

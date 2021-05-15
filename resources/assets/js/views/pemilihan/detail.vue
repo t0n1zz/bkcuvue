@@ -57,7 +57,7 @@
 												</div>
 
 												<!-- cu -->
-												<div class="col-md-6 form-group">
+												<div class="col-md-6 form-group" v-if="currentUser.id_cu == 0">
 													<!-- title -->
 													<h5>CU:</h5>
 
@@ -103,11 +103,6 @@
 									<div class="card">
 										<div class="card-header bg-white header-elements-inline">
 											<h5 class="card-title">Calon</h5>
-											<div class="header-elements">
-												 <button type="button" class="btn btn-light btn-icon mb-1" @click.prevent="fetch()">
-														<i class="icon-sync"></i>
-													</button>
-											</div>
 										</div>
 
 										<data-table :items="itemDataCalon" :columnData="columnDataCalon" :itemDataStat="itemDataCalonStat">
@@ -134,9 +129,14 @@
 										<div class="card-header bg-white header-elements-inline">
 											<h5 class="card-title">Suara</h5>
 											<div class="header-elements">
-												 <button type="button" class="btn btn-light btn-icon mb-1" @click.prevent="fetch()">
-														<i class="icon-sync"></i>
-													</button>
+												<json-excel 
+													class="btn bg-green-300 btn-icon mb-1"
+													:data="excelSuara.data"
+													:exportFields="excelSuara.fields" 
+													:meta="excelSuara.meta" 
+													:title="'Data Suara'" 
+													:name="title + '.xls'"
+													><i class="icon-file-excel"></i> Excel</json-excel>  
 											</div>
 										</div>
 
@@ -243,6 +243,7 @@
 	import message from "../../components/message.vue";
 	import dataTable from '../../components/datatable.vue';
 	import { PusherAuth } from '../../helpers/pusherAuth.js';
+	import jsonExcel from 'vue-json-excel';
 	import Echo from 'laravel-echo';
 	import Pusher from "pusher-js";
 	
@@ -251,12 +252,13 @@
 			pageHeader,
 			message,
 			dataTable,
+			jsonExcel
 		},
 		data() {
 			return {
-				title: 'Detail Pemilihan PUSKOPCUINA',
-				titleDesc: 'Melihat detail data pemilihan PUSKOPCUINA',
-				titleIcon: 'icon-quill4',
+				title: 'Detail Pemilihan',
+				titleDesc: 'Melihat detail data pemilihan',
+				titleIcon: 'icon-stack2',
 				level: 2,
 				level2Title: 'Pemilihan',
 				kelas: 'pemilihan',
@@ -280,6 +282,18 @@
 				],
 				itemDataSuara: [],
 				itemDataSuaraStat: 'success',
+        excelSuara: {
+          fields: {
+						link: "link"
+					},
+          data: [],
+          meta: [
+            [{
+              "key": "charset",
+              "value": "utf-8"
+            }]
+          ]
+        },
 			}
 		},
 		created(){
@@ -329,11 +343,12 @@
 					var valSuara;
 					for (valSuara of this.form.has_suara) {
 						let formData2 = {};
-						formData2.link = window.location.origin + '/admins/pilih/' + valSuara.name;
+						formData2.link = window.location.origin + '/admins/pemilihan/pilih/' + valSuara.name;
 						formData2.pemilihan_calon_id = valSuara.pemilihan_calon_id;
 					
 						this.itemDataSuara.push(formData2);
 					}
+					this.excelSuara.data = this.itemDataSuara;
 				}
 			},
 		},
@@ -342,13 +357,20 @@
 				this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
 			},
 			back(){
-				this.$router.push({name: this.kelas });
+				if(this.currentUser.id_cu == 0){
+					this.$router.push({name: this.kelas, params:{cu:'semua'}});
+				}else{
+					this.$router.push({name: this.kelas, params:{cu: this.currentUser.id_cu}});
+				}
 			},
 			changeTab(value){
 				this.tabName = value;
 			},
 		},
 		computed: {
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
+			}),
 			...mapGetters('pemilihan',{
 				form: 'data',
 				formStat: 'dataStat',

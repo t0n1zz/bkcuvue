@@ -92,6 +92,10 @@ export default {
     return axios.get('/api/kegiatanBKCU/indexPesertaCu/' + id + '/cu/' + cu  , {params: p});
   },
 
+  indexKegiatan: function(){
+    return axios.get('/api/kegiatanBKCU/kegiatan');
+  },
+
   checkPeserta: function( kegiatan_id, aktivis_id ){
     return axios.get('/api/kegiatanBKCU/checkPeserta/' + kegiatan_id + '/' + aktivis_id);
   },

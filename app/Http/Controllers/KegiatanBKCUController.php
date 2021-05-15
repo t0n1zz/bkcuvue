@@ -286,6 +286,18 @@ class KegiatanBKCUController extends Controller{
 		]);
 	}
 
+	public function indexKegiatan()
+	{
+		$periode = date("Y");
+
+		$table_data = Kegiatan::where('periode',$periode)->select('id','name','mulai','periode')->get();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
 	
 	public function checkPeserta($kegiatan_id, $aktivis_id)
 	{
@@ -382,6 +394,8 @@ class KegiatanBKCUController extends Controller{
 
 	private function syncPilih($request, $kelas)
 	{
+		$aTmp1 = [];
+		$aTmp2 = [];
 		foreach($kelas->pilih as $aV){ $aTmp1[] = $aV['id']; }
 		foreach($request->pilih as $aV){ 
 			if(array_key_exists('id', $aV)){

@@ -174,7 +174,7 @@
 		</div>
 
 		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" :content="modalContent" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" :color="modalColor" :content="modalContent" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
 			<!-- title -->
 			<template slot="modal-title">
 				{{ modalTitle }}
@@ -249,6 +249,7 @@
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
+				modalColor: '',
 				modalContent: '',
 				modalButton: ''
 			}

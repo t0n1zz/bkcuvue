@@ -277,8 +277,7 @@
 				if (this.state == 'hapus') {
 					this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
 				} else if (this.state == "status"){
-					this.$store.dispatch(this.kelas + '/updateStatus', this.selectedItem.id);
-					console.log('hello');
+					this.$store.dispatch(this.kelas + '/updateStatus', [this.selectedItem.id, this.selectedItem.id_cu]);
 				}
 			},
 		},

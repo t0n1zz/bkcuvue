@@ -56,6 +56,17 @@ class PemilihanController extends Controller{
 		]);
 	}
 
+	public function indexPemilihanCu($cu)
+	{
+		$table_data = Pemilihan::where('id_cu',$cu)->get();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+
 	public function indexCalon($name)
 	{
 		$table_data = [];
@@ -232,34 +243,7 @@ class PemilihanController extends Controller{
 				]);
 	}
 
-	public function update(Request $request, $id)
-	{
-		$this->validate($request, Pemilihan::$rules);
-
-		$name = $request->name;
-
-		$kelas = Pemilihan::findOrFail($id);
-
-		if($request->calon){
-			$calonArray = array();
-
-			foreach($request->calon as $calon){
-				$calonArray[$calon['aktivis_id']] = [
-					'skor' => $calon['skor']
-				];
-			}
-
-			$kelas->calon()->sync($calonArray);
-		}
-
-		return response()
-			->json([
-				'saved' => true,
-				'message' => $this->message. ' ' .$name. ' berhasil diubah'
-			]);
-	}
-
-	public function updateStatus($id)
+	public function updateStatus($id, $cu)
 	{
 		$kelas = Pemilihan::findOrFail($id);
 
@@ -267,7 +251,7 @@ class PemilihanController extends Controller{
 			$kelas->status  = 0;
 		}else{
 			$kelas->status  = 1;
-			Pemilihan::where('id','!=', $kelas->id)->update(['status' => 0]);
+			Pemilihan::where('id_cu', $cu)->where('id','!=', $kelas->id)->update(['status' => 0]);
 		}
 
 		$kelas->update();

@@ -218,6 +218,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/kegiatanBKCU/mulai', 'KegiatanBKCUController@indexMulai');
         Route::get('/kegiatanBKCU/buka', 'KegiatanBKCUController@indexBuka');
         Route::get('/kegiatanBKCU/jalan', 'KegiatanBKCUController@indexJalan');
+        Route::get('/kegiatanBKCU/kegiatan', 'KegiatanBKCUController@indexKegiatan');
         Route::get('/kegiatanBKCU/periode/{kegiatan_tipe}/{periode}', 'KegiatanBKCUController@indexPeriode');
         Route::get('/kegiatanBKCU/indexPeserta/{id}', 'KegiatanBKCUController@indexPeserta');
         Route::get('/kegiatanBKCU/indexMateri/{id}', 'KegiatanBKCUController@indexMateri');
@@ -769,17 +770,17 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
             Route::get('/pemilihan', 'PemilihanController@index');
             Route::get('/pemilihan/indexCu/{id}', 'PemilihanController@indexCu');
             Route::get('/pemilihan/indexPemilihan', 'PemilihanController@indexPemilihan');
+            Route::get('/pemilihan/indexPemilihanCu/{id}', 'PemilihanController@indexPemilihanCu');
             Route::get('/pemilihan/indexUser/{id}', 'PemilihanController@indexUser');
             Route::get('/pemilihan/checkUser/{pemilihan_id}', 'PemilihanController@checkUser');
+            Route::get('/pemilihan/edit/{id}', 'PemilihanController@edit');
         });
         Route::group(['middleware' => ['permission:create_pemilihan']], function () {
-            Route::get('/pemilihan/create', 'PemilihanController@create');
+        Route::get('/pemilihan/create', 'PemilihanController@create');
             Route::post('/pemilihan/store', 'PemilihanController@store');
         });
         Route::group(['middleware' => ['permission:update_pemilihan']], function () {
-            Route::get('/pemilihan/edit/{id}', 'PemilihanController@edit');
-            Route::post('/pemilihan/update/{id}', 'PemilihanController@update');
-            Route::get('/pemilihan/updateStatus/{id}', 'PemilihanController@updateStatus');
+            Route::get('/pemilihan/updateStatus/{id}/{cu}', 'PemilihanController@updateStatus');
         });
         Route::group(['middleware' => ['permission:destroy_pemilihan']], function () {
             Route::delete('/pemilihan/{id}', 'PemilihanController@destroy');
@@ -789,18 +790,19 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::group(['middleware' => ['permission:index_voting']], function () {
             Route::get('/voting', 'VotingController@index');
             Route::get('/voting/indexCu/{id}', 'VotingController@indexCu');
-            Route::get('/voting/indexPemilihan', 'VotingController@indexPemilihan');
+            Route::get('/voting/indexVoting', 'VotingController@indexVoting');
+            Route::get('/voting/indexVotingCu/{id}', 'VotingController@indexVotingCu');
             Route::get('/voting/indexUser/{id}', 'VotingController@indexUser');
             Route::get('/voting/checkUser/{voting_id}', 'VotingController@checkUser');
+            Route::get('/voting/edit/{id}', 'VotingController@edit');
         });
         Route::group(['middleware' => ['permission:create_voting']], function () {
             Route::get('/voting/create', 'VotingController@create');
             Route::post('/voting/store', 'VotingController@store');
         });
         Route::group(['middleware' => ['permission:update_voting']], function () {
-            Route::get('/voting/edit/{id}', 'VotingController@edit');
-            Route::post('/voting/update/{id}', 'VotingController@update');
-            Route::get('/voting/updateStatus/{id}', 'VotingController@updateStatus');
+            Route::get('/voting/updateStatus/{id}/{cu}', 'VotingController@updateStatus');
+            Route::post('/voting/updateSuaraCu', 'VotingController@updateSuaraCu');
         });
         Route::group(['middleware' => ['permission:destroy_voting']], function () {
             Route::delete('/voting/{id}', 'VotingController@destroy');

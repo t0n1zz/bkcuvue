@@ -163,6 +163,7 @@
                         <span class="input-group-text">Entri</span>
                       </span>
                       <select class="form-control"  v-model="query.limit" @change="updateLimit" :disabled="itemDataStat !== 'success'">
+                        <option>5</option>
                         <option>10</option>
                         <option>15</option>
                         <option>25</option>
@@ -352,6 +353,7 @@
                         <span class="input-group-text">Entri</span>
                       </span>
                       <select class="form-control"  v-model="query.limit" @change="updateLimit" :disabled="itemDataStat !== 'success'">
+                        <option>5</option>
                         <option>10</option>
                         <option>15</option>
                         <option>25</option>

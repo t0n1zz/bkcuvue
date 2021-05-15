@@ -12,6 +12,10 @@ export default {
     return axios.get('/api/pemilihan/indexPemilihan');
   },
 
+  indexPemilihanCu: function(id){
+    return axios.get('/api/pemilihan/indexPemilihanCu/' + id);
+  },
+
   indexCalon: function(name){
     return axios.get('/api/pemilihan/indexCalon/' + name);
   },
@@ -40,12 +44,8 @@ export default {
     return axios.get('/api/pemilihan/edit/' + id);
   },
 
-  update: function ( id, form ){
-    return axios.post('/api/pemilihan/update/' + id, form);
-  },
-
-  updateStatus: function ( id ){
-    return axios.get('/api/pemilihan/updateStatus/' + id);
+  updateStatus: function ( id, cu ){
+    return axios.get('/api/pemilihan/updateStatus/' + id + '/' + cu);
   },
 
   destroy: function( id ){

@@ -1013,6 +1013,9 @@ class JalinanKlaimController extends Controller{
 	{
 		$name = $request->anggota_cu_id;
 
+		$lintang_diajukan = preg_replace('/\D/', 0, $request->lintang_diajukan);
+		$tunas_diajukan = preg_replace('/\D/', 0, $request->tunas_diajukan);
+
 		if($request->status_klaim == 7){
 			$kelasLama = JalinanKlaim::findOrFail($request->id_koreksi);
 			$anggota_cu_id = $kelasLama->anggota_cu_id;
@@ -1201,7 +1204,7 @@ class JalinanKlaimController extends Controller{
 		\DB::beginTransaction(); 
 		try{
 
-			$kelas = JalinanKlaim::create($request->except('dokumen_ktp','dokumen_meninggal','dokumen_pinjaman_1','dokumen_pinjaman_2','dokumen_pinjaman_3','dokumen_pinjaman_4','dokumen_pinjaman_5','dokumen_pinjaman_6','buku_simpanan_1','buku_simpanan_2','buku_simpanan_3','buku_simpanan_4','buku_simpanan_5','buku_pinjaman_1','buku_pinjaman_2','buku_pinjaman_3','spma_1','spma_2') + [
+			$kelas = JalinanKlaim::create($request->except('dokumen_ktp','dokumen_meninggal','dokumen_pinjaman_1','dokumen_pinjaman_2','dokumen_pinjaman_3','dokumen_pinjaman_4','dokumen_pinjaman_5','dokumen_pinjaman_6','buku_simpanan_1','buku_simpanan_2','buku_simpanan_3','buku_simpanan_4','buku_simpanan_5','buku_pinjaman_1','buku_pinjaman_2','buku_pinjaman_3','spma_1','spma_2','lintang_diajukan','tunas_diajukan') + [
 				'dokumen_ktp' => $dokumen_ktp,
 				'dokumen_meninggal' => $dokumen_meninggal,
 				'dokumen_pinjaman_1' => $dokumen_pinjaman_1,
@@ -1220,6 +1223,8 @@ class JalinanKlaimController extends Controller{
 				'buku_pinjaman_3' => $buku_pinjaman_3,
 				'spma_1' => $spma_1,
 				'spma_2' => $spma_2,
+				'lintang_diajukan' => $lintang_diajukan,
+				'tunas_diajukan' => $tunas_diajukan,
 			]);
 
 			$this->updateStatusAnggotaCu($request->anggota_cu_id, $request->tipe, $request->tanggal_mati);
@@ -1287,6 +1292,8 @@ class JalinanKlaimController extends Controller{
 		$kelas = JalinanKlaim::findOrFail($id);
 
 		$anggota_cu_id = $kelas->anggota_cu_id;
+		$lintang_diajukan = preg_replace('/\D/', 0, $request->lintang_diajukan);
+		$tunas_diajukan = preg_replace('/\D/', 0, $request->tunas_diajukan);
 
 		if(!empty($request->dokumen_meninggal))
 			$dokumen_meninggal = Helper::image_processing_no_thumb($this->imagepath,$this->width,$this->height,$request->dokumen_meninggal,$kelas->dokumen_meninggal,$anggota_cu_id . 'meninggal');
@@ -1381,7 +1388,7 @@ class JalinanKlaimController extends Controller{
 		\DB::beginTransaction(); 
 		try{
 
-			$kelas->update($request->except('dokumen_ktp','dokumen_meninggal','dokumen_pinjaman_1','dokumen_pinjaman_2','dokumen_pinjaman_3','dokumen_pinjaman_4','dokumen_pinjaman_5','dokumen_pinjaman_6','buku_simpanan_1','buku_simpanan_2','buku_simpanan_3','buku_simpanan_4','buku_simpanan_5','buku_pinjaman_1','buku_pinjaman_2','buku_pinjaman_3','spma_1','spma_1') + [
+			$kelas->update($request->except('dokumen_ktp','dokumen_meninggal','dokumen_pinjaman_1','dokumen_pinjaman_2','dokumen_pinjaman_3','dokumen_pinjaman_4','dokumen_pinjaman_5','dokumen_pinjaman_6','buku_simpanan_1','buku_simpanan_2','buku_simpanan_3','buku_simpanan_4','buku_simpanan_5','buku_pinjaman_1','buku_pinjaman_2','buku_pinjaman_3','spma_1','spma_1','lintang_diajukan','tunas_diajukan') + [
 				'dokumen_ktp' => $dokumen_ktp,
 				'dokumen_meninggal' => $dokumen_meninggal,
 				'dokumen_pinjaman_1' => $dokumen_pinjaman_1,
@@ -1400,6 +1407,8 @@ class JalinanKlaimController extends Controller{
 				'buku_pinjaman_3' => $buku_pinjaman_3,
 				'spma_1' => $spma_1,
 				'spma_2' => $spma_2,
+				'lintang_diajukan' => $lintang_diajukan,
+				'tunas_diajukan' => $tunas_diajukan,
 			]);	
 
 			$this->updateStatusAnggotaCu($anggota_cu_id, $request->tipe, $request->tanggal_mati);
@@ -1425,6 +1434,7 @@ class JalinanKlaimController extends Controller{
 		$kelas->status_klaim = $request->status;
 		$kelas->surat_nomor = $request->surat_nomor;
 		$kelas->surat_tanggal = $request->surat_tanggal;
+		
 
 		if($kelas->status_klaim == 1){
 			$message = "Klaim JALINAN menunggu";
@@ -1453,10 +1463,12 @@ class JalinanKlaimController extends Controller{
 			$kelas->tanggal_pencairan = NULL;
 			$this->updateStatusAnggotaCu($kelas->anggota_cu_id, NULL, NULL);
 		}else if($kelas->status_klaim == 4){
+			$lintang_disetujui = preg_replace('/\D/', 0, $request->lintang_disetujui);
+			$tunas_disetujui = preg_replace('/\D/', 0, $request->tunas_disetujui);
 			$message = "Klaim JALINAN disetujui";
 			$kelas->keterangan_klaim = $request->keterangan_klaim;
-			$kelas->tunas_disetujui = $request->tunas_disetujui;
-			$kelas->lintang_disetujui = $request->lintang_disetujui;
+			$kelas->tunas_disetujui = $tunas_disetujui;
+			$kelas->lintang_disetujui = $lintang_disetujui;
 			$kelas->tanggal_pencairan = $request->tanggal_pencairan;
 		}
 		

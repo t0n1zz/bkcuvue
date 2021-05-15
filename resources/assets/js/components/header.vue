@@ -1206,7 +1206,7 @@
 		},
 		data(){
 			return{
-				clientVersion: '3.3.8',
+				clientVersion: '3.3.9',
 				dropdownMenu1: '',
 				dropdownMenu2: '',
 				state: '',

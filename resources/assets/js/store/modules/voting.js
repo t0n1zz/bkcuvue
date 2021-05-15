@@ -81,11 +81,25 @@ export const voting = {
         });
     },
 
-    indexCalon( { commit }, name ){
+    indexVotingCu( { commit } , id ){
+      commit('setDataStatS2', 'loading');
+      
+      VotingAPI.indexVotingCu( id )
+        .then( function( response ){
+          commit('setDataS2', response.data.model );
+          commit('setDataStatS2', 'success');
+        })
+        .catch( error => {
+          commit('setDataS2', error.response);
+          commit('setDataStatS2', 'fail');
+        });
+    },
+
+    indexPilihan( { commit }, name ){
       commit('setDataStatS', 'loading');
       commit('setDataStat', 'loading');
       
-      VotingAPI.indexCalon( name )
+      VotingAPI.indexPilihan( name )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setData', response.data.form);
@@ -204,10 +218,10 @@ export const voting = {
     },
 
     // update data
-    update( {commit, state, dispatch}, [id, form] ){
+    updateStatus( {commit, state, dispatch}, [id, cu] ){
       commit('setUpdateStat', 'loading');
 
-      VotingAPI.update( id, form )
+      VotingAPI.updateStatus( id, cu )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);
@@ -223,10 +237,10 @@ export const voting = {
         });
     },
 
-    updateStatus( {commit, state, dispatch}, id ){
+    updateSuaraCu( {commit, state, dispatch}, form ){
       commit('setUpdateStat', 'loading');
 
-      VotingAPI.updateStatus( id )
+      VotingAPI.updateSuaraCu( form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);

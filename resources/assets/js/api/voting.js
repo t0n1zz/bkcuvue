@@ -8,8 +8,12 @@ export default {
     return axios.get('/api/voting/indexCu/' + id, {params: p});
   },
 
-  indexPemilihan: function(){
-    return axios.get('/api/voting/indexPemilihan');
+  indexVoting: function(){
+    return axios.get('/api/voting/indexVoting');
+  },
+
+  indexVotingCu: function(id){
+    return axios.get('/api/voting/indexVotingCu/' + id);
   },
 
   indexPilihan: function(name){
@@ -40,12 +44,12 @@ export default {
     return axios.get('/api/voting/edit/' + id);
   },
 
-  update: function ( id, form ){
-    return axios.post('/api/voting/update/' + id, form);
+  updateStatus: function ( id, cu ){
+    return axios.get('/api/voting/updateStatus/' + id + '/' + cu);
   },
 
-  updateStatus: function ( id ){
-    return axios.get('/api/voting/updateStatus/' + id);
+  updateSuaraCu: function ( form ){
+    return axios.post('/api/voting/updateSuaraCu', form);
   },
 
   destroy: function( id ){

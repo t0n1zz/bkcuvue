@@ -48,7 +48,7 @@ class VotingSuara extends Model {
 
     public function cu()
     {
-        return $this->belongsTo('App\Cu','id_cu','id');
+        return $this->belongsTo('App\Cu','id_cu','id')->select('id','name');
     }
 
 }

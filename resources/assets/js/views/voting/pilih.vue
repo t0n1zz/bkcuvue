@@ -12,7 +12,9 @@
 
 			<div>
 				<span class="navbar-text ml-lg-3 mr-lg-auto">
-					<span class="badge bg-success-400">PUSKOPCUINA</span>
+					<span class="badge bg-success-400">PUSKOPCUINA - 
+						<check-value :value="form.cu.name" v-if="form.cu"></check-value>
+					</span>
 				</span>	
 			</div>
 
@@ -25,7 +27,8 @@
 					<div class="page-title d-flex">
 						<h4>
 							<i class="mr-2" :class="titleIcon"></i>
-							<span class="font-weight-semibold">{{ title }}</span> <small class="d-block text-muted">{{ titleDesc }}</small>
+							<span class="font-weight-semibold">{{ title }}</span> 
+							<small class="d-block text-muted">{{ titleDesc }}</small>
 						</h4>
 					</div>
 				</div>
@@ -42,62 +45,29 @@
 					</message>
 
 					<div v-if="itemDataStat == 'success'">
-						<!-- ada pemilihan -->
+						<!-- ada voting -->
 						<div v-if="form">
 							<!-- belum pilih -->
-							<div v-if="form.pemilihan_calon_id == null">
-								<!-- ucapan -->
-								<div class="card card-body">
-									<h5><b>Selamat Datang!</b> <br/> Silahkan memilih calon dengan menekan tombol 
-									<button class="btn btn-primary btn-sm">
-										<i class="icon-check"></i> PILIH
-									</button> 
-									pada masing-masing kartu calon dibawah ini:</h5>
-								</div>
+							<div v-if="form.voting_pilihan_id == null">
 								<!-- pilihan -->
 								<div class="row">
-									<div class="col-md-6 col-lg-4" v-for="(item, index) in itemData.calon" :key="index">
-										<div class="card border-primary">
-											<div class="card-header bg-white">
-												<h5 class="card-title">{{ item.name }}</h5>
-											</div>
-											<div class="card-body">
-												<identitas :itemData="item"></identitas>
-											</div>
-											<div class="card-footer">
-												<button @click.prevent="modalConfirmOpen(item)" class="btn btn-primary btn-block mb-1">
-													<i class="icon-check"></i> PILIH
-												</button>
-											</div>
-										</div>
+									<div class="col-md-12 mb-2" v-for="(item, index) in itemData.pilihan" :key="index">
+										<button @click.prevent="modalConfirmOpen(item)" class="btn btn-light btn-block">
+											<h5 class="card-title">{{ item.name }}</h5>
+										</button>
 									</div>
 								</div>
 							</div>
 
 							<!-- sudah pilih -->
-							<div v-else-if="form.pemilihan_calon_id != null">
+							<div v-else-if="form.voting_pilihan_id != null">
 								<!-- ucapan -->
 								<div class="card bg-success text-white card-body">
-									<h3><i class="icon-check"></i> Terima Kasih Sudah Melakukan Pemilihan</h3>
+									<h3><i class="icon-check"></i> Terima Kasih Sudah Melakukan Voting</h3>
 								</div>
-								<!-- pilihan -->
-								<div class="card ">
-									<div class="card-header bg-white">
-										<h5 class="card-title">Pilihan Anda Adalah</h5>
-									</div>
-									<div class="card-body">
-										<div class="card border-primary">
-											<div class="card-header bg-primary">
-												<h5 class="card-title">{{ form.calon.aktivis.name }}</h5>
-											</div>
-											<div class="card-body">
-												<identitas :itemData="form.calon.aktivis"></identitas>
-											</div>
-										</div>
-									</div>
-								</div>
+
 								<!-- skor -->
-								<!-- <div class="card ">
+								<div class="card ">
 									<div class="card-header bg-white header-elements-inline">
 										<h5 class="card-title">Perolehan Skor</h5>
 										<div class="header-elements">
@@ -115,7 +85,7 @@
 											<div class="card card-body">
 												<div class="row">
 													<div class="col-sm-3 mb-1 mt-1">
-														<b>{{ p.aktivis.name }}</b>
+														<b>{{ p.name }}</b>
 													</div>
 													<div class="col-sm-8 mb-1 mt-1">
 														<div class="progress">
@@ -135,14 +105,29 @@
 											</div>
 										</div>
 									</div>
-								</div> -->
+								</div>
+
+								<!-- pilihan -->
+								<div class="card ">
+									<div class="card-header bg-white">
+										<h5 class="card-title">Pilihan Anda Adalah</h5>
+									</div>
+									<div class="card-body">
+										<div class="card border-primary">
+											<div class="card-header bg-primary">
+												<h5 class="card-title">{{ form.pilihan.name }}</h5>
+											</div>
+										</div>
+									</div>
+								</div>
+								
 							</div>
 						</div>
 
-						<!-- tidak ada pemilihan -->
+						<!-- tidak ada voting -->
 						<div v-else>
 							<div class="card card-body">
-								<h5><b>Selamat Datang!</b> <br/> Saat ini masih belum terdapat pemilihan</h5>
+								<h5><b>Selamat Datang!</b> <br/> Saat ini masih belum terdapat voting</h5>
 							</div>
 						</div>
 
@@ -174,7 +159,7 @@
 		</div>
 
 		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" :content="modalContent" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :color="modalColor" :button="modalButton" :content="modalContent" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
 			<!-- title -->
 			<template slot="modal-title">
 				{{ modalTitle }}
@@ -185,16 +170,21 @@
 				<!-- identitas -->
 				<div class="card">
 					<div class="card-header bg-white">
-						<h5 class="card-title">{{ selectedItem.name }}</h5>
+						<small class="text-muted">PERTANYAAN</small>
+						<h5 class="card-title">{{ form.name }}</h5>
 					</div>
-					<div class="card-body">
-						<identitas :itemData="selectedItem"></identitas>
+				</div>
+
+				<div class="card">
+					<div class="card-header bg-success">
+						<small>PILIHAN</small>
+						<h5 class="card-title">{{ selectedItem.name }}</h5>
 					</div>
 				</div>
 
 				<div>
 					<div class="alert bg-warning alert-styled-left">
-						<h6>Pastikan anda memilih dengan benar, anda tidak bisa melakukan pemilihan ulang lagi apabila salah memilih.</h6>
+						<h6>Pastikan anda memilih dengan benar, anda tidak bisa melakukan voting ulang lagi apabila salah memilih.</h6>
 					</div>
 				</div>
 
@@ -226,29 +216,30 @@
 	import { mapGetters } from 'vuex';
 	import message from "../../components/message.vue";
 	import appModal from '../../components/modal';
-	import identitas from './identitas';
-	
+	import checkValue from '../../components/checkValue.vue';
+
 	export default {
 		components: {
 			message,
 			appModal,
-			identitas,
+			checkValue,
 		},
 		data() {
 			return {
-				title: 'Pilih',
-				kelas: 'pemilihan',
-				titleDesc: 'Pemilihan',
-				titleIcon: 'icon-quill4',
+				title: 'Voting',
+				titleDesc: 'Silahkan memilih',
+				kelas: 'voting',
+				titleIcon: 'icon-point-up',
 				formPilihan: {
-					pemilihan_id: '',
-					pemilihan_calon_id: '',
+					voting_id: '',
+					voting_pilihan_id: '',
 					name: '',
 				},
 				selectedItem: {},
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
+				modalColor: '',
 				modalContent: '',
 				modalButton: ''
 			}
@@ -265,13 +256,12 @@
 				if(value == "success"){
 					if(this.form){
 						this.title = this.itemData.name;
-						this.titleDesc = 'Silahkan memilih calon untuk ' + this.itemData.name;
 					}
 				}
 			},
 			formStat(value){
 				if(value == "success"){
-					if(this.form.pemilihan_calon_id != null){
+					if(this.form.voting_pilihan_id != null){
 						this.fetchSuara();
 					}
 				}
@@ -293,7 +283,7 @@
 		},
 		methods: {
 			fetch(){
-				this.$store.dispatch(this.kelas + '/indexCalon', this.$route.params.name);
+				this.$store.dispatch(this.kelas + '/indexPilihan', this.$route.params.name);
 			},
 			fetchSuara(){
 				this.$store.dispatch(this.kelas + '/indexSuara', this.itemData.id);
@@ -303,11 +293,11 @@
 				this.modalState = 'normal1';
 				this.modalColor = 'bg-primary';
 
-				this.formPilihan.pemilihan_calon_id = state.pivot.id;
-				this.formPilihan.pemilihan_id = this.itemData.id;
+				this.formPilihan.voting_pilihan_id = state.id;
+				this.formPilihan.voting_id = this.itemData.id;
 				this.formPilihan.name = this.form.name;
 				this.selectedItem = state;
-				this.modalTitle = 'Pilih ' + this.selectedItem.name + ' ?';
+				this.modalTitle = 'Pilih ' + state.name + ' ?';
 			},
 			modalTutup() {
 				this.modalShow = false;
@@ -318,7 +308,7 @@
 			},
 		},
 		computed: {
-			...mapGetters('pemilihan',{
+			...mapGetters('voting',{
 				form: 'data',
 				formStat: 'dataStat',
 				itemData: 'dataS',

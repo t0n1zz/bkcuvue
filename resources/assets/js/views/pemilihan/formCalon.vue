@@ -125,7 +125,7 @@
 		<!-- divider -->
 
 		<!-- CU -->
-		<div class="form-group" :class="{'has-error' : errors.has('formCalon.pengusung_cu_id')}">
+		<div class="form-group" :class="{'has-error' : errors.has('formCalon.pengusung_cu_id')}" v-if="this.currentUser.id_cu == 0">
 
 			<!-- title -->
 			<h5 :class="{ 'text-danger' : errors.has('formCalon.pengusung_cu_id')}">
@@ -255,7 +255,11 @@
 				this.fetchDalam(this.query);
 			},
 			fetchDalam(params){
-				this.$store.dispatch('aktivis/index', [params,'semua','aktif']);
+				if(this.currentUser.id_cu == 0){
+					this.$store.dispatch('aktivis/index', [params,'semua','aktif']);
+				}else{
+					this.$store.dispatch('aktivis/indexCu', [params,this.currentUser.id_cu,'semua','aktif']);	
+				}
 			},
 			deleteSelected(){
 				this.formCalon.aktivis_id = '';
@@ -274,6 +278,9 @@
 				}
 			},
 			save(){
+				if(this.currentUser.id_cu != 0){
+					this.formCalon.pengusung_cu_id = this.currentUser.id_cu;
+				}
 				this.$validator.validateAll('formCalon').then((result) => {
 					if (result) {
 						if(this.mode == 'edit'){

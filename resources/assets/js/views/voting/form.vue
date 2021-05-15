@@ -72,7 +72,7 @@
 									</div>
 
 									<!-- kegiatan -->
-									<div class="col-md-12">
+									<div class="col-md-12" >
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_kegiatan')}">
 
 											<!-- title -->
@@ -87,7 +87,7 @@
 													<span v-if="modelKegiatanStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih kegiatan</span>
 												</option>
-												<option value="0">Kegiatan baru</option>
+												<option value="0">Kegiatan yang tidak terdaftar</option>
 												<option disabled value="">----------------</option>
 												<option v-for="(kegiatan, index) in modelKegiatan" :value="kegiatan.id" :key="index">{{kegiatan.name}} | <span v-html="$options.filters.date(kegiatan.mulai)"></span></option>
 											</select>
@@ -101,7 +101,7 @@
 									</div>
 
 									<!-- name kegiatan -->
-									<div class="col-md-12" v-if="modelVotingStat == 'success' && form.id_kegiatan == 0">
+									<div class="col-md-12" v-if="form.id_kegiatan === '0'">
 										<div class="form-group" :class="{'has-error' : errors.has('form.name_kegiatan')}">
 
 											<!-- title -->
@@ -110,7 +110,7 @@
 												Nama Kegiatan: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
-											<input type="text" name="name_kegiatan" class="form-control" placeholder="Silahkan masukkan nama_kegiatan" v-validate="'required'" data-vv-as="Nama Kegiatan" v-model="form.name_kegiatan">
+											<input type="text" name="name_kegiatan" class="form-control" placeholder="Silahkan masukkan nama kegiatan" v-validate="'required'" data-vv-as="Nama Kegiatan" v-model="form.name_kegiatan">
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.name_kegiatan')">
@@ -151,7 +151,7 @@
 										</div>
 
 										<!-- suara -->
-										<div class="col-md-12" v-if="modelVotingStat == 'success' && form.sumberSuara == 0">
+										<div class="col-md-12" v-if="modelVotingStat == 'success' && form.sumberSuara === '0'">
 											<div class="form-group" :class="{'has-error' : errors.has('form.suara')}">
 
 												<!-- title -->
@@ -214,16 +214,7 @@
 								<template slot="item-desktop" slot-scope="props">
 									<tr :class="{ 'bg-info': selectedItemPilihan.index == props.index + 1}" class="text-nowrap" @click="selectedRow(props.item, props.index + 1, 'calon')" v-if="props.item">
 										<td>{{ props.index + 1 }}</td>
-										<td>
-											<img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
-											<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
-										</td>
 										<td>{{ props.item.name }}</td>
-										<td>{{ props.item.pengusung_cu_id }}</td>
-										<td>{{ props.item.tanggal_lahir }}</td>
-										<td>{{ props.item.tempat_lahir }}</td>
-										<td>{{ props.item.status }}</td>
-										<td>{{ props.item.pendidikan }}</td>
 									</tr>
 								</template>	
 							</data-table>
@@ -257,13 +248,13 @@
 
 			<template slot="modal-body1">
 
-				<!-- calon -->
-				<form-calon 
+				<!-- pilihan -->
+				<form-pilihan 
 				:mode="formPilihanMode"
 				:selected="selectedItemPilihan"
 				@createPilihan="createPilihan"
 				@editPilihan="editPilihan"
-				@tutup="modalTutup" v-if="state == 'tambahPilihan' || state == 'ubahPilihan'"></form-calon>
+				@tutup="modalTutup" v-if="state == 'tambahPilihan' || state == 'ubahPilihan'"></form-pilihan>
 
 			</template>
 
@@ -344,12 +335,7 @@
 				},
 				columnDataPilihan:[
 					{ title: 'No.' },
-					{ title: 'Foto' },
 					{ title: 'Nama' },
-					{ title: 'Tanggal Lahir' },
-					{ title: 'Tempat Lahir' },
-					{ title: 'Status' },
-					{ title: 'Pendidikan' },
 				],
 				selectedItemPilihan: '',
 				formPilihanMode: '',
@@ -370,6 +356,11 @@
 			next(vm => vm.fetch());
 		},
 		watch: {
+			formStat(value){
+				if(value === "success"){
+					this.form.id_cu = this.currentUser.id_cu;	
+				}
+			},
 			updateStat(value){
 				this.modalShow = true;
 				this.modalState = value;
@@ -385,7 +376,12 @@
     },
 		methods: {
 			fetch(){
-				this.$store.dispatch(this.kelas + '/indexVoting');
+				if(this.currentUser.id_cu == 0){
+					this.$store.dispatch(this.kelas + '/indexVoting');
+					this.$store.dispatch('kegiatanBKCU/indexKegiatan');
+				}else{
+					this.$store.dispatch(this.kelas + '/indexVotingCu', this.currentUser.id_cu);
+				}
 
 				if(this.$route.meta.mode == 'edit'){
 					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
@@ -417,7 +413,7 @@
 				this.modalTutup(); 
 			},
 			save() {
-				this.form.calon = this.itemDataPilihan;
+				this.form.pilihan = this.itemDataPilihan;
 				this.state = '';
 				
 				this.$validator.validateAll('form').then((result) => {
@@ -526,6 +522,10 @@
 				options: 'options',
 				updateResponse: 'update',
 				updateStat: 'updateStat'
+			}),
+			...mapGetters('kegiatanBKCU',{
+				modelKegiatan: 'dataS',
+				modelKegiatanStat: 'dataStatS',
 			}),
 		}
 	}

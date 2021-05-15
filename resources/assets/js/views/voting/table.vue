@@ -66,13 +66,17 @@
 						<span v-else>PUSKOPCUINA</span>
 					</td>
 					<td v-if="!columnData[4].hide">
-						<check-value :value="props.item.suara"></check-value>
+						<check-value :value="props.item.kegiatan.name" v-if="props.item.kegiatan"></check-value>
+						<check-value :value="props.item.name_kegiatan" v-else></check-value>
 					</td>
 					<td v-if="!columnData[5].hide">
+						<check-value :value="props.item.suara"></check-value>
+					</td>
+					<td v-if="!columnData[6].hide">
 						<check-value :value="props.item.suara_ok"></check-value>
 					</td>
-					<td v-if="!columnData[6].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[7].hide">
+					<td v-if="!columnData[7].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[8].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -139,6 +143,14 @@
 					{
 						title: 'CU',
 						name: 'cu.name',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Kegiatan',
+						name: 'kegiatan.name',
 						sort: false,
 						hide: false,
 						disable: false,
@@ -265,8 +277,7 @@
 				if (this.state == 'hapus') {
 					this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
 				} else if (this.state == "status"){
-					this.$store.dispatch(this.kelas + '/updateStatus', this.selectedItem.id);
-					console.log('hello');
+					this.$store.dispatch(this.kelas + '/updateStatus', [this.selectedItem.id, this.selectedItem.id_cu]);
 				}
 			},
 		},

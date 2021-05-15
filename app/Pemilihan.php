@@ -38,7 +38,7 @@ class Pemilihan extends Model {
     
     public static function initialize(){
         return [
-            'id_cu' => '', 'name' => '', 'status' => '',  'suara' => '',  'suara_ok' => '', 'tingkat' => '', 'sumberSuara' => '0'
+            'id_cu' => '', 'name' => '', 'status' => '',  'suara' => '',  'suara_ok' => '', 'tingkat' => '', 'sumberSuara' => ''
         ];
     }
 
