@@ -1264,6 +1264,24 @@ class JalinanKlaimController extends Controller{
 			]);
 	}
 
+	public function getHistory($id)
+	{
+		$table_data = JalinanKlaim::where('id',$id)->first();
+
+		$h = $table_data->revisionHistory;
+		$history = collect();		
+		foreach($h as $hs){
+			$n = collect($hs);
+			$n->put('user',$hs->userResponsible());
+			$history->push($n);
+		}
+
+		return response()
+			->json([
+				'history' => $history
+			]);
+	}
+
 	public function edit($nik, $cu, $tipe)
 	{
 		$kelas = JalinanKlaim::with('anggota_cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')

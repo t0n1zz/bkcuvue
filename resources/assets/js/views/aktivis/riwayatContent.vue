@@ -381,6 +381,65 @@
 			
 		</div>
 
+		<!-- keterangan -->
+		<div class="card">
+			<div class="card-header bg-white">
+				<h5 class="card-title">Keterangan</h5>
+			</div>
+			<div class="card-body pb-2">
+				<div class="row">
+
+					<div class="col-md-12" v-if="mode == 'edit_profile'">
+
+						<button class="btn btn-light mb-1" @click.prevent="create('keterangan')">
+							<i class="icon-plus22"></i> Tambah
+						</button>
+
+						<button class="btn btn-light mb-1" @click.prevent="update('keterangan')"
+						:disabled="!selectedItemKeterangan.id">
+							<i class="icon-pencil5"></i> Ubah
+						</button>
+
+						<button class="btn btn-light mb-1" @click="destroy('keterangan')" :disabled="!selectedItemKeterangan.id">
+							<i class="icon-bin2"></i> Hapus
+						</button>
+
+					</div>
+
+					<div class="col-md-12" v-else-if="mode != 'edit_profile' && currentUser.can && currentUser.can['update_' + kelas]">
+
+						<button class="btn btn-light mb-1" @click.prevent="create('keterangan')">
+							<i class="icon-plus22"></i> Tambah
+						</button>
+
+						<button class="btn btn-light mb-1" @click.prevent="update('keterangan')"
+						:disabled="!selectedItemKeterangan.id">
+							<i class="icon-pencil5"></i> Ubah
+						</button>
+
+						<button class="btn btn-light mb-1" @click="destroy('keterangan')" :disabled="!selectedItemKeterangan.id">
+							<i class="icon-bin2"></i> Hapus
+						</button>
+
+					</div>
+
+				</div>		
+			</div>
+
+			<data-table :items="itemDataKeterangan" :columnData="columnDataKeterangan" :itemDataStat="itemDataStatKeterangan">
+				<template slot="item-desktop" slot-scope="props">
+					<tr :class="{ 'bg-info': selectedItemKeterangan.id === props.item.id }" class="text-nowrap" @click="selectedRowKeterangan(props.item)" v-if="props.item">
+						<td>{{ props.index + 1 }}</td>
+						<td><check-value :value="props.item.tipe"></check-value></td>
+						<td><check-value :value="props.item.name"></check-value></td>
+						<td><check-value :value="props.item.keterangan"></check-value></td>
+						<td v-html="$options.filters.date(props.item.tanggal)"></td>
+					</tr>
+				</template>	
+			</data-table>
+
+		</div>
+
 		<!-- form button -->
 		<div class="card card-body" v-if="mode != 'edit_profile'">
 			<form-button
@@ -412,6 +471,9 @@
 
 					<!-- form diklat -->
 					<form-diklat :selected="formModel" :formState="formState" :id_aktivis="id_aktivis" @tutup="modalTutup" v-if="formState == 'create diklat' || formState == 'edit diklat'"></form-diklat>
+
+					<!-- form keterangan -->
+					<form-keterangan :selected="formModel" :formState="formState" :id_aktivis="id_aktivis" @tutup="modalTutup" v-if="formState == 'create keterangan' || formState == 'edit keterangan'"></form-keterangan>
 			 </template>
 
 		</app-modal>
@@ -429,6 +491,7 @@
 	import formPekerjaan from "./formPekerjaan.vue";
 	import formPendidikan from "./formPendidikan.vue";
 	import formOrganisasi from "./formOrganisasi.vue";	
+	import formKeterangan from "./formKeterangan.vue";	
 	import formDiklat from "./formDiklat.vue";	
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
@@ -447,6 +510,7 @@
 			formPekerjaan,
 			formPendidikan,
 			formOrganisasi,
+			formKeterangan,
 			formDiklat,
 			checkValue,
 			identitas
@@ -460,6 +524,7 @@
 				selectedItemPekerjaan: {},
 				selectedItemPendidikan: {},
 				selectedItemOrganisasi: {},
+				selectedItemKeterangan: {},
 				selectedItemDiklat: {},
 				formPekerjaan: {},
 				formPendidikan: {},
@@ -499,6 +564,13 @@
 					{ title: 'Fasilitator' },
 					{ title: 'Mulai' },
 					{ title: 'Selesai' },
+				],
+				columnDataKeterangan:[
+					{ title: 'No.' },
+					{ title: 'Tipe' },
+					{ title: 'Nama' },
+					{ title: 'Keterangan' },
+					{ title: 'Tanggal' },
 				],
 				cancelTitle: 'Tutup',
 				cancelIcon: 'icon-cross',
@@ -541,6 +613,10 @@
 					if(this.formState == 'create diklat' || this.formState == 'edit diklat'){
 						this.$store.dispatch(this.kelas + '/indexDiklat',[this.id_aktivis, this.id_cu]);
 					}
+
+					if(this.formState == 'create keterangan' || this.formState == 'edit keterangan'){
+						this.$store.dispatch(this.kelas + '/indexKeterangan',[this.id_aktivis, this.id_cu]);
+					}
 				}else{
 					this.modalTitle = 'Oops terjadi kesalahan :(';
 					this.modalContent = this.updateResponse;
@@ -554,6 +630,7 @@
 				this.$store.dispatch(this.kelas + '/indexPendidikan',[this.id_aktivis, this.id_cu]);
 				this.$store.dispatch(this.kelas + '/indexOrganisasi',[this.id_aktivis, this.id_cu]);
 				this.$store.dispatch(this.kelas + '/indexDiklat',[this.id_aktivis, this.id_cu]);
+				this.$store.dispatch(this.kelas + '/indexKeterangan',[this.id_aktivis, this.id_cu]);
 			},
 			back(){
 				if(this.currentUser.id_cu != 0){
@@ -581,6 +658,9 @@
 			selectedRowDiklat(item){
 				this.selectedItemDiklat = item;
 			},
+			selectedRowKeterangan(item){
+				this.selectedItemKeterangan = item;
+			},
 			create(value){
 				this.modalShow = true;
 				this.modalState = 'normal1';
@@ -603,6 +683,8 @@
 					this.formModel = Object.assign({}, this.selectedItemOrganisasi);
 				}else if(value == 'diklat'){
 					this.formModel = Object.assign({}, this.selectedItemDiklat);
+				}else if(value == 'keterangan'){
+					this.formModel = Object.assign({}, this.selectedItemKeterangan);
 				}
 			},		
 			destroy(value){
@@ -624,6 +706,8 @@
 					this.$store.dispatch(this.kelas + '/destroyOrganisasi', this.selectedItemOrganisasi.id);
 				}else if(this.formState == 'diklat'){
 					this.$store.dispatch(this.kelas + '/destroyDiklat', this.selectedItemDiklat.id);
+				}else if(this.formState == 'keterangan'){
+					this.$store.dispatch(this.kelas + '/destroyKeterangan', this.selectedItemKeterangan.id);
 				}
 			},
 			cancelClick(){
@@ -644,10 +728,12 @@
 				itemDataPendidikan: 'dataS2',
 				itemDataOrganisasi: 'dataS3',
 				itemDataDiklat: 'dataS4',
+				itemDataKeterangan: 'dataS5',
 				itemDataStatPekerjaan: 'dataStatS1',
 				itemDataStatPendidikan: 'dataStatS2',
 				itemDataStatOrganisasi: 'dataStatS3',
 				itemDataStatDiklat: 'dataStatS4',
+				itemDataStatKeterangan: 'dataStatS5',
 				updateResponse: 'update',
 				updateStat: 'updateStat'
 			})

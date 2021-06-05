@@ -1097,6 +1097,10 @@ export const kegiatanBKCU = {
     },
 
     // reset
+    resetDataS( {commit} ){
+      commit('setDataS', [] );
+      commit('setDataStatS', 'success');
+    },
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');
     }

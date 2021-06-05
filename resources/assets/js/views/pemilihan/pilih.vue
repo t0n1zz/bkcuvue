@@ -58,8 +58,11 @@
 								<div class="row">
 									<div class="col-md-6 col-lg-4" v-for="(item, index) in itemData.calon" :key="index">
 										<div class="card border-primary">
-											<div class="card-header bg-white">
+											<div class="card-header bg-white header-elements-inline">
 												<h5 class="card-title">{{ item.name }}</h5>
+												<span class="badge badge-success" v-if="item.pivot">
+													<h6 class="mb-0">No. Urut {{ item.pivot.no_urut }}</h6>
+												</span> 
 											</div>
 											<div class="card-body">
 												<identitas :itemData="item"></identitas>
@@ -87,8 +90,11 @@
 									</div>
 									<div class="card-body">
 										<div class="card border-primary">
-											<div class="card-header bg-primary">
+											<div class="card-header bg-primary header-elements-inline">
 												<h5 class="card-title">{{ form.calon.aktivis.name }}</h5>
+												<span class="badge badge-success">
+													<h6 class="mb-0">No. Urut {{ form.calon.no_urut }}</h6>
+												</span>
 											</div>
 											<div class="card-body">
 												<identitas :itemData="form.calon.aktivis"></identitas>
@@ -184,8 +190,11 @@
 			<template slot="modal-body1">
 				<!-- identitas -->
 				<div class="card">
-					<div class="card-header bg-white">
+					<div class="card-header bg-white header-elements-inline">
 						<h5 class="card-title">{{ selectedItem.name }}</h5>
+						<span class="badge badge-success" v-if="selectedItem.pivot">
+							<h6 class="mb-0">No. Urut {{ selectedItem.pivot.no_urut }}</h6>
+						</span> 
 					</div>
 					<div class="card-body">
 						<identitas :itemData="selectedItem"></identitas>
@@ -305,6 +314,7 @@
 				this.modalColor = 'bg-primary';
 
 				this.formPilihan.pemilihan_calon_id = state.pivot.id;
+				this.formPilihan.no_urut = state.pivot.no_urut;
 				this.formPilihan.pemilihan_id = this.itemData.id;
 				this.formPilihan.name = this.form.name;
 				this.selectedItem = state;

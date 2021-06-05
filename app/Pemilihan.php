@@ -19,7 +19,6 @@ class Pemilihan extends Model {
         'name' => 'required'
     ];
 
-    
     protected $fillable = [
         'id_cu','name','status','created_at','updated_at','deleted_at','suara','suara_ok','tingkat'
     ];
@@ -48,7 +47,7 @@ class Pemilihan extends Model {
     }
 
     public function calon(){
-        return $this->belongsToMany('App\Aktivis','pemilihan_calon')->withPivot('id','skor','pengusung_cu_id')->withTimestamps();
+        return $this->belongsToMany('App\Aktivis','pemilihan_calon')->withPivot('id','no_urut','skor','pengusung_cu_id')->withTimestamps();
     }
 
     public function hasCalon(){

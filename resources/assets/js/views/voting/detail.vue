@@ -38,11 +38,16 @@
 									<!-- informasi umum -->
 									<div class="card">
 										<div class="card-header bg-white header-elements-inline">
-											<h5 class="card-title">Voting</h5>
+											<h5 class="card-title">Voting | Status: <span v-html="$options.filters.checkStatus(form.status)"></span></h5>
 											<div class="header-elements">
-												 <button type="button" class="btn btn-light btn-icon mb-1" @click.prevent="fetch()">
-														<i class="icon-sync"></i>
-													</button>
+												<!-- status -->
+												<button @click.prevent="modalOpen('status')" 	class="btn btn-light btn-icon mb-1 mr-1" v-if="currentUser.can && currentUser.can['update_voting']">
+													<i class="icon-calendar5"></i> Status
+												</button>
+												<!-- reload -->
+												<button type="button" class="btn btn-light btn-icon mb-1" @click.prevent="fetch()">
+													<i class="icon-sync"></i>
+												</button>
 											</div>
 										</div>
 										<div class="card-body">
@@ -130,7 +135,7 @@
 									<div class="card">
 										<div class="card-header bg-white header-elements-inline">
 											<h5 class="card-title">Suara</h5>
-											<div class="header-elements">
+										<div class="header-elements">
 												 <json-excel 
 													class="btn bg-green-300 btn-icon mb-1"
 													:data="excelSuara.data"
@@ -192,7 +197,7 @@
 											</div>
 										</div>
 										<div class="card-body">
-											<div v-for="(p, index) in form.pilihan" :key="index">
+											<div v-for="(p, index) in formPilihan" :key="index">
 												<div class="card card-body">
 													<div class="row">
 														<div class="col-sm-3 mb-1 mt-1">
@@ -247,7 +252,7 @@
 		</div>
 
 		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :button="modalButton" :color="modalColor" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" :content="modalContent" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
 			
 			<!-- title -->
 			<template slot="modal-title">
@@ -266,6 +271,7 @@
 </template>
 
 <script>
+	import _ from 'lodash';
 	import { mapGetters } from 'vuex';
 	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
@@ -313,7 +319,9 @@
 				itemDataSuaraStat: 'success',
 				excelSuara: {
           fields: {
-						link: "link"
+						link: "link",
+						cu: "cu_name",
+						pilihan: "voting_pilihan_id"
 					},
           data: [],
           meta: [
@@ -329,7 +337,8 @@
 				modalColor: '',
 				modalTitle: '',
 				modalContent: '',
-				modalButton: ''
+				modalButton: '',
+				formPilihan: ''
 			}
 		},
 		created(){
@@ -341,8 +350,10 @@
 			.listen('VotingEvent',(data) => {  
 				var p;
 				for (p of this.form.pilihan) {
-					if(p.pilihan.id == data.voting_pilihan_id){
-						p.pilihan.skor = data.skor;
+					if(p.id == data.voting_pilihan_id){
+						p.skor = data.skor;
+						this.form.suara_ok += 1;
+						this.formPilihan = _.orderBy(this.form.pilihan, 'skor' ,['desc']);
 					}
 				}
 			});
@@ -372,6 +383,7 @@
 						this.itemDataSuara.push(formData2);
 					}
 					this.excelSuara.data = this.itemDataSuara;
+					this.formPilihan = _.orderBy(this.form.pilihan, 'skor' ,['desc']);
 				}
 			},
 			// when updating data
@@ -395,29 +407,39 @@
 				this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
 			},
 			back(){
-				if(this.currentUser.id_cu == 0){
-					this.$router.push({name: this.kelas, params:{cu:'semua'}});
-				}else{
-					this.$router.push({name: this.kelas, params:{cu: this.currentUser.id_cu}});
-				}
+				this.$router.push({name: this.kelas, params:{cu: this.form.id_cu}});
 			},
 			changeTab(value){
 				this.tabName = value;
 			},
-			modalOpen(state, selectedSuara) {
+			modalOpen(state, selectedItem) {
 				this.modalShow = true;
 				this.state = state;
-				this.selectedSuara = selectedSuara;
 
 				if (state == 'cu') {
+					this.selectedSuara = selectedItem;
 					this.modalState = 'normal1';
-					this.modalTitle = 'Ubah CU untuk link ' + selectedSuara.link + ' ini?';
+					this.modalTitle = 'Ubah CU untuk link ' + selectedItem.link + ' ini?';
 					this.modalColor = 'bg-primary';
+				}else if (state == 'status') {
+					this.modalState = 'confirm-tutup'; 
+					if (this.form.status == 0) {
+						this.modalTitle = 'Aktifkan ' + this.form.name + ' ?';
+						this.modalButton = 'Iya, aktifkan';
+					} else {
+						this.modalTitle = 'Tidak aktifkan ' + this.form.name + ' ?';
+						this.modalButton = 'Iya, tidak aktifkan';
+					}
 				}
 			},
 			modalTutup() {
 				this.modalShow = false;
 				this.$store.dispatch(this.kelas + '/resetUpdateStat');
+			},
+			modalConfirmOk() {
+				if (this.state == "status"){
+					this.$store.dispatch(this.kelas + '/updateStatus', [this.form.id, this.form.id_cu]);
+				}
 			},
 		},
 		computed: {

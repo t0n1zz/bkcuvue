@@ -8,6 +8,7 @@ use Image;
 use App\Aktivis;
 use App\Pemilihan;
 use App\PemilihanCalon;
+use App\PemilihanCalonCount;
 use App\PemilihanSuara;
 use App\Support\Helper;
 use Illuminate\Http\Request;
@@ -162,6 +163,7 @@ class PemilihanController extends Controller{
 			foreach($request->calon as $calon){
 				$calonArray[$calon['aktivis_id']] = [
 					'skor' => 0,
+					'no_urut' => $calon['no_urut'],
 					'pengusung_cu_id' => $calon['pengusung_cu_id']
 				];
 			}
@@ -187,23 +189,28 @@ class PemilihanController extends Controller{
 			if($cekSuara){
 				\DB::beginTransaction(); 
 				try{
+					PemilihanCalonCount::create([
+						'pemilihan_id' => $request->pemilihan_id,
+						'pemilihan_calon_id' => $request->pemilihan_calon_id,
+						'pemilihan_suara_id' => $cekSuara->id
+					]);
+					
+					$calonCount = PemilihanCalonCount::where('pemilihan_calon_id',$request->pemilihan_calon_id)->count();
 					$kelasCalon = PemilihanCalon::findOrFail($request->pemilihan_calon_id);
-					$skor = $kelasCalon->skor + 1;
-					$kelasCalon->skor = $skor;
+					$kelasCalon->skor = $calonCount;
 					$kelasCalon->update();
 			
 					$cekSuara->pemilihan_calon_id = $request->pemilihan_calon_id;
 					$cekSuara->update();
-	
-					$kelasPemilihan = Pemilihan::findOrFail($request->pemilihan_id);
-					$suara_ok = $kelasPemilihan->suara_ok + 1;
-					$kelasPemilihan->suara_ok = $suara_ok;
-					$kelasPemilihan->update();
+
+					$suaraOk = PemilihanSuara::where('pemilihan_id',$request->pemilihan_id)->whereNotNull('pemilihan_calon_id')->count();
+					$pemilihan->suara_ok = $suaraOk;
+					$pemilihan->update();
 					
-					event(new PemilihanEvent($skor, $kelasPemilihan->id, $kelasCalon->id));
+					event(new PemilihanEvent($calonCount, $pemilihan->id, $kelasCalon->id));
 
 					Aktivis::flushCache();
-					
+
 					\DB::commit();
 					return response()
 						->json([
@@ -272,13 +279,15 @@ class PemilihanController extends Controller{
 
 		$kelas->delete();
 
+		PemilihanSuara::where('pemilihan_id',$kelas->id)->delete();
+		PemilihanCalonCount::where('pemilihan_id',$kelas->id)->delete();
+
 		return response()
 			->json([
 				'deleted' => true,
 				'message' =>  $this->message. ' ' .$name. 'berhasil dihapus'
 			]);
 	}
-
 
 	public function countCalon($id)
 	{

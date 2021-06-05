@@ -8,6 +8,7 @@ use Image;
 use App\Aktivis;
 use App\Voting;
 use App\VotingPilihan;
+use App\VotingPilihanCount;
 use App\VotingSuara;
 use App\Support\Helper;
 use Illuminate\Http\Request;
@@ -83,7 +84,7 @@ class VotingController extends Controller{
 
 	public function indexSuara($id)
 	{
-		$table_data = VotingPilihan::where('voting_id', $id)->get();
+		$table_data = VotingPilihan::where('voting_id', $id)->orderByDesc('skor')->get();
 
 		return response()
 		->json([
@@ -143,7 +144,8 @@ class VotingController extends Controller{
 			foreach($kelasSuara as $dataSuara){
 				VotingSuara::create([
 					'voting_id' => $kelas->id,
-					'name' => $dataSuara->name
+					'id_cu' => $dataSuara->id_cu,
+					'name' => $dataSuara->name,
 				]);
 			}
 		}
@@ -206,20 +208,25 @@ class VotingController extends Controller{
 			if($cekSuara){
 				\DB::beginTransaction(); 
 				try{
+					VotingPilihanCount::create([
+						'voting_id' => $request->voting_id,
+						'voting_pilihan_id' => $request->voting_pilihan_id,
+						'voting_suara_id' => $cekSuara->id
+					]);
+					
+					$pilihanCount = VotingPilihanCount::where('voting_pilihan_id',$request->voting_pilihan_id)->count();
 					$kelasPilihan = VotingPilihan::findOrFail($request->voting_pilihan_id);
-					$skor = $kelasPilihan->skor + 1;
-					$kelasPilihan->skor = $skor;
+					$kelasPilihan->skor = $pilihanCount;
 					$kelasPilihan->update();
 			
 					$cekSuara->voting_pilihan_id = $request->voting_pilihan_id;
 					$cekSuara->update();
-	
-					$kelasVoting = Voting::findOrFail($request->voting_id);
-					$suara_ok = $kelasVoting->suara_ok + 1;
-					$kelasVoting->suara_ok = $suara_ok;
-					$kelasVoting->update();
+
+					$suaraOk = VotingSuara::where('voting_id',$request->voting_id)->whereNotNull('voting_pilihan_id')->count();
+					$voting->suara_ok = $suaraOk;
+					$voting->update();
 					
-					event(new VotingEvent($skor, $kelasVoting->id, $kelasPilihan->id));
+					event(new VotingEvent($pilihanCount, $voting->id, $kelasPilihan->id));
 					
 					\DB::commit();
 					return response()
@@ -306,6 +313,10 @@ class VotingController extends Controller{
 		$kelas = Voting::findOrFail($id);
 		$name = $kelas->name;
 		$kelas->delete();
+
+		VotingPilihan::where('voting_id',$kelas->id)->delete();
+		VotingPilihanCount::where('voting_id',$kelas->id)->delete();
+		VotingSuara::where('voting_id',$kelas->id)->delete();
 
 		return response()
 			->json([

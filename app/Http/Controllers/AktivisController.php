@@ -13,6 +13,7 @@ use App\AktivisAnggotaCu;
 use App\AktivisPekerjaan;
 use App\AktivisOrganisasi;
 use App\AktivisPendidikan;
+use App\AktivisKeterangan;
 use App\KegiatanPeserta;
 use Illuminate\Http\Request;
 use Venturecraft\Revisionable\Revision;
@@ -329,6 +330,16 @@ class AktivisController extends Controller{
 	public function indexDiklat($id)
 	{
 		$table_data = KegiatanPeserta::with('kegiatan.Provinces','kegiatan.panitia_dalam', 'kegiatan.panitia_luar')->where('aktivis_id',$id)->orderBy('datang','desc')->get();
+
+		return response()
+			->json([
+					'model' => $table_data,
+			]);
+	}
+
+	public function indexKeterangan($id)
+	{
+		$table_data = AktivisKeterangan::where('id_aktivis',$id)->orderBy('tanggal','desc')->get();
 
 		return response()
 			->json([
@@ -884,6 +895,44 @@ class AktivisController extends Controller{
 		}
 		$kelas->save();
 		Aktivis::flushCache();
+	}
+
+	public function saveKeterangan(Request $request, $id)
+	{
+		if(array_key_exists('id', $request->keterangan)){
+			$kelas = AktivisKeterangan::findOrFail($request->keterangan['id']);
+		}else{
+			$kelas = new AktivisKeterangan();
+		}
+
+		if(!empty($id)){
+			$kelas->id_aktivis = $id;
+		}else{
+			$kelas->id_aktivis = $request->id_aktivis;
+		}
+
+		$kelas->name = $request->keterangan['name'];
+		$kelas->tipe = $request->keterangan['tipe'];
+		$kelas->keterangan = $request->keterangan['keterangan'];
+		$kelas->tanggal = $request->keterangan['tanggal'];
+
+		$kelas->save();
+
+		Aktivis::flushCache();
+
+		if(array_key_exists('id', $request->keterangan)){
+			return response()
+			->json([
+				'saved' => true,
+				'message' => 'Keterangan berhasil diubah'
+			]);
+		}else{
+			return response()
+			->json([
+				'saved' => true,
+				'message' => 'Keterangan berhasil ditambah'
+			]);
+		}
 	}
 
 

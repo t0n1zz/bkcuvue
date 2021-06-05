@@ -290,6 +290,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/aktivis/indexKeluarga/{id}', 'AktivisController@indexKeluarga');
         Route::get('/aktivis/indexOrganisasi/{id}', 'AktivisController@indexOrganisasi');
         Route::get('/aktivis/indexDiklat/{id}', 'AktivisController@indexDiklat');
+        Route::get('/aktivis/indexKeterangan/{id}', 'AktivisController@indexKeterangan');
         Route::get('/aktivis/createPekerjaan', 'AktivisController@createPekerjaan');
         Route::get('/aktivis/createPendidikan', 'AktivisController@createPendidikan');
         Route::get('/aktivis/createOrganisasi', 'AktivisController@createOrganisasi');
@@ -306,6 +307,8 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::delete('/aktivis/pendidikan/{id}', 'AktivisController@destroyPendidikan');
         Route::delete('/aktivis/organisasi/{id}', 'AktivisController@destroyOrganisasi');
         Route::delete('/aktivis/diklat/{id}', 'AktivisController@destroyDiklat');
+        Route::delete('/aktivis/keterangan/{id}', 'AktivisController@destroyKeterangan');
+        Route::post('/aktivis/saveKeterangan/{id}', 'AktivisController@saveKeterangan');
         Route::delete('/aktivis/keluarga/{id}', 'AktivisController@destroyKeluarga');
         Route::delete('/aktivis/anggotaCu/{id}', 'AktivisController@destroyAnggotaCu');
         Route::group(['middleware' => ['permission:index_aktivis']], function () {
@@ -559,6 +562,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::post('/jalinanKlaim/updateVerifikasi/{id}', 'JalinanKlaimController@updateVerifikasi');
         Route::get('/jalinanKlaim/getPencairan', 'JalinanKlaimController@getPencairan');
         Route::get('/jalinanKlaim/getStatus/{status_klaim}', 'JalinanKlaimController@getStatus');
+        Route::get('/jalinanKlaim/getHistory/{id}', 'JalinanKlaimController@getHistory');
         Route::group(['middleware' => ['permission:index_jalinan_klaim']], function () {
             Route::get('/jalinanKlaim/status/{status}/{awal}/{akhir}', 'JalinanKlaimController@index');
             Route::get('/jalinanKlaim/indexCu/{cu}/tp/{tp}/status/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexCu'); 

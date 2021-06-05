@@ -54,7 +54,7 @@
 				kelas: 'voting',
 				titleDesc: 'Mengelola data voting',
 				titleIcon: 'icon-point-up',
-				selectCuPath: 'votingCu',
+				selectCuPath: 'voting',
 			}
 		},
 		created(){

@@ -358,7 +358,7 @@
 		watch: {
 			formStat(value){
 				if(value === "success"){
-					this.form.id_cu = this.currentUser.id_cu;	
+					this.changeCU(this.currentUser.id_cu);
 				}
 			},
 			updateStat(value){
@@ -376,13 +376,6 @@
     },
 		methods: {
 			fetch(){
-				if(this.currentUser.id_cu == 0){
-					this.$store.dispatch(this.kelas + '/indexVoting');
-					this.$store.dispatch('kegiatanBKCU/indexKegiatan');
-				}else{
-					this.$store.dispatch(this.kelas + '/indexVotingCu', this.currentUser.id_cu);
-				}
-
 				if(this.$route.meta.mode == 'edit'){
 					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
 				} else {
@@ -412,6 +405,16 @@
 				this.selectedItemPilihan = {};
 				this.modalTutup(); 
 			},
+			changeCU(id){
+				this.form.id_cu = id;	
+				this.$store.dispatch(this.kelas + '/indexVotingCu', id);
+				// TODO: update with kegiatan
+				if(id == 0){
+					this.$store.dispatch('kegiatanBKCU/indexKegiatan');
+				}else{
+					this.$store.dispatch('kegiatanBKCU/resetDataS');
+				}
+			},
 			save() {
 				this.form.pilihan = this.itemDataPilihan;
 				this.state = '';
@@ -431,11 +434,7 @@
 				});
 			},
 			back(){
-				if(this.currentUser.id_cu == 0){
-					this.$router.push({name: this.kelas, params:{cu:'semua'}});
-				}else{
-					this.$router.push({name: this.kelas, params:{cu: this.currentUser.id_cu}});
-				}
+				this.$router.push({name: this.kelas, params:{cu: this.currentUser.id_cu}});
 			},
 			selectedRow(item,index){
 				this.selectedItemPilihan = item;

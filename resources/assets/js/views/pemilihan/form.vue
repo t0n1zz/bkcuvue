@@ -198,13 +198,12 @@
 							<data-table :items="itemDataCalon" :columnData="columnDataCalon" :itemDataStat="itemDataCalonStat">
 								<template slot="item-desktop" slot-scope="props">
 									<tr :class="{ 'bg-info': selectedItemCalon.index == props.index + 1}" class="text-nowrap" @click="selectedRow(props.item, props.index + 1, 'calon')" v-if="props.item">
-										<td>{{ props.index + 1 }}</td>
+										<td>{{ props.item.no_urut }}</td>
 										<td>
 											<img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
 											<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
 										</td>
 										<td>{{ props.item.name }}</td>
-										<td>{{ props.item.pengusung_cu_id }}</td>
 										<td>{{ props.item.tanggal_lahir }}</td>
 										<td>{{ props.item.tempat_lahir }}</td>
 										<td>{{ props.item.status }}</td>
@@ -328,7 +327,7 @@
           }
 				},
 				columnDataCalon:[
-					{ title: 'No.' },
+					{ title: 'No. Urut' },
 					{ title: 'Foto' },
 					{ title: 'Nama' },
 					{ title: 'Tanggal Lahir' },

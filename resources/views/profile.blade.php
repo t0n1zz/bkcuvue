@@ -178,7 +178,7 @@
       <div class="col-lg-3 dark col-padding ohidden" style="background-color: #282828;">
         <div>
           <h3 class="uppercase" style="font-weight: 600;">Misi</h3>
-          <p style="line-height: 1.8;">Memastikan Keberlanjutan Gerakan Credit Union Melalui Tata Kelola Yang Sehat dan Terintegrasi Untuk Meningkatkan Kualitas Anggota</p>
+          <p style="line-height: 1.8;">Memastikan Keberlanjutan Gerakan Credit Union Melalui Tata Kelola Yang Sehat dan Terintegrasi Berbasis Teknologi Untuk Meningkatkan Kualitas Anggota</p>
           <i class="icon-bulb bgicon"></i>
         </div>
       </div>
@@ -186,7 +186,7 @@
       <div class="col-lg-3 dark col-padding ohidden" style="background-color: #34495e;">
         <div>
           <h3 class="uppercase" style="font-weight: 600;">Visi</h3>
-          <p style="line-height: 1.8;">Menjadi Gerakan Credit Union Nusantara Berbasis Komunitas Yang Terintegrasi, Tangguh Dan Berkelanjutan</p>
+          <p style="line-height: 1.8;">Menjadi Federasi Nasional Credit Union yang Terintegrasi, Terpercaya dan Berkelanjutan</p>
           <i class="icon-paperplane bgicon"></i>
         </div>
       </div>

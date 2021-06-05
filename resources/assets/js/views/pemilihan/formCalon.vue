@@ -124,6 +124,31 @@
 		</message>
 		<!-- divider -->
 
+		<!-- no urut -->
+		<div class="form-group" :class="{'has-error' : errors.has('formCalon.no_urut')}">
+
+			<!-- title -->
+			<h5 :class="{ 'text-danger' : errors.has('formCalon.no_urut')}">
+				<i class="icon-cross2" v-if="errors.has('formCalon.no_urut')"></i>
+				Jumlah Suara: <wajib-badge></wajib-badge></h5>
+
+			<!-- input -->
+			<cleave 
+				name="no_urut"
+				v-model="formCalon.no_urut" 
+				class="form-control" 
+				:raw="false" 
+				:options="cleaveOption.number3" 
+				placeholder="Silahkan masukkan no urut"
+				v-validate="'required'" data-vv-as="No. Urut"></cleave>
+
+			<!-- error message -->
+			<small class="text-muted text-danger" v-if="errors.has('formCalon.no_urut')">
+				<i class="icon-arrow-small-right"></i> {{ errors.first('formCalon.no_urut') }}
+			</small>
+			<small class="text-muted" v-else>&nbsp;</small>
+		</div>
+
 		<!-- CU -->
 		<div class="form-group" :class="{'has-error' : errors.has('formCalon.pengusung_cu_id')}" v-if="this.currentUser.id_cu == 0">
 
@@ -159,7 +184,7 @@
 			<button type="submit" class="btn btn-primary" :disabled="formCalon.aktivis_id == ''">
 				<i class="icon-floppy-disk"></i> Simpan</button>
 		</div>  
-
+n
 		<!-- tombol mobile-->
 		<div class="d-block d-md-none">
 			<button type="submit" class="btn btn-primary btn-block pb-2" :disabled="formCalon.aktivis_id == ''">
@@ -179,18 +204,28 @@
 	import checkValue from '../../components/checkValue.vue';
 	import DataViewer from '../../components/dataviewer2.vue';
 	import message from "../../components/message.vue";
+	import Cleave from 'vue-cleave-component';
 
 	export default {
 		props: ['mode','selected'],
 		components: {
 			DataViewer,
 			checkValue,
-			message
+			message,
+			Cleave
 		},
 		data() {
 			return {
 				title: '',
 				kelas: 'aktivis',
+				cleaveOption: {
+					number3: {
+            numeral: true,
+            numeralIntegerScale: 3,
+            numeralDecimalScale: 0,
+            stripLeadingZeroes: false
+          },
+				},
 				selectedItem: [],
 				formCalon:{
 					aktivis_id: '',

@@ -145,6 +145,7 @@
 							<transition enter-active-class="animated fadeIn" mode="out-in">
 								<div v-show="tabName == 'iuran'">
 									<div class="row">
+										<!-- tunas -->
 										<div class="col-lg-6">
 											<!-- informasi umum -->
 											<div class="card">
@@ -160,13 +161,13 @@
 														<div class="table-responsive">
 															<table class="table">
 																<tbody>
-																	<tr v-for="(produk, index) in produkData" :key="index">
+																	<tr v-for="(produk, index) in produkData" v-if="produk.tipe == 'Simpanan Pokok' || produk.tipe == 'Simpanan Wajib' || produk.tipe == 'Simpanan Non Saham'">
 																		<th>{{ index + 1 }}. {{ produk.name }}</th>
-																		<td class="text-right">$7,000</td>
+																		<td class="text-right">0</td>
 																	</tr>
 																	<tr>
-																		<th>Jumlah Simpanan sebagai pengurang</th>
-																		<td class="text-right">$17,000</td>
+																		<th>Jumlah Simpanan yang dilindungi</th>
+																		<td class="text-right">0</td>
 																	</tr>
 																</tbody>
 															</table>
@@ -182,22 +183,265 @@
 															<table class="table">
 																<tbody>
 																	<tr>
-																		<th>1. Simpanan usia 0 s.d 1 thn  diatas plafon (5.000.000)</th>
-																		<td class="text-right">$7,000</td>
+																		<th>1. Simpanan usia 0 s.d 1 thn diatas plafon (5.000.000)</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>2. Simpanan usia > 1 s.d 70 thn diatas plafon (50.000.000)</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>3. Simpanan usia masuk 60 s.d 70 thn diatas plafon (10.000.000)</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>4. Pertambahan simpanan usia diatas  70 thn - yang menjadi anggota CU pada usia di bawah 60 tahun (Maks. 50 juta)</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>5. Pertambahan simpanan usia diatas  70 thn - yang menjadi anggota CU pada usia 60 s.d 70 tahun (Maks. 10 juta)</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>6. Pertambahan simpanan usia diatas  70 thn - Anggota masuk usia diatas 70 tahun</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>7. Simpanan Kapitalisasi anggota baru  < 30 hari sejak menjadi anggota</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>8. Simpanan kapitalisasi  yang piutangnya tidak pernah diangsur 3 bln berturut-turut atau lebih</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>9. Simpanan lembaga yang diatasnamakan lembaga atau perorangan</th>
+																		<td class="text-right">0</td>
 																	</tr>
 																	<tr>
 																		<th>Jumlah Simpanan sebagai pengurang</th>
-																		<td class="text-right">$17,000</td>
+																		<td class="text-right">0</td>
 																	</tr>
 																</tbody>
 															</table>
 														</div>
 													</div>
 
+													<!-- simpanan yang dilindungi -->
+													<div class="card">
+														<div class="card-header">
+															<b>C. Simpanan Yang Dilindungi</b>
+														</div>
+														<div class="table-responsive">
+															<table class="table">
+																<tbody>
+																	<tr>
+																		<th>A - B</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</div>
+
+													<!-- iuran -->
+													<div class="card">
+														<div class="card-header">
+															<b>D. Iuran</b>
+														</div>
+														<div class="table-responsive">
+															<table class="table">
+																<tbody>
+																	<tr>
+																		<th>Iuran Tunas</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>Pembulatan Iuran Tunas</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</div>		
+
 												</div>
 											</div>
 
 										</div>
+
+										<!-- lintang -->
+										<div class="col-lg-6">
+											<!-- informasi umum -->
+											<div class="card">
+												<div class="card-header bg-white">
+													<h5 class="card-title">Perlindungan Piutang Anggota (LINTANG)</h5>
+												</div>
+												<div class="card-body">
+													<!-- simpanan dilindungi	 -->
+													<div class="card">
+														<div class="card-header">
+															<b>A. Piutang yang dilindungi</b>
+														</div>
+														<div class="table-responsive">
+															<table class="table">
+																<tbody>
+																	<tr v-for="(produk, index) in produkData" :key="index" v-if="produk.tipe == 'Pinjaman Kapitalisasi' || produk.tipe == 'Pinjaman Umum' || produk.tipe == 'Pinjaman Produktif'">
+																		<th>{{ index + 1 }}. {{ produk.name }}</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>Jumlah Piutang yang dilindungi</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</div>
+
+													<!-- simpanan sebagai pengurang -->
+													<div class="card">
+														<div class="card-header">
+															<b>B. Piutang sebagai pengurang</b>
+														</div>
+														<div class="table-responsive">
+															<table class="table">
+																<tbody>
+																	<tr>
+																		<th>1. Saldo piutang cair usia dewasa s.d 60 thn diatas plafon (150.000.000)</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>2. Saldo piutang cair diatas usia 60 s.d 70 thn diatas plafon (50.000.000)</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>3. Saldo piutang kapitalisasi diatas plafon (25.000.000)</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>4. Saldo piutang usia diatas 70 tahun</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>5. Saldo piutang macet  lebih dari 6 bulan berturut-turut</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>6. Saldo piutang kapitalisasi anggota baru < 30 hari sejak menjadi anggota</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>7. Saldo piutang kapitalisasi yang tidak pernah diangsur ≥ 3 bln berturut-turut</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>8. Saldo piutang dengan tujuan untuk biaya berobat sendiri</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>9. Saldo piutang lembaga atas nama perorangan atau nama lembaga</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>10. Saldo piutang produktif  diatas plafon (300.000.000)</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>11. Saldo piutang produktif dan piutang lain diatas plafon (300.000.000)</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>12. Saldo piutang kapitalisasi yang umur piutang diatas 5 tahun</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>13. Saldo piutang selain  kapitalisasi yang umur piutang diatas 15 tahun</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>14. Saldo piutang yang angsuran ditarik dari simpanan saham (SP dan SW)</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>15. Saldo piutang luar biasa usia < 17 tahun dan belum menikah</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>Jumlah Simpanan sebagai pengurang</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</div>
+
+													<!-- simpanan yang dilindungi -->
+													<div class="card">
+														<div class="card-header">
+															<b>C. Piutang Yang Dilindungi</b>
+														</div>
+														<div class="table-responsive">
+															<table class="table">
+																<tbody>
+																	<tr>
+																		<th>A - B</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</div>
+
+													<!-- iuran -->
+													<div class="card">
+														<div class="card-header">
+															<b>D. Iuran</b>
+														</div>
+														<div class="table-responsive">
+															<table class="table">
+																<tbody>
+																	<tr>
+																		<th>Iuran Lintang</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																	<tr>
+																		<th>Pembulatan Iuran Lintang</th>
+																		<td class="text-right">0</td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</div>		
+
+												</div>
+											</div>
+
+										</div>
+
+										<!-- total -->
+										<div class="col-lg-12">
+											<div class="card">
+												<div class="card-header bg-white">
+													<h5 class="card-title">Total</h5>
+												</div>
+												<div class="table-responsive">
+													<table class="table">
+														<tbody>
+															<tr>
+																<th>Jumlah Iuran Jalinan ( TUNAS + LINTANG )</th>
+																<td class="text-right">0</td>
+															</tr>
+															<tr>
+																<th>Jumlah Iuran Jalinan Yang Dibayarkan</th>
+																<td class="text-right">0</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+
 									</div>
 									
 									<!-- form info -->

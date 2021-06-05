@@ -16,23 +16,23 @@ class PemilihanCalon extends Model {
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'aktivis_id','pemilihan_id','pengusung_cu_id','skor','created_at','updated_at'
+        'no_urut','aktivis_id','pemilihan_id','pengusung_cu_id','skor','created_at','updated_at'
     ];
 
     protected $allowedFilters = [
-        'id','aktivis_id','pengusung_cu_id','pemilihan_id','skor','created_at','updated_at',
+        'id','no_urut','aktivis_id','pengusung_cu_id','pemilihan_id','skor','created_at','updated_at',
         'aktivis.name'
     ];
 
     protected $orderable = [
-        'id','aktivis_id','pengusung_cu_id','pemilihan_id','skor','created_at','updated_at',
+        'id','no_urut','aktivis_id','pengusung_cu_id','pemilihan_id','skor','created_at','updated_at',
         'aktivis.name'
     ];
 
     public static function initialize()
     {
         return [
-            'aktivis_id' => '','pemilihan_id' => '','pengusung_cu_id' => '','skor' => ''
+            'no_urut' => '','aktivis_id' => '','pemilihan_id' => '','pengusung_cu_id' => '','skor' => ''
         ];
     }
     

@@ -660,7 +660,11 @@ export default {
     },
     modalConfirmOk() {
       if (this.state == "hapus") {
-        this.$store.dispatch(this.kelas + "/destroy", this.selectedItem.id);
+				 if (this.selectedItem.tp) {
+        		this.$store.dispatch("laporanTp/destroy", this.selectedItem.tp);
+				 }else{
+						this.$store.dispatch(this.kelas + "/destroy", this.selectedItem.id);
+				 }
       }
     },
     formatPeriode(value) {

@@ -81,6 +81,12 @@
 										</div>
 									</div>
 									<div class="card-body">
+										<button type="button" class="btn btn-light btn-block btn-icon" @click.prevent="fetch()">
+											<i class="icon-sync"></i> Reload
+										</button>
+
+										<hr/>
+
 										<div v-for="(p, index) in itemData2" :key="index">
 											<div class="card card-body">
 												<div class="row">
@@ -171,7 +177,7 @@
 				<div class="card">
 					<div class="card-header bg-white">
 						<small class="text-muted">PERTANYAAN</small>
-						<h5 class="card-title">{{ form.name }}</h5>
+						<h5 class="card-title">{{ title }}</h5>
 					</div>
 				</div>
 

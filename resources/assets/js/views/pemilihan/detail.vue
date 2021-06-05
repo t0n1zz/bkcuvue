@@ -38,11 +38,16 @@
 									<!-- informasi umum -->
 									<div class="card">
 										<div class="card-header bg-white header-elements-inline">
-											<h5 class="card-title">Pemilihan</h5>
+											<h5 class="card-title">Pemilihan | Status: <span v-html="$options.filters.checkStatus(form.status)"></span></h5>
 											<div class="header-elements">
-												 <button type="button" class="btn btn-light btn-icon mb-1" @click.prevent="fetch()">
-														<i class="icon-sync"></i>
-													</button>
+												<!-- status -->
+												<button @click.prevent="modalOpen('status')" 	class="btn btn-light btn-icon mb-1 mr-1" v-if="currentUser.can && currentUser.can['update_pemilihan']">
+													<i class="icon-calendar5"></i> Status
+												</button>
+												<!-- reload -->
+												<button type="button" class="btn btn-light btn-icon mb-1" @click.prevent="fetch()">
+													<i class="icon-sync"></i>
+												</button>
 											</div>
 										</div>
 										<div class="card-body">
@@ -108,7 +113,7 @@
 										<data-table :items="itemDataCalon" :columnData="columnDataCalon" :itemDataStat="itemDataCalonStat">
 											<template slot="item-desktop" slot-scope="props">
 												<tr class="text-nowrap" v-if="props.item">
-													<td>{{ props.index + 1 }}</td>
+													<td>{{ props.item.no_urut }}</td>
 													<td>
 														<img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
 														<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
@@ -177,14 +182,30 @@
 												<span class="badge badge-primary">
 													Total Suara: {{ form.suara }}
 												</span>
+
+												<button type="button" class="btn btn-light btn-icon mb-1 ml-1" @click.prevent="fetch()">
+													<i class="icon-sync"></i>
+												</button>
 											</div>
 										</div>
 										<div class="card-body">
-											<div v-for="(p, index) in form.calon" :key="index">
+											<div v-for="(p, index) in formCalon" :key="index">
 												<div class="card card-body">
 													<div class="row">
 														<div class="col-sm-3 mb-1 mt-1">
-															<b>{{ p.name }}</b>
+															<div class="row">
+																<div class="col-4">
+																	<!-- foto -->
+																	<img :src="'/images/aktivis/' + p.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="p.gambar">
+																	<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+																</div>
+																<div class="col-8">
+																	<span class="badge badge-success" v-if="p.pivot">No. Urut {{ p.pivot.no_urut }}</span>
+																	<br/>
+																	<!-- nama -->
+																	<b>{{ p.name }}</b>
+																</div>
+															</div>
 														</div>
 														<div class="col-sm-8 mb-1 mt-1">
 															<div class="progress">
@@ -198,7 +219,7 @@
 															</div>	
 														</div>
 														<div class="col-sm-1 mb-1 mt-1">
-															{{ p.pivot.skor }} / {{ form.suara }}
+															<b>{{ p.pivot.skor }} / {{ form.suara }}</b>
 														</div>
 													</div>
 												</div>
@@ -234,16 +255,23 @@
 			</div>
 		</div>
 
+		<!-- modal -->
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" :content="modalContent" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+		</app-modal>
+
 	</div>
 </template>
 
 <script>
+	import _ from 'lodash';
 	import { mapGetters } from 'vuex';
 	import pageHeader from "../../components/pageHeader.vue";
 	import message from "../../components/message.vue";
 	import dataTable from '../../components/datatable.vue';
 	import { PusherAuth } from '../../helpers/pusherAuth.js';
 	import jsonExcel from 'vue-json-excel';
+	import checkValue from '../../components/checkValue.vue';
+	import appModal from '../../components/modal';
 	import Echo from 'laravel-echo';
 	import Pusher from "pusher-js";
 	
@@ -252,7 +280,9 @@
 			pageHeader,
 			message,
 			dataTable,
-			jsonExcel
+			jsonExcel,
+			checkValue,
+			appModal
 		},
 		data() {
 			return {
@@ -264,7 +294,7 @@
 				kelas: 'pemilihan',
 				tabName: 'info',
 				columnDataCalon:[
-					{ title: 'No.' },
+					{ title: 'No. Urut' },
 					{ title: 'Foto' },
 					{ title: 'Nama' },
 					{ title: 'Tanggal Lahir' },
@@ -284,7 +314,8 @@
 				itemDataSuaraStat: 'success',
         excelSuara: {
           fields: {
-						link: "link"
+						link: "link",
+						pilihan: "pemilihan_calon_id"
 					},
           data: [],
           meta: [
@@ -294,6 +325,14 @@
             }]
           ]
         },
+				state: '',
+				modalShow: false,
+				modalState: '',
+				modalColor: '',
+				modalTitle: '',
+				modalContent: '',
+				modalButton: '',
+				formCalon: '',
 			}
 		},
 		created(){
@@ -302,12 +341,13 @@
 		mounted(){
 			PusherAuth();
 			window.Echo.private(`pemilihan.channel.` + this.$route.params.id)
-			.listen('PemilihanEvent',(data) => {  
-				console.log(data);    
+			.listen('PemilihanEvent',(data) => {   
 				var p;
 				for (p of this.form.calon) {
 					if(p.pivot.id == data.pemilihan_calon_id){
 						p.pivot.skor = data.skor;
+						this.form.suara_ok += 1;
+						this.formCalon = _.orderBy(this.form.calon, 'pivot.skor' ,['desc']);
 					}
 				}
 			});
@@ -325,6 +365,7 @@
 					for (valCalon of this.form.calon) {
 						let formData = {};
 						formData.aktivis_id = valCalon.id;
+						formData.no_urut = valCalon.pivot.no_urut;
 						formData.name = valCalon.name;
 						formData.gambar = valCalon.gambar;
 						formData.tanggal_lahir = valCalon.tanggal_lahir;
@@ -349,22 +390,58 @@
 						this.itemDataSuara.push(formData2);
 					}
 					this.excelSuara.data = this.itemDataSuara;
+					this.formCalon = _.orderBy(this.form.calon, 'pivot.skor' ,['desc']);
 				}
 			},
+			// when updating data
+      updateStat(value) {
+				this.modalState = value;
+				this.modalButton = 'Ok';
+				
+				if(value == "success"){
+					this.modalTitle = this.updateMessage.message;
+					this.modalContent = '';
+					this.fetch();
+				}else if(value == "fail"){
+					this.modalContent = this.updateMessage;
+				}else{
+					this.modalContent = '';
+				}
+      }
 		},
 		methods: {
 			fetch(){
 				this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
 			},
 			back(){
-				if(this.currentUser.id_cu == 0){
-					this.$router.push({name: this.kelas, params:{cu:'semua'}});
-				}else{
-					this.$router.push({name: this.kelas, params:{cu: this.currentUser.id_cu}});
-				}
+				this.$router.push({name: this.kelas, params:{cu: this.form.id_cu}});
 			},
 			changeTab(value){
 				this.tabName = value;
+			},
+			modalOpen(state) {
+				this.modalShow = true;
+				this.state = state;
+
+				if (state == 'status') {
+					this.modalState = 'confirm-tutup'; 
+					if (this.form.status == 0) {
+						this.modalTitle = 'Aktifkan ' + this.form.name + ' ?';
+						this.modalButton = 'Iya, aktifkan';
+					} else {
+						this.modalTitle = 'Tidak aktifkan ' + this.form.name + ' ?';
+						this.modalButton = 'Iya, tidak aktifkan';
+					}
+				}
+			},
+			modalTutup() {
+				this.modalShow = false;
+				this.$store.dispatch(this.kelas + '/resetUpdateStat');
+			},
+			modalConfirmOk() {
+				if (this.state == "status"){
+					this.$store.dispatch(this.kelas + '/updateStatus', [this.form.id, this.form.id_cu]);
+				}
 			},
 		},
 		computed: {
@@ -374,6 +451,8 @@
 			...mapGetters('pemilihan',{
 				form: 'data',
 				formStat: 'dataStat',
+				updateMessage: 'update',
+				updateStat: 'updateStat'
 			}),
 		}
 	}

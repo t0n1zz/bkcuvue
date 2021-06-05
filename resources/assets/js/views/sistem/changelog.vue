@@ -10,14 +10,62 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.4.1 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#v341">Version 3.4.1<small class="text-muted"> / 5 Juni 2021</small></a> </h5>
+                </div>
+
+                <div id="v341" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi menambahkan informasi riwayat klaim pada klain JALINAN, informasi tambahan pada aktivis seperti penghargaan, pelanggaran dan lainnya, dan memperbaiki bug di voting dan pemilihan
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan fitur untuk bisa melihat riwayat klaim pada klaim JALINAN</li>
+                      <li>Penambahan fitur informasi tambahan pada riwayat aktivis yang bisa mencakup informasi penghargaan, pelanggaran, dan lainnya</li>
+                      <li>Perbaikan bug jumlah karakter untuk judul/pertanyaan pada voting dan pemilihan</li>
+                      <li>Perbaikan bug tampilan pada pertanyaan</li>
+                      <li>Perbaikan bug tampilan pada activity log dan aktivitas user</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.4.1 -->
+
+              <!-- Version 3.4.0 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v340">Version 3.4.0<small class="text-muted"> / 22 Mei 2021</small></a> </h5>
+                </div>
+
+                <div id="v340" class="collapse" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi memperbaiki bug voting dan pemilihan serta menambahkan versi awal / prototipe dari fitur iuran jalinan
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Perbaikan bug pada voting yang membuat skor tidak muncul secara real time walaupun secara database data tersimpan tapi tidak muncul di tampilan</li>
+                      <li>Perbaikan bug tampilan pada form penambahan calon di pemilihan</li>
+                      <li>Penambahan prototipe fitur iuran jalinan untuk dicoba secara internal dengan data sesungguhnya</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.4.0 -->
+
               <!-- Version 3.3.9 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#v339">Version 3.3.9<small class="text-muted"> / 15 Mei 2021</small></a> </h5>
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v339">Version 3.3.9<small class="text-muted"> / 15 Mei 2021</small></a> </h5>
                 </div>
 
-                <div id="v339" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="v339" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi menambahkan fitur untuk voting dan perbaikan pada pemilihan
                     <br/><br/>

@@ -11,7 +11,10 @@
           <a href="#" class="nav-link" :class="{'active' : tabName == 'verifikator'}" @click.prevent="changeTab('verifikator')"><i class="icon-file-check mr-2"></i> Verifikator</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link" :class="{'active' : tabName == 'dokumen'}" @click.prevent="changeTab('dokumen')"><i clafdss="icon-stack mr-2"></i> Dokumen</a>
+          <a href="#" class="nav-link" :class="{'active' : tabName == 'dokumen'}" @click.prevent="changeTab('dokumen')"><i class="icon-stack mr-2"></i> Dokumen</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" :class="{'active' : tabName == 'history'}" @click.prevent="changeTab('history')"><i class="icon-copy3 mr-2"></i> Riwayat Klaim</a>
         </li>
       </ul>
     </div>
@@ -965,6 +968,14 @@
     </transition>
     <!-- dokumen -->
 
+    <!-- history -->
+    <transition enter-active-class="animated fadeIn" mode="out-in">
+      <div v-show="tabName == 'history'" v-if="isHistory">
+        <riwayat-klaim :itemData="history" :itemDataStat="historyStat"></riwayat-klaim>
+      </div>
+    </transition>
+    <!-- history -->
+
 	</div>
 </template>
 
@@ -979,6 +990,7 @@
   import infoIcon from "../../components/infoIcon.vue";
   import verifikator from "./verifikator.vue";
   import dokumen from "./dokumen.vue";
+  import riwayatKlaim from "./riwayatKlaim.vue";
   import DatePicker from "../../components/datePicker.vue";
 
 	export default {
@@ -993,7 +1005,8 @@
       infoIcon,
       verifikator,
       dokumen,
-      DatePicker
+      DatePicker,
+      riwayatKlaim
 		},
 		data() {
 			return {
@@ -1002,6 +1015,7 @@
         tabNameDokumen: '',
         isVerifikator: false,
         isDokumen: false,
+        isHistory: false,
         selectedData: {},
 				formStatus: {
           cu_id: '',
@@ -1075,6 +1089,10 @@
 				}
 				if (value == 'dokumen' && !this.isDokumen) {
           this.isDokumen = true
+        }
+				if (value == 'history' && !this.isHistory) {
+          this.isHistory = true
+           this.$store.dispatch('jalinanKlaim/getHistory',this.selectedData.id);
         }
       },
       changeTabDokumen(value) {
@@ -1191,6 +1209,8 @@
         modelVeriPilihManajemenStat: "dataStatS3",
       }),
       ...mapGetters('jalinanKlaim', {
+        history: "history",
+        historyStat: "historyStat",
 				modelVeriPengurus: "dataVeri1",
 				modelVeriPengawas: "dataVeri2",
 				modelVeriManajemen: "dataVeri3",
