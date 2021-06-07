@@ -11,7 +11,18 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/me', 'AuthController@me');
     });
 
+    //pemilihan
+    Route::get('/pemilihan/indexCalon/{name}', 'PemilihanController@indexCalon');
+    Route::get('/pemilihan/indexSuara/{id}', 'PemilihanController@indexSuara');
+    Route::post('/pemilihan/storePilihan', 'PemilihanController@storePilihan');
+
+    //voting
+    Route::get('/voting/indexPilihan/{name}', 'VotingController@indexPilihan');
+    Route::get('/voting/indexSuara/{id}', 'VotingController@indexSuara');
+    Route::post('/voting/storePilihan', 'VotingController@storePilihan');
+
     Route::group(['middleware'=>'jwt.auth'],function(){
+        
     // Route::group(['prefix'=>'v1'],function(){
 
         // auth
@@ -179,6 +190,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
 
         // produk
         Route::get('/produkcu/getCu/{id}', 'ProdukCuController@getCu');
+        Route::get('/produkcu/getCuJalinan/{id}', 'ProdukCuController@getCuJalinan');
         Route::get('/produkcu/getSimpananCu/{id}', 'ProdukCuController@getSimpananCu');
         Route::get('/produkcu/getPinjamanCu/{id}', 'ProdukCuController@getPinjamanCu');
         Route::get('/produkcu/count', 'ProdukCuController@count');
@@ -206,6 +218,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/kegiatanBKCU/mulai', 'KegiatanBKCUController@indexMulai');
         Route::get('/kegiatanBKCU/buka', 'KegiatanBKCUController@indexBuka');
         Route::get('/kegiatanBKCU/jalan', 'KegiatanBKCUController@indexJalan');
+        Route::get('/kegiatanBKCU/kegiatan', 'KegiatanBKCUController@indexKegiatan');
         Route::get('/kegiatanBKCU/periode/{kegiatan_tipe}/{periode}', 'KegiatanBKCUController@indexPeriode');
         Route::get('/kegiatanBKCU/indexPeserta/{id}', 'KegiatanBKCUController@indexPeserta');
         Route::get('/kegiatanBKCU/indexMateri/{id}', 'KegiatanBKCUController@indexMateri');
@@ -277,6 +290,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/aktivis/indexKeluarga/{id}', 'AktivisController@indexKeluarga');
         Route::get('/aktivis/indexOrganisasi/{id}', 'AktivisController@indexOrganisasi');
         Route::get('/aktivis/indexDiklat/{id}', 'AktivisController@indexDiklat');
+        Route::get('/aktivis/indexKeterangan/{id}', 'AktivisController@indexKeterangan');
         Route::get('/aktivis/createPekerjaan', 'AktivisController@createPekerjaan');
         Route::get('/aktivis/createPendidikan', 'AktivisController@createPendidikan');
         Route::get('/aktivis/createOrganisasi', 'AktivisController@createOrganisasi');
@@ -293,6 +307,8 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::delete('/aktivis/pendidikan/{id}', 'AktivisController@destroyPendidikan');
         Route::delete('/aktivis/organisasi/{id}', 'AktivisController@destroyOrganisasi');
         Route::delete('/aktivis/diklat/{id}', 'AktivisController@destroyDiklat');
+        Route::delete('/aktivis/keterangan/{id}', 'AktivisController@destroyKeterangan');
+        Route::post('/aktivis/saveKeterangan/{id}', 'AktivisController@saveKeterangan');
         Route::delete('/aktivis/keluarga/{id}', 'AktivisController@destroyKeluarga');
         Route::delete('/aktivis/anggotaCu/{id}', 'AktivisController@destroyAnggotaCu');
         Route::group(['middleware' => ['permission:index_aktivis']], function () {
@@ -441,8 +457,8 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
 
         // mitra perserorangan
         Route::get('/mitraOrang/history', 'MitraOrangController@history');
+        Route::get('/mitraOrang', 'MitraOrangController@index');
         Route::group(['middleware' => ['permission:index_mitra_orang']], function () {
-            Route::get('/mitraOrang', 'MitraOrangController@index');
             Route::get('/mitraOrang/count', 'MitraOrangController@count');
         });
         Route::group(['middleware' => ['permission:create_mitra_orang']], function () {
@@ -460,8 +476,8 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
 
         // mitra lembaga
         Route::get('/mitraLembaga/history', 'MitraLembagaController@history');
+        Route::get('/mitraLembaga', 'MitraLembagaController@index');
         Route::group(['middleware' => ['permission:index_mitra_lembaga']], function () {
-            Route::get('/mitraLembaga', 'MitraLembagaController@index');
             Route::get('/mitraLembaga/count', 'MitraLembagaController@count');
         });
         Route::group(['middleware' => ['permission:create_mitra_lembaga']], function () {
@@ -485,14 +501,15 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/anggotaCu/cariDataBA/{cu}/{noba}', 'AnggotaCuController@cariDataBA');
         Route::get('/anggotaCu/indexProduk/{id}/cu/{cu}', 'AnggotaProdukCuController@index');
         Route::get('/anggotaCu/indexProdukSaldo/{id}', 'AnggotaProdukCuController@indexSaldo'); 
-        Route::group(['middleware' => ['permission:index_anggota_cu']], function () {
-            Route::get('/anggotaCu', 'AnggotaCuController@index');
-            Route::get('/anggotaCu/keluar', 'AnggotaCuController@indexKeluar');
-            Route::get('/anggotaCu/indexMeninggal', 'AnggotaCuController@indexMeninggal');
-            Route::get('/anggotaCu/indexCu/{cu}/{tp}', 'AnggotaCuController@indexCu'); 
-            Route::get('/anggotaCu/indexCuKeluar/{cu}/{tp}', 'AnggotaCuController@indexCuKeluar'); 
-            Route::get('/anggotaCu/indexCuMeninggal/{cu}/{tp}', 'AnggotaCuController@indexCuMeninggal');  
-        });
+        Route::get('/anggotaCu', 'AnggotaCuController@index');
+        Route::get('/anggotaCu/indexCu/{cu}/{tp}', 'AnggotaCuController@indexCu'); 
+        Route::get('/anggotaCu/keluar', 'AnggotaCuController@indexKeluar');
+        Route::get('/anggotaCu/indexMeninggal', 'AnggotaCuController@indexMeninggal');
+        Route::get('/anggotaCu/indexCuKeluar/{cu}/{tp}', 'AnggotaCuController@indexCuKeluar'); 
+        Route::get('/anggotaCu/indexCuMeninggal/{cu}/{tp}', 'AnggotaCuController@indexCuMeninggal');  
+        Route::get('/anggotaCu/getCu/{cu}', 'AnggotaCuController@getCu');  
+        Route::get('/anggotaCu/getCuJalinan/{cu}/{bulan}/{tahun}', 'AnggotaCuController@getCuJalinan');  
+        Route::get('/anggotaCu/getCuKeluar/{cu}', 'AnggotaCuController@getCuKeluar');  
         Route::group(['middleware' => ['permission:create_anggota_cu']], function () {
             Route::get('/anggotaCu/create', 'AnggotaCuController@create');
             Route::post('/anggotaCu/store', 'AnggotaCuController@store');
@@ -545,10 +562,12 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::post('/jalinanKlaim/updateVerifikasi/{id}', 'JalinanKlaimController@updateVerifikasi');
         Route::get('/jalinanKlaim/getPencairan', 'JalinanKlaimController@getPencairan');
         Route::get('/jalinanKlaim/getStatus/{status_klaim}', 'JalinanKlaimController@getStatus');
+        Route::get('/jalinanKlaim/getHistory/{id}', 'JalinanKlaimController@getHistory');
         Route::group(['middleware' => ['permission:index_jalinan_klaim']], function () {
             Route::get('/jalinanKlaim/status/{status}/{awal}/{akhir}', 'JalinanKlaimController@index');
             Route::get('/jalinanKlaim/indexCu/{cu}/tp/{tp}/status/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexCu'); 
             Route::get('/jalinanKlaim/cariData/{nik}', 'JalinanKlaimController@cariData');
+            Route::get('/jalinanKlaim/cariDataId/{id}', 'JalinanKlaimController@cariDataId');
         });
         Route::group(['middleware' => ['permission:create_jalinan_klaim']], function () {
             Route::get('/jalinanKlaim/create', 'JalinanKlaimController@create');
@@ -579,6 +598,23 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
             Route::get('/jalinanKlaim/indexLaporanUsiaDetail/{cu}/{status}/{dari}/{ke}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanUsiaDetail');
             Route::get('/jalinanKlaim/indexLaporanLama/{cu}/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanLama');
             Route::get('/jalinanKlaim/indexLaporanLamaDetail/{cu}/{status}/{dari}/{ke}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanLamaDetail');
+        });
+
+        //jalinan iuran
+        Route::group(['middleware' => ['permission:index_jalinan_iuran']], function () {
+            Route::get('/jalinanIuran', 'JalinanIuranController@index');
+            Route::get('/jalinanIuran/indexCu/{id}', 'JalinanIuranController@indexCu');
+            Route::get('/jalinanIuran/edit/{id}', 'JalinanIuranController@edit');
+        });
+        Route::group(['middleware' => ['permission:create_jalinan_iuran']], function () {
+            Route::get('/jalinanIuran/create/{cu}/{bulan}/{tahun}', 'JalinanIuranController@create');
+            Route::post('/jalinanIuran/store', 'JalinanIuranController@store');
+        });
+        Route::group(['middleware' => ['permission:update_jalinan_iuran']], function () {
+            Route::get('/jalinanIuran/updateStatus/{id}', 'JalinanIuranController@updateStatus');
+        });
+        Route::group(['middleware' => ['permission:destroy_jalinan_iuran']], function () {
+            Route::delete('/jalinanIuran/{id}', 'JalinanIuranController@destroy');
         });
 
         //laporan cu
@@ -731,6 +767,49 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         });
         Route::group(['middleware' => ['permission:destroy_pengumuman']], function () {
             Route::delete('/pengumuman/{id}', 'PengumumanController@destroy');
+        });
+
+        //pemilihan
+        Route::group(['middleware' => ['permission:index_pemilihan']], function () {
+            Route::get('/pemilihan', 'PemilihanController@index');
+            Route::get('/pemilihan/indexCu/{id}', 'PemilihanController@indexCu');
+            Route::get('/pemilihan/indexPemilihan', 'PemilihanController@indexPemilihan');
+            Route::get('/pemilihan/indexPemilihanCu/{id}', 'PemilihanController@indexPemilihanCu');
+            Route::get('/pemilihan/indexUser/{id}', 'PemilihanController@indexUser');
+            Route::get('/pemilihan/checkUser/{pemilihan_id}', 'PemilihanController@checkUser');
+            Route::get('/pemilihan/edit/{id}', 'PemilihanController@edit');
+        });
+        Route::group(['middleware' => ['permission:create_pemilihan']], function () {
+        Route::get('/pemilihan/create', 'PemilihanController@create');
+            Route::post('/pemilihan/store', 'PemilihanController@store');
+        });
+        Route::group(['middleware' => ['permission:update_pemilihan']], function () {
+            Route::get('/pemilihan/updateStatus/{id}/{cu}', 'PemilihanController@updateStatus');
+        });
+        Route::group(['middleware' => ['permission:destroy_pemilihan']], function () {
+            Route::delete('/pemilihan/{id}', 'PemilihanController@destroy');
+        });
+
+        //voting
+        Route::group(['middleware' => ['permission:index_voting']], function () {
+            Route::get('/voting', 'VotingController@index');
+            Route::get('/voting/indexCu/{id}', 'VotingController@indexCu');
+            Route::get('/voting/indexVoting', 'VotingController@indexVoting');
+            Route::get('/voting/indexVotingCu/{id}', 'VotingController@indexVotingCu');
+            Route::get('/voting/indexUser/{id}', 'VotingController@indexUser');
+            Route::get('/voting/checkUser/{voting_id}', 'VotingController@checkUser');
+            Route::get('/voting/edit/{id}', 'VotingController@edit');
+        });
+        Route::group(['middleware' => ['permission:create_voting']], function () {
+            Route::get('/voting/create', 'VotingController@create');
+            Route::post('/voting/store', 'VotingController@store');
+        });
+        Route::group(['middleware' => ['permission:update_voting']], function () {
+            Route::get('/voting/updateStatus/{id}/{cu}', 'VotingController@updateStatus');
+            Route::post('/voting/updateSuaraCu', 'VotingController@updateSuaraCu');
+        });
+        Route::group(['middleware' => ['permission:destroy_voting']], function () {
+            Route::delete('/voting/{id}', 'VotingController@destroy');
         });
 
         // puskopdit

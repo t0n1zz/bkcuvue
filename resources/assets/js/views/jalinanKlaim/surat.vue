@@ -47,7 +47,7 @@
             </div>
             <div class="col-12 mt-3 mb-2">
 
-              <p style="text-indent: 30px; font-size: 18px;">Kami mengucapkan terima kasih atas kerjasama dan kepercayaannya telah menjadi anggota Puskopdit BKCU Kalimantan terutama dalam kegiatan pengembangan JALINAN semoga kerjasama ini semakin terjalin dengan baik dimasa yang akan datang</p>
+              <p style="text-indent: 30px; font-size: 18px;">Kami mengucapkan terima kasih atas kerjasama dan kepercayaannya telah menjadi anggota PUSKOPCUINA terutama dalam kegiatan pengembangan JALINAN semoga kerjasama ini semakin terjalin dengan baik dimasa yang akan datang</p>
 
               <p style="text-indent: 30px; font-size: 18px;" v-if="tipe == 'cair'">Melalui surat ini kami sampaikan bahwa klaim JALINAN Anggota CU Primer dibawah ini telah disetujui. Uang santunan tersebut telah dibukukan pada rekening SIKODIT tanggal <span v-html="$options.filters.dateMonth(this.selectedItem.tanggal_pencairan)"></span> Adapun daftar klaim tersebut diatas sebagai berikut :</p>
 

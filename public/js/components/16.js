@@ -230,9 +230,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['itemData']
 });
@@ -255,6 +252,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -664,16 +662,6 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("li", [
-              _c("b", [_vm._v("Nama Ibu:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.nama_ibu))
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("b", [_vm._v("Nama Ahli Waris:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.ahli_waris))
-            ]),
-            _vm._v(" "),
-            _c("li", [
               _c("b", [_vm._v("Email:")]),
               _vm._v(" " + _vm._s(_vm.itemData.email))
             ]),
@@ -681,11 +669,6 @@ var render = function() {
             _c("li", [
               _c("b", [_vm._v("No. Hp:")]),
               _vm._v(" " + _vm._s(_vm.itemData.hp))
-            ]),
-            _vm._v(" "),
-            _c("li", [
-              _c("b", [_vm._v("Kontak Ahli Waris:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.kontak_ahli_waris))
             ]),
             _vm._v(" "),
             _c("li", [
@@ -1342,57 +1325,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_wajibBadge_vue_vue_type_template_id_2f7dfb81___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
-
-/***/ }),
-
-/***/ "./resources/assets/js/helpers/form.js":
-/*!*********************************************!*\
-  !*** ./resources/assets/js/helpers/form.js ***!
-  \*********************************************/
-/*! exports provided: toMulipartedForm, objectToFormData */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toMulipartedForm", function() { return toMulipartedForm; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "objectToFormData", function() { return objectToFormData; });
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function toMulipartedForm(form, mode) {
-  if (mode === 'edit' && typeof form.image === 'string') {
-    var temp = JSON.parse(JSON.stringify(form));
-    delete temp.image;
-    return temp;
-  } else {
-    return objectToFormData(form);
-  }
-}
-function objectToFormData(obj, form, namespace) {
-  var fd = form || new FormData();
-  var formKey;
-
-  for (var property in obj) {
-    if (obj.hasOwnProperty(property)) {
-      if (namespace) {
-        formKey = namespace + '[' + property + ']';
-      } else {
-        formKey = property;
-      }
-
-      if (obj[property] instanceof Array) {
-        for (var i = 0; i < obj[property].length; i++) {
-          objectToFormData(obj[property][i], fd, "".concat(property, "[").concat(i, "]"));
-        }
-      } else if (_typeof(obj[property]) === 'object' && !(obj[property] instanceof File)) {
-        objectToFormData(obj[property], fd, property);
-      } else {
-        fd.append(formKey, obj[property]);
-      }
-    }
-  }
-
-  return fd;
-}
 
 /***/ })
 

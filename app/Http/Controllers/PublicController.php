@@ -34,7 +34,7 @@ class PublicController extends Controller
         $cus = Cu::with('Provinces')->withCount('hasTp')->inRandomOrder()->take(6)->get();
 
         // seo
-        SEO::setTitle('Home - Puskopdit BKCU Kalimantan');
+        SEO::setTitle('Home - PUSKOPCUINA');
         SEO::setDescription('lembaga yang tercipta dari kumpulan beberapa Credit Union (CU) di Indonesia yang memiliki pandangan yang sama dalam membantu anggota untuk membantu dirinya sendiri dan memberikan dampak positif bagi masyarakat sekitar.');
         SEO::opengraph()->setUrl(url()->full());
         
@@ -55,8 +55,8 @@ class PublicController extends Controller
         $artikels = Artikel::with('kategori','penulis')->where('id_cu',0)->where('terbitkan',1)->orderBy('created_at','desc')->paginate(8);
 
         // seo
-        SEO::setTitle('Artikel - Puskopdit BKCU Kalimantan');
-        SEO::setDescription('Artikel Puskopdit BKCU Kalimantan');
+        SEO::setTitle('Artikel - PUSKOPCUINA');
+        SEO::setDescription('Artikel PUSKOPCUINA');
         SEO::opengraph()->setUrl(url()->full());
         SEO::opengraph()->addProperty('type', 'articles');
 
@@ -78,7 +78,7 @@ class PublicController extends Controller
         $artikels = Artikel::with('penulis')->where('id_cu',0)->where('id_artikel_kategori',$kategori->id)->where('terbitkan',1)->orderBy('created_at','desc')->paginate(8);
 
         // seo
-        SEO::setTitle($title. ' - Puskopdit BKCU Kalimantan');
+        SEO::setTitle($title. ' - PUSKOPCUINA');
         SEO::setDescription($subtitle);
         SEO::opengraph()->setUrl(url()->full());
         SEO::opengraph()->addProperty('type', 'articles');
@@ -101,7 +101,7 @@ class PublicController extends Controller
         $artikels = Artikel::with('kategori')->where('id_cu',0)->where('id_artikel_penulis',$penulis->id)->where('terbitkan',1)->orderBy('created_at','desc')->paginate(8);
 
          // seo
-         SEO::setTitle($title. ' - Puskopdit BKCU Kalimantan');
+         SEO::setTitle($title. ' - PUSKOPCUINA');
          SEO::setDescription($subtitle);
          SEO::opengraph()->setUrl(url()->full());
          SEO::opengraph()->addProperty('type', 'articles');
@@ -146,7 +146,7 @@ class PublicController extends Controller
         $artikelsCUNew = Artikel::where('id_cu','!=',0)->whereNotIn('id',$idList)->orderBy('created_at','desc')->take(5)->get();
 
          // seo
-         SEO::setTitle($artikel->name. ' - Puskopdit BKCU Kalimantan');
+         SEO::setTitle($artikel->name. ' - PUSKOPCUINA');
          SEO::setDescription(str_limit(strip_tags($artikel->content),200));
          SEO::opengraph()->setUrl(url()->full());
          SEO::opengraph()->addProperty('type', 'articles');
@@ -170,7 +170,7 @@ class PublicController extends Controller
         $queries['cari'] = request('cari');
         3;
 
-        SEO::setTitle($title . ' - Puskopdit BKCU Kalimantan');
+        SEO::setTitle($title . ' - PUSKOPCUINA');
         SEO::setDescription($subtitle);
         SEO::opengraph()->setUrl(url()->full());
         SEO::opengraph()->addProperty('type', 'articles');
@@ -187,8 +187,8 @@ class PublicController extends Controller
         $kegiatans = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->where('periode',$periode)->whereIn('status',[1,2,3,4,5])->orderBy('mulai')->get();
 
         // seo
-        SEO::setTitle('Diklat - Puskopdit BKCU Kalimantan');
-        SEO::setDescription('Diklat Puskopdit BKCU Kalimantan');
+        SEO::setTitle('Diklat - PUSKOPCUINA');
+        SEO::setDescription('Diklat PUSKOPCUINA');
         SEO::opengraph()->setUrl(url()->full());
         SEO::opengraph()->addProperty('type', 'articles');
 
@@ -204,7 +204,7 @@ class PublicController extends Controller
         }
 
          // seo
-         SEO::setTitle($diklat->name. ' - Puskopdit BKCU Kalimantan');
+         SEO::setTitle($diklat->name. ' - PUSKOPCUINA');
          SEO::setDescription(str_limit(strip_tags($diklat->keterangan),200));
          SEO::opengraph()->setUrl(url()->full());
          SEO::opengraph()->addProperty('type', 'articles');
@@ -224,7 +224,7 @@ class PublicController extends Controller
         $provinces = Provinces::withCount('hasCu')->orderBy('name')->get();
         $cus = Cu::orderBy('name')->get();
 
-        SEO::setTitle($title . ' - Puskopdit BKCU Kalimantan');
+        SEO::setTitle($title . ' - PUSKOPCUINA');
         SEO::setDescription($subtitle);
         SEO::opengraph()->setUrl(url()->full());
         SEO::opengraph()->addProperty('type', 'articles');
@@ -239,7 +239,7 @@ class PublicController extends Controller
 
         $dokumens = Download::all();
 
-        SEO::setTitle($title . ' - Puskopdit BKCU Kalimantan');
+        SEO::setTitle($title . ' - PUSKOPCUINA');
         SEO::setDescription($subtitle);
         SEO::opengraph()->setUrl(url()->full());
         SEO::opengraph()->addProperty('type', 'articles');
@@ -256,9 +256,9 @@ class PublicController extends Controller
 
     public function profile()
     {
-        SEO::setTitle('Profile - Puskopdit BKCU Kalimantan');
-        SEO::setDescription('Puskopdit BKCU Kalimantan (awalnya BK3D Kalbar) berdiri pada tanggal 27 November 1988 di Pontianak.
-        Sebagai credit union sekunder,Puskopdit BKCU Kalimantan aktif mempromosikan dan memfasilitasi berdirinya credit union - credit union primer.
+        SEO::setTitle('Profile - PUSKOPCUINA');
+        SEO::setDescription('PUSKOPCUINA (awalnya BK3D Kalbar) berdiri pada tanggal 27 November 1988 di Pontianak.
+        Sebagai credit union sekunder,PUSKOPCUINA aktif mempromosikan dan memfasilitasi berdirinya credit union - credit union primer.
         ');
         SEO::opengraph()->setUrl(url()->full());
         SEO::opengraph()->addProperty('type', 'articles');
@@ -318,10 +318,10 @@ class PublicController extends Controller
 		// 	]);
 
 		// create permission
-        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_coa']); 
-        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_coa']); 
-        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_coa']); 
-		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_coa']);
+        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_voting']); 
+        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_voting']); 
+        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_voting']); 
+		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_voting']);
 		
 		// give permission
 		// $users = App\User::where('id','!=',1)->where('id_cu',0)->get();

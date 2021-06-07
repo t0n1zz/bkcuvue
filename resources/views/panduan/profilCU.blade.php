@@ -12,14 +12,14 @@
       <img src="{{ asset('images/panduan/profilCU.png') }}" class="img-thumbnail" alt="">
     </div>
     <p>
-        Halaman profil CU berfungsi untuk mengubah informasi CU pada aplikasi SIMO yang nanti juga akan muncul pada halaman publik di website <a href="http://puskopditbkcukalimantan.org" target="_blank">Puskopdit BKCU Kalimantan</a>. dengan format <b><i>nama-cu.puskopditbkcukalimantan.org</i></b> jadi contohnya jika nama cu adalah <b>coba coba</b> maka alamat website di halaman publik adalah <b><i>coba-coba.puskopditbkcukalimantan.org</i></b>
+        Halaman profil CU berfungsi untuk mengubah informasi CU pada aplikasi SIMO yang nanti juga akan muncul pada halaman publik di website <a href="http://puskopcuina.org" target="_blank">PUSKOPCUINA</a>. dengan format <b><i>nama-cu.puskopcuina.org</i></b> jadi contohnya jika nama cu adalah <b>coba coba</b> maka alamat website di halaman publik adalah <b><i>coba-coba.puskopcuina.org</i></b>
     </p>
 
     <div class="mb-3 text-center">
       <img src="{{ asset('images/panduan/profilCU-publik.png') }}" class="img-thumbnail" alt="">
     </div>
 
-    <p>Tujuan halaman publik ini adalah untuk menjadikan website Puskopdit BKCU Kalimantan menjadi portal informasi dari semua CU anggota Puskopdit BKCU Kalimantan. Jadi untuk masing-masing CU akan mempunyai halaman sendiri yang dapat dikelola di SIMO dan pada halaman ini akan di tampilkan informasi profil CU, informasi produk dan pelayanan, artikel, dan informasi Tempat Pelayanan (TP) atau Kantor Pelayanan (KP)</p>
+    <p>Tujuan halaman publik ini adalah untuk menjadikan website PUSKOPCUINA menjadi portal informasi dari semua CU anggota PUSKOPCUINA. Jadi untuk masing-masing CU akan mempunyai halaman sendiri yang dapat dikelola di SIMO dan pada halaman ini akan di tampilkan informasi profil CU, informasi produk dan pelayanan, artikel, dan informasi Tempat Pelayanan (TP) atau Kantor Pelayanan (KP)</p>
 
   </div>
   

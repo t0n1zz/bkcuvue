@@ -132,7 +132,7 @@
 										:itemDataStat="itemStat"></pic>
 									<!-- pic bkcu -->
 									<pic
-										:title="'PIC BKCU'" 
+										:title="'PIC PUSKOPCUINA'" 
 										:itemData="item.aktivis_bkcu" 
 										:itemDataStat="itemStat"></pic>
 								</div>
@@ -220,7 +220,7 @@
 														<div class="card-body pb-0">
 															<div class="row">
 																<div class="col-md-12">
-																	<h5>Catatan BKCU:</h5>
+																	<h5>Catatan PUSKOPCUINA:</h5>
 																	<div class="card card-body bg-light">
 																		<span v-if="pc.catatan" v-html="pc.catatan"></span>
 																		<span v-else>-</span>
@@ -233,8 +233,8 @@
 															<div class="d-none d-sm-block">
 																<!-- catatan bkcu -->
 																<button class="btn btn-light mb-1" @click.prevent="modalOpen('catatan',pc)" v-if="currentUser.can && currentUser.can['update_' + kelas] && currentUser.id_cu == 0">
-																	<span v-if="!pc.catatan"><i class="icon-plus3"></i> Tambah Catatan BKCU</span>
-																	<span v-else><i class="icon-pencil5"></i> Ubah Catatan BKCU</span>
+																	<span v-if="!pc.catatan"><i class="icon-plus3"></i> Tambah Catatan PUSKOPCUINA</span>
+																	<span v-else><i class="icon-pencil5"></i> Ubah Catatan PUSKOPCUINA</span>
 																</button>
 																<!-- ubah  -->
 																<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubah',pc)" v-if="currentUser.can && currentUser.can['update_' + kelas]"><i class="icon-pencil5"></i> Ubah</button>
@@ -245,8 +245,8 @@
 															<div class="d-block d-sm-none">
 																<!-- catatan bkcu -->
 																<button  class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('catatan',pc)" v-if="currentUser.can && currentUser.can['update_' + kelas] && currentUser.id_cu == 0">
-																	<span v-if="!pc.catatan"><i class="icon-plus3"></i> Tambah Catatan BKCU</span>
-																	<span v-else><i class="icon-pencil5"></i> Ubah Catatan BKCU</span>
+																	<span v-if="!pc.catatan"><i class="icon-plus3"></i> Tambah Catatan PUSKOPCUINA</span>
+																	<span v-else><i class="icon-pencil5"></i> Ubah Catatan PUSKOPCUINA</span>
 																</button>
 																<!-- ubah -->
 																<button class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('ubah',pc)" v-if="currentUser.can && currentUser.can['update_' + kelas]"><i class="icon-pencil5"></i> Ubah</button>
@@ -469,7 +469,7 @@
 				} else if (state == 'catatan') {
 					this.modalState = 'normal1';
 					this.modalColor = 'bg-primary';
-					this.modalTitle = !selectedItem.catatan ? 'Tambah Catatan BKCU' : 'Ubah Catatan BKCU';
+					this.modalTitle = !selectedItem.catatan ? 'Tambah Catatan PUSKOPCUINA' : 'Ubah Catatan PUSKOPCUINA';
 					this.modalButton = 'Ok';
 					this.modalSize = 'modal-lg';
 					this.modalFormState = 'catatan';

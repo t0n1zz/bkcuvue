@@ -78,7 +78,7 @@
         Untuk melihat detail laporan perkembangan CU pengguna mesti memilih data yang akan dihapus dibagian konten terlebih dahulu baru kemudian menekan tombol detail.
     </p>
     <p>
-        Pada halaman ini akan ditampilkan detail laporan perkembangan CU sesuai dengan periode yang dipilih. Pada halaman ini terdapat grafik interaktif dan juga perhitungan P.E.A.R.L.S., serta bagian diskusi yang dapat digunakan untuk berdiskusi dengan Puskopdit BKCU Kalimantan terkait laporan pada periode tersebut dan juga terdapat bagian revisi yang merupakan fitur keamanan yang akan menampilkan semua pengubahan yang dilakukan pada laporan periode tersebut agar dapat mengurangi resiko kehilangan data apabila salah mengubah data laporan.
+        Pada halaman ini akan ditampilkan detail laporan perkembangan CU sesuai dengan periode yang dipilih. Pada halaman ini terdapat grafik interaktif dan juga perhitungan P.E.A.R.L.S., serta bagian diskusi yang dapat digunakan untuk berdiskusi dengan PUSKOPCUINA terkait laporan pada periode tersebut dan juga terdapat bagian revisi yang merupakan fitur keamanan yang akan menampilkan semua pengubahan yang dilakukan pada laporan periode tersebut agar dapat mengurangi resiko kehilangan data apabila salah mengubah data laporan.
     </p>
   </div>
   

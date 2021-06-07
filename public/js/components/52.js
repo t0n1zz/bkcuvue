@@ -567,7 +567,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -582,7 +581,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   created: function created() {
-    this.qrValue = 'puskopditbkcukalimantan.org/admins/asetTetap/detail/' + this.selectedItem.kode;
+    this.qrValue = 'puskopcuina.org/admins/asetTetap/detail/' + this.selectedItem.kode;
   },
   methods: {
     changeTab: function changeTab(value) {
@@ -663,7 +662,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
 //
 //
 //
@@ -1929,16 +1927,8 @@ var render = function() {
                       _c("ul", { staticClass: "list list-unstyled mb-0" }, [
                         _c("li", { staticClass: "mt-0" }, [
                           _c("b", { staticStyle: { "font-size": "24px" } }, [
-                            _c("span", { staticStyle: { color: "red" } }, [
-                              _vm._v("Puskopdit")
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("li", { staticClass: "mt-0" }, [
-                          _c("b", { staticStyle: { "font-size": "24px" } }, [
                             _c("span", { staticStyle: { color: "blue" } }, [
-                              _vm._v("BKCU Kalimantan SKD")
+                              _vm._v("PUSKOPCUINA")
                             ])
                           ])
                         ]),
@@ -2004,12 +1994,8 @@ var render = function() {
                         [
                           _c("li", { staticClass: "mt-0 mb-0" }, [
                             _c("b", { staticStyle: { "font-size": "10px" } }, [
-                              _c("span", { staticStyle: { color: "red" } }, [
-                                _vm._v("Puskopdit")
-                              ]),
-                              _vm._v(" "),
                               _c("span", { staticStyle: { color: "blue" } }, [
-                                _vm._v("BKCU Kalimantan SKD")
+                                _vm._v("PUSKOPCUINA")
                               ])
                             ])
                           ]),
@@ -2239,7 +2225,7 @@ var render = function() {
                           staticClass: "mr-3 mt-2 ml-2 mb-2",
                           attrs: {
                             value:
-                              "puskopditbkcukalimantan.org/admins/asetTetap/detail/" +
+                              "puskopcuina.org/admins/asetTetap/detail/" +
                               item.kode,
                             size: "130",
                             renderAs: "svg",
@@ -2256,22 +2242,8 @@ var render = function() {
                                 [
                                   _c(
                                     "span",
-                                    { staticStyle: { color: "red" } },
-                                    [_vm._v("Puskopdit")]
-                                  )
-                                ]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", { staticClass: "mt-0" }, [
-                              _c(
-                                "b",
-                                { staticStyle: { "font-size": "1.5em" } },
-                                [
-                                  _c(
-                                    "span",
                                     { staticStyle: { color: "blue" } },
-                                    [_vm._v("BKCU Kalimantan SKD")]
+                                    [_vm._v("PUSKOPCUINA")]
                                   )
                                 ]
                               )
@@ -2340,7 +2312,7 @@ var render = function() {
                               staticClass: "mt-2",
                               attrs: {
                                 value:
-                                  "puskopditbkcukalimantan.org/admins/asetTetap/detail/" +
+                                  "puskopcuina.org/admins/asetTetap/detail/" +
                                   item.kode,
                                 size: "150",
                                 renderAs: "svg",
@@ -2359,14 +2331,8 @@ var render = function() {
                                     [
                                       _c(
                                         "span",
-                                        { staticStyle: { color: "red" } },
-                                        [_vm._v("Puskopdit")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
                                         { staticStyle: { color: "blue" } },
-                                        [_vm._v("BKCU Kalimantan SKD")]
+                                        [_vm._v("PUSKOPCUINA")]
                                       )
                                     ]
                                   )

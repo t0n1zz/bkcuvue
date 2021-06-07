@@ -12,9 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
     @if($subdomain)        
-        CU {{ $cu->name }} - Puskopdit BKCU Kalimantan
+        CU {{ $cu->name }} - PUSKOPCUINA
     @else
-        Puskopdit BKCU Kalimantan
+        PUSKOPCUINA
     @endif    
     </title>
 

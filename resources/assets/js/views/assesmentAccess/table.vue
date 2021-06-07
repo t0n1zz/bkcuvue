@@ -229,7 +229,7 @@
 						filter: false
 					},
 					{
-						title: "Total Skor BKCU",
+						title: "Total Skor PUSKOPCUINA",
 						name: "total_skor_bkcu",
 						tipe: "numeric",
 						sort: false,
@@ -247,7 +247,7 @@
 						filter: false
 					},
 					{
-						title: "Total Bobot BKCU",
+						title: "Total Bobot PUSKOPCUINA",
 						name: "total_bobot_bkcu",
 						tipe: "numeric",
 						sort: false,
@@ -292,7 +292,7 @@
 						filter: false
 					},
 					{
-						title: "Skor Prsp. Keuangan (BKCU)",
+						title: "Skor Prsp. Keuangan (PUSKOPCUINA)",
 						name: "p1.skor_bkcu_p1",
 						tipe: "numeric",
 						sort: false,
@@ -301,7 +301,7 @@
 						filter: false
 					},
 					{
-						title: "Skor Prsp. Anggota/Pelanggan (BKCU)",
+						title: "Skor Prsp. Anggota/Pelanggan (PUSKOPCUINA)",
 						name: "p2.skor_bkcu_p2",
 						tipe: "numeric",
 						sort: false,
@@ -310,7 +310,7 @@
 						filter: false
 					},
 					{
-						title: "Skor Prsp. Bisnis Internal (BKCU)",
+						title: "Skor Prsp. Bisnis Internal (PUSKOPCUINA)",
 						name: "p3.skor_bkcu_p3",
 						tipe: "numeric",
 						sort: false,
@@ -319,7 +319,7 @@
 						filter: false
 					},
 					{
-						title: "Skor Prsp. Pembelajaran (BKCU)",
+						title: "Skor Prsp. Pembelajaran (PUSKOPCUINA)",
 						name: "p4.skor_bkcu_p4",
 						tipe: "numeric",
 						sort: false,
@@ -364,7 +364,7 @@
 						filter: false
 					},
 					{
-						title: "Bobot Prsp. Keuangan (BKCU)",
+						title: "Bobot Prsp. Keuangan (PUSKOPCUINA)",
 						name: "bobot_bkcu_p1",
 						tipe: "numeric",
 						sort: false,
@@ -373,7 +373,7 @@
 						filter: false
 					},
 					{
-						title: "Bobot Prsp. Anggota/Pelanggan (BKCU)",
+						title: "Bobot Prsp. Anggota/Pelanggan (PUSKOPCUINA)",
 						name: "bobot_bkcu_p2",
 						tipe: "numeric",
 						sort: false,
@@ -382,7 +382,7 @@
 						filter: false
 					},
 					{
-						title: "Bobot Prsp. Bisnis Internal (BKCU)",
+						title: "Bobot Prsp. Bisnis Internal (PUSKOPCUINA)",
 						name: "bobot_bkcu_p3",
 						tipe: "numeric",
 						sort: false,
@@ -391,7 +391,7 @@
 						filter: false
 					},
 					{
-						title: "Bobot Prsp. Pembelajaran (BKCU)",
+						title: "Bobot Prsp. Pembelajaran (PUSKOPCUINA)",
 						name: "bobot_bkcu_p4",
 						tipe: "numeric",
 						sort: false,

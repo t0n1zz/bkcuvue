@@ -10,14 +10,139 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.4.1 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#v341">Version 3.4.1<small class="text-muted"> / 5 Juni 2021</small></a> </h5>
+                </div>
+
+                <div id="v341" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi menambahkan informasi riwayat klaim pada klain JALINAN, informasi tambahan pada aktivis seperti penghargaan, pelanggaran dan lainnya, dan memperbaiki bug di voting dan pemilihan
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan fitur untuk bisa melihat riwayat klaim pada klaim JALINAN</li>
+                      <li>Penambahan fitur informasi tambahan pada riwayat aktivis yang bisa mencakup informasi penghargaan, pelanggaran, dan lainnya</li>
+                      <li>Perbaikan bug jumlah karakter untuk judul/pertanyaan pada voting dan pemilihan</li>
+                      <li>Perbaikan bug tampilan pada pertanyaan</li>
+                      <li>Perbaikan bug tampilan pada activity log dan aktivitas user</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.4.1 -->
+
+              <!-- Version 3.4.0 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v340">Version 3.4.0<small class="text-muted"> / 22 Mei 2021</small></a> </h5>
+                </div>
+
+                <div id="v340" class="collapse" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi memperbaiki bug voting dan pemilihan serta menambahkan versi awal / prototipe dari fitur iuran jalinan
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Perbaikan bug pada voting yang membuat skor tidak muncul secara real time walaupun secara database data tersimpan tapi tidak muncul di tampilan</li>
+                      <li>Perbaikan bug tampilan pada form penambahan calon di pemilihan</li>
+                      <li>Penambahan prototipe fitur iuran jalinan untuk dicoba secara internal dengan data sesungguhnya</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.4.0 -->
+
+              <!-- Version 3.3.9 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v339">Version 3.3.9<small class="text-muted"> / 15 Mei 2021</small></a> </h5>
+                </div>
+
+                <div id="v339" class="collapse" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi menambahkan fitur untuk voting dan perbaikan pada pemilihan
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan fitur untuk melakukan voting yang dapat digunakan untuk melakukan pengambilan suara pada sebuah keputusan di kegiatan</li>
+                      <li>Penambahan fitur untuk melakukan download file excel pada daftar suara di pemilihan</li>
+                      <li>Perbaikan tampilan pada pemilihan</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.3.9 -->
+
+              <!-- Version 3.3.8 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v338">Version 3.3.8<small class="text-muted"> / 25 April 2021</small></a> </h5>
+                </div>
+
+                <div id="v338" class="collapse" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi mengenai perubahan sistem untuk menyesuaikan dengan perubahan nama lembaga dan alamat domain. Serta ada perbaikan pada beberapa bagian
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Pengubahan nama Puskopdit BKCU Kalimantan menjadi PUSKOPCUINA di keseluruhan sistem</li>
+                      <li>Pengubahan domain dari puskopditbkcukalimantan.org ke puskopcuina.org</li>
+                      <li>Perbaikan pada Pemilihan yang membuat tidak bisa menambahkan pemilihan baru jika belum terdapat data</li>
+                      <li>Perbaikan pada Aktivis yang menampilkan informasi pekerjaan aktif yang salah pada aktivis yang juga menjabat di PUSKOPCUINA</li>
+                      <li>Perbaikan bug pada Aktivis yang menampilkan label kosong mengenai nama ibu, nama ahli waris dan kontak ahli waris</li>
+                      <li>Perbaikan pada DIKLAT yang memungkinkan CU mendaftarkan peserta walaupun sudah mencapai maksimal peserta keseluruhan</li>
+                      <li>Perbaikan pada Klaim JALINAN pada koreksi dokumen tidak lengkap</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.3.8 -->
+
+              <!-- Version 3.3.7 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v337">Version 3.3.7<small class="text-muted"> / 4 Februari 2021</small></a> </h5>
+                </div>
+
+                <div id="v337" class="collapse" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi menawarkan perbaikan pada klaim JALINAN dan menawarkan fitur baru yaitu pemilihan pengurus dan pengawas
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan fitur untuk melakukan pemilihan untuk aktivis CU yang bisa digunakan untuk melaksanakan pemilihan online untuk pengurus dan pengawas</li>
+                      <li>Penambahan fitur untuk melihat informasi klaim JALINAN secara detail bagi CU</li>
+                      <li>Penambahan fitur pada lihat klaim dan analisis klaim untuk bagian dokumen hanya menampilkan dokumen yang dilampirkan/diupload saja. Apabila tidak ada dokumen maka tombol untuk melihat dokumen tersebut tidak muncul</li>
+                      <li>Penambahan fitur pada analisis klaim yaitu melakukan penolakan klaim terhadap klaim yang salah pilih atau salah input dan berhasil masuk sampai ke bagian menunggu dari proses klaim JALINAN</li>
+                      <li>Perbaikan bug pada Klaim JALINAN</li>
+                      <li>Perbaikan bug pada hak akses</li>
+                      <li>Perbaikan bug tampilan dibeberapa bagian</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.3.7 -->
+
               <!-- Version 3.3.6 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#v336">Version 3.3.6<small class="text-muted"> / 5 Desember 2020</small></a> </h5>
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v336">Version 3.3.6<small class="text-muted"> / 4 Januari 2021</small></a> </h5>
                 </div>
 
-                <div id="v336" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="v336" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi menawarkan peningkatan performa, keamanan dan perbaikan bug
                     <br/><br/>
@@ -262,7 +387,7 @@
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
-                      <li>Menambah form monitoring CU yang berguna untuk mendata kegiatan monitoring Puskopdit BKCU Kalimantan di CU</li>
+                      <li>Menambah form monitoring CU yang berguna untuk mendata kegiatan monitoring PUSKOPCUINA di CU</li>
                       <li>Menambah fitur untuk mengubah No. KTP / NIK data anggota CU</li>
                       <li>Memperbaiki bug pada menampilkan data keanggota CU di tabel Anggota CU</li>
                       <li>Memperbaiki bug pada penambahan data anggota apabila tidak memiliki No. KTP / NIK</li>
@@ -319,7 +444,7 @@
                       <li>Memperbaiki laporan klaim JALINAN</li>
                       <li>Merubah penamaan menu laporan klaim JALINAN</li>
                       <li>Merubah cara pencarian laporan klaim JALINAN menjadi lebih mendetail dan fleksibel</li>
-                      <li>Menambahkan fitur untuk mengubah identitas dan produk anggota CU yang mengajukan klaim JALINAN yang hanya bisa dilakukan oleh staf JALINAN Puskopdit BKCU Kalimantan guna memperbaiki kesalahan penginputan data anggota CU</li>
+                      <li>Menambahkan fitur untuk mengubah identitas dan produk anggota CU yang mengajukan klaim JALINAN yang hanya bisa dilakukan oleh staf JALINAN PUSKOPCUINA guna memperbaiki kesalahan penginputan data anggota CU</li>
                       <li>Perbaikan bug pada perhitungan P.E.A.R.L.S.</li>
                       <li>Perbaikan bug pada tampilan peserta di Diklat BKCU</li>
                     </ul>
@@ -372,7 +497,7 @@
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
-                      <li>Penambahan form pengisian self assesment ACCESS Branding untuk CU dan penilaian dari Puskopdit BKCU Kalimantan</li>
+                      <li>Penambahan form pengisian self assesment ACCESS Branding untuk CU dan penilaian dari PUSKOPCUINA</li>
                       <li>Penambahan fitur koreksi untuk Klaim JALINAN</li>
                       <li>Penambahan catalog diklat di website publik BKCU Kalimantan</li>
                       <li>Penambahan fitur untuk memasukkan foto utama pada masing-masing diklat</li>
@@ -744,7 +869,7 @@
 
                 <div id="v310" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Mengenalkan fitur pengelolaan data anggota CU perorangan yang memungkinkan gerakan Puskopdit BKCU Kalimantan untuk memiliki data secara mendetail anggota CU Perorangan yang akan memudahkan dalam mengetahui persebaran anggota, perilaku anggota dan menjadi database anggota terbesar dalam gerakan. 
+                    <p class="mb-3">Mengenalkan fitur pengelolaan data anggota CU perorangan yang memungkinkan gerakan PUSKOPCUINA untuk memiliki data secara mendetail anggota CU Perorangan yang akan memudahkan dalam mengetahui persebaran anggota, perilaku anggota dan menjadi database anggota terbesar dalam gerakan. 
                     <br/><br/> 
                     Pada versi ini juga terdapat integrasi dengan JALINAN untuk proses klaim dengan data anggota CU perorangan dan data produk CU yang diperkenalkan pada versi sebelumnya. Dengan begitu klaim JALINAN diharapkan akan lebih akurat. Dan terdapat pondasi dasar untuk integrasi perhitungan iuran JALINAN.
                     <br/><br/>
@@ -1074,7 +1199,7 @@
 
                 <div id="v213" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Pada versi ini <b>AdminBKCU</b> berubah nama menjadi <b>SIMO</b> yang merupakan singkatan dari <b>S</b>istem <b>I</b>nformasi <b>M</b>anajemen <b>O</b>rganisasi. Pemilihan nama ini adalah didasarkan dari fitur yang ditawarkan oleh aplikasi ini yaitu memanajemen informasi dari organisasi (bukan bidang organisasi, melainkan organisasi dalam artian Puskopdit BKCU Kalimantan dan CU Primer anggota).
+                    <p class="mb-3">Pada versi ini <b>AdminBKCU</b> berubah nama menjadi <b>SIMO</b> yang merupakan singkatan dari <b>S</b>istem <b>I</b>nformasi <b>M</b>anajemen <b>O</b>rganisasi. Pemilihan nama ini adalah didasarkan dari fitur yang ditawarkan oleh aplikasi ini yaitu memanajemen informasi dari organisasi (bukan bidang organisasi, melainkan organisasi dalam artian PUSKOPCUINA dan CU Primer anggota).
                     <br/><br/>
                     Dalam versi ini terdapat 2 bagian baru yang ditambahkan di aplikasi ini yaitu bagian <b>Diklat</b> dan bagian <b>Staf</b>. Kedua bagian tersebut merupakan pengembangan dari bagian <b>Kegiatan</b> yang sekarang menjadi <b>Diklat</b> dengan penambahan fitur informasi yang lebih mendetail serta fitur pendaftaran peserta. Kemudian bagian <b>Staf</b> juga ditambahkan beberapa fitur agak dapat saling berinteraksi dengan bagian <b>Diklat</b>, karena peserta adalah berasal dari bagian <b>Staf</b>
                     <br/><br/>
@@ -1088,7 +1213,7 @@
                           <li>AdminBKCU berubah nama menjadi SIMO</li>
                             <li>Penambahan bagian Diklat yang berfungsi:
                               <ul>
-                                <li>Data diklat yang dilaksanakan oleh Puskopdit BKCU Kalimantan</li>
+                                <li>Data diklat yang dilaksanakan oleh PUSKOPCUINA</li>
                                 <li>Daftar diklat yang bisa dilakukan langsung melalui program oleh CU Primer anggota</li>
                                 <li>Data tempat dilaksanakan diklat</li>
                                 <li>Penambahan widget kegiatan terdekat, kegiatan berjalan dan kalender pada dashboard</li>
@@ -1096,7 +1221,7 @@
                             </li>
                             <li>Penambahan bagian Staf yang berfungsi:
                               <ul>
-                                <li>Data staf dalam gerakan Puskopdit BKCU Kalimantan</li>
+                                <li>Data staf dalam gerakan PUSKOPCUINA</li>
                                 <li>Komunikasi data antara bagian Staf dengan bagian Diklat</li>
                               </ul>
                             </li>

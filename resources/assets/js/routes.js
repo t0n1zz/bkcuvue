@@ -1,83 +1,6 @@
 import header from './components/header.vue';
 import footer from './components/footer.vue';
 import login from './views/login.vue';
-// import dashboard from './views/dashboard.vue';
-// import notification from './views/sistem/notification.vue';
-// import changelog from './views/sistem/changelog.vue';
-// import saran from './views/saran/index.vue';
-// import errorLog from './views/errorLog/index.vue';
-// import activityLog from './views/user/indexAktivitas.vue';
-// import pengumuman from './views/pengumuman/index.vue';
-// import notFound from './views/notFound.vue';
-// import artikel from './views/artikel/index.vue';
-// import artikel_form from './views/artikel/form.vue';
-// import artikelPenulis from './views/artikelPenulis/index.vue';
-// import artikelPenulis_form from './views/artikelPenulis/form.vue';
-// import artikelKategori from './views/artikelKategori/index.vue';
-// import artikelKategori_form from './views/artikelKategori/form.vue';
-// import artikelSimo from './views/artikelSimo/index.vue';
-// import artikelSimo_form from './views/artikelSimo/form.vue';
-// import laporanCu from './views/laporanCu/index.vue';
-// import laporanCu_form from './views/laporanCu/form.vue';
-// import laporanCu_detail from './views/laporanCu/detail.vue';
-// import laporanCu_draft from './views/laporanCu/draft.vue';
-// import laporanTp_draft from './views/laporanCu/draftTp.vue';
-// import laporanGerakan from './views/laporanGerakan/index.vue';
-// import coa from './views/coa/index.vue';
-// import coa_form from './views/coa/form.vue';
-// import kegiatanBKCU from './views/kegiatanBKCU/index.vue';
-// import kegiatanBKCU_form from './views/kegiatanBKCU/form.vue';
-// import kegiatanBKCU_detail from './views/kegiatanBKCU/detail.vue';
-// import tempat from './views/tempat/index.vue';
-// import tempat_form from './views/tempat/form.vue';
-// import cu from './views/cu/index.vue';
-// import cu_form from './views/cu/form.vue';
-// import tp from './views/tp/index.vue';
-// import tp_form from './views/tp/form.vue';
-// import aktivis from './views/aktivis/index.vue';
-// import aktivis_form from './views/aktivis/form.vue';
-// import aktivis_riwayat from './views/aktivis/riwayat.vue';
-// import asetTetap from './views/asetTetap/index.vue';
-// import asetTetap_form from './views/asetTetap/form.vue';
-// import asetTetap_detail from './views/asetTetap/detail.vue';
-// import asetTetapJenis from './views/asetTetapJenis/index.vue';
-// import asetTetapJenis_form from './views/asetTetapJenis/create.vue';
-// import asetTetapKelompok from './views/asetTetapKelompok/index.vue';
-// import asetTetapKelompok_form from './views/asetTetapKelompok/create.vue';
-// import asetTetapGolongan from './views/asetTetapGolongan/index.vue';
-// import asetTetapGolongan_form from './views/asetTetapGolongan/create.vue';
-// import asetTetapLokasi from './views/asetTetapLokasi/index.vue';
-// import asetTetapLokasi_form from './views/asetTetapLokasi/create.vue';
-// import mitraOrang from './views/mitraOrang/index.vue';
-// import mitraOrang_form from './views/mitraOrang/form.vue';
-// import mitraLembaga from './views/mitraLembaga/index.vue';
-// import mitraLembaga_form from './views/mitraLembaga/form.vue';
-// import anggotaCu from './views/anggotaCu/index.vue';
-// import anggotaCu_form from './views/anggotaCu/form.vue';
-// import anggotaCu_produk from './views/anggotaCu/produk.vue';
-// import anggotaCuDraft from './views/anggotaCuDraft/index.vue';
-// import anggotaCuDraft_form from './views/anggotaCuDraft/form.vue';
-// import anggotaProdukCuDraft from './views/anggotaProdukCuDraft/index.vue';
-// import anggotaProdukCuDraft_form from './views/anggotaProdukCuDraft/form.vue';
-// import saldo from './views/saldo/index.vue';
-// import jalinanKlaim from './views/jalinanKlaim/index.vue';
-// import jalinanKlaim_form from './views/jalinanKlaim/form.vue';
-// import jalinanCair from './views/jalinanCair/index.vue';
-// import jalinanLaporan_KlaimCu from './views/jalinanLaporan/cu.vue';
-// import jalinanLaporan_KlaimPenyebab from './views/jalinanLaporan/penyebab.vue';
-// import jalinanLaporan_KlaimUsia from './views/jalinanLaporan/usia.vue';
-// import jalinanLaporan_KlaimLama from './views/jalinanLaporan/lama.vue';
-// import produkCu from './views/produkCu/index.vue';
-// import produkCu_form from './views/produkCu/form.vue';
-// import user from './views/user/index.vue';
-// import user_form from './views/user/form.vue';
-// import user_aktivitas from './views/user/aktivitas.vue';
-// import profile from './views/user/profile.vue';
-// import assesmentAccess from './views/assesmentAccess/index.vue';
-// import assesmentAccess_form from './views/assesmentAccess/form.vue';
-// import monitoring from './views/monitoring/index.vue';
-// import monitoring_form from './views/monitoring/form.vue';
-// import monitoring_detail from './views/monitoring/detail.vue';
 
 const dashboard = () => import('./views/dashboard.vue');
 const notification = () => import('./views/sistem/notification.vue');
@@ -156,6 +79,17 @@ const assesmentAccess_form = () => import('./views/assesmentAccess/form.vue');
 const monitoring = () => import('./views/monitoring/index.vue');
 const monitoring_form = () => import('./views/monitoring/form.vue');
 const monitoring_detail = () => import('./views/monitoring/detail.vue');
+const pemilihan = () => import('./views/pemilihan/index.vue');
+const pemilihan_form = () => import('./views/pemilihan/form.vue');
+const pemilihan_detail = () => import('./views/pemilihan/detail.vue');
+const pemilihan_pilih = () => import('./views/pemilihan/pilih.vue');
+const voting = () => import('./views/voting/index.vue');
+const voting_form = () => import('./views/voting/form.vue');
+const voting_detail = () => import('./views/voting/detail.vue');
+const voting_pilih = () => import('./views/voting/pilih.vue');
+const jalinanIuran = () => import('./views/jalinanIuran/index.vue');
+const jalinanIuran_form = () => import('./views/jalinanIuran/form.vue');
+const jalinanIuran_detail = () => import('./views/jalinanIuran/detail.vue');
 
 const routes = [
 
@@ -586,6 +520,10 @@ const routes = [
 		name: 'jalinanKlaimCreateNik', 
 		components: { default: jalinanKlaim_form, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true, mode:'createNIK' }},	
+	{ path: '/jalinan/klaim/createId/:id',
+		name: 'jalinanKlaimCreateId', 
+		components: { default: jalinanKlaim_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'createId' }},	
 	{ path: '/jalinan/klaim/create/nik/:nik',
 		name: 'jalinanKlaimCreateNIK', 
 		components: { default: jalinanKlaim_form, 'header': header, 'footer': footer },
@@ -641,7 +579,21 @@ const routes = [
 	{ path: '/jalinan/laporan/klaim/lama/status/:status/cu/:cu/jenis/:jenis/dari/:dari/ke/:ke/:awal/:akhir',
 		name: 'jalinanLaporanKlaimLamaTanggal', 
 		components: { default: jalinanLaporan_KlaimLama, 'header': header, 'footer': footer },
-		meta: { requiresAuth: true , mode:'laporan' }},		
+		meta: { requiresAuth: true , mode:'laporan' }},	
+		
+	// JALINAN iuran
+	{ path: '/jalinanIuran/cu/:cu',
+		name: 'jalinanIuranCu', 
+		components: { default: jalinanIuran, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true }},	
+	{ path: '/jalinanIuran/create',
+		name: 'jalinanIuranCreate', 
+		components: { default: jalinanIuran_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/jalinanIuran/detail/:id',
+		name: 'jalinanIuranDetail', 
+		components: { default: jalinanIuran_detail, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true } },
 
 	// assesment access
 	{ path: '/assesmentAccess/cu/:cu',
@@ -683,6 +635,49 @@ const routes = [
 		components: { default: monitoring_detail, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true } },
 
+	// pemilihan
+	{ path: '/pemilihan/cu/:cu',
+		name: 'pemilihan', 
+		components: { default: pemilihan, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true }},	
+	{ path: '/pemilihan/create',
+		name: 'pemilihanCreate', 
+		components: { default: pemilihan_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/pemilihan/edit/:id',
+		name: 'pemilihanEdit', 
+		components: { default: pemilihan_form, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true, mode:'edit' } },
+	{ path: '/pemilihan/detail/:id',
+		name: 'pemilihanDetail', 
+		components: { default: pemilihan_detail, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true } },
+	{ path: '/pemilihan/pilih/:name',
+		name: 'pemilihanPilih', 
+		components: { default: pemilihan_pilih },
+		meta: { requiresAuth: false } },	
+
+	// voting
+	{ path: '/voting/cu/:cu',
+		name: 'voting', 
+		components: { default: voting, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true }},	
+	{ path: '/voting/create',
+		name: 'votingCreate', 
+		components: { default: voting_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/voting/edit/:id',
+		name: 'votingEdit', 
+		components: { default: voting_form, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true, mode:'edit' } },
+	{ path: '/voting/detail/:id',
+		name: 'votingDetail', 
+		components: { default: voting_detail, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true } },
+	{ path: '/voting/pilih/:name',
+		name: 'votingPilih', 
+		components: { default: voting_pilih },
+		meta: { requiresAuth: false } },	
 
 	// laporan cu
 	// bkcu default route

@@ -347,6 +347,20 @@ export const kegiatanBKCU = {
         });
     },
 
+    indexKegiatan( { commit } ){
+      commit('setDataStatS', 'loading');
+      
+      KEGIATANBKCUAPI.indexKegiatan()
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     checkPeserta( { commit }, [kegiatan_id, aktivis_id] ){
       commit('setDataStat2', 'loading');
       
@@ -436,6 +450,7 @@ export const kegiatanBKCU = {
             commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
+            commit('setUpdate', response.data);
             commit('setUpdateStat', 'fail');
           }
         })
@@ -1082,6 +1097,10 @@ export const kegiatanBKCU = {
     },
 
     // reset
+    resetDataS( {commit} ){
+      commit('setDataS', [] );
+      commit('setDataStatS', 'success');
+    },
     resetUpdateStat( {commit} ){
       commit('setUpdateStat', '');
     }

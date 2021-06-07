@@ -20,7 +20,7 @@
     </p>
 
     <div class="alert bg-info text-white alert-styled-left alert-dismissible">
-      <span class="font-weight-semibold">Info!</span> Aplikasi SIMO membagi akses masing-masing pengguna ke dalam berbagai macam hak akses. Hak akses yang diberikan adalah sesuai dengan kebutuhan dari masing-masing pengguna yang mengoperasikannya. Untuk mengubah hak akses maka silahkan hubungi orang di CU anda yang telah diberikan akses untuk menambah user dan melakukan pengubahan user, atau bisa juga langsung menghubungi Puskopdit BKCU Kalimantan khususnya bidang Sistem Informasi 
+      <span class="font-weight-semibold">Info!</span> Aplikasi SIMO membagi akses masing-masing pengguna ke dalam berbagai macam hak akses. Hak akses yang diberikan adalah sesuai dengan kebutuhan dari masing-masing pengguna yang mengoperasikannya. Untuk mengubah hak akses maka silahkan hubungi orang di CU anda yang telah diberikan akses untuk menambah user dan melakukan pengubahan user, atau bisa juga langsung menghubungi PUSKOPCUINA khususnya bidang Sistem Informasi 
     </div>
   </div>
 </div>

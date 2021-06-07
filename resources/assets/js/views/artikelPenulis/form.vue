@@ -65,7 +65,7 @@
 												<!-- select -->
 												<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
 													<option disabled value="">Silahkan pilih CU</option>
-													<option value="0"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>Puskopdit</span></option>
+													<option value="0"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>PUSKOPCUINA</span></option>
 													<option disabled value="">----------------</option>
 													<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
 												</select>

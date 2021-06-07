@@ -767,6 +767,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
 
 
 
@@ -3213,7 +3215,7 @@ var render = function() {
                                                 { attrs: { value: "0" } },
                                                 [
                                                   _vm._v(
-                                                    "CU BUKAN ANGGOTA PUSKOPDIT BKCU KALIMANTAN"
+                                                    "CU BUKAN ANGGOTA PUSKOPCUINA"
                                                   )
                                                 ]
                                               ),
@@ -3520,7 +3522,7 @@ var render = function() {
                                   ),
                                   _vm._v(" "),
                                   _c("option", { attrs: { value: "0" } }, [
-                                    _vm._v("Puskopdit BKCU Kalimantan")
+                                    _vm._v("PUSKOPCUINA")
                                   ]),
                                   _vm._v(" "),
                                   _vm._l(_vm.modelCu, function(cu, index) {
@@ -3768,6 +3770,14 @@ var render = function() {
                                   _vm._v(" "),
                                   _c("option", { attrs: { value: "9" } }, [
                                     _vm._v("Kontrak")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "10" } }, [
+                                    _vm._v("Kolektor")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "11" } }, [
+                                    _vm._v("Kelompok Inti")
                                   ])
                                 ]
                               ),
@@ -5824,6 +5834,57 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_infoIcon_vue_vue_type_template_id_78a8b7de___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/assets/js/helpers/form.js":
+/*!*********************************************!*\
+  !*** ./resources/assets/js/helpers/form.js ***!
+  \*********************************************/
+/*! exports provided: toMulipartedForm, objectToFormData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toMulipartedForm", function() { return toMulipartedForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "objectToFormData", function() { return objectToFormData; });
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function toMulipartedForm(form, mode) {
+  if (mode === 'edit' && typeof form.image === 'string') {
+    var temp = JSON.parse(JSON.stringify(form));
+    delete temp.image;
+    return temp;
+  } else {
+    return objectToFormData(form);
+  }
+}
+function objectToFormData(obj, form, namespace) {
+  var fd = form || new FormData();
+  var formKey;
+
+  for (var property in obj) {
+    if (obj.hasOwnProperty(property)) {
+      if (namespace) {
+        formKey = namespace + '[' + property + ']';
+      } else {
+        formKey = property;
+      }
+
+      if (obj[property] instanceof Array) {
+        for (var i = 0; i < obj[property].length; i++) {
+          objectToFormData(obj[property][i], fd, "".concat(property, "[").concat(i, "]"));
+        }
+      } else if (_typeof(obj[property]) === 'object' && !(obj[property] instanceof File)) {
+        objectToFormData(obj[property], fd, property);
+      } else {
+        fd.append(formKey, obj[property]);
+      }
+    }
+  }
+
+  return fd;
+}
 
 /***/ }),
 

@@ -84,7 +84,7 @@
 			}
 		},
 		created(){
-			this.checkUser('laporan_jalinan_klaim',this.$route.params.cu);
+			this.checkUser('laporan_jalinan_klaim');
 			this.status = this.$route.params.status;
 		},
 		watch: {
@@ -101,15 +101,10 @@
 				this.fetch('semua', status, awal, akhir);
 				this.isShowDetail = false;
 			},
-			checkUser(permission,id_cu){
+			checkUser(permission){
 				if(this.currentUser){
 					if(!this.currentUser.can || !this.currentUser.can[permission]){
 						this.$router.push('/notFound');
-					}
-					if(!id_cu || this.currentUser.id_cu){
-						if(this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu){
-							this.$router.push('/notFound');
-						}
 					}
 				}
 			},

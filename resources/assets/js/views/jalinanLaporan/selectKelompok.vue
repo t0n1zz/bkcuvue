@@ -29,7 +29,7 @@
 					</div>
 
 					<!-- status -->
-					<div class="mb-3" :class="{'col-sm-6' : this.currentUser.id_cu == 0, 'col-sm-12' : this.currentUser.id_cu != 0 , 'col-sm-12' : this.isCu}">
+					<div class="mb-3" :class="{'col-sm-6' : this.currentUser.id_cu == 0, 'col-sm-12' : this.currentUser.id_cu != 0}">
 						<h6>Pilih Status</h6>
 						<div class="input-group">
 							<!-- select -->

@@ -15,18 +15,18 @@
         Halaman self assesment menampilkan semua self assesment yang dikerjakan sesuai dengan CU pada user terserbut. Pada halaman ini pengguna dapat menambahkan self assesment <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">1</span>,
         
         <br/> <br/>
-        Kemudian dapat juga mengubah self assesment <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">2</span> selama self assesment tersebut belum dinilai atau diperiksa oleh pihak Puskopdit BKCU Kalimantan, 
+        Kemudian dapat juga mengubah self assesment <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">2</span> selama self assesment tersebut belum dinilai atau diperiksa oleh pihak PUSKOPCUINA, 
         
         <br/><br/>
-        Kemudian terdapat juga tombol lihat <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">3</span> yang berguna untuk melihat hasil self assesment yang lengkap dengan penilaian dari Puskopdit BKCU Kalimantan yang berguna sebagai bahan evaluasi dan peningkatan untuk kedepannya. Dan kemudian terdapat tombol hapus yang berfungsi untuk menghapus self assesment <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">4</span>.
+        Kemudian terdapat juga tombol lihat <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">3</span> yang berguna untuk melihat hasil self assesment yang lengkap dengan penilaian dari PUSKOPCUINA yang berguna sebagai bahan evaluasi dan peningkatan untuk kedepannya. Dan kemudian terdapat tombol hapus yang berfungsi untuk menghapus self assesment <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">4</span>.
 
         <br/> <br/>
         Pada bagian tabel <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">4</span> terdapat ringkasan hasil pengisian self assesment dari CU dan BKCU beserta score nya dan juga terdapat status yang menampilkan:
         <ol>
-          <li><span class="badge badge-primary">SUDAH DINILAI</span> yang berarti bahwa self assesment tersebut sudah dilakukan penilaian oleh pihak Puskopdit BKCU Kalimantan</li>
+          <li><span class="badge badge-primary">SUDAH DINILAI</span> yang berarti bahwa self assesment tersebut sudah dilakukan penilaian oleh pihak PUSKOPCUINA</li>
           <li><span class="badge badge-warning">BELUM SELESAI DIISI</span> yang berarti bahwa self assesment tersebut belum selesai di isi oleh CU dan tidak akan bisa dinilai sebelum diselesaikan pengisian</li>
-          <li><span class="badge badge-secondary">BELUM DINILAI</span> yang berarti bahwa self assesment tersebut sudah diisi oleh pihak CU tapi belum dilakukan penilaian oleh pihak Puskopdit BKCU Kalimantan</li>
-          <li><span class="badge badge-success">BELUM SELESAI DINILAI</span> yang berarti bahwa self assesment tersebut sudah diisi oleh pihak CU tapi belum selesai dilakukan penilaian oleh pihak Puskopdit BKCU Kalimantan</li>
+          <li><span class="badge badge-secondary">BELUM DINILAI</span> yang berarti bahwa self assesment tersebut sudah diisi oleh pihak CU tapi belum dilakukan penilaian oleh pihak PUSKOPCUINA</li>
+          <li><span class="badge badge-success">BELUM SELESAI DINILAI</span> yang berarti bahwa self assesment tersebut sudah diisi oleh pihak CU tapi belum selesai dilakukan penilaian oleh pihak PUSKOPCUINA</li>
         </ol>  
     </p>
 
@@ -74,7 +74,7 @@
       <img src="{{ asset('images/panduan/selfAssesment-lihat.png') }}" class="img-thumbnail" alt="">
     </div>
     <p>
-        Halaman ini diakses dengan menekan tombol lihat setelah memilih assesment mana yang ingin dilihat di tabel. Disini akan menampilkan penilaian dari CU dan Puskopdit BKCU Kalimantan lengkap dengan keterangan dan rekomendasi yang dapat digunakan sebagai arsip dan juga bahan evaluasi untuk peningkatan kedepannya
+        Halaman ini diakses dengan menekan tombol lihat setelah memilih assesment mana yang ingin dilihat di tabel. Disini akan menampilkan penilaian dari CU dan PUSKOPCUINA lengkap dengan keterangan dan rekomendasi yang dapat digunakan sebagai arsip dan juga bahan evaluasi untuk peningkatan kedepannya
     </p>
     
     <hr/> 

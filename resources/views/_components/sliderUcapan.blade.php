@@ -5,7 +5,7 @@
         <a href="#">
           <img src="{{ asset('images/ucapan/welcome.jpg')}}" alt="Slide 1">
         </a>
-        <div class="flex-caption slider-caption-bg">Selamat Datang Di Puskopdit BKCU Kalimantan</div>
+        <div class="flex-caption slider-caption-bg">Selamat Datang Di PUSKOPCUINA</div>
       </div>
     </div>
   </div>

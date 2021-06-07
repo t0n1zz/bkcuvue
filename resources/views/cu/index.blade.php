@@ -68,7 +68,7 @@
           <li><i class="icon-caret-right"></i> Tanggal Berdiri: {{ $cu->ultah }}</li>
         @endif 
         @if(!empty($cu->bergabung))
-          <li><i class="icon-caret-right"></i> Tanggal Bergabung dengan Puskopdit BKCU Kalimantan: {{ $cu->bergabung }}</li>
+          <li><i class="icon-caret-right"></i> Tanggal Bergabung dengan PUSKOPCUINA: {{ $cu->bergabung }}</li>
         @endif 
       </ul>
     </div>
@@ -95,7 +95,7 @@
     <div class="container divcenter clearfix">
       <div class="heading-block center">
         <h2>SELAMAT ULANG TAHUN</h2>
-        <span>Puskopdit BKCU Kalimantan mengucapkan selamat ulang tahun kepada </span>
+        <span>PUSKOPCUINA mengucapkan selamat ulang tahun kepada </span>
         <br/>
         <a href="#" class="btn btn-primary"> CU {{ $item->name }} yang ke - {{ $item->usia }} </a>
         <hr/>

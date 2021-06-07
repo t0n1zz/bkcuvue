@@ -24,10 +24,10 @@
 
         <div class="col-lg-8">
           <div class="heading-block bottommargin-sm">
-            <h3>Apa Itu Puskopdit BKCU Kalimantan?</h3>
+            <h3>Apa Itu PUSKOPCUINA?</h3>
           </div>
 
-          <p class="nobottommargin"><strong>Puskopdit BKCU Kalimantan</strong> merupakan lembaga yang tercipta dari kumpulan beberapa <strong>Credit Union (CU)</strong> di Indonesia yang memiliki pandangan yang sama dalam membantu anggota untuk membantu dirinya sendiri dan memberikan dampak positif bagi masyarakat sekitar. Kami percaya bahwa seseorang hanya bisa mencapai kesejahteraan apabila ia mampu menolong dirinya sendiri. Oleh karena itu kami menawarkan solusi-solusi yang cerdas serta terpercaya kepada CU dalam berkarya melalui pelayanan keuangan, diklat, pemberdayaan, pengorganisasian serta teknologi informasi.</p>
+          <p class="nobottommargin"><strong>PUSKOPCUINA</strong> merupakan lembaga yang tercipta dari kumpulan beberapa <strong>Credit Union (CU)</strong> di Indonesia yang memiliki pandangan yang sama dalam membantu anggota untuk membantu dirinya sendiri dan memberikan dampak positif bagi masyarakat sekitar. Kami percaya bahwa seseorang hanya bisa mencapai kesejahteraan apabila ia mampu menolong dirinya sendiri. Oleh karena itu kami menawarkan solusi-solusi yang cerdas serta terpercaya kepada CU dalam berkarya melalui pelayanan keuangan, diklat, pemberdayaan, pengorganisasian serta teknologi informasi.</p>
         </div>
 
         <div class="col-lg-4">
@@ -180,7 +180,7 @@
     <div class="container divcenter clearfix">
       <div class="heading-block center">
         <h2>SELAMAT ULANG TAHUN</h2>
-        <span> Puskopdit BKCU Kalimantan mengucapkan selamat ulang tahun kepada:</span>
+        <span> PUSKOPCUINA mengucapkan selamat ulang tahun kepada:</span>
         <br/>
         @foreach($birthdayList as $item)
           <a href="{{ route('home.cu',$item->slug)}}" target="_blank" class="btn btn-primary"> CU {{ $item->name }} yang ke - {{ $item->usia }} </a>

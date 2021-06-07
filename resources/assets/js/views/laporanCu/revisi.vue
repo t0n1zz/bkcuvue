@@ -3,7 +3,7 @@
 		<!-- itemdata -->
 		<div v-if="itemDataStat == 'success'">
 			<div v-if="itemData.length > 0">
-				<div class="card border-left-primary rounded-left-0" v-for="(revisi,index) in history" >
+				<div class="card border-left-primary rounded-left-0" v-for="(revisi,index) in revisi" :key="index">
 					<div class="card-header bg-white header-elements-sm-inline">
 						<h6 class="card-title">
 							&nbsp;
@@ -18,7 +18,7 @@
 
 					<div class="card-body">	
 
-						<div class="card card-body" v-for="(rev, index) in revisi">
+						<div class="card card-body" v-for="(rev, index) in revisi" :key="index">
 							<div class="media">
 								<div class="mr-3 position-relative">
 									<img :src="'/images/user/' + rev.user.gambar + '.jpg'" width="36" height="36" class="rounded-circle"  alt="user image" v-if="rev.user.gambar">

@@ -52,14 +52,14 @@
 							<div v-if="permission.tipe == 'bkcu approve'">
 								<div class="form-check" v-if="currentUser.id_cu == 0">
 									<label style="cursor:pointer;">
-										<input type="checkbox" class="form-check-input" :value="permission.key" v-model="hakForm" v-if="permission.type != 'empty'" @change="checkChange()">
+										<input type="checkbox" class="form-check-input" :value="permission.key" v-model="hakForm" v-if="permission.type != 'empty'" @change="checkChange($event.target.value)">
 										<i :class="permission.icon"></i> &nbsp; {{ permission.name }}
 									</label>
 								</div>
 							</div>
 							<div class="form-check" v-else>
 								<label style="cursor:pointer;">
-									<input type="checkbox" class="form-check-input" :value="permission.key" v-model="hakForm" v-if="permission.type != 'empty'" @change="checkChange()">
+									<input type="checkbox" class="form-check-input" :value="permission.key" v-model="hakForm" v-if="permission.type != 'empty'" @change="checkChange($event.target.value)">
 									<i :class="permission.icon"></i> &nbsp; {{ permission.name }}
 								</label>
 							</div>
@@ -460,6 +460,86 @@
 						]
 					},
 					{
+						name: 'Voting',
+						keterangan: 'Mengelola data untuk melakukan voting',
+						icon: 'icon-point-up',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_voting',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Voting'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_voting',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Voting'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_voting',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+								group: 'Voting'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_voting',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Voting'
+							}
+						]
+					},
+					{
+						name: 'Pemilihan',
+						keterangan: 'Mengelola data untuk melakukan pemilihan',
+						icon: 'icon-quill4',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_pemilihan',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Pemilihan'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_pemilihan',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Pemilihan'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_pemilihan',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+								group: 'Pemilihan'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_pemilihan',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Pemilihan'
+							}
+						]
+					},
+					{
 						name: 'Anggota CU',
 						keterangan: 'Mengelola data anggota per-CU',
 						icon: 'icon-man-woman',
@@ -585,6 +665,46 @@
 								value: false,
 								group: ''
 							}
+						]
+					},
+					{
+						name: 'Iuran JALINAN',
+						keterangan: 'Mengelola data iuran JALINAN',
+						icon: 'icon-clipboard6',
+						secondRow: false,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_jalinan_iuran',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Iuran JALINAN'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_jalinan_iuran',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Iuran JALINAN'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_jalinan_iuran',
+								icon: 'icon-pencil',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Iuran JALINAN'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_jalinan_iuran',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Iuran JALINAN'
+							},
 						]
 					},
 					{
@@ -1352,6 +1472,11 @@
 						'destroy_jalinan_klaim',
 						'laporan_jalinan_klaim',
 						'pencairan_jalinan_klaim',
+
+						'index_jalinan_iuran',
+						'create_jalinan_iuran',
+						'update_jalinan_klaim',
+						'destroy_jalinan_iuran',
 						
 						'index_cu',
 						'create_cu',
@@ -1423,6 +1548,16 @@
 						'create_tempat',
 						'update_tempat',
 						'destroy_tempat',
+
+						'index_pemilihan',
+						'create_pemilihan',
+						'update_pemilihan',
+						'destroy_pemilihan',
+
+						'index_voting',
+						'create_voting',
+						'update_voting',
+						'destroy_voting',
 
 						'index_laporan_cu',
 						'create_laporan_cu',
@@ -1479,6 +1614,16 @@
 						'update_anggota_cu',
 						'destroy_anggota_cu',
 
+						'index_pemilihan',
+						'create_pemilihan',
+						'update_pemilihan',
+						'destroy_pemilihan',
+
+						'index_voting',
+						'create_voting',
+						'update_voting',
+						'destroy_voting',
+
 						'index_saldo',
 						'create_saldo',
 						'update_saldo',
@@ -1489,6 +1634,10 @@
 						'update_jalinan_klaim',
 						'destroy_jalinan_klaim',
 						'laporan_jalinan_klaim',
+
+						'index_jalinan_iuran',
+						'create_jalinan_iuran',
+						'destroy_jalinan_iuran',
 
 						'index_cu',
 						'update_cu',
@@ -1543,10 +1692,13 @@
 						'index_artikel_penulis',
 						'index_artikel_kategori',
 						'index_pengumuman',
+						'index_pemilihan',
+						'index_voting',
 						'index_anggota_cu',
 						'index_saldo',
 						'index_jalinan_klaim',
 						'laporan_jalinan_klaim',
+						'index_jalinan_iuran',
 						'index_cu',
 						'index_tp',
 						'index_aktivis',
@@ -1594,6 +1746,8 @@
 						'destroy_monitoring',
 
 						'index_coa',
+						'index_pemilihan',
+						'index_voting',
 					],
 					organisasiBKCU: [
 						'index_tempat',
@@ -1621,6 +1775,11 @@
 						'create_aktivis',
 						'update_aktivis',
 						'destroy_aktivis',
+
+						'index_pemilihan',
+						'create_pemilihan',
+						'update_pemilihan',
+						'destroy_pemilihan',
 
 						'index_aset_tetap',
 						'create_aset_tetap',
@@ -1671,6 +1830,11 @@
 						'update_anggota_cu',
 						'destroy_anggota_cu',
 
+						'index_pemilihan',
+						'create_pemilihan',
+						'update_pemilihan',
+						'destroy_pemilihan',
+
 						'index_aktivis',
 						'create_aktivis',
 						'update_aktivis',
@@ -1705,6 +1869,11 @@
 						'update_aktivis',
 						'destroy_aktivis',
 
+						'index_voting',
+						'create_voting',
+						'update_voting',
+						'destroy_voting',
+
 						'index_mitra_orang',
 						'create_mitra_orang',
 						'update_mitra_orang',
@@ -1718,6 +1887,11 @@
 					kegiatanCU:[
 						'index_diklat_bkcu',
 						'index_pertemuan_bkcu',
+
+						'index_voting',
+						'create_voting',
+						'update_voting',
+						'destroy_voting',
 					],
 					publikasi: [
 						'index_artikel',
@@ -1750,6 +1924,10 @@
 						'update_jalinan_klaim',
 						'destroy_jalinan_klaim',
 						'laporan_jalinan_klaim',
+						'index_jalinan_iuran',
+						'create_jalinan_iuran',
+						'update_jalinan_iuran',
+						'destroy_jalinan_iuran',
 					],
 				}
 			}
@@ -1767,8 +1945,18 @@
 				this.$emit('hakForm',value);
 				this.checkPeran(value);
 			},
-			checkChange(){
+			checkChange(value){
+				this.checkChangeJALINAN(value);
 				this.emitData(this.hakForm);
+			},
+			checkChangeJALINAN(value){
+				if(value == 'verifikasi_pengurus_jalinan_klaim'){
+					this.hakForm = _.pull(this.hakForm, 'verifikasi_pengawas_jalinan_klaim','verifikasi_manajemen_jalinan_klaim');
+				}else if(value == 'verifikasi_pengawas_jalinan_klaim'){
+					this.hakForm = _.pull(this.hakForm, 'verifikasi_pengurus_jalinan_klaim','verifikasi_manajemen_jalinan_klaim');
+				}else if(value == 'verifikasi_manajemen_jalinan_klaim'){
+					this.hakForm = _.pull(this.hakForm, 'verifikasi_pengawas_jalinan_klaim','verifikasi_pengurus_jalinan_klaim');
+				}
 			},
 			changePeran(value){
 				if(this.tipeUser == 'cu'){

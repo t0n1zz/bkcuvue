@@ -63,7 +63,7 @@
                   {{ itemData.pekerjaan_aktif.lembaga_lain.name}}
                 </li>
                 <li v-else-if="itemData.pekerjaan_aktif && itemData.pekerjaan_aktif.tipe == 3">
-                  <b>Lembaga:</b> Puskopdit BKCU Kalimantan
+                  <b>Lembaga:</b> PUSKOPCUINA
                 </li>
                 <li>
                   <b>Tingkat:</b>

@@ -75,6 +75,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -601,7 +602,7 @@ switch ("development") {
     break;
 
   case 'production':
-    api_url = 'https://puskopditbkcukalimantan.org/api/';
+    api_url = 'https://puskopcuina.org/api/';
     break;
 }
 

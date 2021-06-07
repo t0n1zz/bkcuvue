@@ -13,6 +13,7 @@ use App\AktivisAnggotaCu;
 use App\AktivisPekerjaan;
 use App\AktivisOrganisasi;
 use App\AktivisPendidikan;
+use App\AktivisKeterangan;
 use App\KegiatanPeserta;
 use Illuminate\Http\Request;
 use Venturecraft\Revisionable\Revision;
@@ -28,22 +29,41 @@ class AktivisController extends Controller{
 	{
 		if($tingkat == 'semua'){	
 			if($status == 'aktif'){
-				$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
-					$query->whereIn('tipe',[1,3])->where('status',1);
+				$table_data = Aktivis::with(['pekerjaans' => function($q){
+					$q->with('cu')->whereIn('tipe',[1,3])
+					->where('status',1);
+				}])->with('pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
+					$query->whereIn('tipe',[1,3])
+					->where('status',1);
 				})->advancedFilter();
 			}else{
-				$table_data = Aktivis::with('pekerjaan_tidak_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
-					$query->whereIn('tipe',[1,3])->where('status',3);
+				$table_data = Aktivis::with(['pekerjaans' => function($q){
+					$q->with('cu')->whereIn('tipe',[1,3])
+					->where('status',3);
+				}])->with('pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
+					$query->whereIn('tipe',[1,3])
+					->where('status',3);
 				})->advancedFilter();
 			}
 		}elseif($tingkat == 'manajemen'){
 			if($status == 'aktif'){
-				$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
-					$query->whereIn('tipe',[1,3])->whereIn('tingkat',[5,6,7,8,9])->where('status',1);
+				$table_data = Aktivis::with(['pekerjaans' => function($q){
+					$q->with('cu')->whereIn('tipe',[1,3])
+					->whereIn('tingkat',[5,6,7,8,9])
+					->where('status',1);
+				}])->with('pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
+					$query->whereIn('tipe',[1,3])
+					->whereIn('tingkat',[5,6,7,8,9])
+					->where('status',1);
 				})->advancedFilter();
 			}else{
-				$table_data = Aktivis::with('pekerjaan_tidak_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
-					$query->whereIn('tipe',[1,3])->where('status',3);
+				$table_data = Aktivis::with(['pekerjaans' => function($q){
+					$q->with('cu')->whereIn('tipe',[1,3])
+					->whereIn('tingkat',[5,6,7,8,9])
+					->where('status',3);
+				}])->with('pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
+					$query->whereIn('tipe',[1,3])
+					->where('status',3);
 				})->advancedFilter();
 			}
 		}else{
@@ -74,12 +94,24 @@ class AktivisController extends Controller{
 			}
 
 			if($status == 'aktif'){
-				$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query) use ($param_tingkat){
-					$query->whereIn('tipe',[1,3])->where('tingkat',$param_tingkat)->where('status',1);
+				$table_data = Aktivis::with(['pekerjaans' => function($q) use ($param_tingkat){
+					$q->with('cu')->whereIn('tipe',[1,3])
+					->where('tingkat',$param_tingkat)
+					->where('status',3);
+				}])->with('pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query) use ($param_tingkat){
+					$query->whereIn('tipe',[1,3])
+					->where('tingkat',$param_tingkat)
+					->where('status',1);
 				})->advancedFilter();
 			}else{
-				$table_data = Aktivis::with('pekerjaan_tidak_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query) use ($param_tingkat){
-					$query->whereIn('tipe',[1,3])->where('tingkat',$param_tingkat)->where('status',3);
+				$table_data = Aktivis::with(['pekerjaans' => function($q) use ($param_tingkat){
+					$q->with('cu')->whereIn('tipe',[1,3])
+					->where('tingkat',$param_tingkat)
+					->where('status',3);
+				}])->with('pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query) use ($param_tingkat){
+					$query->whereIn('tipe',[1,3])
+					->where('tingkat',$param_tingkat)
+					->where('status',3);
 				})->advancedFilter();
 			}
 		}
@@ -104,13 +136,19 @@ class AktivisController extends Controller{
 		if($tingkat == 'semua'){
 
 			if($status == 'aktif'){
-				$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
+				$table_data = Aktivis::with(['pekerjaans' => function($q) use ($id,$tipe){
+					$q->with('cu')->where('tipe',$tipe)->where('id_tempat',$id)
+					->where('status',1);
+				}])->with('pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
 				->whereHas('pekerjaan', function($query) use ($id,$tipe){
 					$query->where('tipe',$tipe)->where('id_tempat',$id)
 					->where('status',1);
 				})->advancedFilter();
 			}else{
-				$table_data = Aktivis::with('pekerjaan_tidak_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
+				$table_data = Aktivis::with(['pekerjaans' => function($q) use ($id,$tipe){
+					$q->with('cu')->where('tipe',$tipe)->where('id_tempat',$id)
+					->where('status',3);
+				}])->with('pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
 				->whereHas('pekerjaan', function($query) use ($id,$tipe){
 					$query->where('tipe',$tipe)->where('id_tempat',$id)->where('status',3);
 				})->advancedFilter();
@@ -119,13 +157,19 @@ class AktivisController extends Controller{
 		}elseif($tingkat == 'manajemen'){
 
 			if($status == 'aktif'){
-				$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
+				$table_data = Aktivis::with(['pekerjaans' => function($q) use ($id,$tipe){
+					$q->with('cu')->where('tipe',$tipe)->where('id_tempat',$id)
+					->where('status',1);
+				}])->with('pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
 				->whereHas('pekerjaan', function($query) use ($id,$tipe){
 					$query->whereIn('tingkat',[5,6,7,8,9])->where('tipe',$tipe)->where('id_tempat',$id)
 					->where('status',1);
 				})->advancedFilter();
 			}else{
-				$table_data = Aktivis::with('pekerjaan_tidak_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
+				$table_data = Aktivis::with(['pekerjaans' => function($q) use ($id,$tipe){
+					$q->with('cu')->where('tipe',$tipe)->where('id_tempat',$id)
+					->where('status',3);
+				}])->with('pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
 				->whereHas('pekerjaan', function($query) use ($id,$tipe){
 					$query->whereIn('tingkat',[5,6,7,8,9])->where('tipe',$tipe)->where('id_tempat',$id)->where('status',3);
 				})->advancedFilter();
@@ -159,13 +203,19 @@ class AktivisController extends Controller{
 			}
 
 			if($status == 'aktif'){
-				$table_data = Aktivis::with('pekerjaan_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
+				$table_data = Aktivis::with(['pekerjaans' => function($q) use ($id,$tipe){
+					$q->with('cu')->where('tipe',$tipe)->where('id_tempat',$id)
+					->where('status',1);
+				}])->with('pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
 				->whereHas('pekerjaan', function($query) use ($id,$tipe, $param_tingkat){
 					$query->where('tingkat',$param_tingkat)->where('tipe',$tipe)->where('id_tempat',$id)
 					->where('status',1);
 				})->advancedFilter();
 			}else{
-				$table_data = Aktivis::with('pekerjaan_tidak_aktif.cu','pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
+				$table_data = Aktivis::with(['pekerjaans' => function($q) use ($id,$tipe){
+					$q->with('cu')->where('tipe',$tipe)->where('id_tempat',$id)
+					->where('status',3);
+				}])->with('pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
 				->whereHas('pekerjaan', function($query) use ($id,$tipe, $param_tingkat){
 					$query->where('tingkat',$param_tingkat)->where('tipe',$tipe)->where('id_tempat',$id)->where('status',3);
 				})->advancedFilter();
@@ -182,6 +232,14 @@ class AktivisController extends Controller{
 
 	public function formatQuery($table_data){
 		foreach($table_data as $t){
+			if($t->pekerjaans[0]->status == 1){
+				$t->pekerjaan_aktif = $t->pekerjaans[0];
+			}else if($t->pekerjaans[0]->status == 3){
+				$t->pekerjaan_tidak_aktif = $t->pekerjaans[0];
+			}else{
+				$t->pekerjaan_aktif = '';
+				$t->pekerjaan_tidak_aktif = '';
+			}
 			$t->nik = $t->nik ? $t->nik . "​ " : '';
 			$t->nim_cu = $t->nim_cu ? $t->nim_cu . "​ " : '';
 			$t->npwp = $t->npwp ? $t->npwp . "​ " : '';
@@ -272,6 +330,16 @@ class AktivisController extends Controller{
 	public function indexDiklat($id)
 	{
 		$table_data = KegiatanPeserta::with('kegiatan.Provinces','kegiatan.panitia_dalam', 'kegiatan.panitia_luar')->where('aktivis_id',$id)->orderBy('datang','desc')->get();
+
+		return response()
+			->json([
+					'model' => $table_data,
+			]);
+	}
+
+	public function indexKeterangan($id)
+	{
+		$table_data = AktivisKeterangan::where('id_aktivis',$id)->orderBy('tanggal','desc')->get();
 
 		return response()
 			->json([
@@ -827,6 +895,44 @@ class AktivisController extends Controller{
 		}
 		$kelas->save();
 		Aktivis::flushCache();
+	}
+
+	public function saveKeterangan(Request $request, $id)
+	{
+		if(array_key_exists('id', $request->keterangan)){
+			$kelas = AktivisKeterangan::findOrFail($request->keterangan['id']);
+		}else{
+			$kelas = new AktivisKeterangan();
+		}
+
+		if(!empty($id)){
+			$kelas->id_aktivis = $id;
+		}else{
+			$kelas->id_aktivis = $request->id_aktivis;
+		}
+
+		$kelas->name = $request->keterangan['name'];
+		$kelas->tipe = $request->keterangan['tipe'];
+		$kelas->keterangan = $request->keterangan['keterangan'];
+		$kelas->tanggal = $request->keterangan['tanggal'];
+
+		$kelas->save();
+
+		Aktivis::flushCache();
+
+		if(array_key_exists('id', $request->keterangan)){
+			return response()
+			->json([
+				'saved' => true,
+				'message' => 'Keterangan berhasil diubah'
+			]);
+		}else{
+			return response()
+			->json([
+				'saved' => true,
+				'message' => 'Keterangan berhasil ditambah'
+			]);
+		}
 	}
 
 

@@ -19,3 +19,11 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 Broadcast::channel('assesment.channel.{id}', function () {
     return true;
 });
+
+Broadcast::channel('pemilihan.channel.{id}', function () {
+    return true;
+});
+
+Broadcast::channel('voting.channel.{id}', function () {
+    return true;
+});

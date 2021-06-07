@@ -45,6 +45,11 @@
       <count-widget :title="'Tempat'" :color="'bg-purple-400'" :icon="'icon-location4'"></count-widget>
     </div>
 
+		<!-- voting -->
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_voting']" @click.prevent="goTo(votingWidgetRoute)">
+      <count-widget :title="'Voting'" :color="'bg-warning-400'" :icon="'icon-point-up'"></count-widget>
+    </div>
+
 		<!-- anggota cu -->
     <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_anggota_cu']" @click.prevent="goTo(anggotaCuWidgetRoute)">
       <count-widget :title="'Anggota CU'" :color="'bg-success-400'" :icon="'icon-man-woman'"></count-widget>
@@ -78,6 +83,11 @@
     <!-- aktivis -->
     <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_aktivis']" @click.prevent="goTo(aktivisWidgetRoute)">
       <count-widget :title="'Aktivis'" :color="'bg-indigo-400'" :icon="'icon-user-tie'"></count-widget>
+    </div>
+
+		<!-- pemilihan -->
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_pemilihan']" @click.prevent="goTo(pemilihanWidgetRoute)">
+      <count-widget :title="'Pemilihan'" :color="'bg-warning-400'" :icon="'icon-quill4'"></count-widget>
     </div>
 
     <!-- mitra perseorangan -->
@@ -142,6 +152,8 @@
 				tpWidgetRoute: {},
 				produkCuWidgetRoute: {},
 				aktivisWidgetRoute: {},
+				pemilihanWidgetRoute: {},
+				votingWidgetRoute: {},
 				produkCuWidgetRoute: {},
 				mitraPerseoranganWidgetRoute: {},
 				mitraLembagaWidgetRoute: {},
@@ -178,6 +190,8 @@
 					this.cuWidgetRoute = { name: 'cuProfile', params:{id: this.currentUser.id_cu}   };
 					this.tpWidgetRoute = { name: 'tpCu', params:{cu: this.currentUser.id_cu} };
 					this.produkCuWidgetRoute = { name: 'produkCuCu', params:{cu: this.currentUser.id_cu} };
+					this.pemilihanWidgetRoute = { name: 'pemilihan', params:{cu: this.currentUser.id_cu} };
+					this.votingWidgetRoute = { name: 'voting', params:{cu: this.currentUser.id_cu} };
 					this.laporanCUWidgetRoute = { name: 'laporanCuCu', params:{cu: this.currentUser.id_cu, tp:'konsolidasi'} };
 					this.assesmentAccessWidgetRoute = { name: 'assesmentAccessCu', params:{cu: this.currentUser.id_cu} };
 					this.monitoringWidgetRoute = { name: 'monitoringCu', params:{cu: this.currentUser.id_cu, tp: 'semua'} };
@@ -188,6 +202,8 @@
 					this.cuWidgetRoute = { name: 'cu' };
 					this.tpWidgetRoute = { name: 'tpCu', params:{cu:'semua'} };
 					this.produkCuWidgetRoute = { name: 'produkCuCu', params:{cu:'semua'} };
+					this.pemilihanWidgetRoute = { name: 'pemilihan', params:{cu: 'semua'} };
+					this.votingWidgetRoute = { name: 'voting', params:{cu: 'semua'} };
 					this.laporanCUWidgetRoute = { name: 'laporanCu' };
 					this.assesmentAccessWidgetRoute = { name: 'assesmentAccessCu', params:{cu: 'semua'} };
 					this.monitoringWidgetRoute = { name: 'monitoringCu', params:{cu: 'semua', tp: 'semua'} };

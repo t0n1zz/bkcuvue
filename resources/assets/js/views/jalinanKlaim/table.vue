@@ -37,6 +37,11 @@
           <i class="icon-pencil5"></i> Ubah Produk
         </button>
 
+        <!-- status klaim -->
+        <button @click.prevent="modalOpen('lihat')" class="btn btn-light btn-icon mb-1" :disabled="!selectedItem.id">
+          <i class="icon-file-eye"></i> Lihat Klaim
+        </button>
+
         <!-- koreksi-->
         <button @click.prevent="koreksiData(selectedItem.anggota_cu.nik, selectedItem.anggota_cu_cu_id, selectedItem.tipe)" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status != 0 && status != 3 && status != 7" :disabled="!selectedItem.anggota_cu">
           <i class="icon-paint-format"></i> Koreksi
@@ -138,6 +143,11 @@
         <button @click.prevent="ubahDataAnggota(selectedItem.id,'produk')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.id_cu == 0 &&currentUser.can && currentUser.can['update_jalinan_klaim'] && currentUser.can['update_anggota_cu'] && status == ''"
           :disabled="!selectedItem.id">
           <i class="icon-pencil5"></i> Ubah Produk
+        </button>
+
+        <!-- lihat -->
+        <button @click.prevent="modalOpen('lihat')" class="btn btn-light btn-icon btn-block pb-1" :disabled="!selectedItem.id">
+          <i class="icon-file-eye"></i> Lihat
         </button>
 
         <!-- koreksi-->
@@ -815,6 +825,11 @@
           this.modalTitle = "Hapus " + this.title + " atas nama: " + this.selectedItem.anggota_cu.name + " ?";
           this.modalButton = "Iya, Hapus";
           this.modalSize = "''";
+        }else if(state == "lihat"){
+          this.modalState = 'normal1';
+					this.modalTitle = 'Lihat Klaim ' + this.title + ' atas nama: ' + this.selectedItem.anggota_cu.name;
+          this.modalColor = 'bg-primary';
+          this.modalSize = "modal-full";
         }else if(state == "analisis"){
           this.modalState = 'normal1';
 					this.modalTitle = 'Analisis ' + this.title + ' atas nama: ' + this.selectedItem.anggota_cu.name;

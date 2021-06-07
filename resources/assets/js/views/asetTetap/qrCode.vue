@@ -20,8 +20,7 @@
 						<qrcode-vue :value="qrValue" :size="'130'" :renderAs="'svg'" level="M" class="mr-3 mt-2 ml-2 mb-2"></qrcode-vue>
 						<div>
 							<ul class="list list-unstyled mb-0">
-								<li class="mt-0"><b style="font-size: 24px;"><span style="color:red;">Puskopdit</span></b></li>
-								<li class="mt-0"><b style="font-size: 24px;"><span style="color:blue;">BKCU Kalimantan SKD</span></b></li>
+								<li class="mt-0"><b style="font-size: 24px;"><span style="color:blue;">PUSKOPCUINA</span></b></li>
 								<li class="mt-0"><b style="font-size: 18px;">Kode: {{ selectedItem.kode }}</b></li>
 								<li class="mt-0"><b style="font-size: 18px;">Nama: {{ selectedItem.name }}</b></li>
 							</ul>	
@@ -38,7 +37,7 @@
 						<div>
 							<qrcode-vue :value="qrValue" :size="'150'" :renderAs="'svg'" level="M" class="mt-2"></qrcode-vue>
 							<ul class="list list-unstyled mb-0 mt-1">
-								<li class="mt-0 mb-0"><b style="font-size: 10px;"><span style="color:red;">Puskopdit</span> <span style="color:blue;">BKCU Kalimantan SKD</span></b></li>
+								<li class="mt-0 mb-0"><b style="font-size: 10px;"><span style="color:blue;">PUSKOPCUINA</span></b></li>
 								<li class="mt-0"><b style="font-size: 12px;">Kode: {{ selectedItem.kode }}</b></li>
 								<li class="mt-0"><b style="font-size: 12px;">Nama: {{ selectedItem.name }}</b></li>
 							</ul>	
@@ -88,7 +87,7 @@
 			}
 		},
 		created(){
-			this.qrValue = 'puskopditbkcukalimantan.org/admins/asetTetap/detail/' + this.selectedItem.kode;
+			this.qrValue = 'puskopcuina.org/admins/asetTetap/detail/' + this.selectedItem.kode;
 		},
 		methods: {
 			changeTab(value) {

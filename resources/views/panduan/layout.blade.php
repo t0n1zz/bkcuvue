@@ -126,13 +126,13 @@
 		<div class="text-center d-lg-none w-100">
 			<button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-footer">
 				<i class="icon-unfold mr-2"></i>
-				SIMO © {{ date("Y") }}. All Rights Reserved by Puskopdit BKCU Kalimantan
+				SIMO © {{ date("Y") }}. All Rights Reserved by PUSKOPCUINA
 			</button>
 		</div>
 
 		<div class="navbar-collapse collapse" id="navbar-footer">
 			<span class="navbar-text">
-				© {{ date("Y") }}. All Rights Reserved by <a href="https://puskopditbkcukalimantan.org/" target="_blank">Puskopdit BKCU Kalimantan</a>
+				© {{ date("Y") }}. All Rights Reserved by <a href="https://puskopcuina.org/" target="_blank">PUSKOPCUINA</a>
 			</span>
 		</div>
 	</div>

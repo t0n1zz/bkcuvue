@@ -30,7 +30,7 @@
         </button>
 
         <!-- klaim jalinan -->
-        <button @click.prevent="ubahData(selectedItem.nik,'jalinan')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_jalinan_klaim'] && tipe == 'masih'" :disabled="!selectedItem.nik">
+        <button @click.prevent="ubahData(selectedItem.id,'jalinan')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_jalinan_klaim'] && tipe == 'masih'" :disabled="!selectedItem.id">
           <i class="icon-accessibility2"></i> Ajukan Klaim JALINAN
         </button>
 
@@ -676,24 +676,26 @@
     },
     created() {
       this.fetch(this.query);
-      this.excelUploads =[
-        {
-          enabled: true,
-          url: 'anggotaCu/uploadExcel',
-          format_url: 'formatAnggotaCu.xlsx',
-          next_page_route: 'anggotaCuCuDraft',
-          params: {cu: this.$route.params.cu, tp: 'semua'},
-          button: 'Upload Anggota CU'
-        },
-        {
-          enabled: true,
-          url: 'anggotaCu/uploadExcelProduk',
-          format_url: 'formatProdukAnggotaCu.xlsx',
-          next_page_route: 'anggotaProdukCuDraft',
-          params: {cu: this.$route.params.cu},
-          button: 'Upload Produk Anggota CU'
-        }
-      ];
+      if(this.currentUser.can['upload_anggota_cu']){
+        this.excelUploads =[
+          {
+            enabled: true,
+            url: 'anggotaCu/uploadExcel',
+            format_url: 'formatAnggotaCu.xlsx',
+            next_page_route: 'anggotaCuCuDraft',
+            params: {cu: this.$route.params.cu, tp: 'semua'},
+            button: 'Upload Anggota CU'
+          },
+          {
+            enabled: true,
+            url: 'anggotaCu/uploadExcelProduk',
+            format_url: 'formatProdukAnggotaCu.xlsx',
+            next_page_route: 'anggotaProdukCuDraft',
+            params: {cu: this.$route.params.cu},
+            button: 'Upload Produk Anggota CU'
+          }
+        ];
+      }
     },
     watch: {
       // check route changes
@@ -798,9 +800,9 @@
           });
         }else if(type == 'jalinan'){
           this.$router.push({
-            name: "jalinanKlaimCreateNIK",
+            name: "jalinanKlaimCreateId",
             params: {
-              nik: id.replace(/\s/g,"").replace(/[^\x00-\x7F]/g, "")
+              id: id
             }
           });
         }

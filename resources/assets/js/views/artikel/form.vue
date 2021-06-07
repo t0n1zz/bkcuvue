@@ -42,7 +42,7 @@
 									</div>
 
 									<!-- CU -->
-									<div class="col-md-4" v-if="currentUser.id_cu === 0">
+								<div class="col-md-4" v-if="currentUser.id_cu === 0">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
 
 											<!-- title -->
@@ -57,8 +57,8 @@
 													<span v-if="modelCUStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih CU</span>
 												</option>
-												<option value="0"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>Puskopdit</span></option>
-												<option v-for="cu in modelCU" :value="cu.id">{{cu.name}}</option>
+												<option value="0"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>PUSKOPCUINA</span></option>
+												<option v-for="(cu, index) in modelCU" :value="cu.id" :key="index">{{cu.name}}</option>
 											</select>
 
 											<!-- error message -->

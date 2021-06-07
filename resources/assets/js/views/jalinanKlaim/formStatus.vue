@@ -11,7 +11,10 @@
           <a href="#" class="nav-link" :class="{'active' : tabName == 'verifikator'}" @click.prevent="changeTab('verifikator')"><i class="icon-file-check mr-2"></i> Verifikator</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link" :class="{'active' : tabName == 'dokumen'}" @click.prevent="changeTab('dokumen')"><i clafdss="icon-stack mr-2"></i> Dokumen</a>
+          <a href="#" class="nav-link" :class="{'active' : tabName == 'dokumen'}" @click.prevent="changeTab('dokumen')"><i class="icon-stack mr-2"></i> Dokumen</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" :class="{'active' : tabName == 'history'}" @click.prevent="changeTab('history')"><i class="icon-copy3 mr-2"></i> Riwayat Klaim</a>
         </li>
       </ul>
     </div>
@@ -322,225 +325,293 @@
 
           <div class="col-md-12"><hr/></div>
 
-          <!-- data cu -->
-          <div class="col-md-3">
-
-            <h5>Informasi Pendukung:</h5>
-            <!-- cu -->
-            <div class="card card-body bg-blue-400" >
-              <div class="media">
-                <div class="media-body">
-                  <h3 class="mb-0" >{{'Anggota CU ' + selectedData.anggota_cu_cu.cu.name}}</h3>
-                  <span>
-                    {{ 'Nama: ' + selectedData.anggota_cu.name }} 
-                    <br/>
-                    {{ 'No. BA: ' + selectedData.anggota_cu_cu.no_ba }} 
-                    <br/>
-                    {{ 'Lama Menjadi Anggota: ' + selectedData.anggota_cu_cu.lama_menjadi_anggota  + ' bulan'}} 
-                  </span>
+          <template v-if="tipe == 'verifikasi' || tipe == 'lihat'">
+            <div class="col-md-12">
+              <h5>Informasi Pendukung:</h5>
+            </div>
+            <!-- data cu -->
+            <div class="col-md-4">
+              <div class="card card-body bg-blue-400" >
+                <div class="media">
+                  <div class="media-body">
+                    <h3 class="mb-0" >{{'Anggota CU ' + selectedData.anggota_cu_cu.cu.name}}</h3>
+                    <span>
+                      {{ 'Nama: ' + selectedData.anggota_cu.name }} 
+                      <br/>
+                      {{ 'No. BA: ' + selectedData.anggota_cu_cu.no_ba }} 
+                      <br/>
+                      {{ 'Lama Menjadi Anggota: ' + selectedData.anggota_cu_cu.lama_menjadi_anggota  + ' bulan'}} 
+                    </span>
+                  </div>
+                </div>
+              </div> 
+            </div>
+            <!-- usia  masuk-->
+            <div class="col-md-4">
+              <div class="card card-body bg-teal-400" >
+                <div class="media">
+                  <div class="media-body">
+                    <h3 class="mb-0" >Usia Masuk CU: <span v-if="selectedData.anggota_cu_cu.tanggal_masuk" v-html="$options.filters.ageDiff(selectedData.anggota_cu_cu.tanggal_masuk,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
+                    <span>
+                      Tanggal Masuk CU: <span v-if="selectedData.anggota_cu_cu.tanggal_masuk" v-html="$options.filters.date(selectedData.anggota_cu_cu.tanggal_masuk)"></span> 
+                    </span>
+                  </div>   
                 </div>
               </div>
-            </div> 
+            </div>
+            <!-- usia cacat/mati-->
+            <div class="col-md-4">
+              <div class="card card-body bg-purple-400" >
+                <div class="media">
+                  <div class="media-body">
+                    <div v-if="selectedData.tipe == 'CACAT'">
+                      <h3 class="mb-0" >Usia Cacat: <span v-if="selectedData.anggota_cu" v-html="$options.filters.ageDiff(selectedData.anggota_cu.tanggal_cacat,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
+                      <span>
+                        Tanggal Cacat: <span v-if="selectedData.tanggal_mati" v-html="$options.filters.date(selectedData.tanggal_mati)"></span> 
+                      </span>
+                    </div>
+                    <div v-else-if="selectedData.tipe == 'MENINGGAL'">
+                      <h3 class="mb-0" >Usia Meninggal: <span v-if="selectedData.anggota_cu_cu" v-html="$options.filters.ageDiff(selectedData.tanggal_mati,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
+                      <span>
+                        Tanggal Meninggal: <span v-if="selectedData.tanggal_mati" v-html="$options.filters.date(selectedData.tanggal_mati)"></span> 
+                      </span>
+                    </div>
+                  </div>   
+                </div>
+              </div>
+            </div>
+          </template>
 
-            <!-- usia -->
-            <div class="card card-body bg-teal-400" >
-              <div class="media">
-                <div class="media-body">
-                  <h3 class="mb-0" >Usia Masuk CU: <span v-if="selectedData.anggota_cu_cu.tanggal_masuk" v-html="$options.filters.ageDiff(selectedData.anggota_cu_cu.tanggal_masuk,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
-                  <span>
-                    Tanggal Masuk CU: <span v-if="selectedData.anggota_cu_cu.tanggal_masuk" v-html="$options.filters.date(selectedData.anggota_cu_cu.tanggal_masuk)"></span> 
-                  </span>
-                  <div v-if="selectedData.tipe == 'CACAT'">
-                    <hr/>
-                    <h3 class="mb-0" >Usia Cacat: <span v-if="selectedData.anggota_cu" v-html="$options.filters.ageDiff(selectedData.anggota_cu.tanggal_cacat,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
+          <template v-else>
+            <!-- data cu -->
+            <div class="col-md-3">
+
+              <h5>Informasi Pendukung:</h5>
+              <!-- cu -->
+              <div class="card card-body bg-blue-400" >
+                <div class="media">
+                  <div class="media-body">
+                    <h3 class="mb-0" >{{'Anggota CU ' + selectedData.anggota_cu_cu.cu.name}}</h3>
                     <span>
-                      Tanggal Cacat: <span v-if="selectedData.anggota_cu.tanggal_cacat" v-html="$options.filters.date(selectedData.anggota_cu.tanggal_cacat)"></span> 
+                      {{ 'Nama: ' + selectedData.anggota_cu.name }} 
+                      <br/>
+                      {{ 'No. BA: ' + selectedData.anggota_cu_cu.no_ba }} 
+                      <br/>
+                      {{ 'Lama Menjadi Anggota: ' + selectedData.anggota_cu_cu.lama_menjadi_anggota  + ' bulan'}} 
                     </span>
                   </div>
-                  <div v-else-if="selectedData.tipe == 'MENINGGAL'">
-                    <hr/>
-                    <h3 class="mb-0" >Usia Meninggal: <span v-if="selectedData.anggota_cu_cu" v-html="$options.filters.ageDiff(selectedData.anggota_cu.tanggal_meninggal,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
+                </div>
+              </div> 
+              <!-- usia masuk-->
+              <div class="card card-body bg-teal-400" >
+                <div class="media">
+                  <div class="media-body">
+                    <h3 class="mb-0" >Usia Masuk CU: <span v-if="selectedData.anggota_cu_cu.tanggal_masuk" v-html="$options.filters.ageDiff(selectedData.anggota_cu_cu.tanggal_masuk,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
                     <span>
-                      Tanggal Meninggal: <span v-if="selectedData.anggota_cu.tanggal_meninggal" v-html="$options.filters.date(selectedData.anggota_cu.tanggal_meninggal)"></span> 
+                      Tanggal Masuk CU: <span v-if="selectedData.anggota_cu_cu.tanggal_masuk" v-html="$options.filters.date(selectedData.anggota_cu_cu.tanggal_masuk)"></span> 
                     </span>
-                  </div>
-                </div>   
+                  </div>   
+                </div>
+              </div>
+              <!-- usia cacat/mati-->
+              <div class="card card-body bg-purple-400" >
+                <div class="media">
+                  <div class="media-body">
+                    <div v-if="selectedData.tipe == 'CACAT'">
+                      <h3 class="mb-0" >Usia Cacat: <span v-if="selectedData.anggota_cu" v-html="$options.filters.ageDiff(selectedData.anggota_cu.tanggal_cacat,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
+                      <span>
+                        Tanggal Cacat: <span v-if="selectedData.anggota_cu.tanggal_cacat" v-html="$options.filters.date(selectedData.anggota_cu.tanggal_cacat)"></span> 
+                      </span>
+                    </div>
+                    <div v-else-if="selectedData.tipe == 'MENINGGAL'">
+                      <h3 class="mb-0" >Usia Meninggal: <span v-if="selectedData.anggota_cu_cu" v-html="$options.filters.ageDiff(selectedData.anggota_cu.tanggal_meninggal,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
+                      <span>
+                        Tanggal Meninggal: <span v-if="selectedData.anggota_cu.tanggal_meninggal" v-html="$options.filters.date(selectedData.anggota_cu.tanggal_meninggal)"></span> 
+                      </span>
+                    </div>
+                  </div>   
+                </div>
               </div>
             </div>
 
-          </div>
+            <!-- form analisis -->
+            <div class="col-md-9">
+              <div class="row">
+                <!-- status -->
+                <div class="col-md-12" v-if="tipe == 'analisis'">
+                  
+                  <div class="form-group">
 
-          <div class="col-md-9">
-            <div class="row">
-              <!-- status -->
-              <div class="col-md-12" v-if="tipe == 'analisis'">
+                    <!-- title -->
+                    <h5>Status Klaim:</h5>
+
+                    <!-- select -->
+                    <select name="status" data-width="100%" class="form-control" v-model="formStatus.status">
+                      <option disabled value="">Silahkan pilih status klaim</option>
+                      <option value="1">Menunggu</option>
+                      <option value="2">Dokumen Tidak Lengkap</option>
+                      <option value="3">Ditolak</option>
+                      <option value="31">Ditolak (Salah Memilih / Tidak Meninggal atau Cacat)</option>
+                      <option value="4">Disetujui</option>
+                    </select>
+
+                  </div>
+                </div>
                 
-                <div class="form-group">
+                <!-- tanggal pencairan -->
+                <div class="col-md-12" v-if="formStatus.status == '4' || tipe == 'selesai'">
+                  <div class="form-group" :class="{'has-error' : errors.has('formStatus.tanggal_pencairan')}">
 
-                  <!-- title -->
-                  <h5>Status Klaim:</h5>
+                    <!-- title -->
+                    <h5 :class="{ 'text-danger' : errors.has('formStatus.tanggal_pencairan')}">
+                      <i class="icon-cross2" v-if="errors.has('formStatus.tanggal_pencairan')"></i>
+                      Tgl. Pencairan:</h5>
 
-                  <!-- select -->
-                  <select name="status" data-width="100%" class="form-control" v-model="formStatus.status">
-                    <option disabled value="">Silahkan pilih status klaim</option>
-                    <option value="1">Menunggu</option>
-                    <option value="2">Dokumen Tidak Lengkap</option>
-                    <option value="3">Ditolak</option>
-                    <option value="4">Disetujui</option>
-                  </select>
+                    <!-- input -->
+                    <date-picker @dateSelected="formStatus.tanggal_pencairan = $event" :defaultDate="formStatus.tanggal_pencairan" v-show="tipe != 'selesai'"></date-picker>	
+                    <input v-model="formStatus.tanggal_pencairan"  :readonly="tipe == 'selesai'" v-show="tipe == selesai" v-validate="'required'" data-vv-as="Tgl. pencairan"/>
 
+                    <!-- error message -->
+                    <small class="text-muted text-danger" v-if="errors.has('formStatus.tanggal_pencairan')">
+                      <i class="icon-arrow-small-right"></i> {{ errors.first('formStatus.tanggal_pencairan') }}
+                    </small>
+                    <small class="text-muted" v-else>&nbsp;</small>	
+
+                  </div>
                 </div>
-              </div>
-              
-              <!-- tanggal pencairan -->
-              <div class="col-md-12" v-if="formStatus.status == '4' || tipe == 'selesai'">
-                <div class="form-group" :class="{'has-error' : errors.has('formStatus.tanggal_pencairan')}">
 
-                  <!-- title -->
-                  <h5 :class="{ 'text-danger' : errors.has('formStatus.tanggal_pencairan')}">
-                    <i class="icon-cross2" v-if="errors.has('formStatus.tanggal_pencairan')"></i>
-                    Tgl. Pencairan:</h5>
+                <!-- TUNAS -->
+                <div class="col-md-6" v-if="(formStatus.status == '4' && selectedData.tipe != 'cacat') || tipe == 'selesai'">
+                
+                  <div class="form-group" :class="{'has-error' : errors.has('formStatus.tunas_disetujui')}">
 
-                  <!-- input -->
-                  <date-picker @dateSelected="formStatus.tanggal_pencairan = $event" :defaultDate="formStatus.tanggal_pencairan" v-show="tipe != 'selesai'"></date-picker>	
-									<input v-model="formStatus.tanggal_pencairan"  :readonly="tipe == 'selesai'" v-show="tipe == selesai" v-validate="'required'" data-vv-as="Tgl. pencairan"/>
+                    <!-- title -->
+                    <h5 :class="{ 'text-danger' : errors.has('formStatus.tunas_disetujui')}">
+                  <i class="icon-cross2" v-if="errors.has('formStatus.tunas_disetujui')"></i> Nilai pengajuan klaim TUNAS yang disetujui</h5>
 
-                  <!-- error message -->
-                  <small class="text-muted text-danger" v-if="errors.has('formStatus.tanggal_pencairan')">
-                    <i class="icon-arrow-small-right"></i> {{ errors.first('formStatus.tanggal_pencairan') }}
-                  </small>
-                  <small class="text-muted" v-else>&nbsp;</small>	
-
-                </div>
-              </div>
-
-              <!-- TUNAS -->
-              <div class="col-md-6" v-if="(formStatus.status == '4' && selectedData.tipe != 'cacat') || tipe == 'selesai'">
-              
-                <div class="form-group" :class="{'has-error' : errors.has('formStatus.tunas_disetujui')}">
-
-                  <!-- title -->
-                  <h5 :class="{ 'text-danger' : errors.has('formStatus.tunas_disetujui')}">
-                <i class="icon-cross2" v-if="errors.has('formStatus.tunas_disetujui')"></i> Nilai pengajuan klaim TUNAS yang disetujui</h5>
-
-                  <div class="card card-body" :class="{'bg-blue-400': selisihTunas == 0, 'bg-danger-400': selisihTunas < 0, 'bg-brown-400': selisihTunas > 0}">
-                    <div class="media">
-                      <div class="media-body">
-                        <h3 class="mb-0">
-                          <i v-if="selisihTunas > 0" class="icon-plus3"></i>
-                          <check-value :value="selisihTunas" valueType="currency"></check-value> 	
-                        </h3>
-                        <span class="text-uppercase font-size-xs">Selisih Tunas yang di klaim dengan yang disetujui</span>
+                    <div class="card card-body" :class="{'bg-blue-400': selisihTunas == 0, 'bg-danger-400': selisihTunas < 0, 'bg-brown-400': selisihTunas > 0}">
+                      <div class="media">
+                        <div class="media-body">
+                          <h3 class="mb-0">
+                            <i v-if="selisihTunas > 0" class="icon-plus3"></i>
+                            <check-value :value="selisihTunas" valueType="currency"></check-value> 	
+                          </h3>
+                          <span class="text-uppercase font-size-xs">Selisih Tunas yang di klaim dengan yang disetujui</span>
+                        </div>
                       </div>
                     </div>
+
+                    <!-- text -->
+                    <cleave 
+                      name="tunas_disetujui"
+                      v-model="formStatus.tunas_disetujui" 
+                      class="form-control" 
+                      :options="cleaveOption.numeric"
+                      :readonly="tipe == 'selesai'"
+                      placeholder="Silahkan masukkan jumlah nilai pengajuan klaim TUNAS yang disetujui"
+                      v-validate="'required'" data-vv-as="Nilai pengajuan klaim TUNAS yang disetujui"></cleave>
+
+                    <!-- error message -->
+                    <small class="text-muted text-danger" v-if="errors.has('formStatus.tunas_disetujui')">
+                      <i class="icon-arrow-small-right"></i> {{ errors.first('formStatus.tunas_disetujui') }}
+                    </small>
+                    <small class="text-muted" v-else>&nbsp;</small>	
                   </div>
-
-                  <!-- text -->
-                  <cleave 
-                    name="tunas_disetujui"
-                    v-model="formStatus.tunas_disetujui" 
-                    class="form-control" 
-                    :options="cleaveOption.numeric"
-                    :readonly="tipe == 'selesai'"
-                    placeholder="Silahkan masukkan jumlah nilai pengajuan klaim TUNAS yang disetujui"
-                    v-validate="'required'" data-vv-as="Nilai pengajuan klaim TUNAS yang disetujui"></cleave>
-
-                  <!-- error message -->
-                  <small class="text-muted text-danger" v-if="errors.has('formStatus.tunas_disetujui')">
-                    <i class="icon-arrow-small-right"></i> {{ errors.first('formStatus.tunas_disetujui') }}
-                  </small>
-                  <small class="text-muted" v-else>&nbsp;</small>	
                 </div>
-              </div>
 
-              <!-- LINTANG -->
-              <div class="col-md-6" v-if="formStatus.status == '4' || tipe == 'selesai'">
-                
+                <!-- LINTANG -->
+                <div class="col-md-6" v-if="formStatus.status == '4' || tipe == 'selesai'">
+                  
 
-                <div class="form-group" :class="{'has-error' : errors.has('formStatus.lintang_disetujui')}">
-                  <!-- title -->
-                  <h5 :class="{ 'text-danger' : errors.has('formStatus.lintang_disetujui')}">
-                  <i class="icon-cross2" v-if="errors.has('formStatus.lintang_disetujui')"></i>Nilai pengajuan klaim LINTANG yang disetujui</h5>
+                  <div class="form-group" :class="{'has-error' : errors.has('formStatus.lintang_disetujui')}">
+                    <!-- title -->
+                    <h5 :class="{ 'text-danger' : errors.has('formStatus.lintang_disetujui')}">
+                    <i class="icon-cross2" v-if="errors.has('formStatus.lintang_disetujui')"></i>Nilai pengajuan klaim LINTANG yang disetujui</h5>
 
-                  <div class="card card-body" :class="{'bg-blue-400': selisihLintang == 0, 'bg-danger-400': selisihLintang < 0, 'bg-brown-400': selisihLintang > 0}">
-                    <div class="media">
-                      <div class="media-body">
-                        <h3 class="mb-0">
-                          <i v-if="selisihLintang > 0" class="icon-plus3"></i>
-                          <check-value :value="selisihLintang" valueType="currency"></check-value> 	
-                        </h3>
-                        <span class="text-uppercase font-size-xs">Selisih Lintang yang di klaim dengan yang disetujui</span>
+                    <div class="card card-body" :class="{'bg-blue-400': selisihLintang == 0, 'bg-danger-400': selisihLintang < 0, 'bg-brown-400': selisihLintang > 0}">
+                      <div class="media">
+                        <div class="media-body">
+                          <h3 class="mb-0">
+                            <i v-if="selisihLintang > 0" class="icon-plus3"></i>
+                            <check-value :value="selisihLintang" valueType="currency"></check-value> 	
+                          </h3>
+                          <span class="text-uppercase font-size-xs">Selisih Lintang yang di klaim dengan yang disetujui</span>
+                        </div>
                       </div>
                     </div>
+
+                    <!-- text -->
+                    <cleave 
+                      name="lintang_disetujui"
+                      v-model="formStatus.lintang_disetujui" 
+                      class="form-control" 
+                      :options="cleaveOption.numeric"
+                      :readonly="tipe == 'selesai'"
+                      placeholder="Silahkan masukkan jumlah nilai pengajuan klaim LINTANG yang disetujui"
+                      v-validate="'required'" data-vv-as="Nilai pengajuan klaim LINTANG yang disetujui"></cleave>
+
+                    <!-- error message -->
+                    <small class="text-muted text-danger" v-if="errors.has('formStatus.lintang_disetujui')">
+                      <i class="icon-arrow-small-right"></i> {{ errors.first('formStatus.lintang_disetujui') }}
+                    </small>
+                    <small class="text-muted" v-else>&nbsp;</small>		
+                  </div>
+                </div>
+
+                <!-- keterangan -->
+                <div class="col-md-12"  v-if="formStatus.status != 0 && formStatus.status != 31"> 
+                  <div class="form-group">
+
+                    <!-- title -->
+                    <h5>
+                      Keterangan:
+                    </h5>
+
+                    <!-- textarea -->
+                    <textarea rows="3" 
+                    type="text" 
+                    name="keterangan_klaim" 
+                    class="form-control" 
+                    :readonly="tipe == 'selesai'"
+                    placeholder="Silahkan masukkan keterangan " v-model="formStatus.keterangan_klaim"></textarea>
                   </div>
 
-                  <!-- text -->
-                  <cleave 
-                    name="lintang_disetujui"
-                    v-model="formStatus.lintang_disetujui" 
-                    class="form-control" 
-                    :options="cleaveOption.numeric"
-                    :readonly="tipe == 'selesai'"
-                    placeholder="Silahkan masukkan jumlah nilai pengajuan klaim LINTANG yang disetujui"
-                    v-validate="'required'" data-vv-as="Nilai pengajuan klaim LINTANG yang disetujui"></cleave>
-
-                  <!-- error message -->
-                  <small class="text-muted text-danger" v-if="errors.has('formStatus.lintang_disetujui')">
-                    <i class="icon-arrow-small-right"></i> {{ errors.first('formStatus.lintang_disetujui') }}
-                  </small>
-                  <small class="text-muted" v-else>&nbsp;</small>		
                 </div>
-              </div>
 
-              <!-- keterangan -->
-              <div class="col-md-12"  v-if="formStatus.status != 0"> 
-                <div class="form-group">
+                <!-- nomor surat -->
+                <div class="col-md-6" v-if="formStatus.status != 0">
+                  <div class="form-group">
 
-                  <!-- title -->
-                  <h5>
-                    Keterangan:
-                  </h5>
+                    <!-- title -->
+                    <h5>
+                      Nomor Surat:
+                    </h5>
 
-                  <!-- textarea -->
-                  <textarea rows="3" 
-                  type="text" 
-                  name="keterangan_klaim" 
-                  class="form-control" 
-                  :readonly="tipe == 'selesai'"
-                  placeholder="Silahkan masukkan keterangan " v-model="formStatus.keterangan_klaim"></textarea>
+                    <!-- input -->
+                    <input type="text" name="surat_nomor" class="form-control" placeholder="Silahkan masukkan nomor surat" v-model="formStatus.surat_nomor" v-if="currentUser.id_cu == 0">
+
+                    <input type="text" name="surat_nomor" class="form-control" placeholder="Silahkan masukkan nomor surat" v-model="formStatus.surat_nomor" v-else readonly>
+                  </div>
+                </div>
+
+                <!-- tanggal surat -->
+                <div class="col-md-6" v-if="formStatus.status != 0">
+                  <div class="form-group">
+
+                    <!-- title -->
+                    <h5>
+                      Tgl. Surat:</h5>
+
+                    <!-- input -->
+                    <date-picker @dateSelected="formStatus.surat_tanggal = $event" :defaultDate="formStatus.surat_tanggal" v-if="currentUser.id_cu == 0"></date-picker>	
+
+                    <input type="text" name="surat_tanggal" class="form-control" placeholder="Silahkan masukkan tanggal surat" v-model="formStatus.surat_tanggal" v-else readonly>
+                  </div>
                 </div>
 
               </div>
-
-              <!-- nomor surat -->
-              <div class="col-md-6" v-if="formStatus.status != 0">
-                <div class="form-group">
-
-                  <!-- title -->
-                  <h5>
-                    Nomor Surat:
-                  </h5>
-
-                  <!-- input -->
-                  <input type="text" name="surat_nomor" class="form-control" placeholder="Silahkan masukkan nomor surat" v-model="formStatus.surat_nomor">
-                </div>
-              </div>
-
-              <!-- tanggal surat -->
-              <div class="col-md-6" v-if="formStatus.status != 0">
-                <div class="form-group">
-
-                  <!-- title -->
-                  <h5>
-                    Tgl. Surat:</h5>
-
-                  <!-- input -->
-                  <date-picker @dateSelected="formStatus.surat_tanggal = $event" :defaultDate="formStatus.surat_tanggal"></date-picker>	
-                </div>
-              </div>
-
             </div>
-          </div>
+          </template>
 
         </div>
 
@@ -555,6 +626,7 @@
             <h6>Dengan menekan tombol selesai dibawah maka anda telah melakukan penyerahan klaim jalinan atas nama <b><u>{{ selectedData.anggota_cu.name }}</u></b> kepada ahli waris atau yang diwakilkan dan segala informasi yang ada dan dikirmkan adalah benar sesuai dengan peraturan.</h6>
           </div>
         </div>
+        <span v-else-if="tipe == 'lihat'"></span>
         <div v-else>
           <div class="alert bg-info alert-styled-left">
             <h6>Pastikan data yang dimasukkan sudah benar sebelum menyimpan.</h6>
@@ -566,7 +638,7 @@
           <button class="btn btn-light" @click.prevent="tutup">
             <i class="icon-cross"></i> Tutup</button>
 
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" class="btn btn-primary" v-if="tipe != 'lihat'">
             <span v-if="tipe == 'selesai'">
               <span v-if="formStatus.status == 5">
                 <i class="icon-checkmark4"></i> Selesai
@@ -586,7 +658,7 @@
 
         <!-- tombol mobile-->
         <div class="d-block d-md-none">
-          <button type="submit" class="btn btn-primary btn-block pb-2">
+          <button type="submit" class="btn btn-primary btn-block pb-2" v-if="tipe != 'lihat'">
             <span v-if="tipe == 'selesai'">
               <span v-if="formStatus.status == 4">
                 <i class="icon-checkmark4"></i> Selesai
@@ -683,62 +755,106 @@
 
         <div class="nav-tabs-responsive mb-3">
           <ul class="nav nav-tabs nav-tabs-solid bg-light">
-            <li class="nav-item">
-              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'meninggal'}" @click.prevent="changeTabDokumen('meninggal')"><i class="icon-person mr-2"></i> Keterangan Meninggal Dunia</a>
+            <li class="nav-item" v-show="selected.dokumen_meninggal">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'meninggal'}" @click.prevent="changeTabDokumen('meninggal')"><i class="icon-person mr-2"></i> 
+                Keterangan Meninggal Dunia
+              </a>
             </li>
-            <li class="nav-item" v-if="selected.status_klaim != 0">
-              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'ktp'}" @click.prevent="changeTabDokumen('ktp')"><i class="icon-vcard mr-2"></i> Identitas Diri</a>
+            <li class="nav-item" v-show="selected.dokumen_ktp">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'ktp'}" @click.prevent="changeTabDokumen('ktp')"><i class="icon-vcard mr-2"></i> 
+                Identitas Diri 
+              </a>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'spma_1'}" @click.prevent="changeTabDokumen('spma_1')"><i class="icon-magazine mr-2"></i> Surat Permohonan Jadi Anggota 1</a>
+            <li class="nav-item" v-show="selected.spma_1">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'spma_1'}" @click.prevent="changeTabDokumen('spma_1')"><i class="icon-magazine mr-2"></i> 
+                Surat Permohonan Jadi Anggota 1
+              </a>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'spma_2'}" @click.prevent="changeTabDokumen('spma_2')"><i class="icon-magazine mr-2"></i> Surat Permohonan Jadi Anggota 2</a>
+            <li class="nav-item" v-show="selected.spma_2">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'spma_2'}" @click.prevent="changeTabDokumen('spma_2')"><i class="icon-magazine mr-2"></i> 
+                Surat Permohonan Jadi Anggota 2
+              </a>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_simpanan_1'}" @click.prevent="changeTabDokumen('buku_simpanan_1')"><i class="icon-credit-card mr-2"></i> Buku Simpanan 1</a>
+            <li class="nav-item" v-show="selected.buku_simpanan_1">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_simpanan_1'}" @click.prevent="changeTabDokumen('buku_simpanan_1')"><i class="icon-credit-card mr-2"></i> 
+                Buku Simpanan 1
+              </a>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_simpanan_2'}" @click.prevent="changeTabDokumen('buku_simpanan_2')"><i class="icon-credit-card mr-2"></i> Buku Simpanan 2</a>
+            <li class="nav-item" v-show="selected.buku_simpanan_2">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_simpanan_2'}" @click.prevent="changeTabDokumen('buku_simpanan_2')"><i class="icon-credit-card mr-2"></i> 
+                Buku Simpanan 2
+              </a>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_simpanan_3'}" @click.prevent="changeTabDokumen('buku_simpanan_3')"><i class="icon-credit-card mr-2"></i> Buku Simpanan 3</a>
+            <li class="nav-item" v-show="selected.buku_simpanan_3">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_simpanan_3'}" @click.prevent="changeTabDokumen('buku_simpanan_3')"><i class="icon-credit-card mr-2"></i> 
+                Buku Simpanan 3
+              </a>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_simpanan_4'}" @click.prevent="changeTabDokumen('buku_simpanan_4')"><i class="icon-credit-card mr-2"></i> Buku Simpanan 4</a>
+            <li class="nav-item" v-show="selected.buku_simpanan_4">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_simpanan_4'}" @click.prevent="changeTabDokumen('buku_simpanan_4')"><i class="icon-credit-card mr-2"></i> 
+                Buku Simpanan 4
+              </a>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_simpanan_5'}" @click.prevent="changeTabDokumen('buku_simpanan_5')"><i class="icon-credit-card mr-2"></i> Buku Simpanan 5</a>
+            <li class="nav-item" v-show="selected.buku_simpanan_5">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_simpanan_5'}" @click.prevent="changeTabDokumen('buku_simpanan_5')"><i class="icon-credit-card mr-2"></i> 
+                Buku Simpanan 5
+              </a>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_pinjaman_1'}" @click.prevent="changeTabDokumen('buku_pinjaman_1')"><i class="icon-credit-card2 mr-2"></i> Buku Pinjaman 1</a>
+            <li class="nav-item" v-show="selected.buku_pinjaman_1">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_pinjaman_1'}" @click.prevent="changeTabDokumen('buku_pinjaman_1')"><i class="icon-credit-card2 mr-2"></i> 
+                Buku Pinjaman 1
+              </a>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_pinjaman_2'}" @click.prevent="changeTabDokumen('buku_pinjaman_2')"><i class="icon-credit-card2 mr-2"></i> Buku Pinjaman 2</a>
+            <li class="nav-item" v-show="selected.buku_pinjaman_2">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_pinjaman_2'}" @click.prevent="changeTabDokumen('buku_pinjaman_2')"><i class="icon-credit-card2 mr-2"></i> 
+                Buku Pinjaman 2
+              </a>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_pinjaman_3'}" @click.prevent="changeTabDokumen('buku_pinjaman_3')"><i class="icon-credit-card2 mr-2"></i> Buku Pinjaman 3</a>
+            <li class="nav-item" v-show="selected.buku_pinjaman_3">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'buku_pinjaman_3'}" @click.prevent="changeTabDokumen('buku_pinjaman_3')"><i class="icon-credit-card2 mr-2"></i> 
+                Buku Pinjaman 3
+              </a>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'pinjaman_1'}" @click.prevent="changeTabDokumen('pinjaman_1')"><i class="icon-clipboard3 mr-2"></i> Pinjaman 1</a>
+            <li class="nav-item" v-show="selected.dokumen_pinjaman_1">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'pinjaman_1'}" @click.prevent="changeTabDokumen('pinjaman_1')"><i class="icon-clipboard3 mr-2"></i>
+                Pinjaman 1
+              </a>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'pinjaman_2'}" @click.prevent="changeTabDokumen('pinjaman_2')"><i class="icon-clipboard3 mr-2"></i> Pinjaman 2</a>
+            <li class="nav-item" v-show="selected.dokumen_pinjaman_2">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'pinjaman_2'}" @click.prevent="changeTabDokumen('pinjaman_2')"><i class="icon-clipboard3 mr-2"></i>
+                Pinjaman 2
+              </a>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'pinjaman_3'}" @click.prevent="changeTabDokumen('pinjaman_3')"><i class="icon-clipboard3 mr-2"></i> Pinjaman 3</a>
+            <li class="nav-item" v-show="selected.dokumen_pinjaman_3">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'pinjaman_3'}" @click.prevent="changeTabDokumen('pinjaman_3')"><i class="icon-clipboard3 mr-2"></i>
+                Pinjaman 3
+              </a>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'pinjaman_4'}" @click.prevent="changeTabDokumen('pinjaman_4')"><i class="icon-clipboard3 mr-2"></i> Pinjaman 4</a>
+            <li class="nav-item" v-show="selected.dokumen_pinjaman_4">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'pinjaman_4'}" @click.prevent="changeTabDokumen('pinjaman_4')"><i class="icon-clipboard3 mr-2"></i>
+                Pinjaman 4
+              </a>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'pinjaman_5'}" @click.prevent="changeTabDokumen('pinjaman_5')"><i class="icon-clipboard3 mr-2"></i> Pinjaman 5</a>
+            <li class="nav-item" v-show="selected.dokumen_pinjaman_5">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'pinjaman_5'}" @click.prevent="changeTabDokumen('pinjaman_5')"><i class="icon-clipboard3 mr-2"></i>
+                Pinjaman 5
+              </a>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'pinjaman_6'}" @click.prevent="changeTabDokumen('pinjaman_6')"><i class="icon-clipboard3 mr-2"></i> Pinjaman 6</a>
+            <li class="nav-item" v-show="selected.dokumen_pinjaman_6">
+              <a href="#" class="nav-link" :class="{'active' : tabNameDokumen == 'pinjaman_6'}" @click.prevent="changeTabDokumen('pinjaman_6')"><i class="icon-clipboard3 mr-2"></i>
+                Pinjaman 6
+              </a>
             </li>
           </ul>
         </div>
+
+        <transition enter-active-class="animated fadeIn" mode="out-in">
+          <div v-show="tabNameDokumen == ''">
+            <div class="card card-body">
+              <h5>Silahkan memilih dokumen yang ingin ditampilkan dengan menekan tombol diatas. Jika tidak terdapat tombol maka berarti klaim ini tidak memiliki dokumen yang bisa dilihat.</h5>
+            </div>
+          </div>    
+        </transition>
 
         <transition enter-active-class="animated fadeIn" mode="out-in">
           <div v-show="tabNameDokumen == 'meninggal'">
@@ -852,6 +968,14 @@
     </transition>
     <!-- dokumen -->
 
+    <!-- history -->
+    <transition enter-active-class="animated fadeIn" mode="out-in">
+      <div v-show="tabName == 'history'" v-if="isHistory">
+        <riwayat-klaim :itemData="history" :itemDataStat="historyStat"></riwayat-klaim>
+      </div>
+    </transition>
+    <!-- history -->
+
 	</div>
 </template>
 
@@ -866,6 +990,7 @@
   import infoIcon from "../../components/infoIcon.vue";
   import verifikator from "./verifikator.vue";
   import dokumen from "./dokumen.vue";
+  import riwayatKlaim from "./riwayatKlaim.vue";
   import DatePicker from "../../components/datePicker.vue";
 
 	export default {
@@ -880,15 +1005,17 @@
       infoIcon,
       verifikator,
       dokumen,
-      DatePicker
+      DatePicker,
+      riwayatKlaim
 		},
 		data() {
 			return {
         title: '',
         tabName: 'pengajuan',
-        tabNameDokumen: 'meninggal',
+        tabNameDokumen: '',
         isVerifikator: false,
         isDokumen: false,
+        isHistory: false,
         selectedData: {},
 				formStatus: {
           cu_id: '',
@@ -962,6 +1089,10 @@
 				}
 				if (value == 'dokumen' && !this.isDokumen) {
           this.isDokumen = true
+        }
+				if (value == 'history' && !this.isHistory) {
+          this.isHistory = true
+           this.$store.dispatch('jalinanKlaim/getHistory',this.selectedData.id);
         }
       },
       changeTabDokumen(value) {
@@ -1078,6 +1209,8 @@
         modelVeriPilihManajemenStat: "dataStatS3",
       }),
       ...mapGetters('jalinanKlaim', {
+        history: "history",
+        historyStat: "historyStat",
 				modelVeriPengurus: "dataVeri1",
 				modelVeriPengawas: "dataVeri2",
 				modelVeriManajemen: "dataVeri3",

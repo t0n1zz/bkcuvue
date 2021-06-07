@@ -80,6 +80,10 @@ class UserController extends Controller
 		'verifikasi_pengawas_jalinan_klaim',
 		'verifikasi_manajemen_jalinan_klaim',
 
+		'index_jalinan_iuran',
+		'create_jalinan_iuran',
+		'destroy_jalinan_iuran',
+
 		'index_cu',
 		'create_cu',
 		'update_cu',
@@ -150,6 +154,16 @@ class UserController extends Controller
 		'update_tempat',
 		'destroy_tempat',
 
+		'index_pemilihan',
+		'create_pemilihan',
+		'update_pemilihan',
+		'destroy_pemilihan',
+
+		'index_voting',
+		'create_voting',
+		'update_voting',
+		'destroy_voting',
+
 		'index_laporan_cu',
 		'create_laporan_cu',
 		'update_laporan_cu',
@@ -164,10 +178,10 @@ class UserController extends Controller
 		'upload_laporan_tp',
 		'diskusi_laporan_tp',
 
-		'index_coa',
-		'create_coa',
-		'update_coa',
-		'destroy_coa',
+		// 'index_coa',
+		// 'create_coa',
+		// 'update_coa',
+		// 'destroy_coa',
 	];
 
 	public function index()

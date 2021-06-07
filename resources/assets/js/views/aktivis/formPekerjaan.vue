@@ -19,7 +19,7 @@
 							<span v-if="modelCuStat === 'loading'">Mohon tunggu...</span>
 							<span v-else>Silahkan pilih tempat bekerja</span>
 						</option>
-						<option value="0">Puskopdit BKCU Kalimantan</option>
+						<option value="0">PUSKOPCUINA</option>
 						<option value="lain" v-if="$route.meta.mode != 'create'">Lembaga lain</option>
 						<option v-for="(cu, index) in modelCu" :value="cu.id" :key="index">{{cu.name}}</option>
 					</select>

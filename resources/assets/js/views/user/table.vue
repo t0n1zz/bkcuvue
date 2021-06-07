@@ -195,7 +195,7 @@
           </td>
           <td v-if="!columnData[5].hide && !columnData[5].disable">
             <span v-if="props.item.cu">{{props.item.cu.name}}</span>
-            <span v-else>Puskopdit BKCU Kalimantan</span>
+            <span v-else>PUSKOPCUINA</span>
           </td>
           <td v-if="!columnData[6].hide">
             <span v-if="props.item.aktivis && props.item.aktivis.pekerjaan_aktif" v-html="$options.filters.checkTingkatAktivis(props.item.aktivis.pekerjaan_aktif.tingkat)"></span>
@@ -264,7 +264,7 @@
                       <li><b>Username:</b> {{ selectedItem.username }}</li>
                       <li><b>Nama:</b> {{ selectedItem.aktivis? selectedItem.aktivis.name : '-' }}</li>
                       <li><b>Email:</b> {{ selectedItem.aktivis? selectedItem.aktivis.email : '-' }}</li>
-                      <li><b>CU:</b> {{ selectedItem.cu ? selectedItem.cu.name : 'Puskopdit BKCU Kalimantan' }}</li>
+                      <li><b>CU:</b> {{ selectedItem.cu ? selectedItem.cu.name : 'PUSKOPCUINA' }}</li>
                       <li><b>Tingkat:</b> 
                         <span v-if="selectedItem.aktivis && selectedItem.aktivis.pekerjaan_aktif" v-html="$options.filters.checkTingkatAktivis(selectedItem.aktivis.pekerjaan_aktif.tingkat)"></span>
                         <span v-else>-</span>

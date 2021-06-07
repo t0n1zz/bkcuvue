@@ -102,6 +102,25 @@ Vue.filter('statusJalinan', function(value){
 		return '<span class="badge badge-danger">MENINGGAL</span>';
 	}
 });
+Vue.filter('statusKlaimJalinan', function(value){
+	if (value == 1) {
+			return 'menunggu';
+	} else if(value == 2) {
+			return 'dokumen tidak lengkap';
+	}	else if(value == 3) {
+			return 'ditolak';
+	} else if(value == 4) {
+		return 'disetujui';
+	} else if(value == 5) {
+		return 'dicairkan';
+	} else if(value == 6) {
+		return 'selesai';
+	} else if(value == 7) {
+		return 'koreksi';
+	} else {
+		return 'verifikasi';
+	}
+});
 Vue.filter('tipeProdukCu', function(value){
 	if(value == 'Simpanan Pokok'){
 		return '<span class="badge badge-info">Simpanan Pokok</span>';

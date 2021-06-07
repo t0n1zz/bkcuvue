@@ -988,6 +988,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -2509,6 +2511,8 @@ var render = function() {
                                     }
                                   },
                                   [
+                                    _c("option", [_vm._v("5")]),
+                                    _vm._v(" "),
                                     _c("option", [_vm._v("10")]),
                                     _vm._v(" "),
                                     _c("option", [_vm._v("15")]),
@@ -3710,6 +3714,8 @@ var render = function() {
                                           }
                                         },
                                         [
+                                          _c("option", [_vm._v("5")]),
+                                          _vm._v(" "),
                                           _c("option", [_vm._v("10")]),
                                           _vm._v(" "),
                                           _c("option", [_vm._v("15")]),

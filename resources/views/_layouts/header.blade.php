@@ -9,13 +9,13 @@
       <!-- Logo
       ============================================= -->
       <div id="logo" class="d-none d-sm-block">
-        <a href="{{ route('home') }}" class="standard-logo" data-dark-logo="{{ asset('images/logoD.png') }}"><img src="{{ asset('images/logoD.png') }}" alt="Puskopdit BKCU Kalimantan Logo"></a>
-        <a href="{{ route('home') }}" class="retina-logo" data-dark-logo="{{ asset('images/logoD.png') }}"><img src="{{ asset('images/logoD.png') }}" alt="Puskopdit BKCU Kalimantan Logo"></a>
+        <a href="{{ route('home') }}" class="standard-logo" data-dark-logo="{{ asset('images/logoD.png') }}"><img src="{{ asset('images/logoD.png') }}" alt="PUSKOPCUINA Logo"></a>
+        <a href="{{ route('home') }}" class="retina-logo" data-dark-logo="{{ asset('images/logoD.png') }}"><img src="{{ asset('images/logoD.png') }}" alt="PUSKOPCUINA Logo"></a>
       </div>
 
       <div id="logo" class="d-block d-sm-none">
-        <a href="{{ route('home') }}" class="standard-logo" data-dark-logo="{{ asset('images/logoM.png') }}"><img src="{{ asset('images/logoM.png') }}" alt="Puskopdit BKCU Kalimantan Logo"></a>
-        <a href="{{ route('home') }}" class="retina-logo" data-dark-logo="{{ asset('images/logoM.png') }}"><img src="{{ asset('images/logoM.png') }}" alt="Puskopdit BKCU Kalimantan Logo"></a>
+        <a href="{{ route('home') }}" class="standard-logo" data-dark-logo="{{ asset('images/logoM.png') }}"><img src="{{ asset('images/logoM.png') }}" alt="PUSKOPCUINA Logo"></a>
+        <a href="{{ route('home') }}" class="retina-logo" data-dark-logo="{{ asset('images/logoM.png') }}"><img src="{{ asset('images/logoM.png') }}" alt="PUSKOPCUINA Logo"></a>
       </div>
       
       <!-- #logo end -->

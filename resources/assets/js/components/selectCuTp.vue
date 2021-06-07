@@ -17,7 +17,7 @@
 								<option disabled value="">Silahkan pilih CU</option>
 								<slot></slot>
 								<option value="semua">Semua CU</option>
-								<option value="0" v-if="isPus"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>Puskopdit</span></option>
+								<option value="0" v-if="isPus"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>PUSKOPCUINA</span></option>
 								<option disabled value="">----------------</option>
 								<option v-for="cu in modelCu" :value="cu.id" v-if="cu">{{cu.name}}</option>
 							</select>

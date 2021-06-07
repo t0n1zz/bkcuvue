@@ -56,7 +56,7 @@
 					</td>
 					<td v-if="!columnData[2].hide && !columnData[2].disable">
 						<check-value :value="props.item.cu.name" :empty="columnData[2].groupNoKey" v-if="props.item.cu"></check-value>
-						<span v-else>Puskopdit BKCU Kalimantan</span>
+						<span v-else>PUSKOPCUINA</span>
 					</td>
 					<td v-if="!columnData[3].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
 					<td v-if="!columnData[4].hide">

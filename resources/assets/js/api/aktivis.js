@@ -40,6 +40,10 @@ export default {
     return axios.get('/api/aktivis/indexAnggotaCu/' + id);
   },
 
+  indexKeterangan: function( id ){
+    return axios.get('/api/aktivis/indexKeterangan/' + id);
+  },
+
   get: function( id ){
     return axios.get('/api/aktivis/get/' + id);
   },
@@ -99,6 +103,10 @@ export default {
   saveAnggotaCu: function ( id, form ){
     return axios.post('/api/aktivis/saveAnggotaCu/' + id, form);
   },
+
+  saveKeterangan: function ( id, form ){
+    return axios.post('/api/aktivis/saveKeterangan/' + id, form);
+  },
   
   edit: function( id ){
     return axios.get('/api/aktivis/edit/' + id);
@@ -134,6 +142,10 @@ export default {
 
   destroyAnggotaCu: function( id ){
     return axios.delete('/api/aktivis/anggotaCu/' + id);
+  },
+
+  destroyKeterangan: function( id ){
+    return axios.delete('/api/aktivis/keterangan/' + id);
   },
 
   count: function(){

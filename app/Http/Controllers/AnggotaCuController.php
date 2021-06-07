@@ -255,6 +255,51 @@ class AnggotaCuController extends Controller{
 			]);
 	}
 
+	public function getCu($cu)
+	{
+		$table_data = AnggotaCu::with('anggota_cu_cu_not_keluar.cu','anggota_produk_cu')->whereHas('anggota_cu_cu_not_keluar', function($query) use ($cu){ 
+				$query->where('anggota_cu_cu.cu_id',$cu)->whereNull('anggota_cu_cu.tanggal_keluar'); 
+		})->where(function($query){
+			$query->where('status_jalinan','!=','MENINGGAL')->orWhere('status_jalinan', NULL);
+		})->get();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function getCuKeluar($cu)
+	{
+		$table_data = AnggotaCu::with('anggota_cu_cu_keluar.cu','anggota_cu_cu_keluar.tp','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_keluar', function($query) use ($cu){ 
+			$query->where('anggota_cu_cu.cu_id',$cu)->whereNotNull('anggota_cu_cu.tanggal_keluar'); 
+		})->where(function($query){
+			$query->where('status_jalinan','!=','MENINGGAL')->orWhere('status_jalinan', NULL);
+		})->get();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function getCuJalinan($cu, $bulan, $tahun)
+	{
+		$dateString = $tahun . '-' . $bulan . '-01';
+		$lastDateOfMonth = date("Y-m-t", strtotime($dateString));
+
+		$table_data = AnggotaCu::with('anggota_cu_cu_not_keluar_single','anggota_produk_cu')->whereHas('anggota_cu_cu_not_keluar_single', function($query) use ($cu, $lastDateOfMonth){ 
+				$query->where('anggota_cu_cu.cu_id',$cu)->where('anggota_cu_cu.tanggal_masuk','<',$lastDateOfMonth)->whereNull('anggota_cu_cu.tanggal_keluar'); 
+		})->where(function($query){
+			$query->where('status_jalinan','!=','MENINGGAL')->orWhere('status_jalinan', NULL);
+		})->select('id','nik','name','tanggal_lahir','kelamin','status','alamat','ahli_waris')->get();
+		
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
 	public function create()
 	{
 		return response()
@@ -502,56 +547,56 @@ class AnggotaCuController extends Controller{
 			]);
 	}
 
-	public function updateKlaim(Request $request, $id)
-	{
-		$kelas = AnggotaCuKlaim::findOrFail($id);
+	// public function updateKlaim(Request $request, $id)
+	// {
+	// 	$kelas = AnggotaCuKlaim::findOrFail($id);
 
-		$kelas->update($request->all());	
+	// 	$kelas->update($request->all());	
 
-		AnggotaCu::flushCache();
+	// 	AnggotaCu::flushCache();
 
-		return response()
-			->json([
-				'saved' => true,
-				'message' => 'Klaim anggota CU berhasil diubah'
-			]);
-	}
+	// 	return response()
+	// 		->json([
+	// 			'saved' => true,
+	// 			'message' => 'Klaim anggota CU berhasil diubah'
+	// 		]);
+	// }
 
-	public function updateKlaimStatus(Request $request, $id)
-	{
-		$kelas = AnggotaCuKlaim::findOrFail($id);
+	// public function updateKlaimStatus(Request $request, $id)
+	// {
+	// 	$kelas = AnggotaCuKlaim::findOrFail($id);
 
-		$kelas->status_klaim = $request->status_klaim;
+	// 	$kelas->status_klaim = $request->status_klaim;
 
-		$anggota_cu_id = $kelas->anggota_cu_id;
-		$tipe = $kelas->tipe;
+	// 	$anggota_cu_id = $kelas->anggota_cu_id;
+	// 	$tipe = $kelas->tipe;
 
-		if($kelas->status_klaim == 1){
-			$message = "Klaim JALINAN dicairkan";
-		}else if($kelas->status_klaim == 2){
-			$message = "Klaim JALINAN ditolak";
-		}else if($kelas->status_klaim == 0){
-			$message = "Klaim pending";
-		}
+	// 	if($kelas->status_klaim == 1){
+	// 		$message = "Klaim JALINAN dicairkan";
+	// 	}else if($kelas->status_klaim == 2){
+	// 		$message = "Klaim JALINAN ditolak";
+	// 	}else if($kelas->status_klaim == 0){
+	// 		$message = "Klaim pending";
+	// 	}
 
-		$kelas->update();
+	// 	$kelas->update();
 
-		$kelas2 = AnggotaCu::findOrFail($anggota_cu_id);
+	// 	$kelas2 = AnggotaCu::findOrFail($anggota_cu_id);
 
-		if($request->status_klaim == 1){
-			$kelas2->status_jalinan = $tipe;
-		}else{
-			$kelas2->status_jalinan = '';
-		}
+	// 	if($request->status_klaim == 1){
+	// 		$kelas2->status_jalinan = $tipe;
+	// 	}else{
+	// 		$kelas2->status_jalinan = '';
+	// 	}
 
-		$kelas2->update();
+	// 	$kelas2->update();
 
-		return response()
-			->json([
-				'saved' => true,
-				'message' => $message
-			]);
-	}
+	// 	return response()
+	// 		->json([
+	// 			'saved' => true,
+	// 			'message' => $message
+	// 		]);
+	// }
 
 	public function updateNik(Request $request, $id)
 	{
@@ -666,6 +711,8 @@ class AnggotaCuController extends Controller{
 	{
 		// if by user bkcu
 		if($request->anggota_cu_cu){
+			$aTmp1 = [];
+			$aTmp2 = [];
 			$cus = $request->anggota_cu_cu;
 			foreach($kelas->anggota_cu_cu as $aV){ $aTmp1[] = $aV['id']; }
 			foreach($request->anggota_cu_cu as $aV){ 

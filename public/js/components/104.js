@@ -1,20 +1,150 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[104],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/jalinanKlaim/index.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/jalinanKlaim/index.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/pageHeader.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/pageHeader.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/pageHeader.vue */ "./resources/assets/js/components/pageHeader.vue");
-/* harmony import */ var _table_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./table.vue */ "./resources/assets/js/views/jalinanKlaim/table.vue");
-/* harmony import */ var _components_message_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/message.vue */ "./resources/assets/js/components/message.vue");
-/* harmony import */ var _components_selectCuTp_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/selectCuTp.vue */ "./resources/assets/js/components/selectCuTp.vue");
-/* harmony import */ var _verifikator_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./verifikator.vue */ "./resources/assets/js/views/jalinanKlaim/verifikator.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    title: {
+      "default": ''
+    },
+    titleIcon: {
+      "default": ''
+    },
+    titleDesc: {
+      "default": ''
+    },
+    level: {
+      "default": 1
+    },
+    level2Title: {
+      "default": ''
+    },
+    level2Route: {
+      "default": ''
+    }
+  },
+  methods: {
+    level2Back: function level2Back() {
+      this.$emit('level2Back');
+    },
+    route1: function route1() {
+      if (this.btn1RouteParams) {
+        this.$router.push({
+          name: this.btn1Route,
+          params: {
+            cu: this.btn1RouteParams
+          }
+        });
+      } else {
+        this.$router.push({
+          name: this.btn1Route
+        });
+      }
+    },
+    route2: function route2() {
+      if (this.btn2RouteParams) {
+        this.$router.push({
+          name: this.btn2Route,
+          params: {
+            cu: this.btn2RouteParams
+          }
+        });
+      } else {
+        this.$router.push({
+          name: this.btn2Route
+        });
+      }
+    },
+    route3: function route3() {
+      if (this.btn3RouteParams) {
+        this.$router.push({
+          name: this.btn3Route,
+          params: {
+            cu: this.btn3RouteParams
+          }
+        });
+      } else {
+        this.$router.push({
+          name: this.btn3Route
+        });
+      }
+    }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+    currentUser: 'currentUser'
+  }))
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sistem/notification.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/sistem/notification.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/pageHeader.vue */ "./resources/assets/js/components/pageHeader.vue");
+/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -158,7 +288,152 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -166,84 +441,252 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    pageHeader: _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    tableData: _table_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    message: _components_message_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    selectCuTp: _components_selectCuTp_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    verifikator: _verifikator_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+    pageHeader: _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    appModal: _components_modal__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
-      title: 'Klaim JALINAN',
-      kelas: 'jalinanKlaim',
-      titleDesc: 'Mengelola klaim JALINAN',
-      titleIcon: 'icon-accessibility2',
-      selectCuPath: 'jalinanKlaimCu',
-      tabName: 'menunggu'
+      title: 'Notifikasi',
+      kelas: 'notification',
+      titleDesc: 'Melihat semua notifikasi',
+      titleIcon: 'icon-bell2',
+      state: '',
+      modalShow: false,
+      modalState: '',
+      modalTitle: '',
+      modalSize: '',
+      modalColor: '',
+      modalButton: '',
+      modalContent: '',
+      tabName: 'semua'
     };
   },
   created: function created() {
-    this.checkUser('index_jalinan_klaim', this.$route.params.cu);
+    this.fetch();
+  },
+  watch: {
+    '$route': function $route(to, from) {
+      // check current page meta
+      this.fetch();
+    },
+    // when updating data
+    markNotifStat: function markNotifStat(value) {
+      this.modalState = value;
+      this.modalButton = 'Ok';
 
-    if (this.currentUser.id_cu == 0) {
-      this.changeTab('menunggu');
-    } else {
-      this.changeTab('verifikasi');
+      if (value === "success") {
+        this.modalTitle = "Notifikasi berhasil ditandai";
+        this.modalContent = '';
+        this.fetch();
+      }
     }
   },
   methods: {
-    checkUser: function checkUser(permission, id_cu) {
-      if (this.currentUser) {
-        if (!this.currentUser.can || !this.currentUser.can[permission]) {
-          this.$router.push('/notFound');
-        }
-
-        if (!id_cu || this.currentUser.id_cu) {
-          if (this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu) {
-            this.$router.push('/notFound');
+    fetch: function fetch() {
+      this.$store.dispatch(this.kelas + '/getAll');
+    },
+    goToPage: function goToPage(notif) {
+      if (notif.data.tipe == 'laporanCu') {
+        this.$router.push({
+          name: 'laporanCuDetail',
+          params: {
+            id: notif.data.url
           }
-        }
+        });
+      } else if (notif.data.tipe == 'laporanTp') {
+        this.$router.push({
+          name: 'laporanTpDetail',
+          params: {
+            id: notif.data.url
+          }
+        });
+      } else if (notif.data.tipe == 'diklatBKCU') {
+        this.$router.push({
+          name: 'diklatBKCUDetail',
+          params: {
+            id: notif.data.url
+          }
+        });
+      } else if (notif.data.tipe == 'pertemuanBKCU') {
+        this.$router.push({
+          name: 'pertemuanBKCUDetail',
+          params: {
+            id: notif.data.url
+          }
+        });
       }
+
+      this.$store.dispatch('notification/markRead', notif.id);
     },
     changeTab: function changeTab(value) {
       this.tabName = value;
+    },
+    modalConfirmOpen: function modalConfirmOpen(state, isMobile, itemMobile) {
+      this.modalShow = true;
+      this.modalState = 'confirm-tutup';
+      this.state = state;
+
+      if (isMobile) {
+        this.selectedItem = itemMobile;
+      }
+
+      if (state == 'tandai') {
+        this.modalTitle = 'Tandai semua ' + this.title + ' sudah dibaca?';
+        this.modalButton = 'Iya, Tandai semua';
+      }
+    },
+    modalConfirmOk: function modalConfirmOk() {
+      // execute destroy
+      if (this.state == 'tandai') {
+        this.$store.dispatch(this.kelas + '/markAllRead');
+      }
+    },
+    modalTutup: function modalTutup() {
+      this.modalShow = false;
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('auth', {
     currentUser: 'currentUser'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('user', {
-    modelPengurus: "dataS1",
-    modelPengawas: "dataS2",
-    modelManajemen: "dataS3",
-    modelPengurusStat: "dataStatS1",
-    modelPengawasStat: "dataStatS2",
-    modelManajemenStat: "dataStatS3"
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('jalinanKlaim', {
-    itemData: 'dataS',
-    itemData1: 'dataS1',
-    itemData2: 'dataS2',
-    itemData3: 'dataS3',
-    itemData4: 'dataS4',
-    itemData5: 'dataS5',
-    itemData6: 'dataS6',
-    itemData7: 'dataS7',
-    itemDataStat: 'dataStatS',
-    itemDataStat1: 'dataStatS1',
-    itemDataStat2: 'dataStatS2',
-    itemDataStat3: 'dataStatS3',
-    itemDataStat4: 'dataStatS4',
-    itemDataStat5: 'dataStatS5',
-    itemDataStat6: 'dataStatS6',
-    itemDataStat7: 'dataStatS7'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('notification', {
+    notification: 'dataS',
+    notifStat: 'dataStatS',
+    unreadNotification: 'unreadNotification',
+    markNotifStat: 'markNotifStat'
   }))
 });
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/jalinanKlaim/index.vue?vue&type=template&id=5ab1b413&":
-/*!***********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/jalinanKlaim/index.vue?vue&type=template&id=5ab1b413& ***!
-  \***********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/pageHeader.vue?vue&type=template&id=0af8ed53&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/pageHeader.vue?vue&type=template&id=0af8ed53& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "page-header" }, [
+      _c(
+        "div",
+        { staticClass: "page-header-content header-elements-md-inline" },
+        [
+          _c("div", { staticClass: "page-title d-flex" }, [
+            _c("h4", [
+              _c("i", { staticClass: "mr-2", class: _vm.titleIcon }),
+              _vm._v(" "),
+              _c("span", { staticClass: "font-weight-semibold" }, [
+                _vm._v(_vm._s(_vm.title))
+              ]),
+              _vm._v(" "),
+              _c("small", { staticClass: "d-block text-muted" }, [
+                _vm._v(_vm._s(_vm.titleDesc))
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "header-elements d-none py-0 mb-3 mb-md-0" },
+            [
+              _vm.level === 1
+                ? _c(
+                    "div",
+                    { staticClass: "breadcrumb" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "breadcrumb-item",
+                          attrs: { to: { name: "dashboard" } }
+                        },
+                        [
+                          _c("i", { staticClass: "icon-home4" }),
+                          _vm._v("  Dashboard ")
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "breadcrumb-item active" }, [
+                        _vm._v(_vm._s(_vm.title))
+                      ])
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.level === 2
+                ? _c(
+                    "div",
+                    { staticClass: "breadcrumb" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "breadcrumb-item",
+                          attrs: { to: { name: "dashboard" } }
+                        },
+                        [
+                          _c("i", { staticClass: "icon-home4" }),
+                          _vm._v(" Dashboard ")
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "breadcrumb-item",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.level2Back()
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(_vm.level2Title))]
+                      ),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "breadcrumb-item active" }, [
+                        _vm._v(_vm._s(_vm.title))
+                      ])
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.level === 3
+                ? _c(
+                    "div",
+                    { staticClass: "breadcrumb" },
+                    [_vm._t("breadcrumb")],
+                    2
+                  )
+                : _vm._e()
+            ]
+          )
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sistem/notification.vue?vue&type=template&id=6c10fef8&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/sistem/notification.vue?vue&type=template&id=6c10fef8& ***!
+  \************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -269,523 +712,1234 @@ var render = function() {
       _c("div", { staticClass: "page-container" }, [
         _c("div", { staticClass: "page-content" }, [
           _c("div", { staticClass: "content-wrapper" }, [
-            _c(
-              "div",
-              { staticClass: "content" },
-              [
-                _vm.itemDataStat === "fail"
-                  ? _c("message", {
-                      attrs: {
-                        title: "Oops terjadi kesalahan:",
-                        errorData: _vm.itemData
-                      }
-                    })
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("select-cu-tp", {
-                  attrs: {
-                    kelas: _vm.kelas,
-                    path: _vm.selectCuPath,
-                    isPus: false
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "nav-tabs-responsive mb-3" }, [
+            _c("div", { staticClass: "card card-body d-print-none" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-sm-10 d-none d-sm-block" }, [
                   _c(
-                    "ul",
-                    { staticClass: "nav nav-tabs nav-tabs-solid  bg-light" },
+                    "button",
+                    {
+                      staticClass: "btn btn-light btn-icon",
+                      attrs: {
+                        type: "button",
+                        disabled:
+                          _vm.markNotifStat === "loading" ||
+                          _vm.unreadNotification == 0
+                      },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.modalConfirmOpen("tandai")
+                        }
+                      }
+                    },
                     [
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            class: { active: _vm.tabName == "verifikasi" },
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.changeTab("verifikasi")
-                              }
-                            }
-                          },
-                          [
-                            _c("i", { staticClass: "icon-file-eye mr-2" }),
-                            _vm._v(" Verifikasi CU")
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            class: { active: _vm.tabName == "menunggu" },
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.changeTab("menunggu")
-                              }
-                            }
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "icon-checkbox-unchecked mr-2"
-                            }),
-                            _vm._v(" Menunggu")
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            class: { active: _vm.tabName == "tidakLengkap" },
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.changeTab("tidakLengkap")
-                              }
-                            }
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "icon-checkbox-partial mr-2"
-                            }),
-                            _vm._v(" Dokumen Tidak Lengkap")
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            class: { active: _vm.tabName == "ditolak" },
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.changeTab("ditolak")
-                              }
-                            }
-                          },
-                          [
-                            _c("i", { staticClass: "icon-cancel-square mr-2" }),
-                            _vm._v(" Ditolak")
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            class: { active: _vm.tabName == "disetujui" },
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.changeTab("disetujui")
-                              }
-                            }
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "icon-checkbox-checked mr-2"
-                            }),
-                            _vm._v(" Disetujui")
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            class: { active: _vm.tabName == "dicairkan" },
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.changeTab("dicairkan")
-                              }
-                            }
-                          },
-                          [
-                            _c("i", { staticClass: "icon-square-down mr-2" }),
-                            _vm._v(" Dicairkan")
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            class: { active: _vm.tabName == "selesai" },
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.changeTab("selesai")
-                              }
-                            }
-                          },
-                          [
-                            _c("i", { staticClass: "icon-square mr-2" }),
-                            _vm._v(" Selesai")
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            class: { active: _vm.tabName == "koreksi" },
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.changeTab("koreksi")
-                              }
-                            }
-                          },
-                          [
-                            _c("i", { staticClass: "icon-paint-format mr-2" }),
-                            _vm._v(" Koreksi")
-                          ]
-                        )
-                      ])
+                      _c("i", { staticClass: "icon-checkbox-checked" }),
+                      _vm._v(" Tandai sudah baca semua\n\t\t\t\t\t\t\t\t")
                     ]
                   )
                 ]),
                 _vm._v(" "),
                 _c(
-                  "transition",
-                  {
-                    attrs: {
-                      "enter-active-class": "animated fadeIn",
-                      mode: "out-in"
-                    }
-                  },
+                  "div",
+                  { staticClass: "col-sm-2 text-right d-none d-sm-block" },
                   [
-                    _vm.tabName == "verifikasi"
-                      ? _c(
-                          "div",
-                          [
-                            _vm.$route.params.cu != "semua"
-                              ? _c("div", { staticClass: "row" }, [
-                                  _c(
-                                    "div",
-                                    { staticClass: "col-md-4" },
-                                    [
-                                      _c("verifikator", {
-                                        attrs: {
-                                          isSingle: false,
-                                          title: "Verifikator Pengurus",
-                                          itemData: _vm.modelPengurus,
-                                          itemDataStat: _vm.modelPengurusStat
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-light btn-icon",
+                        attrs: {
+                          type: "button",
+                          disabled: _vm.notifStat == "loading"
+                        },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.fetch()
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "icon-sync",
+                          class: { spinner: _vm.notifStat === "loading" }
+                        })
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-12 d-block d-sm-none" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-light btn-icon btn-block mb-1",
+                      attrs: {
+                        type: "button",
+                        disabled:
+                          _vm.markNotifStat === "loading" ||
+                          _vm.unreadNotification == 0
+                      },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.modalConfirmOpen("tandai")
+                        }
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "icon-checkbox-checked" }),
+                      _vm._v(" Tandai sudah baca semua\n\t\t\t\t\t\t\t\t")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-light btn-icon btn-block mb-1",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.fetch()
+                        }
+                      }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "icon-sync",
+                        class: { spinner: _vm.notifStat === "loading" }
+                      }),
+                      _vm._v(" Reload\n\t\t\t\t\t\t\t\t")
+                    ]
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _vm.notifStat == "loading"
+              ? _c("div", [_vm._m(1)])
+              : _c("div", [
+                  _vm.notification && _vm.notification.length > 0
+                    ? _c(
+                        "div",
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "nav-tabs-responsive mb-3" },
+                            [
+                              _c(
+                                "ul",
+                                {
+                                  staticClass:
+                                    "nav nav-tabs nav-tabs-solid bg-light"
+                                },
+                                [
+                                  _c("li", { staticClass: "nav-item" }, [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "nav-link",
+                                        class: {
+                                          active: _vm.tabName == "semua"
+                                        },
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            return _vm.changeTab("semua")
+                                          }
                                         }
-                                      })
-                                    ],
-                                    1
-                                  ),
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "icon-table2 mr-2"
+                                        }),
+                                        _vm._v(" Semua")
+                                      ]
+                                    )
+                                  ]),
                                   _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "col-md-4" },
-                                    [
-                                      _c("verifikator", {
-                                        attrs: {
-                                          isSingle: false,
-                                          title: "Verifikator Pengawas",
-                                          itemData: _vm.modelPengawas,
-                                          itemDataStat: _vm.modelPengawasStat
+                                  _c("li", { staticClass: "nav-item" }, [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "nav-link",
+                                        class: {
+                                          active: _vm.tabName == "laporanCu"
+                                        },
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            return _vm.changeTab("laporanCu")
+                                          }
                                         }
-                                      })
-                                    ],
-                                    1
-                                  ),
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "icon-stats-bars2 mr-2"
+                                        }),
+                                        _vm._v(" Laporan CU")
+                                      ]
+                                    )
+                                  ]),
                                   _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "col-md-4" },
-                                    [
-                                      _c("verifikator", {
-                                        attrs: {
-                                          isSingle: false,
-                                          title: "Verifikator Manajemen",
-                                          itemData: _vm.modelManajemen,
-                                          itemDataStat: _vm.modelManajemenStat
+                                  _c("li", { staticClass: "nav-item" }, [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "nav-link",
+                                        class: {
+                                          active: _vm.tabName == "diklatBKCU"
+                                        },
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            return _vm.changeTab("diklatBKCU")
+                                          }
                                         }
-                                      })
-                                    ],
-                                    1
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "icon-graduation2 mr-2"
+                                        }),
+                                        _vm._v(" Diklat BKCU")
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("li", { staticClass: "nav-item" }, [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "nav-link",
+                                        class: {
+                                          active: _vm.tabName == "pertemuanBKCU"
+                                        },
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            return _vm.changeTab(
+                                              "pertemuanBKCU"
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "icon-ungroup mr-2"
+                                        }),
+                                        _vm._v(" Pertemuan BKCU")
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("li", { staticClass: "nav-item" }, [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "nav-link",
+                                        class: {
+                                          active: _vm.tabName == "selfAssesment"
+                                        },
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            return _vm.changeTab(
+                                              "selfAssesment"
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "icon-reading mr-2"
+                                        }),
+                                        _vm._v(" Self Assesment ACCESS")
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("li", { staticClass: "nav-item" }, [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "nav-link",
+                                        class: {
+                                          active: _vm.tabName == "monitoring"
+                                        },
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            return _vm.changeTab("monitoring")
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "icon-collaboration mr-2"
+                                        }),
+                                        _vm._v(" Monitoring")
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("li", { staticClass: "nav-item" }, [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "nav-link",
+                                        class: {
+                                          active: _vm.tabName == "klaimJALINAN"
+                                        },
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            return _vm.changeTab("klaimJALINAN")
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass:
+                                            "icon-accessibility2 mr-2"
+                                        }),
+                                        _vm._v(" Klaim JALINAN")
+                                      ]
+                                    )
+                                  ])
+                                ]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "transition",
+                            {
+                              attrs: {
+                                "enter-active-class": "animated fadeIn",
+                                mode: "out-in"
+                              }
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.tabName == "semua",
+                                      expression: "tabName == 'semua'"
+                                    }
+                                  ],
+                                  staticClass: "row"
+                                },
+                                _vm._l(_vm.notification, function(
+                                  notif,
+                                  index
+                                ) {
+                                  return _c(
+                                    "div",
+                                    { key: index, staticClass: "col-md-6" },
+                                    [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "card",
+                                          class: {
+                                            "text-muted": notif.read_at != null
+                                          },
+                                          staticStyle: { cursor: "pointer" },
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              return _vm.goToPage(notif)
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "card-header bg-white header-elements-inline"
+                                            },
+                                            [
+                                              _c(
+                                                "span",
+                                                { staticClass: "card-title" },
+                                                [
+                                                  notif.data.tipe ==
+                                                    "laporanCu" ||
+                                                  notif.data.tipe == "laporanTp"
+                                                    ? _c("span", [
+                                                        _c("i", {
+                                                          staticClass:
+                                                            "icon-stats-bars2"
+                                                        }),
+                                                        _vm._v(
+                                                          " Laporan Statistik CU"
+                                                        )
+                                                      ])
+                                                    : notif.data.tipe ==
+                                                      "diklatBKCU"
+                                                    ? _c("span", [
+                                                        _c("i", {
+                                                          staticClass:
+                                                            "icon-graduation2"
+                                                        }),
+                                                        _vm._v(" Diklat BKCU")
+                                                      ])
+                                                    : notif.data.tipe ==
+                                                      "pertemuanBKCU"
+                                                    ? _c("span", [
+                                                        _c("i", {
+                                                          staticClass:
+                                                            "icon-ungroup"
+                                                        }),
+                                                        _vm._v(
+                                                          " Pertemuan BKCU"
+                                                        )
+                                                      ])
+                                                    : notif.data.tipe ==
+                                                      "selfAssesment"
+                                                    ? _c("span", [
+                                                        _c("i", {
+                                                          staticClass:
+                                                            "icon-reading"
+                                                        }),
+                                                        _vm._v(
+                                                          " Self Assesment ACCESS"
+                                                        )
+                                                      ])
+                                                    : notif.data.tipe ==
+                                                      "monitoring"
+                                                    ? _c("span", [
+                                                        _c("i", {
+                                                          staticClass:
+                                                            "icon-collaboration"
+                                                        }),
+                                                        _vm._v(" Monitoring")
+                                                      ])
+                                                    : notif.data.tipe ==
+                                                      "klaimJALINAN"
+                                                    ? _c("span", [
+                                                        _c("i", {
+                                                          staticClass:
+                                                            "icon-accessibility2"
+                                                        }),
+                                                        _vm._v(" Klaim JALINAN")
+                                                      ])
+                                                    : _c("span", [
+                                                        _c("i", {
+                                                          staticClass:
+                                                            "icon-bubble-notification"
+                                                        }),
+                                                        _vm._v(" Notifikasi")
+                                                      ])
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "header-elements"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                      _vm._s(
+                                                        _vm._f("relativeHour")(
+                                                          notif.created_at
+                                                        )
+                                                      ) +
+                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "card-body" },
+                                            [
+                                              _vm._v(
+                                                "\n\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                  _vm._s(notif.data.message) +
+                                                  "\n\t\t\t\t\t\t\t\t\t\t\t"
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
                                   )
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _c("table-data", {
+                                }),
+                                0
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "transition",
+                            {
                               attrs: {
-                                title: _vm.title,
-                                kelas: _vm.kelas,
-                                itemData: _vm.itemData,
-                                itemDataStat: _vm.itemDataStat,
-                                status: "",
-                                isSimple: false
+                                "enter-active-class": "animated fadeIn",
+                                mode: "out-in"
                               }
-                            })
-                          ],
-                          1
-                        )
-                      : _vm._e()
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "transition",
-                  {
-                    attrs: {
-                      "enter-active-class": "animated fadeIn",
-                      mode: "out-in"
-                    }
-                  },
-                  [
-                    _vm.tabName == "menunggu"
-                      ? _c(
-                          "div",
-                          [
-                            _c("table-data", {
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.tabName == "laporanCu",
+                                      expression: "tabName == 'laporanCu'"
+                                    }
+                                  ]
+                                },
+                                _vm._l(_vm.notification, function(
+                                  notif,
+                                  index
+                                ) {
+                                  return _c("div", { key: index }, [
+                                    notif.data.tipe == "laporanCu"
+                                      ? _c(
+                                          "div",
+                                          {
+                                            staticClass: "card",
+                                            class: {
+                                              "text-muted":
+                                                notif.read_at != null
+                                            },
+                                            staticStyle: { cursor: "pointer" },
+                                            on: {
+                                              click: function($event) {
+                                                $event.preventDefault()
+                                                return _vm.goToPage(notif)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "card-header bg-white header-elements-inline"
+                                              },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  { staticClass: "card-title" },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass:
+                                                        "icon-stats-bars2"
+                                                    }),
+                                                    _vm._v(
+                                                      " Laporan Statistik CU\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "header-elements"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                        _vm._s(
+                                                          _vm._f(
+                                                            "relativeHour"
+                                                          )(notif.created_at)
+                                                        ) +
+                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "card-body" },
+                                              [
+                                                _vm._v(
+                                                  "\n\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                    _vm._s(notif.data.message) +
+                                                    "\n\t\t\t\t\t\t\t\t\t\t\t"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ])
+                                }),
+                                0
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "transition",
+                            {
                               attrs: {
-                                title: _vm.title,
-                                kelas: _vm.kelas,
-                                itemData: _vm.itemData1,
-                                itemDataStat: _vm.itemDataStat1,
-                                status: "1",
-                                isSimple: false
+                                "enter-active-class": "animated fadeIn",
+                                mode: "out-in"
                               }
-                            })
-                          ],
-                          1
-                        )
-                      : _vm._e()
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "transition",
-                  {
-                    attrs: {
-                      "enter-active-class": "animated fadeIn",
-                      mode: "out-in"
-                    }
-                  },
-                  [
-                    _vm.tabName == "tidakLengkap"
-                      ? _c(
-                          "div",
-                          [
-                            _c("table-data", {
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.tabName == "diklatBKCU",
+                                      expression: "tabName == 'diklatBKCU'"
+                                    }
+                                  ]
+                                },
+                                _vm._l(_vm.notification, function(
+                                  notif,
+                                  index
+                                ) {
+                                  return _c("div", { key: index }, [
+                                    notif.data.tipe == "diklatBKCU"
+                                      ? _c(
+                                          "div",
+                                          {
+                                            staticClass: "card",
+                                            class: {
+                                              "text-muted":
+                                                notif.read_at != null
+                                            },
+                                            staticStyle: { cursor: "pointer" },
+                                            on: {
+                                              click: function($event) {
+                                                $event.preventDefault()
+                                                return _vm.goToPage(notif)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "card-header bg-white header-elements-inline"
+                                              },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  { staticClass: "card-title" },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass:
+                                                        "icon-graduation2"
+                                                    }),
+                                                    _vm._v(
+                                                      " Diklat BKCU\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "header-elements"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                        _vm._s(
+                                                          _vm._f(
+                                                            "relativeHour"
+                                                          )(notif.created_at)
+                                                        ) +
+                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "card-body" },
+                                              [
+                                                _vm._v(
+                                                  "\n\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                    _vm._s(notif.data.message) +
+                                                    "\n\t\t\t\t\t\t\t\t\t\t\t"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ])
+                                }),
+                                0
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "transition",
+                            {
                               attrs: {
-                                title: _vm.title,
-                                kelas: _vm.kelas,
-                                itemData: _vm.itemData2,
-                                itemDataStat: _vm.itemDataStat2,
-                                status: "2"
+                                "enter-active-class": "animated fadeIn",
+                                mode: "out-in"
                               }
-                            })
-                          ],
-                          1
-                        )
-                      : _vm._e()
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "transition",
-                  {
-                    attrs: {
-                      "enter-active-class": "animated fadeIn",
-                      mode: "out-in"
-                    }
-                  },
-                  [
-                    _vm.tabName == "ditolak"
-                      ? _c(
-                          "div",
-                          [
-                            _c("table-data", {
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.tabName == "pertemuanBKCU",
+                                      expression: "tabName == 'pertemuanBKCU'"
+                                    }
+                                  ]
+                                },
+                                _vm._l(_vm.notification, function(
+                                  notif,
+                                  index
+                                ) {
+                                  return _c("div", { key: index }, [
+                                    notif.data.tipe == "pertemuanBKCU"
+                                      ? _c(
+                                          "div",
+                                          {
+                                            staticClass: "card",
+                                            class: {
+                                              "text-muted":
+                                                notif.read_at != null
+                                            },
+                                            staticStyle: { cursor: "pointer" },
+                                            on: {
+                                              click: function($event) {
+                                                $event.preventDefault()
+                                                return _vm.goToPage(notif)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "card-header bg-white header-elements-inline"
+                                              },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  { staticClass: "card-title" },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass:
+                                                        "icon-ungroup2"
+                                                    }),
+                                                    _vm._v(
+                                                      " Pertemuan BKCU\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "header-elements"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                        _vm._s(
+                                                          _vm._f(
+                                                            "relativeHour"
+                                                          )(notif.created_at)
+                                                        ) +
+                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "card-body" },
+                                              [
+                                                _vm._v(
+                                                  "\n\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                    _vm._s(notif.data.message) +
+                                                    "\n\t\t\t\t\t\t\t\t\t\t\t"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ])
+                                }),
+                                0
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "transition",
+                            {
                               attrs: {
-                                title: _vm.title,
-                                kelas: _vm.kelas,
-                                itemData: _vm.itemData3,
-                                itemDataStat: _vm.itemDataStat3,
-                                status: "3"
+                                "enter-active-class": "animated fadeIn",
+                                mode: "out-in"
                               }
-                            })
-                          ],
-                          1
-                        )
-                      : _vm._e()
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "transition",
-                  {
-                    attrs: {
-                      "enter-active-class": "animated fadeIn",
-                      mode: "out-in"
-                    }
-                  },
-                  [
-                    _vm.tabName == "disetujui"
-                      ? _c(
-                          "div",
-                          [
-                            _c("table-data", {
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.tabName == "selfAssesment",
+                                      expression: "tabName == 'selfAssesment'"
+                                    }
+                                  ]
+                                },
+                                _vm._l(_vm.notification, function(
+                                  notif,
+                                  index
+                                ) {
+                                  return _c("div", { key: index }, [
+                                    notif.data.tipe == "selfAssesment"
+                                      ? _c(
+                                          "div",
+                                          {
+                                            staticClass: "card",
+                                            class: {
+                                              "text-muted":
+                                                notif.read_at != null
+                                            },
+                                            staticStyle: { cursor: "pointer" },
+                                            on: {
+                                              click: function($event) {
+                                                $event.preventDefault()
+                                                return _vm.goToPage(notif)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "card-header bg-white header-elements-inline"
+                                              },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  { staticClass: "card-title" },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass:
+                                                        "icon-reading"
+                                                    }),
+                                                    _vm._v(
+                                                      " Self Assesment ACCESS\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "header-elements"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                        _vm._s(
+                                                          _vm._f(
+                                                            "relativeHour"
+                                                          )(notif.created_at)
+                                                        ) +
+                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "card-body" },
+                                              [
+                                                _vm._v(
+                                                  "\n\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                    _vm._s(notif.data.message) +
+                                                    "\n\t\t\t\t\t\t\t\t\t\t\t"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ])
+                                }),
+                                0
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "transition",
+                            {
                               attrs: {
-                                title: _vm.title,
-                                kelas: _vm.kelas,
-                                itemData: _vm.itemData4,
-                                itemDataStat: _vm.itemDataStat4,
-                                status: "4"
+                                "enter-active-class": "animated fadeIn",
+                                mode: "out-in"
                               }
-                            })
-                          ],
-                          1
-                        )
-                      : _vm._e()
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "transition",
-                  {
-                    attrs: {
-                      "enter-active-class": "animated fadeIn",
-                      mode: "out-in"
-                    }
-                  },
-                  [
-                    _vm.tabName == "dicairkan"
-                      ? _c(
-                          "div",
-                          [
-                            _c("table-data", {
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.tabName == "monitoring",
+                                      expression: "tabName == 'monitoring'"
+                                    }
+                                  ]
+                                },
+                                _vm._l(_vm.notification, function(
+                                  notif,
+                                  index
+                                ) {
+                                  return _c("div", { key: index }, [
+                                    notif.data.tipe == "monitoring"
+                                      ? _c(
+                                          "div",
+                                          {
+                                            staticClass: "card",
+                                            class: {
+                                              "text-muted":
+                                                notif.read_at != null
+                                            },
+                                            staticStyle: { cursor: "pointer" },
+                                            on: {
+                                              click: function($event) {
+                                                $event.preventDefault()
+                                                return _vm.goToPage(notif)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "card-header bg-white header-elements-inline"
+                                              },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  { staticClass: "card-title" },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass:
+                                                        "icon-collaboration"
+                                                    }),
+                                                    _vm._v(
+                                                      " Monitoring\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "header-elements"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                        _vm._s(
+                                                          _vm._f(
+                                                            "relativeHour"
+                                                          )(notif.created_at)
+                                                        ) +
+                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "card-body" },
+                                              [
+                                                _vm._v(
+                                                  "\n\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                    _vm._s(notif.data.message) +
+                                                    "\n\t\t\t\t\t\t\t\t\t\t\t"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ])
+                                }),
+                                0
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "transition",
+                            {
                               attrs: {
-                                title: _vm.title,
-                                kelas: _vm.kelas,
-                                itemData: _vm.itemData5,
-                                itemDataStat: _vm.itemDataStat5,
-                                status: "5"
+                                "enter-active-class": "animated fadeIn",
+                                mode: "out-in"
                               }
-                            })
-                          ],
-                          1
-                        )
-                      : _vm._e()
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "transition",
-                  {
-                    attrs: {
-                      "enter-active-class": "animated fadeIn",
-                      mode: "out-in"
-                    }
-                  },
-                  [
-                    _vm.tabName == "selesai"
-                      ? _c(
-                          "div",
-                          [
-                            _c("table-data", {
-                              attrs: {
-                                title: _vm.title,
-                                kelas: _vm.kelas,
-                                itemData: _vm.itemData6,
-                                itemDataStat: _vm.itemDataStat6,
-                                status: "6"
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      : _vm._e()
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "transition",
-                  {
-                    attrs: {
-                      "enter-active-class": "animated fadeIn",
-                      mode: "out-in"
-                    }
-                  },
-                  [
-                    _vm.tabName == "koreksi"
-                      ? _c(
-                          "div",
-                          [
-                            _c("table-data", {
-                              attrs: {
-                                title: _vm.title,
-                                kelas: _vm.kelas,
-                                itemData: _vm.itemData7,
-                                itemDataStat: _vm.itemDataStat7,
-                                status: "7"
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      : _vm._e()
-                  ]
-                )
-              ],
-              1
-            )
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.tabName == "klaimJALINAN",
+                                      expression: "tabName == 'klaimJALINAN'"
+                                    }
+                                  ]
+                                },
+                                _vm._l(_vm.notification, function(
+                                  notif,
+                                  index
+                                ) {
+                                  return _c("div", { key: index }, [
+                                    notif.data.tipe == "klaimJALINAN"
+                                      ? _c(
+                                          "div",
+                                          {
+                                            staticClass: "card",
+                                            class: {
+                                              "text-muted":
+                                                notif.read_at != null
+                                            },
+                                            staticStyle: { cursor: "pointer" },
+                                            on: {
+                                              click: function($event) {
+                                                $event.preventDefault()
+                                                return _vm.goToPage(notif)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "card-header bg-white header-elements-inline"
+                                              },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  { staticClass: "card-title" },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass:
+                                                        "icon-accessibility2"
+                                                    }),
+                                                    _vm._v(
+                                                      " Klaim JALINAN\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "header-elements"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                        _vm._s(
+                                                          _vm._f(
+                                                            "relativeHour"
+                                                          )(notif.created_at)
+                                                        ) +
+                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              { staticClass: "card-body" },
+                                              [
+                                                _vm._v(
+                                                  "\n\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                    _vm._s(notif.data.message) +
+                                                    "\n\t\t\t\t\t\t\t\t\t\t\t"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ])
+                                }),
+                                0
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    : _c("div", [_vm._m(2)])
+                ])
           ])
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "app-modal",
+        {
+          attrs: {
+            show: _vm.modalShow,
+            state: _vm.modalState,
+            title: _vm.modalTitle,
+            size: _vm.modalSize,
+            color: _vm.modalColor,
+            button: _vm.modalButton,
+            content: _vm.modalContent
+          },
+          on: {
+            confirmOk: _vm.modalConfirmOk,
+            tutup: _vm.modalTutup,
+            successOk: _vm.modalTutup,
+            failOk: _vm.modalTutup,
+            backgroundClick: _vm.modalTutup
+          }
+        },
+        [
+          _c("template", { slot: "modal-title" }, [
+            _vm._v(_vm._s(_vm.modalTitle))
+          ]),
+          _vm._v(" "),
+          _c("template", { slot: "modal-body1" })
+        ],
+        2
+      )
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "alert bg-info text-white alert-styled-left " },
+      [
+        _c("span", { staticClass: "font-weight-semibold" }, [
+          _vm._v(
+            "Notifikasi yang ditampilkan adalah notifikasi selama 3 bulan terakhir.\n\t\t\t\t\t\t"
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-body" }, [
+        _c("h4", [_vm._v("Mohon tunggu...")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "progress" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+              staticStyle: { width: "100%" }
+            },
+            [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-body" }, [
+        _c("h3", [_vm._v("Belum terdapat notifikasi apapun...")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/jalinanKlaim/index.vue":
-/*!**********************************************************!*\
-  !*** ./resources/assets/js/views/jalinanKlaim/index.vue ***!
-  \**********************************************************/
+/***/ "./resources/assets/js/components/pageHeader.vue":
+/*!*******************************************************!*\
+  !*** ./resources/assets/js/components/pageHeader.vue ***!
+  \*******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _index_vue_vue_type_template_id_5ab1b413___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=5ab1b413& */ "./resources/assets/js/views/jalinanKlaim/index.vue?vue&type=template&id=5ab1b413&");
-/* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/jalinanKlaim/index.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _pageHeader_vue_vue_type_template_id_0af8ed53___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pageHeader.vue?vue&type=template&id=0af8ed53& */ "./resources/assets/js/components/pageHeader.vue?vue&type=template&id=0af8ed53&");
+/* harmony import */ var _pageHeader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pageHeader.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/pageHeader.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -794,9 +1948,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _index_vue_vue_type_template_id_5ab1b413___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _index_vue_vue_type_template_id_5ab1b413___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _pageHeader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _pageHeader_vue_vue_type_template_id_0af8ed53___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _pageHeader_vue_vue_type_template_id_0af8ed53___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -806,38 +1960,107 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/views/jalinanKlaim/index.vue"
+component.options.__file = "resources/assets/js/components/pageHeader.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/jalinanKlaim/index.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************!*\
-  !*** ./resources/assets/js/views/jalinanKlaim/index.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************/
+/***/ "./resources/assets/js/components/pageHeader.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/assets/js/components/pageHeader.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/jalinanKlaim/index.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_pageHeader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./pageHeader.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/pageHeader.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_pageHeader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/jalinanKlaim/index.vue?vue&type=template&id=5ab1b413&":
-/*!*****************************************************************************************!*\
-  !*** ./resources/assets/js/views/jalinanKlaim/index.vue?vue&type=template&id=5ab1b413& ***!
-  \*****************************************************************************************/
+/***/ "./resources/assets/js/components/pageHeader.vue?vue&type=template&id=0af8ed53&":
+/*!**************************************************************************************!*\
+  !*** ./resources/assets/js/components/pageHeader.vue?vue&type=template&id=0af8ed53& ***!
+  \**************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_5ab1b413___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=5ab1b413& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/jalinanKlaim/index.vue?vue&type=template&id=5ab1b413&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_5ab1b413___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_pageHeader_vue_vue_type_template_id_0af8ed53___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./pageHeader.vue?vue&type=template&id=0af8ed53& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/pageHeader.vue?vue&type=template&id=0af8ed53&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_pageHeader_vue_vue_type_template_id_0af8ed53___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_5ab1b413___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_pageHeader_vue_vue_type_template_id_0af8ed53___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/sistem/notification.vue":
+/*!***********************************************************!*\
+  !*** ./resources/assets/js/views/sistem/notification.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _notification_vue_vue_type_template_id_6c10fef8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./notification.vue?vue&type=template&id=6c10fef8& */ "./resources/assets/js/views/sistem/notification.vue?vue&type=template&id=6c10fef8&");
+/* harmony import */ var _notification_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./notification.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/sistem/notification.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _notification_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _notification_vue_vue_type_template_id_6c10fef8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _notification_vue_vue_type_template_id_6c10fef8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/views/sistem/notification.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/sistem/notification.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/assets/js/views/sistem/notification.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_notification_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./notification.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sistem/notification.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_notification_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/sistem/notification.vue?vue&type=template&id=6c10fef8&":
+/*!******************************************************************************************!*\
+  !*** ./resources/assets/js/views/sistem/notification.vue?vue&type=template&id=6c10fef8& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_notification_vue_vue_type_template_id_6c10fef8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./notification.vue?vue&type=template&id=6c10fef8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sistem/notification.vue?vue&type=template&id=6c10fef8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_notification_vue_vue_type_template_id_6c10fef8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_notification_vue_vue_type_template_id_6c10fef8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

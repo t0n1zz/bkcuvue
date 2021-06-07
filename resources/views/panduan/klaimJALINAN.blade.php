@@ -26,7 +26,7 @@
         dan apabila sudah dicairkan maka akan pindah ke bagian Dicairkan dan kemudian apabila dari CU sudah menyerahkan hasil pencairan klaim beserta semua dokumen pendukung kepada ahli waris anggota atau yang bersangkutan maka bisa menekan tombol selesai pada klaim tersebut <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">7</span> dan otomatis pengajuan yang sudah selesai akan pindah ke bagian selesai <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">8</span>
 
         <br/> <br/>
-        Terakhir terdapat juga bagian koreksi <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">9</span> yang bertugas menampung hasil koreksi/perbaikan dalam penginputan klaim JALINAN yang kemudian akan diperiksa oleh bagian JALINAN Puskopdit BKCU Kalimantan terkait pengajuan koreksi terhadap klaim.
+        Terakhir terdapat juga bagian koreksi <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">9</span> yang bertugas menampung hasil koreksi/perbaikan dalam penginputan klaim JALINAN yang kemudian akan diperiksa oleh bagian JALINAN PUSKOPCUINA terkait pengajuan koreksi terhadap klaim.
 
         <br/> <br/>
         Kemudian pada ada halaman ini pengguna dapat menambah klaim JALINAN <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">11</span>,
@@ -115,7 +115,7 @@
       Untuk verifikasi klaim JALINAN pengguna mesti memilih data yang akan dihapus dibagian konten terlebih dahulu baru kemudian menekan tombol verifikasi dan tombol verifikasi hanya akan muncul di user yang sudah ditentukan/diberitahukan kepada BKCU Kalimantan sebagai verifikator (biasanya 1 dari ketua pengurus, 1 dari ketua pengawas, dan 1 dari pimpinan manajemen/GM).
 
       <br/><br/>
-      Setelah melakukan verifikasi ini baru lah pengajuan klaim akan diterima oleh bagian JALINAN Puskopdit BKCU Kalimantan untuk selanjutkan dilakukan analisis. (klaim tersebut akan berpindah dari tab verifikasi menjadi ke tab menunggu).
+      Setelah melakukan verifikasi ini baru lah pengajuan klaim akan diterima oleh bagian JALINAN PUSKOPCUINA untuk selanjutkan dilakukan analisis. (klaim tersebut akan berpindah dari tab verifikasi menjadi ke tab menunggu).
     </p>
 
     <div class="alert bg-warning text-white alert-styled-left alert-dismissible">
@@ -131,11 +131,11 @@
       Setelah klaim yang diajukan berada di tab menunggu, maka bagian JALINAN akan melakukan analisis terhadap klaim dan akan menentukan apakah klaim tersebut disetujui atau tidak.
 
       <br/><br/>
-      Apabila klaim disetujui maka bagian JALINAN akan mengisi total Lintang dan Tunas yang disetujui dan sesuai dengan aturan yang tertuang pada Manual Operasional (MO) JALINAN Puskopdit BKCU Kalimantan
+      Apabila klaim disetujui maka bagian JALINAN akan mengisi total Lintang dan Tunas yang disetujui dan sesuai dengan aturan yang tertuang pada Manual Operasional (MO) JALINAN PUSKOPCUINA
     </p>
 
     <div class="alert bg-warning text-white alert-styled-left alert-dismissible">
-      <span class="font-weight-semibold">Penting!</span> Proses ini dilakukan oleh bagian JALINAN Puskopdit BKCU Kalimantan, jadi CU hanya perlu menunggu proses analisis saja apakah akan disetujui atau ditolak atau dokumen tidak lengkap dengan melihat pada masing-masing tab yang ada.
+      <span class="font-weight-semibold">Penting!</span> Proses ini dilakukan oleh bagian JALINAN PUSKOPCUINA, jadi CU hanya perlu menunggu proses analisis saja apakah akan disetujui atau ditolak atau dokumen tidak lengkap dengan melihat pada masing-masing tab yang ada.
     </div>
 
     <hr/> 
@@ -144,7 +144,7 @@
       <img src="{{ asset('images/panduan/klaimJALINAN-selesai.png') }}" class="img-thumbnail" alt="">
     </div>
     <p>
-        Ketika klaim sudah disetujui dan kemudian sudah dicairkan oleh Puskopdit BKCU Kalimantan, maka klaim tersebut akan berada di tab disetujui dan disana CU bisa menekan tombol selesai <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">1</span> yang menandakan bahwa klaim tersebut sudah diterima oleh CU dan telah diberikan kepada alih waris
+        Ketika klaim sudah disetujui dan kemudian sudah dicairkan oleh PUSKOPCUINA, maka klaim tersebut akan berada di tab disetujui dan disana CU bisa menekan tombol selesai <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">1</span> yang menandakan bahwa klaim tersebut sudah diterima oleh CU dan telah diberikan kepada alih waris
 
         <br/><br/>
         Ketika sudah menekan tombol selesai maka klaim dinyatakan sudah selesai dan tidak bisa dilakukan perubahan apapun lagi.
@@ -180,7 +180,7 @@
       <img src="{{ asset('images/panduan/klaimJALINAN-surat.png') }}" class="img-thumbnail" alt="">
     </div>
     <p>
-        Terdapat juga tombol Surat Pencairan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">1</span> yang berguna untuk mencetak surat pernyataan dari Puskopdit BKCU Kalimantan yang menjelaskan mengenai status klaim anggota yang telah diajukan.
+        Terdapat juga tombol Surat Pencairan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">1</span> yang berguna untuk mencetak surat pernyataan dari PUSKOPCUINA yang menjelaskan mengenai status klaim anggota yang telah diajukan.
 
         <br/><br/>
         Surat ini bisa digunakan dan diberikan kepada alih waris atau keluarga dari anggota CU sebagai bukti <b>apabila diminta.</b>

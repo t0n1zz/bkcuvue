@@ -28,6 +28,7 @@
 					<div class="breadcrumb" v-if="level === 3">
 						<slot name="breadcrumb"></slot>
 					</div>	
+
 				</div>
 			</div>
 		</div>

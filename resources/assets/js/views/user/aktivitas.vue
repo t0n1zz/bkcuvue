@@ -31,7 +31,7 @@
 												<li><b>Username:</b> {{ itemData.username }}</li>
 												<li><b>Nama:</b> {{ itemData.aktivis? itemData.aktivis.name : '-' }}</li>
 												<li><b>Email:</b> {{ itemData.aktivis? itemData.aktivis.email : '-' }}</li>
-												<li><b>CU:</b> {{ itemData.cu ? itemData.cu.name : 'Puskopdit BKCU Kalimantan' }}</li>
+												<li><b>CU:</b> {{ itemData.cu ? itemData.cu.name : 'PUSKOPCUINA' }}</li>
 												<li><b>Tingkat:</b> 
 													<span v-if="itemData.aktivis && itemData.aktivis.pekerjaan_aktif" v-html="$options.filters.checkTingkatAktivis(itemData.aktivis.pekerjaan_aktif.tingkat)"></span>
 													<span v-else>-</span>
@@ -146,6 +146,7 @@
 				currentUser: 'currentUser'
 			}),
 			...mapGetters('user',{
+				itemData: 'data',
 				itemDataStat: 'dataStat',
 				activity: 'dataS',
 				activityStat: 'dataStatS',

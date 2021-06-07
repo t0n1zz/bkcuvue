@@ -56,6 +56,10 @@ export default {
     return axios.get('/api/jalinanKlaim/getVerifikator/' + verifikator_pengurus + '/' + verifikator_pengawas + '/' + verifikator_manajemen);
   },
 
+  getHistory: function( id ){
+    return axios.get('/api/jalinanKlaim/getHistory/' + id);
+  },
+
   create: function(){
     return axios.get('/api/jalinanKlaim/create');
   },
@@ -114,6 +118,10 @@ export default {
 
   cariData: function( nik ){
     return axios.get('/api/jalinanKlaim/cariData/' + nik);
+  },
+
+  cariDataId: function( id ){
+    return axios.get('/api/jalinanKlaim/cariDataId/' + id);
   },
 
   cekData: function( id ){

@@ -971,7 +971,7 @@
 								}else if(valDalam.pekerjaan_aktif.tipe == 2){
 									formData.lembaga = valDalam.pekerjaan_aktif.lembaga_lain.name;
 								}else if(valDalam.pekerjaan_aktif.tipe == 3){
-									formData.lembaga = "Puskopdit BKCU Kalimantan"
+									formData.lembaga = "PUSKOPCUINA"
 								}
 							}
 						

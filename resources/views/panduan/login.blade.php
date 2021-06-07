@@ -9,13 +9,13 @@
   </div>
   <div class="card-body">	
     <p>
-        Aplikasi <b>SIMO</b> merupakan aplikasi berbasis website, maka untuk mengaksesnya adalah melalui <b>browser</b> pada komputer/gadget anda. Kemudian di <b>address bar</b> ketikkan <code><a href="https://puskopditbkcukalimantan.org/admins" target="_blank">puskopditbkcukalimantan.org/admins</a></code> kemudian anda akan sampai ke halaman login. 
+        Aplikasi <b>SIMO</b> merupakan aplikasi berbasis website, maka untuk mengaksesnya adalah melalui <b>browser</b> pada komputer/gadget anda. Kemudian di <b>address bar</b> ketikkan <code><a href="https://puskopcuina.org/admins" target="_blank">puskopcuina.org/admins</a></code> kemudian anda akan sampai ke halaman login. 
     </p>
     <div class="mb-3 text-center">
       <img src="{{ asset('images/panduan/login.png') }}" class="img-thumbnail" alt="">
     </div> 
     <p>
-        Pada halaman <b>login</b> anda mesti mengisi <b>username</b> dan <b>password</b> sesuai dengan yang telah diberikan dari <b>Puskopdit BKCU Kalimantan</b> kemudian menekan tombol <button class="btn btn-primary">Login <i class="icon-circle-right2 position-right"></i></button> untuk masuk kedalam aplikasi SIMO.
+        Pada halaman <b>login</b> anda mesti mengisi <b>username</b> dan <b>password</b> sesuai dengan yang telah diberikan dari <b>PUSKOPCUINA</b> kemudian menekan tombol <button class="btn btn-primary">Login <i class="icon-circle-right2 position-right"></i></button> untuk masuk kedalam aplikasi SIMO.
     </p>
     <hr/>
     <div class="alert bg-info text-white alert-styled-left alert-dismissible">

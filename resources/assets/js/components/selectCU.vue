@@ -14,7 +14,7 @@
 							<option disabled value="">Silahkan pilih data</option>
 							<slot></slot>
 							<option value="semua">Semua CU</option>
-							<option value="0" v-if="isPus"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>Puskopdit</span></option>
+							<option value="0" v-if="isPus"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>PUSKOPCUINA</span></option>
 							<option disabled value="">----------------</option>
 							<option v-for="cu in modelCu" :value="cu.id" v-if="cu">{{cu.name}}</option>
 						</select>
@@ -29,7 +29,6 @@
 			</div>
 		</div>		
 
-		<!-- cu mobile -->
 		<div class="card d-block d-md-none d-print-none">
 			<div class="card-body">  
 				<!-- select -->
@@ -40,7 +39,7 @@
 					<select class="form-control" name="idCu" v-model="idCu" data-width="100%" @change="changeCU($event.target.value)" :disabled="modelCuStat === 'loading'">
 						<option disabled value="">Silahkan pilih data</option>
 						<option value="semua">Semua CU</option>
-						<option value="0" v-if="isPus"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>Puskopdit</span></option>
+						<option value="0" v-if="isPus"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>PUSKOPCUINA</span></option>
 						<option disabled value="">----------------</option>
 						<option v-for="cu in modelCu" :value="cu.id" v-if="cu">{{cu.name}}</option>
 					</select>

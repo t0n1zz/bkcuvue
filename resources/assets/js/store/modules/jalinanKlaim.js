@@ -8,6 +8,7 @@ export const jalinanKlaim = {
     data: {}, //single data
     data2: {}, //single data
     periode: {}, //single data
+    history: [],
     dataS: [], //collection
     dataS1: [], //collection
     dataS2: [], //collection
@@ -22,6 +23,7 @@ export const jalinanKlaim = {
     dataDeletedS: [], //collection
     count: {},
     headerDataS: [],
+    historyStat: '',
     dataStat: '',
     dataStat2: '',
     periodeStat: '',
@@ -48,6 +50,7 @@ export const jalinanKlaim = {
     data: state => state.data,
     data2: state => state.data2,
     periode: state => state.periode,
+    history: state => state.history,
     dataS: state => state.dataS,
     dataS1: state => state.dataS1,
     dataS2: state => state.dataS2,
@@ -62,6 +65,7 @@ export const jalinanKlaim = {
     dataDeletedS: state => state.dataDeletedS,
     count: state => state.count,
     headerDataS: state => state.headerDataS,
+    historyStat: state => state.historyStat,
     dataStat: state => state.dataStat,
     dataStat2: state => state.dataStat2,
     periodeStat: state => state.periodeStat,
@@ -914,10 +918,45 @@ export const jalinanKlaim = {
         });
     },
 
+    getHistory( {commit}, id ){
+      commit('setHistoryStat', 'loading');
+      
+      JalinanKlaimAPI.getHistory( id )
+        .then( function( response ){
+          commit('setHistory', response.data.history);
+          commit('setHistoryStat', 'success');
+        })
+        .catch(error => {
+          commit('setHistory', error.response);
+          commit('setHistoryStat', 'fail');
+        });
+    },
+
     cariData( {commit}, nik ){
       commit('setDataStat2', 'loading');
       
     JalinanKlaimAPI.cariData( nik )
+        .then( function( response ){
+          if(response.data.model){
+            commit('setData2', response.data.model);
+            commit('setDataStat2', 'success');
+          }else{
+            commit('setData2', response.data.form);
+            commit('setRules', response.data.rules);
+            commit('setOptions', response.data.options)
+            commit('setDataStat2', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setData2', error.response);
+          commit('setDataStat2', 'fail');
+        });
+    },
+
+    cariDataId( {commit}, id ){
+      commit('setDataStat2', 'loading');
+      
+    JalinanKlaimAPI.cariDataId( id )
         .then( function( response ){
           if(response.data.model){
             commit('setData2', response.data.model);
@@ -1247,6 +1286,9 @@ export const jalinanKlaim = {
     setPeriode ( state, data ){
       state.periode = data;
     },
+    setHistory ( state, data ){
+      state.history = data;
+    },
     setDataS ( state, data ){
       state.dataS = data;
     },
@@ -1288,6 +1330,9 @@ export const jalinanKlaim = {
     },
     setHeaderDataS ( state, data ){
       state.headerDataS = data;
+    },
+    setHistoryStat( state, status ){
+      state.historyStat = status;
     },
     setDataStat( state, status ){
       state.dataStat = status;

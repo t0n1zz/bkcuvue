@@ -86,7 +86,7 @@
 							<span v-else>-</span>
 						</span>
 						<span v-else-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 3">
-							Puskopdit BKCU Kalimantan
+							PUSKOPCUINA
 						</span>
 						<span v-else>-</span>
 					</td>
@@ -267,6 +267,7 @@
 				formPeserta:{
 					aktivis_id: '',
 					kegiatan_id: '',
+					cu_id: '',
 					keterangan: '',
 					tingkat: '',
 					name_nametag: '',
@@ -331,6 +332,7 @@
 				this.formPeserta = this.selected;
 				this.formPeserta.tingkat = this.selected.aktivis.pekerjaan_aktif.tingkat;
 				this.formPeserta.jabatan = this.selected.aktivis.pekerjaan_aktif.name;
+				this.formPeserta.cu_id = this.selected.aktivis.pekerjaan_aktif.id_tempat;
 				if(this.selected.aktivis.pendidikan_tertinggi){
 					this.formPeserta.pendidikan = this.selected.aktivis.pendidikan_tertinggi.tingkat + ' ' + this.selected.aktivis.pendidikan_tertinggi.name;
 				}
@@ -348,7 +350,7 @@
 				}else if(this.selected.aktivis.pekerjaan_aktif.tipe == 2){
 					this.formPeserta.lembaga = this.selected.aktivis.pekerjaan_aktif.lembaga_lain.name
 				}else if(this.selected.aktivis.pekerjaan_aktif.tipe == 3){
-					this.formPeserta.lembaga = "Puskopdit BKCU Kalimantan"
+					this.formPeserta.lembaga = "PUSKOPCUINA"
 				}
 			}else{
 				var i;
@@ -405,6 +407,7 @@
 					this.formPeserta.aktivis_id = item.id;
 					this.formPeserta.kegiatan_id = this.item.id;
 					this.formPeserta.jabatan = item.pekerjaan_aktif.name;
+					this.formPeserta.cu_id = item.pekerjaan_aktif.id_tempat;
 					if(item.pendidikan_tertinggi){
 						this.formPeserta.pendidikan = item.pendidikan_tertinggi.tingkat + ' ' + item.pendidikan_tertinggi.name;
 					}
@@ -422,7 +425,7 @@
 					}else if(item.pekerjaan_aktif.tipe == 2){
 						this.formPeserta.lembaga = item.pekerjaan_aktif.lembaga_lain.name
 					}else if(item.pekerjaan_aktif.tipe == 3){
-						this.formPeserta.lembaga = "Puskopdit BKCU Kalimantan"
+						this.formPeserta.lembaga = "PUSKOPCUINA"
 					}
 					this.message.show = false;
 				}else{

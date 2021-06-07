@@ -50,6 +50,16 @@ class ProdukCuController extends Controller{
 			]);
 	}
 
+	public function getCuJalinan($id)
+	{
+		$table_data = ProdukCu::where('id_cu',$id)->where('jalinan',1)->get();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
 	public function getSimpananCu($id)
 	{
 		$table_data = ProdukCu::where('id_cu',$id)->whereIn('tipe',['Simpanan Pokok','Simpanan Wajib','Simpanan Non Saham'])->get();

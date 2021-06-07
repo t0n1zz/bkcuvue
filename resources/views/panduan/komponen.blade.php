@@ -42,7 +42,7 @@
       <img src="{{ asset('images/panduan/komponen-notification.png') }}" class="img-thumbnail" alt="">
     </div>
     <p>
-      Pada bagian notifikasi yang bisa diakses dengan menekan icon lonceng pada header bagian pertama akan menampilkan pemberitahuan terbaru mengenai interaksi antara CU dengan Puskopdit BKCU Kalimantan (dan sebaliknya). Sebagai contoh apabila user Puskopdit BKCU Kalimantan melakukan komentar pada salah satu laporan CU pengguna, maka akan muncul pemberitahuan terdapat komentar pada laporan tersebut dan pengguna tinggal menekan pada notifikasi tersebut untuk langsung melihat komentar apa yang ada.
+      Pada bagian notifikasi yang bisa diakses dengan menekan icon lonceng pada header bagian pertama akan menampilkan pemberitahuan terbaru mengenai interaksi antara CU dengan PUSKOPCUINA (dan sebaliknya). Sebagai contoh apabila user PUSKOPCUINA melakukan komentar pada salah satu laporan CU pengguna, maka akan muncul pemberitahuan terdapat komentar pada laporan tersebut dan pengguna tinggal menekan pada notifikasi tersebut untuk langsung melihat komentar apa yang ada.
     </p>
 
     {{-- menu user --}}
