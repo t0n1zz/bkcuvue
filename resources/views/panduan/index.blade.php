@@ -22,5 +22,4 @@
   @include('panduan.laporanPerkembangan')
   @include('panduan.user')
   @include('panduan.assesment')
-  @include('panduan.voting')
 @stop
