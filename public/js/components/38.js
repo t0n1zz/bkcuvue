@@ -11193,7 +11193,7 @@ var render = function() {
                   _vm._v(
                     " " +
                       _vm._s(_vm._f("percentage")(Math.abs(_vm.totalData), 2)) +
-                      "\t\t\t\t\n\t\t\t\t"
+                      "\t\t\t\t\r\n\t\t\t\t"
                   )
                 ])
               : _c("span", { staticClass: "opacity-75" }, [
@@ -11210,7 +11210,7 @@ var render = function() {
                           thousandsSeparator: "."
                         })
                       ) +
-                      "\t\t\t\t\n\t\t\t\t"
+                      "\t\t\t\t\r\n\t\t\t\t"
                   )
                 ])
           ]),
@@ -11237,11 +11237,11 @@ var render = function() {
                   ? _c("span", [_vm._v("-")])
                   : _vm._e(),
                 _vm._v(
-                  "\n\t\t\t\t" +
+                  "\r\n\t\t\t\t" +
                     _vm._s(
                       _vm._f("percentage")(Math.abs(_vm.percentageData), 2)
                     ) +
-                    "\n\t\t\t"
+                    "\r\n\t\t\t"
                 )
               ])
             : _vm._e(),
