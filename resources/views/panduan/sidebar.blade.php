@@ -87,6 +87,9 @@
           {{-- Self Assesment --}}
           <li class="nav-item"><a href="#selfAssesment" class="nav-link">21. Self Assesment</a></li>
 
+          {{-- Self Assesment --}}
+          <li class="nav-item"><a href="#voting" class="nav-link">22. Voting</a></li>
+
           {{-- divider --}}
           <li class="nav-item-divider"></li>
 
