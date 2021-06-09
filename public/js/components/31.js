@@ -1676,7 +1676,7 @@ var render = function() {
                         [
                           _c("h6", { staticClass: "card-title" }, [
                             _c("i", { staticClass: "mr-1", class: akses.icon }),
-                            _vm._v(" " + _vm._s(akses.name) + "\r\n\t\t\t\t\t")
+                            _vm._v(" " + _vm._s(akses.name) + "\n\t\t\t\t\t")
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "header-elements" }, [
@@ -1846,7 +1846,7 @@ var render = function() {
                                                         _vm._s(
                                                           permission.name
                                                         ) +
-                                                        "\r\n\t\t\t\t\t\t\t\t\t"
+                                                        "\n\t\t\t\t\t\t\t\t\t"
                                                     )
                                                   ]
                                                 )
@@ -1935,7 +1935,7 @@ var render = function() {
                                             _vm._v(
                                               "   " +
                                                 _vm._s(permission.name) +
-                                                "\r\n\t\t\t\t\t\t\t\t"
+                                                "\n\t\t\t\t\t\t\t\t"
                                             )
                                           ]
                                         )
