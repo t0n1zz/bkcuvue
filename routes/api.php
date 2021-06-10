@@ -21,6 +21,12 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
     Route::get('/voting/indexSuara/{id}', 'VotingController@indexSuara');
     Route::post('/voting/storePilihan', 'VotingController@storePilihan');
 
+    //file upload
+    Route::post('/fileUpload/store', 'FileUploadController@store');
+    Route::get('/fileUpload/index/{id_cu}/{id_user}', 'FileUploadController@index');
+    Route::delete('/fileUpload/destroy/{id}', 'FileUploadController@destroy');
+    Route::post('/fileUpload/draft/{id_cu}/{id_user}/{tipe}', 'FileUploadController@uploadDraft');
+
     Route::group(['middleware'=>'jwt.auth'],function(){
         
     // Route::group(['prefix'=>'v1'],function(){
