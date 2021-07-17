@@ -459,7 +459,7 @@
 														<div class="row">
 															<div class="col-md-6">
 																<div class="d-none d-sm-block">
-																	<button type="button" class="btn btn-light mb-1" @click.prevent="downloadMateri(props.item.tipe != 'pdf' ? props.item.filename + '.jpg' : props.item.filename)" v-if="props.item.format == 'upload'"><i class="icon-file-eye"></i> Lihat</button>
+																	<button type="button" class="btn btn-light mb-1" @click.prevent="downloadMateri(props.item.tipe == 'jpg' ? props.item.filename + '.jpg' : props.item.filename)" v-if="props.item.format == 'upload'"><i class="icon-file-eye"></i> Lihat</button>
 
 																	<a type="button" class="btn btn-light mb-1" :href="props.item.link" target="_blank" v-else-if="props.item.format == 'link'"><i class="icon-file-eye"></i> Lihat</a>
 																</div>
@@ -470,7 +470,7 @@
 																	<span class="badge badge-secondary" v-html="$options.filters.dateTime(props.item.created_at)">
 																	</span>
 
-																	<button type="button" class="btn btn-light btn-block mt-2 mb-1" @click.prevent="downloadMateri(props.item.tipe != 'pdf' ? props.item.filename + '.jpg' : props.item.filename)" v-if="props.item.format == 'upload'"><i class="icon-file-eye"></i> Lihat</button>
+																	<button type="button" class="btn btn-light btn-block mt-2 mb-1" @click.prevent="downloadMateri(props.item.tipe == 'jpg' ? props.item.filename + '.jpg' : props.item.filename)" v-if="props.item.format == 'upload'"><i class="icon-file-eye"></i> Lihat</button>
 
 																	<a type="button" class="btn btn-light btn-block mt-2 mb-1" :href="props.item.link" target="_blank" v-else-if="props.item.format == 'link'"><i class="icon-file-eye"></i> Lihat</a>
 																
@@ -896,7 +896,7 @@
 													<span v-else>-</span>
 												</td>
 												<td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[11].hide" >
-													<span v-html="$options.filters.checkTingkatAktivis(props.item.aktivis.pekerjaan_aktif.tingkat)" v-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tingkat"></span>
+													<check-value :value="props.item.aktivis.pekerjaan_aktif.tingkat_name" v-if="props.item.aktivis.pekerjaan_aktif"></check-value>
 													<span v-else>-</span>
 												</td>
 												<td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[12].hide">
@@ -992,7 +992,7 @@
 													<span v-else>-</span>
 												</td>
 												<td v-if="props.item.aktivis && !columnDataPesertaHadir[11].hide" >
-													<span v-html="$options.filters.checkTingkatAktivis(props.item.aktivis.pekerjaan_aktif.tingkat)" v-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tingkat"></span>
+													<check-value :value="props.item.aktivis.pekerjaan_aktif.tingkat_name" v-if="props.item.aktivis.pekerjaan_aktif"></check-value>
 													<span v-else>-</span>
 												</td>
 												<td v-if="props.item.aktivis && !columnDataPesertaHadir[12].hide">
@@ -1495,7 +1495,7 @@
 					},
 					{
 						title: 'Tingkat',
-						name: 'aktivis.pekerjaan_aktif.tingkat',
+						name: 'aktivis.pekerjaan_aktif.tingkat_name',
 						tipe: 'string',
 					},
 					{
@@ -1674,7 +1674,7 @@
 					},
 					{
 						title: 'Tingkat',
-						name: 'aktivis.pekerjaan_aktif.tingkat',
+						name: 'aktivis.pekerjaan_aktif.tingkat_name',
 						tipe: 'string',
 					},
 					{

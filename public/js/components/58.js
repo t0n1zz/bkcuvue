@@ -916,7 +916,7 @@ var render = function() {
                   _c("div", { staticClass: "card" }, [
                     _c("div", { staticClass: "card-body" }, [
                       _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
                           _c(
                             "div",
                             {
@@ -1006,7 +1006,7 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _vm.currentUser.id_cu == 0
-                          ? _c("div", { staticClass: "col-md-6" }, [
+                          ? _c("div", { staticClass: "col-md-12" }, [
                               _c(
                                 "div",
                                 {
@@ -1172,7 +1172,7 @@ var render = function() {
                               attrs: {
                                 rows: "5",
                                 type: "text",
-                                name: "penulisDeskripsi",
+                                name: "deskripsi",
                                 placeholder:
                                   "Silahkan masukkan keterangan kategori"
                               },

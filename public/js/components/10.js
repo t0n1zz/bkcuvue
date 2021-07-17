@@ -9566,16 +9566,18 @@ var render = function() {
                           ])
                         : _vm._e(),
                       _vm._v(" "),
-                      _c("li", {
-                        staticClass: "mt-0",
-                        domProps: {
-                          innerHTML: _vm._s(
-                            _vm.$options.filters.dateMonth(
-                              this.selectedItem.surat_tanggal
-                            )
-                          )
-                        }
-                      })
+                      this.selectedItem.surat_tanggal
+                        ? _c("li", {
+                            staticClass: "mt-0",
+                            domProps: {
+                              innerHTML: _vm._s(
+                                _vm.$options.filters.dateMonth(
+                                  this.selectedItem.surat_tanggal
+                                )
+                              )
+                            }
+                          })
+                        : _vm._e()
                     ])
                   ]),
                   _vm._v(" "),

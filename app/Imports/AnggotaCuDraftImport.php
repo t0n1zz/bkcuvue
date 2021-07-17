@@ -24,10 +24,9 @@ use Maatwebsite\Excel\Concerns\WithChunkReading;
 class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading, ShouldQueue
 {
 
-
     public function model(array $row)
     {
-        $gender = array_key_exists('gender', $row) ? strtoupper($row['gender']) : '';
+        $gender = array_key_exists('gender', $row) ? strtoupper(preg_replace('/\s+/', '',$row['gender'])) : '';
         $status_pernikahan = array_key_exists('status_pernikahan', $row) ? strtoupper($row['status_pernikahan']) : '';
         $agama = array_key_exists('agama', $row) ? strtoupper($row['agama']) : '';
         $ktp = array_key_exists('ktp', $row)? preg_replace('/[^A-Za-z0-9]/', '',$row['ktp']) : '';

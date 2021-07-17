@@ -10,14 +10,37 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.4.2 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#v342">Version 3.4.2<small class="text-muted"> / 17 Juli 2021</small></a> </h5>
+                </div>
+
+                <div id="v342" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi menambahkan fitur arsip yaitu dokumen digital
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan fitur agar CU bisa mengakses dokumen digital dari PUSKOPCUINA</li>
+                      <li>Penambahan fitur untuk bisa mengelola dokumen digital masing-masing CU</li>
+                      <li>Perbaikan bug tampilan pada beberapa bagian</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.4.2 -->
+
               <!-- Version 3.4.1 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#v341">Version 3.4.1<small class="text-muted"> / 5 Juni 2021</small></a> </h5>
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v341">Version 3.4.1<small class="text-muted"> / 5 Juni 2021</small></a> </h5>
                 </div>
 
-                <div id="v341" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="v341" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi menambahkan informasi riwayat klaim pada klain JALINAN, informasi tambahan pada aktivis seperti penghargaan, pelanggaran dan lainnya, dan memperbaiki bug di voting dan pemilihan
                     <br/><br/>

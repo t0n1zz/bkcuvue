@@ -111,6 +111,8 @@ class KegiatanBKCUController extends Controller{
 	{
 		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->advancedFilter();
 
+		$table_data = $this->formatQuery($table_data);
+
 		return response()
 		->json([
 			'model' => $table_data
@@ -122,6 +124,8 @@ class KegiatanBKCUController extends Controller{
 		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->whereHas('aktivis.pekerjaan', function($query) use ($cu){
 			$query->where('tipe','1')->where('id_tempat',$cu);
 		})->advancedFilter();
+		
+		$table_data = $this->formatQuery($table_data);
 
 		return response()
 		->json([
@@ -132,6 +136,8 @@ class KegiatanBKCUController extends Controller{
 	public function indexPesertaHadir($id)
 	{
 		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->whereNotNull('tanggal_hadir')->advancedFilter();
+
+		$table_data = $this->formatQuery($table_data);
 
 		return response()
 		->json([
@@ -296,6 +302,45 @@ class KegiatanBKCUController extends Controller{
 		->json([
 			'model' => $table_data
 		]);
+	}
+
+	public function formatQuery($table_data){
+		foreach($table_data as $t){
+			if(isset($t->aktivis->pekerjaan_aktif)){
+				if($t->aktivis->pekerjaan_aktif->status == 1){
+					$t->aktivis->pekerjaan_aktif = $t->aktivis->pekerjaan_aktif;
+					if($t->aktivis->pekerjaan_aktif->tipe == 3){
+						$t->aktivis->pekerjaan_aktif->cu->name = 'PUSKOPCUINA';
+					}
+					if ($t->aktivis->pekerjaan_aktif->tingkat == 1) {
+						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Pengurus';
+					} else if($t->aktivis->pekerjaan_aktif->tingkat == 2) {
+						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Pengawas';
+					}	else if($t->aktivis->pekerjaan_aktif->tingkat == 3) {
+						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Komite';
+					} else if($t->aktivis->pekerjaan_aktif->tingkat == 4) {
+						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Penasihat';
+					} else if($t->aktivis->pekerjaan_aktif->tingkat == 5) {
+						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Senior Manajer';
+					} else if($t->aktivis->pekerjaan_aktif->tingkat == 6) {
+						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Manajer';
+					} else if($t->aktivis->pekerjaan_aktif->tingkat == 7) {
+						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Supervisor';
+					} else if($t->aktivis->pekerjaan_aktif->tingkat == 8) {
+						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Staf';
+					} else if($t->aktivis->pekerjaan_aktif->tingkat == 9) {
+						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Kontrak';
+					} else if($t->aktivis->pekerjaan_aktif->tingkat == 10) {
+						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Kolektor';
+					} else if($t->aktivis->pekerjaan_aktif->tingkat == 11) {
+						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Kelompok Inti';
+					} else if($t->aktivis->pekerjaan_aktif->tingkat == 12) {
+						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Supporting Unit';
+					}
+				}
+			}
+		}
+		return $table_data;
 	}
 
 	
@@ -513,7 +558,6 @@ class KegiatanBKCUController extends Controller{
 			if($fileExtension != 'pdf'){
 				$formatedName = Helper::image_processing($materipath,$this->width,$this->height,$file,'',$name);
 			}else{
-				// TODO : BUGGGG
 				$filename = $file->getClientOriginalName();
 				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). $fileExtension;
 				$file->move($materipath,$formatedName);
@@ -1016,7 +1060,7 @@ class KegiatanBKCUController extends Controller{
 		}
 
 		if(!empty($kelas->filename)){
-			if($format != 'pdf'){
+			if($format == 'jpg'){
 				File::delete($materipath . $kelas->filename . '.jpg');
 				File::delete($materipath . $kelas->filename . 'n.jpg');
 			}else{

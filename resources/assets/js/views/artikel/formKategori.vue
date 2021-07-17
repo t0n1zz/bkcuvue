@@ -12,7 +12,7 @@
 				<!-- title -->
 				<h5 :class="{ 'text-danger' : errors.has('form.name')}">
 					<i class="icon-cross2" v-if="errors.has('form.name')"></i>
-					Nama:
+					Nama: <wajib-badge></wajib-badge>
 				</h5>
 
 				<!-- text -->
@@ -26,25 +26,17 @@
 				</small>
 			</div>
 
-			<!-- deskripsi -->
-			<div class="form-group" :class="{'has-error' : errors.has('form.deskripsi')}">
+			<!-- keterangan -->
+			<div class="form-group">
 
 				<!-- title -->
-				<h5 :class="{ 'text-danger' : errors.has('form.deskripsi')}">
-					<i class="icon-cross2" v-if="errors.has('form.deskripsi')"></i>
+				<h5>
 					Keterangan:
 				</h5>
 
 				<!-- textarea -->
-				<textarea rows="5" type="text" name="deskripsi" class="form-control" placeholder="Silahkan masukkan keterangan kategori"
-					v-validate="'required|min:5'" v-model="form.deskripsi"></textarea>
+				<textarea rows="5" type="text" name="deskripsi" class="form-control" placeholder="Silahkan masukkan keterangan kategori" v-model="form.deskripsi"></textarea>
 
-				<!-- error message -->
-				<small class="text-muted text-danger" v-if="errors.has('form.deskripsi')">
-					<i class="icon-arrow-small-right"></i> {{ errors.first('form.deskripsi') }}
-				</small>
-				<small class="text-muted" v-else>&nbsp;
-				</small>
 			</div>
 
 			<hr>
@@ -64,13 +56,15 @@
 	import message from "../../components/message.vue";
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
+	import wajibBadge from "../../components/wajibBadge.vue";
 
 	export default {
 		props:['id_cu'],
 		components: {
 			message,
 			formButton,
-			formInfo
+			formInfo,
+			wajibBadge
 		},
 		data() {
 			return {

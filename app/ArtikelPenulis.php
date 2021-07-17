@@ -18,8 +18,7 @@ class ArtikelPenulis extends BaseEloquent {
     
     public static $rules = [
         'id_cu' => 'required',
-        'name' => 'required',
-        'deskripsi' => 'required|min:5'
+        'name' => 'required'
     ];
 
     public function sluggable()

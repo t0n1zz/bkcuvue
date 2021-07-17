@@ -35,6 +35,10 @@
           class="form-control" 
           :options="cleaveOption.number16"
           placeholder="Silahkan masukkan no. KTP / Nomor Induk Kependudukan (NIK)" :disabled="isNew"></cleave>
+
+        <small class="text-muted text-danger" v-if="isDigit">
+          Maaf, No. KTP anda tidak valid, wajib 16 digit.
+        </small>  
       </div>
     </div>  
 
@@ -93,6 +97,7 @@
         statusNIK: '',
         nik: '',
         isNew: false,
+        isDigit: false,
         cleaveOption: {
 					number16: {
             numeral: true,
@@ -122,8 +127,13 @@
         this.$emit('changeStatusNIK',value);
       },
       cariData(){
-        this.isNew = true;
-        this.$emit('cariData', this.nik);
+        if(this.nik.length < 16){
+          this.isDigit = true;
+        }else{
+          this.isNew = true;
+          this.isDigit = false;
+          this.$emit('cariData', this.nik);
+        }
       },
       resetData(){
         this.nik = '';

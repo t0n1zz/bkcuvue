@@ -128,7 +128,7 @@
 						filterDefault: true
 					},
 					{
-						title: 'Deskripsi',
+						title: 'Profil',
 						name: 'deskripsi',
 						tipe: 'string',
 						sort: true,

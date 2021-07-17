@@ -394,17 +394,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   methods: {
-    save: function save() {
-      var _this = this;
-
-      this.$validator.validateAll('formData').then(function (result) {
-        if (result) {
-          _this.$store.dispatch(_this.kelas + '/update', [_this.selectedItem.id, _this.formData]);
-        } else {
-          _this.submited = true;
-        }
-      });
-    },
     selectedRow: function selectedRow(item) {
       this.selectedItemRow = item;
     },
@@ -420,9 +409,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     currentUser: 'currentUser'
   })), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('asetTetap', {
     itemData: 'dataS2',
-    itemDataStat: 'dataStatS2',
-    updateResponse: 'update',
-    updateStat: 'updateStat'
+    itemDataStat: 'dataStatS2'
   }))
 });
 
@@ -991,7 +978,7 @@ var render = function() {
           })
         : _vm._e(),
       _vm._v(" "),
-      _c("hr"),
+      _vm.isModal ? _c("hr") : _vm._e(),
       _vm._v(" "),
       _vm.isModal
         ? _c("div", { staticClass: "text-center d-none d-md-block" }, [

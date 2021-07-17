@@ -868,6 +868,86 @@
 						]
 					},
 					{
+						name: 'Dokumen',
+						keterangan: 'Mengelola data dokumen',
+						icon: 'icon-books',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_dokumen',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Dokumen'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_dokumen',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Dokumen'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_dokumen',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+								group: 'Dokumen'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_dokumen',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Dokumen'
+							},
+						]
+					},
+					{
+						name: 'Kategori Dokumen',
+						keterangan: 'Mengelola kategori pada dokumen',
+						icon: 'icon-grid6',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_dokumen_kategori',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Kategori Dokumen'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_dokumen_kategori',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Kategori Dokumen'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_dokumen_kategori',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+								group: 'Kategori Dokumen'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_dokumen_kategori',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Kategori Dokumen'
+							}
+						]
+					},
+					{
 						name: 'Aset Tetap',
 						keterangan: 'Mengelola data aset tetap pada lembaga',
 						icon: 'icon-drawer3',
@@ -1493,6 +1573,16 @@
 						'update_aktivis',
 						'destroy_aktivis',
 
+						'index_dokumen',
+						'create_dokumen',
+						'update_dokumen',
+						'destroy_dokumen',
+
+						'index_dokumen_kategori',
+						'create_dokumen_kategori',
+						'update_dokumen_kategori',
+						'destroy_dokumen_kategori',
+
 						'index_aset_tetap',
 						'create_aset_tetap',
 						'update_aset_tetap',
@@ -1652,6 +1742,16 @@
 						'update_aktivis',
 						'destroy_aktivis',
 
+						'index_dokumen',
+						'create_dokumen',
+						'update_dokumen',
+						'destroy_dokumen',
+
+						'index_dokumen_kategori',
+						'create_dokumen_kategori',
+						'update_dokumen_kategori',
+						'destroy_dokumen_kategori',
+
 						'index_assesment_access',
 						'create_assesment_access',
 						'update_assesment_access',
@@ -1702,6 +1802,8 @@
 						'index_cu',
 						'index_tp',
 						'index_aktivis',
+						'index_dokumen',
+						'index_dokumen_kategori',
 						'index_produk_cu',
 						'index_diklat_bkcu',
 						'index_pertemuan_bkcu',
@@ -1781,6 +1883,16 @@
 						'update_pemilihan',
 						'destroy_pemilihan',
 
+						'index_dokumen',
+						'create_dokumen',
+						'update_dokumen',
+						'destroy_dokumen',
+
+						'index_dokumen_kategori',
+						'create_dokumen_kategori',
+						'update_dokumen_kategori',
+						'destroy_dokumen_kategori',
+
 						'index_aset_tetap',
 						'create_aset_tetap',
 						'update_aset_tetap',
@@ -1839,6 +1951,16 @@
 						'create_aktivis',
 						'update_aktivis',
 						'destroy_aktivis',
+
+						'index_dokumen',
+						'create_dokumen',
+						'update_dokumen',
+						'destroy_dokumen',
+
+						'index_dokumen_kategori',
+						'create_dokumen_kategori',
+						'update_dokumen_kategori',
+						'destroy_dokumen_kategori',
 
 						'index_produk_cu',
 						'create_produk_cu',

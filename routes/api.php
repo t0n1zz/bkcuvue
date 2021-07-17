@@ -329,11 +329,12 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         });
 
         //aset tetap
+        Route::get('/asetTetap', 'AsetTetapController@index');
         Route::get('/asetTetap/history', 'AsetTetapController@history');
         Route::get('/asetTetap/get/{kode}', 'AsetTetapController@get');
+        Route::get('/asetTetap/indexSub/{id}', 'AsetTetapController@indexSub');
         Route::group(['middleware' => ['permission:index_aset_tetap']], function () {
-            Route::get('/asetTetap', 'AsetTetapController@index');
-            Route::get('/asetTetap/indexSub/{id}', 'AsetTetapController@indexSub');
+            
         });
         Route::group(['middleware' => ['permission:create_aset_tetap']], function () {
             Route::get('/asetTetap/create', 'AsetTetapController@create');
@@ -393,6 +394,45 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         });
         Route::group(['middleware' => ['permission:destroy_aset_tetap_lokasi']], function () {
             Route::delete('/asetTetapLokasi/{id}', 'AsetTetapLokasiController@destroy');
+        });
+
+        //dokumen
+        Route::get('/dokumen/count', 'DokumenController@count');
+        Route::get('/dokumen/history', 'DokumenController@history');
+        Route::group(['middleware' => ['permission:index_dokumen']], function () {
+            Route::get('/dokumen/', 'DokumenController@index');
+            Route::get('/dokumen/indexCu/{id}', 'DokumenController@indexCu');
+        });
+        Route::group(['middleware' => ['permission:create_dokumen']], function () {
+            Route::get('/dokumen/create', 'DokumenController@create');
+            Route::post('/dokumen/store', 'DokumenController@store');
+        });
+        Route::group(['middleware' => ['permission:update_dokumen']], function () {
+            Route::get('/dokumen/edit/{id}', 'DokumenController@edit');
+            Route::post('/dokumen/update/{id}', 'DokumenController@update');
+        });
+        Route::group(['middleware' => ['permission:destroy_dokumen']], function () {
+            Route::delete('/dokumen/{id}', 'DokumenController@destroy');
+        });
+        
+        //dokumen kategori
+        Route::get('/dokumenKategori/history', 'DokumenKategoriController@history');
+        Route::group(['middleware' => ['permission:index_dokumen_kategori']], function () {
+            Route::get('/dokumenKategori', 'DokumenKategoriController@index');
+            Route::get('/dokumenKategori/get', 'DokumenKategoriController@get');
+            Route::get('/dokumenKategori/indexCu/{id}', 'DokumenKategoriController@indexCu');
+            Route::get('/dokumenKategori/getCu/{id}', 'DokumenKategoriController@getCu');
+        });
+        Route::group(['middleware' => ['permission:create_dokumen_kategori']], function () {
+            Route::get('/dokumenKategori/create', 'DokumenKategoriController@create');
+            Route::post('/dokumenKategori/store', 'DokumenKategoriController@store');
+        });
+        Route::group(['middleware' => ['permission:update_dokumen_kategori']], function () {
+            Route::get('/dokumenKategori/edit/{id}', 'DokumenKategoriController@edit');
+            Route::post('/dokumenKategori/update/{id}', 'DokumenKategoriController@update');
+        });
+        Route::group(['middleware' => ['permission:destroy_dokumen_kategori']], function () {
+            Route::delete('/dokumenKategori/{id}', 'DokumenKategoriController@destroy');
         });
 
         // assesment Access

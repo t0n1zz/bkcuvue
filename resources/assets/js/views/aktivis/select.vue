@@ -55,7 +55,7 @@
 								<option value="manajer">Manajer</option>
 								<option value="supervisor">Supervisor</option>
 								<option value="staf">Staf</option>
-								<option value="kontrak">Kontrak</option>
+								<option value="supporting_unit">Supporting Unit</option>
 							</select>
 						</div>
  
@@ -125,6 +125,7 @@
 						<option value="supervisor">Supervisor</option>
 						<option value="staf">Staf</option>
 						<option value="kontrak">Kontrak</option>
+						<option value="supporting_unit">Supporting Unit</option>
 					</select>
 				</div>
 

@@ -1,5 +1,23 @@
 <template>
 	<div>
+		<!-- first navbar -->
+		<div class="navbar navbar-expand-lg navbar-dark bg-indigo">
+
+			<div class="navbar-brand wmin-0 mr-0">
+				<a href="#" class="d-inline-block">
+					<img src="/images/simo.png">
+				</a>
+			</div>
+
+
+			<div>
+				<span class="navbar-text ml-lg-3 mr-lg-auto">
+					<span class="badge bg-success-400">PUSKOPCUINA</span>
+				</span>	
+			</div>
+
+		</div>
+
 		<!-- Page header -->
 		<page-header 
 		:title="title" 
@@ -33,7 +51,7 @@
 								<button class="btn btn-warning" @click.prevent="resetData" v-if="itemDataStat != ''"><i class="icon-reset"></i> Reset pencarian</button>
 							</div>
 
-							<div class="col-12 pb-2 d-block d-md-none">
+							<div class="col-md-12 d-block d-sm-none">
 								<button class="btn btn-primary btn-block" @click.prevent="fetch"  :disabled="kode == ''"><i class="icon-search4"></i> Cari</button>
 								<button class="btn btn-warning btn-block mb-1" @click.prevent="resetData"><i class="icon-reset" v-if="itemDataStat != ''"></i> Reset pencarian</button>
 							</div>
@@ -116,9 +134,6 @@
 			}
 		},
 		computed: {
-			...mapGetters('auth',{
-				currentUser: 'currentUser'
-			}),
 			...mapGetters('asetTetap',{
 				itemData: 'data',
 				itemDataStat: 'dataStat',

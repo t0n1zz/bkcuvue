@@ -3778,6 +3778,10 @@ var render = function() {
                                   _vm._v(" "),
                                   _c("option", { attrs: { value: "11" } }, [
                                     _vm._v("Kelompok Inti")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "12" } }, [
+                                    _vm._v("Supporting Unit")
                                   ])
                                 ]
                               ),
@@ -3810,7 +3814,7 @@ var render = function() {
                       : _vm._e(),
                     _vm._v(" "),
                     _vm.form.pekerjaan.tingkat != ""
-                      ? _c("div", { staticClass: "col-sm-6" }, [
+                      ? _c("div", { staticClass: "col-sm-12" }, [
                           _c(
                             "div",
                             {
@@ -3911,7 +3915,7 @@ var render = function() {
                     _vm.form.pekerjaan.tingkat != "3" &&
                     _vm.form.pekerjaan.tingkat != "4" &&
                     _vm.form.pekerjaan.tingkat != ""
-                      ? _c("div", { staticClass: "col-sm-6" }, [
+                      ? _c("div", { staticClass: "col-sm-12" }, [
                           _c(
                             "div",
                             {

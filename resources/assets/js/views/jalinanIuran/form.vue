@@ -635,7 +635,7 @@
 				this.$store.dispatch('anggotaCu/getCuKeluar', this.idCu);
 				this.$store.dispatch(this.kelas + '/create', [this.idCu, this.periodeBulan, this.periodeTahun]);
 			},
-			fetchCU(){
+		fetchCU(){
 				if(this.modelCuStat != 'success'){
 					this.$store.dispatch('cu/getHeader');
 				}

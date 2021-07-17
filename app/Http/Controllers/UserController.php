@@ -99,6 +99,16 @@ class UserController extends Controller
 		'update_aktivis',
 		'destroy_aktivis',
 
+		'index_dokumen',
+		'create_dokumen',
+		'update_dokumen',
+		'destroy_dokumen',
+
+		'index_dokumen_kategori',
+		'create_dokumen_kategori',
+		'update_dokumen_kategori',
+		'destroy_dokumen_kategori',
+
 		'index_aset_tetap',
 		'create_aset_tetap',
 		'update_aset_tetap',

@@ -363,12 +363,13 @@
 
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.id_provinces')}">
-												<i class="icon-cross2" v-if="errors.has('form.id_provinces')"></i>
-												Provinsi: <wajib-badge></wajib-badge>
+												<!-- <i class="icon-cross2" v-if="errors.has('form.id_provinces')"></i> -->
+												Provinsi: 
+												<!-- <wajib-badge></wajib-badge> -->
 											</h5>
 
 											<!-- select -->
-											<select class="form-control" name="id_provinces" v-model="form.id_provinces" data-width="100%" v-validate="'required'" data-vv-as="Provinsi" :disabled="modelProvinces.length === 0" @change="changeProvinces($event.target.value)">
+											<select class="form-control" name="id_provinces" v-model="form.id_provinces" data-width="100%" data-vv-as="Provinsi" :disabled="modelProvinces.length === 0" @change="changeProvinces($event.target.value)">
 												<option disabled value="">
 													<span v-if="modelProvincesStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih provinsi</span>
@@ -377,10 +378,10 @@
 											</select>
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.id_provinces')">
+											<!-- <small class="text-muted text-danger" v-if="errors.has('form.id_provinces')">
 												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_provinces') }}
 											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
+											<small class="text-muted" v-else>&nbsp;</small> -->
 										</div>
 									</div>
 
@@ -390,12 +391,13 @@
 
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.id_regencies')}">
-												<i class="icon-cross2" v-if="errors.has('form.id_regencies')"></i>
-												Kabupaten: <wajib-badge></wajib-badge>
+												<!-- <i class="icon-cross2" v-if="errors.has('form.id_regencies')"></i> -->
+												Kabupaten: 
+												<!-- <wajib-badge></wajib-badge> -->
 											</h5>
 
 											<!-- select -->
-											<select class="form-control"  name="id_regencies" v-model="form.id_regencies" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
+											<select class="form-control"  name="id_regencies" v-model="form.id_regencies" data-width="100%" data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
 												<option disabled value="">
 													<span v-if="modelRegenciesStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih kabupaten</span>
@@ -404,10 +406,10 @@
 											</select>
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.id_regencies')">
+											<!-- <small class="text-muted text-danger" v-if="errors.has('form.id_regencies')">
 												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_regencies') }}
 											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
+											<small class="text-muted" v-else>&nbsp;</small> -->
 										</div>
 									</div>
 
@@ -417,13 +419,14 @@
 
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.id_tempat')}">
-												<i class="icon-cross2" v-if="errors.has('form.id_tempat')"></i>
-												Tempat: <wajib-badge></wajib-badge>
+												<!-- <i class="icon-cross2" v-if="errors.has('form.id_tempat')"></i> -->
+												Tempat: 
+												<!-- <wajib-badge></wajib-badge> -->
 											</h5>
 
 											<div class="input-group">
 												<!-- select -->
-												<select class="form-control" name="id_tempat" v-model="form.id_tempat" v-validate="'required'" data-vv-as="Tempat" :disabled="!form.id_regencies" @change="changeTempat($event.target.value)">
+												<select class="form-control" name="id_tempat" v-model="form.id_tempat"  data-vv-as="Tempat" :disabled="!form.id_regencies" @change="changeTempat($event.target.value)">
 													<option disabled value="">
 														<span v-if="modelTempatStat === 'loading'">Mohon tunggu...</span>
 														<span v-else>Silahkan pilih tempat</span>
@@ -442,17 +445,17 @@
 											</div>
 										
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.id_tempat')">
+											<!-- <small class="text-muted text-danger" v-if="errors.has('form.id_tempat')">
 												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_tempat') }}
 											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
+											<small class="text-muted" v-else>&nbsp;</small> -->
 										</div>
 									</div>
 
 									<!-- tempat data -->
 									<div class="col-md-12" v-if="form.tipe_tempat == 'OFFLINE' && tempatData != ''">
 
-										<div class="card card-body">
+										<div class="card card-body" v-if="tempatData">
 											<div class="media flex-column flex-sm-row mt-0 mb-3">
 												<div class="mr-sm-3 mb-2 mb-sm-0">
 													<div class="card-img-actions">

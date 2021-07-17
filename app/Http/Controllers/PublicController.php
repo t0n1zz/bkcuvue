@@ -274,6 +274,7 @@ class PublicController extends Controller
     public function testroute()
     {    
         abort(404);
+
         // $cu = 4;
         // $tp = 31;  
         // $kelas = \App\AnggotaCu::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp')->whereHas('anggota_cu_cu_not_keluar', function($query) use ($cu, $tp){ 
@@ -318,10 +319,10 @@ class PublicController extends Controller
 		// 	]);
 
 		// create permission
-        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_voting']); 
-        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_voting']); 
-        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_voting']); 
-		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_voting']);
+        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_dokumen']); 
+        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_dokumen']); 
+        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_dokumen']); 
+		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_dokumen']);
 		
 		// give permission
 		// $users = App\User::where('id','!=',1)->where('id_cu',0)->get();

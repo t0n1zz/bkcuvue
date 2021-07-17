@@ -65,7 +65,7 @@
 		</data-viewer>
 
 		<!-- divider -->
-		<hr>
+		<hr v-if="isModal">
 		
 		<!-- tombol desktop-->
 		<div class="text-center d-none d-md-block" v-if="isModal">
@@ -184,15 +184,6 @@
 			}
 		},
 		methods: {
-			save(){
-				this.$validator.validateAll('formData').then((result) => {
-					if (result) {
-						this.$store.dispatch(this.kelas + '/update',[this.selectedItem.id, this.formData]);
-					}else{
-						this.submited = true;
-					}	
-				});
-			},
 			selectedRow(item){
 				this.selectedItemRow = item;
 			},
@@ -211,8 +202,6 @@
 			...mapGetters('asetTetap',{
 				itemData: 'dataS2',
 				itemDataStat: 'dataStatS2',
-				updateResponse: 'update',
-				updateStat: 'updateStat',
 			}),
 		}
 	}

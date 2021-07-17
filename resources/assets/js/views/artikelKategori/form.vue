@@ -21,7 +21,7 @@
 								<div class="row">
 
 									<!-- name -->
-									<div class="col-md-6">
+									<div class="col-md-12">
 										<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
 
 											<!-- title -->
@@ -41,7 +41,7 @@
 									</div>
 
 									<!-- CU -->
-									<div class="col-md-6" v-if="currentUser.id_cu == 0">
+									<div class="col-md-12" v-if="currentUser.id_cu == 0">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
 
 											<!-- title -->
@@ -76,7 +76,7 @@
 											</h5>
 
 											<!-- textarea -->
-											<textarea rows="5" type="text" name="penulisDeskripsi" class="form-control" placeholder="Silahkan masukkan keterangan kategori" v-model="form.deskripsi"></textarea>
+											<textarea rows="5" type="text" name="deskripsi" class="form-control" placeholder="Silahkan masukkan keterangan kategori" v-model="form.deskripsi"></textarea>
 
 										</div>
 									</div>

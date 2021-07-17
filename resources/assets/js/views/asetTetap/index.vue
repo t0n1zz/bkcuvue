@@ -44,7 +44,7 @@
 				title: 'Aset Tetap',
 				kelas: 'asetTetap',
 				titleDesc: 'Mengelola data aset tetap',
-				titleIcon: 'icon-drawer3',
+				titleIcon: 'icon-bag',
 			}
 		},
 		created(){
