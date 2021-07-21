@@ -865,16 +865,16 @@
 
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'arsip'}">
 
-									<router-link :to="{ name: 'dokumenPus', params:{cu: '0'} }" class="dropdown-item" active-class="active" exact>
-										Dokumen PUSKOPCUINA
+									<router-link :to="{ name: 'dokumenGerakanPublik', params:{cu: 'semua'} }" class="dropdown-item" active-class="active" exact>
+										Dokumen GERAKAN & PUBLIK
 									</router-link>
 
 									<router-link :to="{ name: 'dokumenCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_dokumen'] && currentUser.id_cu != 0">
-										Dokumen CU
+										Dokumen 
 									</router-link>
 
 									<router-link :to="{ name: 'dokumenCu', params:{cu: 'semua'} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_dokumen'] && currentUser.id_cu == 0">
-										Dokumen CU
+										Dokumen
 									</router-link>
 
 									<router-link :to="{ name: 'dokumenKategoriCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_dokumen_kategori'] && currentUser.id_cu != 0">

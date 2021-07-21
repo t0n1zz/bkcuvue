@@ -56,8 +56,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 
@@ -91,7 +89,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
 
         if (!id_cu || this.currentUser.id_cu) {
-          if (this.$route.meta.mode != 'pus') {
+          if (this.$route.meta.mode != 'gerakanPublik') {
             if (this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu) {
               this.$router.push('/notFound');
             }
@@ -100,12 +98,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     checkMode: function checkMode() {
-      if (this.$route.meta.mode == 'pus') {
-        this.title = 'Dokumen PUSKOPCUINA';
-        this.titleDesc = 'Mengelola data dokumen PUSKOPCUINA';
+      if (this.$route.meta.mode == 'gerakanPublik') {
+        this.title = 'Dokumen Gerakan & Publik';
+        this.titleDesc = 'Mengelola data dokumen gerakan & publik';
       } else {
-        this.title = 'Dokumen CU';
-        this.titleDesc = 'Mengelola data dokumen CU';
+        this.title = 'Dokumen';
+        this.titleDesc = 'Mengelola data dokumen';
       }
     }
   },
@@ -384,19 +382,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     fetch: function fetch(params) {
-      if (this.$route.params.cu == 'semua') {
-        this.disableColumnCu(false);
-        this.$store.dispatch(this.kelas + '/index', params);
-        this.excelDownloadUrl = this.kelas;
-      } else {
-        this.disableColumnCu(true);
-        this.$store.dispatch(this.kelas + '/indexCu', [params, this.$route.params.cu]);
-        this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu;
-
-        if (this.$route.params.cu != 0 && this.currentUser.idCu == 0) {
-          this.columnData[3].disable = false;
+      if (this.$route.meta.mode != 'gerakanPublik') {
+        if (this.$route.params.cu == 'semua') {
+          this.disableColumnCu(false);
+          this.$store.dispatch(this.kelas + '/index', params);
+          this.excelDownloadUrl = this.kelas;
         } else {
-          this.columnData[3].disable = true;
+          this.disableColumnCu(true);
+          this.$store.dispatch(this.kelas + '/indexCu', [params, this.$route.params.cu]);
+          this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu;
+        }
+      } else {
+        if (this.$route.params.cu == 'semua') {
+          this.disableColumnCu(false);
+          this.$store.dispatch(this.kelas + '/indexGerakanPublik', params);
+          this.excelDownloadUrl = this.kelas;
+        } else {
+          this.disableColumnCu(true);
+          this.$store.dispatch(this.kelas + '/indexGerakanPublikCu', [params, this.$route.params.cu]);
+          this.excelDownloadUrl = this.kelas + '/indexGerakanPublikCu/' + this.$route.params.cu;
         }
       }
     },
@@ -503,25 +507,21 @@ var render = function() {
                   })
                 : _vm._e(),
               _vm._v(" "),
-              this.$route.meta.mode != "pus"
-                ? [
-                    _vm.currentUser.id_cu == 0
-                      ? _c("select-cu", {
-                          attrs: {
-                            kelas: _vm.kelas,
-                            path: _vm.selectCuPath,
-                            isPus: true
-                          }
-                        })
-                      : _vm._e()
-                  ]
+              _vm.currentUser.id_cu == 0
+                ? _c("select-cu", {
+                    attrs: {
+                      kelas: _vm.kelas,
+                      path: _vm.selectCuPath,
+                      isPus: true
+                    }
+                  })
                 : _vm._e(),
               _vm._v(" "),
               _c("table-data", {
                 attrs: { title: _vm.title, kelas: _vm.kelas }
               })
             ],
-            2
+            1
           )
         ])
       ])
@@ -716,7 +716,7 @@ var render = function() {
             "template",
             { slot: "button-desktop" },
             [
-              _vm.$route.meta.mode != "pus"
+              _vm.$route.meta.mode != "gerakanPublik"
                 ? [
                     _vm.currentUser.can &&
                     _vm.currentUser.can["create_" + _vm.kelas]
@@ -786,11 +786,7 @@ var render = function() {
                       on: {
                         click: function($event) {
                           $event.preventDefault()
-                          return _vm.downloadMateri(
-                            _vm.selectedItem.tipe != "pdf"
-                              ? _vm.selectedItem.filename + ".jpg"
-                              : _vm.selectedItem.filename
-                          )
+                          return _vm.downloadMateri(_vm.selectedItem.filename)
                         }
                       }
                     },
@@ -834,7 +830,7 @@ var render = function() {
             "template",
             { slot: "button-mobile" },
             [
-              _vm.$route.meta.mode != "pus"
+              _vm.$route.meta.mode != "gerakanPublik"
                 ? [
                     _vm.currentUser.can &&
                     _vm.currentUser.can["create_" + _vm.kelas]
@@ -904,11 +900,7 @@ var render = function() {
                       on: {
                         click: function($event) {
                           $event.preventDefault()
-                          return _vm.downloadMateri(
-                            _vm.selectedItem.tipe != "pdf"
-                              ? _vm.selectedItem.filename + ".jpg"
-                              : _vm.selectedItem.filename
-                          )
+                          return _vm.downloadMateri(_vm.selectedItem.filename)
                         }
                       }
                     },

@@ -9,6 +9,7 @@ use Response;
 use App\Artikel;
 use App\Kegiatan;
 use App\Download;
+use App\Dokumen;
 use App\ArtikelPenulis;
 use App\ArtikelKategori;
 use App\Region\Provinces;
@@ -237,7 +238,10 @@ class PublicController extends Controller
         $title = "Dokumen";
         $subtitle = 'Menampilkan ' . $title;
 
-        $dokumens = Download::all();
+        $dokumens = Dokumen::select('id','id_cu','name','status','filename','keterangan','tipe','format','link')
+		->where('status','PUBLIK')
+		->where('id_cu',0)
+        ->get();
 
         SEO::setTitle($title . ' - PUSKOPCUINA');
         SEO::setDescription($subtitle);
@@ -248,7 +252,7 @@ class PublicController extends Controller
     }
 
     public function download_file($filename){
-        $destinationPath = public_path() . "/files/";
+        $destinationPath = public_path() . "/files/dokumen/";
         $file= $destinationPath . $filename;
 
         return Response::download($file);

@@ -110,7 +110,7 @@
 									</div>
 
 									<!-- status -->
-									<div class="col-md-6" v-if="form.id_cu == 0">
+									<div class="col-md-6">
 										<div class="form-group" :class="{'has-error' : errors.has('form.status')}">
 
 											<!-- title -->
@@ -122,8 +122,9 @@
 											<!-- select -->
 											<select name="status" data-width="100%" class="form-control" v-model="form.status">
 												<option disabled value="">Silahkan pilih status</option>
-												<option value="UMUM">UMUM - Dapat dilihat semua user</option>
-												<option value="KHUSUS">KHUSUS - Hanya dilihat oleh user sesuai pilihan di CU</option>
+												<option value="PUBLIK">PUBLIK - Dapat dilihat semua user SIMO dan di website</option>
+												<option value="GERAKAN">GERAKAN - Dapat dilihat semua user SIMO</option>
+												<option value="INTERNAL">INTERNAL - Hanya dilihat oleh semua user lembaga/CU yang membuat dokumen ini</option>
 											</select>
 
 											<!-- error message -->
@@ -403,9 +404,6 @@
 			},
 			changeCU(id){
 				this.$store.dispatch('dokumenKategori/getCu', id);
-				if(id != 0){
-					this.form.status = 'KHUSUS';
-				}
 			},
 			back(){
 				if(this.currentUser.id_cu == 0){

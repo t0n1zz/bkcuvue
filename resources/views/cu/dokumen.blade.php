@@ -7,21 +7,23 @@
 @section('content')
 
 <!-- pengumuman -->
-@include('_components.pengumumanBKCU')
+@include('_components.pengumumanCU')
 
-<!-- page title -->
+@php $subdomain = Route::input('cu') @endphp 
+
+<!-- Page Title -->
 <section id="page-title">
 
   <div class="container clearfix">
     <h1>{{ $title }}</h1>
     <span>{{ $subtitle }}</span>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+      <li class="breadcrumb-item"><a href="{{ route('home.cu', $subdomain) }}">Home</a></li>
       <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
     </ol>
   </div>
 
-</section>
+</section><!-- #page-title end -->
 
 <!-- content -->
 <section id="content">
@@ -41,7 +43,11 @@
               <br/>
             @endif
             @if($item->format == 'upload')
-              <a href="{{ route('file', $item->filename )}}" class="button button-large button-dark button-rounded">Download</a>
+              @if(!empty($item->filename))
+                <a href="{{ route('file', $item->filename )}}" class="button button-large button-dark button-rounded">Download</a>
+              @else
+                <a href="#" class="button button-large button-dark button-rounded">FILE TIDAK DITEMUKAN</a>
+              @endif
             @else
               <a href="{{ $item->link }}" class="button button-large button-dark button-rounded" target="_blank">Download</a>
             @endif

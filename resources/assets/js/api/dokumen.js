@@ -8,6 +8,14 @@ export default {
     return axios.get('/api/dokumen/indexCu/' + id, {params: p});
   },
 
+  indexGerakanPublik: function( p ){
+    return axios.get('/api/dokumen/indexGerakanPublik' ,{params: p});
+  },
+
+  indexGerakanPublikCu: function( p, id ){
+    return axios.get('/api/dokumen/indexGerakanPublikCu/' + id, {params: p});
+  },
+
   create: function(){
     return axios.get('/api/dokumen/create');
   },

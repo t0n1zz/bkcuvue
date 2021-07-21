@@ -32,27 +32,46 @@ class DokumenController extends Controller{
 
 	public function indexCu($cu)
 	{
-		$id_cu = \Auth::user()->id_cu;
+		$table_data = Dokumen::with('kategori','Cu')->select('id','id_cu','name','id_dokumen_kategori','status','filename','keterangan','tipe','format','link','created_at','updated_at',
+		DB::raw(
+			'(SELECT name FROM cu WHERE dokumen.id_cu = cu.id) as cu_name,
+			(SELECT name FROM dokumen_kategori WHERE dokumen.id_dokumen_kategori = dokumen_kategori.id) as kategori_name'
+		))
+		->where('id_cu',$cu)
+		->advancedFilter();
 
-		if($cu == 0 && $id_cu != 0){
-			$table_data = Dokumen::with('kategori','Cu')->select('id','id_cu','name','id_dokumen_kategori','status','filename','keterangan','tipe','format','link','created_at','updated_at',
-			DB::raw(
-				'(SELECT name FROM cu WHERE dokumen.id_cu = cu.id) as cu_name,
-				(SELECT name FROM dokumen_kategori WHERE dokumen.id_dokumen_kategori = dokumen_kategori.id) as kategori_name'
-			))
-			->where('status','UMUM')
-			->where('id_cu',$cu)
-			->advancedFilter();
-		}else{
-			$table_data = Dokumen::with('kategori','Cu')->select('id','id_cu','name','id_dokumen_kategori','status','filename','keterangan','tipe','format','link','created_at','updated_at',
-			DB::raw(
-				'(SELECT name FROM cu WHERE dokumen.id_cu = cu.id) as cu_name,
-				(SELECT name FROM dokumen_kategori WHERE dokumen.id_dokumen_kategori = dokumen_kategori.id) as kategori_name'
-			))
-			->where('id_cu',$cu)
-			->advancedFilter();
-		}
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
 
+	public function indexGerakanPublik()
+	{
+		$table_data = Dokumen::with('kategori','Cu')->select('id','id_cu','name','id_dokumen_kategori','status','filename','keterangan','tipe','format','link','created_at','updated_at',
+		DB::raw(
+			'(SELECT name FROM cu WHERE dokumen.id_cu = cu.id) as cu_name,
+			(SELECT name FROM dokumen_kategori WHERE dokumen.id_dokumen_kategori = dokumen_kategori.id) as kategori_name'
+		))
+		->where('status', '!=' , 'INTERNAL')
+		->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexGerakanPublikCu($cu)
+	{
+		$table_data = Dokumen::with('kategori','Cu')->select('id','id_cu','name','id_dokumen_kategori','status','filename','keterangan','tipe','format','link','created_at','updated_at',
+		DB::raw(
+			'(SELECT name FROM cu WHERE dokumen.id_cu = cu.id) as cu_name,
+			(SELECT name FROM dokumen_kategori WHERE dokumen.id_dokumen_kategori = dokumen_kategori.id) as kategori_name'
+		))
+		->where('status', '!=' , 'INTERNAL')
+		->where('id_cu',$cu)
+		->advancedFilter();
 
 		return response()
 		->json([
@@ -83,13 +102,9 @@ class DokumenController extends Controller{
 			$file = $request->content;
 			
 			$fileExtension = $file->getClientOriginalExtension();
-			if($fileExtension != 'pdf'){
-				$formatedName = Helper::image_processing($this->filepath,$this->width,$this->height,$file,'',$name);
-			}else{
-				$filename = $file->getClientOriginalName();
-				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). $fileExtension;
-				$file->move($this->filepath,$formatedName);
-			}
+			$filename = $file->getClientOriginalName();
+			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
+			$file->move($this->filepath,$formatedName);
 		}
 
 		$kelas = Dokumen::create([ 
@@ -155,12 +170,7 @@ class DokumenController extends Controller{
 		$name = $kelas->name;
 
 		if(!empty($kelas->filename)){
-			if($format == 'jpg'){
-				File::delete($filepath . $kelas->filename . '.jpg');
-				File::delete($filepath . $kelas->filename . 'n.jpg');
-			}else{
-				File::delete($filepath . $kelas->filename);
-			}
+			File::delete($filepath . $kelas->filename);
 		}
 
 		$kelas->delete();

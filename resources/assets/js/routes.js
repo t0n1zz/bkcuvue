@@ -408,10 +408,10 @@ const routes = [
 		meta: { requiresAuth: true }},	
 
 	// dokumen
-	{ path: '/dokumen/pus/:cu',
-		name: 'dokumenPus', 
+	{ path: '/dokumen/gerakan/publik/:cu',
+		name: 'dokumenGerakanPublik', 
 		components: { default: dokumen, 'header': header, 'footer': footer }, 
-		meta: { requiresAuth:true, mode:'pus' }},
+		meta: { requiresAuth:true, mode:'gerakanPublik' }},
 	{ path: '/dokumen/cu/:cu',
 		name: 'dokumenCu', 
 		components: { default: dokumen, 'header': header, 'footer': footer }, 

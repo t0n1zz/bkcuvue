@@ -8,7 +8,7 @@
 
 			<template slot="button-desktop">
 
-				<template v-if="$route.meta.mode != 'pus'">
+				<template v-if="$route.meta.mode != 'gerakanPublik'">
 
 					<!-- tambah -->
 					<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['create_' + kelas]">
@@ -29,7 +29,7 @@
 				</template>
 
 				<!-- lihat -->
-				<button @click.prevent="downloadMateri(selectedItem.tipe != 'pdf' ? selectedItem.filename + '.jpg' : selectedItem.filename)" class="btn btn-light mb-1" :disabled="!selectedItem.id" v-if="selectedItem.format == 'upload'">
+				<button @click.prevent="downloadMateri(selectedItem.filename)" class="btn btn-light mb-1" :disabled="!selectedItem.id" v-if="selectedItem.format == 'upload'">
 					<i class="icon-file-eye"></i> Lihat
 				</button>
 				<a type="button" class="btn btn-light mb-1" :href="selectedItem.link" target="_blank" v-else-if="selectedItem.format == 'link'">
@@ -44,7 +44,7 @@
 			<!-- button mobile -->
 			<template slot="button-mobile">
 				
-				<template v-if="$route.meta.mode != 'pus'">
+				<template v-if="$route.meta.mode != 'gerakanPublik'">
 
 					<!-- tambah -->
 					<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['create_' + kelas]">
@@ -65,7 +65,7 @@
 				</template>
 
 				<!-- lihat -->
-				<button @click.prevent="downloadMateri(selectedItem.tipe != 'pdf' ? selectedItem.filename + '.jpg' : selectedItem.filename)" class="btn btn-light btn-block mb-1" :disabled="!selectedItem.id" v-if="selectedItem.format == 'upload'">
+				<button @click.prevent="downloadMateri(selectedItem.filename)" class="btn btn-light btn-block mb-1" :disabled="!selectedItem.id" v-if="selectedItem.format == 'upload'">
 					<i class="icon-file-eye"></i> Lihat
 				</button>
 				<a type="button" class="btn btn-light btn-block mb-1" :href="selectedItem.link" target="_blank" v-else-if="selectedItem.format == 'link'">
@@ -255,19 +255,25 @@
 		},
 		methods: {
 			fetch(params){
-				if(this.$route.params.cu == 'semua'){
-					this.disableColumnCu(false);
-					this.$store.dispatch(this.kelas + '/index', params);
-					this.excelDownloadUrl = this.kelas;
-				}else{
-					this.disableColumnCu(true);
-					this.$store.dispatch(this.kelas + '/indexCu', [params, this.$route.params.cu]);
-					this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu;
-
-					if(this.$route.params.cu != 0 && this.currentUser.idCu == 0){
-						this.columnData[3].disable = false;
+				if(this.$route.meta.mode != 'gerakanPublik'){
+					if(this.$route.params.cu == 'semua'){
+						this.disableColumnCu(false);
+						this.$store.dispatch(this.kelas + '/index', params);
+						this.excelDownloadUrl = this.kelas;
 					}else{
-						this.columnData[3].disable = true;
+						this.disableColumnCu(true);
+						this.$store.dispatch(this.kelas + '/indexCu', [params, this.$route.params.cu]);
+						this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu;
+					}
+				}else{
+					if(this.$route.params.cu == 'semua'){
+						this.disableColumnCu(false);
+						this.$store.dispatch(this.kelas + '/indexGerakanPublik', params);
+						this.excelDownloadUrl = this.kelas;
+					}else{
+						this.disableColumnCu(true);
+						this.$store.dispatch(this.kelas + '/indexGerakanPublikCu', [params, this.$route.params.cu]);
+						this.excelDownloadUrl = this.kelas + '/indexGerakanPublikCu/' + this.$route.params.cu;
 					}
 				}
 			},

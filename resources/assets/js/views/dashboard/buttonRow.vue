@@ -111,13 +111,13 @@
     </div>
 
 		<!-- dokumen PUSKOPCUINA -->
-    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer"  @click.prevent="goTo(dokumenPUSKOPCUINAWidgetRoute)">
-      <count-widget :title="'Dokumen PUSKOPCUINA'" :color="'bg-violet-400'" :icon="'icon-books'"></count-widget>
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer"  @click.prevent="goTo(dokumenGerakanPublikWidgetRoute)">
+      <count-widget :title="'Dokumen GERAKAN & PUBLIK'" :color="'bg-violet-400'" :icon="'icon-books'"></count-widget>
     </div>
 
 		<!-- dokumen -->
     <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_dokumen']" @click.prevent="goTo(dokumenWidgetRoute)">
-      <count-widget :title="'Dokumen CU'" :color="'bg-info-400'" :icon="'icon-books'"></count-widget>
+      <count-widget :title="'Dokumen'" :color="'bg-info-400'" :icon="'icon-books'"></count-widget>
     </div>
 
 		<!-- aset tetap -->
@@ -177,7 +177,7 @@
 				laporanGerakanWidgetRoute: {},
 				assesmentAccessWidgetRoute: {},
 				monitoringAccessWidgetRoute: {},
-				dokumenPUSKOPCUINAWidgetRoute: {},
+				dokumenGerakanPublikWidgetRoute: {},
 				dokumenWidgetRoute: {},
 				asetTetapWidgetRoute: {},
 			}
@@ -201,7 +201,7 @@
 				this.mitraLembagaWidgetRoute = { name: 'mitraLembaga' };
 				this.userWidgetRoute = { name: 'userCu', params:{cu: this.currentUser.id_cu} };
 				this.kegiatanBKCUJalanWidgetRoute = { name: 'kegiatanBKCUJalan' };
-				this.dokumenPUSKOPCUINAWidgetRoute = { name: 'dokumenPus', params:{cu: '0'} };
+				this.dokumenGerakanPublikWidgetRoute = { name: 'dokumenGerakanPublik', params:{cu: 'semua'} };
 
 				if(this.currentUser.id_cu != 0){
 					this.anggotaCuWidgetRoute = { name: 'anggotaCuCu', params:{cu: this.currentUser.id_cu, tp: 'semua'} };

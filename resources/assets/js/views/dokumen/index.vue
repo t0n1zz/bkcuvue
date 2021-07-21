@@ -16,13 +16,11 @@
 					</message>
 
 					<!-- select data -->
-					<template v-if="this.$route.meta.mode != 'pus'">
-						<select-cu 
-							:kelas="kelas"
-							:path="selectCuPath"
-							:isPus="true"
-							v-if="currentUser.id_cu == 0"></select-cu>
-					</template>	
+					<select-cu 
+						:kelas="kelas"
+						:path="selectCuPath"
+						:isPus="true"
+						v-if="currentUser.id_cu == 0"></select-cu>
 
 					<!-- table data -->
 					<table-data 
@@ -70,7 +68,7 @@
 						this.$router.push('/notFound');
 					}
 					if(!id_cu || this.currentUser.id_cu){
-						if(this.$route.meta.mode != 'pus'){
+						if(this.$route.meta.mode != 'gerakanPublik'){
 							if(this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu){
 								this.$router.push('/notFound');
 							}
@@ -79,12 +77,12 @@
 				}
 			},
 			checkMode(){
-				if(this.$route.meta.mode == 'pus'){
-					this.title = 'Dokumen PUSKOPCUINA';
-					this.titleDesc = 'Mengelola data dokumen PUSKOPCUINA';
+				if(this.$route.meta.mode == 'gerakanPublik'){
+					this.title = 'Dokumen Gerakan & Publik';
+					this.titleDesc = 'Mengelola data dokumen gerakan & publik';
 				}else{
-					this.title = 'Dokumen CU';
-					this.titleDesc = 'Mengelola data dokumen CU';
+					this.title = 'Dokumen';
+					this.titleDesc = 'Mengelola data dokumen';
 				}
 			}
 		},

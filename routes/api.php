@@ -399,6 +399,8 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         //dokumen
         Route::get('/dokumen/count', 'DokumenController@count');
         Route::get('/dokumen/history', 'DokumenController@history');
+        Route::get('/dokumen/indexGerakanPublik', 'DokumenController@indexGerakanPublik');
+        Route::get('/dokumen/indexGerakanPublikCu/{id}', 'DokumenController@indexGerakanPublikCu');
         Route::group(['middleware' => ['permission:index_dokumen']], function () {
             Route::get('/dokumen/', 'DokumenController@index');
             Route::get('/dokumen/indexCu/{id}', 'DokumenController@indexCu');

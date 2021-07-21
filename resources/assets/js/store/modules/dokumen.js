@@ -63,6 +63,36 @@ export const dokumen = {
         });
     },
 
+    indexGerakanPublik( { commit }, p ){
+      commit('setDataStatS', 'loading');
+      
+      
+      DokumenAPI.indexGerakanPublik( p )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
+    // load by cu
+    indexGerakanPublikCu( { commit }, [p, id] ){
+      commit('setDataStatS', 'loading');
+      
+      DokumenAPI.indexGerakanPublikCu( p, id )
+        .then( function( response ){
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     create( {commit} ){
       commit('setDataStat', 'loading');
       

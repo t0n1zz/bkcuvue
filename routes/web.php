@@ -60,12 +60,18 @@ Route::group(['middleware' => 'throttle:60,10'], function () {
 
 		// produk
 		Route::get('/produk',array( 'as' => 'produk','uses' => 'PublicCuController@produk'));
+
+		// dokumen
+		Route::get('dokumen',array('as' => 'dokumen','uses' => 'PublicCuController@dokumen'));
+		Route::get('download/{filename}',array('as' => 'file','uses' => 'PublicCuController@download_file'));
+
 	};
 
 	Route::group(array('domain' => '{cu}.bkcuvue.test'), $appSubRoutes);
 
 	// admins
 	Route::get('/admins/{vue?}','PublicController@admins')->where('vue', '^(?!.*api).*$[\/\w\.-]*');
+	
 
 	// test route
 	Route::get('/testroute','PublicController@testroute');
