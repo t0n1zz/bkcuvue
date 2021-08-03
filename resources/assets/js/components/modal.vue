@@ -6,7 +6,7 @@
 				<div class="modal-show" v-if="show">
 					<div class="modal-dialog" :class="size" @click.stop>
 						<div class="modal-content">
-							<div class="modal-header" :class="color" v-if="state === 'normal1' || state === 'normal2' || state === 'normal3'">
+							<div class="modal-header" :class="color" v-if="state === 'normal1' || state === 'normal2' || state === 'normal3' || state === 'normal4'">
 								<h6 class="modal-title">
 									<slot name="modal-title"></slot>
 								</h6>
@@ -188,6 +188,14 @@
 										<slot name="modal-body3"></slot>
 										<div class="modal-footer no-padding">
 											<slot name="modal-footer3"></slot>
+										</div>
+									</div>
+
+									<!-- normal4 -->
+									<div v-else-if="state === 'normal4'" key="normal4">
+										<slot name="modal-body4"></slot>
+										<div class="modal-footer no-padding">
+											<slot name="modal-footer4"></slot>
 										</div>
 									</div>
 

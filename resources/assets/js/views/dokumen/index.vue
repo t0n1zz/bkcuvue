@@ -1,37 +1,38 @@
 <template>
-	<div>
-		<!-- Page header -->
-		<page-header 
-		:title="title" 
-		:titleDesc="titleDesc" 
-		:titleIcon="titleIcon"></page-header>
-		
-		<!-- page container -->
-		<div class="page-content pt-0">
-			<div class="content-wrapper">
-				<div class="content">
+  <div>
+    <!-- Page header -->
+    <page-header
+      :title="title"
+      :titleDesc="titleDesc"
+      :titleIcon="titleIcon"
+    ></page-header>
 
-					<!-- message -->
-					<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
-					</message>
+    <!-- page container -->
+    <div class="page-content pt-0">
+      <div class="content-wrapper">
+        <div class="content">
+          <!-- message -->
+          <message
+            v-if="itemDataStat === 'fail'"
+            :title="'Oops terjadi kesalahan:'"
+            :errorData="itemData"
+          >
+          </message>
 
-					<!-- select data -->
-					<select-cu 
-						:kelas="kelas"
-						:path="selectCuPath"
-						:isPus="true"
-						v-if="currentUser.id_cu == 0"></select-cu>
+          <!-- select data -->
+          <select-cu
+            :kelas="kelas"
+            :path="selectCuPath"
+            :isPus="true"
+            v-if="currentUser.id_cu == 0"
+          ></select-cu>
 
-					<!-- table data -->
-					<table-data 
-						:title="title" 
-						:kelas="kelas"></table-data>
-
-				</div>
-			</div>
-		</div>
-
-	</div>
+          <!-- table data -->
+          <table-data :title="title" :kelas="kelas"></table-data>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -58,7 +59,9 @@
 			}
 		},
 		created(){
-			this.checkUser('index_dokumen',this.$route.params.cu);
+			// if(this.$route.meta.mode != 'gerakanPublik'){
+			// 	this.checkUser('index_dokumen',this.$route.params.cu);
+			// }
 			this.checkMode();
 		},
 		methods: {
@@ -68,10 +71,8 @@
 						this.$router.push('/notFound');
 					}
 					if(!id_cu || this.currentUser.id_cu){
-						if(this.$route.meta.mode != 'gerakanPublik'){
-							if(this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu){
-								this.$router.push('/notFound');
-							}
+						if(this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu){
+							this.$router.push('/notFound');
 						}
 					}
 				}

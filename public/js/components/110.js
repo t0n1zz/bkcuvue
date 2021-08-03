@@ -56,6 +56,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -78,7 +79,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   created: function created() {
-    this.checkUser('index_dokumen', this.$route.params.cu);
+    // if(this.$route.meta.mode != 'gerakanPublik'){
+    // 	this.checkUser('index_dokumen',this.$route.params.cu);
+    // }
     this.checkMode();
   },
   methods: {
@@ -89,10 +92,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
 
         if (!id_cu || this.currentUser.id_cu) {
-          if (this.$route.meta.mode != 'gerakanPublik') {
-            if (this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu) {
-              this.$router.push('/notFound');
-            }
+          if (this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu) {
+            this.$router.push('/notFound');
           }
         }
       }

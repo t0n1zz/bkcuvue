@@ -119,6 +119,7 @@
             </div>
           </div>
 
+
           <!-- data produk -->
           <div class="col-md-12">
             <!-- produk list -->
@@ -324,6 +325,18 @@
           </div>
 
           <div class="col-md-12"><hr/></div>
+
+          <!-- duplicate -->
+          <div class="col-md-12">
+           <div class="alert bg-info text-white alert-styled-left" v-if="message">
+              <span class="font-weight-semibold">{{ message }}</span>
+            </div>
+
+            <div class="alert bg-warning text-white alert-styled-left" v-if="message2">
+              <span class="font-weight-semibold">{{ message2 }}</span>
+            </div>
+          </div>
+
 
           <template v-if="tipe == 'verifikasi' || tipe == 'lihat'">
             <div class="col-md-12">
@@ -1068,7 +1081,10 @@
       this.formStatus.surat_tanggal = this.selectedData.surat_tanggal;
       this.formStatus.surat_nomor = this.selectedData.surat_nomor;
       this.formStatus.cu_id = this.selectedData.anggota_cu_cu.cu_id;
+
       this.$store.dispatch('anggotaCu/indexProduk',[this.selectedData.anggota_cu_id, this.selectedData.anggota_cu_cu.cu_id]); 
+      this.$store.dispatch(this.kelas + '/getDuplicate',[this.selectedData.anggota_cu.name,this.selectedData.anggota_cu.tanggal_lahir, this.selectedData.tipe]);
+      this.$store.dispatch(this.kelas + '/getKlaimLama',[this.selectedData.anggota_cu.nik.trim(),this.selectedData.anggota_cu_cu_id]);
 		},
 		watch: {
       itemDataSaldoStat(value){
@@ -1209,6 +1225,10 @@
         modelVeriPilihManajemenStat: "dataStatS3",
       }),
       ...mapGetters('jalinanKlaim', {
+        message: 'message',
+				messageStat: 'messageStat',
+        message2: 'message2',
+				messageStat2: 'messageStat2',
         history: "history",
         historyStat: "historyStat",
 				modelVeriPengurus: "dataVeri1",

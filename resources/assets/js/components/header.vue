@@ -854,7 +854,7 @@
 							</router-link>
 						
 							<!-- divider -->
-							<div class="dropdown-divider" v-if="currentUser.can['index_aset_tetap'] || currentUser.can['index_aset_tetap_jenis'] || currentUser.can['index_aset_tetap_lokasi'] || currentUser.can['index_dokumen'] || currentUser.can['index_dokumen_kategori']"></div> 
+							<div class="dropdown-divider" v-if="currentUser.can['index_aset_tetap'] || currentUser.can['index_aset_tetap_jenis'] || currentUser.can['index_aset_tetap_lokasi'] || currentUser.can['index_dokumen_kategori']"></div> 
 
 
 							<!-- arsip -->
@@ -869,11 +869,11 @@
 										Dokumen GERAKAN & PUBLIK
 									</router-link>
 
-									<router-link :to="{ name: 'dokumenCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_dokumen'] && currentUser.id_cu != 0">
+									<router-link :to="{ name: 'dokumenCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.id_cu != 0">
 										Dokumen 
 									</router-link>
 
-									<router-link :to="{ name: 'dokumenCu', params:{cu: 'semua'} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_dokumen'] && currentUser.id_cu == 0">
+									<router-link :to="{ name: 'dokumenCu', params:{cu: 'semua'} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.id_cu == 0">
 										Dokumen
 									</router-link>
 

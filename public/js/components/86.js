@@ -1,1 +1,1569 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[86],{Ll3F:function(a,i,n){"use strict";var t=n("L2JU");function e(a,i){var n=Object.keys(a);if(Object.getOwnPropertySymbols){var t=Object.getOwnPropertySymbols(a);i&&(t=t.filter((function(i){return Object.getOwnPropertyDescriptor(a,i).enumerable}))),n.push.apply(n,t)}return n}function s(a,i,n){return i in a?Object.defineProperty(a,i,{value:n,enumerable:!0,configurable:!0,writable:!0}):a[i]=n,a}var l={props:{title:{default:""},titleIcon:{default:""},titleDesc:{default:""},level:{default:1},level2Title:{default:""},level2Route:{default:""}},methods:{level2Back:function(){this.$emit("level2Back")},route1:function(){this.btn1RouteParams?this.$router.push({name:this.btn1Route,params:{cu:this.btn1RouteParams}}):this.$router.push({name:this.btn1Route})},route2:function(){this.btn2RouteParams?this.$router.push({name:this.btn2Route,params:{cu:this.btn2RouteParams}}):this.$router.push({name:this.btn2Route})},route3:function(){this.btn3RouteParams?this.$router.push({name:this.btn3Route,params:{cu:this.btn3RouteParams}}):this.$router.push({name:this.btn3Route})}},computed:function(a){for(var i=1;i<arguments.length;i++){var n=null!=arguments[i]?arguments[i]:{};i%2?e(Object(n),!0).forEach((function(i){s(a,i,n[i])})):Object.getOwnPropertyDescriptors?Object.defineProperties(a,Object.getOwnPropertyDescriptors(n)):e(Object(n)).forEach((function(i){Object.defineProperty(a,i,Object.getOwnPropertyDescriptor(n,i))}))}return a}({},Object(t.b)("auth",{currentUser:"currentUser"}))},r=n("KHd+"),d=Object(r.a)(l,(function(){var a=this,i=a.$createElement,n=a._self._c||i;return n("div",[n("div",{staticClass:"page-header"},[n("div",{staticClass:"page-header-content header-elements-md-inline"},[n("div",{staticClass:"page-title d-flex"},[n("h4",[n("i",{staticClass:"mr-2",class:a.titleIcon}),a._v(" "),n("span",{staticClass:"font-weight-semibold"},[a._v(a._s(a.title))]),a._v(" "),n("small",{staticClass:"d-block text-muted"},[a._v(a._s(a.titleDesc))])])]),a._v(" "),n("div",{staticClass:"header-elements d-none py-0 mb-3 mb-md-0"},[1===a.level?n("div",{staticClass:"breadcrumb"},[n("router-link",{staticClass:"breadcrumb-item",attrs:{to:{name:"dashboard"}}},[n("i",{staticClass:"icon-home4"}),a._v("  Dashboard ")]),a._v(" "),n("span",{staticClass:"breadcrumb-item active"},[a._v(a._s(a.title))])],1):a._e(),a._v(" "),2===a.level?n("div",{staticClass:"breadcrumb"},[n("router-link",{staticClass:"breadcrumb-item",attrs:{to:{name:"dashboard"}}},[n("i",{staticClass:"icon-home4"}),a._v(" Dashboard ")]),a._v(" "),n("a",{staticClass:"breadcrumb-item",attrs:{href:"#"},on:{click:function(i){return i.preventDefault(),a.level2Back()}}},[a._v(a._s(a.level2Title))]),a._v(" "),n("span",{staticClass:"breadcrumb-item active"},[a._v(a._s(a.title))])],1):a._e(),a._v(" "),3===a.level?n("div",{staticClass:"breadcrumb"},[a._t("breadcrumb")],2):a._e()])])])])}),[],!1,null,null,null);i.a=d.exports},s1CS:function(a,i,n){"use strict";n.r(i);var t={components:{pageHeader:n("Ll3F").a},data:function(){return{title:"Changelog",titleDesc:"Sejarah penambahan fitur dan perbaikan pada sistem",titleIcon:"icon-list"}},created:function(){window.scrollTo(0,0)}},e=n("KHd+"),s=Object(e.a)(t,(function(){var a=this.$createElement,i=this._self._c||a;return i("div",[i("page-header",{attrs:{title:this.title,titleDesc:this.titleDesc,titleIcon:this.titleIcon}}),this._v(" "),this._m(0)],1)}),[function(){var a=this,i=a.$createElement,n=a._self._c||i;return n("div",{staticClass:"page-content pt-0"},[n("div",{staticClass:"content-wrapper"},[n("div",{staticClass:"content"},[n("div",{staticClass:"card-group-control card-group-control-right",attrs:{id:"accordion-control-right"}},[n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"text-default",attrs:{"data-toggle":"collapse",href:"#v342"}},[a._v("Version 3.4.2"),n("small",{staticClass:"text-muted"},[a._v(" / 17 Juli 2021")])])])]),a._v(" "),n("div",{staticClass:"collapse show",attrs:{id:"v342","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi menambahkan fitur arsip yaitu dokumen digital\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan fitur agar CU bisa mengakses dokumen digital dari PUSKOPCUINA")]),a._v(" "),n("li",[a._v("Penambahan fitur untuk bisa mengelola dokumen digital masing-masing CU")]),a._v(" "),n("li",[a._v("Perbaikan bug tampilan pada beberapa bagian")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"text-default collapsed",attrs:{"data-toggle":"collapse",href:"#v341"}},[a._v("Version 3.4.1"),n("small",{staticClass:"text-muted"},[a._v(" / 5 Juni 2021")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v341","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi menambahkan informasi riwayat klaim pada klain JALINAN, informasi tambahan pada aktivis seperti penghargaan, pelanggaran dan lainnya, dan memperbaiki bug di voting dan pemilihan\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan fitur untuk bisa melihat riwayat klaim pada klaim JALINAN")]),a._v(" "),n("li",[a._v("Penambahan fitur informasi tambahan pada riwayat aktivis yang bisa mencakup informasi penghargaan, pelanggaran, dan lainnya")]),a._v(" "),n("li",[a._v("Perbaikan bug jumlah karakter untuk judul/pertanyaan pada voting dan pemilihan")]),a._v(" "),n("li",[a._v("Perbaikan bug tampilan pada pertanyaan")]),a._v(" "),n("li",[a._v("Perbaikan bug tampilan pada activity log dan aktivitas user")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"text-default collapsed",attrs:{"data-toggle":"collapse",href:"#v340"}},[a._v("Version 3.4.0"),n("small",{staticClass:"text-muted"},[a._v(" / 22 Mei 2021")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v340","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi memperbaiki bug voting dan pemilihan serta menambahkan versi awal / prototipe dari fitur iuran jalinan\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Perbaikan bug pada voting yang membuat skor tidak muncul secara real time walaupun secara database data tersimpan tapi tidak muncul di tampilan")]),a._v(" "),n("li",[a._v("Perbaikan bug tampilan pada form penambahan calon di pemilihan")]),a._v(" "),n("li",[a._v("Penambahan prototipe fitur iuran jalinan untuk dicoba secara internal dengan data sesungguhnya")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"text-default collapsed",attrs:{"data-toggle":"collapse",href:"#v339"}},[a._v("Version 3.3.9"),n("small",{staticClass:"text-muted"},[a._v(" / 15 Mei 2021")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v339","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi menambahkan fitur untuk voting dan perbaikan pada pemilihan\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan fitur untuk melakukan voting yang dapat digunakan untuk melakukan pengambilan suara pada sebuah keputusan di kegiatan")]),a._v(" "),n("li",[a._v("Penambahan fitur untuk melakukan download file excel pada daftar suara di pemilihan")]),a._v(" "),n("li",[a._v("Perbaikan tampilan pada pemilihan")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"text-default collapsed",attrs:{"data-toggle":"collapse",href:"#v338"}},[a._v("Version 3.3.8"),n("small",{staticClass:"text-muted"},[a._v(" / 25 April 2021")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v338","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi mengenai perubahan sistem untuk menyesuaikan dengan perubahan nama lembaga dan alamat domain. Serta ada perbaikan pada beberapa bagian\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Pengubahan nama Puskopdit BKCU Kalimantan menjadi PUSKOPCUINA di keseluruhan sistem")]),a._v(" "),n("li",[a._v("Pengubahan domain dari puskopditbkcukalimantan.org ke puskopcuina.org")]),a._v(" "),n("li",[a._v("Perbaikan pada Pemilihan yang membuat tidak bisa menambahkan pemilihan baru jika belum terdapat data")]),a._v(" "),n("li",[a._v("Perbaikan pada Aktivis yang menampilkan informasi pekerjaan aktif yang salah pada aktivis yang juga menjabat di PUSKOPCUINA")]),a._v(" "),n("li",[a._v("Perbaikan bug pada Aktivis yang menampilkan label kosong mengenai nama ibu, nama ahli waris dan kontak ahli waris")]),a._v(" "),n("li",[a._v("Perbaikan pada DIKLAT yang memungkinkan CU mendaftarkan peserta walaupun sudah mencapai maksimal peserta keseluruhan")]),a._v(" "),n("li",[a._v("Perbaikan pada Klaim JALINAN pada koreksi dokumen tidak lengkap")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"text-default collapsed",attrs:{"data-toggle":"collapse",href:"#v337"}},[a._v("Version 3.3.7"),n("small",{staticClass:"text-muted"},[a._v(" / 4 Februari 2021")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v337","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi menawarkan perbaikan pada klaim JALINAN dan menawarkan fitur baru yaitu pemilihan pengurus dan pengawas\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan fitur untuk melakukan pemilihan untuk aktivis CU yang bisa digunakan untuk melaksanakan pemilihan online untuk pengurus dan pengawas")]),a._v(" "),n("li",[a._v("Penambahan fitur untuk melihat informasi klaim JALINAN secara detail bagi CU")]),a._v(" "),n("li",[a._v("Penambahan fitur pada lihat klaim dan analisis klaim untuk bagian dokumen hanya menampilkan dokumen yang dilampirkan/diupload saja. Apabila tidak ada dokumen maka tombol untuk melihat dokumen tersebut tidak muncul")]),a._v(" "),n("li",[a._v("Penambahan fitur pada analisis klaim yaitu melakukan penolakan klaim terhadap klaim yang salah pilih atau salah input dan berhasil masuk sampai ke bagian menunggu dari proses klaim JALINAN")]),a._v(" "),n("li",[a._v("Perbaikan bug pada Klaim JALINAN")]),a._v(" "),n("li",[a._v("Perbaikan bug pada hak akses")]),a._v(" "),n("li",[a._v("Perbaikan bug tampilan dibeberapa bagian")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"text-default collapsed",attrs:{"data-toggle":"collapse",href:"#v336"}},[a._v("Version 3.3.6"),n("small",{staticClass:"text-muted"},[a._v(" / 4 Januari 2021")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v336","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi menawarkan peningkatan performa, keamanan dan perbaikan bug\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan fitur untuk membuat QR Code secara banyak pada aset tetap")]),a._v(" "),n("li",[a._v("Pengoptimalisasian akses aplikasi menjadi lebih cepat khususnya dalam jaringan internet yang lambat")]),a._v(" "),n("li",[a._v("Peningkatan sistem keamanan terhadap serangan DDoS")]),a._v(" "),n("li",[a._v("Perbaikan pada pengubahan hak akses user")]),a._v(" "),n("li",[a._v("Perbaikan bug tampilan dibeberapa bagian")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"text-default collapsed",attrs:{"data-toggle":"collapse",href:"#v335"}},[a._v("Version 3.3.5"),n("small",{staticClass:"text-muted"},[a._v(" / 24 Oktober 2020")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v335","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi menawarkan perbaikan dan peningkatan pada self assesment dan penambahan fitur untuk mengisi dan mengupload transaksi anggota CU\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan download excel untuk hasil self assesment untuk masing-masing perspektif")]),a._v(" "),n("li",[a._v("Peningkatan dan perbaikan pada update data secara real time untuk self assesment")]),a._v(" "),n("li",[a._v("Penambahan fitur upload excel transaksi simpanan dan pinjaman anggota CU")]),a._v(" "),n("li",[a._v("Penambahan fitur mengisi transaksi simpanan dan pinjaman anggota CU")]),a._v(" "),n("li",[a._v("Perbaikan bug tampilan dibeberapa bagian")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"text-default collapsed",attrs:{"data-toggle":"collapse",href:"#v334"}},[a._v("Version 3.3.4"),n("small",{staticClass:"text-muted"},[a._v(" / 12 Oktober 2020")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v334","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi menawarkan penambahan pada bagian tata kelola\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan upload bukti pada monitoring")]),a._v(" "),n("li",[a._v("Penambahan fitur real time data update di monitoring dimana ketika dilakukan penambahan di salah satu perangkat, maka di perangkat lain otomatis akan muncul perubahannya")]),a._v(" "),n("li",[a._v("Penambahan tombol simpan draft untuk masing-masing perspektif pada seft assesment yang memungkinkan untuk melakukan penyimpanan di tiap bagian per perspektif")]),a._v(" "),n("li",[a._v("Peningkatan sistem upload anggota CU dengan excel")]),a._v(" "),n("li",[a._v("Perbaikan bug tampilan dibeberapa bagian")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"text-default collapsed",attrs:{"data-toggle":"collapse",href:"#v333"}},[a._v("Version 3.3.3"),n("small",{staticClass:"text-muted"},[a._v(" / 18 September 2020")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v333","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi menawarkan perbaikan dan peningkatan pada klaim JALINAN, notifikasi, dan anggota CU\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan upload foto buku simpanan, buku pinjaman anggota CU, dan surat permohonan menjadi anggota yang akan melakukan Klaim JALINAN")]),a._v(" "),n("li",[a._v("Penambahan fitur untuk mutasi anggota CU")]),a._v(" "),n("li",[a._v("Peningkatan sistem notifikasi yang menampilkan notifikasi secara real time")]),a._v(" "),n("li",[a._v("Peningkatan sistem upload anggota CU dengan excel")]),a._v(" "),n("li",[a._v("Perbaikan bug pada notifikasi monitoring")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"text-default collapsed",attrs:{"data-toggle":"collapse",href:"#v332"}},[a._v("Version 3.3.2"),n("small",{staticClass:"text-muted"},[a._v(" / 27 Agustus 2020")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v332","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi menawarkan peningkatan fungsi pemakaian pada beberapa bagian dan juga meningkatkan kecepatan dalam penyaluran update versi SIMO\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Peningkatan dalam kecepatan untuk menyalurkan update versi SIMO kepada para pengguna")]),a._v(" "),n("li",[a._v("Peningkatan pada fitur upload data anggota cu")]),a._v(" "),n("li",[a._v("Penambahan kategori pekerjaan di aktivis yaitu kolektor dan kelompok inti")]),a._v(" "),n("li",[a._v("Penambahan informasi mutasi transaksi untuk simpanan dan pinjaman anggota cu pada form analisa klaim JALINAN")]),a._v(" "),n("li",[a._v("Perubahan pada format surat untuk JALINAN")]),a._v(" "),n("li",[a._v("Perbaikan pada bagian self assesment agar ketika BKCU melakukan penilaian maka CU tidak dapat melakukan pengubahan data lagi")]),a._v(" "),n("li",[a._v("Perbaikan bug pada beberapa tempat")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"text-default collapsed",attrs:{"data-toggle":"collapse",href:"#v331"}},[a._v("Version 3.3.1"),n("small",{staticClass:"text-muted"},[a._v(" / 1 Juli 2020")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v331","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini fokus pada peningkatan pada pengelolaan data user dan peningkatan pada tampilan secara umum.\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan halaman activity log yang berguna untuk menampilkan aktivitas semua user")]),a._v(" "),n("li",[a._v("Peningkatan pada tampilan informasi aktivitas user")]),a._v(" "),n("li",[a._v("Peningkatan pada tampilan pemilihan hak akses user")]),a._v(" "),n("li",[a._v("Peningkatan pada pembuatan user dan pengubahan password yang mengharuskan password menggunakan password yang kuat")]),a._v(" "),n("li",[a._v("Peningkatan komponen dasar pada tampilan")]),a._v(" "),n("li",[a._v("Perbaikan pada pemilihan tanggal")]),a._v(" "),n("li",[a._v("Perbaikan bug pada beberapa tempat")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"text-default collapsed",attrs:{"data-toggle":"collapse",href:"#v330","aria-expanded":"false"}},[a._v("Version 3.3.0"),n("small",{staticClass:"text-muted"},[a._v(" /  19 Juni 2020")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v330","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini merupakan perbaikan beberapa hal pada bagian diklat BKCU dan pertemuan BKCU.\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Perbaikan bug tombol daftar peserta dibagian diklat dan pertemuan BKCU yang tidak muncul")]),a._v(" "),n("li",[a._v("Perbaikan bug tombol-tombol pada tabel peserta dibagian diklat dan pertemuan BKCU yang tidak muncul pada perangkat mobile")]),a._v(" "),n("li",[a._v("Menghilangkan pengisian nama pada nametag, tanggal datang dan tanggal pulang apabila diklat ataupun pertemuan bersifat online pada form pendaftaran peserta")]),a._v(" "),n("li",[a._v("Mengubah cara pengisian tanggal untuk semua form dari menulis manual sekarang selain menulis manual bisa juga memilih dari kalender yang akan muncul ketika di klik")]),a._v(" "),n("li",[a._v("Perbaikan bug tampilan pada form self assesment")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v329"}},[a._v("Version 3.2.9"),n("small",{staticClass:"text-muted"},[a._v(" / 23 Mei 2020")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v329","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini memperkenalkan diklat BKCU Online, serta menambahkan fitur pada pertemuan BKCU dan memperbaiki bug pada bagian pengumuman\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Menambah fitur diklat online pada diklat BKCU")]),a._v(" "),n("li",[a._v("Menambah fitur pemberian dan pengumpulan tugas pada diklat BKCU dan pertemuan BKCU")]),a._v(" "),n("li",[a._v("Menambah fitur menandai pertanyaan sudah terjawab dan komentar pertanyaan menjadi jawaban pada diklat BKCU dan pertemuan BKCU")]),a._v(" "),n("li",[a._v("Perbaikan bug dan tampilan pada diklat BKCU dan pertemuan BKCU")]),a._v(" "),n("li",[a._v("Perbaikan pada bagian pengumuman untuk user BKCU")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v328"}},[a._v("Version 3.2.8 "),n("small",{staticClass:"text-muted"},[a._v(" / 2 Mei 2020")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v328","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini memperkenalkan pertemuan BKCU yang dapat digunakan untuk mendata dan menyelenggarakan pertemuan baik itu offline maupun online serta beberapa perbaikan dan peningkatan pada diklat BKCU dan notifikasi\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Menambah pertemuan BKCU untuk mengelola semua pertemuan yang dilaksanakan BKCU")]),a._v(" "),n("li",[a._v("Menambah fitur untuk bisa melakukan dan mengikuti pertemuan BKCU secara online di dalam pertemuan online ini terdapat fitur distribusi materi, penerimaan tanggapan beserta komentar dan persetujuan, dan pendataan peserta")]),a._v(" "),n("li",[a._v("Menambah fitur untuk melakukan perhitungan jumlah CU yang mendaftar, jumlah cu yang hadir, dan jumlah tanggapan pada bagian Pertemuan BKCU")]),a._v(" "),n("li",[a._v("Meningkatkan pengalaman penggunaan notifikasi dan kecepatan akses notifikasi")]),a._v(" "),n("li",[a._v("Menambahkan dukungan notifikasi pada bagian monitoring")]),a._v(" "),n("li",[a._v("Menambahkan dukungan notifikasi pada bagian self assesment access")]),a._v(" "),n("li",[a._v("Menambahkan dukungan notifikasi pada bagian klaim JALINAN")]),a._v(" "),n("li",[a._v("Menambahkan dukungan notifikasi pada bagian pertemuan BKCU")]),a._v(" "),n("li",[a._v("Memperbaiki bug tampilan pada bagian Diklat BKCU")]),a._v(" "),n("li",[a._v("Memperbaiki bug pada saat mengubah data panitia/fasilitator pada bagian Diklat BKCU")]),a._v(" "),n("li",[a._v("Memperbaiki bug pada saat mengubah keanggota CU pada bagian Anggota CU")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v327"}},[a._v("Version 3.2.7 "),n("small",{staticClass:"text-muted"},[a._v(" / 24 April 2020")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v327","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini memperkenalkan form monitoring cu dan perbaikan pada anggota CU\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Menambah form monitoring CU yang berguna untuk mendata kegiatan monitoring PUSKOPCUINA di CU")]),a._v(" "),n("li",[a._v("Menambah fitur untuk mengubah No. KTP / NIK data anggota CU")]),a._v(" "),n("li",[a._v("Memperbaiki bug pada menampilkan data keanggota CU di tabel Anggota CU")]),a._v(" "),n("li",[a._v("Memperbaiki bug pada penambahan data anggota apabila tidak memiliki No. KTP / NIK")]),a._v(" "),n("li",[a._v("Menambah validasi pada pembuatan username user simo yang melarang adanya username dengan spasi")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v326"}},[a._v("Version 3.2.6 "),n("small",{staticClass:"text-muted"},[a._v(" / 5 April 2020")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v326","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini meningkatkan dan memperbaiki self assesment\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Menambahkan fitur simpan draft pada pengisian self assesment ACCESS")]),a._v(" "),n("li",[a._v("Menambahkan fitur simpan draft pada penilaian self assesment ACCESS")]),a._v(" "),n("li",[a._v("Menambahkan fitur pemeriksaan duplikasi data penilaian self assesment ACCESS")]),a._v(" "),n("li",[a._v("Memperbaiki bug tampilan pada form pengisian self assesment ACCESS")]),a._v(" "),n("li",[a._v("Memperbaiki bug tampilan pada perhitungan P.E.A.R.L.S")]),a._v(" "),n("li",[a._v("Memperbaiki bug tampilan pada halaman public website bagian slider berita utama")]),a._v(" "),n("li",[a._v("Memperbaiki bug hak akses pada menu aset tetap")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v325"}},[a._v("Version 3.2.5 "),n("small",{staticClass:"text-muted"},[a._v(" / 17 Maret 2020")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v325","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini meningkatkan dan memperbaiki laporan klaim JALINAN\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Memperbaiki laporan klaim JALINAN")]),a._v(" "),n("li",[a._v("Merubah penamaan menu laporan klaim JALINAN")]),a._v(" "),n("li",[a._v("Merubah cara pencarian laporan klaim JALINAN menjadi lebih mendetail dan fleksibel")]),a._v(" "),n("li",[a._v("Menambahkan fitur untuk mengubah identitas dan produk anggota CU yang mengajukan klaim JALINAN yang hanya bisa dilakukan oleh staf JALINAN PUSKOPCUINA guna memperbaiki kesalahan penginputan data anggota CU")]),a._v(" "),n("li",[a._v("Perbaikan bug pada perhitungan P.E.A.R.L.S.")]),a._v(" "),n("li",[a._v("Perbaikan bug pada tampilan peserta di Diklat BKCU")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v324"}},[a._v("Version 3.2.4 "),n("small",{staticClass:"text-muted"},[a._v(" / 4 Maret 2020")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v324","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini merubah cara pengisian self assesment ACCESS Branding dan perubahan laporan pada Klaim JALINAN\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Merubah cara pengisian self assesment ACCESS Branding dimana pengisian periode harus sesuai dengan periode yang sudah ada pada laporan perkembangan CU")]),a._v(" "),n("li",[a._v("Menyambungkan data self assesment ACCESS Branding dengan laporan perkembangan CU untuk informasi PEARLS")]),a._v(" "),n("li",[a._v("Merubah laporan klaim JALINAN pencairan per-cu menjadi laporan klaim berdasarkan status yang akan menampilkan laporan klaim JALINAN sesuai dengan status klaim pada saat tersebut ")]),a._v(" "),n("li",[a._v("Perbaikan bug pada penambahan klaim JALINAN")]),a._v(" "),n("li",[a._v("Perbaikan bug pada koreksi Klaim JALINAN")]),a._v(" "),n("li",[a._v("Perbaikan bug pada self assesment ACCESS Branding")]),a._v(" "),n("li",[a._v("Perbaikan bug pada indikator PEARLS di R7")]),a._v(" "),n("li",[a._v("Perbaikan bug pada tabel indikator PEARLS di dashboard")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v323"}},[a._v("Version 3.2.3 "),n("small",{staticClass:"text-muted"},[a._v(" / 24 Februari 2020")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v323","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini menambahkan self assesment ACCESS Branding, catalog diklat di website publik BKCU Kalimantan dan koreksi klaim JALINAN\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan form pengisian self assesment ACCESS Branding untuk CU dan penilaian dari PUSKOPCUINA")]),a._v(" "),n("li",[a._v("Penambahan fitur koreksi untuk Klaim JALINAN")]),a._v(" "),n("li",[a._v("Penambahan catalog diklat di website publik BKCU Kalimantan")]),a._v(" "),n("li",[a._v("Penambahan fitur untuk memasukkan foto utama pada masing-masing diklat")]),a._v(" "),n("li",[a._v("Merubah menu Keuangan menjadi Tata Kelola")]),a._v(" "),n("li",[a._v("Perbaikan bug masih bisa menghapus data anggota yang sudah klaim JALINAN")]),a._v(" "),n("li",[a._v("Perbaikan bug pada riwayat profil user yang tidak bisa diubah")]),a._v(" "),n("li",[a._v("Perbaikan bug peserta yang sama bisa mendaftar 2 kali pada diklat BKCU")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v322"}},[a._v("Version 3.2.2 "),n("small",{staticClass:"text-muted"},[a._v(" / 19 Desember 2019")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v322","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini menambah surat pada Klaim JALINAN, upload dokumen pada Klaim JALINAN, QR Code pada Aset Tetap dan perbaikan beberapa bug.\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan upload dokumen untuk memenuhi kebutuhan pengajuan Klaim JALINAN")]),a._v(" "),n("li",[a._v("Penambahan pemilahan data klaim berdasarkan TP")]),a._v(" "),n("li",[a._v("Penambahan surat pada bagian Klaim JALINAN yang terdiri dari surat dokument tidak lengkap, surat penolakan klaim dan surat pencairan klaim")]),a._v(" "),n("li",[a._v("Penambahan informasi nomor surat dan tanggal surat untuk surat pada bagian Klaim JALINAN")]),a._v(" "),n("li",[a._v("Penambahan fitur ketika logout otomatis maka akan kembali ke halaman terakhir yang dibuka sebelum.")]),a._v(" "),n("li",[a._v("Penambahan fitur membuat QR Code untuk aset tetap.")]),a._v(" "),n("li",[a._v("Perbaikan bug pada mengajukan klaim melalui menu anggota CU")]),a._v(" "),n("li",[a._v("Perbaikan bug error navigasi pada anggota CU")]),a._v(" "),n("li",[a._v("Perbaikan bug pada import anggota CU")]),a._v(" "),n("li",[a._v("Perbaikan bug pada laporan Klaim JALINAN terkait jumlah anggota pada jenis kelamin Laki-laki")]),a._v(" "),n("li",[a._v("Perbaikan bug pada tombol penyelesaian klaim pada Klaim JALINAN")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v321"}},[a._v("Version 3.2.1 "),n("small",{staticClass:"text-muted"},[a._v(" / 3 Desember 2019")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v321","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini memperbaiki beberapa bug tampilan data\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Perbaikan bug pada menampilkan data detail laporan CU untuk akun aset bermasalah")]),a._v(" "),n("li",[a._v("Perbaikan bug pada menampilkan data anggota")]),a._v(" "),n("li",[a._v("Perbaikan bug pada menampilkan data pembeli dan penanggungjawab di aset tetap")]),a._v(" "),n("li",[a._v("Perbaikan bug pada menampilkan data panitia dalam gerakan untuk diklat")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v320"}},[a._v("Version 3.2.0 "),n("small",{staticClass:"text-muted"},[a._v(" / 1 Desember 2019")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v320","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini menambah beberapa fitur baru serta melakukan perbaikan bug, error dan peningkatan performa.\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Menambah fitur auto reload file terbaru dari server apabila terdapat update dan menambahkan tombol hard reload apabila fitur auto reload gagal berfungsi.")]),a._v(" "),n("li",[a._v("Menambah fitur untuk membuatkan NIK sementara kepada anggota CU yang tidak bisa ditemukan/punya NIK lagi agar tetap bisa menginput data untuk anggota CU dan klaim JALINAN")]),a._v(" "),n("li",[a._v("Menambah informasi jumlah aktivis pertingkatan (manajemen, pengurus, dsb) pada bagian CU")]),a._v(" "),n("li",[a._v("Menambah tombol refresh pada bagian notifikasi untuk mendapatkan notifikasi terbaru sesuai keinginan")]),a._v(" "),n("li",[a._v("Mengubah cara mengambil data notifikasi dari setiap perpindahan halaman menjadi setiap 15 menit")]),a._v(" "),n("li",[a._v("Menambah fitur di profile masing-masing user untuk bisa mengubah data identitas dan riwayat sendiri")]),a._v(" "),n("li",[a._v("Menambah informasi no. KK, nama ibu, suku, dan pekerjaan pada form anggota CU")]),a._v(" "),n("li",[a._v("Mengubah tampilan informasi verifikator klaim JALINAN ")]),a._v(" "),n("li",[a._v("Optimalisasi pengambilan data klaim JALINAN dan data anggota CU ke server menjadi lebih ringkas dan cepat ")]),a._v(" "),n("li",[a._v("Meningkatkan cara pengisian pekerjaan aktivis menjadi lebih mudah dimengerti")]),a._v(" "),n("li",[a._v("Memindahkan menu untuk tabel draft hasil upload excel untuk anggota CU, laporan statistik CU, dan laporan statistik TP ke halaman masing-masing bagian terkait")]),a._v(" "),n("li",[a._v("Perbaikan bug pada saat menampilkan aktivis yang aktif dan tidak aktif")]),a._v(" "),n("li",[a._v("Perbaikan bug pada tombol anggota keluar")]),a._v(" "),n("li",[a._v("Perbaikan bug download excel semua data anggota CU tidak memunculkan sesuai CU tapi semua CU")]),a._v(" "),n("li",[a._v("Perbaikan bug download excel anggota CU kolom No. BA dan tanggal jadi anggota")]),a._v(" "),n("li",[a._v("Perbaikan bug download excel anggota CU dan aktivis kolom No. KTP digit terakhir hilang")]),a._v(" "),n("li",[a._v("Perbaikan bug tampilan persentase laju inflasi dan harga pasar")]),a._v(" "),n("li",[a._v("Perbaikan bug pada saat menambah diskusi untuk laporan TP")]),a._v(" "),n("li",[a._v("Perbaikan bug pada saat membuka dialog box dan menekan tombol back di browser maka tidak bisa scroll halamannya")]),a._v(" "),n("li",[a._v("Perbaikan bug pada penambahan kode jenis aset tetap dan kelompok aset tetap")]),a._v(" "),n("li",[a._v("Perbaikan bug pada searching di detail diklat BKCU")]),a._v(" "),n("li",[a._v("Perbaikan bug user tidak otomatis terkirim ke halaman login")]),a._v(" "),n("li",[a._v("Perbaikan bug gambar user error")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v319"}},[a._v("Version 3.1.9 "),n("small",{staticClass:"text-muted"},[a._v(" / 26 Oktober 2019")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v319","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini fokus pada perbaikan di bagian anggota CU, user, aktivis dan klaim jalinan\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Menambah fitur migrasi data anggota CU dari sistem lain melalui excel")]),a._v(" "),n("li",[a._v("Menambah informasi tanggal target dan tujuan pada produk anggota CU")]),a._v(" "),n("li",[a._v("Perbaikan pada menampilkan data anggota CU di bagian sudah keluar dan sudah meninggal")]),a._v(" "),n("li",[a._v("Perubahan pada bagian input No. BA yang hanya memperbolehkan menginput angka saja")]),a._v(" "),n("li",[a._v("Perbaikan foto user yang tidak muncul")]),a._v(" "),n("li",[a._v("Perbaikan bug tampilan pada informasi jabatan, pendidikan dan organisasi pada bagian aktivis")]),a._v(" "),n("li",[a._v("Perbaikan bug mengubah identitas pada anggota CU yang sudah keluar dan meninggal")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v318"}},[a._v("Version 3.1.8 "),n("small",{staticClass:"text-muted"},[a._v(" / 18 Oktober 2019")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v318","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini fokus pada perbaikan di bagian aktivis, penambahan tampilan pada form analisis klaim JALINAN, perubahan tampilan pada daftar produk dan pelayanan CU dan perubahan pada informasi user\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan informasi user yang melakukan verifikasi pada masing-masing klaim JALINAN pada form analisis klaim JALINAN")]),a._v(" "),n("li",[a._v("Perubahan tampilan daftar produk dan pelayanan CU menjadi lebih ringkas")]),a._v(" "),n("li",[a._v("Perubahan user yang sudah menngikuti data aktivis yang tersambung pada masing-masing user")]),a._v(" "),n("li",[a._v("Perbaikan bug informasi TP pada aktivis tidak muncul ketika menginput data aktivis")]),a._v(" "),n("li",[a._v("Perbaikan pada informasi TP ketika melakukan export excel data CU")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v317"}},[a._v("Version 3.1.7 "),n("small",{staticClass:"text-muted"},[a._v(" / 16 Oktober 2019")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v317","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini fokus pada penambahan dan perbaikan pada bagian anggota CU, Klaim JALINAN dan penambahan fitur baru untuk pengelolaan aset tetap lembaga, mengabungkan informasi data aktivis dengan user.\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan fitur verifikasi pengajuan Klaim JALINAN oleh pengurus, pengawas dan manajemen")]),a._v(" "),n("li",[a._v("Penambahan fitur data aktivis pada user")]),a._v(" "),n("li",[a._v("Penambahan informasi asal TP/KP pada Anggota CU dan Klaim JALINAN")]),a._v(" "),n("li",[a._v("Penambahan pengelolaan aset tetap untuk lembaga")]),a._v(" "),n("li",[a._v("Perbaikan bug tampilan pada Klaim JALINAN")]),a._v(" "),n("li",[a._v("Perbaikan bug tampilan pada User")]),a._v(" "),n("li",[a._v("Perbaikan bug tampilan pada Anggota CU")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v316"}},[a._v("Version 3.1.6 "),n("small",{staticClass:"text-muted"},[a._v(" / 28 September 2019")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v316","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini fokus pada penambahan dan perbaikan pada bagian anggota CU dan Klaim JALINAN.\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan informasi usia dan nama pada panel analisa klaim")]),a._v(" "),n("li",[a._v("Penambahan informasi klaim pada panel selesai klaim")]),a._v(" "),n("li",[a._v("Penambahan kategori anggota CU yang meninggal")]),a._v(" "),n("li",[a._v("Perbaikan pada form penambahan klaim JALINAN yang tidak menampilkan data produk dengan benar")]),a._v(" "),n("li",[a._v("Menggabungkan menu tambah pada masing-masing bagian menjadi 1 sub-menu")]),a._v(" "),n("li",[a._v("Penambahan waktu time-out aplikasi menjadi 12 jam")]),a._v(" "),n("li",[a._v("Pengubahan tampilan form pada profil user")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v315"}},[a._v("Version 3.1.5 "),n("small",{staticClass:"text-muted"},[a._v(" / 23 September 2019")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v315","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini fokus pada perbaikan beberapa bug\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Perbaikan informasi data produk pada saat menambah klaim JALINAN")]),a._v(" "),n("li",[a._v("Perbaikan informasi jabatan pada identitas anggota CU")]),a._v(" "),n("li",[a._v("Perbaikan input tanggal yang menyebabkan format tanggal salah")]),a._v(" "),n("li",[a._v("Menambah fitur untuk mengeluarkan anggota / mendata anggota keluar")]),a._v(" "),n("li",[a._v("Menambah pemberitahuan apabila versi SIMO yang dijalankan di CLIENT tidak sesuai dengan versi yang ada di SERVER agar segera melakukan Hard Reload agar mendapatkan versi terbaru")]),a._v(" "),n("li",[a._v("Menambah informasi error menjadi lebih mudah untuk dimengerti")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v314"}},[a._v("Version 3.1.4 "),n("small",{staticClass:"text-muted"},[a._v(" / 19 September 2019")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v314","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini fokus pada fitur klaim JALINAN\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Peningkatan pengalaman penambahan data klaim JALINAN")]),a._v(" "),n("li",[a._v("Menambah fitur analisa klaim JALINAN")]),a._v(" "),n("li",[a._v("Menambah fitur pencairan klaim JALINAN")]),a._v(" "),n("li",[a._v("Menambah laporan pencairan klaim JALINAN")]),a._v(" "),n("li",[a._v("Menambah laporan klaim JALINAN berdasarkan penyebab")]),a._v(" "),n("li",[a._v("Menambah laporan klaim JALINAN berdasarkan usia")]),a._v(" "),n("li",[a._v("Menambah laporan klaim JALINAN berdasarkan lama menjadi anggota")]),a._v(" "),n("li",[a._v("Memperbaiki beberapa bug pada proses klaim JALINAN")]),a._v(" "),n("li",[a._v("Menambah bagian berita dan ucapan ulang tahun CU pada halaman Dashboard")]),a._v(" "),n("li",[a._v("Memperbaiki bug data aktivis tidak muncul pada saat mendaftar diklat")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v313"}},[a._v("Version 3.1.3 "),n("small",{staticClass:"text-muted"},[a._v(" / 6 September 2019")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v313","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini fokus pada peningkatan pada data aktivis, anggota CU dan klaim JALINAN\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Peningkatan pengalaman penambahan data aktivis")]),a._v(" "),n("li",[a._v("Penambahan bagian aktivis tidak aktif/bekerja yang mengakomodir informasi aktivis yang sudah mengundurkan diri, berhenti, pensiun dan meninggal")]),a._v(" "),n("li",[a._v("Penambahan riwayat diklat secara input manual dan pada data aktivis")]),a._v(" "),n("li",[a._v("Riwayat diklat terkoneksi dengan data diklat pada SIMO (khusus untuk aktivis yang mendaftar diklat di SIMO)")]),a._v(" "),n("li",[a._v("Memunculkan foto anggota CU pada tabel")]),a._v(" "),n("li",[a._v("Memperbaiki beberapa bug pada proses klaim JALINAN")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v312"}},[a._v("Version 3.1.2 "),n("small",{staticClass:"text-muted"},[a._v(" / 24 Agustus 2019")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v312","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini lebih kepada perbaikan bug-bug yang ada pada fitur-fitur yang sudah ada serta peningkatan pengalaman penoperasian pada beberapa bagian.\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Perbaikan bug di penambahan anggota CU dan produk anggota CU ")]),a._v(" "),n("li",[a._v("Perbaikan bug di penambahan klaim JALINAN ")]),a._v(" "),n("li",[a._v("Perbaikan bug di penambahan data aktivis baru ")]),a._v(" "),n("li",[a._v("Perbaikan bug di pengubahan data panitia/fasilitator pada bagian diklat ")]),a._v(" "),n("li",[a._v("Perbaikan bug di isi kolom laporan PEARLS yang tidak sesuai dengan judul kolom ")]),a._v(" "),n("li",[a._v("Perbaikan bug pada perhitungan jumlah anggota perorang dalam gerakan yang disajikan di halaman publik website BKCU Kalimantan ")]),a._v(" "),n("li",[a._v("Mengubah cara penyajian informasi error kepada user yang lebih mudah dimengerti ")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v311"}},[a._v("Version 3.1.1 "),n("small",{staticClass:"text-muted"},[a._v(" / 16 Juli 2019")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v311","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Perbaikan bug pada perhitungan laporan PEARLS dan penambahan field baru untuk mitra\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Perbaikan bug dana gedung yang tidak muncul di pengubahan data PEARLS utk E9")]),a._v(" "),n("li",[a._v("Perbaikan bug pada saat menambahkan laporan TP")]),a._v(" "),n("li",[a._v("Penambahan field bidang untuk mitra perseorangan dan lembaga")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v310"}},[a._v("Version 3.1.0 "),n("small",{staticClass:"text-muted"},[a._v(" / 26 April 2019")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v310","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Mengenalkan fitur pengelolaan data anggota CU perorangan yang memungkinkan gerakan PUSKOPCUINA untuk memiliki data secara mendetail anggota CU Perorangan yang akan memudahkan dalam mengetahui persebaran anggota, perilaku anggota dan menjadi database anggota terbesar dalam gerakan. \n                    "),n("br"),n("br"),a._v(" \n                    Pada versi ini juga terdapat integrasi dengan JALINAN untuk proses klaim dengan data anggota CU perorangan dan data produk CU yang diperkenalkan pada versi sebelumnya. Dengan begitu klaim JALINAN diharapkan akan lebih akurat. Dan terdapat pondasi dasar untuk integrasi perhitungan iuran JALINAN.\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan fitur mengelola data anggota CU perorangan yang terdiri dari identitas, simpanan dan pinjaman yang terintegrasi dengan fitur data produk CU")]),a._v(" "),n("li",[a._v("Penambahan fitur proses klaim JALINAN yang terintegrasi dengan data anggota CU Perorangan")]),a._v(" "),n("li",[a._v("Perbaikan pada dashboard dalam penyajian data")]),a._v(" "),n("li",[a._v("Perbaikan bug dan peningkatan performa keseluruhan aplikasi")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v309"}},[a._v("Version 3.0.9 "),n("small",{staticClass:"text-muted"},[a._v(" / 20 Februari 2019")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v309","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini berfokus pada perbaikan di beberapa bagian dan penambahan fitur pelaporan error/\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan fitur rekam semua error yang terjadi pada sistem agar memudahkan pengembang untuk melakukan troubleshooting dan perbaikan bug pada error yang terjadi")]),a._v(" "),n("li",[a._v("Perbaikan penampilan data produk dan pelayanan CU")]),a._v(" "),n("li",[a._v("Perbaikan pada dashboard dalam penyajian data")]),a._v(" "),n("li",[a._v("Perbaikan pada redirect login user")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v308"}},[a._v("Version 3.0.8 "),n("small",{staticClass:"text-muted"},[a._v(" / 8 Februari 2019")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v308","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini berfokus pada perbaikan data aktivis dan penambahan fitur pada aktivis\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Pengubahan cara menambah data aktivis, dimana pengguna mesti mengisikan dan melakukan pencarian berdasarkan no. KTP (NIK) untuk memastikan apakah aktivis tersebut sudah ada di dalam SIMO, jika ada maka pengguna tinggal melakukan pengubahan data sedangkan apabila data NIK aktivis tidak ada di dalam SIMO maka pengguna bisa langsung menambahkan data aktivis baru")]),a._v(" "),n("li",[a._v("Perbaikan pada perhitungan data aktivis di dashboard")]),a._v(" "),n("li",[a._v("Perbaikan pada download semua data di excel untuk aktivis")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v307"}},[a._v("Version 3.0.7 "),n("small",{staticClass:"text-muted"},[a._v(" / 29 Januari 2019")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v307","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini berfokus pada perbaikan artikel, aktivis dan peningkatan pada diklat BKCU.\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Perbaikan pada halaman aktivis dalam menampilkan data aktivis yang tanggal selesai sudah melewati tanggal hari ini tapi statusnya masih bekerja")]),a._v(" "),n("li",[a._v("Perbaikan pada pengubahan artikel")]),a._v(" "),n("li",[a._v("Perbaikan untuk menampilkan artikel pada halaman website publik CU")]),a._v(" "),n("li",[a._v("Perbaikan untuk notifikasi pada diklat BKCU")]),a._v(" "),n("li",[a._v("Peningkatan tampilan pada halaman detail Diklat BKCU")]),a._v(" "),n("li",[a._v("Peningkatan tampilan pada pencarian data untuk semua halaman yang memiliki fitur pencarian data")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v306"}},[a._v("Version 3.0.6 "),n("small",{staticClass:"text-muted"},[a._v(" / 25 Januari 2019")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v306","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini berfokus pada perbaikan pada halaman produk CU dan perbaikan pada halaman diklat BKCU.\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan field tipe produk CU")]),a._v(" "),n("li",[a._v("Perubahan tampilan daftar produk CU pada halaman Produk CU dari tabel menjadi card yang memudahkan dalam melihat informasi terkait produk CU")]),a._v(" "),n("li",[a._v("Perubahan tampilan daftar diklat pada halaman Diklat BKCU dari tabel menjadi card yang memudahkan dalam melihat informasi terkait diklat yang tersedia")]),a._v(" "),n("li",[a._v("Perbaikan widget Diklat BKCU pada halaman dashboard")]),a._v(" "),n("li",[a._v("Perbaikan widget peserta Diklat BKCU pada halaman dashboard")]),a._v(" "),n("li",[a._v("Perbaikan widget aktivitas perubahan data organisasi pada halaman dashboard")]),a._v(" "),n("li",[a._v("Perbaikan bug modal logout")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v305"}},[a._v("Version 3.0.5 "),n("small",{staticClass:"text-muted"},[a._v(" / 22 Januari 2019")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v305","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update versi ini berfokus pada perbaikan untuk proses penambahan dan pendaftaran Diklat BKCU, profile user dan penambahan widget untuk halaman dashboard.\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan visualisasi pada penambahan panitia Diklat BKCU")]),a._v(" "),n("li",[a._v("Penambahan visualisasi pada penambahan peserta Diklat BKCU")]),a._v(" "),n("li",[a._v("Perbaikan bug untuk penambahan peserta Diklat BKCU")]),a._v(" "),n("li",[a._v("Penambahan fitur untuk melihat aktivitas masing-masing user")]),a._v(" "),n("li",[a._v("Penambahan fitur untuk mengubah nama dan email masing-masing user")]),a._v(" "),n("li",[a._v("Perbaikan bug pada ubah password di profile")]),a._v(" "),n("li",[a._v("Penambahan widget navigasi halaman pada halaman dashboard")]),a._v(" "),n("li",[a._v("Penambahan widget Diklat BKCU pada halaman dashboard")]),a._v(" "),n("li",[a._v("Penambahan widget peserta Diklat BKCU pada halaman dashboard")]),a._v(" "),n("li",[a._v("Penambahan widget aktivitas perubahan data organisasi pada halaman dashboard")]),a._v(" "),n("li",[a._v("Penambahan widget jumlah data organisasi pada halaman dashboard")]),a._v(" "),n("li",[a._v("Perbaikan bug pada penampilan informasi error pada modal")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v304"}},[a._v("Version 3.0.4 "),n("small",{staticClass:"text-muted"},[a._v(" / 13 Januari 2019")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v304","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update untuk versi ini berfokus pada penyelesaian/perbaikan pada fitur diklat BKCU dan pendaftaran peserta diklat BKCU, perbaikan pada laporan gerakan dan laporan statistik CU, peningkatan kecepatan dan keamanan dengan menggunakan layanan dari pihak ketiga, dan perbaikan serta peningkatan sistem secara keseluruhan agar pengalaman pengoperasian lebih konsisten, cepat dan menyenangkan.\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Perbaikan bug pada fitur data panitia dan fasilitator pada saat menambah Diklat BKCU")]),a._v(" "),n("li",[a._v("Perbaikan bug pada fitur daftar Diklat BKCU pada halaman Detail Diklat BKCU")]),a._v(" "),n("li",[a._v("Perbaikan perhitungan laporan gerakan")]),a._v(" "),n("li",[a._v("Pengubahan format dan jenis informasi yang ditampilkan pada halaman laporan gerakan")]),a._v(" "),n("li",[a._v("Perbaikan bug pada laporan CU ketika menambah data")]),a._v(" "),n("li",[a._v("Perbaikan bug pada perhitungan P.E.A.R.L.S. CU")]),a._v(" "),n("li",[a._v("Pengubahan tampilan dalam pencarian data CU agak lebih mudah dipahami.")]),a._v(" "),n("li",[a._v("Peningkatan waktu idle pada user yang terlogin di SIMO dari awalnya kurang dari 1 jam menjadi 3 jam")]),a._v(" "),n("li",[a._v("Peningkatan keamanan dan kecepatan transfer data dengan menggunakan CDN dari cloudflare yang menyediakan peningkatan kecepatan loading halaman dan data, perlindungan dari serangan DDos, bots jahat dan intrusi-intrusi jahat lainnya, menambahkan satu lapisan perlindungan tambahan dengan menggunakan DNS cloudflare yang terenkripsi. Keterangan lebih lanjut mengenai cloudflare bisa dilihat "),n("a",{attrs:{href:"https://www.cloudflare.com/learning/what-is-cloudflare/",target:"_blank"}},[a._v("di website cloudflare")])])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v303"}},[a._v("Version 3.0.3 "),n("small",{staticClass:"text-muted"},[a._v(" / 9 Januari 2019")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v303","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update untuk versi ini lebih pada perbaikan bug dan error yang ditemukan pada versi sebelumnya ketika sudah live di server production. Selain itu juga penambahan beberapa fitur yang belum sempat terimplementasikan pada versi sebelumnya\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan fitur data panitia dan fasilitator pada saat menambah Diklat BKCU")]),a._v(" "),n("li",[a._v("Penambahan fitur daftar Diklat BKCU pada halaman Detail Diklat BKCU")]),a._v(" "),n("li",[a._v("Perbaikan bug pada download excel")]),a._v(" "),n("li",[a._v("Perbaikan bug pada form laporan CU")]),a._v(" "),n("li",[a._v("Perbaikan bug pada form P.E.A.R.L.S. CU")]),a._v(" "),n("li",[a._v("Perbaikan bug pada notifikasi laporan")]),a._v(" "),n("li",[a._v("Perbaikan bug pada upload gambar Penulis Artikel dan Tp")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v302"}},[a._v("Version 3.0.2 "),n("small",{staticClass:"text-muted"},[a._v(" / 4 Januari 2019")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v302","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update untuk versi ini lebih pada perbaikan bug dan error yang ditemukan pada versi sebelumnya ketika sudah live di server production. Selain itu juga penambahan beberapa fitur yang belum sempat terimplementasikan pada versi sebelumnya\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan cara menambah hak akses dan peran untuk hak akses user")]),a._v(" "),n("li",[a._v("Perbaikan bug tambah dan ubah data untuk pengumuman")]),a._v(" "),n("li",[a._v("Perbaikan bug dalam mengambil list CU untuk masing-masing halaman")]),a._v(" "),n("li",[a._v("Perbaikan bug pada detail laporan CU")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v301"}},[a._v("Version 3.0.1 "),n("small",{staticClass:"text-muted"},[a._v(" / 31 Desember 2018")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v301","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Update untuk versi ini lebih pada perbaikan bug dan error yang ditemukan pada versi sebelumnya ketika sudah live di server production. Selain itu juga penambahan beberapa fitur yang belum sempat terimplementasikan pada versi sebelumnya\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v('Perbaikan bug subdomain dan domain ketika menambahkan "www" didepan alamat website')]),a._v(" "),n("li",[a._v("Penambahan fitur untuk menuliskan saran terhadap aplikasi ini")]),a._v(" "),n("li",[a._v("Penambahan fitur mengelola pengumuman untuk masing-masing CU yang akan otomatis muncul di website publik di subdomain masing-masing CU")]),a._v(" "),n("li",[a._v("Perbaikan bug hak akses user yang selalu menampilkan hak akses untuk CU dan tidak bisa untuk BKCU")]),a._v(" "),n("li",[a._v("Optimalisasi aplikasi dengan mengurangi beberapa panggilan data ke server yang redundan")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v300"}},[a._v("Version 3.0.0 "),n("small",{staticClass:"text-muted"},[a._v(" / 27 Desember 2018")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v300","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Pada versi ini SIMO yang berbasis sepenuhnya PHP dengan framework laravel telah berubah menjadi Single Page Application (SPA) berbasis javascript dengan framework Vue.js yang menawarkan pengalaman interaksi desktop pada browser.\n                    "),n("br"),n("br"),a._v("\n                    Tampilan keseluruhan pada SIMO juga telah berubah. Menawarkan tampilan yang terinspirasi dari Material design dan Cupertino design yang menghasilkan sebuah aplikasi berbasis web yang interaktif dan menarik\n                    "),n("br"),n("br"),a._v("\n                    Pengolahan data juga telah berubah untuk menyesuaikan dengan transaksi data berbasis API yang menawarkan kecepatan dan reliabilitas serta kemudahan untuk pengembangan lebih lanjut.\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("div",{staticClass:"row mb-3"},[n("div",{staticClass:"col-sm-6"},[n("ul",{staticClass:"list"},[n("li",[a._v("Frontend PHP menjadi Javascript Single Page Application dari Vue.js yang menawarkan:\n                            "),n("ul",[n("li",[a._v("Transaksi data berbasis API")]),a._v(" "),n("li",[a._v("Keamanan dengan JWT Auth")]),a._v(" "),n("li",[a._v("Kecepatan pengoperasian karena hanya 1 kali saja loading asset aplikasi, sisanya adalah loading data dari server")]),a._v(" "),n("li",[a._v("Peningkatan interaksi dan animasi pada pengoperasian")])])]),a._v(" "),n("li",[a._v("Penambahan fitur publikasi website bagi CU, dimana masing-masing user CU telah diberikan halaman website tersendiri yang berisi informasi standar sebuah website perusahaan dan dapat dioleh sendiri dengan fitur:\n                            "),n("ul",[n("li",[a._v("Memiliki subdomain khusus untuk masing-masing CU")]),a._v(" "),n("li",[a._v("Menambah artikel")]),a._v(" "),n("li",[a._v("Menambah data produk dan pelayanan")]),a._v(" "),n("li",[a._v("Menambah informasi lembaga seperti misi, visi, nilai-nilai, sejarah dan slogan")])])])])]),a._v(" "),n("div",{staticClass:"col-sm-6"},[n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan input data pada laporan sampai dengan laporan per TP/KP dari masing-masing CU yang otomatis akan dikonsolidasikan")]),a._v(" "),n("li",[a._v("Penambahan 2 indikator baru pada perhitungan P.E.A.R.L.S")]),a._v(" "),n("li",[a._v("Penambahan visualisasi dan analisis data pada laporan keuangan di detail laporan")]),a._v(" "),n("li",[a._v("Penambahan upload excel pada laporan Cu dan Laporan Tp")]),a._v(" "),n("li",[a._v("Penambahan fitur filter data yang mampu mendukung pencarian secara lebih mendetail")]),a._v(" "),n("li",[a._v("Penambahaan fitur manajemen user kepada masing-masing CU")]),a._v(" "),n("li",[a._v("Penambahan field-field baru untuk informasi CU seperti npwp, situ, siusp, izin operasional dan lainnya")]),a._v(" "),n("li",[a._v("Perbaikan bug dan peningkatan performa")])])])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v213"}},[a._v("Version 2.1.3 "),n("small",{staticClass:"text-muted"},[a._v(" / 20 April 2017")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v213","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Pada versi ini "),n("b",[a._v("AdminBKCU")]),a._v(" berubah nama menjadi "),n("b",[a._v("SIMO")]),a._v(" yang merupakan singkatan dari "),n("b",[a._v("S")]),a._v("istem "),n("b",[a._v("I")]),a._v("nformasi "),n("b",[a._v("M")]),a._v("anajemen "),n("b",[a._v("O")]),a._v("rganisasi. Pemilihan nama ini adalah didasarkan dari fitur yang ditawarkan oleh aplikasi ini yaitu memanajemen informasi dari organisasi (bukan bidang organisasi, melainkan organisasi dalam artian PUSKOPCUINA dan CU Primer anggota).\n                    "),n("br"),n("br"),a._v("\n                    Dalam versi ini terdapat 2 bagian baru yang ditambahkan di aplikasi ini yaitu bagian "),n("b",[a._v("Diklat")]),a._v(" dan bagian "),n("b",[a._v("Staf")]),a._v(". Kedua bagian tersebut merupakan pengembangan dari bagian "),n("b",[a._v("Kegiatan")]),a._v(" yang sekarang menjadi "),n("b",[a._v("Diklat")]),a._v(" dengan penambahan fitur informasi yang lebih mendetail serta fitur pendaftaran peserta. Kemudian bagian "),n("b",[a._v("Staf")]),a._v(" juga ditambahkan beberapa fitur agak dapat saling berinteraksi dengan bagian "),n("b",[a._v("Diklat")]),a._v(", karena peserta adalah berasal dari bagian "),n("b",[a._v("Staf")]),a._v(" "),n("br"),n("br"),a._v("\n                    Selain itu juga terdapat banyak penambahan serta perbaikan pada aplikasi yang memberikan peningkatan performa, stabilitas, serta pengalaman menggunakan aplikasi ini.\n                    "),n("br"),n("br"),a._v("\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("div",{staticClass:"row mb-3"},[n("div",{staticClass:"col-sm-6"},[n("ul",{staticClass:"list"},[n("li",[a._v("AdminBKCU berubah nama menjadi SIMO")]),a._v(" "),n("li",[a._v("Penambahan bagian Diklat yang berfungsi:\n                              "),n("ul",[n("li",[a._v("Data diklat yang dilaksanakan oleh PUSKOPCUINA")]),a._v(" "),n("li",[a._v("Daftar diklat yang bisa dilakukan langsung melalui program oleh CU Primer anggota")]),a._v(" "),n("li",[a._v("Data tempat dilaksanakan diklat")]),a._v(" "),n("li",[a._v("Penambahan widget kegiatan terdekat, kegiatan berjalan dan kalender pada dashboard")])])]),a._v(" "),n("li",[a._v("Penambahan bagian Staf yang berfungsi:\n                              "),n("ul",[n("li",[a._v("Data staf dalam gerakan PUSKOPCUINA")]),a._v(" "),n("li",[a._v("Komunikasi data antara bagian Staf dengan bagian Diklat")])])])])]),a._v(" "),n("div",{staticClass:"col-sm-6"},[n("ul",{staticClass:"list"},[n("li",[a._v("Perubahan navigasi website dimana panel navigasi yang versi sebelumnya berada di tepi kiri menjadi berada di atas")]),a._v(" "),n("li",[a._v("Pengubahan semua tabel kecuali tabel bagian laporan CU menjadi tabel yang responsive/mobile friendly")]),a._v(" "),n("li",[a._v("Penambahan bagian Panduan untuk memberikan petunjuk pengoperasian aplikasi ini")]),a._v(" "),n("li",[a._v("Perbaikan rumusan laporan P.E.A.R.L.S.")]),a._v(" "),n("li",[a._v("Perbaikan integrasi plugin upload foto")]),a._v(" "),n("li",[a._v("Perbaikan bug dan peningkatan performa")])])])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v212"}},[a._v("Version 2.1.2 "),n("small",{staticClass:"text-muted"},[a._v(" / 11 Maret 2017")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v212","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Penambahan fitur bagian laporan P.E.A.R.L.S Berikut adalah rincian perubahan pada versi ini")]),a._v(" "),n("ul",{staticClass:"list"},[n("li",[a._v("Upgrade template AdminLte ke versi 2.3.12")]),a._v(" "),n("li",[a._v("Perubahan model navigasi panel samping")]),a._v(" "),n("li",[a._v("Penambahan plugin Mathjax untuk menampilkan kalkulasi perhitungan")]),a._v(" "),n("li",[a._v("Penambahan fitur melihat detail perhitungan laporan P.E.A.R.L.S")]),a._v(" "),n("li",[a._v("Perbaikan rumus perhitungan laporan P.E.A.R.L.S")]),a._v(" "),n("li",[a._v("Perbaikan bug dan peningkatan performa")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v211"}},[a._v("Version 2.1.1 "),n("small",{staticClass:"text-muted"},[a._v(" / 14 Februari 2017")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v211","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Penambahan fitur bagian laporan CU serta fitur diskusi pada laporan CU Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("div",{staticClass:"row mb-3"},[n("div",{staticClass:"col-sm-4"},[n("ul",{staticClass:"list"},[n("li",[a._v("Upgrade laravel versi 5.2 ke versi 5.3 yang menawarkan:\n                              "),n("ul",[n("li",[a._v("Support Vue.js")]),a._v(" "),n("li",[a._v("Fitur sistem notifikasi")]),a._v(" "),n("li",[a._v("Penyederhanaan struktur folder project")]),a._v(" "),n("li",[a._v("Pembagian rute akses website menjadi dua yaitu untuk akses ke web dan akses melalui aplikasi selain web (API)")])])]),a._v(" "),n("li",[a._v("Penambahan bagian laporan CU yang berfungsi:\n                              "),n("ul",[n("li",[a._v("Menampung dan mengolah data laporan keuangan CU menjadi laporan perkembangan CU serta analisis P.E.A.R.L.S")]),a._v(" "),n("li",[a._v("Menampilkan laporan CU dalam tabel interaktif serta grafik")]),a._v(" "),n("li",[a._v("Input data laporan melalui upload excel "),n("small",{staticClass:"label bg-yellow"},[a._v("beta")])])])])])]),a._v(" "),n("div",{staticClass:"col-sm-4"},[n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan bagian laporan CU yang berfungsi:\n                              "),n("ul",[n("li",[a._v("Menampilkan pertumbuhan perakun perperiode pada masing-masing laporan")]),a._v(" "),n("li",[a._v("Menampilkan panel overview kondisi CU berdasarkan laporan terbaru")]),a._v(" "),n("li",[a._v("Penambahan fitur pada input data laporan melalui upload excel "),n("small",{staticClass:"label bg-yellow"},[a._v("beta 2")])])])]),a._v(" "),n("li",[a._v("Penambahan fitur sistem notifikasi yang berfungsi:\n                              "),n("ul",[n("li",[a._v("Memberikan pemberitahuan mengenai laporan CU yang masuk, diubah, dan dihapus")]),a._v(" "),n("li",[a._v("Memberikan pemberitahuan mengenai diskusi laporan CU yang masuk, diubah, dan dihapus")])])])])]),a._v(" "),n("div",{staticClass:"col-sm-4"},[n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan bagian diskusi laporan CU yang berfungsi:\n                              "),n("ul",[n("li",[a._v("Memberikan masukkan kepada CU bahwa laporan telah diterima/diperiksa")]),a._v(" "),n("li",[a._v("Memberikan masukkan/pertanyaan terhadap laporan CU yang telah diterima/diperiksa")])])]),a._v(" "),n("li",[a._v("Penambahan bagian revisi laporan CU yang berfungsi Menampilkan data apa saja yang telah diubah")]),a._v(" "),n("li",[a._v("Penambahan fitur mengubah foto profil admin pada bagian admin")]),a._v(" "),n("li",[a._v("Perbaikan bug dan peningkatan performa")])])])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v210"}},[a._v("Version 2.1.0 "),n("small",{staticClass:"text-muted"},[a._v(" / 9 Desember 2016")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v210","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Penambahan fitur bagian laporan CU yang berfungsi untuk menampilkan perkembangan Credit Union diserta dengan perhitungan analisis P.E.A.R.L.S serta upgrade sistem utama aplikasi dari versi 4.2 ke versi 5.2 dan peningkatan fitur-fitur pada plugin yang dipakai. Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("div",{staticClass:"row mb-3"},[n("div",{staticClass:"col-sm-4"},[n("ul",{staticClass:"list"},[n("li",[a._v("Upgrade laravel versi 4.2 ke versi 5.2 yang menawarkan:\n                              "),n("ul",[n("li",[a._v("Support PHP 7")]),a._v(" "),n("li",[a._v('Peningkatan keamanan dengan "middleware"')]),a._v(" "),n("li",[a._v("Peningkatan eksekusi kode program")]),a._v(" "),n("li",[a._v("Penambahan dukungan terhadap plugin-plugin")]),a._v(" "),n("li",[a._v("Proteksi semua input terhadap serangan SQL injection")])])]),a._v(" "),n("li",[a._v("Penambahan bagian laporan CU yang berfungsi:\n                              "),n("ul",[n("li",[a._v("Menampung dan mengolah data laporan keuangan CU menjadi laporan perkembangan CU serta analisis P.E.A.R.L.S")]),a._v(" "),n("li",[a._v("Menampilkan laporan CU dalam tabel interaktif serta grafik")]),a._v(" "),n("li",[a._v("Input data laporan melalui upload excel "),n("small",{staticClass:"label bg-yellow"},[a._v("beta")])])])])])]),a._v(" "),n("div",{staticClass:"col-sm-4"},[n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan bagian TP CU untuk mendata informasi TP tiap CU secara lebih mendetail")]),a._v(" "),n("li",[a._v("Penambahan bagian admin untuk CU yang memungkinkan staf CU untuk:\n                              "),n("ul",[n("li",[a._v("Mengisi / mengubah profil dari CU")]),a._v(" "),n("li",[a._v("Menambah, mengubah dan menghapus data TP di CU")]),a._v(" "),n("li",[a._v("Menambah, mengubah dan menghapus laporan CU")])])]),a._v(" "),n("li",[a._v("Penambahan fitur dan perubahan penggunaan pada Datatable")]),a._v(" "),n("li",[a._v("Penambahan fitur text editor untuk bagian artikel")]),a._v(" "),n("li",[a._v("Penambahan fitur pada bagian admin")]),a._v(" "),n("li",[a._v("Pengubahan struktur navigasi sidebar")])])]),a._v(" "),n("div",{staticClass:"col-sm-4"},[n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan fitur validator untuk validasi input")]),a._v(" "),n("li",[a._v("Penggunaan input mask untuk pengisian tanggal serta pengisian angka")]),a._v(" "),n("li",[a._v("Penggunaan pace untuk animasi loading resource dan request ajax")]),a._v(" "),n("li",[a._v("Penggantian Plugin ACL entrust dengan kodeine untuk integrasi lebih lanjut dengan laravel ACL")]),a._v(" "),n("li",[a._v("Menghapus plugin flickering untuk akses ke flickr")]),a._v(" "),n("li",[a._v("Perbaikan bug dan peningkatan performa")])])])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v201"}},[a._v("Version 2.0.1 "),n("small",{staticClass:"text-muted"},[a._v(" / 2 Januari 2016")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v201","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Pengubahan penggunaan rich text editor dari CKeditor menjadi Summernote. Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("ul",[n("li",[a._v("Penggantian CKeditor menjadi Summernote")]),a._v(" "),n("li",[a._v("Pengubahan cara penanganan gambar pada Summernote")]),a._v(" "),n("li",[a._v("Peningkatan penanganan upload gambar dengan metode baru yang diperkenalkan\n                        pada versi Intervention Image v2.x")]),a._v(" "),n("li",[a._v("Penambahan halaman version")]),a._v(" "),n("li",[a._v("Perbaikan bug dan peningkatan performa")])])])])]),a._v(" "),n("div",{staticClass:"card"},[n("div",{staticClass:"card-header"},[n("h5",{staticClass:"card-title"},[n("a",{staticClass:"collapsed text-default",attrs:{"data-toggle":"collapse",href:"#v200"}},[a._v("Version 2.0.0 "),n("small",{staticClass:"text-muted"},[a._v(" / 31 Desember 2015")])])])]),a._v(" "),n("div",{staticClass:"collapse",attrs:{id:"v200","data-parent":"#accordion-control-right"}},[n("div",{staticClass:"card-body"},[n("p",{staticClass:"mb-3"},[a._v("Rombak ulang keseluruhan tampilan admin menjadi lebih mudah di operasikan, lebih "),n("i",[a._v("responsive/mobile friendly")]),a._v(" dan pengubahan code php pada controller dan model untuk peningkatan performa dan konsistensi pada tiap pengoperasian. Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("div",{staticClass:"row mb-3"},[n("div",{staticClass:"col-sm-6"},[n("ul",{staticClass:"list"},[n("li",[a._v("Pengalaman penggunaan dengan desain yang lebih modern dan responsive")]),a._v(" "),n("li",[a._v("Sidebar yang fleksibel dan responsive")]),a._v(" "),n("li",[a._v("Upgrade bootstrap v3.3.2")]),a._v(" "),n("li",[a._v("Upgrade font-awesome v4.5.0")]),a._v(" "),n("li",[a._v("Upgrade Datatables v1.10.10")]),a._v(" "),n("li",[a._v("Upgrade Image Intervention v2.x")]),a._v(" "),n("li",[a._v("Upgrade Jquery v2.1.3 ")]),a._v(" "),n("li",[a._v("Penambahan fitur pada semua tabel di halaman kelola yaitu\n                              "),n("ul",[n("li",[a._v("Tabel menjadi responsive dan dapat menyesuaikan di hampir semua ukuran layar.\n                                      maka apabila layar terlalu kecil untuk kolom, kolom otomatis akan disembunyikan dan\n                                      akan muncul tombol untuk menampilkan kolom yang telah di sembunyikan tersebut")]),a._v(" "),n("li",[a._v("Warp text pada masing-masing cell di kolom untuk pemanfaatan ruang kosong pada cell")]),a._v(" "),n("li",[a._v("Colum priority pada kolom hapus,ubah dan detail membuat kolom tersebut tidak akan\n                                      tersembunyi apabila ukuran layar terlalu kecil untuk semua tabel")]),a._v(" "),n("li",[a._v("Pengubahan cara berinteraksi pada tiap tabel agar lebih konsisten")])])]),a._v(" "),n("li",[a._v("Peningkatan cara mengangani error dan penyampaian informasi error yang lebih informatif dan akurat")]),a._v(" "),n("li",[a._v("Peningkatan penanganan upload gambar")]),a._v(" "),n("li",[a._v("Penambahan halaman detail staf untuk pemberian informasi lengkap mengenai staf")])])]),a._v(" "),n("div",{staticClass:"col-sm-6"},[n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan fitur pada semua form di halaman tambah dan ubah yaitu\n                              "),n("ul",[n("li",[a._v("Peningkatan desain yang lebih modern dan lebih jelas fungsinya")]),a._v(" "),n("li",[a._v("Penggunaan input mask pada pengisian tanggal untuk mempermudah pengisian tanggal")]),a._v(" "),n("li",[a._v("Peningkatan pada CKeditor dengan menambahkan fitur responsive pada gambar")]),a._v(" "),n("li",[a._v("Penggunaan laravel validation pada input text untuk menginformasikan bagian yang bermasalah")]),a._v(" "),n("li",[a._v("Peningkatan visualisasi dan informasi yang disampaikan pada bagian pemberitahuan setelah melakukan penyimpanan atau pengubahan data")])])]),a._v(" "),n("li",[a._v("Peningkatan halaman admin (kelola admin,tambah admin, ubah admin) yaitu\n                              "),n("ul",[n("li",[a._v("Pengubahan cara mengubah password")]),a._v(" "),n("li",[a._v("Penambahan tipe admin untuk membedakan admin BKCU dan admin CU Primer")]),a._v(" "),n("li",[a._v("Menyatukan tipe admin CU Primer dengan data CU Primer yang dipilih")])])]),a._v(" "),n("li",[a._v("Perbaikan error routing pada beberapa halaman")]),a._v(" "),n("li",[a._v("Perbaikan error pada controller")]),a._v(" "),n("li",[a._v("Perbaikan error pada model")])])])]),a._v(" "),n("hr"),a._v(" "),n("p",{staticClass:"mb-3"},[a._v("Rombak ulang seluruh halaman pada website publik dengan tampilan yang lebih bersih, modern,\n                    responsive/mobile friendly dan visualisasi yang lebih bai k. Pada update kali ini semua\n                    bagian pada halaman telah di desain ulang menyesuaikan tema halaman dengan warna dasar putih\n                    dan biru serta background yang dapat disesuaikan dengan keadaan/event yang sedang berlangsung.\n                    Serta penambahan halaman CU untuk melakukan pengubahan dan penambahan data pada data CU Primer.\n                    Berikut adalah rincian perubahan pada versi ini:")]),a._v(" "),n("div",{staticClass:"row mb-3"},[n("div",{staticClass:"col-sm-6"},[n("ul",{staticClass:"list"},[n("li",[a._v("Penambahan plugin javascript yaitu:\n                              "),n("ul",[n("li",[a._v("jquery.fitvids")]),a._v(" "),n("li",[a._v("nivo-lightbox")]),a._v(" "),n("li",[a._v("jquery.isotope")]),a._v(" "),n("li",[a._v("jquery.appear")]),a._v(" "),n("li",[a._v("count.to")]),a._v(" "),n("li",[a._v("jquery.textillate")]),a._v(" "),n("li",[a._v("jquery.lettering")]),a._v(" "),n("li",[a._v("jquery.easypiechart")]),a._v(" "),n("li",[a._v("jquery.nicescroll")]),a._v(" "),n("li",[a._v("jquery.parallax")]),a._v(" "),n("li",[a._v("jquery.slicknav")])])]),a._v(" "),n("li",[a._v("Upgrade bootstrap v3.3.2")]),a._v(" "),n("li",[a._v("Upgrade font-awesome v4.5.0")]),a._v(" "),n("li",[a._v("Upgrade Jquery v2.1.4")]),a._v(" "),n("li",[a._v("Upgrade plugin google maps")]),a._v(" "),n("li",[a._v("Penghapusan plugin social network sharing")])])]),a._v(" "),n("div",{staticClass:"col-sm-6"},[n("ul",{staticClass:"list"},[n("li",[a._v("Pengubahan fitur sharing social network, tidak bergantung pada plugin lagi tapi\n                          dibangun 1-1 sesuai guidelines dari sharing API masing-masing social network")]),a._v(" "),n("li",[a._v("Penambahan animasi melalui css pada beberapa komponen halaman")]),a._v(" "),n("li",[a._v("Peningkatan carousel pada halaman utama untuk artikel pilihan menjadi lebih elegan\n                              dan informatif")]),a._v(" "),n("li",[a._v("Peningkatan zoom foto/gambar di seluruh halaman dengan menggunakan lightbox")]),a._v(" "),n("li",[a._v("Peningkatan menu yang lebih responsive dengan tampilan yang lebih rapi dan bersih")]),a._v(" "),n("li",[a._v("Peningkatan pengalaman membaca artikel dengan tulisan serta layout yang lebih nyaman di mata")]),a._v(" "),n("li",[a._v("Peningkatan pengalaman berinteraksi dan konsistensi desain secara keseluruhan pada semua halaman.")])])])])])])])])])])])}],!1,null,null,null);i.default=s.exports}}]);
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[86],{
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/collapseButton.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/collapseButton.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    id: {
+      "default": ''
+    }
+  },
+  data: function data() {
+    return {
+      clicked: false
+    };
+  },
+  methods: {
+    btnClick: function btnClick() {
+      var _this = this;
+
+      if (this.clicked) {
+        setTimeout(function () {
+          return _this.clicked = false;
+        }, 400);
+      } else {
+        this.clicked = true;
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/produkCu/index.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/produkCu/index.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/pageHeader.vue */ "./resources/assets/js/components/pageHeader.vue");
+/* harmony import */ var _table_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./table.vue */ "./resources/assets/js/views/produkCu/table.vue");
+/* harmony import */ var _components_message_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/message.vue */ "./resources/assets/js/components/message.vue");
+/* harmony import */ var _components_selectCu_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/selectCu.vue */ "./resources/assets/js/components/selectCu.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    pageHeader: _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    tableData: _table_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    message: _components_message_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    selectCu: _components_selectCu_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+  },
+  data: function data() {
+    return {
+      title: 'Produk dan Pelayanan CU',
+      kelas: 'produkCu',
+      titleDesc: 'Mengelola data produk dan pelayanan CU',
+      titleIcon: 'icon-list3',
+      selectCuPath: 'produkCuCu'
+    };
+  },
+  created: function created() {
+    this.checkUser('index_produk_cu', this.$route.params.cu);
+  },
+  methods: {
+    checkUser: function checkUser(permission, id_cu) {
+      if (this.currentUser) {
+        if (!this.currentUser.can || !this.currentUser.can[permission]) {
+          this.$router.push('/notFound');
+        }
+
+        if (!id_cu || this.currentUser.id_cu) {
+          if (this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu) {
+            this.$router.push('/notFound');
+          }
+        }
+      }
+    }
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+    currentUser: 'currentUser'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('tp', {
+    itemData: 'dataS',
+    itemDataStat: 'dataStatS'
+  }))
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/produkCu/table.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/produkCu/table.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue_truncate_collapsed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-truncate-collapsed */ "./node_modules/vue-truncate-collapsed/dist/vue-truncate-collapsed.es.js");
+/* harmony import */ var _components_dataviewer2_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/dataviewer2.vue */ "./resources/assets/js/components/dataviewer2.vue");
+/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
+/* harmony import */ var _components_collapseButton_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/collapseButton.vue */ "./resources/assets/js/components/collapseButton.vue");
+/* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    DataViewer: _components_dataviewer2_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    truncate: vue_truncate_collapsed__WEBPACK_IMPORTED_MODULE_1__["default"],
+    appModal: _components_modal__WEBPACK_IMPORTED_MODULE_3__["default"],
+    collapseButton: _components_collapseButton_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+  },
+  props: ['title', 'kelas'],
+  data: function data() {
+    return {
+      selectedItem: [],
+      query: {
+        order_column: "name",
+        order_direction: "asc",
+        filter_match: "and",
+        limit: 10,
+        page: 1
+      },
+      excelDownloadUrl: '',
+      columnData: [{
+        title: 'No.',
+        name: 'No.'
+      }, {
+        title: 'Foto',
+        name: 'gambar',
+        hide: false
+      }, {
+        title: 'Tipe',
+        name: 'tipe',
+        tipe: 'string',
+        sort: true,
+        hide: false,
+        disable: false,
+        filter: true
+      }, {
+        title: 'Nama',
+        name: 'name',
+        tipe: 'string',
+        sort: true,
+        hide: false,
+        disable: false,
+        filter: true,
+        filterDefault: true
+      }, {
+        title: 'Kode Produk dan Pelayanan',
+        name: 'kode_produk',
+        tipe: 'string',
+        sort: true,
+        hide: false,
+        disable: false,
+        filter: true
+      }, {
+        title: 'CU',
+        name: 'cu.name',
+        tipe: 'string',
+        sort: false,
+        hide: false,
+        disable: false,
+        filter: true
+      }, {
+        title: 'Keterangan',
+        name: 'keterangan'
+      }, {
+        title: 'Aturan Setor',
+        name: 'aturan_setor'
+      }, {
+        title: 'Aturan Tarik',
+        name: 'aturan_tarik'
+      }, {
+        title: 'Aturan Balas Jasa',
+        name: 'aturan_balas_jasa'
+      }, {
+        title: 'Aturan Lain',
+        name: 'aturan_lain'
+      }, {
+        title: 'Tgl. / Waktu Buat',
+        name: 'created_at',
+        tipe: 'datetime',
+        sort: true,
+        hide: false,
+        disable: false,
+        filter: true
+      }, {
+        title: 'Tgl. / Waktu Ubah',
+        name: 'updated_at',
+        tipe: 'datetime',
+        sort: true,
+        hide: false,
+        disable: false,
+        filter: true
+      }],
+      state: '',
+      modalShow: false,
+      modalState: '',
+      modalTitle: '',
+      modalContent: '',
+      modalButton: ''
+    };
+  },
+  created: function created() {
+    this.fetch(this.query);
+  },
+  watch: {
+    // check route changes
+    '$route': function $route(to, from) {
+      this.fetch(this.query);
+    },
+    updateStat: function updateStat(value) {
+      this.modalState = value;
+      this.modalButton = 'Ok';
+
+      if (value === "success") {
+        this.modalTitle = this.updateMessage.message;
+        this.modalContent = '';
+        this.fetch();
+      } else if (value === "fail") {
+        this.modalContent = this.updateMessage;
+      } else {
+        this.modalContent = '';
+      }
+    }
+  },
+  methods: {
+    fetch: function fetch(params) {
+      if (this.$route.params.cu == 'semua') {
+        this.disableColumnCu(false);
+        this.$store.dispatch(this.kelas + '/index', params);
+        this.excelDownloadUrl = this.kelas;
+      } else {
+        this.disableColumnCu(true);
+        this.$store.dispatch(this.kelas + '/indexCu', [params, this.$route.params.cu]);
+        this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu;
+      }
+    },
+    disableColumnCu: function disableColumnCu(status) {
+      this.columnData[5].disable = status;
+    },
+    resetParams: function resetParams() {
+      this.params.search_column = 'name';
+      this.params.search_query_1 = '';
+      this.extSearchColumn = 'name';
+      this.extSearchQuery1 = '';
+    },
+    selectedRow: function selectedRow(item) {
+      this.selectedItem = item;
+    },
+    ubahData: function ubahData(id) {
+      this.$router.push({
+        name: this.kelas + 'Edit',
+        params: {
+          id: id
+        }
+      });
+    },
+    modalConfirmOpen: function modalConfirmOpen(state, isMobile, itemMobile) {
+      this.modalShow = true;
+      this.modalState = 'confirm-tutup';
+      this.state = state;
+
+      if (isMobile) {
+        this.selectedItem = itemMobile;
+      }
+
+      if (state == 'hapus') {
+        this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.name + ' ini?';
+        this.modalButton = 'Iya, Hapus';
+      }
+    },
+    modalOpen: function modalOpen(value) {
+      this.modalShow = true;
+      this.modalState = 'content-tutup';
+      this.modalContent = value;
+      this.modalButton = 'Tutup';
+    },
+    modalTutup: function modalTutup() {
+      this.modalShow = false;
+      this.$store.dispatch(this.kelas + '/resetUpdateStat');
+    },
+    modalConfirmOk: function modalConfirmOk() {
+      if (this.state == 'hapus') {
+        this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
+      }
+    },
+    gridColor: function gridColor(value) {
+      if (value == 'Simpanan Pokok') {
+        return 'border-left-primary-400';
+      } else if (value == 'Simpanan Wajib') {
+        return 'border-left-warning-400';
+      } else if (value == 'Simpanan Non Saham') {
+        return 'border-left-secondary-400';
+      } else if (value == 'Pinjaman Kapitalisasi') {
+        return 'border-left-success-400';
+      } else if (value == 'Pinjaman Umum') {
+        return 'border-left-primary-400';
+      } else if (value == 'Pinjaman Produktif') {
+        return 'border-left-green-400';
+      }
+    }
+  },
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+    currentUser: 'currentUser'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('global', {
+    idCu: 'idCu'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('cu', {
+    modelCu: 'dataS',
+    modelCuStat: 'dataStatS'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('produkCu', {
+    itemData: 'dataS',
+    itemDataStat: 'dataStatS',
+    updateMessage: 'update',
+    updateStat: 'updateStat'
+  }))
+});
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/collapseButton.vue?vue&type=template&id=3ad758d4&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/collapseButton.vue?vue&type=template&id=3ad758d4& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-link btn-block",
+        attrs: { "data-toggle": "collapse", "data-target": ".collap" + _vm.id },
+        on: { click: _vm.btnClick }
+      },
+      [
+        _vm.clicked
+          ? _c("span", [
+              _c("i", { staticClass: "icon-arrow-up12" }),
+              _vm._v(" Kembali "),
+              _c("i", { staticClass: "icon-arrow-up12" })
+            ])
+          : _c("span", [
+              _c("i", { staticClass: "icon-arrow-down12" }),
+              _vm._v(" Selengkapnya "),
+              _c("i", { staticClass: "icon-arrow-down12" })
+            ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/produkCu/index.vue?vue&type=template&id=6bff67b5&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/produkCu/index.vue?vue&type=template&id=6bff67b5& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("page-header", {
+        attrs: {
+          title: _vm.title,
+          titleDesc: _vm.titleDesc,
+          titleIcon: _vm.titleIcon
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "page-content pt-0" }, [
+        _c("div", { staticClass: "content-wrapper" }, [
+          _c(
+            "div",
+            { staticClass: "content" },
+            [
+              _vm.itemDataStat === "fail"
+                ? _c("message", {
+                    attrs: {
+                      title: "Oops terjadi kesalahan:",
+                      errorData: _vm.itemData
+                    }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.currentUser.id_cu == 0
+                ? _c("select-cu", {
+                    attrs: {
+                      kelas: _vm.kelas,
+                      path: _vm.selectCuPath,
+                      isPus: false
+                    }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _c("table-data", {
+                attrs: { title: _vm.title, kelas: _vm.kelas }
+              })
+            ],
+            1
+          )
+        ])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/produkCu/table.vue?vue&type=template&id=259a9cb1&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/produkCu/table.vue?vue&type=template&id=259a9cb1& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "data-viewer",
+        {
+          attrs: {
+            title: _vm.title,
+            columnData: _vm.columnData,
+            itemData: _vm.itemData,
+            query: _vm.query,
+            itemDataStat: _vm.itemDataStat,
+            dataview: "grid",
+            excelDownloadUrl: _vm.excelDownloadUrl
+          },
+          on: { fetch: _vm.fetch },
+          scopedSlots: _vm._u([
+            {
+              key: "item-mobile",
+              fn: function(props) {
+                return [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "card border-left-3 rounded-left-0",
+                        class: [_vm.gridColor(props.item.tipe)]
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "card-header bg-light header-elements-inline"
+                          },
+                          [
+                            _c(
+                              "h6",
+                              { staticClass: "card-title" },
+                              [
+                                _c("check-value", {
+                                  attrs: { value: props.item.kode_produk }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "header-elements" }, [
+                              _c("span", {
+                                domProps: {
+                                  innerHTML: _vm._s(
+                                    _vm.$options.filters.tipeProdukCu(
+                                      props.item.tipe
+                                    )
+                                  )
+                                }
+                              })
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "card-body" }, [
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-4 col-lg-2" }, [
+                              props.item.gambar
+                                ? _c("img", {
+                                    staticClass:
+                                      "img-rounded img-fluid wmin-sm",
+                                    attrs: {
+                                      src:
+                                        "/images/produk_cu/" +
+                                        props.item.gambar +
+                                        "n.jpg"
+                                    }
+                                  })
+                                : _c("img", {
+                                    staticClass:
+                                      "img-rounded img-fluid wmin-sm",
+                                    attrs: { src: "/images/no_image.jpg" }
+                                  }),
+                              _vm._v(" "),
+                              _c("hr", { staticClass: "d-block d-sm-none" })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-8 col-lg-10" }, [
+                              props.item.jalinan == 1
+                                ? _c(
+                                    "span",
+                                    { staticClass: "badge badge-primary mb-1" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-shield-check"
+                                      }),
+                                      _vm._v(" Dilindungi JALINAN")
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c("h6", { staticClass: "text-primary" }, [
+                                _vm._v(
+                                  _vm._s(props.item.name) +
+                                    " " +
+                                    _vm._s(
+                                      props.item.cu
+                                        ? " - CU " + props.item.cu.name
+                                        : ""
+                                    )
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("p", {
+                                domProps: {
+                                  innerHTML: _vm._s(props.item.keterangan)
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-12" }, [
+                              _c("hr"),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "card-group-control card-group-control-right",
+                                  attrs: { id: "parent_" + props.item.id }
+                                },
+                                [
+                                  _c("div", { staticClass: "row" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "col-md-6 col-lg-6" },
+                                      [
+                                        _c("div", { staticClass: "card" }, [
+                                          _c(
+                                            "div",
+                                            { staticClass: "card-header" },
+                                            [
+                                              _c(
+                                                "h6",
+                                                { staticClass: "card-title" },
+                                                [
+                                                  _c(
+                                                    "a",
+                                                    {
+                                                      staticClass:
+                                                        "collapsed text-default",
+                                                      attrs: {
+                                                        "data-toggle":
+                                                          "collapse",
+                                                        href:
+                                                          "#aturan_setor_" +
+                                                          props.item.id
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm.columnData[7]
+                                                            .title
+                                                        )
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "collapse",
+                                              attrs: {
+                                                id:
+                                                  "aturan_setor_" +
+                                                  props.item.id,
+                                                "data-parent":
+                                                  "#parent_" + props.item.id
+                                              }
+                                            },
+                                            [
+                                              _c("div", {
+                                                staticClass: "card-body",
+                                                domProps: {
+                                                  innerHTML: _vm._s(
+                                                    props.item.aturan_setor
+                                                  )
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    props.item.tipe == "Simpanan Pokok" ||
+                                    props.item.tipe == "Simpanan Wajib" ||
+                                    props.item.tipe == "Simpanan Non Saham"
+                                      ? _c(
+                                          "div",
+                                          { staticClass: "col-md-6 col-lg-6" },
+                                          [
+                                            _c("div", { staticClass: "card" }, [
+                                              _c(
+                                                "div",
+                                                { staticClass: "card-header" },
+                                                [
+                                                  _c(
+                                                    "h6",
+                                                    {
+                                                      staticClass: "card-title"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "a",
+                                                        {
+                                                          staticClass:
+                                                            "collapsed text-default",
+                                                          attrs: {
+                                                            "data-toggle":
+                                                              "collapse",
+                                                            href:
+                                                              "#aturan_tarik_" +
+                                                              props.item.id
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm.columnData[8]
+                                                                .title
+                                                            )
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "collapse",
+                                                  attrs: {
+                                                    id:
+                                                      "aturan_tarik_" +
+                                                      props.item.id,
+                                                    "data-parent":
+                                                      "#parent_" + props.item.id
+                                                  }
+                                                },
+                                                [
+                                                  _c("div", {
+                                                    staticClass: "card-body",
+                                                    domProps: {
+                                                      innerHTML: _vm._s(
+                                                        props.item.aturan_tarik
+                                                      )
+                                                    }
+                                                  })
+                                                ]
+                                              )
+                                            ])
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "col-md-6 col-lg-6" },
+                                      [
+                                        _c("div", { staticClass: "card" }, [
+                                          _c(
+                                            "div",
+                                            { staticClass: "card-header" },
+                                            [
+                                              _c(
+                                                "h6",
+                                                { staticClass: "card-title" },
+                                                [
+                                                  _c(
+                                                    "a",
+                                                    {
+                                                      staticClass:
+                                                        "collapsed text-default",
+                                                      attrs: {
+                                                        "data-toggle":
+                                                          "collapse",
+                                                        href:
+                                                          "#aturan_balas_jasa_" +
+                                                          props.item.id
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm.columnData[9]
+                                                            .title
+                                                        )
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "collapse",
+                                              attrs: {
+                                                id:
+                                                  "aturan_balas_jasa_" +
+                                                  props.item.id,
+                                                "data-parent":
+                                                  "#parent_" + props.item.id
+                                              }
+                                            },
+                                            [
+                                              _c("div", {
+                                                staticClass: "card-body",
+                                                domProps: {
+                                                  innerHTML: _vm._s(
+                                                    props.item.aturan_balas_jasa
+                                                  )
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "col-md-6 col-lg-6" },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "card pb-0 mb-0" },
+                                          [
+                                            _c(
+                                              "div",
+                                              { staticClass: "card-header" },
+                                              [
+                                                _c(
+                                                  "h6",
+                                                  { staticClass: "card-title" },
+                                                  [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        staticClass:
+                                                          "collapsed text-default",
+                                                        attrs: {
+                                                          "data-toggle":
+                                                            "collapse",
+                                                          href:
+                                                            "#aturan_lain_" +
+                                                            props.item.id
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            _vm.columnData[10]
+                                                              .title
+                                                          )
+                                                        )
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass: "collapse",
+                                                attrs: {
+                                                  id:
+                                                    "aturan_lain_" +
+                                                    props.item.id,
+                                                  "data-parent":
+                                                    "#parent_" + props.item.id
+                                                }
+                                              },
+                                              [
+                                                _c("div", {
+                                                  staticClass: "card-body",
+                                                  domProps: {
+                                                    innerHTML: _vm._s(
+                                                      props.item.aturan_lain
+                                                    )
+                                                  }
+                                                })
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                ]
+                              )
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "card-footer d-sm-flex justify-content-sm-between align-items-sm-center"
+                          },
+                          [
+                            _c(
+                              "ul",
+                              {
+                                staticClass:
+                                  "list-inline list-inline-dotted mb-1"
+                              },
+                              [
+                                _c("li", { staticClass: "list-inline-item" }, [
+                                  _c("strong", [
+                                    _vm._v(
+                                      _vm._s(_vm.columnData[11].title) + ":"
+                                    )
+                                  ]),
+                                  _vm._v("   "),
+                                  _c("span", {
+                                    domProps: {
+                                      innerHTML: _vm._s(
+                                        _vm.$options.filters.dateTime(
+                                          props.item.created_at
+                                        )
+                                      )
+                                    }
+                                  })
+                                ]),
+                                _vm._v(" "),
+                                props.item.created_at !== props.item.updated_at
+                                  ? _c(
+                                      "li",
+                                      { staticClass: "list-inline-item" },
+                                      [
+                                        _c("strong", [
+                                          _vm._v(
+                                            _vm._s(_vm.columnData[12].title) +
+                                              ":"
+                                          )
+                                        ]),
+                                        _vm._v("   "),
+                                        _c("span", {
+                                          domProps: {
+                                            innerHTML: _vm._s(
+                                              _vm.$options.filters.dateTime(
+                                                props.item.updated_at
+                                              )
+                                            )
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  : _vm._e()
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "mt-2 mt-sm-0 d-none d-sm-block" },
+                              [
+                                _vm.currentUser.can &&
+                                _vm.currentUser.can["update_produk_cu"]
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-light mb-1",
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            return _vm.ubahData(props.item.id)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "icon-pencil5"
+                                        }),
+                                        _vm._v(" Ubah\n\t\t\t\t\t\t\t")
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.currentUser.can &&
+                                _vm.currentUser.can["destroy_produk_cu"]
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-light ml-2 mb-1",
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            return _vm.modalConfirmOpen(
+                                              "hapus",
+                                              true,
+                                              props.item
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("i", { staticClass: "icon-bin2" }),
+                                        _vm._v(" Hapus\n\t\t\t\t\t\t\t")
+                                      ]
+                                    )
+                                  : _vm._e()
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "d-block d-sm-none" }, [
+                              _vm.currentUser.can &&
+                              _vm.currentUser.can["update_produk_cu"]
+                                ? _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-light btn-block mb-1",
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.ubahData(props.item.id)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", { staticClass: "icon-pencil5" }),
+                                      _vm._v(" Ubah\n\t\t\t\t\t\t\t")
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.currentUser.can &&
+                              _vm.currentUser.can["destroy_produk_cu"]
+                                ? _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-light btn-block mb-1",
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.modalConfirmOpen(
+                                            "hapus",
+                                            true,
+                                            props.item
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", { staticClass: "icon-bin2" }),
+                                      _vm._v(" Hapus\n\t\t\t\t\t\t\t")
+                                    ]
+                                  )
+                                : _vm._e()
+                            ])
+                          ]
+                        )
+                      ]
+                    )
+                  ])
+                ]
+              }
+            }
+          ])
+        },
+        [
+          _c(
+            "template",
+            { slot: "button-desktop" },
+            [
+              _vm.currentUser.can && _vm.currentUser.can["create_produk_cu"]
+                ? _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-light mb-1",
+                      attrs: { to: { name: _vm.kelas + "Create" } }
+                    },
+                    [
+                      _c("i", { staticClass: "icon-plus3" }),
+                      _vm._v(" Tambah\n\t\t\t")
+                    ]
+                  )
+                : _vm._e()
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "template",
+            { slot: "button-mobile" },
+            [
+              _vm.currentUser.can && _vm.currentUser.can["create_produk_cu"]
+                ? _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-light btn-block mb-1",
+                      attrs: { to: { name: _vm.kelas + "Create" } }
+                    },
+                    [
+                      _c("i", { staticClass: "icon-plus3" }),
+                      _vm._v(" Tambah\n\t\t\t")
+                    ]
+                  )
+                : _vm._e()
+            ],
+            1
+          )
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c("app-modal", {
+        attrs: {
+          show: _vm.modalShow,
+          state: _vm.modalState,
+          title: _vm.modalTitle,
+          button: _vm.modalButton,
+          content: _vm.modalContent
+        },
+        on: {
+          tutup: _vm.modalTutup,
+          confirmOk: _vm.modalConfirmOk,
+          successOk: _vm.modalTutup,
+          failOk: _vm.modalTutup,
+          backgroundClick: _vm.modalTutup
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/collapseButton.vue":
+/*!***********************************************************!*\
+  !*** ./resources/assets/js/components/collapseButton.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _collapseButton_vue_vue_type_template_id_3ad758d4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./collapseButton.vue?vue&type=template&id=3ad758d4& */ "./resources/assets/js/components/collapseButton.vue?vue&type=template&id=3ad758d4&");
+/* harmony import */ var _collapseButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./collapseButton.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/collapseButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _collapseButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _collapseButton_vue_vue_type_template_id_3ad758d4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _collapseButton_vue_vue_type_template_id_3ad758d4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/components/collapseButton.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/collapseButton.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/assets/js/components/collapseButton.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_collapseButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./collapseButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/collapseButton.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_collapseButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/collapseButton.vue?vue&type=template&id=3ad758d4&":
+/*!******************************************************************************************!*\
+  !*** ./resources/assets/js/components/collapseButton.vue?vue&type=template&id=3ad758d4& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_collapseButton_vue_vue_type_template_id_3ad758d4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./collapseButton.vue?vue&type=template&id=3ad758d4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/collapseButton.vue?vue&type=template&id=3ad758d4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_collapseButton_vue_vue_type_template_id_3ad758d4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_collapseButton_vue_vue_type_template_id_3ad758d4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/produkCu/index.vue":
+/*!******************************************************!*\
+  !*** ./resources/assets/js/views/produkCu/index.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_vue_vue_type_template_id_6bff67b5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=6bff67b5& */ "./resources/assets/js/views/produkCu/index.vue?vue&type=template&id=6bff67b5&");
+/* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/produkCu/index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _index_vue_vue_type_template_id_6bff67b5___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _index_vue_vue_type_template_id_6bff67b5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/views/produkCu/index.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/produkCu/index.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/assets/js/views/produkCu/index.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/produkCu/index.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/produkCu/index.vue?vue&type=template&id=6bff67b5&":
+/*!*************************************************************************************!*\
+  !*** ./resources/assets/js/views/produkCu/index.vue?vue&type=template&id=6bff67b5& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_6bff67b5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=6bff67b5& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/produkCu/index.vue?vue&type=template&id=6bff67b5&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_6bff67b5___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_6bff67b5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/produkCu/table.vue":
+/*!******************************************************!*\
+  !*** ./resources/assets/js/views/produkCu/table.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _table_vue_vue_type_template_id_259a9cb1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./table.vue?vue&type=template&id=259a9cb1& */ "./resources/assets/js/views/produkCu/table.vue?vue&type=template&id=259a9cb1&");
+/* harmony import */ var _table_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./table.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/produkCu/table.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _table_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _table_vue_vue_type_template_id_259a9cb1___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _table_vue_vue_type_template_id_259a9cb1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/views/produkCu/table.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/produkCu/table.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/assets/js/views/produkCu/table.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./table.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/produkCu/table.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/produkCu/table.vue?vue&type=template&id=259a9cb1&":
+/*!*************************************************************************************!*\
+  !*** ./resources/assets/js/views/produkCu/table.vue?vue&type=template&id=259a9cb1& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_template_id_259a9cb1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./table.vue?vue&type=template&id=259a9cb1& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/produkCu/table.vue?vue&type=template&id=259a9cb1&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_template_id_259a9cb1___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_template_id_259a9cb1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ })
+
+}]);

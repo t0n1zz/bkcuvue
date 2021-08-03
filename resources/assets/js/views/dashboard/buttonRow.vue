@@ -111,12 +111,12 @@
     </div>
 
 		<!-- dokumen PUSKOPCUINA -->
-    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer"  @click.prevent="goTo(dokumenGerakanPublikWidgetRoute)">
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" @click.prevent="goTo(dokumenGerakanPublikWidgetRoute)">
       <count-widget :title="'Dokumen GERAKAN & PUBLIK'" :color="'bg-violet-400'" :icon="'icon-books'"></count-widget>
     </div>
 
 		<!-- dokumen -->
-    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_dokumen']" @click.prevent="goTo(dokumenWidgetRoute)">
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" @click.prevent="goTo(dokumenWidgetRoute)">
       <count-widget :title="'Dokumen'" :color="'bg-info-400'" :icon="'icon-books'"></count-widget>
     </div>
 
@@ -214,7 +214,7 @@
 					this.laporanCUWidgetRoute = { name: 'laporanCuCu', params:{cu: this.currentUser.id_cu, tp:'konsolidasi'} };
 					this.assesmentAccessWidgetRoute = { name: 'assesmentAccessCu', params:{cu: this.currentUser.id_cu} };
 					this.monitoringWidgetRoute = { name: 'monitoringCu', params:{cu: this.currentUser.id_cu, tp: 'semua'} };
-					this.dokumenWidgetRoute = { name: 'dokumen', params:{cu: this.currentUser.id_cu} };
+					this.dokumenWidgetRoute = { name: 'dokumenCu', params:{cu: this.currentUser.id_cu} };
 				}else{
 					this.tempatWidgetRoute = { name: 'tempat' };
 					this.anggotaCuWidgetRoute = { name: 'anggotaCuCu', params:{cu: 'semua', tp: 'semua'} };
@@ -227,7 +227,7 @@
 					this.laporanCUWidgetRoute = { name: 'laporanCu' };
 					this.assesmentAccessWidgetRoute = { name: 'assesmentAccessCu', params:{cu: 'semua'} };
 					this.monitoringWidgetRoute = { name: 'monitoringCu', params:{cu: 'semua', tp: 'semua'} };
-					this.dokumenWidgetRoute = { name: 'dokumen', params:{cu: 'semua'} };
+					this.dokumenWidgetRoute = { name: 'dokumenCu', params:{cu: 'semua'} };
 					this.asetTetapWidgetRoute = { name: 'asetTetap'};
 				}
 			},

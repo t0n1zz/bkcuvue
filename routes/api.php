@@ -401,9 +401,9 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/dokumen/history', 'DokumenController@history');
         Route::get('/dokumen/indexGerakanPublik', 'DokumenController@indexGerakanPublik');
         Route::get('/dokumen/indexGerakanPublikCu/{id}', 'DokumenController@indexGerakanPublikCu');
+        Route::get('/dokumen/', 'DokumenController@index');
+        Route::get('/dokumen/indexCu/{id}', 'DokumenController@indexCu');
         Route::group(['middleware' => ['permission:index_dokumen']], function () {
-            Route::get('/dokumen/', 'DokumenController@index');
-            Route::get('/dokumen/indexCu/{id}', 'DokumenController@indexCu');
         });
         Route::group(['middleware' => ['permission:create_dokumen']], function () {
             Route::get('/dokumen/create', 'DokumenController@create');
@@ -605,6 +605,9 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/jalinanKlaim/getPencairan', 'JalinanKlaimController@getPencairan');
         Route::get('/jalinanKlaim/getStatus/{status_klaim}', 'JalinanKlaimController@getStatus');
         Route::get('/jalinanKlaim/getHistory/{id}', 'JalinanKlaimController@getHistory');
+        Route::get('/jalinanKlaim/getDuplicate/{name}/tanggal/{tanggal_lahir}/tipe/{tipe}', 'JalinanKlaimController@getDuplicate');
+        Route::get('/jalinanKlaim/getKlaimLama/{nik}/cu/{cu}', 'JalinanKlaimController@getKlaimLama');
+        Route::get('/jalinanKlaim/edit/{nik}/cu/{cu}/tipe/{tipe}', 'JalinanKlaimController@edit');
         Route::group(['middleware' => ['permission:index_jalinan_klaim']], function () {
             Route::get('/jalinanKlaim/status/{status}/{awal}/{akhir}', 'JalinanKlaimController@index');
             Route::get('/jalinanKlaim/indexCu/{cu}/tp/{tp}/status/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexCu'); 
@@ -616,9 +619,9 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
             Route::post('/jalinanKlaim/store', 'JalinanKlaimController@store');
         });
         Route::group(['middleware' => ['permission:update_jalinan_klaim']], function () {
-            Route::get('/jalinanKlaim/edit/{nik}/cu/{cu}/tipe/{tipe}', 'JalinanKlaimController@edit');
             Route::post('/jalinanKlaim/update/{id}', 'JalinanKlaimController@update');
             Route::post('/jalinanKlaim/updateStatus/{id}', 'JalinanKlaimController@updateStatus');
+            Route::post('/jalinanKlaim/updateNoSurat/{id}', 'JalinanKlaimController@updateNoSurat');
             Route::post('/jalinanKlaim/periksaKoreksi/{id}', 'JalinanKlaimController@periksaKoreksi');
             Route::post('/jalinanKlaim/updateSelesai/{id}', 'JalinanKlaimController@updateSelesai');
         });

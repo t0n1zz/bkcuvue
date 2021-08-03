@@ -873,14 +873,7 @@
 						icon: 'icon-books',
 						secondRow: true,
 						tipe: 'all',
-						permission: [{
-								name: 'Lihat',
-								key: 'index_dokumen',
-								icon: 'icon-eye',
-								tipe: 'all',
-								value: false,
-								group: 'Dokumen'
-							},
+						permission: [
 							{
 								name: 'Tambah',
 								key: 'create_dokumen',
