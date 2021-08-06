@@ -110,6 +110,21 @@
       <count-widget :title="'Laporan Statistik Gerakan'" :color="'bg-grey-400'" :icon="'icon-stats-bars'"></count-widget>
     </div>
 
+		<!-- dokumen PUSKOPCUINA -->
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" @click.prevent="goTo(dokumenGerakanPublikWidgetRoute)">
+      <count-widget :title="'Dokumen GERAKAN & PUBLIK'" :color="'bg-violet-400'" :icon="'icon-books'"></count-widget>
+    </div>
+
+		<!-- dokumen -->
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" @click.prevent="goTo(dokumenWidgetRoute)">
+      <count-widget :title="'Dokumen'" :color="'bg-info-400'" :icon="'icon-books'"></count-widget>
+    </div>
+
+		<!-- aset tetap -->
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_aset_tetap']" @click.prevent="goTo(asetTetapWidgetRoute)">
+      <count-widget :title="'Aset Tetap'" :color="'bg-indigo-400'" :icon="'icon-bag'"></count-widget>
+    </div>
+
 		<!-- assesment access -->
     <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_assesment_access']" @click.prevent="goTo(assesmentAccessWidgetRoute)">
       <count-widget :title="'Self Assesment Access'" :color="'bg-warning-400'" :icon="'icon-reading'"></count-widget>
@@ -162,6 +177,9 @@
 				laporanGerakanWidgetRoute: {},
 				assesmentAccessWidgetRoute: {},
 				monitoringAccessWidgetRoute: {},
+				dokumenGerakanPublikWidgetRoute: {},
+				dokumenWidgetRoute: {},
+				asetTetapWidgetRoute: {},
 			}
 		},
 		created(){
@@ -183,6 +201,7 @@
 				this.mitraLembagaWidgetRoute = { name: 'mitraLembaga' };
 				this.userWidgetRoute = { name: 'userCu', params:{cu: this.currentUser.id_cu} };
 				this.kegiatanBKCUJalanWidgetRoute = { name: 'kegiatanBKCUJalan' };
+				this.dokumenGerakanPublikWidgetRoute = { name: 'dokumenGerakanPublik', params:{cu: 'semua'} };
 
 				if(this.currentUser.id_cu != 0){
 					this.anggotaCuWidgetRoute = { name: 'anggotaCuCu', params:{cu: this.currentUser.id_cu, tp: 'semua'} };
@@ -195,6 +214,7 @@
 					this.laporanCUWidgetRoute = { name: 'laporanCuCu', params:{cu: this.currentUser.id_cu, tp:'konsolidasi'} };
 					this.assesmentAccessWidgetRoute = { name: 'assesmentAccessCu', params:{cu: this.currentUser.id_cu} };
 					this.monitoringWidgetRoute = { name: 'monitoringCu', params:{cu: this.currentUser.id_cu, tp: 'semua'} };
+					this.dokumenWidgetRoute = { name: 'dokumenCu', params:{cu: this.currentUser.id_cu} };
 				}else{
 					this.tempatWidgetRoute = { name: 'tempat' };
 					this.anggotaCuWidgetRoute = { name: 'anggotaCuCu', params:{cu: 'semua', tp: 'semua'} };
@@ -207,6 +227,8 @@
 					this.laporanCUWidgetRoute = { name: 'laporanCu' };
 					this.assesmentAccessWidgetRoute = { name: 'assesmentAccessCu', params:{cu: 'semua'} };
 					this.monitoringWidgetRoute = { name: 'monitoringCu', params:{cu: 'semua', tp: 'semua'} };
+					this.dokumenWidgetRoute = { name: 'dokumenCu', params:{cu: 'semua'} };
+					this.asetTetapWidgetRoute = { name: 'asetTetap'};
 				}
 			},
 			goTo(route){

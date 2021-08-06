@@ -72,6 +72,14 @@ export default {
     return axios.get('/api/jalinanKlaim/getKlaim/' + id);
   },
 
+  getDuplicate: function( name, tanggal, tipe ){
+    return axios.get('/api/jalinanKlaim/getDuplicate/' + name + '/tanggal/' + tanggal + '/tipe/' + tipe);
+  },
+
+  getKlaimLama: function( nik, cu ){
+    return axios.get('/api/jalinanKlaim/getKlaimLama/' + nik + '/cu/' + cu);
+  },
+
   edit: function( nik, cu, tipe ){
     return axios.get('/api/jalinanKlaim/edit/' + nik + '/cu/' + cu + '/tipe/' + tipe);
   },
@@ -86,6 +94,10 @@ export default {
 
   updateStatus: function ( id, form ){
     return axios.post('/api/jalinanKlaim/updateStatus/' + id, form);
+  },
+
+  updateNoSurat: function ( id, form ){
+    return axios.post('/api/jalinanKlaim/updateNoSurat/' + id, form);
   },
 
   updateSelesai: function ( id ){

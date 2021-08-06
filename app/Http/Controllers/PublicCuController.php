@@ -6,6 +6,7 @@ use App\Cu;
 use App\Tp;
 use App\Artikel;
 use App\ProdukCu;
+use App\Dokumen;
 use App\ArtikelPenulis;
 use App\ArtikelKategori;
 use Illuminate\Http\Request;
@@ -252,5 +253,38 @@ class PublicCuController extends Controller
          SEO::opengraph()->setUrl(url()->full());
 
         return view('cu.artikel', compact('title','subtitle','tipe','artikels'));
+    }
+
+    public function dokumen()
+    {
+        $subdomain = Route::input('cu');
+        
+        $cu = Cu::with('provinces')->withCount('hasTp')->where('slug',$subdomain)->first();
+
+        if(!$cu){
+            abort(404);
+        }
+
+        $title = "Dokumen";
+        $subtitle = 'Menampilkan ' . $title;
+
+        $dokumens = Dokumen::select('id','id_cu','name','status','filename','keterangan','tipe','format','link')
+		->where('status','PUBLIK')
+		->where('id_cu',$cu->id)
+        ->get();
+
+        SEO::setTitle($title . ' - CU ' . $cu->name);
+        SEO::setDescription($subtitle);
+        SEO::opengraph()->setUrl(url()->full());
+        SEO::opengraph()->addProperty('type', 'articles');
+
+        return view('cu.dokumen', compact('title','subtitle','dokumens'));
+    }
+
+    public function download_file($filename){
+        $destinationPath = public_path() . "/files/dokumen/";
+        $file= $destinationPath . $filename;
+
+        return Response::download($file);
     }
 }

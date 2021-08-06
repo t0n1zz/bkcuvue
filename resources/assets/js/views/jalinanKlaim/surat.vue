@@ -25,7 +25,7 @@
                 <li v-if="tipe == 'cair'"><small>FM-JLN-18/Rev00/02.01.2019</small></li>
                 <li v-else-if="tipe == 'kurang'"><small>FM-JLN-02/Rev00/02.01.2019</small></li>
                 <li v-else-if="tipe == 'tolak'"><small>FM-JLN-01/Rev00/02.01.2019</small></li>
-                <li class="mt-0" v-html="$options.filters.dateMonth(this.selectedItem.surat_tanggal)"></li>
+                <li class="mt-0" v-html="$options.filters.dateMonth(this.selectedItem.surat_tanggal)" v-if="this.selectedItem.surat_tanggal"></li>
               </ul>
             </div>
             <div class="col-12 mb-4"></div>

@@ -1731,7 +1731,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         tipe: 'string'
       }, {
         title: 'Tingkat',
-        name: 'aktivis.pekerjaan_aktif.tingkat',
+        name: 'aktivis.pekerjaan_aktif.tingkat_name',
         tipe: 'string'
       }, {
         title: 'Jabatan',
@@ -1885,7 +1885,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         tipe: 'string'
       }, {
         title: 'Tingkat',
-        name: 'aktivis.pekerjaan_aktif.tingkat',
+        name: 'aktivis.pekerjaan_aktif.tingkat_name',
         tipe: 'string'
       }, {
         title: 'Jabatan',
@@ -7529,8 +7529,8 @@ var render = function() {
                                                                           return _vm.downloadMateri(
                                                                             props
                                                                               .item
-                                                                              .tipe !=
-                                                                              "pdf"
+                                                                              .tipe ==
+                                                                              "jpg"
                                                                               ? props
                                                                                   .item
                                                                                   .filename +
@@ -7646,8 +7646,8 @@ var render = function() {
                                                                           return _vm.downloadMateri(
                                                                             props
                                                                               .item
-                                                                              .tipe !=
-                                                                              "pdf"
+                                                                              .tipe ==
+                                                                              "jpg"
                                                                               ? props
                                                                                   .item
                                                                                   .filename +
@@ -10314,29 +10314,30 @@ var render = function() {
                                                       !_vm
                                                         .columnDataPesertaTerdaftar[11]
                                                         .hide
-                                                        ? _c("td", [
-                                                            props.item.aktivis
-                                                              .pekerjaan_aktif &&
-                                                            props.item.aktivis
-                                                              .pekerjaan_aktif
-                                                              .tingkat
-                                                              ? _c("span", {
-                                                                  domProps: {
-                                                                    innerHTML: _vm._s(
-                                                                      _vm.$options.filters.checkTingkatAktivis(
-                                                                        props
-                                                                          .item
-                                                                          .aktivis
-                                                                          .pekerjaan_aktif
-                                                                          .tingkat
-                                                                      )
-                                                                    )
-                                                                  }
-                                                                })
-                                                              : _c("span", [
-                                                                  _vm._v("-")
-                                                                ])
-                                                          ])
+                                                        ? _c(
+                                                            "td",
+                                                            [
+                                                              props.item.aktivis
+                                                                .pekerjaan_aktif
+                                                                ? _c(
+                                                                    "check-value",
+                                                                    {
+                                                                      attrs: {
+                                                                        value:
+                                                                          props
+                                                                            .item
+                                                                            .aktivis
+                                                                            .pekerjaan_aktif
+                                                                            .tingkat_name
+                                                                      }
+                                                                    }
+                                                                  )
+                                                                : _c("span", [
+                                                                    _vm._v("-")
+                                                                  ])
+                                                            ],
+                                                            1
+                                                          )
                                                         : _vm._e(),
                                                       _vm._v(" "),
                                                       props.item.aktivis &&
@@ -10631,7 +10632,7 @@ var render = function() {
                                       ],
                                       null,
                                       false,
-                                      1579556623
+                                      2796205171
                                     )
                                   },
                                   [
@@ -11587,28 +11588,30 @@ var render = function() {
                                                     !_vm
                                                       .columnDataPesertaHadir[11]
                                                       .hide
-                                                      ? _c("td", [
-                                                          props.item.aktivis
-                                                            .pekerjaan_aktif &&
-                                                          props.item.aktivis
-                                                            .pekerjaan_aktif
-                                                            .tingkat
-                                                            ? _c("span", {
-                                                                domProps: {
-                                                                  innerHTML: _vm._s(
-                                                                    _vm.$options.filters.checkTingkatAktivis(
-                                                                      props.item
-                                                                        .aktivis
-                                                                        .pekerjaan_aktif
-                                                                        .tingkat
-                                                                    )
-                                                                  )
-                                                                }
-                                                              })
-                                                            : _c("span", [
-                                                                _vm._v("-")
-                                                              ])
-                                                        ])
+                                                      ? _c(
+                                                          "td",
+                                                          [
+                                                            props.item.aktivis
+                                                              .pekerjaan_aktif
+                                                              ? _c(
+                                                                  "check-value",
+                                                                  {
+                                                                    attrs: {
+                                                                      value:
+                                                                        props
+                                                                          .item
+                                                                          .aktivis
+                                                                          .pekerjaan_aktif
+                                                                          .tingkat_name
+                                                                    }
+                                                                  }
+                                                                )
+                                                              : _c("span", [
+                                                                  _vm._v("-")
+                                                                ])
+                                                          ],
+                                                          1
+                                                        )
                                                       : _vm._e(),
                                                     _vm._v(" "),
                                                     props.item.aktivis &&
@@ -11881,7 +11884,7 @@ var render = function() {
                                     ],
                                     null,
                                     false,
-                                    3482834570
+                                    107988790
                                   )
                                 })
                               ],

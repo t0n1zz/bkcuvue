@@ -9,6 +9,7 @@ use Response;
 use App\Artikel;
 use App\Kegiatan;
 use App\Download;
+use App\Dokumen;
 use App\ArtikelPenulis;
 use App\ArtikelKategori;
 use App\Region\Provinces;
@@ -237,7 +238,10 @@ class PublicController extends Controller
         $title = "Dokumen";
         $subtitle = 'Menampilkan ' . $title;
 
-        $dokumens = Download::all();
+        $dokumens = Dokumen::select('id','id_cu','name','status','filename','keterangan','tipe','format','link')
+		->where('status','PUBLIK')
+		->where('id_cu',0)
+        ->get();
 
         SEO::setTitle($title . ' - PUSKOPCUINA');
         SEO::setDescription($subtitle);
@@ -248,7 +252,7 @@ class PublicController extends Controller
     }
 
     public function download_file($filename){
-        $destinationPath = public_path() . "/files/";
+        $destinationPath = public_path() . "/files/dokumen/";
         $file= $destinationPath . $filename;
 
         return Response::download($file);
@@ -274,6 +278,7 @@ class PublicController extends Controller
     public function testroute()
     {    
         abort(404);
+
         // $cu = 4;
         // $tp = 31;  
         // $kelas = \App\AnggotaCu::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp')->whereHas('anggota_cu_cu_not_keluar', function($query) use ($cu, $tp){ 
@@ -318,10 +323,10 @@ class PublicController extends Controller
 		// 	]);
 
 		// create permission
-        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_voting']); 
-        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_voting']); 
-        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_voting']); 
-		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_voting']);
+        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_dokumen']); 
+        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_dokumen']); 
+        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_dokumen']); 
+		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_dokumen']);
 		
 		// give permission
 		// $users = App\User::where('id','!=',1)->where('id_cu',0)->get();

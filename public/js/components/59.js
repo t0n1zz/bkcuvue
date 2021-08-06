@@ -964,7 +964,7 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
                           _c(
                             "div",
                             {
@@ -1054,7 +1054,7 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _vm.currentUser.id_cu === 0
-                          ? _c("div", { staticClass: "col-md-6" }, [
+                          ? _c("div", { staticClass: "col-md-12" }, [
                               _c(
                                 "div",
                                 {

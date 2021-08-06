@@ -49,6 +49,10 @@ const asetTetapGolongan = () => import('./views/asetTetapGolongan/index.vue');
 const asetTetapGolongan_form = () => import('./views/asetTetapGolongan/create.vue');
 const asetTetapLokasi = () => import('./views/asetTetapLokasi/index.vue');
 const asetTetapLokasi_form = () => import('./views/asetTetapLokasi/create.vue');
+const dokumen = () => import('./views/dokumen/index.vue');
+const dokumen_form = () => import('./views/dokumen/form.vue');
+const dokumenKategori = () => import('./views/dokumenKategori/index.vue');
+const dokumenKategori_form = () => import('./views/dokumenKategori/form.vue');
 const mitraOrang = () => import('./views/mitraOrang/index.vue');
 const mitraOrang_form = () => import('./views/mitraOrang/form.vue');
 const mitraLembaga = () => import('./views/mitraLembaga/index.vue');
@@ -349,10 +353,10 @@ const routes = [
 		name: 'asetTetap', 
 		components: { default: asetTetap, 'header': header, 'footer': footer  },
 		meta: { requiresAuth: true, mode:'cu' }},
-		{ path: '/asetTetap/detail/:kode',
+	{ path: '/asetTetap/detail/:kode',
 		name: 'asetTetapDetail', 
-		components: { default: asetTetap_detail, 'header': header, 'footer': footer  },
-		meta: { requiresAuth: true, mode:'cu' }},	
+		components: { default: asetTetap_detail },
+		meta: { requiresAuth: false, mode:'cu' }},	
 	{ path: '/asetTetap/create',
 		name: 'asetTetapCreate', 
 		components: { default: asetTetap_form, 'header': header, 'footer': footer },
@@ -402,6 +406,38 @@ const routes = [
 		name: 'asetTetapLokasiCreate', 
 		components: { default: asetTetapLokasi_form, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true }},	
+
+	// dokumen
+	{ path: '/dokumen/gerakan/publik/:cu',
+		name: 'dokumenGerakanPublik', 
+		components: { default: dokumen, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth:true, mode:'gerakanPublik' }},
+	{ path: '/dokumen/cu/:cu',
+		name: 'dokumenCu', 
+		components: { default: dokumen, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth:true, mode:'cu' }},
+	{ path: '/dokumen/create',
+		name: 'dokumenCreate', 
+		components: { default: dokumen_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/dokumen/edit/:id',
+		name: 'dokumenEdit', 
+		components: { default: dokumen_form, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true, mode:'edit' }},
+
+	// dokumen kategori
+	{ path: '/dokumenKategori/cu/:cu',
+		name: 'dokumenKategoriCu', 
+		components: { default: dokumenKategori, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true, mode:'cu' }},
+	{ path: '/dokumenKategori/create',
+		name: 'dokumenKategoriCreate', 
+		components: { default: dokumenKategori_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/dokumenKategori/edit/:id',
+		name: 'dokumenKategoriEdit', 
+		components: { default: dokumenKategori_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'edit' }},
 
 	// mitra perseorangan
 	{ path: '/mitraOrang',

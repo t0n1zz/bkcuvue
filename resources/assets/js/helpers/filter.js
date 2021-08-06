@@ -59,6 +59,8 @@ Vue.filter('checkTingkatAktivis', function(value){
 		return 'Kolektor';
 	} else if(value == 11) {
 		return 'Kelompok Inti';
+	} else if(value == 12) {
+		return 'Supporting Unit';
 	} else {
 		return '-';
 	}
@@ -73,7 +75,7 @@ Vue.filter('statusDiklat', function(value){
 	}else if(value == 4){
 		return '<span class="badge badge-success"> BERJALAN</span>';
 	}else if(value == 5){
-		return '<span class="badge badge-primary"> TERLAKSANA</span>';
+		return '<span class="badge badge-orange-400"> TERLAKSANA</span>';
 	}else if(value == 6){
 		return '<span class="badge badge-danger"> BATAL</span>';
 	}
@@ -82,13 +84,13 @@ Vue.filter('statusPeserta', function(value){
 	if(value == 1){
 		return '<span class="badge badge-info">MENUNGGU</span>';
 	}else if(value == 2){
-		return '<span class="badge badge-warning">MENUNGGU</span>';
+		return '<span class="badge badge-warning">TERDAFTAR</span>';
 	}else if(value == 3){
 		return '<span class="badge badge-secondary">TERDAFTAR</span>';
 	}else if(value == 4){
 		return '<span class="badge badge-success">SEDANG MENGIKUTI</span>';
 	}else if(value == 5){
-		return '<span class="badge badge-primary">SELESAI</span>';
+		return '<span class="badge badge-orange-400">SELESAI</span>';
 	}else if(value == 6){
 		return '<span class="badge badge-danger">BATAL</span>';
 	}else if(value == 7){

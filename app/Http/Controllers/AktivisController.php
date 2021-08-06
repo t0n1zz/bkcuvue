@@ -53,13 +53,13 @@ class AktivisController extends Controller{
 					->where('status',1);
 				}])->with('pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
 					$query->whereIn('tipe',[1,3])
-					->whereIn('tingkat',[5,6,7,8,9])
+					->whereIn('tingkat',[5,6,7,8,9,12])
 					->where('status',1);
 				})->advancedFilter();
 			}else{
 				$table_data = Aktivis::with(['pekerjaans' => function($q){
 					$q->with('cu')->whereIn('tipe',[1,3])
-					->whereIn('tingkat',[5,6,7,8,9])
+					->whereIn('tingkat',[5,6,7,8,9,12])
 					->where('status',3);
 				}])->with('pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query){
 					$query->whereIn('tipe',[1,3])
@@ -91,13 +91,15 @@ class AktivisController extends Controller{
 				$param_tingkat = 10;
 			}elseif($tingkat == 'kelompok_inti'){
 				$param_tingkat = 11;
+			}elseif($tingkat == 'supporting_unit'){
+				$param_tingkat = 12;
 			}
 
 			if($status == 'aktif'){
 				$table_data = Aktivis::with(['pekerjaans' => function($q) use ($param_tingkat){
 					$q->with('cu')->whereIn('tipe',[1,3])
 					->where('tingkat',$param_tingkat)
-					->where('status',3);
+					->where('status',1);
 				}])->with('pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query) use ($param_tingkat){
 					$query->whereIn('tipe',[1,3])
 					->where('tingkat',$param_tingkat)
@@ -162,7 +164,7 @@ class AktivisController extends Controller{
 					->where('status',1);
 				}])->with('pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
 				->whereHas('pekerjaan', function($query) use ($id,$tipe){
-					$query->whereIn('tingkat',[5,6,7,8,9])->where('tipe',$tipe)->where('id_tempat',$id)
+					$query->whereIn('tingkat',[5,6,7,8,9,12])->where('tipe',$tipe)->where('id_tempat',$id)
 					->where('status',1);
 				})->advancedFilter();
 			}else{
@@ -171,7 +173,7 @@ class AktivisController extends Controller{
 					->where('status',3);
 				}])->with('pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
 				->whereHas('pekerjaan', function($query) use ($id,$tipe){
-					$query->whereIn('tingkat',[5,6,7,8,9])->where('tipe',$tipe)->where('id_tempat',$id)->where('status',3);
+					$query->whereIn('tingkat',[5,6,7,8,9,12])->where('tipe',$tipe)->where('id_tempat',$id)->where('status',3);
 				})->advancedFilter();
 			}
 
@@ -200,6 +202,8 @@ class AktivisController extends Controller{
 				$param_tingkat = 10;
 			}elseif($tingkat == 'kelompok_inti'){
 				$param_tingkat = 11;
+			}elseif($tingkat == 'supporting_unit'){
+				$param_tingkat = 12;
 			}
 
 			if($status == 'aktif'){
@@ -232,20 +236,77 @@ class AktivisController extends Controller{
 
 	public function formatQuery($table_data){
 		foreach($table_data as $t){
-			if($t->pekerjaans[0]->status == 1){
-				$t->pekerjaan_aktif = $t->pekerjaans[0];
-			}else if($t->pekerjaans[0]->status == 3){
-				$t->pekerjaan_tidak_aktif = $t->pekerjaans[0];
-			}else{
-				$t->pekerjaan_aktif = '';
-				$t->pekerjaan_tidak_aktif = '';
-			}
+			$t->pekerjaan_aktif = '';
+			$t->pekerjaan_tidak_aktif = '';
 			$t->nik = $t->nik ? $t->nik . "​ " : '';
 			$t->nim_cu = $t->nim_cu ? $t->nim_cu . "​ " : '';
 			$t->npwp = $t->npwp ? $t->npwp . "​ " : '';
 			$t->hp = $t->hp ? $t->hp . "​ " : '';
-		}
 
+			if(isset($t->pekerjaans[0])){
+				if($t->pekerjaans[0]->status == 1){
+					$t->pekerjaan_aktif = $t->pekerjaans[0];
+					if($t->pekerjaan_aktif->tipe == 3){
+						$t->pekerjaan_aktif->cu->name = 'PUSKOPCUINA';
+					}
+					if ($t->pekerjaan_aktif->tingkat == 1) {
+						$t->pekerjaan_aktif->tingkat_name = 'Pengurus';
+					} else if($t->pekerjaan_aktif->tingkat == 2) {
+						$t->pekerjaan_aktif->tingkat_name = 'Pengawas';
+					}	else if($t->pekerjaan_aktif->tingkat == 3) {
+						$t->pekerjaan_aktif->tingkat_name = 'Komite';
+					} else if($t->pekerjaan_aktif->tingkat == 4) {
+						$t->pekerjaan_aktif->tingkat_name = 'Penasihat';
+					} else if($t->pekerjaan_aktif->tingkat == 5) {
+						$t->pekerjaan_aktif->tingkat_name = 'Senior Manajer';
+					} else if($t->pekerjaan_aktif->tingkat == 6) {
+						$t->pekerjaan_aktif->tingkat_name = 'Manajer';
+					} else if($t->pekerjaan_aktif->tingkat == 7) {
+						$t->pekerjaan_aktif->tingkat_name = 'Supervisor';
+					} else if($t->pekerjaan_aktif->tingkat == 8) {
+						$t->pekerjaan_aktif->tingkat_name = 'Staf';
+					} else if($t->pekerjaan_aktif->tingkat == 9) {
+						$t->pekerjaan_aktif->tingkat_name = 'Kontrak';
+					} else if($t->pekerjaan_aktif->tingkat == 10) {
+						$t->pekerjaan_aktif->tingkat_name = 'Kolektor';
+					} else if($t->pekerjaan_aktif->tingkat == 11) {
+						$t->pekerjaan_aktif->tingkat_name = 'Kelompok Inti';
+					} else if($t->pekerjaan_aktif->tingkat == 12) {
+						$t->pekerjaan_aktif->tingkat_name = 'Supporting Unit';
+					}
+				}else if($t->pekerjaans[0]->status == 3){
+					$t->pekerjaan_tidak_aktif = $t->pekerjaans[0];
+					if($t->pekerjaan_tidak_aktif->tipe == 3){
+						$t->pekerjaan_tidak_aktif->cu->name = 'PUSKOPCUINA';
+					}
+					if ($t->pekerjaan_tidak_aktif->tingkat == 1) {
+						$t->pekerjaan_tidak_aktif->tingkat_name = 'Pengurus';
+					} else if($t->pekerjaan_tidak_aktif->tingkat == 2) {
+						$t->pekerjaan_tidak_aktif->tingkat_name = 'Pengawas';
+					}	else if($t->pekerjaan_tidak_aktif->tingkat == 3) {
+						$t->pekerjaan_tidak_aktif->tingkat_name = 'Komite';
+					} else if($t->pekerjaan_tidak_aktif->tingkat == 4) {
+						$t->pekerjaan_tidak_aktif->tingkat_name = 'Penasihat';
+					} else if($t->pekerjaan_tidak_aktif->tingkat == 5) {
+						$t->pekerjaan_tidak_aktif->tingkat_name = 'Senior Manajer';
+					} else if($t->pekerjaan_tidak_aktif->tingkat == 6) {
+						$t->pekerjaan_tidak_aktif->tingkat_name = 'Manajer';
+					} else if($t->pekerjaan_tidak_aktif->tingkat == 7) {
+						$t->pekerjaan_tidak_aktif->tingkat_name = 'Supervisor';
+					} else if($t->pekerjaan_tidak_aktif->tingkat == 8) {
+						$t->pekerjaan_tidak_aktif->tingkat_name = 'Staf';
+					} else if($t->pekerjaan_tidak_aktif->tingkat == 9) {
+						$t->pekerjaan_tidak_aktif->tingkat_name = 'Kontrak';
+					} else if($t->pekerjaan_tidak_aktif->tingkat == 10) {
+						$t->pekerjaan_tidak_aktif->tingkat_name = 'Kolektor';
+					} else if($t->pekerjaan_tidak_aktif->tingkat == 11) {
+						$t->pekerjaan_tidak_aktif->tingkat_name = 'Kelompok Inti';
+					} else if($t->pekerjaan_tidak_aktif->tingkat == 12) {
+						$t->pekerjaan_tidak_aktif->tingkat_name = 'Supporting Unit';
+					}
+				}
+			}
+		}
 		return $table_data;
 	}
 

@@ -7,6 +7,8 @@ export const jalinanKlaim = {
   state: {
     data: {}, //single data
     data2: {}, //single data
+    message: {}, //single data
+    message2: {}, //single data
     periode: {}, //single data
     history: [],
     dataS: [], //collection
@@ -26,6 +28,8 @@ export const jalinanKlaim = {
     historyStat: '',
     dataStat: '',
     dataStat2: '',
+    messageStat: '',
+    messageStat2: '',
     periodeStat: '',
     dataStatS: '',
     dataStatS1: '',
@@ -49,6 +53,8 @@ export const jalinanKlaim = {
   getters: {
     data: state => state.data,
     data2: state => state.data2,
+    message: state => state.message,
+    message2: state => state.message2,
     periode: state => state.periode,
     history: state => state.history,
     dataS: state => state.dataS,
@@ -68,6 +74,8 @@ export const jalinanKlaim = {
     historyStat: state => state.historyStat,
     dataStat: state => state.dataStat,
     dataStat2: state => state.dataStat2,
+    messageStat: state => state.messageStat,
+    messageStat2: state => state.messageStat2,
     periodeStat: state => state.periodeStat,
     dataStatS: state => state.dataStatS,
     dataStatS1: state => state.dataStatS1,
@@ -1017,6 +1025,7 @@ export const jalinanKlaim = {
             commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
+            commit('setUpdate', response.data);
             commit('setUpdateStat', 'fail');
           }
         })
@@ -1041,6 +1050,34 @@ export const jalinanKlaim = {
           commit('setRules', []);
           commit('setOptions', [])
           commit('setDataStat', 'fail');
+        });
+    },
+
+    getDuplicate( {commit}, [name, tanggal, tipe] ){
+      commit('setMessageStat2', 'loading');
+      
+      JalinanKlaimAPI.getDuplicate( name, tanggal, tipe )
+        .then( function( response ){
+          commit('setMessage2', response.data.message);
+          commit('setMessageStat2', 'success');
+        })
+        .catch(error => {
+          commit('setMessage2', error.response);
+          commit('setMessageStat2', 'fail');
+        });
+    },
+
+    getKlaimLama( {commit}, [nik, cu] ){
+      commit('setMessageStat', 'loading');
+      
+      JalinanKlaimAPI.getKlaimLama( nik, cu )
+        .then( function( response ){
+          commit('setMessage', response.data.message);
+          commit('setMessageStat', 'success');
+        })
+        .catch(error => {
+          commit('setMessage', error.response);
+          commit('setMessageStat', 'fail');
         });
     },
 
@@ -1104,6 +1141,24 @@ export const jalinanKlaim = {
       commit('setUpdateStat', 'loading');
 
       JalinanKlaimAPI.updateStatus( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    updateNoSurat( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      JalinanKlaimAPI.updateNoSurat( id, form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);
@@ -1283,6 +1338,12 @@ export const jalinanKlaim = {
     setData2 ( state, data ){
       state.data2 = data;
     },
+    setMessage ( state, message ){
+      state.message = message;
+    },
+    setMessage2 ( state, message ){
+      state.message2 = message;
+    },
     setPeriode ( state, data ){
       state.periode = data;
     },
@@ -1339,6 +1400,12 @@ export const jalinanKlaim = {
     },
     setDataStat2( state, status ){
       state.dataStat2 = status;
+    },
+    setMessageStat( state, status ){
+      state.messageStat = status;
+    },
+    setMessageStat2( state, status ){
+      state.messageStat2 = status;
     },
     setPeriodeStat( state, status ){
       state.periodeStat = status;

@@ -1151,6 +1151,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1168,6 +1172,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       pencarian: '',
       placeholder: 'Silahkan masukkan no. BA Anggota',
       isNew: false,
+      isDigit: false,
       cleaveOption: {
         number16: {
           numeral: true,
@@ -1213,12 +1218,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     cariData: function cariData() {
-      this.isNew = true;
-
-      if (this.jenis == 'KTP') {
-        this.$emit('cariDataKTP', this.pencarian);
+      if (this.nik.length < 16) {
+        this.isDigit = true;
       } else {
-        this.$emit('cariDataBA', this.idCu, this.pencarian);
+        this.isNew = true;
+        this.isDigit = false;
+
+        if (this.jenis == 'KTP') {
+          this.$emit('cariDataKTP', this.pencarian);
+        } else {
+          this.$emit('cariDataBA', this.idCu, this.pencarian);
+        }
       }
     },
     changeJenis: function changeJenis(value) {
@@ -3427,7 +3437,15 @@ var render = function() {
                     },
                     expression: "pencarian"
                   }
-                })
+                }),
+                _vm._v(" "),
+                _vm.isDigit
+                  ? _c("small", { staticClass: "text-muted text-danger" }, [
+                      _vm._v(
+                        "\n            Maaf, No. KTP anda tidak valid, wajib 16 digit.\n          "
+                      )
+                    ])
+                  : _vm._e()
               ],
               1
             )

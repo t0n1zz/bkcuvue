@@ -1736,6 +1736,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
 
 
 
@@ -6195,17 +6198,10 @@ var render = function() {
                                       }
                                     },
                                     [
-                                      _vm.errors.has("form.id_provinces")
-                                        ? _c("i", {
-                                            staticClass: "icon-cross2"
-                                          })
-                                        : _vm._e(),
                                       _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\t\t\tProvinsi: "
-                                      ),
-                                      _c("wajib-badge")
-                                    ],
-                                    1
+                                        "\n\t\t\t\t\t\t\t\t\t\t\tProvinsi: \n\t\t\t\t\t\t\t\t\t\t\t"
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -6217,12 +6213,6 @@ var render = function() {
                                           rawName: "v-model",
                                           value: _vm.form.id_provinces,
                                           expression: "form.id_provinces"
-                                        },
-                                        {
-                                          name: "validate",
-                                          rawName: "v-validate",
-                                          value: "required",
-                                          expression: "'required'"
                                         }
                                       ],
                                       staticClass: "form-control",
@@ -6298,35 +6288,7 @@ var render = function() {
                                       })
                                     ],
                                     2
-                                  ),
-                                  _vm._v(" "),
-                                  _vm.errors.has("form.id_provinces")
-                                    ? _c(
-                                        "small",
-                                        {
-                                          staticClass: "text-muted text-danger"
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass:
-                                              "icon-arrow-small-right"
-                                          }),
-                                          _vm._v(
-                                            " " +
-                                              _vm._s(
-                                                _vm.errors.first(
-                                                  "form.id_provinces"
-                                                )
-                                              ) +
-                                              "\n\t\t\t\t\t\t\t\t\t\t"
-                                          )
-                                        ]
-                                      )
-                                    : _c(
-                                        "small",
-                                        { staticClass: "text-muted" },
-                                        [_vm._v(" ")]
-                                      )
+                                  )
                                 ]
                               )
                             ])
@@ -6355,17 +6317,10 @@ var render = function() {
                                       }
                                     },
                                     [
-                                      _vm.errors.has("form.id_regencies")
-                                        ? _c("i", {
-                                            staticClass: "icon-cross2"
-                                          })
-                                        : _vm._e(),
                                       _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\t\t\tKabupaten: "
-                                      ),
-                                      _c("wajib-badge")
-                                    ],
-                                    1
+                                        "\n\t\t\t\t\t\t\t\t\t\t\tKabupaten: \n\t\t\t\t\t\t\t\t\t\t\t"
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -6377,12 +6332,6 @@ var render = function() {
                                           rawName: "v-model",
                                           value: _vm.form.id_regencies,
                                           expression: "form.id_regencies"
-                                        },
-                                        {
-                                          name: "validate",
-                                          rawName: "v-validate",
-                                          value: "required",
-                                          expression: "'required'"
                                         }
                                       ],
                                       staticClass: "form-control",
@@ -6458,35 +6407,7 @@ var render = function() {
                                       })
                                     ],
                                     2
-                                  ),
-                                  _vm._v(" "),
-                                  _vm.errors.has("form.id_regencies")
-                                    ? _c(
-                                        "small",
-                                        {
-                                          staticClass: "text-muted text-danger"
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass:
-                                              "icon-arrow-small-right"
-                                          }),
-                                          _vm._v(
-                                            " " +
-                                              _vm._s(
-                                                _vm.errors.first(
-                                                  "form.id_regencies"
-                                                )
-                                              ) +
-                                              "\n\t\t\t\t\t\t\t\t\t\t"
-                                          )
-                                        ]
-                                      )
-                                    : _c(
-                                        "small",
-                                        { staticClass: "text-muted" },
-                                        [_vm._v(" ")]
-                                      )
+                                  )
                                 ]
                               )
                             ])
@@ -6515,17 +6436,10 @@ var render = function() {
                                       }
                                     },
                                     [
-                                      _vm.errors.has("form.id_tempat")
-                                        ? _c("i", {
-                                            staticClass: "icon-cross2"
-                                          })
-                                        : _vm._e(),
                                       _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\t\t\tTempat: "
-                                      ),
-                                      _c("wajib-badge")
-                                    ],
-                                    1
+                                        "\n\t\t\t\t\t\t\t\t\t\t\tTempat: \n\t\t\t\t\t\t\t\t\t\t\t"
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "input-group" }, [
@@ -6538,12 +6452,6 @@ var render = function() {
                                             rawName: "v-model",
                                             value: _vm.form.id_tempat,
                                             expression: "form.id_tempat"
-                                          },
-                                          {
-                                            name: "validate",
-                                            rawName: "v-validate",
-                                            value: "required",
-                                            expression: "'required'"
                                           }
                                         ],
                                         staticClass: "form-control",
@@ -6663,35 +6571,7 @@ var render = function() {
                                         )
                                       ]
                                     )
-                                  ]),
-                                  _vm._v(" "),
-                                  _vm.errors.has("form.id_tempat")
-                                    ? _c(
-                                        "small",
-                                        {
-                                          staticClass: "text-muted text-danger"
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass:
-                                              "icon-arrow-small-right"
-                                          }),
-                                          _vm._v(
-                                            " " +
-                                              _vm._s(
-                                                _vm.errors.first(
-                                                  "form.id_tempat"
-                                                )
-                                              ) +
-                                              "\n\t\t\t\t\t\t\t\t\t\t"
-                                          )
-                                        ]
-                                      )
-                                    : _c(
-                                        "small",
-                                        { staticClass: "text-muted" },
-                                        [_vm._v(" ")]
-                                      )
+                                  ])
                                 ]
                               )
                             ])
@@ -6700,266 +6580,344 @@ var render = function() {
                         _vm.form.tipe_tempat == "OFFLINE" &&
                         _vm.tempatData != ""
                           ? _c("div", { staticClass: "col-md-12" }, [
-                              _c("div", { staticClass: "card card-body" }, [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "media flex-column flex-sm-row mt-0 mb-3"
-                                  },
-                                  [
+                              _vm.tempatData
+                                ? _c("div", { staticClass: "card card-body" }, [
                                     _c(
                                       "div",
-                                      { staticClass: "mr-sm-3 mb-2 mb-sm-0" },
+                                      {
+                                        staticClass:
+                                          "media flex-column flex-sm-row mt-0 mb-3"
+                                      },
                                       [
                                         _c(
                                           "div",
-                                          { staticClass: "card-img-actions" },
+                                          {
+                                            staticClass: "mr-sm-3 mb-2 mb-sm-0"
+                                          },
                                           [
-                                            _vm.tempatData.gambar
-                                              ? _c(
-                                                  "a",
-                                                  {
-                                                    attrs: { href: "#" },
-                                                    on: {
-                                                      click: function($event) {
-                                                        $event.preventDefault()
-                                                        return _vm.modalImageShow(
-                                                          "/images/tempat/" +
-                                                            _vm.tempatData
-                                                              .gambar +
-                                                            ".jpg"
-                                                        )
-                                                      }
-                                                    }
-                                                  },
-                                                  [
-                                                    _c("img", {
-                                                      staticClass:
-                                                        "img-fluid img-preview rounded",
-                                                      attrs: {
-                                                        src:
-                                                          "/images/tempat/" +
-                                                          _vm.tempatData
-                                                            .gambar +
-                                                          "n.jpg"
-                                                      }
-                                                    }),
-                                                    _vm._v(" "),
-                                                    _vm._m(2)
-                                                  ]
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass: "card-img-actions"
+                                              },
+                                              [
+                                                _vm.tempatData.gambar
+                                                  ? _c(
+                                                      "a",
+                                                      {
+                                                        attrs: { href: "#" },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            $event.preventDefault()
+                                                            return _vm.modalImageShow(
+                                                              "/images/tempat/" +
+                                                                _vm.tempatData
+                                                                  .gambar +
+                                                                ".jpg"
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("img", {
+                                                          staticClass:
+                                                            "img-fluid img-preview rounded",
+                                                          attrs: {
+                                                            src:
+                                                              "/images/tempat/" +
+                                                              _vm.tempatData
+                                                                .gambar +
+                                                              "n.jpg"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _vm._m(2)
+                                                      ]
+                                                    )
+                                                  : _c(
+                                                      "a",
+                                                      {
+                                                        attrs: { href: "#" },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            $event.preventDefault()
+                                                            return _vm.modalImageShow(
+                                                              "/images/no_image.jpg"
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("img", {
+                                                          staticClass:
+                                                            "img-fluid img-preview rounded",
+                                                          attrs: {
+                                                            src:
+                                                              "/images/no_image.jpg"
+                                                          }
+                                                        }),
+                                                        _vm._v(" "),
+                                                        _vm._m(3)
+                                                      ]
+                                                    )
+                                              ]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: "media-body" },
+                                          [
+                                            _c(
+                                              "h4",
+                                              { staticClass: "media-title" },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(_vm.tempatData.name)
                                                 )
-                                              : _c(
-                                                  "a",
-                                                  {
-                                                    attrs: { href: "#" },
-                                                    on: {
-                                                      click: function($event) {
-                                                        $event.preventDefault()
-                                                        return _vm.modalImageShow(
-                                                          "/images/no_image.jpg"
-                                                        )
-                                                      }
-                                                    }
-                                                  },
-                                                  [
-                                                    _c("img", {
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c("hr"),
+                                            _vm._v(" "),
+                                            _c("div", { staticClass: "row" }, [
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-md-6" },
+                                                [
+                                                  _c(
+                                                    "ul",
+                                                    {
                                                       staticClass:
-                                                        "img-fluid img-preview rounded",
-                                                      attrs: {
-                                                        src:
-                                                          "/images/no_image.jpg"
-                                                      }
-                                                    }),
-                                                    _vm._v(" "),
-                                                    _vm._m(3)
-                                                  ]
-                                                )
+                                                        "list list-unstyled mb-0"
+                                                    },
+                                                    [
+                                                      _c("li", [
+                                                        _c("b", [
+                                                          _vm._v("Provinsi:")
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _vm.tempatData.provinces
+                                                          ? _c("span", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.tempatData
+                                                                    .provinces
+                                                                    .name
+                                                                )
+                                                              )
+                                                            ])
+                                                          : _c("span", [
+                                                              _vm._v("-")
+                                                            ])
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c("li", [
+                                                        _c("b", [
+                                                          _vm._v(
+                                                            "Kabupaten/Kota:"
+                                                          )
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _vm.tempatData.regencies
+                                                          ? _c("span", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.tempatData
+                                                                    .regencies
+                                                                    .name
+                                                                )
+                                                              )
+                                                            ])
+                                                          : _c("span", [
+                                                              _vm._v("-")
+                                                            ])
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c("li", [
+                                                        _c("b", [
+                                                          _vm._v("Kecamatan:")
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _vm.tempatData.districts
+                                                          ? _c("span", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.tempatData
+                                                                    .districts
+                                                                    .name
+                                                                )
+                                                              )
+                                                            ])
+                                                          : _c("span", [
+                                                              _vm._v("-")
+                                                            ])
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c("li", [
+                                                        _c("b", [
+                                                          _vm._v("Kelurahan:")
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _vm.tempatData.villages
+                                                          ? _c("span", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.tempatData
+                                                                    .villages
+                                                                    .name
+                                                                )
+                                                              )
+                                                            ])
+                                                          : _c("span", [
+                                                              _vm._v("-")
+                                                            ])
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c("li", [
+                                                        _c("b", [
+                                                          _vm._v("Alamat:")
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _vm.tempatData.alamat
+                                                          ? _c("span", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.tempatData
+                                                                    .alamat
+                                                                )
+                                                              )
+                                                            ])
+                                                          : _c("span", [
+                                                              _vm._v("-")
+                                                            ])
+                                                      ])
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-md-6" },
+                                                [
+                                                  _c(
+                                                    "ul",
+                                                    {
+                                                      staticClass:
+                                                        "list list-unstyled mb-0"
+                                                    },
+                                                    [
+                                                      _c("li", [
+                                                        _c("b", [
+                                                          _vm._v("Website:")
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _vm.tempatData.website
+                                                          ? _c("span", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.tempatData
+                                                                    .website
+                                                                )
+                                                              )
+                                                            ])
+                                                          : _c("span", [
+                                                              _vm._v("-")
+                                                            ])
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c("li", [
+                                                        _c("b", [
+                                                          _vm._v("Email:")
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _vm.tempatData.email
+                                                          ? _c("span", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.tempatData
+                                                                    .email
+                                                                )
+                                                              )
+                                                            ])
+                                                          : _c("span", [
+                                                              _vm._v("-")
+                                                            ])
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c("li", [
+                                                        _c("b", [
+                                                          _vm._v("No. Telp:")
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _vm.tempatData.telp
+                                                          ? _c("span", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.tempatData
+                                                                    .telp
+                                                                )
+                                                              )
+                                                            ])
+                                                          : _c("span", [
+                                                              _vm._v("-")
+                                                            ])
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c("li", [
+                                                        _c("b", [
+                                                          _vm._v("No. Hp:")
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _vm.tempatData.hp
+                                                          ? _c("span", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.tempatData
+                                                                    .hp
+                                                                )
+                                                              )
+                                                            ])
+                                                          : _c("span", [
+                                                              _vm._v("-")
+                                                            ])
+                                                      ]),
+                                                      _vm._v(" "),
+                                                      _c("li", [
+                                                        _c("b", [
+                                                          _vm._v("Kode Pos:")
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _vm.tempatData.pos
+                                                          ? _c("span", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.tempatData
+                                                                    .pos
+                                                                )
+                                                              )
+                                                            ])
+                                                          : _c("span", [
+                                                              _vm._v("-")
+                                                            ])
+                                                      ])
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ])
                                           ]
                                         )
                                       ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "media-body" }, [
-                                      _c("h4", { staticClass: "media-title" }, [
-                                        _vm._v(_vm._s(_vm.tempatData.name))
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("hr"),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "row" }, [
-                                        _c("div", { staticClass: "col-md-6" }, [
-                                          _c(
-                                            "ul",
-                                            {
-                                              staticClass:
-                                                "list list-unstyled mb-0"
-                                            },
-                                            [
-                                              _c("li", [
-                                                _c("b", [_vm._v("Provinsi:")]),
-                                                _vm._v(" "),
-                                                _vm.tempatData.provinces
-                                                  ? _c("span", [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          _vm.tempatData
-                                                            .provinces.name
-                                                        )
-                                                      )
-                                                    ])
-                                                  : _c("span", [_vm._v("-")])
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("li", [
-                                                _c("b", [
-                                                  _vm._v("Kabupaten/Kota:")
-                                                ]),
-                                                _vm._v(" "),
-                                                _vm.tempatData.regencies
-                                                  ? _c("span", [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          _vm.tempatData
-                                                            .regencies.name
-                                                        )
-                                                      )
-                                                    ])
-                                                  : _c("span", [_vm._v("-")])
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("li", [
-                                                _c("b", [_vm._v("Kecamatan:")]),
-                                                _vm._v(" "),
-                                                _vm.tempatData.districts
-                                                  ? _c("span", [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          _vm.tempatData
-                                                            .districts.name
-                                                        )
-                                                      )
-                                                    ])
-                                                  : _c("span", [_vm._v("-")])
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("li", [
-                                                _c("b", [_vm._v("Kelurahan:")]),
-                                                _vm._v(" "),
-                                                _vm.tempatData.villages
-                                                  ? _c("span", [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          _vm.tempatData
-                                                            .villages.name
-                                                        )
-                                                      )
-                                                    ])
-                                                  : _c("span", [_vm._v("-")])
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("li", [
-                                                _c("b", [_vm._v("Alamat:")]),
-                                                _vm._v(" "),
-                                                _vm.tempatData.alamat
-                                                  ? _c("span", [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          _vm.tempatData.alamat
-                                                        )
-                                                      )
-                                                    ])
-                                                  : _c("span", [_vm._v("-")])
-                                              ])
-                                            ]
-                                          )
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-md-6" }, [
-                                          _c(
-                                            "ul",
-                                            {
-                                              staticClass:
-                                                "list list-unstyled mb-0"
-                                            },
-                                            [
-                                              _c("li", [
-                                                _c("b", [_vm._v("Website:")]),
-                                                _vm._v(" "),
-                                                _vm.tempatData.website
-                                                  ? _c("span", [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          _vm.tempatData.website
-                                                        )
-                                                      )
-                                                    ])
-                                                  : _c("span", [_vm._v("-")])
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("li", [
-                                                _c("b", [_vm._v("Email:")]),
-                                                _vm._v(" "),
-                                                _vm.tempatData.email
-                                                  ? _c("span", [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          _vm.tempatData.email
-                                                        )
-                                                      )
-                                                    ])
-                                                  : _c("span", [_vm._v("-")])
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("li", [
-                                                _c("b", [_vm._v("No. Telp:")]),
-                                                _vm._v(" "),
-                                                _vm.tempatData.telp
-                                                  ? _c("span", [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          _vm.tempatData.telp
-                                                        )
-                                                      )
-                                                    ])
-                                                  : _c("span", [_vm._v("-")])
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("li", [
-                                                _c("b", [_vm._v("No. Hp:")]),
-                                                _vm._v(" "),
-                                                _vm.tempatData.hp
-                                                  ? _c("span", [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          _vm.tempatData.hp
-                                                        )
-                                                      )
-                                                    ])
-                                                  : _c("span", [_vm._v("-")])
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("li", [
-                                                _c("b", [_vm._v("Kode Pos:")]),
-                                                _vm._v(" "),
-                                                _vm.tempatData.pos
-                                                  ? _c("span", [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          _vm.tempatData.pos
-                                                        )
-                                                      )
-                                                    ])
-                                                  : _c("span", [_vm._v("-")])
-                                              ])
-                                            ]
-                                          )
-                                        ])
-                                      ])
-                                    ])
-                                  ]
-                                )
-                              ])
+                                    )
+                                  ])
+                                : _vm._e()
                             ])
                           : _vm._e()
                       ])

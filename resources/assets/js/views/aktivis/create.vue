@@ -558,6 +558,7 @@
 									<option value="9">Kontrak</option>
 									<option value="10">Kolektor</option>
 									<option value="11">Kelompok Inti</option>
+									<option value="12">Supporting Unit</option>
 								</select>
 
 								<!-- error message -->
@@ -569,8 +570,7 @@
 						</div>
 
 						<!-- jabatan -->
-						<div class="col-sm-6" v-if="form.pekerjaan.tingkat != ''">
-							<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.name')}">
+						<div class="col-sm-12" v-if="form.pekerjaan.tingkat != ''"> <div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.name')}">
 
 								<!-- title -->
 								<h6 :class="{ 'text-danger' : errors.has('form.pekerjaan.name')}">
@@ -589,7 +589,7 @@
 						</div>
 
 						<!-- tp -->
-						<div class="col-sm-6" v-if="form.pekerjaan.tipe == 1 && form.pekerjaan.tingkat != '1' && form.pekerjaan.tingkat != '2' && form.pekerjaan.tingkat != '3' && form.pekerjaan.tingkat != '4' && form.pekerjaan.tingkat != ''">
+						<div class="col-sm-12" v-if="form.pekerjaan.tipe == 1 && form.pekerjaan.tingkat != '1' && form.pekerjaan.tingkat != '2' && form.pekerjaan.tingkat != '3' && form.pekerjaan.tingkat != '4' && form.pekerjaan.tingkat != ''">
 							<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan.id_tp')}">
 
 								<!-- title -->

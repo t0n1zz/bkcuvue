@@ -440,6 +440,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -454,6 +458,7 @@ __webpack_require__.r(__webpack_exports__);
       statusNIK: '',
       nik: '',
       isNew: false,
+      isDigit: false,
       cleaveOption: {
         number16: {
           numeral: true,
@@ -482,8 +487,13 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit('changeStatusNIK', value);
     },
     cariData: function cariData() {
-      this.isNew = true;
-      this.$emit('cariData', this.nik);
+      if (this.nik.length < 16) {
+        this.isDigit = true;
+      } else {
+        this.isNew = true;
+        this.isDigit = false;
+        this.$emit('cariData', this.nik);
+      }
     },
     resetData: function resetData() {
       this.nik = '';
@@ -976,7 +986,15 @@ var render = function() {
                   },
                   expression: "nik"
                 }
-              })
+              }),
+              _vm._v(" "),
+              _vm.isDigit
+                ? _c("small", { staticClass: "text-muted text-danger" }, [
+                    _vm._v(
+                      "\n        Maaf, No. KTP anda tidak valid, wajib 16 digit.\n      "
+                    )
+                  ])
+                : _vm._e()
             ],
             1
           )

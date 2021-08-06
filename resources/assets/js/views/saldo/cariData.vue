@@ -50,6 +50,10 @@
             class="form-control" 
             :options="cleaveOption.number16"
             :placeholder="placeholder" :disabled="isNew"></cleave>
+
+          <small class="text-muted text-danger" v-if="isDigit">
+            Maaf, No. KTP anda tidak valid, wajib 16 digit.
+          </small>   
         </div>
       </div>
 
@@ -94,6 +98,7 @@
         pencarian: '',
         placeholder: 'Silahkan masukkan no. BA Anggota',
         isNew: false,
+        isDigit: false,
         cleaveOption: {
 					number16: {
             numeral: true,
@@ -138,11 +143,16 @@
 				}
 			},
       cariData(){
-        this.isNew = true;
-        if(this.jenis == 'KTP'){
-          this.$emit('cariDataKTP', this.pencarian);
+        if(this.nik.length < 16){
+          this.isDigit = true;
         }else{
-          this.$emit('cariDataBA', this.idCu, this.pencarian);
+          this.isNew = true;
+          this.isDigit = false;
+          if(this.jenis == 'KTP'){
+            this.$emit('cariDataKTP', this.pencarian);
+          }else{
+            this.$emit('cariDataBA', this.idCu, this.pencarian);
+          }
         }
       },
       changeJenis(value){

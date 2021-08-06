@@ -104,7 +104,9 @@
 						</span>
 						<span v-else>-</span>
 					</td>
-					<td v-if="!columnData[8].hide && !columnData[8].disable && props.item.pekerjaan_aktif.tingkat" v-html="$options.filters.checkTingkatAktivis(props.item.pekerjaan_aktif.tingkat)">
+					<td v-if="!columnData[8].hide && !columnData[8].disable && props.item.pekerjaan_aktif.tingkat">
+						<check-value :value="props.item.pekerjaan_aktif.tingkat_name" v-if="props.item.pekerjaan_aktif"></check-value>
+						<span v-else>-</span>
 					</td>
 					<td v-if="!columnData[9].hide && !columnData[9].disable">
 						<check-value :value="props.item.pekerjaan_aktif.name" v-if="props.item.pekerjaan_aktif"></check-value>
@@ -128,7 +130,9 @@
 					<check-value :value="props.item.pekerjaan_tidak_aktif.keterangan_tidak_aktif" v-if="props.item.pekerjaan_tidak_aktif"></check-value>
 						<span v-else>-</span>
 					</td>
-					<td v-if="!columnData[12].hide && !columnData[12].disable" v-html="$options.filters.checkTingkatAktivis(props.item.pekerjaan_tidak_aktif.tingkat)"></td>
+					<td v-if="!columnData[12].hide && !columnData[12].disable">
+						<check-value :value="props.item.pekerjaan_tidak_aktif.tingkat_name" v-if="props.item.pekerjaan_tidak_aktif"></check-value>
+					</td>
 					<td v-if="!columnData[13].hide && !columnData[13].disable">
 						<check-value :value="props.item.pekerjaan_tidak_aktif.name" v-if="props.item.pekerjaan_tidak_aktif"></check-value>
 						<span v-else>-</span>
@@ -298,7 +302,7 @@
 					},
 					{
 						title: 'Tingkat',
-						name: 'pekerjaan_aktif.tingkat',
+						name: 'pekerjaan_aktif.tingkat_name',
 						tipe: 'string',
 						sort: false,
 						hide: false,
@@ -334,7 +338,7 @@
 					},
 					{
 						title: 'Tingkat Terakhir',
-						name: 'pekerjaan_tidak_aktif.tingkat',
+						name: 'pekerjaan_tidak_aktif.tingkat_name',
 						tipe: 'string',
 						sort: false,
 						hide: false,

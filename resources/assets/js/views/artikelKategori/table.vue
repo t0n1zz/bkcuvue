@@ -123,7 +123,7 @@
 						filterDefault: true
 					},
 					{
-						title: 'Deskripsi',
+						title: 'Keterangan',
 						name: 'deskripsi',
 						tipe: 'string',
 						sort: false,

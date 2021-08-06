@@ -35,7 +35,16 @@
         <div class="col-lg-4 col-md-6 bottommargin">
           <div class="promo promo-border promo-mini">
             <h3>{{ $item->name }}</h3>
-            <a href="{{ route('file', $item->filename )}}" class="button button-large button-dark button-rounded">Download</a>
+            <hr/>
+            @if($item->keterangan != '')
+              {{ $item->keterangan }}
+              <br/>
+            @endif
+            @if($item->format == 'upload')
+              <a href="{{ route('file', $item->filename )}}" class="button button-large button-dark button-rounded">Download</a>
+            @else
+              <a href="{{ $item->link }}" class="button button-large button-dark button-rounded" target="_blank">Download</a>
+            @endif
           </div>
         </div>
         @endforeach

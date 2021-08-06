@@ -639,6 +639,16 @@
 											Pemilihan
 										</router-link>
 
+										<!-- tambah dokumen -->
+										<router-link :to="{ name:'dokumenCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_dokumen']">
+											Dokumen
+										</router-link>
+
+										<!-- tambah dokumen kategori -->
+										<router-link :to="{ name:'dokumenKategoriCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_dokumen_kategori']">
+											Dokumen Kategori
+										</router-link>
+
 										<!-- tambah aset tetap -->
 										<router-link :to="{ name:'asetTetapCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_aset_tetap']">
 											Aset Tetap
@@ -804,7 +814,9 @@
 										Kontrak
 									</router-link>
 
-									
+									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'supporting_unit'} }" class="dropdown-item" active-class="active" exact >
+										Supporting Unit
+									</router-link>
 
 								</div>
 							</div>
@@ -842,14 +854,38 @@
 							</router-link>
 						
 							<!-- divider -->
-							<div class="dropdown-divider" v-if="currentUser.can['index_aset_tetap'] || currentUser.can['index_aset_tetap_jenis'] || currentUser.can['index_aset_tetap_lokasi']"></div> 
+							<div class="dropdown-divider" v-if="currentUser.can['index_aset_tetap'] || currentUser.can['index_aset_tetap_jenis'] || currentUser.can['index_aset_tetap_lokasi'] || currentUser.can['index_dokumen_kategori']"></div> 
 
-							<div class="dropdown-submenu" v-if="currentUser.can['index_aset_tetap'] || currentUser.can['index_aset_tetap_jenis'] || currentUser.can['index_aset_tetap_lokasi']" :class="{'show' : dropdownMenu2 == 'aset'}">
-								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('aset')">
+
+							<!-- arsip -->
+							<div class="dropdown-submenu" :class="{'show' : dropdownMenu2 == 'arsip'}">
+								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('arsip')">
 									<i class="icon-drawer3"></i> Arsip
 								</a>
 
-								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'aset'}">
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'arsip'}">
+
+									<router-link :to="{ name: 'dokumenGerakanPublik', params:{cu: 'semua'} }" class="dropdown-item" active-class="active" exact>
+										Dokumen GERAKAN & PUBLIK
+									</router-link>
+
+									<router-link :to="{ name: 'dokumenCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.id_cu != 0">
+										Dokumen 
+									</router-link>
+
+									<router-link :to="{ name: 'dokumenCu', params:{cu: 'semua'} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.id_cu == 0">
+										Dokumen
+									</router-link>
+
+									<router-link :to="{ name: 'dokumenKategoriCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_dokumen_kategori'] && currentUser.id_cu != 0">
+										Kategori Dokumen
+									</router-link>
+
+									<router-link :to="{ name: 'dokumenKategoriCu', params:{cu: 'semua'} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_dokumen_kategori'] && currentUser.id_cu == 0">
+										Kategori Dokumen
+									</router-link>
+
+									<div class="dropdown-divider" v-if="currentUser.can['index_aset_tetap'] || currentUser.can['index_aset_tetap_jenis'] || currentUser.can['index_aset_tetap_lokasi']"></div>
 
 									<router-link :to="{ name: 'asetTetap'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_aset_tetap'] && currentUser.id_cu == 0">
 										Aset Tetap
@@ -872,6 +908,8 @@
 									</router-link>
 
 								</div>
+
+								
 							</div>	
 
 							
@@ -1206,7 +1244,7 @@
 		},
 		data(){
 			return{
-				clientVersion: '3.4.1',
+				clientVersion: '3.4.2',
 				dropdownMenu1: '',
 				dropdownMenu2: '',
 				state: '',

@@ -449,7 +449,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       title: 'Aset Tetap',
       kelas: 'asetTetap',
       titleDesc: 'Mengelola data aset tetap',
-      titleIcon: 'icon-drawer3'
+      titleIcon: 'icon-bag'
     };
   },
   created: function created() {

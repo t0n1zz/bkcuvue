@@ -282,6 +282,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -308,7 +323,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       aktivisWidgetRoute: {},
       pemilihanWidgetRoute: {},
       votingWidgetRoute: {}
-    }, _defineProperty(_ref, "produkCuWidgetRoute", {}), _defineProperty(_ref, "mitraPerseoranganWidgetRoute", {}), _defineProperty(_ref, "mitraLembagaWidgetRoute", {}), _defineProperty(_ref, "userWidgetRoute", {}), _defineProperty(_ref, "laporanCUWidgetRoute", {}), _defineProperty(_ref, "laporanGerakanWidgetRoute", {}), _defineProperty(_ref, "assesmentAccessWidgetRoute", {}), _defineProperty(_ref, "monitoringAccessWidgetRoute", {}), _ref;
+    }, _defineProperty(_ref, "produkCuWidgetRoute", {}), _defineProperty(_ref, "mitraPerseoranganWidgetRoute", {}), _defineProperty(_ref, "mitraLembagaWidgetRoute", {}), _defineProperty(_ref, "userWidgetRoute", {}), _defineProperty(_ref, "laporanCUWidgetRoute", {}), _defineProperty(_ref, "laporanGerakanWidgetRoute", {}), _defineProperty(_ref, "assesmentAccessWidgetRoute", {}), _defineProperty(_ref, "monitoringAccessWidgetRoute", {}), _defineProperty(_ref, "dokumenGerakanPublikWidgetRoute", {}), _defineProperty(_ref, "dokumenWidgetRoute", {}), _defineProperty(_ref, "asetTetapWidgetRoute", {}), _ref;
   },
   created: function created() {
     this.countWidgetRoute();
@@ -382,6 +397,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.kegiatanBKCUJalanWidgetRoute = {
         name: 'kegiatanBKCUJalan'
       };
+      this.dokumenGerakanPublikWidgetRoute = {
+        name: 'dokumenGerakanPublik',
+        params: {
+          cu: 'semua'
+        }
+      };
 
       if (this.currentUser.id_cu != 0) {
         this.anggotaCuWidgetRoute = {
@@ -448,6 +469,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             tp: 'semua'
           }
         };
+        this.dokumenWidgetRoute = {
+          name: 'dokumenCu',
+          params: {
+            cu: this.currentUser.id_cu
+          }
+        };
       } else {
         this.tempatWidgetRoute = {
           name: 'tempat'
@@ -508,6 +535,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             cu: 'semua',
             tp: 'semua'
           }
+        };
+        this.dokumenWidgetRoute = {
+          name: 'dokumenCu',
+          params: {
+            cu: 'semua'
+          }
+        };
+        this.asetTetapWidgetRoute = {
+          name: 'asetTetap'
         };
       }
     },
@@ -2507,6 +2543,73 @@ var render = function() {
                 title: "Laporan Statistik Gerakan",
                 color: "bg-grey-400",
                 icon: "icon-stats-bars"
+              }
+            })
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            return _vm.goTo(_vm.dokumenGerakanPublikWidgetRoute)
+          }
+        }
+      },
+      [
+        _c("count-widget", {
+          attrs: {
+            title: "Dokumen GERAKAN & PUBLIK",
+            color: "bg-violet-400",
+            icon: "icon-books"
+          }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            return _vm.goTo(_vm.dokumenWidgetRoute)
+          }
+        }
+      },
+      [
+        _c("count-widget", {
+          attrs: { title: "Dokumen", color: "bg-info-400", icon: "icon-books" }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_aset_tetap"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.asetTetapWidgetRoute)
+              }
+            }
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Aset Tetap",
+                color: "bg-indigo-400",
+                icon: "icon-bag"
               }
             })
           ],

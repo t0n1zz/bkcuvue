@@ -37,6 +37,11 @@
           <i class="icon-pencil5"></i> Ubah Produk
         </button>
 
+        <!-- ubah no surat -->
+        <button @click.prevent="modalOpen('ubah_no_surat')" class="btn btn-light btn-icon mb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_jalinan_klaim'] && status != '' &&  ( status == 2 || status == 3 || status == 5 || status == 6 )"  :disabled="!selectedItem.id">
+          <i class="icon-pencil5"></i> Ubah No. Surat
+        </button>
+
         <!-- status klaim -->
         <button @click.prevent="modalOpen('lihat')" class="btn btn-light btn-icon mb-1" :disabled="!selectedItem.id">
           <i class="icon-file-eye"></i> Lihat Klaim
@@ -143,6 +148,11 @@
         <button @click.prevent="ubahDataAnggota(selectedItem.id,'produk')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.id_cu == 0 &&currentUser.can && currentUser.can['update_jalinan_klaim'] && currentUser.can['update_anggota_cu'] && status == ''"
           :disabled="!selectedItem.id">
           <i class="icon-pencil5"></i> Ubah Produk
+        </button>
+
+        <!-- ubah no surat -->
+        <button @click.prevent="modalOpen('ubah_no_surat')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_jalinan_klaim'] && status != '' &&  ( status == 2 || status == 3 || status == 5 || status == 6 )"  :disabled="!selectedItem.id">
+          <i class="icon-pencil5"></i> Ubah No. Surat
         </button>
 
         <!-- lihat -->
@@ -354,6 +364,12 @@
 				@tutup="modalTutup"></form-periksa-koreksi>
 			</template>
 
+      <!-- ubah no surat -->
+			<template slot="modal-body4">
+				<form-no-surat :kelas="kelas" :selected="selectedItem" :tipe="state"
+				@tutup="modalTutup"></form-no-surat>
+			</template>
+
 
     </app-modal>
 
@@ -371,6 +387,7 @@
   import formStatus from "./formStatus.vue";
   import formPeriksaKoreksi from "./formPeriksaKoreksi.vue";
   import surat from "./surat.vue";
+  import formNoSurat from './formNoSurat.vue';
 
   export default {
     components: {
@@ -380,7 +397,8 @@
       checkValue,
       formStatus,
       formPeriksaKoreksi,
-      surat
+      surat,
+      formNoSurat
     },
     props: ["title", "kelas", "status","itemData","itemDataStat","isSimple"],
     data() {
@@ -835,6 +853,11 @@
 					this.modalTitle = 'Analisis ' + this.title + ' atas nama: ' + this.selectedItem.anggota_cu.name;
           this.modalColor = 'bg-primary';
           this.modalSize = "modal-full";
+        }else if(state == "ubah_no_surat"){
+          this.modalState = 'normal4';
+					this.modalTitle = 'Ubah No. Surat ' + this.title + ' atas nama: ' + this.selectedItem.anggota_cu.name;
+          this.modalColor = 'bg-primary';
+          this.modalSize = "modal-lg";
         }else if (state == "selesai") {
           this.modalState = "normal1";
           this.modalColor = 'bg-primary';

@@ -97,6 +97,7 @@
 						<option value="9">Kontrak</option>
 						<option value="10">Kolektor</option>
 						<option value="11">Kelompok Inti</option>
+						<option value="12">Supporting Unit</option>
 					</select>
 
 					<!-- error message -->
@@ -108,7 +109,7 @@
 			</div>
 
 			<!-- jabatan -->
-			<div class="col-sm-6" v-if="form.tingkat != ''">
+			<div class="col-sm-12" v-if="form.tingkat != ''">
 				<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
 
 					<!-- title -->
@@ -128,7 +129,7 @@
 			</div>
 
 			<!-- tp -->
-			<div class="col-sm-6" v-if="form.tipe == 1 && form.tingkat != '1' && form.tingkat != '2' && form.tingkat != '3' && form.tingkat != '4' && form.tingkat != ''">
+			<div class="col-sm-12" v-if="form.tipe == 1 && form.tingkat != '1' && form.tingkat != '2' && form.tingkat != '3' && form.tingkat != '4' && form.tingkat != ''">
 				<div class="form-group" :class="{'has-error' : errors.has('form.id_tp')}">
 
 					<!-- title -->
