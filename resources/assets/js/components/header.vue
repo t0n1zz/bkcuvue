@@ -1323,6 +1323,15 @@
 						this.$store.commit('notification/pushNotif', this.notifData);
 						this.$store.commit('notification/setUnreadNotification', tempUnread);
 						// add ui
+
+
+						//untuk upload data anggota
+						if(notification.tipe=='NotifUpload'){
+						let data ={}
+						data.message = 'Berhasil Diupload' 
+						this.$store.commit('fileUpload/setUpdateStat', 'success');
+						this.$store.commit('fileUpload/setUpdate', data)
+						}
  					});
  				}
  			},

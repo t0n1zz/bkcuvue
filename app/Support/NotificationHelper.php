@@ -241,5 +241,22 @@ class NotificationHelper{
 			}
 		}
 	}
+
+	public static function upload_notification($id_user)
+	{
+		try {
+			//code...
+			$users = User::where('id', $id_user)->get();
+			Notification::send($users, new Notif(
+				'NotifUpload',
+				1,
+				"Data Selesai Diupload"
+			));
+		} catch (\Throwable $th) {
+			//throw $th;
+			print($th);
+		}
+			
+	}
 	
 }
