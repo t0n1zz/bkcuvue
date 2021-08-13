@@ -9936,7 +9936,7 @@ var render = function() {
                           : _vm.tipe == "tolak"
                           ? _c("span", [_vm._v("Penolakan")])
                           : _vm._e(),
-                        _vm._v(" \r\n                  Klaim JALINAN")
+                        _vm._v(" \n                  Klaim JALINAN")
                       ])
                     ])
                   ]),
@@ -9991,25 +9991,25 @@ var render = function() {
                       _vm._v(" "),
                       _c("li", [
                         _vm._v(
-                          "\r\n                  " +
+                          "\n                  " +
                             _vm._s(
                               _vm._f("capitalize")(
                                 _vm.modelProvinces.name + ","
                               )
                             ) +
-                            " \r\n                  " +
+                            " \n                  " +
                             _vm._s(
                               _vm._f("capitalize")(
                                 _vm.modelRegencies.name + ","
                               )
                             ) +
-                            " \r\n                  " +
+                            " \n                  " +
                             _vm._s(
                               _vm._f("capitalize")(
                                 _vm.modelDistricts.name + ","
                               )
                             ) +
-                            "  \r\n                  " +
+                            "  \n                  " +
                             _vm._s(_vm._f("capitalize")(_vm.modelVillages.name))
                         )
                       ])
@@ -10310,26 +10310,26 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\r\n                        " +
+                                        "\n                        " +
                                           _vm._s(
                                             _vm.selectedItem.tunas_diajukan
                                               ? "TUNAS"
                                               : ""
                                           ) +
-                                          "\r\n                        " +
+                                          "\n                        " +
                                           _vm._s(
                                             _vm.selectedItem.tunas_diajukan &&
                                               _vm.selectedItem.lintang_diajukan
                                               ? " dan "
                                               : ""
                                           ) +
-                                          "\r\n                        " +
+                                          "\n                        " +
                                           _vm._s(
                                             _vm.selectedItem.lintang_diajukan
                                               ? "LINTANG"
                                               : ""
                                           ) +
-                                          "\r\n                      "
+                                          "\n                      "
                                       )
                                     ]
                                   ),
@@ -10402,7 +10402,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-6 text-right" }, [
-                    _vm._v("\r\n               \r\n            ")
+                    _vm._v("\n               \n            ")
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-6 text-right" }, [
