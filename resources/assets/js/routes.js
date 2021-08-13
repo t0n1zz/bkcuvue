@@ -94,7 +94,6 @@ const voting_pilih = () => import('./views/voting/pilih.vue');
 const jalinanIuran = () => import('./views/jalinanIuran/index.vue');
 const jalinanIuran_form = () => import('./views/jalinanIuran/form.vue');
 const jalinanIuran_detail = () => import('./views/jalinanIuran/detail.vue');
-const dataAnggotaUpload = () => import('./views/sistem/dataAnggotaUpload.vue');
 
 const routes = [
 
@@ -810,12 +809,6 @@ const routes = [
 		name: 'coaEdit', 
 		components: { default: coa_form, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true, mode:'edit' }},
-
-	// file upload data anggota
-	{ path: '/dataAnggotaUpload',
-		name: 'dataAnggotaUpload', 
-		components: { default: dataAnggotaUpload, 'header': header, 'footer': footer },
-		meta: { requiresAuth: true}},
 ]
 
 export default routes
