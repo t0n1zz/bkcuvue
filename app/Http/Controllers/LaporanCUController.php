@@ -245,19 +245,13 @@ class LaporanCuController extends Controller{
 
 	public function store(Request $request)
 	{
-		$this->validate($request,LaporanCu::$rules);
-
 		$name = $request->name;
 
 		if($this->checkData($request)){
-			if(!$request->no_ba){
-				$cu = Cu::findOrFail($request->id_cu);
-				$kelas = LaporanCu::create($request->except('no_ba') + [
-					'no_ba' => $cu->no_ba
-				]);
-			}else{
-				$kelas = LaporanCu::create($request->all());
-			}	
+			$cu = Cu::findOrFail($request->id_cu);
+			$kelas = LaporanCu::create($request->except('no_ba') + [
+				'no_ba' => $cu->no_ba
+			]);
 			
 			NotificationHelper::laporan_cu($kelas,'menambah');
 			
@@ -288,8 +282,6 @@ class LaporanCuController extends Controller{
 
 	public function update(Request $request, $id)
 	{
-		$this->validate($request,LaporanCu::$rules);
-
 		$kelas = LaporanCu::findOrFail($id);
 
 		$time = \Carbon\Carbon::now();

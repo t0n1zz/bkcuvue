@@ -35,8 +35,8 @@ Route::group(['middleware' => 'throttle:60,10'], function () {
 		Route::get('/kegiatan/diklat/lihat/{slug}',array( 'as' => 'diklat.lihat','uses' => 'PublicController@diklatLihat'));
 		
 		// dokumen
-		Route::get('dokumen',array('as' => 'dokumen','uses' => 'PublicController@dokumen'));
-		Route::get('download/{filename}',array('as' => 'file','uses' => 'PublicController@download_file'));
+		Route::get('dokumens',array('as' => 'dokumens','uses' => 'PublicController@dokumen'));
+		Route::get('downloads/{filename}',array('as' => 'files','uses' => 'PublicController@download_file'));
 
 		// panduan
 		Route::get('panduan',array( 'as' => 'panduan','uses' => 'PublicController@panduan'));

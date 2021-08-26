@@ -344,6 +344,7 @@
 				this.formPeserta.tempat_lahir = this.selected.aktivis.tempat_lahir;
 				this.formPeserta.name = this.selected.aktivis.name;
 				this.formPeserta.gambar = this.selected.aktivis.gambar;
+				this.formPeserta.jabatan = this.selected.pekerjaan_aktif.name;
 
 				if(this.selected.aktivis.pekerjaan_aktif.tipe == 1){
 					this.formPeserta.lembaga = this.selected.aktivis.pekerjaan_aktif.cu.name
@@ -419,6 +420,7 @@
 					this.formPeserta.tempat_lahir = item.tempat_lahir;
 					this.formPeserta.name = item.name;
 					this.formPeserta.gambar = item.gambar;
+					this.formPeserta.jabatan = item.pekerjaan_aktif.name;
 
 					if(item.pekerjaan_aktif.tipe == 1){
 						this.formPeserta.lembaga = item.pekerjaan_aktif.cu.name

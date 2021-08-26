@@ -24,12 +24,12 @@ class JalinanKlaimController extends Controller{
 	public function index($status, $awal, $akhir)
 	{
 		if($awal != 'undefined' && $akhir != 'undefined'){
-			$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->whereBetween('tanggal_pencairan',[$awal, $akhir])->where('status_klaim',$status)
+			$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','pinjaman_anggota_terakhir.produk_cu','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->whereBetween('tanggal_pencairan',[$awal, $akhir])->where('status_klaim',$status)
 			->advancedFilter();
 		}else if($awal != 'undefined'){
-			$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->where('tanggal_pencairan',$awal)->where('status_klaim',$status)->advancedFilter();
+			$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','pinjaman_anggota_terakhir.produk_cu','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->where('tanggal_pencairan',$awal)->where('status_klaim',$status)->advancedFilter();
 		}else{
-			$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->where('status_klaim',$status)->advancedFilter();
+			$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','pinjaman_anggota_terakhir.produk_cu','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->where('status_klaim',$status)->advancedFilter();
 		}
 
 		$table_data = $this->formatQuery($table_data);
@@ -1319,12 +1319,14 @@ class JalinanKlaimController extends Controller{
 			->json([
 				'saved' => true,
 				'message' => 'Anggota ini sudah pernah melakukan klaim JALINAN untuk tipe CACAT pada tanggal ' . $klaimLama->tanggal_mati . ' dengan nilai pengajuan lintang ' . number_format($klaimLama->lintang_diajukan,0,',','.'),
+				'model' => $klaimLama,
 			]);	
 		}else{
 			return response()
 			->json([
 				'saved' => true,
 				'message' => '',
+				'model' => '',
 			]);	
 		}
 	}

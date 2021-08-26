@@ -138,7 +138,7 @@
             <div class="col-6 text-right">
               &nbsp;
             </div>
-            <div class="col-6 text-right">
+            <div class="col-5 text-right">
               <ul class="list list-unstyled mb-0">
                 <li>Mengetahui</li>
                 <li>General Manager,</li>
@@ -148,9 +148,10 @@
 
               <ul class="list list-unstyled mb-0">
                 <li><b>Erowin, S. Hut.</b></li>
-                <li>Nim.19781217 200408 1 011</li>
+                <li>NIM.: 19781217 200408 1 011</li>
               </ul>
             </div> 
+            <div class="col-1"></div>
             <!-- <div class="col-6 text-right">
               <ul class="list list-unstyled mb-0">
                 <li>&nbsp;</li>

@@ -99,7 +99,7 @@
 						</div>	
 
 						<!-- form -->
-						<div v-if="formStat == 'success' && anggotaDataStat == 'success'">
+						<div v-if="formStat == 'success'">
 							<!-- navbar -->
 							<div class="card">
 								<div class="nav-tabs-responsive">
@@ -162,12 +162,14 @@
 															<table class="table">
 																<tbody>
 																	<tr v-for="(produk, index) in produkData" v-if="produk.tipe == 'Simpanan Pokok' || produk.tipe == 'Simpanan Wajib' || produk.tipe == 'Simpanan Non Saham'">
-																		<th>{{ index + 1 }}. {{ produk.name }}</th>
-																		<td class="text-right">0</td>
+																		<th>{{ produk.name }}</th>
+																		<td class="text-right">
+																			<check-value :value="produk.saldo" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>Jumlah Simpanan yang dilindungi</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right"></td>
 																	</tr>
 																</tbody>
 															</table>
@@ -287,12 +289,14 @@
 															<table class="table">
 																<tbody>
 																	<tr v-for="(produk, index) in produkData" :key="index" v-if="produk.tipe == 'Pinjaman Kapitalisasi' || produk.tipe == 'Pinjaman Umum' || produk.tipe == 'Pinjaman Produktif'">
-																		<th>{{ index + 1 }}. {{ produk.name }}</th>
-																		<td class="text-right">0</td>
+																		<th>{{ produk.name }}</th>
+																		<td class="text-right">
+																			<check-value :value="produk.saldo" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>Jumlah Piutang yang dilindungi</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right"></td>
 																	</tr>
 																</tbody>
 															</table>
@@ -461,7 +465,7 @@
 						</div>	
 
 						<!-- loading -->
-						<div v-else-if="formStat == 'loading' || anggotaDataStat == 'loading'">
+						<div v-else-if="formStat == 'loading'">
 							<div class="card">
 								<div class="card-body">
 									<h4>Mohon tunggu...</h4>
@@ -519,6 +523,7 @@
 	import Cleave from 'vue-cleave-component';
 	import dataTable from '../../components/datatable.vue';
 	import DatePicker from "../../components/datePicker.vue";
+	import checkValue from "../../components/checkValue.vue";
 
 	export default {
 		components: {
@@ -531,7 +536,8 @@
 			dataTable,
 			infoIcon,
 			wajibBadge,
-			DatePicker
+			DatePicker,
+			checkValue
 		},
 		data() {
 			return {
@@ -630,8 +636,8 @@
     },
 		methods: {
 			fetch(){
-				this.$store.dispatch('produkCu/getCuJalinan', this.idCu);
-				this.$store.dispatch('anggotaCu/getCuJalinan', [this.idCu, this.periodeBulan, this.periodeTahun]);
+				// this.$store.dispatch('produkCu/getCuJalinan', this.idCu);
+				// this.$store.dispatch('anggotaCu/getCuJalinan', [this.idCu, this.periodeBulan, this.periodeTahun]);
 				this.$store.dispatch('anggotaCu/getCuKeluar', this.idCu);
 				this.$store.dispatch(this.kelas + '/create', [this.idCu, this.periodeBulan, this.periodeTahun]);
 			},
@@ -750,6 +756,7 @@
 			}),
 			...mapGetters('jalinanIuran',{
 				form: 'data',
+				produkData: 'dataS',
 				formStat: 'dataStat',
 				rules: 'rules',
 				options: 'options',
@@ -761,10 +768,6 @@
 				anggotaDataStat: 'dataStatS',
 				anggotaKeluarData: 'dataS2',
 				anggotaKeluarDataStat: 'dataStatS2',
-			}),
-			...mapGetters('produkCu',{
-				produkData: 'dataS',
-				produkDataStat: 'dataStatS',
 			}),
 		}
 	}

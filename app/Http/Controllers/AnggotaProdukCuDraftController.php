@@ -50,6 +50,7 @@ class AnggotaProdukCuDraftController extends Controller{
 		try{
 			if($anggotaProdukCu){
 				$anggotaProdukCu->update([
+					'anggota_cu_cu_id' => $anggotaProdukCuDraft->anggota_cu_cu_id,
 					'produk_cu_id' => $anggotaProdukCuDraft->produk_cu_id,
 					'saldo' => $anggotaProdukCuDraft->saldo,
 					'no_rek' => $anggotaProdukCuDraft->no_rek,
@@ -70,6 +71,7 @@ class AnggotaProdukCuDraftController extends Controller{
 			}else{
 				$kelas = AnggotaProdukCu::create([
 					'anggota_cu_id' => $anggotaProdukCuDraft->anggota_cu_id,
+					'anggota_cu_cu_id' => $anggotaProdukCuDraft->anggota_cu_cu_id,
 					'produk_cu_id' => $anggotaProdukCuDraft->produk_cu_id,
 					'saldo' => $anggotaProdukCuDraft->saldo,
 					'no_rek' => $anggotaProdukCuDraft->no_rek,
@@ -119,6 +121,7 @@ class AnggotaProdukCuDraftController extends Controller{
 					$selisih_saldo = $item->saldo - $anggotaProdukCu->saldo;
 					
 					$anggotaProdukCu->update([
+						'anggota_cu_cu_id' => $item->anggota_cu_cu_id,
 						'produk_cu_id' => $item->produk_cu_id,
 						'saldo' => $item->saldo,
 						'no_rek' => $item->no_rek,
@@ -137,6 +140,7 @@ class AnggotaProdukCuDraftController extends Controller{
 				}else{
 					$kelas = AnggotaProdukCu::create([
 						'anggota_cu_id' => $item->anggota_cu_id,
+						'anggota_cu_cu_id' => $item->anggota_cu_cu_id,
 						'produk_cu_id' => $item->produk_cu_id,
 						'saldo' => $item->saldo,
 						'no_rek' => $item->no_rek,
@@ -187,6 +191,7 @@ class AnggotaProdukCuDraftController extends Controller{
 		$kelas = AnggotaProdukCuDraft::findOrFail($id);
 
 		$kelas->update([
+			'anggota_cu_cu_id' => $request->anggota_cu_cu_id,
 			'produk_cu_id' => $request->produk_cu['id'],
 			'saldo' => $request->saldo,
 			'no_rek' => $request->no_rek,

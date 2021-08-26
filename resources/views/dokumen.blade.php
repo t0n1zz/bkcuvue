@@ -41,7 +41,7 @@
               <br/>
             @endif
             @if($item->format == 'upload')
-              <a href="{{ route('file', $item->filename )}}" class="button button-large button-dark button-rounded">Download</a>
+              <a href="{{ route('files', $item->filename )}}" class="button button-large button-dark button-rounded">Download</a>
             @else
               <a href="{{ $item->link }}" class="button button-large button-dark button-rounded" target="_blank">Download</a>
             @endif

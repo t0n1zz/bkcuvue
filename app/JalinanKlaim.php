@@ -75,6 +75,11 @@ class JalinanKlaim extends Model {
         return $this->belongsTo('App\AnggotaCuCu','anggota_cu_cu_id','id')->select(DB::raw('*, TIMESTAMPDIFF(MONTH, tanggal_masuk, CURDATE()) AS lama_menjadi_anggota'));
     }
 
+    public function pinjaman_anggota_terakhir()
+    {
+        return $this->hasOne('App\AnggotaProdukCu', 'anggota_cu_cu_id', 'anggota_cu_cu_id')->whereNotNull('lama_pinjaman')->latest('tanggal');
+    }
+
     public function verifikasi_pengurus_data()
     {
         return $this->belongsTo('App\User','verifikasi_pengurus','id')->select('id','id_aktivis','username','name');

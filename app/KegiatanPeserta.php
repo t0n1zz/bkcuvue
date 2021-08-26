@@ -14,15 +14,15 @@ class KegiatanPeserta extends Model {
     protected static $logOnlyDirty = true;
 
     protected $fillable = [
-        'aktivis_id','kegiatan_id','name_nametag','name_sertifikat','keterangan','keteranganBatal','datang','pulang','status','created_at','updated_at','name','tempat','lembaga','tanggal_hadir'
+        'aktivis_id','kegiatan_id','name_nametag','name_sertifikat','keterangan','keteranganBatal','datang','pulang','status','created_at','updated_at','name','tempat','lembaga','jabatan','tingkat','tanggal_hadir'
     ];
 
     protected $allowedFilters = [
-        'aktivis.name','name_nametag','name_sertifikat','datang','pulang','status','name','tempat','lembaga','tanggal_hadir','created_at','updated_at',
+        'aktivis.name','name_nametag','name_sertifikat','datang','pulang','status','name','tempat','lembaga','jabatan','tingkat','tanggal_hadir','created_at','updated_at',
     ];
 
     protected $orderable = [
-        'name_nametag','name_sertifikat','datang','pulang','status','name','tempat','lembaga','tanggal_hadir','created_at','updated_at',
+        'name_nametag','name_sertifikat','datang','pulang','status','name','tempat','lembaga','jabatan','tingkat','tanggal_hadir','created_at','updated_at',
     ];
 
     public static function initialize()

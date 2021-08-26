@@ -74,7 +74,7 @@
           <li class="{{ Request::is('/produk') ? 'current' : '' }}"><a href="{{ route('produk', $subdomain) }}"><div>Produk & Pelayanan</div></a>
           </li>
 
-          <!-- produk -->
+          <!-- dokumen -->
           <li class="{{ Request::is('/dokumen') ? 'current' : '' }}"><a href="{{ route('dokumen', $subdomain) }}"><div>Dokumen</div></a>
           </li>
 

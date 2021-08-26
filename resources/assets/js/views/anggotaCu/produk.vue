@@ -163,7 +163,7 @@
 			 </template>
 
 			 <template slot="modal-body1">
-					<form-produk :formState="formState" :selected="formModel" @tutup="modalTutup" @tambahProduk="tambahProduk"></form-produk>
+					<form-produk :formState="formState" :selected="formModel" :anggota_cu="form" @tutup="modalTutup" @tambahProduk="tambahProduk"></form-produk>
 			 </template>
 
 			 <template slot="modal-body2">

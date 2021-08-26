@@ -73,6 +73,7 @@ export const jalinanIuran = {
       JalinanIuranAPI.create( idCu, periodeBulan, periodeTahun )
         .then( function( response ){
           commit('setData', response.data.form);
+          commit('setDataS', response.data.produk_data);
           commit('setRules', response.data.rules);
           commit('setOptions', response.data.options)
           commit('setDataStat', 'success');

@@ -2139,6 +2139,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     modelVeriPilihPengawasStat: "dataStatS2",
     modelVeriPilihManajemenStat: "dataStatS3"
   })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('jalinanKlaim', {
+    messageData: 'data',
+    messageDataStat: 'dataStat',
     message: 'message',
     messageStat: 'messageStat',
     message2: 'message2',
@@ -2330,6 +2332,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -2980,6 +2983,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3027,6 +3049,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         name: 'keterangan_klaim',
         tipe: 'string',
         sort: false,
+        hide: false,
+        disable: false,
+        filter: true
+      }, {
+        title: 'No. Surat',
+        name: 'surat_nomor',
+        tipe: 'string',
+        sort: true,
         hide: false,
         disable: false,
         filter: true
@@ -3208,6 +3238,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         disable: false,
         filter: false
       }, {
+        title: 'Nama Pinjaman',
+        name: 'pinjaman_anggota_terakhir.produk_cu.name',
+        tipe: 'string',
+        sort: false,
+        hide: false,
+        disable: false,
+        filter: false
+      }, {
+        title: 'Saldo Pinjaman',
+        name: 'pinjaman_anggota_terakhir.saldo',
+        tipe: 'string',
+        sort: false,
+        hide: false,
+        disable: false,
+        filter: false
+      }, {
+        title: 'Lama Pinjaman',
+        name: 'pinjaman_anggota_terakhir.lama_pinjaman',
+        tipe: 'string',
+        sort: false,
+        hide: false,
+        disable: false,
+        filter: false
+      }, {
+        title: 'Tanggal Pinjaman',
+        name: 'pinjaman_anggota_terakhir.tanggal',
+        tipe: 'string',
+        sort: false,
+        hide: false,
+        disable: false,
+        filter: false
+      }, {
         title: 'Keterangan Lain',
         name: 'keterangan',
         tipe: 'string',
@@ -3285,28 +3347,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     if (this.status == 1 || this.status == 2 || this.status == 3) {
       this.columnData[1].disable = false;
-      this.columnData[9].disable = true;
       this.columnData[10].disable = true;
       this.columnData[11].disable = true;
-      this.columnData[15].disable = true;
+      this.columnData[12].disable = true;
       this.columnData[16].disable = true;
-      this.columnData[20].disable = true;
+      this.columnData[17].disable = true;
+      this.columnData[21].disable = true;
     } else if (this.status == 4 || this.status == 5 || this.status == 6 || this.status == 7) {
       this.columnData[1].disable = false;
-      this.columnData[9].disable = true;
       this.columnData[10].disable = true;
       this.columnData[11].disable = true;
-      this.columnData[15].disable = false;
+      this.columnData[12].disable = true;
       this.columnData[16].disable = false;
-      this.columnData[20].disable = false;
+      this.columnData[17].disable = false;
+      this.columnData[21].disable = false;
     } else {
-      this.columnData[9].disable = false;
       this.columnData[10].disable = false;
       this.columnData[11].disable = false;
+      this.columnData[12].disable = false;
       this.columnData[1].disable = true;
-      this.columnData[15].disable = true;
       this.columnData[16].disable = true;
-      this.columnData[20].disable = true;
+      this.columnData[17].disable = true;
+      this.columnData[21].disable = true;
+    }
+
+    if (this.status == 0 || this.status == 1 || this.status == 7) {
+      this.columnData[2].disable = true;
+    } else {
+      this.columnData[2].disable = false;
     }
 
     this.fetch(this.query);
@@ -3346,7 +3414,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           this.excelDownloadUrl = this.kelas + '/status/' + this.status + '/' + this.$route.params.awal + '/' + this.$route.params.akhir;
         }
 
-        this.columnData[4].disable = false;
+        this.columnData[5].disable = false;
       } else {
         this.$store.dispatch(this.kelas + '/indexCu' + this.status, [params, this.$route.params.cu, this.$route.params.tp, this.$route.params.jenis, this.$route.params.kategori, this.$route.params.dari, this.$route.params.ke, this.$route.params.awal, this.$route.params.akhir]);
 
@@ -3361,7 +3429,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           this.$store.dispatch('user/indexCuPermission', this.$route.params.cu);
         }
 
-        this.columnData[4].disable = true;
+        this.columnData[5].disable = true;
       }
     },
     selectedRow: function selectedRow(item) {
@@ -6605,7 +6673,7 @@ var render = function() {
                       _c("div", { staticClass: "col-md-12" }, [_c("hr")]),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-12" }, [
-                        _vm.message
+                        _vm.messageData.id != _vm.selected.id && _vm.message
                           ? _c(
                               "div",
                               {
@@ -10405,7 +10473,7 @@ var render = function() {
                     _vm._v("\n               \n            ")
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-6 text-right" }, [
+                  _c("div", { staticClass: "col-5 text-right" }, [
                     _vm._m(4),
                     _vm._v(" "),
                     _c("img", {
@@ -10414,7 +10482,9 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _vm._m(5)
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-1" })
                 ]
               )
             ])
@@ -10666,7 +10736,7 @@ var staticRenderFns = [
     return _c("ul", { staticClass: "list list-unstyled mb-0" }, [
       _c("li", [_c("b", [_vm._v("Erowin, S. Hut.")])]),
       _vm._v(" "),
-      _c("li", [_vm._v("Nim.19781217 200408 1 011")])
+      _c("li", [_vm._v("NIM.: 19781217 200408 1 011")])
     ])
   }
 ]
@@ -10761,7 +10831,19 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[2].hide
+                      !_vm.columnData[2].hide && !_vm.columnData[2].disable
+                        ? _c(
+                            "td",
+                            [
+                              _c("check-value", {
+                                attrs: { value: props.item.surat_nomor }
+                              })
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[3].hide
                         ? _c(
                             "td",
                             [
@@ -10775,7 +10857,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[3].hide
+                      !_vm.columnData[4].hide
                         ? _c(
                             "td",
                             [
@@ -10791,7 +10873,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[4].hide && !_vm.columnData[4].disable
+                      !_vm.columnData[5].hide && !_vm.columnData[5].disable
                         ? _c(
                             "td",
                             [
@@ -10808,7 +10890,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[5].hide && !_vm.columnData[5].disable
+                      !_vm.columnData[6].hide && !_vm.columnData[6].disable
                         ? _c(
                             "td",
                             [
@@ -10825,7 +10907,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[6].hide
+                      !_vm.columnData[7].hide && !_vm.columnData[7].disable
                         ? _c(
                             "td",
                             [
@@ -10839,7 +10921,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[7].hide
+                      !_vm.columnData[8].hide
                         ? _c("td", [
                             _c(
                               "label",
@@ -10854,7 +10936,7 @@ var render = function() {
                           ])
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[8].hide
+                      !_vm.columnData[9].hide
                         ? _c(
                             "td",
                             [
@@ -10866,7 +10948,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[9].hide && !_vm.columnData[9].disable
+                      !_vm.columnData[10].hide && !_vm.columnData[10].disable
                         ? _c("td", [
                             _c("span", {
                               domProps: {
@@ -10880,7 +10962,7 @@ var render = function() {
                           ])
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[10].hide && !_vm.columnData[10].disable
+                      !_vm.columnData[11].hide && !_vm.columnData[11].disable
                         ? _c("td", [
                             _c("span", {
                               domProps: {
@@ -10894,7 +10976,7 @@ var render = function() {
                           ])
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[11].hide && !_vm.columnData[11].disable
+                      !_vm.columnData[12].hide && !_vm.columnData[12].disable
                         ? _c("td", [
                             _c("span", {
                               domProps: {
@@ -10908,7 +10990,7 @@ var render = function() {
                           ])
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[12].hide
+                      !_vm.columnData[13].hide
                         ? _c(
                             "td",
                             [
@@ -10920,7 +11002,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[13].hide
+                      !_vm.columnData[14].hide
                         ? _c(
                             "td",
                             [
@@ -10935,7 +11017,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[14].hide
+                      !_vm.columnData[15].hide
                         ? _c(
                             "td",
                             [
@@ -10950,7 +11032,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[15].hide && !_vm.columnData[15].disable
+                      !_vm.columnData[16].hide && !_vm.columnData[16].disable
                         ? _c(
                             "td",
                             [
@@ -10965,7 +11047,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[16].hide && !_vm.columnData[16].disable
+                      !_vm.columnData[17].hide && !_vm.columnData[17].disable
                         ? _c(
                             "td",
                             [
@@ -10980,7 +11062,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[17].hide
+                      !_vm.columnData[18].hide
                         ? _c("td", {
                             staticClass: "text-nowrap",
                             domProps: {
@@ -10993,7 +11075,7 @@ var render = function() {
                           })
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[18].hide
+                      !_vm.columnData[19].hide
                         ? _c("td", {
                             staticClass: "text-nowrap",
                             domProps: {
@@ -11008,7 +11090,7 @@ var render = function() {
                           })
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[19].hide
+                      !_vm.columnData[20].hide
                         ? _c("td", {
                             staticClass: "text-nowrap",
                             domProps: {
@@ -11023,7 +11105,7 @@ var render = function() {
                           })
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[20].hide && !_vm.columnData[20].disable
+                      !_vm.columnData[21].hide && !_vm.columnData[21].disable
                         ? _c("td", {
                             staticClass: "text-nowrap",
                             domProps: {
@@ -11036,7 +11118,7 @@ var render = function() {
                           })
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[21].hide
+                      !_vm.columnData[22].hide
                         ? _c(
                             "td",
                             { staticClass: "text-nowrap" },
@@ -11054,7 +11136,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[22].hide
+                      !_vm.columnData[23].hide
                         ? _c(
                             "td",
                             { staticClass: "text-nowrap" },
@@ -11071,7 +11153,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[23].hide
+                      !_vm.columnData[24].hide
                         ? _c(
                             "td",
                             { staticClass: "text-nowrap" },
@@ -11090,7 +11172,79 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[24].hide
+                      !_vm.columnData[25].hide
+                        ? _c(
+                            "td",
+                            [
+                              props.item.pinjaman_anggota_terakhir
+                                ? _c("check-value", {
+                                    attrs: {
+                                      value:
+                                        props.item.pinjaman_anggota_terakhir
+                                          .produk_cu.name
+                                    }
+                                  })
+                                : _c("span", [_vm._v("-")])
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[26].hide
+                        ? _c(
+                            "td",
+                            [
+                              props.item.pinjaman_anggota_terakhir
+                                ? _c("check-value", {
+                                    attrs: {
+                                      value:
+                                        props.item.pinjaman_anggota_terakhir
+                                          .saldo,
+                                      valueType: "currency"
+                                    }
+                                  })
+                                : _c("span", [_vm._v("-")])
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[27].hide
+                        ? _c(
+                            "td",
+                            [
+                              props.item.pinjaman_anggota_terakhir
+                                ? _c("check-value", {
+                                    attrs: {
+                                      value:
+                                        props.item.pinjaman_anggota_terakhir
+                                          .lama_pinjaman
+                                    }
+                                  })
+                                : _c("span", [_vm._v("-")])
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[28].hide
+                        ? _c("td", [
+                            props.item.pinjaman_anggota_terakhir
+                              ? _c("span", {
+                                  domProps: {
+                                    innerHTML: _vm._s(
+                                      _vm.$options.filters.date(
+                                        props.item.pinjaman_anggota_terakhir
+                                          .tanggal
+                                      )
+                                    )
+                                  }
+                                })
+                              : _c("span", [_vm._v("-")])
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[29].hide
                         ? _c(
                             "td",
                             [
@@ -11102,7 +11256,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[25].hide
+                      !_vm.columnData[30].hide
                         ? _c(
                             "td",
                             [
@@ -11118,7 +11272,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[26].hide
+                      !_vm.columnData[31].hide
                         ? _c(
                             "td",
                             [
@@ -11134,7 +11288,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[27].hide
+                      !_vm.columnData[32].hide
                         ? _c(
                             "td",
                             [
@@ -11152,7 +11306,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[28].hide
+                      !_vm.columnData[33].hide
                         ? _c(
                             "td",
                             [
@@ -11168,7 +11322,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[29].hide
+                      !_vm.columnData[34].hide
                         ? _c(
                             "td",
                             [
@@ -11182,7 +11336,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[30].hide
+                      !_vm.columnData[35].hide
                         ? _c("td", {
                             staticClass: "text-nowrap",
                             domProps: {
@@ -11195,7 +11349,7 @@ var render = function() {
                           })
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[31].hide
+                      !_vm.columnData[36].hide
                         ? _c("td", [
                             props.item.created_at !== props.item.updated_at
                               ? _c("span", {

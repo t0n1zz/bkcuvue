@@ -91,7 +91,7 @@
               <li class="{{ Request::is('/artikel/kategori/filosofi') ? 'current' : '' }}"><a href="{{ route('artikel.kategori','filosofi') }}""><div>Filosofi</div></a></li>
 
               <!-- dokumen -->
-              <li class="{{ Request::is('/dokumen') ? 'current' : '' }}"><a href="{{ route('dokumen') }}"><div>Dokumen</div></a></li>
+              <li class="{{ Request::is('/dokumens') ? 'current' : '' }}"><a href="{{ route('dokumens') }}"><div>Dokumen</div></a></li>
             </ul>
           </li>
         </ul>

@@ -75,6 +75,7 @@ class AnggotaProdukCuController extends Controller{
 	{
 		$kelas = AnggotaProdukCu::create([
 			'anggota_cu_id' => $id,
+			'anggota_cu_cu_id' => $request->anggota_cu_cu_id,
 			'produk_cu_id' => $request->produk_cu['id'],
 			'saldo' => $request->saldo,
 			'no_rek' => $request->no_rek,
@@ -144,6 +145,7 @@ class AnggotaProdukCuController extends Controller{
 		$selisih_lama_pinjaman = $request->lama_sisa_pinjaman - $kelas->lama_sisa_pinjaman;
 
 		$kelas->update([
+			'anggota_cu_cu_id' => $request->anggota_cu_cu_id,
 			'produk_cu_id' => $request->produk_cu['id'],
 			'saldo' => $request->saldo,
 			'no_rek' => $request->no_rek,
@@ -288,7 +290,7 @@ class AnggotaProdukCuController extends Controller{
 	// TODO:
 	public function produkData($id)
 	{
-		$table_data = AnggotaProdukCu::with('anggota_cu','anggota_produk_cu','Villages','Districts','Regencies','Provinces')->where('nik',$nik)->first();
+		$table_data = AnggotaProdukCu::with('anggotaCu','produkCu','Villages','Districts','Regencies','Provinces')->where('nik',$nik)->first();
 
 		return response()
 		->json([

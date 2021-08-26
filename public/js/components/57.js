@@ -4397,15 +4397,6 @@ var render = function() {
               _c(
                 "button",
                 {
-                  directives: [
-                    {
-                      name: "tooltip",
-                      rawName: "v-tooltip:top",
-                      value: "Tutup",
-                      expression: "'Tutup'",
-                      arg: "top"
-                    }
-                  ],
                   staticClass: "btn btn-light",
                   attrs: { type: "button" },
                   on: {

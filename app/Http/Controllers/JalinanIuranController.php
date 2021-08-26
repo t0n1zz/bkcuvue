@@ -53,9 +53,70 @@ class JalinanIuranController extends Controller{
 				'option' => []
 			]);
 		}else{
+			$produk_data = \App\ProdukCu::where('id_cu',$cu)->select('id', 'id_cu', 'name','tipe','jalinan')->where('jalinan', 1)->get();
+
+			$simpanan_usia_nol = 0;
+			$simpanan_usia_1_70 = 0;
+			$simpanan_usia_60_70 = 0;
+
+			$anggota_data = \App\AnggotaCuCu::with('anggota_cu_simple','anggota_produk_cu')->where('cu_id', $cu)
+			->where('tanggal_masuk','<',$lastDateOfMonth)
+			->whereHas('anggota_cu', function ($q){
+				$q->whereNull('status_jalinan');
+			})
+			->select('id','anggota_cu_id','cu_id')
+			->chunk(1000, function ($qs) use (&$total_simpanan, &$produk_data){
+				foreach($qs as $q){
+					foreach($q->anggota_produk_cu as $p){
+						foreach($produk_data as $produk){
+							// semua produk
+							if($produk->id == $p->produk_cu_id){
+									$produk->saldo += $p->saldo;
+							}
+
+							if($produk->tipe == 'Simpanan Pokok' || $produk->tipe == 'Simpanan Wajib' || $produk->tipe == 'Simpanan Non Saham'){
+								$tanggal_lahir = \Carbon\Carbon::parse($q->anggota_cu->tanggal_lahir)->format('d/m/y');
+								$tanggal_masuk = \Carbon\Carbon::parse($q->tanggal_masuk)->format('d/m/y');
+								$date0 = \Carbon\Carbon::today()->subYears(0)->format('d/m/y');
+								$date1 = \Carbon\Carbon::today()->subYears(1)->format('d/m/y');
+								$date60 = \Carbon\Carbon::today()->subYears(60)->format('d/m/y');
+								$date70 = \Carbon\Carbon::today()->subYears(70)->format('d/m/y');
+
+								if($tanggal_lahir > $date0 && $tanggal_lahir < $date1){
+									if($produk->id == $p->produk_cu_id){
+										if($p->saldo > 5000000){
+											$simpanan_usia_nol += ($p->saldo - 5000000);
+										}
+									}
+								}
+
+								if($tanggal_lahir > $date1 && $tanggal_lahir < $date70){
+									if($produk->id == $p->produk_cu_id){
+										if($p->saldo > 50000000){
+											$simpanan_usia_1_70 += ($p->saldo - 50000000);
+										}
+									}
+								}
+
+								if($tanggal_masuk >= $date60 && $tanggal_lahir <= $date70){
+									if($produk->id == $p->produk_cu_id){
+										if($p->saldo > 10000000){
+											$simpanan_usia_60_70 += ($p->saldo - 10000000);
+										}
+									}
+								}
+							}else{
+
+							}
+						}
+					}
+				}
+			});
+
 			return response()
 				->json([
 						'form' => JalinanIuran::initialize(),
+						'produk_data' => $produk_data,
 						'rules' => JalinanIuran::$rules,
 						'option' => []
 				]);

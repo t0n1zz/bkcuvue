@@ -6,7 +6,6 @@
 		:titleDesc="titleDesc" 
 		:titleIcon="titleIcon"></page-header>
 
-		
 		<!-- page container -->
 		<div class="page-container">
 			<div class="page-content">

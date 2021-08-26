@@ -19,12 +19,9 @@
 					</h5>
 
 					<!-- select -->
-					<select class="form-control" name="cu_id" v-model="formProduk.cu.id" data-width="100%" @change="changeCu($event.target.value)" v-validate="'required'" data-vv-as="CU" :disabled="modelCu.length === 0">
-						<option disabled value="0">
-							<span v-if="modelCuStat === 'loading'">Mohon tunggu...</span>
-							<span v-else>Silahkan pilih CU</span>
-						</option>
-						<option v-for="(cu, index) in modelCu" :value="cu.id" :key="index">{{cu.name}}</option>
+					<select class="form-control" name="cu_id" v-model="formProduk.cu.id" data-width="100%" @change="changeCu($event.target.value)" v-validate="'required'" data-vv-as="CU" :disabled="anggota_cu.anggota_cu_cu.length === 0">
+						<option disabled value="0">Silahkan pilih CU</option>
+						<option v-for="(anggota_cu_cu, index) in anggota_cu.anggota_cu_cu" :value="anggota_cu_cu.cu.id" :key="index">{{anggota_cu_cu.cu.name}}</option>
 					</select>
 
 					<!-- error message -->
@@ -283,7 +280,7 @@
 	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
-		props: ['formState','selected'],
+		props: ['formState','selected','anggota_cu'],
 		components: {
 			checkValue,
 			Message,
@@ -296,7 +293,7 @@
 				kelas: 'anggotaCu',
 				tipeProduk: '',
 				formProduk:{
-					anggota_id: '',
+					anggota_cu_cu_id: '',
 					saldo: '',
 					cu: {
 						id: 0,
@@ -381,9 +378,9 @@
 						cu.id = this.currentUser.cu.id;
 						cu.name = this.currentUser.cu.name;
 						this.formProduk.cu = cu;
+						this.formProduk.anggota_cu_cu_id = this.anggota_cu.anggota_cu_cu[0].id;
 						this.fetchProdukCu(this.currentUser.cu.id);
 					}
-
 				}
 			},
 			formStateProdukCuStat(value){
@@ -395,14 +392,16 @@
 		methods: {
 			changeCu(id){
 				let cu;
+				let anggota_cu_cu = this.anggota_cu.anggota_cu_cu;
 
 				if(id != 0){
-					cu = _.find(this.modelCu, function(o){
-						return o.id == id;
+					cu = _.find(anggota_cu_cu, function(o){
+						return o.cu_id == id;
 					});
 
 					if(cu){
-						this.formProduk.cu = cu;
+						this.formProduk.cu = cu.cu;
+						this.formProduk.anggota_cu_cu_id = cu.id;
 					}
 					this.fetchProdukCu(id);
 				}

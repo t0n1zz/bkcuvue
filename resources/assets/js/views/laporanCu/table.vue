@@ -277,7 +277,7 @@
 
 				<hr>
 				<div class="text-center d-none d-md-block">
-					<button type="button" @click.prevent="modalTutup" class="btn btn-light" v-tooltip:top="'Tutup'">
+					<button type="button" @click.prevent="modalTutup" class="btn btn-light">
 						<i class="icon-cross"></i> Tutup
 					</button>
 				</div>

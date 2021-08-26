@@ -882,26 +882,13 @@
 													<check-value :value="props.item.aktivis.kelamin"></check-value>
 												</td>
 												<td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[10].hide">
-													<span v-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tipe == 1">
-														<check-value :value="props.item.aktivis.pekerjaan_aktif.cu.name" v-if="props.item.aktivis.pekerjaan_aktif.cu"></check-value>
-														<span v-else>-</span>
-													</span>
-													<span v-else-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tipe == 2">
-														<check-value :value="props.item.aktivis.pekerjaan_aktif.lembaga_lain.name" v-if="props.item.aktivis.pekerjaan_aktif.lembaga_lain"></check-value>
-														<span v-else>-</span>
-													</span>
-													<span v-else-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tipe == 3">
-														PUSKOPCUINA
-													</span>
-													<span v-else>-</span>
+													<check-value :value="props.item.lembaga"></check-value>
 												</td>
 												<td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[11].hide" >
-													<check-value :value="props.item.aktivis.pekerjaan_aktif.tingkat_name" v-if="props.item.aktivis.pekerjaan_aktif"></check-value>
-													<span v-else>-</span>
+													<check-value :value="props.item.tingkat_name"></check-value>
 												</td>
 												<td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[12].hide">
-													<check-value :value="props.item.aktivis.pekerjaan_aktif.name" v-if="props.item.aktivis.pekerjaan_aktif"></check-value>
-													<span v-else>-</span>
+													<check-value :value="props.item.jabatan"></check-value>
 												</td>
 												<td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[13].hide">
 													<check-value :value="props.item.aktivis.pendidikan_tertinggi.tingkat" v-if="props.item.aktivis.pendidikan_tertinggi"></check-value>
@@ -978,26 +965,13 @@
 													<check-value :value="props.item.aktivis.kelamin"></check-value>
 												</td>
 												<td v-if="props.item.aktivis && !columnDataPesertaHadir[10].hide">
-													<span v-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tipe == 1">
-														<check-value :value="props.item.aktivis.pekerjaan_aktif.cu.name" v-if="props.item.aktivis.pekerjaan_aktif.cu"></check-value>
-														<span v-else>-</span>
-													</span>
-													<span v-else-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tipe == 2">
-														<check-value :value="props.item.aktivis.pekerjaan_aktif.lembaga_lain.name" v-if="props.item.aktivis.pekerjaan_aktif.lembaga_lain"></check-value>
-														<span v-else>-</span>
-													</span>
-													<span v-else-if="props.item.aktivis.pekerjaan_aktif && props.item.aktivis.pekerjaan_aktif.tipe == 3">
-														PUSKOPCUINA
-													</span>
-													<span v-else>-</span>
+													<check-value :value="props.item.lembaga"></check-value>
 												</td>
 												<td v-if="props.item.aktivis && !columnDataPesertaHadir[11].hide" >
-													<check-value :value="props.item.aktivis.pekerjaan_aktif.tingkat_name" v-if="props.item.aktivis.pekerjaan_aktif"></check-value>
-													<span v-else>-</span>
+													<check-value :value="props.item.tingkat_name"></check-value>
 												</td>
 												<td v-if="props.item.aktivis && !columnDataPesertaHadir[12].hide">
-													<check-value :value="props.item.aktivis.pekerjaan_aktif.name" v-if="props.item.aktivis.pekerjaan_aktif"></check-value>
-													<span v-else>-</span>
+													<check-value :value="props.item.jabatan"></check-value>
 												</td>
 												<td v-if="props.item.aktivis && !columnDataPesertaHadir[13].hide">
 													<check-value :value="props.item.aktivis.pendidikan_tertinggi.tingkat" v-if="props.item.aktivis.pendidikan_tertinggi"></check-value>
@@ -1321,11 +1295,11 @@
 		},
 		data() {
 			return {
-				title: 'Detail Pertemuan BKCU',
-				titleDesc: 'Informasi detail pertemuan BKCU',
+				title: 'Detail Pertemuan PUSKOPCUINA',
+				titleDesc: 'Informasi detail pertemuan PUSKOPCUINA',
 				titleIcon: 'icon-stack2',
 				level: 2,
-				level2Title: 'Pertemuan BKCU',
+				level2Title: 'Pertemuan PUSKOPCUINA',
 				kelas: 'kegiatanBKCU',
 				sasaran: [],
 				tabName: 'info',
@@ -1489,18 +1463,18 @@
 						filter: true,
 					},
 					{
-						title: 'CU',
-						name: 'aktivis.pekerjaan_aktif.cu.name',
+						title: 'Lembaga',
+						name: 'lembaga',
 						tipe: 'string',
 					},
 					{
 						title: 'Tingkat',
-						name: 'aktivis.pekerjaan_aktif.tingkat_name',
+						name: 'tingkat_name',
 						tipe: 'string',
 					},
 					{
 						title: 'Jabatan',
-						name: 'aktivis.pekerjaan_aktif.name',
+						name: 'jabatan',
 						tipe: 'string',
 					},
 					{
@@ -1668,18 +1642,18 @@
 						filter: true,
 					},
 					{
-						title: 'CU',
-						name: 'aktivis.pekerjaan_aktif.cu.name',
+						title: 'Lembaga',
+						name: 'lembaga',
 						tipe: 'string',
 					},
 					{
 						title: 'Tingkat',
-						name: 'aktivis.pekerjaan_aktif.tingkat_name',
+						name: 'tingkat_name',
 						tipe: 'string',
 					},
 					{
 						title: 'Jabatan',
-						name: 'aktivis.pekerjaan_aktif.name',
+						name: 'jabatan',
 						tipe: 'string',
 					},
 					{
@@ -2073,9 +2047,9 @@
 			},
 			checkTipe(tipe){
 				if(tipe == 'diklat_bkcu'){
-					this.level2Title = 'Diklat BKCU';
+					this.level2Title = 'Diklat PUSKOPCUINA';
 				}else{
-					this.level2Title = 'Pertemuan BKCU';
+					this.level2Title = 'Pertemuan PUSKOPCUINA';
 				}
 				this.title = 'Detail ' + this.level2Title;
 				this.titleDesc = 'Informasi detail ' + this.level2Title;

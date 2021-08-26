@@ -1069,15 +1069,19 @@ export const jalinanKlaim = {
 
     getKlaimLama( {commit}, [nik, cu] ){
       commit('setMessageStat', 'loading');
+      commit('setDataStat', 'loading');
       
       JalinanKlaimAPI.getKlaimLama( nik, cu )
         .then( function( response ){
+          commit('setData', response.data.model);
           commit('setMessage', response.data.message);
           commit('setMessageStat', 'success');
+          commit('setDataStat', 'success');
         })
         .catch(error => {
           commit('setMessage', error.response);
           commit('setMessageStat', 'fail');
+          commit('setDataStat', 'fail');
         });
     },
 

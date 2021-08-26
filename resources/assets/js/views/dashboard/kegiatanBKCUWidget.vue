@@ -3,7 +3,7 @@
 
 		<!-- title -->
 		<div class="card-header bg-blue-400 text-white header-elements-inline">
-			<h5 class="card-title"><i class="icon-calendar mr-2"></i> Kegiatan BKCU</h5>
+			<h5 class="card-title"><i class="icon-calendar mr-2"></i> Kegiatan PUSKOPCUINA</h5>
 			<div class="header-elements">
 				<div class="list-icons">
 					<a class="list-icons-item" data-action="collapse"></a>

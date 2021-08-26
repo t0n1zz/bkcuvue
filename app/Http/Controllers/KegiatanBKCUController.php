@@ -312,30 +312,30 @@ class KegiatanBKCUController extends Controller{
 					if($t->aktivis->pekerjaan_aktif->tipe == 3){
 						$t->aktivis->pekerjaan_aktif->cu->name = 'PUSKOPCUINA';
 					}
-					if ($t->aktivis->pekerjaan_aktif->tingkat == 1) {
-						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Pengurus';
-					} else if($t->aktivis->pekerjaan_aktif->tingkat == 2) {
-						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Pengawas';
-					}	else if($t->aktivis->pekerjaan_aktif->tingkat == 3) {
-						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Komite';
-					} else if($t->aktivis->pekerjaan_aktif->tingkat == 4) {
-						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Penasihat';
-					} else if($t->aktivis->pekerjaan_aktif->tingkat == 5) {
-						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Senior Manajer';
-					} else if($t->aktivis->pekerjaan_aktif->tingkat == 6) {
-						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Manajer';
-					} else if($t->aktivis->pekerjaan_aktif->tingkat == 7) {
-						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Supervisor';
-					} else if($t->aktivis->pekerjaan_aktif->tingkat == 8) {
-						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Staf';
-					} else if($t->aktivis->pekerjaan_aktif->tingkat == 9) {
-						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Kontrak';
-					} else if($t->aktivis->pekerjaan_aktif->tingkat == 10) {
-						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Kolektor';
-					} else if($t->aktivis->pekerjaan_aktif->tingkat == 11) {
-						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Kelompok Inti';
-					} else if($t->aktivis->pekerjaan_aktif->tingkat == 12) {
-						$t->aktivis->pekerjaan_aktif->tingkat_name = 'Supporting Unit';
+					if ($t->tingkat == 1) {
+						$t->tingkat_name = 'Pengurus';
+					} else if($t->tingkat == 2) {
+						$t->tingkat_name = 'Pengawas';
+					}	else if($t->tingkat == 3) {
+						$t->tingkat_name = 'Komite';
+					} else if($t->tingkat == 4) {
+						$t->tingkat_name = 'Penasihat';
+					} else if($t->tingkat == 5) {
+						$t->tingkat_name = 'Senior Manajer';
+					} else if($t->tingkat == 6) {
+						$t->tingkat_name = 'Manajer';
+					} else if($t->tingkat == 7) {
+						$t->tingkat_name = 'Supervisor';
+					} else if($t->tingkat == 8) {
+						$t->tingkat_name = 'Staf';
+					} else if($t->tingkat == 9) {
+						$t->tingkat_name = 'Kontrak';
+					} else if($t->tingkat == 10) {
+						$t->tingkat_name = 'Kolektor';
+					} else if($t->tingkat == 11) {
+						$t->tingkat_name = 'Kelompok Inti';
+					} else if($t->tingkat == 12) {
+						$t->tingkat_name = 'Supporting Unit';
 					}
 				}
 			}

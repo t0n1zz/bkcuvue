@@ -47,9 +47,9 @@
 		},
 		data() {
 			return {
-				title: 'Kegiatan BKCU',
+				title: 'Kegiatan PUSKOPCUINA',
 				kelas: 'kegiatanBKCU',
-				titleDesc: 'Mengelola data kegiatan BKCU',
+				titleDesc: 'Mengelola data kegiatan PUSKOPCUINA',
 				titleIcon: 'icon-graduation2',
 			}
 		},
@@ -65,16 +65,16 @@
 		methods: {
 			fetch(){
 				if(this.$route.params.tipe == 'diklat_bkcu'){
-					this.title = 'Diklat BKCU';
-					this.titleDesc = 'Mengelola data diklat BKCU';
+					this.title = 'Diklat PUSKOPCUINA';
+					this.titleDesc = 'Mengelola data diklat PUSKOPCUINA';
 					this.titleIcon = 'icon-graduation2';
 				}else if(this.$route.params.tipe == 'pertemuan_bkcu'){
-					this.title = 'Pertemuan BKCU';
-					this.titleDesc = 'Mengelola data pertemuan BKCU';
+					this.title = 'Pertemuan PUSKOPCUINA';
+					this.titleDesc = 'Mengelola data pertemuan PUSKOPCUINA';
 					this.titleIcon = 'icon-ungroup';
 				}else if(this.$route.meta.mode == 'jalan'){
-					this.title = 'Kegiatan BKCU Berjalan';
-					this.titleDesc = 'Mengelola data kegiatan BKCU berjalan';
+					this.title = 'Kegiatan PUSKOPCUINA Berjalan';
+					this.titleDesc = 'Mengelola data kegiatan PUSKOPCUINA berjalan';
 					this.titleIcon = 'icon-feed';
 				}
 			}

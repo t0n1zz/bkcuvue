@@ -241,95 +241,114 @@
             <label class="badge badge-warning ml-1" v-if="props.item.id_koreksi">KOREKSI</label>
 						<check-value :value="props.item.keterangan_klaim"></check-value>
 					</td>
-          <td v-if="!columnData[2].hide">
+          <td v-if="!columnData[2].hide && !columnData[2].disable">
+						<check-value :value="props.item.surat_nomor"></check-value>
+					</td>
+          <td v-if="!columnData[3].hide">
 						<check-value :value="props.item.anggota_cu.nik" v-if="props.item.anggota_cu"></check-value>
             <span v-else>-</span>
 					</td>
-          <td v-if="!columnData[3].hide">
+          <td v-if="!columnData[4].hide">
             <check-value :value="props.item.anggota_cu_cu.no_ba" v-if="props.item.anggota_cu_cu"></check-value>
             <span v-else>-</span>
 					</td>
-          <td v-if="!columnData[4].hide && !columnData[4].disable">
+          <td v-if="!columnData[5].hide && !columnData[5].disable">
             <check-value :value="props.item.anggota_cu_cu.cu.name" v-if="props.item.anggota_cu_cu && props.item.anggota_cu_cu.cu"></check-value>
             <span v-else>-</span>
 					</td>
-          <td v-if="!columnData[5].hide && !columnData[5].disable">
+          <td v-if="!columnData[6].hide && !columnData[6].disable">
             <check-value :value="props.item.anggota_cu_cu.tp.name" v-if="props.item.anggota_cu_cu && props.item.anggota_cu_cu.tp"></check-value>
             <span v-else>-</span>
 					</td>
-          <td v-if="!columnData[6].hide">
+          <td v-if="!columnData[7].hide && !columnData[7].disable">
 						<check-value :value="props.item.anggota_cu.name" v-if="props.item.anggota_cu"></check-value>
             <span v-else>-</span>
 					</td>
-          <td v-if="!columnData[7].hide">
+          <td v-if="!columnData[8].hide">
             <label class="badge badge-warning ml-1">
               <check-value :value="props.item.tipe"></check-value>
             </label>
 					</td>
-          <td v-if="!columnData[8].hide">
+          <td v-if="!columnData[9].hide">
 						<check-value :value="props.item.kategori_penyakit"></check-value>
 					</td>
-          <td v-if="!columnData[9].hide && !columnData[9].disable">
+          <td v-if="!columnData[10].hide && !columnData[10].disable">
 						<span v-html="$options.filters.checkStatus(props.item.verifikasi_pengurus)"></span>
 					</td>
-          <td v-if="!columnData[10].hide && !columnData[10].disable">
+          <td v-if="!columnData[11].hide && !columnData[11].disable">
 						<span v-html="$options.filters.checkStatus(props.item.verifikasi_pengawas)"></span>
 					</td>
-           <td v-if="!columnData[11].hide && !columnData[11].disable">
+           <td v-if="!columnData[12].hide && !columnData[12].disable">
 						<span v-html="$options.filters.checkStatus(props.item.verifikasi_manajemen)"></span>
 					</td>
-          <td v-if="!columnData[12].hide">
+          <td v-if="!columnData[13].hide">
 						<check-value :value="props.item.keterangan_mati"></check-value>
 					</td>
-          <td v-if="!columnData[13].hide">
+          <td v-if="!columnData[14].hide">
 						<check-value :value="props.item.tunas_diajukan" valueType="currency"></check-value>
 					</td>
-           <td v-if="!columnData[14].hide">
+           <td v-if="!columnData[15].hide">
 						<check-value :value="props.item.lintang_diajukan" valueType="currency"></check-value>
 					</td>
-          <td v-if="!columnData[15].hide && !columnData[15].disable">
+          <td v-if="!columnData[16].hide && !columnData[16].disable">
             <check-value :value="props.item.tunas_disetujui" valueType="currency"></check-value>
 					</td>
-           <td v-if="!columnData[16].hide && !columnData[16].disable">
+           <td v-if="!columnData[17].hide && !columnData[17].disable">
             <check-value :value="props.item.lintang_disetujui" valueType="currency"></check-value>
 					</td>
-          <td v-if="!columnData[17].hide" v-html="$options.filters.date(props.item.tanggal_mati)" class="text-nowrap"></td>
-          <td v-if="!columnData[18].hide" v-html="$options.filters.date(props.item.anggota_cu ? props.item.anggota_cu.tanggal_lahir : '')" class="text-nowrap"></td>
-          <td v-if="!columnData[19].hide" v-html="$options.filters.date(props.item.anggota_cu_cu? props.item.anggota_cu_cu.tanggal_masuk : '')" class="text-nowrap"></td>
-           <td v-if="!columnData[20].hide && !columnData[20].disable" v-html="$options.filters.date(props.item.tanggal_pencairan)" class="text-nowrap"></td>
-          <td v-if="!columnData[21].hide" class="text-nowrap">
+          <td v-if="!columnData[18].hide" v-html="$options.filters.date(props.item.tanggal_mati)" class="text-nowrap"></td>
+          <td v-if="!columnData[19].hide" v-html="$options.filters.date(props.item.anggota_cu ? props.item.anggota_cu.tanggal_lahir : '')" class="text-nowrap"></td>
+          <td v-if="!columnData[20].hide" v-html="$options.filters.date(props.item.anggota_cu_cu? props.item.anggota_cu_cu.tanggal_masuk : '')" class="text-nowrap"></td>
+          <td v-if="!columnData[21].hide && !columnData[21].disable" v-html="$options.filters.date(props.item.tanggal_pencairan)" class="text-nowrap"></td>
+          <td v-if="!columnData[22].hide" class="text-nowrap">
             <check-value :value="props.item.anggota_cu.usia_meninggal" v-if="props.item.anggota_cu"></check-value>
             <span v-else>-</span>
           </td>
-          <td v-if="!columnData[22].hide" class="text-nowrap">
+          <td v-if="!columnData[23].hide" class="text-nowrap">
             <check-value :value="props.item.anggota_cu.usia_cacat" v-if="props.item.anggota_cu"></check-value>
             <span v-else>-</span>
           </td>
-          <td v-if="!columnData[23].hide" class="text-nowrap">
+          <td v-if="!columnData[24].hide" class="text-nowrap">
             <check-value :value="props.item.anggota_cu_cu.lama_menjadi_anggota" v-if="props.item.anggota_cu_cu"></check-value>
             <span v-else>-</span>
           </td>
-          <td v-if="!columnData[24].hide">
-						<check-value :value="props.item.keterangan"></check-value>
-					</td>
           <td v-if="!columnData[25].hide">
-						<check-value :value="props.item.anggota_cu.kelamin" v-if="props.item.anggota_cu"></check-value>
+						<check-value :value="props.item.pinjaman_anggota_terakhir.produk_cu.name" v-if="props.item.pinjaman_anggota_terakhir"></check-value>
+            <span v-else>-</span>
 					</td>
           <td v-if="!columnData[26].hide">
-						<check-value :value="props.item.anggota_cu.ahli_waris" v-if="props.item.anggota_cu"></check-value>
+						<check-value :value="props.item.pinjaman_anggota_terakhir.saldo" v-if="props.item.pinjaman_anggota_terakhir" valueType="currency"></check-value>
+            <span v-else>-</span>
 					</td>
           <td v-if="!columnData[27].hide">
+						<check-value :value="props.item.pinjaman_anggota_terakhir.lama_pinjaman" v-if="props.item.pinjaman_anggota_terakhir"></check-value>
+            <span v-else>-</span>
+					</td>
+          <td v-if="!columnData[28].hide">
+            <span v-html="$options.filters.date(props.item.pinjaman_anggota_terakhir.tanggal)" v-if="props.item.pinjaman_anggota_terakhir"></span>
+            <span v-else>-</span>
+					</td>
+          <td v-if="!columnData[29].hide">
+						<check-value :value="props.item.keterangan"></check-value>
+					</td>
+          <td v-if="!columnData[30].hide">
+						<check-value :value="props.item.anggota_cu.kelamin" v-if="props.item.anggota_cu"></check-value>
+					</td>
+          <td v-if="!columnData[31].hide">
+						<check-value :value="props.item.anggota_cu.ahli_waris" v-if="props.item.anggota_cu"></check-value>
+					</td>
+          <td v-if="!columnData[32].hide">
 						<check-value :value="props.item.anggota_cu.provinces.name" v-if="props.item.anggota_cu && props.item.anggota_cu.provinces"></check-value>
 						<span v-else>-</span>	
 					</td>
-          <td v-if="!columnData[28].hide">
+          <td v-if="!columnData[33].hide">
 						<check-value :value="props.item.anggota_cu.alamat" v-if="props.item.anggota_cu"></check-value>
 					</td>
-          <td v-if="!columnData[29].hide">
+          <td v-if="!columnData[34].hide">
 						<check-value :value="props.item.anggota_cu.hp" v-if="props.item.anggota_cu"></check-value>
 					</td>
-					<td v-if="!columnData[30].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
-					<td v-if="!columnData[31].hide">
+					<td v-if="!columnData[35].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
+					<td v-if="!columnData[36].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -429,6 +448,15 @@
 						hide: false,
 						disable: false,
 						filter: true,
+          },
+          {
+            title: 'No. Surat',
+            name: 'surat_nomor',
+            tipe: 'string',
+            sort: true,
+            hide: false,
+            disable: false,
+            filter: true,
           },
           {
             title: 'No. KTP / NIK',
@@ -630,6 +658,42 @@
             filter: false,
           },
           {
+            title: 'Nama Pinjaman',
+            name: 'pinjaman_anggota_terakhir.produk_cu.name',
+            tipe: 'string',
+            sort: false,
+            hide: false,
+            disable: false,
+            filter: false,
+          },
+          {
+            title: 'Saldo Pinjaman',
+            name: 'pinjaman_anggota_terakhir.saldo',
+            tipe: 'string',
+            sort: false,
+            hide: false,
+            disable: false,
+            filter: false,
+          },
+          {
+            title: 'Lama Pinjaman',
+            name: 'pinjaman_anggota_terakhir.lama_pinjaman',
+            tipe: 'string',
+            sort: false,
+            hide: false,
+            disable: false,
+            filter: false,
+          },
+          {
+            title: 'Tanggal Pinjaman',
+            name: 'pinjaman_anggota_terakhir.tanggal',
+            tipe: 'string',
+            sort: false,
+            hide: false,
+            disable: false,
+            filter: false,
+          },
+          {
 						title: 'Keterangan Lain',
 						name: 'keterangan',
             tipe: 'string',
@@ -715,28 +779,34 @@
     created() {
       if(this.status == 1 || this.status == 2 || this.status == 3){
         this.columnData[1].disable = false;
-        this.columnData[9].disable = true;
         this.columnData[10].disable = true;
         this.columnData[11].disable = true;
-        this.columnData[15].disable = true;
+        this.columnData[12].disable = true;
         this.columnData[16].disable = true;
-        this.columnData[20].disable = true;
+        this.columnData[17].disable = true;
+        this.columnData[21].disable = true;
       }else if(this.status == 4 || this.status == 5 || this.status == 6 || this.status == 7){
         this.columnData[1].disable = false;
-        this.columnData[9].disable = true;
         this.columnData[10].disable = true;
         this.columnData[11].disable = true;
-        this.columnData[15].disable = false;
+        this.columnData[12].disable = true;
         this.columnData[16].disable = false;
-        this.columnData[20].disable = false;
+        this.columnData[17].disable = false;
+        this.columnData[21].disable = false;
       }else{
-        this.columnData[9].disable = false;
         this.columnData[10].disable = false;
         this.columnData[11].disable = false;
+        this.columnData[12].disable = false;
         this.columnData[1].disable = true;
-        this.columnData[15].disable = true;
         this.columnData[16].disable = true;
-        this.columnData[20].disable = true;
+        this.columnData[17].disable = true;
+        this.columnData[21].disable = true;
+      }
+
+      if(this.status == 0 || this.status == 1 || this.status == 7){
+        this.columnData[2].disable = true;
+      }else{
+        this.columnData[2].disable = false;
       }
       
       this.fetch(this.query);
@@ -775,7 +845,7 @@
           }else{
             this.excelDownloadUrl = this.kelas + '/status/' + this.status + '/' + this.$route.params.awal + '/' + this.$route.params.akhir;
           }
-          this.columnData[4].disable = false;
+          this.columnData[5].disable = false;
         }else{
           this.$store.dispatch(this.kelas + '/indexCu' + this.status, [params, this.$route.params.cu, this.$route.params.tp, this.$route.params.jenis, this.$route.params.kategori,this.$route.params.dari, this.$route.params.ke, this.$route.params.awal, this.$route.params.akhir]);
 
@@ -790,7 +860,7 @@
             this.$store.dispatch('user/indexCuPermission',this.$route.params.cu);
           }
           
-          this.columnData[4].disable = true;
+          this.columnData[5].disable = true;
         }
       },
       selectedRow(item) {

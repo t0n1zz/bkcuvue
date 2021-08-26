@@ -4,7 +4,7 @@
     <!-- navbar -->
     <div class="nav-tabs-responsive mb-3">
       <ul class="nav nav-tabs nav-tabs-solid nav-justified bg-light">
-      <li class="nav-item">
+        <li class="nav-item">
           <a href="#" class="nav-link" :class="{'active' : tabName == 'pengajuan'}" @click.prevent="changeTab('pengajuan')"><i class="icon-profile mr-2"></i> Pengajuan</a>
         </li>
         <li class="nav-item" v-if="selected.status_klaim != 0">
@@ -328,7 +328,7 @@
 
           <!-- duplicate -->
           <div class="col-md-12">
-           <div class="alert bg-info text-white alert-styled-left" v-if="message">
+           <div class="alert bg-info text-white alert-styled-left" v-if="messageData.id != selected.id && message">
               <span class="font-weight-semibold">{{ message }}</span>
             </div>
 
@@ -1225,6 +1225,8 @@
         modelVeriPilihManajemenStat: "dataStatS3",
       }),
       ...mapGetters('jalinanKlaim', {
+        messageData: 'data',
+        messageDataStat: 'dataStat',
         message: 'message',
 				messageStat: 'messageStat',
         message2: 'message2',

@@ -178,7 +178,7 @@
       <div class="col-lg-3 dark col-padding ohidden" style="background-color: #282828;">
         <div>
           <h3 class="uppercase" style="font-weight: 600;">Misi</h3>
-          <p style="line-height: 1.8;">Memastikan Keberlanjutan Gerakan Credit Union Melalui Tata Kelola Yang Sehat dan Terintegrasi Berbasis Teknologi Untuk Meningkatkan Kualitas Anggota</p>
+          <p style="line-height: 1.8;">Memastikan Keberlanjutan Gerakan Credit Union Melalui Tata Kelola Yang Sehat Dan Terintegrasi Berbasis Teknologi Untuk Meningkatkan Kualitas Anggota</p>
           <i class="icon-bulb bgicon"></i>
         </div>
       </div>
@@ -186,7 +186,7 @@
       <div class="col-lg-3 dark col-padding ohidden" style="background-color: #34495e;">
         <div>
           <h3 class="uppercase" style="font-weight: 600;">Visi</h3>
-          <p style="line-height: 1.8;">Menjadi Federasi Nasional Credit Union yang Terintegrasi, Terpercaya dan Berkelanjutan</p>
+          <p style="line-height: 1.8;">Menjadi Federasi Nasional Credit Union Yang Terintegrasi, Terpercaya Dan Berkelanjutan</p>
           <i class="icon-paperplane bgicon"></i>
         </div>
       </div>
@@ -202,7 +202,7 @@
       <div class="col-lg-3 dark col-padding ohidden" style="background-color: #9c1b1b;">
         <div>
           <h3 class="uppercase" style="font-weight: 600;">Kebijakkan Mutu</h3>
-          <p style="line-height: 1.8;">Kami Berkomitmen Untuk Menjadi Mitra Credit Union yang Berkualitas dengan Perbaikan Berkesinambungan dan Mematuhi Peraturan Perundangan untuk Mencapai Kepuasan Anggota dan <i>Stakeholder</i>.</p>
+          <p style="line-height: 1.8;">Kami Berkomitmen Untuk Menjadi Federasi Nasional Credit Union Yang Berkualitas Dengan Perbaikan Berkesinambungan Dan Mematuhi Peraturan Perundang-Undangan untuk Mencapai Kepuasan Anggota Dan Para Pihak</p>
           <i class="icon-line2-fire bgicon"></i>
         </div>
       </div>

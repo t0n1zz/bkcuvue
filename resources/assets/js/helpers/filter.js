@@ -75,7 +75,7 @@ Vue.filter('statusDiklat', function(value){
 	}else if(value == 4){
 		return '<span class="badge badge-success"> BERJALAN</span>';
 	}else if(value == 5){
-		return '<span class="badge badge-orange-400"> TERLAKSANA</span>';
+		return '<span class="badge bg-orange-400"> TERLAKSANA</span>';
 	}else if(value == 6){
 		return '<span class="badge badge-danger"> BATAL</span>';
 	}
@@ -90,7 +90,7 @@ Vue.filter('statusPeserta', function(value){
 	}else if(value == 4){
 		return '<span class="badge badge-success">SEDANG MENGIKUTI</span>';
 	}else if(value == 5){
-		return '<span class="badge badge-orange-400">SELESAI</span>';
+		return '<span class="badge bg-orange-400">SELESAI</span>';
 	}else if(value == 6){
 		return '<span class="badge badge-danger">BATAL</span>';
 	}else if(value == 7){

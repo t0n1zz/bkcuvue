@@ -34,6 +34,7 @@ class ProdukCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts, 
             AnggotaProdukCuDraft::create([
                 'id_cu' => $cu->id,
                 'anggota_cu_id' => $anggotaCuCu->anggota_cu_id,
+                'anggota_cu_cu_id' => $anggotaCuCu->id,
                 'produk_cu_id' => $produk->id,
                 'no_rek' => $no_rek,
                 'no_ba' => $no_ba,

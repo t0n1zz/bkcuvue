@@ -59,7 +59,7 @@
                 <ul>
                   <li><a href="{{ route('artikel.kategori','sejarah') }}">Sejarah</a></li>
                   <li><a href="{{ route('artikel.kategori','filosofi') }}">Filosofi</a></li>
-                  <li><a href="{{ route('dokumen') }}">Dokumen</a></li>
+                  <li><a href="{{ route('dokumens') }}">Dokumen</a></li>
                 </ul>
               </div>
             @endif

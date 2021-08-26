@@ -779,6 +779,13 @@
 			}
 		},
 		watch: {
+			formStat(value){
+				if(value === "success"){
+					if(this.currentUser.id_cu != 0){
+						this.form.id_cu = this.currentUser.id_cu;
+					}
+				}
+			},
 			updateStat(value){
 				this.modalShow = true;
 				this.modalState = value;
@@ -790,13 +797,10 @@
 					this.modalTitle = 'Oops terjadi kesalahan :(';
 					this.modalContent = this.updateResponse;
 				}
-			}
+			},
     },
 		methods: {
 			save() {
-				if(this.currentUser.id_cu != 0){
-					this.form.id_cu = this.currentUser.id_cu;
-				}
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.$route.meta.mode === 'edit'){

@@ -60,4 +60,9 @@ class ProdukCu extends BaseEloquent {
         return $this->belongsTo('App\Cu','id_cu','id')->select('id','no_ba','name');
     }
 
+    public function anggota_produk_cu()
+    {
+        return $this->hasMany('App\AnggotaProdukCu','produk_cu_id','id');
+    }
+
 }

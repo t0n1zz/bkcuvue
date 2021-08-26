@@ -43,9 +43,14 @@ class AnggotaCuCu extends Model {
         ];
     }
 
-    public function anggotaCu()
+    public function anggota_cu()
     {
         return $this->belongsTo('App\AnggotaCu','anggota_cu_id','id');
+    }
+
+    public function anggota_cu_simple()
+    {
+        return $this->belongsTo('App\AnggotaCu','anggota_cu_id','id')->select('id','status_jalinan','tanggal_lahir');
     }
 
     public function cu()
@@ -58,9 +63,24 @@ class AnggotaCuCu extends Model {
         return $this->belongsTo('App\Tp','tp_id','id')->select('id','no_tp','name');
     }
 
-    public function jalinanKlaim()
+    public function jalinan_klaim()
     {
         return $this->belongsTo('App\JalinanKlaim','id','anggota_cu_cu_id');
+    }
+
+    public function produk_cu()
+    {
+        return $this->hasMany('App\ProdukCu','id_cu','cu_id')->select('id','id_cu','name','tipe');
+    }
+
+    public function anggota_produk_cu()
+    {
+        return $this->hasMany('App\AnggotaProdukCu','anggota_cu_cu_id','id');
+    }
+
+    public function usia()
+    {
+        return \Carbon\Carbon::parse($this->tanggal_masuk)->age;
     }
 
 }

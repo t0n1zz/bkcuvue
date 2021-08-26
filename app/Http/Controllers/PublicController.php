@@ -277,7 +277,147 @@ class PublicController extends Controller
 
     public function testroute()
     {    
-        abort(404);
+        // abort(404);
+        // $minAge = 1;
+        // $maxAge = 70;
+
+        // $minDate = \Carbon\Carbon::today()->subYears($maxAge)->toDateString();
+        // $maxDate = \Carbon\Carbon::today()->subYears($minAge)->endOfDay()->toDateString();
+
+        // $produk_data = \App\ProdukCu::where('id_cu',40)->select('id', 'id_cu', 'name','tipe','jalinan')->where('jalinan', 1)->get();
+
+        // $table_data = \App\AnggotaCuCu::with('anggota_cu_simple','anggota_produk_cu')->where('cu_id', 40)->whereHas('anggota_cu', function ($q) use ($minDate, $maxDate){
+        //     $q->whereNull('status_jalinan')->whereBetween('tanggal_lahir', [$minDate, $maxDate]);
+        // })->select('id','anggota_cu_id','cu_id')->chunk(1000, function ($qs) use (&$total_simpanan, &$produk_data){
+        //     foreach($produk_data as $produk){
+        //         foreach($qs as $q){
+        //             foreach($q->anggota_produk_cu as $p)
+        //             {
+        //                 if($produk->id == $p->produk_cu_id){
+        //                     $produk->saldo += $p->saldo;
+        //                 }
+        //             }
+        //         }
+        //     }
+        // });
+
+        // return response()
+        // ->json([
+        //     'model' => $produk_data
+        // ]);
+
+        $cu = 22;
+        $dateString = '2021-12-01';
+        $lastDateOfMonth = date("Y-m-t", strtotime($dateString));
+
+        $produk_data = \App\ProdukCu::where('id_cu',$cu)->select('id', 'id_cu', 'name','tipe','jalinan')->where('jalinan', 1)->get();
+
+        $total_simpanan = 0;
+        $total_simp_0_1 = 0;
+        $kurang_simp_0_1 = 0;
+        $plafon_simp_0_1 = 0;
+        $total_simp_1_70 = 0;
+        $kurang_simp_1_70 = 0;
+        $plafon_simp_1_70 = 0;
+        $total_simp_60_70 = 0;
+        $kurang_simp_60_70 = 0;
+        $plafon_simp_60_70 = 0;
+
+        $anggota_data = \App\AnggotaCuCu::with('anggota_cu_simple','anggota_produk_cu')->where('cu_id', $cu)
+        ->where('tanggal_masuk','<',$lastDateOfMonth)
+        ->whereHas('anggota_cu', function ($q){
+            $q->whereNull('status_jalinan');
+        })
+        ->select('id','anggota_cu_id','cu_id')
+        ->chunk(1000, function ($qs) use (
+					&$produk_data, 
+					&$total_simpanan, 
+					&$total_simp_0_1,
+					&$kurang_simp_0_1,
+					&$plafon_simp_0_1,
+					&$total_simp_1_70,
+					&$kurang_simp_1_70,
+					&$plafon_simp_1_70,
+					&$total_simp_60_70,
+					&$kurang_simp_60_70,
+					&$plafon_simp_60_70
+        ){
+					foreach($qs as $q){
+						foreach($q->anggota_produk_cu as $p){
+							foreach($produk_data as $produk){
+								// semua 
+								if($produk->id == $p->produk_cu_id){
+									$produk->saldo += $p->saldo;
+									$total_simpanan += $p->saldo;
+								}
+								
+								// pengurang 
+								if($produk->tipe == 'Simpanan Pokok' || $produk->tipe == 'Simpanan Wajib' || $produk->tipe == 'Simpanan Non Saham'){
+									$selisih_usia = $q->anggota_cu->usia() - $q->usia();
+
+									if($q->anggota_cu->usia() >= 0 && $q->anggota_cu->usia() <= 1){
+										if($produk->id == $p->produk_cu_id){
+											$total_simp_0_1 += $p->saldo;
+											$plafon_simp_0_1 += 5000000;
+											if($p->saldo > 5000000){
+												$kurang_simp_0_1 += ($p->saldo - 5000000);
+											}
+										}
+									}
+
+									if($q->anggota_cu->usia() > 1 && $q->anggota_cu->usia() <= 70){
+										if($produk->id == $p->produk_cu_id){
+											$total_simp_1_70 += $p->saldo;
+											$plafon_simp_1_70 += 50000000;
+											if($p->saldo > 50000000){
+												$kurang_simp_1_70 += ($p->saldo - 50000000);
+											}
+										}
+									}
+
+									if($q->usia() >= 60 && $q->anggota_cu->usia() <= 70){
+										if($produk->id == $p->produk_cu_id){
+											$total_simp_60_70 += $p->saldo;
+											$plafon_simp_60_70 += 10000000;
+											if($p->saldo > 10000000){
+												$kurang_simp_60_70 += ($p->saldo - 10000000);
+											}
+										}
+									}
+
+									if($q->anggota_cu->usia() > 70){
+										if($selisih_usia < 60){
+											$total_simp_70_60 += $p->saldo;
+											$plafon_simp_70_60 += 5000000;
+											if($p->saldo > 5000000){
+												$kurang_simp_70_60 += ($p->saldo - 5000000);
+											}
+										}
+									}
+								}else{
+									$selisih_usia = $p->usia() - $q->usia();
+									
+								}
+							}
+						}
+					}
+        });
+
+        return response()
+        ->json([
+            'produk_data' => $produk_data,
+            'total_simpanan' => $total_simpanan,
+            'total_simp_0_1' => $total_simp_0_1,
+            'kurang_simp_0_1' => $kurang_simp_0_1,
+            'plafon_simp_0_1' => $plafon_simp_0_1,
+            'total_simp_1_70' => $total_simp_1_70,
+            'kurang_simp_1_70' => $kurang_simp_1_70,
+            'plafon_simp_1_70' => $plafon_simp_1_70,
+            'total_simp_60_70' => $total_simp_60_70,
+            'kurang_simp_60_70' => $kurang_simp_60_70,
+            'plafon_simp_60_70' => $plafon_simp_60_70
+        ]);
+
 
         // $cu = 4;
         // $tp = 31;  
