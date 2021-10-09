@@ -83,4 +83,9 @@ class AnggotaCuCu extends Model {
         return \Carbon\Carbon::parse($this->tanggal_masuk)->age;
     }
 
+    public function hari()
+    {
+        return \Carbon\Carbon::parse($this->tanggal_masuk)->days;
+    }
+
 }

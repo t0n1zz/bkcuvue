@@ -8,6 +8,10 @@ export default {
     return axios.get('/api/jalinanIuran/indexCu/' + id, {params: p});
   },
 
+  indexAnggota: function( p, id, lokasi ){
+    return axios.get('/api/jalinanIuran/indexAnggota/' + id + '/' + lokasi, {params: p});
+  },
+
   create: function( idCu, periodeBulan, periodeTahun){
     return axios.get('/api/jalinanIuran/create/' + idCu + '/' + periodeBulan + '/' + periodeTahun);
   },
@@ -20,8 +24,8 @@ export default {
     return axios.get('/api/jalinanIuran/edit/' + id);
   },
 
-  updateStatus: function ( id ){
-    return axios.get('/api/jalinanIuran/updateStatus/' + id);
+  update: function ( id, form ){
+    return axios.post('/api/jalinanIuran/update/' + id, form);
   },
 
   destroy: function( id ){

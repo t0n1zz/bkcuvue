@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Tp;
+use App\Cu;
 use App\LaporanCu;
 use App\LaporanTp;
 use Illuminate\Http\Request;
@@ -265,18 +266,55 @@ class LaporanTpController extends Controller{
 
 	public function destroy($id)
 	{
-		$kelas = LaporanTp::findOrFail($id);
-		$name = $kelas->name;
+		\DB::beginTransaction(); 
+		try{
+			$kelas = LaporanTp::findOrFail($id);
+			$tp = Tp::findOrFail($kelas->id_tp);
+			$name = $kelas->name;
+			$periode = $kelas->periode;
+			$id_cu = $tp->id_cu;
+			
+			$kelas->delete();
 
-		$kelas->delete();
+			$laporantp = LaporanTp::whereHas('Tp',function($query) use ($id_cu){
+				$query->where('id_cu',$id_cu);
+			})->where('periode',$periode)->get();
 
-		NotificationHelper::laporan_tp($kelas,'menghapus');
+			if(empty($laporantp)){
+				$kelas2 = LaporanCu::where('id_cu', $id_cu)->where('periode', $periode)->delete();
+			}else{
+				$cu = Cu::findOrFail($id_cu);
+				$konsolidasi = [];
 
-		return response()
-			->json([
-				'deleted' => true,
-				'message' => $this->message. ' ' .$name. 'berhasil dihapus'
-			]);
+				foreach(LaporanTp::$summable as $col){
+					$konsolidasi[$col] = $laporantp->sum($col);
+				}
+
+				$konsolidasi['id_cu'] = $id_cu;
+				$konsolidasi['no_ba'] = $cu->no_ba;
+				$konsolidasi['tp'] = $laporantp->count();
+				$konsolidasi['laju_inflasi'] = $laporantp->first()->laju_inflasi;
+				$konsolidasi['harga_pasar'] = $laporantp->first()->harga_pasar;
+				$konsolidasi['periode'] = $periode;
+
+				$kelas2 = LaporanCu::where('id_cu',$id_cu)->where('periode',$periode)->first();
+
+				$kelas3 = LaporanCu::findOrFail($kelas2->id);
+				$kelas3->update($konsolidasi);
+			}
+
+			NotificationHelper::laporan_tp($kelas,'menghapus');
+
+			\DB::commit();
+			return response()
+				->json([
+					'deleted' => true,
+					'message' => $this->message. ' ' .$name. 'berhasil dihapus'
+				]);
+		} catch (\Exception $e){
+			\DB::rollBack();
+			abort(500, $e->getMessage());
+		}
 	}
 
 	public function uploadExcel(Request $request)

@@ -649,6 +649,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::group(['middleware' => ['permission:index_jalinan_iuran']], function () {
             Route::get('/jalinanIuran', 'JalinanIuranController@index');
             Route::get('/jalinanIuran/indexCu/{id}', 'JalinanIuranController@indexCu');
+            Route::get('/jalinanIuran/indexAnggota/{id}/{lokasi}', 'JalinanIuranController@indexAnggota');
             Route::get('/jalinanIuran/edit/{id}', 'JalinanIuranController@edit');
         });
         Route::group(['middleware' => ['permission:create_jalinan_iuran']], function () {
@@ -656,7 +657,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
             Route::post('/jalinanIuran/store', 'JalinanIuranController@store');
         });
         Route::group(['middleware' => ['permission:update_jalinan_iuran']], function () {
-            Route::get('/jalinanIuran/updateStatus/{id}', 'JalinanIuranController@updateStatus');
+            Route::post('/jalinanIuran/update/{id}', 'JalinanIuranController@update');
         });
         Route::group(['middleware' => ['permission:destroy_jalinan_iuran']], function () {
             Route::delete('/jalinanIuran/{id}', 'JalinanIuranController@destroy');

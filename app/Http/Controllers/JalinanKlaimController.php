@@ -1547,14 +1547,14 @@ class JalinanKlaimController extends Controller{
 		}else if($kelas->status_klaim == 31){
 			$message = "Klaim JALINAN ditolak";
 			$kelas->status_klaim = 3;
-			$kelas->keterangan_klaim = 'Klaim Ditolak Karena Salah Memilih Anggota';
+			$kelas->keterangan_klaim = $request->keterangan_klaim;
 			$kelas->tunas_disetujui = NULL;
 			$kelas->lintang_disetujui = NULL;
 			$kelas->tanggal_pencairan = NULL;
 			$this->updateStatusAnggotaCu($kelas->anggota_cu_id, NULL, NULL);
 		}else if($kelas->status_klaim == 4){
-			$lintang_disetujui = preg_replace('/\D/', 0, $request->lintang_disetujui);
-			$tunas_disetujui = preg_replace('/\D/', 0, $request->tunas_disetujui);
+			$lintang_disetujui = preg_replace('/[^\d-]+/', '', $request->lintang_disetujui);
+			$tunas_disetujui = preg_replace('/[^\d-]+/', '', $request->tunas_disetujui);
 			$message = "Klaim JALINAN disetujui";
 			$kelas->keterangan_klaim = $request->keterangan_klaim;
 			$kelas->tunas_disetujui = $tunas_disetujui;

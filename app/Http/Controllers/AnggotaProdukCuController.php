@@ -100,13 +100,12 @@ class AnggotaProdukCuController extends Controller{
 
 	public function storeSaldo(Request $request, $id)
 	{
-
 		AnggotaProdukCuTransaksi::create([
 			'anggota_produk_cu_id' => $id,
 			'saldo' => $request->saldo,
 			'tanggal' => $request->tanggal,
 		]);
-
+		
 		return response()
 			->json([
 				'saved' => true,
@@ -159,6 +158,7 @@ class AnggotaProdukCuController extends Controller{
 		AnggotaProdukCuTransaksi::create([
 			'anggota_produk_cu_id' => $kelas->id,
 			'saldo' => $selisih_saldo,
+			'saldo_akhir' => $request->saldo,
 			'tanggal' => $kelas->updated_at,
 			'lama_sisa_pinjaman' => $selisih_lama_pinjaman,
 		]);

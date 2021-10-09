@@ -167,8 +167,8 @@ class PublicController extends Controller
 
         $artikels = Artikel::with('kategori','penulis')->where('id_cu',0)->where('terbitkan',1)->where('name', 'like', '%' .request('cari'). '%')->orderBy('created_at','desc');
 
-		$queries['cari_column'] = 'name';
-        $queries['cari'] = request('cari');
+		$q_anggotaCuCuueries['cari_column'] = 'name';
+        $q_anggotaCuCuueries['cari'] = request('cari');
         3;
 
         SEO::setTitle($title . ' - PUSKOPCUINA');
@@ -277,275 +277,860 @@ class PublicController extends Controller
 
     public function testroute()
     {    
-        // abort(404);
-        // $minAge = 1;
-        // $maxAge = 70;
+      abort(404);
 
-        // $minDate = \Carbon\Carbon::today()->subYears($maxAge)->toDateString();
-        // $maxDate = \Carbon\Carbon::today()->subYears($minAge)->endOfDay()->toDateString();
+			// $cu = 22;
+			// $dateString = '2021-12-01';
+			// $lastDateOfMonth = date("Y-m-t", strtotime($dateString));
+			
+			// $anggota_data = \App\AnggotaCuCu::with('anggota_cu_simple','anggota_produk_cu.transaksi')->where('cu_id', $cu)
+			// ->where('tanggal_masuk','<',$lastDateOfMonth)
+			// ->whereHas('anggota_cu', function ($q_anggotaCuCu){
+				// 		$q_anggotaCuCu->whereNull('status_jalinan');
+				// })
+				// ->select('id','anggota_cu_id','cu_id')
+				// ->get();
+				
+			// $kelas = \App\JalinanIuran::with('anggota.anggota_cu','anggota.anggota_cu_cu')->findOrFail(1);
+			
+			// $result = array();
+			// foreach($kelas->anggota as $anggota){
+			// 	$result[$anggota['anggota_cu_id']][$anggota['produk_cu_id']] = $anggota;
+			// }
+			// $kelas = $result;
 
-        // $produk_data = \App\ProdukCu::where('id_cu',40)->select('id', 'id_cu', 'name','tipe','jalinan')->where('jalinan', 1)->get();
+			// return response()->json($kelas);
 
-        // $table_data = \App\AnggotaCuCu::with('anggota_cu_simple','anggota_produk_cu')->where('cu_id', 40)->whereHas('anggota_cu', function ($q) use ($minDate, $maxDate){
-        //     $q->whereNull('status_jalinan')->whereBetween('tanggal_lahir', [$minDate, $maxDate]);
-        // })->select('id','anggota_cu_id','cu_id')->chunk(1000, function ($qs) use (&$total_simpanan, &$produk_data){
-        //     foreach($produk_data as $produk){
-        //         foreach($qs as $q){
-        //             foreach($q->anggota_produk_cu as $p)
-        //             {
-        //                 if($produk->id == $p->produk_cu_id){
-        //                     $produk->saldo += $p->saldo;
-        //                 }
-        //             }
-        //         }
-        //     }
-        // });
+			// $this->iuran();
+    }
 
-        // return response()
-        // ->json([
-        //     'model' => $produk_data
-        // ]);
+		public function iuran(){
+			$cu = 22;
+			$dateString = '2021-12-01';
+			$lastDateOfMonth = date("Y-m-t", strtotime($dateString));
 
-        $cu = 22;
-        $dateString = '2021-12-01';
-        $lastDateOfMonth = date("Y-m-t", strtotime($dateString));
+			$kelas = \App\JalinanIuran::create([
+				'id_cu' => $cu,
+				'periode' => $dateString,
+				'status' => '0'
+			]);
 
-        $produk_data = \App\ProdukCu::where('id_cu',$cu)->select('id', 'id_cu', 'name','tipe','jalinan')->where('jalinan', 1)->get();
+			$produk_data = \App\ProdukCu::where('id_cu',$cu)->select('id', 'id_cu', 'name','tipe','jalinan')->where('jalinan', 1)->get();
 
-        $total_simpanan = 0;
-        $total_simp_0_1 = 0;
-        $kurang_simp_0_1 = 0;
-        $plafon_simp_0_1 = 0;
-        $total_simp_1_70 = 0;
-        $kurang_simp_1_70 = 0;
-        $plafon_simp_1_70 = 0;
-        $total_simp_60_70 = 0;
-        $kurang_simp_60_70 = 0;
-        $plafon_simp_60_70 = 0;
+			$total_simpanan = 0;
+			$total_pinjaman = 0;
+			$total_sheet_3 = 0;
+			$kurang_sheet_3 = 0;
+			$plafon_sheet_3 = 0;
+			$total_sheet_4 = 0;
+			$kurang_sheet_4 = 0;
+			$plafon_sheet_4 = 0;
+			$total_sheet_5 = 0;
+			$kurang_sheet_5 = 0;
+			$plafon_sheet_5 = 0;
+			$total_sheet_6_dulu = 0;
+			$total_sheet_6_sekarang = 0;
+			$kurang_sheet_6 = 0;
+			$plafon_sheet_6 = 0;
+			$total_sheet_7_dulu = 0;
+			$total_sheet_7_sekarang = 0;
+			$kurang_sheet_7 = 0;
+			$plafon_sheet_7 = 0;
+			$total_sheet_8 = 0;
+			$kurang_sheet_8 = 0;
+			$total_sheet_9 = 0;
+			$kurang_sheet_9 = 0;
+			$total_sheet_10 = 0;
+			$kurang_sheet_10 = 0;
+			$total_sheet_11 = 0;
+			$kurang_sheet_11 = 0;
+			$total_sheet_12 = 0;
+			$kurang_sheet_12 = 0;
+			$plafon_sheet_12 = 0;
+			$total_sheet_13 = 0;
+			$kurang_sheet_13 = 0;
+			$plafon_sheet_13 = 0;
+			$total_sheet_14 = 0;
+			$kurang_sheet_14 = 0;
+			$plafon_sheet_14 = 0;
+			$total_sheet_15 = 0;
+			$kurang_sheet_15 = 0;
+			$total_sheet_16 = 0;
+			$kurang_sheet_16 = 0;
+			$total_sheet_17 = 0;
+			$kurang_sheet_17 = 0;
+			$total_sheet_18 = 0;
+			$kurang_sheet_18 = 0;
+			$total_sheet_19 = 0;
+			$kurang_sheet_19 = 0;
+			$total_sheet_20 = 0;
+			$kurang_sheet_20 = 0;
+			$total_sheet_21 = 0;
+			$kurang_sheet_21 = 0;
+			$plafon_sheet_21 = 0;
+			$total_sheet_22 = 0;
+			$kurang_sheet_22 = 0;
+			$plafon_sheet_22 = 0;
+			$total_sheet_23 = 0;
+			$kurang_sheet_23 = 0;
+			$total_sheet_24 = 0;
+			$kurang_sheet_24 = 0;
+			$total_sheet_25 = 0;
+			$kurang_sheet_25 = 0;
+			$total_sheet_26 = 0;
+			$kurang_sheet_26 = 0;
 
-        $anggota_data = \App\AnggotaCuCu::with('anggota_cu_simple','anggota_produk_cu')->where('cu_id', $cu)
-        ->where('tanggal_masuk','<',$lastDateOfMonth)
-        ->whereHas('anggota_cu', function ($q){
-            $q->whereNull('status_jalinan');
-        })
-        ->select('id','anggota_cu_id','cu_id')
-        ->chunk(1000, function ($qs) use (
-					&$produk_data, 
-					&$total_simpanan, 
-					&$total_simp_0_1,
-					&$kurang_simp_0_1,
-					&$plafon_simp_0_1,
-					&$total_simp_1_70,
-					&$kurang_simp_1_70,
-					&$plafon_simp_1_70,
-					&$total_simp_60_70,
-					&$kurang_simp_60_70,
-					&$plafon_simp_60_70
-        ){
-					foreach($qs as $q){
-						foreach($q->anggota_produk_cu as $p){
-							foreach($produk_data as $produk){
-								// semua 
-								if($produk->id == $p->produk_cu_id){
-									$produk->saldo += $p->saldo;
-									$total_simpanan += $p->saldo;
-								}
-								
-								// pengurang 
+			$anggota_data = \App\AnggotaCuCu::with('anggota_cu_simple','anggota_produk_cu.transaksi')->where('cu_id', $cu)
+			->where('tanggal_masuk','<',$lastDateOfMonth)
+			->whereHas('anggota_cu', function ($q_anggotaCuCu){
+					$q_anggotaCuCu->whereNull('status_jalinan');
+			})
+			->select('id','anggota_cu_id','cu_id')
+			->chunk(1000, function ($qs) use (
+				&$kelas,
+				&$produk_data, 
+				&$total_simpanan, 
+				&$total_pinjaman, 
+				&$total_sheet_3,
+				&$kurang_sheet_3,
+				&$plafon_sheet_3,
+				&$total_sheet_4,
+				&$kurang_sheet_4,
+				&$plafon_sheet_4,
+				&$total_sheet_5,
+				&$kurang_sheet_5,
+				&$plafon_sheet_5,
+				&$total_sheet_6_dulu,
+				&$total_sheet_6_sekarang,
+				&$kurang_sheet_6,
+				&$plafon_sheet_6,
+				&$total_sheet_7_dulu,
+				&$total_sheet_7_sekarang,
+				&$kurang_sheet_7,
+				&$plafon_sheet_7,
+				&$total_sheet_8,
+				&$kurang_sheet_8,
+				&$total_sheet_9,
+				&$kurang_sheet_9,
+				&$total_sheet_10,
+				&$kurang_sheet_10,
+				&$total_sheet_11,
+				&$kurang_sheet_11,
+				&$total_sheet_12,
+				&$kurang_sheet_12,
+				&$plafon_sheet_12,
+				&$total_sheet_13,
+				&$kurang_sheet_13,
+				&$plafon_sheet_13,
+				&$total_sheet_14,
+				&$kurang_sheet_14,
+				&$plafon_sheet_14,
+				&$total_sheet_15,
+				&$kurang_sheet_15,
+				&$total_sheet_16,
+				&$kurang_sheet_16,
+				&$total_sheet_17,
+				&$kurang_sheet_17,
+				&$total_sheet_18,
+				&$kurang_sheet_18,
+				&$total_sheet_19,
+				&$kurang_sheet_19,
+				&$total_sheet_20,
+				&$kurang_sheet_20,
+				&$total_sheet_21,
+				&$kurang_sheet_21,
+				&$plafon_sheet_21,
+				&$total_sheet_22,
+				&$kurang_sheet_22,
+				&$plafon_sheet_22,
+				&$total_sheet_23,
+				&$kurang_sheet_23,
+				&$total_sheet_24,
+				&$kurang_sheet_24,
+				&$total_sheet_25,
+				&$kurang_sheet_25,
+				&$total_sheet_26,
+				&$kurang_sheet_26
+			){
+				foreach($qs as $q_anggotaCuCu){
+					foreach($q_anggotaCuCu->anggota_produk_cu as $q_anggotaProdukCu){
+						foreach($produk_data as $produk){
+							// saldo semua produk
+							if($produk->id == $q_anggotaProdukCu->produk_cu_id){
+								$produk->saldo += $q_anggotaProdukCu->saldo;
+
+								\App\JalinanIuranProduk::create([
+									'jalinan_iuran_id' => $kelas->id,
+									'produk_cu_id' => $q_anggotaProdukCu->id,
+									'saldo' => $q_anggotaProdukCu->saldo,
+								]);
+							}
+											
+							if($q_anggotaProdukCu->pengurang != '1'){
+								// simpanan
 								if($produk->tipe == 'Simpanan Pokok' || $produk->tipe == 'Simpanan Wajib' || $produk->tipe == 'Simpanan Non Saham'){
-									$selisih_usia = $q->anggota_cu->usia() - $q->usia();
-
-									if($q->anggota_cu->usia() >= 0 && $q->anggota_cu->usia() <= 1){
-										if($produk->id == $p->produk_cu_id){
-											$total_simp_0_1 += $p->saldo;
-											$plafon_simp_0_1 += 5000000;
-											if($p->saldo > 5000000){
-												$kurang_simp_0_1 += ($p->saldo - 5000000);
-											}
-										}
-									}
-
-									if($q->anggota_cu->usia() > 1 && $q->anggota_cu->usia() <= 70){
-										if($produk->id == $p->produk_cu_id){
-											$total_simp_1_70 += $p->saldo;
-											$plafon_simp_1_70 += 50000000;
-											if($p->saldo > 50000000){
-												$kurang_simp_1_70 += ($p->saldo - 50000000);
-											}
-										}
-									}
-
-									if($q->usia() >= 60 && $q->anggota_cu->usia() <= 70){
-										if($produk->id == $p->produk_cu_id){
-											$total_simp_60_70 += $p->saldo;
-											$plafon_simp_60_70 += 10000000;
-											if($p->saldo > 10000000){
-												$kurang_simp_60_70 += ($p->saldo - 10000000);
-											}
-										}
-									}
-
-									if($q->anggota_cu->usia() > 70){
-										if($selisih_usia < 60){
-											$total_simp_70_60 += $p->saldo;
-											$plafon_simp_70_60 += 5000000;
-											if($p->saldo > 5000000){
-												$kurang_simp_70_60 += ($p->saldo - 5000000);
-											}
-										}
-									}
-								}else{
-									$selisih_usia = $p->usia() - $q->usia();
 									
+									if($produk->id == $q_anggotaProdukCu->produk_cu_id){
+										// total simpanan
+										$total_simpanan += $q_anggotaProdukCu->saldo;
+
+										$selisih_usia = $q_anggotaCuCu->usia() - $q_anggotaCuCu->anggota_cu_simple->usia();
+										$usia_masuk = $q_anggotaCuCu->usia() - $selisih_usia;
+
+										// sheet 3
+										if($q_anggotaCuCu->anggota_cu_simple->usia() >= 0 && $q_anggotaCuCu->anggota_cu_simple->usia() <= 1){
+											$total_sheet_3 += $q_anggotaProdukCu->saldo;
+											$plafon_sheet_3 += 5000000;
+											if($q_anggotaProdukCu->saldo > 5000000){
+												$kurang_sheet_3 += ($q_anggotaProdukCu->saldo - 5000000);
+											}
+
+											$this->snapshot($kelas,$q_anggotaCuCu,$q_anggotaProdukCu,'3');
+										}
+
+										// sheet 4
+										if($q_anggotaCuCu->anggota_cu_simple->usia() > 1 && $q_anggotaCuCu->anggota_cu_simple->usia() <= 70){
+											$total_sheet_4 += $q_anggotaProdukCu->saldo;
+											$plafon_sheet_4 += 50000000;
+											if($q_anggotaProdukCu->saldo > 50000000){
+												$kurang_sheet_4 += ($q_anggotaProdukCu->saldo - 50000000);
+											}
+
+											$this->snapshot($kelas,$q_anggotaCuCu,$q_anggotaProdukCu,'4');
+										}
+
+										// sheet 5
+										if($usia_masuk >= 60 && $usia_masuk <= 70){
+											$total_sheet_5 += $q_anggotaProdukCu->saldo;
+											$plafon_sheet_5 += 10000000;
+											if($q_anggotaProdukCu->saldo > 10000000){
+												$kurang_sheet_5 += ($q_anggotaProdukCu->saldo - 10000000);
+											}
+
+											$this->snapshot($kelas,$q_anggotaCuCu,$q_anggotaProdukCu,'5');
+										}
+
+										if($q_anggotaCuCu->anggota_cu_simple->usia() > 70){
+											// sheet 6
+											if($usia_masuk < 60){
+												$total_sheet_6_sekarang += $q_anggotaProdukCu->saldo;
+												foreach($q_anggotaProdukCu->transaksi as $trans){
+													$selisih_usia_trans = $q_anggotaCuCu->usia() - $trans->usia();
+													$usia_masuk_trans = $q_anggotaCuCu->usia() - $selisih_usia_trans;
+
+													if($usia_masuk_trans <= 70){
+														$total_sheet_6_lama = $trans->saldo_akhir;
+														break;
+													}
+												}
+												if($total_sheet_6_lama > 50000000){
+													$plafon_sheet_6 += 50000000;
+													$kurang_sheet_6 += ($total_sheet_6_lama - 50000000);
+												}else{
+													$plafon_sheet_6 += total_sheet_6_lama;
+												}
+
+												$this->snapshot($kelas,$q_anggotaCuCu,$q_anggotaProdukCu,'6');
+											}
+											
+											// sheet 7
+											if($usia_masuk >= 60 && $usia_masuk <= 70){
+												$total_sheet_7_sekarang += $q_anggotaProdukCu->saldo;
+												foreach($q_anggotaProdukCu->transaksi as $trans){
+													$selisih_usia_trans = $q_anggotaCuCu->usia() - $trans->usia();
+													$usia_masuk_trans = $q_anggotaCuCu->usia() - $selisih_usia_trans;
+
+													if($usia_masuk_trans <= 70){
+														$total_sheet_7_lama = $trans->saldo_akhir;
+														break;
+													}
+												}
+												if($total_sheet_7_lama > 10000000){
+													$plafon_sheet_7 += 10000000;
+													$kurang_sheet_7 += ($total_sheet_7_lama - 10000000);
+												}else{
+													$plafon_sheet_7 += total_sheet_7_lama;
+												}
+
+												$this->snapshot($kelas,$q_anggotaCuCu,$q_anggotaProdukCu,'7');
+											}
+										}
+	
+										// sheet 8
+										if($usia_masuk >= 70){
+											$total_sheet_8 += $q_anggotaProdukCu->saldo;
+											$kurang_sheet_8 += $q_anggotaProdukCu->saldo;
+
+											$this->snapshot($kelas,$q_anggotaCuCu,$q_anggotaProdukCu,'8');
+										}
+									}
+
+								//pinjaman	
+								}else{
+									
+									if($produk->id == $q_anggotaProdukCu->produk_cu_id){
+										// total pinjaman
+										$total_pinjaman += $q_anggotaProdukCu->saldo;
+
+										$selisih_usia_pinj = $q_anggotaCuCu->usia() - $q_anggotaProdukCu->usia();
+										$usia_cair = $q_anggotaCuCu->usia() - $selisih_usia_pinj;
+										$hari_cair = $q_anggotaCuCu->hari() - $q_anggotaProdukCu->hari();
+
+										// pinjaman kapitalisasi
+										if($produk->tipe == 'Pinjaman Kapitalisasi'){
+											// sheet 9
+											if($q_anggotaCuCu->anggota_cu_simple->usia() < 30){
+												$total_sheet_9 += $q_anggotaProdukCu->saldo;
+												$kurang_sheet_9 += $q_anggotaProdukCu->saldo;
+
+												$this->snapshot($kelas,$q_anggotaCuCu,$q_anggotaProdukCu,'9');
+											}
+											// sheet 14
+											if($q_anggotaProdukCu->saldo > 25000000){
+												$plafon_sheet_14 += 25000000;
+												$total_sheet_9 += $q_anggotaProdukCu->saldo;
+												$kurang_sheet_13 += ($q_anggotaProdukCu->saldo - 25000000);
+
+												$this->snapshot($kelas,$q_anggotaCuCu,$q_anggotaProdukCu,'14');
+											}
+											// sheet 16
+											if($hari_cair < 30){
+												$total_sheet_16 += $q_anggotaProdukCu->saldo;
+												$kurang_sheet_16 += $q_anggotaProdukCu->saldo;
+
+												$this->snapshot($kelas,$q_anggotaCuCu,$q_anggotaProdukCu,'16');
+											}
+
+											// sheet 18
+											if($q_anggotaCuCu->dpd > 90){
+												$total_sheet_18 += $q_anggotaProdukCu->saldo;
+												$kurang_sheet_18 += $q_anggotaProdukCu->saldo;
+
+												$this->snapshot($kelas,$q_anggotaCuCu,$q_anggotaProdukCu,'18');
+											}
+
+											// sheet 23
+											if($q_anggotaCuCu->dpd > 1825){
+												$total_sheet_23 += $q_anggotaProdukCu->saldo;
+												$kurang_sheet_23 += $q_anggotaProdukCu->saldo;
+
+												$this->snapshot($kelas,$q_anggotaCuCu,$q_anggotaProdukCu,'23');
+											}
+											
+										}
+
+										// sheet 12
+										if($produk->tipe == 'Pinjaman Umum'){
+											if($usia_cair < 60){
+												$total_sheet_12 += $q_anggotaProdukCu->saldo;
+												$plafon_sheet_12 += 150000000;
+												if($q_anggotaProdukCu->saldo > 150000000){
+													$kurang_sheet_12 += ($q_anggotaProdukCu->saldo - 150000000);
+												}
+
+												$this->snapshot($kelas,$q_anggotaCuCu,$q_anggotaProdukCu,'12');
+											}
+										}
+	
+										// sheet 13
+										if($usia_cair > 60 && $usia_cair <= 70){
+											$total_sheet_13 += $q_anggotaProdukCu->saldo;
+											$plafon_sheet_13 += 50000000;
+											if($q_anggotaProdukCu->saldo > 50000000){
+												$kurang_sheet_13 += ($q_anggotaProdukCu->saldo - 50000000);
+											}
+
+											$this->snapshot($kelas,$q_anggotaCuCu,$q_anggotaProdukCu,'13');
+										}
+
+										// sheet 15
+										if($q_anggotaCuCu->anggota_cu_simple->usia() > 70){
+											$total_sheet_15 += $q_anggotaProdukCu->saldo;
+											$kurang_sheet_15 += $q_anggotaProdukCu->saldo;
+
+											$this->snapshot($kelas,$q_anggotaCuCu,$q_anggotaProdukCu,'15');
+										}
+
+										// sheet 17
+										if($q_anggotaCuCu->dpd > 180){
+											$total_sheet_17 += $q_anggotaProdukCu->saldo;
+											$kurang_sheet_17 += $q_anggotaProdukCu->saldo;
+
+											$this->snapshot($kelas,$q_anggotaCuCu,$q_anggotaProdukCu,'17');
+										}
+
+										// sheet 21
+										if($produk->tipe == 'Pinjaman Produktif'){
+											if($usia_cair < 55){
+												if($q_anggotaProdukCu->bulan() <= 36){
+													$total_sheet_21 += $q_anggotaProdukCu->saldo;
+													$plafon_sheet_21 += 300000000;
+													if($q_anggotaProdukCu->saldo > 300000000){
+														$kurang_sheet_21 += ($q_anggotaProdukCu->saldo - 300000000);
+													}
+													$this->snapshot($kelas,$q_anggotaCuCu,$q_anggotaProdukCu,'21');
+												}
+											}
+										}
+
+										// sheet 24
+										if($q_anggotaCuCu->dpd > 5475){
+											$total_sheet_24 += $q_anggotaProdukCu->saldo;
+											$kurang_sheet_24 += $q_anggotaProdukCu->saldo;
+
+											$this->snapshot($kelas,$q_anggotaCuCu,$q_anggotaProdukCu,'24');
+										}
+
+										// sheet 26
+										if($q_anggotaCuCu->usia() <= 17){
+											$total_sheet_26 += $q_anggotaProdukCu->saldo;
+											$kurang_sheet_26 += $q_anggotaProdukCu->saldo;
+
+											$this->snapshot($kelas,$q_anggotaCuCu,$q_anggotaProdukCu,'26');
+										}
+									}
+								}
+								// sheet 10
+								if($produk->id == $q_anggotaProdukCu->produk_cu_id){
+									$sp = 0;
+									$sw = 0;
+									$snh = 0;
+									if($produk->tipe == 'Simpanan Pokok'){
+										$sp = $q_anggotaProdukCu->saldo;
+									}
+									if($produk->tipe == 'Simpanan Wajib'){
+										$sw = $q_anggotaProdukCu->saldo;
+									}
+									if($produk->tipe == 'Simpanan Non Saham'){
+										$snh = $q_anggotaProdukCu->saldo;
+									}
+								}
+								if($produk->tipe == 'Pinjaman Kapitalisasi'){
+									if($q_anggotaCuCu->dpd > 90){
+										$total_simp = $sp + $sw + $snh;
+										if($q_anggotaProdukCu->saldo > $total_simp){
+											$kurang_sheet_10 += $q_anggotaProdukCu->saldo;
+										}else{
+											$pengurang = $total_simp - $q_anggotaProdukCu->saldo;
+											$kurang_sheet_10 += $pengurang;
+										}
+										$total_sheet_10 += $q_anggotaProdukCu->saldo;
+
+										$this->snapshot($kelas,$q_anggotaCuCu,$q_anggotaProdukCu,'10');
+									}
+								}
+							}else{
+								if($produk->id == $q_anggotaProdukCu->produk_cu_id){
+
+									//sheet 11
+									$total_sheet_11 += $q_anggotaProdukCu->saldo;
+									$kurang_sheet_11 += $q_anggotaProdukCu->saldo;
+
+									//sheet 19
+									$total_sheet_19 += $q_anggotaProdukCu->saldo;
+									$kurang_sheet_19 += $q_anggotaProdukCu->saldo;
+
+									//sheet 20
+									$total_sheet_20 += $q_anggotaProdukCu->saldo;
+									$kurang_sheet_20 += $q_anggotaProdukCu->saldo;
+
+									//sheet 25
+									$total_sheet_25 += $q_anggotaProdukCu->saldo;
+									$kurang_sheet_25 += $q_anggotaProdukCu->saldo;
+
+									$this->snapshot($kelas,$q_anggotaCuCu,$q_anggotaProdukCu,'25');
 								}
 							}
 						}
 					}
-        });
+				}
+			});
 
-        return response()
-        ->json([
-            'produk_data' => $produk_data,
-            'total_simpanan' => $total_simpanan,
-            'total_simp_0_1' => $total_simp_0_1,
-            'kurang_simp_0_1' => $kurang_simp_0_1,
-            'plafon_simp_0_1' => $plafon_simp_0_1,
-            'total_simp_1_70' => $total_simp_1_70,
-            'kurang_simp_1_70' => $kurang_simp_1_70,
-            'plafon_simp_1_70' => $plafon_simp_1_70,
-            'total_simp_60_70' => $total_simp_60_70,
-            'kurang_simp_60_70' => $kurang_simp_60_70,
-            'plafon_simp_60_70' => $plafon_simp_60_70
-        ]);
+			$kelas->update([
+				'total_simpanan' => $total_simpanan,
+				'total_pinjaman' => $total_pinjaman,
+				'total_sheet_3' => $total_sheet_3,
+				'kurang_sheet_3' => $kurang_sheet_3,
+				'plafon_sheet_3' => $plafon_sheet_3,
+				'total_sheet_4' => $total_sheet_4,
+				'kurang_sheet_4' => $kurang_sheet_4,
+				'plafon_sheet_4' => $plafon_sheet_4,
+				'total_sheet_5' => $total_sheet_5,
+				'kurang_sheet_5' => $kurang_sheet_5,
+				'plafon_sheet_5' => $plafon_sheet_5,
+				'total_sheet_6_dulu' => $total_sheet_6_dulu,
+				'total_sheet_6_sekarang' => $total_sheet_6_sekarang,
+				'kurang_sheet_6' => $kurang_sheet_6,
+				'plafon_sheet_6' => $plafon_sheet_6,
+				'total_sheet_7_dulu' => $total_sheet_7_dulu,
+				'total_sheet_7_sekarang' => $total_sheet_7_sekarang,
+				'kurang_sheet_7' => $kurang_sheet_7,
+				'plafon_sheet_7' => $plafon_sheet_7,
+				'kurang_sheet_8' => $kurang_sheet_8,
+				'total_sheet_8' => $total_sheet_8,
+				'kurang_sheet_9' => $kurang_sheet_9,
+				'total_sheet_9' => $total_sheet_9,
+				'kurang_sheet_10' => $kurang_sheet_10,
+				'total_sheet_10' => $total_sheet_10,
+				'kurang_sheet_11' => $kurang_sheet_11,
+				'total_sheet_11' => $total_sheet_11,
+				'kurang_sheet_12' => $kurang_sheet_12,
+				'total_sheet_12' => $total_sheet_12,
+				'kurang_sheet_13' => $kurang_sheet_13,
+				'total_sheet_13' => $total_sheet_13,
+				'kurang_sheet_14' => $kurang_sheet_14,
+				'total_sheet_14' => $total_sheet_14,
+				'kurang_sheet_15' => $kurang_sheet_15,
+				'total_sheet_15' => $total_sheet_15,
+				'kurang_sheet_16' => $kurang_sheet_16,
+				'total_sheet_16' => $total_sheet_16,
+				'kurang_sheet_17' => $kurang_sheet_17,
+				'total_sheet_17' => $total_sheet_17,
+				'kurang_sheet_18' => $kurang_sheet_18,
+				'total_sheet_18' => $total_sheet_18,
+				'kurang_sheet_19' => $kurang_sheet_19,
+				'total_sheet_19' => $total_sheet_19,
+				'kurang_sheet_20' => $kurang_sheet_20,
+				'total_sheet_20' => $total_sheet_20,
+				'kurang_sheet_21' => $kurang_sheet_21,
+				'total_sheet_21' => $total_sheet_21,
+				'kurang_sheet_22' => $kurang_sheet_22,
+				'total_sheet_22' => $total_sheet_22,
+				'kurang_sheet_23' => $kurang_sheet_23,
+				'total_sheet_23' => $total_sheet_23,
+				'kurang_sheet_24' => $kurang_sheet_24,
+				'total_sheet_24' => $total_sheet_24,
+				'kurang_sheet_25' => $kurang_sheet_25,
+				'total_sheet_25' => $total_sheet_25,
+				'kurang_sheet_26' => $kurang_sheet_26,
+				'total_sheet_26' => $total_sheet_26,
+			]);
 
+			return response()
+			->json([
+					'produk_data' => $produk_data,
+					'total_simpanan' => $total_simpanan,
+					'total_pinjaman' => $total_pinjaman,
+					'total_sheet_3' => $total_sheet_3,
+					'kurang_sheet_3' => $kurang_sheet_3,
+					'plafon_sheet_3' => $plafon_sheet_3,
+					'total_sheet_4' => $total_sheet_4,
+					'kurang_sheet_4' => $kurang_sheet_4,
+					'plafon_sheet_4' => $plafon_sheet_4,
+					'total_sheet_5' => $total_sheet_5,
+					'kurang_sheet_5' => $kurang_sheet_5,
+					'plafon_sheet_5' => $plafon_sheet_5,
+					'total_sheet_6_dulu' => $total_sheet_6_dulu,
+					'total_sheet_6_sekarang' => $total_sheet_6_sekarang,
+					'kurang_sheet_6' => $kurang_sheet_6,
+					'plafon_sheet_6' => $plafon_sheet_6,
+					'total_sheet_7_dulu' => $total_sheet_7_dulu,
+					'total_sheet_7_sekarang' => $total_sheet_7_sekarang,
+					'kurang_sheet_7' => $kurang_sheet_7,
+					'plafon_sheet_7' => $plafon_sheet_7,
+					'kurang_sheet_8' => $kurang_sheet_8,
+					'total_sheet_8' => $total_sheet_8,
+					'kurang_sheet_9' => $kurang_sheet_9,
+					'total_sheet_9' => $total_sheet_9,
+					'kurang_sheet_10' => $kurang_sheet_10,
+					'total_sheet_10' => $total_sheet_10,
+					'kurang_sheet_11' => $kurang_sheet_11,
+					'total_sheet_11' => $total_sheet_11,
+					'kurang_sheet_12' => $kurang_sheet_12,
+					'total_sheet_12' => $total_sheet_12,
+					'kurang_sheet_13' => $kurang_sheet_13,
+					'total_sheet_13' => $total_sheet_13,
+					'kurang_sheet_14' => $kurang_sheet_14,
+					'total_sheet_14' => $total_sheet_14,
+					'kurang_sheet_15' => $kurang_sheet_15,
+					'total_sheet_15' => $total_sheet_15,
+					'kurang_sheet_16' => $kurang_sheet_16,
+					'total_sheet_16' => $total_sheet_16,
+					'kurang_sheet_17' => $kurang_sheet_17,
+					'total_sheet_17' => $total_sheet_17,
+					'kurang_sheet_18' => $kurang_sheet_18,
+					'total_sheet_18' => $total_sheet_18,
+					'kurang_sheet_19' => $kurang_sheet_19,
+					'total_sheet_19' => $total_sheet_19,
+					'kurang_sheet_20' => $kurang_sheet_20,
+					'total_sheet_20' => $total_sheet_20,
+					'kurang_sheet_21' => $kurang_sheet_21,
+					'total_sheet_21' => $total_sheet_21,
+					'kurang_sheet_22' => $kurang_sheet_22,
+					'total_sheet_22' => $total_sheet_22,
+					'kurang_sheet_23' => $kurang_sheet_23,
+					'total_sheet_23' => $total_sheet_23,
+					'kurang_sheet_24' => $kurang_sheet_24,
+					'total_sheet_24' => $total_sheet_24,
+					'kurang_sheet_25' => $kurang_sheet_25,
+					'total_sheet_25' => $total_sheet_25,
+					'kurang_sheet_26' => $kurang_sheet_26,
+					'total_sheet_26' => $total_sheet_26,
+			]);
+		}
 
-        // $cu = 4;
-        // $tp = 31;  
-        // $kelas = \App\AnggotaCu::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp')->whereHas('anggota_cu_cu_not_keluar', function($query) use ($cu, $tp){ 
-		// 	if($tp != 'semua'){
-		// 		$query->where('anggota_cu_cu.cu_id',$cu)->where('anggota_cu_cu.tp_id',$tp)->whereNull('anggota_cu_cu.tanggal_keluar'); 
-		// 	}else{
-		// 		$query->where('anggota_cu_cu.cu_id',$cu)->whereNull('anggota_cu_cu.tanggal_keluar'); 
-		// 	}
-		// })->where(function($query){
-		// 	$query->where('status_jalinan','!=','MENINGGAL')->orWhere('status_jalinan', NULL);
-        // });
-        // $datas = $kelas->get();
-        // foreach($datas as $item){
-        //     $kelas1 = \App\AnggotaCu::findOrFail($item->id);
-        //     $kelas1->forceDelete();
+		public function snapshot($kelas, $q_anggotaCuCu, $q_anggotaProdukCu,$lokasi){
+			\App\JalinanIuranAnggota::create([
+				'jalinan_iuran_id' => $kelas->id,
+				'anggota_cu_id' => $q_anggotaCuCu->anggota_cu_id,
+				'anggota_cu_cu_id' => $q_anggotaCuCu->id,
+				'anggota_produk_cu_id' => $q_anggotaProdukCu->id,
+				'produk_cu_id' => $q_anggotaProdukCu->produk_cu_id,
+				'saldo' => $q_anggotaProdukCu->saldo,
+				'umur_masuk' => $q_anggotaCuCu->tanggal_masuk,
+				'umur_sekarang' => $q_anggotaCuCu->anggota_cu->tanggal_lahir,
+				'lokasi' => $lokasi
+			]);
+		}
 
-        //     $kelas2 = \App\AnggotaCuCu::where('anggota_cu_id', $item->id);
-        //     $kelas2->forceDelete();
-        // }
-        
-        // $kelas = \App\AnggotaCuDraft::with('anggota_cu_cu')->whereHas('anggota_cu_cu', function($query){ 
-        //     $query->where('anggota_cu_cu_draft.cu_id', '43');
-        // });
-        // $kelas = \App\KegiatanPanitia::where('kegiatan_id',97)->get();
-        // return response()->json($kelas);
+		public function migrate_tp(){
+			$kelas = \App\AnggotaCu::whereIn('nik',[
+				'6109053012720001',
+				'6109052508430001',
+				'0000000000030353',
+				'0000000000030354',
+				'6109071103720001',
+				'6109051203780001',
+				'6109021911740001',
+				'6105011704750001',
+				'6105016511780006',
+				'6109055608780001',
+				'6105034304730003',
+				'6105031212750008',
+				'0000000000032107',
+				'6109062412800002',
+				'0000000000032108',
+				'0000000000032111',
+				'6105035210980001','610603161980003',
+				'0000000000030356',
+				'0000000000030357',
+				'6109052601830001',
+				'0000000000030358',
+				'0000000000030604',
+				'0000000000030607',
+				'0000000000030608',
+				'6105031508750001',
+				'0000000000030612',
+				'6109051012700001',
+				'0000000000030618','610902050570001',
+				'6109026212760001',
+				'6105036204690001',
+				'6105030170862002',
+				'0000000000030624',
+				'6109052308700002',
+				'6109052808550001',
+				'6105032604620002',
+				'0000000000030625',
+				'0000000000030626',
+				'6109025312750003',
+				'6109020609740004',
+				'0000000000030627',
+				'6107140101850001',
+				'0000000000030628',
+				'0000000000030629',
+				'0000000000030630',
+				'0000000000030631',
+				'6109056607740005',
+				'6171032211880004',
+				'6109056504650001',
+				'6109021010840004',
+				'6109055510910001',
+				'0000000000030632',
+				'0000000000032120',
+				'6105031101020001',
+				'6109052302840001',
+				'6109050808880008',
+				'6109050412870001',
+				'6105033110010001',
+				'6105030412830001',
+				'6109050606780004',
+				'6109017112750004',
+				'6109031711560001',
+				'6109055111730002',
+				'6109025206490004',
+				'6109055608820003',
+				'6107146910870001',
+				'6109051102040001',
+				'6109050605970001',
+				'6107145308850004',
+				'6109052301070001',
+				'6109050805860001',
+				'6105031006960001',
+				'6109052604940002',
+				'6171026302760001',
+				'6109021008840004',
+				'6109021106730002',
+				'6105032507890001',
+				'6109022811980001',
+				'6112700110750001',
+				'6109041303060001',
+				'6105600509050001',
+				'6109051607110001',
+				'6105061211050001',
+				'6109052109020001',
+				'6109051304950001',
+				'6106002908010003',
+				'6105031611890001',
+				'6105036290490001',
+				'6109050202930001',
+				'6103110103780005',
+				'6109056606770002',
+				'6109051607730001',
+				'6109052202720001',
+				'6109051707820001',
+				'6109076403120001',
+				'0000000000032965',
+				'6105035809740001',
+				'6109075407820005',
+				'6108020512760001',
+				'6109036200980003',
+				'6109026008800003',
+				'0000000000032974',
+				'6109054405660006',
+				'6109056801480002',
+				'0000000000033169',
+				'6105035508760006',
+				'0000000000033000',
+				'6109072007150001',
+				'6109050412880001',
+				'0000000000033001',
+				'6105036109980001',
+				'0000000000033002',
+				'0000000000033003',
+				'0000000000033004',
+				'6109056005790004',
+				'0000000000033019',
+				'0000000000033023',
+				'6107141712160001',
+				'6109054507720006',
+				'0000000000033025',
+				'6109064909020002',
+				'6109050207120001',
+				'6109050405080001',
+				'6109030603110003',
+				'6109030109140001',
+				'6105032009100001',
+				'0000000000112047','610905591290002',
+				'6109014504980002',
+				'6109010201750009',
+				'6109055802900001',
+				'6109051208930004',
+				'6109056106860001',
+				'6109050209760002',
+				'6109051506680004',
+				'6109051407880004',
+				'6109055801020009',
+				'6109060101760003',
+				'0000000000114018',
+				'6105032302940002',
+				'0000000000114557',
+				'6109020808850004',
+				'6109052712000005',
+				'6109052312760002',
+			])->select('id','nik')->get();
 
-        // $users = \App\User::where('login', '>=', \Carbon\Carbon::now()->subMonth(6))->get();	
-        // return response()
-		// 	->json($users);
-            
-        // $kelas = App\User::permission('verifikasi_manajemen_jalinan_klaim')->get();
-		// $from = \Carbon\Carbon::now()->subYears(30)->format('Y-m-d');
-		// $to = \Carbon\Carbon::now()->subYears(20)->format('Y-m-d');
+			foreach($kelas as $k){
+				$kelas2 = \App\AnggotaCuCu::where('anggota_cu_id', $k->id)->whereNull('tanggal_keluar')->first();
+				$kelas2->tanggal_keluar = '2021-09-21';
+				$kelas2->keterangan_keluar = 'mutasi anggota';
+				$kelas2->update();
 
-		// $table_data = \App\JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')->whereHas('anggota_cu', function($query) use ($from, $to){ 
-		// 	$query->whereBetween('tanggal_lahir',[$from, $to]);
-		// })->get();
+				\App\AnggotaCuCu::create([
+					'anggota_cu_id' => $k->id,
+					'cu_id' => '41',
+					'tp_id' => '132',
+					'no_ba' => $kelas2->no_ba,
+					'tanggal_masuk' => '2021-09-21',
+					'keterangan_masuk' => 'mutasi anggota'
+				]);
+			}
+		}
 
-		// return response()
-		// 	->json([
-		// 		'model' => $table_data
-		// 	]);
-
-		// create permission
-        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_dokumen']); 
-        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_dokumen']); 
-        // \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_dokumen']); 
-		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_dokumen']);
+		public function permission(){
+			// create permission
+			\Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_dokumen']); 
+			\Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_dokumen']); 
+			\Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_dokumen']); 
+			\Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_dokumen']);
+			
+			// give permission
+			$users = App\User::where('id','!=',1)->where('id_cu',0)->get();
+			$users = App\User::find(1);
+			
+			foreach($users as $user){
+				$user->givePermissionTo([
 		
-		// give permission
-		// $users = App\User::where('id','!=',1)->where('id_cu',0)->get();
-		// $users = App\User::find(1);
+						'index_artikel',
+						'create_artikel',
+						'update_artikel',
+						'destroy_artikel',
+						'terbitkan_artikel',
+						'utamakan_artikel',
 		
-		// foreach($users as $user){
-		// 	$user->givePermissionTo([
-	
-		// 			'index_artikel',
-		// 			'create_artikel',
-		// 			'update_artikel',
-		// 			'destroy_artikel',
-		// 			'terbitkan_artikel',
-		// 			'utamakan_artikel',
-	
-		// 			'index_user',
-		// 			'create_user',
-		// 			'update_user',
-		// 			'destroy_user',
-		// 			'reset_password',
-		// 			'status_user',
-		// 			'hak_akses_user',
-	
-		// 			'index_artikel_penulis',
-		// 			'create_artikel_penulis',
-		// 			'update_artikel_penulis',
-		// 			'destroy_artikel_penulis',
-	
-		// 			'index_artikel_kategori',
-		// 			'create_artikel_kategori',
-		// 			'update_artikel_kategori',
-		// 			'destroy_artikel_kategori',
-	
-		// 			'index_cu',
-		// 			'create_cu',
-		// 			'update_cu',
-		// 			'destroy_cu',
-	
-		// 			'index_tp',
-		// 			'create_tp',
-		// 			'update_tp',
-		// 			'destroy_tp',
-	
-		// 			'index_aktivis',
-		// 			'create_aktivis',
-		// 			'update_aktivis',
-		// 			'destroy_aktivis',
-	
-		// 			'index_produk_cu',
-		// 			'create_produk_cu',
-		// 			'update_produk_cu',
-		// 			'destroy_produk_cu',
-	
-		// 			'index_diklat_bkcu',
-		// 			'create_diklat_bkcu',
-		// 			'update_diklat_bkcu',
-		// 			'destroy_diklat_bkcu',
-	
-		// 			'index_tempat',
-		// 			'create_tempat',
-		// 			'update_tempat',
-		// 			'destroy_tempat',
-	
-		// 			'index_laporan_cu',
-		// 			'create_laporan_cu',
-		// 			'update_laporan_cu',
-		// 			'destroy_laporan_cu',
-		// 			'upload_laporan_cu',
-		// 			'diskusi_laporan_cu',
-	
-		// 			'index_laporan_tp',
-		// 			'create_laporan_tp',
-		// 			'update_laporan_tp',
-		// 			'destroy_laporan_tp',
-		// 			'upload_laporan_tp',
-		// 			'diskusi_laporan_tp',
-		// 	]);
-		// }
+						'index_user',
+						'create_user',
+						'update_user',
+						'destroy_user',
+						'reset_password',
+						'status_user',
+						'hak_akses_user',
 		
-		// echo $users->getAllPermissions();
-    }
+						'index_artikel_penulis',
+						'create_artikel_penulis',
+						'update_artikel_penulis',
+						'destroy_artikel_penulis',
+		
+						'index_artikel_kategori',
+						'create_artikel_kategori',
+						'update_artikel_kategori',
+						'destroy_artikel_kategori',
+		
+						'index_cu',
+						'create_cu',
+						'update_cu',
+						'destroy_cu',
+		
+						'index_tp',
+						'create_tp',
+						'update_tp',
+						'destroy_tp',
+		
+						'index_aktivis',
+						'create_aktivis',
+						'update_aktivis',
+						'destroy_aktivis',
+		
+						'index_produk_cu',
+						'create_produk_cu',
+						'update_produk_cu',
+						'destroy_produk_cu',
+		
+						'index_diklat_bkcu',
+						'create_diklat_bkcu',
+						'update_diklat_bkcu',
+						'destroy_diklat_bkcu',
+		
+						'index_tempat',
+						'create_tempat',
+						'update_tempat',
+						'destroy_tempat',
+		
+						'index_laporan_cu',
+						'create_laporan_cu',
+						'update_laporan_cu',
+						'destroy_laporan_cu',
+						'upload_laporan_cu',
+						'diskusi_laporan_cu',
+		
+						'index_laporan_tp',
+						'create_laporan_tp',
+						'update_laporan_tp',
+						'destroy_laporan_tp',
+						'upload_laporan_tp',
+						'diskusi_laporan_tp',
+				]);
+			}
+			
+			echo $users->getAllPermissions();
+		}
 }

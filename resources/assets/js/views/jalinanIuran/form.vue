@@ -161,7 +161,7 @@
 														<div class="table-responsive">
 															<table class="table">
 																<tbody>
-																	<tr v-for="(produk, index) in produkData" v-if="produk.tipe == 'Simpanan Pokok' || produk.tipe == 'Simpanan Wajib' || produk.tipe == 'Simpanan Non Saham'">
+																	<tr v-for="(produk, index) in form.produk" v-if="produk.tipe == 'Simpanan Pokok' || produk.tipe == 'Simpanan Wajib' || produk.tipe == 'Simpanan Non Saham'">
 																		<th>{{ produk.name }}</th>
 																		<td class="text-right">
 																			<check-value :value="produk.saldo" valueType="currency"></check-value>
@@ -186,43 +186,63 @@
 																<tbody>
 																	<tr>
 																		<th>1. Simpanan usia 0 s.d 1 thn diatas plafon (5.000.000)</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_3" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>2. Simpanan usia > 1 s.d 70 thn diatas plafon (50.000.000)</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_4" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>3. Simpanan usia masuk 60 s.d 70 thn diatas plafon (10.000.000)</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_5" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>4. Pertambahan simpanan usia diatas  70 thn - yang menjadi anggota CU pada usia di bawah 60 tahun (Maks. 50 juta)</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_6" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>5. Pertambahan simpanan usia diatas  70 thn - yang menjadi anggota CU pada usia 60 s.d 70 tahun (Maks. 10 juta)</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_7" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>6. Pertambahan simpanan usia diatas  70 thn - Anggota masuk usia diatas 70 tahun</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_8" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>7. Simpanan Kapitalisasi anggota baru  < 30 hari sejak menjadi anggota</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_9" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>8. Simpanan kapitalisasi  yang piutangnya tidak pernah diangsur 3 bln berturut-turut atau lebih</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_10" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>9. Simpanan lembaga yang diatasnamakan lembaga atau perorangan</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_11" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>Jumlah Simpanan sebagai pengurang</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_3" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																</tbody>
 															</table>
@@ -288,7 +308,7 @@
 														<div class="table-responsive">
 															<table class="table">
 																<tbody>
-																	<tr v-for="(produk, index) in produkData" :key="index" v-if="produk.tipe == 'Pinjaman Kapitalisasi' || produk.tipe == 'Pinjaman Umum' || produk.tipe == 'Pinjaman Produktif'">
+																	<tr v-for="(produk, index) in form.produk" :key="index" v-if="produk.tipe == 'Pinjaman Kapitalisasi' || produk.tipe == 'Pinjaman Umum' || produk.tipe == 'Pinjaman Produktif'">
 																		<th>{{ produk.name }}</th>
 																		<td class="text-right">
 																			<check-value :value="produk.saldo" valueType="currency"></check-value>
@@ -313,63 +333,93 @@
 																<tbody>
 																	<tr>
 																		<th>1. Saldo piutang cair usia dewasa s.d 60 thn diatas plafon (150.000.000)</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_12" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>2. Saldo piutang cair diatas usia 60 s.d 70 thn diatas plafon (50.000.000)</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_13" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>3. Saldo piutang kapitalisasi diatas plafon (25.000.000)</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_14" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>4. Saldo piutang usia diatas 70 tahun</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_15" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>5. Saldo piutang macet  lebih dari 6 bulan berturut-turut</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_16" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>6. Saldo piutang kapitalisasi anggota baru < 30 hari sejak menjadi anggota</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_17" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>7. Saldo piutang kapitalisasi yang tidak pernah diangsur ≥ 3 bln berturut-turut</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_18" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>8. Saldo piutang dengan tujuan untuk biaya berobat sendiri</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_19" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>9. Saldo piutang lembaga atas nama perorangan atau nama lembaga</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_20" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>10. Saldo piutang produktif  diatas plafon (300.000.000)</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_21" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>11. Saldo piutang produktif dan piutang lain diatas plafon (300.000.000)</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_22" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>12. Saldo piutang kapitalisasi yang umur piutang diatas 5 tahun</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_23" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>13. Saldo piutang selain  kapitalisasi yang umur piutang diatas 15 tahun</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_24" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>14. Saldo piutang yang angsuran ditarik dari simpanan saham (SP dan SW)</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_25" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>15. Saldo piutang luar biasa usia < 17 tahun dan belum menikah</th>
-																		<td class="text-right">0</td>
+																		<td class="text-right">
+																			<check-value :value="form.total_sheet_26" valueType="currency"></check-value>
+																		</td>
 																	</tr>
 																	<tr>
 																		<th>Jumlah Simpanan sebagai pengurang</th>
@@ -636,10 +686,7 @@
     },
 		methods: {
 			fetch(){
-				// this.$store.dispatch('produkCu/getCuJalinan', this.idCu);
-				// this.$store.dispatch('anggotaCu/getCuJalinan', [this.idCu, this.periodeBulan, this.periodeTahun]);
-				this.$store.dispatch('anggotaCu/getCuKeluar', this.idCu);
-				this.$store.dispatch(this.kelas + '/create', [this.idCu, this.periodeBulan, this.periodeTahun]);
+				this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
 			},
 		fetchCU(){
 				if(this.modelCuStat != 'success'){

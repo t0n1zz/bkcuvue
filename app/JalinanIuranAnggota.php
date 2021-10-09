@@ -20,19 +20,18 @@ class JalinanIuranAnggota extends Model {
         'anggota_cu_id' => 'required',
     ];
 
-    
     protected $fillable = [
-        'jalinan_iuran_id','anggota_cu_id','umur_masuk','umur_sekarang','created_at','updated_at','deleted_at'
+        'jalinan_iuran_id','anggota_cu_id','anggota_cu_cu_id','anggota_produk_cu_id','produk_cu_id','umur_masuk','umur_sekarang','umur_cair','saldo','saldo_lama','saldo_baru','keterangan','created_at','updated_at','deleted_at','lokasi'
     ];
 
     protected $allowedFilters = [
-        'id','jalinan_iuran_id','anggota_cu_id','umur_masuk','umur_sekarang','created_at','updated_at','deleted_at',
+        'id','jalinan_iuran_id','anggota_cu_id','anggota_cu_cu_id','anggota_produk_cu_id','umur_masuk','umur_sekarang','umur_cair','saldo','saldo_lama','saldo_baru','keterangan','created_at','updated_at','deleted_at','lokasi',
 
         'anggota_cu.name',
     ];
 
     protected $orderable = [
-        'id','jalinan_iuran_id','anggota_cu_id','umur_masuk','umur_sekarang','created_at','updated_at','deleted_at',
+        'id','jalinan_iuran_id','anggota_cu_id','anggota_cu_cu_id','anggota_produk_cu_id','umur_masuk','umur_sekarang','umur_cair','saldo','saldo_lama','saldo_baru','keterangan','created_at','updated_at','deleted_at',
 
         'anggota_cu.name',
     ];
@@ -43,13 +42,13 @@ class JalinanIuranAnggota extends Model {
         ];
     }
 
-    public function anggota()
+    public function anggota_cu()
     {
-        return $this->belongsTo('App\AnggotaCu','anggota_cu_id','id')->select('id','name');
+        return $this->belongsTo('App\AnggotaCu','anggota_cu_id','id')->select('id','nik','name','tanggal_lahir','kelamin','gambar');
     }
 
-    public function produk()
+    public function anggota_cu_cu()
     {
-        return $this->hasMany('App\JalinanIuranProduk','anggota_cu_id','anggota_cu_id');
+        return $this->belongsTo('App\AnggotaCuCu','anggota_cu_cu_id','id');
     }
 }

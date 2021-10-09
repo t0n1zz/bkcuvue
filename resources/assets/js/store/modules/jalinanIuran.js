@@ -67,6 +67,21 @@ export const jalinanIuran = {
         });
     },
 
+    indexAnggota( { commit }, [p, id, lokasi] ){
+      commit('setDataStatS2', 'loading');
+      
+      
+      JalinanIuranAPI.indexAnggota( p , id, lokasi )
+        .then( function( response ){
+          commit('setDataS2', response.data.model );
+          commit('setDataStatS2', 'success');
+        })
+        .catch( error => {
+          commit('setDataS2', error.response);
+          commit('setDataStatS2', 'fail');
+        });
+    },
+
     create( {commit}, [ idCu, periodeBulan, periodeTahun ] ){
       commit('setDataStat', 'loading');
       
@@ -121,6 +136,25 @@ export const jalinanIuran = {
           commit('setRules', []);
           commit('setOptions', [])
           commit('setDataStat', 'fail');
+        });
+    },
+
+    // update data
+    update( {commit, state, dispatch}, [id, form] ){
+      commit('setUpdateStat', 'loading');
+
+      JalinanIuranAPI.update( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
         });
     },
 

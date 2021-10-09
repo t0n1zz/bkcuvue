@@ -159,6 +159,7 @@ class AnggotaCuController extends Controller{
 				$cu_name = $ta->cu ? $ta->cu->name : '';
 				$t->no_ba .= $cu_name . $tp_name . ' : ' .$ta->no_ba;
 				$t->tanggal_masuk .= ' CU ' . $ta->cu->name. ': ' .$ta->tanggal_masuk;
+				$t->keterangan_keluar = $ta->keterangan_keluar;
 			}
 		};
 
@@ -198,6 +199,7 @@ class AnggotaCuController extends Controller{
 				$t->nik = $t->nik ? $t->nik . "​ " : '';
 				$t->npwp = $t->npwp ? $t->npwp . "​ " : '';
 				$t->hp = $t->hp ? $t->hp . "​ " : '';
+				$t->keterangan_keluar = $t->anggota_cu_cu_keluar[0]->keterangan_keluar;
 				if($t->anggota_cu_cu_keluar){
 					foreach($t->anggota_cu_cu_keluar as $tt){
 						if($tt->cu_id == $cu){

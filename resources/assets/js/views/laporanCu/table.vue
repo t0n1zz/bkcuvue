@@ -661,7 +661,7 @@ export default {
     modalConfirmOk() {
       if (this.state == "hapus") {
 				 if (this.selectedItem.tp) {
-        		this.$store.dispatch("laporanTp/destroy", this.selectedItem.tp);
+        		this.$store.dispatch("laporanTp/destroy", this.selectedItem.id);
 				 }else{
 						this.$store.dispatch(this.kelas + "/destroy", this.selectedItem.id);
 				 }

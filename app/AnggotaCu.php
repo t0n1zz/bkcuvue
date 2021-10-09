@@ -152,4 +152,9 @@ class AnggotaCu extends BaseEloquent {
     {
         return \Carbon\Carbon::parse($this->tanggal_lahir)->age;
     }
+
+    public function hari()
+    {
+        return \Carbon\Carbon::parse($this->tanggal_lahir)->days;
+    }
 }

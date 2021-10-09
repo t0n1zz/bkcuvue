@@ -617,8 +617,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.$store.dispatch(this.kelas + '/create');
       }
 
-      this.fetchCu();
-      this.$store.dispatch('coa/get');
+      this.fetchCu(); // this.$store.dispatch('coa/get');
     },
     fetchCu: function fetchCu() {
       if (this.modelCuStat != 'success') {

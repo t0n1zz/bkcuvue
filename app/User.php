@@ -12,17 +12,19 @@ use Spatie\Permission\Traits\HasRoles;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Yadahan\AuthenticationLog\AuthenticationLogable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasRoles, Notifiable, Dataviewer, ExposePermissions, LogsActivity,AuthenticationLogable;
+    use HasRoles, Notifiable, Dataviewer, ExposePermissions, LogsActivity,AuthenticationLogable, SoftDeletes;
 
     protected $table = 'users';
     protected $guard_name = 'api';
     protected static $logAttributes = ['id_pus','id_cu','id_aktivis','name', 'email', 'username','status','gambar'];
     protected static $ignoreChangedAttributes = ['login','updated_at'];
     protected static $logOnlyDirty = true;
-    
+    protected $dates = ['deleted_at'];
+
     /**
      * The accessors to append to the model's array form.
      *

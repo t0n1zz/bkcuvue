@@ -98,6 +98,7 @@
 							</div>
 
 							<div v-if="($route.meta.mode == 'create' || $route.meta.mode == 'createNIK') && formStat == 'success' && form.id">
+
 								<div class="alert bg-warning text-white alert-styled-left">
 									<span class="font-weight-semibold">Anggota ini sudah mengajukan Klaim JALINAN  <b>pada tanggal {{ $options.filters.date(form.created_at) }}</b> dengan <b>status {{ $options.filters.statusJalinan(form.status_klaim) }}</b>, mohon periksa kembali.
 									</span>
@@ -113,9 +114,9 @@
 								<div v-if="formStat == 'success'">
 									
 									<!-- ada klaim lama cacat -->
-									<div class="alert bg-info text-white alert-styled-left" v-if="message">
+									<!-- <div class="alert bg-info text-white alert-styled-left" v-if="message">
 										<span class="font-weight-semibold">{{ message }}</span>
-							    </div>
+							    </div> -->
 
 									<!-- data produk -->
 									<div class="card" v-if="dataProdukStat == 'success'">
@@ -859,7 +860,7 @@
 				this.cu_id = _cu.cu_id;
 				this.$store.dispatch(this.kelas + '/edit',[_nik,_cu.id, this.tipe]);
 				this.$store.dispatch('anggotaCu/indexProduk',[this.itemData.id, _cu.cu_id]);
-				this.$store.dispatch(this.kelas + '/getKlaimLama',[_nik,_cu.id]);
+				// this.$store.dispatch(this.kelas + '/getKlaimLama',[_nik,_cu.id]);
 			},
 			resetData(){
 				this.itemDataCu = [];

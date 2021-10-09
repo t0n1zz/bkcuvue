@@ -313,7 +313,7 @@
 					this.$store.dispatch(this.kelas + '/create');
 				}
 				this.fetchCu();
-				this.$store.dispatch('coa/get');
+				// this.$store.dispatch('coa/get');
 			},
 			fetchCu(){
 				if(this.modelCuStat != 'success'){

@@ -589,7 +589,6 @@ class AktivisController extends Controller{
 			\DB::commit();
 			return response()
 				->json([
-
 					'saved' => true,
 					'message' => $this->message. ' ' .$name. ' berhasil ditambah',
 					'id' => $kelas->id

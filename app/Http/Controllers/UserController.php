@@ -82,6 +82,7 @@ class UserController extends Controller
 
 		'index_jalinan_iuran',
 		'create_jalinan_iuran',
+		'update_jalinan_iuran',
 		'destroy_jalinan_iuran',
 
 		'index_cu',

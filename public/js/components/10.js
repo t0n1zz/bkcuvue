@@ -2027,6 +2027,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     changeTabDokumen: function changeTabDokumen(value) {
       this.tabNameDokumen = value;
     },
+    changeStatus: function changeStatus(value) {
+      if (value == '31') {
+        if (this.formStatus.keterangan_klaim == null || this.formStatus.keterangan_klaim == '') {
+          this.formStatus.keterangan_klaim = 'Ditolak karena salah memilih / tidak meninggal atau cacat';
+        }
+      } else {
+        if (this.formStatus.keterangan_klaim == 'Ditolak karena salah memilih / tidak meninggal atau cacat') {
+          this.formStatus.keterangan_klaim = '';
+        }
+      }
+    },
     fetchVerifikator: function fetchVerifikator() {
       // get verifikator yang dipilih
       this.$store.dispatch('user/indexCuPermission', this.selectedData.anggota_cu_cu.cu_id); // get verifikator
@@ -7140,29 +7151,36 @@ var render = function() {
                                               "data-width": "100%"
                                             },
                                             on: {
-                                              change: function($event) {
-                                                var $$selectedVal = Array.prototype.filter
-                                                  .call(
-                                                    $event.target.options,
-                                                    function(o) {
-                                                      return o.selected
-                                                    }
+                                              change: [
+                                                function($event) {
+                                                  var $$selectedVal = Array.prototype.filter
+                                                    .call(
+                                                      $event.target.options,
+                                                      function(o) {
+                                                        return o.selected
+                                                      }
+                                                    )
+                                                    .map(function(o) {
+                                                      var val =
+                                                        "_value" in o
+                                                          ? o._value
+                                                          : o.value
+                                                      return val
+                                                    })
+                                                  _vm.$set(
+                                                    _vm.formStatus,
+                                                    "status",
+                                                    $event.target.multiple
+                                                      ? $$selectedVal
+                                                      : $$selectedVal[0]
                                                   )
-                                                  .map(function(o) {
-                                                    var val =
-                                                      "_value" in o
-                                                        ? o._value
-                                                        : o.value
-                                                    return val
-                                                  })
-                                                _vm.$set(
-                                                  _vm.formStatus,
-                                                  "status",
-                                                  $event.target.multiple
-                                                    ? $$selectedVal
-                                                    : $$selectedVal[0]
-                                                )
-                                              }
+                                                },
+                                                function($event) {
+                                                  return _vm.changeStatus(
+                                                    $event.target.value
+                                                  )
+                                                }
+                                              ]
                                             }
                                           },
                                           [
@@ -7707,8 +7725,7 @@ var render = function() {
                                     ])
                                   : _vm._e(),
                                 _vm._v(" "),
-                                _vm.formStatus.status != 0 &&
-                                _vm.formStatus.status != 31
+                                _vm.formStatus.status != 0
                                   ? _c("div", { staticClass: "col-md-12" }, [
                                       _c("div", { staticClass: "form-group" }, [
                                         _c("h5", [

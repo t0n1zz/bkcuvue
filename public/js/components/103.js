@@ -679,6 +679,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 
 
 
@@ -951,8 +952,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       });
       this.cu_id = _cu.cu_id;
       this.$store.dispatch(this.kelas + '/edit', [_nik, _cu.id, this.tipe]);
-      this.$store.dispatch('anggotaCu/indexProduk', [this.itemData.id, _cu.cu_id]);
-      this.$store.dispatch(this.kelas + '/getKlaimLama', [_nik, _cu.id]);
+      this.$store.dispatch('anggotaCu/indexProduk', [this.itemData.id, _cu.cu_id]); // this.$store.dispatch(this.kelas + '/getKlaimLama',[_nik,_cu.id]);
     },
     resetData: function resetData() {
       this.itemDataCu = [];
@@ -1537,26 +1537,6 @@ var render = function() {
                                 ? _c(
                                     "div",
                                     [
-                                      _vm.message
-                                        ? _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "alert bg-info text-white alert-styled-left"
-                                            },
-                                            [
-                                              _c(
-                                                "span",
-                                                {
-                                                  staticClass:
-                                                    "font-weight-semibold"
-                                                },
-                                                [_vm._v(_vm._s(_vm.message))]
-                                              )
-                                            ]
-                                          )
-                                        : _vm._e(),
-                                      _vm._v(" "),
                                       _vm.dataProdukStat == "success"
                                         ? _c(
                                             "div",

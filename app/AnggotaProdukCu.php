@@ -23,17 +23,17 @@ class AnggotaProdukCu extends BaseEloquent {
     ];
 
     protected $fillable = [
-        'no_rek','anggota_cu_id','anggota_cu_cu_id','produk_cu_id','saldo','tanggal','tanggal_target','lama_pinjaman','lama_sisa_pinjaman','tujuan'
+        'no_rek','anggota_cu_id','anggota_cu_cu_id','produk_cu_id','saldo','tanggal','tanggal_target','lama_pinjaman','lama_sisa_pinjaman','tujuan','pengurang','dpd'
     ];
 
     protected $filter = [
-        'no_rek','anggota_cu_id','anggota_cu_cu_id','produk_cu_id','saldo','tanggal','tanggal_target','lama_pinjaman','lama_sisa_pinjaman','tujuan','created_at','updated_at'
+        'no_rek','anggota_cu_id','anggota_cu_cu_id','produk_cu_id','saldo','tanggal','tanggal_target','lama_pinjaman','lama_sisa_pinjaman','tujuan','created_at','updated_at','pengurang','dpd'
     ];
 
     public static function initialize()
     {
         return [
-            'no_rek' => '','anggota_cu_id' => '','anggota_cu_cu_id' => '','produk_cu_id' => '','saldo' => '','name' => '','no_ba' => '','lama_pinjaman' => '','lama_sisa_pinjaman' => '','tanggal_target' => '','tujuan' => ''
+            'no_rek' => '','anggota_cu_id' => '','anggota_cu_cu_id' => '','produk_cu_id' => '','saldo' => '','name' => '','no_ba' => '','lama_pinjaman' => '','lama_sisa_pinjaman' => '','tanggal_target' => '','tujuan' => '','pengurang' => '','dpd' => ''
         ];
     }
 
@@ -52,9 +52,23 @@ class AnggotaProdukCu extends BaseEloquent {
         return $this->belongsTo('App\ProdukCu','produk_cu_id','id')->select('id','name','id_cu','tipe');
     }
 
+    public function transaksi(){
+        return $this->hasMany('App\AnggotaProdukCuTransaksi','anggota_produk_cu_id','id');
+    }
+
     public function usia()
     {
         return \Carbon\Carbon::parse($this->tanggal)->age;
+    }
+
+    public function bulan()
+    {
+        return \Carbon\Carbon::parse($this->tanggal)->months;
+    }
+
+    public function hari()
+    {
+        return \Carbon\Carbon::parse($this->tanggal)->days;
     }
 
 }

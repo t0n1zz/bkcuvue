@@ -6,11 +6,11 @@ use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class JalinanIuranAnggota extends Model {
+class JalinanIuranProduk extends Model {
     
     use Dataviewer, LogsActivity,  SoftDeletes;
 
-    protected $table = 'jalinan_iuran_anggota';
+    protected $table = 'jalinan_iuran_produk';
     protected static $logFillable = true;
     protected static $logOnlyDirty = true;
     protected $dates = ['deleted_at'];
@@ -18,22 +18,21 @@ class JalinanIuranAnggota extends Model {
     public static $rules = [
         'jalinan_iuran_id' => 'required',
         'produk_cu_id' => 'required',
-        'anggota_cu_id' => 'required',
     ];
 
     
     protected $fillable = [
-        'jalinan_iuran_id','produk_cu_id' ,'anggota_cu_id','saldo','created_at','updated_at','deleted_at'
+        'jalinan_iuran_id','produk_cu_id','saldo','created_at','updated_at','deleted_at'
     ];
 
     protected $allowedFilters = [
-        'id','jalinan_iuran_id','produk_cu_id' ,'anggota_cu_id','saldo','created_at','updated_at','deleted_at',
+        'id','jalinan_iuran_id','produk_cu_id','saldo','created_at','updated_at','deleted_at',
 
         'anggota_cu.name',
     ];
 
     protected $orderable = [
-        'id','jalinan_iuran_id','produk_cu_id' ,'anggota_cu_id','saldo','created_at','updated_at','deleted_at',
+        'id','jalinan_iuran_id','produk_cu_id','saldo','created_at','updated_at','deleted_at',
 
         'anggota_cu.name',
     ];
@@ -42,11 +41,6 @@ class JalinanIuranAnggota extends Model {
         return [
             'jalinan_iuran_id' => '','produk_cu_id' => '', 'anggota_cu_id' => ''
         ];
-    }
-
-    public function anggota()
-    {
-        return $this->belongsTo('App\AnggotaCu','anggota_cu_id','id')->select('id','name');
     }
 
     public function produk()

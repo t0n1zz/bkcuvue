@@ -8,7 +8,6 @@ export default {
     return axios.get('/api/coa/get');
   },
 
-
   create: function(){
     return axios.get('/api/coa/create');
   },

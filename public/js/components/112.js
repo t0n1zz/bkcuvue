@@ -199,22 +199,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -265,30 +249,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         hide: false,
         disable: false,
         filter: true
-      }, {
-        title: 'Tunas',
-        name: 'tunas',
-        tipe: 'numeric',
-        sort: true,
-        hide: false,
-        disable: false,
-        filter: true
-      }, {
-        title: 'Lintang',
-        name: 'lintang',
-        tipe: 'numeric',
-        sort: true,
-        hide: false,
-        disable: false,
-        filter: true
-      }, {
-        title: 'Total',
-        name: 'total',
-        tipe: 'numeric',
-        sort: false,
-        hide: false,
-        disable: false,
-        filter: false
       }, {
         title: 'Tgl. / Waktu Buat',
         name: 'created_at',
@@ -536,15 +496,25 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       !_vm.columnData[1].hide
-                        ? _c("td", {
-                            domProps: {
-                              innerHTML: _vm._s(
-                                _vm.$options.filters.checkStatus(
-                                  props.item.status
+                        ? _c("td", [
+                            props.item.status == 1
+                              ? _c(
+                                  "span",
+                                  { staticClass: "badge badge-info" },
+                                  [_vm._v("Konfirmasi Bayar")]
                                 )
-                              )
-                            }
-                          })
+                              : props.item.status == 2
+                              ? _c(
+                                  "span",
+                                  { staticClass: "badge badge-primary" },
+                                  [_vm._v("Sudah Bayar")]
+                                )
+                              : _c(
+                                  "span",
+                                  { staticClass: "badge badge-danger" },
+                                  [_vm._v("Belum Bayar")]
+                                )
+                          ])
                         : _vm._e(),
                       _vm._v(" "),
                       !_vm.columnData[2].hide
@@ -574,51 +544,6 @@ var render = function() {
                         : _vm._e(),
                       _vm._v(" "),
                       !_vm.columnData[4].hide
-                        ? _c(
-                            "td",
-                            [
-                              _c("check-value", {
-                                attrs: {
-                                  value: props.item.tunas,
-                                  valueType: "currency"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !_vm.columnData[5].hide
-                        ? _c(
-                            "td",
-                            [
-                              _c("check-value", {
-                                attrs: {
-                                  value: props.item.lintang,
-                                  valueType: "currency"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !_vm.columnData[6].hide
-                        ? _c(
-                            "td",
-                            [
-                              _c("check-value", {
-                                attrs: {
-                                  value: props.item.total,
-                                  valueType: "currency"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !_vm.columnData[7].hide
                         ? _c("td", {
                             domProps: {
                               innerHTML: _vm._s(
@@ -630,7 +555,7 @@ var render = function() {
                           })
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[8].hide
+                      !_vm.columnData[5].hide
                         ? _c("td", [
                             props.item.created_at !== props.item.updated_at
                               ? _c("span", {
@@ -653,129 +578,89 @@ var render = function() {
           ])
         },
         [
-          _c(
-            "template",
-            { slot: "button-desktop" },
-            [
-              _vm.currentUser.can && _vm.currentUser.can["create_jalinan_iuran"]
-                ? _c(
-                    "router-link",
-                    {
-                      staticClass: "btn btn-light mb-1",
-                      attrs: { to: { name: _vm.kelas + "Create" } }
-                    },
-                    [
-                      _c("i", { staticClass: "icon-plus3" }),
-                      _vm._v(" Tambah\n\t\t\t")
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.currentUser.can &&
-              _vm.currentUser.can["destroy_jalinan_iuran"]
-                ? _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-light mb-1",
-                      attrs: { disabled: !_vm.selectedItem.id },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.modalConfirmOpen("hapus")
-                        }
+          _c("template", { slot: "button-desktop" }, [
+            _vm.currentUser.can && _vm.currentUser.can["destroy_jalinan_iuran"]
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-light mb-1",
+                    attrs: { disabled: !_vm.selectedItem.id },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.modalConfirmOpen("hapus")
                       }
-                    },
-                    [
-                      _c("i", { staticClass: "icon-bin2" }),
-                      _vm._v(" Hapus\n\t\t\t")
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.currentUser.can && _vm.currentUser.can["index_jalinan_iuran"]
-                ? _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-light mb-1",
-                      attrs: { disabled: !_vm.selectedItem.id },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.detail(_vm.selectedItem.id)
-                        }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "icon-bin2" }),
+                    _vm._v(" Hapus\n\t\t\t")
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.currentUser.can && _vm.currentUser.can["index_jalinan_iuran"]
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-light mb-1",
+                    attrs: { disabled: !_vm.selectedItem.id },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.detail(_vm.selectedItem.id)
                       }
-                    },
-                    [
-                      _c("i", { staticClass: "icon-stack2" }),
-                      _vm._v(" Detail\n\t\t\t")
-                    ]
-                  )
-                : _vm._e()
-            ],
-            1
-          ),
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "icon-stack2" }),
+                    _vm._v(" Detail\n\t\t\t")
+                  ]
+                )
+              : _vm._e()
+          ]),
           _vm._v(" "),
-          _c(
-            "template",
-            { slot: "button-mobile" },
-            [
-              _vm.currentUser.can && _vm.currentUser.can["create_jalinan_iuran"]
-                ? _c(
-                    "router-link",
-                    {
-                      staticClass: "btn btn-light btn-block mb-1",
-                      attrs: { to: { name: _vm.kelas + "Create" } }
-                    },
-                    [
-                      _c("i", { staticClass: "icon-plus3" }),
-                      _vm._v(" Tambah\n\t\t\t\t")
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.currentUser.can &&
-              _vm.currentUser.can["destroy_jalinan_iuran"]
-                ? _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-light btn-block mb-1",
-                      attrs: { disabled: !_vm.selectedItem.id },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.modalConfirmOpen("hapus")
-                        }
+          _c("template", { slot: "button-mobile" }, [
+            _vm.currentUser.can && _vm.currentUser.can["destroy_jalinan_iuran"]
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-light btn-block mb-1",
+                    attrs: { disabled: !_vm.selectedItem.id },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.modalConfirmOpen("hapus")
                       }
-                    },
-                    [
-                      _c("i", { staticClass: "icon-bin2" }),
-                      _vm._v(" Hapus\n\t\t\t\t")
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.currentUser.can && _vm.currentUser.can["index_jalinan_iuran"]
-                ? _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-light btn-block mb-1",
-                      attrs: { disabled: !_vm.selectedItem.id },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.detail(_vm.selectedItem.id)
-                        }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "icon-bin2" }),
+                    _vm._v(" Hapus\n\t\t\t\t")
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.currentUser.can && _vm.currentUser.can["index_jalinan_iuran"]
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-light btn-block mb-1",
+                    attrs: { disabled: !_vm.selectedItem.id },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.detail(_vm.selectedItem.id)
                       }
-                    },
-                    [
-                      _c("i", { staticClass: "icon-stack2" }),
-                      _vm._v(" Detail\n\t\t\t\t")
-                    ]
-                  )
-                : _vm._e()
-            ],
-            1
-          )
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "icon-stack2" }),
+                    _vm._v(" Detail\n\t\t\t\t")
+                  ]
+                )
+              : _vm._e()
+          ])
         ],
         2
       ),

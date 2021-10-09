@@ -979,6 +979,56 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1102,10 +1152,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     fetch: function fetch() {
-      // this.$store.dispatch('produkCu/getCuJalinan', this.idCu);
-      // this.$store.dispatch('anggotaCu/getCuJalinan', [this.idCu, this.periodeBulan, this.periodeTahun]);
-      this.$store.dispatch('anggotaCu/getCuKeluar', this.idCu);
-      this.$store.dispatch(this.kelas + '/create', [this.idCu, this.periodeBulan, this.periodeTahun]);
+      this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
     },
     fetchCU: function fetchCU() {
       if (this.modelCuStat != 'success') {
@@ -2447,7 +2494,7 @@ var render = function() {
                                                         "tbody",
                                                         [
                                                           _vm._l(
-                                                            _vm.produkData,
+                                                            _vm.form.produk,
                                                             function(
                                                               produk,
                                                               index
@@ -2552,7 +2599,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_3,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -2569,7 +2630,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_4,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -2586,7 +2661,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_5,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -2603,7 +2692,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_6,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -2620,7 +2723,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_7,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -2637,7 +2754,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_8,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -2654,7 +2785,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_9,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -2671,7 +2816,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_10,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -2688,7 +2847,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_11,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -2705,7 +2878,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_3,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ])
                                                       ])
@@ -2876,7 +3063,7 @@ var render = function() {
                                                         "tbody",
                                                         [
                                                           _vm._l(
-                                                            _vm.produkData,
+                                                            _vm.form.produk,
                                                             function(
                                                               produk,
                                                               index
@@ -2989,7 +3176,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_12,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -3006,7 +3207,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_13,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -3023,7 +3238,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_14,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -3040,7 +3269,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_15,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -3057,7 +3300,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_16,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -3074,7 +3331,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_17,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -3091,7 +3362,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_18,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -3108,7 +3393,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_19,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -3125,7 +3424,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_20,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -3142,7 +3455,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_21,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -3159,7 +3486,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_22,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -3176,7 +3517,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_23,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -3193,7 +3548,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_24,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -3210,7 +3579,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_25,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),
@@ -3227,7 +3610,21 @@ var render = function() {
                                                               staticClass:
                                                                 "text-right"
                                                             },
-                                                            [_vm._v("0")]
+                                                            [
+                                                              _c(
+                                                                "check-value",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      _vm.form
+                                                                        .total_sheet_26,
+                                                                    valueType:
+                                                                      "currency"
+                                                                  }
+                                                                }
+                                                              )
+                                                            ],
+                                                            1
                                                           )
                                                         ]),
                                                         _vm._v(" "),

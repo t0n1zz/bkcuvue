@@ -6,11 +6,6 @@
 
 			<!-- button desktop -->
 			<template slot="button-desktop">
-				<!-- tambah -->
-				<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['create_jalinan_iuran']">
-					<i class="icon-plus3"></i> Tambah
-				</router-link>
-
 				<!-- hapus -->
 				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['destroy_jalinan_iuran']" :disabled="!selectedItem.id">
 					<i class="icon-bin2"></i> Hapus
@@ -24,11 +19,6 @@
 
 			<!-- button mobile -->
 			<template slot="button-mobile">
-					<!-- tambah -->
-					<router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['create_jalinan_iuran']">
-						<i class="icon-plus3"></i> Tambah
-					</router-link>
-
 					<!-- hapus -->
 					<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_jalinan_iuran']" :disabled="!selectedItem.id">
 						<i class="icon-bin2"></i> Hapus
@@ -46,7 +36,10 @@
 					<td>
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
-					<td v-if="!columnData[1].hide" v-html="$options.filters.checkStatus(props.item.status)">
+					<td v-if="!columnData[1].hide">
+						<span v-if="props.item.status == 1" class="badge badge-info">Konfirmasi Bayar</span>
+						<span v-else-if="props.item.status == 2" class="badge badge-primary">Sudah Bayar</span>
+						<span v-else class="badge badge-danger">Belum Bayar</span>
 					</td>
 					<td v-if="!columnData[2].hide">
 						{{ props.item.periode | dateMonth }}
@@ -55,17 +48,8 @@
 						<check-value :value="props.item.cu.name" v-if="props.item.cu"></check-value>
 						<span v-else>-</span>
 					</td>
-					<td v-if="!columnData[4].hide">
-						<check-value :value="props.item.tunas" valueType="currency"></check-value>
-					</td>
+					<td v-if="!columnData[4].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
 					<td v-if="!columnData[5].hide">
-						<check-value :value="props.item.lintang" valueType="currency"></check-value>
-					</td>
-					<td v-if="!columnData[6].hide">
-						<check-value :value="props.item.total" valueType="currency"></check-value>
-					</td>
-					<td v-if="!columnData[7].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[8].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -136,33 +120,6 @@
 						hide: false,
 						disable: false,
 						filter: true,
-					},
-					{
-						title: 'Tunas',
-						name: 'tunas',
-						tipe: 'numeric',
-						sort: true,
-						hide: false,
-						disable: false,
-						filter: true,
-					},
-					{
-						title: 'Lintang',
-						name: 'lintang',
-						tipe: 'numeric',
-						sort: true,
-						hide: false,
-						disable: false,
-						filter: true,
-					},
-					{
-						title: 'Total',
-						name: 'total',
-						tipe: 'numeric',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: false,
 					},
 					{
 						title: 'Tgl. / Waktu Buat',

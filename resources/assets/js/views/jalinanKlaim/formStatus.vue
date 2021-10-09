@@ -459,7 +459,7 @@
                     <h5>Status Klaim:</h5>
 
                     <!-- select -->
-                    <select name="status" data-width="100%" class="form-control" v-model="formStatus.status">
+                    <select name="status" data-width="100%" class="form-control" v-model="formStatus.status" @change="changeStatus($event.target.value)">
                       <option disabled value="">Silahkan pilih status klaim</option>
                       <option value="1">Menunggu</option>
                       <option value="2">Dokumen Tidak Lengkap</option>
@@ -572,7 +572,7 @@
                 </div>
 
                 <!-- keterangan -->
-                <div class="col-md-12"  v-if="formStatus.status != 0 && formStatus.status != 31"> 
+                <div class="col-md-12"  v-if="formStatus.status != 0"> 
                   <div class="form-group">
 
                     <!-- title -->
@@ -1113,6 +1113,17 @@
       },
       changeTabDokumen(value) {
 				this.tabNameDokumen = value;
+      },
+      changeStatus(value){
+        if(value == '31'){
+          if(this.formStatus.keterangan_klaim == null || this.formStatus.keterangan_klaim == ''){
+            this.formStatus.keterangan_klaim = 'Ditolak karena salah memilih / tidak meninggal atau cacat';
+          }
+        }else{
+          if(this.formStatus.keterangan_klaim == 'Ditolak karena salah memilih / tidak meninggal atau cacat'){
+            this.formStatus.keterangan_klaim = '';
+          }
+        }
       },
       fetchVerifikator(){
         // get verifikator yang dipilih
