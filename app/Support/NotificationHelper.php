@@ -241,5 +241,15 @@ class NotificationHelper{
 			}
 		}
 	}
+
+	public static function upload_notification($id_user,$tipe,$message)
+	{
+			$users = User::where('id', $id_user)->get();
+			Notification::send($users, new Notif(
+				$tipe,
+				$id_user,
+				$message
+			));
+	}
 	
 }

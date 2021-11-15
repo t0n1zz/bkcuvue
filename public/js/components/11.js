@@ -1234,7 +1234,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.echart-container[data-v-11876b43] {\n  overflow-x: scroll;\n  overflow-y: visible;\n  max-width: 100%;\n  position: relative;\n  width: 100%;\n}\n.echarts[data-v-11876b43] {\n  width: 100vw;\n  height: 70vh;\n}\n.btn-group.special[data-v-11876b43] {\n  display: flex;\n}\n.special .btn[data-v-11876b43] {\n  flex: 1;\n}\n", ""]);
+exports.push([module.i, "\n.echart-container[data-v-11876b43] {\r\n  overflow-x: scroll;\r\n  overflow-y: visible;\r\n  max-width: 100%;\r\n  position: relative;\r\n  width: 100%;\n}\n.echarts[data-v-11876b43] {\r\n  width: 100vw;\r\n  height: 70vh;\n}\n.btn-group.special[data-v-11876b43] {\r\n  display: flex;\n}\n.special .btn[data-v-11876b43] {\r\n  flex: 1;\n}\r\n", ""]);
 
 // exports
 
@@ -1446,7 +1446,7 @@ var render = function() {
                 },
                 [
                   _c("i", { staticClass: "icon-database-add" }),
-                  _vm._v(" Tambah Data\n\t\t\t\t\t")
+                  _vm._v(" Tambah Data\r\n\t\t\t\t\t")
                 ]
               )
             ]),
@@ -1608,9 +1608,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n\t\t\t\t\t\t\t\t" +
+                                "\r\n\t\t\t\t\t\t\t\t" +
                                   _vm._s(n) +
-                                  "\n\t\t\t\t\t\t"
+                                  "\r\n\t\t\t\t\t\t"
                               )
                             ]
                           )
@@ -1691,9 +1691,9 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n\t\t\t\t\t\t\t\t" +
+                              "\r\n\t\t\t\t\t\t\t\t" +
                                 _vm._s(n) +
-                                "\n\t\t\t\t\t\t"
+                                "\r\n\t\t\t\t\t\t"
                             )
                           ]
                         )
@@ -2189,9 +2189,9 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                    " +
+                                    "\r\n                    " +
                                       _vm._s(n) +
-                                      "\n                "
+                                      "\r\n                "
                                   )
                                 ]
                               )
@@ -2278,9 +2278,9 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                    " +
+                                  "\r\n                    " +
                                     _vm._s(n) +
-                                    "\n                "
+                                    "\r\n                "
                                 )
                               ]
                             )

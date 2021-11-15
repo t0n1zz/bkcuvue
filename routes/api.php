@@ -942,7 +942,16 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/notification/getAll', 'NotificationController@getAll');
         Route::get('/notification/markRead/{id}', 'NotificationController@markRead');
         Route::get('/notification/markAllRead', 'NotificationController@markAllRead');
-        
+
+        //file upload
+        Route::post('/fileUpload/store', 'FileUploadController@store');
+        Route::delete('/fileUpload/destroy/{id}', 'FileUploadController@destroy');
+        Route::get('/fileUpload/index/{id_cu}/{id_user}', 'FileUploadController@index');
+  
+        //import csv
+        Route::get('/anggotaCuImportEscete/index/{id_cu}', 'AnggotaCuEsceteController@index');
+        Route::post('/anggotaCuImportEscete/draft/{id_cu}/{id_user}', 'AnggotaCuEsceteController@uploadDraft');
+        Route::post('/anggotaCuImportEscete/simpandraft/{id_cu}', 'AnggotaCuEsceteController@store');
     });
 
 });

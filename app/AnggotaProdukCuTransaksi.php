@@ -30,23 +30,18 @@ class AnggotaProdukCuTransaksi extends BaseEloquent {
     ];
 
     protected $allowedFilters = [
-        'anggota_produk_cu_id','saldo','saldo_akhir','tanggal','lama_sisa_pinjaman'
+        'anggota_produk_cu_id','saldo','tanggal','lama_sisa_pinjaman'
     ];
     
     protected $orderable = [
-        'anggota_produk_cu_id','saldo','saldo_akhir','tanggal','lama_sisa_pinjaman','created_at'
+        'anggota_produk_cu_id','saldo','tanggal','lama_sisa_pinjaman','created_at'
     ];
 
     public static function initialize()
     {
         return [
-            'anggota_produk_cu_id' => '','saldo' => '', 'saldo_akhir' => ''
+            'anggota_produk_cu_id' => '','saldo' => ''
         ];
-    }
-
-    public function usia()
-    {
-        return \Carbon\Carbon::parse($this->tanggal)->age;
     }
 
 }

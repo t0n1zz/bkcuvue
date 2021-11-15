@@ -1322,6 +1322,18 @@
 						
 						this.$store.commit('notification/pushNotif', this.notifData);
 						this.$store.commit('notification/setUnreadNotification', tempUnread);
+
+						if(notification.tipe=='NotifUpload'){
+						let data ={}
+						data.message = 'Data Berhasil Diupload' 
+						this.$store.commit('anggotaCuImportEscete/setUpdateStat', 'success');
+						this.$store.commit('anggotaCuImportEscete/setUpdate', data);
+						}
+
+						if(notification.tipe == 'NotifSimpanDraft'){
+							data.message = 'Draft Berhasil Disimpan';
+							this.$store.commit('anggotaCuImportEscete/setUpdateStat', 'success');
+						}
 						// add ui
  					});
  				}

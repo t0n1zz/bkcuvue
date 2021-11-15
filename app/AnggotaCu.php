@@ -147,14 +147,4 @@ class AnggotaCu extends BaseEloquent {
     {
         return $this->belongsTo('App\Region\Villages','id_villages','id')->select('id','name');
     }
-
-    public function usia()
-    {
-        return \Carbon\Carbon::parse($this->tanggal_lahir)->age;
-    }
-
-    public function hari()
-    {
-        return \Carbon\Carbon::parse($this->tanggal_lahir)->days;
-    }
 }
