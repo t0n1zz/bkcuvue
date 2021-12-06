@@ -43,6 +43,8 @@ import { pemilihan } from './modules/pemilihan';
 import { notification } from './modules/notification';
 import { saran } from './modules/saran';
 import { errorLog } from './modules/errorLog';
+import { kegiatanCU } from './modules/kegiatanCU';
+
 
 Vue.use(Vuex);
 
@@ -89,6 +91,7 @@ export default new Vuex.Store({
 		 pemilihan,
 		 notification,
 		 saran,
-		 errorLog
+		 errorLog,
+		 kegiatanCU
 	 }
 });

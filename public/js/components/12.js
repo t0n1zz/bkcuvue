@@ -13,7 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
 /* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_datePicker_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/datePicker.vue */ "./resources/assets/js/components/datePicker.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -203,8 +203,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _components_datatable_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/datatable.vue */ "./resources/assets/js/components/datatable.vue");
 /* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
-/* harmony import */ var vue_json_excel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-json-excel */ "./node_modules/vue-json-excel/JsonExcel.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+/* harmony import */ var vue_json_excel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-json-excel */ "./node_modules/vue-json-excel/dist/vue-json-excel.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -678,7 +678,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -699,53 +699,53 @@ var render = function() {
                           name: "model",
                           rawName: "v-model",
                           value: _vm.idCu,
-                          expression: "idCu"
-                        }
+                          expression: "idCu",
+                        },
                       ],
                       staticClass: "form-control",
                       attrs: {
                         name: "idCu",
                         "data-width": "100%",
-                        disabled: _vm.modelCuStat === "loading"
+                        disabled: _vm.modelCuStat === "loading",
                       },
                       on: {
-                        change: function($event) {
+                        change: function ($event) {
                           var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
+                            .call($event.target.options, function (o) {
                               return o.selected
                             })
-                            .map(function(o) {
+                            .map(function (o) {
                               var val = "_value" in o ? o._value : o.value
                               return val
                             })
                           _vm.idCu = $event.target.multiple
                             ? $$selectedVal
                             : $$selectedVal[0]
-                        }
-                      }
+                        },
+                      },
                     },
                     [
                       _c("option", { attrs: { disabled: "", value: "" } }, [
-                        _vm._v("Silahkan pilih data")
+                        _vm._v("Silahkan pilih data"),
                       ]),
                       _vm._v(" "),
                       _vm._t("default"),
                       _vm._v(" "),
                       _c("option", { attrs: { value: "semua" } }, [
-                        _vm._v("Semua CU")
+                        _vm._v("Semua CU"),
                       ]),
                       _vm._v(" "),
                       _c("option", { attrs: { disabled: "", value: "" } }, [
-                        _vm._v("----------------")
+                        _vm._v("----------------"),
                       ]),
                       _vm._v(" "),
-                      _vm._l(_vm.modelCu, function(cu, index) {
+                      _vm._l(_vm.modelCu, function (cu, index) {
                         return _c(
                           "option",
                           { key: index, domProps: { value: cu.id } },
                           [_vm._v(_vm._s(cu.name))]
                         )
-                      })
+                      }),
                     ],
                     2
                   ),
@@ -756,17 +756,17 @@ var render = function() {
                       {
                         staticClass: "btn btn-light",
                         attrs: { disabled: _vm.modelCuStat === "loading" },
-                        on: { click: _vm.fetchCU }
+                        on: { click: _vm.fetchCU },
                       },
                       [
                         _c("i", {
                           staticClass: "icon-sync",
-                          class: { spinner: _vm.modelCuStat === "loading" }
-                        })
+                          class: { spinner: _vm.modelCuStat === "loading" },
+                        }),
                       ]
-                    )
-                  ])
-                ])
+                    ),
+                  ]),
+                ]),
               ])
             : _vm._e(),
           _vm._v(" "),
@@ -776,8 +776,8 @@ var render = function() {
               staticClass: "mb-3",
               class: {
                 "col-sm-6": this.currentUser.id_cu == 0,
-                "col-sm-12": this.currentUser.id_cu != 0
-              }
+                "col-sm-12": this.currentUser.id_cu != 0,
+              },
             },
             [
               _c("h6", [_vm._v("Pilih Status")]),
@@ -791,19 +791,19 @@ var render = function() {
                         name: "model",
                         rawName: "v-model",
                         value: _vm.status,
-                        expression: "status"
-                      }
+                        expression: "status",
+                      },
                     ],
                     staticClass: "form-control",
                     attrs: { name: "status", "data-width": "100%" },
                     on: {
                       change: [
-                        function($event) {
+                        function ($event) {
                           var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
+                            .call($event.target.options, function (o) {
                               return o.selected
                             })
-                            .map(function(o) {
+                            .map(function (o) {
                               var val = "_value" in o ? o._value : o.value
                               return val
                             })
@@ -811,41 +811,43 @@ var render = function() {
                             ? $$selectedVal
                             : $$selectedVal[0]
                         },
-                        function($event) {
+                        function ($event) {
                           return _vm.changeDetailTanggal($event.target.value)
-                        }
-                      ]
-                    }
+                        },
+                      ],
+                    },
                   },
                   [
                     _c("option", { attrs: { disabled: "", value: "" } }, [
-                      _vm._v("Silahkan pilih status")
+                      _vm._v("Silahkan pilih status"),
                     ]),
                     _vm._v(" "),
                     _c("option", { attrs: { value: "1" } }, [
-                      _vm._v("Menunggu")
+                      _vm._v("Menunggu"),
                     ]),
                     _vm._v(" "),
                     _c("option", { attrs: { value: "2" } }, [
-                      _vm._v("Dokumen Tidak Lengkap")
+                      _vm._v("Dokumen Tidak Lengkap"),
                     ]),
                     _vm._v(" "),
                     _c("option", { attrs: { value: "3" } }, [
-                      _vm._v("Ditolak")
+                      _vm._v("Ditolak"),
                     ]),
                     _vm._v(" "),
                     _c("option", { attrs: { value: "4" } }, [
-                      _vm._v("Disetujui")
+                      _vm._v("Disetujui"),
                     ]),
                     _vm._v(" "),
                     _c("option", { attrs: { value: "5" } }, [
-                      _vm._v("Dicairkan")
+                      _vm._v("Dicairkan"),
                     ]),
                     _vm._v(" "),
-                    _c("option", { attrs: { value: "6" } }, [_vm._v("Selesai")])
+                    _c("option", { attrs: { value: "6" } }, [
+                      _vm._v("Selesai"),
+                    ]),
                   ]
-                )
-              ])
+                ),
+              ]),
             ]
           ),
           _vm._v(" "),
@@ -855,17 +857,17 @@ var render = function() {
                 { staticClass: "col-sm-6 mb-3" },
                 [
                   _c("h6", [
-                    _vm._v("Tanggal Awal " + _vm._s(_vm.detailTanggal))
+                    _vm._v("Tanggal Awal " + _vm._s(_vm.detailTanggal)),
                   ]),
                   _vm._v(" "),
                   _c("date-picker", {
                     attrs: { defaultDate: _vm.awal },
                     on: {
-                      dateSelected: function($event) {
+                      dateSelected: function ($event) {
                         _vm.awal = $event
-                      }
-                    }
-                  })
+                      },
+                    },
+                  }),
                 ],
                 1
               )
@@ -877,17 +879,17 @@ var render = function() {
                 { staticClass: "col-sm-6 mb-3" },
                 [
                   _c("h6", [
-                    _vm._v("Tanggal Akhir " + _vm._s(_vm.detailTanggal))
+                    _vm._v("Tanggal Akhir " + _vm._s(_vm.detailTanggal)),
                   ]),
                   _vm._v(" "),
                   _c("date-picker", {
                     attrs: { defaultDate: _vm.akhir },
                     on: {
-                      dateSelected: function($event) {
+                      dateSelected: function ($event) {
                         _vm.akhir = $event
-                      }
-                    }
-                  })
+                      },
+                    },
+                  }),
                 ],
                 1
               )
@@ -901,22 +903,22 @@ var render = function() {
                     staticClass: "btn btn-light btn-block",
                     attrs: { type: "button" },
                     on: {
-                      click: function($event) {
+                      click: function ($event) {
                         $event.preventDefault()
                         return _vm.cari()
-                      }
-                    }
+                      },
+                    },
                   },
                   [
                     _c("i", { staticClass: "icon-folder-open3" }),
-                    _vm._v(" Tampilkan")
+                    _vm._v(" Tampilkan"),
                   ]
-                )
+                ),
               ])
-            : _vm._e()
-        ])
-      ])
-    ])
+            : _vm._e(),
+        ]),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = []
@@ -937,7 +939,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -947,7 +949,7 @@ var render = function() {
       { staticClass: "card" },
       [
         _c("div", { staticClass: "card-header bg-white" }, [
-          _c("h5", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.title))])
+          _c("h5", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.title))]),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body pb-2" }, [
@@ -962,15 +964,15 @@ var render = function() {
                     staticClass: "btn btn-light mb-1",
                     attrs: { disabled: !_vm.selectedItem.kategori },
                     on: {
-                      click: function($event) {
+                      click: function ($event) {
                         $event.preventDefault()
                         return _vm.bukaData(_vm.selectedItem.kategori)
-                      }
-                    }
+                      },
+                    },
                   },
                   [
                     _c("i", { staticClass: "icon-folder-open3" }),
-                    _vm._v(" Buka data klaim JALINAN\n          ")
+                    _vm._v(" Buka data klaim JALINAN\n          "),
                   ]
                 ),
                 _vm._v(" "),
@@ -979,17 +981,17 @@ var render = function() {
                   {
                     staticClass: "btn btn-light mb-1",
                     on: {
-                      click: function($event) {
+                      click: function ($event) {
                         $event.preventDefault()
-                        return _vm.lihatSemua($event)
-                      }
-                    }
+                        return _vm.lihatSemua.apply(null, arguments)
+                      },
+                    },
                   },
                   [
                     _c("i", { staticClass: "icon-eye" }),
-                    _vm._v(" Lihat semua data klaim JALINAN\n          ")
+                    _vm._v(" Lihat semua data klaim JALINAN\n          "),
                   ]
-                )
+                ),
               ]
             ),
             _vm._v(" "),
@@ -1000,15 +1002,15 @@ var render = function() {
                   staticClass: "btn btn-light btn-block pb-1",
                   attrs: { disabled: !_vm.selectedItem.kategori },
                   on: {
-                    click: function($event) {
+                    click: function ($event) {
                       $event.preventDefault()
                       return _vm.bukaData(_vm.selectedItem.kategori)
-                    }
-                  }
+                    },
+                  },
                 },
                 [
                   _c("i", { staticClass: "icon-folder-open3" }),
-                  _vm._v(" Buka data klaim JALINAN\n          ")
+                  _vm._v(" Buka data klaim JALINAN\n          "),
                 ]
               ),
               _vm._v(" "),
@@ -1017,17 +1019,17 @@ var render = function() {
                 {
                   staticClass: "btn btn-light btn-block pb-1",
                   on: {
-                    click: function($event) {
+                    click: function ($event) {
                       $event.preventDefault()
-                      return _vm.lihatSemua($event)
-                    }
-                  }
+                      return _vm.lihatSemua.apply(null, arguments)
+                    },
+                  },
                 },
                 [
                   _c("i", { staticClass: "icon-eye" }),
-                  _vm._v(" Lihat semua data klaim JALINAN\n          ")
+                  _vm._v(" Lihat semua data klaim JALINAN\n          "),
                 ]
-              )
+              ),
             ]),
             _vm._v(" "),
             _c(
@@ -1043,12 +1045,12 @@ var render = function() {
                       exportFields: _vm.excel.fields,
                       meta: _vm.excel.meta,
                       title: "Data " + _vm.title,
-                      name: _vm.title + ".xls"
-                    }
+                      name: _vm.title + ".xls",
+                    },
                   },
                   [
                     _c("i", { staticClass: "icon-file-excel" }),
-                    _vm._v(" Excel")
+                    _vm._v(" Excel"),
                   ]
                 ),
                 _vm._v(" "),
@@ -1058,17 +1060,17 @@ var render = function() {
                     staticClass: "btn btn-light btn-icon mb-1",
                     attrs: {
                       type: "button",
-                      disabled: _vm.itemDataStat === "loading"
+                      disabled: _vm.itemDataStat === "loading",
                     },
                     on: {
-                      click: function($event) {
+                      click: function ($event) {
                         $event.preventDefault()
                         return _vm.fetch()
-                      }
-                    }
+                      },
+                    },
                   },
                   [_c("i", { staticClass: "icon-sync" })]
-                )
+                ),
               ],
               1
             ),
@@ -1086,12 +1088,12 @@ var render = function() {
                       exportFields: _vm.excel.fields,
                       meta: _vm.excel.meta,
                       title: "Data " + _vm.title,
-                      name: _vm.title + ".xls"
-                    }
+                      name: _vm.title + ".xls",
+                    },
                   },
                   [
                     _c("i", { staticClass: "icon-file-excel" }),
-                    _vm._v(" Excel")
+                    _vm._v(" Excel"),
                   ]
                 ),
                 _vm._v(" "),
@@ -1101,36 +1103,36 @@ var render = function() {
                     staticClass: "btn btn-light btn-icon btn-block mb-1",
                     attrs: {
                       type: "button",
-                      disabled: _vm.itemDataStat === "loading"
+                      disabled: _vm.itemDataStat === "loading",
                     },
                     on: {
-                      click: function($event) {
+                      click: function ($event) {
                         $event.preventDefault()
                         return _vm.fetch()
-                      }
-                    }
+                      },
+                    },
                   },
                   [
                     _c("i", { staticClass: "icon-sync" }),
-                    _vm._v(" Reload\n          ")
+                    _vm._v(" Reload\n          "),
                   ]
-                )
+                ),
               ],
               1
-            )
-          ])
+            ),
+          ]),
         ]),
         _vm._v(" "),
         _c("data-table", {
           attrs: {
             items: _vm.itemData,
             columnData: _vm.columnData,
-            itemDataStat: _vm.itemDataStat
+            itemDataStat: _vm.itemDataStat,
           },
           scopedSlots: _vm._u([
             {
               key: "item-desktop",
-              fn: function(props) {
+              fn: function (props) {
                 return [
                   props.item
                     ? _c(
@@ -1139,13 +1141,13 @@ var render = function() {
                           staticClass: "text-nowrap",
                           class: {
                             "bg-info":
-                              _vm.selectedItem.kategori === props.item.kategori
+                              _vm.selectedItem.kategori === props.item.kategori,
                           },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               return _vm.selectedRow(props.item)
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("td", [_vm._v(_vm._s(props.index + 1))]),
@@ -1154,8 +1156,8 @@ var render = function() {
                             "td",
                             [
                               _c("check-value", {
-                                attrs: { value: props.item.kategori }
-                              })
+                                attrs: { value: props.item.kategori },
+                              }),
                             ],
                             1
                           ),
@@ -1166,9 +1168,9 @@ var render = function() {
                               _c("check-value", {
                                 attrs: {
                                   value: props.item.lakilaki,
-                                  valueType: "currency"
-                                }
-                              })
+                                  valueType: "currency",
+                                },
+                              }),
                             ],
                             1
                           ),
@@ -1179,9 +1181,9 @@ var render = function() {
                               _c("check-value", {
                                 attrs: {
                                   value: props.item.perempuan,
-                                  valueType: "currency"
-                                }
-                              })
+                                  valueType: "currency",
+                                },
+                              }),
                             ],
                             1
                           ),
@@ -1192,9 +1194,9 @@ var render = function() {
                               _c("check-value", {
                                 attrs: {
                                   value: props.item.meninggal,
-                                  valueType: "currency"
-                                }
-                              })
+                                  valueType: "currency",
+                                },
+                              }),
                             ],
                             1
                           ),
@@ -1205,9 +1207,9 @@ var render = function() {
                               _c("check-value", {
                                 attrs: {
                                   value: props.item.cacat,
-                                  valueType: "currency"
-                                }
-                              })
+                                  valueType: "currency",
+                                },
+                              }),
                             ],
                             1
                           ),
@@ -1218,9 +1220,9 @@ var render = function() {
                               _c("check-value", {
                                 attrs: {
                                   value: props.item.total,
-                                  valueType: "currency"
-                                }
-                              })
+                                  valueType: "currency",
+                                },
+                              }),
                             ],
                             1
                           ),
@@ -1232,9 +1234,9 @@ var render = function() {
                                   _c("check-value", {
                                     attrs: {
                                       value: props.item.cu,
-                                      valueType: "currency"
-                                    }
-                                  })
+                                      valueType: "currency",
+                                    },
+                                  }),
                                 ],
                                 1
                               )
@@ -1246,9 +1248,9 @@ var render = function() {
                               _c("check-value", {
                                 attrs: {
                                   value: props.item.tunas_diajukan,
-                                  valueType: "currency"
-                                }
-                              })
+                                  valueType: "currency",
+                                },
+                              }),
                             ],
                             1
                           ),
@@ -1259,9 +1261,9 @@ var render = function() {
                               _c("check-value", {
                                 attrs: {
                                   value: props.item.lintang_diajukan,
-                                  valueType: "currency"
-                                }
-                              })
+                                  valueType: "currency",
+                                },
+                              }),
                             ],
                             1
                           ),
@@ -1272,9 +1274,9 @@ var render = function() {
                               _c("check-value", {
                                 attrs: {
                                   value: props.item.tunas_disetujui,
-                                  valueType: "currency"
-                                }
-                              })
+                                  valueType: "currency",
+                                },
+                              }),
                             ],
                             1
                           ),
@@ -1285,9 +1287,9 @@ var render = function() {
                               _c("check-value", {
                                 attrs: {
                                   value: props.item.lintang_disetujui,
-                                  valueType: "currency"
-                                }
-                              })
+                                  valueType: "currency",
+                                },
+                              }),
                             ],
                             1
                           ),
@@ -1298,9 +1300,9 @@ var render = function() {
                               _c("check-value", {
                                 attrs: {
                                   value: props.item.tot_diajukan,
-                                  valueType: "currency"
-                                }
-                              })
+                                  valueType: "currency",
+                                },
+                              }),
                             ],
                             1
                           ),
@@ -1311,20 +1313,20 @@ var render = function() {
                               _c("check-value", {
                                 attrs: {
                                   value: props.item.tot_disetujui,
-                                  valueType: "currency"
-                                }
-                              })
+                                  valueType: "currency",
+                                },
+                              }),
                             ],
                             1
-                          )
+                          ),
                         ]
                       )
-                    : _vm._e()
+                    : _vm._e(),
                 ]
-              }
-            }
-          ])
-        })
+              },
+            },
+          ]),
+        }),
       ],
       1
     ),
@@ -1341,21 +1343,21 @@ var render = function() {
                   _c("check-value", {
                     attrs: {
                       value: _vm.sumData.lakilaki,
-                      valueType: "currency"
-                    }
-                  })
+                      valueType: "currency",
+                    },
+                  }),
                 ],
                 1
               ),
               _vm._v(" "),
               _c("span", { staticClass: "text-uppercase" }, [
-                _vm._v("\n              Jumlah laki-laki\n            ")
-              ])
+                _vm._v("\n              Jumlah laki-laki\n            "),
+              ]),
             ]),
             _vm._v(" "),
-            _vm._m(0)
-          ])
-        ])
+            _vm._m(0),
+          ]),
+        ]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-lg-3 col-md-3" }, [
@@ -1369,21 +1371,21 @@ var render = function() {
                   _c("check-value", {
                     attrs: {
                       value: _vm.sumData.perempuan,
-                      valueType: "currency"
-                    }
-                  })
+                      valueType: "currency",
+                    },
+                  }),
                 ],
                 1
               ),
               _vm._v(" "),
               _c("span", { staticClass: "text-uppercase" }, [
-                _vm._v("\n              Jumlah perempuan\n            ")
-              ])
+                _vm._v("\n              Jumlah perempuan\n            "),
+              ]),
             ]),
             _vm._v(" "),
-            _vm._m(1)
-          ])
-        ])
+            _vm._m(1),
+          ]),
+        ]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-lg-3 col-md-3" }, [
@@ -1395,20 +1397,20 @@ var render = function() {
                 { staticClass: "mb-0" },
                 [
                   _c("check-value", {
-                    attrs: { value: _vm.sumData.cacat, valueType: "currency" }
-                  })
+                    attrs: { value: _vm.sumData.cacat, valueType: "currency" },
+                  }),
                 ],
                 1
               ),
               _vm._v(" "),
               _c("span", { staticClass: "text-uppercase" }, [
-                _vm._v("\n              Jumlah Cacat\n            ")
-              ])
+                _vm._v("\n              Jumlah Cacat\n            "),
+              ]),
             ]),
             _vm._v(" "),
-            _vm._m(2)
-          ])
-        ])
+            _vm._m(2),
+          ]),
+        ]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-lg-3 col-md-3" }, [
@@ -1422,21 +1424,21 @@ var render = function() {
                   _c("check-value", {
                     attrs: {
                       value: _vm.sumData.meninggal,
-                      valueType: "currency"
-                    }
-                  })
+                      valueType: "currency",
+                    },
+                  }),
                 ],
                 1
               ),
               _vm._v(" "),
               _c("span", { staticClass: "text-uppercase" }, [
-                _vm._v("\n              Jumlah Meninggal\n            ")
-              ])
+                _vm._v("\n              Jumlah Meninggal\n            "),
+              ]),
             ]),
             _vm._v(" "),
-            _vm._m(3)
-          ])
-        ])
+            _vm._m(3),
+          ]),
+        ]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-lg-4 col-md-4" }, [
@@ -1448,8 +1450,8 @@ var render = function() {
                 { staticClass: "mb-0" },
                 [
                   _c("check-value", {
-                    attrs: { value: _vm.sumData.total, valueType: "currency" }
-                  })
+                    attrs: { value: _vm.sumData.total, valueType: "currency" },
+                  }),
                 ],
                 1
               ),
@@ -1457,13 +1459,13 @@ var render = function() {
               _c("span", { staticClass: "text-uppercase" }, [
                 _vm._v(
                   "\n              Jumlah Cacat dan Meninggal\n            "
-                )
-              ])
+                ),
+              ]),
             ]),
             _vm._v(" "),
-            _vm._m(4)
-          ])
-        ])
+            _vm._m(4),
+          ]),
+        ]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-lg-4 col-md-4" }, [
@@ -1477,21 +1479,21 @@ var render = function() {
                   _c("check-value", {
                     attrs: {
                       value: _vm.sumData.tot_diajukan,
-                      valueType: "currency"
-                    }
-                  })
+                      valueType: "currency",
+                    },
+                  }),
                 ],
                 1
               ),
               _vm._v(" "),
               _c("span", { staticClass: "text-uppercase" }, [
-                _vm._v("\n              Jumlah Diajukan\n            ")
-              ])
+                _vm._v("\n              Jumlah Diajukan\n            "),
+              ]),
             ]),
             _vm._v(" "),
-            _vm._m(5)
-          ])
-        ])
+            _vm._m(5),
+          ]),
+        ]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-lg-4 col-md-4" }, [
@@ -1505,82 +1507,82 @@ var render = function() {
                   _c("check-value", {
                     attrs: {
                       value: _vm.sumData.tot_disetujui,
-                      valueType: "currency"
-                    }
-                  })
+                      valueType: "currency",
+                    },
+                  }),
                 ],
                 1
               ),
               _vm._v(" "),
               _c("span", { staticClass: "text-uppercase" }, [
-                _vm._v("\n              Jumlah Disetujui\n            ")
-              ])
+                _vm._v("\n              Jumlah Disetujui\n            "),
+              ]),
             ]),
             _vm._v(" "),
-            _vm._m(6)
-          ])
-        ])
-      ])
-    ])
+            _vm._m(6),
+          ]),
+        ]),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c("i", { staticClass: "icon-man icon-3x opacity-75" })
+      _c("i", { staticClass: "icon-man icon-3x opacity-75" }),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c("i", { staticClass: "icon-woman icon-3x opacity-75" })
+      _c("i", { staticClass: "icon-woman icon-3x opacity-75" }),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c("i", { staticClass: "icon-accessibility2 icon-3x opacity-75" })
+      _c("i", { staticClass: "icon-accessibility2 icon-3x opacity-75" }),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c("i", { staticClass: "icon-person icon-3x opacity-75" })
+      _c("i", { staticClass: "icon-person icon-3x opacity-75" }),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c("i", { staticClass: "icon-users4 icon-3x opacity-75" })
+      _c("i", { staticClass: "icon-users4 icon-3x opacity-75" }),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c("i", { staticClass: "icon-square-up icon-3x opacity-75" })
+      _c("i", { staticClass: "icon-square-up icon-3x opacity-75" }),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c("i", { staticClass: "icon-square-down icon-3x opacity-75" })
+      _c("i", { staticClass: "icon-square-down icon-3x opacity-75" }),
     ])
-  }
+  },
 ]
 render._withStripped = true
 

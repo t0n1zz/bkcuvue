@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => 'throttle:60,1'], function () {
 
-    Route::group(['prefix' => 'auth'],function($router){
+    Route::group(['prefix' => 'auth'], function ($router) {
         Route::post('/login', 'AuthController@login');
         Route::post('/logout', 'AuthController@logout');
         Route::post('/refresh', 'AuthController@refresh');
@@ -16,8 +16,8 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
     Route::get('/pemilihan/indexSuara/{id}', 'PemilihanController@indexSuara');
     Route::post('/pemilihan/storePilihan', 'PemilihanController@storePilihan');
 
-    Route::group(['middleware'=>'jwt.auth'],function(){
-    // Route::group(['prefix'=>'v1'],function(){
+    Route::group(['middleware' => 'jwt.auth'], function () {
+        // Route::group(['prefix'=>'v1'],function(){
 
         // auth
         // Route::get('/userId', 'AuthController@userId');
@@ -42,13 +42,13 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::group(['middleware' => ['permission:create_user']], function () {
             Route::get('/user/create', 'UserController@create');
             Route::post('/user/store', 'UserController@store');
-        }); 
-        Route::group(['middleware' => ['permission:update_user']], function () {   
+        });
+        Route::group(['middleware' => ['permission:update_user']], function () {
             Route::get('/user/edit/{id}', 'UserController@edit');
             Route::get('/user/editHakAkses/{id}', 'UserController@editHakAkses');
             Route::post('/user/update/{id}', 'UserController@update');
             Route::post('/user/updateStatus/{id}', 'UserController@updateStatus');
-            Route::post('/user/updateHakAkses/{id}', 'UserController@updateHakAkses'); 
+            Route::post('/user/updateHakAkses/{id}', 'UserController@updateHakAkses');
             Route::post('/user/updateResetPassword/{id}', 'UserController@updateResetPassword');
         });
         Route::group(['middleware' => ['permission:destroy_user']], function () {
@@ -76,7 +76,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::group(['middleware' => ['permission:destroy_artikel']], function () {
             Route::delete('/artikel/{id}', 'ArtikelController@destroy');
         });
-        
+
         //artikel kategori
         Route::get('/artikelKategori/history', 'ArtikelKategoriController@history');
         Route::group(['middleware' => ['permission:index_artikel_kategori']], function () {
@@ -136,15 +136,15 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::group(['middleware' => ['permission:destroy_artikel']], function () {
             Route::delete('/artikelSimo/{id}', 'ArtikelSimoController@destroy');
         });
-        
+
         // cu
         Route::get('/cu/count', 'CuController@count');
         Route::get('/cu/history', 'CuController@history');
-        Route::get('/cu/getHeader', 'CuController@getHeader');   
+        Route::get('/cu/getHeader', 'CuController@getHeader');
         Route::group(['middleware' => ['permission:index_cu']], function () {
             Route::get('/cu', 'CuController@index');
             Route::get('/cu/deleted', 'CuController@indexDeleted');
-            Route::get('/cu/get', 'CuController@get');  
+            Route::get('/cu/get', 'CuController@get');
             Route::get('/cu/getPus/{id}', 'CuController@getPus');
             Route::get('/cu/edit/{id}', 'CuController@edit');
         });
@@ -168,7 +168,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::group(['middleware' => ['permission:index_tp']], function () {
             Route::get('/tp', 'TpController@index');
             Route::get('/tp/get', 'TpController@get');
-            Route::get('/tp/indexCu/{id}', 'TpController@indexCu'); 
+            Route::get('/tp/indexCu/{id}', 'TpController@indexCu');
         });
         Route::group(['middleware' => ['permission:create_tp']], function () {
             Route::get('/tp/create', 'TpController@create');
@@ -191,7 +191,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::group(['middleware' => ['permission:index_produk_cu']], function () {
             Route::get('/produkcu', 'ProdukCuController@index');
             Route::get('/produkcu/get', 'ProdukCuController@get');
-            Route::get('/produkcu/indexCu/{id}', 'ProdukCuController@indexCu'); 
+            Route::get('/produkcu/indexCu/{id}', 'ProdukCuController@indexCu');
         });
         Route::group(['middleware' => ['permission:create_produk_cu']], function () {
             Route::get('/produkcu/create', 'ProdukCuController@create');
@@ -269,6 +269,70 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::delete('/kegiatanBKCU/destroyTugas/{kegiatan_tipe}/{id}', 'KegiatanBKCUController@destroyTugas');
         Route::delete('/kegiatanBKCU/destroyTugasJawaban/{kegiatan_tipe}/{id}', 'KegiatanBKCUController@destroyTugasJawaban');
 
+        // kegiatan cu
+        Route::get('/kegiatanCU/index/{kegiatan_tipe}', 'KegiatanCUController@index');
+        Route::get('/kegiatanCU/baru', 'KegiatanCUController@indexBaru');
+        Route::get('/kegiatanCU/mulai', 'KegiatanCUController@indexMulai');
+        Route::get('/kegiatanCU/buka', 'KegiatanCUController@indexBuka');
+        Route::get('/kegiatanCU/jalan', 'KegiatanCUController@indexJalan');
+        Route::get('/kegiatanCU/periode/{kegiatan_tipe}/{periode}', 'KegiatanCUController@indexPeriode');
+        Route::get('/kegiatanCU/indexPeserta/{id}', 'KegiatanCUController@indexPeserta');
+        Route::get('/kegiatanCU/indexMateri/{id}', 'KegiatanCUController@indexMateri');
+        Route::get('/kegiatanCU/indexKeputusan/{id}', 'KegiatanCUController@indexKeputusan');
+        Route::get('/kegiatanCU/indexKeputusanKomentar/{id}', 'KegiatanCUController@indexKeputusanKomentar');
+        Route::get('/kegiatanCU/indexPertanyaan/{id}', 'KegiatanCUController@indexPertanyaan');
+        Route::get('/kegiatanCU/indexPertanyaanKomentar/{id}', 'KegiatanCUController@indexPertanyaanKomentar');
+        Route::get('/kegiatanCU/indexTugas/{id}', 'KegiatanCUController@indexTugas');
+        Route::get('/kegiatanCU/indexTugasJawaban/{id}', 'KegiatanCUController@indexTugasJawaban');
+        Route::get('/kegiatanCU/indexPesertaHadir/{id}', 'KegiatanCUController@indexPesertahadir');
+        Route::get('/kegiatanCU/indexPesertaCu/{id}/cu/{cu}', 'KegiatanCUController@indexPesertaCu');
+        Route::get('/kegiatanCU/indexPesertaCountCu/{id}', 'KegiatanCUController@indexPesertaCountCu');
+        Route::get('/kegiatanCU/indexPesertaHadirCountCu/{id}', 'KegiatanCUController@indexPesertaHadirCountCu');
+        Route::get('/kegiatanCU/indexKeputusanCount/{id}', 'KegiatanCUController@indexKeputusanCount');
+        Route::get('/kegiatanCU/indexPertanyaanCount/{id}', 'KegiatanCUController@indexPertanyaanCount');
+        Route::get('/kegiatanCU/getPeriode/{kegiatan_tipe}', 'KegiatanCUController@getPeriode');
+        Route::get('/kegiatanCU/edit/{id}', 'KegiatanCUController@edit');
+        Route::get('/kegiatanCU/checkPeserta/{kegiatan_id}/{aktivis_id}', 'KegiatanCUController@checkPeserta');
+        Route::get('/kegiatanCU/checkPanitia/{kegiatan_id}/{aktivis_id}', 'KegiatanCUController@checkPanitia');
+        Route::post('/kegiatanCU/updatePesertaHadir/{kegiatan_id}/{aktivis_id}', 'KegiatanCUController@updatePesertaHadir');
+        Route::post('/kegiatanCU/updatePanitiaHadir/{kegiatan_id}/{aktivis_id}', 'KegiatanCUController@updatePanitiaHadir');
+        Route::get('/kegiatanCU/countPeserta/{id}', 'KegiatanCUController@countPeserta');
+        Route::get('/kegiatanCU/countPesertaHadir/{id}', 'KegiatanCUController@countPesertaHadir');
+        Route::get('/kegiatanCU/countKeputusan/{id}/{cu}/{user}', 'KegiatanCUController@countKeputusan');
+        Route::post('/kegiatanCU/storeKeputusan/{id}', 'KegiatanCUController@storeKeputusan');
+        Route::post('/kegiatanCU/updateKeputusan/{id}', 'KegiatanCUController@updateKeputusan');
+        Route::delete('/kegiatanCU/destroyKeputusan/{id}', 'KegiatanCUController@destroyKeputusan');
+        Route::post('/kegiatanCU/storeKeputusanKomentar/{id}', 'KegiatanCUController@storeKeputusanKomentar');
+        Route::post('/kegiatanCU/updateKeputusanKomentar/{id}', 'KegiatanCUController@updateKeputusanKomentar');
+        Route::delete('/kegiatanCU/destroyKeputusanKomentar/{id}', 'KegiatanCUController@destroyKeputusanKomentar');
+        Route::get('/kegiatanCU/countPertanyaan/{id}/{cu}/{user}', 'KegiatanCUController@countPertanyaan');
+        Route::post('/kegiatanCU/storePertanyaan/{id}', 'KegiatanCUController@storePertanyaan');
+        Route::post('/kegiatanCU/updatePertanyaan/{id}', 'KegiatanCUController@updatePertanyaan');
+        Route::delete('/kegiatanCU/destroyPertanyaan/{id}', 'KegiatanCUController@destroyPertanyaan');
+        Route::post('/kegiatanCU/storePertanyaanKomentar/{id}', 'KegiatanCUController@storePertanyaanKomentar');
+        Route::post('/kegiatanCU/updatePertanyaanKomentar/{id}', 'KegiatanCUController@updatePertanyaanKomentar');
+        Route::post('/kegiatanCU/jawabanPertanyaan/{id}/{tipe}', 'KegiatanCUController@jawabanPertanyaan');
+        Route::delete('/kegiatanCU/destroyPertanyaanKomentar/{id}', 'KegiatanCUController@destroyPertanyaanKomentar');
+        Route::post('/kegiatanCU/storePeserta/{kegiatan_tipe}/{id}', 'KegiatanCUController@storePeserta');
+        Route::post('/kegiatanCU/updatePeserta/{id}', 'KegiatanCUController@updatePeserta');
+        Route::delete('/kegiatanCU/destroyPeserta/{id}', 'KegiatanCUController@destroyPeserta');
+        Route::post('/kegiatanCU/batalPeserta/{kegiatan_tipe}/{id}', 'KegiatanCUController@batalPeserta');
+        Route::get('/kegiatanCU/create', 'KegiatanCUController@create');
+        Route::post('/kegiatanCU/store/{kegiatan_tipe}', 'KegiatanCUController@store');
+        Route::post('/kegiatanCU/update/{id}', 'KegiatanCUController@update');
+        Route::post('/kegiatanCU/updateStatus/{id}', 'KegiatanCUController@updateStatus');
+        Route::post('/kegiatanCU/storeMateri/{kegiatan_tipe}/{id}', 'KegiatanCUController@storeMateri');
+        Route::post('/kegiatanCU/updateMateri/{id}', 'KegiatanCUController@updateMateri');
+        Route::delete('/kegiatanCU/destroyMateri/{kegiatan_tipe}/{id}', 'KegiatanCUController@destroyMateri');
+        Route::delete('/kegiatanCU/{id}', 'KegiatanCUController@destroy');
+        Route::post('/kegiatanCU/storeTugas/{kegiatan_tipe}/{id}', 'KegiatanCUController@storeTugas');
+        Route::post('/kegiatanCU/storeTugasJawaban/{kegiatan_tipe}', 'KegiatanCUController@storeTugasJawaban');
+        Route::get('/kegiatanCU/editTugasJawaban/{id}', 'KegiatanCUController@editTugasJawaban');
+        Route::post('/kegiatanCU/updateTugas/{id}', 'KegiatanCUController@updateTugas');
+        Route::post('/kegiatanCU/updateTugasJawaban/{id}', 'KegiatanCUController@updateTugasJawaban');
+        Route::delete('/kegiatanCU/destroyTugas/{kegiatan_tipe}/{id}', 'KegiatanCUController@destroyTugas');
+        Route::delete('/kegiatanCU/destroyTugasJawaban/{kegiatan_tipe}/{id}', 'KegiatanCUController@destroyTugasJawaban');
+
         // aktivis
         Route::get('/aktivis/get/{id}', 'AktivisController@get');
         Route::get('/aktivis/history', 'AktivisController@history');
@@ -300,12 +364,12 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::delete('/aktivis/diklat/{id}', 'AktivisController@destroyDiklat');
         Route::delete('/aktivis/keluarga/{id}', 'AktivisController@destroyKeluarga');
         Route::delete('/aktivis/anggotaCu/{id}', 'AktivisController@destroyAnggotaCu');
-        Route::group(['middleware' => ['permission:index_aktivis']], function () {
-            Route::get('/aktivis/index/{tingkat}/{status}', 'AktivisController@index');
-            Route::post('/aktivis/indexTingkat/', 'AktivisController@indexTingkat');
-            Route::get('/aktivis/indexLembaga', 'AktivisController@indexLembaga');
-            Route::get('/aktivis/indexCu/{id}/{tingkat}/{status}', 'AktivisController@indexCu');
-        });
+        // Route::group(['middleware' => ['permission:index_aktivis']], function () {
+        Route::get('/aktivis/index/{tingkat}/{status}', 'AktivisController@index');
+        Route::post('/aktivis/indexTingkat/', 'AktivisController@indexTingkat');
+        Route::get('/aktivis/indexLembaga', 'AktivisController@indexLembaga');
+        Route::get('/aktivis/indexCu/{id}/{tingkat}/{status}', 'AktivisController@indexCu');
+        // });
         Route::group(['middleware' => ['permission:create_aktivis']], function () {
             Route::get('/aktivis/create', 'AktivisController@create');
             Route::post('/aktivis/store', 'AktivisController@store');
@@ -386,8 +450,10 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
 
         // assesment Access
         Route::get('/assesmentAccess/history', 'AssesmentAccessController@history');
-        Route::get('/assesmentAccess/cariData/{cu}/{periode}', 
-        'AssesmentAccessController@cariData');
+        Route::get(
+            '/assesmentAccess/cariData/{cu}/{periode}',
+            'AssesmentAccessController@cariData'
+        );
         Route::get('/assesmentAccess/edit/{id}', 'AssesmentAccessController@edit');
         Route::get('/assesmentAccess/editPenilaian/{id}', 'AssesmentAccessController@editPenilaian');
         Route::group(['middleware' => ['permission:index_assesment_access']], function () {
@@ -446,10 +512,10 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
 
         // mitra perserorangan
         Route::get('/mitraOrang/history', 'MitraOrangController@history');
-        Route::group(['middleware' => ['permission:index_mitra_orang']], function () {
-            Route::get('/mitraOrang', 'MitraOrangController@index');
-            Route::get('/mitraOrang/count', 'MitraOrangController@count');
-        });
+        // Route::group(['middleware' => ['permission:index_mitra_orang']], function () {
+        Route::get('/mitraOrang', 'MitraOrangController@index');
+        Route::get('/mitraOrang/count', 'MitraOrangController@count');
+        // });
         Route::group(['middleware' => ['permission:create_mitra_orang']], function () {
             Route::get('/mitraOrang/create', 'MitraOrangController@create');
             Route::post('/mitraOrang/store', 'MitraOrangController@store');
@@ -465,10 +531,10 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
 
         // mitra lembaga
         Route::get('/mitraLembaga/history', 'MitraLembagaController@history');
-        Route::group(['middleware' => ['permission:index_mitra_lembaga']], function () {
-            Route::get('/mitraLembaga', 'MitraLembagaController@index');
-            Route::get('/mitraLembaga/count', 'MitraLembagaController@count');
-        });
+        // Route::group(['middleware' => ['permission:index_mitra_lembaga']], function () {
+        Route::get('/mitraLembaga', 'MitraLembagaController@index');
+        Route::get('/mitraLembaga/count', 'MitraLembagaController@count');
+        // });
         Route::group(['middleware' => ['permission:create_mitra_lembaga']], function () {
             Route::get('/mitraLembaga/create', 'MitraLembagaController@create');
             Route::post('/mitraLembaga/store', 'MitraLembagaController@store');
@@ -489,13 +555,13 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/anggotaCu/cariDataKTP/{nik}', 'AnggotaCuController@cariDataKTP');
         Route::get('/anggotaCu/cariDataBA/{cu}/{noba}', 'AnggotaCuController@cariDataBA');
         Route::get('/anggotaCu/indexProduk/{id}/cu/{cu}', 'AnggotaProdukCuController@index');
-        Route::get('/anggotaCu/indexProdukSaldo/{id}', 'AnggotaProdukCuController@indexSaldo'); 
+        Route::get('/anggotaCu/indexProdukSaldo/{id}', 'AnggotaProdukCuController@indexSaldo');
         Route::get('/anggotaCu', 'AnggotaCuController@index');
-        Route::get('/anggotaCu/indexCu/{cu}/{tp}', 'AnggotaCuController@indexCu'); 
+        Route::get('/anggotaCu/indexCu/{cu}/{tp}', 'AnggotaCuController@indexCu');
         Route::get('/anggotaCu/keluar', 'AnggotaCuController@indexKeluar');
         Route::get('/anggotaCu/indexMeninggal', 'AnggotaCuController@indexMeninggal');
-        Route::get('/anggotaCu/indexCuKeluar/{cu}/{tp}', 'AnggotaCuController@indexCuKeluar'); 
-        Route::get('/anggotaCu/indexCuMeninggal/{cu}/{tp}', 'AnggotaCuController@indexCuMeninggal');  
+        Route::get('/anggotaCu/indexCuKeluar/{cu}/{tp}', 'AnggotaCuController@indexCuKeluar');
+        Route::get('/anggotaCu/indexCuMeninggal/{cu}/{tp}', 'AnggotaCuController@indexCuMeninggal');
         Route::group(['middleware' => ['permission:create_anggota_cu']], function () {
             Route::get('/anggotaCu/create', 'AnggotaCuController@create');
             Route::post('/anggotaCu/store', 'AnggotaCuController@store');
@@ -550,7 +616,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/jalinanKlaim/getStatus/{status_klaim}', 'JalinanKlaimController@getStatus');
         Route::group(['middleware' => ['permission:index_jalinan_klaim']], function () {
             Route::get('/jalinanKlaim/status/{status}/{awal}/{akhir}', 'JalinanKlaimController@index');
-            Route::get('/jalinanKlaim/indexCu/{cu}/tp/{tp}/status/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexCu'); 
+            Route::get('/jalinanKlaim/indexCu/{cu}/tp/{tp}/status/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexCu');
             Route::get('/jalinanKlaim/cariData/{nik}', 'JalinanKlaimController@cariData');
             Route::get('/jalinanKlaim/cariDataId/{id}', 'JalinanKlaimController@cariDataId');
         });
@@ -578,7 +644,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
             Route::get('/jalinanKlaim/indexLaporanCu/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanCu');
             Route::get('/jalinanKlaim/indexLaporanCuDetail/{cu}/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanCuDetail');
             Route::get('/jalinanKlaim/indexLaporanPenyebab/{cu}/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanPenyebab');
-            Route::get('/jalinanKlaim/indexLaporanPenyebabDetail/{cu}/{status}/{kategori}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanPenyebabDetail'); 
+            Route::get('/jalinanKlaim/indexLaporanPenyebabDetail/{cu}/{status}/{kategori}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanPenyebabDetail');
             Route::get('/jalinanKlaim/indexLaporanUsia/{cu}/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanUsia');
             Route::get('/jalinanKlaim/indexLaporanUsiaDetail/{cu}/{status}/{dari}/{ke}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanUsiaDetail');
             Route::get('/jalinanKlaim/indexLaporanLama/{cu}/{status}/{awal}/{akhir}', 'JalinanKlaimController@indexLaporanLama');
@@ -677,7 +743,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
             Route::delete('/laporanTpDraft/destroyAll', 'LaporanTpDraftController@destroyAll');
             Route::get('/laporanTpDraft/count', 'LaporanTpDraftController@count');
         });
-        
+
         //coa
         Route::get('/coa/history', 'CoaController@history');
         Route::group(['middleware' => ['permission:index_coa']], function () {
@@ -833,16 +899,14 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::delete('/villages/{id}', 'VillagesController@destroy');
 
         // file
-        Route::get('download/{filename}','SystemController@download_file');
-        Route::get('download_folder/{filename}/{foldername}','SystemController@download_file_folder');
-        Route::get('countOrganisasi','SystemController@countOrganisasi');
+        Route::get('download/{filename}', 'SystemController@download_file');
+        Route::get('download_folder/{filename}/{foldername}', 'SystemController@download_file_folder');
+        Route::get('countOrganisasi', 'SystemController@countOrganisasi');
 
         // notification
         Route::get('/notification/get', 'NotificationController@get');
         Route::get('/notification/getAll', 'NotificationController@getAll');
         Route::get('/notification/markRead/{id}', 'NotificationController@markRead');
         Route::get('/notification/markAllRead', 'NotificationController@markAllRead');
-        
     });
-
 });

@@ -258,7 +258,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_datatable_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/datatable.vue */ "./resources/assets/js/components/datatable.vue");
 /* harmony import */ var _components_infoIcon_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/infoIcon.vue */ "./resources/assets/js/components/infoIcon.vue");
 /* harmony import */ var _dokumen_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./dokumen.vue */ "./resources/assets/js/views/jalinanKlaim/dokumen.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -770,7 +770,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _verifikator_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./verifikator.vue */ "./resources/assets/js/views/jalinanKlaim/verifikator.vue");
 /* harmony import */ var _dokumen_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./dokumen.vue */ "./resources/assets/js/views/jalinanKlaim/dokumen.vue");
 /* harmony import */ var _components_datePicker_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/datePicker.vue */ "./resources/assets/js/components/datePicker.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -2003,7 +2003,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -2274,7 +2274,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _formStatus_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./formStatus.vue */ "./resources/assets/js/views/jalinanKlaim/formStatus.vue");
 /* harmony import */ var _formPeriksaKoreksi_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./formPeriksaKoreksi.vue */ "./resources/assets/js/views/jalinanKlaim/formPeriksaKoreksi.vue");
 /* harmony import */ var _surat_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./surat.vue */ "./resources/assets/js/views/jalinanKlaim/surat.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -3245,7 +3245,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -3255,22 +3255,22 @@ var render = function() {
       {
         staticClass: "btn btn-link btn-block",
         attrs: { "data-toggle": "collapse", "data-target": ".collap" + _vm.id },
-        on: { click: _vm.btnClick }
+        on: { click: _vm.btnClick },
       },
       [
         _vm.clicked
           ? _c("span", [
               _c("i", { staticClass: "icon-arrow-up12" }),
               _vm._v(" Kembali "),
-              _c("i", { staticClass: "icon-arrow-up12" })
+              _c("i", { staticClass: "icon-arrow-up12" }),
             ])
           : _c("span", [
               _c("i", { staticClass: "icon-arrow-down12" }),
               _vm._v(" Selengkapnya "),
-              _c("i", { staticClass: "icon-arrow-down12" })
-            ])
+              _c("i", { staticClass: "icon-arrow-down12" }),
+            ]),
       ]
-    )
+    ),
   ])
 }
 var staticRenderFns = []
@@ -3291,25 +3291,27 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm._m(0)
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
       _c("div", { staticClass: "alert bg-info alert-styled-left" }, [
         _c("h6", [
-          _vm._v("Pastikan data yang dimasukkan sudah benar sebelum menyimpan.")
-        ])
-      ])
+          _vm._v(
+            "Pastikan data yang dimasukkan sudah benar sebelum menyimpan."
+          ),
+        ]),
+      ]),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -3328,7 +3330,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -3339,14 +3341,14 @@ var render = function() {
           ? _c("img", {
               staticClass: "img-fluid img-preview rounded",
               attrs: {
-                src: "/images/anggotaCu/" + _vm.itemData.gambar + ".jpg"
-              }
+                src: "/images/anggotaCu/" + _vm.itemData.gambar + ".jpg",
+              },
             })
           : _c("img", {
               staticClass: "img-fluid img-preview rounded",
-              attrs: { src: "/images/no_image.jpg" }
-            })
-      ])
+              attrs: { src: "/images/no_image.jpg" },
+            }),
+      ]),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "media-body" }, [
@@ -3355,42 +3357,42 @@ var render = function() {
           _c("ul", { staticClass: "list list-unstyled mb-0" }, [
             _c("li", [
               _c("b", [_vm._v("No. KTP:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.nik))
+              _vm._v(" " + _vm._s(_vm.itemData.nik)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("No. KK:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.kk))
+              _vm._v(" " + _vm._s(_vm.itemData.kk)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Nama:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.name))
+              _vm._v(" " + _vm._s(_vm.itemData.name)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Suku:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.suku))
+              _vm._v(" " + _vm._s(_vm.itemData.suku)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Gender:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.kelamin))
+              _vm._v(" " + _vm._s(_vm.itemData.kelamin)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Tinggi:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.tinggi))
+              _vm._v(" " + _vm._s(_vm.itemData.tinggi)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Agama:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.agama))
+              _vm._v(" " + _vm._s(_vm.itemData.agama)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Gol. Darah:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.darah))
+              _vm._v(" " + _vm._s(_vm.itemData.darah)),
             ]),
             _vm._v(" "),
             _vm.itemData.tanggal_meninggal == null
@@ -3402,10 +3404,10 @@ var render = function() {
                         domProps: {
                           innerHTML: _vm._s(
                             _vm.$options.filters.age(_vm.itemData.tanggal_lahir)
-                          )
-                        }
+                          ),
+                        },
                       })
-                    : _vm._e()
+                    : _vm._e(),
                 ])
               : _c("li", [
                   _c("b", [_vm._v("Usia Saat Meninggal:")]),
@@ -3418,17 +3420,17 @@ var render = function() {
                               _vm.itemData.tanggal_meninggal,
                               _vm.itemData.tanggal_lahir
                             )
-                          )
-                        }
+                          ),
+                        },
                       })
-                    : _vm._e()
+                    : _vm._e(),
                 ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Status:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.status))
-            ])
-          ])
+              _vm._v(" " + _vm._s(_vm.itemData.status)),
+            ]),
+          ]),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-sm-4" }, [
@@ -3441,25 +3443,25 @@ var render = function() {
                     domProps: {
                       innerHTML: _vm._s(
                         _vm.$options.filters.date(_vm.itemData.tanggal_lahir)
-                      )
-                    }
+                      ),
+                    },
                   })
-                : _vm._e()
+                : _vm._e(),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Tempat Lahir:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.tempat_lahir))
+              _vm._v(" " + _vm._s(_vm.itemData.tempat_lahir)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Nama Ibu:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.nama_ibu))
+              _vm._v(" " + _vm._s(_vm.itemData.nama_ibu)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Lembaga:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.lembaga))
+              _vm._v(" " + _vm._s(_vm.itemData.lembaga)),
             ]),
             _vm._v(" "),
             _c("li", [
@@ -3471,34 +3473,34 @@ var render = function() {
                       _vm.itemData.jabatan
                     )
                   )
-              )
+              ),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Pekerjaan:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.pekerjaan))
+              _vm._v(" " + _vm._s(_vm.itemData.pekerjaan)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Pendidikan:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.pendidikan))
+              _vm._v(" " + _vm._s(_vm.itemData.pendidikan)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Email:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.email))
+              _vm._v(" " + _vm._s(_vm.itemData.email)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("No. Hp:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.hp))
+              _vm._v(" " + _vm._s(_vm.itemData.hp)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Kontak Lainnya:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.kontak))
-            ])
-          ])
+              _vm._v(" " + _vm._s(_vm.itemData.kontak)),
+            ]),
+          ]),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-sm-4" }, [
@@ -3513,7 +3515,7 @@ var render = function() {
                           ? _vm.itemData.anggota_cu_cu[0].tp.name
                           : ""
                       )
-                  )
+                  ),
                 ])
               : _vm._e(),
             _vm._v(" "),
@@ -3524,7 +3526,7 @@ var render = function() {
                   _vm._s(
                     _vm.itemData.provinces ? _vm.itemData.provinces.name : ""
                   )
-              )
+              ),
             ]),
             _vm._v(" "),
             _c("li", [
@@ -3534,7 +3536,7 @@ var render = function() {
                   _vm._s(
                     _vm.itemData.regencies ? _vm.itemData.regencies.name : ""
                   )
-              )
+              ),
             ]),
             _vm._v(" "),
             _c("li", [
@@ -3544,7 +3546,7 @@ var render = function() {
                   _vm._s(
                     _vm.itemData.districts ? _vm.itemData.districts.name : ""
                   )
-              )
+              ),
             ]),
             _vm._v(" "),
             _c("li", [
@@ -3554,17 +3556,17 @@ var render = function() {
                   _vm._s(
                     _vm.itemData.villages ? _vm.itemData.villages.name : ""
                   )
-              )
+              ),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Alamat:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.alamat))
-            ])
-          ])
-        ])
-      ])
-    ])
+              _vm._v(" " + _vm._s(_vm.itemData.alamat)),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = []
@@ -3585,7 +3587,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -3595,13 +3597,13 @@ var render = function() {
         _vm.image
           ? _c("img", {
               staticClass: "img-fluid",
-              attrs: { src: "/images/jalinan/" + _vm.image + ".jpg" }
+              attrs: { src: "/images/jalinan/" + _vm.image + ".jpg" },
             })
           : _c("img", {
               staticStyle: { width: "15em" },
-              attrs: { src: "/images/no_image.jpg" }
-            })
-      ])
+              attrs: { src: "/images/no_image.jpg" },
+            }),
+      ]),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "text-center d-none d-md-block" }, [
@@ -3610,11 +3612,11 @@ var render = function() {
         {
           staticClass: "btn btn-light",
           on: {
-            click: function($event) {
+            click: function ($event) {
               $event.preventDefault()
-              return _vm.tutup($event)
-            }
-          }
+              return _vm.tutup.apply(null, arguments)
+            },
+          },
         },
         [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
       ),
@@ -3625,11 +3627,11 @@ var render = function() {
           staticClass: "btn btn-light",
           attrs: { type: "button" },
           on: {
-            click: function($event) {
+            click: function ($event) {
               $event.preventDefault()
               return _vm.download()
-            }
-          }
+            },
+          },
         },
         [_c("i", { staticClass: "icon-file-download" }), _vm._v(" Download")]
       ),
@@ -3640,14 +3642,14 @@ var render = function() {
           staticClass: "btn btn-light",
           attrs: { type: "button" },
           on: {
-            click: function($event) {
+            click: function ($event) {
               $event.preventDefault()
               return _vm.print()
-            }
-          }
+            },
+          },
         },
         [_c("i", { staticClass: "icon-printer" }), _vm._v(" Print")]
-      )
+      ),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "d-block d-md-none" }, [
@@ -3657,11 +3659,11 @@ var render = function() {
           staticClass: "btn btn-light btn-block pb-2",
           attrs: { type: "button" },
           on: {
-            click: function($event) {
+            click: function ($event) {
               $event.preventDefault()
               return _vm.print()
-            }
-          }
+            },
+          },
         },
         [_c("i", { staticClass: "icon-printer" }), _vm._v(" Print")]
       ),
@@ -3672,11 +3674,11 @@ var render = function() {
           staticClass: "btn btn-light btn-block pb-2",
           attrs: { type: "button" },
           on: {
-            click: function($event) {
+            click: function ($event) {
               $event.preventDefault()
               return _vm.download()
-            }
-          }
+            },
+          },
         },
         [_c("i", { staticClass: "icon-file-download" }), _vm._v(" Download")]
       ),
@@ -3686,15 +3688,15 @@ var render = function() {
         {
           staticClass: "btn btn-light btn-block pb-2",
           on: {
-            click: function($event) {
+            click: function ($event) {
               $event.preventDefault()
-              return _vm.tutup($event)
-            }
-          }
+              return _vm.tutup.apply(null, arguments)
+            },
+          },
         },
         [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
-      )
-    ])
+      ),
+    ]),
   ])
 }
 var staticRenderFns = []
@@ -3715,7 +3717,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -3725,19 +3727,19 @@ var render = function() {
       {
         attrs: { "data-vv-scope": "formKoreksi" },
         on: {
-          submit: function($event) {
+          submit: function ($event) {
             $event.preventDefault()
-            return _vm.save($event)
-          }
-        }
+            return _vm.save.apply(null, arguments)
+          },
+        },
       },
       [
         _vm.errors.any("formKoreksi") && _vm.submited
           ? _c("message", {
               attrs: {
                 title: "Oops, terjadi kesalahan",
-                errorItem: _vm.errors.items
-              }
+                errorItem: _vm.errors.items,
+              },
             })
           : _vm._e(),
         _vm._v(" "),
@@ -3751,12 +3753,12 @@ var render = function() {
                 { staticClass: "card-body" },
                 [
                   _c("identitas", {
-                    attrs: { itemData: _vm.selectedData.anggota_cu }
-                  })
+                    attrs: { itemData: _vm.selectedData.anggota_cu },
+                  }),
                 ],
                 1
-              )
-            ])
+              ),
+            ]),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-6" }, [
@@ -3770,12 +3772,12 @@ var render = function() {
                   attrs: {
                     items: _vm.itemData,
                     columnData: _vm.columnData,
-                    itemDataStat: _vm.itemDataStat
+                    itemDataStat: _vm.itemDataStat,
                   },
                   scopedSlots: _vm._u([
                     {
                       key: "item-desktop",
-                      fn: function(props) {
+                      fn: function (props) {
                         return [
                           props.item
                             ? _c(
@@ -3784,13 +3786,13 @@ var render = function() {
                                   staticClass: "text-nowrap",
                                   class: {
                                     "bg-info":
-                                      _vm.selectedItem.id === props.item.id
+                                      _vm.selectedItem.id === props.item.id,
                                   },
                                   on: {
-                                    click: function($event) {
+                                    click: function ($event) {
                                       return _vm.selectedRow(props.item)
-                                    }
-                                  }
+                                    },
+                                  },
                                 },
                                 [
                                   _c("td", [_vm._v(_vm._s(props.index + 1))]),
@@ -3799,8 +3801,8 @@ var render = function() {
                                     "td",
                                     [
                                       _c("check-value", {
-                                        attrs: { value: props.item.no_rek }
-                                      })
+                                        attrs: { value: props.item.no_rek },
+                                      }),
                                     ],
                                     1
                                   ),
@@ -3811,10 +3813,10 @@ var render = function() {
                                       props.item.produk_cu
                                         ? _c("check-value", {
                                             attrs: {
-                                              value: props.item.produk_cu.name
-                                            }
+                                              value: props.item.produk_cu.name,
+                                            },
                                           })
-                                        : _c("span", [_vm._v("-")])
+                                        : _c("span", [_vm._v("-")]),
                                     ],
                                     1
                                   ),
@@ -3825,10 +3827,10 @@ var render = function() {
                                       props.item.produk_cu
                                         ? _c("check-value", {
                                             attrs: {
-                                              value: props.item.produk_cu.tipe
-                                            }
+                                              value: props.item.produk_cu.tipe,
+                                            },
                                           })
-                                        : _c("span", [_vm._v("-")])
+                                        : _c("span", [_vm._v("-")]),
                                     ],
                                     1
                                   ),
@@ -3839,9 +3841,9 @@ var render = function() {
                                       _c("check-value", {
                                         attrs: {
                                           value: props.item.saldo,
-                                          valueType: "currency"
-                                        }
-                                      })
+                                          valueType: "currency",
+                                        },
+                                      }),
                                     ],
                                     1
                                   ),
@@ -3851,9 +3853,9 @@ var render = function() {
                                     [
                                       _c("check-value", {
                                         attrs: {
-                                          value: props.item.lama_pinjaman
-                                        }
-                                      })
+                                          value: props.item.lama_pinjaman,
+                                        },
+                                      }),
                                     ],
                                     1
                                   ),
@@ -3866,10 +3868,10 @@ var render = function() {
                                               _vm.$options.filters.date(
                                                 props.item.tanggal
                                               )
-                                            )
-                                          }
+                                            ),
+                                          },
                                         })
-                                      : _c("span", [_vm._v("-")])
+                                      : _c("span", [_vm._v("-")]),
                                   ]),
                                   _vm._v(" "),
                                   _c("td", [
@@ -3882,22 +3884,22 @@ var render = function() {
                                                 _vm.selectedData.anggota_cu
                                                   .tanggal_lahir
                                               )
-                                            )
-                                          }
+                                            ),
+                                          },
                                         })
-                                      : _c("span", [_vm._v("-")])
-                                  ])
+                                      : _c("span", [_vm._v("-")]),
+                                  ]),
                                 ]
                               )
-                            : _vm._e()
+                            : _vm._e(),
                         ]
-                      }
-                    }
-                  ])
-                })
+                      },
+                    },
+                  ]),
+                }),
               ],
               1
-            )
+            ),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-6" }, [
@@ -3918,15 +3920,15 @@ var render = function() {
                               "label",
                               {
                                 staticClass:
-                                  "badge badge-warning ml-1 font-size-lg"
+                                  "badge badge-warning ml-1 font-size-lg",
                               },
                               [
                                 _c("check-value", {
-                                  attrs: { value: _vm.itemDataJalinan.tipe }
-                                })
+                                  attrs: { value: _vm.itemDataJalinan.tipe },
+                                }),
                               ],
                               1
-                            )
+                            ),
                           ]),
                           _vm._v(" "),
                           _c(
@@ -3938,9 +3940,9 @@ var render = function() {
                               _vm._v(" "),
                               _c("check-value", {
                                 attrs: {
-                                  value: _vm.itemDataJalinan.kategori_penyakit
-                                }
-                              })
+                                  value: _vm.itemDataJalinan.kategori_penyakit,
+                                },
+                              }),
                             ],
                             1
                           ),
@@ -3953,12 +3955,14 @@ var render = function() {
                               _c("br"),
                               _vm._v(" "),
                               _c("check-value", {
-                                attrs: { value: _vm.itemDataJalinan.keterangan }
-                              })
+                                attrs: {
+                                  value: _vm.itemDataJalinan.keterangan,
+                                },
+                              }),
                             ],
                             1
-                          )
-                        ])
+                          ),
+                        ]),
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-sm-6" }, [
@@ -3974,9 +3978,9 @@ var render = function() {
                                   _vm.$options.filters.date(
                                     _vm.itemDataJalinan.tanggal_mati
                                   )
-                                )
-                              }
-                            })
+                                ),
+                              },
+                            }),
                           ]),
                           _vm._v(" "),
                           _c("li", [
@@ -3990,9 +3994,9 @@ var render = function() {
                                   _vm.$options.filters.dateTime(
                                     _vm.itemDataJalinan.created_at
                                   )
-                                )
-                              }
-                            })
+                                ),
+                              },
+                            }),
                           ]),
                           _vm._v(" "),
                           _c("li", [
@@ -4006,11 +4010,11 @@ var render = function() {
                                   _vm.$options.filters.dateTime(
                                     _vm.itemDataJalinan.updated_at
                                   )
-                                )
-                              }
-                            })
-                          ])
-                        ])
+                                ),
+                              },
+                            }),
+                          ]),
+                        ]),
                       ]),
                       _vm._v(" "),
                       _vm._m(3),
@@ -4028,9 +4032,9 @@ var render = function() {
                                         attrs: {
                                           value:
                                             _vm.itemDataJalinan.tunas_diajukan,
-                                          valueType: "currency"
-                                        }
-                                      })
+                                          valueType: "currency",
+                                        },
+                                      }),
                                     ],
                                     1
                                   ),
@@ -4041,12 +4045,12 @@ var render = function() {
                                     [
                                       _vm._v(
                                         "\n                        nilai pengajuan klaim tunas\n                      "
-                                      )
+                                      ),
                                     ]
-                                  )
-                                ])
-                              ])
-                            ])
+                                  ),
+                                ]),
+                              ]),
+                            ]),
                           ])
                         : _vm._e(),
                       _vm._v(" "),
@@ -4062,9 +4066,9 @@ var render = function() {
                                     attrs: {
                                       value:
                                         _vm.itemDataJalinan.lintang_diajukan,
-                                      valueType: "currency"
-                                    }
-                                  })
+                                      valueType: "currency",
+                                    },
+                                  }),
                                 ],
                                 1
                               ),
@@ -4072,22 +4076,22 @@ var render = function() {
                               _c("span", { staticClass: "text-uppercase" }, [
                                 _vm._v(
                                   "\n                        nilai pengajuan klaim lintang\n                      "
-                                )
-                              ])
-                            ])
-                          ])
-                        ])
-                      ])
+                                ),
+                              ]),
+                            ]),
+                          ]),
+                        ]),
+                      ]),
                     ])
                   : _vm.itemDataJalinanStat == "loading"
                   ? _c("div", { staticClass: "progress" }, [_vm._m(4)])
                   : _c("div", [
                       _c("p", [
-                        _vm._v("Oops.. Terjadi kesalahan, silahkan coba lagi.")
-                      ])
-                    ])
-              ])
-            ])
+                        _vm._v("Oops.. Terjadi kesalahan, silahkan coba lagi."),
+                      ]),
+                    ]),
+              ]),
+            ]),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-6" }, [
@@ -4106,15 +4110,16 @@ var render = function() {
                         _c(
                           "label",
                           {
-                            staticClass: "badge badge-warning ml-1 font-size-lg"
+                            staticClass:
+                              "badge badge-warning ml-1 font-size-lg",
                           },
                           [
                             _c("check-value", {
-                              attrs: { value: _vm.selectedData.tipe }
-                            })
+                              attrs: { value: _vm.selectedData.tipe },
+                            }),
                           ],
                           1
-                        )
+                        ),
                       ]),
                       _vm._v(" "),
                       _c(
@@ -4125,8 +4130,10 @@ var render = function() {
                           _c("br"),
                           _vm._v(" "),
                           _c("check-value", {
-                            attrs: { value: _vm.selectedData.kategori_penyakit }
-                          })
+                            attrs: {
+                              value: _vm.selectedData.kategori_penyakit,
+                            },
+                          }),
                         ],
                         1
                       ),
@@ -4139,12 +4146,12 @@ var render = function() {
                           _c("br"),
                           _vm._v(" "),
                           _c("check-value", {
-                            attrs: { value: _vm.selectedData.keterangan }
-                          })
+                            attrs: { value: _vm.selectedData.keterangan },
+                          }),
                         ],
                         1
-                      )
-                    ])
+                      ),
+                    ]),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-sm-6" }, [
@@ -4160,9 +4167,9 @@ var render = function() {
                               _vm.$options.filters.date(
                                 _vm.selectedData.tanggal_mati
                               )
-                            )
-                          }
-                        })
+                            ),
+                          },
+                        }),
                       ]),
                       _vm._v(" "),
                       _c("li", [
@@ -4176,9 +4183,9 @@ var render = function() {
                               _vm.$options.filters.dateTime(
                                 _vm.selectedData.created_at
                               )
-                            )
-                          }
-                        })
+                            ),
+                          },
+                        }),
                       ]),
                       _vm._v(" "),
                       _c("li", [
@@ -4192,11 +4199,11 @@ var render = function() {
                               _vm.$options.filters.dateTime(
                                 _vm.selectedData.updated_at
                               )
-                            )
-                          }
-                        })
-                      ])
-                    ])
+                            ),
+                          },
+                        }),
+                      ]),
+                    ]),
                   ]),
                   _vm._v(" "),
                   _vm._m(6),
@@ -4213,9 +4220,9 @@ var render = function() {
                                   _c("check-value", {
                                     attrs: {
                                       value: _vm.selectedData.tunas_diajukan,
-                                      valueType: "currency"
-                                    }
-                                  })
+                                      valueType: "currency",
+                                    },
+                                  }),
                                 ],
                                 1
                               ),
@@ -4223,11 +4230,11 @@ var render = function() {
                               _c("span", { staticClass: "text-uppercase" }, [
                                 _vm._v(
                                   "\n                        nilai pengajuan klaim tunas\n                      "
-                                )
-                              ])
-                            ])
-                          ])
-                        ])
+                                ),
+                              ]),
+                            ]),
+                          ]),
+                        ]),
                       ])
                     : _vm._e(),
                   _vm._v(" "),
@@ -4242,9 +4249,9 @@ var render = function() {
                               _c("check-value", {
                                 attrs: {
                                   value: _vm.selectedData.lintang_diajukan,
-                                  valueType: "currency"
-                                }
-                              })
+                                  valueType: "currency",
+                                },
+                              }),
                             ],
                             1
                           ),
@@ -4252,15 +4259,15 @@ var render = function() {
                           _c("span", { staticClass: "text-uppercase" }, [
                             _vm._v(
                               "\n                        nilai pengajuan klaim lintang\n                      "
-                            )
-                          ])
-                        ])
-                      ])
-                    ])
-                  ])
-                ])
-              ])
-            ])
+                            ),
+                          ]),
+                        ]),
+                      ]),
+                    ]),
+                  ]),
+                ]),
+              ]),
+            ]),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-12" }, [
@@ -4276,8 +4283,8 @@ var render = function() {
                       "mark",
                       [
                         _c("check-value", {
-                          attrs: { value: _vm.itemDataJalinan.tipe }
-                        })
+                          attrs: { value: _vm.itemDataJalinan.tipe },
+                        }),
                       ],
                       1
                     ),
@@ -4286,12 +4293,12 @@ var render = function() {
                       "mark",
                       [
                         _c("check-value", {
-                          attrs: { value: _vm.selectedData.tipe }
-                        })
+                          attrs: { value: _vm.selectedData.tipe },
+                        }),
                       ],
                       1
-                    )
-                  ])
+                    ),
+                  ]),
                 ])
               : _vm._e(),
             _vm._v(" "),
@@ -4305,9 +4312,9 @@ var render = function() {
                       [
                         _c("check-value", {
                           attrs: {
-                            value: _vm.itemDataJalinan.kategori_penyakit
-                          }
-                        })
+                            value: _vm.itemDataJalinan.kategori_penyakit,
+                          },
+                        }),
                       ],
                       1
                     ),
@@ -4316,12 +4323,12 @@ var render = function() {
                       "mark",
                       [
                         _c("check-value", {
-                          attrs: { value: _vm.selectedData.kategori_penyakit }
-                        })
+                          attrs: { value: _vm.selectedData.kategori_penyakit },
+                        }),
                       ],
                       1
-                    )
-                  ])
+                    ),
+                  ]),
                 ])
               : _vm._e(),
             _vm._v(" "),
@@ -4333,8 +4340,8 @@ var render = function() {
                       "mark",
                       [
                         _c("check-value", {
-                          attrs: { value: _vm.itemDataJalinan.keterangan }
-                        })
+                          attrs: { value: _vm.itemDataJalinan.keterangan },
+                        }),
                       ],
                       1
                     ),
@@ -4343,12 +4350,12 @@ var render = function() {
                       "mark",
                       [
                         _c("check-value", {
-                          attrs: { value: _vm.selectedData.keterangan }
-                        })
+                          attrs: { value: _vm.selectedData.keterangan },
+                        }),
                       ],
                       1
-                    )
-                  ])
+                    ),
+                  ]),
                 ])
               : _vm._e(),
             _vm._v(" "),
@@ -4362,8 +4369,8 @@ var render = function() {
                           _vm.$options.filters.date(
                             _vm.itemDataJalinan.tanggal_mati
                           )
-                        )
-                      }
+                        ),
+                      },
                     }),
                     _vm._v(" menjadi "),
                     _c("mark", {
@@ -4372,10 +4379,10 @@ var render = function() {
                           _vm.$options.filters.date(
                             _vm.selectedData.tanggal_mati
                           )
-                        )
-                      }
-                    })
-                  ])
+                        ),
+                      },
+                    }),
+                  ]),
                 ])
               : _vm._e(),
             _vm._v(" "),
@@ -4390,9 +4397,9 @@ var render = function() {
                         _c("check-value", {
                           attrs: {
                             value: _vm.itemDataJalinan.tunas_diajukan,
-                            valueType: "currency"
-                          }
-                        })
+                            valueType: "currency",
+                          },
+                        }),
                       ],
                       1
                     ),
@@ -4403,13 +4410,13 @@ var render = function() {
                         _c("check-value", {
                           attrs: {
                             value: _vm.selectedData.tunas_diajukan,
-                            valueType: "currency"
-                          }
-                        })
+                            valueType: "currency",
+                          },
+                        }),
                       ],
                       1
-                    )
-                  ])
+                    ),
+                  ]),
                 ])
               : _vm._e(),
             _vm._v(" "),
@@ -4424,9 +4431,9 @@ var render = function() {
                         _c("check-value", {
                           attrs: {
                             value: _vm.itemDataJalinan.lintang_diajukan,
-                            valueType: "currency"
-                          }
-                        })
+                            valueType: "currency",
+                          },
+                        }),
                       ],
                       1
                     ),
@@ -4437,16 +4444,16 @@ var render = function() {
                         _c("check-value", {
                           attrs: {
                             value: _vm.selectedData.lintang_diajukan,
-                            valueType: "currency"
-                          }
-                        })
+                            valueType: "currency",
+                          },
+                        }),
                       ],
                       1
-                    )
-                  ])
+                    ),
+                  ]),
                 ])
-              : _vm._e()
-          ])
+              : _vm._e(),
+          ]),
         ]),
         _vm._v(" "),
         _vm._m(7),
@@ -4457,16 +4464,16 @@ var render = function() {
             {
               staticClass: "btn btn-light",
               on: {
-                click: function($event) {
+                click: function ($event) {
                   $event.preventDefault()
-                  return _vm.tutup($event)
-                }
-              }
+                  return _vm.tutup.apply(null, arguments)
+                },
+              },
             },
             [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
           ),
           _vm._v(" "),
-          _vm._m(8)
+          _vm._m(8),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "d-block d-md-none" }, [
@@ -4477,38 +4484,38 @@ var render = function() {
             {
               staticClass: "btn btn-light btn-block pb-2",
               on: {
-                click: function($event) {
+                click: function ($event) {
                   $event.preventDefault()
-                  return _vm.tutup($event)
-                }
-              }
+                  return _vm.tutup.apply(null, arguments)
+                },
+              },
             },
             [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
-          )
-        ])
+          ),
+        ]),
       ],
       1
-    )
+    ),
   ])
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header bg-white" }, [
-      _c("h5", { staticClass: "card-title" }, [_vm._v("Identitas Anggota CU")])
+      _c("h5", { staticClass: "card-title" }, [_vm._v("Identitas Anggota CU")]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header bg-white" }, [
-      _c("h5", { staticClass: "card-title" }, [_vm._v("Daftar Produk")])
+      _c("h5", { staticClass: "card-title" }, [_vm._v("Daftar Produk")]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -4520,19 +4527,19 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", { staticClass: "header-elements" }, [
           _c("span", { staticClass: "badge badge-info" }, [
-            _vm._v("DATA SEBELUMNYA")
-          ])
-        ])
+            _vm._v("DATA SEBELUMNYA"),
+          ]),
+        ]),
       ]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-12" }, [_c("hr")])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -4541,12 +4548,12 @@ var staticRenderFns = [
       {
         staticClass:
           "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
-        staticStyle: { width: "100%" }
+        staticStyle: { width: "100%" },
       },
       [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -4558,29 +4565,29 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", { staticClass: "header-elements" }, [
           _c("span", { staticClass: "badge badge-danger" }, [
-            _vm._v("DATA KOREKSI")
-          ])
-        ])
+            _vm._v("DATA KOREKSI"),
+          ]),
+        ]),
       ]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-12" }, [_c("hr")])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "alert bg-info alert-styled-left" }, [
       _c("h6", [
-        _vm._v("Pastikan data yang dimasukkan sudah benar sebelum menyimpan.")
-      ])
+        _vm._v("Pastikan data yang dimasukkan sudah benar sebelum menyimpan."),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -4590,12 +4597,12 @@ var staticRenderFns = [
       [
         _c("span", [
           _c("i", { staticClass: "icon-paint-format" }),
-          _vm._v(" Koreksi\n        ")
-        ])
+          _vm._v(" Koreksi\n        "),
+        ]),
       ]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -4603,16 +4610,16 @@ var staticRenderFns = [
       "button",
       {
         staticClass: "btn btn-primary btn-block pb-2",
-        attrs: { type: "submit" }
+        attrs: { type: "submit" },
       },
       [
         _c("span", [
           _c("i", { staticClass: "icon-paint-format" }),
-          _vm._v(" Koreksi\n        ")
-        ])
+          _vm._v(" Koreksi\n        "),
+        ]),
       ]
     )
-  }
+  },
 ]
 render._withStripped = true
 
@@ -4631,7 +4638,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -4651,17 +4658,17 @@ var render = function() {
                   class: { active: _vm.tabName == "pengajuan" },
                   attrs: { href: "#" },
                   on: {
-                    click: function($event) {
+                    click: function ($event) {
                       $event.preventDefault()
                       return _vm.changeTab("pengajuan")
-                    }
-                  }
+                    },
+                  },
                 },
                 [
                   _c("i", { staticClass: "icon-profile mr-2" }),
-                  _vm._v(" Pengajuan")
+                  _vm._v(" Pengajuan"),
                 ]
-              )
+              ),
             ]),
             _vm._v(" "),
             _vm.selected.status_klaim != 0
@@ -4673,17 +4680,17 @@ var render = function() {
                       class: { active: _vm.tabName == "verifikator" },
                       attrs: { href: "#" },
                       on: {
-                        click: function($event) {
+                        click: function ($event) {
                           $event.preventDefault()
                           return _vm.changeTab("verifikator")
-                        }
-                      }
+                        },
+                      },
                     },
                     [
                       _c("i", { staticClass: "icon-file-check mr-2" }),
-                      _vm._v(" Verifikator")
+                      _vm._v(" Verifikator"),
                     ]
-                  )
+                  ),
                 ])
               : _vm._e(),
             _vm._v(" "),
@@ -4695,20 +4702,20 @@ var render = function() {
                   class: { active: _vm.tabName == "dokumen" },
                   attrs: { href: "#" },
                   on: {
-                    click: function($event) {
+                    click: function ($event) {
                       $event.preventDefault()
                       return _vm.changeTab("dokumen")
-                    }
-                  }
+                    },
+                  },
                 },
                 [
                   _c("i", { attrs: { clafdss: "icon-stack mr-2" } }),
-                  _vm._v(" Dokumen")
+                  _vm._v(" Dokumen"),
                 ]
-              )
-            ])
+              ),
+            ]),
           ]
-        )
+        ),
       ]),
       _vm._v(" "),
       _c(
@@ -4723,9 +4730,9 @@ var render = function() {
                   name: "show",
                   rawName: "v-show",
                   value: _vm.tabName == "pengajuan",
-                  expression: "tabName == 'pengajuan'"
-                }
-              ]
+                  expression: "tabName == 'pengajuan'",
+                },
+              ],
             },
             [
               _c(
@@ -4733,19 +4740,19 @@ var render = function() {
                 {
                   attrs: { "data-vv-scope": "formStatus", autocomplete: "off" },
                   on: {
-                    submit: function($event) {
+                    submit: function ($event) {
                       $event.preventDefault()
-                      return _vm.save($event)
-                    }
-                  }
+                      return _vm.save.apply(null, arguments)
+                    },
+                  },
                 },
                 [
                   _vm.errors.any("formStatus") && _vm.submited
                     ? _c("message", {
                         attrs: {
                           title: "Oops, terjadi kesalahan",
-                          errorItem: _vm.errors.items
-                        }
+                          errorItem: _vm.errors.items,
+                        },
                       })
                     : _vm._e(),
                   _vm._v(" "),
@@ -4757,8 +4764,8 @@ var render = function() {
                         _c("div", { staticClass: "card" }, [
                           _c("div", { staticClass: "card-header bg-white" }, [
                             _c("h5", { staticClass: "card-title" }, [
-                              _vm._v("Identitas Anggota CU")
-                            ])
+                              _vm._v("Identitas Anggota CU"),
+                            ]),
                           ]),
                           _vm._v(" "),
                           _c(
@@ -4766,20 +4773,22 @@ var render = function() {
                             { staticClass: "card-body" },
                             [
                               _c("identitas", {
-                                attrs: { itemData: _vm.selectedData.anggota_cu }
-                              })
+                                attrs: {
+                                  itemData: _vm.selectedData.anggota_cu,
+                                },
+                              }),
                             ],
                             1
-                          )
-                        ])
+                          ),
+                        ]),
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-6" }, [
                         _c("div", { staticClass: "card" }, [
                           _c("div", { staticClass: "card-header bg-white" }, [
                             _c("h5", { staticClass: "card-title" }, [
-                              _vm._v("Klaim JALINAN")
-                            ])
+                              _vm._v("Klaim JALINAN"),
+                            ]),
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "card-body" }, [
@@ -4798,24 +4807,24 @@ var render = function() {
                                         "label",
                                         {
                                           staticClass:
-                                            "badge badge-warning ml-1 font-size-lg"
+                                            "badge badge-warning ml-1 font-size-lg",
                                         },
                                         [
                                           _c("check-value", {
                                             attrs: {
-                                              value: _vm.selectedData.tipe
-                                            }
-                                          })
+                                              value: _vm.selectedData.tipe,
+                                            },
+                                          }),
                                         ],
                                         1
-                                      )
+                                      ),
                                     ]),
                                     _vm._v(" "),
                                     _c(
                                       "li",
                                       [
                                         _c("b", [
-                                          _vm._v("Kategori penyakit/penyebab:")
+                                          _vm._v("Kategori penyakit/penyebab:"),
                                         ]),
                                         _vm._v(" "),
                                         _c("br"),
@@ -4823,9 +4832,10 @@ var render = function() {
                                         _c("check-value", {
                                           attrs: {
                                             value:
-                                              _vm.selectedData.kategori_penyakit
-                                          }
-                                        })
+                                              _vm.selectedData
+                                                .kategori_penyakit,
+                                          },
+                                        }),
                                       ],
                                       1
                                     ),
@@ -4834,21 +4844,21 @@ var render = function() {
                                       "li",
                                       [
                                         _c("b", [
-                                          _vm._v("Keterangan cacat/meninggal:")
+                                          _vm._v("Keterangan cacat/meninggal:"),
                                         ]),
                                         _vm._v(" "),
                                         _c("br"),
                                         _vm._v(" "),
                                         _c("check-value", {
                                           attrs: {
-                                            value: _vm.selectedData.keterangan
-                                          }
-                                        })
+                                            value: _vm.selectedData.keterangan,
+                                          },
+                                        }),
                                       ],
                                       1
-                                    )
+                                    ),
                                   ]
-                                )
+                                ),
                               ]),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-6" }, [
@@ -4858,7 +4868,7 @@ var render = function() {
                                   [
                                     _c("li", [
                                       _c("b", [
-                                        _vm._v("Tanggal cacat/meninggal:")
+                                        _vm._v("Tanggal cacat/meninggal:"),
                                       ]),
                                       _vm._v(" "),
                                       _c("br"),
@@ -4869,14 +4879,14 @@ var render = function() {
                                             _vm.$options.filters.date(
                                               _vm.selectedData.tanggal_mati
                                             )
-                                          )
-                                        }
-                                      })
+                                          ),
+                                        },
+                                      }),
                                     ]),
                                     _vm._v(" "),
                                     _c("li", [
                                       _c("b", [
-                                        _vm._v("Tanggal buat/pengajuan:")
+                                        _vm._v("Tanggal buat/pengajuan:"),
                                       ]),
                                       _vm._v(" "),
                                       _c("br"),
@@ -4887,9 +4897,9 @@ var render = function() {
                                             _vm.$options.filters.dateTime(
                                               _vm.selectedData.created_at
                                             )
-                                          )
-                                        }
-                                      })
+                                          ),
+                                        },
+                                      }),
                                     ]),
                                     _vm._v(" "),
                                     _c("li", [
@@ -4903,16 +4913,16 @@ var render = function() {
                                             _vm.$options.filters.dateTime(
                                               _vm.selectedData.updated_at
                                             )
-                                          )
-                                        }
-                                      })
-                                    ])
+                                          ),
+                                        },
+                                      }),
+                                    ]),
                                   ]
-                                )
+                                ),
                               ]),
                               _vm._v(" "),
                               _c("div", { staticClass: "col-sm-12" }, [
-                                _c("hr")
+                                _c("hr"),
                               ]),
                               _vm._v(" "),
                               _vm.selectedData.tipe != "cacat"
@@ -4935,9 +4945,9 @@ var render = function() {
                                                       value:
                                                         _vm.selectedData
                                                           .tunas_diajukan,
-                                                      valueType: "currency"
-                                                    }
-                                                  })
+                                                      valueType: "currency",
+                                                    },
+                                                  }),
                                                 ],
                                                 1
                                               ),
@@ -4945,19 +4955,19 @@ var render = function() {
                                               _c(
                                                 "span",
                                                 {
-                                                  staticClass: "text-uppercase"
+                                                  staticClass: "text-uppercase",
                                                 },
                                                 [
                                                   _vm._v(
                                                     "\n                            nilai pengajuan klaim tunas\n                          "
-                                                  )
+                                                  ),
                                                 ]
-                                              )
+                                              ),
                                             ]
-                                          )
-                                        ])
+                                          ),
+                                        ]),
                                       ]
-                                    )
+                                    ),
                                   ])
                                 : _vm._e(),
                               _vm._v(" "),
@@ -4977,9 +4987,9 @@ var render = function() {
                                                 value:
                                                   _vm.selectedData
                                                     .lintang_diajukan,
-                                                valueType: "currency"
-                                              }
-                                            })
+                                                valueType: "currency",
+                                              },
+                                            }),
                                           ],
                                           1
                                         ),
@@ -4990,17 +5000,17 @@ var render = function() {
                                           [
                                             _vm._v(
                                               "\n                            nilai pengajuan klaim lintang\n                          "
-                                            )
+                                            ),
                                           ]
-                                        )
-                                      ])
-                                    ])
+                                        ),
+                                      ]),
+                                    ]),
                                   ]
-                                )
-                              ])
-                            ])
-                          ])
-                        ])
+                                ),
+                              ]),
+                            ]),
+                          ]),
+                        ]),
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-12" }, [
@@ -5011,16 +5021,16 @@ var render = function() {
                             ? _c("small", { staticClass: "text-muted" }, [
                                 _vm._v(
                                   "Tekan kotak dibawah untuk melihat transaksi masing-masing produk"
-                                )
+                                ),
                               ])
-                            : _vm._e()
+                            : _vm._e(),
                         ]),
                         _vm._v(" "),
                         _vm.itemDataStat == "success" && _vm.itemData.length > 0
                           ? _c(
                               "div",
                               { staticClass: "row" },
-                              _vm._l(_vm.itemData, function(item, index) {
+                              _vm._l(_vm.itemData, function (item, index) {
                                 return _c(
                                   "div",
                                   {
@@ -5028,11 +5038,11 @@ var render = function() {
                                     staticClass:
                                       "col-sm-6 col-xl-3 cursor-pointer",
                                     on: {
-                                      click: function($event) {
+                                      click: function ($event) {
                                         $event.preventDefault()
                                         return _vm.fetchProdukSaldo(item)
-                                      }
-                                    }
+                                      },
+                                    },
                                   },
                                   [
                                     item.produk_cu
@@ -5055,8 +5065,8 @@ var render = function() {
                                                 item.produk_cu.tipe ==
                                                   "Pinjaman Umum" ||
                                                 item.produk_cu.tipe ==
-                                                  "Pinjaman Produktif"
-                                            }
+                                                  "Pinjaman Produktif",
+                                            },
                                           },
                                           [
                                             _c(
@@ -5071,16 +5081,16 @@ var render = function() {
                                                       "h6",
                                                       {
                                                         staticClass:
-                                                          "font-weight-semibold mb-0"
+                                                          "font-weight-semibold mb-0",
                                                       },
                                                       [
                                                         _c("check-value", {
                                                           attrs: {
                                                             value: item.saldo,
                                                             valueType:
-                                                              "currency"
-                                                          }
-                                                        })
+                                                              "currency",
+                                                          },
+                                                        }),
                                                       ],
                                                       1
                                                     ),
@@ -5089,16 +5099,16 @@ var render = function() {
                                                       "span",
                                                       {
                                                         staticClass:
-                                                          "opacity-75"
+                                                          "opacity-75",
                                                       },
                                                       [
                                                         _c("b", [
-                                                          _vm._v("No. Rek:")
+                                                          _vm._v("No. Rek:"),
                                                         ]),
                                                         _vm._v(
                                                           " " +
                                                             _vm._s(item.no_rek)
-                                                        )
+                                                        ),
                                                       ]
                                                     ),
                                                     _vm._v(" "),
@@ -5108,36 +5118,37 @@ var render = function() {
                                                       "span",
                                                       {
                                                         staticClass:
-                                                          "opacity-75"
+                                                          "opacity-75",
                                                       },
                                                       [
                                                         _c("b", [
                                                           _vm._v(
                                                             "Usia Saat membuka:"
-                                                          )
+                                                          ),
                                                         ]),
                                                         _vm._v(" "),
                                                         item.tanggal
                                                           ? _c("span", {
                                                               domProps: {
-                                                                innerHTML: _vm._s(
-                                                                  _vm.$options.filters.ageDiff(
-                                                                    item.tanggal,
-                                                                    _vm
-                                                                      .selectedData
-                                                                      .anggota_cu
-                                                                      .tanggal_lahir
-                                                                  )
-                                                                )
-                                                              }
+                                                                innerHTML:
+                                                                  _vm._s(
+                                                                    _vm.$options.filters.ageDiff(
+                                                                      item.tanggal,
+                                                                      _vm
+                                                                        .selectedData
+                                                                        .anggota_cu
+                                                                        .tanggal_lahir
+                                                                    )
+                                                                  ),
+                                                              },
                                                             })
                                                           : _c("span", [
-                                                              _vm._v("-")
-                                                            ])
+                                                              _vm._v("-"),
+                                                            ]),
                                                       ]
-                                                    )
+                                                    ),
                                                   ]
-                                                )
+                                                ),
                                               ]
                                             ),
                                             _vm._v(" "),
@@ -5147,8 +5158,8 @@ var render = function() {
                                                 staticClass:
                                                   "progress bg-blue mb-2",
                                                 staticStyle: {
-                                                  height: "0.125rem"
-                                                }
+                                                  height: "0.125rem",
+                                                },
                                               },
                                               [
                                                 _c(
@@ -5157,19 +5168,19 @@ var render = function() {
                                                     staticClass:
                                                       "progress-bar bg-white",
                                                     staticStyle: {
-                                                      width: "100%"
-                                                    }
+                                                      width: "100%",
+                                                    },
                                                   },
                                                   [
                                                     _c(
                                                       "span",
                                                       {
-                                                        staticClass: "sr-only"
+                                                        staticClass: "sr-only",
                                                       },
                                                       [_vm._v("100% Complete")]
-                                                    )
+                                                    ),
                                                   ]
-                                                )
+                                                ),
                                               ]
                                             ),
                                             _vm._v(" "),
@@ -5182,8 +5193,8 @@ var render = function() {
                                                   ? _c("check-value", {
                                                       attrs: {
                                                         value:
-                                                          item.produk_cu.tipe
-                                                      }
+                                                          item.produk_cu.tipe,
+                                                      },
                                                     })
                                                   : _c("span", [_vm._v("-")]),
                                                 _vm._v(" "),
@@ -5195,8 +5206,8 @@ var render = function() {
                                                   ? _c("check-value", {
                                                       attrs: {
                                                         value:
-                                                          item.produk_cu.name
-                                                      }
+                                                          item.produk_cu.name,
+                                                      },
                                                     })
                                                   : _c("span", [_vm._v("-")]),
                                                 _vm._v(" "),
@@ -5214,14 +5225,14 @@ var render = function() {
                                                         _c("b", [
                                                           _vm._v(
                                                             "Lama Pinjaman (Bulan):"
-                                                          )
+                                                          ),
                                                         ]),
                                                         _vm._v(" "),
                                                         _c("check-value", {
                                                           attrs: {
                                                             value:
-                                                              item.lama_pinjaman
-                                                          }
+                                                              item.lama_pinjaman,
+                                                          },
                                                         }),
                                                         _vm._v(" "),
                                                         _c("br"),
@@ -5229,15 +5240,15 @@ var render = function() {
                                                         _c("b", [
                                                           _vm._v(
                                                             "Lama Sisa Pinjaman (Bulan):"
-                                                          )
+                                                          ),
                                                         ]),
                                                         _vm._v(" "),
                                                         _c("check-value", {
                                                           attrs: {
                                                             value:
-                                                              item.lama_sisa_pinjaman
-                                                          }
-                                                        })
+                                                              item.lama_sisa_pinjaman,
+                                                          },
+                                                        }),
                                                       ],
                                                       1
                                                     )
@@ -5245,14 +5256,14 @@ var render = function() {
                                                       _c("br"),
                                                       _vm._v(
                                                         "\n                       \n                    "
-                                                      )
-                                                    ])
+                                                      ),
+                                                    ]),
                                               ],
                                               1
-                                            )
+                                            ),
                                           ]
                                         )
-                                      : _vm._e()
+                                      : _vm._e(),
                                   ]
                                 )
                               }),
@@ -5261,7 +5272,7 @@ var render = function() {
                           : _c("div", { staticClass: "card card-body" }, [
                               _vm._v(
                                 "\n              Belum terdapat produk pada anggota ini...\n            "
-                              )
+                              ),
                             ]),
                         _vm._v(" "),
                         _vm.itemDataSaldoStat != ""
@@ -5281,8 +5292,8 @@ var render = function() {
                                           ) +
                                           " dengan no rek: " +
                                           _vm._s(_vm.selectedProduk.no_rek)
-                                      )
-                                    ])
+                                      ),
+                                    ]),
                                   ]
                                 ),
                                 _vm._v(" "),
@@ -5290,13 +5301,13 @@ var render = function() {
                                   attrs: {
                                     items: _vm.itemDataSaldo.data,
                                     columnData: _vm.columnDataSaldo,
-                                    itemDataStat: _vm.itemDataSaldoStat
+                                    itemDataStat: _vm.itemDataSaldoStat,
                                   },
                                   scopedSlots: _vm._u(
                                     [
                                       {
                                         key: "item-desktop",
-                                        fn: function(props) {
+                                        fn: function (props) {
                                           return [
                                             props.item
                                               ? _c(
@@ -5306,21 +5317,21 @@ var render = function() {
                                                     class: {
                                                       "bg-info":
                                                         _vm.selectedItem.id ===
-                                                        props.item.id
+                                                        props.item.id,
                                                     },
                                                     on: {
-                                                      click: function($event) {
+                                                      click: function ($event) {
                                                         return _vm.selectedRow(
                                                           props.item
                                                         )
-                                                      }
-                                                    }
+                                                      },
+                                                    },
                                                   },
                                                   [
                                                     _c("td", [
                                                       _vm._v(
                                                         _vm._s(props.index + 1)
-                                                      )
+                                                      ),
                                                     ]),
                                                     _vm._v(" "),
                                                     _c(
@@ -5331,9 +5342,9 @@ var render = function() {
                                                             value:
                                                               props.item.saldo,
                                                             valueType:
-                                                              "currency"
-                                                          }
-                                                        })
+                                                              "currency",
+                                                          },
+                                                        }),
                                                       ],
                                                       1
                                                     ),
@@ -5346,9 +5357,9 @@ var render = function() {
                                                               attrs: {
                                                                 value:
                                                                   props.item
-                                                                    .lama_sisa_pinjaman
-                                                              }
-                                                            })
+                                                                    .lama_sisa_pinjaman,
+                                                              },
+                                                            }),
                                                           ],
                                                           1
                                                         )
@@ -5363,24 +5374,24 @@ var render = function() {
                                                                   props.item
                                                                     .created_at
                                                                 )
-                                                              )
-                                                            }
+                                                              ),
+                                                            },
                                                           })
                                                         : _c("span", [
-                                                            _vm._v("-")
-                                                          ])
-                                                    ])
+                                                            _vm._v("-"),
+                                                          ]),
+                                                    ]),
                                                   ]
                                                 )
-                                              : _vm._e()
+                                              : _vm._e(),
                                           ]
-                                        }
-                                      }
+                                        },
+                                      },
                                     ],
                                     null,
                                     false,
                                     1967185963
-                                  )
+                                  ),
                                 }),
                                 _vm._v(" "),
                                 _c("div", { staticClass: "card-footer" }, [
@@ -5399,7 +5410,7 @@ var render = function() {
                                                     "div",
                                                     {
                                                       staticClass:
-                                                        "d-none d-sm-block"
+                                                        "d-none d-sm-block",
                                                     },
                                                     [
                                                       _vm._v(
@@ -5418,7 +5429,7 @@ var render = function() {
                                                               .total
                                                           ) +
                                                           " entri\n                      "
-                                                      )
+                                                      ),
                                                     ]
                                                   )
                                                 : _vm._e(),
@@ -5429,7 +5440,7 @@ var render = function() {
                                                     "div",
                                                     {
                                                       staticClass:
-                                                        "d-block d-sm-none text-center"
+                                                        "d-block d-sm-none text-center",
                                                     },
                                                     [
                                                       _vm._v(
@@ -5448,7 +5459,7 @@ var render = function() {
                                                               .total
                                                           ) +
                                                           " entri\n                      "
-                                                      )
+                                                      ),
                                                     ]
                                                   )
                                                 : _c("div", [
@@ -5457,26 +5468,26 @@ var render = function() {
                                                     ),
                                                     _c("i", {
                                                       staticClass:
-                                                        "icon-spinner2 spinner"
+                                                        "icon-spinner2 spinner",
                                                     }),
                                                     _vm._v(
                                                       " -\n                        "
                                                     ),
                                                     _c("i", {
                                                       staticClass:
-                                                        "icon-spinner2 spinner"
+                                                        "icon-spinner2 spinner",
                                                     }),
                                                     _vm._v(
                                                       " entri dari\n                        "
                                                     ),
                                                     _c("i", {
                                                       staticClass:
-                                                        "icon-spinner2 spinner"
+                                                        "icon-spinner2 spinner",
                                                     }),
                                                     _vm._v(
                                                       " entri\n                      "
-                                                    )
-                                                  ])
+                                                    ),
+                                                  ]),
                                             ]
                                           ),
                                           _vm._v(" "),
@@ -5484,7 +5495,7 @@ var render = function() {
                                             "div",
                                             {
                                               staticClass:
-                                                "col-md-8 pt-2 text-right d-none d-sm-block"
+                                                "col-md-8 pt-2 text-right d-none d-sm-block",
                                             },
                                             [
                                               _vm.itemDataSaldoStat ===
@@ -5492,7 +5503,7 @@ var render = function() {
                                                 ? _c(
                                                     "div",
                                                     {
-                                                      staticClass: "btn-group"
+                                                      staticClass: "btn-group",
                                                     },
                                                     [
                                                       _c(
@@ -5501,30 +5512,30 @@ var render = function() {
                                                           staticClass:
                                                             "btn btn-light",
                                                           class: {
-                                                            disabled: !_vm
-                                                              .itemDataSaldo
-                                                              .prev_page_url
+                                                            disabled:
+                                                              !_vm.itemDataSaldo
+                                                                .prev_page_url,
                                                           },
                                                           attrs: {
                                                             type: "button",
-                                                            href: "#"
+                                                            href: "#",
                                                           },
                                                           on: {
-                                                            click: function(
+                                                            click: function (
                                                               $event
                                                             ) {
                                                               $event.preventDefault()
                                                               return _vm.goToPageSaldo(
                                                                 1
                                                               )
-                                                            }
-                                                          }
+                                                            },
+                                                          },
                                                         },
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "icon-backward2"
-                                                          })
+                                                              "icon-backward2",
+                                                          }),
                                                         ]
                                                       ),
                                                       _vm._v(" "),
@@ -5534,36 +5545,37 @@ var render = function() {
                                                           staticClass:
                                                             "btn btn-light",
                                                           class: {
-                                                            disabled: !_vm
-                                                              .itemDataSaldo
-                                                              .prev_page_url
+                                                            disabled:
+                                                              !_vm.itemDataSaldo
+                                                                .prev_page_url,
                                                           },
                                                           attrs: {
                                                             type: "button",
-                                                            href: "#"
+                                                            href: "#",
                                                           },
                                                           on: {
-                                                            click: function(
+                                                            click: function (
                                                               $event
                                                             ) {
                                                               $event.preventDefault()
-                                                              return _vm.prevPageSaldo(
-                                                                $event
+                                                              return _vm.prevPageSaldo.apply(
+                                                                null,
+                                                                arguments
                                                               )
-                                                            }
-                                                          }
+                                                            },
+                                                          },
                                                         },
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "icon-arrow-left5"
-                                                          })
+                                                              "icon-arrow-left5",
+                                                          }),
                                                         ]
                                                       ),
                                                       _vm._v(" "),
                                                       _vm._l(
                                                         _vm.pagesSaldo,
-                                                        function(n, index) {
+                                                        function (n, index) {
                                                           return _c(
                                                             "button",
                                                             {
@@ -5576,29 +5588,30 @@ var render = function() {
                                                                     .page == n,
                                                                 "btn-light":
                                                                   _vm.querySaldo
-                                                                    .page != n
+                                                                    .page != n,
                                                               },
                                                               attrs: {
                                                                 type: "button",
-                                                                href: "#"
+                                                                href: "#",
                                                               },
                                                               on: {
-                                                                click: function(
-                                                                  $event
-                                                                ) {
-                                                                  $event.preventDefault()
-                                                                  return _vm.goToPageSaldo(
-                                                                    n
-                                                                  )
-                                                                }
-                                                              }
+                                                                click:
+                                                                  function (
+                                                                    $event
+                                                                  ) {
+                                                                    $event.preventDefault()
+                                                                    return _vm.goToPageSaldo(
+                                                                      n
+                                                                    )
+                                                                  },
+                                                              },
                                                             },
                                                             [
                                                               _vm._v(
                                                                 "\n                          " +
                                                                   _vm._s(n) +
                                                                   "\n                      "
-                                                              )
+                                                              ),
                                                             ]
                                                           )
                                                         }
@@ -5610,30 +5623,31 @@ var render = function() {
                                                           staticClass:
                                                             "btn btn-light",
                                                           class: {
-                                                            disabled: !_vm
-                                                              .itemDataSaldo
-                                                              .next_page_url
+                                                            disabled:
+                                                              !_vm.itemDataSaldo
+                                                                .next_page_url,
                                                           },
                                                           attrs: {
                                                             type: "button",
-                                                            href: "#"
+                                                            href: "#",
                                                           },
                                                           on: {
-                                                            click: function(
+                                                            click: function (
                                                               $event
                                                             ) {
                                                               $event.preventDefault()
-                                                              return _vm.nextPageSaldo(
-                                                                $event
+                                                              return _vm.nextPageSaldo.apply(
+                                                                null,
+                                                                arguments
                                                               )
-                                                            }
-                                                          }
+                                                            },
+                                                          },
                                                         },
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "icon-arrow-right5"
-                                                          })
+                                                              "icon-arrow-right5",
+                                                          }),
                                                         ]
                                                       ),
                                                       _vm._v(" "),
@@ -5643,16 +5657,16 @@ var render = function() {
                                                           staticClass:
                                                             "btn btn-light",
                                                           class: {
-                                                            disabled: !_vm
-                                                              .itemDataSaldo
-                                                              .next_page_url
+                                                            disabled:
+                                                              !_vm.itemDataSaldo
+                                                                .next_page_url,
                                                           },
                                                           attrs: {
                                                             type: "button",
-                                                            href: "#"
+                                                            href: "#",
                                                           },
                                                           on: {
-                                                            click: function(
+                                                            click: function (
                                                               $event
                                                             ) {
                                                               $event.preventDefault()
@@ -5661,23 +5675,23 @@ var render = function() {
                                                                   .itemDataSaldo
                                                                   .last_page
                                                               )
-                                                            }
-                                                          }
+                                                            },
+                                                          },
                                                         },
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "icon-forward3"
-                                                          })
+                                                              "icon-forward3",
+                                                          }),
                                                         ]
-                                                      )
+                                                      ),
                                                     ],
                                                     2
                                                   )
                                                 : _c(
                                                     "div",
                                                     {
-                                                      staticClass: "btn-group"
+                                                      staticClass: "btn-group",
                                                     },
                                                     [
                                                       _c(
@@ -5685,13 +5699,13 @@ var render = function() {
                                                         {
                                                           staticClass:
                                                             "btn btn-light disabled",
-                                                          attrs: { href: "#" }
+                                                          attrs: { href: "#" },
                                                         },
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "icon-backward2"
-                                                          })
+                                                              "icon-backward2",
+                                                          }),
                                                         ]
                                                       ),
                                                       _vm._v(" "),
@@ -5700,13 +5714,13 @@ var render = function() {
                                                         {
                                                           staticClass:
                                                             "btn btn-light disabled",
-                                                          attrs: { href: "#" }
+                                                          attrs: { href: "#" },
                                                         },
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "icon-arrow-left5"
-                                                          })
+                                                              "icon-arrow-left5",
+                                                          }),
                                                         ]
                                                       ),
                                                       _vm._v(" "),
@@ -5715,13 +5729,13 @@ var render = function() {
                                                         {
                                                           staticClass:
                                                             "btn btn-light disabled",
-                                                          attrs: { href: "#" }
+                                                          attrs: { href: "#" },
                                                         },
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "icon-spinner2 spinner"
-                                                          })
+                                                              "icon-spinner2 spinner",
+                                                          }),
                                                         ]
                                                       ),
                                                       _vm._v(" "),
@@ -5730,13 +5744,13 @@ var render = function() {
                                                         {
                                                           staticClass:
                                                             "btn btn-light disabled",
-                                                          attrs: { href: "#" }
+                                                          attrs: { href: "#" },
                                                         },
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "icon-arrow-right5"
-                                                          })
+                                                              "icon-arrow-right5",
+                                                          }),
                                                         ]
                                                       ),
                                                       _vm._v(" "),
@@ -5745,17 +5759,17 @@ var render = function() {
                                                         {
                                                           staticClass:
                                                             "btn btn-light disabled",
-                                                          attrs: { href: "#" }
+                                                          attrs: { href: "#" },
                                                         },
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "icon-forward3"
-                                                          })
+                                                              "icon-forward3",
+                                                          }),
                                                         ]
-                                                      )
+                                                      ),
                                                     ]
-                                                  )
+                                                  ),
                                             ]
                                           ),
                                           _vm._v(" "),
@@ -5763,7 +5777,7 @@ var render = function() {
                                             "div",
                                             {
                                               staticClass:
-                                                "col-md-12 pt-2 text-center d-block d-sm-none"
+                                                "col-md-12 pt-2 text-center d-block d-sm-none",
                                             },
                                             [
                                               _vm.itemDataSaldoStat ===
@@ -5771,11 +5785,11 @@ var render = function() {
                                                 ? _c(
                                                     "div",
                                                     {
-                                                      staticClass: "btn-group"
+                                                      staticClass: "btn-group",
                                                     },
                                                     _vm._l(
                                                       _vm.pagesSaldo,
-                                                      function(n, index) {
+                                                      function (n, index) {
                                                         return _c(
                                                           "button",
                                                           {
@@ -5787,29 +5801,29 @@ var render = function() {
                                                                   .page == n,
                                                               "btn-light":
                                                                 _vm.querySaldo
-                                                                  .page != n
+                                                                  .page != n,
                                                             },
                                                             attrs: {
                                                               type: "button",
-                                                              href: "#"
+                                                              href: "#",
                                                             },
                                                             on: {
-                                                              click: function(
+                                                              click: function (
                                                                 $event
                                                               ) {
                                                                 $event.preventDefault()
                                                                 return _vm.goToPageSaldo(
                                                                   n
                                                                 )
-                                                              }
-                                                            }
+                                                              },
+                                                            },
                                                           },
                                                           [
                                                             _vm._v(
                                                               "\n                          " +
                                                                 _vm._s(n) +
                                                                 "\n                      "
-                                                            )
+                                                            ),
                                                           ]
                                                         )
                                                       }
@@ -5826,7 +5840,7 @@ var render = function() {
                                                     "div",
                                                     {
                                                       staticClass:
-                                                        "btn-group pt-2"
+                                                        "btn-group pt-2",
                                                     },
                                                     [
                                                       _c(
@@ -5835,30 +5849,30 @@ var render = function() {
                                                           staticClass:
                                                             "btn btn-light",
                                                           class: {
-                                                            disabled: !_vm
-                                                              .itemDataSaldo
-                                                              .prev_page_url
+                                                            disabled:
+                                                              !_vm.itemDataSaldo
+                                                                .prev_page_url,
                                                           },
                                                           attrs: {
                                                             type: "button",
-                                                            href: "#"
+                                                            href: "#",
                                                           },
                                                           on: {
-                                                            click: function(
+                                                            click: function (
                                                               $event
                                                             ) {
                                                               $event.preventDefault()
                                                               return _vm.goToPageSaldo(
                                                                 1
                                                               )
-                                                            }
-                                                          }
+                                                            },
+                                                          },
                                                         },
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "icon-backward2"
-                                                          })
+                                                              "icon-backward2",
+                                                          }),
                                                         ]
                                                       ),
                                                       _vm._v(" "),
@@ -5868,30 +5882,31 @@ var render = function() {
                                                           staticClass:
                                                             "btn btn-light",
                                                           class: {
-                                                            disabled: !_vm
-                                                              .itemDataSaldo
-                                                              .prev_page_url
+                                                            disabled:
+                                                              !_vm.itemDataSaldo
+                                                                .prev_page_url,
                                                           },
                                                           attrs: {
                                                             type: "button",
-                                                            href: "#"
+                                                            href: "#",
                                                           },
                                                           on: {
-                                                            click: function(
+                                                            click: function (
                                                               $event
                                                             ) {
                                                               $event.preventDefault()
-                                                              return _vm.prevPageSaldo(
-                                                                $event
+                                                              return _vm.prevPageSaldo.apply(
+                                                                null,
+                                                                arguments
                                                               )
-                                                            }
-                                                          }
+                                                            },
+                                                          },
                                                         },
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "icon-arrow-left5"
-                                                          })
+                                                              "icon-arrow-left5",
+                                                          }),
                                                         ]
                                                       ),
                                                       _vm._v(" "),
@@ -5901,30 +5916,31 @@ var render = function() {
                                                           staticClass:
                                                             "btn btn-light",
                                                           class: {
-                                                            disabled: !_vm
-                                                              .itemDataSaldo
-                                                              .next_page_url
+                                                            disabled:
+                                                              !_vm.itemDataSaldo
+                                                                .next_page_url,
                                                           },
                                                           attrs: {
                                                             type: "button",
-                                                            href: "#"
+                                                            href: "#",
                                                           },
                                                           on: {
-                                                            click: function(
+                                                            click: function (
                                                               $event
                                                             ) {
                                                               $event.preventDefault()
-                                                              return _vm.nextPageSaldo(
-                                                                $event
+                                                              return _vm.nextPageSaldo.apply(
+                                                                null,
+                                                                arguments
                                                               )
-                                                            }
-                                                          }
+                                                            },
+                                                          },
                                                         },
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "icon-arrow-right5"
-                                                          })
+                                                              "icon-arrow-right5",
+                                                          }),
                                                         ]
                                                       ),
                                                       _vm._v(" "),
@@ -5934,16 +5950,16 @@ var render = function() {
                                                           staticClass:
                                                             "btn btn-light",
                                                           class: {
-                                                            disabled: !_vm
-                                                              .itemDataSaldo
-                                                              .next_page_url
+                                                            disabled:
+                                                              !_vm.itemDataSaldo
+                                                                .next_page_url,
                                                           },
                                                           attrs: {
                                                             type: "button",
-                                                            href: "#"
+                                                            href: "#",
                                                           },
                                                           on: {
-                                                            click: function(
+                                                            click: function (
                                                               $event
                                                             ) {
                                                               $event.preventDefault()
@@ -5952,22 +5968,22 @@ var render = function() {
                                                                   .itemDataSaldo
                                                                   .last_page
                                                               )
-                                                            }
-                                                          }
+                                                            },
+                                                          },
                                                         },
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "icon-forward3"
-                                                          })
+                                                              "icon-forward3",
+                                                          }),
                                                         ]
-                                                      )
+                                                      ),
                                                     ]
                                                   )
                                                 : _c(
                                                     "div",
                                                     {
-                                                      staticClass: "btn-group"
+                                                      staticClass: "btn-group",
                                                     },
                                                     [
                                                       _c(
@@ -5975,13 +5991,13 @@ var render = function() {
                                                         {
                                                           staticClass:
                                                             "btn btn-light disabled",
-                                                          attrs: { href: "#" }
+                                                          attrs: { href: "#" },
                                                         },
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "icon-backward2"
-                                                          })
+                                                              "icon-backward2",
+                                                          }),
                                                         ]
                                                       ),
                                                       _vm._v(" "),
@@ -5990,13 +6006,13 @@ var render = function() {
                                                         {
                                                           staticClass:
                                                             "btn btn-light disabled",
-                                                          attrs: { href: "#" }
+                                                          attrs: { href: "#" },
                                                         },
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "icon-arrow-left5"
-                                                          })
+                                                              "icon-arrow-left5",
+                                                          }),
                                                         ]
                                                       ),
                                                       _vm._v(" "),
@@ -6005,13 +6021,13 @@ var render = function() {
                                                         {
                                                           staticClass:
                                                             "btn btn-light disabled",
-                                                          attrs: { href: "#" }
+                                                          attrs: { href: "#" },
                                                         },
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "icon-spinner2 spinner"
-                                                          })
+                                                              "icon-spinner2 spinner",
+                                                          }),
                                                         ]
                                                       ),
                                                       _vm._v(" "),
@@ -6020,13 +6036,13 @@ var render = function() {
                                                         {
                                                           staticClass:
                                                             "btn btn-light disabled",
-                                                          attrs: { href: "#" }
+                                                          attrs: { href: "#" },
                                                         },
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "icon-arrow-right5"
-                                                          })
+                                                              "icon-arrow-right5",
+                                                          }),
                                                         ]
                                                       ),
                                                       _vm._v(" "),
@@ -6035,27 +6051,27 @@ var render = function() {
                                                         {
                                                           staticClass:
                                                             "btn btn-light disabled",
-                                                          attrs: { href: "#" }
+                                                          attrs: { href: "#" },
                                                         },
                                                         [
                                                           _c("i", {
                                                             staticClass:
-                                                              "icon-forward3"
-                                                          })
+                                                              "icon-forward3",
+                                                          }),
                                                         ]
-                                                      )
+                                                      ),
                                                     ]
-                                                  )
+                                                  ),
                                             ]
-                                          )
+                                          ),
                                         ]
                                       )
-                                    : _vm._e()
-                                ])
+                                    : _vm._e(),
+                                ]),
                               ],
                               1
                             )
-                          : _vm._e()
+                          : _vm._e(),
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-12" }, [_c("hr")]),
@@ -6063,7 +6079,7 @@ var render = function() {
                       _vm.tipe == "verifikasi" || _vm.tipe == "lihat"
                         ? [
                             _c("div", { staticClass: "col-md-12" }, [
-                              _c("h5", [_vm._v("Informasi Pendukung:")])
+                              _c("h5", [_vm._v("Informasi Pendukung:")]),
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-4" }, [
@@ -6080,7 +6096,7 @@ var render = function() {
                                               _vm.selectedData.anggota_cu_cu.cu
                                                 .name
                                           )
-                                        )
+                                        ),
                                       ]),
                                       _vm._v(" "),
                                       _c("span", [
@@ -6112,12 +6128,12 @@ var render = function() {
                                                 " bulan"
                                             ) +
                                             " \n                    "
-                                        )
-                                      ])
-                                    ])
-                                  ])
+                                        ),
+                                      ]),
+                                    ]),
+                                  ]),
                                 ]
-                              )
+                              ),
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-4" }, [
@@ -6141,10 +6157,10 @@ var render = function() {
                                                     _vm.selectedData.anggota_cu
                                                       .tanggal_lahir
                                                   )
-                                                )
-                                              }
+                                                ),
+                                              },
                                             })
-                                          : _vm._e()
+                                          : _vm._e(),
                                       ]),
                                       _vm._v(" "),
                                       _c("span", [
@@ -6161,15 +6177,15 @@ var render = function() {
                                                       .anggota_cu_cu
                                                       .tanggal_masuk
                                                   )
-                                                )
-                                              }
+                                                ),
+                                              },
                                             })
-                                          : _vm._e()
-                                      ])
-                                    ])
-                                  ])
+                                          : _vm._e(),
+                                      ]),
+                                    ]),
+                                  ]),
                                 ]
-                              )
+                              ),
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-4" }, [
@@ -6195,10 +6211,10 @@ var render = function() {
                                                             .anggota_cu
                                                             .tanggal_lahir
                                                         )
-                                                      )
-                                                    }
+                                                      ),
+                                                    },
                                                   })
-                                                : _vm._e()
+                                                : _vm._e(),
                                             ]),
                                             _vm._v(" "),
                                             _c("span", [
@@ -6215,11 +6231,11 @@ var render = function() {
                                                             .anggota_cu
                                                             .tanggal_cacat
                                                         )
-                                                      )
-                                                    }
+                                                      ),
+                                                    },
                                                   })
-                                                : _vm._e()
-                                            ])
+                                                : _vm._e(),
+                                            ]),
                                           ])
                                         : _vm.selectedData.tipe == "MENINGGAL"
                                         ? _c("div", [
@@ -6237,10 +6253,10 @@ var render = function() {
                                                             .anggota_cu
                                                             .tanggal_lahir
                                                         )
-                                                      )
-                                                    }
+                                                      ),
+                                                    },
                                                   })
-                                                : _vm._e()
+                                                : _vm._e(),
                                             ]),
                                             _vm._v(" "),
                                             _c("span", [
@@ -6257,18 +6273,18 @@ var render = function() {
                                                             .anggota_cu
                                                             .tanggal_meninggal
                                                         )
-                                                      )
-                                                    }
+                                                      ),
+                                                    },
                                                   })
-                                                : _vm._e()
-                                            ])
+                                                : _vm._e(),
+                                            ]),
                                           ])
-                                        : _vm._e()
-                                    ])
-                                  ])
+                                        : _vm._e(),
+                                    ]),
+                                  ]),
                                 ]
-                              )
-                            ])
+                              ),
+                            ]),
                           ]
                         : [
                             _c("div", { staticClass: "col-md-3" }, [
@@ -6287,7 +6303,7 @@ var render = function() {
                                               _vm.selectedData.anggota_cu_cu.cu
                                                 .name
                                           )
-                                        )
+                                        ),
                                       ]),
                                       _vm._v(" "),
                                       _c("span", [
@@ -6319,10 +6335,10 @@ var render = function() {
                                                 " bulan"
                                             ) +
                                             " \n                    "
-                                        )
-                                      ])
-                                    ])
-                                  ])
+                                        ),
+                                      ]),
+                                    ]),
+                                  ]),
                                 ]
                               ),
                               _vm._v(" "),
@@ -6346,10 +6362,10 @@ var render = function() {
                                                     _vm.selectedData.anggota_cu
                                                       .tanggal_lahir
                                                   )
-                                                )
-                                              }
+                                                ),
+                                              },
                                             })
-                                          : _vm._e()
+                                          : _vm._e(),
                                       ]),
                                       _vm._v(" "),
                                       _c("span", [
@@ -6366,13 +6382,13 @@ var render = function() {
                                                       .anggota_cu_cu
                                                       .tanggal_masuk
                                                   )
-                                                )
-                                              }
+                                                ),
+                                              },
                                             })
-                                          : _vm._e()
-                                      ])
-                                    ])
-                                  ])
+                                          : _vm._e(),
+                                      ]),
+                                    ]),
+                                  ]),
                                 ]
                               ),
                               _vm._v(" "),
@@ -6398,10 +6414,10 @@ var render = function() {
                                                             .anggota_cu
                                                             .tanggal_lahir
                                                         )
-                                                      )
-                                                    }
+                                                      ),
+                                                    },
                                                   })
-                                                : _vm._e()
+                                                : _vm._e(),
                                             ]),
                                             _vm._v(" "),
                                             _c("span", [
@@ -6418,11 +6434,11 @@ var render = function() {
                                                             .anggota_cu
                                                             .tanggal_cacat
                                                         )
-                                                      )
-                                                    }
+                                                      ),
+                                                    },
                                                   })
-                                                : _vm._e()
-                                            ])
+                                                : _vm._e(),
+                                            ]),
                                           ])
                                         : _vm.selectedData.tipe == "MENINGGAL"
                                         ? _c("div", [
@@ -6440,10 +6456,10 @@ var render = function() {
                                                             .anggota_cu
                                                             .tanggal_lahir
                                                         )
-                                                      )
-                                                    }
+                                                      ),
+                                                    },
                                                   })
-                                                : _vm._e()
+                                                : _vm._e(),
                                             ]),
                                             _vm._v(" "),
                                             _c("span", [
@@ -6460,17 +6476,17 @@ var render = function() {
                                                             .anggota_cu
                                                             .tanggal_meninggal
                                                         )
-                                                      )
-                                                    }
+                                                      ),
+                                                    },
                                                   })
-                                                : _vm._e()
-                                            ])
+                                                : _vm._e(),
+                                            ]),
                                           ])
-                                        : _vm._e()
-                                    ])
-                                  ])
+                                        : _vm._e(),
+                                    ]),
+                                  ]),
                                 ]
-                              )
+                              ),
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-9" }, [
@@ -6488,30 +6504,31 @@ var render = function() {
                                                 name: "model",
                                                 rawName: "v-model",
                                                 value: _vm.formStatus.status,
-                                                expression: "formStatus.status"
-                                              }
+                                                expression: "formStatus.status",
+                                              },
                                             ],
                                             staticClass: "form-control",
                                             attrs: {
                                               name: "status",
-                                              "data-width": "100%"
+                                              "data-width": "100%",
                                             },
                                             on: {
-                                              change: function($event) {
-                                                var $$selectedVal = Array.prototype.filter
-                                                  .call(
-                                                    $event.target.options,
-                                                    function(o) {
-                                                      return o.selected
-                                                    }
-                                                  )
-                                                  .map(function(o) {
-                                                    var val =
-                                                      "_value" in o
-                                                        ? o._value
-                                                        : o.value
-                                                    return val
-                                                  })
+                                              change: function ($event) {
+                                                var $$selectedVal =
+                                                  Array.prototype.filter
+                                                    .call(
+                                                      $event.target.options,
+                                                      function (o) {
+                                                        return o.selected
+                                                      }
+                                                    )
+                                                    .map(function (o) {
+                                                      var val =
+                                                        "_value" in o
+                                                          ? o._value
+                                                          : o.value
+                                                      return val
+                                                    })
                                                 _vm.$set(
                                                   _vm.formStatus,
                                                   "status",
@@ -6519,8 +6536,8 @@ var render = function() {
                                                     ? $$selectedVal
                                                     : $$selectedVal[0]
                                                 )
-                                              }
-                                            }
+                                              },
+                                            },
                                           },
                                           [
                                             _c(
@@ -6528,13 +6545,13 @@ var render = function() {
                                               {
                                                 attrs: {
                                                   disabled: "",
-                                                  value: ""
-                                                }
+                                                  value: "",
+                                                },
                                               },
                                               [
                                                 _vm._v(
                                                   "Silahkan pilih status klaim"
-                                                )
+                                                ),
                                               ]
                                             ),
                                             _vm._v(" "),
@@ -6562,7 +6579,7 @@ var render = function() {
                                               [
                                                 _vm._v(
                                                   "Ditolak (Salah Memilih / Tidak Meninggal atau Cacat)"
-                                                )
+                                                ),
                                               ]
                                             ),
                                             _vm._v(" "),
@@ -6570,10 +6587,10 @@ var render = function() {
                                               "option",
                                               { attrs: { value: "4" } },
                                               [_vm._v("Disetujui")]
-                                            )
+                                            ),
                                           ]
-                                        )
-                                      ])
+                                        ),
+                                      ]),
                                     ])
                                   : _vm._e(),
                                 _vm._v(" "),
@@ -6587,8 +6604,8 @@ var render = function() {
                                           class: {
                                             "has-error": _vm.errors.has(
                                               "formStatus.tanggal_pencairan"
-                                            )
-                                          }
+                                            ),
+                                          },
                                         },
                                         [
                                           _c(
@@ -6597,20 +6614,20 @@ var render = function() {
                                               class: {
                                                 "text-danger": _vm.errors.has(
                                                   "formStatus.tanggal_pencairan"
-                                                )
-                                              }
+                                                ),
+                                              },
                                             },
                                             [
                                               _vm.errors.has(
                                                 "formStatus.tanggal_pencairan"
                                               )
                                                 ? _c("i", {
-                                                    staticClass: "icon-cross2"
+                                                    staticClass: "icon-cross2",
                                                   })
                                                 : _vm._e(),
                                               _vm._v(
                                                 "\n                      Tgl. Pencairan:"
-                                              )
+                                              ),
                                             ]
                                           ),
                                           _vm._v(" "),
@@ -6620,18 +6637,20 @@ var render = function() {
                                                 name: "show",
                                                 rawName: "v-show",
                                                 value: _vm.tipe != "selesai",
-                                                expression: "tipe != 'selesai'"
-                                              }
+                                                expression: "tipe != 'selesai'",
+                                              },
                                             ],
                                             attrs: {
                                               defaultDate:
-                                                _vm.formStatus.tanggal_pencairan
+                                                _vm.formStatus
+                                                  .tanggal_pencairan,
                                             },
                                             on: {
-                                              dateSelected: function($event) {
-                                                _vm.formStatus.tanggal_pencairan = $event
-                                              }
-                                            }
+                                              dateSelected: function ($event) {
+                                                _vm.formStatus.tanggal_pencairan =
+                                                  $event
+                                              },
+                                            },
                                           }),
                                           _vm._v(" "),
                                           _c("input", {
@@ -6643,31 +6662,32 @@ var render = function() {
                                                   _vm.formStatus
                                                     .tanggal_pencairan,
                                                 expression:
-                                                  "formStatus.tanggal_pencairan"
+                                                  "formStatus.tanggal_pencairan",
                                               },
                                               {
                                                 name: "show",
                                                 rawName: "v-show",
                                                 value: _vm.tipe == _vm.selesai,
-                                                expression: "tipe == selesai"
+                                                expression: "tipe == selesai",
                                               },
                                               {
                                                 name: "validate",
                                                 rawName: "v-validate",
                                                 value: "required",
-                                                expression: "'required'"
-                                              }
+                                                expression: "'required'",
+                                              },
                                             ],
                                             attrs: {
                                               readonly: _vm.tipe == "selesai",
-                                              "data-vv-as": "Tgl. pencairan"
+                                              "data-vv-as": "Tgl. pencairan",
                                             },
                                             domProps: {
                                               value:
-                                                _vm.formStatus.tanggal_pencairan
+                                                _vm.formStatus
+                                                  .tanggal_pencairan,
                                             },
                                             on: {
-                                              input: function($event) {
+                                              input: function ($event) {
                                                 if ($event.target.composing) {
                                                   return
                                                 }
@@ -6676,8 +6696,8 @@ var render = function() {
                                                   "tanggal_pencairan",
                                                   $event.target.value
                                                 )
-                                              }
-                                            }
+                                              },
+                                            },
                                           }),
                                           _vm._v(" "),
                                           _vm.errors.has(
@@ -6687,12 +6707,12 @@ var render = function() {
                                                 "small",
                                                 {
                                                   staticClass:
-                                                    "text-muted text-danger"
+                                                    "text-muted text-danger",
                                                 },
                                                 [
                                                   _c("i", {
                                                     staticClass:
-                                                      "icon-arrow-small-right"
+                                                      "icon-arrow-small-right",
                                                   }),
                                                   _vm._v(
                                                     " " +
@@ -6702,17 +6722,17 @@ var render = function() {
                                                         )
                                                       ) +
                                                       "\n                    "
-                                                  )
+                                                  ),
                                                 ]
                                               )
                                             : _c(
                                                 "small",
                                                 { staticClass: "text-muted" },
                                                 [_vm._v(" ")]
-                                              )
+                                              ),
                                         ],
                                         1
-                                      )
+                                      ),
                                     ])
                                   : _vm._e(),
                                 _vm._v(" "),
@@ -6727,8 +6747,8 @@ var render = function() {
                                           class: {
                                             "has-error": _vm.errors.has(
                                               "formStatus.tunas_disetujui"
-                                            )
-                                          }
+                                            ),
+                                          },
                                         },
                                         [
                                           _c(
@@ -6737,20 +6757,20 @@ var render = function() {
                                               class: {
                                                 "text-danger": _vm.errors.has(
                                                   "formStatus.tunas_disetujui"
-                                                )
-                                              }
+                                                ),
+                                              },
                                             },
                                             [
                                               _vm.errors.has(
                                                 "formStatus.tunas_disetujui"
                                               )
                                                 ? _c("i", {
-                                                    staticClass: "icon-cross2"
+                                                    staticClass: "icon-cross2",
                                                   })
                                                 : _vm._e(),
                                               _vm._v(
                                                 " Nilai pengajuan klaim TUNAS yang disetujui"
-                                              )
+                                              ),
                                             ]
                                           ),
                                           _vm._v(" "),
@@ -6764,8 +6784,8 @@ var render = function() {
                                                 "bg-danger-400":
                                                   _vm.selisihTunas < 0,
                                                 "bg-brown-400":
-                                                  _vm.selisihTunas > 0
-                                              }
+                                                  _vm.selisihTunas > 0,
+                                              },
                                             },
                                             [
                                               _c(
@@ -6775,7 +6795,7 @@ var render = function() {
                                                   _c(
                                                     "div",
                                                     {
-                                                      staticClass: "media-body"
+                                                      staticClass: "media-body",
                                                     },
                                                     [
                                                       _c(
@@ -6785,7 +6805,7 @@ var render = function() {
                                                           _vm.selisihTunas > 0
                                                             ? _c("i", {
                                                                 staticClass:
-                                                                  "icon-plus3"
+                                                                  "icon-plus3",
                                                               })
                                                             : _vm._e(),
                                                           _vm._v(" "),
@@ -6794,9 +6814,9 @@ var render = function() {
                                                               value:
                                                                 _vm.selisihTunas,
                                                               valueType:
-                                                                "currency"
-                                                            }
-                                                          })
+                                                                "currency",
+                                                            },
+                                                          }),
                                                         ],
                                                         1
                                                       ),
@@ -6805,18 +6825,18 @@ var render = function() {
                                                         "span",
                                                         {
                                                           staticClass:
-                                                            "text-uppercase font-size-xs"
+                                                            "text-uppercase font-size-xs",
                                                         },
                                                         [
                                                           _vm._v(
                                                             "Selisih Tunas yang di klaim dengan yang disetujui"
-                                                          )
+                                                          ),
                                                         ]
-                                                      )
+                                                      ),
                                                     ]
-                                                  )
+                                                  ),
                                                 ]
-                                              )
+                                              ),
                                             ]
                                           ),
                                           _vm._v(" "),
@@ -6826,8 +6846,8 @@ var render = function() {
                                                 name: "validate",
                                                 rawName: "v-validate",
                                                 value: "required",
-                                                expression: "'required'"
-                                              }
+                                                expression: "'required'",
+                                              },
                                             ],
                                             staticClass: "form-control",
                                             attrs: {
@@ -6837,12 +6857,12 @@ var render = function() {
                                               placeholder:
                                                 "Silahkan masukkan jumlah nilai pengajuan klaim TUNAS yang disetujui",
                                               "data-vv-as":
-                                                "Nilai pengajuan klaim TUNAS yang disetujui"
+                                                "Nilai pengajuan klaim TUNAS yang disetujui",
                                             },
                                             model: {
                                               value:
                                                 _vm.formStatus.tunas_disetujui,
-                                              callback: function($$v) {
+                                              callback: function ($$v) {
                                                 _vm.$set(
                                                   _vm.formStatus,
                                                   "tunas_disetujui",
@@ -6850,8 +6870,8 @@ var render = function() {
                                                 )
                                               },
                                               expression:
-                                                "formStatus.tunas_disetujui"
-                                            }
+                                                "formStatus.tunas_disetujui",
+                                            },
                                           }),
                                           _vm._v(" "),
                                           _vm.errors.has(
@@ -6861,12 +6881,12 @@ var render = function() {
                                                 "small",
                                                 {
                                                   staticClass:
-                                                    "text-muted text-danger"
+                                                    "text-muted text-danger",
                                                 },
                                                 [
                                                   _c("i", {
                                                     staticClass:
-                                                      "icon-arrow-small-right"
+                                                      "icon-arrow-small-right",
                                                   }),
                                                   _vm._v(
                                                     " " +
@@ -6876,17 +6896,17 @@ var render = function() {
                                                         )
                                                       ) +
                                                       "\n                    "
-                                                  )
+                                                  ),
                                                 ]
                                               )
                                             : _c(
                                                 "small",
                                                 { staticClass: "text-muted" },
                                                 [_vm._v(" ")]
-                                              )
+                                              ),
                                         ],
                                         1
-                                      )
+                                      ),
                                     ])
                                   : _vm._e(),
                                 _vm._v(" "),
@@ -6900,8 +6920,8 @@ var render = function() {
                                           class: {
                                             "has-error": _vm.errors.has(
                                               "formStatus.lintang_disetujui"
-                                            )
-                                          }
+                                            ),
+                                          },
                                         },
                                         [
                                           _c(
@@ -6910,20 +6930,20 @@ var render = function() {
                                               class: {
                                                 "text-danger": _vm.errors.has(
                                                   "formStatus.lintang_disetujui"
-                                                )
-                                              }
+                                                ),
+                                              },
                                             },
                                             [
                                               _vm.errors.has(
                                                 "formStatus.lintang_disetujui"
                                               )
                                                 ? _c("i", {
-                                                    staticClass: "icon-cross2"
+                                                    staticClass: "icon-cross2",
                                                   })
                                                 : _vm._e(),
                                               _vm._v(
                                                 "Nilai pengajuan klaim LINTANG yang disetujui"
-                                              )
+                                              ),
                                             ]
                                           ),
                                           _vm._v(" "),
@@ -6937,8 +6957,8 @@ var render = function() {
                                                 "bg-danger-400":
                                                   _vm.selisihLintang < 0,
                                                 "bg-brown-400":
-                                                  _vm.selisihLintang > 0
-                                              }
+                                                  _vm.selisihLintang > 0,
+                                              },
                                             },
                                             [
                                               _c(
@@ -6948,7 +6968,7 @@ var render = function() {
                                                   _c(
                                                     "div",
                                                     {
-                                                      staticClass: "media-body"
+                                                      staticClass: "media-body",
                                                     },
                                                     [
                                                       _c(
@@ -6958,7 +6978,7 @@ var render = function() {
                                                           _vm.selisihLintang > 0
                                                             ? _c("i", {
                                                                 staticClass:
-                                                                  "icon-plus3"
+                                                                  "icon-plus3",
                                                               })
                                                             : _vm._e(),
                                                           _vm._v(" "),
@@ -6967,9 +6987,9 @@ var render = function() {
                                                               value:
                                                                 _vm.selisihLintang,
                                                               valueType:
-                                                                "currency"
-                                                            }
-                                                          })
+                                                                "currency",
+                                                            },
+                                                          }),
                                                         ],
                                                         1
                                                       ),
@@ -6978,18 +6998,18 @@ var render = function() {
                                                         "span",
                                                         {
                                                           staticClass:
-                                                            "text-uppercase font-size-xs"
+                                                            "text-uppercase font-size-xs",
                                                         },
                                                         [
                                                           _vm._v(
                                                             "Selisih Lintang yang di klaim dengan yang disetujui"
-                                                          )
+                                                          ),
                                                         ]
-                                                      )
+                                                      ),
                                                     ]
-                                                  )
+                                                  ),
                                                 ]
-                                              )
+                                              ),
                                             ]
                                           ),
                                           _vm._v(" "),
@@ -6999,8 +7019,8 @@ var render = function() {
                                                 name: "validate",
                                                 rawName: "v-validate",
                                                 value: "required",
-                                                expression: "'required'"
-                                              }
+                                                expression: "'required'",
+                                              },
                                             ],
                                             staticClass: "form-control",
                                             attrs: {
@@ -7010,13 +7030,13 @@ var render = function() {
                                               placeholder:
                                                 "Silahkan masukkan jumlah nilai pengajuan klaim LINTANG yang disetujui",
                                               "data-vv-as":
-                                                "Nilai pengajuan klaim LINTANG yang disetujui"
+                                                "Nilai pengajuan klaim LINTANG yang disetujui",
                                             },
                                             model: {
                                               value:
                                                 _vm.formStatus
                                                   .lintang_disetujui,
-                                              callback: function($$v) {
+                                              callback: function ($$v) {
                                                 _vm.$set(
                                                   _vm.formStatus,
                                                   "lintang_disetujui",
@@ -7024,8 +7044,8 @@ var render = function() {
                                                 )
                                               },
                                               expression:
-                                                "formStatus.lintang_disetujui"
-                                            }
+                                                "formStatus.lintang_disetujui",
+                                            },
                                           }),
                                           _vm._v(" "),
                                           _vm.errors.has(
@@ -7035,12 +7055,12 @@ var render = function() {
                                                 "small",
                                                 {
                                                   staticClass:
-                                                    "text-muted text-danger"
+                                                    "text-muted text-danger",
                                                 },
                                                 [
                                                   _c("i", {
                                                     staticClass:
-                                                      "icon-arrow-small-right"
+                                                      "icon-arrow-small-right",
                                                   }),
                                                   _vm._v(
                                                     " " +
@@ -7050,17 +7070,17 @@ var render = function() {
                                                         )
                                                       ) +
                                                       "\n                    "
-                                                  )
+                                                  ),
                                                 ]
                                               )
                                             : _c(
                                                 "small",
                                                 { staticClass: "text-muted" },
                                                 [_vm._v(" ")]
-                                              )
+                                              ),
                                         ],
                                         1
-                                      )
+                                      ),
                                     ])
                                   : _vm._e(),
                                 _vm._v(" "),
@@ -7071,7 +7091,7 @@ var render = function() {
                                         _c("h5", [
                                           _vm._v(
                                             "\n                      Keterangan:\n                    "
-                                          )
+                                          ),
                                         ]),
                                         _vm._v(" "),
                                         _c("textarea", {
@@ -7082,8 +7102,8 @@ var render = function() {
                                               value:
                                                 _vm.formStatus.keterangan_klaim,
                                               expression:
-                                                "formStatus.keterangan_klaim"
-                                            }
+                                                "formStatus.keterangan_klaim",
+                                            },
                                           ],
                                           staticClass: "form-control",
                                           attrs: {
@@ -7092,14 +7112,14 @@ var render = function() {
                                             name: "keterangan_klaim",
                                             readonly: _vm.tipe == "selesai",
                                             placeholder:
-                                              "Silahkan masukkan keterangan "
+                                              "Silahkan masukkan keterangan ",
                                           },
                                           domProps: {
                                             value:
-                                              _vm.formStatus.keterangan_klaim
+                                              _vm.formStatus.keterangan_klaim,
                                           },
                                           on: {
-                                            input: function($event) {
+                                            input: function ($event) {
                                               if ($event.target.composing) {
                                                 return
                                               }
@@ -7108,10 +7128,10 @@ var render = function() {
                                                 "keterangan_klaim",
                                                 $event.target.value
                                               )
-                                            }
-                                          }
-                                        })
-                                      ])
+                                            },
+                                          },
+                                        }),
+                                      ]),
                                     ])
                                   : _vm._e(),
                                 _vm._v(" "),
@@ -7121,7 +7141,7 @@ var render = function() {
                                         _c("h5", [
                                           _vm._v(
                                             "\n                      Nomor Surat:\n                    "
-                                          )
+                                          ),
                                         ]),
                                         _vm._v(" "),
                                         _vm.currentUser.id_cu == 0
@@ -7133,22 +7153,22 @@ var render = function() {
                                                   value:
                                                     _vm.formStatus.surat_nomor,
                                                   expression:
-                                                    "formStatus.surat_nomor"
-                                                }
+                                                    "formStatus.surat_nomor",
+                                                },
                                               ],
                                               staticClass: "form-control",
                                               attrs: {
                                                 type: "text",
                                                 name: "surat_nomor",
                                                 placeholder:
-                                                  "Silahkan masukkan nomor surat"
+                                                  "Silahkan masukkan nomor surat",
                                               },
                                               domProps: {
                                                 value:
-                                                  _vm.formStatus.surat_nomor
+                                                  _vm.formStatus.surat_nomor,
                                               },
                                               on: {
-                                                input: function($event) {
+                                                input: function ($event) {
                                                   if ($event.target.composing) {
                                                     return
                                                   }
@@ -7157,8 +7177,8 @@ var render = function() {
                                                     "surat_nomor",
                                                     $event.target.value
                                                   )
-                                                }
-                                              }
+                                                },
+                                              },
                                             })
                                           : _c("input", {
                                               directives: [
@@ -7168,8 +7188,8 @@ var render = function() {
                                                   value:
                                                     _vm.formStatus.surat_nomor,
                                                   expression:
-                                                    "formStatus.surat_nomor"
-                                                }
+                                                    "formStatus.surat_nomor",
+                                                },
                                               ],
                                               staticClass: "form-control",
                                               attrs: {
@@ -7177,14 +7197,14 @@ var render = function() {
                                                 name: "surat_nomor",
                                                 placeholder:
                                                   "Silahkan masukkan nomor surat",
-                                                readonly: ""
+                                                readonly: "",
                                               },
                                               domProps: {
                                                 value:
-                                                  _vm.formStatus.surat_nomor
+                                                  _vm.formStatus.surat_nomor,
                                               },
                                               on: {
-                                                input: function($event) {
+                                                input: function ($event) {
                                                   if ($event.target.composing) {
                                                     return
                                                   }
@@ -7193,10 +7213,10 @@ var render = function() {
                                                     "surat_nomor",
                                                     $event.target.value
                                                   )
-                                                }
-                                              }
-                                            })
-                                      ])
+                                                },
+                                              },
+                                            }),
+                                      ]),
                                     ])
                                   : _vm._e(),
                                 _vm._v(" "),
@@ -7209,22 +7229,24 @@ var render = function() {
                                           _c("h5", [
                                             _vm._v(
                                               "\n                      Tgl. Surat:"
-                                            )
+                                            ),
                                           ]),
                                           _vm._v(" "),
                                           _vm.currentUser.id_cu == 0
                                             ? _c("date-picker", {
                                                 attrs: {
                                                   defaultDate:
-                                                    _vm.formStatus.surat_tanggal
+                                                    _vm.formStatus
+                                                      .surat_tanggal,
                                                 },
                                                 on: {
-                                                  dateSelected: function(
+                                                  dateSelected: function (
                                                     $event
                                                   ) {
-                                                    _vm.formStatus.surat_tanggal = $event
-                                                  }
-                                                }
+                                                    _vm.formStatus.surat_tanggal =
+                                                      $event
+                                                  },
+                                                },
                                               })
                                             : _c("input", {
                                                 directives: [
@@ -7235,8 +7257,8 @@ var render = function() {
                                                       _vm.formStatus
                                                         .surat_tanggal,
                                                     expression:
-                                                      "formStatus.surat_tanggal"
-                                                  }
+                                                      "formStatus.surat_tanggal",
+                                                  },
                                                 ],
                                                 staticClass: "form-control",
                                                 attrs: {
@@ -7244,14 +7266,15 @@ var render = function() {
                                                   name: "surat_tanggal",
                                                   placeholder:
                                                     "Silahkan masukkan tanggal surat",
-                                                  readonly: ""
+                                                  readonly: "",
                                                 },
                                                 domProps: {
                                                   value:
-                                                    _vm.formStatus.surat_tanggal
+                                                    _vm.formStatus
+                                                      .surat_tanggal,
                                                 },
                                                 on: {
-                                                  input: function($event) {
+                                                  input: function ($event) {
                                                     if (
                                                       $event.target.composing
                                                     ) {
@@ -7262,17 +7285,17 @@ var render = function() {
                                                       "surat_tanggal",
                                                       $event.target.value
                                                     )
-                                                  }
-                                                }
-                                              })
+                                                  },
+                                                },
+                                              }),
                                         ],
                                         1
-                                      )
+                                      ),
                                     ])
-                                  : _vm._e()
-                              ])
-                            ])
-                          ]
+                                  : _vm._e(),
+                              ]),
+                            ]),
+                          ],
                     ],
                     2
                   ),
@@ -7291,15 +7314,15 @@ var render = function() {
                                 _c("u", [
                                   _vm._v(
                                     _vm._s(_vm.selectedData.anggota_cu.name)
-                                  )
-                                ])
+                                  ),
+                                ]),
                               ]),
                               _vm._v(
                                 " dan segala informasi yang ada dan dikirmkan adalah benar sesuai dengan peraturan."
-                              )
-                            ])
+                              ),
+                            ]),
                           ]
-                        )
+                        ),
                       ])
                     : _vm.tipe == "selesai"
                     ? _c("div", [
@@ -7315,15 +7338,15 @@ var render = function() {
                                 _c("u", [
                                   _vm._v(
                                     _vm._s(_vm.selectedData.anggota_cu.name)
-                                  )
-                                ])
+                                  ),
+                                ]),
                               ]),
                               _vm._v(
                                 " kepada ahli waris atau yang diwakilkan dan segala informasi yang ada dan dikirmkan adalah benar sesuai dengan peraturan."
-                              )
-                            ])
+                              ),
+                            ]),
                           ]
-                        )
+                        ),
                       ])
                     : _vm.tipe == "lihat"
                     ? _c("span")
@@ -7335,10 +7358,10 @@ var render = function() {
                             _c("h6", [
                               _vm._v(
                                 "Pastikan data yang dimasukkan sudah benar sebelum menyimpan."
-                              )
-                            ])
+                              ),
+                            ]),
                           ]
-                        )
+                        ),
                       ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "text-center d-none d-md-block" }, [
@@ -7347,11 +7370,11 @@ var render = function() {
                       {
                         staticClass: "btn btn-light",
                         on: {
-                          click: function($event) {
+                          click: function ($event) {
                             $event.preventDefault()
-                            return _vm.tutup($event)
-                          }
-                        }
+                            return _vm.tutup.apply(null, arguments)
+                          },
+                        },
                       },
                       [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
                     ),
@@ -7361,7 +7384,7 @@ var render = function() {
                           "button",
                           {
                             staticClass: "btn btn-primary",
-                            attrs: { type: "submit" }
+                            attrs: { type: "submit" },
                           },
                           [
                             _vm.tipe == "selesai"
@@ -7369,29 +7392,31 @@ var render = function() {
                                   _vm.formStatus.status == 5
                                     ? _c("span", [
                                         _c("i", {
-                                          staticClass: "icon-checkmark4"
+                                          staticClass: "icon-checkmark4",
                                         }),
-                                        _vm._v(" Selesai\n              ")
+                                        _vm._v(" Selesai\n              "),
                                       ])
                                     : _c("span", [
                                         _c("i", {
-                                          staticClass: "icon-blocked"
+                                          staticClass: "icon-blocked",
                                         }),
-                                        _vm._v(" Batal Selesai\n              ")
-                                      ])
+                                        _vm._v(
+                                          " Batal Selesai\n              "
+                                        ),
+                                      ]),
                                 ])
                               : _vm.tipe == "verifikasi"
                               ? _c("span", [
                                   _c("i", { staticClass: "icon-file-check" }),
-                                  _vm._v(" Verifikasi\n            ")
+                                  _vm._v(" Verifikasi\n            "),
                                 ])
                               : _c("span", [
                                   _c("i", { staticClass: "icon-floppy-disk" }),
-                                  _vm._v(" Simpan\n            ")
-                                ])
+                                  _vm._v(" Simpan\n            "),
+                                ]),
                           ]
                         )
-                      : _vm._e()
+                      : _vm._e(),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "d-block d-md-none" }, [
@@ -7400,7 +7425,7 @@ var render = function() {
                           "button",
                           {
                             staticClass: "btn btn-primary btn-block pb-2",
-                            attrs: { type: "submit" }
+                            attrs: { type: "submit" },
                           },
                           [
                             _vm.tipe == "selesai"
@@ -7408,26 +7433,28 @@ var render = function() {
                                   _vm.formStatus.status == 4
                                     ? _c("span", [
                                         _c("i", {
-                                          staticClass: "icon-checkmark4"
+                                          staticClass: "icon-checkmark4",
                                         }),
-                                        _vm._v(" Selesai\n              ")
+                                        _vm._v(" Selesai\n              "),
                                       ])
                                     : _c("span", [
                                         _c("i", {
-                                          staticClass: "icon-blocked"
+                                          staticClass: "icon-blocked",
                                         }),
-                                        _vm._v(" Batal Selesai\n              ")
-                                      ])
+                                        _vm._v(
+                                          " Batal Selesai\n              "
+                                        ),
+                                      ]),
                                 ])
                               : _vm.tipe == "verifikasi"
                               ? _c("span", [
                                   _c("i", { staticClass: "icon-file-check" }),
-                                  _vm._v(" Verifikasi\n            ")
+                                  _vm._v(" Verifikasi\n            "),
                                 ])
                               : _c("span", [
                                   _c("i", { staticClass: "icon-floppy-disk" }),
-                                  _vm._v(" Simpan\n            ")
-                                ])
+                                  _vm._v(" Simpan\n            "),
+                                ]),
                           ]
                         )
                       : _vm._e(),
@@ -7437,20 +7464,20 @@ var render = function() {
                       {
                         staticClass: "btn btn-light btn-block pb-2",
                         on: {
-                          click: function($event) {
+                          click: function ($event) {
                             $event.preventDefault()
-                            return _vm.tutup($event)
-                          }
-                        }
+                            return _vm.tutup.apply(null, arguments)
+                          },
+                        },
                       },
                       [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
-                    )
-                  ])
+                    ),
+                  ]),
                 ],
                 1
-              )
+              ),
             ]
-          )
+          ),
         ]
       ),
       _vm._v(" "),
@@ -7467,9 +7494,9 @@ var render = function() {
                       name: "show",
                       rawName: "v-show",
                       value: _vm.tabName == "verifikator",
-                      expression: "tabName == 'verifikator'"
-                    }
-                  ]
+                      expression: "tabName == 'verifikator'",
+                    },
+                  ],
                 },
                 [
                   _c("div", { staticClass: "row" }, [
@@ -7482,8 +7509,8 @@ var render = function() {
                             isSingle: true,
                             title: "Verifikator Pengurus",
                             itemData: _vm.modelVeriPengurus,
-                            itemDataStat: _vm.modelVeriStat
-                          }
+                            itemDataStat: _vm.modelVeriStat,
+                          },
                         }),
                         _vm._v(" "),
                         _c("verifikator", {
@@ -7491,9 +7518,9 @@ var render = function() {
                             isSingle: false,
                             title: "Verifikator yang dipilih",
                             itemData: _vm.modelVeriPilihPengurus,
-                            itemDataStat: _vm.modelVeriPilihPengurusStat
-                          }
-                        })
+                            itemDataStat: _vm.modelVeriPilihPengurusStat,
+                          },
+                        }),
                       ],
                       1
                     ),
@@ -7507,8 +7534,8 @@ var render = function() {
                             isSingle: true,
                             title: "Verifikator Pengawas",
                             itemData: _vm.modelVeriPengawas,
-                            itemDataStat: _vm.modelVeriStat
-                          }
+                            itemDataStat: _vm.modelVeriStat,
+                          },
                         }),
                         _vm._v(" "),
                         _c("verifikator", {
@@ -7516,9 +7543,9 @@ var render = function() {
                             isSingle: false,
                             title: "Verifikator yang dipilih",
                             itemData: _vm.modelVeriPilihPengawas,
-                            itemDataStat: _vm.modelVeriPilihPengawasStat
-                          }
-                        })
+                            itemDataStat: _vm.modelVeriPilihPengawasStat,
+                          },
+                        }),
                       ],
                       1
                     ),
@@ -7532,8 +7559,8 @@ var render = function() {
                             isSingle: true,
                             title: "Verifikator Manajemen",
                             itemData: _vm.modelVeriManajemen,
-                            itemDataStat: _vm.modelVeriStat
-                          }
+                            itemDataStat: _vm.modelVeriStat,
+                          },
                         }),
                         _vm._v(" "),
                         _c("verifikator", {
@@ -7541,12 +7568,12 @@ var render = function() {
                             isSingle: false,
                             title: "Verifikator yang dipilih",
                             itemData: _vm.modelVeriPilihManajemen,
-                            itemDataStat: _vm.modelVeriPilihManajemenStat
-                          }
-                        })
+                            itemDataStat: _vm.modelVeriPilihManajemenStat,
+                          },
+                        }),
                       ],
                       1
-                    )
+                    ),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "text-center d-none d-md-block" }, [
@@ -7555,14 +7582,14 @@ var render = function() {
                       {
                         staticClass: "btn btn-light",
                         on: {
-                          click: function($event) {
+                          click: function ($event) {
                             $event.preventDefault()
-                            return _vm.tutup($event)
-                          }
-                        }
+                            return _vm.tutup.apply(null, arguments)
+                          },
+                        },
                       },
                       [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
-                    )
+                    ),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "d-block d-md-none" }, [
@@ -7571,18 +7598,18 @@ var render = function() {
                       {
                         staticClass: "btn btn-light btn-block pb-2",
                         on: {
-                          click: function($event) {
+                          click: function ($event) {
                             $event.preventDefault()
-                            return _vm.tutup($event)
-                          }
-                        }
+                            return _vm.tutup.apply(null, arguments)
+                          },
+                        },
                       },
                       [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
-                    )
-                  ])
+                    ),
+                  ]),
                 ]
               )
-            : _vm._e()
+            : _vm._e(),
         ]
       ),
       _vm._v(" "),
@@ -7599,9 +7626,9 @@ var render = function() {
                       name: "show",
                       rawName: "v-show",
                       value: _vm.tabName == "dokumen",
-                      expression: "tabName == 'dokumen'"
-                    }
-                  ]
+                      expression: "tabName == 'dokumen'",
+                    },
+                  ],
                 },
                 [
                   _c("div", { staticClass: "nav-tabs-responsive mb-3" }, [
@@ -7617,10 +7644,10 @@ var render = function() {
                                 name: "show",
                                 rawName: "v-show",
                                 value: _vm.selected.dokumen_meninggal,
-                                expression: "selected.dokumen_meninggal"
-                              }
+                                expression: "selected.dokumen_meninggal",
+                              },
                             ],
-                            staticClass: "nav-item"
+                            staticClass: "nav-item",
                           },
                           [
                             _c(
@@ -7628,23 +7655,23 @@ var render = function() {
                               {
                                 staticClass: "nav-link",
                                 class: {
-                                  active: _vm.tabNameDokumen == "meninggal"
+                                  active: _vm.tabNameDokumen == "meninggal",
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.changeTabDokumen("meninggal")
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", { staticClass: "icon-person mr-2" }),
                                 _vm._v(
                                   " \n                Keterangan Meninggal Dunia\n              "
-                                )
+                                ),
                               ]
-                            )
+                            ),
                           ]
                         ),
                         _vm._v(" "),
@@ -7656,10 +7683,10 @@ var render = function() {
                                 name: "show",
                                 rawName: "v-show",
                                 value: _vm.selected.dokumen_ktp,
-                                expression: "selected.dokumen_ktp"
-                              }
+                                expression: "selected.dokumen_ktp",
+                              },
                             ],
-                            staticClass: "nav-item"
+                            staticClass: "nav-item",
                           },
                           [
                             _c(
@@ -7669,19 +7696,19 @@ var render = function() {
                                 class: { active: _vm.tabNameDokumen == "ktp" },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.changeTabDokumen("ktp")
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", { staticClass: "icon-vcard mr-2" }),
                                 _vm._v(
                                   " \n                Identitas Diri \n              "
-                                )
+                                ),
                               ]
-                            )
+                            ),
                           ]
                         ),
                         _vm._v(" "),
@@ -7693,10 +7720,10 @@ var render = function() {
                                 name: "show",
                                 rawName: "v-show",
                                 value: _vm.selected.spma_1,
-                                expression: "selected.spma_1"
-                              }
+                                expression: "selected.spma_1",
+                              },
                             ],
-                            staticClass: "nav-item"
+                            staticClass: "nav-item",
                           },
                           [
                             _c(
@@ -7704,23 +7731,23 @@ var render = function() {
                               {
                                 staticClass: "nav-link",
                                 class: {
-                                  active: _vm.tabNameDokumen == "spma_1"
+                                  active: _vm.tabNameDokumen == "spma_1",
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.changeTabDokumen("spma_1")
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", { staticClass: "icon-magazine mr-2" }),
                                 _vm._v(
                                   " \n                Surat Permohonan Jadi Anggota 1\n              "
-                                )
+                                ),
                               ]
-                            )
+                            ),
                           ]
                         ),
                         _vm._v(" "),
@@ -7732,10 +7759,10 @@ var render = function() {
                                 name: "show",
                                 rawName: "v-show",
                                 value: _vm.selected.spma_2,
-                                expression: "selected.spma_2"
-                              }
+                                expression: "selected.spma_2",
+                              },
                             ],
-                            staticClass: "nav-item"
+                            staticClass: "nav-item",
                           },
                           [
                             _c(
@@ -7743,23 +7770,23 @@ var render = function() {
                               {
                                 staticClass: "nav-link",
                                 class: {
-                                  active: _vm.tabNameDokumen == "spma_2"
+                                  active: _vm.tabNameDokumen == "spma_2",
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.changeTabDokumen("spma_2")
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", { staticClass: "icon-magazine mr-2" }),
                                 _vm._v(
                                   " \n                Surat Permohonan Jadi Anggota 2\n              "
-                                )
+                                ),
                               ]
-                            )
+                            ),
                           ]
                         ),
                         _vm._v(" "),
@@ -7771,10 +7798,10 @@ var render = function() {
                                 name: "show",
                                 rawName: "v-show",
                                 value: _vm.selected.buku_simpanan_1,
-                                expression: "selected.buku_simpanan_1"
-                              }
+                                expression: "selected.buku_simpanan_1",
+                              },
                             ],
-                            staticClass: "nav-item"
+                            staticClass: "nav-item",
                           },
                           [
                             _c(
@@ -7783,27 +7810,27 @@ var render = function() {
                                 staticClass: "nav-link",
                                 class: {
                                   active:
-                                    _vm.tabNameDokumen == "buku_simpanan_1"
+                                    _vm.tabNameDokumen == "buku_simpanan_1",
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.changeTabDokumen(
                                       "buku_simpanan_1"
                                     )
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", {
-                                  staticClass: "icon-credit-card mr-2"
+                                  staticClass: "icon-credit-card mr-2",
                                 }),
                                 _vm._v(
                                   " \n                Buku Simpanan 1\n              "
-                                )
+                                ),
                               ]
-                            )
+                            ),
                           ]
                         ),
                         _vm._v(" "),
@@ -7815,10 +7842,10 @@ var render = function() {
                                 name: "show",
                                 rawName: "v-show",
                                 value: _vm.selected.buku_simpanan_2,
-                                expression: "selected.buku_simpanan_2"
-                              }
+                                expression: "selected.buku_simpanan_2",
+                              },
                             ],
-                            staticClass: "nav-item"
+                            staticClass: "nav-item",
                           },
                           [
                             _c(
@@ -7827,27 +7854,27 @@ var render = function() {
                                 staticClass: "nav-link",
                                 class: {
                                   active:
-                                    _vm.tabNameDokumen == "buku_simpanan_2"
+                                    _vm.tabNameDokumen == "buku_simpanan_2",
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.changeTabDokumen(
                                       "buku_simpanan_2"
                                     )
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", {
-                                  staticClass: "icon-credit-card mr-2"
+                                  staticClass: "icon-credit-card mr-2",
                                 }),
                                 _vm._v(
                                   " \n                Buku Simpanan 2\n              "
-                                )
+                                ),
                               ]
-                            )
+                            ),
                           ]
                         ),
                         _vm._v(" "),
@@ -7859,10 +7886,10 @@ var render = function() {
                                 name: "show",
                                 rawName: "v-show",
                                 value: _vm.selected.buku_simpanan_3,
-                                expression: "selected.buku_simpanan_3"
-                              }
+                                expression: "selected.buku_simpanan_3",
+                              },
                             ],
-                            staticClass: "nav-item"
+                            staticClass: "nav-item",
                           },
                           [
                             _c(
@@ -7871,27 +7898,27 @@ var render = function() {
                                 staticClass: "nav-link",
                                 class: {
                                   active:
-                                    _vm.tabNameDokumen == "buku_simpanan_3"
+                                    _vm.tabNameDokumen == "buku_simpanan_3",
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.changeTabDokumen(
                                       "buku_simpanan_3"
                                     )
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", {
-                                  staticClass: "icon-credit-card mr-2"
+                                  staticClass: "icon-credit-card mr-2",
                                 }),
                                 _vm._v(
                                   " \n                Buku Simpanan 3\n              "
-                                )
+                                ),
                               ]
-                            )
+                            ),
                           ]
                         ),
                         _vm._v(" "),
@@ -7903,10 +7930,10 @@ var render = function() {
                                 name: "show",
                                 rawName: "v-show",
                                 value: _vm.selected.buku_simpanan_4,
-                                expression: "selected.buku_simpanan_4"
-                              }
+                                expression: "selected.buku_simpanan_4",
+                              },
                             ],
-                            staticClass: "nav-item"
+                            staticClass: "nav-item",
                           },
                           [
                             _c(
@@ -7915,27 +7942,27 @@ var render = function() {
                                 staticClass: "nav-link",
                                 class: {
                                   active:
-                                    _vm.tabNameDokumen == "buku_simpanan_4"
+                                    _vm.tabNameDokumen == "buku_simpanan_4",
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.changeTabDokumen(
                                       "buku_simpanan_4"
                                     )
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", {
-                                  staticClass: "icon-credit-card mr-2"
+                                  staticClass: "icon-credit-card mr-2",
                                 }),
                                 _vm._v(
                                   " \n                Buku Simpanan 4\n              "
-                                )
+                                ),
                               ]
-                            )
+                            ),
                           ]
                         ),
                         _vm._v(" "),
@@ -7947,10 +7974,10 @@ var render = function() {
                                 name: "show",
                                 rawName: "v-show",
                                 value: _vm.selected.buku_simpanan_5,
-                                expression: "selected.buku_simpanan_5"
-                              }
+                                expression: "selected.buku_simpanan_5",
+                              },
                             ],
-                            staticClass: "nav-item"
+                            staticClass: "nav-item",
                           },
                           [
                             _c(
@@ -7959,27 +7986,27 @@ var render = function() {
                                 staticClass: "nav-link",
                                 class: {
                                   active:
-                                    _vm.tabNameDokumen == "buku_simpanan_5"
+                                    _vm.tabNameDokumen == "buku_simpanan_5",
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.changeTabDokumen(
                                       "buku_simpanan_5"
                                     )
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", {
-                                  staticClass: "icon-credit-card mr-2"
+                                  staticClass: "icon-credit-card mr-2",
                                 }),
                                 _vm._v(
                                   " \n                Buku Simpanan 5\n              "
-                                )
+                                ),
                               ]
-                            )
+                            ),
                           ]
                         ),
                         _vm._v(" "),
@@ -7991,10 +8018,10 @@ var render = function() {
                                 name: "show",
                                 rawName: "v-show",
                                 value: _vm.selected.buku_pinjaman_1,
-                                expression: "selected.buku_pinjaman_1"
-                              }
+                                expression: "selected.buku_pinjaman_1",
+                              },
                             ],
-                            staticClass: "nav-item"
+                            staticClass: "nav-item",
                           },
                           [
                             _c(
@@ -8003,27 +8030,27 @@ var render = function() {
                                 staticClass: "nav-link",
                                 class: {
                                   active:
-                                    _vm.tabNameDokumen == "buku_pinjaman_1"
+                                    _vm.tabNameDokumen == "buku_pinjaman_1",
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.changeTabDokumen(
                                       "buku_pinjaman_1"
                                     )
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", {
-                                  staticClass: "icon-credit-card2 mr-2"
+                                  staticClass: "icon-credit-card2 mr-2",
                                 }),
                                 _vm._v(
                                   " \n                Buku Pinjaman 1\n              "
-                                )
+                                ),
                               ]
-                            )
+                            ),
                           ]
                         ),
                         _vm._v(" "),
@@ -8035,10 +8062,10 @@ var render = function() {
                                 name: "show",
                                 rawName: "v-show",
                                 value: _vm.selected.buku_pinjaman_2,
-                                expression: "selected.buku_pinjaman_2"
-                              }
+                                expression: "selected.buku_pinjaman_2",
+                              },
                             ],
-                            staticClass: "nav-item"
+                            staticClass: "nav-item",
                           },
                           [
                             _c(
@@ -8047,27 +8074,27 @@ var render = function() {
                                 staticClass: "nav-link",
                                 class: {
                                   active:
-                                    _vm.tabNameDokumen == "buku_pinjaman_2"
+                                    _vm.tabNameDokumen == "buku_pinjaman_2",
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.changeTabDokumen(
                                       "buku_pinjaman_2"
                                     )
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", {
-                                  staticClass: "icon-credit-card2 mr-2"
+                                  staticClass: "icon-credit-card2 mr-2",
                                 }),
                                 _vm._v(
                                   " \n                Buku Pinjaman 2\n              "
-                                )
+                                ),
                               ]
-                            )
+                            ),
                           ]
                         ),
                         _vm._v(" "),
@@ -8079,10 +8106,10 @@ var render = function() {
                                 name: "show",
                                 rawName: "v-show",
                                 value: _vm.selected.buku_pinjaman_3,
-                                expression: "selected.buku_pinjaman_3"
-                              }
+                                expression: "selected.buku_pinjaman_3",
+                              },
                             ],
-                            staticClass: "nav-item"
+                            staticClass: "nav-item",
                           },
                           [
                             _c(
@@ -8091,27 +8118,27 @@ var render = function() {
                                 staticClass: "nav-link",
                                 class: {
                                   active:
-                                    _vm.tabNameDokumen == "buku_pinjaman_3"
+                                    _vm.tabNameDokumen == "buku_pinjaman_3",
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.changeTabDokumen(
                                       "buku_pinjaman_3"
                                     )
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", {
-                                  staticClass: "icon-credit-card2 mr-2"
+                                  staticClass: "icon-credit-card2 mr-2",
                                 }),
                                 _vm._v(
                                   " \n                Buku Pinjaman 3\n              "
-                                )
+                                ),
                               ]
-                            )
+                            ),
                           ]
                         ),
                         _vm._v(" "),
@@ -8123,10 +8150,10 @@ var render = function() {
                                 name: "show",
                                 rawName: "v-show",
                                 value: _vm.selected.dokumen_pinjaman_1,
-                                expression: "selected.dokumen_pinjaman_1"
-                              }
+                                expression: "selected.dokumen_pinjaman_1",
+                              },
                             ],
-                            staticClass: "nav-item"
+                            staticClass: "nav-item",
                           },
                           [
                             _c(
@@ -8134,25 +8161,25 @@ var render = function() {
                               {
                                 staticClass: "nav-link",
                                 class: {
-                                  active: _vm.tabNameDokumen == "pinjaman_1"
+                                  active: _vm.tabNameDokumen == "pinjaman_1",
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.changeTabDokumen("pinjaman_1")
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", {
-                                  staticClass: "icon-clipboard3 mr-2"
+                                  staticClass: "icon-clipboard3 mr-2",
                                 }),
                                 _vm._v(
                                   "\n                Pinjaman 1\n              "
-                                )
+                                ),
                               ]
-                            )
+                            ),
                           ]
                         ),
                         _vm._v(" "),
@@ -8164,10 +8191,10 @@ var render = function() {
                                 name: "show",
                                 rawName: "v-show",
                                 value: _vm.selected.dokumen_pinjaman_2,
-                                expression: "selected.dokumen_pinjaman_2"
-                              }
+                                expression: "selected.dokumen_pinjaman_2",
+                              },
                             ],
-                            staticClass: "nav-item"
+                            staticClass: "nav-item",
                           },
                           [
                             _c(
@@ -8175,25 +8202,25 @@ var render = function() {
                               {
                                 staticClass: "nav-link",
                                 class: {
-                                  active: _vm.tabNameDokumen == "pinjaman_2"
+                                  active: _vm.tabNameDokumen == "pinjaman_2",
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.changeTabDokumen("pinjaman_2")
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", {
-                                  staticClass: "icon-clipboard3 mr-2"
+                                  staticClass: "icon-clipboard3 mr-2",
                                 }),
                                 _vm._v(
                                   "\n                Pinjaman 2\n              "
-                                )
+                                ),
                               ]
-                            )
+                            ),
                           ]
                         ),
                         _vm._v(" "),
@@ -8205,10 +8232,10 @@ var render = function() {
                                 name: "show",
                                 rawName: "v-show",
                                 value: _vm.selected.dokumen_pinjaman_3,
-                                expression: "selected.dokumen_pinjaman_3"
-                              }
+                                expression: "selected.dokumen_pinjaman_3",
+                              },
                             ],
-                            staticClass: "nav-item"
+                            staticClass: "nav-item",
                           },
                           [
                             _c(
@@ -8216,25 +8243,25 @@ var render = function() {
                               {
                                 staticClass: "nav-link",
                                 class: {
-                                  active: _vm.tabNameDokumen == "pinjaman_3"
+                                  active: _vm.tabNameDokumen == "pinjaman_3",
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.changeTabDokumen("pinjaman_3")
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", {
-                                  staticClass: "icon-clipboard3 mr-2"
+                                  staticClass: "icon-clipboard3 mr-2",
                                 }),
                                 _vm._v(
                                   "\n                Pinjaman 3\n              "
-                                )
+                                ),
                               ]
-                            )
+                            ),
                           ]
                         ),
                         _vm._v(" "),
@@ -8246,10 +8273,10 @@ var render = function() {
                                 name: "show",
                                 rawName: "v-show",
                                 value: _vm.selected.dokumen_pinjaman_4,
-                                expression: "selected.dokumen_pinjaman_4"
-                              }
+                                expression: "selected.dokumen_pinjaman_4",
+                              },
                             ],
-                            staticClass: "nav-item"
+                            staticClass: "nav-item",
                           },
                           [
                             _c(
@@ -8257,25 +8284,25 @@ var render = function() {
                               {
                                 staticClass: "nav-link",
                                 class: {
-                                  active: _vm.tabNameDokumen == "pinjaman_4"
+                                  active: _vm.tabNameDokumen == "pinjaman_4",
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.changeTabDokumen("pinjaman_4")
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", {
-                                  staticClass: "icon-clipboard3 mr-2"
+                                  staticClass: "icon-clipboard3 mr-2",
                                 }),
                                 _vm._v(
                                   "\n                Pinjaman 4\n              "
-                                )
+                                ),
                               ]
-                            )
+                            ),
                           ]
                         ),
                         _vm._v(" "),
@@ -8287,10 +8314,10 @@ var render = function() {
                                 name: "show",
                                 rawName: "v-show",
                                 value: _vm.selected.dokumen_pinjaman_5,
-                                expression: "selected.dokumen_pinjaman_5"
-                              }
+                                expression: "selected.dokumen_pinjaman_5",
+                              },
                             ],
-                            staticClass: "nav-item"
+                            staticClass: "nav-item",
                           },
                           [
                             _c(
@@ -8298,25 +8325,25 @@ var render = function() {
                               {
                                 staticClass: "nav-link",
                                 class: {
-                                  active: _vm.tabNameDokumen == "pinjaman_5"
+                                  active: _vm.tabNameDokumen == "pinjaman_5",
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.changeTabDokumen("pinjaman_5")
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", {
-                                  staticClass: "icon-clipboard3 mr-2"
+                                  staticClass: "icon-clipboard3 mr-2",
                                 }),
                                 _vm._v(
                                   "\n                Pinjaman 5\n              "
-                                )
+                                ),
                               ]
-                            )
+                            ),
                           ]
                         ),
                         _vm._v(" "),
@@ -8328,10 +8355,10 @@ var render = function() {
                                 name: "show",
                                 rawName: "v-show",
                                 value: _vm.selected.dokumen_pinjaman_6,
-                                expression: "selected.dokumen_pinjaman_6"
-                              }
+                                expression: "selected.dokumen_pinjaman_6",
+                              },
                             ],
-                            staticClass: "nav-item"
+                            staticClass: "nav-item",
                           },
                           [
                             _c(
@@ -8339,29 +8366,29 @@ var render = function() {
                               {
                                 staticClass: "nav-link",
                                 class: {
-                                  active: _vm.tabNameDokumen == "pinjaman_6"
+                                  active: _vm.tabNameDokumen == "pinjaman_6",
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.changeTabDokumen("pinjaman_6")
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", {
-                                  staticClass: "icon-clipboard3 mr-2"
+                                  staticClass: "icon-clipboard3 mr-2",
                                 }),
                                 _vm._v(
                                   "\n                Pinjaman 6\n              "
-                                )
+                                ),
                               ]
-                            )
+                            ),
                           ]
-                        )
+                        ),
                       ]
-                    )
+                    ),
                   ]),
                   _vm._v(" "),
                   _c(
@@ -8369,8 +8396,8 @@ var render = function() {
                     {
                       attrs: {
                         "enter-active-class": "animated fadeIn",
-                        mode: "out-in"
-                      }
+                        mode: "out-in",
+                      },
                     },
                     [
                       _c(
@@ -8381,20 +8408,20 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value: _vm.tabNameDokumen == "",
-                              expression: "tabNameDokumen == ''"
-                            }
-                          ]
+                              expression: "tabNameDokumen == ''",
+                            },
+                          ],
                         },
                         [
                           _c("div", { staticClass: "card card-body" }, [
                             _c("h5", [
                               _vm._v(
                                 "Silahkan memilih dokumen yang ingin ditampilkan dengan menekan tombol diatas. Jika tidak terdapat tombol maka berarti klaim ini tidak memiliki dokumen yang bisa dilihat."
-                              )
-                            ])
-                          ])
+                              ),
+                            ]),
+                          ]),
                         ]
-                      )
+                      ),
                     ]
                   ),
                   _vm._v(" "),
@@ -8403,8 +8430,8 @@ var render = function() {
                     {
                       attrs: {
                         "enter-active-class": "animated fadeIn",
-                        mode: "out-in"
-                      }
+                        mode: "out-in",
+                      },
                     },
                     [
                       _c(
@@ -8415,21 +8442,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value: _vm.tabNameDokumen == "meninggal",
-                              expression: "tabNameDokumen == 'meninggal'"
-                            }
-                          ]
+                              expression: "tabNameDokumen == 'meninggal'",
+                            },
+                          ],
                         },
                         [
                           _c("dokumen", {
                             attrs: {
                               image: _vm.selected.dokumen_meninggal,
-                              name: "dokumen_meninggal"
+                              name: "dokumen_meninggal",
                             },
-                            on: { tutup: _vm.tutup }
-                          })
+                            on: { tutup: _vm.tutup },
+                          }),
                         ],
                         1
-                      )
+                      ),
                     ]
                   ),
                   _vm._v(" "),
@@ -8438,8 +8465,8 @@ var render = function() {
                     {
                       attrs: {
                         "enter-active-class": "animated fadeIn",
-                        mode: "out-in"
-                      }
+                        mode: "out-in",
+                      },
                     },
                     [
                       _c(
@@ -8450,21 +8477,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value: _vm.tabNameDokumen == "ktp",
-                              expression: "tabNameDokumen == 'ktp'"
-                            }
-                          ]
+                              expression: "tabNameDokumen == 'ktp'",
+                            },
+                          ],
                         },
                         [
                           _c("dokumen", {
                             attrs: {
                               image: _vm.selected.dokumen_ktp,
-                              name: "dokumen_ktp"
+                              name: "dokumen_ktp",
                             },
-                            on: { tutup: _vm.tutup }
-                          })
+                            on: { tutup: _vm.tutup },
+                          }),
                         ],
                         1
-                      )
+                      ),
                     ]
                   ),
                   _vm._v(" "),
@@ -8473,8 +8500,8 @@ var render = function() {
                     {
                       attrs: {
                         "enter-active-class": "animated fadeIn",
-                        mode: "out-in"
-                      }
+                        mode: "out-in",
+                      },
                     },
                     [
                       _c(
@@ -8485,21 +8512,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value: _vm.tabNameDokumen == "spma_1",
-                              expression: "tabNameDokumen == 'spma_1'"
-                            }
-                          ]
+                              expression: "tabNameDokumen == 'spma_1'",
+                            },
+                          ],
                         },
                         [
                           _c("dokumen", {
                             attrs: {
                               image: _vm.selected.spma_1,
-                              name: "spma_1"
+                              name: "spma_1",
                             },
-                            on: { tutup: _vm.tutup }
-                          })
+                            on: { tutup: _vm.tutup },
+                          }),
                         ],
                         1
-                      )
+                      ),
                     ]
                   ),
                   _vm._v(" "),
@@ -8508,8 +8535,8 @@ var render = function() {
                     {
                       attrs: {
                         "enter-active-class": "animated fadeIn",
-                        mode: "out-in"
-                      }
+                        mode: "out-in",
+                      },
                     },
                     [
                       _c(
@@ -8520,21 +8547,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value: _vm.tabNameDokumen == "spma_2",
-                              expression: "tabNameDokumen == 'spma_2'"
-                            }
-                          ]
+                              expression: "tabNameDokumen == 'spma_2'",
+                            },
+                          ],
                         },
                         [
                           _c("dokumen", {
                             attrs: {
                               image: _vm.selected.spma_2,
-                              name: "spma_2"
+                              name: "spma_2",
                             },
-                            on: { tutup: _vm.tutup }
-                          })
+                            on: { tutup: _vm.tutup },
+                          }),
                         ],
                         1
-                      )
+                      ),
                     ]
                   ),
                   _vm._v(" "),
@@ -8543,8 +8570,8 @@ var render = function() {
                     {
                       attrs: {
                         "enter-active-class": "animated fadeIn",
-                        mode: "out-in"
-                      }
+                        mode: "out-in",
+                      },
                     },
                     [
                       _c(
@@ -8555,21 +8582,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value: _vm.tabNameDokumen == "buku_simpanan_1",
-                              expression: "tabNameDokumen == 'buku_simpanan_1'"
-                            }
-                          ]
+                              expression: "tabNameDokumen == 'buku_simpanan_1'",
+                            },
+                          ],
                         },
                         [
                           _c("dokumen", {
                             attrs: {
                               image: _vm.selected.buku_simpanan_1,
-                              name: "buku_simpanan_1"
+                              name: "buku_simpanan_1",
                             },
-                            on: { tutup: _vm.tutup }
-                          })
+                            on: { tutup: _vm.tutup },
+                          }),
                         ],
                         1
-                      )
+                      ),
                     ]
                   ),
                   _vm._v(" "),
@@ -8578,8 +8605,8 @@ var render = function() {
                     {
                       attrs: {
                         "enter-active-class": "animated fadeIn",
-                        mode: "out-in"
-                      }
+                        mode: "out-in",
+                      },
                     },
                     [
                       _c(
@@ -8590,21 +8617,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value: _vm.tabNameDokumen == "buku_simpanan_2",
-                              expression: "tabNameDokumen == 'buku_simpanan_2'"
-                            }
-                          ]
+                              expression: "tabNameDokumen == 'buku_simpanan_2'",
+                            },
+                          ],
                         },
                         [
                           _c("dokumen", {
                             attrs: {
                               image: _vm.selected.buku_simpanan_2,
-                              name: "buku_simpanan_2"
+                              name: "buku_simpanan_2",
                             },
-                            on: { tutup: _vm.tutup }
-                          })
+                            on: { tutup: _vm.tutup },
+                          }),
                         ],
                         1
-                      )
+                      ),
                     ]
                   ),
                   _vm._v(" "),
@@ -8613,8 +8640,8 @@ var render = function() {
                     {
                       attrs: {
                         "enter-active-class": "animated fadeIn",
-                        mode: "out-in"
-                      }
+                        mode: "out-in",
+                      },
                     },
                     [
                       _c(
@@ -8625,21 +8652,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value: _vm.tabNameDokumen == "buku_simpanan_3",
-                              expression: "tabNameDokumen == 'buku_simpanan_3'"
-                            }
-                          ]
+                              expression: "tabNameDokumen == 'buku_simpanan_3'",
+                            },
+                          ],
                         },
                         [
                           _c("dokumen", {
                             attrs: {
                               image: _vm.selected.buku_simpanan_3,
-                              name: "buku_simpanan_3"
+                              name: "buku_simpanan_3",
                             },
-                            on: { tutup: _vm.tutup }
-                          })
+                            on: { tutup: _vm.tutup },
+                          }),
                         ],
                         1
-                      )
+                      ),
                     ]
                   ),
                   _vm._v(" "),
@@ -8648,8 +8675,8 @@ var render = function() {
                     {
                       attrs: {
                         "enter-active-class": "animated fadeIn",
-                        mode: "out-in"
-                      }
+                        mode: "out-in",
+                      },
                     },
                     [
                       _c(
@@ -8660,21 +8687,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value: _vm.tabNameDokumen == "buku_simpanan_4",
-                              expression: "tabNameDokumen == 'buku_simpanan_4'"
-                            }
-                          ]
+                              expression: "tabNameDokumen == 'buku_simpanan_4'",
+                            },
+                          ],
                         },
                         [
                           _c("dokumen", {
                             attrs: {
                               image: _vm.selected.buku_simpanan_4,
-                              name: "buku_simpanan_4"
+                              name: "buku_simpanan_4",
                             },
-                            on: { tutup: _vm.tutup }
-                          })
+                            on: { tutup: _vm.tutup },
+                          }),
                         ],
                         1
-                      )
+                      ),
                     ]
                   ),
                   _vm._v(" "),
@@ -8683,8 +8710,8 @@ var render = function() {
                     {
                       attrs: {
                         "enter-active-class": "animated fadeIn",
-                        mode: "out-in"
-                      }
+                        mode: "out-in",
+                      },
                     },
                     [
                       _c(
@@ -8695,21 +8722,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value: _vm.tabNameDokumen == "buku_simpanan_5",
-                              expression: "tabNameDokumen == 'buku_simpanan_5'"
-                            }
-                          ]
+                              expression: "tabNameDokumen == 'buku_simpanan_5'",
+                            },
+                          ],
                         },
                         [
                           _c("dokumen", {
                             attrs: {
                               image: _vm.selected.buku_simpanan_5,
-                              name: "buku_simpanan_5"
+                              name: "buku_simpanan_5",
                             },
-                            on: { tutup: _vm.tutup }
-                          })
+                            on: { tutup: _vm.tutup },
+                          }),
                         ],
                         1
-                      )
+                      ),
                     ]
                   ),
                   _vm._v(" "),
@@ -8718,8 +8745,8 @@ var render = function() {
                     {
                       attrs: {
                         "enter-active-class": "animated fadeIn",
-                        mode: "out-in"
-                      }
+                        mode: "out-in",
+                      },
                     },
                     [
                       _c(
@@ -8730,21 +8757,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value: _vm.tabNameDokumen == "buku_pinjaman_1",
-                              expression: "tabNameDokumen == 'buku_pinjaman_1'"
-                            }
-                          ]
+                              expression: "tabNameDokumen == 'buku_pinjaman_1'",
+                            },
+                          ],
                         },
                         [
                           _c("dokumen", {
                             attrs: {
                               image: _vm.selected.buku_pinjaman_1,
-                              name: "buku_pinjaman_1"
+                              name: "buku_pinjaman_1",
                             },
-                            on: { tutup: _vm.tutup }
-                          })
+                            on: { tutup: _vm.tutup },
+                          }),
                         ],
                         1
-                      )
+                      ),
                     ]
                   ),
                   _vm._v(" "),
@@ -8753,8 +8780,8 @@ var render = function() {
                     {
                       attrs: {
                         "enter-active-class": "animated fadeIn",
-                        mode: "out-in"
-                      }
+                        mode: "out-in",
+                      },
                     },
                     [
                       _c(
@@ -8765,21 +8792,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value: _vm.tabNameDokumen == "buku_pinjaman_2",
-                              expression: "tabNameDokumen == 'buku_pinjaman_2'"
-                            }
-                          ]
+                              expression: "tabNameDokumen == 'buku_pinjaman_2'",
+                            },
+                          ],
                         },
                         [
                           _c("dokumen", {
                             attrs: {
                               image: _vm.selected.buku_pinjaman_2,
-                              name: "buku_pinjaman_2"
+                              name: "buku_pinjaman_2",
                             },
-                            on: { tutup: _vm.tutup }
-                          })
+                            on: { tutup: _vm.tutup },
+                          }),
                         ],
                         1
-                      )
+                      ),
                     ]
                   ),
                   _vm._v(" "),
@@ -8788,8 +8815,8 @@ var render = function() {
                     {
                       attrs: {
                         "enter-active-class": "animated fadeIn",
-                        mode: "out-in"
-                      }
+                        mode: "out-in",
+                      },
                     },
                     [
                       _c(
@@ -8800,21 +8827,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value: _vm.tabNameDokumen == "buku_pinjaman_3",
-                              expression: "tabNameDokumen == 'buku_pinjaman_3'"
-                            }
-                          ]
+                              expression: "tabNameDokumen == 'buku_pinjaman_3'",
+                            },
+                          ],
                         },
                         [
                           _c("dokumen", {
                             attrs: {
                               image: _vm.selected.buku_pinjaman_3,
-                              name: "buku_pinjaman_3"
+                              name: "buku_pinjaman_3",
                             },
-                            on: { tutup: _vm.tutup }
-                          })
+                            on: { tutup: _vm.tutup },
+                          }),
                         ],
                         1
-                      )
+                      ),
                     ]
                   ),
                   _vm._v(" "),
@@ -8823,8 +8850,8 @@ var render = function() {
                     {
                       attrs: {
                         "enter-active-class": "animated fadeIn",
-                        mode: "out-in"
-                      }
+                        mode: "out-in",
+                      },
                     },
                     [
                       _c(
@@ -8835,21 +8862,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value: _vm.tabNameDokumen == "pinjaman_1",
-                              expression: "tabNameDokumen == 'pinjaman_1'"
-                            }
-                          ]
+                              expression: "tabNameDokumen == 'pinjaman_1'",
+                            },
+                          ],
                         },
                         [
                           _c("dokumen", {
                             attrs: {
                               image: _vm.selected.dokumen_pinjaman_1,
-                              name: "dokumen_pinjaman_1"
+                              name: "dokumen_pinjaman_1",
                             },
-                            on: { tutup: _vm.tutup }
-                          })
+                            on: { tutup: _vm.tutup },
+                          }),
                         ],
                         1
-                      )
+                      ),
                     ]
                   ),
                   _vm._v(" "),
@@ -8858,8 +8885,8 @@ var render = function() {
                     {
                       attrs: {
                         "enter-active-class": "animated fadeIn",
-                        mode: "out-in"
-                      }
+                        mode: "out-in",
+                      },
                     },
                     [
                       _c(
@@ -8870,21 +8897,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value: _vm.tabNameDokumen == "pinjaman_2",
-                              expression: "tabNameDokumen == 'pinjaman_2'"
-                            }
-                          ]
+                              expression: "tabNameDokumen == 'pinjaman_2'",
+                            },
+                          ],
                         },
                         [
                           _c("dokumen", {
                             attrs: {
                               image: _vm.selected.dokumen_pinjaman_2,
-                              name: "dokumen_pinjaman_2"
+                              name: "dokumen_pinjaman_2",
                             },
-                            on: { tutup: _vm.tutup }
-                          })
+                            on: { tutup: _vm.tutup },
+                          }),
                         ],
                         1
-                      )
+                      ),
                     ]
                   ),
                   _vm._v(" "),
@@ -8893,8 +8920,8 @@ var render = function() {
                     {
                       attrs: {
                         "enter-active-class": "animated fadeIn",
-                        mode: "out-in"
-                      }
+                        mode: "out-in",
+                      },
                     },
                     [
                       _c(
@@ -8905,21 +8932,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value: _vm.tabNameDokumen == "pinjaman_3",
-                              expression: "tabNameDokumen == 'pinjaman_3'"
-                            }
-                          ]
+                              expression: "tabNameDokumen == 'pinjaman_3'",
+                            },
+                          ],
                         },
                         [
                           _c("dokumen", {
                             attrs: {
                               image: _vm.selected.dokumen_pinjaman_3,
-                              name: "dokumen_pinjaman_3"
+                              name: "dokumen_pinjaman_3",
                             },
-                            on: { tutup: _vm.tutup }
-                          })
+                            on: { tutup: _vm.tutup },
+                          }),
                         ],
                         1
-                      )
+                      ),
                     ]
                   ),
                   _vm._v(" "),
@@ -8928,8 +8955,8 @@ var render = function() {
                     {
                       attrs: {
                         "enter-active-class": "animated fadeIn",
-                        mode: "out-in"
-                      }
+                        mode: "out-in",
+                      },
                     },
                     [
                       _c(
@@ -8940,21 +8967,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value: _vm.tabNameDokumen == "pinjaman_4",
-                              expression: "tabNameDokumen == 'pinjaman_4'"
-                            }
-                          ]
+                              expression: "tabNameDokumen == 'pinjaman_4'",
+                            },
+                          ],
                         },
                         [
                           _c("dokumen", {
                             attrs: {
                               image: _vm.selected.dokumen_pinjaman_4,
-                              name: "dokumen_pinjaman_4"
+                              name: "dokumen_pinjaman_4",
                             },
-                            on: { tutup: _vm.tutup }
-                          })
+                            on: { tutup: _vm.tutup },
+                          }),
                         ],
                         1
-                      )
+                      ),
                     ]
                   ),
                   _vm._v(" "),
@@ -8963,8 +8990,8 @@ var render = function() {
                     {
                       attrs: {
                         "enter-active-class": "animated fadeIn",
-                        mode: "out-in"
-                      }
+                        mode: "out-in",
+                      },
                     },
                     [
                       _c(
@@ -8975,21 +9002,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value: _vm.tabNameDokumen == "pinjaman_5",
-                              expression: "tabNameDokumen == 'pinjaman_5'"
-                            }
-                          ]
+                              expression: "tabNameDokumen == 'pinjaman_5'",
+                            },
+                          ],
                         },
                         [
                           _c("dokumen", {
                             attrs: {
                               image: _vm.selected.dokumen_pinjaman_5,
-                              name: "dokumen_pinjaman_5"
+                              name: "dokumen_pinjaman_5",
                             },
-                            on: { tutup: _vm.tutup }
-                          })
+                            on: { tutup: _vm.tutup },
+                          }),
                         ],
                         1
-                      )
+                      ),
                     ]
                   ),
                   _vm._v(" "),
@@ -8998,8 +9025,8 @@ var render = function() {
                     {
                       attrs: {
                         "enter-active-class": "animated fadeIn",
-                        mode: "out-in"
-                      }
+                        mode: "out-in",
+                      },
                     },
                     [
                       _c(
@@ -9010,29 +9037,29 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value: _vm.tabNameDokumen == "pinjaman_6",
-                              expression: "tabNameDokumen == 'pinjaman_6'"
-                            }
-                          ]
+                              expression: "tabNameDokumen == 'pinjaman_6'",
+                            },
+                          ],
                         },
                         [
                           _c("dokumen", {
                             attrs: {
                               image: _vm.selected.dokumen_pinjaman_6,
-                              name: "dokumen_pinjaman_6"
+                              name: "dokumen_pinjaman_6",
                             },
-                            on: { tutup: _vm.tutup }
-                          })
+                            on: { tutup: _vm.tutup },
+                          }),
                         ],
                         1
-                      )
+                      ),
                     ]
-                  )
+                  ),
                 ],
                 1
               )
-            : _vm._e()
+            : _vm._e(),
         ]
-      )
+      ),
     ],
     1
   )
@@ -9055,7 +9082,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -9069,8 +9096,8 @@ var render = function() {
             _c("div", { staticClass: "col-12" }, [
               _c("img", {
                 staticClass: "img-fluid wmin-sm",
-                attrs: { src: "/files/header.jpg" }
-              })
+                attrs: { src: "/files/header.jpg" },
+              }),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-12" }, [
@@ -9082,13 +9109,13 @@ var render = function() {
                     _c("dl", { staticClass: "row mt-4" }, [
                       _vm.selectedItem.surat_nomor
                         ? _c("dt", { staticClass: "col-sm-2 mb-0" }, [
-                            _vm._v("Nomor")
+                            _vm._v("Nomor"),
                           ])
                         : _vm._e(),
                       _vm._v(" "),
                       _vm.selectedItem.surat_nomor
                         ? _c("dd", { staticClass: "col-sm-10 mb-0" }, [
-                            _vm._v(": " + _vm._s(_vm.selectedItem.surat_nomor))
+                            _vm._v(": " + _vm._s(_vm.selectedItem.surat_nomor)),
                           ])
                         : _vm._e(),
                       _vm._v(" "),
@@ -9103,24 +9130,24 @@ var render = function() {
                           : _vm.tipe == "tolak"
                           ? _c("span", [_vm._v("Penolakan")])
                           : _vm._e(),
-                        _vm._v(" \n                  Klaim JALINAN")
-                      ])
-                    ])
+                        _vm._v(" \r\n                  Klaim JALINAN"),
+                      ]),
+                    ]),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-5 text-right" }, [
                     _c("ul", { staticClass: "list list-unstyled mb-0" }, [
                       _vm.tipe == "cair"
                         ? _c("li", [
-                            _c("small", [_vm._v("FM-JLN-18/Rev00/02.01.2019")])
+                            _c("small", [_vm._v("FM-JLN-18/Rev00/02.01.2019")]),
                           ])
                         : _vm.tipe == "kurang"
                         ? _c("li", [
-                            _c("small", [_vm._v("FM-JLN-02/Rev00/02.01.2019")])
+                            _c("small", [_vm._v("FM-JLN-02/Rev00/02.01.2019")]),
                           ])
                         : _vm.tipe == "tolak"
                         ? _c("li", [
-                            _c("small", [_vm._v("FM-JLN-01/Rev00/02.01.2019")])
+                            _c("small", [_vm._v("FM-JLN-01/Rev00/02.01.2019")]),
                           ])
                         : _vm._e(),
                       _vm._v(" "),
@@ -9131,10 +9158,10 @@ var render = function() {
                             _vm.$options.filters.dateMonth(
                               this.selectedItem.surat_tanggal
                             )
-                          )
-                        }
-                      })
-                    ])
+                          ),
+                        },
+                      }),
+                    ]),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-12 mb-4" }),
@@ -9149,36 +9176,36 @@ var render = function() {
                                 ? "CU " + _vm.selectedItem.anggota_cu_cu.cu.name
                                 : ""
                             )
-                        )
+                        ),
                       ]),
                       _vm._v(" "),
                       _c("li", [_vm._v("u.p. Bagian JALINAN")]),
                       _vm._v(" "),
                       _c("li", [
                         _vm._v(
-                          "\n                  " +
+                          "\r\n                  " +
                             _vm._s(
                               _vm._f("capitalize")(
                                 _vm.modelProvinces.name + ","
                               )
                             ) +
-                            " \n                  " +
+                            " \r\n                  " +
                             _vm._s(
                               _vm._f("capitalize")(
                                 _vm.modelRegencies.name + ","
                               )
                             ) +
-                            " \n                  " +
+                            " \r\n                  " +
                             _vm._s(
                               _vm._f("capitalize")(
                                 _vm.modelDistricts.name + ","
                               )
                             ) +
-                            "  \n                  " +
+                            "  \r\n                  " +
                             _vm._s(_vm._f("capitalize")(_vm.modelVillages.name))
-                        )
-                      ])
-                    ])
+                        ),
+                      ]),
+                    ]),
                   ]),
                   _vm._v(" "),
                   _vm._m(0),
@@ -9189,13 +9216,13 @@ var render = function() {
                       {
                         staticStyle: {
                           "text-indent": "30px",
-                          "font-size": "18px"
-                        }
+                          "font-size": "18px",
+                        },
                       },
                       [
                         _vm._v(
                           "Kami mengucapkan terima kasih atas kerjasama dan kepercayaannya telah menjadi anggota Puskopdit BKCU Kalimantan terutama dalam kegiatan pengembangan JALINAN semoga kerjasama ini semakin terjalin dengan baik dimasa yang akan datang"
-                        )
+                        ),
                       ]
                     ),
                     _vm._v(" "),
@@ -9205,8 +9232,8 @@ var render = function() {
                           {
                             staticStyle: {
                               "text-indent": "30px",
-                              "font-size": "18px"
-                            }
+                              "font-size": "18px",
+                            },
                           },
                           [
                             _vm._v(
@@ -9218,12 +9245,12 @@ var render = function() {
                                   _vm.$options.filters.dateMonth(
                                     this.selectedItem.tanggal_pencairan
                                   )
-                                )
-                              }
+                                ),
+                              },
                             }),
                             _vm._v(
                               " Adapun daftar klaim tersebut diatas sebagai berikut :"
-                            )
+                            ),
                           ]
                         )
                       : _vm.tipe == "kurang"
@@ -9232,13 +9259,13 @@ var render = function() {
                           {
                             staticStyle: {
                               "text-indent": "30px",
-                              "font-size": "18px"
-                            }
+                              "font-size": "18px",
+                            },
                           },
                           [
                             _vm._v(
                               "Berdasarkan analisis terhadap klaim JALINAN atas nama almarhum/almarhumah dibawah ini, maka kami masih memerlukan beberapa hal untuk dilengkapi oleh CU:"
-                            )
+                            ),
                           ]
                         )
                       : _vm.tipe == "tolak"
@@ -9247,13 +9274,13 @@ var render = function() {
                           {
                             staticStyle: {
                               "text-indent": "30px",
-                              "font-size": "18px"
-                            }
+                              "font-size": "18px",
+                            },
                           },
                           [
                             _vm._v(
                               "Kami telah melakukan analisis terhadap klaim JALINAN atas nama almarhum/almarhumah dibawah ini, dan kami menyatakan menolak permohonan klaim yang dimaksud karena alasan sebagai berikut:"
-                            )
+                            ),
                           ]
                         )
                       : _vm._e(),
@@ -9271,7 +9298,9 @@ var render = function() {
                                   _c(
                                     "td",
                                     {
-                                      staticStyle: { border: "1px solid black" }
+                                      staticStyle: {
+                                        border: "1px solid black",
+                                      },
                                     },
                                     [
                                       _vm._v(
@@ -9280,7 +9309,7 @@ var render = function() {
                                             ? _vm.selectedItem.anggota_cu.name
                                             : ""
                                         )
-                                      )
+                                      ),
                                     ]
                                   ),
                                   _vm._v(" "),
@@ -9288,7 +9317,9 @@ var render = function() {
                                     "td",
                                     {
                                       staticClass: "text-right",
-                                      staticStyle: { border: "1px solid black" }
+                                      staticStyle: {
+                                        border: "1px solid black",
+                                      },
                                     },
                                     [
                                       _vm._v(
@@ -9298,7 +9329,7 @@ var render = function() {
                                                 .no_ba
                                             : ""
                                         )
-                                      )
+                                      ),
                                     ]
                                   ),
                                   _vm._v(" "),
@@ -9306,16 +9337,18 @@ var render = function() {
                                     "td",
                                     {
                                       staticClass: "text-right",
-                                      staticStyle: { border: "1px solid black" }
+                                      staticStyle: {
+                                        border: "1px solid black",
+                                      },
                                     },
                                     [
                                       _c("check-value", {
                                         attrs: {
                                           value:
                                             _vm.selectedItem.tunas_disetujui,
-                                          valueType: "currency"
-                                        }
-                                      })
+                                          valueType: "currency",
+                                        },
+                                      }),
                                     ],
                                     1
                                   ),
@@ -9324,16 +9357,18 @@ var render = function() {
                                     "td",
                                     {
                                       staticClass: "text-right",
-                                      staticStyle: { border: "1px solid black" }
+                                      staticStyle: {
+                                        border: "1px solid black",
+                                      },
                                     },
                                     [
                                       _c("check-value", {
                                         attrs: {
                                           value:
                                             _vm.selectedItem.lintang_disetujui,
-                                          valueType: "currency"
-                                        }
-                                      })
+                                          valueType: "currency",
+                                        },
+                                      }),
                                     ],
                                     1
                                   ),
@@ -9342,7 +9377,9 @@ var render = function() {
                                     "td",
                                     {
                                       staticClass: "text-right",
-                                      staticStyle: { border: "1px solid black" }
+                                      staticStyle: {
+                                        border: "1px solid black",
+                                      },
                                     },
                                     [
                                       _c("check-value", {
@@ -9350,16 +9387,16 @@ var render = function() {
                                           value:
                                             _vm.selectedItem.tunas_disetujui +
                                             _vm.selectedItem.lintang_disetujui,
-                                          valueType: "currency"
-                                        }
-                                      })
+                                          valueType: "currency",
+                                        },
+                                      }),
                                     ],
                                     1
-                                  )
-                                ])
-                              ])
+                                  ),
+                                ]),
+                              ]),
                             ]
-                          )
+                          ),
                         ])
                       : _vm.tipe == "kurang"
                       ? _c("div", { staticClass: "table-responsive" }, [
@@ -9374,7 +9411,9 @@ var render = function() {
                                   _c(
                                     "td",
                                     {
-                                      staticStyle: { border: "1px solid black" }
+                                      staticStyle: {
+                                        border: "1px solid black",
+                                      },
                                     },
                                     [
                                       _vm._v(
@@ -9383,7 +9422,7 @@ var render = function() {
                                             ? _vm.selectedItem.anggota_cu.name
                                             : ""
                                         )
-                                      )
+                                      ),
                                     ]
                                   ),
                                   _vm._v(" "),
@@ -9391,7 +9430,9 @@ var render = function() {
                                     "td",
                                     {
                                       staticClass: "text-right",
-                                      staticStyle: { border: "1px solid black" }
+                                      staticStyle: {
+                                        border: "1px solid black",
+                                      },
                                     },
                                     [
                                       _vm._v(
@@ -9401,27 +9442,29 @@ var render = function() {
                                                 .no_ba
                                             : ""
                                         )
-                                      )
+                                      ),
                                     ]
                                   ),
                                   _vm._v(" "),
                                   _c(
                                     "td",
                                     {
-                                      staticStyle: { border: "1px solid black" }
+                                      staticStyle: {
+                                        border: "1px solid black",
+                                      },
                                     },
                                     [
                                       _vm._v(
                                         _vm._s(
                                           _vm.selectedItem.keterangan_klaim
                                         )
-                                      )
+                                      ),
                                     ]
-                                  )
-                                ])
-                              ])
+                                  ),
+                                ]),
+                              ]),
                             ]
-                          )
+                          ),
                         ])
                       : _vm.tipe == "tolak"
                       ? _c("div", { staticClass: "table-responsive" }, [
@@ -9436,7 +9479,9 @@ var render = function() {
                                   _c(
                                     "td",
                                     {
-                                      staticStyle: { border: "1px solid black" }
+                                      staticStyle: {
+                                        border: "1px solid black",
+                                      },
                                     },
                                     [
                                       _vm._v(
@@ -9445,7 +9490,7 @@ var render = function() {
                                             ? _vm.selectedItem.anggota_cu.name
                                             : ""
                                         )
-                                      )
+                                      ),
                                     ]
                                   ),
                                   _vm._v(" "),
@@ -9453,7 +9498,9 @@ var render = function() {
                                     "td",
                                     {
                                       staticClass: "text-right",
-                                      staticStyle: { border: "1px solid black" }
+                                      staticStyle: {
+                                        border: "1px solid black",
+                                      },
                                     },
                                     [
                                       _vm._v(
@@ -9463,7 +9510,7 @@ var render = function() {
                                                 .no_ba
                                             : ""
                                         )
-                                      )
+                                      ),
                                     ]
                                   ),
                                   _vm._v(" "),
@@ -9471,51 +9518,55 @@ var render = function() {
                                     "td",
                                     {
                                       staticClass: "text-center",
-                                      staticStyle: { border: "1px solid black" }
+                                      staticStyle: {
+                                        border: "1px solid black",
+                                      },
                                     },
                                     [
                                       _vm._v(
-                                        "\n                        " +
+                                        "\r\n                        " +
                                           _vm._s(
                                             _vm.selectedItem.tunas_diajukan
                                               ? "TUNAS"
                                               : ""
                                           ) +
-                                          "\n                        " +
+                                          "\r\n                        " +
                                           _vm._s(
                                             _vm.selectedItem.tunas_diajukan &&
                                               _vm.selectedItem.lintang_diajukan
                                               ? " dan "
                                               : ""
                                           ) +
-                                          "\n                        " +
+                                          "\r\n                        " +
                                           _vm._s(
                                             _vm.selectedItem.lintang_diajukan
                                               ? "LINTANG"
                                               : ""
                                           ) +
-                                          "\n                      "
-                                      )
+                                          "\r\n                      "
+                                      ),
                                     ]
                                   ),
                                   _vm._v(" "),
                                   _c(
                                     "td",
                                     {
-                                      staticStyle: { border: "1px solid black" }
+                                      staticStyle: {
+                                        border: "1px solid black",
+                                      },
                                     },
                                     [
                                       _vm._v(
                                         _vm._s(
                                           _vm.selectedItem.keterangan_klaim
                                         )
-                                      )
+                                      ),
                                     ]
-                                  )
-                                ])
-                              ])
+                                  ),
+                                ]),
+                              ]),
                             ]
-                          )
+                          ),
                         ])
                       : _vm._e(),
                     _vm._v(" "),
@@ -9526,8 +9577,8 @@ var render = function() {
                             staticClass: "mt-2",
                             staticStyle: {
                               "text-indent": "30px",
-                              "font-size": "18px"
-                            }
+                              "font-size": "18px",
+                            },
                           },
                           [_vm._v(_vm._s(_vm.selectedItem.keterangan_klaim))]
                         )
@@ -9538,13 +9589,13 @@ var render = function() {
                             staticClass: "mt-2",
                             staticStyle: {
                               "text-indent": "30px",
-                              "font-size": "18px"
-                            }
+                              "font-size": "18px",
+                            },
                           },
                           [
                             _vm._v(
                               "Mengacu pada ketentuan JALINAN Bab V pasal 20, maka berkas tersebut harus sudah kami terima 45 hari setelah surat pemberitahuan ini kami keluarkan"
-                            )
+                            ),
                           ]
                         )
                       : _vm._e(),
@@ -9555,19 +9606,19 @@ var render = function() {
                         staticClass: "mt-2",
                         staticStyle: {
                           "text-indent": "30px",
-                          "font-size": "18px"
-                        }
+                          "font-size": "18px",
+                        },
                       },
                       [
                         _vm._v(
                           "Demikian surat ini disampaikan, atas perhatian dan kerjasama yang terjalin selama ini, kami ucapkan terima kasih"
-                        )
+                        ),
                       ]
-                    )
+                    ),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-6 text-right" }, [
-                    _vm._v("\n               \n            ")
+                    _vm._v("\r\n               \r\n            "),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-6 text-right" }, [
@@ -9575,17 +9626,17 @@ var render = function() {
                     _vm._v(" "),
                     _c("img", {
                       staticClass: "img-fluid wmin-sm",
-                      attrs: { src: "/files/ttdErowin.png", width: "200" }
+                      attrs: { src: "/files/ttdErowin.png", width: "200" },
                     }),
                     _vm._v(" "),
-                    _vm._m(5)
-                  ])
+                    _vm._m(5),
+                  ]),
                 ]
-              )
-            ])
+              ),
+            ]),
           ]
-        )
-      ])
+        ),
+      ]),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "text-center d-none d-md-block" }, [
@@ -9594,11 +9645,11 @@ var render = function() {
         {
           staticClass: "btn btn-light",
           on: {
-            click: function($event) {
+            click: function ($event) {
               $event.preventDefault()
-              return _vm.tutup($event)
-            }
-          }
+              return _vm.tutup.apply(null, arguments)
+            },
+          },
         },
         [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
       ),
@@ -9609,14 +9660,14 @@ var render = function() {
           staticClass: "btn btn-primary",
           attrs: { type: "button" },
           on: {
-            click: function($event) {
+            click: function ($event) {
               $event.preventDefault()
               return _vm.print()
-            }
-          }
+            },
+          },
         },
         [_c("i", { staticClass: "icon-printer" }), _vm._v(" Print")]
-      )
+      ),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "d-block d-md-none" }, [
@@ -9626,11 +9677,11 @@ var render = function() {
           staticClass: "btn btn-primary btn-block pb-2",
           attrs: { type: "button" },
           on: {
-            click: function($event) {
+            click: function ($event) {
               $event.preventDefault()
               return _vm.print()
-            }
-          }
+            },
+          },
         },
         [_c("i", { staticClass: "icon-printer" }), _vm._v(" Print")]
       ),
@@ -9640,29 +9691,29 @@ var render = function() {
         {
           staticClass: "btn btn-light btn-block pb-2",
           on: {
-            click: function($event) {
+            click: function ($event) {
               $event.preventDefault()
-              return _vm.tutup($event)
-            }
-          }
+              return _vm.tutup.apply(null, arguments)
+            },
+          },
         },
         [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
-      )
-    ])
+      ),
+    ]),
   ])
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-12 mt-3" }, [
       _c("ul", { staticClass: "list list-unstyled mb-0" }, [
-        _c("li", [_vm._v("Dengan hormat,")])
-      ])
+        _c("li", [_vm._v("Dengan hormat,")]),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -9674,9 +9725,9 @@ var staticRenderFns = [
             staticClass: "text-center",
             staticStyle: {
               "vertical-align": "middle",
-              border: "1px solid black"
+              border: "1px solid black",
             },
-            attrs: { rowspan: "2" }
+            attrs: { rowspan: "2" },
           },
           [_vm._v("NAMA")]
         ),
@@ -9687,9 +9738,9 @@ var staticRenderFns = [
             staticClass: "text-center",
             staticStyle: {
               "vertical-align": "middle",
-              border: "1px solid black"
+              border: "1px solid black",
             },
-            attrs: { rowspan: "2" }
+            attrs: { rowspan: "2" },
           },
           [_vm._v("NO. BA")]
         ),
@@ -9699,10 +9750,10 @@ var staticRenderFns = [
           {
             staticClass: "text-center",
             staticStyle: { border: "1px solid black" },
-            attrs: { colspan: "3" }
+            attrs: { colspan: "3" },
           },
           [_vm._v("PENCAIRAN")]
-        )
+        ),
       ]),
       _vm._v(" "),
       _c("tr", [
@@ -9710,7 +9761,7 @@ var staticRenderFns = [
           "th",
           {
             staticClass: "text-center",
-            staticStyle: { border: "1px solid black" }
+            staticStyle: { border: "1px solid black" },
           },
           [_vm._v("TUNAS")]
         ),
@@ -9719,7 +9770,7 @@ var staticRenderFns = [
           "th",
           {
             staticClass: "text-center",
-            staticStyle: { border: "1px solid black" }
+            staticStyle: { border: "1px solid black" },
           },
           [_vm._v("LINTANG")]
         ),
@@ -9728,14 +9779,14 @@ var staticRenderFns = [
           "th",
           {
             staticClass: "text-center",
-            staticStyle: { border: "1px solid black" }
+            staticStyle: { border: "1px solid black" },
           },
           [_vm._v("JUMLAH")]
-        )
-      ])
+        ),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -9745,7 +9796,7 @@ var staticRenderFns = [
           "th",
           {
             staticClass: "text-center",
-            staticStyle: { border: "1px solid black" }
+            staticStyle: { border: "1px solid black" },
           },
           [_vm._v("NAMA")]
         ),
@@ -9754,7 +9805,7 @@ var staticRenderFns = [
           "th",
           {
             staticClass: "text-center",
-            staticStyle: { border: "1px solid black" }
+            staticStyle: { border: "1px solid black" },
           },
           [_vm._v("NO. BA")]
         ),
@@ -9763,14 +9814,14 @@ var staticRenderFns = [
           "th",
           {
             staticClass: "text-center",
-            staticStyle: { border: "1px solid black" }
+            staticStyle: { border: "1px solid black" },
           },
           [_vm._v("KETERANGAN")]
-        )
-      ])
+        ),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -9780,7 +9831,7 @@ var staticRenderFns = [
           "th",
           {
             staticClass: "text-center",
-            staticStyle: { border: "1px solid black" }
+            staticStyle: { border: "1px solid black" },
           },
           [_vm._v("NAMA")]
         ),
@@ -9789,7 +9840,7 @@ var staticRenderFns = [
           "th",
           {
             staticClass: "text-center",
-            staticStyle: { border: "1px solid black" }
+            staticStyle: { border: "1px solid black" },
           },
           [_vm._v("NO. BA")]
         ),
@@ -9798,7 +9849,7 @@ var staticRenderFns = [
           "th",
           {
             staticClass: "text-center",
-            staticStyle: { border: "1px solid black" }
+            staticStyle: { border: "1px solid black" },
           },
           [_vm._v("KLAIM")]
         ),
@@ -9807,33 +9858,33 @@ var staticRenderFns = [
           "th",
           {
             staticClass: "text-center",
-            staticStyle: { border: "1px solid black" }
+            staticStyle: { border: "1px solid black" },
           },
           [_vm._v("KETERANGAN")]
-        )
-      ])
+        ),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("ul", { staticClass: "list list-unstyled mb-0" }, [
       _c("li", [_vm._v("Mengetahui")]),
       _vm._v(" "),
-      _c("li", [_vm._v("General Manager,")])
+      _c("li", [_vm._v("General Manager,")]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("ul", { staticClass: "list list-unstyled mb-0" }, [
       _c("li", [_c("b", [_vm._v("Erowin, S. Hut.")])]),
       _vm._v(" "),
-      _c("li", [_vm._v("Nim.19781217 200408 1 011")])
+      _c("li", [_vm._v("Nim.19781217 200408 1 011")]),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -9852,7 +9903,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -9868,26 +9919,26 @@ var render = function() {
             itemData: _vm.itemData,
             query: _vm.query,
             itemDataStat: _vm.itemDataStat,
-            excelDownloadUrl: _vm.excelDownloadUrl
+            excelDownloadUrl: _vm.excelDownloadUrl,
           },
           on: { fetch: _vm.fetch },
           scopedSlots: _vm._u([
             {
               key: "item-desktop",
-              fn: function(props) {
+              fn: function (props) {
                 return [
                   _c(
                     "tr",
                     {
                       staticClass: "text-nowrap",
                       class: {
-                        "bg-info": _vm.selectedItem.id === props.item.id
+                        "bg-info": _vm.selectedItem.id === props.item.id,
                       },
                       on: {
-                        click: function($event) {
+                        click: function ($event) {
                           return _vm.selectedRow(props.item)
-                        }
-                      }
+                        },
+                      },
                     },
                     [
                       !_vm.columnData[0].hide
@@ -9902,7 +9953,7 @@ var render = function() {
                                     "."
                                 ) +
                                 "\n\t\t\t\t\t"
-                            )
+                            ),
                           ])
                         : _vm._e(),
                       _vm._v(" "),
@@ -9919,8 +9970,8 @@ var render = function() {
                                 : _vm._e(),
                               _vm._v(" "),
                               _c("check-value", {
-                                attrs: { value: props.item.keterangan_klaim }
-                              })
+                                attrs: { value: props.item.keterangan_klaim },
+                              }),
                             ],
                             1
                           )
@@ -9932,9 +9983,9 @@ var render = function() {
                             [
                               props.item.anggota_cu
                                 ? _c("check-value", {
-                                    attrs: { value: props.item.anggota_cu.nik }
+                                    attrs: { value: props.item.anggota_cu.nik },
                                   })
-                                : _c("span", [_vm._v("-")])
+                                : _c("span", [_vm._v("-")]),
                             ],
                             1
                           )
@@ -9947,10 +9998,10 @@ var render = function() {
                               props.item.anggota_cu_cu
                                 ? _c("check-value", {
                                     attrs: {
-                                      value: props.item.anggota_cu_cu.no_ba
-                                    }
+                                      value: props.item.anggota_cu_cu.no_ba,
+                                    },
                                   })
-                                : _c("span", [_vm._v("-")])
+                                : _c("span", [_vm._v("-")]),
                             ],
                             1
                           )
@@ -9964,10 +10015,10 @@ var render = function() {
                               props.item.anggota_cu_cu.cu
                                 ? _c("check-value", {
                                     attrs: {
-                                      value: props.item.anggota_cu_cu.cu.name
-                                    }
+                                      value: props.item.anggota_cu_cu.cu.name,
+                                    },
                                   })
-                                : _c("span", [_vm._v("-")])
+                                : _c("span", [_vm._v("-")]),
                             ],
                             1
                           )
@@ -9981,10 +10032,10 @@ var render = function() {
                               props.item.anggota_cu_cu.tp
                                 ? _c("check-value", {
                                     attrs: {
-                                      value: props.item.anggota_cu_cu.tp.name
-                                    }
+                                      value: props.item.anggota_cu_cu.tp.name,
+                                    },
                                   })
-                                : _c("span", [_vm._v("-")])
+                                : _c("span", [_vm._v("-")]),
                             ],
                             1
                           )
@@ -9996,9 +10047,11 @@ var render = function() {
                             [
                               props.item.anggota_cu
                                 ? _c("check-value", {
-                                    attrs: { value: props.item.anggota_cu.name }
+                                    attrs: {
+                                      value: props.item.anggota_cu.name,
+                                    },
                                   })
-                                : _c("span", [_vm._v("-")])
+                                : _c("span", [_vm._v("-")]),
                             ],
                             1
                           )
@@ -10011,11 +10064,11 @@ var render = function() {
                               { staticClass: "badge badge-warning ml-1" },
                               [
                                 _c("check-value", {
-                                  attrs: { value: props.item.tipe }
-                                })
+                                  attrs: { value: props.item.tipe },
+                                }),
                               ],
                               1
-                            )
+                            ),
                           ])
                         : _vm._e(),
                       _vm._v(" "),
@@ -10024,8 +10077,8 @@ var render = function() {
                             "td",
                             [
                               _c("check-value", {
-                                attrs: { value: props.item.kategori_penyakit }
-                              })
+                                attrs: { value: props.item.kategori_penyakit },
+                              }),
                             ],
                             1
                           )
@@ -10039,9 +10092,9 @@ var render = function() {
                                   _vm.$options.filters.checkStatus(
                                     props.item.verifikasi_pengurus
                                   )
-                                )
-                              }
-                            })
+                                ),
+                              },
+                            }),
                           ])
                         : _vm._e(),
                       _vm._v(" "),
@@ -10053,9 +10106,9 @@ var render = function() {
                                   _vm.$options.filters.checkStatus(
                                     props.item.verifikasi_pengawas
                                   )
-                                )
-                              }
-                            })
+                                ),
+                              },
+                            }),
                           ])
                         : _vm._e(),
                       _vm._v(" "),
@@ -10067,9 +10120,9 @@ var render = function() {
                                   _vm.$options.filters.checkStatus(
                                     props.item.verifikasi_manajemen
                                   )
-                                )
-                              }
-                            })
+                                ),
+                              },
+                            }),
                           ])
                         : _vm._e(),
                       _vm._v(" "),
@@ -10078,8 +10131,8 @@ var render = function() {
                             "td",
                             [
                               _c("check-value", {
-                                attrs: { value: props.item.keterangan_mati }
-                              })
+                                attrs: { value: props.item.keterangan_mati },
+                              }),
                             ],
                             1
                           )
@@ -10092,9 +10145,9 @@ var render = function() {
                               _c("check-value", {
                                 attrs: {
                                   value: props.item.tunas_diajukan,
-                                  valueType: "currency"
-                                }
-                              })
+                                  valueType: "currency",
+                                },
+                              }),
                             ],
                             1
                           )
@@ -10107,9 +10160,9 @@ var render = function() {
                               _c("check-value", {
                                 attrs: {
                                   value: props.item.lintang_diajukan,
-                                  valueType: "currency"
-                                }
-                              })
+                                  valueType: "currency",
+                                },
+                              }),
                             ],
                             1
                           )
@@ -10122,9 +10175,9 @@ var render = function() {
                               _c("check-value", {
                                 attrs: {
                                   value: props.item.tunas_disetujui,
-                                  valueType: "currency"
-                                }
-                              })
+                                  valueType: "currency",
+                                },
+                              }),
                             ],
                             1
                           )
@@ -10137,9 +10190,9 @@ var render = function() {
                               _c("check-value", {
                                 attrs: {
                                   value: props.item.lintang_disetujui,
-                                  valueType: "currency"
-                                }
-                              })
+                                  valueType: "currency",
+                                },
+                              }),
                             ],
                             1
                           )
@@ -10153,8 +10206,8 @@ var render = function() {
                                 _vm.$options.filters.date(
                                   props.item.tanggal_mati
                                 )
-                              )
-                            }
+                              ),
+                            },
                           })
                         : _vm._e(),
                       _vm._v(" "),
@@ -10168,8 +10221,8 @@ var render = function() {
                                     ? props.item.anggota_cu.tanggal_lahir
                                     : ""
                                 )
-                              )
-                            }
+                              ),
+                            },
                           })
                         : _vm._e(),
                       _vm._v(" "),
@@ -10183,8 +10236,8 @@ var render = function() {
                                     ? props.item.anggota_cu_cu.tanggal_masuk
                                     : ""
                                 )
-                              )
-                            }
+                              ),
+                            },
                           })
                         : _vm._e(),
                       _vm._v(" "),
@@ -10196,8 +10249,8 @@ var render = function() {
                                 _vm.$options.filters.date(
                                   props.item.tanggal_pencairan
                                 )
-                              )
-                            }
+                              ),
+                            },
                           })
                         : _vm._e(),
                       _vm._v(" "),
@@ -10210,10 +10263,10 @@ var render = function() {
                                 ? _c("check-value", {
                                     attrs: {
                                       value:
-                                        props.item.anggota_cu.usia_meninggal
-                                    }
+                                        props.item.anggota_cu.usia_meninggal,
+                                    },
                                   })
-                                : _c("span", [_vm._v("-")])
+                                : _c("span", [_vm._v("-")]),
                             ],
                             1
                           )
@@ -10227,10 +10280,10 @@ var render = function() {
                               props.item.anggota_cu
                                 ? _c("check-value", {
                                     attrs: {
-                                      value: props.item.anggota_cu.usia_cacat
-                                    }
+                                      value: props.item.anggota_cu.usia_cacat,
+                                    },
                                   })
-                                : _c("span", [_vm._v("-")])
+                                : _c("span", [_vm._v("-")]),
                             ],
                             1
                           )
@@ -10246,10 +10299,10 @@ var render = function() {
                                     attrs: {
                                       value:
                                         props.item.anggota_cu_cu
-                                          .lama_menjadi_anggota
-                                    }
+                                          .lama_menjadi_anggota,
+                                    },
                                   })
-                                : _c("span", [_vm._v("-")])
+                                : _c("span", [_vm._v("-")]),
                             ],
                             1
                           )
@@ -10260,8 +10313,8 @@ var render = function() {
                             "td",
                             [
                               _c("check-value", {
-                                attrs: { value: props.item.keterangan }
-                              })
+                                attrs: { value: props.item.keterangan },
+                              }),
                             ],
                             1
                           )
@@ -10274,10 +10327,10 @@ var render = function() {
                               props.item.anggota_cu
                                 ? _c("check-value", {
                                     attrs: {
-                                      value: props.item.anggota_cu.kelamin
-                                    }
+                                      value: props.item.anggota_cu.kelamin,
+                                    },
                                   })
-                                : _vm._e()
+                                : _vm._e(),
                             ],
                             1
                           )
@@ -10290,10 +10343,10 @@ var render = function() {
                               props.item.anggota_cu
                                 ? _c("check-value", {
                                     attrs: {
-                                      value: props.item.anggota_cu.ahli_waris
-                                    }
+                                      value: props.item.anggota_cu.ahli_waris,
+                                    },
                                   })
-                                : _vm._e()
+                                : _vm._e(),
                             ],
                             1
                           )
@@ -10308,10 +10361,10 @@ var render = function() {
                                 ? _c("check-value", {
                                     attrs: {
                                       value:
-                                        props.item.anggota_cu.provinces.name
-                                    }
+                                        props.item.anggota_cu.provinces.name,
+                                    },
                                   })
-                                : _c("span", [_vm._v("-")])
+                                : _c("span", [_vm._v("-")]),
                             ],
                             1
                           )
@@ -10324,10 +10377,10 @@ var render = function() {
                               props.item.anggota_cu
                                 ? _c("check-value", {
                                     attrs: {
-                                      value: props.item.anggota_cu.alamat
-                                    }
+                                      value: props.item.anggota_cu.alamat,
+                                    },
                                   })
-                                : _vm._e()
+                                : _vm._e(),
                             ],
                             1
                           )
@@ -10339,9 +10392,9 @@ var render = function() {
                             [
                               props.item.anggota_cu
                                 ? _c("check-value", {
-                                    attrs: { value: props.item.anggota_cu.hp }
+                                    attrs: { value: props.item.anggota_cu.hp },
                                   })
-                                : _vm._e()
+                                : _vm._e(),
                             ],
                             1
                           )
@@ -10355,8 +10408,8 @@ var render = function() {
                                 _vm.$options.filters.dateTime(
                                   props.item.created_at
                                 )
-                              )
-                            }
+                              ),
+                            },
                           })
                         : _vm._e(),
                       _vm._v(" "),
@@ -10369,18 +10422,18 @@ var render = function() {
                                       _vm.$options.filters.dateTime(
                                         props.item.updated_at
                                       )
-                                    )
-                                  }
+                                    ),
+                                  },
                                 })
-                              : _c("span", [_vm._v("-")])
+                              : _c("span", [_vm._v("-")]),
                           ])
-                        : _vm._e()
+                        : _vm._e(),
                     ]
-                  )
+                  ),
                 ]
-              }
-            }
-          ])
+              },
+            },
+          ]),
         },
         [
           !_vm.isSimple
@@ -10395,11 +10448,11 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "btn btn-light btn-icon mb-1",
-                          attrs: { to: { name: _vm.kelas + "Create" } }
+                          attrs: { to: { name: _vm.kelas + "Create" } },
                         },
                         [
                           _c("i", { staticClass: "icon-plus3" }),
-                          _vm._v(" Tambah\n        ")
+                          _vm._v(" Tambah\n        "),
                         ]
                       )
                     : _vm._e(),
@@ -10413,19 +10466,19 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon mb-1",
                           attrs: { disabled: !_vm.selectedItem.anggota_cu },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.ubahData(
                                 _vm.selectedItem.anggota_cu.nik,
                                 _vm.selectedItem.anggota_cu_cu_id,
                                 _vm.selectedItem.tipe
                               )
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-pencil5" }),
-                          _vm._v(" Ubah Klaim\n        ")
+                          _vm._v(" Ubah Klaim\n        "),
                         ]
                       )
                     : _vm._e(),
@@ -10443,18 +10496,18 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon mb-1",
                           attrs: { disabled: !_vm.selectedItem.id },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.ubahDataAnggota(
                                 _vm.selectedItem.anggota_cu_id,
                                 "identitas"
                               )
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-pencil5" }),
-                          _vm._v(" Ubah Identitas\n        ")
+                          _vm._v(" Ubah Identitas\n        "),
                         ]
                       )
                     : _vm.currentUser.id_cu != 0 &&
@@ -10468,18 +10521,18 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon mb-1",
                           attrs: { disabled: !_vm.selectedItem.id },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.ubahDataAnggota(
                                 _vm.selectedItem.anggota_cu_id,
                                 "identitas"
                               )
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-pencil5" }),
-                          _vm._v(" Ubah Identitas\n        ")
+                          _vm._v(" Ubah Identitas\n        "),
                         ]
                       )
                     : _vm._e(),
@@ -10496,18 +10549,18 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon mb-1",
                           attrs: { disabled: !_vm.selectedItem.id },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.ubahDataAnggota(
                                 _vm.selectedItem.anggota_cu_id,
                                 "produk"
                               )
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-pencil5" }),
-                          _vm._v(" Ubah Produk\n        ")
+                          _vm._v(" Ubah Produk\n        "),
                         ]
                       )
                     : _vm.currentUser.id_cu != 0 &&
@@ -10520,18 +10573,18 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon mb-1",
                           attrs: { disabled: !_vm.selectedItem.id },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.ubahDataAnggota(
                                 _vm.selectedItem.anggota_cu_id,
                                 "produk"
                               )
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-pencil5" }),
-                          _vm._v(" Ubah Produk\n        ")
+                          _vm._v(" Ubah Produk\n        "),
                         ]
                       )
                     : _vm._e(),
@@ -10542,15 +10595,15 @@ var render = function() {
                       staticClass: "btn btn-light btn-icon mb-1",
                       attrs: { disabled: !_vm.selectedItem.id },
                       on: {
-                        click: function($event) {
+                        click: function ($event) {
                           $event.preventDefault()
                           return _vm.modalOpen("lihat")
-                        }
-                      }
+                        },
+                      },
                     },
                     [
                       _c("i", { staticClass: "icon-file-eye" }),
-                      _vm._v(" Lihat Klaim\n        ")
+                      _vm._v(" Lihat Klaim\n        "),
                     ]
                   ),
                   _vm._v(" "),
@@ -10565,19 +10618,19 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon mb-1",
                           attrs: { disabled: !_vm.selectedItem.anggota_cu },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.koreksiData(
                                 _vm.selectedItem.anggota_cu.nik,
                                 _vm.selectedItem.anggota_cu_cu_id,
                                 _vm.selectedItem.tipe
                               )
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-paint-format" }),
-                          _vm._v(" Koreksi\n        ")
+                          _vm._v(" Koreksi\n        "),
                         ]
                       )
                     : _vm._e(),
@@ -10595,15 +10648,15 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon mb-1",
                           attrs: { disabled: !_vm.selectedItem.id },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.modalOpen("analisis")
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-loop4" }),
-                          _vm._v(" Analisis Klaim\n        ")
+                          _vm._v(" Analisis Klaim\n        "),
                         ]
                       )
                     : _vm._e(),
@@ -10617,15 +10670,15 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon mb-1",
                           attrs: { disabled: !_vm.selectedItem.anggota_cu },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.modalOpen("periksa_koreksi")
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-paint-format" }),
-                          _vm._v(" Periksa Koreksi\n        ")
+                          _vm._v(" Periksa Koreksi\n        "),
                         ]
                       )
                     : _vm._e(),
@@ -10637,15 +10690,15 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon mb-1",
                           attrs: { disabled: !_vm.selectedItem.id },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.modalOpen("surat_cair")
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-envelop2" }),
-                          _vm._v(" Surat Pencairan\n        ")
+                          _vm._v(" Surat Pencairan\n        "),
                         ]
                       )
                     : _vm._e(),
@@ -10657,15 +10710,15 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon mb-1",
                           attrs: { disabled: !_vm.selectedItem.id },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.modalOpen("surat_tolak")
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-envelop2" }),
-                          _vm._v(" Surat Penolakan\n        ")
+                          _vm._v(" Surat Penolakan\n        "),
                         ]
                       )
                     : _vm._e(),
@@ -10677,15 +10730,15 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon mb-1",
                           attrs: { disabled: !_vm.selectedItem.id },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.modalOpen("surat_kurang")
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-envelop2" }),
-                          _vm._v(" Surat Dokumen Tidak Lengkap\n        ")
+                          _vm._v(" Surat Dokumen Tidak Lengkap\n        "),
                         ]
                       )
                     : _vm._e(),
@@ -10700,22 +10753,22 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon mb-1",
                           attrs: { disabled: !_vm.selectedItem.id },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.modalOpen("selesai")
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _vm.status == "5"
                             ? _c("span", [
                                 _c("i", { staticClass: "icon-checkmark4" }),
-                                _vm._v(" Selesai Klaim\n          ")
+                                _vm._v(" Selesai Klaim\n          "),
                               ])
                             : _c("span", [
                                 _c("i", { staticClass: "icon-blocked" }),
-                                _vm._v(" Batal Selesai Klaim\n          ")
-                              ])
+                                _vm._v(" Batal Selesai Klaim\n          "),
+                              ]),
                         ]
                       )
                     : _vm._e(),
@@ -10733,11 +10786,11 @@ var render = function() {
                               "button",
                               {
                                 staticClass: "btn btn-light btn-icon mb-1",
-                                attrs: { disabled: "" }
+                                attrs: { disabled: "" },
                               },
                               [
                                 _c("i", { staticClass: "icon-file-check" }),
-                                _vm._v(" Verifikasi\n          ")
+                                _vm._v(" Verifikasi\n          "),
                               ]
                             )
                           : _vm.selectedItem.verifikasi_pengurus ==
@@ -10750,11 +10803,11 @@ var render = function() {
                               "button",
                               {
                                 staticClass: "btn btn-light btn-icon mb-1",
-                                attrs: { disabled: "" }
+                                attrs: { disabled: "" },
                               },
                               [
                                 _c("i", { staticClass: "icon-file-check" }),
-                                _vm._v(" Verifikasi\n          ")
+                                _vm._v(" Verifikasi\n          "),
                               ]
                             )
                           : _c(
@@ -10762,17 +10815,17 @@ var render = function() {
                               {
                                 staticClass: "btn btn-light btn-icon mb-1",
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.modalOpen("verifikasi")
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", { staticClass: "icon-file-check" }),
-                                _vm._v(" Verifikasi\n          ")
+                                _vm._v(" Verifikasi\n          "),
                               ]
-                            )
+                            ),
                       ])
                     : _vm._e(),
                   _vm._v(" "),
@@ -10785,18 +10838,18 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon mb-1",
                           attrs: { disabled: !_vm.selectedItem.id },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.modalOpen("hapus")
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-bin2" }),
-                          _vm._v(" Hapus\n        ")
+                          _vm._v(" Hapus\n        "),
                         ]
                       )
-                    : _vm._e()
+                    : _vm._e(),
                 ],
                 1
               )
@@ -10814,11 +10867,11 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "btn btn-light btn-icon btn-block pb-1",
-                          attrs: { to: { name: _vm.kelas + "Create" } }
+                          attrs: { to: { name: _vm.kelas + "Create" } },
                         },
                         [
                           _c("i", { staticClass: "icon-plus3" }),
-                          _vm._v(" Tambah\n        ")
+                          _vm._v(" Tambah\n        "),
                         ]
                       )
                     : _vm._e(),
@@ -10832,19 +10885,19 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon btn-block pb-1",
                           attrs: { disabled: !_vm.selectedItem.anggota_cu },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.ubahData(
                                 _vm.selectedItem.anggota_cu.nik,
                                 _vm.selectedItem.anggota_cu_cu_id,
                                 _vm.selectedItem.tipe
                               )
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-pencil5" }),
-                          _vm._v(" Ubah Klaim\n        ")
+                          _vm._v(" Ubah Klaim\n        "),
                         ]
                       )
                     : _vm._e(),
@@ -10862,18 +10915,18 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon btn-block pb-1",
                           attrs: { disabled: !_vm.selectedItem.id },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.ubahDataAnggota(
                                 _vm.selectedItem.id,
                                 "identitas"
                               )
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-pencil5" }),
-                          _vm._v(" Ubah Identitas\n        ")
+                          _vm._v(" Ubah Identitas\n        "),
                         ]
                       )
                     : _vm.currentUser.id_cu != 0 &&
@@ -10887,18 +10940,18 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon btn-block pb-1",
                           attrs: { disabled: !_vm.selectedItem.id },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.ubahDataAnggota(
                                 _vm.selectedItem.id,
                                 "identitas"
                               )
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-pencil5" }),
-                          _vm._v(" Ubah Identitas\n        ")
+                          _vm._v(" Ubah Identitas\n        "),
                         ]
                       )
                     : _vm._e(),
@@ -10916,18 +10969,18 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon btn-block pb-1",
                           attrs: { disabled: !_vm.selectedItem.id },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.ubahDataAnggota(
                                 _vm.selectedItem.id,
                                 "produk"
                               )
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-pencil5" }),
-                          _vm._v(" Ubah Produk\n        ")
+                          _vm._v(" Ubah Produk\n        "),
                         ]
                       )
                     : _vm._e(),
@@ -10943,18 +10996,18 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon btn-block pb-1",
                           attrs: { disabled: !_vm.selectedItem.id },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.ubahDataAnggota(
                                 _vm.selectedItem.id,
                                 "produk"
                               )
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-pencil5" }),
-                          _vm._v(" Ubah Produk\n        ")
+                          _vm._v(" Ubah Produk\n        "),
                         ]
                       )
                     : _vm._e(),
@@ -10965,15 +11018,15 @@ var render = function() {
                       staticClass: "btn btn-light btn-icon btn-block pb-1",
                       attrs: { disabled: !_vm.selectedItem.id },
                       on: {
-                        click: function($event) {
+                        click: function ($event) {
                           $event.preventDefault()
                           return _vm.modalOpen("lihat")
-                        }
-                      }
+                        },
+                      },
                     },
                     [
                       _c("i", { staticClass: "icon-file-eye" }),
-                      _vm._v(" Lihat\n        ")
+                      _vm._v(" Lihat\n        "),
                     ]
                   ),
                   _vm._v(" "),
@@ -10988,19 +11041,19 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon btn-block pb-1",
                           attrs: { disabled: !_vm.selectedItem.anggota_cu },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.koreksiData(
                                 _vm.selectedItem.anggota_cu.nik,
                                 _vm.selectedItem.anggota_cu_cu_id,
                                 _vm.selectedItem.tipe
                               )
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-paint-format" }),
-                          _vm._v(" Koreksi\n        ")
+                          _vm._v(" Koreksi\n        "),
                         ]
                       )
                     : _vm._e(),
@@ -11018,15 +11071,15 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon btn-block pb-1",
                           attrs: { disabled: !_vm.selectedItem.id },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.modalOpen("analisis")
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-loop4" }),
-                          _vm._v(" Analisis Klaim\n        ")
+                          _vm._v(" Analisis Klaim\n        "),
                         ]
                       )
                     : _vm._e(),
@@ -11040,15 +11093,15 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon btn-block pb-1",
                           attrs: { disabled: !_vm.selectedItem.anggota_cu },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.modalOpen("periksa_koreksi")
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-paint-format" }),
-                          _vm._v(" Periksa Koreksi\n        ")
+                          _vm._v(" Periksa Koreksi\n        "),
                         ]
                       )
                     : _vm._e(),
@@ -11060,15 +11113,15 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon btn-block pb-1",
                           attrs: { disabled: !_vm.selectedItem.id },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.modalOpen("surat_cair")
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-envelop2" }),
-                          _vm._v(" Surat Pencairan\n        ")
+                          _vm._v(" Surat Pencairan\n        "),
                         ]
                       )
                     : _vm._e(),
@@ -11080,15 +11133,15 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon btn-block pb-1",
                           attrs: { disabled: !_vm.selectedItem.id },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.modalOpen("surat_tolak")
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-envelop2" }),
-                          _vm._v(" Surat Penolakan\n        ")
+                          _vm._v(" Surat Penolakan\n        "),
                         ]
                       )
                     : _vm._e(),
@@ -11100,15 +11153,15 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon btn-block pb-1",
                           attrs: { disabled: !_vm.selectedItem.id },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.modalOpen("surat_kurang")
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-envelop2" }),
-                          _vm._v(" Surat Dokumen Tidak Lengkap\n        ")
+                          _vm._v(" Surat Dokumen Tidak Lengkap\n        "),
                         ]
                       )
                     : _vm._e(),
@@ -11123,22 +11176,22 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon btn-block pb-1",
                           attrs: { disabled: !_vm.selectedItem.id },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.modalOpen("selesai")
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _vm.status == "5"
                             ? _c("span", [
                                 _c("i", { staticClass: "icon-checkmark4" }),
-                                _vm._v(" Selesai Klaim\n          ")
+                                _vm._v(" Selesai Klaim\n          "),
                               ])
                             : _c("span", [
                                 _c("i", { staticClass: "icon-blocked" }),
-                                _vm._v(" Batal Selesai Klaim\n          ")
-                              ])
+                                _vm._v(" Batal Selesai Klaim\n          "),
+                              ]),
                         ]
                       )
                     : _vm._e(),
@@ -11157,11 +11210,11 @@ var render = function() {
                               {
                                 staticClass:
                                   "btn btn-light btn-icon btn-block pb-1",
-                                attrs: { disabled: "" }
+                                attrs: { disabled: "" },
                               },
                               [
                                 _c("i", { staticClass: "icon-file-check" }),
-                                _vm._v(" Verifikasi\n          ")
+                                _vm._v(" Verifikasi\n          "),
                               ]
                             )
                           : _vm.selectedItem.verifikasi_pengurus ==
@@ -11175,11 +11228,11 @@ var render = function() {
                               {
                                 staticClass:
                                   "btn btn-light btn-icon btn-block pb-1",
-                                attrs: { disabled: "" }
+                                attrs: { disabled: "" },
                               },
                               [
                                 _c("i", { staticClass: "icon-file-check" }),
-                                _vm._v(" Verifikasi\n          ")
+                                _vm._v(" Verifikasi\n          "),
                               ]
                             )
                           : _c(
@@ -11188,17 +11241,17 @@ var render = function() {
                                 staticClass:
                                   "btn btn-light btn-icon btn-block pb-1",
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.modalOpen("verifikasi")
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", { staticClass: "icon-file-check" }),
-                                _vm._v(" Verifikasi\n          ")
+                                _vm._v(" Verifikasi\n          "),
                               ]
-                            )
+                            ),
                       ])
                     : _vm._e(),
                   _vm._v(" "),
@@ -11211,22 +11264,22 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon btn-block pb-1",
                           attrs: { disabled: !_vm.selectedItem.id },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.modalOpen("hapus")
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-bin2" }),
-                          _vm._v(" Hapus\n        ")
+                          _vm._v(" Hapus\n        "),
                         ]
                       )
-                    : _vm._e()
+                    : _vm._e(),
                 ],
                 1
               )
-            : _vm._e()
+            : _vm._e(),
         ],
         2
       ),
@@ -11242,19 +11295,19 @@ var render = function() {
                 size: _vm.modalSize,
                 button: _vm.modalButton,
                 content: _vm.modalContent,
-                color: _vm.modalColor
+                color: _vm.modalColor,
               },
               on: {
                 tutup: _vm.modalTutup,
                 confirmOk: _vm.modalConfirmOk,
                 successOk: _vm.modalTutup,
                 failOk: _vm.modalTutup,
-                backgroundClick: _vm.modalTutup
-              }
+                backgroundClick: _vm.modalTutup,
+              },
             },
             [
               _c("template", { slot: "modal-title" }, [
-                _vm._v("\n\t\t\t\t" + _vm._s(_vm.modalTitle) + "\n\t\t\t")
+                _vm._v("\n\t\t\t\t" + _vm._s(_vm.modalTitle) + "\n\t\t\t"),
               ]),
               _vm._v(" "),
               _c(
@@ -11265,10 +11318,10 @@ var render = function() {
                     attrs: {
                       kelas: _vm.kelas,
                       selected: _vm.selectedItem,
-                      tipe: _vm.state
+                      tipe: _vm.state,
                     },
-                    on: { tutup: _vm.modalTutup }
-                  })
+                    on: { tutup: _vm.modalTutup },
+                  }),
                 ],
                 1
               ),
@@ -11280,10 +11333,10 @@ var render = function() {
                   _c("surat", {
                     attrs: {
                       selectedItem: _vm.selectedItem,
-                      tipe: _vm.tipeSurat
+                      tipe: _vm.tipeSurat,
                     },
-                    on: { tutup: _vm.modalTutup }
-                  })
+                    on: { tutup: _vm.modalTutup },
+                  }),
                 ],
                 1
               ),
@@ -11294,15 +11347,15 @@ var render = function() {
                 [
                   _c("form-periksa-koreksi", {
                     attrs: { kelas: _vm.kelas, selected: _vm.selectedItem },
-                    on: { tutup: _vm.modalTutup }
-                  })
+                    on: { tutup: _vm.modalTutup },
+                  }),
                 ],
                 1
-              )
+              ),
             ],
             2
           )
-        : _vm._e()
+        : _vm._e(),
     ],
     1
   )
@@ -11325,13 +11378,13 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
     _c("div", { staticClass: "card-header bg-white" }, [
-      _c("h5", { staticClass: "mb-1" }, [_vm._v(_vm._s(_vm.title))])
+      _c("h5", { staticClass: "mb-1" }, [_vm._v(_vm._s(_vm.title))]),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
@@ -11351,14 +11404,14 @@ var render = function() {
                                 src:
                                   "/images/aktivis/" +
                                   _vm.itemData.aktivis.gambar +
-                                  "n.jpg"
-                              }
+                                  "n.jpg",
+                              },
                             })
                           : _c("img", {
                               staticClass: "img-fluid img-preview img-rounded",
-                              attrs: { src: "/images/no_image_man.jpg" }
-                            })
-                      ])
+                              attrs: { src: "/images/no_image_man.jpg" },
+                            }),
+                      ]),
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "media-body" }, [
@@ -11408,10 +11461,10 @@ var render = function() {
                           ) +
                           "\n          "
                       ),
-                      _c("br")
-                    ])
+                      _c("br"),
+                    ]),
                   ])
-                : _vm._l(_vm.itemData, function(vr) {
+                : _vm._l(_vm.itemData, function (vr) {
                     return _c("div", { staticClass: "media mt-0 mb-3" }, [
                       _c("div", { staticClass: "mr-3 mb-2 mb-0" }, [
                         _c("div", { staticClass: "card-img-actions" }, [
@@ -11423,15 +11476,15 @@ var render = function() {
                                   src:
                                     "/images/aktivis/" +
                                     vr.aktivis.gambar +
-                                    "n.jpg"
-                                }
+                                    "n.jpg",
+                                },
                               })
                             : _c("img", {
                                 staticClass:
                                   "img-fluid img-preview img-rounded",
-                                attrs: { src: "/images/no_image_man.jpg" }
-                              })
-                        ])
+                                attrs: { src: "/images/no_image_man.jpg" },
+                              }),
+                        ]),
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "media-body" }, [
@@ -11473,18 +11526,18 @@ var render = function() {
                             ) +
                             "\n          "
                         ),
-                        _c("br")
-                      ])
+                        _c("br"),
+                      ]),
                     ])
-                  })
+                  }),
             ],
             2
-          )
-    ])
+          ),
+    ]),
   ])
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -11493,11 +11546,11 @@ var staticRenderFns = [
       {
         staticClass:
           "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
-        staticStyle: { width: "100%" }
+        staticStyle: { width: "100%" },
       },
       [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
     )
-  }
+  },
 ]
 render._withStripped = true
 

@@ -14,11 +14,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/form */ "./resources/assets/js/helpers/form.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var vue_json_excel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-json-excel */ "./node_modules/vue-json-excel/JsonExcel.vue");
+/* harmony import */ var vue_json_excel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-json-excel */ "./node_modules/vue-json-excel/dist/vue-json-excel.esm.js");
 /* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/modal */ "./resources/assets/js/components/modal.vue");
 /* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! file-saver */ "./node_modules/file-saver/dist/FileSaver.min.js");
 /* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(file_saver__WEBPACK_IMPORTED_MODULE_5__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -1542,7 +1542,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -1558,10 +1558,10 @@ var render = function() {
             { staticClass: "card-header header-elements-inline bg-white" },
             [
               _c("h5", { staticClass: "card-title" }, [
-                _vm._v("Pencarian data " + _vm._s(_vm.title))
+                _vm._v("Pencarian data " + _vm._s(_vm.title)),
               ]),
               _vm._v(" "),
-              _vm._m(0)
+              _vm._m(0),
             ]
           ),
           _vm._v(" "),
@@ -1574,7 +1574,7 @@ var render = function() {
                     "ul",
                     {
                       staticClass:
-                        "nav nav-tabs nav-tabs-bottom flex-nowrap mb-0"
+                        "nav nav-tabs nav-tabs-bottom flex-nowrap mb-0",
                     },
                     [
                       _c("li", { staticClass: "nav-item" }, [
@@ -1585,17 +1585,17 @@ var render = function() {
                             class: { active: _vm.tabName == "dasar" },
                             attrs: { href: "#" },
                             on: {
-                              click: function($event) {
+                              click: function ($event) {
                                 $event.preventDefault()
                                 return _vm.changeTab("dasar")
-                              }
-                            }
+                              },
+                            },
                           },
                           [
                             _c("i", { staticClass: "icon-search4 mr-2" }),
-                            _vm._v("\n            Pencarian Dasar")
+                            _vm._v("\n            Pencarian Dasar"),
                           ]
-                        )
+                        ),
                       ]),
                       _vm._v(" "),
                       _c("li", { staticClass: "nav-item" }, [
@@ -1606,20 +1606,20 @@ var render = function() {
                             class: { active: _vm.tabName == "lanjutan" },
                             attrs: { href: "#" },
                             on: {
-                              click: function($event) {
+                              click: function ($event) {
                                 $event.preventDefault()
                                 return _vm.changeTab("lanjutan")
-                              }
-                            }
+                              },
+                            },
                           },
                           [
                             _c("i", { staticClass: "icon-folder-search mr-2" }),
-                            _vm._v("\n            Pencarian Lanjutan")
+                            _vm._v("\n            Pencarian Lanjutan"),
                           ]
-                        )
-                      ])
+                        ),
+                      ]),
                     ]
-                  )
+                  ),
                 ]
               )
             : _vm._e(),
@@ -1627,7 +1627,10 @@ var render = function() {
           _c(
             "transition",
             {
-              attrs: { "enter-active-class": "animated fadeIn", mode: "out-in" }
+              attrs: {
+                "enter-active-class": "animated fadeIn",
+                mode: "out-in",
+              },
             },
             [
               _c(
@@ -1638,16 +1641,16 @@ var render = function() {
                       name: "show",
                       rawName: "v-show",
                       value: _vm.tabName == "dasar",
-                      expression: "tabName == 'dasar'"
-                    }
-                  ]
+                      expression: "tabName == 'dasar'",
+                    },
+                  ],
                 },
                 [
                   _c("div", { staticClass: "card-body" }, [
                     _c(
                       "div",
                       { staticClass: "row" },
-                      _vm._l(_vm.filterCandidates, function(f, i, index) {
+                      _vm._l(_vm.filterCandidates, function (f, i, index) {
                         return _c("div", { staticClass: "col-md-12" }, [
                           _c(
                             "div",
@@ -1663,7 +1666,7 @@ var render = function() {
                                         "span",
                                         { staticClass: "input-group-text" },
                                         [_vm._v("Kolom")]
-                                      )
+                                      ),
                                     ]
                                   ),
                                   _vm._v(" "),
@@ -1672,13 +1675,14 @@ var render = function() {
                                     {
                                       staticClass: "form-control",
                                       attrs: {
-                                        disabled: _vm.itemDataStat !== "success"
+                                        disabled:
+                                          _vm.itemDataStat !== "success",
                                       },
                                       on: {
-                                        input: function($event) {
+                                        input: function ($event) {
                                           return _vm.selectColumn(f, i, $event)
-                                        }
-                                      }
+                                        },
+                                      },
                                     },
                                     [
                                       _c(
@@ -1687,11 +1691,11 @@ var render = function() {
                                         [
                                           _vm._v(
                                             "Silahkan masukkan kolom pencarian"
-                                          )
+                                          ),
                                         ]
                                       ),
                                       _vm._v(" "),
-                                      _vm._l(_vm.columnData, function(x) {
+                                      _vm._l(_vm.columnData, function (x) {
                                         return x.filter && !x.disable
                                           ? _c(
                                               "option",
@@ -1700,23 +1704,23 @@ var render = function() {
                                                   value: JSON.stringify(x),
                                                   selected:
                                                     f.column &&
-                                                    x.name === f.column.name
-                                                }
+                                                    x.name === f.column.name,
+                                                },
                                               },
                                               [
                                                 _vm._v(
                                                   "\n                        " +
                                                     _vm._s(x.title) +
                                                     "\n                      "
-                                                )
+                                                ),
                                               ]
                                             )
                                           : _vm._e()
-                                      })
+                                      }),
                                     ],
                                     2
-                                  )
-                                ])
+                                  ),
+                                ]),
                               ]),
                               _vm._v(" "),
                               f.column
@@ -1728,10 +1732,10 @@ var render = function() {
                                           name: "show",
                                           rawName: "v-show",
                                           value: false,
-                                          expression: "false"
-                                        }
+                                          expression: "false",
+                                        },
                                       ],
-                                      staticClass: "col-md-3 pb-2"
+                                      staticClass: "col-md-3 pb-2",
                                     },
                                     [
                                       _c(
@@ -1741,17 +1745,18 @@ var render = function() {
                                           _c(
                                             "span",
                                             {
-                                              staticClass: "input-group-prepend"
+                                              staticClass:
+                                                "input-group-prepend",
                                             },
                                             [
                                               _c(
                                                 "span",
                                                 {
                                                   staticClass:
-                                                    "input-group-text"
+                                                    "input-group-text",
                                                 },
                                                 [_vm._v("Operator")]
-                                              )
+                                              ),
                                             ]
                                           ),
                                           _vm._v(" "),
@@ -1761,21 +1766,22 @@ var render = function() {
                                               staticClass: "form-control",
                                               attrs: {
                                                 disabled:
-                                                  _vm.itemDataStat !== "success"
+                                                  _vm.itemDataStat !==
+                                                  "success",
                                               },
                                               on: {
-                                                input: function($event) {
+                                                input: function ($event) {
                                                   return _vm.selectOperator(
                                                     f,
                                                     i,
                                                     $event
                                                   )
-                                                }
-                                              }
+                                                },
+                                              },
                                             },
                                             _vm._l(
                                               _vm.fetchOperators(f),
-                                              function(y) {
+                                              function (y) {
                                                 return _c(
                                                   "option",
                                                   {
@@ -1784,23 +1790,23 @@ var render = function() {
                                                       selected:
                                                         f.operator &&
                                                         y.name ===
-                                                          f.operator.name
-                                                    }
+                                                          f.operator.name,
+                                                    },
                                                   },
                                                   [
                                                     _vm._v(
                                                       "\n                        " +
                                                         _vm._s(y.title) +
                                                         "\n                      "
-                                                    )
+                                                    ),
                                                   ]
                                                 )
                                               }
                                             ),
                                             0
-                                          )
+                                          ),
                                         ]
-                                      )
+                                      ),
                                     ]
                                   )
                                 : _vm._e(),
@@ -1820,17 +1826,17 @@ var render = function() {
                                                   "span",
                                                   {
                                                     staticClass:
-                                                      "input-group-prepend"
+                                                      "input-group-prepend",
                                                   },
                                                   [
                                                     _c(
                                                       "span",
                                                       {
                                                         staticClass:
-                                                          "input-group-text"
+                                                          "input-group-text",
                                                       },
                                                       [_vm._v("Kata Kunci")]
-                                                    )
+                                                    ),
                                                   ]
                                                 ),
                                                 _vm._v(" "),
@@ -1840,8 +1846,8 @@ var render = function() {
                                                       name: "model",
                                                       rawName: "v-model",
                                                       value: f.query_1,
-                                                      expression: "f.query_1"
-                                                    }
+                                                      expression: "f.query_1",
+                                                    },
                                                   ],
                                                   staticClass: "form-control",
                                                   attrs: {
@@ -1850,13 +1856,13 @@ var render = function() {
                                                       "Masukkan kata kunci pencarian",
                                                     disabled:
                                                       _vm.itemDataStat !==
-                                                      "success"
+                                                      "success",
                                                   },
                                                   domProps: {
-                                                    value: f.query_1
+                                                    value: f.query_1,
                                                   },
                                                   on: {
-                                                    input: function($event) {
+                                                    input: function ($event) {
                                                       if (
                                                         $event.target.composing
                                                       ) {
@@ -1867,11 +1873,11 @@ var render = function() {
                                                         "query_1",
                                                         $event.target.value
                                                       )
-                                                    }
-                                                  }
-                                                })
+                                                    },
+                                                  },
+                                                }),
                                               ]
-                                            )
+                                            ),
                                           ]
                                         )
                                       : _vm._e(),
@@ -1890,17 +1896,17 @@ var render = function() {
                                                     "span",
                                                     {
                                                       staticClass:
-                                                        "input-group-prepend"
+                                                        "input-group-prepend",
                                                     },
                                                     [
                                                       _c(
                                                         "span",
                                                         {
                                                           staticClass:
-                                                            "input-group-text"
+                                                            "input-group-text",
                                                         },
                                                         [_vm._v("Kata Kunci")]
-                                                      )
+                                                      ),
                                                     ]
                                                   ),
                                                   _vm._v(" "),
@@ -1910,8 +1916,8 @@ var render = function() {
                                                         name: "model",
                                                         rawName: "v-model",
                                                         value: f.query_1,
-                                                        expression: "f.query_1"
-                                                      }
+                                                        expression: "f.query_1",
+                                                      },
                                                     ],
                                                     staticClass: "form-control",
                                                     attrs: {
@@ -1920,13 +1926,13 @@ var render = function() {
                                                         "Masukkan kata kunci pencarian 1",
                                                       disabled:
                                                         _vm.itemDataStat !==
-                                                        "success"
+                                                        "success",
                                                     },
                                                     domProps: {
-                                                      value: f.query_1
+                                                      value: f.query_1,
                                                     },
                                                     on: {
-                                                      input: function($event) {
+                                                      input: function ($event) {
                                                         if (
                                                           $event.target
                                                             .composing
@@ -1938,11 +1944,11 @@ var render = function() {
                                                           "query_1",
                                                           $event.target.value
                                                         )
-                                                      }
-                                                    }
-                                                  })
+                                                      },
+                                                    },
+                                                  }),
                                                 ]
-                                              )
+                                              ),
                                             ]
                                           ),
                                           _vm._v(" "),
@@ -1958,17 +1964,17 @@ var render = function() {
                                                     "span",
                                                     {
                                                       staticClass:
-                                                        "input-group-prepend"
+                                                        "input-group-prepend",
                                                     },
                                                     [
                                                       _c(
                                                         "span",
                                                         {
                                                           staticClass:
-                                                            "input-group-text"
+                                                            "input-group-text",
                                                         },
                                                         [_vm._v("Kata Kunci")]
-                                                      )
+                                                      ),
                                                     ]
                                                   ),
                                                   _vm._v(" "),
@@ -1978,8 +1984,8 @@ var render = function() {
                                                         name: "model",
                                                         rawName: "v-model",
                                                         value: f.query_2,
-                                                        expression: "f.query_2"
-                                                      }
+                                                        expression: "f.query_2",
+                                                      },
                                                     ],
                                                     staticClass: "form-control",
                                                     attrs: {
@@ -1988,13 +1994,13 @@ var render = function() {
                                                         "Masukkan kata kunci pencarian 2",
                                                       disabled:
                                                         _vm.itemDataStat !==
-                                                        "success"
+                                                        "success",
                                                     },
                                                     domProps: {
-                                                      value: f.query_2
+                                                      value: f.query_2,
                                                     },
                                                     on: {
-                                                      input: function($event) {
+                                                      input: function ($event) {
                                                         if (
                                                           $event.target
                                                             .composing
@@ -2006,13 +2012,13 @@ var render = function() {
                                                           "query_2",
                                                           $event.target.value
                                                         )
-                                                      }
-                                                    }
-                                                  })
+                                                      },
+                                                    },
+                                                  }),
                                                 ]
-                                              )
+                                              ),
                                             ]
-                                          )
+                                          ),
                                         ]
                                       : _vm._e(),
                                     _vm._v(" "),
@@ -2030,17 +2036,17 @@ var render = function() {
                                                     "span",
                                                     {
                                                       staticClass:
-                                                        "input-group-prepend"
+                                                        "input-group-prepend",
                                                     },
                                                     [
                                                       _c(
                                                         "span",
                                                         {
                                                           staticClass:
-                                                            "input-group-text"
+                                                            "input-group-text",
                                                         },
                                                         [_vm._v("Kata Kunci")]
-                                                      )
+                                                      ),
                                                     ]
                                                   ),
                                                   _vm._v(" "),
@@ -2050,8 +2056,8 @@ var render = function() {
                                                         name: "model",
                                                         rawName: "v-model",
                                                         value: f.query_1,
-                                                        expression: "f.query_1"
-                                                      }
+                                                        expression: "f.query_1",
+                                                      },
                                                     ],
                                                     staticClass: "form-control",
                                                     attrs: {
@@ -2060,13 +2066,13 @@ var render = function() {
                                                         "Masukkan kata kunci pencarian",
                                                       disabled:
                                                         _vm.itemDataStat !==
-                                                        "success"
+                                                        "success",
                                                     },
                                                     domProps: {
-                                                      value: f.query_1
+                                                      value: f.query_1,
                                                     },
                                                     on: {
-                                                      input: function($event) {
+                                                      input: function ($event) {
                                                         if (
                                                           $event.target
                                                             .composing
@@ -2078,11 +2084,11 @@ var render = function() {
                                                           "query_1",
                                                           $event.target.value
                                                         )
-                                                      }
-                                                    }
-                                                  })
+                                                      },
+                                                    },
+                                                  }),
                                                 ]
-                                              )
+                                              ),
                                             ]
                                           ),
                                           _vm._v(" "),
@@ -2098,17 +2104,17 @@ var render = function() {
                                                     "span",
                                                     {
                                                       staticClass:
-                                                        "input-group-prepend"
+                                                        "input-group-prepend",
                                                     },
                                                     [
                                                       _c(
                                                         "span",
                                                         {
                                                           staticClass:
-                                                            "input-group-text"
+                                                            "input-group-text",
                                                         },
                                                         [_vm._v("Waktu")]
-                                                      )
+                                                      ),
                                                     ]
                                                   ),
                                                   _vm._v(" "),
@@ -2121,35 +2127,38 @@ var render = function() {
                                                           rawName: "v-model",
                                                           value: f.query_2,
                                                           expression:
-                                                            "f.query_2"
-                                                        }
+                                                            "f.query_2",
+                                                        },
                                                       ],
                                                       staticClass:
                                                         "form-control",
                                                       attrs: {
                                                         disabled:
                                                           _vm.itemDataStat !==
-                                                          "success"
+                                                          "success",
                                                       },
                                                       on: {
-                                                        change: function(
+                                                        change: function (
                                                           $event
                                                         ) {
-                                                          var $$selectedVal = Array.prototype.filter
-                                                            .call(
-                                                              $event.target
-                                                                .options,
-                                                              function(o) {
-                                                                return o.selected
-                                                              }
-                                                            )
-                                                            .map(function(o) {
-                                                              var val =
-                                                                "_value" in o
-                                                                  ? o._value
-                                                                  : o.value
-                                                              return val
-                                                            })
+                                                          var $$selectedVal =
+                                                            Array.prototype.filter
+                                                              .call(
+                                                                $event.target
+                                                                  .options,
+                                                                function (o) {
+                                                                  return o.selected
+                                                                }
+                                                              )
+                                                              .map(function (
+                                                                o
+                                                              ) {
+                                                                var val =
+                                                                  "_value" in o
+                                                                    ? o._value
+                                                                    : o.value
+                                                                return val
+                                                              })
                                                           _vm.$set(
                                                             f,
                                                             "query_2",
@@ -2158,16 +2167,16 @@ var render = function() {
                                                               ? $$selectedVal
                                                               : $$selectedVal[0]
                                                           )
-                                                        }
-                                                      }
+                                                        },
+                                                      },
                                                     },
                                                     [
                                                       _c(
                                                         "option",
                                                         {
                                                           attrs: {
-                                                            value: "hours"
-                                                          }
+                                                            value: "hours",
+                                                          },
                                                         },
                                                         [_vm._v("jam")]
                                                       ),
@@ -2176,8 +2185,8 @@ var render = function() {
                                                         "option",
                                                         {
                                                           attrs: {
-                                                            value: "days"
-                                                          }
+                                                            value: "days",
+                                                          },
                                                         },
                                                         [_vm._v("hari")]
                                                       ),
@@ -2186,8 +2195,8 @@ var render = function() {
                                                         "option",
                                                         {
                                                           attrs: {
-                                                            value: "months"
-                                                          }
+                                                            value: "months",
+                                                          },
                                                         },
                                                         [_vm._v("bulan")]
                                                       ),
@@ -2196,17 +2205,17 @@ var render = function() {
                                                         "option",
                                                         {
                                                           attrs: {
-                                                            value: "years"
-                                                          }
+                                                            value: "years",
+                                                          },
                                                         },
                                                         [_vm._v("tahun")]
-                                                      )
+                                                      ),
                                                     ]
-                                                  )
+                                                  ),
                                                 ]
-                                              )
+                                              ),
                                             ]
-                                          )
+                                          ),
                                         ]
                                       : _vm._e(),
                                     _vm._v(" "),
@@ -2224,17 +2233,17 @@ var render = function() {
                                                     "span",
                                                     {
                                                       staticClass:
-                                                        "input-group-prepend"
+                                                        "input-group-prepend",
                                                     },
                                                     [
                                                       _c(
                                                         "span",
                                                         {
                                                           staticClass:
-                                                            "input-group-text"
+                                                            "input-group-text",
                                                         },
                                                         [_vm._v("Waktu")]
-                                                      )
+                                                      ),
                                                     ]
                                                   ),
                                                   _vm._v(" "),
@@ -2247,35 +2256,38 @@ var render = function() {
                                                           rawName: "v-model",
                                                           value: f.query_1,
                                                           expression:
-                                                            "f.query_1"
-                                                        }
+                                                            "f.query_1",
+                                                        },
                                                       ],
                                                       staticClass:
                                                         "form-control",
                                                       attrs: {
                                                         disabled:
                                                           _vm.itemDataStat !==
-                                                          "success"
+                                                          "success",
                                                       },
                                                       on: {
-                                                        change: function(
+                                                        change: function (
                                                           $event
                                                         ) {
-                                                          var $$selectedVal = Array.prototype.filter
-                                                            .call(
-                                                              $event.target
-                                                                .options,
-                                                              function(o) {
-                                                                return o.selected
-                                                              }
-                                                            )
-                                                            .map(function(o) {
-                                                              var val =
-                                                                "_value" in o
-                                                                  ? o._value
-                                                                  : o.value
-                                                              return val
-                                                            })
+                                                          var $$selectedVal =
+                                                            Array.prototype.filter
+                                                              .call(
+                                                                $event.target
+                                                                  .options,
+                                                                function (o) {
+                                                                  return o.selected
+                                                                }
+                                                              )
+                                                              .map(function (
+                                                                o
+                                                              ) {
+                                                                var val =
+                                                                  "_value" in o
+                                                                    ? o._value
+                                                                    : o.value
+                                                                return val
+                                                              })
                                                           _vm.$set(
                                                             f,
                                                             "query_1",
@@ -2284,16 +2296,16 @@ var render = function() {
                                                               ? $$selectedVal
                                                               : $$selectedVal[0]
                                                           )
-                                                        }
-                                                      }
+                                                        },
+                                                      },
                                                     },
                                                     [
                                                       _c(
                                                         "option",
                                                         {
                                                           attrs: {
-                                                            value: "yesterday"
-                                                          }
+                                                            value: "yesterday",
+                                                          },
                                                         },
                                                         [_vm._v("kemarin")]
                                                       ),
@@ -2302,8 +2314,8 @@ var render = function() {
                                                         "option",
                                                         {
                                                           attrs: {
-                                                            value: "today"
-                                                          }
+                                                            value: "today",
+                                                          },
                                                         },
                                                         [_vm._v("hari ini")]
                                                       ),
@@ -2312,8 +2324,8 @@ var render = function() {
                                                         "option",
                                                         {
                                                           attrs: {
-                                                            value: "tomorrow"
-                                                          }
+                                                            value: "tomorrow",
+                                                          },
                                                         },
                                                         [_vm._v("besok")]
                                                       ),
@@ -2322,8 +2334,8 @@ var render = function() {
                                                         "option",
                                                         {
                                                           attrs: {
-                                                            value: "last_month"
-                                                          }
+                                                            value: "last_month",
+                                                          },
                                                         },
                                                         [_vm._v("bulan lalu")]
                                                       ),
@@ -2332,8 +2344,8 @@ var render = function() {
                                                         "option",
                                                         {
                                                           attrs: {
-                                                            value: "this_month"
-                                                          }
+                                                            value: "this_month",
+                                                          },
                                                         },
                                                         [_vm._v("bulan ini")]
                                                       ),
@@ -2342,8 +2354,8 @@ var render = function() {
                                                         "option",
                                                         {
                                                           attrs: {
-                                                            value: "next_month"
-                                                          }
+                                                            value: "next_month",
+                                                          },
                                                         },
                                                         [_vm._v("bulan depan")]
                                                       ),
@@ -2352,8 +2364,8 @@ var render = function() {
                                                         "option",
                                                         {
                                                           attrs: {
-                                                            value: "last_year"
-                                                          }
+                                                            value: "last_year",
+                                                          },
                                                         },
                                                         [_vm._v("tahun lalu")]
                                                       ),
@@ -2362,8 +2374,8 @@ var render = function() {
                                                         "option",
                                                         {
                                                           attrs: {
-                                                            value: "this_year"
-                                                          }
+                                                            value: "this_year",
+                                                          },
                                                         },
                                                         [_vm._v("tahun ini")]
                                                       ),
@@ -2372,24 +2384,24 @@ var render = function() {
                                                         "option",
                                                         {
                                                           attrs: {
-                                                            value: "next_year"
-                                                          }
+                                                            value: "next_year",
+                                                          },
                                                         },
                                                         [_vm._v("tahun depan")]
-                                                      )
+                                                      ),
                                                     ]
-                                                  )
+                                                  ),
                                                 ]
-                                              )
+                                              ),
                                             ]
-                                          )
+                                          ),
                                         ]
-                                      : _vm._e()
+                                      : _vm._e(),
                                   ]
-                                : _vm._e()
+                                : _vm._e(),
                             ],
                             2
-                          )
+                          ),
                         ])
                       }),
                       0
@@ -2397,8 +2409,8 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "row" }, [
                       _c("div", { staticClass: "col-sm-12" }, [
-                        _c("hr", { staticClass: "mt-2" })
-                      ])
+                        _c("hr", { staticClass: "mt-2" }),
+                      ]),
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "row justify-content-between" }, [
@@ -2413,15 +2425,15 @@ var render = function() {
                                   disabled:
                                     _vm.filterCandidates[0].query_1 == null ||
                                     _vm.filterCandidates[0].query_1 == "" ||
-                                    _vm.itemDataStat !== "success"
+                                    _vm.itemDataStat !== "success",
                                 },
-                                on: { click: _vm.applyFilter }
+                                on: { click: _vm.applyFilter },
                               },
                               [
                                 _c("i", { staticClass: "icon-search4" }),
-                                _vm._v(" Cari")
+                                _vm._v(" Cari"),
                               ]
-                            )
+                            ),
                           ]),
                           _vm._v(" "),
                           _vm.appliedFilters.length > 0
@@ -2431,18 +2443,18 @@ var render = function() {
                                   {
                                     staticClass: "btn btn-warning btn-block",
                                     attrs: {
-                                      disabled: _vm.itemDataStat !== "success"
+                                      disabled: _vm.itemDataStat !== "success",
                                     },
-                                    on: { click: _vm.resetFilter }
+                                    on: { click: _vm.resetFilter },
                                   },
                                   [
                                     _c("i", { staticClass: "icon-reset" }),
-                                    _vm._v(" Reset pencarian")
+                                    _vm._v(" Reset pencarian"),
                                   ]
-                                )
+                                ),
                               ])
-                            : _vm._e()
-                        ])
+                            : _vm._e(),
+                        ]),
                       ]),
                       _vm._v(" "),
                       _c(
@@ -2460,7 +2472,7 @@ var render = function() {
                                       "span",
                                       { staticClass: "input-group-text" },
                                       [_vm._v("Entri")]
-                                    )
+                                    ),
                                   ]
                                 ),
                                 _vm._v(" "),
@@ -2472,30 +2484,31 @@ var render = function() {
                                         name: "model",
                                         rawName: "v-model",
                                         value: _vm.query.limit,
-                                        expression: "query.limit"
-                                      }
+                                        expression: "query.limit",
+                                      },
                                     ],
                                     staticClass: "form-control",
                                     attrs: {
-                                      disabled: _vm.itemDataStat !== "success"
+                                      disabled: _vm.itemDataStat !== "success",
                                     },
                                     on: {
                                       change: [
-                                        function($event) {
-                                          var $$selectedVal = Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function(o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function(o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
+                                        function ($event) {
+                                          var $$selectedVal =
+                                            Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function (o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function (o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
                                           _vm.$set(
                                             _vm.query,
                                             "limit",
@@ -2504,9 +2517,9 @@ var render = function() {
                                               : $$selectedVal[0]
                                           )
                                         },
-                                        _vm.updateLimit
-                                      ]
-                                    }
+                                        _vm.updateLimit,
+                                      ],
+                                    },
                                   },
                                   [
                                     _c("option", [_vm._v("10")]),
@@ -2517,10 +2530,10 @@ var render = function() {
                                     _vm._v(" "),
                                     _c("option", [_vm._v("50")]),
                                     _vm._v(" "),
-                                    _c("option", [_vm._v("100")])
+                                    _c("option", [_vm._v("100")]),
                                   ]
-                                )
-                              ])
+                                ),
+                              ]),
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-6 pb-2" }, [
@@ -2533,7 +2546,7 @@ var render = function() {
                                       "span",
                                       { staticClass: "input-group-text" },
                                       [_vm._v("Urutkan")]
-                                    )
+                                    ),
                                   ]
                                 ),
                                 _vm._v(" "),
@@ -2542,11 +2555,11 @@ var render = function() {
                                   {
                                     staticClass: "form-control",
                                     attrs: {
-                                      disabled: _vm.itemDataStat !== "success"
+                                      disabled: _vm.itemDataStat !== "success",
                                     },
-                                    on: { input: _vm.updateOrderColumn }
+                                    on: { input: _vm.updateOrderColumn },
                                   },
-                                  _vm._l(_vm.columnData, function(column) {
+                                  _vm._l(_vm.columnData, function (column) {
                                     return column.sort && !column.disable
                                       ? _c(
                                           "option",
@@ -2556,22 +2569,22 @@ var render = function() {
                                               selected:
                                                 column &&
                                                 column.name ==
-                                                  _vm.query.order_column
-                                            }
+                                                  _vm.query.order_column,
+                                            },
                                           },
                                           [
                                             _vm._v(
                                               "\n                        " +
                                                 _vm._s(column.title) +
                                                 "\n                      "
-                                            )
+                                            ),
                                           ]
                                         )
                                       : _vm._e()
                                   }),
                                   0
-                                )
-                              ])
+                                ),
+                              ]),
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-2" }, [
@@ -2580,33 +2593,36 @@ var render = function() {
                                 {
                                   staticClass: "btn bg-orange-300 btn-block",
                                   attrs: {
-                                    disabled: _vm.itemDataStat !== "success"
+                                    disabled: _vm.itemDataStat !== "success",
                                   },
-                                  on: { click: _vm.updateOrderDirection }
+                                  on: { click: _vm.updateOrderDirection },
                                 },
                                 [
                                   _vm.query.order_direction === "asc"
                                     ? _c("i", { staticClass: "icon-arrow-up7" })
                                     : _c("i", {
-                                        staticClass: "icon-arrow-down7"
-                                      })
+                                        staticClass: "icon-arrow-down7",
+                                      }),
                                 ]
-                              )
-                            ])
-                          ])
+                              ),
+                            ]),
+                          ]),
                         ]
-                      )
-                    ])
-                  ])
+                      ),
+                    ]),
+                  ]),
                 ]
-              )
+              ),
             ]
           ),
           _vm._v(" "),
           _c(
             "transition",
             {
-              attrs: { "enter-active-class": "animated fadeIn", mode: "out-in" }
+              attrs: {
+                "enter-active-class": "animated fadeIn",
+                mode: "out-in",
+              },
             },
             [
               !_vm.isDasar
@@ -2618,9 +2634,9 @@ var render = function() {
                           name: "show",
                           rawName: "v-show",
                           value: _vm.tabName == "lanjutan",
-                          expression: "tabName == 'lanjutan'"
-                        }
-                      ]
+                          expression: "tabName == 'lanjutan'",
+                        },
+                      ],
                     },
                     [
                       _c("div", { staticClass: "card-body" }, [
@@ -2628,307 +2644,239 @@ var render = function() {
                           "div",
                           { staticClass: "row" },
                           [
-                            _vm._l(_vm.filterCandidates, function(f, i, index) {
-                              return _c("div", { staticClass: "col-md-12" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "row" },
-                                  [
-                                    _c(
-                                      "div",
-                                      { staticClass: "col-md-4 pb-2" },
-                                      [
-                                        _c(
-                                          "div",
-                                          { staticClass: "input-group" },
-                                          [
-                                            _c(
-                                              "span",
-                                              {
-                                                staticClass:
-                                                  "input-group-prepend"
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass:
-                                                      "input-group-text"
-                                                  },
-                                                  [_vm._v("Kolom")]
-                                                )
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "select",
-                                              {
-                                                staticClass: "form-control",
-                                                attrs: {
-                                                  disabled:
-                                                    _vm.itemDataStat !==
-                                                    "success"
-                                                },
-                                                on: {
-                                                  input: function($event) {
-                                                    return _vm.selectColumn(
-                                                      f,
-                                                      i,
-                                                      $event
-                                                    )
-                                                  }
-                                                }
-                                              },
-                                              [
-                                                _c(
-                                                  "option",
-                                                  {
-                                                    attrs: {
-                                                      disabled: "",
-                                                      value: ""
-                                                    }
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "Silahkan masukkan kolom pencarian"
-                                                    )
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _vm._l(_vm.columnData, function(
-                                                  x
-                                                ) {
-                                                  return x.filter && !x.disable
-                                                    ? _c(
-                                                        "option",
-                                                        {
-                                                          domProps: {
-                                                            value: JSON.stringify(
-                                                              x
-                                                            ),
-                                                            selected:
-                                                              f.column &&
-                                                              x.name ===
-                                                                f.column.name
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                        " +
-                                                              _vm._s(x.title) +
-                                                              "\n                      "
-                                                          )
-                                                        ]
-                                                      )
-                                                    : _vm._e()
-                                                })
-                                              ],
-                                              2
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    f.column
-                                      ? _c(
-                                          "div",
-                                          { staticClass: "col-md-3 pb-2" },
-                                          [
-                                            _c(
-                                              "div",
-                                              { staticClass: "input-group" },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass:
-                                                      "input-group-prepend"
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "span",
-                                                      {
-                                                        staticClass:
-                                                          "input-group-text"
-                                                      },
-                                                      [_vm._v("Operator")]
-                                                    )
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "select",
-                                                  {
-                                                    staticClass: "form-control",
-                                                    attrs: {
-                                                      disabled:
-                                                        _vm.itemDataStat !==
-                                                        "success"
-                                                    },
-                                                    on: {
-                                                      input: function($event) {
-                                                        return _vm.selectOperator(
-                                                          f,
-                                                          i,
-                                                          $event
-                                                        )
-                                                      }
-                                                    }
-                                                  },
-                                                  _vm._l(
-                                                    _vm.fetchOperators(f),
-                                                    function(y) {
-                                                      return _c(
-                                                        "option",
-                                                        {
-                                                          domProps: {
-                                                            value: JSON.stringify(
-                                                              y
-                                                            ),
-                                                            selected:
-                                                              f.operator &&
-                                                              y.name ===
-                                                                f.operator.name
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            "\n                        " +
-                                                              _vm._s(y.title) +
-                                                              "\n                      "
-                                                          )
-                                                        ]
-                                                      )
-                                                    }
-                                                  ),
-                                                  0
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        )
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    f.column && f.operator
-                                      ? [
-                                          f.operator.component === "single"
-                                            ? _c(
-                                                "div",
+                            _vm._l(
+                              _vm.filterCandidates,
+                              function (f, i, index) {
+                                return _c("div", { staticClass: "col-md-12" }, [
+                                  _c(
+                                    "div",
+                                    { staticClass: "row" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "col-md-4 pb-2" },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "input-group" },
+                                            [
+                                              _c(
+                                                "span",
                                                 {
-                                                  staticClass: "col-md-4 pb-2"
+                                                  staticClass:
+                                                    "input-group-prepend",
                                                 },
                                                 [
                                                   _c(
-                                                    "div",
+                                                    "span",
                                                     {
-                                                      staticClass: "input-group"
+                                                      staticClass:
+                                                        "input-group-text",
+                                                    },
+                                                    [_vm._v("Kolom")]
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "select",
+                                                {
+                                                  staticClass: "form-control",
+                                                  attrs: {
+                                                    disabled:
+                                                      _vm.itemDataStat !==
+                                                      "success",
+                                                  },
+                                                  on: {
+                                                    input: function ($event) {
+                                                      return _vm.selectColumn(
+                                                        f,
+                                                        i,
+                                                        $event
+                                                      )
+                                                    },
+                                                  },
+                                                },
+                                                [
+                                                  _c(
+                                                    "option",
+                                                    {
+                                                      attrs: {
+                                                        disabled: "",
+                                                        value: "",
+                                                      },
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "Silahkan masukkan kolom pencarian"
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _vm._l(
+                                                    _vm.columnData,
+                                                    function (x) {
+                                                      return x.filter &&
+                                                        !x.disable
+                                                        ? _c(
+                                                            "option",
+                                                            {
+                                                              domProps: {
+                                                                value:
+                                                                  JSON.stringify(
+                                                                    x
+                                                                  ),
+                                                                selected:
+                                                                  f.column &&
+                                                                  x.name ===
+                                                                    f.column
+                                                                      .name,
+                                                              },
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "\n                        " +
+                                                                  _vm._s(
+                                                                    x.title
+                                                                  ) +
+                                                                  "\n                      "
+                                                              ),
+                                                            ]
+                                                          )
+                                                        : _vm._e()
+                                                    }
+                                                  ),
+                                                ],
+                                                2
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      f.column
+                                        ? _c(
+                                            "div",
+                                            { staticClass: "col-md-3 pb-2" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "input-group" },
+                                                [
+                                                  _c(
+                                                    "span",
+                                                    {
+                                                      staticClass:
+                                                        "input-group-prepend",
                                                     },
                                                     [
                                                       _c(
                                                         "span",
                                                         {
                                                           staticClass:
-                                                            "input-group-prepend"
+                                                            "input-group-text",
                                                         },
-                                                        [
-                                                          _c(
-                                                            "span",
-                                                            {
-                                                              staticClass:
-                                                                "input-group-text"
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                "Kata Kunci"
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
+                                                        [_vm._v("Operator")]
                                                       ),
-                                                      _vm._v(" "),
-                                                      _c("input", {
-                                                        directives: [
-                                                          {
-                                                            name: "model",
-                                                            rawName: "v-model",
-                                                            value: f.query_1,
-                                                            expression:
-                                                              "f.query_1"
-                                                          }
-                                                        ],
-                                                        staticClass:
-                                                          "form-control",
-                                                        attrs: {
-                                                          type: "text",
-                                                          placeholder:
-                                                            "Masukkan kata kunci pencarian",
-                                                          disabled:
-                                                            _vm.itemDataStat !==
-                                                            "success"
-                                                        },
-                                                        domProps: {
-                                                          value: f.query_1
-                                                        },
-                                                        on: {
-                                                          input: function(
-                                                            $event
-                                                          ) {
-                                                            if (
-                                                              $event.target
-                                                                .composing
-                                                            ) {
-                                                              return
-                                                            }
-                                                            _vm.$set(
-                                                              f,
-                                                              "query_1",
-                                                              $event.target
-                                                                .value
-                                                            )
-                                                          }
-                                                        }
-                                                      })
                                                     ]
-                                                  )
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "select",
+                                                    {
+                                                      staticClass:
+                                                        "form-control",
+                                                      attrs: {
+                                                        disabled:
+                                                          _vm.itemDataStat !==
+                                                          "success",
+                                                      },
+                                                      on: {
+                                                        input: function (
+                                                          $event
+                                                        ) {
+                                                          return _vm.selectOperator(
+                                                            f,
+                                                            i,
+                                                            $event
+                                                          )
+                                                        },
+                                                      },
+                                                    },
+                                                    _vm._l(
+                                                      _vm.fetchOperators(f),
+                                                      function (y) {
+                                                        return _c(
+                                                          "option",
+                                                          {
+                                                            domProps: {
+                                                              value:
+                                                                JSON.stringify(
+                                                                  y
+                                                                ),
+                                                              selected:
+                                                                f.operator &&
+                                                                y.name ===
+                                                                  f.operator
+                                                                    .name,
+                                                            },
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                        " +
+                                                                _vm._s(
+                                                                  y.title
+                                                                ) +
+                                                                "\n                      "
+                                                            ),
+                                                          ]
+                                                        )
+                                                      }
+                                                    ),
+                                                    0
+                                                  ),
                                                 ]
-                                              )
-                                            : _vm._e(),
-                                          _vm._v(" "),
-                                          f.operator.component === "double"
-                                            ? [
-                                                _c(
+                                              ),
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      f.column && f.operator
+                                        ? [
+                                            f.operator.component === "single"
+                                              ? _c(
                                                   "div",
                                                   {
-                                                    staticClass: "col-md-2 pb-2"
+                                                    staticClass:
+                                                      "col-md-4 pb-2",
                                                   },
                                                   [
                                                     _c(
                                                       "div",
                                                       {
                                                         staticClass:
-                                                          "input-group"
+                                                          "input-group",
                                                       },
                                                       [
                                                         _c(
                                                           "span",
                                                           {
                                                             staticClass:
-                                                              "input-group-prepend"
+                                                              "input-group-prepend",
                                                           },
                                                           [
                                                             _c(
                                                               "span",
                                                               {
                                                                 staticClass:
-                                                                  "input-group-text"
+                                                                  "input-group-text",
                                                               },
                                                               [
                                                                 _vm._v(
                                                                   "Kata Kunci"
-                                                                )
+                                                                ),
                                                               ]
-                                                            )
+                                                            ),
                                                           ]
                                                         ),
                                                         _vm._v(" "),
@@ -2940,178 +2888,8 @@ var render = function() {
                                                                 "v-model",
                                                               value: f.query_1,
                                                               expression:
-                                                                "f.query_1"
-                                                            }
-                                                          ],
-                                                          staticClass:
-                                                            "form-control",
-                                                          attrs: {
-                                                            type: "text",
-                                                            placeholder:
-                                                              "Masukkan kata kunci pencarian 1",
-                                                            disabled:
-                                                              _vm.itemDataStat !==
-                                                              "success"
-                                                          },
-                                                          domProps: {
-                                                            value: f.query_1
-                                                          },
-                                                          on: {
-                                                            input: function(
-                                                              $event
-                                                            ) {
-                                                              if (
-                                                                $event.target
-                                                                  .composing
-                                                              ) {
-                                                                return
-                                                              }
-                                                              _vm.$set(
-                                                                f,
-                                                                "query_1",
-                                                                $event.target
-                                                                  .value
-                                                              )
-                                                            }
-                                                          }
-                                                        })
-                                                      ]
-                                                    )
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "col-md-2 pb-2"
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "input-group"
-                                                      },
-                                                      [
-                                                        _c(
-                                                          "span",
-                                                          {
-                                                            staticClass:
-                                                              "input-group-prepend"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "span",
-                                                              {
-                                                                staticClass:
-                                                                  "input-group-text"
-                                                              },
-                                                              [
-                                                                _vm._v(
-                                                                  "Kata Kunci"
-                                                                )
-                                                              ]
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c("input", {
-                                                          directives: [
-                                                            {
-                                                              name: "model",
-                                                              rawName:
-                                                                "v-model",
-                                                              value: f.query_2,
-                                                              expression:
-                                                                "f.query_2"
-                                                            }
-                                                          ],
-                                                          staticClass:
-                                                            "form-control",
-                                                          attrs: {
-                                                            type: "text",
-                                                            placeholder:
-                                                              "Masukkan kata kunci pencarian 2",
-                                                            disabled:
-                                                              _vm.itemDataStat !==
-                                                              "success"
-                                                          },
-                                                          domProps: {
-                                                            value: f.query_2
-                                                          },
-                                                          on: {
-                                                            input: function(
-                                                              $event
-                                                            ) {
-                                                              if (
-                                                                $event.target
-                                                                  .composing
-                                                              ) {
-                                                                return
-                                                              }
-                                                              _vm.$set(
-                                                                f,
-                                                                "query_2",
-                                                                $event.target
-                                                                  .value
-                                                              )
-                                                            }
-                                                          }
-                                                        })
-                                                      ]
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            : _vm._e(),
-                                          _vm._v(" "),
-                                          f.operator.component === "datetime_1"
-                                            ? [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "col-md-2 pb-2"
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "input-group"
-                                                      },
-                                                      [
-                                                        _c(
-                                                          "span",
-                                                          {
-                                                            staticClass:
-                                                              "input-group-prepend"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "span",
-                                                              {
-                                                                staticClass:
-                                                                  "input-group-text"
-                                                              },
-                                                              [
-                                                                _vm._v(
-                                                                  "Kata Kunci"
-                                                                )
-                                                              ]
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c("input", {
-                                                          directives: [
-                                                            {
-                                                              name: "model",
-                                                              rawName:
-                                                                "v-model",
-                                                              value: f.query_1,
-                                                              expression:
-                                                                "f.query_1"
-                                                            }
+                                                                "f.query_1",
+                                                            },
                                                           ],
                                                           staticClass:
                                                             "form-control",
@@ -3121,13 +2899,13 @@ var render = function() {
                                                               "Masukkan kata kunci pencarian",
                                                             disabled:
                                                               _vm.itemDataStat !==
-                                                              "success"
+                                                              "success",
                                                           },
                                                           domProps: {
-                                                            value: f.query_1
+                                                            value: f.query_1,
                                                           },
                                                           on: {
-                                                            input: function(
+                                                            input: function (
                                                               $event
                                                             ) {
                                                               if (
@@ -3142,188 +2920,54 @@ var render = function() {
                                                                 $event.target
                                                                   .value
                                                               )
-                                                            }
-                                                          }
-                                                        })
-                                                      ]
-                                                    )
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "col-md-2 pb-2"
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "input-group"
-                                                      },
-                                                      [
-                                                        _c(
-                                                          "span",
-                                                          {
-                                                            staticClass:
-                                                              "input-group-prepend"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "span",
-                                                              {
-                                                                staticClass:
-                                                                  "input-group-text"
-                                                              },
-                                                              [_vm._v("Waktu")]
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "select",
-                                                          {
-                                                            directives: [
-                                                              {
-                                                                name: "model",
-                                                                rawName:
-                                                                  "v-model",
-                                                                value:
-                                                                  f.query_2,
-                                                                expression:
-                                                                  "f.query_2"
-                                                              }
-                                                            ],
-                                                            staticClass:
-                                                              "form-control",
-                                                            attrs: {
-                                                              disabled:
-                                                                _vm.itemDataStat !==
-                                                                "success"
                                                             },
-                                                            on: {
-                                                              change: function(
-                                                                $event
-                                                              ) {
-                                                                var $$selectedVal = Array.prototype.filter
-                                                                  .call(
-                                                                    $event
-                                                                      .target
-                                                                      .options,
-                                                                    function(
-                                                                      o
-                                                                    ) {
-                                                                      return o.selected
-                                                                    }
-                                                                  )
-                                                                  .map(function(
-                                                                    o
-                                                                  ) {
-                                                                    var val =
-                                                                      "_value" in
-                                                                      o
-                                                                        ? o._value
-                                                                        : o.value
-                                                                    return val
-                                                                  })
-                                                                _vm.$set(
-                                                                  f,
-                                                                  "query_2",
-                                                                  $event.target
-                                                                    .multiple
-                                                                    ? $$selectedVal
-                                                                    : $$selectedVal[0]
-                                                                )
-                                                              }
-                                                            }
                                                           },
-                                                          [
-                                                            _c(
-                                                              "option",
-                                                              {
-                                                                attrs: {
-                                                                  value: "hours"
-                                                                }
-                                                              },
-                                                              [_vm._v("jam")]
-                                                            ),
-                                                            _vm._v(" "),
-                                                            _c(
-                                                              "option",
-                                                              {
-                                                                attrs: {
-                                                                  value: "days"
-                                                                }
-                                                              },
-                                                              [_vm._v("hari")]
-                                                            ),
-                                                            _vm._v(" "),
-                                                            _c(
-                                                              "option",
-                                                              {
-                                                                attrs: {
-                                                                  value:
-                                                                    "months"
-                                                                }
-                                                              },
-                                                              [_vm._v("bulan")]
-                                                            ),
-                                                            _vm._v(" "),
-                                                            _c(
-                                                              "option",
-                                                              {
-                                                                attrs: {
-                                                                  value: "years"
-                                                                }
-                                                              },
-                                                              [_vm._v("tahun")]
-                                                            )
-                                                          ]
-                                                        )
+                                                        }),
                                                       ]
-                                                    )
+                                                    ),
                                                   ]
                                                 )
-                                              ]
-                                            : _vm._e(),
-                                          _vm._v(" "),
-                                          f.operator.component === "datetime_2"
-                                            ? [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "col-md-4 pb-2"
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "input-group"
-                                                      },
-                                                      [
-                                                        _c(
-                                                          "span",
-                                                          {
-                                                            staticClass:
-                                                              "input-group-prepend"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "span",
-                                                              {
-                                                                staticClass:
-                                                                  "input-group-text"
-                                                              },
-                                                              [_vm._v("Waktu")]
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "select",
-                                                          {
+                                              : _vm._e(),
+                                            _vm._v(" "),
+                                            f.operator.component === "double"
+                                              ? [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-md-2 pb-2",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "input-group",
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "input-group-prepend",
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "input-group-text",
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Kata Kunci"
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c("input", {
                                                             directives: [
                                                               {
                                                                 name: "model",
@@ -3332,227 +2976,663 @@ var render = function() {
                                                                 value:
                                                                   f.query_1,
                                                                 expression:
-                                                                  "f.query_1"
-                                                              }
+                                                                  "f.query_1",
+                                                              },
                                                             ],
                                                             staticClass:
                                                               "form-control",
                                                             attrs: {
+                                                              type: "text",
+                                                              placeholder:
+                                                                "Masukkan kata kunci pencarian 1",
                                                               disabled:
                                                                 _vm.itemDataStat !==
-                                                                "success"
+                                                                "success",
+                                                            },
+                                                            domProps: {
+                                                              value: f.query_1,
                                                             },
                                                             on: {
-                                                              change: function(
+                                                              input: function (
                                                                 $event
                                                               ) {
-                                                                var $$selectedVal = Array.prototype.filter
-                                                                  .call(
-                                                                    $event
-                                                                      .target
-                                                                      .options,
-                                                                    function(
-                                                                      o
-                                                                    ) {
-                                                                      return o.selected
-                                                                    }
-                                                                  )
-                                                                  .map(function(
-                                                                    o
-                                                                  ) {
-                                                                    var val =
-                                                                      "_value" in
-                                                                      o
-                                                                        ? o._value
-                                                                        : o.value
-                                                                    return val
-                                                                  })
+                                                                if (
+                                                                  $event.target
+                                                                    .composing
+                                                                ) {
+                                                                  return
+                                                                }
                                                                 _vm.$set(
                                                                   f,
                                                                   "query_1",
                                                                   $event.target
-                                                                    .multiple
-                                                                    ? $$selectedVal
-                                                                    : $$selectedVal[0]
+                                                                    .value
                                                                 )
-                                                              }
-                                                            }
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "option",
+                                                              },
+                                                            },
+                                                          }),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-md-2 pb-2",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "input-group",
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "input-group-prepend",
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "input-group-text",
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Kata Kunci"
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c("input", {
+                                                            directives: [
                                                               {
-                                                                attrs: {
+                                                                name: "model",
+                                                                rawName:
+                                                                  "v-model",
+                                                                value:
+                                                                  f.query_2,
+                                                                expression:
+                                                                  "f.query_2",
+                                                              },
+                                                            ],
+                                                            staticClass:
+                                                              "form-control",
+                                                            attrs: {
+                                                              type: "text",
+                                                              placeholder:
+                                                                "Masukkan kata kunci pencarian 2",
+                                                              disabled:
+                                                                _vm.itemDataStat !==
+                                                                "success",
+                                                            },
+                                                            domProps: {
+                                                              value: f.query_2,
+                                                            },
+                                                            on: {
+                                                              input: function (
+                                                                $event
+                                                              ) {
+                                                                if (
+                                                                  $event.target
+                                                                    .composing
+                                                                ) {
+                                                                  return
+                                                                }
+                                                                _vm.$set(
+                                                                  f,
+                                                                  "query_2",
+                                                                  $event.target
+                                                                    .value
+                                                                )
+                                                              },
+                                                            },
+                                                          }),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              : _vm._e(),
+                                            _vm._v(" "),
+                                            f.operator.component ===
+                                            "datetime_1"
+                                              ? [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-md-2 pb-2",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "input-group",
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "input-group-prepend",
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "input-group-text",
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Kata Kunci"
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c("input", {
+                                                            directives: [
+                                                              {
+                                                                name: "model",
+                                                                rawName:
+                                                                  "v-model",
+                                                                value:
+                                                                  f.query_1,
+                                                                expression:
+                                                                  "f.query_1",
+                                                              },
+                                                            ],
+                                                            staticClass:
+                                                              "form-control",
+                                                            attrs: {
+                                                              type: "text",
+                                                              placeholder:
+                                                                "Masukkan kata kunci pencarian",
+                                                              disabled:
+                                                                _vm.itemDataStat !==
+                                                                "success",
+                                                            },
+                                                            domProps: {
+                                                              value: f.query_1,
+                                                            },
+                                                            on: {
+                                                              input: function (
+                                                                $event
+                                                              ) {
+                                                                if (
+                                                                  $event.target
+                                                                    .composing
+                                                                ) {
+                                                                  return
+                                                                }
+                                                                _vm.$set(
+                                                                  f,
+                                                                  "query_1",
+                                                                  $event.target
+                                                                    .value
+                                                                )
+                                                              },
+                                                            },
+                                                          }),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-md-2 pb-2",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "input-group",
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "input-group-prepend",
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "input-group-text",
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Waktu"
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "select",
+                                                            {
+                                                              directives: [
+                                                                {
+                                                                  name: "model",
+                                                                  rawName:
+                                                                    "v-model",
                                                                   value:
-                                                                    "yesterday"
-                                                                }
+                                                                    f.query_2,
+                                                                  expression:
+                                                                    "f.query_2",
+                                                                },
+                                                              ],
+                                                              staticClass:
+                                                                "form-control",
+                                                              attrs: {
+                                                                disabled:
+                                                                  _vm.itemDataStat !==
+                                                                  "success",
                                                               },
-                                                              [
-                                                                _vm._v(
-                                                                  "kemarin"
-                                                                )
-                                                              ]
-                                                            ),
-                                                            _vm._v(" "),
-                                                            _c(
-                                                              "option",
-                                                              {
-                                                                attrs: {
-                                                                  value: "today"
-                                                                }
+                                                              on: {
+                                                                change:
+                                                                  function (
+                                                                    $event
+                                                                  ) {
+                                                                    var $$selectedVal =
+                                                                      Array.prototype.filter
+                                                                        .call(
+                                                                          $event
+                                                                            .target
+                                                                            .options,
+                                                                          function (
+                                                                            o
+                                                                          ) {
+                                                                            return o.selected
+                                                                          }
+                                                                        )
+                                                                        .map(
+                                                                          function (
+                                                                            o
+                                                                          ) {
+                                                                            var val =
+                                                                              "_value" in
+                                                                              o
+                                                                                ? o._value
+                                                                                : o.value
+                                                                            return val
+                                                                          }
+                                                                        )
+                                                                    _vm.$set(
+                                                                      f,
+                                                                      "query_2",
+                                                                      $event
+                                                                        .target
+                                                                        .multiple
+                                                                        ? $$selectedVal
+                                                                        : $$selectedVal[0]
+                                                                    )
+                                                                  },
                                                               },
-                                                              [
-                                                                _vm._v(
-                                                                  "hari ini"
-                                                                )
-                                                              ]
-                                                            ),
-                                                            _vm._v(" "),
-                                                            _c(
-                                                              "option",
-                                                              {
-                                                                attrs: {
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      "hours",
+                                                                  },
+                                                                },
+                                                                [_vm._v("jam")]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      "days",
+                                                                  },
+                                                                },
+                                                                [_vm._v("hari")]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      "months",
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "bulan"
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      "years",
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "tahun"
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              : _vm._e(),
+                                            _vm._v(" "),
+                                            f.operator.component ===
+                                            "datetime_2"
+                                              ? [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "col-md-4 pb-2",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "input-group",
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "input-group-prepend",
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "input-group-text",
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Waktu"
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "select",
+                                                            {
+                                                              directives: [
+                                                                {
+                                                                  name: "model",
+                                                                  rawName:
+                                                                    "v-model",
                                                                   value:
-                                                                    "tomorrow"
-                                                                }
+                                                                    f.query_1,
+                                                                  expression:
+                                                                    "f.query_1",
+                                                                },
+                                                              ],
+                                                              staticClass:
+                                                                "form-control",
+                                                              attrs: {
+                                                                disabled:
+                                                                  _vm.itemDataStat !==
+                                                                  "success",
                                                               },
-                                                              [_vm._v("besok")]
-                                                            ),
-                                                            _vm._v(" "),
-                                                            _c(
-                                                              "option",
-                                                              {
-                                                                attrs: {
-                                                                  value:
-                                                                    "last_month"
-                                                                }
+                                                              on: {
+                                                                change:
+                                                                  function (
+                                                                    $event
+                                                                  ) {
+                                                                    var $$selectedVal =
+                                                                      Array.prototype.filter
+                                                                        .call(
+                                                                          $event
+                                                                            .target
+                                                                            .options,
+                                                                          function (
+                                                                            o
+                                                                          ) {
+                                                                            return o.selected
+                                                                          }
+                                                                        )
+                                                                        .map(
+                                                                          function (
+                                                                            o
+                                                                          ) {
+                                                                            var val =
+                                                                              "_value" in
+                                                                              o
+                                                                                ? o._value
+                                                                                : o.value
+                                                                            return val
+                                                                          }
+                                                                        )
+                                                                    _vm.$set(
+                                                                      f,
+                                                                      "query_1",
+                                                                      $event
+                                                                        .target
+                                                                        .multiple
+                                                                        ? $$selectedVal
+                                                                        : $$selectedVal[0]
+                                                                    )
+                                                                  },
                                                               },
-                                                              [
-                                                                _vm._v(
-                                                                  "bulan lalu"
-                                                                )
-                                                              ]
-                                                            ),
-                                                            _vm._v(" "),
-                                                            _c(
-                                                              "option",
-                                                              {
-                                                                attrs: {
-                                                                  value:
-                                                                    "this_month"
-                                                                }
-                                                              },
-                                                              [
-                                                                _vm._v(
-                                                                  "bulan ini"
-                                                                )
-                                                              ]
-                                                            ),
-                                                            _vm._v(" "),
-                                                            _c(
-                                                              "option",
-                                                              {
-                                                                attrs: {
-                                                                  value:
-                                                                    "next_month"
-                                                                }
-                                                              },
-                                                              [
-                                                                _vm._v(
-                                                                  "bulan depan"
-                                                                )
-                                                              ]
-                                                            ),
-                                                            _vm._v(" "),
-                                                            _c(
-                                                              "option",
-                                                              {
-                                                                attrs: {
-                                                                  value:
-                                                                    "last_year"
-                                                                }
-                                                              },
-                                                              [
-                                                                _vm._v(
-                                                                  "tahun lalu"
-                                                                )
-                                                              ]
-                                                            ),
-                                                            _vm._v(" "),
-                                                            _c(
-                                                              "option",
-                                                              {
-                                                                attrs: {
-                                                                  value:
-                                                                    "this_year"
-                                                                }
-                                                              },
-                                                              [
-                                                                _vm._v(
-                                                                  "tahun ini"
-                                                                )
-                                                              ]
-                                                            ),
-                                                            _vm._v(" "),
-                                                            _c(
-                                                              "option",
-                                                              {
-                                                                attrs: {
-                                                                  value:
-                                                                    "next_year"
-                                                                }
-                                                              },
-                                                              [
-                                                                _vm._v(
-                                                                  "tahun depan"
-                                                                )
-                                                              ]
-                                                            )
-                                                          ]
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            : _vm._e()
-                                        ]
-                                      : _vm._e(),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      { staticClass: "col-md-1 pb-2" },
-                                      [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "btn bg-slate-300 btn-block",
-                                            attrs: {
-                                              disabled:
-                                                _vm.itemDataStat !==
-                                                  "success" ||
-                                                _vm.filterCandidates.length == 1
-                                            },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.removeFilter(f, i)
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "icon-cross3"
-                                            })
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      "yesterday",
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "kemarin"
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      "today",
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "hari ini"
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      "tomorrow",
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "besok"
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      "last_month",
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "bulan lalu"
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      "this_month",
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "bulan ini"
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      "next_month",
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "bulan depan"
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      "last_year",
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "tahun lalu"
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      "this_year",
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "tahun ini"
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      "next_year",
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "tahun depan"
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              : _vm._e(),
                                           ]
-                                        )
-                                      ]
-                                    )
-                                  ],
-                                  2
-                                )
-                              ])
-                            }),
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "col-md-1 pb-2" },
+                                        [
+                                          _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn bg-slate-300 btn-block",
+                                              attrs: {
+                                                disabled:
+                                                  _vm.itemDataStat !==
+                                                    "success" ||
+                                                  _vm.filterCandidates.length ==
+                                                    1,
+                                              },
+                                              on: {
+                                                click: function ($event) {
+                                                  return _vm.removeFilter(f, i)
+                                                },
+                                              },
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "icon-cross3",
+                                              }),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                    ],
+                                    2
+                                  ),
+                                ])
+                              }
+                            ),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-12" }, [
                               _c(
@@ -3560,25 +3640,25 @@ var render = function() {
                                 {
                                   staticClass: "btn btn-light btn-block",
                                   attrs: {
-                                    disabled: _vm.itemDataStat !== "success"
+                                    disabled: _vm.itemDataStat !== "success",
                                   },
-                                  on: { click: _vm.addFilter }
+                                  on: { click: _vm.addFilter },
                                 },
                                 [
                                   _c("i", { staticClass: "icon-arrow-down5" }),
                                   _vm._v(" Tambah Parameter Pencarian "),
-                                  _c("i", { staticClass: "icon-arrow-down5" })
+                                  _c("i", { staticClass: "icon-arrow-down5" }),
                                 ]
-                              )
-                            ])
+                              ),
+                            ]),
                           ],
                           2
                         ),
                         _vm._v(" "),
                         _c("div", { staticClass: "row" }, [
                           _c("div", { staticClass: "col-sm-12" }, [
-                            _c("hr", { staticClass: "mt-2" })
-                          ])
+                            _c("hr", { staticClass: "mt-2" }),
+                          ]),
                         ]),
                         _vm._v(" "),
                         _c(
@@ -3602,17 +3682,17 @@ var render = function() {
                                               null ||
                                             _vm.filterCandidates[0].query_1 ==
                                               "" ||
-                                            _vm.itemDataStat !== "success"
+                                            _vm.itemDataStat !== "success",
                                         },
-                                        on: { click: _vm.applyFilter }
+                                        on: { click: _vm.applyFilter },
                                       },
                                       [
                                         _c("i", {
-                                          staticClass: "icon-search4"
+                                          staticClass: "icon-search4",
                                         }),
-                                        _vm._v(" Cari")
+                                        _vm._v(" Cari"),
                                       ]
-                                    )
+                                    ),
                                   ]),
                                   _vm._v(" "),
                                   _vm.appliedFilters.length > 0
@@ -3627,21 +3707,22 @@ var render = function() {
                                                 "btn btn-warning btn-block",
                                               attrs: {
                                                 disabled:
-                                                  _vm.itemDataStat !== "success"
+                                                  _vm.itemDataStat !==
+                                                  "success",
                                               },
-                                              on: { click: _vm.resetFilter }
+                                              on: { click: _vm.resetFilter },
                                             },
                                             [
                                               _c("i", {
-                                                staticClass: "icon-reset"
+                                                staticClass: "icon-reset",
                                               }),
-                                              _vm._v(" Reset pencarian")
+                                              _vm._v(" Reset pencarian"),
                                             ]
-                                          )
+                                          ),
                                         ]
                                       )
-                                    : _vm._e()
-                                ])
+                                    : _vm._e(),
+                                ]),
                               ]
                             ),
                             _vm._v(" "),
@@ -3660,7 +3741,7 @@ var render = function() {
                                             "span",
                                             { staticClass: "input-group-text" },
                                             [_vm._v("Entri")]
-                                          )
+                                          ),
                                         ]
                                       ),
                                       _vm._v(" "),
@@ -3672,31 +3753,32 @@ var render = function() {
                                               name: "model",
                                               rawName: "v-model",
                                               value: _vm.query.limit,
-                                              expression: "query.limit"
-                                            }
+                                              expression: "query.limit",
+                                            },
                                           ],
                                           staticClass: "form-control",
                                           attrs: {
                                             disabled:
-                                              _vm.itemDataStat !== "success"
+                                              _vm.itemDataStat !== "success",
                                           },
                                           on: {
                                             change: [
-                                              function($event) {
-                                                var $$selectedVal = Array.prototype.filter
-                                                  .call(
-                                                    $event.target.options,
-                                                    function(o) {
-                                                      return o.selected
-                                                    }
-                                                  )
-                                                  .map(function(o) {
-                                                    var val =
-                                                      "_value" in o
-                                                        ? o._value
-                                                        : o.value
-                                                    return val
-                                                  })
+                                              function ($event) {
+                                                var $$selectedVal =
+                                                  Array.prototype.filter
+                                                    .call(
+                                                      $event.target.options,
+                                                      function (o) {
+                                                        return o.selected
+                                                      }
+                                                    )
+                                                    .map(function (o) {
+                                                      var val =
+                                                        "_value" in o
+                                                          ? o._value
+                                                          : o.value
+                                                      return val
+                                                    })
                                                 _vm.$set(
                                                   _vm.query,
                                                   "limit",
@@ -3705,9 +3787,9 @@ var render = function() {
                                                     : $$selectedVal[0]
                                                 )
                                               },
-                                              _vm.updateLimit
-                                            ]
-                                          }
+                                              _vm.updateLimit,
+                                            ],
+                                          },
                                         },
                                         [
                                           _c("option", [_vm._v("10")]),
@@ -3716,10 +3798,10 @@ var render = function() {
                                           _vm._v(" "),
                                           _c("option", [_vm._v("25")]),
                                           _vm._v(" "),
-                                          _c("option", [_vm._v("50")])
+                                          _c("option", [_vm._v("50")]),
                                         ]
-                                      )
-                                    ])
+                                      ),
+                                    ]),
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-md-6 pb-2" }, [
@@ -3732,7 +3814,7 @@ var render = function() {
                                             "span",
                                             { staticClass: "input-group-text" },
                                             [_vm._v("Urutkan")]
-                                          )
+                                          ),
                                         ]
                                       ),
                                       _vm._v(" "),
@@ -3742,38 +3824,41 @@ var render = function() {
                                           staticClass: "form-control",
                                           attrs: {
                                             disabled:
-                                              _vm.itemDataStat !== "success"
+                                              _vm.itemDataStat !== "success",
                                           },
-                                          on: { input: _vm.updateOrderColumn }
+                                          on: { input: _vm.updateOrderColumn },
                                         },
-                                        _vm._l(_vm.columnData, function(
-                                          column
-                                        ) {
-                                          return column.sort && !column.disable
-                                            ? _c(
-                                                "option",
-                                                {
-                                                  domProps: {
-                                                    value: column.name,
-                                                    selected:
-                                                      column &&
-                                                      column.name ==
-                                                        _vm.query.order_column
-                                                  }
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "\n                        " +
-                                                      _vm._s(column.title) +
-                                                      "\n                      "
-                                                  )
-                                                ]
-                                              )
-                                            : _vm._e()
-                                        }),
+                                        _vm._l(
+                                          _vm.columnData,
+                                          function (column) {
+                                            return column.sort &&
+                                              !column.disable
+                                              ? _c(
+                                                  "option",
+                                                  {
+                                                    domProps: {
+                                                      value: column.name,
+                                                      selected:
+                                                        column &&
+                                                        column.name ==
+                                                          _vm.query
+                                                            .order_column,
+                                                    },
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                        " +
+                                                        _vm._s(column.title) +
+                                                        "\n                      "
+                                                    ),
+                                                  ]
+                                                )
+                                              : _vm._e()
+                                          }
+                                        ),
                                         0
-                                      )
-                                    ])
+                                      ),
+                                    ]),
                                   ]),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "col-md-2" }, [
@@ -3784,32 +3869,32 @@ var render = function() {
                                           "btn bg-orange-300 btn-block",
                                         attrs: {
                                           disabled:
-                                            _vm.itemDataStat !== "success"
+                                            _vm.itemDataStat !== "success",
                                         },
-                                        on: { click: _vm.updateOrderDirection }
+                                        on: { click: _vm.updateOrderDirection },
                                       },
                                       [
                                         _vm.query.order_direction === "asc"
                                           ? _c("i", {
-                                              staticClass: "icon-arrow-up7"
+                                              staticClass: "icon-arrow-up7",
                                             })
                                           : _c("i", {
-                                              staticClass: "icon-arrow-down7"
-                                            })
+                                              staticClass: "icon-arrow-down7",
+                                            }),
                                       ]
-                                    )
-                                  ])
-                                ])
+                                    ),
+                                  ]),
+                                ]),
                               ]
-                            )
+                            ),
                           ]
-                        )
-                      ])
+                        ),
+                      ]),
                     ]
                   )
-                : _vm._e()
+                : _vm._e(),
             ]
-          )
+          ),
         ],
         1
       ),
@@ -3822,7 +3907,7 @@ var render = function() {
                     _c(
                       "div",
                       {
-                        staticClass: "col-md-7 col-lg-9 pb-2 d-none d-sm-block"
+                        staticClass: "col-md-7 col-lg-9 pb-2 d-none d-sm-block",
                       },
                       [_vm._t("button-desktop")],
                       2
@@ -3839,7 +3924,7 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "col-md-5 col-lg-3 text-right d-none d-sm-block"
+                          "col-md-5 col-lg-3 text-right d-none d-sm-block",
                       },
                       [
                         !_vm.isNoKolom
@@ -3849,18 +3934,18 @@ var render = function() {
                                 staticClass: "btn bg-blue-300 btn-icon mb-1",
                                 attrs: {
                                   type: "button",
-                                  disabled: _vm.itemDataStat === "loading"
+                                  disabled: _vm.itemDataStat === "loading",
                                 },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.modalOptionOpen("column")
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", { staticClass: "icon-table2" }),
-                                _vm._v(" Kolom\n          ")
+                                _vm._v(" Kolom\n          "),
                               ]
                             )
                           : _vm._e(),
@@ -3872,18 +3957,18 @@ var render = function() {
                                 staticClass: "btn bg-green-300 btn-icon mb-1",
                                 attrs: {
                                   type: "button",
-                                  disabled: _vm.itemDataStat === "loading"
+                                  disabled: _vm.itemDataStat === "loading",
                                 },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.modalOptionOpen("excel")
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", { staticClass: "icon-file-excel" }),
-                                _vm._v(" Excel\n          ")
+                                _vm._v(" Excel\n          "),
                               ]
                             )
                           : _vm._e(),
@@ -3894,22 +3979,24 @@ var render = function() {
                             staticClass: "btn btn-light btn-icon mb-1",
                             attrs: {
                               type: "button",
-                              disabled: _vm.itemDataStat === "loading"
+                              disabled: _vm.itemDataStat === "loading",
                             },
                             on: {
-                              click: function($event) {
+                              click: function ($event) {
                                 $event.preventDefault()
                                 return _vm.fetch()
-                              }
-                            }
+                              },
+                            },
                           },
                           [
                             _c("i", {
                               staticClass: "icon-sync",
-                              class: { spinner: _vm.itemDataStat === "loading" }
-                            })
+                              class: {
+                                spinner: _vm.itemDataStat === "loading",
+                              },
+                            }),
                           ]
-                        )
+                        ),
                       ]
                     ),
                     _vm._v(" "),
@@ -3922,18 +4009,18 @@ var render = function() {
                                 "btn bg-blue-300 btn-icon btn-block mb-1",
                               attrs: {
                                 type: "button",
-                                disabled: _vm.itemDataStat === "loading"
+                                disabled: _vm.itemDataStat === "loading",
                               },
                               on: {
-                                click: function($event) {
+                                click: function ($event) {
                                   $event.preventDefault()
                                   return _vm.modalOptionOpen("column")
-                                }
-                              }
+                                },
+                              },
                             },
                             [
                               _c("i", { staticClass: "icon-table2" }),
-                              _vm._v(" Kolom\n          ")
+                              _vm._v(" Kolom\n          "),
                             ]
                           )
                         : _vm._e(),
@@ -3946,18 +4033,18 @@ var render = function() {
                                 "btn bg-green-300 btn-icon btn-block mb-1",
                               attrs: {
                                 type: "button",
-                                disabled: _vm.itemDataStat === "loading"
+                                disabled: _vm.itemDataStat === "loading",
                               },
                               on: {
-                                click: function($event) {
+                                click: function ($event) {
                                   $event.preventDefault()
                                   return _vm.modalOptionOpen("excel")
-                                }
-                              }
+                                },
+                              },
                             },
                             [
                               _c("i", { staticClass: "icon-file-excel" }),
-                              _vm._v(" Excel\n          ")
+                              _vm._v(" Excel\n          "),
                             ]
                           )
                         : _vm._e(),
@@ -3968,25 +4055,25 @@ var render = function() {
                           staticClass: "btn btn-light btn-icon btn-block mb-1",
                           attrs: {
                             type: "button",
-                            disabled: _vm.itemDataStat === "loading"
+                            disabled: _vm.itemDataStat === "loading",
                           },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.fetch()
-                            }
-                          }
+                            },
+                          },
                         },
                         [
                           _c("i", {
                             staticClass: "icon-sync",
-                            class: { spinner: _vm.itemDataStat === "loading" }
+                            class: { spinner: _vm.itemDataStat === "loading" },
                           }),
-                          _vm._v(" Reload\n          ")
+                          _vm._v(" Reload\n          "),
                         ]
-                      )
-                    ])
-                  ])
+                      ),
+                    ]),
+                  ]),
                 ])
               : _vm._e(),
             _vm._v(" "),
@@ -3995,7 +4082,7 @@ var render = function() {
               {
                 staticClass: "table-responsive table-scrollable",
                 class: _vm.tableClass,
-                staticStyle: { "max-height": "33rem" }
+                staticStyle: { "max-height": "33rem" },
               },
               [
                 _c("table", { staticClass: "table table-striped" }, [
@@ -4003,21 +4090,21 @@ var render = function() {
                     _c(
                       "tr",
                       { staticClass: "text-nowrap" },
-                      _vm._l(_vm.columnData, function(item) {
+                      _vm._l(_vm.columnData, function (item) {
                         return !item.hide && !item.disable
                           ? _c("th", [
                               _c("span", {
-                                domProps: { innerHTML: _vm._s(item.title) }
+                                domProps: { innerHTML: _vm._s(item.title) },
                               }),
                               _vm._v(" "),
                               item.name == _vm.query.order_column
                                 ? _c("i", { staticClass: "icon-menu-open" })
-                                : _vm._e()
+                                : _vm._e(),
                             ])
                           : _vm._e()
                       }),
                       0
-                    )
+                    ),
                   ]),
                   _vm._v(" "),
                   _vm.itemDataStat === "loading"
@@ -4027,8 +4114,8 @@ var render = function() {
                             "td",
                             { attrs: { colspan: _vm.columnData.length } },
                             [_vm._m(1)]
-                          )
-                        ])
+                          ),
+                        ]),
                       ])
                     : _vm.itemDataStat === "success"
                     ? _c(
@@ -4042,16 +4129,16 @@ var render = function() {
                                   [
                                     _vm._v(
                                       "\n              Belum terdapat data...\n            "
-                                    )
+                                    ),
                                   ]
-                                )
+                                ),
                               ])
-                            : _vm._l(_vm.itemData.data, function(item, index) {
+                            : _vm._l(_vm.itemData.data, function (item, index) {
                                 return _vm._t("item-desktop", null, {
                                   item: item,
-                                  index: index
+                                  index: index,
                                 })
-                              })
+                              }),
                         ],
                         2
                       )
@@ -4064,13 +4151,13 @@ var render = function() {
                             [
                               _vm._v(
                                 "\n              Oops.. Terjadi kesalahan, silahkan coba lagi.\n            "
-                              )
+                              ),
                             ]
-                          )
-                        ])
+                          ),
+                        ]),
                       ])
-                    : _vm._e()
-                ])
+                    : _vm._e(),
+                ]),
               ]
             ),
             _vm._v(" "),
@@ -4087,7 +4174,7 @@ var render = function() {
                             " entri dari " +
                             _vm._s(_vm.itemData.total) +
                             " entri\n          "
-                        )
+                        ),
                       ])
                     : _vm._e(),
                   _vm._v(" "),
@@ -4104,7 +4191,7 @@ var render = function() {
                               " entri dari " +
                               _vm._s(_vm.itemData.total) +
                               " entri\n          "
-                          )
+                          ),
                         ]
                       )
                     : _c("div", [
@@ -4114,8 +4201,8 @@ var render = function() {
                         _c("i", { staticClass: "icon-spinner2 spinner" }),
                         _vm._v(" entri dari\n            "),
                         _c("i", { staticClass: "icon-spinner2 spinner" }),
-                        _vm._v(" entri\n          ")
-                      ])
+                        _vm._v(" entri\n          "),
+                      ]),
                 ]),
                 _vm._v(" "),
                 _c(
@@ -4132,15 +4219,15 @@ var render = function() {
                               {
                                 staticClass: "btn btn-light",
                                 class: {
-                                  disabled: !_vm.itemData.prev_page_url
+                                  disabled: !_vm.itemData.prev_page_url,
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.goToPage(1)
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [_c("i", { staticClass: "icon-backward2" })]
                             ),
@@ -4150,42 +4237,42 @@ var render = function() {
                               {
                                 staticClass: "btn btn-light",
                                 class: {
-                                  disabled: !_vm.itemData.prev_page_url
+                                  disabled: !_vm.itemData.prev_page_url,
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
-                                    return _vm.prevPage($event)
-                                  }
-                                }
+                                    return _vm.prevPage.apply(null, arguments)
+                                  },
+                                },
                               },
                               [_c("i", { staticClass: "icon-arrow-left5" })]
                             ),
                             _vm._v(" "),
-                            _vm._l(_vm.pages, function(n) {
+                            _vm._l(_vm.pages, function (n) {
                               return _c(
                                 "button",
                                 {
                                   staticClass: "btn",
                                   class: {
                                     "btn-primary": _vm.query.page == n,
-                                    "btn-light": _vm.query.page != n
+                                    "btn-light": _vm.query.page != n,
                                   },
                                   attrs: { href: "#" },
                                   on: {
-                                    click: function($event) {
+                                    click: function ($event) {
                                       $event.preventDefault()
                                       return _vm.goToPage(n)
-                                    }
-                                  }
+                                    },
+                                  },
                                 },
                                 [
                                   _vm._v(
                                     "\n                " +
                                       _vm._s(n) +
                                       "\n            "
-                                  )
+                                  ),
                                 ]
                               )
                             }),
@@ -4195,15 +4282,15 @@ var render = function() {
                               {
                                 staticClass: "btn btn-light",
                                 class: {
-                                  disabled: !_vm.itemData.next_page_url
+                                  disabled: !_vm.itemData.next_page_url,
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
-                                    return _vm.nextPage($event)
-                                  }
-                                }
+                                    return _vm.nextPage.apply(null, arguments)
+                                  },
+                                },
                               },
                               [_c("i", { staticClass: "icon-arrow-right5" })]
                             ),
@@ -4213,18 +4300,18 @@ var render = function() {
                               {
                                 staticClass: "btn btn-light",
                                 class: {
-                                  disabled: !_vm.itemData.next_page_url
+                                  disabled: !_vm.itemData.next_page_url,
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.goToPage(_vm.itemData.last_page)
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [_c("i", { staticClass: "icon-forward3" })]
-                            )
+                            ),
                           ],
                           2
                         )
@@ -4237,44 +4324,44 @@ var render = function() {
                           _vm._v(" "),
                           _vm._m(5),
                           _vm._v(" "),
-                          _vm._m(6)
-                        ])
+                          _vm._m(6),
+                        ]),
                   ]
                 ),
                 _vm._v(" "),
                 _c(
                   "div",
                   {
-                    staticClass: "col-md-12 pt-2 text-center d-block d-sm-none"
+                    staticClass: "col-md-12 pt-2 text-center d-block d-sm-none",
                   },
                   [
                     _vm.itemDataStat === "success"
                       ? _c(
                           "div",
                           { staticClass: "btn-group" },
-                          _vm._l(_vm.pages, function(n) {
+                          _vm._l(_vm.pages, function (n) {
                             return _c(
                               "button",
                               {
                                 staticClass: "btn",
                                 class: {
                                   "btn-primary": _vm.query.page == n,
-                                  "btn-light": _vm.query.page != n
+                                  "btn-light": _vm.query.page != n,
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.goToPage(n)
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _vm._v(
                                   "\n                " +
                                     _vm._s(n) +
                                     "\n            "
-                                )
+                                ),
                               ]
                             )
                           }),
@@ -4293,11 +4380,11 @@ var render = function() {
                               class: { disabled: !_vm.itemData.prev_page_url },
                               attrs: { href: "#" },
                               on: {
-                                click: function($event) {
+                                click: function ($event) {
                                   $event.preventDefault()
                                   return _vm.goToPage(1)
-                                }
-                              }
+                                },
+                              },
                             },
                             [_c("i", { staticClass: "icon-backward2" })]
                           ),
@@ -4309,11 +4396,11 @@ var render = function() {
                               class: { disabled: !_vm.itemData.prev_page_url },
                               attrs: { href: "#" },
                               on: {
-                                click: function($event) {
+                                click: function ($event) {
                                   $event.preventDefault()
-                                  return _vm.prevPage($event)
-                                }
-                              }
+                                  return _vm.prevPage.apply(null, arguments)
+                                },
+                              },
                             },
                             [_c("i", { staticClass: "icon-arrow-left5" })]
                           ),
@@ -4325,11 +4412,11 @@ var render = function() {
                               class: { disabled: !_vm.itemData.next_page_url },
                               attrs: { href: "#" },
                               on: {
-                                click: function($event) {
+                                click: function ($event) {
                                   $event.preventDefault()
-                                  return _vm.nextPage($event)
-                                }
-                              }
+                                  return _vm.nextPage.apply(null, arguments)
+                                },
+                              },
                             },
                             [_c("i", { staticClass: "icon-arrow-right5" })]
                           ),
@@ -4341,14 +4428,14 @@ var render = function() {
                               class: { disabled: !_vm.itemData.next_page_url },
                               attrs: { href: "#" },
                               on: {
-                                click: function($event) {
+                                click: function ($event) {
                                   $event.preventDefault()
                                   return _vm.goToPage(_vm.itemData.last_page)
-                                }
-                              }
+                                },
+                              },
                             },
                             [_c("i", { staticClass: "icon-forward3" })]
-                          )
+                          ),
                         ])
                       : _c("div", { staticClass: "btn-group" }, [
                           _vm._m(7),
@@ -4359,12 +4446,12 @@ var render = function() {
                           _vm._v(" "),
                           _vm._m(10),
                           _vm._v(" "),
-                          _vm._m(11)
-                        ])
+                          _vm._m(11),
+                        ]),
                   ]
-                )
-              ])
-            ])
+                ),
+              ]),
+            ]),
           ])
         : _vm._e(),
       _vm._v(" "),
@@ -4391,7 +4478,7 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "col-md-4 col-lg-2 text-right d-none d-sm-block"
+                          "col-md-4 col-lg-2 text-right d-none d-sm-block",
                       },
                       [
                         !_vm.isNoExcel
@@ -4401,18 +4488,18 @@ var render = function() {
                                 staticClass: "btn bg-green-300 btn-icon",
                                 attrs: {
                                   type: "button",
-                                  disabled: _vm.itemDataStat === "loading"
+                                  disabled: _vm.itemDataStat === "loading",
                                 },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.modalOptionOpen("excel")
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _c("i", { staticClass: "icon-file-excel" }),
-                                _vm._v(" Excel\n          ")
+                                _vm._v(" Excel\n          "),
                               ]
                             )
                           : _vm._e(),
@@ -4423,22 +4510,24 @@ var render = function() {
                             staticClass: "btn btn-light btn-icon",
                             attrs: {
                               type: "button",
-                              disabled: _vm.itemDataStat === "loading"
+                              disabled: _vm.itemDataStat === "loading",
                             },
                             on: {
-                              click: function($event) {
+                              click: function ($event) {
                                 $event.preventDefault()
                                 return _vm.fetch()
-                              }
-                            }
+                              },
+                            },
                           },
                           [
                             _c("i", {
                               staticClass: "icon-sync",
-                              class: { spinner: _vm.itemDataStat === "loading" }
-                            })
+                              class: {
+                                spinner: _vm.itemDataStat === "loading",
+                              },
+                            }),
                           ]
-                        )
+                        ),
                       ]
                     ),
                     _vm._v(" "),
@@ -4453,18 +4542,18 @@ var render = function() {
                               "btn bg-green-300 btn-icon btn-block mb-1",
                             attrs: {
                               type: "button",
-                              disabled: _vm.itemDataStat === "loading"
+                              disabled: _vm.itemDataStat === "loading",
                             },
                             on: {
-                              click: function($event) {
+                              click: function ($event) {
                                 $event.preventDefault()
                                 return _vm.modalOptionOpen("excel")
-                              }
-                            }
+                              },
+                            },
                           },
                           [
                             _c("i", { staticClass: "icon-file-excel" }),
-                            _vm._v(" Excel\n          ")
+                            _vm._v(" Excel\n          "),
                           ]
                         ),
                         _vm._v(" "),
@@ -4475,26 +4564,28 @@ var render = function() {
                               "btn btn-light btn-icon btn-block mb-1",
                             attrs: {
                               type: "button",
-                              disabled: _vm.itemDataStat === "loading"
+                              disabled: _vm.itemDataStat === "loading",
                             },
                             on: {
-                              click: function($event) {
+                              click: function ($event) {
                                 $event.preventDefault()
                                 return _vm.fetch()
-                              }
-                            }
+                              },
+                            },
                           },
                           [
                             _c("i", {
                               staticClass: "icon-sync",
-                              class: { spinner: _vm.itemDataStat === "loading" }
+                              class: {
+                                spinner: _vm.itemDataStat === "loading",
+                              },
                             }),
-                            _vm._v(" Reload\n          ")
+                            _vm._v(" Reload\n          "),
                           ]
-                        )
+                        ),
                       ]
-                    )
-                  ])
+                    ),
+                  ]),
                 ])
               : _vm._e(),
             _vm._v(" "),
@@ -4502,7 +4593,7 @@ var render = function() {
               ? _c("div", { staticClass: "card card-body" }, [
                   _c("h4", [_vm._v("Mohon tunggu...")]),
                   _vm._v(" "),
-                  _vm._m(12)
+                  _vm._m(12),
                 ])
               : _vm.itemDataStat === "success"
               ? _c("div", [
@@ -4510,25 +4601,25 @@ var render = function() {
                     "div",
                     { staticClass: "row" },
                     [
-                      _vm._l(_vm.itemData.data, function(item, index) {
+                      _vm._l(_vm.itemData.data, function (item, index) {
                         return _vm._t("item-mobile", null, {
                           item: item,
-                          index: index
+                          index: index,
                         })
-                      })
+                      }),
                     ],
                     2
                   ),
                   _vm._v(" "),
                   _vm.itemData.data.length == 0
                     ? _c("div", [_vm._m(13)])
-                    : _vm._e()
+                    : _vm._e(),
                 ])
               : _vm.itemDataStat === "fail"
               ? _c("div", { staticClass: "card card-body" }, [
                   _c("h4", [
-                    _vm._v("Oops.. Terjadi kesalahan, silahkan coba lagi.")
-                  ])
+                    _vm._v("Oops.. Terjadi kesalahan, silahkan coba lagi."),
+                  ]),
                 ])
               : _vm._e(),
             _vm._v(" "),
@@ -4545,7 +4636,7 @@ var render = function() {
                             " entri dari " +
                             _vm._s(_vm.itemData.total) +
                             " entri\n            "
-                        )
+                        ),
                       ])
                     : _vm._e(),
                   _vm._v(" "),
@@ -4562,7 +4653,7 @@ var render = function() {
                               " entri dari " +
                               _vm._s(_vm.itemData.total) +
                               " entri\n            "
-                          )
+                          ),
                         ]
                       )
                     : _c("div", [
@@ -4572,8 +4663,8 @@ var render = function() {
                         _c("i", { staticClass: "icon-spinner2 spinner" }),
                         _vm._v(" entri dari\n              "),
                         _c("i", { staticClass: "icon-spinner2 spinner" }),
-                        _vm._v(" entri\n            ")
-                      ])
+                        _vm._v(" entri\n            "),
+                      ]),
                 ]),
                 _vm._v(" "),
                 _c(
@@ -4590,15 +4681,15 @@ var render = function() {
                               {
                                 staticClass: "btn btn-light",
                                 class: {
-                                  disabled: !_vm.itemData.prev_page_url
+                                  disabled: !_vm.itemData.prev_page_url,
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.goToPage(1)
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [_c("i", { staticClass: "icon-backward2" })]
                             ),
@@ -4608,42 +4699,42 @@ var render = function() {
                               {
                                 staticClass: "btn btn-light",
                                 class: {
-                                  disabled: !_vm.itemData.prev_page_url
+                                  disabled: !_vm.itemData.prev_page_url,
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
-                                    return _vm.prevPage($event)
-                                  }
-                                }
+                                    return _vm.prevPage.apply(null, arguments)
+                                  },
+                                },
                               },
                               [_c("i", { staticClass: "icon-arrow-left5" })]
                             ),
                             _vm._v(" "),
-                            _vm._l(_vm.pages, function(n) {
+                            _vm._l(_vm.pages, function (n) {
                               return _c(
                                 "button",
                                 {
                                   staticClass: "btn",
                                   class: {
                                     "btn-primary": _vm.query.page == n,
-                                    "btn-light": _vm.query.page != n
+                                    "btn-light": _vm.query.page != n,
                                   },
                                   attrs: { href: "#" },
                                   on: {
-                                    click: function($event) {
+                                    click: function ($event) {
                                       $event.preventDefault()
                                       return _vm.goToPage(n)
-                                    }
-                                  }
+                                    },
+                                  },
                                 },
                                 [
                                   _vm._v(
                                     "\n                " +
                                       _vm._s(n) +
                                       "\n            "
-                                  )
+                                  ),
                                 ]
                               )
                             }),
@@ -4653,15 +4744,15 @@ var render = function() {
                               {
                                 staticClass: "btn btn-light",
                                 class: {
-                                  disabled: !_vm.itemData.next_page_url
+                                  disabled: !_vm.itemData.next_page_url,
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
-                                    return _vm.nextPage($event)
-                                  }
-                                }
+                                    return _vm.nextPage.apply(null, arguments)
+                                  },
+                                },
                               },
                               [_c("i", { staticClass: "icon-arrow-right5" })]
                             ),
@@ -4671,18 +4762,18 @@ var render = function() {
                               {
                                 staticClass: "btn btn-light",
                                 class: {
-                                  disabled: !_vm.itemData.next_page_url
+                                  disabled: !_vm.itemData.next_page_url,
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.goToPage(_vm.itemData.last_page)
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [_c("i", { staticClass: "icon-forward3" })]
-                            )
+                            ),
                           ],
                           2
                         )
@@ -4695,44 +4786,44 @@ var render = function() {
                           _vm._v(" "),
                           _vm._m(17),
                           _vm._v(" "),
-                          _vm._m(18)
-                        ])
+                          _vm._m(18),
+                        ]),
                   ]
                 ),
                 _vm._v(" "),
                 _c(
                   "div",
                   {
-                    staticClass: "col-md-12 pt-2 text-center d-block d-sm-none"
+                    staticClass: "col-md-12 pt-2 text-center d-block d-sm-none",
                   },
                   [
                     _vm.itemDataStat === "success"
                       ? _c(
                           "div",
                           { staticClass: "btn-group" },
-                          _vm._l(_vm.pages, function(n) {
+                          _vm._l(_vm.pages, function (n) {
                             return _c(
                               "button",
                               {
                                 staticClass: "btn",
                                 class: {
                                   "btn-primary": _vm.query.page == n,
-                                  "btn-light": _vm.query.page != n
+                                  "btn-light": _vm.query.page != n,
                                 },
                                 attrs: { href: "#" },
                                 on: {
-                                  click: function($event) {
+                                  click: function ($event) {
                                     $event.preventDefault()
                                     return _vm.goToPage(n)
-                                  }
-                                }
+                                  },
+                                },
                               },
                               [
                                 _vm._v(
                                   "\n                " +
                                     _vm._s(n) +
                                     "\n            "
-                                )
+                                ),
                               ]
                             )
                           }),
@@ -4751,11 +4842,11 @@ var render = function() {
                               class: { disabled: !_vm.itemData.prev_page_url },
                               attrs: { href: "#" },
                               on: {
-                                click: function($event) {
+                                click: function ($event) {
                                   $event.preventDefault()
                                   return _vm.goToPage(1)
-                                }
-                              }
+                                },
+                              },
                             },
                             [_c("i", { staticClass: "icon-backward2" })]
                           ),
@@ -4767,11 +4858,11 @@ var render = function() {
                               class: { disabled: !_vm.itemData.prev_page_url },
                               attrs: { href: "#" },
                               on: {
-                                click: function($event) {
+                                click: function ($event) {
                                   $event.preventDefault()
-                                  return _vm.prevPage($event)
-                                }
-                              }
+                                  return _vm.prevPage.apply(null, arguments)
+                                },
+                              },
                             },
                             [_c("i", { staticClass: "icon-arrow-left5" })]
                           ),
@@ -4783,11 +4874,11 @@ var render = function() {
                               class: { disabled: !_vm.itemData.next_page_url },
                               attrs: { href: "#" },
                               on: {
-                                click: function($event) {
+                                click: function ($event) {
                                   $event.preventDefault()
-                                  return _vm.nextPage($event)
-                                }
-                              }
+                                  return _vm.nextPage.apply(null, arguments)
+                                },
+                              },
                             },
                             [_c("i", { staticClass: "icon-arrow-right5" })]
                           ),
@@ -4799,14 +4890,14 @@ var render = function() {
                               class: { disabled: !_vm.itemData.next_page_url },
                               attrs: { href: "#" },
                               on: {
-                                click: function($event) {
+                                click: function ($event) {
                                   $event.preventDefault()
                                   return _vm.goToPage(_vm.itemData.last_page)
-                                }
-                              }
+                                },
+                              },
                             },
                             [_c("i", { staticClass: "icon-forward3" })]
-                          )
+                          ),
                         ])
                       : _c("div", { staticClass: "btn-group" }, [
                           _vm._m(19),
@@ -4817,12 +4908,12 @@ var render = function() {
                           _vm._v(" "),
                           _vm._m(22),
                           _vm._v(" "),
-                          _vm._m(23)
-                        ])
+                          _vm._m(23),
+                        ]),
                   ]
-                )
-              ])
-            ])
+                ),
+              ]),
+            ]),
           ])
         : _vm._e(),
       _vm._v(" "),
@@ -4833,15 +4924,15 @@ var render = function() {
             show: _vm.modalShow,
             state: _vm.modalState,
             title: _vm.modalTitle,
-            content: _vm.modalContent
+            content: _vm.modalContent,
           },
           on: {
             batal: _vm.modalTutup,
             tutup: _vm.modalTutup,
             successOk: _vm.modalTutup,
             failOk: _vm.modalTutup,
-            backgroundClick: _vm.modalTutup
-          }
+            backgroundClick: _vm.modalTutup,
+          },
         },
         [
           _c("div", { attrs: { slot: "modal-body1" }, slot: "modal-body1" }, [
@@ -4850,7 +4941,7 @@ var render = function() {
                   "div",
                   [
                     _c("h2", { staticClass: "text-center" }, [
-                      _vm._v("Kolom yang ditampilkan")
+                      _vm._v("Kolom yang ditampilkan"),
                     ]),
                     _vm._v(" "),
                     _c("hr"),
@@ -4860,11 +4951,11 @@ var render = function() {
                       {
                         staticClass: "btn btn-light btn-block",
                         on: {
-                          click: function($event) {
+                          click: function ($event) {
                             $event.preventDefault()
-                            return _vm.showAllColumn($event)
-                          }
-                        }
+                            return _vm.showAllColumn.apply(null, arguments)
+                          },
+                        },
                       },
                       [_vm._v("Semua kolom")]
                     ),
@@ -4873,7 +4964,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("hr"),
                     _vm._v(" "),
-                    _vm._l(_vm.columnData, function(column, index) {
+                    _vm._l(_vm.columnData, function (column, index) {
                       return column.hide != null && !column.disable
                         ? _c(
                             "button",
@@ -4881,11 +4972,11 @@ var render = function() {
                               staticClass: "btn btn-block",
                               class: { "btn-primary": !column.hide },
                               on: {
-                                click: function($event) {
+                                click: function ($event) {
                                   $event.preventDefault()
                                   return _vm.hideColumn(index)
-                                }
-                              }
+                                },
+                              },
                             },
                             [_vm._v(_vm._s(column.title))]
                           )
@@ -4899,14 +4990,14 @@ var render = function() {
                       {
                         staticClass: "btn btn-light btn-block",
                         on: {
-                          click: function($event) {
+                          click: function ($event) {
                             $event.preventDefault()
-                            return _vm.modalTutup($event)
-                          }
-                        }
+                            return _vm.modalTutup.apply(null, arguments)
+                          },
+                        },
                       },
                       [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
-                    )
+                    ),
                   ],
                   2
                 )
@@ -4923,15 +5014,15 @@ var render = function() {
                       {
                         staticClass: "btn btn-light btn-block",
                         on: {
-                          click: function($event) {
+                          click: function ($event) {
                             $event.preventDefault()
                             return _vm.modalExcelOpen("excel")
-                          }
-                        }
+                          },
+                        },
                       },
                       [
                         _c("i", { staticClass: "icon-folder-download2" }),
-                        _vm._v(" Download data di tabel")
+                        _vm._v(" Download data di tabel"),
                       ]
                     ),
                     _vm._v(" "),
@@ -4940,36 +5031,36 @@ var render = function() {
                       {
                         staticClass: "btn btn-light btn-block",
                         on: {
-                          click: function($event) {
+                          click: function ($event) {
                             $event.preventDefault()
                             return _vm.modalExcelOpen("excelAll")
-                          }
-                        }
+                          },
+                        },
                       },
                       [
                         _c("i", { staticClass: "icon-folder-download2" }),
-                        _vm._v(" Download semua data")
+                        _vm._v(" Download semua data"),
                       ]
                     ),
                     _vm._v(" "),
                     _c("hr"),
                     _vm._v(" "),
-                    _vm._l(_vm.excelUploads, function(ex, index) {
+                    _vm._l(_vm.excelUploads, function (ex, index) {
                       return ex.enabled
                         ? _c(
                             "button",
                             {
                               staticClass: "btn btn-light btn-block",
                               on: {
-                                click: function($event) {
+                                click: function ($event) {
                                   $event.preventDefault()
                                   return _vm.modalExcelUploadOpen(index)
-                                }
-                              }
+                                },
+                              },
                             },
                             [
                               _c("i", { staticClass: "icon-file-upload" }),
-                              _vm._v(" " + _vm._s(ex.button))
+                              _vm._v(" " + _vm._s(ex.button)),
                             ]
                           )
                         : _vm._e()
@@ -4982,18 +5073,18 @@ var render = function() {
                       {
                         staticClass: "btn btn-light btn-block",
                         on: {
-                          click: function($event) {
+                          click: function ($event) {
                             $event.preventDefault()
-                            return _vm.modalTutup($event)
-                          }
-                        }
+                            return _vm.modalTutup.apply(null, arguments)
+                          },
+                        },
                       },
                       [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
-                    )
+                    ),
                   ],
                   2
                 )
-              : _vm._e()
+              : _vm._e(),
           ]),
           _vm._v(" "),
           _c(
@@ -5001,7 +5092,7 @@ var render = function() {
             {
               staticClass: "text-center",
               attrs: { slot: "modal-body2" },
-              slot: "modal-body2"
+              slot: "modal-body2",
             },
             [
               _vm.state === "excel"
@@ -5011,8 +5102,8 @@ var render = function() {
                       _c("span", { staticClass: "text-primary" }, [
                         _c("i", {
                           staticClass: "icon-checkmark-circle2",
-                          staticStyle: { "font-size": "5em" }
-                        })
+                          staticStyle: { "font-size": "5em" },
+                        }),
                       ]),
                       _vm._v(" "),
                       _c("h2", [_vm._v("Silahkan tekan tombol download")]),
@@ -5022,11 +5113,11 @@ var render = function() {
                         {
                           staticClass: "btn btn-light",
                           attrs: { type: "button" },
-                          on: { click: _vm.modalTutup }
+                          on: { click: _vm.modalTutup },
                         },
                         [
                           _c("i", { staticClass: "icon-cross" }),
-                          _vm._v(" Tutup\n        ")
+                          _vm._v(" Tutup\n        "),
                         ]
                       ),
                       _vm._v(" "),
@@ -5039,14 +5130,14 @@ var render = function() {
                             exportFields: _vm.excel.fields,
                             meta: _vm.excel.meta,
                             title: "Data " + _vm.title,
-                            name: _vm.title + ".xls"
-                          }
+                            name: _vm.title + ".xls",
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-file-download" }),
-                          _vm._v(" Download data di tabel")
+                          _vm._v(" Download data di tabel"),
                         ]
-                      )
+                      ),
                     ],
                     1
                   )
@@ -5057,26 +5148,26 @@ var render = function() {
                           _c("span", { staticClass: "text-warning" }, [
                             _c("i", {
                               staticClass: "icon-exclamation",
-                              staticStyle: { "font-size": "5em" }
-                            })
+                              staticStyle: { "font-size": "5em" },
+                            }),
                           ]),
                           _vm._v(" "),
                           _c("h2", [
                             _vm._v(
                               "Yakin akan mendownload semua data ke excel?"
-                            )
+                            ),
                           ]),
                           _vm._v(" "),
                           _c(
                             "pre",
                             {
                               staticClass: "pre-scrollable text-center",
-                              attrs: { id: "stack" }
+                              attrs: { id: "stack" },
                             },
                             [
                               _vm._v(
                                 "Lama download tergantung pada jumlah data yang ada."
-                              )
+                              ),
                             ]
                           ),
                           _vm._v(" "),
@@ -5088,14 +5179,14 @@ var render = function() {
                               staticClass: "btn btn-light",
                               attrs: { type: "button" },
                               on: {
-                                click: function($event) {
+                                click: function ($event) {
                                   return _vm.modalBatal("excel")
-                                }
-                              }
+                                },
+                              },
                             },
                             [
                               _c("i", { staticClass: "icon-arrow-left13" }),
-                              _vm._v(" Batal")
+                              _vm._v(" Batal"),
                             ]
                           ),
                           _vm._v(" "),
@@ -5104,13 +5195,13 @@ var render = function() {
                             {
                               staticClass: "btn btn-warning",
                               attrs: { type: "button" },
-                              on: { click: _vm.modalExcelOk }
+                              on: { click: _vm.modalExcelOk },
                             },
                             [
                               _c("i", { staticClass: "icon-checkmark5" }),
-                              _vm._v(" Ya, download semua")
+                              _vm._v(" Ya, download semua"),
                             ]
-                          )
+                          ),
                         ])
                       : _vm.excelAllDataStat === "success"
                       ? _c(
@@ -5119,12 +5210,12 @@ var render = function() {
                             _c("span", { staticClass: "text-primary" }, [
                               _c("i", {
                                 staticClass: "icon-checkmark-circle2",
-                                staticStyle: { "font-size": "5em" }
-                              })
+                                staticStyle: { "font-size": "5em" },
+                              }),
                             ]),
                             _vm._v(" "),
                             _c("h2", [
-                              _vm._v("Silahkan tekan tombol download")
+                              _vm._v("Silahkan tekan tombol download"),
                             ]),
                             _vm._v(" "),
                             _c(
@@ -5132,11 +5223,11 @@ var render = function() {
                               {
                                 staticClass: "btn btn-light",
                                 attrs: { type: "button" },
-                                on: { click: _vm.modalTutup }
+                                on: { click: _vm.modalTutup },
                               },
                               [
                                 _c("i", { staticClass: "icon-cross" }),
-                                _vm._v(" Tutup\n          ")
+                                _vm._v(" Tutup\n          "),
                               ]
                             ),
                             _vm._v(" "),
@@ -5149,27 +5240,27 @@ var render = function() {
                                   exportFields: _vm.excelAll.fields,
                                   meta: _vm.excelAll.meta,
                                   title: "Data " + _vm.title,
-                                  name: _vm.title + ".xls"
-                                }
+                                  name: _vm.title + ".xls",
+                                },
                               },
                               [
                                 _c("i", {
-                                  staticClass: "icon-folder-download2"
+                                  staticClass: "icon-folder-download2",
                                 }),
-                                _vm._v(" Download Excel")
+                                _vm._v(" Download Excel"),
                               ]
-                            )
+                            ),
                           ],
                           1
                         )
-                      : _vm._e()
+                      : _vm._e(),
                   ])
                 : _vm.state === "upload"
                 ? _c("div", [
                     _c("h2", [
                       _vm._v(
                         "Silahkan pilih file excel yang ingin diupload kemudian tekan tombol upload"
-                      )
+                      ),
                     ]),
                     _vm._v(" "),
                     _vm.excelUploads[_vm.excelUploadIndex].info
@@ -5177,20 +5268,20 @@ var render = function() {
                           "div",
                           {
                             staticClass:
-                              "alert bg-info alert-styled-left mt-2 pt-1 pb-1"
+                              "alert bg-info alert-styled-left mt-2 pt-1 pb-1",
                           },
                           [
                             _c("span", { staticClass: "mb-5 text-semibold" }, [
-                              _c("u", [_vm._v("Info:")])
+                              _c("u", [_vm._v("Info:")]),
                             ]),
                             _vm._v(" "),
                             _c("p", {
                               domProps: {
                                 innerHTML: _vm._s(
                                   _vm.excelUploads[_vm.excelUploadIndex].info
-                                )
-                              }
-                            })
+                                ),
+                              },
+                            }),
                           ]
                         )
                       : _vm._e(),
@@ -5200,10 +5291,10 @@ var render = function() {
                       staticClass: "form-control",
                       attrs: { type: "file" },
                       on: {
-                        change: function($event) {
+                        change: function ($event) {
                           return _vm.changeUpload($event.target.files)
-                        }
-                      }
+                        },
+                      },
                     }),
                     _vm._v(" "),
                     _c("p", { staticClass: "text-center mt-2" }, [
@@ -5215,16 +5306,16 @@ var render = function() {
                         {
                           attrs: { href: "#" },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.downloadFormatExcel(
                                 _vm.excelUploadIndex
                               )
-                            }
-                          }
+                            },
+                          },
                         },
                         [_vm._v("format excel")]
-                      )
+                      ),
                     ]),
                     _vm._v(" "),
                     _c(
@@ -5233,14 +5324,14 @@ var render = function() {
                         staticClass: "btn btn-light",
                         attrs: { type: "button" },
                         on: {
-                          click: function($event) {
+                          click: function ($event) {
                             return _vm.modalBatal("excel")
-                          }
-                        }
+                          },
+                        },
                       },
                       [
                         _c("i", { staticClass: "icon-arrow-left13" }),
-                        _vm._v(" Batal\n        ")
+                        _vm._v(" Batal\n        "),
                       ]
                     ),
                     _vm._v(" "),
@@ -5250,36 +5341,36 @@ var render = function() {
                         staticClass: "btn btn-light",
                         attrs: { type: "button" },
                         on: {
-                          click: function($event) {
+                          click: function ($event) {
                             return _vm.uploadExcel(_vm.excelUploadIndex)
-                          }
-                        }
+                          },
+                        },
                       },
                       [
                         _c("i", { staticClass: "icon-upload" }),
-                        _vm._v(" Upload\n        ")
+                        _vm._v(" Upload\n        "),
                       ]
-                    )
+                    ),
                   ])
-                : _vm._e()
+                : _vm._e(),
             ]
-          )
+          ),
         ]
-      )
+      ),
     ],
     1
   )
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "header-elements" }, [
-      _c("div", { staticClass: "list-icons" })
+      _c("div", { staticClass: "list-icons" }),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5289,13 +5380,13 @@ var staticRenderFns = [
         {
           staticClass:
             "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
-          staticStyle: { width: "100%" }
+          staticStyle: { width: "100%" },
         },
         [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-      )
+      ),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5305,7 +5396,7 @@ var staticRenderFns = [
       [_c("i", { staticClass: "icon-backward2" })]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5315,7 +5406,7 @@ var staticRenderFns = [
       [_c("i", { staticClass: "icon-arrow-left5" })]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5325,7 +5416,7 @@ var staticRenderFns = [
       [_c("i", { staticClass: "icon-spinner2 spinner" })]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5335,7 +5426,7 @@ var staticRenderFns = [
       [_c("i", { staticClass: "icon-arrow-right5" })]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5345,7 +5436,7 @@ var staticRenderFns = [
       [_c("i", { staticClass: "icon-forward3" })]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5355,7 +5446,7 @@ var staticRenderFns = [
       [_c("i", { staticClass: "icon-backward2" })]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5365,7 +5456,7 @@ var staticRenderFns = [
       [_c("i", { staticClass: "icon-arrow-left5" })]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5375,7 +5466,7 @@ var staticRenderFns = [
       [_c("i", { staticClass: "icon-spinner2 spinner" })]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5385,7 +5476,7 @@ var staticRenderFns = [
       [_c("i", { staticClass: "icon-arrow-right5" })]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5395,7 +5486,7 @@ var staticRenderFns = [
       [_c("i", { staticClass: "icon-forward3" })]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5405,23 +5496,23 @@ var staticRenderFns = [
         {
           staticClass:
             "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
-          staticStyle: { width: "100%" }
+          staticStyle: { width: "100%" },
         },
         [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-      )
+      ),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-body" }, [
-        _c("h3", [_vm._v("Belum terdapat data...")])
-      ])
+        _c("h3", [_vm._v("Belum terdapat data...")]),
+      ]),
     ])
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5431,7 +5522,7 @@ var staticRenderFns = [
       [_c("i", { staticClass: "icon-backward2" })]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5441,7 +5532,7 @@ var staticRenderFns = [
       [_c("i", { staticClass: "icon-arrow-left5" })]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5451,7 +5542,7 @@ var staticRenderFns = [
       [_c("i", { staticClass: "icon-spinner2 spinner" })]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5461,7 +5552,7 @@ var staticRenderFns = [
       [_c("i", { staticClass: "icon-arrow-right5" })]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5471,7 +5562,7 @@ var staticRenderFns = [
       [_c("i", { staticClass: "icon-forward3" })]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5481,7 +5572,7 @@ var staticRenderFns = [
       [_c("i", { staticClass: "icon-backward2" })]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5491,7 +5582,7 @@ var staticRenderFns = [
       [_c("i", { staticClass: "icon-arrow-left5" })]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5501,7 +5592,7 @@ var staticRenderFns = [
       [_c("i", { staticClass: "icon-spinner2 spinner" })]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5511,7 +5602,7 @@ var staticRenderFns = [
       [_c("i", { staticClass: "icon-arrow-right5" })]
     )
   },
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -5520,7 +5611,7 @@ var staticRenderFns = [
       { staticClass: "btn btn-light disabled", attrs: { href: "#" } },
       [_c("i", { staticClass: "icon-forward3" })]
     )
-  }
+  },
 ]
 render._withStripped = true
 

@@ -79,10 +79,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/asetTetapLokasi/index.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/asetTetapLokasi/index.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/asetTetapGolongan/index.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/asetTetapGolongan/index.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -91,8 +91,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/pageHeader.vue */ "./resources/assets/js/components/pageHeader.vue");
 /* harmony import */ var _components_message_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/message.vue */ "./resources/assets/js/components/message.vue");
-/* harmony import */ var _table_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./table.vue */ "./resources/assets/js/views/asetTetapLokasi/table.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+/* harmony import */ var _table_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./table.vue */ "./resources/assets/js/views/asetTetapGolongan/table.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -139,14 +139,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      title: 'Lokasi Aset Tetap',
-      kelas: 'asetTetapLokasi',
-      titleDesc: 'Mengelola data lokasi aset tetap',
-      titleIcon: 'icon-drawer3'
+      title: 'Golongan Aset Tetap',
+      kelas: 'asetTetapGolongan',
+      titleDesc: 'Mengelola data golongan aset tetap',
+      titleIcon: 'icon-grid6'
     };
   },
   created: function created() {
-    this.checkUser('index_aset_tetap_lokasi', this.$route.params.cu);
+    this.checkUser('index_aset_tetap_jenis', this.$route.params.cu);
   },
   methods: {
     checkUser: function checkUser(permission, id_cu) {
@@ -159,7 +159,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
     currentUser: 'currentUser'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('asetTetapLokasi', {
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('asetTetapGolongan', {
     itemData: 'dataS',
     itemDataStat: 'dataStatS'
   }))
@@ -167,10 +167,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/asetTetapLokasi/table.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/asetTetapLokasi/table.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/asetTetapGolongan/table.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/asetTetapGolongan/table.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -180,13 +180,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_dataviewer2_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/dataviewer2.vue */ "./resources/assets/js/components/dataviewer2.vue");
 /* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
 /* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
-/* harmony import */ var _form_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./form.vue */ "./resources/assets/js/views/asetTetapLokasi/form.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+/* harmony import */ var _form_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./form.vue */ "./resources/assets/js/views/asetTetapGolongan/form.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
 //
 //
 //
@@ -306,6 +309,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         hide: false,
         disable: false
       }, {
+        title: 'Kode',
+        name: 'kode',
+        tipe: 'string',
+        sort: true,
+        hide: false,
+        disable: false,
+        filter: true
+      }, {
         title: 'Nama',
         name: 'name',
         tipe: 'string',
@@ -323,8 +334,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         disable: false,
         filter: true
       }, {
-        title: 'Jumlah',
-        name: 'has_aset_tetap_count',
+        title: 'Jumlah Kelompok',
+        name: 'has_aset_tetap_kelompok_count',
         tipe: 'numeric',
         sort: true,
         hide: false,
@@ -350,6 +361,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       modalShow: false,
       modalState: '',
       modalTitle: '',
+      modalContent: '',
       modalButton: '',
       modalColor: ''
     };
@@ -415,11 +427,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       } else if (state == 'tambah') {
         this.modalState = 'normal1';
         this.modalColor = 'bg-primary';
-        this.modalTitle = 'Tambah lokasi aset tetap';
+        this.modalTitle = 'Tambah golongan aset tetap';
       } else if (state == 'ubah') {
         this.modalState = 'normal1';
         this.modalColor = 'bg-primary';
-        this.modalTitle = 'Ubah lokasi aset tetap dengan nama: ' + this.selectedItem.name + ' ?';
+        this.modalTitle = 'Ubah golongan aset tetap dengan nama: ' + this.selectedItem.name + ' ?';
       }
     },
     modalTutup: function modalTutup() {
@@ -434,7 +446,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
     currentUser: 'currentUser'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('asetTetapLokasi', {
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('asetTetapGolongan', {
     itemData: 'dataS',
     itemDataStat: 'dataStatS',
     updateMessage: 'update',
@@ -454,7 +466,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(a,b){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (b),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else {}})(this,function(){"use strict";function b(a,b){return"undefined"==typeof b?b={autoBom:!1}:"object"!=typeof b&&(console.warn("Deprecated: Expected third argument to be a object"),b={autoBom:!b}),b.autoBom&&/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(a.type)?new Blob(["\uFEFF",a],{type:a.type}):a}function c(b,c,d){var e=new XMLHttpRequest;e.open("GET",b),e.responseType="blob",e.onload=function(){a(e.response,c,d)},e.onerror=function(){console.error("could not download file")},e.send()}function d(a){var b=new XMLHttpRequest;b.open("HEAD",a,!1);try{b.send()}catch(a){}return 200<=b.status&&299>=b.status}function e(a){try{a.dispatchEvent(new MouseEvent("click"))}catch(c){var b=document.createEvent("MouseEvents");b.initMouseEvent("click",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),a.dispatchEvent(b)}}var f="object"==typeof window&&window.window===window?window:"object"==typeof self&&self.self===self?self:"object"==typeof global&&global.global===global?global:void 0,a=f.saveAs||("object"!=typeof window||window!==f?function(){}:"download"in HTMLAnchorElement.prototype?function(b,g,h){var i=f.URL||f.webkitURL,j=document.createElement("a");g=g||b.name||"download",j.download=g,j.rel="noopener","string"==typeof b?(j.href=b,j.origin===location.origin?e(j):d(j.href)?c(b,g,h):e(j,j.target="_blank")):(j.href=i.createObjectURL(b),setTimeout(function(){i.revokeObjectURL(j.href)},4E4),setTimeout(function(){e(j)},0))}:"msSaveOrOpenBlob"in navigator?function(f,g,h){if(g=g||f.name||"download","string"!=typeof f)navigator.msSaveOrOpenBlob(b(f,h),g);else if(d(f))c(f,g,h);else{var i=document.createElement("a");i.href=f,i.target="_blank",setTimeout(function(){e(i)})}}:function(a,b,d,e){if(e=e||open("","_blank"),e&&(e.document.title=e.document.body.innerText="downloading..."),"string"==typeof a)return c(a,b,d);var g="application/octet-stream"===a.type,h=/constructor/i.test(f.HTMLElement)||f.safari,i=/CriOS\/[\d]+/.test(navigator.userAgent);if((i||g&&h)&&"object"==typeof FileReader){var j=new FileReader;j.onloadend=function(){var a=j.result;a=i?a:a.replace(/^data:[^;]*;/,"data:attachment/file;"),e?e.location.href=a:location=a,e=null},j.readAsDataURL(a)}else{var k=f.URL||f.webkitURL,l=k.createObjectURL(a);e?e.location=l:location.href=l,e=null,setTimeout(function(){k.revokeObjectURL(l)},4E4)}});f.saveAs=a.saveAs=a, true&&(module.exports=a)});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else {}})(this,function(){"use strict";function b(a,b){return"undefined"==typeof b?b={autoBom:!1}:"object"!=typeof b&&(console.warn("Deprecated: Expected third argument to be a object"),b={autoBom:!b}),b.autoBom&&/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(a.type)?new Blob(["\uFEFF",a],{type:a.type}):a}function c(a,b,c){var d=new XMLHttpRequest;d.open("GET",a),d.responseType="blob",d.onload=function(){g(d.response,b,c)},d.onerror=function(){console.error("could not download file")},d.send()}function d(a){var b=new XMLHttpRequest;b.open("HEAD",a,!1);try{b.send()}catch(a){}return 200<=b.status&&299>=b.status}function e(a){try{a.dispatchEvent(new MouseEvent("click"))}catch(c){var b=document.createEvent("MouseEvents");b.initMouseEvent("click",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),a.dispatchEvent(b)}}var f="object"==typeof window&&window.window===window?window:"object"==typeof self&&self.self===self?self:"object"==typeof global&&global.global===global?global:void 0,a=f.navigator&&/Macintosh/.test(navigator.userAgent)&&/AppleWebKit/.test(navigator.userAgent)&&!/Safari/.test(navigator.userAgent),g=f.saveAs||("object"!=typeof window||window!==f?function(){}:"download"in HTMLAnchorElement.prototype&&!a?function(b,g,h){var i=f.URL||f.webkitURL,j=document.createElement("a");g=g||b.name||"download",j.download=g,j.rel="noopener","string"==typeof b?(j.href=b,j.origin===location.origin?e(j):d(j.href)?c(b,g,h):e(j,j.target="_blank")):(j.href=i.createObjectURL(b),setTimeout(function(){i.revokeObjectURL(j.href)},4E4),setTimeout(function(){e(j)},0))}:"msSaveOrOpenBlob"in navigator?function(f,g,h){if(g=g||f.name||"download","string"!=typeof f)navigator.msSaveOrOpenBlob(b(f,h),g);else if(d(f))c(f,g,h);else{var i=document.createElement("a");i.href=f,i.target="_blank",setTimeout(function(){e(i)})}}:function(b,d,e,g){if(g=g||open("","_blank"),g&&(g.document.title=g.document.body.innerText="downloading..."),"string"==typeof b)return c(b,d,e);var h="application/octet-stream"===b.type,i=/constructor/i.test(f.HTMLElement)||f.safari,j=/CriOS\/[\d]+/.test(navigator.userAgent);if((j||h&&i||a)&&"undefined"!=typeof FileReader){var k=new FileReader;k.onloadend=function(){var a=k.result;a=j?a:a.replace(/^data:[^;]*;/,"data:attachment/file;"),g?g.location.href=a:location=a,g=null},k.readAsDataURL(b)}else{var l=f.URL||f.webkitURL,m=l.createObjectURL(b);g?g.location=m:location.href=m,g=null,setTimeout(function(){l.revokeObjectURL(m)},4E4)}});f.saveAs=g.saveAs=g, true&&(module.exports=g)});
 
 //# sourceMappingURL=FileSaver.min.js.map
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
@@ -472,25 +484,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm._m(0)
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
       _c("div", { staticClass: "alert bg-info alert-styled-left" }, [
         _c("h6", [
-          _vm._v("Pastikan data yang dimasukkan sudah benar sebelum menyimpan.")
-        ])
-      ])
+          _vm._v(
+            "Pastikan data yang dimasukkan sudah benar sebelum menyimpan."
+          ),
+        ]),
+      ]),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -509,7 +523,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -520,15 +534,15 @@ var render = function() {
           name: "tooltip",
           rawName: "v-tooltip",
           value: _vm.message,
-          expression: "message"
-        }
+          expression: "message",
+        },
       ],
-      staticClass: "icon-info22 d-none d-sm-block"
+      staticClass: "icon-info22 d-none d-sm-block",
     }),
     _vm._v(" "),
     _c("small", { staticClass: "text-muted d-block d-sm-none" }, [
-      _c("i", [_vm._v(_vm._s(_vm.message))])
-    ])
+      _c("i", [_vm._v(_vm._s(_vm.message))]),
+    ]),
   ])
 }
 var staticRenderFns = []
@@ -549,14 +563,14 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm._m(0)
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -565,9 +579,9 @@ var staticRenderFns = [
         "span",
         { staticClass: "badge bg-danger-400 align-self-center ml-auto" },
         [_vm._v("Wajib diisi")]
-      )
+      ),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -575,10 +589,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/asetTetapLokasi/index.vue?vue&type=template&id=488c33c0&":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/asetTetapLokasi/index.vue?vue&type=template&id=488c33c0& ***!
-  \**************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/asetTetapGolongan/index.vue?vue&type=template&id=d33012fc&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/asetTetapGolongan/index.vue?vue&type=template&id=d33012fc& ***!
+  \****************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -586,7 +600,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -597,8 +611,8 @@ var render = function() {
         attrs: {
           title: _vm.title,
           titleDesc: _vm.titleDesc,
-          titleIcon: _vm.titleIcon
-        }
+          titleIcon: _vm.titleIcon,
+        },
       }),
       _vm._v(" "),
       _c("div", { staticClass: "page-content pt-0" }, [
@@ -611,19 +625,19 @@ var render = function() {
                 ? _c("message", {
                     attrs: {
                       title: "Oops terjadi kesalahan:",
-                      errorData: _vm.itemData
-                    }
+                      errorData: _vm.itemData,
+                    },
                   })
                 : _vm._e(),
               _vm._v(" "),
               _c("table-data", {
-                attrs: { title: _vm.title, kelas: _vm.kelas }
-              })
+                attrs: { title: _vm.title, kelas: _vm.kelas },
+              }),
             ],
             1
-          )
-        ])
-      ])
+          ),
+        ]),
+      ]),
     ],
     1
   )
@@ -635,10 +649,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/asetTetapLokasi/table.vue?vue&type=template&id=d555c9c8&":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/asetTetapLokasi/table.vue?vue&type=template&id=d555c9c8& ***!
-  \**************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/asetTetapGolongan/table.vue?vue&type=template&id=50032b7e&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/asetTetapGolongan/table.vue?vue&type=template&id=50032b7e& ***!
+  \****************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -646,7 +660,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -663,26 +677,26 @@ var render = function() {
             query: _vm.query,
             itemDataStat: _vm.itemDataStat,
             excelDownloadUrl: _vm.excelDownloadUrl,
-            isUploadExcel: false
+            isUploadExcel: false,
           },
           on: { fetch: _vm.fetch },
           scopedSlots: _vm._u([
             {
               key: "item-desktop",
-              fn: function(props) {
+              fn: function (props) {
                 return [
                   _c(
                     "tr",
                     {
                       staticClass: "text-nowrap",
                       class: {
-                        "bg-info": _vm.selectedItem.id === props.item.id
+                        "bg-info": _vm.selectedItem.id === props.item.id,
                       },
                       on: {
-                        click: function($event) {
+                        click: function ($event) {
                           return _vm.selectedRow(props.item)
-                        }
-                      }
+                        },
+                      },
                     },
                     [
                       !_vm.columnData[0].hide
@@ -697,7 +711,7 @@ var render = function() {
                                     "."
                                 ) +
                                 "\n\t\t\t\t\t"
-                            )
+                            ),
                           ])
                         : _vm._e(),
                       _vm._v(" "),
@@ -706,8 +720,8 @@ var render = function() {
                             "td",
                             [
                               _c("check-value", {
-                                attrs: { value: props.item.name }
-                              })
+                                attrs: { value: props.item.kode },
+                              }),
                             ],
                             1
                           )
@@ -718,32 +732,46 @@ var render = function() {
                             "td",
                             [
                               _c("check-value", {
-                                attrs: { value: props.item.keterangan }
-                              })
+                                attrs: { value: props.item.name },
+                              }),
                             ],
                             1
                           )
                         : _vm._e(),
                       _vm._v(" "),
                       !_vm.columnData[3].hide
-                        ? _c("td", [
-                            _vm._v(_vm._s(props.item.has_aset_tetap_count))
-                          ])
+                        ? _c(
+                            "td",
+                            [
+                              _c("check-value", {
+                                attrs: { value: props.item.keterangan },
+                              }),
+                            ],
+                            1
+                          )
                         : _vm._e(),
                       _vm._v(" "),
                       !_vm.columnData[4].hide
+                        ? _c("td", [
+                            _vm._v(
+                              _vm._s(props.item.has_aset_tetap_kelompok_count)
+                            ),
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[5].hide
                         ? _c("td", {
                             domProps: {
                               innerHTML: _vm._s(
                                 _vm.$options.filters.dateTime(
                                   props.item.created_at
                                 )
-                              )
-                            }
+                              ),
+                            },
                           })
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[5].hide
+                      !_vm.columnData[6].hide
                         ? _c("td", [
                             props.item.created_at !== props.item.updated_at
                               ? _c("span", {
@@ -752,147 +780,148 @@ var render = function() {
                                       _vm.$options.filters.dateTime(
                                         props.item.updated_at
                                       )
-                                    )
-                                  }
+                                    ),
+                                  },
                                 })
-                              : _c("span", [_vm._v("-")])
+                              : _c("span", [_vm._v("-")]),
                           ])
-                        : _vm._e()
+                        : _vm._e(),
                     ]
-                  )
+                  ),
                 ]
-              }
-            }
-          ])
+              },
+            },
+          ]),
         },
         [
           _c("template", { slot: "button-desktop" }, [
             _vm.currentUser.can &&
-            _vm.currentUser.can["create_aset_tetap_lokasi"]
+            _vm.currentUser.can["create_aset_tetap_jenis"]
               ? _c(
                   "button",
                   {
                     staticClass: "btn btn-light mb-1",
                     on: {
-                      click: function($event) {
+                      click: function ($event) {
                         $event.preventDefault()
                         return _vm.modalOpen("tambah")
-                      }
-                    }
+                      },
+                    },
                   },
                   [
                     _c("i", { staticClass: "icon-plus3" }),
-                    _vm._v(" Tambah\n\t\t\t\t")
+                    _vm._v(" Tambah\n\t\t\t\t"),
                   ]
                 )
               : _vm._e(),
             _vm._v(" "),
             _vm.currentUser.can &&
-            _vm.currentUser.can["update_aset_tetap_lokasi"]
+            _vm.currentUser.can["update_aset_tetap_jenis"]
               ? _c(
                   "button",
                   {
                     staticClass: "btn btn-light mb-1",
                     attrs: { disabled: !_vm.selectedItem.id },
                     on: {
-                      click: function($event) {
+                      click: function ($event) {
                         $event.preventDefault()
                         return _vm.modalOpen("ubah")
-                      }
-                    }
+                      },
+                    },
                   },
                   [
                     _c("i", { staticClass: "icon-pencil5" }),
-                    _vm._v(" Ubah\n\t\t\t\t")
+                    _vm._v(" Ubah\n\t\t\t\t"),
                   ]
                 )
               : _vm._e(),
             _vm._v(" "),
             _vm.currentUser.can &&
-            _vm.currentUser.can["destroy_aset_tetap_lokasi"]
+            _vm.currentUser.can["destroy_aset_tetap_jenis"]
               ? _c(
                   "button",
                   {
                     staticClass: "btn btn-light mb-1",
                     attrs: { disabled: !_vm.selectedItem.id },
                     on: {
-                      click: function($event) {
+                      click: function ($event) {
                         $event.preventDefault()
                         return _vm.modalOpen("hapus")
-                      }
-                    }
+                      },
+                    },
                   },
                   [
                     _c("i", { staticClass: "icon-bin2" }),
-                    _vm._v(" Hapus\n\t\t\t\t")
+                    _vm._v(" Hapus\n\t\t\t\t"),
                   ]
                 )
-              : _vm._e()
+              : _vm._e(),
           ]),
           _vm._v(" "),
           _c("template", { slot: "button-mobile" }, [
             _vm.currentUser.can &&
-            _vm.currentUser.can["create_aset_tetap_lokasi"]
+            _vm.currentUser.can["create_aset_tetap_jenis"]
               ? _c(
                   "button",
                   {
                     staticClass: "btn btn-light btn-block mb-1",
+                    attrs: { disabled: !_vm.selectedItem.id },
                     on: {
-                      click: function($event) {
+                      click: function ($event) {
                         $event.preventDefault()
                         return _vm.modalOpen("tambah")
-                      }
-                    }
+                      },
+                    },
                   },
                   [
                     _c("i", { staticClass: "icon-plus3" }),
-                    _vm._v(" Tambah\n\t\t\t\t")
+                    _vm._v(" Tambah\n\t\t\t\t"),
                   ]
                 )
               : _vm._e(),
             _vm._v(" "),
             _vm.currentUser.can &&
-            _vm.currentUser.can["update_aset_tetap_lokasi"]
+            _vm.currentUser.can["update_aset_tetap_jenis"]
               ? _c(
                   "button",
                   {
                     staticClass: "btn btn-light btn-block mb-1",
                     attrs: { disabled: !_vm.selectedItem.id },
                     on: {
-                      click: function($event) {
+                      click: function ($event) {
                         $event.preventDefault()
                         return _vm.modalOpen("ubah")
-                      }
-                    }
+                      },
+                    },
                   },
                   [
                     _c("i", { staticClass: "icon-pencil5" }),
-                    _vm._v(" Ubah\n\t\t\t\t")
+                    _vm._v(" Ubah\n\t\t\t\t"),
                   ]
                 )
               : _vm._e(),
             _vm._v(" "),
             _vm.currentUser.can &&
-            _vm.currentUser.can["destroy_aset_tetap_lokasi"]
+            _vm.currentUser.can["destroy_aset_tetap_jenis"]
               ? _c(
                   "button",
                   {
                     staticClass: "btn btn-light btn-block mb-1",
                     attrs: { disabled: !_vm.selectedItem.id },
                     on: {
-                      click: function($event) {
+                      click: function ($event) {
                         $event.preventDefault()
                         return _vm.modalOpen("hapus")
-                      }
-                    }
+                      },
+                    },
                   },
                   [
                     _c("i", { staticClass: "icon-bin2" }),
-                    _vm._v(" Hapus\n\t\t\t\t")
+                    _vm._v(" Hapus\n\t\t\t\t"),
                   ]
                 )
-              : _vm._e()
-          ])
+              : _vm._e(),
+          ]),
         ],
         2
       ),
@@ -905,19 +934,20 @@ var render = function() {
             color: _vm.modalColor,
             state: _vm.modalState,
             title: _vm.modalTitle,
-            button: _vm.modalButton
+            content: _vm.modalContent,
+            button: _vm.modalButton,
           },
           on: {
             tutup: _vm.modalTutup,
             confirmOk: _vm.modalConfirmOk,
             successOk: _vm.modalTutup,
             failOk: _vm.modalTutup,
-            backgroundClick: _vm.modalTutup
-          }
+            backgroundClick: _vm.modalTutup,
+          },
         },
         [
           _c("template", { slot: "modal-title" }, [
-            _vm._v("\n\t\t\t\t" + _vm._s(_vm.modalTitle) + "\n\t\t\t")
+            _vm._v("\n\t\t\t\t" + _vm._s(_vm.modalTitle) + "\n\t\t\t"),
           ]),
           _vm._v(" "),
           _c(
@@ -928,16 +958,16 @@ var render = function() {
                 attrs: {
                   kelas: _vm.kelas,
                   mode: _vm.state,
-                  selected: _vm.selectedItem
+                  selected: _vm.selectedItem,
                 },
-                on: { tutup: _vm.modalTutup }
-              })
+                on: { tutup: _vm.modalTutup },
+              }),
             ],
             1
-          )
+          ),
         ],
         2
-      )
+      ),
     ],
     1
   )
@@ -1156,17 +1186,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/asetTetapLokasi/index.vue":
-/*!*************************************************************!*\
-  !*** ./resources/assets/js/views/asetTetapLokasi/index.vue ***!
-  \*************************************************************/
+/***/ "./resources/assets/js/views/asetTetapGolongan/index.vue":
+/*!***************************************************************!*\
+  !*** ./resources/assets/js/views/asetTetapGolongan/index.vue ***!
+  \***************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _index_vue_vue_type_template_id_488c33c0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=488c33c0& */ "./resources/assets/js/views/asetTetapLokasi/index.vue?vue&type=template&id=488c33c0&");
-/* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/asetTetapLokasi/index.vue?vue&type=script&lang=js&");
+/* harmony import */ var _index_vue_vue_type_template_id_d33012fc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=d33012fc& */ "./resources/assets/js/views/asetTetapGolongan/index.vue?vue&type=template&id=d33012fc&");
+/* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/asetTetapGolongan/index.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -1177,8 +1207,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _index_vue_vue_type_template_id_488c33c0___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _index_vue_vue_type_template_id_488c33c0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _index_vue_vue_type_template_id_d33012fc___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _index_vue_vue_type_template_id_d33012fc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -1188,54 +1218,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/views/asetTetapLokasi/index.vue"
+component.options.__file = "resources/assets/js/views/asetTetapGolongan/index.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/asetTetapLokasi/index.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************!*\
-  !*** ./resources/assets/js/views/asetTetapLokasi/index.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************/
+/***/ "./resources/assets/js/views/asetTetapGolongan/index.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/assets/js/views/asetTetapGolongan/index.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/asetTetapLokasi/index.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/asetTetapGolongan/index.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/asetTetapLokasi/index.vue?vue&type=template&id=488c33c0&":
-/*!********************************************************************************************!*\
-  !*** ./resources/assets/js/views/asetTetapLokasi/index.vue?vue&type=template&id=488c33c0& ***!
-  \********************************************************************************************/
+/***/ "./resources/assets/js/views/asetTetapGolongan/index.vue?vue&type=template&id=d33012fc&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/assets/js/views/asetTetapGolongan/index.vue?vue&type=template&id=d33012fc& ***!
+  \**********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_488c33c0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=488c33c0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/asetTetapLokasi/index.vue?vue&type=template&id=488c33c0&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_488c33c0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_d33012fc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=d33012fc& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/asetTetapGolongan/index.vue?vue&type=template&id=d33012fc&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_d33012fc___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_488c33c0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_d33012fc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/asetTetapLokasi/table.vue":
-/*!*************************************************************!*\
-  !*** ./resources/assets/js/views/asetTetapLokasi/table.vue ***!
-  \*************************************************************/
+/***/ "./resources/assets/js/views/asetTetapGolongan/table.vue":
+/*!***************************************************************!*\
+  !*** ./resources/assets/js/views/asetTetapGolongan/table.vue ***!
+  \***************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _table_vue_vue_type_template_id_d555c9c8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./table.vue?vue&type=template&id=d555c9c8& */ "./resources/assets/js/views/asetTetapLokasi/table.vue?vue&type=template&id=d555c9c8&");
-/* harmony import */ var _table_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./table.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/asetTetapLokasi/table.vue?vue&type=script&lang=js&");
+/* harmony import */ var _table_vue_vue_type_template_id_50032b7e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./table.vue?vue&type=template&id=50032b7e& */ "./resources/assets/js/views/asetTetapGolongan/table.vue?vue&type=template&id=50032b7e&");
+/* harmony import */ var _table_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./table.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/asetTetapGolongan/table.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -1246,8 +1276,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _table_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _table_vue_vue_type_template_id_d555c9c8___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _table_vue_vue_type_template_id_d555c9c8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _table_vue_vue_type_template_id_50032b7e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _table_vue_vue_type_template_id_50032b7e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -1257,38 +1287,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/views/asetTetapLokasi/table.vue"
+component.options.__file = "resources/assets/js/views/asetTetapGolongan/table.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/asetTetapLokasi/table.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************!*\
-  !*** ./resources/assets/js/views/asetTetapLokasi/table.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************/
+/***/ "./resources/assets/js/views/asetTetapGolongan/table.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/assets/js/views/asetTetapGolongan/table.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./table.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/asetTetapLokasi/table.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./table.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/asetTetapGolongan/table.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/asetTetapLokasi/table.vue?vue&type=template&id=d555c9c8&":
-/*!********************************************************************************************!*\
-  !*** ./resources/assets/js/views/asetTetapLokasi/table.vue?vue&type=template&id=d555c9c8& ***!
-  \********************************************************************************************/
+/***/ "./resources/assets/js/views/asetTetapGolongan/table.vue?vue&type=template&id=50032b7e&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/assets/js/views/asetTetapGolongan/table.vue?vue&type=template&id=50032b7e& ***!
+  \**********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_template_id_d555c9c8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./table.vue?vue&type=template&id=d555c9c8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/asetTetapLokasi/table.vue?vue&type=template&id=d555c9c8&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_template_id_d555c9c8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_template_id_50032b7e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./table.vue?vue&type=template&id=50032b7e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/asetTetapGolongan/table.vue?vue&type=template&id=50032b7e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_template_id_50032b7e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_template_id_d555c9c8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_template_id_50032b7e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -249,7 +249,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -404,7 +404,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -414,18 +414,18 @@ var render = function() {
         _vm.image === "" && _vm.image_temp === ""
           ? _c("img", {
               staticStyle: { width: "15em" },
-              attrs: { src: "/images/no_image.jpg" }
+              attrs: { src: "/images/no_image.jpg" },
             })
           : _vm.image === "" && _vm.image_temp !== ""
           ? _c("img", {
               staticStyle: { width: "15em" },
-              attrs: { src: _vm.image_loc + _vm.image_temp + _vm.image_type }
+              attrs: { src: _vm.image_loc + _vm.image_temp + _vm.image_type },
             })
           : _c("img", {
               staticStyle: { width: "15em" },
-              attrs: { src: _vm.image }
-            })
-      ])
+              attrs: { src: _vm.image },
+            }),
+      ]),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
@@ -434,8 +434,8 @@ var render = function() {
           ref: "fileInput",
           staticClass: "form-control",
           attrs: { type: "file", accept: ".jpg, .jpeg, .png" },
-          on: { change: _vm.upload }
-        })
+          on: { change: _vm.upload },
+        }),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-2" }, [
@@ -445,16 +445,16 @@ var render = function() {
             staticClass: "btn btn-light btn-block",
             attrs: { type: "button", disabled: _vm.image_temp === "" },
             on: {
-              click: function($event) {
+              click: function ($event) {
                 $event.preventDefault()
                 return _vm.close()
-              }
-            }
+              },
+            },
           },
           [_c("i", { staticClass: "icon-cross" }), _vm._v(" Batal")]
-        )
-      ])
-    ])
+        ),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = []
@@ -475,7 +475,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -485,16 +485,16 @@ var render = function() {
       format: "DD-MM-YYYY",
       "value-type": "format",
       placeholder: "Pilih Tanggal",
-      editable: true
+      editable: true,
     },
     on: { change: _vm.onChanged },
     model: {
       value: _vm.time,
-      callback: function($$v) {
+      callback: function ($$v) {
         _vm.time = $$v
       },
-      expression: "time"
-    }
+      expression: "time",
+    },
   })
 }
 var staticRenderFns = []
@@ -515,25 +515,27 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm._m(0)
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
       _c("div", { staticClass: "alert bg-info alert-styled-left" }, [
         _c("h6", [
-          _vm._v("Pastikan data yang dimasukkan sudah benar sebelum menyimpan.")
-        ])
-      ])
+          _vm._v(
+            "Pastikan data yang dimasukkan sudah benar sebelum menyimpan."
+          ),
+        ]),
+      ]),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -552,7 +554,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -562,13 +564,13 @@ var render = function() {
         _vm.itemData.gambar
           ? _c("img", {
               staticClass: "img-fluid img-preview rounded",
-              attrs: { src: "/images/aktivis/" + _vm.itemData.gambar + ".jpg" }
+              attrs: { src: "/images/aktivis/" + _vm.itemData.gambar + ".jpg" },
             })
           : _c("img", {
               staticClass: "img-fluid img-preview rounded",
-              attrs: { src: "/images/no_image.jpg" }
-            })
-      ])
+              attrs: { src: "/images/no_image.jpg" },
+            }),
+      ]),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "media-body" }, [
@@ -577,32 +579,32 @@ var render = function() {
           _c("ul", { staticClass: "list list-unstyled mb-0" }, [
             _c("li", [
               _c("b", [_vm._v("No. KTP:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.nik))
+              _vm._v(" " + _vm._s(_vm.itemData.nik)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Nama:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.name))
+              _vm._v(" " + _vm._s(_vm.itemData.name)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Gender:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.kelamin))
+              _vm._v(" " + _vm._s(_vm.itemData.kelamin)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Tinggi:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.tinggi))
+              _vm._v(" " + _vm._s(_vm.itemData.tinggi)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Agama:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.agama))
+              _vm._v(" " + _vm._s(_vm.itemData.agama)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Gol. Darah:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.darah))
+              _vm._v(" " + _vm._s(_vm.itemData.darah)),
             ]),
             _vm._v(" "),
             _vm.itemData.tanggal_meninggal == null
@@ -614,10 +616,10 @@ var render = function() {
                         domProps: {
                           innerHTML: _vm._s(
                             _vm.$options.filters.age(_vm.itemData.tanggal_lahir)
-                          )
-                        }
+                          ),
+                        },
                       })
-                    : _vm._e()
+                    : _vm._e(),
                 ])
               : _c("li", [
                   _c("b", [_vm._v("Usia Saat Meninggal:")]),
@@ -630,17 +632,17 @@ var render = function() {
                               _vm.itemData.tanggal_meninggal,
                               _vm.itemData.tanggal_lahir
                             )
-                          )
-                        }
+                          ),
+                        },
                       })
-                    : _vm._e()
+                    : _vm._e(),
                 ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Status:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.status))
-            ])
-          ])
+              _vm._v(" " + _vm._s(_vm.itemData.status)),
+            ]),
+          ]),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-sm-4" }, [
@@ -653,47 +655,47 @@ var render = function() {
                     domProps: {
                       innerHTML: _vm._s(
                         _vm.$options.filters.date(_vm.itemData.tanggal_lahir)
-                      )
-                    }
+                      ),
+                    },
                   })
-                : _vm._e()
+                : _vm._e(),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Tempat Lahir:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.tempat_lahir))
+              _vm._v(" " + _vm._s(_vm.itemData.tempat_lahir)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Nama Ibu:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.nama_ibu))
+              _vm._v(" " + _vm._s(_vm.itemData.nama_ibu)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Nama Ahli Waris:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.ahli_waris))
+              _vm._v(" " + _vm._s(_vm.itemData.ahli_waris)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Email:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.email))
+              _vm._v(" " + _vm._s(_vm.itemData.email)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("No. Hp:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.hp))
+              _vm._v(" " + _vm._s(_vm.itemData.hp)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Kontak Ahli Waris:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.kontak_ahli_waris))
+              _vm._v(" " + _vm._s(_vm.itemData.kontak_ahli_waris)),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Kontak Lainnya:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.kontak))
-            ])
-          ])
+              _vm._v(" " + _vm._s(_vm.itemData.kontak)),
+            ]),
+          ]),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-sm-4" }, [
@@ -708,7 +710,7 @@ var render = function() {
                           ? _vm.itemData.anggota_cu_cu[0].tp.name
                           : ""
                       )
-                  )
+                  ),
                 ])
               : _vm._e(),
             _vm._v(" "),
@@ -719,7 +721,7 @@ var render = function() {
                   _vm._s(
                     _vm.itemData.provinces ? _vm.itemData.provinces.name : ""
                   )
-              )
+              ),
             ]),
             _vm._v(" "),
             _c("li", [
@@ -729,7 +731,7 @@ var render = function() {
                   _vm._s(
                     _vm.itemData.regencies ? _vm.itemData.regencies.name : ""
                   )
-              )
+              ),
             ]),
             _vm._v(" "),
             _c("li", [
@@ -739,7 +741,7 @@ var render = function() {
                   _vm._s(
                     _vm.itemData.districts ? _vm.itemData.districts.name : ""
                   )
-              )
+              ),
             ]),
             _vm._v(" "),
             _c("li", [
@@ -749,17 +751,17 @@ var render = function() {
                   _vm._s(
                     _vm.itemData.villages ? _vm.itemData.villages.name : ""
                   )
-              )
+              ),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("b", [_vm._v("Alamat:")]),
-              _vm._v(" " + _vm._s(_vm.itemData.alamat))
-            ])
-          ])
-        ])
-      ])
-    ])
+              _vm._v(" " + _vm._s(_vm.itemData.alamat)),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = []
@@ -780,7 +782,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -795,13 +797,13 @@ var render = function() {
               _c("i", { staticClass: "mr-2", class: _vm.titleIcon }),
               _vm._v(" "),
               _c("span", { staticClass: "font-weight-semibold" }, [
-                _vm._v(_vm._s(_vm.title))
+                _vm._v(_vm._s(_vm.title)),
               ]),
               _vm._v(" "),
               _c("small", { staticClass: "d-block text-muted" }, [
-                _vm._v(_vm._s(_vm.titleDesc))
-              ])
-            ])
+                _vm._v(_vm._s(_vm.titleDesc)),
+              ]),
+            ]),
           ]),
           _vm._v(" "),
           _c(
@@ -817,17 +819,17 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "breadcrumb-item",
-                          attrs: { to: { name: "dashboard" } }
+                          attrs: { to: { name: "dashboard" } },
                         },
                         [
                           _c("i", { staticClass: "icon-home4" }),
-                          _vm._v("  Dashboard ")
+                          _vm._v("  Dashboard "),
                         ]
                       ),
                       _vm._v(" "),
                       _c("span", { staticClass: "breadcrumb-item active" }, [
-                        _vm._v(_vm._s(_vm.title))
-                      ])
+                        _vm._v(_vm._s(_vm.title)),
+                      ]),
                     ],
                     1
                   )
@@ -842,11 +844,11 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "breadcrumb-item",
-                          attrs: { to: { name: "dashboard" } }
+                          attrs: { to: { name: "dashboard" } },
                         },
                         [
                           _c("i", { staticClass: "icon-home4" }),
-                          _vm._v(" Dashboard ")
+                          _vm._v(" Dashboard "),
                         ]
                       ),
                       _vm._v(" "),
@@ -856,18 +858,18 @@ var render = function() {
                           staticClass: "breadcrumb-item",
                           attrs: { href: "#" },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.level2Back()
-                            }
-                          }
+                            },
+                          },
                         },
                         [_vm._v(_vm._s(_vm.level2Title))]
                       ),
                       _vm._v(" "),
                       _c("span", { staticClass: "breadcrumb-item active" }, [
-                        _vm._v(_vm._s(_vm.title))
-                      ])
+                        _vm._v(_vm._s(_vm.title)),
+                      ]),
                     ],
                     1
                   )
@@ -880,12 +882,12 @@ var render = function() {
                     [_vm._t("breadcrumb")],
                     2
                   )
-                : _vm._e()
+                : _vm._e(),
             ]
-          )
+          ),
         ]
-      )
-    ])
+      ),
+    ]),
   ])
 }
 var staticRenderFns = []
@@ -906,14 +908,14 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm._m(0)
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -922,9 +924,9 @@ var staticRenderFns = [
         "span",
         { staticClass: "badge bg-danger-400 align-self-center ml-auto" },
         [_vm._v("Wajib diisi")]
-      )
+      ),
     ])
-  }
+  },
 ]
 render._withStripped = true
 

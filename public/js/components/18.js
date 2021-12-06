@@ -33,7 +33,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -188,25 +188,27 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm._m(0)
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
       _c("div", { staticClass: "alert bg-info alert-styled-left" }, [
         _c("h6", [
-          _vm._v("Pastikan data yang dimasukkan sudah benar sebelum menyimpan.")
-        ])
-      ])
+          _vm._v(
+            "Pastikan data yang dimasukkan sudah benar sebelum menyimpan."
+          ),
+        ]),
+      ]),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -225,7 +227,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -240,13 +242,13 @@ var render = function() {
               _c("i", { staticClass: "mr-2", class: _vm.titleIcon }),
               _vm._v(" "),
               _c("span", { staticClass: "font-weight-semibold" }, [
-                _vm._v(_vm._s(_vm.title))
+                _vm._v(_vm._s(_vm.title)),
               ]),
               _vm._v(" "),
               _c("small", { staticClass: "d-block text-muted" }, [
-                _vm._v(_vm._s(_vm.titleDesc))
-              ])
-            ])
+                _vm._v(_vm._s(_vm.titleDesc)),
+              ]),
+            ]),
           ]),
           _vm._v(" "),
           _c(
@@ -262,17 +264,17 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "breadcrumb-item",
-                          attrs: { to: { name: "dashboard" } }
+                          attrs: { to: { name: "dashboard" } },
                         },
                         [
                           _c("i", { staticClass: "icon-home4" }),
-                          _vm._v("  Dashboard ")
+                          _vm._v("  Dashboard "),
                         ]
                       ),
                       _vm._v(" "),
                       _c("span", { staticClass: "breadcrumb-item active" }, [
-                        _vm._v(_vm._s(_vm.title))
-                      ])
+                        _vm._v(_vm._s(_vm.title)),
+                      ]),
                     ],
                     1
                   )
@@ -287,11 +289,11 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "breadcrumb-item",
-                          attrs: { to: { name: "dashboard" } }
+                          attrs: { to: { name: "dashboard" } },
                         },
                         [
                           _c("i", { staticClass: "icon-home4" }),
-                          _vm._v(" Dashboard ")
+                          _vm._v(" Dashboard "),
                         ]
                       ),
                       _vm._v(" "),
@@ -301,18 +303,18 @@ var render = function() {
                           staticClass: "breadcrumb-item",
                           attrs: { href: "#" },
                           on: {
-                            click: function($event) {
+                            click: function ($event) {
                               $event.preventDefault()
                               return _vm.level2Back()
-                            }
-                          }
+                            },
+                          },
                         },
                         [_vm._v(_vm._s(_vm.level2Title))]
                       ),
                       _vm._v(" "),
                       _c("span", { staticClass: "breadcrumb-item active" }, [
-                        _vm._v(_vm._s(_vm.title))
-                      ])
+                        _vm._v(_vm._s(_vm.title)),
+                      ]),
                     ],
                     1
                   )
@@ -325,12 +327,12 @@ var render = function() {
                     [_vm._t("breadcrumb")],
                     2
                   )
-                : _vm._e()
+                : _vm._e(),
             ]
-          )
+          ),
         ]
-      )
-    ])
+      ),
+    ]),
   ])
 }
 var staticRenderFns = []
@@ -351,14 +353,14 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm._m(0)
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -367,9 +369,9 @@ var staticRenderFns = [
         "span",
         { staticClass: "badge bg-danger-400 align-self-center ml-auto" },
         [_vm._v("Wajib diisi")]
-      )
+      ),
     ])
-  }
+  },
 ]
 render._withStripped = true
 

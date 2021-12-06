@@ -17,7 +17,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_infoIcon_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/infoIcon.vue */ "./resources/assets/js/components/infoIcon.vue");
 /* harmony import */ var _components_wajibBadge_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/wajibBadge.vue */ "./resources/assets/js/components/wajibBadge.vue");
 /* harmony import */ var _components_formInfo_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/formInfo.vue */ "./resources/assets/js/components/formInfo.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -173,7 +173,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -183,11 +183,11 @@ var render = function() {
       {
         attrs: { "data-vv-scope": "formModal" },
         on: {
-          submit: function($event) {
+          submit: function ($event) {
             $event.preventDefault()
-            return _vm.save($event)
-          }
-        }
+            return _vm.save.apply(null, arguments)
+          },
+        },
       },
       [
         _c("div", { staticClass: "row" }, [
@@ -196,20 +196,20 @@ var render = function() {
               "div",
               {
                 staticClass: "form-group",
-                class: { "has-error": _vm.errors.has("formModal.name") }
+                class: { "has-error": _vm.errors.has("formModal.name") },
               },
               [
                 _c(
                   "h5",
                   {
-                    class: { "text-danger": _vm.errors.has("formModal.name") }
+                    class: { "text-danger": _vm.errors.has("formModal.name") },
                   },
                   [
                     _vm.errors.has("formModal.name")
                       ? _c("i", { staticClass: "icon-cross2" })
                       : _vm._e(),
                     _vm._v("\n\t\t\t\t\t\tNama: "),
-                    _c("wajib-badge")
+                    _c("wajib-badge"),
                   ],
                   1
                 ),
@@ -220,31 +220,31 @@ var render = function() {
                       name: "validate",
                       rawName: "v-validate",
                       value: "required",
-                      expression: "'required'"
+                      expression: "'required'",
                     },
                     {
                       name: "model",
                       rawName: "v-model",
                       value: _vm.formModal.name,
-                      expression: "formModal.name"
-                    }
+                      expression: "formModal.name",
+                    },
                   ],
                   staticClass: "form-control",
                   attrs: {
                     type: "text",
                     name: "name",
                     placeholder: "Silahkan masukkan nama",
-                    "data-vv-as": "Nama"
+                    "data-vv-as": "Nama",
                   },
                   domProps: { value: _vm.formModal.name },
                   on: {
-                    input: function($event) {
+                    input: function ($event) {
                       if ($event.target.composing) {
                         return
                       }
                       _vm.$set(_vm.formModal, "name", $event.target.value)
-                    }
-                  }
+                    },
+                  },
                 }),
                 _vm._v(" "),
                 _vm.errors.has("formModal.name")
@@ -254,13 +254,13 @@ var render = function() {
                         " " +
                           _vm._s(_vm.errors.first("formModal.name")) +
                           "\n\t\t\t\t\t"
-                      )
+                      ),
                     ])
                   : _c("small", { staticClass: "text-muted" }, [
-                      _vm._v(" \n\t\t\t\t\t")
-                    ])
+                      _vm._v(" \n\t\t\t\t\t"),
+                    ]),
               ]
-            )
+            ),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-12" }, [
@@ -273,28 +273,28 @@ var render = function() {
                     name: "model",
                     rawName: "v-model",
                     value: _vm.formModal.keterangan,
-                    expression: "formModal.keterangan"
-                  }
+                    expression: "formModal.keterangan",
+                  },
                 ],
                 staticClass: "form-control",
                 attrs: {
                   rows: "3",
                   type: "text",
                   name: "keterangan",
-                  placeholder: "Silahkan masukkan keterangan "
+                  placeholder: "Silahkan masukkan keterangan ",
                 },
                 domProps: { value: _vm.formModal.keterangan },
                 on: {
-                  input: function($event) {
+                  input: function ($event) {
                     if ($event.target.composing) {
                       return
                     }
                     _vm.$set(_vm.formModal, "keterangan", $event.target.value)
-                  }
-                }
-              })
-            ])
-          ])
+                  },
+                },
+              }),
+            ]),
+          ]),
         ]),
         _vm._v(" "),
         _c("form-info"),
@@ -308,11 +308,11 @@ var render = function() {
               staticClass: "btn btn-light",
               attrs: { type: "button" },
               on: {
-                click: function($event) {
+                click: function ($event) {
                   $event.preventDefault()
-                  return _vm.tutup($event)
-                }
-              }
+                  return _vm.tutup.apply(null, arguments)
+                },
+              },
             },
             [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
           ),
@@ -321,10 +321,10 @@ var render = function() {
             "button",
             {
               staticClass: "btn btn-primary",
-              attrs: { type: "submit", disabled: _vm.formModal.cu_id == "" }
+              attrs: { type: "submit", disabled: _vm.formModal.cu_id == "" },
             },
             [_c("i", { staticClass: "icon-floppy-disk" }), _vm._v(" Simpan")]
-          )
+          ),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "d-block d-md-none" }, [
@@ -332,7 +332,7 @@ var render = function() {
             "button",
             {
               staticClass: "btn btn-primary btn-block pb-2",
-              attrs: { type: "submit", disabled: _vm.formModal.cu_id == "" }
+              attrs: { type: "submit", disabled: _vm.formModal.cu_id == "" },
             },
             [_c("i", { staticClass: "icon-floppy-disk" }), _vm._v(" Simpan")]
           ),
@@ -343,18 +343,18 @@ var render = function() {
               staticClass: "btn btn-light btn-block pb-2",
               attrs: { type: "button" },
               on: {
-                click: function($event) {
+                click: function ($event) {
                   $event.preventDefault()
-                  return _vm.tutup($event)
-                }
-              }
+                  return _vm.tutup.apply(null, arguments)
+                },
+              },
             },
             [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
-          )
-        ])
+          ),
+        ]),
       ],
       1
-    )
+    ),
   ])
 }
 var staticRenderFns = []

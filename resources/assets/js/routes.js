@@ -103,6 +103,9 @@ const laporanTp_draft = () => import('./views/laporanCu/draftTp.vue');
 const laporanGerakan = () => import('./views/laporanGerakan/index.vue');
 const coa = () => import('./views/coa/index.vue');
 const coa_form = () => import('./views/coa/form.vue');
+const kegiatanCU = () => import('./views/kegiatanCU/indexCu.vue');
+const kegiatanCU_form = () => import('./views/kegiatanCU/formCu.vue');
+const kegiatanCU_detail = () => import('./views/kegiatanCU/detailCu.vue');
 const kegiatanBKCU = () => import('./views/kegiatanBKCU/index.vue');
 const kegiatanBKCU_form = () => import('./views/kegiatanBKCU/form.vue');
 const kegiatanBKCU_detail = () => import('./views/kegiatanBKCU/detail.vue');
@@ -333,6 +336,33 @@ const routes = [
 		components: { default: kegiatanBKCU_detail, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true } },
 
+		// kegiatan cu
+	{ path: '/kegiatanCU/:tipe/periode/:periode',
+	name: 'kegiatanCU', 
+	components: { default: kegiatanCU, 'header': header, 'footer': footer  },
+	meta: { requiresAuth: true }},
+	{ path: '/kegiatanCU/jalan',
+	name: 'kegiatanCUJalan', 
+	components: { default: kegiatanCU, 'header': header, 'footer': footer  },
+	meta: { requiresAuth: true, mode:'jalan' }},	
+	{ path: '/kegiatanCU/create/:tipe',
+	name: 'kegiatanCUCreate', 
+	components: { default: kegiatanCU_form, 'header': header, 'footer': footer },
+	meta: { requiresAuth: true }},
+	{ path: '/kegiatanCU/edit/:id',
+	name: 'kegiatanCUEdit', 
+	components: { default: kegiatanCU_form, 'header': header, 'footer': footer }, 
+	meta: { requiresAuth: true, mode:'edit' } },
+	{ path: '/kegiatanCU/editDetail/:id',
+	name: 'kegiatanCUEditDetail', 
+	components: { default: kegiatanCU_form, 'header': header, 'footer': footer }, 
+	meta: { requiresAuth: true, mode:'edit', isDetail: true } },
+	{ path: '/kegiatanCU/detail/:id',
+	name: 'kegiatanCUDetail', 
+	components: { default: kegiatanCU_detail, 'header': header, 'footer': footer }, 
+	meta: { requiresAuth: true } },
+
+
 	// kegiatan tempat
 	{ path: '/tempat',
 		name: 'tempat', 
@@ -477,7 +507,7 @@ const routes = [
 	{ path: '/mitraOrang',
 		name: 'mitraOrang', 
 		components: { default: mitraOrang, 'header': header, 'footer': footer  },
-		meta: { requiresAuth: true }},
+		meta: { requiresAuth: false }},
 	{ path: '/mitraOrang/create',
 		name: 'mitraOrangCreate', 
 		components: { default: mitraOrang_form, 'header': header, 'footer': footer },
@@ -491,7 +521,7 @@ const routes = [
 	{ path: '/mitraLembaga',
 		name: 'mitraLembaga', 
 		components: { default: mitraLembaga, 'header': header, 'footer': footer  },
-		meta: { requiresAuth: true }},
+		meta: { requiresAuth: false }},
 	{ path: '/mitraLembaga/create',
 		name: 'mitraLembagaCreate', 
 		components: { default: mitraLembaga_form, 'header': header, 'footer': footer },
