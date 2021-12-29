@@ -153,10 +153,10 @@
 													<h5 class="card-title">Santunan Solidaritas (TUNAS)</h5>
 												</div>
 												<div class="card-body">
-													<!-- simpanan dilindungi	 -->
+													<!-- simpanan disolidaritaskan	 -->
 													<div class="card">
 														<div class="card-header">
-															<b>A. Simpanan yang dilindungi</b>
+															<b>A. Simpanan yang disolidaritaskan</b>
 														</div>
 														<div class="table-responsive">
 															<table class="table">
@@ -168,7 +168,7 @@
 																		</td>
 																	</tr>
 																	<tr>
-																		<th>Jumlah Simpanan yang dilindungi</th>
+																		<th>Jumlah Simpanan yang disolidaritaskan</th>
 																		<td class="text-right"></td>
 																	</tr>
 																</tbody>
@@ -249,10 +249,10 @@
 														</div>
 													</div>
 
-													<!-- simpanan yang dilindungi -->
+													<!-- simpanan yang disolidaritaskan -->
 													<div class="card">
 														<div class="card-header">
-															<b>C. Simpanan Yang Dilindungi</b>
+															<b>C. Simpanan Yang Disolidaritaskan</b>
 														</div>
 														<div class="table-responsive">
 															<table class="table">
@@ -275,11 +275,11 @@
 															<table class="table">
 																<tbody>
 																	<tr>
-																		<th>Iuran Tunas</th>
+																		<th>Setoran Solidaritas Tunas</th>
 																		<td class="text-right">0</td>
 																	</tr>
 																	<tr>
-																		<th>Pembulatan Iuran Tunas</th>
+																		<th>Pembulatan Setoran Solidaritas Tunas</th>
 																		<td class="text-right">0</td>
 																	</tr>
 																</tbody>
@@ -300,10 +300,10 @@
 													<h5 class="card-title">Perlindungan Piutang Anggota (LINTANG)</h5>
 												</div>
 												<div class="card-body">
-													<!-- simpanan dilindungi	 -->
+													<!-- simpanan disolidaritaskan	 -->
 													<div class="card">
 														<div class="card-header">
-															<b>A. Piutang yang dilindungi</b>
+															<b>A. Piutang yang disolidaritaskan</b>
 														</div>
 														<div class="table-responsive">
 															<table class="table">
@@ -315,7 +315,7 @@
 																		</td>
 																	</tr>
 																	<tr>
-																		<th>Jumlah Piutang yang dilindungi</th>
+																		<th>Jumlah Piutang yang disolidaritaskan</th>
 																		<td class="text-right"></td>
 																	</tr>
 																</tbody>
@@ -430,10 +430,10 @@
 														</div>
 													</div>
 
-													<!-- simpanan yang dilindungi -->
+													<!-- simpanan yang disolidaritaskan -->
 													<div class="card">
 														<div class="card-header">
-															<b>C. Piutang Yang Dilindungi</b>
+															<b>C. Piutang Yang Disolidaritaskan</b>
 														</div>
 														<div class="table-responsive">
 															<table class="table">
@@ -456,11 +456,11 @@
 															<table class="table">
 																<tbody>
 																	<tr>
-																		<th>Iuran Lintang</th>
+																		<th>Setoran Solidaritas Lintang</th>
 																		<td class="text-right">0</td>
 																	</tr>
 																	<tr>
-																		<th>Pembulatan Iuran Lintang</th>
+																		<th>Pembulatan Setoran Solidaritas Lintang</th>
 																		<td class="text-right">0</td>
 																	</tr>
 																</tbody>
@@ -483,11 +483,11 @@
 													<table class="table">
 														<tbody>
 															<tr>
-																<th>Jumlah Iuran Jalinan ( TUNAS + LINTANG )</th>
+																<th>Jumlah Setoran Solidaritas Jalinan ( TUNAS + LINTANG )</th>
 																<td class="text-right">0</td>
 															</tr>
 															<tr>
-																<th>Jumlah Iuran Jalinan Yang Dibayarkan</th>
+																<th>Jumlah Setoran Solidaritas Jalinan Yang Dibayarkan</th>
 																<td class="text-right">0</td>
 															</tr>
 														</tbody>
@@ -591,11 +591,11 @@
 		},
 		data() {
 			return {
-				title: 'Tambah Iuran JALINAN',
-				titleDesc: 'Menambah iuran JALINAN baru',
+				title: 'Tambah Setoran Solidaritas Jalinan',
+				titleDesc: 'Menambah iuran Jalinan baru',
 				titleIcon: 'icon-plus3',
 				level: 2,
-				level2Title: 'Iuran JALINAN',
+				level2Title: 'Setoran Solidaritas Jalinan',
 				kelas: 'jalinanIuran',
 				sasaran: [],
 				tempatData: '',

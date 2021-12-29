@@ -146,7 +146,8 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         // cu
         Route::get('/cu/count', 'CuController@count');
         Route::get('/cu/history', 'CuController@history');
-        Route::get('/cu/getHeader', 'CuController@getHeader');   
+        Route::get('/cu/getHeader', 'CuController@getHeader');  
+        Route::get('/cu/escete/{id}', 'CuController@escete'); 
         Route::group(['middleware' => ['permission:index_cu']], function () {
             Route::get('/cu', 'CuController@index');
             Route::get('/cu/deleted', 'CuController@indexDeleted');
@@ -646,22 +647,30 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         });
 
         //jalinan iuran
-        Route::group(['middleware' => ['permission:index_jalinan_iuran']], function () {
-            Route::get('/jalinanIuran', 'JalinanIuranController@index');
-            Route::get('/jalinanIuran/indexCu/{id}', 'JalinanIuranController@indexCu');
-            Route::get('/jalinanIuran/indexAnggota/{id}/{lokasi}', 'JalinanIuranController@indexAnggota');
-            Route::get('/jalinanIuran/edit/{id}', 'JalinanIuranController@edit');
-        });
-        Route::group(['middleware' => ['permission:create_jalinan_iuran']], function () {
-            Route::get('/jalinanIuran/create/{cu}/{bulan}/{tahun}', 'JalinanIuranController@create');
-            Route::post('/jalinanIuran/store', 'JalinanIuranController@store');
-        });
-        Route::group(['middleware' => ['permission:update_jalinan_iuran']], function () {
-            Route::post('/jalinanIuran/update/{id}', 'JalinanIuranController@update');
-        });
-        Route::group(['middleware' => ['permission:destroy_jalinan_iuran']], function () {
-            Route::delete('/jalinanIuran/{id}', 'JalinanIuranController@destroy');
-        });
+        Route::get('/jalinanIuran', 'JalinanIuranController@index');
+        Route::get('/jalinanIuran/indexCu/{id}', 'JalinanIuranController@indexCu');
+        Route::get('/jalinanIuran/indexAnggota/{id}/{cu}/{lokasi}', 'JalinanIuranController@indexAnggota');
+        Route::get('/jalinanIuran/edit/{id}', 'JalinanIuranController@edit');
+        Route::get('/jalinanIuran/create/{cu}/{bulan}/{tahun}', 'JalinanIuranController@create');
+        Route::post('/jalinanIuran/store', 'JalinanIuranController@store');
+        Route::post('/jalinanIuran/update/{id}', 'JalinanIuranController@update');
+        Route::delete('/jalinanIuran/{id}', 'JalinanIuranController@destroy');
+        // Route::group(['middleware' => ['permission:index_jalinan_iuran']], function () {
+        //     Route::get('/jalinanIuran', 'JalinanIuranController@index');
+        //     Route::get('/jalinanIuran/indexCu/{id}', 'JalinanIuranController@indexCu');
+        //     Route::get('/jalinanIuran/indexAnggota/{id}/{cu}/{lokasi}', 'JalinanIuranController@indexAnggota');
+        //     Route::get('/jalinanIuran/edit/{id}', 'JalinanIuranController@edit');
+        // });
+        // Route::group(['middleware' => ['permission:create_jalinan_iuran']], function () {
+        //     Route::get('/jalinanIuran/create/{cu}/{bulan}/{tahun}', 'JalinanIuranController@create');
+        //     Route::post('/jalinanIuran/store', 'JalinanIuranController@store');
+        // });
+        // Route::group(['middleware' => ['permission:update_jalinan_iuran']], function () {
+        //     Route::post('/jalinanIuran/update/{id}', 'JalinanIuranController@update');
+        // });
+        // Route::group(['middleware' => ['permission:destroy_jalinan_iuran']], function () {
+        //     Route::delete('/jalinanIuran/{id}', 'JalinanIuranController@destroy');
+        // });
 
         //laporan cu
         Route::get('/laporanCu/history', 'LaporanCuController@history');
@@ -942,6 +951,16 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/notification/getAll', 'NotificationController@getAll');
         Route::get('/notification/markRead/{id}', 'NotificationController@markRead');
         Route::get('/notification/markAllRead', 'NotificationController@markAllRead');
+
+        //file upload
+        Route::post('/fileUpload/store', 'FileUploadController@store');
+        Route::delete('/fileUpload/destroy/{id}', 'FileUploadController@destroy');
+        Route::get('/fileUpload/index/{id_cu}/{id_user}', 'FileUploadController@index');
+
+        //import csv
+        Route::get('/anggotaCuImportEscete/index/{id_cu}', 'AnggotaCuEsceteController@index');
+        Route::post('/anggotaCuImportEscete/draft/{id_cu}/{id_user}', 'AnggotaCuEsceteController@uploadDraft');
+        Route::post('/anggotaCuImportEscete/simpandraft/{id_cu}', 'AnggotaCuEsceteController@store');
         
     });
 

@@ -21,7 +21,7 @@ class ProdukCu extends BaseEloquent {
     
     public static $rules = [
         'id_cu' => 'required',
-        'name' => 'required|between:3,50'
+        'name' => 'required'
     ];
 
     public static function boot()

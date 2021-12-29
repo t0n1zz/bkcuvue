@@ -136,14 +136,14 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.jalinan')}">
 												<i class="icon-cross2" v-if="errors.has('form.jalinan')"></i>
-												Dilindungi JALINAN?
+												Disolidaritaskan Jalinan?
 											</h5>
 
 											<!-- select -->
 											<select name="jalinan" data-width="100%" class="form-control" v-model="form.jalinan" :disabled="isDisabledName">
-												<option disabled value="">Silahkan pilih apakah simpanan ini dilindungi JALINAN</option>
-												<option value="1">Iya, dilindungi JALINAN</option>
-												<option value="0">Tidak dilindungi JALINAN</option>
+												<option disabled value="">Silahkan pilih apakah simpanan ini disolidaritaskan Jalinan</option>
+												<option value="1">Iya, disolidaritaskan Jalinan</option>
+												<option value="0">Tidak disolidaritaskan Jalinan</option>
 											</select>
 
 											<!-- error message -->

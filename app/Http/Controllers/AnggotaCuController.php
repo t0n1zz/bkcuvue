@@ -7,6 +7,7 @@ use File;
 use Image;
 use Validator;
 use App\System;
+use App\Cu;
 use App\AnggotaCu;
 use App\AnggotaCuCu;
 use App\AnggotaCuKlaim;
@@ -73,14 +74,16 @@ class AnggotaCuController extends Controller{
 
 	public function indexCu($cu, $tp)
 	{
+		$kelas_cu = CU::where('id',$cu)->select('id','escete')->first();
+
 		$table_data = AnggotaCu::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_cu_not_keluar', function($query) use ($cu, $tp){ 
 			if($tp != 'semua'){
 				$query->where('anggota_cu_cu.cu_id',$cu)->where('anggota_cu_cu.tp_id',$tp)->whereNull('anggota_cu_cu.tanggal_keluar'); 
 			}else{
 				$query->where('anggota_cu_cu.cu_id',$cu)->whereNull('anggota_cu_cu.tanggal_keluar'); 
 			}
-		})->where(function($query){
-			$query->where('status_jalinan','!=','MENINGGAL')->orWhere('status_jalinan', NULL);
+		})->where(function($query) use ($kelas_cu){
+			$query->where('escete', $kelas_cu->escete)->where('status_jalinan','!=','MENINGGAL')->orWhere('status_jalinan', NULL);
 		})->advancedFilter();
 
 		$table_data = $this->formatCuQuery($table_data, $cu, $tp);
@@ -93,14 +96,16 @@ class AnggotaCuController extends Controller{
 
 	public function indexCuKeluar($cu, $tp)
 	{
+		$kelas_cu = CU::where('id',$cu)->select('id','escete')->first();
+
 		$table_data = AnggotaCu::with('anggota_cu_cu_keluar.cu','anggota_cu_cu_keluar.tp','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_keluar', function($query) use ($cu, $tp){ 
 			if($tp != 'semua'){
 				$query->where('anggota_cu_cu.cu_id',$cu)->where('anggota_cu_cu.tp_id',$tp)->whereNotNull('anggota_cu_cu.tanggal_keluar'); 
 			}else{
 				$query->where('anggota_cu_cu.cu_id',$cu)->whereNotNull('anggota_cu_cu.tanggal_keluar'); 
 			}
-		})->where(function($query){
-			$query->where('status_jalinan','!=','MENINGGAL')->orWhere('status_jalinan', NULL);
+		})->where(function($query) use ($kelas_cu){
+			$query->where('escete', $kelas_cu->escete)->where('status_jalinan','!=','MENINGGAL')->orWhere('status_jalinan', NULL);
 		})->advancedFilter();
 
 		$table_data = $this->formatCuKeluarQuery($table_data, $cu, $tp);
@@ -113,13 +118,15 @@ class AnggotaCuController extends Controller{
 
 	public function indexCuMeninggal($cu, $tp)
 	{
+		$kelas_cu = CU::where('id',$cu)->select('id','escete')->first();
+
 		$table_data = AnggotaCu::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_cu_not_keluar', function($query) use ($cu, $tp){ 
 			if($tp != 'semua'){
 				$query->where('anggota_cu_cu.cu_id',$cu)->where('anggota_cu_cu.tp_id',$tp)->whereNull('anggota_cu_cu.tanggal_keluar');
 			}else{
 				$query->where('anggota_cu_cu.cu_id',$cu)->whereNull('anggota_cu_cu.tanggal_keluar');  
 			}
-		})->where('status_jalinan','MENINGGAL')->advancedFilter();
+		})->where('escete', $kelas_cu->escete)->where('status_jalinan','MENINGGAL')->advancedFilter();
 		
 		$table_data = $this->formatCuQuery($table_data, $cu, $tp);
 
@@ -394,7 +401,7 @@ class AnggotaCuController extends Controller{
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Klaim anggota CU berhasil ditambah'
+				'message' => 'Bantuan Solidaritas anggota CU berhasil ditambah'
 			]);	
 	}
 
@@ -560,7 +567,7 @@ class AnggotaCuController extends Controller{
 	// 	return response()
 	// 		->json([
 	// 			'saved' => true,
-	// 			'message' => 'Klaim anggota CU berhasil diubah'
+	// 			'message' => 'Bantuan Solidaritas anggota CU berhasil diubah'
 	// 		]);
 	// }
 
@@ -574,9 +581,9 @@ class AnggotaCuController extends Controller{
 	// 	$tipe = $kelas->tipe;
 
 	// 	if($kelas->status_klaim == 1){
-	// 		$message = "Klaim JALINAN dicairkan";
+	// 		$message = "Klaim Jalinan dicairkan";
 	// 	}else if($kelas->status_klaim == 2){
-	// 		$message = "Klaim JALINAN ditolak";
+	// 		$message = "Klaim Jalinan ditolak";
 	// 	}else if($kelas->status_klaim == 0){
 	// 		$message = "Klaim pending";
 	// 	}
@@ -642,7 +649,7 @@ class AnggotaCuController extends Controller{
 			return response()
 			->json([
 				'deleted' => false,
-				'message' => $this->message. ' ' .$name. 'tidak berhasil dilakukan karena anggota ini antara sudah pernah mengajukan klaim JALINAN. Sehingga data anggota ini jika dihapus akan menyebabkan ketidakcocokan pada laporan.'
+				'message' => $this->message. ' ' .$name. 'tidak berhasil dilakukan karena anggota ini antara sudah pernah mengajukan bantuan solidaritas Jalinan. Sehingga data anggota ini jika dihapus akan menyebabkan ketidakcocokan pada laporan.'
 			]);
 		}else{
 			if($kelasAnggotaCU->count() > 1){
@@ -650,7 +657,7 @@ class AnggotaCuController extends Controller{
 				if($kelasAnggotaCUSingle->tanggal_keluar != null){
 					return response()
 					->json([
-						'deleted' => false,
+						'deleted' => false, 
 						'message' => $this->message. ' ' .$name. 'tidak berhasil dilakukan karena anggota ini antara sudah dikeluarkan. Sehingga data anggota ini jika dihapus akan menyebabkan ketidakcocokan pada laporan.'
 					]);
 				}else{
@@ -705,7 +712,7 @@ class AnggotaCuController extends Controller{
 		return response()
 			->json([
 				'deleted' => true,
-				'message' => 'Klaim anggota CU berhasil dihapus'
+				'message' => 'Bantuan Solidaritas anggota CU berhasil dihapus'
 			]);
 	}
 

@@ -48,6 +48,16 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js">
     </script>
     <![endif]-->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T7HX764W96"></script>
+    <script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-T7HX764W96');
+    </script>
 </head>
 <body class="no-transition" style="background-image: url({{ asset('images/patterns/default.png') }}); background-attachment: fixed;">
 

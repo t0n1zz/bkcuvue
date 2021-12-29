@@ -86,7 +86,7 @@
 													<span v-else-if="notif.data.tipe == 'pertemuanBKCU'"><i class="icon-ungroup"></i> Pertemuan PUSKOPCUINA</span>
 													<span v-else-if="notif.data.tipe == 'selfAssesment'"><i class="icon-reading"></i> Self Assesment ACCESS</span>
 													<span v-else-if="notif.data.tipe == 'monitoring'"><i class="icon-collaboration"></i> Monitoring</span>
-													<span v-else-if="notif.data.tipe == 'klaimJALINAN'"><i class="icon-accessibility2"></i> Klaim JALINAN</span>
+													<span v-else-if="notif.data.tipe == 'klaimJALINAN'"><i class="icon-accessibility2"></i> Bantuan Solidaritas Jalinan</span>
 													<span v-else><i class="icon-bubble-notification"></i> Notifikasi</span>
 												</span>
 												<span class="float-right font-size-sm">{{notif.created_at | relativeHour}}</span>
@@ -454,14 +454,14 @@
 										Anggota CU
 									</router-link>
 
-									<!-- tambah klaim jalinan -->
+									<!-- tambah bantuan solidaritas jalinan -->
 									<router-link :to="{ name:'jalinanKlaimCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_jalinan_klaim']">
-										Klaim JALINAN
+										Klaim Jalinan
 									</router-link>
 
-									<!-- tambah klaim jalinan -->
+									<!-- tambah bantuan solidaritas jalinan -->
 									<router-link :to="{ name:'jalinanIuranCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_jalinan_iuran']">
-										Iuran JALINAN
+										Iuran Jalinan
 									</router-link>
 								</div>
 							</div>		
@@ -509,7 +509,7 @@
 							<!-- if bkcu account -->
 							<div class="dropdown-submenu" v-if="currentUser.can['index_jalinan_klaim'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu2 == 'jalinan_klaim'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('jalinan_klaim')">
-									<i class="icon-accessibility2"></i> Klaim JALINAN
+									<i class="icon-accessibility2"></i> Bantuan Solidaritas Jalinan
 								</a>
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'jalinan_klaim'}">
 
@@ -531,17 +531,17 @@
 
 							<!-- if cu account -->
 							<router-link :to="{ name: 'jalinanKlaimCu', params:{cu: currentUser.id_cu, tp:'semua'} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_jalinan_klaim']  && currentUser.id_cu != 0">
-								<i class="icon-accessibility2"></i> Klaim JALINAN
+								<i class="icon-accessibility2"></i> Bantuan Solidaritas Jalinan
 							</router-link>
 
 							<!-- if bkcu account -->
 							<router-link :to="{ name: 'jalinanCair' }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['pencairan_jalinan_klaim']  && currentUser.id_cu == 0">
-								<i class="icon-square-down"></i> Pencairan JALINAN
+								<i class="icon-square-down"></i> Pencairan Jalinan
 							</router-link>
 
 							<div class="dropdown-submenu" v-if="currentUser.can['laporan_jalinan_klaim']" :class="{'show' : dropdownMenu2 == 'laporan_jalinan_klaim'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('laporan_jalinan_klaim')">
-									<i class="icon-archive"></i> Laporan Klaim JALINAN
+									<i class="icon-archive"></i> Laporan Bantuan Solidaritas Jalinan
 								</a>
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'laporan_jalinan_klaim'}">
 
@@ -570,7 +570,7 @@
 							<!-- if bkcu account -->
 							<div class="dropdown-submenu" v-if="currentUser.can['index_jalinan_iuran'] && currentUser.id_cu == 0" :class="{'show' : dropdownMenu2 == 'jalinan_iuran'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('jalinan_iuran')">
-									<i class="icon-clipboard6"></i> Iuran JALINAN
+									<i class="icon-clipboard6"></i> Setoran Solidaritas Jalinan
 								</a>
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'jalinan_iuran'}">
 
@@ -592,7 +592,7 @@
 
 							<!-- if cu account -->
 							<router-link :to="{ name: 'jalinanIuranCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_jalinan_iuran']  && currentUser.id_cu != 0">
-								<i class="icon-accessibility2"></i> Iuran JALINAN
+								<i class="icon-accessibility2"></i> Setoran Solidaritas Jalinan
 							</router-link>
 							
 						</div>
@@ -1179,6 +1179,10 @@
 								<i class="icon-cancel-square2"></i> Error Log
 							</router-link>
 
+							<router-link :to="{ name: 'dataAnggotaUpload' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0">
+								<i class="icon-file-upload2"></i> Import ESCETE
+							</router-link>
+
 						</div>
 
 					</li>
@@ -1244,7 +1248,7 @@
 		},
 		data(){
 			return{
-				clientVersion: '3.4.2',
+				clientVersion: '3.4.3',
 				dropdownMenu1: '',
 				dropdownMenu2: '',
 				state: '',
@@ -1322,6 +1326,17 @@
 						
 						this.$store.commit('notification/pushNotif', this.notifData);
 						this.$store.commit('notification/setUnreadNotification', tempUnread);
+
+						if(notification.tipe=='NotifUpload'){
+							let data ={}
+							data.message = 'Data Berhasil Diupload' 
+							this.$store.commit('anggotaCuImportEscete/setUpdateStat', 'success');
+							this.$store.commit('anggotaCuImportEscete/setUpdate', data);
+						}
+						if(notification.tipe == 'NotifSimpanDraft'){
+							data.message = 'Draft Berhasil Disimpan';
+							this.$store.commit('anggotaCuImportEscete/setUpdateStat', 'success');
+						}
 						// add ui
  					});
  				}

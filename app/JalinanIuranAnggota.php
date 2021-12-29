@@ -21,24 +21,24 @@ class JalinanIuranAnggota extends Model {
     ];
 
     protected $fillable = [
-        'jalinan_iuran_id','anggota_cu_id','anggota_cu_cu_id','anggota_produk_cu_id','produk_cu_id','umur_masuk','umur_sekarang','umur_cair','saldo','saldo_lama','saldo_baru','keterangan','created_at','updated_at','deleted_at','lokasi'
+        'jalinan_iuran_id','anggota_cu_id','anggota_cu_cu_id','anggota_produk_cu_id','produk_cu_id','tanggal_masuk','tanggal_lahir','tanggal_cair','saldo','saldo_lama','saldo_baru','keterangan','created_at','updated_at','deleted_at','lokasi','no_ba','nik','name'
     ];
 
     protected $allowedFilters = [
-        'id','jalinan_iuran_id','anggota_cu_id','anggota_cu_cu_id','anggota_produk_cu_id','umur_masuk','umur_sekarang','umur_cair','saldo','saldo_lama','saldo_baru','keterangan','created_at','updated_at','deleted_at','lokasi',
+        'id','jalinan_iuran_id','anggota_cu_id','anggota_cu_cu_id','anggota_produk_cu_id','tanggal_masuk','tanggal_sekarang','tanggal_cair','saldo','saldo_lama','saldo_baru','keterangan','created_at','updated_at','deleted_at','lokasi',
 
         'anggota_cu.name',
     ];
 
     protected $orderable = [
-        'id','jalinan_iuran_id','anggota_cu_id','anggota_cu_cu_id','anggota_produk_cu_id','umur_masuk','umur_sekarang','umur_cair','saldo','saldo_lama','saldo_baru','keterangan','created_at','updated_at','deleted_at',
+        'id','jalinan_iuran_id','anggota_cu_id','anggota_cu_cu_id','anggota_produk_cu_id','tanggal_masuk','tanggal_sekarang','tanggal_cair','saldo','saldo_lama','saldo_baru','keterangan','created_at','updated_at','deleted_at',
 
         'anggota_cu.name',
     ];
     
     public static function initialize(){
         return [
-            'jalinan_iuran_id' => '', 'anggota_cu_id' => '', 'umur_masuk' => '','umur_sekarang' => ''
+            'jalinan_iuran_id' => '', 'anggota_cu_id' => '', 'tanggal_masuk' => '','tanggal_sekarang' => ''
         ];
     }
 
@@ -49,6 +49,16 @@ class JalinanIuranAnggota extends Model {
 
     public function anggota_cu_cu()
     {
-        return $this->belongsTo('App\AnggotaCuCu','anggota_cu_cu_id','id');
+        return $this->belongsTo('App\AnggotaCuCu','anggota_cu_cu_id','id')->select('id','no_ba');
+    }
+
+    public function usia_lahir()
+    {
+        return \Carbon\Carbon::parse($this->tanggal_lahir)->age;
+    }
+
+    public function usia_masuk()
+    {
+        return \Carbon\Carbon::parse($this->tanggal_masuk)->diff(\Carbon\Carbon::now())->format('%y');
     }
 }

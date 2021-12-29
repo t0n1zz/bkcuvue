@@ -24,6 +24,10 @@ export default {
     return axios.get('/api/cu/getPus/' + id);
   },
 
+  escete: function( id ){
+    return axios.get('/api/cu/escete/' + id);
+  },
+
   create: function(){
     return axios.get('/api/cu/create');
   },

@@ -60,9 +60,9 @@
       <count-widget :title="'Saldo Anggota CU'" :color="'bg-blue-400'" :icon="'icon-wallet'"></count-widget>
     </div> -->
 
-		<!-- jalinan klaim -->
+		<!-- jalinan bantuan solidaritas -->
     <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_jalinan_klaim']" @click.prevent="goTo(jalinanKlaimWidgetRoute)">
-      <count-widget :title="'Klaim JALINAN'" :color="'bg-warning-400'" :icon="'icon-accessibility2'"></count-widget>
+      <count-widget :title="'Bantuan Solidaritas Jalinan'" :color="'bg-warning-400'" :icon="'icon-accessibility2'"></count-widget>
     </div>
 
     <!-- cu -->

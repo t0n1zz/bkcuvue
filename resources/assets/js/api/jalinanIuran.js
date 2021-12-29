@@ -8,8 +8,8 @@ export default {
     return axios.get('/api/jalinanIuran/indexCu/' + id, {params: p});
   },
 
-  indexAnggota: function( p, id, lokasi ){
-    return axios.get('/api/jalinanIuran/indexAnggota/' + id + '/' + lokasi, {params: p});
+  indexAnggota: function( p, id, cu, lokasi ){
+    return axios.get('/api/jalinanIuran/indexAnggota/' + id + '/' + cu + '/' + lokasi, {params: p});
   },
 
   create: function( idCu, periodeBulan, periodeTahun){

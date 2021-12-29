@@ -17,7 +17,7 @@
         Pada halaman ini pengguna dapat menambah anggota CU <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">1</span>,
         mengubah identitas anggota CU <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">2</span>, 
         mengubah produk anggota CU <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">3</span>, 
-        mengajukan anggota CU untuk klaim JALINAN <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">4</span>, 
+        mengajukan anggota CU untuk bantuan solidaritas Jalinan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">4</span>, 
         menghapus anggota CU <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">5</span>
     </p>
 
@@ -27,7 +27,7 @@
       <li><strong>Tambah</strong> untuk menambah anggota CU baru</li>
       <li><strong>Ubah Identitas</strong> untuk mengubah identitas anggota CU yang sudah dipilih pada tabel</li>
       <li><strong>Ubah Produk</strong> untuk mengubah produk anggota CU yang sudah dipilih pada tabel</li>
-      <li><strong>Ajukan Klaim JALINAN</strong> untuk mengajukan anggota CU yang sudah dipilih pada tabel untuk klaim JALINAN</li>
+      <li><strong>Ajukan Bantuan Solidaritas Jalinan</strong> untuk mengajukan anggota CU yang sudah dipilih pada tabel untuk bantuan solidaritas Jalinan</li>
       <li><strong>Hapus</strong> untuk menghapus anggota CU yang sudah dipilih pada tabel</li>
     </ol>
 
@@ -72,9 +72,9 @@
     </p>
 
     <hr/> 
-    <h6>D. Ajukan Klaim JALINAN</h6>
+    <h6>D. Ajukan Bantuan Solidaritas Jalinan</h6>
     <p>
-        Untuk mengajukan anggota CU untuk Klaim JALINAN pengguna mesti memilih data yang akan diubah dibagian konten terlebih dahulu baru kemudian menekan tombol ajukan klaim JALINAN.
+        Untuk mengajukan anggota CU untuk Bantuan Solidaritas Jalinan pengguna mesti memilih data yang akan diubah dibagian konten terlebih dahulu baru kemudian menekan tombol ajukan bantuan solidaritas Jalinan.
     </p>
 
     <hr/> 

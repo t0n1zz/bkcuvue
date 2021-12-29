@@ -1,5 +1,5 @@
 <template>
-	<div class="table-responsive table-scrollable">
+	<div class="table-responsive table-scrollable" style="max-height: 33rem;" >
 		<table class="table table-striped">
 			<thead class="bg-primary">
 				<tr class="text-nowrap">
@@ -14,7 +14,7 @@
 				<tr>
 					<td :colspan="columnData.length">
 						<div class="progress">
-							<div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 100%">
+							<div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
 								<span class="sr-only">100% Complete</span>
 							</div>
 						</div>

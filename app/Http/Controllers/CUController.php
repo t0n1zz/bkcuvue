@@ -164,6 +164,17 @@ class CuController extends Controller{
 				]);
 	}
 
+	public function escete($id)
+	{
+		$kelas = Cu::select('id','name','escete')->findOrFail($id);
+
+		return response()
+				->json([
+						'form' => $kelas,
+						'option' => []
+				]);
+	}
+
 	public function update(Request $request, $id)
 	{
 		$this->validate($request, Cu::$rules);

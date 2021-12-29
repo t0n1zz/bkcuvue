@@ -12,7 +12,7 @@
         <h5>Status Pertemuan:</h5>
 
         <!-- select -->
-        <select name="status" data-width="100%" class="form-control" v-model="formStatus.status" @change="changeStatus($event.target.value)">
+        <select name="status" data-width="100%" class="form-control" v-model="formStatus.status" @change="changeStatus($event.target.value)"> 
           <option disabled value="">Silahkan pilih status diklat</option>
           <option value="1">Menunggu</option>
           <option value="2">Pendaftaran Buka</option>

@@ -94,6 +94,7 @@ const voting_pilih = () => import('./views/voting/pilih.vue');
 const jalinanIuran = () => import('./views/jalinanIuran/index.vue');
 const jalinanIuran_form = () => import('./views/jalinanIuran/form.vue');
 const jalinanIuran_detail = () => import('./views/jalinanIuran/detail.vue');
+const dataAnggotaUpload = () => import('./views/sistem/dataAnggotaUpload.vue');
 
 const routes = [
 
@@ -543,7 +544,7 @@ const routes = [
 		components: { default: saldo, 'header': header, 'footer': footer  },
 		meta: { requiresAuth: true }},
 
-	// JALINAN
+	// Jalinan
 	{ path: '/jalinan/klaim/cu/:cu/:tp',
 		name: 'jalinanKlaimCu', 
 		components: { default: jalinanKlaim, 'header': header, 'footer': footer },
@@ -573,7 +574,7 @@ const routes = [
 		components: { default: jalinanKlaim_form, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true, mode:'koreksi' }},		
 
-	// JALINAN PENCAIRAN		
+	// Jalinan PENCAIRAN		
 	{ path: '/jalinan/cair',
 		name: 'jalinanCair', 
 		components: { default: jalinanCair, 'header': header, 'footer': footer },
@@ -583,7 +584,7 @@ const routes = [
 		components: { default: jalinanCair, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true , mode:'cair' }},
 		
-	// JALINAN LAPORAN
+	// Jalinan LAPORAN
 	{ path: '/jalinan/laporan/klaim/jenis/cu',
 		name: 'jalinanLaporanKlaimCu', 
 		components: { default: jalinanLaporan_KlaimCu, 'header': header, 'footer': footer },
@@ -617,7 +618,7 @@ const routes = [
 		components: { default: jalinanLaporan_KlaimLama, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true , mode:'laporan' }},	
 		
-	// JALINAN iuran
+	// Jalinan iuran
 	{ path: '/jalinanIuran/cu/:cu',
 		name: 'jalinanIuranCu', 
 		components: { default: jalinanIuran, 'header': header, 'footer': footer  },
@@ -809,6 +810,12 @@ const routes = [
 		name: 'coaEdit', 
 		components: { default: coa_form, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true, mode:'edit' }},
+
+		// file upload data anggota csv
+	{ path: '/anggotaCuImportEscete',
+		name: 'dataAnggotaUpload', 
+		components: { default: dataAnggotaUpload, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
 ]
 
 export default routes

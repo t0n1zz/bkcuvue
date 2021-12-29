@@ -112,6 +112,24 @@ export const cu = {
         });
     },
 
+    escete( {commit}, id ){
+      commit('setDataStat', 'loading');
+      
+      CUAPI.escete( id )
+        .then( function( response ){
+          commit('setData', response.data.form);
+          commit('setRules', response.data.rules);
+          commit('setOptions', response.data.options)
+          commit('setDataStat', 'success');
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setRules', []);
+          commit('setOptions', [])
+          commit('setDataStat', 'fail');
+        });
+    },
+
     // create page
     create( {commit} ){
       commit('setDataStat', 'loading');

@@ -60,8 +60,8 @@
           {{-- anggota CU --}}
           <li class="nav-item"><a href="#anggotaCU" class="nav-link">12. Anggota CU</a></li>
 
-          {{-- Klaim Jalinan --}}
-          <li class="nav-item"><a href="#klaimJALINAN" class="nav-link">13. Klaim JALINAN</a></li>
+          {{-- Bantuan Solidaritas Jalinan --}}
+          <li class="nav-item"><a href="#klaimJALINAN" class="nav-link">13. Bantuan Solidaritas Jalinan</a></li>
 
           {{-- Profil CU --}}
           <li class="nav-item"><a href="#profilCU" class="nav-link">14. Profil CU</a></li>

@@ -44,7 +44,7 @@
 									<hr class="d-block d-sm-none"/>
 								</div>
 								<div class="col-md-8 col-lg-10">
-									<span v-if="props.item.jalinan == 1" class="badge badge-primary mb-1"><i class="icon-shield-check"></i> Dilindungi JALINAN</span>
+									<span v-if="props.item.jalinan == 1" class="badge badge-primary mb-1"><i class="icon-shield-check"></i> Disolidaritaskan Jalinan</span>
 									<h6 class="text-primary">{{ props.item.name }} {{ props.item.cu ? ' - CU ' + props.item.cu.name : ''}}</h6>
 									<p v-html="props.item.keterangan"></p>
 								</div>

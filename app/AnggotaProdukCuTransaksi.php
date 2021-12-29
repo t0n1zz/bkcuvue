@@ -49,4 +49,9 @@ class AnggotaProdukCuTransaksi extends BaseEloquent {
         return \Carbon\Carbon::parse($this->tanggal)->age;
     }
 
+    public function usia_trans($tanggal_lahir)
+    {
+        return \Carbon\Carbon::parse($this->tanggal)->diff(\Carbon\Carbon::parse($tanggal_lahir))->format('%y');
+    }
+
 }

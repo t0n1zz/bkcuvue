@@ -47,17 +47,17 @@ class Cu extends Model {
     
     protected $fillable = [
       'id_villages','id_districts','id_regencies','id_provinces','no_ba','name','name_legal','gambar','badan_hukum','npwp','nik','situ','siusp','izin_operasional','alamat','pos','telp','hp','website','email','app','misi','visi','nilai','slogan','sejarah','deskripsi','ultah',
-      'bergabung','created_at','updated_at','deleted_at'
+      'bergabung','created_at','updated_at','deleted_at','escete'
     ];
 
     protected $allowedFilters = [
-        'id','no_ba','name','name_legal','badan_hukum','npwp','nik','situ','siusp','izin_operasional','alamat','pos','telp','hp','website','email','app','deskripsi','ultah','bergabung','created_at','updated_at',
+        'id','no_ba','name','name_legal','badan_hukum','npwp','nik','situ','siusp','izin_operasional','alamat','pos','telp','hp','website','email','app','deskripsi','ultah','bergabung','created_at','updated_at','escete',
         
         'villages.name', 'districts.name', 'regencies.name', 'provinces.name','has_tp_cu_count'
     ];
 
     protected $orderable = [
-        'id','no_ba','name','name_legal','badan_hukum','npwp','nik','situ','siusp','izin_operasional','alamat','pos','telp','hp','website','email','app','deskripsi','ultah','bergabung','created_at','updated_at',
+        'id','no_ba','name','name_legal','badan_hukum','npwp','nik','situ','siusp','izin_operasional','alamat','pos','telp','hp','website','email','app','deskripsi','ultah','bergabung','created_at','updated_at','escete',
 
         'villages.name', 'districts.name', 'regencies.name', 'provinces.name','has_tp_cu_count'
     ];

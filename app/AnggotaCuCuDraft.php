@@ -8,7 +8,7 @@ class AnggotaCuCuDraft extends Model {
     protected $table = 'anggota_cu_cu_draft';
     
     protected $fillable = [
-        'anggota_cu_id','anggota_cu_draft_id','cu_id','tp_id','no_ba', 'tanggal_masuk','keterangan_masuk', 'tanggal_keluar', 'keterangan_keluar'
+        'anggota_cu_id','anggota_cu_draft_id','cu_id','tp_id','no_ba', 'tanggal_masuk','keterangan_masuk', 'tanggal_keluar', 'keterangan_keluar','escete'
     ];
 
     public function anggotaCu()

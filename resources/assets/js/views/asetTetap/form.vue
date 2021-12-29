@@ -13,7 +13,7 @@
 					</message>
 
 					<!-- main panel -->
-					<form @submit.prevent="save" data-vv-scope="form">
+					<form @submit.prevent="save" enctype="multipart/form-data"  data-vv-scope="form">
 
 						<!-- main form -->
 						<div class="card">
@@ -835,12 +835,13 @@
 					this.fetchAset(this.query);
 			},
 			save() {
+				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.$route.meta.mode == 'edit'){
-							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, this.form]);
+							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, formData]);
 						}else{
-							this.$store.dispatch(this.kelas + '/store', this.form);
+							this.$store.dispatch(this.kelas + '/store', formData);
 						}
 						this.submited = false;
 					}else{

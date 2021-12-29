@@ -258,7 +258,7 @@
 
 		<!-- modal -->
 		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :color="modalColor" :button="modalButton" @tutup="modalTutup"
-		  @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+		  @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup" :content="modalContent">
 			<template slot="modal-title">{{ modalTitle }}</template>
 			<template slot="modal-body1">
 				<div class="alert bg-info alert-styled-left mt-1 pt-1 pb-1">
@@ -345,7 +345,8 @@ export default {
       modalState: "",
       modalTitle: "",
       modalColor: "",
-      modalButton: ""
+      modalButton: "",
+			modalContent:"",
     };
   },
   created() {
@@ -381,6 +382,20 @@ export default {
         this.fetch();
       } else if (value === "fail") {
         this.modalContent = this.updateMessage;
+      } else {
+        this.modalContent = "";
+      }
+    },
+		updateStatTp(value) {
+      this.modalState = value;
+      this.modalButton = "Ok";
+
+      if (value === "success") {
+        this.modalTitle = this.updateMessageTp.message;
+        this.modalContent = "";
+        this.fetch();
+      } else if (value === "fail") {
+        this.modalContent = this.updateMessageTp;
       } else {
         this.modalContent = "";
       }
@@ -697,6 +712,10 @@ export default {
       modelPeriodeStat: "periodeStat",
       updateMessage: "update",
       updateStat: "updateStat"
+    }),
+		...mapGetters("laporanTp", {
+      updateMessageTp: "update",
+      updateStatTp: "updateStat"
     }),
     ...mapGetters("laporanTp", {
       listLaporanTpData: "data2S",

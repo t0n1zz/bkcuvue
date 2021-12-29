@@ -62,11 +62,11 @@
         </div>
       </div>
 
-      <!-- klaim sebelumnya -->
+      <!-- bantuan solidaritas sebelumnya -->
       <div class="col-md-6" >
         <div class="card">
           <div class="card-header bg-white header-elements-inline">
-            <h5 class="card-title">Klaim JALINAN</h5>
+            <h5 class="card-title">Klaim Jalinan</h5>
             <div class="header-elements">
               <span class="badge badge-info">DATA SEBELUMNYA</span>
             </div>
@@ -118,7 +118,7 @@
                     <div class="media-body">
                       <h3 class="mb-0" ><check-value :value="itemDataJalinan.tunas_diajukan" valueType="currency"></check-value></h3>
                       <span class="text-uppercase">
-                        nilai pengajuan klaim tunas
+                        nilai pengajuan bantuan solidaritas tunas
                       </span>
                     </div>
                   </div>
@@ -131,7 +131,7 @@
                     <div class="media-body">
                       <h3 class="mb-0" ><check-value :value="itemDataJalinan.lintang_diajukan" valueType="currency"></check-value></h3>
                       <span class="text-uppercase">
-                        nilai pengajuan klaim lintang
+                        nilai pengajuan bantuan solidaritas lintang
                       </span>
                     </div>
                   </div>
@@ -153,11 +153,11 @@
         </div>
       </div>
 
-      <!-- klaim koreksi -->
+      <!-- bantuan solidaritas koreksi -->
       <div class="col-md-6">
         <div class="card">
           <div class="card-header bg-white header-elements-inline">
-            <h5 class="card-title">Klaim JALINAN</h5>
+            <h5 class="card-title">Klaim Jalinan</h5>
             <div class="header-elements">
               <span class="badge badge-danger">DATA KOREKSI</span>
             </div>
@@ -209,7 +209,7 @@
                     <div class="media-body">
                       <h3 class="mb-0" ><check-value :value="selectedData.tunas_diajukan" valueType="currency"></check-value></h3>
                       <span class="text-uppercase">
-                        nilai pengajuan klaim tunas
+                        nilai pengajuan bantuan solidaritas tunas
                       </span>
                     </div>
                   </div>
@@ -222,7 +222,7 @@
                     <div class="media-body">
                       <h3 class="mb-0" ><check-value :value="selectedData.lintang_diajukan" valueType="currency"></check-value></h3>
                       <span class="text-uppercase">
-                        nilai pengajuan klaim lintang
+                        nilai pengajuan bantuan solidaritas lintang
                       </span>
                     </div>
                   </div>
@@ -240,7 +240,7 @@
 
         <div class="card card-body" v-if="itemDataJalinan.tipe != selectedData.tipe">
           <span>
-            Jenis klaim dari <mark><check-value :value="itemDataJalinan.tipe"></check-value></mark> menjadi <mark><check-value :value="selectedData.tipe"></check-value></mark>
+            Jenis bantuan solidaritas dari <mark><check-value :value="itemDataJalinan.tipe"></check-value></mark> menjadi <mark><check-value :value="selectedData.tipe"></check-value></mark>
           </span>
         </div>
 
@@ -264,13 +264,13 @@
 
         <div class="card card-body" v-if="itemDataJalinan.tunas_diajukan != selectedData.tunas_diajukan">
           <span>
-            Nilai pengajuan klaim tunas dari <mark><check-value :value="itemDataJalinan.tunas_diajukan" valueType="currency"></check-value></mark> menjadi <mark><check-value :value="selectedData.tunas_diajukan" valueType="currency"></check-value></mark>
+            Nilai pengajuan bantuan solidaritas tunas dari <mark><check-value :value="itemDataJalinan.tunas_diajukan" valueType="currency"></check-value></mark> menjadi <mark><check-value :value="selectedData.tunas_diajukan" valueType="currency"></check-value></mark>
           </span>
         </div>
 
         <div class="card card-body" v-if="itemDataJalinan.lintang_diajukan != selectedData.lintang_diajukan">
           <span>
-            Nilai pengajuan klaim lintang dari <mark><check-value :value="itemDataJalinan.lintang_diajukan" valueType="currency"></check-value></mark> menjadi <mark><check-value :value="selectedData.lintang_diajukan" valueType="currency"></check-value></mark>
+            Nilai pengajuan bantuan solidaritas lintang dari <mark><check-value :value="itemDataJalinan.lintang_diajukan" valueType="currency"></check-value></mark> menjadi <mark><check-value :value="selectedData.lintang_diajukan" valueType="currency"></check-value></mark>
           </span>
         </div>
 

@@ -82,7 +82,7 @@
 										<a href="#" class="nav-link" :class="{'active' : tabName == 'monitoring'}" @click.prevent="changeTab('monitoring')"><i class="icon-collaboration mr-2"></i> Monitoring</a>
 									</li>
 									<li class="nav-item">
-										<a href="#" class="nav-link" :class="{'active' : tabName == 'klaimJALINAN'}" @click.prevent="changeTab('klaimJALINAN')"><i class="icon-accessibility2 mr-2"></i> Klaim JALINAN</a>
+										<a href="#" class="nav-link" :class="{'active' : tabName == 'klaimJALINAN'}" @click.prevent="changeTab('klaimJALINAN')"><i class="icon-accessibility2 mr-2"></i> Bantuan Solidaritas Jalinan</a>
 									</li>
 								</ul>
 							</div>
@@ -99,7 +99,7 @@
 													<span v-else-if="notif.data.tipe == 'pertemuanBKCU'"><i class="icon-ungroup"></i> Pertemuan BKCU</span>
 													<span v-else-if="notif.data.tipe == 'selfAssesment'"><i class="icon-reading"></i> Self Assesment ACCESS</span>
 													<span v-else-if="notif.data.tipe == 'monitoring'"><i class="icon-collaboration"></i> Monitoring</span>
-													<span v-else-if="notif.data.tipe == 'klaimJALINAN'"><i class="icon-accessibility2"></i> Klaim JALINAN</span>
+													<span v-else-if="notif.data.tipe == 'klaimJALINAN'"><i class="icon-accessibility2"></i> Bantuan Solidaritas Jalinan</span>
 													<span v-else><i class="icon-bubble-notification"></i> Notifikasi</span>
 												</span>
 												<div class="header-elements">
@@ -237,7 +237,7 @@
 										<div class="card" :class="{'text-muted' : notif.read_at != null}" @click.prevent="goToPage(notif)" style="cursor:pointer;" v-if="notif.data.tipe == 'klaimJALINAN'">
 											<div class="card-header bg-white header-elements-inline">
 												<span class="card-title">
-													<i class="icon-accessibility2"></i> Klaim JALINAN
+													<i class="icon-accessibility2"></i> Bantuan Solidaritas Jalinan
 												</span>
 												<div class="header-elements">
 													{{notif.created_at | relativeHour}}

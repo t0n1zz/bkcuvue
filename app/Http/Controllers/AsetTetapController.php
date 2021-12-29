@@ -7,6 +7,7 @@ use File;
 use Image;
 use Validator;
 use App\AsetTetap;
+use App\Support\Helper;
 use Illuminate\Http\Request;
 use Venturecraft\Revisionable\Revision;
 use App\Imports\AsetTetapNewDraftImport;
@@ -117,12 +118,12 @@ class AsetTetapController extends Controller{
 		$validationCertificate  = Validator::make($request->all(), $rules); 
 		$name = $request->name;
 
+		$kelas = AsetTetap::findOrFail($id);
+
 		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->gambar,$kelas->gambar, $name);
+			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->gambar, $kelas->gambar, $name);
 		else
 			$fileName = '';
-
-		$kelas = AsetTetap::findOrFail($id);
 
 		$kelas->update($request->except('gambar') + [
 			'gambar' => $fileName

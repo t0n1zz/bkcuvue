@@ -280,7 +280,7 @@ class LaporanTpController extends Controller{
 				$query->where('id_cu',$id_cu);
 			})->where('periode',$periode)->get();
 
-			if(empty($laporantp)){
+			if($laporantp){
 				$kelas2 = LaporanCu::where('id_cu', $id_cu)->where('periode', $periode)->delete();
 			}else{
 				$cu = Cu::findOrFail($id_cu);
@@ -293,9 +293,6 @@ class LaporanTpController extends Controller{
 				$konsolidasi['id_cu'] = $id_cu;
 				$konsolidasi['no_ba'] = $cu->no_ba;
 				$konsolidasi['tp'] = $laporantp->count();
-				$konsolidasi['laju_inflasi'] = $laporantp->first()->laju_inflasi;
-				$konsolidasi['harga_pasar'] = $laporantp->first()->harga_pasar;
-				$konsolidasi['periode'] = $periode;
 
 				$kelas2 = LaporanCu::where('id_cu',$id_cu)->where('periode',$periode)->first();
 

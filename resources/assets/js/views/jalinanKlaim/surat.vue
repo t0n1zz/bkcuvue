@@ -17,7 +17,7 @@
                 <dd class="col-sm-10">: <span v-if="tipe == 'cair'">Pencairan</span> 
                   <span v-else-if="tipe == 'kurang'">Kekurangan Berkas</span> 
                   <span v-else-if="tipe == 'tolak'">Penolakan</span> 
-                  Klaim JALINAN</dd>
+                  Bantuan Solidaritas Jalinan</dd>
               </dl>
             </div>
             <div class="col-5 text-right">
@@ -32,7 +32,7 @@
             <div class="col-12">
               <ul class="list list-unstyled mb-0">
                 <li>Yth. General Manager / Manager {{ selectedItem.anggota_cu_cu ? 'CU ' + selectedItem.anggota_cu_cu.cu.name : '' }}</li>
-                <li>u.p. Bagian JALINAN</li>
+                <li>u.p. Bagian Jalinan</li>
                 <li>
                   {{ modelProvinces.name + ',' | capitalize }} 
                   {{ modelRegencies.name + ',' | capitalize }} 
@@ -47,13 +47,13 @@
             </div>
             <div class="col-12 mt-3 mb-2">
 
-              <p style="text-indent: 30px; font-size: 18px;">Kami mengucapkan terima kasih atas kerjasama dan kepercayaannya telah menjadi anggota PUSKOPCUINA terutama dalam kegiatan pengembangan JALINAN semoga kerjasama ini semakin terjalin dengan baik dimasa yang akan datang</p>
+              <p style="text-indent: 30px; font-size: 18px;">Kami mengucapkan terima kasih atas kerjasama dan kepercayaannya telah menjadi anggota PUSKOPCUINA terutama dalam kegiatan pengembangan Jalinan semoga kerjasama ini semakin terjalin dengan baik dimasa yang akan datang</p>
 
-              <p style="text-indent: 30px; font-size: 18px;" v-if="tipe == 'cair'">Melalui surat ini kami sampaikan bahwa klaim JALINAN Anggota CU Primer dibawah ini telah disetujui. Uang santunan tersebut telah dibukukan pada rekening SIKODIT tanggal <span v-html="$options.filters.dateMonth(this.selectedItem.tanggal_pencairan)"></span> Adapun daftar klaim tersebut diatas sebagai berikut :</p>
+              <p style="text-indent: 30px; font-size: 18px;" v-if="tipe == 'cair'">Melalui surat ini kami sampaikan bahwa bantuan solidaritas Jalinan Anggota CU Primer dibawah ini telah disetujui. Bantuan solidaritas tersebut telah dibukukan pada rekening SIKODIT tanggal <span v-html="$options.filters.dateMonth(this.selectedItem.tanggal_pencairan)"></span> Adapun daftar bantuan solidaritas tersebut diatas sebagai berikut :</p>
 
-              <p style="text-indent: 30px; font-size: 18px;" v-else-if="tipe == 'kurang'">Berdasarkan analisis terhadap klaim JALINAN atas nama almarhum/almarhumah dibawah ini, maka kami masih memerlukan beberapa hal untuk dilengkapi oleh CU:</p>
+              <p style="text-indent: 30px; font-size: 18px;" v-else-if="tipe == 'kurang'">Berdasarkan analisis terhadap bantuan solidaritas Jalinan atas nama almarhum/almarhumah dibawah ini, maka kami masih memerlukan beberapa hal untuk dilengkapi oleh CU:</p>
 
-              <p style="text-indent: 30px; font-size: 18px;" v-else-if="tipe == 'tolak'">Kami telah melakukan analisis terhadap klaim JALINAN atas nama almarhum/almarhumah dibawah ini, dan kami menyatakan menolak permohonan klaim yang dimaksud karena alasan sebagai berikut:</p>
+              <p style="text-indent: 30px; font-size: 18px;" v-else-if="tipe == 'tolak'">Kami telah melakukan analisis terhadap bantuan solidaritas Jalinan atas nama almarhum/almarhumah dibawah ini, dan kami menyatakan menolak permohonan bantuan solidaritas yang dimaksud karena alasan sebagai berikut:</p>
 
               <div class="table-responsive" v-if="tipe == 'cair'">
                 <table class="table table-bordered table-sm">
@@ -61,7 +61,7 @@
                     <tr>
                       <th rowspan="2" class="text-center" style="vertical-align: middle; border: 1px solid black;">NAMA</th>
                       <th rowspan="2" class="text-center" style="vertical-align: middle; border: 1px solid black;">NO. BA</th>
-                      <th colspan="3" class="text-center" style="border: 1px solid black;">PENCAIRAN</th>
+                      <th colspan="3" class="text-center" style="border: 1px solid black;">Bantuan Solidaritas</th>
                     </tr>
                     <tr>
                       <th class="text-center" style="border: 1px solid black;">TUNAS</th>
@@ -131,7 +131,7 @@
               </div>
               
               <p class="mt-2" style="text-indent: 30px; font-size: 18px;" v-if="tipe == 'cair'">{{ selectedItem.keterangan_klaim }}</p>
-              <p class="mt-2" style="text-indent: 30px; font-size: 18px;" v-else-if="tipe == 'kurang'">Mengacu pada ketentuan JALINAN Bab V pasal 20, maka berkas tersebut harus sudah kami terima 45 hari setelah surat pemberitahuan ini kami keluarkan</p>
+              <p class="mt-2" style="text-indent: 30px; font-size: 18px;" v-else-if="tipe == 'kurang'">Mengacu pada ketentuan Jalinan Bab V pasal 20, maka berkas tersebut harus sudah kami terima 45 hari setelah surat pemberitahuan ini kami keluarkan</p>
 
               <p class="mt-2" style="text-indent: 30px; font-size: 18px;">Demikian surat ini disampaikan, atas perhatian dan kerjasama yang terjalin selama ini, kami ucapkan terima kasih</p>
             </div>

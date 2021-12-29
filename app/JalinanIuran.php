@@ -23,7 +23,9 @@ class JalinanIuran extends Model {
     protected $fillable = [
         'id_cu','periode','status','created_at','updated_at','deleted_at',
         'total_simpanan',
+        'total_simpanan_kurang',
         'total_pinjaman',
+        'total_pinjaman_kurang',
         'total_sheet_3',
         'kurang_sheet_3',
         'plafon_sheet_3',

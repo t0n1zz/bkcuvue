@@ -50,9 +50,9 @@
 		},
 		data() {
 			return {
-				title: 'Iuran JALINAN',
+				title: 'Setoran Solidaritas Jalinan',
 				kelas: 'jalinanIuran',
-				titleDesc: 'Mengelola data iuran JALINAN',
+				titleDesc: 'Mengelola data iuran Jalinan',
 				titleIcon: 'icon-clipboard6',
 				selectCuPath: 'jalinanIuranCu',
 			}

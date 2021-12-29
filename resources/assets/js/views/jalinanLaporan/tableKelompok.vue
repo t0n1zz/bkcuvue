@@ -11,22 +11,22 @@
           <!-- button desktop  -->
           <div class="col-md-9 col-lg-9 pb-2 d-none d-sm-block">
             <button class="btn btn-light mb-1" @click.prevent="bukaData(selectedItem.kategori)" :disabled="!selectedItem.kategori">
-              <i class="icon-folder-open3"></i> Buka data klaim JALINAN
+              <i class="icon-folder-open3"></i> Buka data bantuan solidaritas Jalinan
             </button>
 
             <button class="btn btn-light mb-1" @click.prevent="lihatSemua">
-              <i class="icon-eye"></i> Lihat semua data klaim JALINAN
+              <i class="icon-eye"></i> Lihat semua data bantuan solidaritas Jalinan
             </button>
           </div>
 
           <!-- button mobile -->
           <div class="col-md-12 pb-2 d-block d-sm-none">
             <button class="btn btn-light btn-block pb-1" @click.prevent="bukaData(selectedItem.kategori)" :disabled="!selectedItem.kategori">
-              <i class="icon-folder-open3"></i> Buka data klaim JALINAN
+              <i class="icon-folder-open3"></i> Buka data bantuan solidaritas Jalinan
             </button>
 
             <button class="btn btn-light btn-block pb-1" @click.prevent="lihatSemua">
-              <i class="icon-eye"></i> Lihat semua data klaim JALINAN
+              <i class="icon-eye"></i> Lihat semua data bantuan solidaritas Jalinan
             </button>
           </div>
 

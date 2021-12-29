@@ -60,7 +60,7 @@
 			<div v-else>
 				<div class="card">
 					<div class="card-body">
-						<h3>Belum terdapat riwayat klaim apapun...</h3>
+						<h3>Belum terdapat riwayat bantuan solidaritas apapun...</h3>
 					</div>
 				</div>
 			</div>

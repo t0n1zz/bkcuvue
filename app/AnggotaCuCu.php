@@ -29,11 +29,19 @@ class AnggotaCuCu extends Model {
     );
 
     protected $fillable = [
-        'anggota_cu_id','cu_id','tp_id','no_ba', 'tanggal_masuk','keterangan_masuk', 'tanggal_keluar', 'keterangan_keluar','referral_nik','referral_ba','referral_name'
+        'anggota_cu_id','cu_id','tp_id','no_ba', 'tanggal_masuk','keterangan_masuk', 'tanggal_keluar', 'keterangan_keluar','referral_nik','referral_ba','referral_name','escete'
     ];
 
     protected $filter = [
-        'anggota_cu_id','cu_id','tp_id','no_ba','tanggal_masuk','created_at','updated_at','keterangan_masuk', 'tanggal_keluar', 'keterangan_keluar','referral_nik','referral_ba','referral_name'
+        'anggota_cu_id','cu_id','tp_id','no_ba','tanggal_masuk','created_at','updated_at','keterangan_masuk', 'tanggal_keluar', 'keterangan_keluar','referral_nik','referral_ba','referral_name','escete'
+    ];
+
+    protected $allowedFilters = [
+        'anggota_cu_id','cu_id','tp_id','no_ba','tanggal_masuk','created_at','updated_at','keterangan_masuk', 'tanggal_keluar', 'keterangan_keluar','referral_nik','referral_ba','referral_name','escete'
+    ];
+
+    protected $orderable = [
+        'anggota_cu_id','cu_id','tp_id','no_ba','tanggal_masuk','created_at','updated_at','keterangan_masuk', 'tanggal_keluar', 'keterangan_keluar','referral_nik','referral_ba','referral_name','escete'
     ];
 
     public static function initialize()
@@ -80,12 +88,17 @@ class AnggotaCuCu extends Model {
 
     public function usia()
     {
-        return \Carbon\Carbon::parse($this->tanggal_masuk)->age;
+        return \Carbon\Carbon::parse($this->tanggal_masuk)->diff(\Carbon\Carbon::now())->format('%y');
+    }
+
+    public function usia_masuk($tanggal_lahir)
+    {
+        return \Carbon\Carbon::parse($this->tanggal_masuk)->diff(\Carbon\Carbon::parse($tanggal_lahir))->format('%y');
     }
 
     public function hari()
     {
-        return \Carbon\Carbon::parse($this->tanggal_masuk)->days;
+        return \Carbon\Carbon::parse($this->tanggal_masuk)->diff(\Carbon\Carbon::now())->format('%d');
     }
 
 }

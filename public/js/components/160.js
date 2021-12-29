@@ -673,6 +673,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -711,10 +718,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   data: function data() {
     return {
-      title: 'Tambah Klaim JALINAN',
-      titleDesc: 'Menambah klaim JALINAN',
+      title: 'Tambah Bantuan Solidaritas Jalinan',
+      titleDesc: 'Menambah bantuan solidaritas Jalinan',
       titleIcon: 'icon-plus3',
-      level2Title: 'Klaim JALINAN',
+      level2Title: 'Klaim Jalinan',
       kelas: 'jalinanKlaim',
       isEdit: false,
       nik: '',
@@ -863,18 +870,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.resetData();
 
       if (this.$route.meta.mode == 'edit') {
-        this.title = 'Ubah Klaim JALINAN';
-        this.titleDesc = 'Mengubah klaim JALINAN';
+        this.title = 'Ubah Bantuan Solidaritas Jalinan';
+        this.titleDesc = 'Mengubah bantuan solidaritas Jalinan';
         this.titleIcon = 'icon-pencil5';
         this.cariData(this.$route.params.nik);
       } else if (this.$route.meta.mode == 'koreksi') {
-        this.title = 'Koreksi Klaim JALINAN';
-        this.titleDesc = 'Mengoreksi klaim JALINAN';
+        this.title = 'Koreksi Bantuan Solidaritas Jalinan';
+        this.titleDesc = 'Mengoreksi bantuan solidaritas Jalinan';
         this.titleIcon = 'icon-pencil5';
         this.cariData(this.$route.params.nik);
       } else {
-        this.title = 'Tambah Klaim JALINAN';
-        this.titleDesc = 'Menambah Klaim JALINAN';
+        this.title = 'Tambah Bantuan Solidaritas Jalinan';
+        this.titleDesc = 'Menambah Bantuan Solidaritas Jalinan';
         this.titleIcon = 'icon-plus3';
         this.isEdit = false;
 
@@ -945,7 +952,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       });
       this.cu_id = _cu.cu_id;
       this.$store.dispatch(this.kelas + '/edit', [_nik, _cu.id, this.tipe]);
-      this.$store.dispatch('anggotaCu/indexProduk', [this.itemData.id, _cu.cu_id]);
+      this.$store.dispatch('anggotaCu/indexProduk', [this.itemData.id, _cu.cu_id]); // this.$store.dispatch(this.kelas + '/getKlaimLama',[_nik,_cu.id]);
     },
     resetData: function resetData() {
       this.itemDataCu = [];
@@ -1032,6 +1039,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('jalinanKlaim', {
     itemData: 'data2',
     itemDataStat: 'dataStat2',
+    message: 'message',
+    messageStat: 'messageStat',
     form: 'data',
     formStat: 'dataStat',
     rules: 'rules',
@@ -1477,7 +1486,7 @@ var render = function() {
                                     { staticClass: "font-weight-semibold" },
                                     [
                                       _vm._v(
-                                        "Anggota ini sudah mengajukan Klaim JALINAN  "
+                                        "Anggota ini sudah mengajukan Bantuan Solidaritas Jalinan  "
                                       ),
                                       _c("b", [
                                         _vm._v(
@@ -2508,7 +2517,7 @@ var render = function() {
                                                             "h5",
                                                             [
                                                               _vm._v(
-                                                                "Nilai pengajuan klaim TUNAS "
+                                                                "Nilai pengajuan bantuan solidaritas TUNAS "
                                                               ),
                                                               _c("wajib-badge")
                                                             ],
@@ -2537,9 +2546,9 @@ var render = function() {
                                                                 _vm.cleaveOption
                                                                   .numeric,
                                                               placeholder:
-                                                                "Silahkan masukkan jumlah nilai pengajuan klaim TUNAS",
+                                                                "Silahkan masukkan jumlah nilai pengajuan bantuan solidaritas TUNAS",
                                                               "data-vv-as":
-                                                                "Nilai pengajuan klaim TUNAS"
+                                                                "Nilai pengajuan bantuan solidaritas TUNAS"
                                                             },
                                                             model: {
                                                               value:
@@ -2618,7 +2627,7 @@ var render = function() {
                                                         "h5",
                                                         [
                                                           _vm._v(
-                                                            "Nilai pengajuan klaim LINTANG "
+                                                            "Nilai pengajuan bantuan solidaritas LINTANG "
                                                           ),
                                                           _c("wajib-badge")
                                                         ],
@@ -2645,9 +2654,9 @@ var render = function() {
                                                             _vm.cleaveOption
                                                               .numeric,
                                                           placeholder:
-                                                            "Silahkan masukkan jumlah nilai pengajuan klaim LINTANG",
+                                                            "Silahkan masukkan jumlah nilai pengajuan bantuan solidaritas LINTANG",
                                                           "data-vv-as":
-                                                            "Nilai pengajuan klaim LINTANG"
+                                                            "Nilai pengajuan bantuan solidaritas LINTANG"
                                                         },
                                                         model: {
                                                           value:
@@ -4242,7 +4251,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header bg-white" }, [
-      _c("h5", { staticClass: "card-title" }, [_vm._v("Form Klaim")])
+      _c("h5", { staticClass: "card-title" }, [_vm._v("Form Bantuan Solidaritas ")])
     ])
   },
   function() {

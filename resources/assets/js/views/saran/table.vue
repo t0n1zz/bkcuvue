@@ -96,6 +96,7 @@
 					{
 						title: 'content',
 						name: 'content',
+						tipe: 'string',
 						sort: false,
 						hide: false,
 						disable: false,
@@ -155,8 +156,8 @@
 		},
 		methods: {
 			fetch(params){
-					this.$store.dispatch(this.kelas + '/index', params);
-					this.excelDownloadUrl = this.kelas + '/index';
+				this.$store.dispatch(this.kelas + '/index', params);
+				this.excelDownloadUrl = this.kelas;
 			},
 			selectedRow(item){
 				this.selectedItem = item;

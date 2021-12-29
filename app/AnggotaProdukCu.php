@@ -23,7 +23,7 @@ class AnggotaProdukCu extends BaseEloquent {
     ];
 
     protected $fillable = [
-        'no_rek','anggota_cu_id','anggota_cu_cu_id','produk_cu_id','saldo','tanggal','tanggal_target','lama_pinjaman','lama_sisa_pinjaman','tujuan','pengurang','dpd'
+        'no_rek','anggota_cu_id','anggota_cu_cu_id','produk_cu_id','saldo','tanggal','tanggal_target','lama_pinjaman','lama_sisa_pinjaman','tujuan','pengurang','dpd','kolekbi','tanggal_bayar_akhir'
     ];
 
     protected $filter = [
@@ -56,19 +56,19 @@ class AnggotaProdukCu extends BaseEloquent {
         return $this->hasMany('App\AnggotaProdukCuTransaksi','anggota_produk_cu_id','id');
     }
 
-    public function usia()
+    public function usia($tanggal_lahir)
     {
-        return \Carbon\Carbon::parse($this->tanggal)->age;
+        return \Carbon\Carbon::parse($this->tanggal)->diff(\Carbon\Carbon::parse($tanggal_lahir))->format('%y');
     }
 
     public function bulan()
     {
-        return \Carbon\Carbon::parse($this->tanggal)->months;
+        return \Carbon\Carbon::parse($this->tanggal)->diff(\Carbon\Carbon::now())->format('%m');
     }
 
-    public function hari()
+    public function hari($tanggal_masuk)
     {
-        return \Carbon\Carbon::parse($this->tanggal)->days;
+        return \Carbon\Carbon::parse($this->tanggal)->diff(\Carbon\Carbon::parse($tanggal_masuk))->format('%d');
     }
 
 }

@@ -6,8 +6,14 @@
 
 			<!-- button desktop -->
 			<template slot="button-desktop">
+
+				<!-- tambah -->
+				<button @click.prevent="modalOpen('tambah')" :to="{ name: kelas + 'Create'}" class="btn btn-light mb-1" v-if="currentUser.id_cu == 0">
+					<i class="icon-plus3"></i> Tambah
+				</button>
+
 				<!-- hapus -->
-				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['destroy_jalinan_iuran']" :disabled="!selectedItem.id">
+				<button @click.prevent="modalOpen('hapus')" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['destroy_jalinan_iuran']" :disabled="!selectedItem.id">
 					<i class="icon-bin2"></i> Hapus
 				</button>
 
@@ -19,15 +25,21 @@
 
 			<!-- button mobile -->
 			<template slot="button-mobile">
-					<!-- hapus -->
-					<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_jalinan_iuran']" :disabled="!selectedItem.id">
-						<i class="icon-bin2"></i> Hapus
-					</button>
 
-					<!-- detail -->
-					<button @click.prevent="detail(selectedItem.id)" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['index_jalinan_iuran']" :disabled="!selectedItem.id">
-						<i class="icon-stack2"></i> Detail
-					</button>
+				<!-- tambah -->
+				<button @click.prevent="modalOpen('tambah')" class="btn btn-light btn-block mb-1" v-if="currentUser.id_cu == 0">
+					<i class="icon-plus3"></i> Tambah
+				</button>
+
+				<!-- hapus -->
+				<button @click.prevent="modalOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_jalinan_iuran']" :disabled="!selectedItem.id">
+					<i class="icon-bin2"></i> Hapus
+				</button>
+
+				<!-- detail -->
+				<button @click.prevent="detail(selectedItem.id)" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['index_jalinan_iuran']" :disabled="!selectedItem.id">
+					<i class="icon-stack2"></i> Detail
+				</button>
 			</template>
 
 			<!-- item desktop -->
@@ -60,6 +72,16 @@
 					
 		<!-- modal -->
 		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" :content="modalContent" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+			<!-- title -->
+			<template slot="modal-title">
+				{{ modalTitle }}
+			</template>
+
+			<!-- status -->
+			<template slot="modal-body1">
+				<form-create :kelas="kelas" @tutup="modalTutup"></form-create>
+			</template>
+
 		</app-modal>
 
 	</div>
@@ -71,11 +93,14 @@
 	import DataViewer from '../../components/dataviewer2.vue';
 	import appModal from '../../components/modal';
 	import checkValue from '../../components/checkValue.vue';
+	import formCreate from "./formCreate.vue";
+
 	export default {
 		components: {
 			DataViewer,
 			appModal,
-			checkValue
+			checkValue,
+			formCreate,
 		},
 		props:['title','kelas'],
 		data() {
@@ -193,9 +218,9 @@
 			detail(id) {
 				this.$router.push({name: this.kelas + 'Detail', params: { id: id }});
 			},
-			modalConfirmOpen(state, isMobile, itemMobile) {
+			modalOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;
-				this.modalState = 'confirm-tutup'; 
+				
 				this.state = state;
 
 				if(isMobile){
@@ -206,6 +231,11 @@
 					this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.name + ' ini?';
 					this.modalButton = 'Iya, Hapus';
 					this.modalColor = '';
+					this.modalState = 'confirm-tutup'; 
+				}
+				if (state == 'tambah') {
+					this.modalTitle = 'Buat tagihan ' + this.title + ' ?';
+					this.modalState = 'normal1'; 
 				}
 			},
 			modalTutup() {

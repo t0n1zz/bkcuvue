@@ -56,6 +56,12 @@
 										<i :class="permission.icon"></i> &nbsp; {{ permission.name }}
 									</label>
 								</div>
+								<div class="form-check" v-else>
+									<label>
+										<input type="checkbox" class="form-check-input" :value="permission.key" v-model="hakForm" v-if="permission.type != 'empty'" disabled>
+										<i :class="permission.icon"></i> &nbsp; {{ permission.name }}
+									</label>
+								</div>
 							</div>
 							<div class="form-check" v-else>
 								<label style="cursor:pointer;">
@@ -66,7 +72,6 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
 
 		</div>
@@ -588,8 +593,8 @@
 						]
 					},
 					{
-						name: 'Klaim JALINAN',
-						keterangan: 'Mengelola data pengajuan klaim JALINAN dan mengatur tingkat aktivis yang melakukan verifikasi dimana 1 user hanya boleh memiliki 1 hak akses verifikasi',
+						name: 'Bantuan Solidaritas Jalinan',
+						keterangan: 'Mengelola data pengajuan bantuan solidaritas Jalinan dan mengatur tingkat aktivis yang melakukan verifikasi dimana 1 user hanya boleh memiliki 1 hak akses verifikasi',
 						icon: 'icon-accessibility2',
 						secondRow: true,
 						tipe: 'all',
@@ -599,7 +604,7 @@
 								icon: 'icon-eye',
 								tipe: 'all',
 								value: false,
-								group: 'Klaim JALINAN'
+								group: 'Bantuan Solidaritas Jalinan'
 							},
 							{
 								name: 'Tambah',
@@ -607,7 +612,7 @@
 								icon: 'icon-plus3',
 								tipe: 'all',
 								value: false,
-								group: 'Klaim JALINAN'
+								group: 'Bantuan Solidaritas Jalinan'
 							},
 							{
 								name: 'Ubah',
@@ -615,7 +620,7 @@
 								icon: 'icon-pencil',
 								tipe: 'all',
 								value: false,
-								group: 'Klaim JALINAN'
+								group: 'Bantuan Solidaritas Jalinan'
 							},
 							{
 								name: 'Hapus',
@@ -623,7 +628,7 @@
 								icon: 'icon-bin2',
 								tipe: 'all',
 								value: false,
-								group: 'Klaim JALINAN'
+								group: 'Bantuan Solidaritas Jalinan'
 							},
 							{
 								name: 'Pencairan',
@@ -631,7 +636,7 @@
 								icon: 'icon-square-down',
 								tipe: 'bkcu',
 								value: false,
-								group: 'Klaim JALINAN'
+								group: 'Bantuan Solidaritas Jalinan'
 							},
 							{
 								name: 'Laporan',
@@ -639,7 +644,7 @@
 								icon: 'icon-archive',
 								tipe: 'all',
 								value: false,
-								group: 'Klaim JALINAN'
+								group: 'Bantuan Solidaritas Jalinan'
 							},
 							{
 								name: 'Verifikasi Pengurus',
@@ -668,8 +673,8 @@
 						]
 					},
 					{
-						name: 'Iuran JALINAN',
-						keterangan: 'Mengelola data iuran JALINAN',
+						name: 'Iuran Jalinan',
+						keterangan: 'Mengelola data iuran Jalinan',
 						icon: 'icon-clipboard6',
 						secondRow: false,
 						tipe: 'all',
@@ -679,7 +684,7 @@
 								icon: 'icon-eye',
 								tipe: 'all',
 								value: false,
-								group: 'Iuran JALINAN'
+								group: 'Iuran Jalinan'
 							},
 							{
 								name: 'Tambah',
@@ -687,7 +692,7 @@
 								icon: 'icon-plus3',
 								tipe: 'all',
 								value: false,
-								group: 'Iuran JALINAN'
+								group: 'Iuran Jalinan'
 							},
 							{
 								name: 'Ubah',
@@ -695,7 +700,7 @@
 								icon: 'icon-pencil',
 								tipe: 'bkcu',
 								value: false,
-								group: 'Iuran JALINAN'
+								group: 'Iuran Jalinan'
 							},
 							{
 								name: 'Hapus',
@@ -703,7 +708,7 @@
 								icon: 'icon-bin2',
 								tipe: 'all',
 								value: false,
-								group: 'Iuran JALINAN'
+								group: 'Iuran Jalinan'
 							},
 						]
 					},

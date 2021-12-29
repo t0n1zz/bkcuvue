@@ -419,7 +419,7 @@ export default {
           filter: true
         },
         {
-          title: "Jmlh Simpanan JALINAN",
+          title: "Jmlh Simpanan Jalinan",
           name: "has_simpanan_jalinan_count",
           tipe: "numeric",
           sort: true,
@@ -428,7 +428,7 @@ export default {
           filter: true
         },
         {
-          title: "Jmlh Pinjaman JALINAN",
+          title: "Jmlh Pinjaman Jalinan",
           name: "has_pinjaman_jalinan_count",
           tipe: "numeric",
           sort: true,

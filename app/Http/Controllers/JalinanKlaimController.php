@@ -17,7 +17,7 @@ use App\Support\NotificationHelper;
 class JalinanKlaimController extends Controller{
 
 	protected $imagepath = 'images/jalinan/';
-	protected $message = "Klaim JALINAN";
+	protected $message = "Bantuan Solidaritas Jalinan";
 	protected $width = 300;
 	protected $height = 424;
 
@@ -84,7 +84,8 @@ class JalinanKlaimController extends Controller{
 		->join('cu', 'cu.id', '=', 'anggota_cu_cu.cu_id')
 		->select(DB::raw($this->queryCair()))
 		->whereNull('jalinan_klaim.deleted_at')
-		->where('tanggal_pencairan', $tanggal_pencairan)
+		->where('status_klaim', 4)
+		->whereBetween('tanggal_pencairan',[$tanggal_pencairan, $tanggal_pencairan])
 		->groupBy('anggota_cu_cu.cu_id')
 		->get();
 
@@ -954,6 +955,18 @@ class JalinanKlaimController extends Controller{
 		foreach($table_data as $t){
 			if($t->anggota_cu){
 				$t->anggota_cu->nik = $t->anggota_cu ? $t->anggota_cu->nik . " " : '';
+				
+				if($t->tipe == 'MENINGGAL'){
+					$t->usia_meninggal = \Carbon\Carbon::parse($t->tanggal_mati)->diff(\Carbon\Carbon::parse($t->anggota_cu->tanggal_lahir))->format('%d hr %m bln %y thn');
+				}else{
+					$t->usia_meninggal = '';
+				}
+	
+				if($t->tipe == 'CACAT'){
+					$t->usia_cacat = \Carbon\Carbon::parse($t->tanggal_mati)->diff(\Carbon\Carbon::parse($t->anggota_cu->tanggal_lahir))->format('%d hr %m bln %y thn');
+				}else{
+					$t->usia_cacat = '';
+				}
 			}
 
 			$tanggal_masuk = $t->anggota_cu_cu ? \Carbon\Carbon::parse($t->anggota_cu_cu->tanggal_masuk) : '';
@@ -962,6 +975,7 @@ class JalinanKlaimController extends Controller{
 			if($t->anggota_cu_cu){
 				$t->anggota_cu_cu->lama_menjadi_anggota = $t->anggota_cu_cu ? $tanggal_masuk->diffInMonths($tanggal_meninggal) : '';
 				$t->anggota_cu_cu->no_ba = $t->anggota_cu_cu ? $t->anggota_cu_cu->no_ba . " " : '';
+				$t->usia_masuk_cu = \Carbon\Carbon::parse($t->anggota_cu_cu->tanggal_masuk)->diff(\Carbon\Carbon::parse($t->anggota_cu->tanggal_lahir))->format('%d hr %m bln %y thn');
 			}
 		}
 
@@ -972,14 +986,27 @@ class JalinanKlaimController extends Controller{
 		foreach($table_data as $t){
 			if($t->anggota_cu){
 				$t->anggota_cu->nik = $t->anggota_cu ? $t->anggota_cu->nik . " " : '';
-			}
 
+				if($t->tipe == 'MENINGGAL'){
+					$t->usia_meninggal = \Carbon\Carbon::parse($t->tanggal_mati)->diff(\Carbon\Carbon::parse($t->anggota_cu->tanggal_lahir))->format('%d hr %m bln %y thn');
+				}else{
+					$t->usia_meninggal = '';
+				}
+	
+				if($t->tipe == 'CACAT'){
+					$t->usia_cacat = \Carbon\Carbon::parse($t->tanggal_mati)->diff(\Carbon\Carbon::parse($t->anggota_cu->tanggal_lahir))->format('%d hr %m bln %y thn');
+				}else{
+					$t->usia_cacat = '';
+				}
+			}
+			
 			$tanggal_masuk = \Carbon\Carbon::parse($t->anggota_cu_cu->tanggal_masuk);
 			$tanggal_meninggal = \Carbon\Carbon::parse($t->anggota_cu->tanggal_meninggal);
 
 			if($t->anggota_cu_cu){
 				$t->anggota_cu_cu->no_ba = $t->anggota_cu_cu ? $t->anggota_cu_cu->no_ba . " " : '';
 				$t->anggota_cu_cu->lama_menjadi_anggota = $t->anggota_cu_cu ? $tanggal_masuk->diffInMonths($tanggal_meninggal) : '';
+				$t->usia_masuk_cu = \Carbon\Carbon::parse($t->anggota_cu_cu->tanggal_masuk)->diff(\Carbon\Carbon::parse($t->anggota_cu->tanggal_lahir))->format('%d hr %m bln, %y thn');
 			}	
 		}
 
@@ -1128,7 +1155,7 @@ class JalinanKlaimController extends Controller{
 					return response()
 					->json([
 						'saved' => false,
-						'message' => 'Maaf anggota sudah pernah mengajukan klaim meninggal, silahkan periksa kembali'
+						'message' => 'Maaf anggota sudah pernah mengajukan bantuan solidaritas meninggal, silahkan periksa kembali'
 					]);	
 				}
 			}
@@ -1318,7 +1345,7 @@ class JalinanKlaimController extends Controller{
 			return response()
 			->json([
 				'saved' => true,
-				'message' => 'Anggota ini sudah pernah melakukan klaim JALINAN untuk tipe CACAT pada tanggal ' . $klaimLama->tanggal_mati . ' dengan nilai pengajuan lintang ' . number_format($klaimLama->lintang_diajukan,0,',','.'),
+				'message' => 'Anggota ini sudah pernah melakukan bantuan solidaritas Jalinan untuk tipe CACAT pada tanggal ' . $klaimLama->tanggal_mati . ' dengan nilai pengajuan lintang ' . number_format($klaimLama->lintang_diajukan,0,',','.'),
 				'model' => $klaimLama,
 			]);	
 		}else{
@@ -1343,7 +1370,7 @@ class JalinanKlaimController extends Controller{
 			return response()
 			->json([
 				'saved' => true,
-				'message' => 'Terdapat klaim dengan nama dan tanggal lahir yang sama'
+				'message' => 'Terdapat bantuan solidaritas dengan nama dan tanggal lahir yang sama'
 			]);	
 		}else{
 			return response()
@@ -1358,7 +1385,7 @@ class JalinanKlaimController extends Controller{
 	{
 		$kelas = JalinanKlaim::with('anggota_cu','anggota_cu.Villages','anggota_cu.Districts','anggota_cu.Regencies','anggota_cu.Provinces')
 		->where(function($query){
-			$query->where('keterangan_klaim','!=','Klaim Ditolak Karena Salah Memilih Anggota')->orWhere('keterangan_klaim', NULL);
+			$query->where('keterangan_klaim','!=','Bantuan Solidaritas Ditolak Karena Salah Memilih Anggota')->orWhere('keterangan_klaim', NULL);
 		})
 		->where('anggota_cu_cu_id', $cu)
 		->where('tipe', $tipe)->whereHas('anggota_cu', function($query) use ($nik){ 
@@ -1527,25 +1554,25 @@ class JalinanKlaimController extends Controller{
 		
 
 		if($kelas->status_klaim == 1){
-			$message = "Klaim JALINAN menunggu";
+			$message = "Bantuan Solidaritas Jalinan menunggu";
 			$kelas->keterangan_klaim = NULL;
 			$kelas->tunas_disetujui = NULL;
 			$kelas->lintang_disetujui = NULL;
 			$kelas->tanggal_pencairan = NULL;
 		}else if($kelas->status_klaim == 2){
-			$message = "Klaim JALINAN dokumen tidak lengkap";
+			$message = "Bantuan Solidaritas Jalinan dokumen tidak lengkap";
 			$kelas->keterangan_klaim = $request->keterangan_klaim;
 			$kelas->tunas_disetujui = NULL;
 			$kelas->lintang_disetujui = NULL;
 			$kelas->tanggal_pencairan = NULL;
 		}else if($kelas->status_klaim == 3){
-			$message = "Klaim JALINAN ditolak";
+			$message = "Bantuan Solidaritas Jalinan ditolak";
 			$kelas->keterangan_klaim = $request->keterangan_klaim;
 			$kelas->tunas_disetujui = NULL;
 			$kelas->lintang_disetujui = NULL;
 			$kelas->tanggal_pencairan = NULL;
 		}else if($kelas->status_klaim == 31){
-			$message = "Klaim JALINAN ditolak";
+			$message = "Bantuan Solidaritas Jalinan ditolak";
 			$kelas->status_klaim = 3;
 			$kelas->keterangan_klaim = $request->keterangan_klaim;
 			$kelas->tunas_disetujui = NULL;
@@ -1555,7 +1582,7 @@ class JalinanKlaimController extends Controller{
 		}else if($kelas->status_klaim == 4){
 			$lintang_disetujui = preg_replace('/[^\d-]+/', '', $request->lintang_disetujui);
 			$tunas_disetujui = preg_replace('/[^\d-]+/', '', $request->tunas_disetujui);
-			$message = "Klaim JALINAN disetujui";
+			$message = "Bantuan Solidaritas Jalinan disetujui";
 			$kelas->keterangan_klaim = $request->keterangan_klaim;
 			$kelas->tunas_disetujui = $tunas_disetujui;
 			$kelas->lintang_disetujui = $lintang_disetujui;
@@ -1586,7 +1613,7 @@ class JalinanKlaimController extends Controller{
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'No. Surat Klaim ini berhasil diubah'
+				'message' => 'No. Surat Bantuan Solidaritas ini berhasil diubah'
 			]);
 	}
 
@@ -1609,7 +1636,7 @@ class JalinanKlaimController extends Controller{
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Klaim JALINAN berhasil dikoreksi'
+				'message' => 'Bantuan Solidaritas Jalinan berhasil dikoreksi'
 			]);
 	}
 
@@ -1619,10 +1646,10 @@ class JalinanKlaimController extends Controller{
 
 		if($kelas->status_klaim == '5'){
 			$kelas->status_klaim = '6';
-			$message = "Klaim JALINAN selesai";
+			$message = "Bantuan Solidaritas Jalinan selesai";
 		}else{
 			$kelas->status_klaim = '5';
-			$message = "Klaim JALINAN batal diselesaikan";
+			$message = "Bantuan Solidaritas Jalinan batal diselesaikan";
 		}
 
 		$kelas->update();
@@ -1654,7 +1681,7 @@ class JalinanKlaimController extends Controller{
 
 		// TODO:: check how to make interval checking
 		// if(!empty($kelas->verifikasi_pengurus) && !empty($kelas->verifikasi_pengawas) && !empty($kelas->verifikasi_manajemen)){
-		// 	NotificationHelper::klaim_jalinan_verifikasi($klaim_jalinan,'menambah klaim JALINAN');
+		// 	NotificationHelper::klaim_jalinan_verifikasi($klaim_jalinan,'menambah bantuan solidaritas Jalinan');
 		// }
 	
 		return response()

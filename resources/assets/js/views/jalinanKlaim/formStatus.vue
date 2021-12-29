@@ -14,7 +14,7 @@
           <a href="#" class="nav-link" :class="{'active' : tabName == 'dokumen'}" @click.prevent="changeTab('dokumen')"><i class="icon-stack mr-2"></i> Dokumen</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link" :class="{'active' : tabName == 'history'}" @click.prevent="changeTab('history')"><i class="icon-copy3 mr-2"></i> Riwayat Klaim</a>
+          <a href="#" class="nav-link" :class="{'active' : tabName == 'history'}" @click.prevent="changeTab('history')"><i class="icon-copy3 mr-2"></i> Riwayat Bantuan Solidaritas </a>
         </li>
       </ul>
     </div>
@@ -42,11 +42,11 @@
             </div>
           </div>
 
-          <!-- klaim -->
+          <!-- bantuan solidaritas -->
           <div class="col-md-6">
             <div class="card">
               <div class="card-header bg-white">
-                <h5 class="card-title">Klaim JALINAN</h5>
+                <h5 class="card-title">Klaim Jalinan</h5>
               </div>
               <div class="card-body">
                 <div class="row">
@@ -95,7 +95,7 @@
                         <div class="media-body">
                           <h3 class="mb-0" ><check-value :value="selectedData.tunas_diajukan" valueType="currency"></check-value></h3>
                           <span class="text-uppercase">
-                            nilai pengajuan klaim tunas
+                            nilai pengajuan bantuan solidaritas tunas
                           </span>
                         </div>
                       </div>
@@ -108,7 +108,7 @@
                         <div class="media-body">
                           <h3 class="mb-0" ><check-value :value="selectedData.lintang_diajukan" valueType="currency"></check-value></h3>
                           <span class="text-uppercase">
-                            nilai pengajuan klaim lintang
+                            nilai pengajuan bantuan solidaritas lintang
                           </span>
                         </div>
                       </div>
@@ -128,7 +128,9 @@
             </h5>
             <div class="row" v-if="itemDataStat == 'success' && itemData.length > 0">
               <div class="col-sm-6 col-xl-3 cursor-pointer" v-for="(item, index) in itemData" :key="index" @click.prevent="fetchProdukSaldo(item)">
-                <div class="card card-body has-bg-image" :class="{'bg-success-400': item.produk_cu.tipe == 'Simpanan Pokok' || item.produk_cu.tipe == 'Simpanan Wajib' || item.produk_cu.tipe == 'Simpanan Non Saham','bg-indigo-400': item.produk_cu.tipe == 'Pinjaman Kapitalisasi'|| item.produk_cu.tipe == 'Pinjaman Umum' || item.produk_cu.tipe == 'Pinjaman Produktif'}" v-if="item.produk_cu">
+                <div class="card card-body has-bg-image" :class="{'bg-success-400': item.produk_cu.tipe == 'Simpanan Pokok' || item.produk_cu.tipe == 'Simpanan Wajib' || item.produk_cu.tipe == 'Simpanan Non Saham',
+                'bg-indigo-400': item.produk_cu.tipe == 'Pinjaman Kapitalisasi'|| item.produk_cu.tipe == 'Pinjaman Umum' || item.produk_cu.tipe == 'Pinjaman Produktif',
+                'bg-warning-400' : item.produk_cu.tipe == 'SIMPANAN' || 'PINJAMAN' || 'SIMPANAN BERJANGKA'}" v-if="item.produk_cu">
                   <div class="media mb-2">
                     <div class="media-body">
                       <h6 class="font-weight-semibold mb-0"><check-value :value="item.saldo" valueType="currency"></check-value></h6>
@@ -364,7 +366,9 @@
               <div class="card card-body bg-teal-400" >
                 <div class="media">
                   <div class="media-body">
-                    <h3 class="mb-0" >Usia Masuk CU: <span v-if="selectedData.anggota_cu_cu.tanggal_masuk" v-html="$options.filters.ageDiff(selectedData.anggota_cu_cu.tanggal_masuk,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
+                    <h3 class="mb-0" >Usia Masuk CU: 
+                       {{ selectedData.usia_masuk_cu }} 
+                    </h3>
                     <span>
                       Tanggal Masuk CU: <span v-if="selectedData.anggota_cu_cu.tanggal_masuk" v-html="$options.filters.date(selectedData.anggota_cu_cu.tanggal_masuk)"></span> 
                     </span>
@@ -378,13 +382,17 @@
                 <div class="media">
                   <div class="media-body">
                     <div v-if="selectedData.tipe == 'CACAT'">
-                      <h3 class="mb-0" >Usia Cacat: <span v-if="selectedData.anggota_cu" v-html="$options.filters.ageDiff(selectedData.anggota_cu.tanggal_cacat,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
+                      <h3 class="mb-0" >Usia Cacat: 
+                         {{ selectedData.usia_cacat }} 
+                      </h3>
                       <span>
                         Tanggal Cacat: <span v-if="selectedData.tanggal_mati" v-html="$options.filters.date(selectedData.tanggal_mati)"></span> 
                       </span>
                     </div>
                     <div v-else-if="selectedData.tipe == 'MENINGGAL'">
-                      <h3 class="mb-0" >Usia Meninggal: <span v-if="selectedData.anggota_cu_cu" v-html="$options.filters.ageDiff(selectedData.tanggal_mati,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
+                      <h3 class="mb-0" >Usia Meninggal: 
+                         {{ selectedData.usia_meninggal }} 
+                      </h3>
                       <span>
                         Tanggal Meninggal: <span v-if="selectedData.tanggal_mati" v-html="$options.filters.date(selectedData.tanggal_mati)"></span> 
                       </span>
@@ -419,7 +427,9 @@
               <div class="card card-body bg-teal-400" >
                 <div class="media">
                   <div class="media-body">
-                    <h3 class="mb-0" >Usia Masuk CU: <span v-if="selectedData.anggota_cu_cu.tanggal_masuk" v-html="$options.filters.ageDiff(selectedData.anggota_cu_cu.tanggal_masuk,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
+                    <h3 class="mb-0" >Usia Masuk CU: 
+                      {{ selectedData.usia_masuk_cu }} 
+                    </h3>
                     <span>
                       Tanggal Masuk CU: <span v-if="selectedData.anggota_cu_cu.tanggal_masuk" v-html="$options.filters.date(selectedData.anggota_cu_cu.tanggal_masuk)"></span> 
                     </span>
@@ -431,13 +441,17 @@
                 <div class="media">
                   <div class="media-body">
                     <div v-if="selectedData.tipe == 'CACAT'">
-                      <h3 class="mb-0" >Usia Cacat: <span v-if="selectedData.anggota_cu" v-html="$options.filters.ageDiff(selectedData.anggota_cu.tanggal_cacat,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
+                      <h3 class="mb-0" >Usia Cacat:
+                        {{ selectedData.usia_cacat }} 
+                      </h3>
                       <span>
                         Tanggal Cacat: <span v-if="selectedData.anggota_cu.tanggal_cacat" v-html="$options.filters.date(selectedData.anggota_cu.tanggal_cacat)"></span> 
                       </span>
                     </div>
                     <div v-else-if="selectedData.tipe == 'MENINGGAL'">
-                      <h3 class="mb-0" >Usia Meninggal: <span v-if="selectedData.anggota_cu_cu" v-html="$options.filters.ageDiff(selectedData.anggota_cu.tanggal_meninggal,selectedData.anggota_cu.tanggal_lahir)"></span></h3>
+                      <h3 class="mb-0" >Usia Meninggal: 
+                        {{ selectedData.usia_meninggal }} 
+                      </h3>
                       <span>
                         Tanggal Meninggal: <span v-if="selectedData.anggota_cu.tanggal_meninggal" v-html="$options.filters.date(selectedData.anggota_cu.tanggal_meninggal)"></span> 
                       </span>
@@ -456,7 +470,7 @@
                   <div class="form-group">
 
                     <!-- title -->
-                    <h5>Status Klaim:</h5>
+                    <h5>Status Bantuan Solidaritas :</h5>
 
                     <!-- select -->
                     <select name="status" data-width="100%" class="form-control" v-model="formStatus.status" @change="changeStatus($event.target.value)">
@@ -500,7 +514,7 @@
 
                     <!-- title -->
                     <h5 :class="{ 'text-danger' : errors.has('formStatus.tunas_disetujui')}">
-                  <i class="icon-cross2" v-if="errors.has('formStatus.tunas_disetujui')"></i> Nilai pengajuan klaim TUNAS yang disetujui</h5>
+                  <i class="icon-cross2" v-if="errors.has('formStatus.tunas_disetujui')"></i> Nilai pengajuan bantuan solidaritas TUNAS yang disetujui</h5>
 
                     <div class="card card-body" :class="{'bg-blue-400': selisihTunas == 0, 'bg-danger-400': selisihTunas < 0, 'bg-brown-400': selisihTunas > 0}">
                       <div class="media">
@@ -509,7 +523,7 @@
                             <i v-if="selisihTunas > 0" class="icon-plus3"></i>
                             <check-value :value="selisihTunas" valueType="currency"></check-value> 	
                           </h3>
-                          <span class="text-uppercase font-size-xs">Selisih Tunas yang di klaim dengan yang disetujui</span>
+                          <span class="text-uppercase font-size-xs">Selisih Tunas yang di bantuan solidaritas dengan yang disetujui</span>
                         </div>
                       </div>
                     </div>
@@ -521,8 +535,8 @@
                       class="form-control" 
                       :options="cleaveOption.numeric"
                       :readonly="tipe == 'selesai'"
-                      placeholder="Silahkan masukkan jumlah nilai pengajuan klaim TUNAS yang disetujui"
-                      v-validate="'required'" data-vv-as="Nilai pengajuan klaim TUNAS yang disetujui"></cleave>
+                      placeholder="Silahkan masukkan jumlah nilai pengajuan bantuan solidaritas TUNAS yang disetujui"
+                      v-validate="'required'" data-vv-as="Nilai pengajuan bantuan solidaritas TUNAS yang disetujui"></cleave>
 
                     <!-- error message -->
                     <small class="text-muted text-danger" v-if="errors.has('formStatus.tunas_disetujui')">
@@ -539,7 +553,7 @@
                   <div class="form-group" :class="{'has-error' : errors.has('formStatus.lintang_disetujui')}">
                     <!-- title -->
                     <h5 :class="{ 'text-danger' : errors.has('formStatus.lintang_disetujui')}">
-                    <i class="icon-cross2" v-if="errors.has('formStatus.lintang_disetujui')"></i>Nilai pengajuan klaim LINTANG yang disetujui</h5>
+                    <i class="icon-cross2" v-if="errors.has('formStatus.lintang_disetujui')"></i>Nilai pengajuan bantuan solidaritas LINTANG yang disetujui</h5>
 
                     <div class="card card-body" :class="{'bg-blue-400': selisihLintang == 0, 'bg-danger-400': selisihLintang < 0, 'bg-brown-400': selisihLintang > 0}">
                       <div class="media">
@@ -548,7 +562,7 @@
                             <i v-if="selisihLintang > 0" class="icon-plus3"></i>
                             <check-value :value="selisihLintang" valueType="currency"></check-value> 	
                           </h3>
-                          <span class="text-uppercase font-size-xs">Selisih Lintang yang di klaim dengan yang disetujui</span>
+                          <span class="text-uppercase font-size-xs">Selisih Lintang yang di bantuan solidaritas dengan yang disetujui</span>
                         </div>
                       </div>
                     </div>
@@ -560,8 +574,8 @@
                       class="form-control" 
                       :options="cleaveOption.numeric"
                       :readonly="tipe == 'selesai'"
-                      placeholder="Silahkan masukkan jumlah nilai pengajuan klaim LINTANG yang disetujui"
-                      v-validate="'required'" data-vv-as="Nilai pengajuan klaim LINTANG yang disetujui"></cleave>
+                      placeholder="Silahkan masukkan jumlah nilai pengajuan bantuan solidaritas LINTANG yang disetujui"
+                      v-validate="'required'" data-vv-as="Nilai pengajuan bantuan solidaritas LINTANG yang disetujui"></cleave>
 
                     <!-- error message -->
                     <small class="text-muted text-danger" v-if="errors.has('formStatus.lintang_disetujui')">
@@ -631,12 +645,12 @@
         <!-- info -->
         <div v-if="tipe == 'verifikasi'">
           <div class="alert bg-info alert-styled-left">
-            <h6>Dengan menekan tombol verifikasi dibawah maka anda telah melakukan pemeriksaan dan menyetujui pengajuan klaim jalinan atas nama <b><u>{{ selectedData.anggota_cu.name }}</u></b> dan segala informasi yang ada dan dikirmkan adalah benar sesuai dengan peraturan.</h6>
+            <h6>Dengan menekan tombol verifikasi dibawah maka anda telah melakukan pemeriksaan dan menyetujui pengajuan bantuan solidaritas jalinan atas nama <b><u>{{ selectedData.anggota_cu.name }}</u></b> dan segala informasi yang ada dan dikirmkan adalah benar sesuai dengan peraturan.</h6>
           </div>
         </div>
         <div v-else-if="tipe == 'selesai'">
           <div class="alert bg-info alert-styled-left">
-            <h6>Dengan menekan tombol selesai dibawah maka anda telah melakukan penyerahan klaim jalinan atas nama <b><u>{{ selectedData.anggota_cu.name }}</u></b> kepada ahli waris atau yang diwakilkan dan segala informasi yang ada dan dikirmkan adalah benar sesuai dengan peraturan.</h6>
+            <h6>Dengan menekan tombol selesai dibawah maka anda telah melakukan penyerahan bantuan solidaritas jalinan atas nama <b><u>{{ selectedData.anggota_cu.name }}</u></b> kepada ahli waris atau yang diwakilkan dan segala informasi yang ada dan dikirmkan adalah benar sesuai dengan peraturan.</h6>
           </div>
         </div>
         <span v-else-if="tipe == 'lihat'"></span>
@@ -864,7 +878,7 @@
         <transition enter-active-class="animated fadeIn" mode="out-in">
           <div v-show="tabNameDokumen == ''">
             <div class="card card-body">
-              <h5>Silahkan memilih dokumen yang ingin ditampilkan dengan menekan tombol diatas. Jika tidak terdapat tombol maka berarti klaim ini tidak memiliki dokumen yang bisa dilihat.</h5>
+              <h5>Silahkan memilih dokumen yang ingin ditampilkan dengan menekan tombol diatas. Jika tidak terdapat tombol maka berarti bantuan solidaritas ini tidak memiliki dokumen yang bisa dilihat.</h5>
             </div>
           </div>    
         </transition>

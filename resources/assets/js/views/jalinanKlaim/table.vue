@@ -14,7 +14,7 @@
 
         <!-- ubah-->
         <button @click.prevent="ubahData(selectedItem.anggota_cu.nik, selectedItem.anggota_cu_cu_id, selectedItem.tipe)" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status == 0" :disabled="!selectedItem.anggota_cu">
-          <i class="icon-pencil5"></i> Ubah Klaim
+          <i class="icon-pencil5"></i> Ubah Bantuan Solidaritas 
         </button>
 
         <!-- ubah identitas -->
@@ -42,9 +42,9 @@
           <i class="icon-pencil5"></i> Ubah No. Surat
         </button>
 
-        <!-- status klaim -->
+        <!-- status bantuan solidaritas -->
         <button @click.prevent="modalOpen('lihat')" class="btn btn-light btn-icon mb-1" :disabled="!selectedItem.id">
-          <i class="icon-file-eye"></i> Lihat Klaim
+          <i class="icon-file-eye"></i> Lihat Bantuan Solidaritas 
         </button>
 
         <!-- koreksi-->
@@ -52,9 +52,9 @@
           <i class="icon-paint-format"></i> Koreksi
         </button>
 
-        <!-- status klaim -->
+        <!-- status bantuan solidaritas -->
         <button @click.prevent="modalOpen('analisis')" class="btn btn-light btn-icon mb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_jalinan_klaim'] && status != '' && status != 5 && status != 6 && status != 7"  :disabled="!selectedItem.id">
-          <i class="icon-loop4"></i> Analisis Klaim
+          <i class="icon-loop4"></i> Analisis Bantuan Solidaritas 
         </button>
 
         <!-- periksa koreksi-->
@@ -83,10 +83,10 @@
         <button @click.prevent="modalOpen('selesai')" class="btn btn-light btn-icon mb-1" v-if="currentUser.id_cu != 0 && currentUser.can && currentUser.can['update_jalinan_klaim'] && (status == 5 || status == 6)"
           :disabled="!selectedItem.id">
           <span v-if="status == '5'">
-            <i class="icon-checkmark4"></i> Selesai Klaim
+            <i class="icon-checkmark4"></i> Selesai Bantuan Solidaritas 
           </span>
           <span v-else>
-            <i class="icon-blocked"></i> Batal Selesai Klaim
+            <i class="icon-blocked"></i> Batal Selesai Bantuan Solidaritas 
           </span>
         </button>
 
@@ -127,7 +127,7 @@
         <!-- ubah-->
         <button @click.prevent="ubahData(selectedItem.anggota_cu.nik, selectedItem.anggota_cu_cu_id, selectedItem.tipe)" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.can && currentUser.can['update_jalinan_klaim'] && status == 0"
           :disabled="!selectedItem.anggota_cu">
-          <i class="icon-pencil5"></i> Ubah Klaim
+          <i class="icon-pencil5"></i> Ubah Bantuan Solidaritas 
         </button>
 
         <!-- ubah identitas -->
@@ -165,9 +165,9 @@
           <i class="icon-paint-format"></i> Koreksi
         </button>
 
-        <!-- status klaim -->
+        <!-- status bantuan solidaritas -->
         <button @click.prevent="modalOpen('analisis')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_jalinan_klaim'] && status != '' && status != 5 && status != 6 && status != 7"  :disabled="!selectedItem.id">
-          <i class="icon-loop4"></i> Analisis Klaim
+          <i class="icon-loop4"></i> Analisis Bantuan Solidaritas 
         </button>
 
         <!-- periksa koreksi-->
@@ -197,10 +197,10 @@
         <button @click.prevent="modalOpen('selesai')" class="btn btn-light btn-icon btn-block pb-1" v-if="currentUser.id_cu != 0 &&currentUser.can && currentUser.can['update_jalinan_klaim'] && ( status == 5 || status == 6)"
           :disabled="!selectedItem.id">
           <span v-if="status == '5'">
-            <i class="icon-checkmark4"></i> Selesai Klaim
+            <i class="icon-checkmark4"></i> Selesai Bantuan Solidaritas 
           </span>
           <span v-else>
-            <i class="icon-blocked"></i> Batal Selesai Klaim
+            <i class="icon-blocked"></i> Batal Selesai Bantuan Solidaritas 
           </span>
         </button>
 
@@ -301,11 +301,11 @@
           <td v-if="!columnData[20].hide" v-html="$options.filters.date(props.item.anggota_cu_cu? props.item.anggota_cu_cu.tanggal_masuk : '')" class="text-nowrap"></td>
           <td v-if="!columnData[21].hide && !columnData[21].disable" v-html="$options.filters.date(props.item.tanggal_pencairan)" class="text-nowrap"></td>
           <td v-if="!columnData[22].hide" class="text-nowrap">
-            <check-value :value="props.item.anggota_cu.usia_meninggal" v-if="props.item.anggota_cu"></check-value>
+            <check-value :value="props.item.usia_meninggal" v-if="props.item.anggota_cu"></check-value>
             <span v-else>-</span>
           </td>
           <td v-if="!columnData[23].hide" class="text-nowrap">
-            <check-value :value="props.item.anggota_cu.usia_cacat" v-if="props.item.anggota_cu"></check-value>
+            <check-value :value="props.item.usia_cacat" v-if="props.item.anggota_cu"></check-value>
             <span v-else>-</span>
           </td>
           <td v-if="!columnData[24].hide" class="text-nowrap">
@@ -313,7 +313,10 @@
             <span v-else>-</span>
           </td>
           <td v-if="!columnData[25].hide">
-						<check-value :value="props.item.pinjaman_anggota_terakhir.produk_cu.name" v-if="props.item.pinjaman_anggota_terakhir"></check-value>
+            <span v-if="props.item.pinjaman_anggota_terakhir">
+						  <check-value :value="props.item.pinjaman_anggota_terakhir.produk_cu.name" v-if="props.item.pinjaman_anggota_terakhir.produk_cu"></check-value>
+              <span v-else>-</span>
+            </span>
             <span v-else>-</span>
 					</td>
           <td v-if="!columnData[26].hide">
@@ -915,7 +918,7 @@
           this.modalSize = "''";
         }else if(state == "lihat"){
           this.modalState = 'normal1';
-					this.modalTitle = 'Lihat Klaim ' + this.title + ' atas nama: ' + this.selectedItem.anggota_cu.name;
+					this.modalTitle = 'Lihat Bantuan Solidaritas ' + this.title + ' atas nama: ' + this.selectedItem.anggota_cu.name;
           this.modalColor = 'bg-primary';
           this.modalSize = "modal-full";
         }else if(state == "analisis"){

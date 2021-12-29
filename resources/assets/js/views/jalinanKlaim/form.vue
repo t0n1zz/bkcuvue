@@ -100,7 +100,7 @@
 							<div v-if="($route.meta.mode == 'create' || $route.meta.mode == 'createNIK') && formStat == 'success' && form.id">
 
 								<div class="alert bg-warning text-white alert-styled-left">
-									<span class="font-weight-semibold">Anggota ini sudah mengajukan Klaim JALINAN  <b>pada tanggal {{ $options.filters.date(form.created_at) }}</b> dengan <b>status {{ $options.filters.statusJalinan(form.status_klaim) }}</b>, mohon periksa kembali.
+									<span class="font-weight-semibold">Anggota ini sudah mengajukan Bantuan Solidaritas Jalinan  <b>pada tanggal {{ $options.filters.date(form.created_at) }}</b> dengan <b>status {{ $options.filters.statusJalinan(form.status_klaim) }}</b>, mohon periksa kembali.
 									</span>
 								</div>
 
@@ -113,7 +113,7 @@
 							<div v-else>
 								<div v-if="formStat == 'success'">
 									
-									<!-- ada klaim lama cacat -->
+									<!-- ada bantuan solidaritas lama cacat -->
 									<!-- <div class="alert bg-info text-white alert-styled-left" v-if="message">
 										<span class="font-weight-semibold">{{ message }}</span>
 							    </div> -->
@@ -160,10 +160,10 @@
 										</data-table>
 									</div>
 
-									<!-- form klaim jalinan -->
+									<!-- form bantuan solidaritas jalinan -->
 									<div class="card">
 										<div class="card-header bg-white">
-											<h5 class="card-title">Form Klaim</h5>
+											<h5 class="card-title">Form Bantuan Solidaritas </h5>
 										</div>
 										<div class="card-body">
 											<div class="row">
@@ -266,7 +266,7 @@
 													<div class="form-group" :class="{'has-error' : errors.has('form.tunas_diajukan')}">
 
 														<!-- title -->
-														<h5>Nilai pengajuan klaim TUNAS <wajib-badge></wajib-badge></h5>
+														<h5>Nilai pengajuan bantuan solidaritas TUNAS <wajib-badge></wajib-badge></h5>
 
 														<!-- text -->
 														<cleave 
@@ -274,8 +274,8 @@
 															v-model="form.tunas_diajukan" 
 															class="form-control" 
 															:options="cleaveOption.numeric"
-															placeholder="Silahkan masukkan jumlah nilai pengajuan klaim TUNAS"
-															v-validate="'required'" data-vv-as="Nilai pengajuan klaim TUNAS"></cleave>
+															placeholder="Silahkan masukkan jumlah nilai pengajuan bantuan solidaritas TUNAS"
+															v-validate="'required'" data-vv-as="Nilai pengajuan bantuan solidaritas TUNAS"></cleave>
 
 														<!-- error message -->
 														<small class="text-muted text-danger" v-if="errors.has('form.tunas_diajukan')">
@@ -290,7 +290,7 @@
 													<div class="form-group" :class="{'has-error' : errors.has('form.lintang_diajukan')}">
 
 														<!-- title -->
-														<h5>Nilai pengajuan klaim LINTANG <wajib-badge></wajib-badge></h5>
+														<h5>Nilai pengajuan bantuan solidaritas LINTANG <wajib-badge></wajib-badge></h5>
 
 														<!-- text -->
 														<cleave 
@@ -298,8 +298,8 @@
 															v-model="form.lintang_diajukan" 
 															class="form-control" 
 															:options="cleaveOption.numeric"
-															placeholder="Silahkan masukkan jumlah nilai pengajuan klaim LINTANG"
-															v-validate="'required'" data-vv-as="Nilai pengajuan klaim LINTANG"></cleave>
+															placeholder="Silahkan masukkan jumlah nilai pengajuan bantuan solidaritas LINTANG"
+															v-validate="'required'" data-vv-as="Nilai pengajuan bantuan solidaritas LINTANG"></cleave>
 
 														<!-- error message -->
 														<small class="text-muted text-danger" v-if="errors.has('form.lintang_diajukan')">
@@ -645,10 +645,10 @@
 		},
 		data() {
 			return {
-				title: 'Tambah Klaim JALINAN',
-				titleDesc: 'Menambah klaim JALINAN',
+				title: 'Tambah Bantuan Solidaritas Jalinan',
+				titleDesc: 'Menambah bantuan solidaritas Jalinan',
 				titleIcon: 'icon-plus3',
-				level2Title: 'Klaim JALINAN',
+				level2Title: 'Bantuan Solidaritas Jalinan',
 				kelas: 'jalinanKlaim',
 				isEdit: false,
 				nik: '',
@@ -779,20 +779,20 @@
 				this.resetData();
 
 				if(this.$route.meta.mode == 'edit'){
-					this.title = 'Ubah Klaim JALINAN';
-					this.titleDesc = 'Mengubah klaim JALINAN';
+					this.title = 'Ubah Bantuan Solidaritas Jalinan';
+					this.titleDesc = 'Mengubah bantuan solidaritas Jalinan';
 					this.titleIcon = 'icon-pencil5';
 
 					this.cariData(this.$route.params.nik);
 				} else if(this.$route.meta.mode == 'koreksi'){
-					this.title = 'Koreksi Klaim JALINAN';
-					this.titleDesc = 'Mengoreksi klaim JALINAN';
+					this.title = 'Koreksi Bantuan Solidaritas Jalinan';
+					this.titleDesc = 'Mengoreksi bantuan solidaritas Jalinan';
 					this.titleIcon = 'icon-pencil5';
 
 					this.cariData(this.$route.params.nik);
 				} else {
-					this.title = 'Tambah Klaim JALINAN';
-					this.titleDesc = 'Menambah Klaim JALINAN';
+					this.title = 'Tambah Bantuan Solidaritas Jalinan';
+					this.titleDesc = 'Menambah Bantuan Solidaritas Jalinan';
 					this.titleIcon = 'icon-plus3';
 					this.isEdit = false;
 					

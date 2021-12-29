@@ -197,7 +197,7 @@ Vue.filter('age', function(dateString) {
 	{
 			age--;
 	}
-	return age;
+	return Math.abs(m) + ' bln ' + age + ' thn';
 });
 Vue.filter('ageDiff', function(date1, date2) {
 	var today = new Date(date1);
@@ -208,7 +208,7 @@ Vue.filter('ageDiff', function(date1, date2) {
 	{
 			age--;
 	}
-	return age;
+	return Math.abs(m) + ' bln ' + age + ' thn';
 });
 
 Vue.filter('statusJalinan', function(value){

@@ -10,14 +10,37 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.4.3 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#v343">Version 3.4.3<small class="text-muted"> / 9 Oktober 2021</small></a> </h5>
+                </div>
+
+                <div id="v343" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi menambahkan fitur migrasi data anggota dari ESCETE ke SIMO dan peningkatan pada perhitungan iuran Jalinan
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan fitur upload file CSV data anggota dari ESCETE</li>
+                      <li>Peningkatan metode perhitungan untuk iuran Jalinan</li>
+                      <li>Perbaikan bug tampilan pada bagian Diklat dan Pertemuan</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.4.3 -->
+
               <!-- Version 3.4.2 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#v342">Version 3.4.2<small class="text-muted"> / 17 Juli 2021</small></a> </h5>
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v342">Version 3.4.2<small class="text-muted"> / 17 Juli 2021</small></a> </h5>
                 </div>
 
-                <div id="v342" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="v342" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi menambahkan fitur arsip yaitu dokumen digital
                     <br/><br/>
@@ -42,12 +65,12 @@
 
                 <div id="v341" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi menambahkan informasi riwayat klaim pada klain JALINAN, informasi tambahan pada aktivis seperti penghargaan, pelanggaran dan lainnya, dan memperbaiki bug di voting dan pemilihan
+                    <p class="mb-3">Update versi menambahkan informasi riwayat bantuan solidaritas pada klain Jalinan, informasi tambahan pada aktivis seperti penghargaan, pelanggaran dan lainnya, dan memperbaiki bug di voting dan pemilihan
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
-                      <li>Penambahan fitur untuk bisa melihat riwayat klaim pada klaim JALINAN</li>
+                      <li>Penambahan fitur untuk bisa melihat riwayat bantuan solidaritas pada bantuan solidaritas Jalinan</li>
                       <li>Penambahan fitur informasi tambahan pada riwayat aktivis yang bisa mencakup informasi penghargaan, pelanggaran, dan lainnya</li>
                       <li>Perbaikan bug jumlah karakter untuk judul/pertanyaan pada voting dan pemilihan</li>
                       <li>Perbaikan bug tampilan pada pertanyaan</li>
@@ -124,7 +147,7 @@
                       <li>Perbaikan pada Aktivis yang menampilkan informasi pekerjaan aktif yang salah pada aktivis yang juga menjabat di PUSKOPCUINA</li>
                       <li>Perbaikan bug pada Aktivis yang menampilkan label kosong mengenai nama ibu, nama ahli waris dan kontak ahli waris</li>
                       <li>Perbaikan pada DIKLAT yang memungkinkan CU mendaftarkan peserta walaupun sudah mencapai maksimal peserta keseluruhan</li>
-                      <li>Perbaikan pada Klaim JALINAN pada koreksi dokumen tidak lengkap</li>
+                      <li>Perbaikan pada Bantuan Solidaritas Jalinan pada koreksi dokumen tidak lengkap</li>
                     </ul>
                   </div>
                 </div>
@@ -140,16 +163,16 @@
 
                 <div id="v337" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi menawarkan perbaikan pada klaim JALINAN dan menawarkan fitur baru yaitu pemilihan pengurus dan pengawas
+                    <p class="mb-3">Update versi menawarkan perbaikan pada bantuan solidaritas Jalinan dan menawarkan fitur baru yaitu pemilihan pengurus dan pengawas
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
                       <li>Penambahan fitur untuk melakukan pemilihan untuk aktivis CU yang bisa digunakan untuk melaksanakan pemilihan online untuk pengurus dan pengawas</li>
-                      <li>Penambahan fitur untuk melihat informasi klaim JALINAN secara detail bagi CU</li>
-                      <li>Penambahan fitur pada lihat klaim dan analisis klaim untuk bagian dokumen hanya menampilkan dokumen yang dilampirkan/diupload saja. Apabila tidak ada dokumen maka tombol untuk melihat dokumen tersebut tidak muncul</li>
-                      <li>Penambahan fitur pada analisis klaim yaitu melakukan penolakan klaim terhadap klaim yang salah pilih atau salah input dan berhasil masuk sampai ke bagian menunggu dari proses klaim JALINAN</li>
-                      <li>Perbaikan bug pada Klaim JALINAN</li>
+                      <li>Penambahan fitur untuk melihat informasi bantuan solidaritas Jalinan secara detail bagi CU</li>
+                      <li>Penambahan fitur pada lihat bantuan solidaritas dan analisis bantuan solidaritas untuk bagian dokumen hanya menampilkan dokumen yang dilampirkan/diupload saja. Apabila tidak ada dokumen maka tombol untuk melihat dokumen tersebut tidak muncul</li>
+                      <li>Penambahan fitur pada analisis bantuan solidaritas yaitu melakukan penolakan bantuan solidaritas terhadap bantuan solidaritas yang salah pilih atau salah input dan berhasil masuk sampai ke bagian menunggu dari proses bantuan solidaritas Jalinan</li>
+                      <li>Perbaikan bug pada Bantuan Solidaritas Jalinan</li>
                       <li>Perbaikan bug pada hak akses</li>
                       <li>Perbaikan bug tampilan dibeberapa bagian</li>
                     </ul>
@@ -242,12 +265,12 @@
 
                 <div id="v333" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi menawarkan perbaikan dan peningkatan pada klaim JALINAN, notifikasi, dan anggota CU
+                    <p class="mb-3">Update versi menawarkan perbaikan dan peningkatan pada bantuan solidaritas Jalinan, notifikasi, dan anggota CU
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
-                      <li>Penambahan upload foto buku simpanan, buku pinjaman anggota CU, dan surat permohonan menjadi anggota yang akan melakukan Klaim JALINAN</li>
+                      <li>Penambahan upload foto buku simpanan, buku pinjaman anggota CU, dan surat permohonan menjadi anggota yang akan melakukan Bantuan Solidaritas Jalinan</li>
                       <li>Penambahan fitur untuk mutasi anggota CU</li>
                       <li>Peningkatan sistem notifikasi yang menampilkan notifikasi secara real time</li>
                       <li>Peningkatan sistem upload anggota CU dengan excel</li>
@@ -275,8 +298,8 @@
                       <li>Peningkatan dalam kecepatan untuk menyalurkan update versi SIMO kepada para pengguna</li>
                       <li>Peningkatan pada fitur upload data anggota cu</li>
                       <li>Penambahan kategori pekerjaan di aktivis yaitu kolektor dan kelompok inti</li>
-                      <li>Penambahan informasi mutasi transaksi untuk simpanan dan pinjaman anggota cu pada form analisa klaim JALINAN</li>
-                      <li>Perubahan pada format surat untuk JALINAN</li>
+                      <li>Penambahan informasi mutasi transaksi untuk simpanan dan pinjaman anggota cu pada form analisa bantuan solidaritas Jalinan</li>
+                      <li>Perubahan pada format surat untuk Jalinan</li>
                       <li>Perbaikan pada bagian self assesment agar ketika BKCU melakukan penilaian maka CU tidak dapat melakukan pengubahan data lagi</li>
                       <li>Perbaikan bug pada beberapa tempat</li>
                     </ul>
@@ -384,7 +407,7 @@
                       <li>Meningkatkan pengalaman penggunaan notifikasi dan kecepatan akses notifikasi</li>
                       <li>Menambahkan dukungan notifikasi pada bagian monitoring</li>
                       <li>Menambahkan dukungan notifikasi pada bagian self assesment access</li>
-                      <li>Menambahkan dukungan notifikasi pada bagian klaim JALINAN</li>
+                      <li>Menambahkan dukungan notifikasi pada bagian bantuan solidaritas Jalinan</li>
                       <li>Menambahkan dukungan notifikasi pada bagian pertemuan BKCU</li>
                       <li>Memperbaiki bug tampilan pada bagian Diklat BKCU</li>
                       <li>Memperbaiki bug pada saat mengubah data panitia/fasilitator pada bagian Diklat BKCU</li>
@@ -459,15 +482,15 @@
 
                 <div id="v325" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi ini meningkatkan dan memperbaiki laporan klaim JALINAN
+                    <p class="mb-3">Update versi ini meningkatkan dan memperbaiki laporan bantuan solidaritas Jalinan
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
-                      <li>Memperbaiki laporan klaim JALINAN</li>
-                      <li>Merubah penamaan menu laporan klaim JALINAN</li>
-                      <li>Merubah cara pencarian laporan klaim JALINAN menjadi lebih mendetail dan fleksibel</li>
-                      <li>Menambahkan fitur untuk mengubah identitas dan produk anggota CU yang mengajukan klaim JALINAN yang hanya bisa dilakukan oleh staf JALINAN PUSKOPCUINA guna memperbaiki kesalahan penginputan data anggota CU</li>
+                      <li>Memperbaiki laporan bantuan solidaritas Jalinan</li>
+                      <li>Merubah penamaan menu laporan bantuan solidaritas Jalinan</li>
+                      <li>Merubah cara pencarian laporan bantuan solidaritas Jalinan menjadi lebih mendetail dan fleksibel</li>
+                      <li>Menambahkan fitur untuk mengubah identitas dan produk anggota CU yang mengajukan bantuan solidaritas Jalinan yang hanya bisa dilakukan oleh staf Jalinan PUSKOPCUINA guna memperbaiki kesalahan penginputan data anggota CU</li>
                       <li>Perbaikan bug pada perhitungan P.E.A.R.L.S.</li>
                       <li>Perbaikan bug pada tampilan peserta di Diklat BKCU</li>
                     </ul>
@@ -486,16 +509,16 @@
 
                 <div id="v324" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi ini merubah cara pengisian self assesment ACCESS Branding dan perubahan laporan pada Klaim JALINAN
+                    <p class="mb-3">Update versi ini merubah cara pengisian self assesment ACCESS Branding dan perubahan laporan pada Bantuan Solidaritas Jalinan
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
                       <li>Merubah cara pengisian self assesment ACCESS Branding dimana pengisian periode harus sesuai dengan periode yang sudah ada pada laporan perkembangan CU</li>
                       <li>Menyambungkan data self assesment ACCESS Branding dengan laporan perkembangan CU untuk informasi PEARLS</li>
-                      <li>Merubah laporan klaim JALINAN pencairan per-cu menjadi laporan klaim berdasarkan status yang akan menampilkan laporan klaim JALINAN sesuai dengan status klaim pada saat tersebut </li>
-                      <li>Perbaikan bug pada penambahan klaim JALINAN</li>
-                      <li>Perbaikan bug pada koreksi Klaim JALINAN</li>
+                      <li>Merubah laporan bantuan solidaritas Jalinan pencairan per-cu menjadi laporan bantuan solidaritas berdasarkan status yang akan menampilkan laporan bantuan solidaritas Jalinan sesuai dengan status bantuan solidaritas pada saat tersebut </li>
+                      <li>Perbaikan bug pada penambahan bantuan solidaritas Jalinan</li>
+                      <li>Perbaikan bug pada koreksi Bantuan Solidaritas Jalinan</li>
                       <li>Perbaikan bug pada self assesment ACCESS Branding</li>
                       <li>Perbaikan bug pada indikator PEARLS di R7</li>
                       <li>Perbaikan bug pada tabel indikator PEARLS di dashboard</li>
@@ -515,17 +538,17 @@
 
                 <div id="v323" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi ini menambahkan self assesment ACCESS Branding, catalog diklat di website publik BKCU Kalimantan dan koreksi klaim JALINAN
+                    <p class="mb-3">Update versi ini menambahkan self assesment ACCESS Branding, catalog diklat di website publik BKCU Kalimantan dan koreksi bantuan solidaritas Jalinan
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
                       <li>Penambahan form pengisian self assesment ACCESS Branding untuk CU dan penilaian dari PUSKOPCUINA</li>
-                      <li>Penambahan fitur koreksi untuk Klaim JALINAN</li>
+                      <li>Penambahan fitur koreksi untuk Bantuan Solidaritas Jalinan</li>
                       <li>Penambahan catalog diklat di website publik BKCU Kalimantan</li>
                       <li>Penambahan fitur untuk memasukkan foto utama pada masing-masing diklat</li>
                       <li>Merubah menu Keuangan menjadi Tata Kelola</li>
-                      <li>Perbaikan bug masih bisa menghapus data anggota yang sudah klaim JALINAN</li>
+                      <li>Perbaikan bug masih bisa menghapus data anggota yang sudah bantuan solidaritas Jalinan</li>
                       <li>Perbaikan bug pada riwayat profil user yang tidak bisa diubah</li>
                       <li>Perbaikan bug peserta yang sama bisa mendaftar 2 kali pada diklat BKCU</li>
                     </ul>
@@ -544,22 +567,22 @@
 
                 <div id="v322" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi ini menambah surat pada Klaim JALINAN, upload dokumen pada Klaim JALINAN, QR Code pada Aset Tetap dan perbaikan beberapa bug.
+                    <p class="mb-3">Update versi ini menambah surat pada Bantuan Solidaritas Jalinan, upload dokumen pada Bantuan Solidaritas Jalinan, QR Code pada Aset Tetap dan perbaikan beberapa bug.
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
-                      <li>Penambahan upload dokumen untuk memenuhi kebutuhan pengajuan Klaim JALINAN</li>
-                      <li>Penambahan pemilahan data klaim berdasarkan TP</li>
-                      <li>Penambahan surat pada bagian Klaim JALINAN yang terdiri dari surat dokument tidak lengkap, surat penolakan klaim dan surat pencairan klaim</li>
-                      <li>Penambahan informasi nomor surat dan tanggal surat untuk surat pada bagian Klaim JALINAN</li>
+                      <li>Penambahan upload dokumen untuk memenuhi kebutuhan pengajuan Bantuan Solidaritas Jalinan</li>
+                      <li>Penambahan pemilahan data bantuan solidaritas berdasarkan TP</li>
+                      <li>Penambahan surat pada bagian Bantuan Solidaritas Jalinan yang terdiri dari surat dokument tidak lengkap, surat penolakan bantuan solidaritas dan surat pencairan klaim</li>
+                      <li>Penambahan informasi nomor surat dan tanggal surat untuk surat pada bagian Bantuan Solidaritas Jalinan</li>
                       <li>Penambahan fitur ketika logout otomatis maka akan kembali ke halaman terakhir yang dibuka sebelum.</li>
                       <li>Penambahan fitur membuat QR Code untuk aset tetap.</li>
-                      <li>Perbaikan bug pada mengajukan klaim melalui menu anggota CU</li>
+                      <li>Perbaikan bug pada mengajukan bantuan solidaritas melalui menu anggota CU</li>
                       <li>Perbaikan bug error navigasi pada anggota CU</li>
                       <li>Perbaikan bug pada import anggota CU</li>
-                      <li>Perbaikan bug pada laporan Klaim JALINAN terkait jumlah anggota pada jenis kelamin Laki-laki</li>
-                      <li>Perbaikan bug pada tombol penyelesaian klaim pada Klaim JALINAN</li>
+                      <li>Perbaikan bug pada laporan Bantuan Solidaritas Jalinan terkait jumlah anggota pada jenis kelamin Laki-laki</li>
+                      <li>Perbaikan bug pada tombol penyelesaian bantuan solidaritas pada Bantuan Solidaritas Jalinan</li>
                     </ul>
                   </div>
                 </div>
@@ -607,14 +630,14 @@
 
                     <ul class="list">
                       <li>Menambah fitur auto reload file terbaru dari server apabila terdapat update dan menambahkan tombol hard reload apabila fitur auto reload gagal berfungsi.</li>
-                      <li>Menambah fitur untuk membuatkan NIK sementara kepada anggota CU yang tidak bisa ditemukan/punya NIK lagi agar tetap bisa menginput data untuk anggota CU dan klaim JALINAN</li>
+                      <li>Menambah fitur untuk membuatkan NIK sementara kepada anggota CU yang tidak bisa ditemukan/punya NIK lagi agar tetap bisa menginput data untuk anggota CU dan bantuan solidaritas Jalinan</li>
                       <li>Menambah informasi jumlah aktivis pertingkatan (manajemen, pengurus, dsb) pada bagian CU</li>
                       <li>Menambah tombol refresh pada bagian notifikasi untuk mendapatkan notifikasi terbaru sesuai keinginan</li>
                       <li>Mengubah cara mengambil data notifikasi dari setiap perpindahan halaman menjadi setiap 15 menit</li>
                       <li>Menambah fitur di profile masing-masing user untuk bisa mengubah data identitas dan riwayat sendiri</li>
                       <li>Menambah informasi no. KK, nama ibu, suku, dan pekerjaan pada form anggota CU</li>
-                      <li>Mengubah tampilan informasi verifikator klaim JALINAN </li>
-                      <li>Optimalisasi pengambilan data klaim JALINAN dan data anggota CU ke server menjadi lebih ringkas dan cepat </li>
+                      <li>Mengubah tampilan informasi verifikator bantuan solidaritas Jalinan </li>
+                      <li>Optimalisasi pengambilan data bantuan solidaritas Jalinan dan data anggota CU ke server menjadi lebih ringkas dan cepat </li>
                       <li>Meningkatkan cara pengisian pekerjaan aktivis menjadi lebih mudah dimengerti</li>
                       <li>Memindahkan menu untuk tabel draft hasil upload excel untuk anggota CU, laporan statistik CU, dan laporan statistik TP ke halaman masing-masing bagian terkait</li>
                       <li>Perbaikan bug pada saat menampilkan aktivis yang aktif dan tidak aktif</li>
@@ -645,7 +668,7 @@
 
                 <div id="v319" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi ini fokus pada perbaikan di bagian anggota CU, user, aktivis dan klaim jalinan
+                    <p class="mb-3">Update versi ini fokus pada perbaikan di bagian anggota CU, user, aktivis dan bantuan solidaritas jalinan
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
@@ -673,12 +696,12 @@
 
                 <div id="v318" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi ini fokus pada perbaikan di bagian aktivis, penambahan tampilan pada form analisis klaim JALINAN, perubahan tampilan pada daftar produk dan pelayanan CU dan perubahan pada informasi user
+                    <p class="mb-3">Update versi ini fokus pada perbaikan di bagian aktivis, penambahan tampilan pada form analisis bantuan solidaritas Jalinan, perubahan tampilan pada daftar produk dan pelayanan CU dan perubahan pada informasi user
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
-                      <li>Penambahan informasi user yang melakukan verifikasi pada masing-masing klaim JALINAN pada form analisis klaim JALINAN</li>
+                      <li>Penambahan informasi user yang melakukan verifikasi pada masing-masing bantuan solidaritas Jalinan pada form analisis bantuan solidaritas Jalinan</li>
                       <li>Perubahan tampilan daftar produk dan pelayanan CU menjadi lebih ringkas</li>
                       <li>Perubahan user yang sudah menngikuti data aktivis yang tersambung pada masing-masing user</li>
                       <li>Perbaikan bug informasi TP pada aktivis tidak muncul ketika menginput data aktivis</li>
@@ -699,16 +722,16 @@
 
                 <div id="v317" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi ini fokus pada penambahan dan perbaikan pada bagian anggota CU, Klaim JALINAN dan penambahan fitur baru untuk pengelolaan aset tetap lembaga, mengabungkan informasi data aktivis dengan user.
+                    <p class="mb-3">Update versi ini fokus pada penambahan dan perbaikan pada bagian anggota CU, Bantuan Solidaritas Jalinan dan penambahan fitur baru untuk pengelolaan aset tetap lembaga, mengabungkan informasi data aktivis dengan user.
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
-                      <li>Penambahan fitur verifikasi pengajuan Klaim JALINAN oleh pengurus, pengawas dan manajemen</li>
+                      <li>Penambahan fitur verifikasi pengajuan Bantuan Solidaritas Jalinan oleh pengurus, pengawas dan manajemen</li>
                       <li>Penambahan fitur data aktivis pada user</li>
-                      <li>Penambahan informasi asal TP/KP pada Anggota CU dan Klaim JALINAN</li>
+                      <li>Penambahan informasi asal TP/KP pada Anggota CU dan Bantuan Solidaritas Jalinan</li>
                       <li>Penambahan pengelolaan aset tetap untuk lembaga</li>
-                      <li>Perbaikan bug tampilan pada Klaim JALINAN</li>
+                      <li>Perbaikan bug tampilan pada Bantuan Solidaritas Jalinan</li>
                       <li>Perbaikan bug tampilan pada User</li>
                       <li>Perbaikan bug tampilan pada Anggota CU</li>
                     </ul>
@@ -727,15 +750,15 @@
 
                 <div id="v316" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi ini fokus pada penambahan dan perbaikan pada bagian anggota CU dan Klaim JALINAN.
+                    <p class="mb-3">Update versi ini fokus pada penambahan dan perbaikan pada bagian anggota CU dan Bantuan Solidaritas Jalinan.
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
                       <li>Penambahan informasi usia dan nama pada panel analisa klaim</li>
-                      <li>Penambahan informasi klaim pada panel selesai klaim</li>
+                      <li>Penambahan informasi bantuan solidaritas pada panel selesai klaim</li>
                       <li>Penambahan kategori anggota CU yang meninggal</li>
-                      <li>Perbaikan pada form penambahan klaim JALINAN yang tidak menampilkan data produk dengan benar</li>
+                      <li>Perbaikan pada form penambahan bantuan solidaritas Jalinan yang tidak menampilkan data produk dengan benar</li>
                       <li>Menggabungkan menu tambah pada masing-masing bagian menjadi 1 sub-menu</li>
                       <li>Penambahan waktu time-out aplikasi menjadi 12 jam</li>
                       <li>Pengubahan tampilan form pada profil user</li>
@@ -760,7 +783,7 @@
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
-                      <li>Perbaikan informasi data produk pada saat menambah klaim JALINAN</li>
+                      <li>Perbaikan informasi data produk pada saat menambah bantuan solidaritas Jalinan</li>
                       <li>Perbaikan informasi jabatan pada identitas anggota CU</li>
                       <li>Perbaikan input tanggal yang menyebabkan format tanggal salah</li>
                       <li>Menambah fitur untuk mengeluarkan anggota / mendata anggota keluar</li>
@@ -782,19 +805,19 @@
 
                 <div id="v314" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi ini fokus pada fitur klaim JALINAN
+                    <p class="mb-3">Update versi ini fokus pada fitur bantuan solidaritas Jalinan
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
-                      <li>Peningkatan pengalaman penambahan data klaim JALINAN</li>
-                      <li>Menambah fitur analisa klaim JALINAN</li>
-                      <li>Menambah fitur pencairan klaim JALINAN</li>
-                      <li>Menambah laporan pencairan klaim JALINAN</li>
-                      <li>Menambah laporan klaim JALINAN berdasarkan penyebab</li>
-                      <li>Menambah laporan klaim JALINAN berdasarkan usia</li>
-                      <li>Menambah laporan klaim JALINAN berdasarkan lama menjadi anggota</li>
-                      <li>Memperbaiki beberapa bug pada proses klaim JALINAN</li>
+                      <li>Peningkatan pengalaman penambahan data bantuan solidaritas Jalinan</li>
+                      <li>Menambah fitur analisa bantuan solidaritas Jalinan</li>
+                      <li>Menambah fitur pencairan bantuan solidaritas Jalinan</li>
+                      <li>Menambah laporan pencairan bantuan solidaritas Jalinan</li>
+                      <li>Menambah laporan bantuan solidaritas Jalinan berdasarkan penyebab</li>
+                      <li>Menambah laporan bantuan solidaritas Jalinan berdasarkan usia</li>
+                      <li>Menambah laporan bantuan solidaritas Jalinan berdasarkan lama menjadi anggota</li>
+                      <li>Memperbaiki beberapa bug pada proses bantuan solidaritas Jalinan</li>
                       <li>Menambah bagian berita dan ucapan ulang tahun CU pada halaman Dashboard</li>
                       <li>Memperbaiki bug data aktivis tidak muncul pada saat mendaftar diklat</li>
                     </ul>
@@ -813,7 +836,7 @@
 
                 <div id="v313" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
-                    <p class="mb-3">Update versi ini fokus pada peningkatan pada data aktivis, anggota CU dan klaim JALINAN
+                    <p class="mb-3">Update versi ini fokus pada peningkatan pada data aktivis, anggota CU dan bantuan solidaritas Jalinan
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
@@ -823,7 +846,7 @@
                       <li>Penambahan riwayat diklat secara input manual dan pada data aktivis</li>
                       <li>Riwayat diklat terkoneksi dengan data diklat pada SIMO (khusus untuk aktivis yang mendaftar diklat di SIMO)</li>
                       <li>Memunculkan foto anggota CU pada tabel</li>
-                      <li>Memperbaiki beberapa bug pada proses klaim JALINAN</li>
+                      <li>Memperbaiki beberapa bug pada proses bantuan solidaritas Jalinan</li>
                     </ul>
                   </div>
                 </div>
@@ -846,7 +869,7 @@
 
                     <ul class="list">
                       <li>Perbaikan bug di penambahan anggota CU dan produk anggota CU </li>
-                      <li>Perbaikan bug di penambahan klaim JALINAN </li>
+                      <li>Perbaikan bug di penambahan bantuan solidaritas Jalinan </li>
                       <li>Perbaikan bug di penambahan data aktivis baru </li>
                       <li>Perbaikan bug di pengubahan data panitia/fasilitator pada bagian diklat </li>
                       <li>Perbaikan bug di isi kolom laporan PEARLS yang tidak sesuai dengan judul kolom </li>
@@ -894,13 +917,13 @@
                   <div class="card-body">
                     <p class="mb-3">Mengenalkan fitur pengelolaan data anggota CU perorangan yang memungkinkan gerakan PUSKOPCUINA untuk memiliki data secara mendetail anggota CU Perorangan yang akan memudahkan dalam mengetahui persebaran anggota, perilaku anggota dan menjadi database anggota terbesar dalam gerakan. 
                     <br/><br/> 
-                    Pada versi ini juga terdapat integrasi dengan JALINAN untuk proses klaim dengan data anggota CU perorangan dan data produk CU yang diperkenalkan pada versi sebelumnya. Dengan begitu klaim JALINAN diharapkan akan lebih akurat. Dan terdapat pondasi dasar untuk integrasi perhitungan iuran JALINAN.
+                    Pada versi ini juga terdapat integrasi dengan Jalinan untuk proses bantuan solidaritas dengan data anggota CU perorangan dan data produk CU yang diperkenalkan pada versi sebelumnya. Dengan begitu bantuan solidaritas Jalinan diharapkan akan lebih akurat. Dan terdapat pondasi dasar untuk integrasi perhitungan iuran Jalinan.
                     <br/><br/>
                     Berikut adalah rincian perubahan pada versi ini:</p>
 
                     <ul class="list">
                       <li>Penambahan fitur mengelola data anggota CU perorangan yang terdiri dari identitas, simpanan dan pinjaman yang terintegrasi dengan fitur data produk CU</li>
-                      <li>Penambahan fitur proses klaim JALINAN yang terintegrasi dengan data anggota CU Perorangan</li>
+                      <li>Penambahan fitur proses bantuan solidaritas Jalinan yang terintegrasi dengan data anggota CU Perorangan</li>
                       <li>Perbaikan pada dashboard dalam penyajian data</li>
                       <li>Perbaikan bug dan peningkatan performa keseluruhan aplikasi</li>
                     </ul>

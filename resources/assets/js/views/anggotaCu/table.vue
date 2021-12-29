@@ -7,49 +7,57 @@
       <!-- button desktop -->
       <template slot="button-desktop">
 
-        <!-- tambah -->
-        <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_anggota_cu'] && tipe == 'masih'">
-          <i class="icon-plus3"></i> Tambah
-        </router-link>
+        <template v-if="form.escete != 1 && formStat == 'success'">
+          <!-- tambah -->
+          <router-link :to="{ name: kelas + 'Create'}" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_anggota_cu'] && tipe == 'masih'">
+            <i class="icon-plus3"></i> Tambah
+          </router-link>
 
-        <!-- ubah NIK -->
-        <button @click.prevent="modalConfirmOpen('nik')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']" :disabled="!selectedItem.id">
-          <i class="icon-vcard"></i> Ubah NIK / No. KTP
-        </button>
+          <!-- ubah NIK -->
+          <button @click.prevent="modalConfirmOpen('nik')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu']" :disabled="!selectedItem.id">
+            <i class="icon-vcard"></i> Ubah NIK / No. KTP
+          </button>
 
-        <!-- ubah identitas -->
-        <button @click.prevent="ubahData(selectedItem.id,'identitas')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu'] && tipe == 'masih'"
-          :disabled="!selectedItem.id">
-          <i class="icon-pencil5"></i> Ubah Identitas
-        </button>
+          <!-- ubah identitas -->
+          <button @click.prevent="ubahData(selectedItem.id,'identitas')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu'] && tipe == 'masih'"
+            :disabled="!selectedItem.id">
+            <i class="icon-pencil5"></i> Ubah Identitas
+          </button>
 
-        <!-- ubah produk -->
-        <button @click.prevent="ubahData(selectedItem.id,'produk')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu'] && tipe == 'masih'"
-          :disabled="!selectedItem.id">
-          <i class="icon-pencil5"></i> Ubah Produk
-        </button>
+          <!-- ubah produk -->
+          <button @click.prevent="ubahData(selectedItem.id,'produk')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu'] && tipe == 'masih'"
+            :disabled="!selectedItem.id">
+            <i class="icon-pencil5"></i> Ubah Produk
+          </button>
 
-        <!-- klaim jalinan -->
+          <!-- pindah tp -->
+          <button @click.prevent="modalConfirmOpen('pindahTp')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu'] && tipe != 'meninggal'" :disabled="!selectedItem.id">
+            <i class="icon-flip-vertical4"></i> Pindah TP
+          </button>
+
+          <!-- anggota keluar -->
+          <button @click.prevent="modalConfirmOpen('keluar')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu'] && tipe != 'meninggal'" :disabled="!selectedItem.id">
+            <i class="icon-exit2"></i> 
+            <span v-if="tipe == 'masih'">Anggota Keluar</span>
+            <span v-else>Batal Keluarkan Anggota</span>
+          </button>
+
+          <!-- hapus -->
+          <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu'] && tipe == 'masih'"
+            :disabled="!selectedItem.id">
+            <i class="icon-bin2"></i> Hapus
+          </button>
+
+        </template>
+        <template v-else>
+          <button class="btn btn-light btn-icon mb-1" disabled>
+            Mohon maaf, karena data anggota CU ini sudah terintegrasi ke ESCETE maka semua proses pengolahan data kecuali Bantuan Solidaritas Jalinan mesti dilakukan di ESCETE dan akan di sinkronisasikan tiap akhir bulan
+          </button>
+        </template>
+
+        <!-- bantuan solidaritas jalinan -->
         <button @click.prevent="ubahData(selectedItem.id,'jalinan')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_jalinan_klaim'] && tipe == 'masih'" :disabled="!selectedItem.id">
-          <i class="icon-accessibility2"></i> Ajukan Klaim JALINAN
-        </button>
-
-        <!-- pindah tp -->
-        <button @click.prevent="modalConfirmOpen('pindahTp')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu'] && tipe != 'meninggal'" :disabled="!selectedItem.id">
-          <i class="icon-flip-vertical4"></i> Pindah TP
-        </button>
-
-        <!-- anggota keluar -->
-        <button @click.prevent="modalConfirmOpen('keluar')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu'] && tipe != 'meninggal'" :disabled="!selectedItem.id">
-          <i class="icon-exit2"></i> 
-          <span v-if="tipe == 'masih'">Anggota Keluar</span>
-          <span v-else>Batal Keluarkan Anggota</span>
-        </button>
-
-        <!-- hapus -->
-        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu'] && tipe == 'masih'"
-          :disabled="!selectedItem.id">
-          <i class="icon-bin2"></i> Hapus
+          <i class="icon-accessibility2"></i> Ajukan Bantuan Solidaritas Jalinan
         </button>
 
         <!-- table draft -->
@@ -89,9 +97,9 @@
           <i class="icon-pencil5"></i> Ubah Produk
         </button>
 
-        <!-- klaim jalinan -->
+        <!-- bantuan solidaritas jalinan -->
         <button @click.prevent="ubahData(selectedItem.nik,'jalinan')" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.can && currentUser.can['create_jalinan_klaim'] && tipe == 'masih'" :disabled="!selectedItem.nik || selectedItem.status_jalinan">
-          <i class="icon-accessibility2"></i> Ajukan Klaim JALINAN
+          <i class="icon-accessibility2"></i> Ajukan Bantuan Solidaritas Jalinan
         </button>
 
         <!-- pindah tp -->
@@ -756,12 +764,16 @@
             this.excelDownloadUrl = this.kelas + '/indexCuMeninggal/' + this.$route.params.cu + '/' + this.$route.params.tp;
             this.disableColumnCu(true);
           }
+          this.fetchCu();
         }
         this.fetchAnggotaCuDraft();
       },
       disableColumnCu(status){
 				this.columnData[2].disable = status;
 			},
+      fetchCu(){
+        this.$store.dispatch('cu/escete', this.$route.params.cu);
+      },
       fetchAnggotaCuDraft(){
 				let cu = '';
 				let tp = 'semua';
@@ -863,7 +875,7 @@
           }else{
             this.modalState = "tutup";
             this.modalTitle =
-              "Maaf " + this.title + " " + this.selectedItem.name + " tidak bisa dihapus karena memiliki riwayat klaim JALINAN, silahkan periksa kembali lagi.";
+              "Maaf " + this.title + " " + this.selectedItem.name + " tidak bisa dihapus karena memiliki riwayat bantuan solidaritas Jalinan, silahkan periksa kembali lagi.";
           }
         }else if(state == 'pindahTp' && this.selectedItem.anggota_cu_cu_not_keluar && this.selectedItem.anggota_cu_cu_not_keluar.length > 1){
           this.modalState = 'normal1';
@@ -914,6 +926,10 @@
       ...mapGetters("anggotaCu", {
         updateMessage: "update",
         updateStat: "updateStat"
+      }),
+       ...mapGetters("cu", {
+        form: 'data',
+				formStat: 'dataStat',
       }),
       ...mapGetters("auth", {
         currentUser: "currentUser"

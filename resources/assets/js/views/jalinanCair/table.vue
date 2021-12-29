@@ -25,7 +25,7 @@
             </button>
 
             <button class="btn btn-light mb-1" @click="bukaData(selectedItem.cu_id)" :disabled="!selectedItem.cu_id">
-              <i class="icon-eye"></i> Buka data klaim JALINAN
+              <i class="icon-eye"></i> Buka data bantuan solidaritas Jalinan
             </button>
           </div>
 
@@ -46,7 +46,7 @@
             </button>
 
             <button class="btn btn-light btn-block pb-1" @click="bukaData(selectedItem.cu_id)" :disabled="!selectedItem.cu_id">
-              <i class="icon-eye"></i> Buka data klaim JALINAN
+              <i class="icon-eye"></i> Buka data bantuan solidaritas Jalinan
             </button>
 
           </div>
@@ -371,15 +371,15 @@
 
         if (state == "cairAll") {
           this.modalState = "confirm-tutup";
-          this.modalTitle = "Cairkan semua klaim JALINAN ini?";
+          this.modalTitle = "Cairkan semua bantuan solidaritas Jalinan ini?";
           this.modalButton = "Iya, Cairkan";
         }else if(state == "cair"){
           this.modalState = "confirm-tutup";
-          this.modalTitle = "Cairkan klaim JALINAN CU " + this.selectedItem.cu_name + " ?";
+          this.modalTitle = "Cairkan bantuan solidaritas Jalinan CU " + this.selectedItem.cu_name + " ?";
           this.modalButton = "Iya, Cairkan";
         }else if(state == "cairBatal"){
           this.modalState = "confirm-tutup";
-          this.modalTitle = "Membatalkan pencairan klaim JALINAN CU " + this.selectedItem.cu_name + " ?";
+          this.modalTitle = "Membatalkan pencairan bantuan solidaritas Jalinan CU " + this.selectedItem.cu_name + " ?";
           this.modalButton = "Iya, Cairkan";
         }
       },

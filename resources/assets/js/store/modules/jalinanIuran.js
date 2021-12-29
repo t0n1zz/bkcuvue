@@ -67,11 +67,11 @@ export const jalinanIuran = {
         });
     },
 
-    indexAnggota( { commit }, [p, id, lokasi] ){
+    indexAnggota( { commit }, [p, id, cu, lokasi] ){
       commit('setDataStatS2', 'loading');
       
       
-      JalinanIuranAPI.indexAnggota( p , id, lokasi )
+      JalinanIuranAPI.indexAnggota( p , id, cu, lokasi )
         .then( function( response ){
           commit('setDataS2', response.data.model );
           commit('setDataStatS2', 'success');
@@ -83,29 +83,9 @@ export const jalinanIuran = {
     },
 
     create( {commit}, [ idCu, periodeBulan, periodeTahun ] ){
-      commit('setDataStat', 'loading');
+      commit('setUpdateStat', 'loading');
       
       JalinanIuranAPI.create( idCu, periodeBulan, periodeTahun )
-        .then( function( response ){
-          commit('setData', response.data.form);
-          commit('setDataS', response.data.produk_data);
-          commit('setRules', response.data.rules);
-          commit('setOptions', response.data.options)
-          commit('setDataStat', 'success');
-        })
-        .catch(error => {
-          commit('setData', error.response);
-          commit('setRules', []);
-          commit('setOptions', [])
-          commit('setDataStat', 'fail');
-        });
-    },
-
-    //store data
-    store( {commit, state, dispatch}, form ){
-      commit('setUpdateStat', 'loading');
-
-      JalinanIuranAPI.store( form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);
@@ -119,7 +99,7 @@ export const jalinanIuran = {
           commit('setUpdateStat', 'fail');
         });
     },
-
+    
     // edit page
     edit( {commit}, id ){
       commit('setDataStat', 'loading');

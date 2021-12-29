@@ -22,28 +22,28 @@
 
 						<div v-if="$route.meta.mode == 'laporan'">
 
-							<table-kelompok :title="'Klaim Per Penyebab'" :itemData="itemData" :itemDataStat="itemDataStat" :url="url" :isCu="false" @bukaData="bukaData" @lihatSemua="bukaData"></table-kelompok>
+							<table-kelompok :title="'Bantuan Solidaritas Per Penyebab'" :itemData="itemData" :itemDataStat="itemDataStat" :url="url" :isCu="false" @bukaData="bukaData" @lihatSemua="bukaData"></table-kelompok>
 
              	<hr/>
 								<button type="button" class="btn btn-light btn-block" @click.prevent="showDetail">
-									<span v-if="!isShowDetail"><i class="icon-eye"></i> Buka semua data klaim JALINAN</span>
-									<span v-else><i class="icon-eye-blocked"></i> Tutup data klaim JALINAN</span>
+									<span v-if="!isShowDetail"><i class="icon-eye"></i> Buka semua data bantuan solidaritas Jalinan</span>
+									<span v-else><i class="icon-eye-blocked"></i> Tutup data bantuan solidaritas Jalinan</span>
 								</button>
 							<hr/>
 
 							<div v-if="isShowDetail">
 
-								<table-data :title="'Klaim JALINAN Menunggu'" :kelas="kelas" :itemData="itemDataKlaim1" :itemDataStat="itemDataStatKlaim1" :status="'1'" :isSimple="true" v-if="status == '1'"></table-data>
+								<table-data :title="'Bantuan Solidaritas Jalinan Menunggu'" :kelas="kelas" :itemData="itemDataKlaim1" :itemDataStat="itemDataStatKlaim1" :status="'1'" :isSimple="true" v-if="status == '1'"></table-data>
 
-								<table-data :title="'Klaim JALINAN Dokumen Tidak Lengkap'" :kelas="kelas" :itemData="itemDataKlaim2" :itemDataStat="itemDataStatKlaim2" :status="'2'" :isSimple="true" v-if="status == '2'"></table-data>
+								<table-data :title="'Bantuan Solidaritas Jalinan Dokumen Tidak Lengkap'" :kelas="kelas" :itemData="itemDataKlaim2" :itemDataStat="itemDataStatKlaim2" :status="'2'" :isSimple="true" v-if="status == '2'"></table-data>
 
-								<table-data :title="'Klaim JALINAN Ditolak'" :kelas="kelas" :itemData="itemDataKlaim3" :itemDataStat="itemDataStatKlaim3" :status="'3'" :isSimple="true" v-if="status == '3'"></table-data>
+								<table-data :title="'Bantuan Solidaritas Jalinan Ditolak'" :kelas="kelas" :itemData="itemDataKlaim3" :itemDataStat="itemDataStatKlaim3" :status="'3'" :isSimple="true" v-if="status == '3'"></table-data>
 
-								<table-data :title="'Klaim JALINAN Disetujui'" :kelas="kelas" :itemData="itemDataKlaim4" :itemDataStat="itemDataStatKlaim4" :status="'4'" :isSimple="true" v-if="status == '4'"></table-data>
+								<table-data :title="'Bantuan Solidaritas Jalinan Disetujui'" :kelas="kelas" :itemData="itemDataKlaim4" :itemDataStat="itemDataStatKlaim4" :status="'4'" :isSimple="true" v-if="status == '4'"></table-data>
 
-								<table-data :title="'Klaim JALINAN Dicairkan'" :kelas="kelas" :itemData="itemDataKlaim5" :itemDataStat="itemDataStatKlaim5" :status="'5'" :isSimple="true" v-if="status == '5'"></table-data>
+								<table-data :title="'Bantuan Solidaritas Jalinan Dicairkan'" :kelas="kelas" :itemData="itemDataKlaim5" :itemDataStat="itemDataStatKlaim5" :status="'5'" :isSimple="true" v-if="status == '5'"></table-data>
 
-								<table-data :title="'Klaim JALINAN Selesai'" :kelas="kelas" :itemData="itemDataKlaim6" :itemDataStat="itemDataStatKlaim6" :status="'6'" :isSimple="true" v-if="status == '6'"></table-data>
+								<table-data :title="'Bantuan Solidaritas Jalinan Selesai'" :kelas="kelas" :itemData="itemDataKlaim6" :itemDataStat="itemDataStatKlaim6" :status="'6'" :isSimple="true" v-if="status == '6'"></table-data>
 
 							</div>
 
@@ -76,8 +76,8 @@
 		},
 		data() {
 			return {
-				title: 'Laporan Klaim JALINAN',
-				titleDesc: 'Mengelola Klaim JALINAN Berdasarkan Penyebab',
+				title: 'Laporan Bantuan Solidaritas Jalinan',
+				titleDesc: 'Mengelola Bantuan Solidaritas Jalinan Berdasarkan Penyebab',
 				titleIcon: 'icon-archive',
 				kelas: 'jalinanKlaim',
         isShowDetail: false,

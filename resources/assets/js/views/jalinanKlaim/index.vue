@@ -152,9 +152,9 @@
 		},
 		data() {
 			return {
-				title: 'Klaim JALINAN',
+				title: 'Bantuan Solidaritas Jalinan',
 				kelas: 'jalinanKlaim',
-				titleDesc: 'Mengelola klaim JALINAN',
+				titleDesc: 'Mengelola bantuan solidaritas Jalinan',
 				titleIcon: 'icon-accessibility2',
 				selectCuPath: 'jalinanKlaimCu',
 				tabName: 'menunggu',

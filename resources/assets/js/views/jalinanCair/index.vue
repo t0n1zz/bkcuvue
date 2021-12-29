@@ -20,18 +20,18 @@
 						<!-- select data -->
 						<select-data></select-data>
 
-						<table-cair :title="'Pencairan Klaim'"  :itemData="itemData" :itemDataStat="itemDataStat" v-if="$route.meta.mode == 'cair'" @bukaData="bukaData"></table-cair>
+						<table-cair :title="'Pencairan Bantuan Solidaritas '"  :itemData="itemData" :itemDataStat="itemDataStat" v-if="$route.meta.mode == 'cair'" @bukaData="bukaData"></table-cair>
 						
 						<div v-if="$route.meta.mode == 'cair'">
 							<hr/>
 							<button type="button" class="btn btn-light btn-block" @click.prevent="showDetail('semua')">
-								<span v-if="!isShowDetail"><i class="icon-eye"></i> Buka semua data klaim JALINAN</span>
-								<span v-else><i class="icon-eye-blocked"></i> Tutup data klaim JALINAN</span>
+								<span v-if="!isShowDetail"><i class="icon-eye"></i> Buka semua data bantuan solidaritas Jalinan</span>
+								<span v-else><i class="icon-eye-blocked"></i> Tutup data bantuan solidaritas Jalinan</span>
 							</button>
 							<hr/>
 						</div>
 
-						<table-data :title="'Klaim JALINAN'" :kelas="kelas" :itemData="itemDataKlaim" :itemDataStat="itemDataStatKlaim" :status="'4'" :isSimple="true" v-if="isShowDetail && $route.meta.mode == 'cair'"></table-data>
+						<table-data :title="'Bantuan Solidaritas Jalinan'" :kelas="kelas" :itemData="itemDataKlaim" :itemDataStat="itemDataStatKlaim" :status="'4'" :isSimple="true" v-if="isShowDetail && $route.meta.mode == 'cair'"></table-data>
 
 					</div>
 				</div>
@@ -59,8 +59,8 @@
 		},
 		data() {
 			return {
-				title: 'Pencairan JALINAN',
-				titleDesc: 'Mengelola pencairan JALINAN',
+				title: 'Pencairan Jalinan',
+				titleDesc: 'Mengelola pencairan Jalinan',
 				titleIcon: 'icon-square-down',
 				kelas: 'jalinanKlaim',
 				isShowDetail: false,
