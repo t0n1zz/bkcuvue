@@ -12,7 +12,11 @@
 
 			<div>
 				<span class="navbar-text ml-lg-3 mr-lg-auto">
-					<span class="badge bg-success-400">PUSKOPCUINA</span>
+					<span class="badge bg-success-400">PUSKOPCUINA 
+						<span v-if="itemData.cu">
+							- {{ itemData.cu.name }}
+						</span> 
+					</span>	
 				</span>	
 			</div>
 
@@ -25,7 +29,8 @@
 					<div class="page-title d-flex">
 						<h4>
 							<i class="mr-2" :class="titleIcon"></i>
-							<span class="font-weight-semibold">{{ title }}</span> <small class="d-block text-muted">{{ titleDesc }}</small>
+							<span class="font-weight-semibold">{{ itemData.name }}</span> 
+							<small class="d-block text-muted">Selamat datang <i>{{ form.name }} </i></small>
 						</h4>
 					</div>
 				</div>
@@ -48,16 +53,37 @@
 							<div v-if="form.pemilihan_calon_id == null">
 								<!-- ucapan -->
 								<div class="card card-body">
-									<h5><b>Selamat Datang!</b> <br/> Silahkan memilih calon dengan menekan tombol 
+									<h5><b>Selamat Datang!</b> <br/><br/> Silahkan memilih calon dengan menekan tombol 
 									<button class="btn btn-primary btn-sm">
 										<i class="icon-check"></i> PILIH
 									</button> 
-									pada masing-masing kartu calon dibawah ini:</h5>
+									pada masing-masing kartu calon dibawah ini.
+									<span v-if="itemData.pemilihan_max > 1">
+										<br/><br/>
+										Dan menekan 
+										<button class="btn btn-success btn-sm">
+											<i class="icon-check"></i> TERPILIH
+										</button>
+										untuk membatalkan pilihan.
+										<hr/>
+										Dan kemudian menekan tombol 
+										<button class="btn btn-primary btn-sm">
+											<i class="icon-floppy-disk"></i> SIMPAN PILIHAN
+										</button> 
+										yang berada di bagian paling bawah dari halaman ini untuk menyimpan pilihan anda. 
+										<hr/>
+										<b>Jika tidak menekan tombol 
+											<button class="btn btn-primary btn-sm">
+												<i class="icon-floppy-disk"></i> SIMPAN PILIHAN
+											</button> 
+											 maka pilihan anda belum tersimpan</b>
+									</span>
+									</h5>
 								</div>
 								<!-- pilihan -->
 								<div class="row">
 									<div class="col-md-6 col-lg-4" v-for="(item, index) in itemData.calon" :key="index">
-										<div class="card border-primary">
+										<div class="card" :class="{ 'border-success' : formMulti.some(data => data.pemilihan_calon_id == item.pivot.id) }">
 											<div class="card-header bg-white header-elements-inline">
 												<h5 class="card-title">{{ item.name }}</h5>
 												<span class="badge badge-success" v-if="item.pivot">
@@ -68,10 +94,26 @@
 												<identitas :itemData="item"></identitas>
 											</div>
 											<div class="card-footer">
-												<button @click.prevent="modalConfirmOpen(item)" class="btn btn-primary btn-block mb-1">
+												<button @click.prevent="modalConfirmOpen(item)" class="btn btn-primary btn-block mb-1" v-if="itemData.pemilihan_min == 1 && itemData.pemilihan_max == 1">
 													<i class="icon-check"></i> PILIH
 												</button>
+												<template v-else>
+													<button @click.prevent="multi(item)" class="btn btn-success btn-block mb-1" v-if="formMulti.some(data => data.pemilihan_calon_id == item.pivot.id)">
+														<i class="icon-check"></i> TERPILIH
+													</button>
+													<button @click.prevent="multi(item)" class="btn btn-primary btn-block mb-1" v-else>
+														<i class="icon-check"></i> PILIH
+													</button>
+												</template>
 											</div>
+										</div>
+									</div>
+
+									<div class="col-md-12" v-if="itemData.pemilihan_max > 1">
+										<div class="card card-body">
+											<button @click.prevent="modalOpen()" class="btn btn-primary btn-block mb-1" :disabled="formMulti.length < itemData.pemilihan_min">
+												<i class="icon-floppy-disk"></i> SIMPAN PILIHAN
+											</button>
 										</div>
 									</div>
 								</div>
@@ -84,12 +126,12 @@
 									<h3><i class="icon-check"></i> Terima Kasih Sudah Melakukan Pemilihan</h3>
 								</div>
 								<!-- pilihan -->
-								<div class="card ">
+								<div class="card">
 									<div class="card-header bg-white">
 										<h5 class="card-title">Pilihan Anda Adalah</h5>
 									</div>
 									<div class="card-body">
-										<div class="card border-primary">
+										<div class="card border-primary" v-if="itemData.pemilihan_max == 1">
 											<div class="card-header bg-primary header-elements-inline">
 												<h5 class="card-title">{{ form.calon.aktivis.name }}</h5>
 												<span class="badge badge-success">
@@ -100,48 +142,23 @@
 												<identitas :itemData="form.calon.aktivis"></identitas>
 											</div>
 										</div>
-									</div>
-								</div>
-								<!-- skor -->
-								<!-- <div class="card ">
-									<div class="card-header bg-white header-elements-inline">
-										<h5 class="card-title">Perolehan Skor</h5>
-										<div class="header-elements">
-											<span class="badge badge-success">
-												Suara Masuk: {{ itemData.suara_ok }}
-											</span> 
-											&nbsp;
-											<span class="badge badge-primary">
-												Total Suara: {{ itemData.suara }}
-											</span>
-										</div>
-									</div>
-									<div class="card-body">
-										<div v-for="(p, index) in itemData2" :key="index">
-											<div class="card card-body">
-												<div class="row">
-													<div class="col-sm-3 mb-1 mt-1">
-														<b>{{ p.aktivis.name }}</b>
+										<div class="row" v-else>
+											<div class="col-md-4" v-for="(item, index) in itemData2" :key="index">
+												<div class="card border-primary">
+													<div class="card-header bg-primary header-elements-inline">
+														<h5 class="card-title">{{ item.calon.aktivis.name }}</h5>
+														<span class="badge badge-success">
+															<h6 class="mb-0">No. Urut {{ item.calon.no_urut }}</h6>
+														</span>
 													</div>
-													<div class="col-sm-8 mb-1 mt-1">
-														<div class="progress">
-															<div class="progress-bar-striped bg-success" :style="{width: Math.round((p.skor / itemData.suara) * 100) + '%'}">
-																<span class="text-default font-size-lg">
-																	&nbsp;
-																	<b>{{ Math.round((p.skor / itemData.suara) * 100) + '%' }}</b>
-																	&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
-																</span>
-															</div>
-														</div>	
-													</div>
-													<div class="col-sm-1 mb-1 mt-1">
-														{{ p.skor }} / {{ itemData.suara }}
+													<div class="card-body">
+														<identitas :itemData="item.calon.aktivis"></identitas>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div> -->
+								</div>
 							</div>
 						</div>
 
@@ -180,7 +197,7 @@
 		</div>
 
 		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" :color="modalColor" :content="modalContent" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+		<app-modal :show="modalShow" :state="modalState" :size="modalSize" :title="modalTitle" :button="modalButton" :color="modalColor" :content="modalContent" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
 			<!-- title -->
 			<template slot="modal-title">
 				{{ modalTitle }}
@@ -226,6 +243,52 @@
 				</div> 
 			</template>
 
+			<template slot="modal-body2">
+				<!-- identitas -->
+				<div class="row">
+					<div class="col-lg-4" v-for="(item, index) in formMulti" :key="index">
+						<div class="card">
+							<div class="card-header bg-white header-elements-inline">
+								<h5 class="card-title">{{ item.data.name }}</h5>
+								<span class="badge badge-success" v-if="item.data.pivot">
+									<h6 class="mb-0">No. Urut {{ item.data.pivot.no_urut }}</h6>
+								</span> 
+							</div>
+							<div class="card-body">
+								<identitas :itemData="item.data"></identitas>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div>
+					<div class="alert bg-warning alert-styled-left" v-if="formMulti.length < itemData.pemilihan_max">
+						<h6>Anda masih bisa memilih {{ itemData.pemilihan_max - formMulti.length }} calon lagi, apakah yakin akan melanjutkan?</h6>
+					</div>
+					<div class="alert bg-warning alert-styled-left" v-else>
+						<h6>Pastikan anda memilih dengan benar, anda tidak bisa melakukan pemilihan ulang lagi apabila salah memilih.</h6>
+					</div>
+				</div>
+
+				<!-- tombol desktop-->
+				<div class="text-center d-none d-md-block">
+					<button class="btn btn-light" @click.prevent="modalTutup">
+						<i class="icon-cross"></i> Tutup</button>
+
+					<button class="btn btn-primary" @click.prevent="modalConfirmOk">
+						<i class="icon-check"></i> Ok</button>
+				</div>  
+
+				<!-- tombol mobile-->
+				<div class="d-block d-md-none">
+					<button class="btn btn-primary btn-block pb-2" @click.prevent="modalConfirmOk">
+						<i class="icon-check"></i> Ok</button>
+
+					<button class="btn btn-light btn-block pb-2" @click.prevent="modalTutup">
+						<i class="icon-cross"></i> Tutup</button>
+				</div> 
+			</template>
+
 		</app-modal>
 
 	</div>
@@ -233,6 +296,7 @@
 
 <script>
 	import { mapGetters } from 'vuex';
+	import _ from 'lodash';
 	import message from "../../components/message.vue";
 	import appModal from '../../components/modal';
 	import identitas from './identitas';
@@ -252,15 +316,19 @@
 				formPilihan: {
 					pemilihan_id: '',
 					pemilihan_calon_id: '',
+					no_urut: '',
 					name: '',
 				},
+				formMulti: [],
 				selectedItem: {},
+				selectedItemMulti: [],
 				modalShow: false,
 				modalState: '',
+				modalSize:'',
 				modalTitle: '',
 				modalColor: '',
 				modalContent: '',
-				modalButton: ''
+				modalButton: '',
 			}
 		},
 		created(){
@@ -273,16 +341,16 @@
 			},
 			itemDataStat(value){
 				if(value == "success"){
-					if(this.form){
-						this.title = this.itemData.name;
-						this.titleDesc = 'Silahkan memilih calon untuk ' + this.itemData.name;
-					}
 				}
 			},
 			formStat(value){
 				if(value == "success"){
 					if(this.form.pemilihan_calon_id != null){
-						this.fetchSuara();
+						if(this.itemData){
+							if(this.itemData.pemilihan_max > 1){
+								this.fetchCalonTerpilih(this.form.id);
+							}
+						}
 					}
 				}
 			},
@@ -305,13 +373,35 @@
 			fetch(){
 				this.$store.dispatch(this.kelas + '/indexCalon', this.$route.params.name);
 			},
-			fetchSuara(){
-				this.$store.dispatch(this.kelas + '/indexSuara', this.itemData.id);
+			fetchCalonTerpilih(id){
+				this.$store.dispatch(this.kelas + '/indexCalonTerpilih', id);
+			},
+			multi(item){	
+				if(!this.formMulti.some(data => data.pemilihan_calon_id == item.pivot.id)){
+					if(this.formMulti.length < this.itemData.pemilihan_max){
+						this.formMulti.push({
+							'pemilihan_calon_id' : item.pivot.id,
+							'no_urut' : item.pivot.no_urut,
+							'pemilihan_id': this.itemData.id,
+							'name' : this.form.name,
+							'data' : item
+						});
+					}else{
+						this.modalShow = true;
+						this.modalState = 'tutup';
+						this.modalTitle = 'Maaf anda tidak bisa memilih lebih dari ' + this.itemData.pemilihan_max + ' calon.';
+					}
+				}else{
+					this.formMulti = _.reject(this.formMulti, function(el){
+						return el.pemilihan_calon_id == item.pivot.id;
+					});
+				}
 			},
 			modalConfirmOpen(state) {
 				this.modalShow = true;
 				this.modalState = 'normal1';
 				this.modalColor = 'bg-primary';
+				this.modalSize = '';
 
 				this.formPilihan.pemilihan_calon_id = state.pivot.id;
 				this.formPilihan.no_urut = state.pivot.no_urut;
@@ -320,12 +410,23 @@
 				this.selectedItem = state;
 				this.modalTitle = 'Pilih ' + this.selectedItem.name + ' ?';
 			},
+			modalOpen() {
+				this.modalShow = true;
+				this.modalState = 'normal2';
+				this.modalColor = 'bg-primary';
+				this.modalTitle = 'Simpan pilihan anda?';
+				this.modalSize = "modal-full";
+			},
 			modalTutup() {
 				this.modalShow = false;
 				this.$store.dispatch(this.kelas + '/resetUpdateStat');
 			},
 			modalConfirmOk() {
-				this.$store.dispatch(this.kelas + '/storePilihan', this.formPilihan);
+				if(this.itemData.pemilihan_max == 1){
+					this.$store.dispatch(this.kelas + '/storePilihan', this.formPilihan);
+				}else{
+					this.$store.dispatch(this.kelas + '/storeMultiPilihan', this.formMulti);
+				}
 			},
 		},
 		computed: {

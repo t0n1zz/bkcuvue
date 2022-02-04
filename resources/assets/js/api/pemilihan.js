@@ -20,8 +20,12 @@ export default {
     return axios.get('/api/pemilihan/indexCalon/' + name);
   },
 
-  indexSuara: function(id){
-    return axios.get('/api/pemilihan/indexSuara/' + id);
+  indexCalonTerpilih: function(id){
+    return axios.get('/api/pemilihan/indexCalonTerpilih/' + id);
+  },
+
+  indexDataSuara: function(p, id){
+    return axios.get('/api/pemilihan/indexDataSuara/' + id, {params:p});
   },
 
   checkUser: function(id){
@@ -36,8 +40,16 @@ export default {
     return axios.post('/api/pemilihan/store', form);
   },
 
+  storeSuara: function (form ){
+    return axios.post('/api/pemilihan/storeSuara', form);
+  },
+
   storePilihan: function ( form ){
     return axios.post('/api/pemilihan/storePilihan', form);
+  },
+
+  storeMultiPilihan: function ( form ){
+    return axios.post('/api/pemilihan/storeMultiPilihan', form);
   },
 
   edit: function( id ){
@@ -48,8 +60,16 @@ export default {
     return axios.get('/api/pemilihan/updateStatus/' + id + '/' + cu);
   },
 
+  updateSuara: function ( id, form ){
+    return axios.post('/api/pemilihan/updateSuara/' + id, form);
+  },
+
   destroy: function( id ){
     return axios.delete('/api/pemilihan/' + id);
+  },
+
+  destroySuara: function( id ){
+    return axios.delete('/api/pemilihan/destroySuara/' + id);
   },
 
   countCalon: function( id ){

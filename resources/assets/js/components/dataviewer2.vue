@@ -1303,6 +1303,7 @@
           }).catch( ({error}) => {
             this.modalState = 'fail';
             this.modalContent = error;
+            console.log(error);
           });
         }
       },
@@ -1351,11 +1352,16 @@
             this.updateResponse = response.data;
           }else{
             this.updateStat = 'fail';
+            this.updateResponse = response.data;
           }
         })
         .catch(error => {
-          this.updateResponse = error.response;
           this.updateStat = 'fail';
+          if(error.response){
+            this.updateResponse = error.response;
+          }else{
+            this.updateResponse = error;
+          }
         });
       },
       downloadFormatExcel(index){
@@ -1394,10 +1400,14 @@
       },
       modalTutup() {
         if(this.updateStat === 'success'){
-          if(this.excelUploads[this.excelUploadIndex].params){
-            this.$router.push({name: this.excelUploads[this.excelUploadIndex].next_page_route, params: this.excelUploads[this.excelUploadIndex].params});
+          if(this.excelUploads[this.excelUploadIndex].next_page_route){
+            if(this.excelUploads[this.excelUploadIndex].params){
+              this.$router.push({name: this.excelUploads[this.excelUploadIndex].next_page_route, params: this.excelUploads[this.excelUploadIndex].params});
+            }else{
+              this.$router.push({name: this.excelUploads[this.excelUploadIndex].next_page_route});
+            }
           }else{
-            this.$router.push({name: this.excelUploads[this.excelUploadIndex].next_page_route});
+            this.fetch();
           }
         }
         

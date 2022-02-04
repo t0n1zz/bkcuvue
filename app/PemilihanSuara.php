@@ -45,4 +45,13 @@ class PemilihanSuara extends Model {
     {
         return $this->belongsTo('App\PemilihanCalon','pemilihan_calon_id','id');
     }
+
+    public function calon_count(){
+        return $this->hasMany('App\PemilihanCalonCount','pemilihan_suara_id','id');
+    }
+
+    public function akses()
+    {
+        return $this->belongsTo('App\PemilihanSuaraAkses','id','pemilihan_suara_id');
+    }
 }

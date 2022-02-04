@@ -19,26 +19,25 @@ class Voting extends Model {
         'name' => 'required'
     ];
 
-    
     protected $fillable = [
-        'id_cu','id_kegiatan','name','name_kegiatan','status','created_at','updated_at','deleted_at','suara','suara_ok'
+        'id_cu','id_kegiatan','name','name_kegiatan','status','created_at','updated_at','deleted_at','suara','suara_ok','suara_tipe','suara_akses','keterangan','lihat_hasil'
     ];
 
     protected $allowedFilters = [
-        'id','id_cu','id_kegiatan','name','name_kegiatan','status','created_at','updated_at','deleted_at','suara','suara_ok',
+        'id','id_cu','id_kegiatan','name','name_kegiatan','status','created_at','updated_at','deleted_at','suara','suara_ok','suara_tipe','suara_akses','keterangan','lihat_hasil',
 
         'cu.name',
     ];
 
     protected $orderable = [
-        'id','id_cu','id_kegiatan','name','name_kegiatan','status','created_at','updated_at','deleted_at','suara','suara_ok',
+        'id','id_cu','id_kegiatan','name','name_kegiatan','status','created_at','updated_at','deleted_at','suara','suara_ok','suara_tipe','suara_akses','lihat_hasil',
 
         'cu.name',
     ];
     
     public static function initialize(){
         return [
-            'id_cu' => '','id_kegiatan' =>'', 'name' => '','name_kegiatan', 'status' => '',  'suara' => '',  'suara_ok' => '', 'sumberSuara' => ''
+            'id_cu' => '','id_kegiatan' =>'', 'name' => '','name_kegiatan', 'status' => '',  'suara' => '',  'suara_ok' => '', 'suara_tipe' => '0', 'sumberSuara' => '','keterangan' => '','lihat_hasil' => ''
         ];
     }
 
@@ -56,7 +55,12 @@ class Voting extends Model {
         return $this->hasMany('App\VotingPilihan','voting_id','id');
     }
 
+    public function tanggapan(){
+        return $this->hasMany('App\VotingTanggapan','voting_id','id');
+    }
+
     public function hasSuara(){
         return $this->hasMany('App\VotingSuara','voting_id','id');
     }
+    
 }

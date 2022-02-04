@@ -8,10 +8,12 @@ export const pemilihan = {
     data: {}, //single data
     dataS: [], //collection
     dataS2: [], //collection
+    dataS3: [], //collection
     count: {},
     dataStat: '',
     dataStatS: '',
     dataStatS2: '',
+    dataStatS3: '',
     countStat: '',
     update: [], //update data
     updateStat: '',
@@ -24,10 +26,12 @@ export const pemilihan = {
     data: state => state.data,
     dataS: state => state.dataS,
     dataS2: state => state.dataS2,
+    dataS3: state => state.dataS3,
     count: state => state.count,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
     dataStatS2: state => state.dataStatS2,
+    dataStatS3: state => state.dataStatS3,
     countStat: state => state.countStat,
     update: state => state.update,
     updateStat: state => state.updateStat,
@@ -114,10 +118,10 @@ export const pemilihan = {
         });
     },
 
-    indexSuara( { commit }, id ){
+    indexCalonTerpilih( { commit }, id ){
       commit('setDataStatS2', 'loading');
       
-      PemilihanAPI.indexSuara( id )
+      PemilihanAPI.indexCalonTerpilih( id )
         .then( function( response ){
           commit('setDataS2', response.data.model );
           commit('setDataStatS2', 'success');
@@ -125,6 +129,20 @@ export const pemilihan = {
         .catch( error => {
           commit('setDataS2', error.response);
           commit('setDataStatS2', 'fail');
+        });
+    },
+
+    indexDataSuara( { commit }, [ p, id ] ){
+      commit('setDataStatS3', 'loading');
+      
+      PemilihanAPI.indexDataSuara( p, id )
+        .then( function( response ){
+          commit('setDataS3', response.data.model );
+          commit('setDataStatS3', 'success');
+        })
+        .catch( error => {
+          commit('setDataS3', error.response);
+          commit('setDataStatS3', 'fail');
         });
     },
 
@@ -165,10 +183,48 @@ export const pemilihan = {
         });
     },
 
+    storeSuara( {commit, state, dispatch}, form ){
+      commit('setUpdateStat', 'loading');
+
+      PemilihanAPI.storeSuara( form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
     storePilihan( {commit, state, dispatch}, form ){
       commit('setUpdateStat', 'loading');
 
       PemilihanAPI.storePilihan( form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    storeMultiPilihan( {commit, state, dispatch}, form ){
+      commit('setUpdateStat', 'loading');
+
+      PemilihanAPI.storeMultiPilihan( form )
         .then( function( response ){
           if(response.data.saved){
             commit('setUpdate', response.data);
@@ -236,11 +292,49 @@ export const pemilihan = {
         });
     },
 
+    updateSuara( {commit, state, dispatch}, [ id, form ] ){
+      commit('setUpdateStat', 'loading');
+
+      PemilihanAPI.updateSuara( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
     // destroy data
     destroy( {commit, state, dispatch}, id ){
       commit('setUpdateStat', 'loading');
 
       PemilihanAPI.destroy( id )
+        .then( function( response ){
+          if(response.data.deleted){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    destroySuara( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      PemilihanAPI.destroySuara( id )
         .then( function( response ){
           if(response.data.deleted){
             commit('setUpdate', response.data);
@@ -310,6 +404,9 @@ export const pemilihan = {
     setDataS2 ( state, data ){
       state.dataS2 = data;
     },
+    setDataS3 ( state, data ){
+      state.dataS3 = data;
+    },
     setCount ( state, data ){
       state.count = data;
     },
@@ -321,6 +418,9 @@ export const pemilihan = {
     },
     setDataStatS2( state, status ){
       state.dataStatS2 = status;
+    },
+    setDataStatS3( state, status ){
+      state.dataStatS3 = status;
     },
     setCountStat( state, status ){
       state.countStat = status;

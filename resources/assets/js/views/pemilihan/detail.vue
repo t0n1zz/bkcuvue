@@ -19,8 +19,12 @@
 							<div class="nav-tabs-responsive">
 								<ul class="nav nav-tabs nav-tabs-solid  bg-light nav-justified mb-0">
 
-									<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'info'}" @click.prevent="changeTab('info')"><i class="icon-menu7 mr-2"></i>
+									<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'info'}" @click.prevent="changeTab('info')"><i class="icon-info22 mr-2"></i>
 										Info
+									</a></li>
+
+									<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'suara'}" @click.prevent="changeTab('suara')"><i class="icon-megaphone mr-2"></i>
+										Suara
 									</a></li>
 
 									<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'skor'}" @click.prevent="changeTab('skor')"><i class="icon-equalizer mr-2"></i>
@@ -34,199 +38,321 @@
 
 						<!-- info -->
 						<transition enter-active-class="animated fadeIn" mode="out-in">
-								<div v-show="tabName == 'info'">
-									<!-- informasi umum -->
-									<div class="card">
-										<div class="card-header bg-white header-elements-inline">
-											<h5 class="card-title">Pemilihan | Status: <span v-html="$options.filters.checkStatus(form.status)"></span></h5>
-											<div class="header-elements">
-												<!-- status -->
-												<button @click.prevent="modalOpen('status')" 	class="btn btn-light btn-icon mb-1 mr-1" v-if="currentUser.can && currentUser.can['update_pemilihan']">
-													<i class="icon-calendar5"></i> Status
-												</button>
-												<!-- reload -->
-												<button type="button" class="btn btn-light btn-icon mb-1" @click.prevent="fetch()">
-													<i class="icon-sync"></i>
-												</button>
-											</div>
-										</div>
-										<div class="card-body">
-											<div class="row">
-												<!-- nama -->
-												<div class="col-md-6 form-group">
-													<!-- title -->
-													<h5>Nama:</h5>
-
-													<!-- text -->
-													<input type="text" name="name" class="form-control" v-model="form.name" disabled>
-												</div>
-
-												<!-- cu -->
-												<div class="col-md-6 form-group" v-if="currentUser.id_cu == 0">
-													<!-- title -->
-													<h5>CU:</h5>
-
-													<!-- text -->
-													<input type="text" name="cu" class="form-control" v-model="form.cu.name" disabled v-if="form.cu">
-
-													<input type="text" name="cu" class="form-control" value="PUSKOPCUINA" disabled v-else>
-												</div>
-
-												<!-- tingkat -->
-												<div class="col-md-4 form-group">
-													<!-- title -->
-													<h5>Tingkat:</h5>
-
-													<!-- text -->
-													<input type="text" name="tingkat" class="form-control" v-model="form.tingkat" disabled>
-												</div>
-
-												<!-- total suara -->
-												<div class="col-md-4 form-group">
-													<!-- title -->
-													<h5>Total Suara:</h5>
-
-													<!-- text -->
-													<input type="text" name="suara" class="form-control" v-model="form.suara" disabled>
-												</div>
-
-												<!-- suara ok -->
-												<div class="col-md-4 form-group">
-													<!-- title -->
-													<h5>Suara Masuk:</h5>
-
-													<!-- text -->
-													<input type="text" name="suara_ok" class="form-control" v-model="form.suara_ok" disabled>
-												</div>
-
-											</div>	
+							<div v-show="tabName == 'info'">
+								<!-- informasi umum -->
+								<div class="card">
+									<div class="card-header bg-white header-elements-inline">
+										<h5 class="card-title">Pemilihan | Status: <span v-html="$options.filters.checkStatus(form.status)"></span></h5>
+										<div class="header-elements">
+											<!-- status -->
+											<button @click.prevent="modalOpen('status')" 	class="btn btn-light btn-icon mb-1 mr-1" v-if="currentUser.can && currentUser.can['update_pemilihan']">
+												<i class="icon-calendar5"></i> Status
+											</button>
+											<!-- reload -->
+											<button type="button" class="btn btn-light btn-icon mb-1" @click.prevent="fetch()">
+												<i class="icon-sync"></i> Reload Data
+											</button>
 										</div>
 									</div>
+									<div class="card-body">
+										<div class="row">
+											<!-- nama -->
+											<div class="col-md-6 form-group">
+												<!-- title -->
+												<h5>Nama:</h5>
 
-									<!-- calon -->
-									
-									<div class="card">
-										<div class="card-header bg-white header-elements-inline">
-											<h5 class="card-title">Calon</h5>
-										</div>
-
-										<data-table :items="itemDataCalon" :columnData="columnDataCalon" :itemDataStat="itemDataCalonStat">
-											<template slot="item-desktop" slot-scope="props">
-												<tr class="text-nowrap" v-if="props.item">
-													<td>{{ props.item.no_urut }}</td>
-													<td>
-														<img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
-														<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
-													</td>
-													<td>{{ props.item.name }}</td>
-													<td>{{ props.item.tanggal_lahir }}</td>
-													<td>{{ props.item.tempat_lahir }}</td>
-													<td>{{ props.item.status }}</td>
-													<td>{{ props.item.pendidikan }}</td>
-												</tr>
-											</template>	
-										</data-table>
-
-									</div>
-
-									<!-- suara -->
-									<div class="card">
-										<div class="card-header bg-white header-elements-inline">
-											<h5 class="card-title">Suara</h5>
-											<div class="header-elements">
-												<json-excel 
-													class="btn bg-green-300 btn-icon mb-1"
-													:data="excelSuara.data"
-													:exportFields="excelSuara.fields" 
-													:meta="excelSuara.meta" 
-													:title="'Data Suara'" 
-													:name="title + '.xls'"
-													><i class="icon-file-excel"></i> Excel</json-excel>  
+												<!-- text -->
+												<input type="text" name="name" class="form-control" v-model="form.name" disabled>
 											</div>
-										</div>
 
-										<data-table :items="itemDataSuara" :columnData="columnDataSuara" :itemDataStat="itemDataSuaraStat">
-											<template slot="item-desktop" slot-scope="props">
-												<tr class="text-nowrap" v-if="props.item">
-													<td>{{ props.index + 1 }}</td>
-													<td>{{ props.item.link }}</td>
-													<td>
-														<span v-if="props.item.pemilihan_calon_id" class="bg-orange-400 text-highlight"><i class="icon-check"></i></span>
-														<span v-else class="bg-teal-300 text-highlight"><i class="icon-cross3"></i></span>
-													</td>
-													<td>
-														<a class="btn btn-light mb-1" :href="props.item.link" target="_blank">
-															<i class="icon-copy3"></i> Buka
-														</a>	
-													</td>
-												</tr>
-											</template>	
-										</data-table>
+											<!-- cu -->
+											<div class="col-md-6 form-group" v-if="currentUser.id_cu == 0">
+												<!-- title -->
+												<h5>CU:</h5>
 
+												<!-- text -->
+												<input type="text" name="cu" class="form-control" v-model="form.cu.name" disabled v-if="form.cu">
+
+												<input type="text" name="cu" class="form-control" value="PUSKOPCUINA" disabled v-else>
+											</div>
+
+											<!-- tingkat -->
+											<div class="col-md-6 form-group">
+												<!-- title -->
+												<h5>Tingkat:</h5>
+
+												<!-- text -->
+												<input type="text" name="tingkat" class="form-control" v-model="form.tingkat" disabled>
+											</div>
+
+											<!-- total suara -->
+											<div class="col-md-6 form-group">
+												<!-- title -->
+												<h5>Total Suara:</h5>
+
+												<!-- text -->
+												<input type="text" name="suara" class="form-control" v-model="form.suara" disabled>
+											</div>
+
+											<!-- suara ok -->
+											<div class="col-md-6 form-group">
+												<!-- title -->
+												<h5>Suara Masuk:</h5>
+
+												<!-- text -->
+												<input type="text" name="suara_ok" class="form-control" v-model="form.suara_ok" disabled>
+											</div>
+
+											<!-- suara ok -->
+											<div class="col-md-6 form-group">
+												<!-- title -->
+												<h5>Suara Akses:</h5>
+
+												<!-- text -->
+												<input type="text" name="suara_akses" class="form-control" v-model="form.suara_akses" disabled>
+											</div>
+
+
+											<div class="col-md-6">
+												<div class="form-group">
+
+													<!-- title -->
+													<h5>Pemilih Minimum:</h5>
+
+													<!-- input -->
+													<input type="text" name="tingkat" class="form-control" v-model="form.pemilihan_min" disabled>
+
+												</div>
+											</div>
+
+											<div class="col-md-6">
+												<div class="form-group">
+
+													<!-- title -->
+													<h5>Pemilih Maximum:</h5>
+
+													<!-- input -->
+													<input type="text" name="tingkat" class="form-control" v-model="form.pemilihan_max" disabled>
+
+												</div>
+											</div>
+
+											<div class="col-md-12">
+												<!-- title -->
+												<h5>Link Suara Input:</h5>
+
+												<!-- text -->
+												<div class="card card-body">
+													<p>Silahkan menggunakan link ini dan memasukkan kode unik yang sudah dibuat </p>
+													<hr class="mt-1 mb-1"/>
+													<a class="pointer" :href="form.link" target="_blank">
+														<check-value :value="form.link.substring(8)" :trimLength="100"></check-value>
+													</a>
+													<button @click.prevent="modalOpen('qrCodeInput')" class="btn btn-light btn-block mb-1 mt-2">
+														<i class="icon-qrcode"></i> Buat QR Code
+													</button>
+												</div>
+											</div>
+
+										</div>	
 									</div>
 								</div>
+
+								<!-- calon -->								
+								<div class="card">
+									<div class="card-header bg-white header-elements-inline">
+										<h5 class="card-title">Calon</h5>
+									</div>
+
+									<data-table :items="itemDataCalon" :columnData="columnDataCalon" :itemDataStat="itemDataCalonStat">
+										<template slot="item-desktop" slot-scope="props">
+											<tr class="text-nowrap" v-if="props.item">
+												<td>{{ props.item.no_urut }}</td>
+												<td>
+													<img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+													<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+												</td>
+												<td>{{ props.item.name }}</td>
+												<td>{{ props.item.tanggal_lahir }}</td>
+												<td>{{ props.item.tempat_lahir }}</td>
+												<td>{{ props.item.status }}</td>
+												<td>{{ props.item.pendidikan }}</td>
+											</tr>
+										</template>	
+									</data-table>
+
+								</div>
+
+							</div>
 						</transition>	
+
+						<!-- suara -->
+						<transition enter-active-class="animated fadeIn" mode="out-in">
+							<div v-show="tabName == 'suara'">
+								<div class="card card-body">
+									<p>Silahkan menggunakan link ini dan memasukkan kode unik yang sudah dibuat dibawah </p>
+									<hr class="mt-1 mb-1"/>
+									<a class="pointer" :href="form.link" target="_blank">
+										<check-value :value="form.link.substring(8)" :trimLength="100"></check-value>
+									</a>
+									<button @click.prevent="modalOpen('qrCodeInput')" class="btn btn-light btn-block mb-1 mt-2">
+										<i class="icon-qrcode"></i> Buat QR Code
+									</button>
+								</div>
+								<data-viewer :title="'Suara'" :columnData="columnDataSuara" :itemData="itemDataSuara" :query="query" :itemDataStat="itemDataSuaraStat" 
+								:excelDownloadUrl="excelDownloadUrl" 
+								:excelUploads="excelUploads"
+								@fetch="fetchDataSuara">
+
+									<!-- button desktop -->
+									<template slot="button-desktop">
+										<!-- tambah suara -->
+										<button @click.prevent="modalOpen('tambah_suara')" class="btn btn-light mb-1" :disabled="form.suara_ok > 0" v-if="form.suara_tipe == 1">
+											<i class="icon-pencil5"></i> Tambah Suara
+										</button>
+
+										<!-- ubah suara -->
+										<button @click.prevent="modalOpen('ubah_suara')" class="btn btn-light mb-1" :disabled="!selectedSuara.id || form.suara_ok > 0" v-if="form.suara_tipe == 1">
+											<i class="icon-pencil5"></i> Ubah Suara
+										</button>
+
+										<!-- hapus suara -->
+										<button @click.prevent="modalOpen('hapus_suara')" class="btn btn-light mb-1" :disabled="!selectedSuara.id || form.suara_ok > 0" v-if="form.suara_tipe == 1">
+											<i class="icon-pencil5"></i> Hapus Suara
+										</button>
+
+										<!-- qr code -->
+										<button @click.prevent="modalOpen('qrCode')" class="btn btn-light mb-1" :disabled="!selectedSuara.id">
+											<i class="icon-qrcode"></i> Buat QR Code
+										</button>
+
+										<button @click.prevent="modalOpen('qrCodeAll')" class="btn btn-light mb-1">
+											<i class="icon-qrcode"></i> QR Code Pada Tabel
+										</button>
+									</template>
+
+									<!-- button mobile -->
+									<template slot="button-mobile">
+										<!-- tambah suara -->
+										<button @click.prevent="modalOpen('tambah_suara')" class="btn btn-light btn-block mb-1" :disabled="form.suara_ok > 0" v-if="form.suara_tipe == 1">
+											<i class="icon-pencil5"></i> Tambah Suara
+										</button>
+
+										<!-- ubah suara -->
+										<button @click.prevent="modalOpen('ubah_suara')" class="btn btn-light btn-block mb-1" :disabled="!selectedSuara.id || form.suara_ok > 0" v-if="form.suara_tipe == 1">
+											<i class="icon-pencil5"></i> Ubah Suara
+										</button>
+
+										<!-- hapus suara -->
+										<button @click.prevent="modalOpen('hapus_suara')" class="btn btn-light btn-block mb-1" :disabled="!selectedSuara.id || form.suara_ok > 0" v-if="form.suara_tipe == 1">
+											<i class="icon-pencil5"></i> Hapus Suara
+										</button>
+
+										<!-- qr code -->
+										<button @click.prevent="modalOpen('qrCode')" class="btn btn-light btn-block mb-1" :disabled="!selectedSuara.id">
+											<i class="icon-qrcode"></i> Buat QR Code
+										</button>
+
+										<button @click.prevent="modalOpen('qrCodeAll')" class="btn btn-light btn-block mb-1">
+											<i class="icon-qrcode"></i> QR Code Pada Tabel
+										</button>
+									</template>
+
+									<template slot="item-desktop" slot-scope="props">
+										<tr :class="{ 'bg-info': selectedSuara.id == props.item.id }" @click="selectedRow(props.item)" class="text-nowrap">
+											<td v-if="!columnDataSuara[0].hide">
+												{{ props.index + 1 + (+itemDataSuara.current_page-1) * +itemDataSuara.per_page + '.'}}
+											</td>
+											<td v-if="!columnDataSuara[1].hide">
+												<check-value :value="props.item.name"></check-value>
+											</td>
+											<td v-if="!columnDataSuara[2].hide">
+												<a class="pointer" :href="props.item.link" target="_blank">
+													<check-value :value="props.item.link.substring(8)" :trimLength="100"></check-value>
+												</a>
+											</td>
+											<td v-if="!columnDataSuara[3].hide">
+												<check-value :value="props.item.calon_pilih"></check-value>
+											</td>
+											<td v-if="!columnDataSuara[4].hide">
+												<span v-if="props.item.pemilihan_calon_id" class="bg-orange-400 text-highlight"><i class="icon-check"></i></span>
+												<span v-else class="bg-teal-300 text-highlight"><i class="icon-cross3"></i></span>
+											</td>
+											<td v-if="!columnDataSuara[5].hide">
+												<span v-if="props.item.akses && props.item.akses.id" class="bg-orange-400 text-highlight"><i class="icon-check"></i></span>
+												<span v-else class="bg-teal-300 text-highlight"><i class="icon-cross3"></i></span>
+											</td>
+										</tr>
+									</template>	
+								</data-viewer>
+							</div>
+						</transition>
 
 						<!-- skor -->
 						<transition enter-active-class="animated fadeIn" mode="out-in">
-								<div v-show="tabName == 'skor'">
-									<!-- skor -->
-									<div class="card " v-if="form.calon">
-										<div class="card-header bg-white header-elements-inline">
-											<h5 class="card-title">Perolehan Skor</h5>
-											<div class="header-elements">
-												<span class="badge badge-success">
-													Suara Masuk: {{ form.suara_ok }}
-												</span> 
-												&nbsp;
-												<span class="badge badge-primary">
-													Total Suara: {{ form.suara }}
-												</span>
-
-												<button type="button" class="btn btn-light btn-icon mb-1 ml-1" @click.prevent="fetch()">
-													<i class="icon-sync"></i>
-												</button>
-											</div>
+							<div v-show="tabName == 'skor'">
+								<!-- skor -->
+								<div class="card " v-if="form.calon">
+									<div class="card-header bg-white header-elements-inline">
+										<h5 class="card-title">Perolehan Skor</h5>
+										<div class="header-elements">
+											<button type="button" class="btn btn-light btn-icon mb-1" @click.prevent="fetch()">
+												<i class="icon-sync"></i> Reload Data
+											</button>
 										</div>
-										<div class="card-body">
-											<div v-for="(p, index) in formCalon" :key="index">
-												<div class="card card-body">
-													<div class="row">
-														<div class="col-sm-3 mb-1 mt-1">
-															<div class="row">
-																<div class="col-4">
-																	<!-- foto -->
-																	<img :src="'/images/aktivis/' + p.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="p.gambar">
-																	<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
-																</div>
-																<div class="col-8">
-																	<span class="badge badge-success" v-if="p.pivot">No. Urut {{ p.pivot.no_urut }}</span>
-																	<br/>
-																	<!-- nama -->
-																	<b>{{ p.name }}</b>
-																</div>
+									</div>
+									<div class="card-body">
+										<!-- <span class="badge badge-success">
+											Suara Masuk: {{ form.suara_ok }}
+										</span> 
+										&nbsp;
+										<span class="badge badge-warning">
+											Suara Akses Suara: {{ form.suara_akses }}
+										</span>
+										&nbsp;
+										<span class="badge badge-primary">
+											Total Suara: {{ form.suara }}
+										</span>
+										
+										<hr/> -->
+										<div v-for="(p, index) in formCalon" :key="index">
+											<div class="card card-body">
+												<div class="row">
+													<div class="col-sm-3 mb-1 mt-1">
+														<div class="row">
+															<div class="col-4">
+																<!-- foto -->
+																<img :src="'/images/aktivis/' + p.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="p.gambar">
+																<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+															</div>
+															<div class="col-8">
+																<span class="badge badge-success" v-if="p.pivot">No. Urut {{ p.pivot.no_urut }}</span>
+																<br/>
+																<!-- nama -->
+																<b>{{ p.name }}</b>
 															</div>
 														</div>
-														<div class="col-sm-8 mb-1 mt-1">
-															<div class="progress">
-																<div class="progress-bar-striped bg-success" :style="{width: Math.round((p.pivot.skor / form.suara) * 100) + '%'}">
-																	<span class="text-default font-size-lg">
-																		&nbsp;
-																		<b>{{ Math.round((p.pivot.skor / form.suara) * 100) + '%' }}</b>
-																		&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
-																	</span>
-																</div>
-															</div>	
-														</div>
-														<div class="col-sm-1 mb-1 mt-1">
-															<b>{{ p.pivot.skor }} / {{ form.suara }}</b>
-														</div>
+													</div>
+													<div class="col-sm-8 mb-1 mt-1">
+														<div class="progress">
+															<div class="progress-bar-striped bg-success" :style="{width: Math.round((p.pivot.skor / form.suara) * 100) + '%'}">
+																<span class="text-default font-size-lg">
+																	&nbsp;
+																	<b>{{ Math.round((p.pivot.skor / form.suara) * 100) + '%' }}</b>
+																	&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
+																</span>
+															</div>
+														</div>	
+													</div>
+													<div class="col-sm-1 mb-1 mt-1">
+														<b>{{ p.pivot.skor }} / {{ form.suara }}</b>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
+							</div>
 						</transition>
 					</template>
 
@@ -256,7 +382,29 @@
 		</div>
 
 		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" :content="modalContent" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+		<app-modal :show="modalShow" :state="modalState" :size="modalSize" :color="modalColor" :title="modalTitle" :button="modalButton" :content="modalContent" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+
+			<!-- title -->
+			<template slot="modal-title">
+				{{ modalTitle }}
+			</template>
+
+			<template slot="modal-body1">
+			</template>
+
+			<template slot=modal-body2>
+				<qr-code :selectedItem="selectedSuara" :title="form.name" @tutup="modalTutup" v-if="state == 'qrCode' || state == 'qrCodeInput'"></qr-code>
+
+				<qr-code-all :itemData="itemDataSuara" :title="form.name" @tutup="modalTutup" v-if="state == 'qrCodeAll'"></qr-code-all>
+			</template>
+
+			<template slot=modal-body3>
+				<form-kode-suara :kelas="kelas" :id="form.id" :id_cu="form.id_cu" :mode="'store'" v-if="state == 'tambah_suara'"
+				@tutup="modalTutup"></form-kode-suara>
+
+				<form-kode-suara :kelas="kelas" :id="form.id" :id_cu="form.id_cu" :selectedItem="selectedSuara" :mode="'edit'" v-if="state == 'ubah_suara'"
+				@tutup="modalTutup"></form-kode-suara>
+			</template>
 		</app-modal>
 
 	</div>
@@ -274,6 +422,10 @@
 	import appModal from '../../components/modal';
 	import Echo from 'laravel-echo';
 	import Pusher from "pusher-js";
+	import DataViewer from '../../components/dataviewer2.vue';
+	import qrCode from '../voting/qrCode.vue';
+	import qrCodeAll from '../voting/qrCodeAll.vue';
+	import formKodeSuara from "./formKodeSuara.vue";
 	
 	export default {
 		components: {
@@ -282,7 +434,11 @@
 			dataTable,
 			jsonExcel,
 			checkValue,
-			appModal
+			appModal,
+			DataViewer,
+			qrCode,
+			qrCodeAll,
+			formKodeSuara
 		},
 		data() {
 			return {
@@ -293,6 +449,22 @@
 				level2Title: 'Pemilihan',
 				kelas: 'pemilihan',
 				tabName: 'info',
+				query: {
+					order_column: "name",
+					order_direction: "asc",
+					filter_match: "and",
+					limit: 10,
+					page: 1
+				},
+				excelDownloadUrl: '',
+				excelUploads:[
+					{
+						enabled: true,
+						url: 'pemilihan/uploadSuara/' + this.$route.params.id,
+						format_url: 'formatPemilihanSuara.xlsx',
+						button: 'Upload Kode Suara'
+					},
+				],
 				columnDataCalon:[
 					{ title: 'No. Urut' },
 					{ title: 'Foto' },
@@ -305,30 +477,63 @@
 				itemDataCalon: [],
 				itemDataCalonStat: 'success',
 				columnDataSuara:[
-					{ title: 'No.' },
-					{ title: 'Link' },
-					{ title: 'Memilih' },
-					{ title: 'Buka' },
-				],
-				itemDataSuara: [],
-				itemDataSuaraStat: 'success',
-        excelSuara: {
-          fields: {
-						link: "link",
-						pilihan: "pemilihan_calon_id"
+					{ 
+						title: 'No.',
+						name: 'No.' 
 					},
-          data: [],
-          meta: [
-            [{
-              "key": "charset",
-              "value": "utf-8"
-            }]
-          ]
-        },
+					{ 
+						title: 'Kode',
+						name: 'name',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						filterDefault: true
+					},
+					{ 
+						title: 'Link',
+						name: 'link',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{ 
+						title: 'Pilihan',
+						name: 'calon_pilih',
+						tipe: 'string',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: false, 
+					},
+					{ 
+						title: 'Memilih',
+						name: 'pemilihan_calon_id',
+						tipe: 'string',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: false, 
+					},
+					{ 
+						title: 'Akses',
+						name: 'pemilihan_id',
+						tipe: 'string',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: false, 
+					},
+				],
+				selectedSuara: {},
 				state: '',
 				modalShow: false,
 				modalState: '',
 				modalColor: '',
+				modalSize:'',
 				modalTitle: '',
 				modalContent: '',
 				modalButton: '',
@@ -346,7 +551,7 @@
 				for (p of this.form.calon) {
 					if(p.pivot.id == data.pemilihan_calon_id){
 						p.pivot.skor = data.skor;
-						this.form.suara_ok += 1;
+						// this.form.suara_ok += 1;
 						this.formCalon = _.orderBy(this.form.calon, 'pivot.skor' ,['desc']);
 					}
 				}
@@ -359,9 +564,10 @@
 			},
 			formStat(value){
 				if(value === "success"){	
+					this.form.link = window.location.origin + '/admins/pemilihan/input';
+
 					var valCalon;
 					this.itemDataCalon = [];
-					this.itemDataSuara = [];
 					for (valCalon of this.form.calon) {
 						let formData = {};
 						formData.aktivis_id = valCalon.id;
@@ -381,15 +587,6 @@
 						this.itemDataCalon.push(formData);
 					}
 
-					var valSuara;
-					for (valSuara of this.form.has_suara) {
-						let formData2 = {};
-						formData2.link = window.location.origin + '/admins/pemilihan/pilih/' + valSuara.name;
-						formData2.pemilihan_calon_id = valSuara.pemilihan_calon_id;
-					
-						this.itemDataSuara.push(formData2);
-					}
-					this.excelSuara.data = this.itemDataSuara;
 					this.formCalon = _.orderBy(this.form.calon, 'pivot.skor' ,['desc']);
 				}
 			},
@@ -401,7 +598,11 @@
 				if(value == "success"){
 					this.modalTitle = this.updateMessage.message;
 					this.modalContent = '';
-					this.fetch();
+					if(this.tabName == 'suara'){
+						this.fetchDataSuara(this.query);
+					}else{
+						this.fetch();
+					}
 				}else if(value == "fail"){
 					this.modalContent = this.updateMessage;
 				}else{
@@ -413,11 +614,26 @@
 			fetch(){
 				this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
 			},
+			fetchDataSuara(params){
+				this.$store.dispatch(this.kelas + '/indexDataSuara', [params, this.$route.params.id]);
+				this.excelDownloadUrl = this.kelas + '/indexDataSuara/' + this.$route.params.id;
+			},
 			back(){
 				this.$router.push({name: this.kelas, params:{cu: this.form.id_cu}});
 			},
 			changeTab(value){
 				this.tabName = value;
+
+				if (value == 'info') {
+					this.fetch();
+				}else if (value == 'skor') {
+					this.fetch();
+				}else if (value == 'suara') {
+					this.fetchDataSuara(this.query);
+				}
+			},
+			selectedRow(item){
+				this.selectedSuara = item;
 			},
 			modalOpen(state) {
 				this.modalShow = true;
@@ -432,6 +648,36 @@
 						this.modalTitle = 'Tidak aktifkan ' + this.form.name + ' ?';
 						this.modalButton = 'Iya, tidak aktifkan';
 					}
+				} else if (state == 'qrCode'){
+					this.modalTitle = 'QR Code untuk kode ' + this.selectedSuara.name;
+					this.modalState = 'normal2';
+					this.modalColor = 'bg-primary';
+					this.modalSize = "";
+				} else if (state == 'qrCodeAll'){
+					this.modalTitle = 'QR Code pada tabel';
+					this.modalState = 'normal2';
+					this.modalColor = 'bg-primary';
+					this.modalSize = "modal-full";
+				} else if (state == 'qrCodeInput'){
+					this.modalTitle = 'QR Code untuk kode ini';
+					this.modalState = 'normal2';
+					this.modalColor = 'bg-primary';
+					this.modalSize = "";
+					this.selectedSuara.link = this.form.link;
+				} else if (state == 'tambah_suara'){
+					this.modalTitle = 'Tambah Suara';
+					this.modalState = 'normal3';
+					this.modalColor = 'bg-primary';
+					this.modalSize = "";
+				} else if (state == 'ubah_suara'){
+					this.modalTitle = 'Ubah suara dengan kode ' + this.selectedSuara.name;
+					this.modalState = 'normal3';
+					this.modalColor = 'bg-primary';
+					this.modalSize = "";
+				} else if (state == 'hapus_suara') {
+					this.modalState = 'confirm-tutup';
+					this.modalTitle = 'Hapus suara dengan kode ' + this.selectedSuara.name + ' ?';
+					this.modalButton = 'Iya, Hapus';
 				}
 			},
 			modalTutup() {
@@ -441,6 +687,8 @@
 			modalConfirmOk() {
 				if (this.state == "status"){
 					this.$store.dispatch(this.kelas + '/updateStatus', [this.form.id, this.form.id_cu]);
+				}else if (this.state == "hapus_suara"){
+					this.$store.dispatch(this.kelas + '/destroySuara', this.selectedSuara.id);
 				}
 			},
 		},
@@ -451,6 +699,8 @@
 			...mapGetters('pemilihan',{
 				form: 'data',
 				formStat: 'dataStat',
+				itemDataSuara: 'dataS3',
+				itemDataSuaraStat: 'dataStatS3',
 				updateMessage: 'update',
 				updateStat: 'updateStat'
 			}),

@@ -24,7 +24,7 @@
 								<div class="row">
 
 									<!-- name -->
-									<div class="col-md-6">
+									<div class="col-md-12">
 										<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
 
 											<!-- title -->
@@ -44,7 +44,7 @@
 									</div>
 
 									<!-- CU -->
-									<div class="col-md-6" v-if="currentUser.id_cu === 0">
+									<div class="col-md-12" v-if="currentUser.id_cu === 0">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
 
 											<!-- title -->
@@ -66,6 +66,30 @@
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
 												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<div class="col-md-12">
+										<div class="form-group" :class="{'has-error' : errors.has('form.lihat_hasil')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.lihat_hasil')}">
+												<i class="icon-cross2" v-if="errors.has('form.lihat_hasil')"></i>
+												Tampilkan Hasil Setelah Melakukan Voting?: <wajib-badge></wajib-badge></h5>
+
+											<!-- input -->
+											<!-- select -->
+											<select class="form-control"  name="lihat_hasil" v-model="form.lihat_hasil" data-width="100%" v-validate="'required'" data-vv-as="tipe suara">
+												<option disabled value="">Silahkan pilih</option>
+												<option value="0">Tidak menampilkan hasil</option>
+												<option value="1">Menampilkan hasil</option>
+											</select>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.lihat_hasil')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.lihat_hasil') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
@@ -120,6 +144,16 @@
 										</div>
 									</div>
 
+									<div class="col-md-12">
+										<!-- title -->
+										<h5>Keterangan:</h5>
+
+										<!-- textarea -->
+										<ckeditor type="classic" :config="ckeditorNoImageConfig" v-model="form.keterangan" ></ckeditor>
+
+										<small class="text-muted">&nbsp;</small>
+									</div>
+
 									<!-- pilih suara -->
 									<template v-if="$route.meta.mode != 'edit'">
 										<div class="col-md-12">
@@ -132,7 +166,7 @@
 												</h5>
 
 												<!-- select -->
-												<select class="form-control"  name="sumberSuara" v-model="form.sumberSuara" data-width="100%" v-validate="'required'" data-vv-as="Penulis" :disabled="modelVotingStat === 'loading'">
+												<select class="form-control"  name="sumberSuara" v-model="form.sumberSuara" data-width="100%" v-validate="'required'" data-vv-as="Sumber Suara" :disabled="modelVotingStat === 'loading'">
 													<option disabled value="">
 														<span v-if="modelVotingStat === 'loading'">Mohon tunggu...</span>
 														<span v-else>Silahkan pilih sumber data suara</span>
@@ -165,13 +199,35 @@
 													v-model="form.suara" 
 													class="form-control" 
 													:raw="false" 
-													:options="cleaveOption.number3" 
+													:options="cleaveOption.number4" 
 													placeholder="Silahkan masukkan suara"
 													v-validate="'required'" data-vv-as="Suara"></cleave>
 
 												<!-- error message -->
 												<small class="text-muted text-danger" v-if="errors.has('form.suara')">
 													<i class="icon-arrow-small-right"></i> {{ errors.first('form.suara') }}
+												</small>
+												<small class="text-muted" v-else>&nbsp;</small>
+											</div>
+
+											<div class="form-group" :class="{'has-error' : errors.has('form.suara_tipe')}">
+
+												<!-- title -->
+												<h5 :class="{ 'text-danger' : errors.has('form.suara_tipe')}">
+													<i class="icon-cross2" v-if="errors.has('form.suara_tipe')"></i>
+													Tipe Suara: <wajib-badge></wajib-badge></h5>
+
+												<!-- input -->
+												<!-- select -->
+												<select class="form-control"  name="suara_tipe" v-model="form.suara_tipe" data-width="100%" v-validate="'required'" data-vv-as="tipe suara">
+													<option disabled value="">Silahkan pilih tipe suara</option>
+													<option value="0">Link suara otomatis</option>
+													<option value="1">Link suara dari sumber data external</option>
+												</select>
+
+												<!-- error message -->
+												<small class="text-muted text-danger" v-if="errors.has('form.suara_tipe')">
+													<i class="icon-arrow-small-right"></i> {{ errors.first('form.suara_tipe') }}
 												</small>
 												<small class="text-muted" v-else>&nbsp;</small>
 											</div>
@@ -182,7 +238,7 @@
 							</div>
 						</div>
 
-						<!-- calon -->
+						<!-- pilihan -->
 						<div class="card">
 							<div class="card-header bg-white">
 								<h5 class="card-title">2. Pilihan</h5>
@@ -195,11 +251,11 @@
 										<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahPilihan')">
 											<i class="icon-plus22"></i> Tambah
 										</button>
-
+<!-- 
 										<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahPilihan')"
 										:disabled="!selectedItemPilihan.index">
 											<i class="icon-pencil5"></i> Ubah
-										</button>
+										</button> -->
 
 										<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusPilihan')" :disabled="!selectedItemPilihan.index">
 											<i class="icon-bin2"></i> Hapus
@@ -212,7 +268,46 @@
 
 							<data-table :items="itemDataPilihan" :columnData="columnDataPilihan" :itemDataStat="itemDataPilihanStat">
 								<template slot="item-desktop" slot-scope="props">
-									<tr :class="{ 'bg-info': selectedItemPilihan.index == props.index + 1}" class="text-nowrap" @click="selectedRow(props.item, props.index + 1, 'calon')" v-if="props.item">
+									<tr :class="{ 'bg-info': selectedItemPilihan.index == props.index + 1}" class="text-nowrap" @click="selectedRowPilihan(props.item, props.index + 1, 'calon')" v-if="props.item">
+										<td>{{ props.index + 1 }}</td>
+										<td>{{ props.item.name }}</td>
+									</tr>
+								</template>	
+							</data-table>
+
+						</div>
+
+						<!-- tanggapan -->
+						<div class="card">
+							<div class="card-header bg-white">
+								<h5 class="card-title">3. Tanggapan</h5>
+							</div>
+							<div class="card-body pb-2">
+								<div class="row">
+
+									<div class="col-md-12">
+
+										<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahTanggapan')">
+											<i class="icon-plus22"></i> Tambah
+										</button>
+
+										<!-- <button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahTanggapan')"
+										:disabled="!selectedItemTanggapan.index">
+											<i class="icon-pencil5"></i> Ubah
+										</button> -->
+
+										<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusTanggapan')" :disabled="!selectedItemTanggapan.index">
+											<i class="icon-bin2"></i> Hapus
+										</button>
+
+									</div>
+
+								</div>		
+							</div>
+
+							<data-table :items="itemDataTanggapan" :columnData="columnDataTanggapan" :itemDataStat="itemDataTanggapanStat">
+								<template slot="item-desktop" slot-scope="props">
+									<tr :class="{ 'bg-info': selectedItemTanggapan.index == props.index + 1}" class="text-nowrap" @click="selectedRowTanggapan(props.item, props.index + 1, 'calon')" v-if="props.item">
 										<td>{{ props.index + 1 }}</td>
 										<td>{{ props.item.name }}</td>
 									</tr>
@@ -256,6 +351,14 @@
 				@editPilihan="editPilihan"
 				@tutup="modalTutup" v-if="state == 'tambahPilihan' || state == 'ubahPilihan'"></form-pilihan>
 
+				<!-- tanggapan -->
+				<form-tanggapan 
+				:mode="formTanggapanMode"
+				:selected="selectedItemTanggapan"
+				@createTanggapan="createTanggapan"
+				@editTanggapan="editTanggapan"
+				@tutup="modalTutup" v-if="state == 'tambahTanggapan' || state == 'ubahTanggapan'"></form-tanggapan>
+
 			</template>
 
 		</app-modal>
@@ -274,6 +377,7 @@
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
 	import formPilihan from "./formPilihan.vue";
+	import formTanggapan from "./formTanggapan.vue";
 	import Cleave from 'vue-cleave-component';
 	import dataTable from '../../components/datatable.vue';
 	import DatePicker from "../../components/datePicker.vue";
@@ -286,6 +390,7 @@
 			formButton,
 			formInfo,
 			formPilihan,
+			formTanggapan,
 			Cleave,
 			dataTable,
 			infoIcon,
@@ -302,6 +407,31 @@
 				kelas: 'voting',
 				sasaran: [],
 				tempatData: '',
+				ckeditorNoImageConfig: {
+					toolbar: {
+						items: [
+							'heading',
+							'|',
+							'bold',
+							'italic',
+							'link',
+							'bulletedList',
+							'numberedList',
+							'blockQuote',
+							'insertTable',
+							'mediaEmbed',
+							'undo',
+							'redo'
+						]
+					},
+					table: {
+						contentToolbar: [
+							'tableColumn',
+							'tableRow',
+							'mergeTableCells'
+						]
+					},
+				},
 				cleaveOption: {
           date:{
             date: true,
@@ -325,6 +455,12 @@
             numeralDecimalScale: 0,
             stripLeadingZeroes: false
           },
+					number4: {
+            numeral: true,
+            numeralIntegerScale: 4,
+            numeralDecimalScale: 0,
+            stripLeadingZeroes: false
+          },
           numeric: {
             numeral: true,
             numeralThousandsGroupStyle: 'thousand',
@@ -341,6 +477,14 @@
 				formPilihanMode: '',
 				itemDataPilihan: [],
 				itemDataPilihanStat: 'success',
+				columnDataTanggapan:[
+					{ title: 'No.' },
+					{ title: 'Nama' },
+				],
+				selectedItemTanggapan: '',
+				formTanggapanMode: '',
+				itemDataTanggapan: [],
+				itemDataTanggapanStat: 'success',
 				cancelState: 'methods',
 				state: '',
 				modalShow: false,
@@ -399,10 +543,23 @@
 			},
 			editPilihan(value){
 				_.remove(this.itemDataPilihan, {
-						index: value.index
+						index: value.index + 1
 				});
 				this.itemDataPilihan.push(value);
 				this.selectedItemPilihan = {};
+				this.modalTutup(); 
+			},
+			createTanggapan(value){
+				this.itemDataTanggapan.push(value);
+				this.selectedItemTanggapan = {};
+				this.modalTutup();
+			},
+			editTanggapan(value){
+				_.remove(this.itemDataTanggapan, {
+						index: value.index
+				});
+				this.itemDataTanggapan.push(value);
+				this.selectedItemTanggapan = {};
 				this.modalTutup(); 
 			},
 			changeCU(id){
@@ -417,6 +574,7 @@
 			},
 			save() {
 				this.form.pilihan = this.itemDataPilihan;
+				this.form.tanggapan = this.itemDataTanggapan;
 				this.state = '';
 				
 				this.$validator.validateAll('form').then((result) => {
@@ -436,13 +594,13 @@
 			back(){
 				this.$router.push({name: this.kelas, params:{cu: this.currentUser.id_cu}});
 			},
-			selectedRow(item,index){
+			selectedRowPilihan(item,index){
 				this.selectedItemPilihan = item;
 				this.selectedItemPilihan.index = index;
 			},
-			selectedRow2(item,index){
-				this.selectedItemSuara = item;
-				this.selectedItemSuara.index = index;
+			selectedRowTanggapan(item,index){
+				this.selectedItemTanggapan = item;
+				this.selectedItemTanggapan.index = index;
 			},
 			modalOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;
@@ -472,6 +630,26 @@
 					this.modalButton = 'Ok';
 					this.modalSize = 'modal-lg';
 					this.formPilihanMode = 'create';
+				}else if (state == 'hapusTanggapan') {
+					this.modalState = 'confirm-tutup';
+					this.modalColor = '';
+					this.modalTitle = 'Hapus Tanggapan' + this.selectedItemTanggapan.name + ' ?';
+					this.modalButton = 'Iya, Hapus';
+					this.modalSize = '';
+				}else if(state == 'ubahTanggapan'){
+					this.modalState = 'normal1';
+					this.modalColor = 'bg-primary';
+					this.modalTitle = 'Ubah Tanggapan';
+					this.modalButton = 'Ok';
+					this.modalSize = 'modal-lg';
+					this.formTanggapanMode = 'edit';
+				}else if(state == 'tambahTanggapan'){
+					this.modalState = 'normal1';
+					this.modalColor = 'bg-primary';
+					this.modalTitle = 'Tambah Tanggapan';
+					this.modalButton = 'Ok';
+					this.modalSize = 'modal-lg';
+					this.formTanggapanMode = 'create';
 				}
 			},
 			modalConfirmOk() {
@@ -482,6 +660,12 @@
 						index: this.selectedItemPilihan.index
 					});
 					this.selectedItemPilihan = {};
+				}
+				if (this.state == 'hapusTanggapan') {
+					_.remove(this.itemDataTanggapan, {
+						index: this.selectedItemTanggapan.index
+					});
+					this.selectedItemTanggapan = {};
 				}
 			},
 			modalTutup() {

@@ -16,15 +16,15 @@ class VotingPilihan extends Model {
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'voting_id','name','skor','created_at','updated_at'
+        'voting_id','name','skor','skor_tanggapan','created_at','updated_at'
     ];
 
     protected $allowedFilters = [
-        'id','voting_id','name','skor','created_at','updated_at',
+        'id','voting_id','name','skor','skor_tanggapan','created_at','updated_at',
     ];
 
     protected $orderable = [
-        'id','voting_id','name','skor','created_at','updated_at',
+        'id','voting_id','name','skor','skor_tanggapan','created_at','updated_at',
     ];
 
     public static function initialize()

@@ -2,6 +2,19 @@
 
 use Illuminate\Http\Request;
 
+Route::group(['middleware' => 'throttle:1000,1'], function () {
+    //pemilihan
+    Route::get('/pemilihan/indexCalon/{name}', 'PemilihanController@indexCalon');
+    Route::get('/pemilihan/indexCalonTerpilih/{id}', 'PemilihanController@indexCalonTerpilih');
+    Route::post('/pemilihan/storePilihan', 'PemilihanController@storePilihan');
+    Route::post('/pemilihan/storeMultiPilihan', 'PemilihanController@storeMultiPilihan');
+
+    //voting
+    Route::get('/voting/indexPilihan/{name}', 'VotingController@indexPilihan');
+    Route::get('/voting/indexSuara/{id}', 'VotingController@indexSuara');
+    Route::post('/voting/storePilihan', 'VotingController@storePilihan');
+});
+
 Route::group(['middleware' => 'throttle:60,1'], function () {
 
     Route::group(['prefix' => 'auth'],function($router){
@@ -10,16 +23,6 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::post('/refresh', 'AuthController@refresh');
         Route::get('/me', 'AuthController@me');
     });
-
-    //pemilihan
-    Route::get('/pemilihan/indexCalon/{name}', 'PemilihanController@indexCalon');
-    Route::get('/pemilihan/indexSuara/{id}', 'PemilihanController@indexSuara');
-    Route::post('/pemilihan/storePilihan', 'PemilihanController@storePilihan');
-
-    //voting
-    Route::get('/voting/indexPilihan/{name}', 'VotingController@indexPilihan');
-    Route::get('/voting/indexSuara/{id}', 'VotingController@indexSuara');
-    Route::post('/voting/storePilihan', 'VotingController@storePilihan');
 
     Route::group(['middleware'=>'jwt.auth'],function(){
         
@@ -783,7 +786,6 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
             Route::delete('/coa/{id}', 'CoaController@destroy');
         });
 
-
         //saran
         Route::group(['middleware' => ['permission:index_saran']], function () {
             Route::get('/saran', 'SaranController@index');
@@ -830,9 +832,14 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
             Route::get('/pemilihan/indexCu/{id}', 'PemilihanController@indexCu');
             Route::get('/pemilihan/indexPemilihan', 'PemilihanController@indexPemilihan');
             Route::get('/pemilihan/indexPemilihanCu/{id}', 'PemilihanController@indexPemilihanCu');
+            Route::get('/pemilihan/indexDataSuara/{id}', 'PemilihanController@indexDataSuara');
             Route::get('/pemilihan/indexUser/{id}', 'PemilihanController@indexUser');
             Route::get('/pemilihan/checkUser/{pemilihan_id}', 'PemilihanController@checkUser');
             Route::get('/pemilihan/edit/{id}', 'PemilihanController@edit');
+            Route::post('/pemilihan/storeSuara', 'PemilihanController@storeSuara');
+            Route::post('/pemilihan/updateSuara/{id}', 'PemilihanController@updateSuara');
+            Route::delete('/pemilihan/destroySuara/{id}', 'PemilihanController@destroySuara');
+            Route::post('/pemilihan/uploadSuara/{id}', 'PemilihanController@uploadSuara');
         });
         Route::group(['middleware' => ['permission:create_pemilihan']], function () {
         Route::get('/pemilihan/create', 'PemilihanController@create');
@@ -851,9 +858,15 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
             Route::get('/voting/indexCu/{id}', 'VotingController@indexCu');
             Route::get('/voting/indexVoting', 'VotingController@indexVoting');
             Route::get('/voting/indexVotingCu/{id}', 'VotingController@indexVotingCu');
+            Route::get('/voting/indexDataSuara/{id}', 'VotingController@indexDataSuara');
+            Route::get('/voting/indexDataTanggapan/{id}', 'VotingController@indexDataTanggapan');
             Route::get('/voting/indexUser/{id}', 'VotingController@indexUser');
             Route::get('/voting/checkUser/{voting_id}', 'VotingController@checkUser');
             Route::get('/voting/edit/{id}', 'VotingController@edit');
+            Route::post('/voting/storeSuara', 'VotingController@storeSuara');
+            Route::post('/voting/updateSuara/{id}', 'VotingController@updateSuara');
+            Route::delete('/voting/destroySuara/{id}', 'VotingController@destroySuara');
+            Route::post('/voting/uploadSuara/{id}', 'VotingController@uploadSuara');
         });
         Route::group(['middleware' => ['permission:create_voting']], function () {
             Route::get('/voting/create', 'VotingController@create');

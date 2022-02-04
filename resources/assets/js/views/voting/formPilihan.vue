@@ -1,4 +1,4 @@
-6204045305820001<template>
+<template>
 	<div>
 		<form @submit.prevent="save" data-vv-scope="formPilihan">
 
@@ -63,6 +63,7 @@
 			return {
 				title: '',
 				formPilihan:{
+					index: '',
 					name: '',
 				},
 				submited: false,

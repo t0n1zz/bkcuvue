@@ -46,3 +46,9 @@ export default {
     },
 }
 </script>
+
+<style>
+.mx-datepicker-popup {
+    z-index: 99999; 
+}
+</style>

@@ -200,7 +200,7 @@
 									</div>
 
 									<!-- aplikasi -->
-									<div class="col-md-4">
+									<div class="col-md-4">t
 										<div class="form-group" :class="{'has-error' : errors.has('form.app')}">
 
 											<!-- title -->

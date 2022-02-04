@@ -15,6 +15,7 @@ class VotingEvent implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $skor;
+    public $skor_tanggapan;
     public $voting_id;
     public $voting_pilihan_id;
     /**
@@ -22,9 +23,10 @@ class VotingEvent implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct($skor, $voting_id, $voting_pilihan_id)
+    public function __construct($skor, $skor_tanggapan, $voting_id, $voting_pilihan_id)
     {
         $this->skor = $skor;
+        $this->skor_tanggapan = $skor_tanggapan;
         $this->voting_id = $voting_id;
         $this->voting_pilihan_id = $voting_pilihan_id;
     }

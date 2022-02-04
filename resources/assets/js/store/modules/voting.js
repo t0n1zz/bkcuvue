@@ -8,10 +8,14 @@ export const voting = {
     data: {}, //single data
     dataS: [], //collection
     dataS2: [], //collection
+    dataS3: [], //collection
+    dataS4: [], //collection
     count: {},
     dataStat: '',
     dataStatS: '',
     dataStatS2: '',
+    dataStatS3: '',
+    dataStatS4: '',
     countStat: '',
     update: [], //update data
     updateStat: '',
@@ -24,10 +28,14 @@ export const voting = {
     data: state => state.data,
     dataS: state => state.dataS,
     dataS2: state => state.dataS2,
+    dataS3: state => state.dataS3,
+    dataS4: state => state.dataS4,
     count: state => state.count,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
     dataStatS2: state => state.dataStatS2,
+    dataStatS3: state => state.dataStatS3,
+    dataStatS4: state => state.dataStatS4,
     countStat: state => state.countStat,
     update: state => state.update,
     updateStat: state => state.updateStat,
@@ -128,6 +136,34 @@ export const voting = {
         });
     },
 
+    indexDataSuara( { commit }, [ p, id ] ){
+      commit('setDataStatS3', 'loading');
+      
+      VotingAPI.indexDataSuara( p, id )
+        .then( function( response ){
+          commit('setDataS3', response.data.model );
+          commit('setDataStatS3', 'success');
+        })
+        .catch( error => {
+          commit('setDataS3', error.response);
+          commit('setDataStatS3', 'fail');
+        });
+    },
+
+    indexDataTanggapan( { commit }, [ p, id ] ){
+      commit('setDataStatS4', 'loading');
+      
+      VotingAPI.indexDataTanggapan( p, id )
+        .then( function( response ){
+          commit('setDataS4', response.data.model );
+          commit('setDataStatS4', 'success');
+        })
+        .catch( error => {
+          commit('setDataS4', error.response);
+          commit('setDataStatS4', 'fail');
+        });
+    },
+
     create( {commit} ){
       commit('setDataStat', 'loading');
       
@@ -156,6 +192,26 @@ export const voting = {
             commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
           }else{
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    storeSuara( {commit, state, dispatch}, form ){
+      commit('setUpdateStat', 'loading');
+
+      VotingAPI.storeSuara( form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdate', response.data);
             commit('setUpdateStat', 'fail');
           }
         })
@@ -237,6 +293,25 @@ export const voting = {
         });
     },
 
+    updateSuara( {commit, state, dispatch}, [ id, form ] ){
+      commit('setUpdateStat', 'loading');
+
+      VotingAPI.updateSuara( id, form )
+        .then( function( response ){
+          if(response.data.saved){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
     updateSuaraCu( {commit, state, dispatch}, form ){
       commit('setUpdateStat', 'loading');
 
@@ -261,6 +336,25 @@ export const voting = {
       commit('setUpdateStat', 'loading');
 
       VotingAPI.destroy( id )
+        .then( function( response ){
+          if(response.data.deleted){
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          }else{
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    destroySuara( {commit, state, dispatch}, id ){
+      commit('setUpdateStat', 'loading');
+
+      VotingAPI.destroySuara( id )
         .then( function( response ){
           if(response.data.deleted){
             commit('setUpdate', response.data);
@@ -330,6 +424,12 @@ export const voting = {
     setDataS2 ( state, data ){
       state.dataS2 = data;
     },
+    setDataS3 ( state, data ){
+      state.dataS3 = data;
+    },
+    setDataS4 ( state, data ){
+      state.dataS4 = data;
+    },
     setCount ( state, data ){
       state.count = data;
     },
@@ -341,6 +441,12 @@ export const voting = {
     },
     setDataStatS2( state, status ){
       state.dataStatS2 = status;
+    },
+    setDataStatS3( state, status ){
+      state.dataStatS3 = status;
+    },
+    setDataStatS4( state, status ){
+      state.dataStatS4 = status;
     },
     setCountStat( state, status ){
       state.countStat = status;

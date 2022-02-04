@@ -16,16 +16,16 @@ class VotingSuara extends Model {
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'voting_id','voting_pilihan_id','id_cu','name','created_at','updated_at'
+        'voting_id','voting_pilihan_id','id_cu','name','created_at','updated_at','isTanggapan'
     ];
 
     protected $allowedFilters = [
-        'id','voting_id','voting_pilihan_id','id_cu','name','created_at','updated_at',
+        'id','voting_id','voting_pilihan_id','id_cu','name','created_at','updated_at','isTanggapan',
         'user.username'
     ];
 
     protected $orderable = [
-        'id','voting_id','voting_pilihan_id','id_cu','name','created_at','updated_at',
+        'id','voting_id','voting_pilihan_id','id_cu','name','created_at','updated_at','isTanggapan',
         'user.username'
     ];
 
@@ -43,12 +43,17 @@ class VotingSuara extends Model {
 
     public function pilihan()
     {
-        return $this->belongsTo('App\votingPilihan','voting_pilihan_id','id');
+        return $this->belongsTo('App\VotingPilihan','voting_pilihan_id','id');
     }
 
     public function cu()
     {
         return $this->belongsTo('App\Cu','id_cu','id')->select('id','name');
+    }
+
+    public function akses()
+    {
+        return $this->belongsTo('App\VotingSuaraAkses','id','voting_suara_id');
     }
 
 }

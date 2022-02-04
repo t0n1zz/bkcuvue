@@ -5,7 +5,6 @@
 		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl" @fetch="fetch">
 
 			<!-- button desktop -->
-
 			<template slot="button-desktop">
 
 				<!-- tambah -->

@@ -9,11 +9,12 @@
 				</a>
 			</div>
 
-
 			<div>
 				<span class="navbar-text ml-lg-3 mr-lg-auto">
 					<span class="badge bg-success-400">PUSKOPCUINA - 
-						<check-value :value="form.cu.name" v-if="form.cu"></check-value>
+						<span v-if="itemData.cu">
+							- {{ itemData.cu.name }}
+						</span> 
 					</span>
 				</span>	
 			</div>
@@ -27,8 +28,8 @@
 					<div class="page-title d-flex">
 						<h4>
 							<i class="mr-2" :class="titleIcon"></i>
-							<span class="font-weight-semibold">{{ title }}</span> 
-							<small class="d-block text-muted">{{ titleDesc }}</small>
+							<span class="font-weight-semibold">{{ itemData.name }}</span> 
+							<small class="d-block text-muted">Selamat datang <i>{{ form.name }} </i></small>
 						</h4>
 					</div>
 				</div>
@@ -47,6 +48,9 @@
 					<div v-if="itemDataStat == 'success'">
 						<!-- ada voting -->
 						<div v-if="form">
+							<div class="card card-body" v-if="itemData.keterangan">
+								<span v-html="itemData.keterangan"></span>
+							</div>
 							<!-- belum pilih -->
 							<div v-if="form.voting_pilihan_id == null">
 								<!-- pilihan -->
@@ -67,7 +71,7 @@
 								</div>
 
 								<!-- skor -->
-								<div class="card ">
+								<div class="card" v-if="itemData.lihat_hasil == 1">
 									<div class="card-header bg-white header-elements-inline">
 										<h5 class="card-title">Perolehan Skor</h5>
 										<div class="header-elements">
@@ -165,7 +169,7 @@
 		</div>
 
 		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :color="modalColor" :button="modalButton" :content="modalContent" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :size="'modal-lg'" :color="modalColor" :button="modalButton" :content="modalContent" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup" @backgroundClick="modalTutup">
 			<!-- title -->
 			<template slot="modal-title">
 				{{ modalTitle }}
@@ -176,15 +180,25 @@
 				<!-- identitas -->
 				<div class="card">
 					<div class="card-header bg-white">
-						<small class="text-muted">PERTANYAAN</small>
 						<h5 class="card-title">{{ title }}</h5>
 					</div>
 				</div>
 
 				<div class="card">
 					<div class="card-header bg-success">
-						<small>PILIHAN</small>
+						<b>PILIHAN ANDA ADALAH</b>
 						<h5 class="card-title">{{ selectedItem.name }}</h5>
+					</div>
+				</div>
+				
+				<div class="card card-body">
+					<div class="form-group mb-0" v-for="(item,index) in itemData.tanggapan" :key="index">
+						<!-- title -->
+						<h5>{{ item.name }}:</h5>
+
+						<!-- textarea -->
+						<textarea class="form-control" rows="4" v-model="item.keterangan" ></textarea>
+						<small class="text-muted">&nbsp;</small>
 					</div>
 				</div>
 
@@ -267,8 +281,10 @@
 			},
 			formStat(value){
 				if(value == "success"){
-					if(this.form.voting_pilihan_id != null){
-						this.fetchSuara();
+					if(this.itemData.lihat_hasil == 1){
+						if(this.form.voting_pilihan_id != null){
+							this.fetchSuara();
+						}
 					}
 				}
 			},
@@ -289,7 +305,7 @@
 		},
 		methods: {
 			fetch(){
-				this.$store.dispatch(this.kelas + '/indexPilihan', this.$route.params.name);
+				this.$store.dispatch(this.kelas + '/indexPilihan',  this.$route.params.name);
 			},
 			fetchSuara(){
 				this.$store.dispatch(this.kelas + '/indexSuara', this.itemData.id);
@@ -310,6 +326,7 @@
 				this.$store.dispatch(this.kelas + '/resetUpdateStat');
 			},
 			modalConfirmOk() {
+				this.formPilihan.tanggapan = this.itemData.tanggapan;
 				this.$store.dispatch(this.kelas + '/storePilihan', this.formPilihan);
 			},
 		},

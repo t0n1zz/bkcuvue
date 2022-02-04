@@ -24,6 +24,14 @@ export default {
     return axios.get('/api/voting/indexSuara/' + id);
   },
 
+  indexDataSuara: function(p, id){
+    return axios.get('/api/voting/indexDataSuara/' + id, {params:p});
+  },
+
+  indexDataTanggapan: function(p, id){
+    return axios.get('/api/voting/indexDataTanggapan/' + id, {params:p});
+  },
+
   checkUser: function(id){
     return axios.get('/api/voting/checkUser/' + id);
   },
@@ -34,6 +42,10 @@ export default {
 
   store: function (form ){
     return axios.post('/api/voting/store', form);
+  },
+
+  storeSuara: function (form ){
+    return axios.post('/api/voting/storeSuara', form);
   },
 
   storePilihan: function ( form ){
@@ -48,12 +60,20 @@ export default {
     return axios.get('/api/voting/updateStatus/' + id + '/' + cu);
   },
 
+  updateSuara: function ( id, form ){
+    return axios.post('/api/voting/updateSuara/' + id, form);
+  },
+
   updateSuaraCu: function ( form ){
     return axios.post('/api/voting/updateSuaraCu', form);
   },
 
   destroy: function( id ){
     return axios.delete('/api/voting/' + id);
+  },
+
+  destroySuara: function( id ){
+    return axios.delete('/api/voting/destroySuara/' + id);
   },
 
   countPilihan: function( id ){

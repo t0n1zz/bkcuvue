@@ -10,14 +10,38 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.4.4 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#v344">Version 3.4.4<small class="text-muted"> / 26 Januari 2022</small></a> </h5>
+                </div>
+
+                <div id="v344" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi meningkatkan fungsi dari fitur voting dan pemilihan
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan fitur link voting dan pemilihan secara custom</li>
+                      <li>Penambahan fitur pengisian tanggapan untuk voting</li>
+                      <li>Penambahan fitur pemilihan lebih dari satu calon untuk 1 link</li>
+                      <li>Perbaikan bug tampilan pada bagian voting dan pemilihan</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.4.4 -->
+
               <!-- Version 3.4.3 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#v343">Version 3.4.3<small class="text-muted"> / 9 Oktober 2021</small></a> </h5>
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v343">Version 3.4.3<small class="text-muted"> / 9 Oktober 2021</small></a> </h5>
                 </div>
 
-                <div id="v343" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="v343" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi menambahkan fitur migrasi data anggota dari ESCETE ke SIMO dan peningkatan pada perhitungan iuran Jalinan
                     <br/><br/>

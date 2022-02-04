@@ -130,7 +130,7 @@
 			<!-- title -->
 			<h5 :class="{ 'text-danger' : errors.has('formCalon.no_urut')}">
 				<i class="icon-cross2" v-if="errors.has('formCalon.no_urut')"></i>
-				Jumlah Suara: <wajib-badge></wajib-badge></h5>
+				No. Urut: <wajib-badge></wajib-badge></h5>
 
 			<!-- input -->
 			<cleave 
@@ -159,7 +159,7 @@
 			</h5>
 
 			<!-- select -->
-			<select class="form-control" name="pengusung_cu_id" v-model="formCalon.pengusung_cu_id" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
+			<select class="form-control" name="pengusung_cu_id" v-model="formCalon.pengusung_cu_id" data-width="100%" data-vv-as="CU" :disabled="modelCU.length === 0">
 				<option disabled value="">
 					<span v-if="modelCUStat === 'loading'">Mohon tunggu...</span>
 					<span v-else>Silahkan pilih CU</span>
@@ -184,7 +184,7 @@
 			<button type="submit" class="btn btn-primary" :disabled="formCalon.aktivis_id == ''">
 				<i class="icon-floppy-disk"></i> Simpan</button>
 		</div>  
-n
+
 		<!-- tombol mobile-->
 		<div class="d-block d-md-none">
 			<button type="submit" class="btn btn-primary btn-block pb-2" :disabled="formCalon.aktivis_id == ''">
@@ -205,6 +205,7 @@ n
 	import DataViewer from '../../components/dataviewer2.vue';
 	import message from "../../components/message.vue";
 	import Cleave from 'vue-cleave-component';
+	import wajibBadge from "../../components/wajibBadge.vue";
 
 	export default {
 		props: ['mode','selected'],
@@ -212,7 +213,8 @@ n
 			DataViewer,
 			checkValue,
 			message,
-			Cleave
+			Cleave,
+			wajibBadge
 		},
 		data() {
 			return {

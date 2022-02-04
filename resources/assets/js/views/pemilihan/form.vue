@@ -105,6 +105,60 @@
 										</div>
 									</div>
 
+									<div class="col-md-6">
+										<div class="form-group" :class="{'has-error' : errors.has('form.pemilihan_min')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.pemilihan_min')}">
+												<i class="icon-cross2" v-if="errors.has('form.pemilihan_min')"></i>
+												Pemilih Minimum: <wajib-badge></wajib-badge></h5>
+
+											<!-- input -->
+											<cleave 
+												name="pemilihan_min"
+												v-model="form.pemilihan_min" 
+												class="form-control" 
+												:raw="false" 
+												:options="cleaveOption.number3" 
+												placeholder="Silahkan masukkan pemilihan minimum"
+												v-validate="'required'" data-vv-as="Pemilihan Minimum"
+												@blur.native="min"></cleave>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.pemilihan_min')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.pemilihan_min') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-group" :class="{'has-error' : errors.has('form.pemilihan_max')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.pemilihan_max')}">
+												<i class="icon-cross2" v-if="errors.has('form.pemilihan_max')"></i>
+												Pemilih Maximum: <wajib-badge></wajib-badge></h5>
+
+											<!-- input -->
+											<cleave 
+												name="pemilihan_max"
+												v-model="form.pemilihan_max" 
+												class="form-control" 
+												:raw="false" 
+												:options="cleaveOption.number3" 
+												placeholder="Silahkan masukkan pemilihan maximum"
+												v-validate="'required'" data-vv-as="Pemilihan Maximum"
+												@blur.native="max"></cleave>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.pemilihan_max')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.pemilihan_max') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+									
 									<!-- pilih suara -->
 									<template v-if="$route.meta.mode != 'edit'">
 										<div class="col-md-12">
@@ -150,13 +204,35 @@
 													v-model="form.suara" 
 													class="form-control" 
 													:raw="false" 
-													:options="cleaveOption.number3" 
+													:options="cleaveOption.number4" 
 													placeholder="Silahkan masukkan suara"
 													v-validate="'required'" data-vv-as="Suara"></cleave>
 
 												<!-- error message -->
 												<small class="text-muted text-danger" v-if="errors.has('form.suara')">
 													<i class="icon-arrow-small-right"></i> {{ errors.first('form.suara') }}
+												</small>
+												<small class="text-muted" v-else>&nbsp;</small>
+											</div>
+											
+											<div class="form-group" :class="{'has-error' : errors.has('form.suara_tipe')}">
+
+												<!-- title -->
+												<h5 :class="{ 'text-danger' : errors.has('form.suara_tipe')}">
+													<i class="icon-cross2" v-if="errors.has('form.suara_tipe')"></i>
+													Tipe Suara: <wajib-badge></wajib-badge></h5>
+
+												<!-- input -->
+												<!-- select -->
+												<select class="form-control"  name="suara_tipe" v-model="form.suara_tipe" data-width="100%" v-validate="'required'" data-vv-as="tipe suara">
+													<option disabled value="">Silahkan pilih tipe suara</option>
+													<option value="0">Link suara otomatis</option>
+													<option value="1">Link suara dari sumber data external</option>
+												</select>
+
+												<!-- error message -->
+												<small class="text-muted text-danger" v-if="errors.has('form.suara_tipe')">
+													<i class="icon-arrow-small-right"></i> {{ errors.first('form.suara_tipe') }}
 												</small>
 												<small class="text-muted" v-else>&nbsp;</small>
 											</div>
@@ -181,10 +257,10 @@
 											<i class="icon-plus22"></i> Tambah
 										</button>
 
-										<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahCalon')"
+										<!-- <button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahCalon')"
 										:disabled="!selectedItemCalon.index">
 											<i class="icon-pencil5"></i> Ubah
-										</button>
+										</button> -->
 
 										<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusCalon')" :disabled="!selectedItemCalon.index">
 											<i class="icon-bin2"></i> Hapus
@@ -318,6 +394,12 @@
             numeralDecimalScale: 0,
             stripLeadingZeroes: false
           },
+					number4: {
+            numeral: true,
+            numeralIntegerScale: 4,
+            numeralDecimalScale: 0,
+            stripLeadingZeroes: false
+          },
           numeric: {
             numeral: true,
             numeralThousandsGroupStyle: 'thousand',
@@ -395,6 +477,16 @@
 					this.titleDesc = 'Menambah ' + this.level2Title;
 					this.titleIcon = 'icon-plus3';
 				}	
+			},
+			min(){
+				if(this.form.pemilihan_min < 1){
+					this.form.pemilihan_min = 1;
+				}
+			},
+			max(){
+				if(this.form.pemilihan_max < this.form.pemilihan_min){
+					this.form.pemilihan_max = this.form.pemilihan_min;
+				}
 			},
 			createCalon(value){
 				this.itemDataCalon.push(value);

@@ -30,4 +30,9 @@ class PemilihanCalonCount extends Model {
             'pemilihan_id' => '','pemilihan_calon_id' => '','pemilihan_suara_id' => ''
         ];
     }
+
+    public function calon()
+    {
+        return $this->belongsTo('App\PemilihanCalon','pemilihan_calon_id','id');
+    }
 }
