@@ -400,6 +400,23 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
             Route::delete('/asetTetapLokasi/{id}', 'AsetTetapLokasiController@destroy');
         });
 
+        // surat
+        Route::get('/surat/getPeriode/{cu}', 'SuratController@getPeriode');
+        Route::group(['middleware' => ['permission:index_surat']], function () {
+            Route::get('/surat/indexCu/{cu}/{periode}', 'SuratController@indexCu');
+        });
+        Route::group(['middleware' => ['permission:create_surat']], function () {
+            Route::get('/surat/create/{tipe}', 'SuratController@create');
+            Route::post('/surat/store', 'SuratController@store');
+        });
+        Route::group(['middleware' => ['permission:update_surat']], function () {
+            Route::get('/surat/edit/{id}', 'SuratController@edit');
+            Route::post('/surat/update/{id}', 'SuratController@update');
+        });
+        Route::group(['middleware' => ['permission:destroy_surat']], function () {
+            Route::delete('/surat/{id}', 'SuratController@destroy');
+        });
+
         //dokumen
         Route::get('/dokumen/count', 'DokumenController@count');
         Route::get('/dokumen/history', 'DokumenController@history');

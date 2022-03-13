@@ -78,6 +78,10 @@ class VotingController extends Controller{
 				$table_data = $voting;
 				$form = VotingSuara::with('pilihan','cu')->where('name', $name)->where('voting_id', $voting->id)->first();
 
+				$tanggapan = VotingTanggapanSuara::with('tanggapan')->where('voting_id',$voting->id)->where('voting_suara_id',$form->id)->get();
+
+				$form->tanggapan = $tanggapan;
+
 				$votingSuaraAkses = VotingSuaraAkses::where('voting_suara_id', $form->id)->where('voting_id', $voting->id)->first();
 
 				if(!$votingSuaraAkses){
@@ -122,7 +126,21 @@ class VotingController extends Controller{
 
 	public function indexSuara($id)
 	{
-		$table_data = VotingPilihan::where('voting_id', $id)->orderByDesc('skor')->get();
+		$kelas = Voting::with('pilihan')->findOrFail($id);
+		foreach($kelas->pilihan as $t){
+			$pilihanCount = VotingPilihanCount::where('voting_pilihan_id',$t->id)->count();
+			$tanggapanCount = VotingSuara::where('voting_id', $id)->where('voting_pilihan_id', $t->id)->where('isTanggapan', 1)->count();
+
+			$kelasPilihan = VotingPilihan::findOrFail($t->id);
+			$kelasPilihan->skor = $pilihanCount;
+			$kelasPilihan->skor_tanggapan = $tanggapanCount;
+			$kelasPilihan->update();
+
+			$t->skor = $pilihanCount;
+			$t->skor_tanggapan = $tanggapanCount;
+		}
+
+		$table_data = $kelas->pilihan;
 
 		return response()
 		->json([

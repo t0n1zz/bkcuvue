@@ -447,9 +447,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-//
-//
-//
 
 
 
@@ -538,14 +535,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         hide: false,
         disable: false,
         filter: true
-      }, {
-        title: 'Pilihan',
-        name: 'calon_pilih',
-        tipe: 'string',
-        sort: false,
-        hide: false,
-        disable: false,
-        filter: false
       }, {
         title: 'Memilih',
         name: 'pemilihan_calon_id',
@@ -1832,22 +1821,6 @@ var render = function () {
                                                 : _vm._e(),
                                               _vm._v(" "),
                                               !_vm.columnDataSuara[3].hide
-                                                ? _c(
-                                                    "td",
-                                                    [
-                                                      _c("check-value", {
-                                                        attrs: {
-                                                          value:
-                                                            props.item
-                                                              .calon_pilih,
-                                                        },
-                                                      }),
-                                                    ],
-                                                    1
-                                                  )
-                                                : _vm._e(),
-                                              _vm._v(" "),
-                                              !_vm.columnDataSuara[4].hide
                                                 ? _c("td", [
                                                     props.item
                                                       .pemilihan_calon_id
@@ -1880,7 +1853,7 @@ var render = function () {
                                                   ])
                                                 : _vm._e(),
                                               _vm._v(" "),
-                                              !_vm.columnDataSuara[5].hide
+                                              !_vm.columnDataSuara[4].hide
                                                 ? _c("td", [
                                                     props.item.akses &&
                                                     props.item.akses.id
@@ -1920,7 +1893,7 @@ var render = function () {
                                   ],
                                   null,
                                   false,
-                                  184219231
+                                  1873918937
                                 ),
                               },
                               [

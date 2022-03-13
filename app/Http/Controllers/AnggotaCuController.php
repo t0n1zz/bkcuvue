@@ -84,7 +84,7 @@ class AnggotaCuController extends Controller{
 			}
 		})->where(function($query) use ($kelas_cu){
 			$query->where('escete', $kelas_cu->escete)->where('status_jalinan','!=','MENINGGAL')->orWhere('status_jalinan', NULL);
-		})->advancedFilter();
+		})->where('escete', $kelas_cu->escete)->advancedFilter();
 
 		$table_data = $this->formatCuQuery($table_data, $cu, $tp);
 
@@ -105,7 +105,7 @@ class AnggotaCuController extends Controller{
 				$query->where('anggota_cu_cu.cu_id',$cu)->whereNotNull('anggota_cu_cu.tanggal_keluar'); 
 			}
 		})->where(function($query) use ($kelas_cu){
-			$query->where('escete', $kelas_cu->escete)->where('status_jalinan','!=','MENINGGAL')->orWhere('status_jalinan', NULL);
+			$query->where('status_jalinan','!=','MENINGGAL')->orWhere('status_jalinan', NULL);
 		})->advancedFilter();
 
 		$table_data = $this->formatCuKeluarQuery($table_data, $cu, $tp);
@@ -126,7 +126,7 @@ class AnggotaCuController extends Controller{
 			}else{
 				$query->where('anggota_cu_cu.cu_id',$cu)->whereNull('anggota_cu_cu.tanggal_keluar');  
 			}
-		})->where('escete', $kelas_cu->escete)->where('status_jalinan','MENINGGAL')->advancedFilter();
+		})->where('status_jalinan','MENINGGAL')->advancedFilter();
 		
 		$table_data = $this->formatCuQuery($table_data, $cu, $tp);
 

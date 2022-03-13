@@ -272,13 +272,10 @@
 												</a>
 											</td>
 											<td v-if="!columnDataSuara[3].hide">
-												<check-value :value="props.item.calon_pilih"></check-value>
-											</td>
-											<td v-if="!columnDataSuara[4].hide">
 												<span v-if="props.item.pemilihan_calon_id" class="bg-orange-400 text-highlight"><i class="icon-check"></i></span>
 												<span v-else class="bg-teal-300 text-highlight"><i class="icon-cross3"></i></span>
 											</td>
-											<td v-if="!columnDataSuara[5].hide">
+											<td v-if="!columnDataSuara[4].hide">
 												<span v-if="props.item.akses && props.item.akses.id" class="bg-orange-400 text-highlight"><i class="icon-check"></i></span>
 												<span v-else class="bg-teal-300 text-highlight"><i class="icon-cross3"></i></span>
 											</td>
@@ -499,15 +496,6 @@
 						hide: false,
 						disable: false,
 						filter: true,
-					},
-					{ 
-						title: 'Pilihan',
-						name: 'calon_pilih',
-						tipe: 'string',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: false, 
 					},
 					{ 
 						title: 'Memilih',

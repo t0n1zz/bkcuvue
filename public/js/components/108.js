@@ -342,6 +342,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -708,226 +710,6 @@ var render = function () {
                             ? _c("div", [
                                 _vm._m(1),
                                 _vm._v(" "),
-                                _vm.itemData.lihat_hasil == 1
-                                  ? _c("div", { staticClass: "card" }, [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "card-header bg-white header-elements-inline",
-                                        },
-                                        [
-                                          _c(
-                                            "h5",
-                                            { staticClass: "card-title" },
-                                            [_vm._v("Perolehan Skor")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            { staticClass: "header-elements" },
-                                            [
-                                              _c(
-                                                "span",
-                                                {
-                                                  staticClass:
-                                                    "badge badge-success",
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "\n\t\t\t\t\t\t\t\t\t\t\tSuara Masuk: " +
-                                                      _vm._s(
-                                                        _vm.itemData.suara_ok
-                                                      ) +
-                                                      "\n\t\t\t\t\t\t\t\t\t\t"
-                                                  ),
-                                                ]
-                                              ),
-                                              _vm._v(
-                                                " \n\t\t\t\t\t\t\t\t\t\t \n\t\t\t\t\t\t\t\t\t\t"
-                                              ),
-                                              _c(
-                                                "span",
-                                                {
-                                                  staticClass:
-                                                    "badge badge-primary",
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "\n\t\t\t\t\t\t\t\t\t\t\tTotal Suara: " +
-                                                      _vm._s(
-                                                        _vm.itemData.suara
-                                                      ) +
-                                                      "\n\t\t\t\t\t\t\t\t\t\t"
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          ),
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "card-body" },
-                                        [
-                                          _c(
-                                            "button",
-                                            {
-                                              staticClass:
-                                                "btn btn-light btn-block btn-icon",
-                                              attrs: { type: "button" },
-                                              on: {
-                                                click: function ($event) {
-                                                  $event.preventDefault()
-                                                  return _vm.fetch()
-                                                },
-                                              },
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "icon-sync",
-                                              }),
-                                              _vm._v(
-                                                " Reload\n\t\t\t\t\t\t\t\t\t"
-                                              ),
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("hr"),
-                                          _vm._v(" "),
-                                          _vm._l(
-                                            _vm.itemData2,
-                                            function (p, index) {
-                                              return _c("div", { key: index }, [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "card card-body",
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      { staticClass: "row" },
-                                                      [
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass:
-                                                              "col-sm-3 mb-1 mt-1",
-                                                          },
-                                                          [
-                                                            _c("b", [
-                                                              _vm._v(
-                                                                _vm._s(p.name)
-                                                              ),
-                                                            ]),
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass:
-                                                              "col-sm-8 mb-1 mt-1",
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "div",
-                                                              {
-                                                                staticClass:
-                                                                  "progress",
-                                                              },
-                                                              [
-                                                                _c(
-                                                                  "div",
-                                                                  {
-                                                                    staticClass:
-                                                                      "progress-bar-striped bg-success",
-                                                                    style: {
-                                                                      width:
-                                                                        Math.round(
-                                                                          (p.skor /
-                                                                            _vm
-                                                                              .itemData
-                                                                              .suara) *
-                                                                            100
-                                                                        ) + "%",
-                                                                    },
-                                                                  },
-                                                                  [
-                                                                    _c(
-                                                                      "span",
-                                                                      {
-                                                                        staticClass:
-                                                                          "text-default font-size-lg",
-                                                                      },
-                                                                      [
-                                                                        _vm._v(
-                                                                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                                        ),
-                                                                        _c(
-                                                                          "b",
-                                                                          [
-                                                                            _vm._v(
-                                                                              _vm._s(
-                                                                                Math.round(
-                                                                                  (p.skor /
-                                                                                    _vm
-                                                                                      .itemData
-                                                                                      .suara) *
-                                                                                    100
-                                                                                ) +
-                                                                                  "%"
-                                                                              )
-                                                                            ),
-                                                                          ]
-                                                                        ),
-                                                                        _vm._v(
-                                                                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t          \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                                        ),
-                                                                      ]
-                                                                    ),
-                                                                  ]
-                                                                ),
-                                                              ]
-                                                            ),
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass:
-                                                              "col-sm-1 mb-1 mt-1",
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              "\n\t\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                                                _vm._s(p.skor) +
-                                                                " / " +
-                                                                _vm._s(
-                                                                  _vm.itemData
-                                                                    .suara
-                                                                ) +
-                                                                "\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                            ),
-                                                          ]
-                                                        ),
-                                                      ]
-                                                    ),
-                                                  ]
-                                                ),
-                                              ])
-                                            }
-                                          ),
-                                        ],
-                                        2
-                                      ),
-                                    ])
-                                  : _vm._e(),
-                                _vm._v(" "),
                                 _c("div", { staticClass: "card " }, [
                                   _vm._m(2),
                                   _vm._v(" "),
@@ -958,14 +740,188 @@ var render = function () {
                                     ),
                                   ]),
                                 ]),
+                                _vm._v(" "),
+                                _vm.form.tanggapan.length > 0
+                                  ? _c("div", { staticClass: "card" }, [
+                                      _vm._m(3),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "card-body" },
+                                        _vm._l(
+                                          _vm.form.tanggapan,
+                                          function (item, index) {
+                                            return _c("div", { key: index }, [
+                                              _c("h5", [
+                                                _vm._v(
+                                                  _vm._s(item.tanggapan.name)
+                                                ),
+                                              ]),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "card card-body",
+                                                },
+                                                [
+                                                  _c("span", {
+                                                    domProps: {
+                                                      innerHTML: _vm._s(
+                                                        item.keterangan
+                                                      ),
+                                                    },
+                                                  }),
+                                                ]
+                                              ),
+                                            ])
+                                          }
+                                        ),
+                                        0
+                                      ),
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.itemData.lihat_hasil == 1
+                                  ? _c("div", { staticClass: "card" }, [
+                                      _vm._m(4),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "card-body" },
+                                        _vm._l(
+                                          _vm.itemData2,
+                                          function (p, index) {
+                                            return _c("div", { key: index }, [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "card card-body",
+                                                },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "row" },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "col-sm-3 mb-1 mt-1",
+                                                        },
+                                                        [
+                                                          _c("b", [
+                                                            _vm._v(
+                                                              _vm._s(p.name)
+                                                            ),
+                                                          ]),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "col-sm-8 mb-1 mt-1",
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "progress",
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "progress-bar-striped bg-success",
+                                                                  style: {
+                                                                    width:
+                                                                      Math.round(
+                                                                        (p.skor /
+                                                                          _vm
+                                                                            .itemData
+                                                                            .suara) *
+                                                                          100
+                                                                      ) + "%",
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _c(
+                                                                    "span",
+                                                                    {
+                                                                      staticClass:
+                                                                        "text-default font-size-lg",
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                                      ),
+                                                                      _c("b", [
+                                                                        _vm._v(
+                                                                          _vm._s(
+                                                                            Math.round(
+                                                                              (p.skor /
+                                                                                _vm
+                                                                                  .itemData
+                                                                                  .suara) *
+                                                                                100
+                                                                            ) +
+                                                                              "%"
+                                                                          )
+                                                                        ),
+                                                                      ]),
+                                                                      _vm._v(
+                                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t          \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                                      ),
+                                                                    ]
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "col-sm-1 mb-1 mt-1",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                              _vm._s(p.skor) +
+                                                              " / " +
+                                                              _vm._s(
+                                                                _vm.itemData
+                                                                  .suara
+                                                              ) +
+                                                              "\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                            ])
+                                          }
+                                        ),
+                                        0
+                                      ),
+                                    ])
+                                  : _vm._e(),
                               ])
                             : _vm._e(),
                         ])
-                      : _c("div", [_vm._m(3)]),
+                      : _c("div", [_vm._m(5)]),
                   ])
                 : _vm.itemDataStat == "loading"
-                ? _c("div", [_vm._m(4)])
-                : _c("div", [_vm._m(5)]),
+                ? _c("div", [_vm._m(6)])
+                : _c("div", [_vm._m(7)]),
             ],
             1
           ),
@@ -1161,6 +1117,26 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card-header bg-white" }, [
       _c("h5", { staticClass: "card-title" }, [_vm._v("Pilihan Anda Adalah")]),
     ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header bg-white" }, [
+      _c("h5", { staticClass: "card-title" }, [
+        _vm._v("Tanggapan Anda Adalah"),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "card-header bg-white header-elements-inline" },
+      [_c("h5", { staticClass: "card-title" }, [_vm._v("Perolehan Skor")])]
+    )
   },
   function () {
     var _vm = this

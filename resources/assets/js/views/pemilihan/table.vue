@@ -256,9 +256,16 @@
 				}
 
 				if (state == 'hapus') {
-					this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.name + ' ini?';
-					this.modalButton = 'Iya, Hapus';
-					this.modalColor = '';
+					if(this.selectedItem.status == 1){
+						this.modalState = 'fail';
+						this.modalButton = 'Ok';
+						this.modalTitle = 'Tidak bisa menghapus ' + this.title + ' ' + this.selectedItem.name + ' !';
+						this.modalContent = 'Maaf tidak bisa menghapus ' + this.title + ' ini karena statusnya sedang aktif';
+					}else{
+						this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.name + ' ini?';
+						this.modalButton = 'Iya, Hapus';
+						this.modalColor = '';
+					}
 				}else if (state == 'status') {
 					if (this.selectedItem.status == 0) {
 						this.modalTitle = 'Aktifkan ' + this.selectedItem.name + ' ?';

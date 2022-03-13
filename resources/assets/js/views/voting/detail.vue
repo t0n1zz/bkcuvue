@@ -390,10 +390,10 @@
 																	</div>
 																	<div class="col-sm-8 mb-0 mt-0">
 																		<div class="progress">
-																			<div class="progress-bar-striped bg-primary" :style="{width: Math.round((p.skor_tanggapan / form.suara) * 100) + '%'}">
+																			<div class="progress-bar-striped bg-primary" :style="{width: Math.round((p.skor_tanggapan / p.skor) * 100) + '%'}">
 																				<span class="text-default font-size-lg">
 																					&nbsp;
-																					<b>{{ Math.round((p.skor_tanggapan / form.suara) * 100) + '%' }}</b>
+																					<b>{{ Math.round((p.skor_tanggapan / p.skor) * 100) + '%' }}</b>
 																					&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
 																				</span>
 																			</div>
@@ -412,10 +412,10 @@
 																	</div>
 																	<div class="col-sm-8 mb-0 mt-0">
 																		<div class="progress">
-																			<div class="progress-bar-striped bg-warning" :style="{width: Math.round(((p.skor - p.skor_tanggapan) / form.suara) * 100) + '%'}">
+																			<div class="progress-bar-striped bg-warning" :style="{width: Math.round(((p.skor - p.skor_tanggapan) / p.skor) * 100) + '%'}">
 																				<span class="text-default font-size-lg">
 																					&nbsp;
-																					<b>{{ Math.round(((p.skor - p.skor_tanggapan) / form.suara) * 100) + '%' }}</b>
+																					<b>{{ Math.round(((p.skor - p.skor_tanggapan) / p.skor) * 100) + '%' }}</b>
 																					&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
 																				</span>
 																			</div>
@@ -605,7 +605,7 @@
 					},
 					{ 
 						title: 'Akses',
-						name: 'voting.id',
+						name: 'akses.id',
 						tipe: 'string',
 						sort: false,
 						hide: false,

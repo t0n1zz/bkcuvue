@@ -70,27 +70,43 @@
 									<h3><i class="icon-check"></i> Terima Kasih Sudah Melakukan Voting</h3>
 								</div>
 
+								<!-- pilihan -->
+								<div class="card ">
+									<div class="card-header bg-white">
+										<h5 class="card-title">Pilihan Anda Adalah</h5>
+									</div>
+									<div class="card-body">
+										<div class="card border-primary">
+											<div class="card-header bg-primary">
+												<h5 class="card-title">{{ form.pilihan.name }}</h5>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- tanggapan -->
+								<div class="card" v-if="form.tanggapan.length > 0">
+									<div class="card-header bg-white">
+										<h5 class="card-title">Tanggapan Anda Adalah</h5>
+									</div>
+									<div class="card-body">
+										<div v-for="(item, index) in form.tanggapan" :key="index">
+											<!-- title -->
+											<h5>{{ item.tanggapan.name }}</h5>
+											<!-- text -->
+											<div class="card card-body">
+												<span v-html="item.keterangan"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+
 								<!-- skor -->
 								<div class="card" v-if="itemData.lihat_hasil == 1">
 									<div class="card-header bg-white header-elements-inline">
 										<h5 class="card-title">Perolehan Skor</h5>
-										<div class="header-elements">
-											<span class="badge badge-success">
-												Suara Masuk: {{ itemData.suara_ok }}
-											</span> 
-											&nbsp;
-											<span class="badge badge-primary">
-												Total Suara: {{ itemData.suara }}
-											</span>
-										</div>
 									</div>
 									<div class="card-body">
-										<button type="button" class="btn btn-light btn-block btn-icon" @click.prevent="fetch()">
-											<i class="icon-sync"></i> Reload
-										</button>
-
-										<hr/>
-
 										<div v-for="(p, index) in itemData2" :key="index">
 											<div class="card card-body">
 												<div class="row">
@@ -112,20 +128,6 @@
 														{{ p.skor }} / {{ itemData.suara }}
 													</div>
 												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<!-- pilihan -->
-								<div class="card ">
-									<div class="card-header bg-white">
-										<h5 class="card-title">Pilihan Anda Adalah</h5>
-									</div>
-									<div class="card-body">
-										<div class="card border-primary">
-											<div class="card-header bg-primary">
-												<h5 class="card-title">{{ form.pilihan.name }}</h5>
 											</div>
 										</div>
 									</div>

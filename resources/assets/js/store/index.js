@@ -29,6 +29,7 @@ import { asetTetapGolongan } from './modules/asetTetapGolongan';
 import { asetTetapKelompok } from './modules/asetTetapKelompok';
 import { asetTetapJenis } from './modules/asetTetapJenis';
 import { asetTetapLokasi } from './modules/asetTetapLokasi';
+import { surat } from './modules/surat';
 import { dokumen } from './modules/dokumen';
 import { dokumenKategori } from './modules/dokumenKategori';
 import { assesmentAccess } from './modules/assesmentAccess';
@@ -82,6 +83,7 @@ export default new Vuex.Store({
 		 asetTetapKelompok,
 		 asetTetapJenis,
 		 asetTetapLokasi,
+		 surat,
 		 dokumen,
 		 dokumenKategori,
 		 assesmentAccess,

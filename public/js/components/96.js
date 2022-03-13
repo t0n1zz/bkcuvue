@@ -639,7 +639,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         filter: false
       }, {
         title: 'Akses',
-        name: 'voting.id',
+        name: 'akses.id',
         tipe: 'string',
         sort: false,
         hide: false,
@@ -2951,9 +2951,7 @@ var render = function () {
                                                                                 width:
                                                                                   Math.round(
                                                                                     (p.skor_tanggapan /
-                                                                                      _vm
-                                                                                        .form
-                                                                                        .suara) *
+                                                                                      p.skor) *
                                                                                       100
                                                                                   ) +
                                                                                   "%",
@@ -2977,9 +2975,7 @@ var render = function () {
                                                                                       _vm._s(
                                                                                         Math.round(
                                                                                           (p.skor_tanggapan /
-                                                                                            _vm
-                                                                                              .form
-                                                                                              .suara) *
+                                                                                            p.skor) *
                                                                                             100
                                                                                         ) +
                                                                                           "%"
@@ -3074,9 +3070,7 @@ var render = function () {
                                                                                   Math.round(
                                                                                     ((p.skor -
                                                                                       p.skor_tanggapan) /
-                                                                                      _vm
-                                                                                        .form
-                                                                                        .suara) *
+                                                                                      p.skor) *
                                                                                       100
                                                                                   ) +
                                                                                   "%",
@@ -3101,9 +3095,7 @@ var render = function () {
                                                                                         Math.round(
                                                                                           ((p.skor -
                                                                                             p.skor_tanggapan) /
-                                                                                            _vm
-                                                                                              .form
-                                                                                              .suara) *
+                                                                                            p.skor) *
                                                                                             100
                                                                                         ) +
                                                                                           "%"
