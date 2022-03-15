@@ -333,6 +333,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         });
 
         //aset tetap
+        Route::get('/asetTetap/generate/{id}', 'AsetTetapController@generate');
         Route::get('/asetTetap', 'AsetTetapController@index');
         Route::get('/asetTetap/history', 'AsetTetapController@history');
         Route::get('/asetTetap/get/{kode}', 'AsetTetapController@get');

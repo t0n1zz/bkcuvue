@@ -211,7 +211,7 @@
 											<div class="input-group">
 
 												<!-- select -->
-													<select class="form-control" name="jenis" v-model="form.aset_tetap_jenis_id" data-width="100%" v-validate="'required'" data-vv-as="Jenis" :disabled="modelJenis.length == 0" @change="changeJenis()">
+													<select class="form-control" name="jenis" v-model="form.aset_tetap_jenis_id" data-width="100%" v-validate="'required'" data-vv-as="Jenis" :disabled="modelJenis.length == 0" @change="changeJenis($event.target.value)">
 													<option disabled value="">
 														<span v-if="modelJenisStat === 'loading'">Mohon tunggu...</span>
 														<span v-else>Silahkan pilih jenis</span>
@@ -259,7 +259,8 @@
 												class="form-control" 
 												:options="cleaveOption.number15"
 												placeholder="Silahkan masukkan kode"
-												v-validate="'required'" data-vv-as="Kode"></cleave>	
+												v-validate="'required'" data-vv-as="Kode"
+												readonly></cleave>	
 											
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.kode')">
@@ -690,6 +691,11 @@
 					}
 				}
 			},
+			kodeStat(value){
+				if(value == 'success'){
+					this.form.kode = ++this.kode.kode;
+				}
+			},
 			updateStat(value){
 				this.modalShow = true;
 				this.modalState = value;
@@ -814,15 +820,16 @@
 				this.$store.dispatch('asetTetapJenis/resetDataS');
 				this.$store.dispatch('asetTetapJenis/get', id);
 			},
-			changeJenis(){
-				let _golongan = '';
-				let _kelompok = '';
-				let _jenis = '';
-				_golongan = _.find(this.modelGolongan,{'id': this.form.aset_tetap_golongan_id});
-				_kelompok = _.find(this.modelKelompok,{'id': this.form.aset_tetap_kelompok_id});
-				_jenis = _.find(this.modelJenis,{'id': this.form.aset_tetap_jenis_id});
+			changeJenis(id){
+				// let _golongan = '';
+				// let _kelompok = '';
+				// let _jenis = '';
+				// _golongan = _.find(this.modelGolongan,{'id': this.form.aset_tetap_golongan_id});
+				// _kelompok = _.find(this.modelKelompok,{'id': this.form.aset_tetap_kelompok_id});
+				// _jenis = _.find(this.modelJenis,{'id': this.form.aset_tetap_jenis_id});
 				
-				this.form.kode = _golongan.kode + _kelompok.kode + _jenis.kode + '0000';
+				// this.form.kode = _golongan.kode + _kelompok.kode + _jenis.kode + '0000';
+				this.$store.dispatch('asetTetap/generate', id);
 			},
 			selectedRow(item){
 				this.selectedItem = item;
@@ -888,6 +895,8 @@
 				formStat: 'dataStat',
 				rules: 'rules',
 				options: 'options',
+				kode: 'kode',
+				kodeStat: 'kodeStat',
 				updateResponse: 'update',
 				updateStat: 'updateStat',
 				itemData: 'dataS',

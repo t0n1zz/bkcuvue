@@ -12,6 +12,10 @@ export default {
     return axios.get('/api/asetTetap/get/' + kode);
   },
   
+  generate: function( id ){
+    return axios.get('/api/asetTetap/generate/' + id);
+  },
+  
   create: function(){
     return axios.get('/api/asetTetap/create');
   },

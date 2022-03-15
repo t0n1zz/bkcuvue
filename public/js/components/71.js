@@ -859,6 +859,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -1002,6 +1003,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       }
     },
+    kodeStat: function kodeStat(value) {
+      if (value == 'success') {
+        this.form.kode = ++this.kode.kode;
+      }
+    },
     updateStat: function updateStat(value) {
       this.modalShow = true;
       this.modalState = value;
@@ -1127,20 +1133,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch('asetTetapJenis/resetDataS');
       this.$store.dispatch('asetTetapJenis/get', id);
     },
-    changeJenis: function changeJenis() {
-      var _golongan = '';
-      var _kelompok = '';
-      var _jenis = '';
-      _golongan = _.find(this.modelGolongan, {
-        'id': this.form.aset_tetap_golongan_id
-      });
-      _kelompok = _.find(this.modelKelompok, {
-        'id': this.form.aset_tetap_kelompok_id
-      });
-      _jenis = _.find(this.modelJenis, {
-        'id': this.form.aset_tetap_jenis_id
-      });
-      this.form.kode = _golongan.kode + _kelompok.kode + _jenis.kode + '0000';
+    changeJenis: function changeJenis(id) {
+      // let _golongan = '';
+      // let _kelompok = '';
+      // let _jenis = '';
+      // _golongan = _.find(this.modelGolongan,{'id': this.form.aset_tetap_golongan_id});
+      // _kelompok = _.find(this.modelKelompok,{'id': this.form.aset_tetap_kelompok_id});
+      // _jenis = _.find(this.modelJenis,{'id': this.form.aset_tetap_jenis_id});
+      // this.form.kode = _golongan.kode + _kelompok.kode + _jenis.kode + '0000';
+      this.$store.dispatch('asetTetap/generate', id);
     },
     selectedRow: function selectedRow(item) {
       this.selectedItem = item;
@@ -1207,6 +1208,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     formStat: 'dataStat',
     rules: 'rules',
     options: 'options',
+    kode: 'kode',
+    kodeStat: 'kodeStat',
     updateResponse: 'update',
     updateStat: 'updateStat',
     itemData: 'dataS',
@@ -2583,7 +2586,9 @@ var render = function () {
                                               )
                                             },
                                             function ($event) {
-                                              return _vm.changeJenis()
+                                              return _vm.changeJenis(
+                                                $event.target.value
+                                              )
                                             },
                                           ],
                                         },
@@ -2747,6 +2752,7 @@ var render = function () {
                                         options: _vm.cleaveOption.number15,
                                         placeholder: "Silahkan masukkan kode",
                                         "data-vv-as": "Kode",
+                                        readonly: "",
                                       },
                                       model: {
                                         value: _vm.form.kode,

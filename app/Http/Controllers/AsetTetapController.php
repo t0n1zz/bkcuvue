@@ -66,6 +66,16 @@ class AsetTetapController extends Controller{
 			]);
 	}
 
+	public function generate($id)
+	{
+		$table_data = AsetTetap::where('aset_tetap_jenis_id',$id)->orderBy('kode','desc')->first();
+
+		return response()
+			->json([
+					'model' => $table_data,
+			]);
+	}
+
 	public function create()
 	{
 		return response()

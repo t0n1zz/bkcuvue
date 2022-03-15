@@ -53,28 +53,28 @@
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
 					<td v-if="!columnData[1].hide">
-						<check-value :value="props.item.name"></check-value>
+						<check-value :value="props.item.suratKodeTemp.name" v-if="props.item.suratKodeTemp"></check-value>
+						<span v-else>-</span>		
 					</td>
 					<td v-if="!columnData[2].hide">
-						<check-value :value="props.item.suratKodeTemp.name" v-if="props.item.suratKodeTemp"></check-value>
-						<span v-else>-</span>
+						<check-value :value="props.item.name"></check-value>
 					</td>
-					<td v-if="!columnData[3].hide && !columnData[3].disable">
+					<td v-if="!columnData[3].hide">
+						<check-value :value="props.item.hal"></check-value>
+					</td>
+					<td v-if="!columnData[4].hide">
+						<check-value :value="props.item.perihal"></check-value>
+					</td>
+					<td v-if="!columnData[5].hide">
 						<check-value :value="props.item.kategori.name" v-if="props.item.kategori"></check-value>
 						<span v-else>-</span>
 					</td>
-					<td v-if="!columnData[4].hide && !columnData[4].disable">
-						<check-value :value="props.item.penulis.name" v-if="props.item.penulis"></check-value>
-						<span v-else>-</span>
-					</td> 
-					<td v-if="!columnData[5].hide && !columnData[5].disable">
+					<td v-if="!columnData[6].hide && !columnData[5].disable">
 						<check-value :value="props.item.cu.name" v-if="props.item.cu"></check-value>
 						<span v-else>PUSKOPCUINA</span>
 					</td>
-					<td v-if="!columnData[6].hide" v-html="$options.filters.checkStatus(props.item.terbitkan)"></td>
-					<td v-if="!columnData[7].hide" v-html="$options.filters.checkStatus(props.item.utamakan)"></td>
-					<td v-if="!columnData[8].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[9].hide">
+					<td v-if="!columnData[7].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[8].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -120,12 +120,16 @@
 						name: 'No.',
 					},
 					{
-						title: 'Foto',
-						name: 'gambar',
+						title: 'Kode',
+						name: 'suratKodeTemp.name',
+						tipe: 'string',
+						sort: false,
 						hide: false,
+						disable: false,
+						filter: true,
 					},
 					{
-						title: 'Judul',
+						title: 'Name',
 						name: 'name',
 						tipe: 'string',
 						sort: true,

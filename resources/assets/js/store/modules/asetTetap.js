@@ -6,9 +6,11 @@ export const asetTetap = {
   // state
   state: {
     data: {}, //single data
+    kode: {}, //single data
     dataS: [], //collection
     dataS2: [], //collection
     dataStat: '',
+    kodeStat: '',
     dataStatS: '',
     dataStatS2: '',
     update: [], //update data
@@ -20,9 +22,11 @@ export const asetTetap = {
   // getters
   getters: {
     data: state => state.data,
+    kode: state => state.kode,
     dataS: state => state.dataS,
     dataS2: state => state.dataS2,
     dataStat: state => state.dataStat,
+    kodeStat: state => state.kodeStat,
     dataStatS: state => state.dataStatS,
     dataStatS2: state => state.dataStatS2,
     update: state => state.update,
@@ -112,6 +116,20 @@ export const asetTetap = {
         .catch(error => {
           commit('setData', error.response);
           commit('setDataStat', 'fail');
+        });
+    },
+
+    generate( {commit}, id ){
+      commit('setKodeStat', 'loading');
+      
+      AsetTetapAPI.generate( id )
+        .then( function( response ){
+          commit('setKode', response.data.model);
+          commit('setKodeStat', 'success');
+        })
+        .catch(error => {
+          commit('setKode', error.response);
+          commit('setKodeStat', 'fail');
         });
     },
 
@@ -233,6 +251,9 @@ export const asetTetap = {
     setData ( state, data ){
       state.data = data;
     },
+    setKode ( state, data ){
+      state.kode = data;
+    },
     setDataS ( state, data ){
       state.dataS = data;
     },
@@ -241,6 +262,9 @@ export const asetTetap = {
     },
     setDataStat( state, status ){
       state.dataStat = status;
+    },
+    setKodeStat( state, status ){
+      state.kodeStat = status;
     },
     setDataStatS( state, status ){
       state.dataStatS = status;
