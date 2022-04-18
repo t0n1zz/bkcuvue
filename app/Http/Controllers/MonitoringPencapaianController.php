@@ -40,6 +40,8 @@ class MonitoringPencapaianController extends Controller{
 			'gambar' => $gambar
 		]);
 
+		Monitoring::flushCache();
+
 		NotificationHelper::monitoring_pencapaian($kelas,'menambah keputusan');
 		
 		return response()
@@ -67,6 +69,8 @@ class MonitoringPencapaianController extends Controller{
 			'gambar' => $gambar
 		]);
 
+		Monitoring::flushCache();
+
 		NotificationHelper::monitoring_pencapaian($kelas,'mengubah keputusan');
 
 		return response()
@@ -87,6 +91,8 @@ class MonitoringPencapaianController extends Controller{
 		}
 
 		$kelas->delete();
+
+		Monitoring::flushCache();
 
 		NotificationHelper::monitoring_pencapaian($kelas,'menghapus keputusan');
 

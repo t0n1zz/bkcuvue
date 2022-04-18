@@ -15,7 +15,6 @@ use App\KegiatanTugasJawaban;
 use App\KegiatanKeputusan;
 use App\KegiatanPertanyaan;
 use App\KegiatanPilih;
-use App\KegiatanPilihPivot;
 use Illuminate\Http\Request;
 use App\Support\NotificationHelper;
 
@@ -336,6 +335,8 @@ class KegiatanBKCUController extends Controller{
 						$t->tingkat_name = 'Kelompok Inti';
 					} else if($t->tingkat == 12) {
 						$t->tingkat_name = 'Supporting Unit';
+					} else if($t->tingkat == 13) {
+						$t->tingkat_name = 'Vendor sMartCU';
 					}
 				}
 			}
@@ -406,7 +407,14 @@ class KegiatanBKCUController extends Controller{
 			'tipe' => $kegiatan_tipe, 'status' => '1', 'gambar' => $fileName
 		]);
 
-		$kelas->sasaran()->sync(array_flatten($request->sasaran));
+		$sasaran_ar = array();
+		foreach($request->sasaran as $sasaran){
+			array_push($sasaran_ar, implode('', $sasaran));
+		}
+		
+		$kelas->sasaran()->sync($sasaran_ar);
+
+		// $kelas->sasaran()->sync(array_flatten($request->sasaran));
 
 		if($request->panitia){
 			$panitiaArray = array();
@@ -730,7 +738,7 @@ class KegiatanBKCUController extends Controller{
 
 		$kelas = Kegiatan::with('pilih')->findOrFail($id);
 
-			// processing single image upload
+		// processing single image upload
 		if(!empty($request->gambar)){
 			if($kelas->tipe == 'diklat_bkcu'){
 				$imagepath = $this->imagepathDiklat;
@@ -745,8 +753,13 @@ class KegiatanBKCUController extends Controller{
 		$kelas->update($request->except('gambar') + [
 			'gambar' => $fileName
 		]);
+
+		$sasaran_ar = array();
+		foreach($request->sasaran as $sasaran){
+			array_push($sasaran_ar, implode('', $sasaran));
+		}
 		
-		$kelas->sasaran()->sync(array_flatten($request->sasaran));
+		$kelas->sasaran()->sync($sasaran_ar);
 
 		if($request->panitia){
 			$panitiaArray = array();

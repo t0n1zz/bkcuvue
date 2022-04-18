@@ -17,6 +17,8 @@ use App\Jobs\UploadRekening;
 
 class UploadProdukCu implements ShouldQueue
 {
+    public $timeout = 0;
+
     private $path,$id_user;
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 

@@ -10,6 +10,7 @@ class AnggotaCuCu extends Model {
 
     use \Venturecraft\Revisionable\RevisionableTrait;
     use Dataviewer, LogsActivity, SoftDeletes;
+    use \Awobaz\Compoships\Compoships;
 
     protected $table = 'anggota_cu_cu';
     protected $dates = ['deleted_at'];

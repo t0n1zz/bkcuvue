@@ -15,6 +15,8 @@ use Maatwebsite\Excel\Concerns\WithChunkReading;
 
 class ProdukCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading
 {
+    public $timeout = 0;
+
     public function model(array $row)
     {
         $no_ba = array_key_exists('no_ba', $row) ? preg_replace('/[^A-Za-z0-9]/', '',$row['no_ba']) : '';

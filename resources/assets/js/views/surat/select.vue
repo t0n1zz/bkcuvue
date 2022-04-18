@@ -1,109 +1,101 @@
 <template>
 	<div>
 
-		<!-- cu desktop --> 
+		<!-- desktop --> 
 		<div class="card d-none d-md-block d-print-none">
-			<div class="card-body"> 
+			<div class="card-body">
+
 				<div class="row">
-
-					<!-- cu -->
-					<div class="col-sm-5">
-						<div class="input-group" v-if="this.currentUser.id_cu === 0">
+					<!-- tipe -->
+					<div class="col-md-5">
+						<!-- select -->
+						<div class="input-group">
 							<div class="input-group-prepend">
-								<span class="input-group-text">Pilih Data</span>
+								<span class="input-group-text">Pilih Tipe</span>
 							</div>
-
-							<!-- select -->
-							<select class="form-control" name="idCu" v-model="idCu" data-width="100%" @change="changeCu($event.target.value)" :disabled="modelCUStat === 'loading'">
-								<option disabled value="">Silahkan pilih data</option>
-								<slot></slot>
-								<option value="semua">Semua CU</option>
-								<option value="0" v-if="isPus"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>PUSKOPCUINA</span></option>
+							<select class="form-control" name="tipe" v-model="tipe" data-width="100%" :disabled="modelTipeStat === 'loading'">
+								<option disabled value="">Silahkan pilih tipe</option>
+								<option value="semua">Semua</option>
 								<option disabled value="">----------------</option>
-								<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
+								<option v-for="(tipe, index) in modelTipe" :value="tipe.id" :key="index">{{tipe.name}}</option>
 							</select>
 
-							<!-- reload cu -->
+							<!-- reload -->
 							<div class="input-group-append">
-								<button class="btn btn-light" @click="fetchCU" :disabled="modelCUStat === 'loading'">
-									<i class="icon-sync" :class="{'spinner' : modelCUStat === 'loading'}"></i>
+								<button class="btn btn-light" @click="fetchTipe" :disabled="modelTipeStat === 'loading'">
+									<i class="icon-sync" :class="{'spinner' : modelTipeStat === 'loading'}"></i>
+								</button>
+							</div>
+						</div>
+
+					</div>
+
+					<!-- periode -->
+					<div class="col-md-5">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Pilih Periode</span>
+							</div>
+							<select class="form-control" name="periode" v-model="periode" data-width="100%" :disabled="modelDataStat === 'loading'">
+								<option disabled value="">Silahkan pilih periode</option>
+								<option value="semua">Semua</option>
+								<option disabled value="">----------------</option>
+								<option v-for="(data, index) in modelData" :value="data" :key="index">{{data}}</option>
+							</select>
+
+							<!-- reload -->
+							<div class="input-group-append">
+								<button class="btn btn-light" @click="fetchData" :disabled="modelDataStat === 'loading'">
+									<i class="icon-sync" :class="{'spinner' : modelDataStat === 'loading'}"></i>
 								</button>
 							</div>
 						</div>
 					</div>
 
-					<!-- periode -->
-					<div :class="{ 'col-sm-5' : currentUser.id_cu == 0, 'col-sm-12' : currentUser.id_cu != 0 }">
-					
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Pilih Periode</span>
-              </div>
-              <select class="form-control" name="periode" v-model="periode" data-width="100%"  :disabled="modelDataStat === 'loading'">
-                <option disabled value="">Silahkan pilih periode</option>
-                <option value="semua">Semua</option>
-                <option disabled value="">----------------</option>
-                <option v-for="(data, index) in modelData" :value="data" :key="index">{{data}}</option>
-              </select>
-
-              <!-- reload -->
-              <div class="input-group-append">
-                <button class="btn btn-light" @click="fetchData" :disabled="modelDataStat === 'loading'">
-                  <i class="icon-sync" :class="{'spinner' : modelDataStat === 'loading'}"></i>
-                </button>
-              </div>
-            </div>
- 
-					</div>
-
 					<!-- find data button -->
 					<div class="col-sm-2" v-if="this.currentUser.id_cu == 0">
-						<button type="button" class="btn btn-light btn-icon btn-block" @click.prevent="fetch()" v-if="itemDataStat != 'loading'">
+						<button type="button" class="btn btn-light btn-icon btn-block" @click.prevent="fetch()" v-if="modelDataStat != 'loading'">
 							<i class="icon-folder-open3"></i>  Tampilkan
 						</button>
 						<button type="button" class="btn btn-light btn-icon btn-block" v-else>
 							<i class="icon-sync spinner"></i>
 						</button>
 					</div>
+				</div>
 
-				</div> 
 			</div>
 		</div>		
 
-		<!-- cu mobile -->
+		<!-- mobile -->
 		<div class="card d-block d-md-none d-print-none">
-			<div class="card-body">  
+			<div class="card-body"> 
 
-				<!-- cu -->
-				<div v-if="this.currentUser.id_cu == 0">
-					<!-- select -->
-					<div class="input-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text">Pilih Data</span>
-						</div>
-						<select class="form-control" name="idCu" v-model="idCu" data-width="100%" :disabled="modelCUStat === 'loading'">
-							<option disabled value="">Silahkan pilih data</option>
-							<option value="semua">Semua CU</option>
-							<option value="0" v-if="isPus"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>PUSKOPCUINA</span></option>
-							<option disabled value="">----------------</option>
-							<option v-for="cu in modelCU" :value="cu.id" v-if="cu">{{cu.name}}</option>
-						</select>
+				<!-- tipe -->
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text">Pilih Tipe</span>
 					</div>
+					<select class="form-control" name="tipe" v-model="tipe" data-width="100%" :disabled="modelTipeStat === 'loading'">
+						<option disabled value="">Silahkan pilih tipe</option>
+						<option value="semua">Semua</option>
+						<option disabled value="">----------------</option>
+						<option v-for="(tipe, index) in modelTipe" :value="tipe.id" :key="index">{{tipe.name}}</option>
+					</select>
+				</div>
 
-					<!-- reload cu -->
-					<div class="pt-2">
-						<button class="btn btn-light btn-lg btn-block" @click="fetchCU" :disabled="modelCUStat === 'loading'">
-							<i class="icon-sync" :class="{'spinner' : modelCUStat === 'loading'}"></i> Reload
-						</button>
-					</div> 
+				<!-- reload -->
+				<div class="pt-2">
+					<button class="btn btn-light btn-lg btn-block" @click="fetchTipe" :disabled="modelTipeStat === 'loading'">
+						<i class="icon-sync" :class="{'spinner' : modelTipeStat === 'loading'}"></i>
+					</button>
 				</div>
 
 				<!-- periode -->
-				<div class="input-group pt-2">
+				<div class="input-group">
 					<div class="input-group-prepend">
-						<span class="input-group-text">Pilih Periode</span>
+						<span class="input-group-text">Pilih Data</span>
 					</div>
-					<select class="form-control" name="periode" v-model="periode" data-width="100%" @change="changePeriode($event.target.value)"  :disabled="modelDataStat === 'loading'">
+					<select class="form-control" name="periode" v-model="periode" data-width="100%" :disabled="modelDataStat === 'loading'">
 						<option disabled value="">Silahkan pilih periode</option>
 						<option value="semua">Semua</option>
 						<option disabled value="">----------------</option>
@@ -111,10 +103,17 @@
 					</select>
 				</div>
 
+				<!-- reload  -->
+				<div class="pt-2">
+					<button class="btn btn-light btn-lg btn-block" @click="fetchData" :disabled="modelDataStat === 'loading'">
+						<i class="icon-sync" :class="{'spinner' : modelDataStat === 'loading'}"></i> Reload
+					</button>
+				</div>
+
 				<!-- find data button -->
-				<div class="pt-2" v-if="this.currentUser.id_cu == 0">
-					<button type="button" class="btn btn-light btn-icon btn-block" @click.prevent="fetch()" v-if="itemDataStat != 'loading'">
-						<i class="icon-folder-open3"></i>  Tampilkan
+				<div class="pt-2">
+					<button type="button" class="btn btn-light btn-icon btn-block" @click.prevent="fetch()" v-if="modelDataStat != 'loading'">
+						<i class="icon-folder-open3"></i> Tampilkan
 					</button>
 					<button type="button" class="btn btn-light btn-icon btn-block" v-else>
 						<i class="icon-sync spinner"></i>
@@ -130,55 +129,56 @@
 <script>
 	import { mapGetters } from 'vuex';
 	export default {
-		props:['kelas','isPus','path','itemDataStat'],
+		props:['kelas'],
 		data(){
 			return {
-				idCu: '',
+				tipe: '',
 				periode: ''
 			}
 		},
 		created(){
-			if(this.currentUser.id_pus !== undefined){
-				this.fetchCU();
-			}	
+			this.fetchData();
+			this.fetchTipe();
 		},
 		watch: {
 			'$route' (to, from){
 				// check current page meta
-				this.fetchCU();
+				this.fetchData();
 			},
-			modelCUStat(value){
+			modelDataStat(value){
 				if(value === "success"){
-					this.idCu = this.$route.params.cu;
 					this.periode = this.$route.params.periode;
 				}
 			},
     },
 		methods: {
 			fetch(){
-				this.$router.push({name: this.path, params:{cu: this.idCu, periode: this.periode} });
+				this.$router.push({name: this.kelas + 'Cu', params:{cu:this.$route.params.cu, tipe: this.tipe, periode: this.periode} });
 			},
-			fetchCU(){
-				if(this.modelCuStat != 'success'){
-					this.$store.dispatch('cu/getHeader');
-				}else{
-					this.idCu = this.$route.params.cu;
-					this.periode = this.$route.params.periode;
+			fetchData(){
+				if(this.modelData.length == 0){
+					this.$store.dispatch(this.kelas + '/getPeriode', this.$route.params.cu);
 				}
+				this.periode = this.$route.params.periode;
 			},
-			changeCu(cu){
-				this.$store.dispatch(this.kelas + '/getPeriode', cu);
-			}
+			fetchTipe(){
+				if(this.modelData.length == 0){
+					this.$store.dispatch('suratKode/get');
+				}
+				this.tipe = this.$route.params.tipe;
+			},
 		},
 		computed: {
 			...mapGetters('auth',{
 				currentUser: 'currentUser'
 			}),
-			...mapGetters('cu',{
-				modelCU: 'headerDataS',
-				modelCUStat: 'headerDataStatS',
-				updateMessage: 'update',
-				updateStat: 'updateStat'
+			...mapGetters('surat',{
+				modelData: 'periode',
+				modelDataStat: 'periodeStat',
+			}),
+			...mapGetters('suratKode',{
+				modelTipe: 'dataS',
+				modelTipeStat: 'dataStatS',
 			}),
 		}
 	}

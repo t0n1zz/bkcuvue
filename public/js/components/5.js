@@ -2440,7 +2440,15 @@ var render = function () {
                                     _vm.filterCandidates[0].query_1 == "" ||
                                     _vm.itemDataStat !== "success",
                                 },
-                                on: { click: _vm.applyFilter },
+                                on: {
+                                  click: function ($event) {
+                                    $event.preventDefault()
+                                    return _vm.applyFilter.apply(
+                                      null,
+                                      arguments
+                                    )
+                                  },
+                                },
                               },
                               [
                                 _c("i", { staticClass: "icon-search4" }),
@@ -2458,7 +2466,15 @@ var render = function () {
                                     attrs: {
                                       disabled: _vm.itemDataStat !== "success",
                                     },
-                                    on: { click: _vm.resetFilter },
+                                    on: {
+                                      click: function ($event) {
+                                        $event.preventDefault()
+                                        return _vm.resetFilter.apply(
+                                          null,
+                                          arguments
+                                        )
+                                      },
+                                    },
                                   },
                                   [
                                     _c("i", { staticClass: "icon-reset" }),
@@ -2610,7 +2626,15 @@ var render = function () {
                                   attrs: {
                                     disabled: _vm.itemDataStat !== "success",
                                   },
-                                  on: { click: _vm.updateOrderDirection },
+                                  on: {
+                                    click: function ($event) {
+                                      $event.preventDefault()
+                                      return _vm.updateOrderDirection.apply(
+                                        null,
+                                        arguments
+                                      )
+                                    },
+                                  },
                                 },
                                 [
                                   _vm.query.order_direction === "asc"
@@ -3630,6 +3654,7 @@ var render = function () {
                                               },
                                               on: {
                                                 click: function ($event) {
+                                                  $event.preventDefault()
                                                   return _vm.removeFilter(f, i)
                                                 },
                                               },
@@ -3657,7 +3682,15 @@ var render = function () {
                                   attrs: {
                                     disabled: _vm.itemDataStat !== "success",
                                   },
-                                  on: { click: _vm.addFilter },
+                                  on: {
+                                    click: function ($event) {
+                                      $event.preventDefault()
+                                      return _vm.addFilter.apply(
+                                        null,
+                                        arguments
+                                      )
+                                    },
+                                  },
                                 },
                                 [
                                   _c("i", { staticClass: "icon-arrow-down5" }),
@@ -3699,7 +3732,15 @@ var render = function () {
                                               "" ||
                                             _vm.itemDataStat !== "success",
                                         },
-                                        on: { click: _vm.applyFilter },
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.applyFilter.apply(
+                                              null,
+                                              arguments
+                                            )
+                                          },
+                                        },
                                       },
                                       [
                                         _c("i", {
@@ -3725,7 +3766,15 @@ var render = function () {
                                                   _vm.itemDataStat !==
                                                   "success",
                                               },
-                                              on: { click: _vm.resetFilter },
+                                              on: {
+                                                click: function ($event) {
+                                                  $event.preventDefault()
+                                                  return _vm.resetFilter.apply(
+                                                    null,
+                                                    arguments
+                                                  )
+                                                },
+                                              },
                                             },
                                             [
                                               _c("i", {
@@ -3888,7 +3937,15 @@ var render = function () {
                                           disabled:
                                             _vm.itemDataStat !== "success",
                                         },
-                                        on: { click: _vm.updateOrderDirection },
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.updateOrderDirection.apply(
+                                              null,
+                                              arguments
+                                            )
+                                          },
+                                        },
                                       },
                                       [
                                         _vm.query.order_direction === "asc"
@@ -5130,7 +5187,12 @@ var render = function () {
                         {
                           staticClass: "btn btn-light",
                           attrs: { type: "button" },
-                          on: { click: _vm.modalTutup },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.modalTutup.apply(null, arguments)
+                            },
+                          },
                         },
                         [
                           _c("i", { staticClass: "icon-cross" }),
@@ -5197,6 +5259,7 @@ var render = function () {
                               attrs: { type: "button" },
                               on: {
                                 click: function ($event) {
+                                  $event.preventDefault()
                                   return _vm.modalBatal("excel")
                                 },
                               },
@@ -5212,7 +5275,12 @@ var render = function () {
                             {
                               staticClass: "btn btn-warning",
                               attrs: { type: "button" },
-                              on: { click: _vm.modalExcelOk },
+                              on: {
+                                click: function ($event) {
+                                  $event.preventDefault()
+                                  return _vm.modalExcelOk.apply(null, arguments)
+                                },
+                              },
                             },
                             [
                               _c("i", { staticClass: "icon-checkmark5" }),
@@ -5240,7 +5308,12 @@ var render = function () {
                               {
                                 staticClass: "btn btn-light",
                                 attrs: { type: "button" },
-                                on: { click: _vm.modalTutup },
+                                on: {
+                                  click: function ($event) {
+                                    $event.preventDefault()
+                                    return _vm.modalTutup.apply(null, arguments)
+                                  },
+                                },
                               },
                               [
                                 _c("i", { staticClass: "icon-cross" }),
@@ -5342,6 +5415,7 @@ var render = function () {
                         attrs: { type: "button" },
                         on: {
                           click: function ($event) {
+                            $event.preventDefault()
                             return _vm.modalBatal("excel")
                           },
                         },
@@ -5359,6 +5433,7 @@ var render = function () {
                         attrs: { type: "button" },
                         on: {
                           click: function ($event) {
+                            $event.preventDefault()
                             return _vm.uploadExcel(_vm.excelUploadIndex)
                           },
                         },

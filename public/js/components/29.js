@@ -769,6 +769,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 
 
 
@@ -3798,6 +3799,10 @@ var render = function () {
                                   _vm._v(" "),
                                   _c("option", { attrs: { value: "12" } }, [
                                     _vm._v("Supporting Unit"),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "13" } }, [
+                                    _vm._v("Vendor sMartCU"),
                                   ]),
                                 ]
                               ),

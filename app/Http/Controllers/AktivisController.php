@@ -93,6 +93,8 @@ class AktivisController extends Controller{
 				$param_tingkat = 11;
 			}elseif($tingkat == 'supporting_unit'){
 				$param_tingkat = 12;
+			}elseif($tingkat == 'vendor_smartcu'){
+				$param_tingkat = 13;
 			}
 
 			if($status == 'aktif'){
@@ -204,6 +206,8 @@ class AktivisController extends Controller{
 				$param_tingkat = 11;
 			}elseif($tingkat == 'supporting_unit'){
 				$param_tingkat = 12;
+			}elseif($tingkat == 'vendor_smartcu'){
+				$param_tingkat = 13;
 			}
 
 			if($status == 'aktif'){
@@ -273,6 +277,8 @@ class AktivisController extends Controller{
 						$t->pekerjaan_aktif->tingkat_name = 'Kelompok Inti';
 					} else if($t->pekerjaan_aktif->tingkat == 12) {
 						$t->pekerjaan_aktif->tingkat_name = 'Supporting Unit';
+					} else if($t->pekerjaan_aktif->tingkat == 13) {
+						$t->pekerjaan_aktif->tingkat_name = 'Vendor sMartCU';
 					}
 				}else if($t->pekerjaans[0]->status == 3){
 					$t->pekerjaan_tidak_aktif = $t->pekerjaans[0];
@@ -303,6 +309,8 @@ class AktivisController extends Controller{
 						$t->pekerjaan_tidak_aktif->tingkat_name = 'Kelompok Inti';
 					} else if($t->pekerjaan_tidak_aktif->tingkat == 12) {
 						$t->pekerjaan_tidak_aktif->tingkat_name = 'Supporting Unit';
+					} else if($t->pekerjaan_tidak_aktif->tingkat == 13) {
+						$t->pekerjaan_aktif->tingkat_name = 'Vendor sMartCU';
 					}
 				}
 			}

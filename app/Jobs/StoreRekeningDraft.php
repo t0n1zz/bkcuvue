@@ -13,6 +13,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class StoreRekeningDraft implements ShouldQueue
 {
+    public $timeout = 0;
+
     private $chunk;
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 

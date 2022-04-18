@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class SuratKodeTemp extends BaseEloquent {
+class SuratKodeTemp extends Model {
     
     use Dataviewer, LogsActivity, SoftDeletes;
 
@@ -16,27 +16,21 @@ class SuratKodeTemp extends BaseEloquent {
     protected static $logOnlyDirty = true;
     
     public static $rules = [
-        'id_cu' => 'required',
-        'name' => 'required',
+        'kode' => 'required',
     ];
 
-    protected $fillable = ['id_surat_kode','id_user','id_surat','name'];
+    protected $fillable = ['id_surat_kode','id_user','id_surat','kode'];
 
     protected $allowedFilters = [
-        'id','id_surat_kode','id_user','id_surat','name','created_at','updated_at',
+        'id','id_surat_kode','id_user','id_surat','kode','created_at','updated_at',
     ];
 
     protected $orderable = [
-        'id','id_surat_kode','id_user','id_surat','name','created_at','updated_at'
+        'id','id_surat_kode','id_user','id_surat','kode','created_at','updated_at'
     ];
-
-    public function Cu()
-    {
-        return $this->belongsTo('App\Cu','id_cu','id')->select('id','name');
-    }
 
     public function surat()
     {
-        return $this->belongsTo('App\Surat','id_surat','id')->select('id','name');
+        return $this->belongsTo('App\Surat','id_surat','id')->select('id','kode');
     }
 }

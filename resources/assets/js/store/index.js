@@ -30,6 +30,9 @@ import { asetTetapKelompok } from './modules/asetTetapKelompok';
 import { asetTetapJenis } from './modules/asetTetapJenis';
 import { asetTetapLokasi } from './modules/asetTetapLokasi';
 import { surat } from './modules/surat';
+import { suratKategori } from './modules/suratKategori';
+import { suratKode } from './modules/suratKode';
+import { suratMasuk } from './modules/suratMasuk';
 import { dokumen } from './modules/dokumen';
 import { dokumenKategori } from './modules/dokumenKategori';
 import { assesmentAccess } from './modules/assesmentAccess';
@@ -84,6 +87,9 @@ export default new Vuex.Store({
 		 asetTetapJenis,
 		 asetTetapLokasi,
 		 surat,
+		 suratKategori,
+		 suratKode,
+		 suratMasuk,
 		 dokumen,
 		 dokumenKategori,
 		 assesmentAccess,

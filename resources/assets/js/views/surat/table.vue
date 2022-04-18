@@ -23,6 +23,17 @@
 					<i class="icon-bin2"></i> Hapus
 				</button>
 
+				<!-- lihat -->
+				<button @click.prevent="downloadMateri(selectedItem.filename)" class="btn btn-light mb-1" :disabled="!selectedItem.id" v-if="selectedItem.dokumen && selectedItem.dokumen.format == 'upload'">
+					<i class="icon-file-eye"></i> Lihat
+				</button>
+				<a type="button" class="btn btn-light mb-1" :href="selectedItem.dokumen.link" target="_blank" v-else-if="selectedItem.dokumen && selectedItem.dokumen.format == 'link'">
+					<i class="icon-file-eye"></i> Lihat
+				</a>
+				<button type="button" class="btn btn-light mb-1" v-else disabled>
+					<i class="icon-file-eye"></i> Lihat
+				</button>
+
 			</template>
 
 			<!-- button mobile -->
@@ -44,6 +55,17 @@
 					<i class="icon-bin2"></i> Hapus
 				</button>
 
+				<!-- lihat -->
+				<button @click.prevent="downloadMateri(selectedItem.filename)" class="btn btn-light btn-block mb-1" :disabled="!selectedItem.id" v-if="selectedItem.dokumen && selectedItem.dokumen.format == 'upload'">
+					<i class="icon-file-eye"></i> Lihat
+				</button>
+				<a type="button" class="btn btn-light btn-block mb-1" :href="selectedItem.dokumen.link" target="_blank" v-else-if="selectedItem.dokumen && selectedItem.dokumen.format == 'link'">
+					<i class="icon-file-eye"></i> Lihat
+				</a>
+				<button type="button" class="btn btn-light btn-block mb-1" v-else disabled>
+					<i class="icon-file-eye"></i> Lihat
+				</button>
+
 			</template>
 
 			<!-- item desktop -->
@@ -53,25 +75,24 @@
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
 					<td v-if="!columnData[1].hide">
-						<check-value :value="props.item.suratKodeTemp.name" v-if="props.item.suratKodeTemp"></check-value>
-						<span v-else>-</span>		
-					</td>
-					<td v-if="!columnData[2].hide">
 						<check-value :value="props.item.name"></check-value>
 					</td>
-					<td v-if="!columnData[3].hide">
+					<td v-if="!columnData[2].hide">
 						<check-value :value="props.item.hal"></check-value>
 					</td>
-					<td v-if="!columnData[4].hide">
+					<td v-if="!columnData[3].hide">
 						<check-value :value="props.item.perihal"></check-value>
+					</td>
+					<td v-if="!columnData[4].hide">
+						<check-value :value="props.item.tipe.name" v-if="props.item.tipe"></check-value>
+						<span v-else>-</span>
 					</td>
 					<td v-if="!columnData[5].hide">
 						<check-value :value="props.item.kategori.name" v-if="props.item.kategori"></check-value>
 						<span v-else>-</span>
 					</td>
-					<td v-if="!columnData[6].hide && !columnData[5].disable">
-						<check-value :value="props.item.cu.name" v-if="props.item.cu"></check-value>
-						<span v-else>PUSKOPCUINA</span>
+					<td v-if="!columnData[6].hide">
+						<check-value :value="props.item.periode"></check-value>
 					</td>
 					<td v-if="!columnData[7].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
 					<td v-if="!columnData[8].hide">
@@ -95,6 +116,7 @@
 	import DataViewer from '../../components/dataviewer2.vue';
 	import appModal from '../../components/modal';
 	import checkValue from '../../components/checkValue.vue';
+	import FileSaver from 'file-saver';
 
 	export default {
 		components: {
@@ -121,15 +143,6 @@
 					},
 					{
 						title: 'Kode',
-						name: 'suratKodeTemp.name',
-						tipe: 'string',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: true,
-					},
-					{
-						title: 'Name',
 						name: 'name',
 						tipe: 'string',
 						sort: true,
@@ -137,6 +150,33 @@
 						disable: false,
 						filter: true,
 						filterDefault: true
+					},
+					{
+						title: 'Hal',
+						name: 'hal',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Perihal',
+						name: 'perihal',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Tipe',
+						name: 'tipe.name',
+						tipe: 'string',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: true,
 					},
 					{
 						title: 'Kategori',
@@ -148,37 +188,16 @@
 						filter: true,
 					},
 					{
-						title: 'Penulis',
-						name: 'penulis.name',
-						sort: false,
+						title: 'Periode',
+						name: 'periode',
+						tipe: 'string',
+						sort: true,
 						hide: false,
 						disable: false,
 						filter: true,
 					},
 					{
-						title: 'CU',
-						name: 'cu.name',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: true,
-					},
-					{
-						title: 'Terbitkan',
-						name: 'terbitkan',
-						sort: true,
-						hide: false,
-						disable: false
-					},
-					{
-						title: 'Utamakan',
-						name: 'utamakan',
-						sort: true,
-						hide: false,
-						disable: false
-					},
-					{
-						title: 'Tgl. Tulis',
+						title: 'Tgl. Buat',
 						name: 'created_at',
 						tipe: 'datetime',
 						sort: true,
@@ -231,18 +250,8 @@
 		},
 		methods: {
 			fetch(params){
-				if(this.$route.params.cu == 'semua'){
-					this.disableColumnCu(false);
-					this.$store.dispatch(this.kelas + '/index', params);
-					this.excelDownloadUrl = this.kelas;
-				}else{
-					this.disableColumnCu(true);
-					this.$store.dispatch(this.kelas + '/indexCu', [params,this.$route.params.cu]);
-					this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu;
-				}
-			},
-			disableColumnCu(status){
-				this.columnData[5].disable = status;
+				this.$store.dispatch(this.kelas + '/indexCu', [params,this.$route.params.cu, this.$route.params.tipe, this.$route.params.periode]);
+				this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu + '/tipe/' + this.$route.params.tipe + '/periode/' + this.$route.params.periode;
 			},
 			selectedRow(item){
 				this.selectedItem = item;
@@ -262,22 +271,6 @@
 				if (state == 'hapus') {
 					this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.name + ' ?';
 					this.modalButton = 'Iya, Hapus';
-				} else if (state == 'updateTerbitkan') {
-					if (this.selectedItem.terbitkan == 0) {
-						this.modalTitle = 'Terbitkan ' + this.title + ' ' + this.selectedItem.name + ' ?';
-						this.modalButton = 'Iya, terbitkan';
-					} else {
-						this.modalTitle = 'Tidak terbitkan ' + this.title + ' ' + this.selectedItem.name + ' ?';
-						this.modalButton = 'Iya, tidak terbitkan';
-					}
-				} else if (state == 'updateUtamakan') {
-					if (this.selectedItem.utamakan == 0) {
-						this.modalTitle = 'Utamakan ' + this.title + ' ' + this.selectedItem.name + ' ?';
-						this.modalButton = 'Iya, utamakan';
-					} else {
-						this.modalTitle = 'Tidak utamakan ' + this.title + ' ' + this.selectedItem.name + ' ?';
-						this.modalButton = 'Iya, tidak utamakan';
-					}
 				}
 			},
 			modalTutup() {
@@ -287,37 +280,29 @@
 			modalConfirmOk() {
 				if (this.state == 'hapus') {
 					this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
-				} else if (this.state == "updateTerbitkan"){
-					this.$store.dispatch(this.kelas + '/updateTerbitkan', this.selectedItem.id);
-				} else if (this.state == "updateUtamakan") {
-					this.$store.dispatch(this.kelas + '/updateUtamakan', this.selectedItem.id);
 				}
-			}
+			},
+			downloadMateri(filename){
+				axios.get('/api/download_folder/' + filename + '/dokumen', {
+				responseType: 'blob'})
+				.then(response => {
+					FileSaver.saveAs(response.data, filename)
+				});
+      },
 		},
 		computed:{
 			...mapGetters('auth',{
 				currentUser: 'currentUser'
 			}),
-			...mapGetters('global',{
-				idCu: 'idCu'
-			}),
 			...mapGetters('cu',{
 				modelCu: 'dataS',
 				modelCuStat: 'dataStatS',
 			}),
-			...mapGetters('artikel',{
+			...mapGetters('surat',{
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',
 				updateMessage: 'update',
 				updateStat: 'updateStat'
-			}),
-			...mapGetters('artikelKategori',{
-				modelKategori: 'data',
-				modelKategoriStat: 'dataStat',
-			}),
-			...mapGetters('artikelPenulis',{
-				modelPenulis: 'data',
-				modelPenulisStat: 'dataStat',
 			}),
 		}
 	}

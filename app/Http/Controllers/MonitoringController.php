@@ -149,6 +149,8 @@ class MonitoringController extends Controller{
 
 		$kelas->update();
 
+		Monitoring::flushCache();
+
 		return response()
 			->json([
 				'saved' => true,

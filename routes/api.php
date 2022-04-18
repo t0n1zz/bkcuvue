@@ -315,12 +315,12 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::post('/aktivis/saveKeterangan/{id}', 'AktivisController@saveKeterangan');
         Route::delete('/aktivis/keluarga/{id}', 'AktivisController@destroyKeluarga');
         Route::delete('/aktivis/anggotaCu/{id}', 'AktivisController@destroyAnggotaCu');
-        Route::group(['middleware' => ['permission:index_aktivis']], function () {
-            Route::get('/aktivis/index/{tingkat}/{status}', 'AktivisController@index');
-            Route::post('/aktivis/indexTingkat/', 'AktivisController@indexTingkat');
-            Route::get('/aktivis/indexLembaga', 'AktivisController@indexLembaga');
-            Route::get('/aktivis/indexCu/{id}/{tingkat}/{status}', 'AktivisController@indexCu');
-        });
+        Route::get('/aktivis/index/{tingkat}/{status}', 'AktivisController@index');
+        Route::post('/aktivis/indexTingkat/', 'AktivisController@indexTingkat');
+        Route::get('/aktivis/indexLembaga', 'AktivisController@indexLembaga');
+        Route::get('/aktivis/indexCu/{id}/{tingkat}/{status}', 'AktivisController@indexCu');
+        // Route::group(['middleware' => ['permission:index_aktivis']], function () {
+        // });
         Route::group(['middleware' => ['permission:create_aktivis']], function () {
             Route::get('/aktivis/create', 'AktivisController@create');
             Route::post('/aktivis/store', 'AktivisController@store');
@@ -404,10 +404,11 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         // surat
         Route::get('/surat/getPeriode/{cu}', 'SuratController@getPeriode');
         Route::group(['middleware' => ['permission:index_surat']], function () {
-            Route::get('/surat/indexCu/{cu}/{periode}', 'SuratController@indexCu');
+            Route::get('/surat/indexCu/{cu}/tipe/{tipe}/periode/{periode}', 'SuratController@indexCu');
+            Route::get('/surat/getKode/{id}', 'SuratController@getKode');
         });
         Route::group(['middleware' => ['permission:create_surat']], function () {
-            Route::get('/surat/create/{tipe}', 'SuratController@create');
+            Route::get('/surat/create', 'SuratController@create');
             Route::post('/surat/store', 'SuratController@store');
         });
         Route::group(['middleware' => ['permission:update_surat']], function () {
@@ -417,6 +418,64 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::group(['middleware' => ['permission:destroy_surat']], function () {
             Route::delete('/surat/{id}', 'SuratController@destroy');
         });
+
+        //surat kategori
+        Route::get('/suratKategori/history', 'SuratKategoriController@history');
+        Route::group(['middleware' => ['permission:index_surat']], function () {
+            Route::get('/suratKategori', 'SuratKategoriController@index');
+            Route::get('/suratKategori/get', 'SuratKategoriController@get');
+            Route::get('/suratKategori/indexCu/{id}', 'SuratKategoriController@indexCu');
+            Route::get('/suratKategori/getCu/{id}', 'SuratKategoriController@getCu');
+        });
+        Route::group(['middleware' => ['permission:create_surat']], function () {
+            Route::get('/suratKategori/create', 'SuratKategoriController@create');
+            Route::post('/suratKategori/store', 'SuratKategoriController@store');
+        });
+        Route::group(['middleware' => ['permission:update_surat']], function () {
+            Route::get('/suratKategori/edit/{id}', 'SuratKategoriController@edit');
+            Route::post('/suratKategori/update/{id}', 'SuratKategoriController@update');
+        });
+        Route::group(['middleware' => ['permission:destroy_surat']], function () {
+            Route::delete('/suratKategori/{id}', 'SuratKategoriController@destroy');
+        });
+
+        //surat kode
+        Route::get('/suratKode/history', 'SuratKodeController@history');
+        Route::group(['middleware' => ['permission:index_surat']], function () {
+            Route::get('/suratKode', 'SuratKodeController@index');
+            Route::get('/suratKode/get', 'SuratKodeController@get');
+            Route::get('/suratKode/indexCu/{id}', 'SuratKodeController@indexCu');
+            Route::get('/suratKode/getCu/{id}', 'SuratKodeController@getCu');
+        });
+        Route::group(['middleware' => ['permission:create_surat']], function () {
+            Route::get('/suratKode/create', 'SuratKodeController@create');
+            Route::post('/suratKode/store', 'SuratKodeController@store');
+        });
+        Route::group(['middleware' => ['permission:update_surat']], function () {
+            Route::get('/suratKode/edit/{id}', 'SuratKodeController@edit');
+            Route::post('/suratKode/update/{id}', 'SuratKodeController@update');
+        });
+        Route::group(['middleware' => ['permission:destroy_surat']], function () {
+            Route::delete('/suratKode/{id}', 'SuratKodeController@destroy');
+        });
+
+         // surat masuk
+         Route::get('/suratMasuk/getPeriode/{cu}', 'SuratMasukController@getPeriode');
+         Route::group(['middleware' => ['permission:index_surat']], function () {
+             Route::get('/suratMasuk/indexCu/{cu}/{periode}', 'SuratMasukController@indexCu');
+             Route::get('/suratMasuk/getKode/{id}', 'SuratMasukController@getKode');
+         });
+         Route::group(['middleware' => ['permission:create_surat']], function () {
+             Route::get('/suratMasuk/create', 'SuratMasukController@create');
+             Route::post('/suratMasuk/store', 'SuratMasukController@store');
+         });
+         Route::group(['middleware' => ['permission:update_surat']], function () {
+             Route::get('/suratMasuk/edit/{id}', 'SuratMasukController@edit');
+             Route::post('/suratMasuk/update/{id}', 'SuratMasukController@update');
+         });
+         Route::group(['middleware' => ['permission:destroy_surat']], function () {
+             Route::delete('/suratMasuk/{id}', 'SuratMasukController@destroy');
+         });
 
         //dokumen
         Route::get('/dokumen/count', 'DokumenController@count');

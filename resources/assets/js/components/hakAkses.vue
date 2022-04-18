@@ -873,6 +873,88 @@
 						]
 					},
 					{
+						name: 'Surat Keluar',
+						keterangan: 'Mengelola data surat keluar',
+						icon: 'icon-mailbox',
+						secondRow: true,
+						tipe: 'all',
+						permission: [
+							{
+								name: 'Lihat',
+								key: 'index_surat',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Surat Keluar'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_surat',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Surat Keluar'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_surat',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+								group: 'Surat Keluar'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_surat',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Surat Keluar'
+							},
+						]
+					},
+					{
+						name: 'Surat Masuk',
+						keterangan: 'Mengelola data surat masuk',
+						icon: 'icon-envelop2',
+						secondRow: true,
+						tipe: 'all',
+						permission: [
+							{
+								name: 'Lihat',
+								key: 'index_surat',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Surat Keluar'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_surat_masuk',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Surat Masuk'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_surat_masuk',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+								group: 'Surat Masuk'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_surat_masuk',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Surat Masuk'
+							},
+						]
+					},
+					{
 						name: 'Dokumen',
 						keterangan: 'Mengelola data dokumen',
 						icon: 'icon-books',
@@ -1571,6 +1653,16 @@
 						'update_aktivis',
 						'destroy_aktivis',
 
+						'index_surat',
+						'create_surat',
+						'update_surat',
+						'destroy_surat',
+
+						'index_surat_masuk',
+						'create_surat_masuk',
+						'update_surat_masuk',
+						'destroy_surat_masuk',
+
 						'index_dokumen',
 						'create_dokumen',
 						'update_dokumen',
@@ -1740,6 +1832,16 @@
 						'update_aktivis',
 						'destroy_aktivis',
 
+						'index_surat',
+						'create_surat',
+						'update_surat',
+						'destroy_surat',
+
+						'index_surat_masuk',
+						'create_surat_masuk',
+						'update_surat_masuk',
+						'destroy_surat_masuk',
+
 						'index_dokumen',
 						'create_dokumen',
 						'update_dokumen',
@@ -1800,6 +1902,8 @@
 						'index_cu',
 						'index_tp',
 						'index_aktivis',
+						'index_surat',
+						'index_surat_keluar',
 						'index_dokumen',
 						'index_dokumen_kategori',
 						'index_produk_cu',
@@ -1881,6 +1985,16 @@
 						'update_pemilihan',
 						'destroy_pemilihan',
 
+						'index_surat',
+						'create_surat',
+						'update_surat',
+						'destroy_surat',
+
+						'index_surat_masuk',
+						'create_surat_masuk',
+						'update_surat_masuk',
+						'destroy_surat_masuk',
+
 						'index_dokumen',
 						'create_dokumen',
 						'update_dokumen',
@@ -1949,6 +2063,16 @@
 						'create_aktivis',
 						'update_aktivis',
 						'destroy_aktivis',
+
+						'index_surat',
+						'create_surat',
+						'update_surat',
+						'destroy_surat',
+
+						'index_surat_masuk',
+						'create_surat_masuk',
+						'update_surat_masuk',
+						'destroy_surat_masuk',
 
 						'index_dokumen',
 						'create_dokumen',

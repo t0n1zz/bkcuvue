@@ -2,7 +2,6 @@
 
 namespace App\Imports;
 
-use App\AnggotaProdukCu;
 use App\Cu;
 use App\AnggotaProdukCuDraft;
 use App\ProdukCu;
@@ -72,7 +71,7 @@ class RekeningImportEscete implements ToModel, WithHeadingRow, WithBatchInserts,
                 $kolek = array_key_exists('kolekbi', $row) ? $row['kolekbi'] : '';
                 $dpd = array_key_exists('dpd', $row) ? $row['dpd'] : '';
                 $tgl_bayar_terakhir = array_key_exists('tglbayar_terakhir', $row) ? $row['tglbayar_terakhir'] : '';
-                $produk_cu_cek = AnggotaProdukCuDraft::where('no_rek',$no_rekening)->select('id')->get()->first();
+                $produk_cu_cek = AnggotaProdukCuDraft::where('id_cu',$cu->id)->where('no_rek',$no_rekening)->select('id')->get()->first();
                 
                 if ($produk_cu && !$produk_cu_cek) {
                     try {
@@ -93,34 +92,30 @@ class RekeningImportEscete implements ToModel, WithHeadingRow, WithBatchInserts,
                             ]);
                         
                     } catch (\Throwable $th) {
-                        dd($th);
                         QueueException::create(
                             [
                                 'line'=> $th->getLine(),
                                 'error'=> $th->getMessage(),
                                 'id_cu'=> $cu->id,
                                 'tipe'=>'Import Rekening',
-                                'no_ba'=>$no_ba
+                                'no_ba'=>$no_ba,
+                                'no_rek'=> $no_rekening
                             ]
                             );
                     }
-                    
-                }else {
-                    print $kode_produk;
                 }
             } catch (\Throwable $th) {
-                dd($th);
                     QueueException::create(
                         [
                             'line'=> $th->getLine(),
                             'error'=> $th->getMessage(),
                             'id_cu'=> $cu->id,
                             'tipe'=>'Import Rekening',
-                            'no_ba'=>$no_ba
+                            'no_ba'=>$no_ba,
+                            'no_rek'=> $no_rekening
                         ]);
             }
         }
-        
     }
     
     public function batchSize(): int

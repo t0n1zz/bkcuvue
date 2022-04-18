@@ -170,7 +170,7 @@ class DokumenController extends Controller{
 		$name = $kelas->name;
 
 		if(!empty($kelas->filename)){
-			File::delete($filepath . $kelas->filename);
+			File::delete($this->filepath . $kelas->filename);
 		}
 
 		$kelas->delete();

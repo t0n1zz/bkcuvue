@@ -15,6 +15,8 @@ use App\JalinanIuranProduk;
 
 class CreateIuranJalinan implements ShouldQueue
 {
+	public $timeout = 0;
+
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 		private $cu, $lastDateOfMonth;
     /**

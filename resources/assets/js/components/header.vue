@@ -599,7 +599,7 @@
 					</li>
 
 					<!-- organisasi -->
-					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_cu'] || currentUser.can['create_tp'] || currentUser.can['create_aktivis'] || currentUser.can['create_produk_cu'] || currentUser.can['create_mitra_orang'] ||  currentUser.can['create_mitra_lembaga'] | currentUser.can['create_pemilihan'] || currentUser.can['index_cu'] || currentUser.can['index_tp'] || currentUser.can['index_aktivis'] || currentUser.can['index_produk_cu'] || currentUser.can['index_mitra_orang'] || currentUser.can['index_pemilihan']">
+					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_cu'] || currentUser.can['create_tp'] || currentUser.can['create_aktivis'] || currentUser.can['create_produk_cu'] || currentUser.can['create_mitra_orang'] ||  currentUser.can['create_mitra_lembaga'] || currentUser.can['create_pemilihan'] || currentUser.can['create_surat'] || currentUser.can['index_cu'] || currentUser.can['index_tp'] || currentUser.can['index_aktivis'] || currentUser.can['index_produk_cu'] || currentUser.can['index_mitra_orang'] || currentUser.can['index_pemilihan'] || currentUser.can['index_surat']">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-library2 mr-2"></i>
 							Organisasi
@@ -608,7 +608,7 @@
 						<div class="dropdown-menu">
 
 							<!-- tambah -->
-							<div class="dropdown-submenu" v-if="currentUser && currentUser.can['create_cu'] || currentUser.can['create_tp'] || currentUser.can['create_aktivis'] || currentUser.can['create_produk_cu'] || currentUser.can['create_mitra_orang'] ||  currentUser.can['create_mitra_lembaga']">
+							<div class="dropdown-submenu" v-if="currentUser && currentUser.can['create_cu'] || currentUser.can['create_tp'] || currentUser.can['create_aktivis'] || currentUser.can['create_produk_cu'] || currentUser.can['create_mitra_orang'] ||  currentUser.can['create_mitra_lembaga'] ||  currentUser.can['create_surat']">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('tambahOrganisasi')">
 									<i class="icon-plus22"></i> Tambah
 								</a>
@@ -637,6 +637,11 @@
 										<!-- tambah pemilihan -->
 										<router-link :to="{ name:'pemilihanCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_pemilihan']">
 											Pemilihan
+										</router-link>
+
+										<!-- tambah surat keluar -->
+										<router-link :to="{ name:'suratCreate', params: {tipe:'surat-keluar'} }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_surat']">
+											Surat Keluar
 										</router-link>
 
 										<!-- tambah dokumen -->
@@ -791,6 +796,10 @@
 										Kelompok Inti
 									</router-link>
 
+									<router-link :to="{ name: 'aktivisCu', params:{cu: currentUser.id_cu, tingkat: 'vendor_smartcu'} }" class="dropdown-item" active-class="active" exact >
+										Vendor sMartCU
+									</router-link>
+
 									<!-- divider -->
 									<div class="dropdown-divider"></div> 
 								
@@ -854,7 +863,41 @@
 							</router-link>
 						
 							<!-- divider -->
-							<div class="dropdown-divider" v-if="currentUser.can['index_aset_tetap'] || currentUser.can['index_aset_tetap_jenis'] || currentUser.can['index_aset_tetap_lokasi'] || currentUser.can['index_dokumen_kategori']"></div> 
+							<div class="dropdown-divider" v-if="currentUser.can['index_aset_tetap'] || currentUser.can['index_aset_tetap_jenis'] || currentUser.can['index_aset_tetap_lokasi'] || currentUser.can['index_dokumen_kategori'] || currentUser.can['index_surat'] || currentUser.can['index_surat_masuk']"></div> 
+
+							<!-- surat -->
+							<div class="dropdown-submenu" :class="{'show' : dropdownMenu2 == 'surat'}" v-if="currentUser.can['index_surat'] || currentUser.can['index_surat_masuk']">
+								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('surat')">
+									<i class="icon-envelop2"></i> Surat
+								</a>
+
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'surat'}">
+
+									<!-- surat keluar -->
+									<router-link :to="{ name: 'suratCu', params:{cu: currentUser.id_cu, tipe: 'semua', periode: momentYear() } }" class="dropdown-item" active-class="active" v-if="currentUser && currentUser.can['index_surat']" exact>
+										Surat Keluar
+									</router-link>
+
+									<!-- surat keluar -->
+									<router-link :to="{ name: 'suratMasukCu', params:{cu: currentUser.id_cu, periode: momentYear() } }" class="dropdown-item" active-class="active" v-if="currentUser && currentUser.can['index_surat']" exact>
+										Surat Masuk
+									</router-link>
+
+									<!-- divider -->
+									<div class="dropdown-divider" v-if="currentUser.can['index_surat']"></div> 
+
+									<!-- kategori surat -->
+									<router-link :to="{ name: 'suratKategoriCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_surat']">
+										Kategori Surat Keluar
+									</router-link>
+
+									<!-- tipe surat -->
+									<router-link :to="{ name: 'suratKodeCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_surat']">
+										Tipe Surat Keluar
+									</router-link>
+
+								</div>
+							</div>	
 
 
 							<!-- arsip -->
@@ -908,12 +951,9 @@
 									</router-link>
 
 								</div>
-
-								
 							</div>	
 
 							
-
 							<!-- divider -->
 							<div class="dropdown-divider" v-if="currentUser.can['index_mitra_orang'] || currentUser.can['index_mitra_lembaga']"></div> 
 							

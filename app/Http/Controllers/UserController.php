@@ -100,6 +100,16 @@ class UserController extends Controller
 		'update_aktivis',
 		'destroy_aktivis',
 
+		'index_surat',
+		'create_surat',
+		'update_surat',
+		'destroy_surat',
+
+		'index_surat_masuk',
+		'create_surat_masuk',
+		'update_surat_masuk',
+		'destroy_surat_masuk',
+
 		'index_dokumen',
 		'create_dokumen',
 		'update_dokumen',

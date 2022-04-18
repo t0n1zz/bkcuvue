@@ -13,12 +13,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Jobs\StoreAnggotaDraft;
-use App\Jobs\StoreRekeningDraft;
+use App\System;
 use Auth;
+use Illuminate\Support\Facades\Cache;
+
 
 class AnggotaCuEsceteController extends Controller
 {
-    private $failures;
     
     /**
      * Display a listing of the resource.
@@ -62,44 +63,29 @@ class AnggotaCuEsceteController extends Controller
      */
     public function store(Request $request)
     {
-        $kelas = AnggotaCuDraft::all();
-        // dd(count($kelas));
-        if (count($kelas)>0) {
-            $datas = array_chunk($kelas->toArray(),1000);
-			foreach($datas as $key=>$item){
-				StoreAnggotaDraft::dispatch($item);
-                if ($key==count($datas)-1 || empty($datas)) {
-                    $anggotaProdukCuDraft = AnggotaProdukCuDraft::all();
-                    if (count($anggotaProdukCuDraft)>0) {
-                        $chunks = array_chunk($anggotaProdukCuDraft->toArray(), 1000);
-                        foreach($chunks as $key=>$chunk){
-                            if ($key==count($chunks)-1 || empty($datas)) {
-                                SendNotification::dispatch(Auth::user()->id,'NotifSimpanDraft','Draft Berhasil Disimpan');
-                            }
-                            StoreRekeningDraft::dispatch($chunk);
-                        }
-                    }else{
-                        SendNotification::dispatch(Auth::user()->id,'NotifSimpanDraft','Draft Berhasil Disimpan');
-                    }
-                }
-			}
-        }else {
-                $anggotaProdukCuDraft = AnggotaProdukCuDraft::all();
-                $chunks = array_chunk($anggotaProdukCuDraft->toArray(), 1000);
-                foreach($chunks as $key=>$chunk){
-                    if ($key==count($chunks)-1 || empty($chunks)) {
-                        SendNotification::dispatch(Auth::user()->id,'NotifSimpanDraft','Draft Berhasil Disimpan');
-                    }
-                    StoreRekeningDraft::dispatch($chunk);
-                }
 
-        }
+        $kelas2=  AnggotaCuDraft::whereRaw('LENGTH(nik) < 16')->orWhere('nik',"REGEXP", "^[a-zA-Z]+$")->orWhereRaw('nik < 1')->get();
+        $kelas_ktp = System::findOrFail(1);
+
+        $ktp = $kelas_ktp->nik;
+        $val = $ktp + count($kelas2);
+        $kelas_ktp->nik = str_pad($val,16,"0",STR_PAD_LEFT);
+        $kelas_ktp->update();
+        Cache::forever('nik', (int)$ktp);
+
+        $kelas = AnggotaCuDraft::with(['anggota_cu_cu.rekening','anggota_cu_cu.anggota','anggota_cu_cu.rekening.anggota_produk_cu','anggota_cu_by_name','anggota_cu_by_nik','anggota_cu_cu.sp'])->chunkById(1000, function($kelas){
+            StoreAnggotaDraft::dispatch($kelas->toArray(),Cache::get('nik'));
+        });
+
+        SendNotification::dispatch(Auth::user()->id,'NotifSimpanDraft','Draft Berhasil Disimpan');
+
 
         return response()->json([
             'processed'=> true,
         ]);
 
     }
+
 
     /**
      * Display the specified resource.
@@ -141,9 +127,18 @@ class AnggotaCuEsceteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_cu,$id_user)
     {
-        
+        $path = storage_path('/app/Data CU/'.$id_cu.'/'.$id_user);
+        $files = File::allFiles($path);
+        foreach ($files as $file) {
+            unlink($file->getRealPath());
+        }
+
+        return response()->json([
+            'processed'=> true,
+            'message'=>'file Berhasil Di clear'
+        ]);
     }
 
     public function uploadDraft($id_cu, $id_user){
@@ -155,6 +150,7 @@ class AnggotaCuEsceteController extends Controller
         $counter = 0;
         $flag = false;
         $counterDataAnggota = glob($path."/*/*/*ANGGOTA*");
+
         
         foreach ($files as $file) {
             
@@ -203,3 +199,4 @@ class AnggotaCuEsceteController extends Controller
     }
    
 }
+

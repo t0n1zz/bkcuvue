@@ -69,7 +69,7 @@
 							<span class="badge bg-danger-400 align-self-center ml-auto" v-else-if="props.item.status == 3">PEKERJAAN TERAKHIR</span>
 							{{ props.item.name }} 
 						</td>
-						<td v-html="$options.filters.checkTingkatAktivis(props.item.tingkat )"></td>
+						<td v-html="$options.filters.checkTingkatAktivis(props.item.tingkat)"></td>
 						<td>
 							<span v-if="props.item.tipe == 1">
 								<span v-if="props.item.cu"> {{ props.item.cu.name }}</span>

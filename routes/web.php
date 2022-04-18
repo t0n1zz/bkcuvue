@@ -18,7 +18,7 @@ Route::group(['middleware' => 'throttle:60,10'], function () {
 		Route::get('/',array( 'as' => 'home','uses' => 'PublicController@index'));
 
 		// tentang kami
-		Route::get('/tentang_kami/profile',array( 'as' => 'profile','uses' => 'PublicController@profile'));
+		Route::get('/profile',array( 'as' => 'profile','uses' => 'PublicController@profile'));
 
 		// artikel
 		Route::get('/artikel',array( 'as' => 'artikel','uses' => 'PublicController@artikel'));

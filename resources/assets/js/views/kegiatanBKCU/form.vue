@@ -316,6 +316,30 @@
 													Kontrak
 												</label>
 											</div>
+											<div class="form-check form-check-inline">
+												<label class="form-check-label">
+													<input type="checkbox" class="form-check-input" value="10" v-model="sasaran">
+													Kolektor
+												</label>
+											</div>
+											<div class="form-check form-check-inline">
+												<label class="form-check-label">
+													<input type="checkbox" class="form-check-input" value="11" v-model="sasaran">
+													Kelompok inti
+												</label>
+											</div>
+											<div class="form-check form-check-inline">
+												<label class="form-check-label">
+													<input type="checkbox" class="form-check-input" value="12" v-model="sasaran">
+													Supporting Unit
+												</label>
+											</div>
+											<div class="form-check form-check-inline">
+												<label class="form-check-label">
+													<input type="checkbox" class="form-check-input" value="13" v-model="sasaran">
+													Vendor sMartCU
+												</label>
+											</div>
 
 										</div>
 									</div>

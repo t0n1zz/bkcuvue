@@ -103,8 +103,8 @@
 											</div>
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
+											<small class="text-muted text-danger" v-if="errors.has('form.id_artikel_penulis')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_artikel_penulis') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
@@ -143,8 +143,8 @@
 											</div>
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
+											<small class="text-muted text-danger" v-if="errors.has('form.id_artikel_kategori')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_artikel_kategori') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>

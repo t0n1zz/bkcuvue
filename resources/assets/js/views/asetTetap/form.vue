@@ -52,7 +52,7 @@
 								</div>
 
 								<!-- tabel aset -->
-								<data-viewer :title="'Aset Tetap'" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" @fetch="fetch" :isDasar="'true'" :isNoButtonRow="'true'" v-if="isInduk == 'false' && form.aset_id == ''">
+								<data-viewer :title="'Aset Tetap'" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" @fetch="fetchAset" :isDasar="'true'" :isNoButtonRow="'true'" v-if="isInduk == 'false' && form.aset_id == ''">
 
 									<!-- item  -->
 									<template slot="item-desktop" slot-scope="props">
@@ -444,6 +444,8 @@
 													<span v-else>Silahkan pilih pembeli</span>
 												</option>
 												<option v-for="(datas, index) in modelAktivis" :value="datas.id" :key="index">{{datas.name}}</option>
+												<option disabled value="">----------------</option>
+												<option v-for="(datas, index) in modelMitra" :value="datas.id" :key="index">{{datas.name}}</option>
 											</select>
 
 											<!-- error message -->
@@ -562,6 +564,7 @@
 
 <script>
 	import { mapGetters } from 'vuex';
+	import _ from 'lodash';
 	import pageHeader from "../../components/pageHeader.vue";
 	import { toMulipartedForm } from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
@@ -694,6 +697,15 @@
 			kodeStat(value){
 				if(value == 'success'){
 					this.form.kode = ++this.kode.kode;
+				}else{
+					let _golongan = '';
+					let _kelompok = '';
+					let _jenis = '';
+					_golongan = _.find(this.modelGolongan,{'id': this.form.aset_tetap_golongan_id});
+					_kelompok = _.find(this.modelKelompok,{'id': this.form.aset_tetap_kelompok_id});
+					_jenis = _.find(this.modelJenis,{'id': this.form.aset_tetap_jenis_id});
+					
+					this.form.kode = _golongan.kode + _kelompok.kode + _jenis.kode + '0000';
 				}
 			},
 			updateStat(value){
@@ -821,14 +833,6 @@
 				this.$store.dispatch('asetTetapJenis/get', id);
 			},
 			changeJenis(id){
-				// let _golongan = '';
-				// let _kelompok = '';
-				// let _jenis = '';
-				// _golongan = _.find(this.modelGolongan,{'id': this.form.aset_tetap_golongan_id});
-				// _kelompok = _.find(this.modelKelompok,{'id': this.form.aset_tetap_kelompok_id});
-				// _jenis = _.find(this.modelJenis,{'id': this.form.aset_tetap_jenis_id});
-				
-				// this.form.kode = _golongan.kode + _kelompok.kode + _jenis.kode + '0000';
 				this.$store.dispatch('asetTetap/generate', id);
 			},
 			selectedRow(item){
@@ -931,6 +935,14 @@
 				modelAktivisStat: 'dataStatS',
 				updateAktivisResponse: 'update',
 				updateAktivisStat: 'updateStat',
+			}),
+			...mapGetters('mitraOrang',{
+				modelMitraOrang: 'dataS',
+				modelMitraOrangStat: 'dataStatS',
+			}),
+			...mapGetters('mitraLembaga',{
+				modelMitraLembaga: 'dataS',
+				modelMitraLembagaStat: 'dataStatS',
 			}),
 		}
 	}

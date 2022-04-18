@@ -167,6 +167,7 @@
 					{
 						title: 'Rekomendasi',
 						name: 'monitoring_rekom_count',
+						tipe: 'string',
 						sort: false,
 						hide: false,
 						disable: false,
@@ -175,6 +176,7 @@
 					{
 						title: 'Tercapai',
 						name: 'monitoring_rekom_ok_count',
+						tipe: 'string',
 						sort: false,
 						hide: false,
 						disable: false,
@@ -183,6 +185,7 @@
 					{
 						title: 'Keputusan',
 						name: 'monitoring_pencapaian_count',
+						tipe: 'string',
 						sort: false,
 						hide: false,
 						disable: false,
@@ -201,6 +204,7 @@
 					{
 						title: 'CU',
 						name: 'cu.name',
+						tipe: 'string',
 						sort: false,
 						hide: false,
 						disable: false,
@@ -209,6 +213,7 @@
 					{
 						title: 'TP',
 						name: 'tp.name',
+						tipe: 'string',
 						sort: false,
 						hide: false,
 						disable: false,
@@ -217,6 +222,7 @@
 					{
 						title: 'Jenis',
 						name: 'jenis',
+						tipe: 'string',
 						sort: true,
 						hide: false,
 						disable: false,
@@ -225,6 +231,7 @@
 					{
 						title: 'Perspektif',
 						name: 'perspektif',
+						tipe: 'string',
 						sort: true,
 						hide: false,
 						disable: false,
@@ -233,6 +240,7 @@
 					{
 						title: 'PIC CU',
 						name: 'aktivis_cu.name',
+						tipe: 'string',
 						sort: false,
 						hide: false,
 						disable: false,
@@ -241,6 +249,7 @@
 					{
 						title: 'PIC BKCU',
 						name: 'aktivis_bkcu.name',
+						tipe: 'string',
 						sort: false,
 						hide: false,
 						disable: false,

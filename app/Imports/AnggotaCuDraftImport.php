@@ -23,6 +23,7 @@ use Maatwebsite\Excel\Concerns\WithChunkReading;
 
 class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading, ShouldQueue
 {
+    public $timeout = 0;
 
     public function model(array $row)
     {

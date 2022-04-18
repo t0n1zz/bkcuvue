@@ -483,7 +483,7 @@ class AnggotaCuController extends Controller{
 			'keterangan_masuk' => 'mutasi anggota'
 		]);
 
-		AnggotaCu::flushCache();
+		// AnggotaCu::flushCache();
 
 		return response()
 			->json([
@@ -501,7 +501,7 @@ class AnggotaCuController extends Controller{
 			'keterangan_keluar' => $request->keterangan_keluar,
 		]);	
 
-		AnggotaCu::flushCache();
+		// AnggotaCu::flushCache();
 
 		return response()
 			->json([
@@ -519,7 +519,7 @@ class AnggotaCuController extends Controller{
 			'keterangan_keluar' => NULL,
 		]);	
 
-		AnggotaCu::flushCache();
+		// AnggotaCu::flushCache();
 
 		return response()
 			->json([
@@ -534,7 +534,7 @@ class AnggotaCuController extends Controller{
 
 		$kelas->update($request->all());	
 
-		AnggotaCu::flushCache();
+		// AnggotaCu::flushCache();
 
 		return response()
 			->json([

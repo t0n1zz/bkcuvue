@@ -17,17 +17,18 @@ class SuratKategori extends BaseEloquent {
     
     public static $rules = [
         'id_cu' => 'required',
+        'id_surat_kode' => 'required',
         'name' => 'required',
     ];
 
-    protected $fillable = ['id_cu','name','periode','deskripsi'];
+    protected $fillable = ['id_cu','id_surat_kode','name','deskripsi'];
 
     protected $allowedFilters = [
-        'id','id_cu','name','deskripsi','periode','created_at','updated_at',
+        'id','id_cu','id_surat_kode','name','deskripsi','created_at','updated_at',
     ];
 
     protected $orderable = [
-        'id','id_cu','name','deskripsi','periode','created_at','updated_at','has_surat_count'
+        'id','id_cu','id_surat_kode','name','deskripsi','created_at','updated_at','has_surat_count'
     ];
 
     public function surat(){
@@ -52,5 +53,10 @@ class SuratKategori extends BaseEloquent {
     public function Cu()
     {
         return $this->belongsTo('App\Cu','id_cu','id')->select('id','name');
+    }
+
+    public function kode()
+    {
+        return $this->belongsTo('App\SuratKode','id_surat_kode','id');
     }
 }

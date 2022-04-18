@@ -14,9 +14,9 @@
 
       <div class="nav-tabs-responsive bg-light border-top" v-if="!isDasar">
         <ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
-          <li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'dasar'}" @click.prevent="changeTab('dasar')"><i class="icon-search4 mr-2"></i>
+          <li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'dasar'}" @click.prevent.prevent="changeTab('dasar')"><i class="icon-search4 mr-2"></i>
               Pencarian Dasar</a></li>
-          <li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'lanjutan'}" @click.prevent="changeTab('lanjutan')"><i class="icon-folder-search mr-2"></i>
+          <li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'lanjutan'}" @click.prevent.prevent="changeTab('lanjutan')"><i class="icon-folder-search mr-2"></i>
               Pencarian Lanjutan</a></li>
         </ul>
       </div>
@@ -144,10 +144,10 @@
               <div class="col-md-5 col-lg-4 pb-2">
                 <div class="row">
                   <div class="col-md-6 pb-2">
-                    <button class="btn btn-primary btn-block" @click="applyFilter" :disabled="filterCandidates[0].query_1 == null || filterCandidates[0].query_1 == '' || itemDataStat !== 'success'"><i class="icon-search4"></i> Cari</button>
+                    <button class="btn btn-primary btn-block" @click.prevent="applyFilter" :disabled="filterCandidates[0].query_1 == null || filterCandidates[0].query_1 == '' || itemDataStat !== 'success'"><i class="icon-search4"></i> Cari</button>
                   </div>
                   <div class="col-md-6 pb-2" v-if="appliedFilters.length > 0">
-                    <button class="btn btn-warning btn-block"  @click="resetFilter" :disabled="itemDataStat !== 'success'"><i class="icon-reset"></i> Reset pencarian</button>
+                    <button class="btn btn-warning btn-block"  @click.prevent="resetFilter" :disabled="itemDataStat !== 'success'"><i class="icon-reset"></i> Reset pencarian</button>
                   </div>
                 </div>
               </div>
@@ -190,7 +190,7 @@
 
                   <!-- order direction -->
                   <div class="col-md-2">
-                    <button class="btn bg-orange-300 btn-block" @click="updateOrderDirection" :disabled="itemDataStat !== 'success'">
+                    <button class="btn bg-orange-300 btn-block" @click.prevent="updateOrderDirection" :disabled="itemDataStat !== 'success'">
                       <i class="icon-arrow-up7" v-if="query.order_direction === 'asc'"></i>
                       <i class="icon-arrow-down7" v-else></i>
                     </button>
@@ -316,12 +316,12 @@
                   </template>
 
                   <div class="col-md-1 pb-2">
-                    <button class="btn bg-slate-300 btn-block" @click="removeFilter(f,i)" :disabled="itemDataStat !== 'success' || filterCandidates.length == 1"><i class="icon-cross3"></i></button>
+                    <button class="btn bg-slate-300 btn-block" @click.prevent="removeFilter(f,i)" :disabled="itemDataStat !== 'success' || filterCandidates.length == 1"><i class="icon-cross3"></i></button>
                   </div>
                 </div>
               </div>
               <div class="col-md-12">
-                <button class="btn btn-light btn-block" @click="addFilter" :disabled="itemDataStat !== 'success'"><i class="icon-arrow-down5"></i> Tambah Parameter Pencarian <i class="icon-arrow-down5"></i> </button>
+                <button class="btn btn-light btn-block" @click.prevent="addFilter" :disabled="itemDataStat !== 'success'"><i class="icon-arrow-down5"></i> Tambah Parameter Pencarian <i class="icon-arrow-down5"></i> </button>
               </div>
             </div>
 
@@ -334,10 +334,10 @@
               <div class="col-md-5 col-lg-4 pb-2">
                 <div class="row">
                   <div class="col-md-6 pb-2">
-                    <button class="btn btn-primary btn-block" @click="applyFilter" :disabled="filterCandidates[0].query_1 == null || filterCandidates[0].query_1 == '' || itemDataStat !== 'success'"><i class="icon-search4"></i> Cari</button>
+                    <button class="btn btn-primary btn-block" @click.prevent="applyFilter" :disabled="filterCandidates[0].query_1 == null || filterCandidates[0].query_1 == '' || itemDataStat !== 'success'"><i class="icon-search4"></i> Cari</button>
                   </div>
                   <div class="col-md-6 pb-2" v-if="appliedFilters.length > 0">
-                    <button class="btn btn-warning btn-block"  @click="resetFilter" :disabled="itemDataStat !== 'success'"><i class="icon-reset"></i> Reset pencarian</button>
+                    <button class="btn btn-warning btn-block"  @click.prevent="resetFilter" :disabled="itemDataStat !== 'success'"><i class="icon-reset"></i> Reset pencarian</button>
                   </div>
                 </div>
               </div>
@@ -379,7 +379,7 @@
 
                   <!-- order direction -->
                   <div class="col-md-2">
-                    <button class="btn bg-orange-300 btn-block" @click="updateOrderDirection" :disabled="itemDataStat !== 'success'">
+                    <button class="btn bg-orange-300 btn-block" @click.prevent="updateOrderDirection" :disabled="itemDataStat !== 'success'">
                       <i class="icon-arrow-up7" v-if="query.order_direction === 'asc'"></i>
                       <i class="icon-arrow-down7" v-else></i>
                     </button>
@@ -411,25 +411,25 @@
           </div>
 
           <div class="col-md-5 col-lg-3 text-right d-none d-sm-block">
-            <button type="button" class="btn bg-blue-300 btn-icon mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('column')" v-if="!isNoKolom">
+            <button type="button" class="btn bg-blue-300 btn-icon mb-1" :disabled="itemDataStat === 'loading'" @click.prevent.prevent="modalOptionOpen('column')" v-if="!isNoKolom">
               <i class="icon-table2"></i> Kolom
             </button>
-            <button type="button" class="btn bg-green-300 btn-icon mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')" v-if="!isNoExcel">
+            <button type="button" class="btn bg-green-300 btn-icon mb-1" :disabled="itemDataStat === 'loading'" @click.prevent.prevent="modalOptionOpen('excel')" v-if="!isNoExcel">
               <i class="icon-file-excel"></i> Excel
             </button>
-            <button type="button" class="btn btn-light btn-icon mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="fetch()">
+            <button type="button" class="btn btn-light btn-icon mb-1" :disabled="itemDataStat === 'loading'" @click.prevent.prevent="fetch()">
               <i class="icon-sync" :class="{'spinner' : itemDataStat === 'loading'}"></i>
             </button>
           </div>
 
           <div class="col-md-12 d-block d-sm-none">
-            <button type="button" class="btn bg-blue-300 btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('column')" v-if="!isNoKolom">
+            <button type="button" class="btn bg-blue-300 btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent.prevent="modalOptionOpen('column')" v-if="!isNoKolom">
               <i class="icon-table2"></i> Kolom
             </button>
-            <button type="button" class="btn bg-green-300 btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')" v-if="!isNoExcel">
+            <button type="button" class="btn bg-green-300 btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent.prevent="modalOptionOpen('excel')" v-if="!isNoExcel">
               <i class="icon-file-excel"></i> Excel
             </button>
-            <button type="button" class="btn btn-light btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="fetch()">
+            <button type="button" class="btn btn-light btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent.prevent="fetch()">
               <i class="icon-sync" :class="{'spinner' : itemDataStat === 'loading'}"></i> Reload
             </button>
           </div>
@@ -520,19 +520,19 @@
           <div class="col-md-8 pt-2 text-right d-none d-sm-block">
             <!-- pagination success-->
             <div class="btn-group" v-if="itemDataStat === 'success'">
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="goToPage(1)">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent.prevent="goToPage(1)">
                   <i class="icon-backward2"></i>
               </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="prevPage">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent.prevent="prevPage">
                   <i class="icon-arrow-left5"></i>
               </button>
-              <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent="goToPage(n)">
+              <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent.prevent="goToPage(n)">
                   {{n}}
               </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="nextPage">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent.prevent="nextPage">
                   <i class="icon-arrow-right5"></i>
               </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="goToPage(itemData.last_page)">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent.prevent="goToPage(itemData.last_page)">
                   <i class="icon-forward3"></i>
               </button>
             </div>
@@ -562,7 +562,7 @@
 
             <!-- pagination success-->
             <div class="btn-group" v-if="itemDataStat === 'success'">
-              <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent="goToPage(n)">
+              <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent.prevent="goToPage(n)">
                   {{n}}
               </button>
             </div>
@@ -570,16 +570,16 @@
             <br/>
 
             <div class="btn-group pt-2" v-if="itemDataStat === 'success'">
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="goToPage(1)">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent.prevent="goToPage(1)">
                   <i class="icon-backward2"></i>
               </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="prevPage">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent.prevent="prevPage">
                   <i class="icon-arrow-left5"></i>
               </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="nextPage">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent.prevent="nextPage">
                   <i class="icon-arrow-right5"></i>
               </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="goToPage(itemData.last_page)">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent.prevent="goToPage(itemData.last_page)">
                   <i class="icon-forward3"></i>
               </button>
             </div>
@@ -626,19 +626,19 @@
           </div>
 
           <div class="col-md-4 col-lg-2 text-right d-none d-sm-block">
-            <button type="button" class="btn bg-green-300 btn-icon" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')" v-if="!isNoExcel">
+            <button type="button" class="btn bg-green-300 btn-icon" :disabled="itemDataStat === 'loading'" @click.prevent.prevent="modalOptionOpen('excel')" v-if="!isNoExcel">
               <i class="icon-file-excel"></i> Excel
             </button>
-            <button type="button" class="btn btn-light btn-icon" :disabled="itemDataStat === 'loading'" @click.prevent="fetch()">
+            <button type="button" class="btn btn-light btn-icon" :disabled="itemDataStat === 'loading'" @click.prevent.prevent="fetch()">
               <i class="icon-sync" :class="{'spinner' : itemDataStat === 'loading'}"></i>
             </button>
           </div>
 
           <div class="col-md-4 col-lg-2 d-block d-sm-none">
-            <button type="button" class="btn bg-green-300 btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="modalOptionOpen('excel')">
+            <button type="button" class="btn bg-green-300 btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent.prevent="modalOptionOpen('excel')">
               <i class="icon-file-excel"></i> Excel
             </button>
-            <button type="button" class="btn btn-light btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent="fetch()">
+            <button type="button" class="btn btn-light btn-icon btn-block mb-1" :disabled="itemDataStat === 'loading'" @click.prevent.prevent="fetch()">
               <i class="icon-sync" :class="{'spinner' : itemDataStat === 'loading'}"></i> Reload
             </button>
           </div>
@@ -707,19 +707,19 @@
           <div class="col-md-8 pt-2 text-right d-none d-sm-block">
             <!-- pagination success-->
             <div class="btn-group" v-if="itemDataStat === 'success'">
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="goToPage(1)">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent.prevent="goToPage(1)">
                   <i class="icon-backward2"></i>
               </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="prevPage">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent.prevent="prevPage">
                   <i class="icon-arrow-left5"></i>
               </button>
-              <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent="goToPage(n)">
+              <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent.prevent="goToPage(n)">
                   {{n}}
               </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="nextPage">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent.prevent="nextPage">
                   <i class="icon-arrow-right5"></i>
               </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="goToPage(itemData.last_page)">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent.prevent="goToPage(itemData.last_page)">
                   <i class="icon-forward3"></i>
               </button>
             </div>
@@ -750,7 +750,7 @@
 
             <!-- pagination success-->
             <div class="btn-group" v-if="itemDataStat === 'success'">
-              <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent="goToPage(n)">
+              <button href="#" class="btn" v-for="n in pages" :class="{'btn-primary' : query.page == n, 'btn-light' : query.page != n}"  @click.prevent.prevent="goToPage(n)">
                   {{n}}
               </button>
             </div>
@@ -758,16 +758,16 @@
             <br/>
 
             <div class="btn-group pt-2" v-if="itemDataStat === 'success'">
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="goToPage(1)">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent.prevent="goToPage(1)">
                   <i class="icon-backward2"></i>
               </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent="prevPage">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.prev_page_url}" @click.prevent.prevent="prevPage">
                   <i class="icon-arrow-left5"></i>
               </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="nextPage">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent.prevent="nextPage">
                   <i class="icon-arrow-right5"></i>
               </button>
-              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent="goToPage(itemData.last_page)">
+              <button href="#" class="btn btn-light" :class="{'disabled' : !itemData.next_page_url}" @click.prevent.prevent="goToPage(itemData.last_page)">
                   <i class="icon-forward3"></i>
               </button>
             </div>
@@ -811,16 +811,16 @@
           <hr/>
 
           <!-- semua button -->
-          <button class="btn btn-light btn-block" @click.prevent="showAllColumn" >Semua kolom</button>
+          <button class="btn btn-light btn-block" @click.prevent.prevent="showAllColumn" >Semua kolom</button>
           <slot name="button-kolom"></slot>
           <hr/>
 
           <!-- column button -->
-          <button class="btn btn-block" v-for="(column,index) in columnData" :class="{'btn-primary' : !column.hide}" v-if="column.hide != null && !column.disable" @click.prevent="hideColumn(index)" >{{column.title}}</button>
+          <button class="btn btn-block" v-for="(column,index) in columnData" :class="{'btn-primary' : !column.hide}" v-if="column.hide != null && !column.disable" @click.prevent.prevent="hideColumn(index)" >{{column.title}}</button>
           <hr/>
 
           <!-- tutup button -->
-          <button class="btn btn-light btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</button>
+          <button class="btn btn-light btn-block" @click.prevent.prevent="modalTutup"><i class="icon-cross"></i> Tutup</button>
         </div>
 
         <!-- excel -->
@@ -829,19 +829,19 @@
           <hr/>
 
           <!-- download table -->
-          <button class="btn btn-light btn-block" @click.prevent="modalExcelOpen('excel')"><i class="icon-folder-download2"></i> Download data di tabel</button>
+          <button class="btn btn-light btn-block" @click.prevent.prevent="modalExcelOpen('excel')"><i class="icon-folder-download2"></i> Download data di tabel</button>
 
           <!-- download all   -->
-          <button class="btn btn-light btn-block" @click.prevent="modalExcelOpen('excelAll')"><i class="icon-folder-download2"></i> Download semua data</button>
+          <button class="btn btn-light btn-block" @click.prevent.prevent="modalExcelOpen('excelAll')"><i class="icon-folder-download2"></i> Download semua data</button>
           <hr/>
 
           <!-- uploadexcel -->
-          <button class="btn btn-light btn-block" v-for="(ex, index) in excelUploads" v-if="ex.enabled" @click.prevent="modalExcelUploadOpen(index)"><i class="icon-file-upload"></i> {{ ex.button }}</button>
+          <button class="btn btn-light btn-block" v-for="(ex, index) in excelUploads" v-if="ex.enabled" @click.prevent.prevent="modalExcelUploadOpen(index)"><i class="icon-file-upload"></i> {{ ex.button }}</button>
 
           <hr v-if="excelUploads"/>
 
           <!-- tutup -->
-          <button class="btn btn-light btn-block" @click.prevent="modalTutup"><i class="icon-cross"></i> Tutup</button>
+          <button class="btn btn-light btn-block" @click.prevent.prevent="modalTutup"><i class="icon-cross"></i> Tutup</button>
         </div>
       </div>
 
@@ -860,7 +860,7 @@
           <h2>Silahkan tekan tombol download</h2>
           
           <!-- tutup button -->
-          <button type="button" class="btn btn-light" @click="modalTutup">
+          <button type="button" class="btn btn-light" @click.prevent="modalTutup">
               <i class="icon-cross"></i> Tutup
           </button>  
 
@@ -892,11 +892,11 @@
             <br>
 
             <!-- batal button -->
-            <button type="button" class="btn btn-light" @click="modalBatal('excel')">
+            <button type="button" class="btn btn-light" @click.prevent="modalBatal('excel')">
                   <i class="icon-arrow-left13"></i> Batal</button>  
 
             <!-- download button -->
-            <button type="button" class="btn btn-warning" @click="modalExcelOk">
+            <button type="button" class="btn btn-warning" @click.prevent="modalExcelOk">
                   <i class="icon-checkmark5"></i> Ya, download semua</button>
           </div>
 
@@ -912,7 +912,7 @@
             <h2>Silahkan tekan tombol download</h2>
             
             <!-- tutup button -->
-            <button type="button" class="btn btn-light" @click="modalTutup">
+            <button type="button" class="btn btn-light" @click.prevent="modalTutup">
                 <i class="icon-cross"></i> Tutup
             </button>  
 
@@ -944,15 +944,15 @@
           <input type="file" class="form-control" @change="changeUpload($event.target.files)" ref="fileInput">
 
           <!-- format excel -->
-          <p class="text-center mt-2">Silahkan menggunakan format ini untuk upload data: <a href="#" @click.prevent="downloadFormatExcel(excelUploadIndex)">format excel</a></p>
+          <p class="text-center mt-2">Silahkan menggunakan format ini untuk upload data: <a href="#" @click.prevent.prevent="downloadFormatExcel(excelUploadIndex)">format excel</a></p>
 
           <!-- batal button -->
-          <button type="button" class="btn btn-light" @click="modalBatal('excel')">
+          <button type="button" class="btn btn-light" @click.prevent="modalBatal('excel')">
               <i class="icon-arrow-left13"></i> Batal
           </button> 
 
           <!-- upload button -->
-          <button type="button" class="btn btn-light" @click="uploadExcel(excelUploadIndex)">
+          <button type="button" class="btn btn-light" @click.prevent="uploadExcel(excelUploadIndex)">
               <i class="icon-upload"></i> Upload
           </button> 
 

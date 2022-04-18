@@ -18,6 +18,8 @@ use Maatwebsite\Excel\Facades\Excel;
 //untuk job yang lain di copy saja file ini dan disesuaikan 
 class UploadRekening implements ShouldQueue
 {
+    public $timeout = 0;
+
     private $path,$id_user;
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 

@@ -50,6 +50,7 @@
 								<option value="manajemen"> Manajemen</option>
 								<option value="kolektor">Kolektor</option>
 								<option value="kelompok_inti">Kelompok Inti</option>
+								<option value="vendor_smartcu">Vendor sMartCU</option>
 								<option disabled value="">----------------</option>
 								<option value="senior_manajer">Senior Manajer</option>
 								<option value="manajer">Manajer</option>
@@ -119,6 +120,7 @@
 						<option value="manajemen"> Manajemen</option>
 						<option value="kolektor">Kolektor</option>
 						<option value="kelompok_inti">Kelompok Inti</option>
+						<option value="vendor_smartcu">Vendor sMartCU</option>
 						<option disabled value="">----------------</option>
 						<option value="senior_manajer">Senior Manajer</option>
 						<option value="manajer">Manajer</option>
@@ -132,7 +134,7 @@
 				<!-- find data button -->
 				<div class="pt-2" v-if="this.currentUser.id_cu == 0">
 					<button type="button" class="btn btn-light btn-icon btn-block" @click.prevent="fetch()" v-if="itemDataStat != 'loading'">
-						<i class="icon-folder-open3"></i>  Tampilkan
+						<i class="icon-folder-open3"></i> Tampilkan
 					</button>
 					<button type="button" class="btn btn-light btn-icon btn-block" v-else>
 						<i class="icon-sync spinner"></i>

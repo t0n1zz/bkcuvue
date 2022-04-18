@@ -9,7 +9,7 @@
           <div class="flexslider">
             <div class="slider-wrap">
               @foreach($birthdayList as $item)
-              <div class="slide">Puskodpit BKCU Kalimantan mengucapkan selamat ulang tahun kepada CU {{ $item->name }} ke - {{ $item->usia }}, semoga terus berkarya</div>
+              <div class="slide">PUSKOPCUINA mengucapkan selamat ulang tahun kepada CU {{ $item->name }} ke - {{ $item->usia }}, semoga terus berkarya</div>
               @endforeach
               @foreach($pengumumanBKCUList as $item)
               <div class="slide">{{ $item->name }}</div>

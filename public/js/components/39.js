@@ -1739,6 +1739,30 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6094,6 +6118,234 @@ var render = function () {
                                     }),
                                     _vm._v(
                                       "\n\t\t\t\t\t\t\t\t\t\t\t\tKontrak\n\t\t\t\t\t\t\t\t\t\t\t"
+                                    ),
+                                  ]
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "form-check form-check-inline" },
+                              [
+                                _c(
+                                  "label",
+                                  { staticClass: "form-check-label" },
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.sasaran,
+                                          expression: "sasaran",
+                                        },
+                                      ],
+                                      staticClass: "form-check-input",
+                                      attrs: { type: "checkbox", value: "10" },
+                                      domProps: {
+                                        checked: Array.isArray(_vm.sasaran)
+                                          ? _vm._i(_vm.sasaran, "10") > -1
+                                          : _vm.sasaran,
+                                      },
+                                      on: {
+                                        change: function ($event) {
+                                          var $$a = _vm.sasaran,
+                                            $$el = $event.target,
+                                            $$c = $$el.checked ? true : false
+                                          if (Array.isArray($$a)) {
+                                            var $$v = "10",
+                                              $$i = _vm._i($$a, $$v)
+                                            if ($$el.checked) {
+                                              $$i < 0 &&
+                                                (_vm.sasaran = $$a.concat([
+                                                  $$v,
+                                                ]))
+                                            } else {
+                                              $$i > -1 &&
+                                                (_vm.sasaran = $$a
+                                                  .slice(0, $$i)
+                                                  .concat($$a.slice($$i + 1)))
+                                            }
+                                          } else {
+                                            _vm.sasaran = $$c
+                                          }
+                                        },
+                                      },
+                                    }),
+                                    _vm._v(
+                                      "\n\t\t\t\t\t\t\t\t\t\t\t\tKolektor\n\t\t\t\t\t\t\t\t\t\t\t"
+                                    ),
+                                  ]
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "form-check form-check-inline" },
+                              [
+                                _c(
+                                  "label",
+                                  { staticClass: "form-check-label" },
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.sasaran,
+                                          expression: "sasaran",
+                                        },
+                                      ],
+                                      staticClass: "form-check-input",
+                                      attrs: { type: "checkbox", value: "11" },
+                                      domProps: {
+                                        checked: Array.isArray(_vm.sasaran)
+                                          ? _vm._i(_vm.sasaran, "11") > -1
+                                          : _vm.sasaran,
+                                      },
+                                      on: {
+                                        change: function ($event) {
+                                          var $$a = _vm.sasaran,
+                                            $$el = $event.target,
+                                            $$c = $$el.checked ? true : false
+                                          if (Array.isArray($$a)) {
+                                            var $$v = "11",
+                                              $$i = _vm._i($$a, $$v)
+                                            if ($$el.checked) {
+                                              $$i < 0 &&
+                                                (_vm.sasaran = $$a.concat([
+                                                  $$v,
+                                                ]))
+                                            } else {
+                                              $$i > -1 &&
+                                                (_vm.sasaran = $$a
+                                                  .slice(0, $$i)
+                                                  .concat($$a.slice($$i + 1)))
+                                            }
+                                          } else {
+                                            _vm.sasaran = $$c
+                                          }
+                                        },
+                                      },
+                                    }),
+                                    _vm._v(
+                                      "\n\t\t\t\t\t\t\t\t\t\t\t\tKelompok inti\n\t\t\t\t\t\t\t\t\t\t\t"
+                                    ),
+                                  ]
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "form-check form-check-inline" },
+                              [
+                                _c(
+                                  "label",
+                                  { staticClass: "form-check-label" },
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.sasaran,
+                                          expression: "sasaran",
+                                        },
+                                      ],
+                                      staticClass: "form-check-input",
+                                      attrs: { type: "checkbox", value: "12" },
+                                      domProps: {
+                                        checked: Array.isArray(_vm.sasaran)
+                                          ? _vm._i(_vm.sasaran, "12") > -1
+                                          : _vm.sasaran,
+                                      },
+                                      on: {
+                                        change: function ($event) {
+                                          var $$a = _vm.sasaran,
+                                            $$el = $event.target,
+                                            $$c = $$el.checked ? true : false
+                                          if (Array.isArray($$a)) {
+                                            var $$v = "12",
+                                              $$i = _vm._i($$a, $$v)
+                                            if ($$el.checked) {
+                                              $$i < 0 &&
+                                                (_vm.sasaran = $$a.concat([
+                                                  $$v,
+                                                ]))
+                                            } else {
+                                              $$i > -1 &&
+                                                (_vm.sasaran = $$a
+                                                  .slice(0, $$i)
+                                                  .concat($$a.slice($$i + 1)))
+                                            }
+                                          } else {
+                                            _vm.sasaran = $$c
+                                          }
+                                        },
+                                      },
+                                    }),
+                                    _vm._v(
+                                      "\n\t\t\t\t\t\t\t\t\t\t\t\tSupporting Unit\n\t\t\t\t\t\t\t\t\t\t\t"
+                                    ),
+                                  ]
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "form-check form-check-inline" },
+                              [
+                                _c(
+                                  "label",
+                                  { staticClass: "form-check-label" },
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.sasaran,
+                                          expression: "sasaran",
+                                        },
+                                      ],
+                                      staticClass: "form-check-input",
+                                      attrs: { type: "checkbox", value: "13" },
+                                      domProps: {
+                                        checked: Array.isArray(_vm.sasaran)
+                                          ? _vm._i(_vm.sasaran, "13") > -1
+                                          : _vm.sasaran,
+                                      },
+                                      on: {
+                                        change: function ($event) {
+                                          var $$a = _vm.sasaran,
+                                            $$el = $event.target,
+                                            $$c = $$el.checked ? true : false
+                                          if (Array.isArray($$a)) {
+                                            var $$v = "13",
+                                              $$i = _vm._i($$a, $$v)
+                                            if ($$el.checked) {
+                                              $$i < 0 &&
+                                                (_vm.sasaran = $$a.concat([
+                                                  $$v,
+                                                ]))
+                                            } else {
+                                              $$i > -1 &&
+                                                (_vm.sasaran = $$a
+                                                  .slice(0, $$i)
+                                                  .concat($$a.slice($$i + 1)))
+                                            }
+                                          } else {
+                                            _vm.sasaran = $$c
+                                          }
+                                        },
+                                      },
+                                    }),
+                                    _vm._v(
+                                      "\n\t\t\t\t\t\t\t\t\t\t\t\tVendor sMartCU\n\t\t\t\t\t\t\t\t\t\t\t"
                                     ),
                                   ]
                                 ),

@@ -7,6 +7,7 @@ use illuminate\Database\Eloquent\Model;
 class AnggotaProdukCuDraft extends Model {
 
     use Dataviewer;
+    use \Awobaz\Compoships\Compoships;
 
     protected $table = 'anggota_produk_cu_draft';
 
@@ -37,6 +38,10 @@ class AnggotaProdukCuDraft extends Model {
     public function produk_cu()
     {
         return $this->belongsTo('App\ProdukCu','produk_cu_id','id')->select('id','name','id_cu','tipe');
+    }
+
+    public function anggota_produk_cu(){
+        return $this->hasOne('App\AnggotaProdukCu',['no_rek','produk_cu_id'],['no_rek','produk_cu_id'])->select('no_rek','produk_cu_id','id','saldo');
     }
 
 }

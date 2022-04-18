@@ -16,34 +16,41 @@ class Surat extends Model {
     protected $dates = ['deleted_at'];
     
     public static $rules = [
+        'id_surat_kode' => 'required',
+        'id_surat_kategori' => 'required',
         'name' => 'required'
     ];
 
     protected $fillable = [
-        'id_cu','id_surat_kategori','id_surat_kode_temp','id_dokumen','name','hal','perihal','tipe','periode','created_at','updated_at','deleted_at'
+        'id_cu','id_surat_kode','id_surat_kategori','id_surat_kode_temp','id_dokumen','name','hal','perihal','periode','created_at','updated_at','deleted_at'
     ];
 
     protected $allowedFilters = [
-        'id','id_cu','id_surat_kategori','id_surat_kode_temp','id_dokumen','name','hal','perihal','tipe','periode','created_at','updated_at','deleted_at',
+        'id','id_cu','id_surat_kode','id_surat_kategori','id_surat_kode_temp','id_dokumen','name','hal','perihal','periode','created_at','updated_at','deleted_at',
 
         'cu.name',
     ];
 
     protected $orderable = [
-        'id','id_cu','id_surat_kategori','id_surat_kode_temp','id_dokumen','name','hal','perihal','tipe','periode','created_at','updated_at','deleted_at',
+        'id','id_cu','id_surat_kode','id_surat_kategori','id_surat_kode_temp','id_dokumen','name','hal','perihal','periode','created_at','updated_at','deleted_at',
 
         'cu.name',
     ];
     
     public static function initialize(){
         return [
-            'id_cu' => '','id_surat_kategori' =>'','id_dokumen' =>'', 'name' => '','hal' => '', 'perihal' => '',  'tipe' => '','periode' => ''
+            'id_cu' => '','id_surat_kategori' =>'','id_dokumen' =>'', 'name' => '','hal' => '', 'perihal' => '',  'id_surat_kode' => '','periode' => ''
         ];
     }
 
     public function kategori()
     {
         return $this->belongsTo('App\SuratKategori','id_surat_kategori','id');
+    }
+
+    public function tipe()
+    {
+        return $this->belongsTo('App\SuratKode','id_surat_kode','id');
     }
 
     public function Cu()

@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class AnggotaCu extends BaseEloquent {
+class AnggotaCu extends Model {
 
     use \Venturecraft\Revisionable\RevisionableTrait;
     use Dataviewer, LogsActivity, SoftDeletes;
+    use \Awobaz\Compoships\Compoships;
 
     protected $table = 'anggota_cu';
     protected $dates = ['deleted_at'];

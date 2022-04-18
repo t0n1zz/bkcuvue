@@ -10,6 +10,7 @@ use App\Artikel;
 use App\Kegiatan;
 use App\Download;
 use App\Dokumen;
+use App\Aktivis;
 use App\ArtikelPenulis;
 use App\ArtikelKategori;
 use App\Region\Provinces;
@@ -165,9 +166,9 @@ class PublicController extends Controller
         $subtitle = 'Menampilkan artikel ' . request('cari');
         $tipe = 'semua';
 
-        $artikels = Artikel::with('kategori','penulis')->where('id_cu',0)->where('terbitkan',1)->where('name', 'like', '%' .request('cari'). '%')->orderBy('created_at','desc');
+        $artikels = Artikel::with('kategori','penulis')->where('id_cu',0)->where('terbitkan',1)->where('name', 'like', '%' .request('cari'). '%')->orderBy('created_at','desc')->paginate(8);
 
-		$q_anggotaCuCuueries['cari_column'] = 'name';
+				$q_anggotaCuCuueries['cari_column'] = 'name';
         $q_anggotaCuCuueries['cari'] = request('cari');
         3;
 
@@ -239,8 +240,8 @@ class PublicController extends Controller
         $subtitle = 'Menampilkan ' . $title;
 
         $dokumens = Dokumen::select('id','id_cu','name','status','filename','keterangan','tipe','format','link')
-		->where('status','PUBLIK')
-		->where('id_cu',0)
+				->where('status','PUBLIK')
+				->where('id_cu',0)
         ->get();
 
         SEO::setTitle($title . ' - PUSKOPCUINA');
@@ -267,8 +268,91 @@ class PublicController extends Controller
         SEO::opengraph()->setUrl(url()->full());
         SEO::opengraph()->addProperty('type', 'articles');
 
-        return view('profile');
+				$pengurus = Aktivis::with(['pekerjaans' => function($q){
+					$q->with('cu')->where('tipe',3)->where('id_tempat',1)
+					->where('status',1);
+				}])->whereHas('pekerjaan', function($query){
+					$query->where('tingkat',1)->where('tipe',3)->where('id_tempat',1)
+					->where('status',1);
+				})->select('id','name','gambar')->orderBy('name')->get();
+
+				$pengurus = $this->profileFormatQuery($pengurus);
+
+				$pengawas = Aktivis::with(['pekerjaans' => function($q){
+					$q->with('cu')->where('tipe',3)->where('id_tempat',1)
+					->where('status',1);
+				}])->whereHas('pekerjaan', function($query){
+					$query->where('tingkat',2)->where('tipe',3)->where('id_tempat',1)
+					->where('status',1);
+				})->select('id','name','gambar')->orderBy('name')->get();
+
+				$pengawas = $this->profileFormatQuery($pengawas);
+
+				$penasihat = Aktivis::with(['pekerjaans' => function($q){
+					$q->with('cu')->where('tipe',3)->where('id_tempat',1)
+					->where('status',1);
+				}])->whereHas('pekerjaan', function($query){
+					$query->where('tingkat',4)->where('tipe',3)->where('id_tempat',1)
+					->where('status',1);
+				})->select('id','name','gambar')->orderBy('name')->get();
+
+				$penasihat = $this->profileFormatQuery($penasihat);
+
+				$manajemen = Aktivis::with(['pekerjaans' => function($q){
+					$q->with('cu')->where('tipe',3)->where('id_tempat',1)
+					->where('status',1);
+				}])->whereHas('pekerjaan', function($query){
+					$query->whereIn('tingkat',[5,6,7,8,9,12])->where('tipe',3)->where('id_tempat',1)
+					->where('status',1);
+				})->select('id','name','gambar')->orderBy('name')->get();
+
+				$manajemen = $this->profileFormatQuery($manajemen);
+
+        return view('profile', compact('pengurus','pengawas','penasihat','manajemen'));
     }
+
+		public function profileFormatQuery($table_data){
+			foreach($table_data as $t){
+				$t->pekerjaan_aktif = '';
+
+				if(isset($t->pekerjaans[0])){
+					if($t->pekerjaans[0]->status == 1){
+						$t->pekerjaan_aktif = $t->pekerjaans[0];
+						if($t->pekerjaan_aktif->tipe == 3){
+							$t->pekerjaan_aktif->cu->name = 'PUSKOPCUINA';
+						}
+						if ($t->pekerjaan_aktif->tingkat == 1) {
+							$t->pekerjaan_aktif->tingkat_name = 'Pengurus';
+						} else if($t->pekerjaan_aktif->tingkat == 2) {
+							$t->pekerjaan_aktif->tingkat_name = 'Pengawas';
+						}	else if($t->pekerjaan_aktif->tingkat == 3) {
+							$t->pekerjaan_aktif->tingkat_name = 'Komite';
+						} else if($t->pekerjaan_aktif->tingkat == 4) {
+							$t->pekerjaan_aktif->tingkat_name = 'Penasihat';
+						} else if($t->pekerjaan_aktif->tingkat == 5) {
+							$t->pekerjaan_aktif->tingkat_name = 'Senior Manajer';
+						} else if($t->pekerjaan_aktif->tingkat == 6) {
+							$t->pekerjaan_aktif->tingkat_name = 'Manajer';
+						} else if($t->pekerjaan_aktif->tingkat == 7) {
+							$t->pekerjaan_aktif->tingkat_name = 'Supervisor';
+						} else if($t->pekerjaan_aktif->tingkat == 8) {
+							$t->pekerjaan_aktif->tingkat_name = 'Staf';
+						} else if($t->pekerjaan_aktif->tingkat == 9) {
+							$t->pekerjaan_aktif->tingkat_name = 'Kontrak';
+						} else if($t->pekerjaan_aktif->tingkat == 10) {
+							$t->pekerjaan_aktif->tingkat_name = 'Kolektor';
+						} else if($t->pekerjaan_aktif->tingkat == 11) {
+							$t->pekerjaan_aktif->tingkat_name = 'Kelompok Inti';
+						} else if($t->pekerjaan_aktif->tingkat == 12) {
+							$t->pekerjaan_aktif->tingkat_name = 'Supporting Unit';
+						} else if($t->pekerjaan_aktif->tingkat == 13) {
+							$t->pekerjaan_aktif->tingkat_name = 'Vendor sMartCU';
+						}
+					}
+				}
+			}
+			return $table_data;
+		}
 
     public function admins()
     {
@@ -277,32 +361,32 @@ class PublicController extends Controller
 
     public function testroute()
     {    
-      // abort(404);
+      abort(404);
 				
 			// $kelas = \App\JalinanIuran::with('anggota.anggota_cu','anggota.anggota_cu_cu')->findOrFail(1);
-			$produks = \App\ProdukCu::where('id_cu',22)->where('jalinan',1)->get();
-			$kelas = \App\JalinanIuranAnggota::with('anggota_cu','anggota_cu_cu')->where('jalinan_iuran_id',1)->where('lokasi', 5)->get();
+			// $produks = \App\ProdukCu::where('id_cu',22)->where('jalinan',1)->get();
+			// $kelas = \App\JalinanIuranAnggota::with('anggota_cu','anggota_cu_cu')->where('jalinan_iuran_id',1)->where('lokasi', 5)->get();
 
-			$result = array();
-			foreach($kelas as $anggota){
-				$result[$anggota->anggota_cu_id] = $anggota;	
-			}
+			// $result = array();
+			// foreach($kelas as $anggota){
+			// 	$result[$anggota->anggota_cu_id] = $anggota;	
+			// }
 
-			foreach($result as $r){
-				foreach($kelas as $anggota){
-					if($r->anggota_cu_id == $anggota->anggota_cu_id){
-						foreach($produks as $produk){
-							if($produk->id == $anggota->produk_cu_id){
-								$r["X$produk->id"] = $r->saldo;
-							}
-						}
-					}
-				}
-			}
+			// foreach($result as $r){
+			// 	foreach($kelas as $anggota){
+			// 		if($r->anggota_cu_id == $anggota->anggota_cu_id){
+			// 			foreach($produks as $produk){
+			// 				if($produk->id == $anggota->produk_cu_id){
+			// 					$r["X$produk->id"] = $r->saldo;
+			// 				}
+			// 			}
+			// 		}
+			// 	}
+			// }
 
-			return response()->json($result);
+			// return response()->json($result);
 
-			// $this->iuran();
+			// $this->permission();
     }
 
 		public function iuran(){
@@ -911,89 +995,89 @@ class PublicController extends Controller
 
 		public function permission(){
 			// create permission
-			\Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_dokumen']); 
-			\Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_dokumen']); 
-			\Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_dokumen']); 
-			\Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_dokumen']);
+			\Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'index_surat_kategori']); 
+			\Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'create_surat_kategori']); 
+			\Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'update_surat_kategori']); 
+			\Spatie\Permission\Models\Permission::create(['guard_name' => 'api','name' => 'destroy_surat_kategori']);
 			
 			// give permission
-			$users = App\User::where('id','!=',1)->where('id_cu',0)->get();
-			$users = App\User::find(1);
+			// $users = App\User::where('id','!=',1)->where('id_cu',0)->get();
+			// $users = App\User::find(1);
 			
-			foreach($users as $user){
-				$user->givePermissionTo([
+			// foreach($users as $user){
+			// 	$user->givePermissionTo([
 		
-						'index_artikel',
-						'create_artikel',
-						'update_artikel',
-						'destroy_artikel',
-						'terbitkan_artikel',
-						'utamakan_artikel',
+			// 			'index_artikel',
+			// 			'create_artikel',
+			// 			'update_artikel',
+			// 			'destroy_artikel',
+			// 			'terbitkan_artikel',
+			// 			'utamakan_artikel',
 		
-						'index_user',
-						'create_user',
-						'update_user',
-						'destroy_user',
-						'reset_password',
-						'status_user',
-						'hak_akses_user',
+			// 			'index_user',
+			// 			'create_user',
+			// 			'update_user',
+			// 			'destroy_user',
+			// 			'reset_password',
+			// 			'status_user',
+			// 			'hak_akses_user',
 		
-						'index_artikel_penulis',
-						'create_artikel_penulis',
-						'update_artikel_penulis',
-						'destroy_artikel_penulis',
+			// 			'index_artikel_penulis',
+			// 			'create_artikel_penulis',
+			// 			'update_artikel_penulis',
+			// 			'destroy_artikel_penulis',
 		
-						'index_artikel_kategori',
-						'create_artikel_kategori',
-						'update_artikel_kategori',
-						'destroy_artikel_kategori',
+			// 			'index_artikel_kategori',
+			// 			'create_artikel_kategori',
+			// 			'update_artikel_kategori',
+			// 			'destroy_artikel_kategori',
 		
-						'index_cu',
-						'create_cu',
-						'update_cu',
-						'destroy_cu',
+			// 			'index_cu',
+			// 			'create_cu',
+			// 			'update_cu',
+			// 			'destroy_cu',
 		
-						'index_tp',
-						'create_tp',
-						'update_tp',
-						'destroy_tp',
+			// 			'index_tp',
+			// 			'create_tp',
+			// 			'update_tp',
+			// 			'destroy_tp',
 		
-						'index_aktivis',
-						'create_aktivis',
-						'update_aktivis',
-						'destroy_aktivis',
+			// 			'index_aktivis',
+			// 			'create_aktivis',
+			// 			'update_aktivis',
+			// 			'destroy_aktivis',
 		
-						'index_produk_cu',
-						'create_produk_cu',
-						'update_produk_cu',
-						'destroy_produk_cu',
+			// 			'index_produk_cu',
+			// 			'create_produk_cu',
+			// 			'update_produk_cu',
+			// 			'destroy_produk_cu',
 		
-						'index_diklat_bkcu',
-						'create_diklat_bkcu',
-						'update_diklat_bkcu',
-						'destroy_diklat_bkcu',
+			// 			'index_diklat_bkcu',
+			// 			'create_diklat_bkcu',
+			// 			'update_diklat_bkcu',
+			// 			'destroy_diklat_bkcu',
 		
-						'index_tempat',
-						'create_tempat',
-						'update_tempat',
-						'destroy_tempat',
+			// 			'index_tempat',
+			// 			'create_tempat',
+			// 			'update_tempat',
+			// 			'destroy_tempat',
 		
-						'index_laporan_cu',
-						'create_laporan_cu',
-						'update_laporan_cu',
-						'destroy_laporan_cu',
-						'upload_laporan_cu',
-						'diskusi_laporan_cu',
+			// 			'index_laporan_cu',
+			// 			'create_laporan_cu',
+			// 			'update_laporan_cu',
+			// 			'destroy_laporan_cu',
+			// 			'upload_laporan_cu',
+			// 			'diskusi_laporan_cu',
 		
-						'index_laporan_tp',
-						'create_laporan_tp',
-						'update_laporan_tp',
-						'destroy_laporan_tp',
-						'upload_laporan_tp',
-						'diskusi_laporan_tp',
-				]);
-			}
+			// 			'index_laporan_tp',
+			// 			'create_laporan_tp',
+			// 			'update_laporan_tp',
+			// 			'destroy_laporan_tp',
+			// 			'upload_laporan_tp',
+			// 			'diskusi_laporan_tp',
+			// 	]);
+			// }
 			
-			echo $users->getAllPermissions();
+			// echo $users->getAllPermissions();
 		}
 }

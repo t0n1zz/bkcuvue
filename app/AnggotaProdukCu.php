@@ -9,6 +9,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class AnggotaProdukCu extends BaseEloquent {
 
     use Dataviewer, LogsActivity, SoftDeletes;
+    use \Awobaz\Compoships\Compoships;
 
     protected $table = 'anggota_produk_cu';
     protected $dates = ['deleted_at'];

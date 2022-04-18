@@ -50,6 +50,14 @@ const asetTetapGolongan = () => import('./views/asetTetapGolongan/index.vue');
 const asetTetapGolongan_form = () => import('./views/asetTetapGolongan/create.vue');
 const asetTetapLokasi = () => import('./views/asetTetapLokasi/index.vue');
 const asetTetapLokasi_form = () => import('./views/asetTetapLokasi/create.vue');
+const surat = () => import('./views/surat/index.vue');
+const surat_form = () => import('./views/surat/form.vue');
+const suratKategori = () => import('./views/suratKategori/index.vue');
+const suratKategori_form = () => import('./views/suratKategori/form.vue');
+const suratKode = () => import('./views/suratKode/index.vue');
+const suratKode_form = () => import('./views/suratKode/form.vue');
+const suratMasuk = () => import('./views/suratMasuk/index.vue');
+const suratMasuk_form = () => import('./views/suratMasuk/form.vue');
 const dokumen = () => import('./views/dokumen/index.vue');
 const dokumen_form = () => import('./views/dokumen/form.vue');
 const dokumenKategori = () => import('./views/dokumenKategori/index.vue');
@@ -410,6 +418,62 @@ const routes = [
 		name: 'asetTetapLokasiCreate', 
 		components: { default: asetTetapLokasi_form, 'header': header, 'footer': footer },
 		meta: { requiresAuth: true }},	
+
+	// surat
+	{ path: '/surat/cu/:cu/tipe/:tipe/periode/:periode',
+		name: 'suratCu', 
+		components: { default: surat, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth:true, mode:'cu' }},
+	{ path: '/surat/create',
+		name: 'suratCreate', 
+		components: { default: surat_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/surat/edit/:id',
+		name: 'suratEdit', 
+		components: { default: surat_form, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true, mode:'edit' }},
+
+	// surat kategori
+	{ path: '/suratKategori/cu/:cu',
+		name: 'suratKategoriCu', 
+		components: { default: suratKategori, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true, mode:'cu' }},
+	{ path: '/suratKategori/create',
+		name: 'suratKategoriCreate', 
+		components: { default: suratKategori_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/suratKategori/edit/:id',
+		name: 'suratKategoriEdit', 
+		components: { default: suratKategori_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'edit' }},
+
+	// surat kode
+	{ path: '/suratKode/cu/:cu',
+		name: 'suratKodeCu', 
+		components: { default: suratKode, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true, mode:'cu' }},
+	{ path: '/suratKode/create',
+		name: 'suratKodeCreate', 
+		components: { default: suratKode_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/suratKode/edit/:id',
+		name: 'suratKodeEdit', 
+		components: { default: suratKode_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'edit' }},
+
+	// surat masuk
+	{ path: '/suratMasuk/cu/:cu/:periode',
+		name: 'suratMasukCu', 
+		components: { default: suratMasuk, 'header': header, 'footer': footer  },
+		meta: { requiresAuth: true, mode:'cu' }},
+	{ path: '/suratMasuk/create',
+		name: 'suratMasukCreate', 
+		components: { default: suratMasuk_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/suratMasuk/edit/:id',
+		name: 'suratMasukEdit', 
+		components: { default: suratMasuk_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'edit' }},
 
 	// dokumen
 	{ path: '/dokumen/gerakan/publik/:cu',

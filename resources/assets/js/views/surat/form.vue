@@ -18,235 +18,237 @@
 						<!-- main form -->
 						<div class="card">
 							<div class="card-body">
+
+								<!-- tipe -->
+								<div class="row" v-if="$route.meta.mode !== 'edit'">
+									<div class="col-md-12">
+										<div class="form-group mb-0" :class="{'has-error' : errors.has('form.id_surat_kode')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.id_surat_kode')}">
+												<i class="icon-cross2" v-if="errors.has('form.id_surat_kode')"></i>
+												Tipe Surat: <wajib-badge></wajib-badge>
+											</h5>
+
+											<div class="input-group">
+
+												<!-- select -->
+												<select class="form-control" name="id_surat_kode" v-model="form.id_surat_kode" data-width="100%" v-validate="'required'" data-vv-as="Tipe" @change="changeKode($event.target.value)">
+													<option disabled value="">
+														<span>
+															<span v-if="formStat === 'loading'">Mohon tunggu...</span>
+															<span v-else>Silahkan pilih tipe surat</span>
+														</span>
+													</option>
+													<option v-for="kode in modelKode" v-if="kode" :value="kode.id">{{kode.name}} / {{kode.periode}} / No. {{kode.kode}}</option>
+												</select>
+
+											</div>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.id_surat_kode')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_surat_kode') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+								</div>
+
+								<div v-if="itemDataStat == 'loading'">
+									<div class="card">
+										<div class="card-body">
+											<h4>Mohon tunggu...</h4>
+											<div class="progress">
+												<div class="progress-bar progress-bar-info progress-bar-striped progress-bar-animated" style="width: 100%">
+													<span class="sr-only">100% Complete</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 								
-								<div class="row">
-
-									<!-- name -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.name')}">
-												<i class="icon-cross2" v-if="errors.has('form.name')"></i>
-												Judul: <wajib-badge></wajib-badge></h5>
-
-											<!-- text -->
-											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan judul artikel" v-validate="'required|min:5'" data-vv-as="Judul" v-model="form.name">
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.name')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
+								<div v-if="itemDataStat == 'success'">
+									<div class="row" v-if="form.id_surat_kode != ''">
+										
+										<div class="col-md-12" v-if="$route.meta.mode !== 'edit'">
+											<hr class="mt-0" />
+											<div class="alert bg-warning alert-styled-left">
+												<h3>Sisa waktu: {{ timerCount }} detik</h3>
+												<h6>Perhatian nomor surat ini hanya tersedia untuk anda selama 30 menit (1800 detik) sejak anda melihat pesan ini, pastikan anda meminta nomor surat ketika surat sudah siap untuk di kirim.</h6>
+											</div>
 										</div>
-									</div>
 
-									<!-- CU -->
-								<div class="col-md-4" v-if="currentUser.id_cu === 0">
-										<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
+										<!-- kategori -->
+										<div class="col-md-12">
+											<div class="form-group" :class="{'has-error' : errors.has('form.id_surat_kategori')}">
 
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.id_cu')}">
-												<i class="icon-cross2" v-if="errors.has('form.id_cu')"></i>
-												CU: <wajib-badge></wajib-badge>
-											</h5>
+												<!-- title -->
+												<h5 :class="{ 'text-danger' : errors.has('form.id_surat_kategori')}">
+													<i class="icon-cross2" v-if="errors.has('form.id_surat_kategori')"></i>
+													Kategori: <wajib-badge></wajib-badge>
+												</h5>
 
-											<!-- select -->
-											<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0" @change="changeCU($event.target.value)">
-												<option disabled value="">
-													<span v-if="modelCUStat === 'loading'">Mohon tunggu...</span>
-													<span v-else>Silahkan pilih CU</span>
-												</option>
-												<option value="0"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>PUSKOPCUINA</span></option>
-												<option v-for="(cu, index) in modelCU" :value="cu.id" :key="index">{{cu.name}}</option>
-											</select>
+												<div class="input-group">
 
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
+													<!-- select -->
+													<select class="form-control" name="id_surat_kategori" v-model="form.id_surat_kategori" data-width="100%" v-validate="'required'" data-vv-as="Kategori" @change="changeKategori($event.target.value)">
+														<option disabled value="">
+															<span>
+																<span v-if="formStat === 'loading'">Mohon tunggu...</span>
+																<span v-else>Silahkan pilih kategori</span>
+															</span>
+														</option>
+														<option v-for="kategori in itemData.kategori" v-if="kategori" :value="kategori.id">{{kategori.name}}</option>
+													</select>
+
+												</div>
+
+												<!-- error message -->
+												<small class="text-muted text-danger" v-if="errors.has('form.id_surat_kategori')">
+													<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_surat_kategori') }}
+												</small>
+												<small class="text-muted" v-else>&nbsp;</small>
+											</div>
 										</div>
-									</div>
 
-									<!-- penulis -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.id_artikel_penulis')}">
+										<!-- name -->
+										<div class="col-md-12">
+											<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
 
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.id_artikel_penulis')}">
-												<i class="icon-cross2" v-if="errors.has('form.id_artikel_penulis')"></i>
-												Penulis: <wajib-badge></wajib-badge>
-											</h5>
+												<!-- title -->
+												<h5 :class="{ 'text-danger' : errors.has('form.name')}">
+													<i class="icon-cross2" v-if="errors.has('form.name')"></i>
+													Kode: <wajib-badge></wajib-badge></h5>
 
-											<div class="input-group">
+												<!-- text -->
+												<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan kode" data-vv-as="name" v-model="form.name" readonly>
+
+												<!-- error message -->
+												<small class="text-muted text-danger" v-if="errors.has('form.name')">
+													<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
+												</small>
+												<small class="text-muted" v-else>&nbsp;</small>
+											</div>
+										</div>
+
+										<!-- hal -->
+										<div class="col-md-6">
+											<div class="form-group" :class="{'has-error' : errors.has('form.hal')}">
+
+												<!-- title -->
+												<h5 :class="{ 'text-danger' : errors.has('form.hal')}">
+													<i class="icon-cross2" v-if="errors.has('form.hal')"></i>
+													Hal: <wajib-badge></wajib-badge></h5>
+
+												<!-- text -->
+												<input type="text" name="hal" class="form-control" placeholder="Silahkan masukkan hal" data-vv-as="hal" v-model="form.hal">
+
+												<!-- error message -->
+												<small class="text-muted text-danger" v-if="errors.has('form.hal')">
+													<i class="icon-arrow-small-right"></i> {{ errors.first('form.hal') }}
+												</small>
+												<small class="text-muted" v-else>&nbsp;</small>
+											</div>
+										</div>
+
+										<!-- perihal -->
+										<div class="col-md-6">
+											<div class="form-group" :class="{'has-error' : errors.has('form.perihal')}">
+
+												<!-- title -->
+												<h5 :class="{ 'text-danger' : errors.has('form.perihal')}">
+													<i class="icon-cross2" v-if="errors.has('form.perihal')"></i>
+													Perihal: <wajib-badge></wajib-badge></h5>
+
+												<!-- text -->
+												<input type="text" name="perihal" class="form-control" placeholder="Silahkan masukkan perihal" data-vv-as="perihal" v-model="form.perihal">
+
+												<!-- error message -->
+												<small class="text-muted text-danger" v-if="errors.has('form.perihal')">
+													<i class="icon-arrow-small-right"></i> {{ errors.first('form.perihal') }}
+												</small>
+												<small class="text-muted" v-else>&nbsp;</small>
+											</div>
+										</div>
+
+										<!-- format -->
+										<div class="col-md-12" v-if="$route.meta.mode != 'edit'">
+											<div class="form-group" :class="{'has-error' : errors.has('form.format')}">
+
+												<!-- title -->
+												<h5 :class="{ 'text-danger' : errors.has('form.format')}">
+													<i class="icon-cross2" v-if="errors.has('form.format')"></i>
+													Pilih Format: <wajib-badge></wajib-badge>
+												</h5>
 
 												<!-- select -->
-												<select class="form-control"  name="id_artikel_penulis" v-model="form.id_artikel_penulis" data-width="100%" v-validate="'required'" data-vv-as="Penulis" :disabled="modelPenulis.length === 0">
-													<option disabled value="">
-														<span v-if="form.id_cu != 0 && modelPenulis.length == 0">Silahkan tambah penulis baru</span>
-														<span v-else-if="form.id_cu == '' && modelPenulis.length == 0">Silahkan pilih CU terlebih dahulu</span>
-														<span v-else>
-															<span v-if="modelPenulisStat === 'loading'">Mohon tunggu...</span>
-															<span v-else>Silahkan pilih penulis</span>
-														</span>
-													</option>
-													<option v-for="penulis in modelPenulis" v-if="penulis" :value="penulis.id">{{penulis.name}}</option>
+												<select class="form-control" name="format" v-model="form.format" data-width="100%" v-validate="'required'" data-vv-as="format">
+													<option disabled value="">Silahkan pilih format</option>
+													<option value="upload">Upload</option>
+													<option value="link">Link</option>
 												</select>
 
-												<!-- button -->
-												<div class="input-group-append">
-													<button type="button" class="btn btn-light" @click="modalOpen_Penulis" :disabled="form.id_cu === ''">
-														<i class="icon-plus22"></i>
-													</button>
-												</div>
+												<!-- error message -->
+												<small class="text-muted text-danger" v-if="errors.has('form.format')">
+													<i class="icon-arrow-small-right"></i> {{ errors.first('form.format') }}
+												</small>
+												<small class="text-muted" v-else>&nbsp;</small>
 											</div>
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
-									</div>
 
-									<!-- kategori -->
-									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.id_artikel_kategori')}">
+										<!-- upload -->
+										<div class="col-md-12" v-if="$route.meta.mode != 'edit'">
+											<div class="form-group" v-if="form.format == 'upload'">
 
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.id_artikel_kategori')}">
-												<i class="icon-cross2" v-if="errors.has('form.id_artikel_kategori')"></i>
-												Kategori: <wajib-badge></wajib-badge>
-											</h5>
+												<!-- title -->
+												<h5> Upload dokumen: <wajib-badge></wajib-badge></h5>
 
-											<div class="input-group">
-
-												<!-- select -->
-												<select class="form-control" name="id_artikel_kategori" v-model="form.id_artikel_kategori" data-width="100%" :disabled="modelKategori.length === 0" v-validate="'required'" data-vv-as="Kategori">
-													<option disabled value="">
-														<span v-if="form.id_cu != 0 && modelKategori.length == 0">Silahkan tambah kategori baru</span>
-														<span v-else>
-															<span v-if="modelKategoriStat === 'loading'">Mohon tunggu...</span>
-															<span v-else>Silahkan pilih kategori</span>
-														</span>
-													</option>
-													<option v-for="kategori in modelKategori" v-if="kategori" :value="kategori.id">{{kategori.name}}</option>
-												</select>
-
-												<!-- button -->
-												<div class="input-group-append">
-													<button type="button" class="btn btn-light" :disabled="form.id_cu === ''" @click="modalOpen_Kategori">
-														<i class="icon-plus22"></i>
-													</button>
+												<!-- textarea -->
+												<div class="card-card-body">
+													<input type="file" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.openxmlformats-officedocument.presentationml.slideshow, text/plain, application/pdf, image/*" class="form-control" @change="upload" ref="fileInput">
 												</div>
+												<small class="text-muted">File yang diterima adalah Word, Excel, Powerpoint, PDF dan gambar/foto</small>
+
 											</div>
+											<div class="form-group" v-else-if="form.format == 'link'">
 
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
+												<!-- title -->
+												<h5>Link dokumen: </h5>
+
+												<!-- textarea -->
+												<input type="text" name="link" class="form-control" placeholder="Silahkan masukkan link" v-model="form.link">
+												<small class="text-muted">Silahkan masukkan link ke dokumen</small>
+
+											</div>
 										</div>
+
 									</div>
-
-									<!-- terbitkan -->
-									<div class="col-md-4" v-if="currentUser.can && currentUser.can['terbitkan_' + kelas]">
-										<div class="form-group" :class="{'has-error' : errors.has('form.terbitkan')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.terbitkan')}">
-												<i class="icon-cross2" v-if="errors.has('form.terbitkan')"></i>
-												Status Penerbitan:
-											</h5>
-
-											<!-- select -->
-											<select name="terbitkan" data-width="100%" class="form-control" v-model="form.terbitkan">
-												<option disabled value="">Silahkan pilih status penerbitan</option>
-												<option value="1">Terbitkan artikel</option>
-												<option value="0">Tidak Terbitkan artikel</option>
-											</select>
-
-											<!-- error message -->
-											<br/>
-											<small class="text-muted text-danger" v-if="errors.has('form.terbitkan')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.terbitkan') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;
-											</small>
-										</div>
-									</div>
-
-									<!-- utamakan -->
-									<div class="col-md-4" v-if="currentUser.can && currentUser.can['utamakan_' + kelas]">
-										<div class="form-group" :class="{'has-error' : errors.has('form.utamakan')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.utamakan')}">
-												<i class="icon-cross2" v-if="errors.has('form.utamakan')"></i>
-												Utamakan: <wajib-badge></wajib-badge>
-											</h5>
-
-											<!-- select -->
-											<select name="utamakan" data-width="100%" class="form-control" v-model="form.utamakan" v-validate="'required'" data-vv-as="utamakan">
-												<option disabled value="">Silahkan pilih tipe</option>
-												<option value="1">Jadikan artikel utama</option>
-												<option value="0">Tidak jadikan artikel utama</option>
-											</select>
-
-											<!-- error message -->
-											<br/>
-											<small class="text-muted text-danger" v-if="errors.has('form.utamakan')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.utamakan') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;
-											</small>
-										</div>
-									</div>
-
-									<!-- gambar utama -->
-									<div class="col-md-12">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Gambar Utama:</h5>
-
-											<!-- imageupload -->
-											<app-image-upload :image_loc="'/images/artikel/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
-										</div>
-									</div>
-
-									<!-- separator -->
-									<div class="col-md-12"><br/></div>
-
-									<!-- isi artikel -->
-									<div class="col-md-12">
-										<div class="form-group">
-
-											<!-- title -->
-											<h5>Isi Artikel:</h5>
-
-											<!-- editor -->
-											<ckeditor type="classic" 
-												v-model="form.content"
-												:upload-adapter="UploadAdapter" ></ckeditor>
-
-										</div>
-									</div>
-
 								</div>
 								
 							</div>
 						</div>
 
-						<!-- form info -->
-						<form-info></form-info>	
+						<div v-if="itemDataStat == 'success'">
+							<div v-if="form.id_surat_kode != ''">
+								<!-- form info -->
+								<form-info></form-info>	
+
+								<!-- form button -->
+								<div class="card card-body">
+									<form-button
+										:cancelState="'methods'"
+										:formValidation="'form'"
+										@cancelClick="back"></form-button>
+								</div>
+							</div>
+							
+						</div>
 
 						<!-- form button -->
-						<div class="card card-body">
+						<div class="card card-body" v-if="form.id_surat_kode == ''">
 							<form-button
 								:cancelState="'methods'"
-								:formValidation="'form'"
+								:isSingleButton="true"
 								@cancelClick="back"></form-button>
 						</div>
 						
@@ -264,13 +266,6 @@
 				{{ modalTitle }}
 			</template>
 
-			<!-- tambah penulis -->
-			<template slot="modal-body1">
-				<form-penulis 
-				:id_cu="id_cu"
-				@cancelClick="modalTutup"></form-penulis>
-			</template>
-
 			<!-- tambah kategori -->
 			<template slot="modal-body2">
 				<form-kategori
@@ -285,6 +280,7 @@
 
 <script>
 	import { mapGetters } from 'vuex';
+	import _ from 'lodash';
 	import pageHeader from "../../components/pageHeader.vue";
 	import { toMulipartedForm } from '../../helpers/form';
 	import appImageUpload from '../../components/ImageUpload.vue';
@@ -292,10 +288,6 @@
 	import message from "../../components/message.vue";
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
-	import formKategori from "./formKategori.vue";
-	import formPenulis from "./formPenulis.vue";
-	import { getLocalUser } from "../../helpers/auth";
-	import { url_config } from '../../helpers/url.js';
 	import wajibBadge from "../../components/wajibBadge.vue";
 
 	export default {
@@ -306,55 +298,24 @@
 			message,
 			formButton,
 			formInfo,
-			formKategori,
-			formPenulis,
 			wajibBadge
 		},
 		data() {
 			return {
-				title: 'Tambah Artikel',
-				titleDesc: 'Menambah artikel baru',
+				title: 'Tambah Surat',
+				titleDesc: 'Menambah surat keluar baru',
 				titleIcon: 'icon-plus3',
-				level2Title: 'Artikel',
-				kelas: 'artikel',
+				level2Title: 'Surat',
+				kelas: 'surat',
 				id_cu: '',
-				utama: '',
-				UploadAdapter: function (loader) {
-          this.loader = loader
-          this.upload = () => {
-            const body = new FormData();
-						const user = getLocalUser();
-						let token = user.token;
-
-						body.append('gambar', this.loader.file);
-	
-            return fetch(url_config.api_url + 'artikel/upload', {
-							headers: {"Authorization": 'Bearer ' + token},
-              body: body,
-              method: 'POST'
-            })
-						.then(response => response.json())
-              .then(downloadUrl => {
-                return {
-									default: downloadUrl
-								}
-              })
-              .catch(error => {
-                console.log(error);
-              });
-          }
-          this.abort = () => {
-            console.log('Abort upload.')
-          }
-        },
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
 				modalColor: '',
 				modalContent: '',
 				submited: false,
-				submitedKategori: false,
-				submitedPenulis: false
+				timerCount: 0,
+				timerEnabled: false,
 			}
 		},
 		beforeRouteEnter(to, from, next) {
@@ -368,7 +329,6 @@
 			}
 			if(this.$route.meta.mode !== 'edit' && this.form.id_cu === undefined){
 				this.form.id_cu = this.currentUser.id_cu;
-				this.changeCU(this.currentUser.id_cu);
 			}
 		},
 		watch: {
@@ -377,12 +337,25 @@
 					if(this.$route.meta.mode !== 'edit'){
 						this.form.id_cu = this.currentUser.id_cu;
 					}else{
-						this.checkUser('update_artikel',this.form.id_cu);
+						this.checkUser('update_surat',this.form.id_cu);
 					}
-					if(this.form.id_cu !== undefined){
-						this.changeCU(this.form.id_cu);
-					}	
 				}
+			},
+			itemDataStat(value){
+				if(value === "success"){
+					this.timerCount = this.itemData.waktu;
+					this.timerEnabled = true;
+				}
+			},
+			timerCount: {
+				handler(value) {
+					if (value > 0 && this.timerEnabled) {
+							setTimeout(() => {
+									this.timerCount--;
+							}, 1000);
+					}
+				},
+				immediate: true // This ensures the watcher is triggered upon creation
 			},
 			updateStat(value){
 				this.modalShow = true;
@@ -396,32 +369,6 @@
 					this.modalContent = this.updateResponse;
 				}
 			},
-			updateKategoriStat(value){
-				this.modalState = value;
-				this.modalColor = '';
-
-				if(value === "success"){
-					this.modalTitle = this.updateKategoriResponse.message;
-					this.$store.dispatch('artikelKategori/getCu', this.id_cu);
-					this.form.id_artikel_kategori = this.updateKategoriResponse.id;
-				}else{
-					this.modalTitle = 'Oops terjadi kesalahan :(';
-					this.modalContent = this.updateKategoriResponse.message;
-				}
-			},
-			updatePenulisStat(value){
-				this.modalState = value;
-				this.modalColor = '';
-
-				if(value === "success"){
-					this.modalTitle = this.updatePenulisResponse.message;
-					this.$store.dispatch('artikelPenulis/getCu', this.id_cu);	
-					this.form.id_artikel_penulis = this.updatePenulisResponse.id;
-				}else{
-					this.modalTitle = 'Oops terjadi kesalahan :(';
-					this.modalContent = this.updatePenulisResponse.message;
-				}
-			}
     },
 		methods: {
 			fetch(){
@@ -433,14 +380,15 @@
 
 				if(this.$route.meta.mode === 'edit'){
 					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
-					this.title = 'Ubah Artikel';
-					this.titleDesc = 'Mengubah artikel';
+					this.title = 'Ubah Surat Keluar';
+					this.titleDesc = 'Mengubah surat keluar';
 					this.titleIcon = 'icon-pencil5';
 				} else {
-					this.title = 'Tambah Artikel';
-					this.titleDesc = 'Menambah artikel';
+					this.title = 'Tambah Surat Keluar';
+					this.titleDesc = 'Menambah surat keluar';
 					this.titleIcon = 'icon-plus3';
 					this.$store.dispatch(this.kelas + '/create');
+					this.$store.dispatch('suratKode/get');	
 				}
 			},
 			checkUser(permission,id_cu){
@@ -455,7 +403,30 @@
 					}
 				}
 			},
+			changeKode(value){
+				if(this.$route.meta.mode !== 'edit'){
+					this.$store.dispatch(this.kelas + '/getKode', value);
+				}
+			},
+			changeKategori(value){
+				let _kategori = '';
+				_kategori = _.find(this.itemData.kategori,{'id': parseInt(value)});
+
+				this.form.name = this.itemData.kode + '/' + _kategori.name + '/' + this.itemData.bulan + '/' + this.itemData.periode;
+			},
+			upload(e) {
+				let files = e.target.files || e.dataTransfer.files;
+				if (!files.length)
+					return
+				this.form.content = files[0];
+			},
 			save() {
+				this.form.id_surat_kode = this.itemData.suratKode.id;
+				this.form.kode = this.itemData.kode;
+				this.form.periode = this.itemData.periode;
+				this.form.bulan = this.itemData.bulan;
+				this.form.tipe = this.itemData.suratKode.name;
+
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
@@ -471,16 +442,8 @@
 					}
 				});
 			},
-			changeCU(id){
-				this.$store.dispatch('artikelPenulis/getCu', id);	
-				this.$store.dispatch('artikelKategori/getCu', id);
-			},
 			back(){
-				if(this.currentUser.id_cu == 0){
-					this.$router.push({name: this.kelas + 'Cu', params:{cu:'semua'}});
-				}else{
-					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
-				}
+				this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu, periode: this.momentYear() }});
 			},
 			modalTutup() {
  				if(this.updateStat === 'success'){
@@ -500,56 +463,35 @@
 					this.modalShow = false
 				}
 			},
-			modalOpen_Penulis(){
-				this.id_cu = this.form.id_cu;
-
-				this.modalShow = true;
-				this.modalState = 'normal1';
-				this.modalColor = 'bg-primary';
-				this.modalTitle = 'Tambah penulis artikel';
-			},
-			modalOpen_Kategori() {
-				this.id_cu = this.form.id_cu;
-
-				this.modalShow = true;
-				this.modalState = 'normal2';
-				this.modalColor = 'bg-primary';
-				this.modalTitle = 'Tambah kategori artikel';
-			},
 			processFile(event) {
 				this.form.gambar = event.target.files[0]
 			},
+			momentYear(){
+				return moment().year();
+			}
 		},
 		computed: {
 			...mapGetters('auth',{
 				currentUser: 'currentUser'
 			}),
-			...mapGetters('artikel',{
+			...mapGetters('surat',{
 				form: 'data',
 				formStat: 'dataStat',
+				itemData: 'data2',
+				itemDataStat: 'dataStat2',
 				rules: 'rules',
 				options: 'options',
 				updateResponse: 'update',
 				updateStat: 'updateStat'
 			}),
+			...mapGetters('suratKode',{
+				modelKode: 'dataS',
+				modelKodeStat: 'dataStatS',
+			}),
 			...mapGetters('cu',{
 				modelCU: 'headerDataS',
 				modelCUStat: 'headerDataStatS',
 			}),
-			...mapGetters('artikelKategori',{
-				modelKategori: 'dataS',
-				modelKategoriStat: 'dataStatS',
-				updateKategoriResponse: 'update',
-				updateKategoriStat: 'updateStat',
-			}),
-			...mapGetters('artikelPenulis',{
-				modelPenulis: 'dataS',
-				modelPenulisStat: 'dataStatS',
-				updatePenulisResponse: 'update',
-				updatePenulisStat: 'updateStat',
-			}),
 		}
 	}
 </script>
-
-<style lang="css" src="../../../../../public/css/admin/ckeditor-document-style.css" scoped>

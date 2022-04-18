@@ -4,6 +4,8 @@ namespace App;
 use illuminate\Database\Eloquent\Model;
 
 class AnggotaCuCuDraft extends Model {
+
+    use \Awobaz\Compoships\Compoships;
     
     protected $table = 'anggota_cu_cu_draft';
     
@@ -25,5 +27,18 @@ class AnggotaCuCuDraft extends Model {
     {
         return $this->belongsTo('App\Tp','tp_id','id');
     }
+
+    public function rekening(){
+        return $this->hasMany('App\AnggotaProdukCuDraft','no_ba','no_ba');
+    }
+    
+    public function anggota(){
+        return $this->hasOne('App\AnggotaCuCu',['no_ba','cu_id'],['no_ba','cu_id'])->select('no_ba','id','keterangan_masuk','cu_id');
+    }
+    
+    public function sp(){
+        return $this->hasOne('App\ProdukCU','id_cu','cu_id')->where('tipe','Simpanan Pokok')->select('id_cu','id');
+    }
+    
 
 }

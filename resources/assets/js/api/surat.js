@@ -1,15 +1,19 @@
 export default {
 
-  indexCu: function( p, cu, periode ){
-    return axios.get('/api/surat/indexCu/' + cu + '/' + periode, {params: p});
+  indexCu: function( p, cu, tipe, periode ){
+    return axios.get('/api/surat/indexCu/' + cu + '/tipe/' + tipe +  '/periode/' + periode, {params: p});
   },
 
   getPeriode: function(cu){
     return axios.get('/api/surat/getPeriode/' + cu);
   },
 
-  create: function( tipe ){
-    return axios.get('/api/surat/create/' + tipe);
+  getKode: function(id){
+    return axios.get('/api/surat/getKode/' + id);
+  },
+
+  create: function(){
+    return axios.get('/api/surat/create');
   },
 
   store: function ( form ){

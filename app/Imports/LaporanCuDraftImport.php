@@ -12,6 +12,8 @@ use Maatwebsite\Excel\Concerns\WithChunkReading;
 
 class LaporanCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading
 {
+    public $timeout = 0;
+
     /**
     * @param array $row
     *

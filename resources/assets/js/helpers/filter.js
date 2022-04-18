@@ -61,6 +61,8 @@ Vue.filter('checkTingkatAktivis', function(value){
 		return 'Kelompok Inti';
 	} else if(value == 12) {
 		return 'Supporting Unit';
+	} else if(value == 13) {
+		return 'Vendor sMartCU';
 	} else {
 		return '-';
 	}

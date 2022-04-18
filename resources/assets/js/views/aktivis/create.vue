@@ -559,6 +559,7 @@
 									<option value="10">Kolektor</option>
 									<option value="11">Kelompok Inti</option>
 									<option value="12">Supporting Unit</option>
+									<option value="13">Vendor sMartCU</option>
 								</select>
 
 								<!-- error message -->
