@@ -49,7 +49,7 @@
 			}
 		},
 		created(){
-			this.checkUser('index_surat_kategori',this.$route.params.cu);
+			this.checkUser('index_surat',this.$route.params.cu);
 		},
 		methods: {
 			checkUser(permission,id_cu){

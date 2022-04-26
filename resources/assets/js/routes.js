@@ -30,6 +30,8 @@ const coa_form = () => import('./views/coa/form.vue');
 const kegiatanBKCU = () => import('./views/kegiatanBKCU/index.vue');
 const kegiatanBKCU_form = () => import('./views/kegiatanBKCU/form.vue');
 const kegiatanBKCU_detail = () => import('./views/kegiatanBKCU/detail.vue');
+const sertifikatKegiatan = () => import ('./views/sertifikatKegiatan/index.vue');
+const sertifikatKegiatan_form = () => import ('./views/sertifikatKegiatan/form.vue');
 const tempat = () => import('./views/tempat/index.vue');
 const tempat_form = () => import('./views/tempat/form.vue');
 const cu = () => import('./views/cu/index.vue');
@@ -252,6 +254,26 @@ const routes = [
 		name: 'artikelSimoEdit', 
 		components: { default: artikelSimo_form, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true, mode:'edit' } },
+
+	// sertifikat kegiatan
+	{
+		path: '/sertifikatKegiatan',
+		name: 'sertifikatKegiatan',
+		components: { default: sertifikatKegiatan, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }
+	},
+	{
+			path: '/sertifikatKegiatan/create',
+			name: 'sertifikatKegiatanCreate',
+			components: { default: sertifikatKegiatan_form, 'header': header, 'footer': footer },
+			meta: { requiresAuth: true }
+	},
+	{
+			path: '/sertifikatKegiatan/edit/:id',
+			name: 'sertifikatKegiatanEdit',
+			components: { default: sertifikatKegiatan_form, 'header': header, 'footer': footer },
+			meta: { requiresAuth: true, mode: 'edit' }
+	},
 	
 	// kegiatan bkcu
 	{ path: '/kegiatanBKCU/:tipe/periode/:periode',

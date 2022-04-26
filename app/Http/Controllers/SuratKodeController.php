@@ -69,8 +69,7 @@ class SuratKodeController extends Controller{
 		$this->validate($request,SuratKode::$rules);
 
 		$name = $request->name;
-
-
+		
 		$kelas = SuratKode::create($request->all());
 		
 		return response()

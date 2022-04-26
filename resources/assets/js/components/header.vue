@@ -392,6 +392,13 @@
 							</router-link>
 
 							<!-- divider -->
+							<div class="dropdown-divider" v-if="currentUser.can['create_diklat_bkcu']"></div>
+
+							<router-link :to="{ name: 'sertifikatKegiatan' }" class="dropdown-item" active-class="active" v-if="currentUser.can['create_diklat_bkcu']" exact>
+								<i class="icon-clipboard6"></i> Sertifikat Kegiatan
+							</router-link>
+
+							<!-- divider -->
 							<div class="dropdown-divider" v-if="currentUser.can['index_tempat'] || currentUser.can['index_voting']"></div> 
 
 							<!-- voting -->
@@ -1288,7 +1295,7 @@
 		},
 		data(){
 			return{
-				clientVersion: '3.4.4',
+				clientVersion: '3.4.5',
 				dropdownMenu1: '',
 				dropdownMenu2: '',
 				state: '',

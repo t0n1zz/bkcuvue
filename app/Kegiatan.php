@@ -31,7 +31,7 @@ class Kegiatan extends Model {
     }
     
     protected $fillable = [
-      'id_regencies','id_districts','id_regencies','id_provinces','id_tempat','kode_diklat','name','periode','durasi','mulai','selesai','jadwal','keterangan','keteranganBatal','status','tipe','peserta_max','peserta_max_cu','peserta_min','created_at','updated_at','deleted_at','gambar','tipe_tempat','keputusan_cu','keputusan_user','pertanyaan_cu','pertanyaan_user'
+      'id_regencies','id_districts','id_regencies','id_provinces','id_tempat','id_sertifikat','kode_diklat','name','periode','durasi','mulai','selesai','jadwal','keterangan','keteranganBatal','status','tipe','peserta_max','peserta_max_cu','peserta_min','created_at','updated_at','deleted_at','gambar','tipe_tempat','keputusan_cu','keputusan_user','pertanyaan_cu','pertanyaan_user'
     ];
 
     protected $allowedFilters = [

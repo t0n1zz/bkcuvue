@@ -1,11 +1,11 @@
 <template>
 	<div>
 
-		<div class="card bg-danger card-body" v-if="form.p2.p2b27_cu_penilaian ==null && form.p2.p2b27_cu_keterangan ==null">
+		<div class="card bg-danger card-body" v-if="form.p2.p2b27_cu_penilaian ==null && form.p2.p2b27_cu_keterangan ==null && mode != 'penilaianBkcu' && mode != 'lihat'">
 			<h6 class="mb-0">Maaf, anda tidak bisa melanjutkan mengisi perspektif ini sebelum melengkapi perspektif sebelumnya.</h6>
 		</div>
 
-		<div v-if="form.p2.p2b27_cu_penilaian !=null && form.p2.p2b27_cu_keterangan !=null">
+		<div v-if="form.p2.p2b27_cu_penilaian !=null && form.p2.p2b27_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 			<form-filter 
 			:cuTabName="cuTabName" 
 			:bkcuTabName="bkcuTabName"
@@ -19,7 +19,7 @@
 		<!-- A section -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="cuTabName == 'semua' && bkcuTabName == 'semua'">
-			<div class="card card-body bg-info text-white" v-if="form.p2.p2b27_cu_penilaian != null && form.p2.p2b27_cu_keterangan != null"> 
+			<div class="card card-body bg-info text-white" v-if="form.p2.p2b27_cu_penilaian != null && form.p2.p2b27_cu_keterangan != null || (mode == 'penilaianBkcu' || mode == 'lihat')"> 
 				<div class="row justify-content-between">
 					<div class="col-md-6">
 						<h6 class="mb-0 font-weight-bold">A. PRODUK DAN PELAYANAN YANG BERKUALITAS</h6>
@@ -44,7 +44,7 @@
 		<!-- a1 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3a1_cu_penilaian == cuTabName || form.p3.p3a1_bkcu_penilaian == bkcuTabName">
-			<div class="card border-info" v-if="form.p2.p2b27_cu_penilaian != null && form.p2.p2b27_cu_keterangan != null">
+			<div class="card border-info" v-if="form.p2.p2b27_cu_penilaian != null && form.p2.p2b27_cu_keterangan != null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-info text-white">
 					<h5 class="card-title">
 						1. Manual Operasional Yang Komprehensif</h5>
@@ -144,7 +144,7 @@
 		<!-- a2 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3a2_cu_penilaian == cuTabName || form.p3.p3a2_bkcu_penilaian == bkcuTabName">
-			<div class="card border-info" v-if="form.p3.p3a1_cu_penilaian !=null && form.p3.p3a1_cu_keterangan !=null">
+			<div class="card border-info" v-if="form.p3.p3a1_cu_penilaian !=null && form.p3.p3a1_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-info text-white">
 					<h5 class="card-title">
 						2. Manual Prosedur</h5>
@@ -244,7 +244,7 @@
 		<!-- a3 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3a3_cu_penilaian == cuTabName || form.p3.p3a3_bkcu_penilaian == bkcuTabName">
-			<div class="card border-info" v-if="form.p3.p3a2_cu_penilaian !=null && form.p3.p3a2_cu_keterangan !=null">
+			<div class="card border-info" v-if="form.p3.p3a2_cu_penilaian !=null && form.p3.p3a2_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-info text-white">
 					<h5 class="card-title">
 						3. Produktivitas Staf</h5>
@@ -344,7 +344,7 @@
 		<!-- a4 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3a4_cu_penilaian == cuTabName || form.p3.p3a4_bkcu_penilaian == bkcuTabName">
-			<div class="card border-info" v-if="form.p3.p3a3_cu_penilaian !=null && form.p3.p3a3_cu_keterangan !=null">
+			<div class="card border-info" v-if="form.p3.p3a3_cu_penilaian !=null && form.p3.p3a3_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-info text-white">
 					<h5 class="card-title">
 						4. Manajemen Kekeliruan (Error Management)</h5>
@@ -444,7 +444,7 @@
 		<!-- a5 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3a5_cu_penilaian == cuTabName || form.p3.p3a5_bkcu_penilaian == bkcuTabName">
-			<div class="card border-info" v-if="form.p3.p3a4_cu_penilaian !=null && form.p3.p3a4_cu_keterangan !=null">
+			<div class="card border-info" v-if="form.p3.p3a4_cu_penilaian !=null && form.p3.p3a4_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-info text-white">
 					<h5 class="card-title">
 						5. Service delivery kepada anggota - Pinjaman</h5>
@@ -544,7 +544,7 @@
 		<!-- a6 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3a6_cu_penilaian == cuTabName || form.p3.p3a6_bkcu_penilaian == bkcuTabName">
-			<div class="card border-info" v-if="form.p3.p3a5_cu_penilaian !=null && form.p3.p3a5_cu_keterangan !=null">
+			<div class="card border-info" v-if="form.p3.p3a5_cu_penilaian !=null && form.p3.p3a5_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-info text-white">
 					<h5 class="card-title">
 						6. Service delivery kepada anggota - Simpanan</h5>
@@ -644,7 +644,7 @@
 		<!-- a7 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3a7_cu_penilaian == cuTabName || form.p3.p3a7_bkcu_penilaian == bkcuTabName">
-			<div class="card border-info" v-if="form.p3.p3a6_cu_penilaian !=null && form.p3.p3a6_cu_keterangan !=null">
+			<div class="card border-info" v-if="form.p3.p3a6_cu_penilaian !=null && form.p3.p3a6_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-info text-white">
 					<h5 class="card-title">
 						7. Service delivery kepada anggota – Penarikan Simpanan</h5>
@@ -744,7 +744,7 @@
 		<!-- a8 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3a8_cu_penilaian == cuTabName || form.p3.p3a8_bkcu_penilaian == bkcuTabName">
-			<div class="card border-info" v-if="form.p3.p3a7_cu_penilaian !=null && form.p3.p3a7_cu_keterangan !=null">
+			<div class="card border-info" v-if="form.p3.p3a7_cu_penilaian !=null && form.p3.p3a7_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-info text-white">
 					<h5 class="card-title">
 						8. Penggunaan Mesin dan Peralatan Kantor</h5>
@@ -844,7 +844,7 @@
 		<!-- a9 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3a9_cu_penilaian == cuTabName || form.p3.p3a9_bkcu_penilaian == bkcuTabName">
-			<div class="card border-info" v-if="form.p3.p3a8_cu_penilaian !=null && form.p3.p3a8_cu_keterangan !=null">
+			<div class="card border-info" v-if="form.p3.p3a8_cu_penilaian !=null && form.p3.p3a8_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-info text-white">
 					<h5 class="card-title">
 						9. Efisiensi Komunikasi Internal</h5>
@@ -944,7 +944,7 @@
 		<!-- B section -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="cuTabName == 'semua' && bkcuTabName == 'semua'">
-			<div class="card card-body bg-warning text-white" v-if="form.p3.p3a9_cu_penilaian !=null && form.p3.p3a9_cu_keterangan !=null">
+			<div class="card card-body bg-warning text-white" v-if="form.p3.p3a9_cu_penilaian !=null && form.p3.p3a9_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="row justify-content-between">
 					<div class="col-md-6">
 						<h6 class="mb-0 font-weight-bold">B. POSISI BERSAING</h6>
@@ -969,7 +969,7 @@
 		<!-- b10 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3b10_cu_penilaian == cuTabName || form.p3.p3b10_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p3.p3a9_cu_penilaian !=null && form.p3.p3a9_cu_keterangan !=null">
+			<div class="card border-warning" v-if="form.p3.p3a9_cu_penilaian !=null && form.p3.p3a9_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						10. Kematangan Visi</h5>
@@ -1071,7 +1071,7 @@
 		<!-- b11 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3b11_cu_penilaian == cuTabName || form.p3.p3b11_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p3.p3b10_cu_penilaian !=null && form.p3.p3b10_cu_keterangan !=null">
+			<div class="card border-warning" v-if="form.p3.p3b10_cu_penilaian !=null && form.p3.p3b10_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						11. Keberanian Visi (Boldness  of Vission)</h5>
@@ -1173,7 +1173,7 @@
 		<!-- b12 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3b12_cu_penilaian == cuTabName || form.p3.p3b12_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p3.p3b11_cu_penilaian !=null && form.p3.p3b11_cu_keterangan !=null">
+			<div class="card border-warning" v-if="form.p3.p3b11_cu_penilaian !=null && form.p3.p3b11_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						12. Perumusan Misi Dengan Baik</h5>
@@ -1275,7 +1275,7 @@
 		<!-- b13 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3b13_cu_penilaian == cuTabName || form.p3.p3b13_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p3.p3b12_cu_penilaian !=null && form.p3.p3b12_cu_keterangan !=null">
+			<div class="card border-warning" v-if="form.p3.p3b12_cu_penilaian !=null && form.p3.p3b12_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						13. Nilai-nilai inti</h5>
@@ -1377,7 +1377,7 @@
 		<!-- b14 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3b14_cu_penilaian == cuTabName || form.p3.p3b14_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p3.p3b13_cu_penilaian !=null && form.p3.p3b13_cu_keterangan !=null">
+			<div class="card border-warning" v-if="form.p3.p3b13_cu_penilaian !=null && form.p3.p3b13_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						14. Keluasan Sasaran</h5>
@@ -1479,7 +1479,7 @@
 		<!-- b15 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3b15_cu_penilaian == cuTabName || form.p3.p3b15_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p3.p3b14_cu_penilaian !=null && form.p3.p3b14_cu_keterangan !=null">
+			<div class="card border-warning" v-if="form.p3.p3b14_cu_penilaian !=null && form.p3.p3b14_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						15. Tujuan Strategis</h5>
@@ -1581,7 +1581,7 @@
 		<!-- b16 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3b16_cu_penilaian == cuTabName || form.p3.p3b16_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p3.p3b15_cu_penilaian !=null && form.p3.p3b15_cu_keterangan !=null">
+			<div class="card border-warning" v-if="form.p3.p3b15_cu_penilaian !=null && form.p3.p3b15_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						16. Rencana Bisnis Tahunan</h5>
@@ -1683,7 +1683,7 @@
 		<!-- b17 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3b17_cu_penilaian == cuTabName || form.p3.p3b17_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p3.p3b16_cu_penilaian !=null && form.p3.p3b16_cu_keterangan !=null">
+			<div class="card border-warning" v-if="form.p3.p3b16_cu_penilaian !=null && form.p3.p3b16_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						17. Budaya Jual (Sales Culture)</h5>
@@ -1785,7 +1785,7 @@
 		<!-- b18 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3b18_cu_penilaian == cuTabName || form.p3.p3b18_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p3.p3b17_cu_penilaian !=null && form.p3.p3b17_cu_keterangan !=null">
+			<div class="card border-warning" v-if="form.p3.p3b17_cu_penilaian !=null && form.p3.p3b17_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						18. Keterlibatan Masyarakat Lokal</h5>
@@ -1887,7 +1887,7 @@
 		<!-- b19 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3b19_cu_penilaian == cuTabName || form.p3.p3b19_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p3.p3b18_cu_penilaian !=null && form.p3.p3b18_cu_keterangan !=null">
+			<div class="card border-warning" v-if="form.p3.p3b18_cu_penilaian !=null && form.p3.p3b18_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						19. Kemitraan dan Aliansi</h5>
@@ -1989,7 +1989,7 @@
 		<!-- b20 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3b20_cu_penilaian == cuTabName || form.p3.p3b20_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p3.p3b19_cu_penilaian !=null && form.p3.p3b19_cu_keterangan !=null">
+			<div class="card border-warning" v-if="form.p3.p3b19_cu_penilaian !=null && form.p3.p3b19_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						20. Hubungan dengan Federasi (BKCU)</h5>
@@ -2091,7 +2091,7 @@
 		<!-- b21 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3b21_cu_penilaian == cuTabName || form.p3.p3b21_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p3.p3b20_cu_penilaian !=null && form.p3.p3b20_cu_keterangan !=null">
+			<div class="card border-warning" v-if="form.p3.p3b20_cu_penilaian !=null && form.p3.p3b20_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						21. Anggota Masyarakat Pengguna Layanan Credit Union</h5>
@@ -2193,7 +2193,7 @@
 		<!-- b22 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3b22_cu_penilaian == cuTabName || form.p3.p3b22_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p3.p3b21_cu_penilaian !=null && form.p3.p3b21_cu_keterangan !=null">
+			<div class="card border-warning" v-if="form.p3.p3b21_cu_penilaian !=null && form.p3.p3b21_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						22. Segmentasi Anggota menurut umur</h5>
@@ -2295,7 +2295,7 @@
 		<!-- b23 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3b23_cu_penilaian == cuTabName || form.p3.p3b23_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p3.p3b22_cu_penilaian !=null && form.p3.p3b22_cu_keterangan !=null">
+			<div class="card border-warning" v-if="form.p3.p3b22_cu_penilaian !=null && form.p3.p3b22_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						23. Keberagaman Keanggotaan</h5>
@@ -2397,7 +2397,7 @@
 		<!-- b24 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3b24_cu_penilaian == cuTabName || form.p3.p3b24_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p3.p3b23_cu_penilaian !=null && form.p3.p3b23_cu_keterangan !=null">
+			<div class="card border-warning" v-if="form.p3.p3b23_cu_penilaian !=null && form.p3.p3b23_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						24. Kesetaraan Gender</h5>
@@ -2499,7 +2499,7 @@
 		<!-- b25 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3b25_cu_penilaian == cuTabName || form.p3.p3b25_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p3.p3b24_cu_penilaian !=null && form.p3.p3b24_cu_keterangan !=null">
+			<div class="card border-warning" v-if="form.p3.p3b24_cu_penilaian !=null && form.p3.p3b24_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						25. Pemenuhan Aturan</h5>
@@ -2601,7 +2601,7 @@
 		<!-- b26 -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="(cuTabName == 'semua' && bkcuTabName == 'semua') || form.p3.p3b26_cu_penilaian == cuTabName || form.p3.p3b26_bkcu_penilaian == bkcuTabName">
-			<div class="card border-warning" v-if="form.p3.p3b25_cu_penilaian !=null && form.p3.p3b25_cu_keterangan !=null">
+			<div class="card border-warning" v-if="form.p3.p3b25_cu_penilaian !=null && form.p3.p3b25_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="card-header bg-warning text-white">
 					<h5 class="card-title">
 						26. Kepatuhan Hukum</h5>
@@ -2703,7 +2703,7 @@
 		<!-- next button -->
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 		<div v-show="cuTabName == 'semua' && bkcuTabName == 'semua'">
-			<div class="card card-body" v-if="form.p3.p3b26_cu_penilaian !=null && form.p3.p3b26_cu_keterangan !=null">
+			<div class="card card-body" v-if="form.p3.p3b26_cu_penilaian !=null && form.p3.p3b26_cu_keterangan !=null || (mode == 'penilaianBkcu' || mode == 'lihat')">
 				<div class="text-center d-none d-md-block">
 					<button type="button" class="btn btn-light" @click.prevent="prev">
 						<i class="icon-arrow-left13"></i> Kembali

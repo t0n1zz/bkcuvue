@@ -1914,6 +1914,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2116,6 +2128,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     // 		this.back();
     // 	}
     // },
+    generateSertifikat: function generateSertifikat() {
+      var _this = this;
+
+      this.modalShow = true;
+      this.modalState = 'loading';
+      axios.post('/api/generateSertifikat', this.selectedItemDiklat, {
+        responseType: 'blob'
+      }).then(function (response) {
+        FileSaver.saveAs(response.data, _this.selectedItemDiklat.name + '.pdf');
+        _this.state = "generateSertifikat";
+        _this.modalState = 'success';
+
+        _this.modalOpen("generateSertifikat");
+      });
+    },
     selectedRowPekerjaan: function selectedRowPekerjaan(item) {
       this.selectedItemPekerjaan = item;
     },
@@ -5741,175 +5768,233 @@ var render = function () {
           _c("div", { staticClass: "card-body pb-2" }, [
             _c("div", { staticClass: "row" }, [
               _vm.mode == "edit_profile"
-                ? _c("div", { staticClass: "col-md-12" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-light mb-1",
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.create("diklat")
+                ? _c(
+                    "div",
+                    { staticClass: "col-md-12" },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-light mb-1",
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.create("diklat")
+                            },
                           },
                         },
-                      },
-                      [
-                        _c("i", { staticClass: "icon-plus22" }),
-                        _vm._v(" Tambah\n\t\t\t\t\t"),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-light mb-1",
-                        attrs: {
-                          disabled:
-                            !_vm.selectedItemDiklat.id ||
-                            _vm.selectedItemDiklat.kegiatan_id != 0,
-                        },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.update("diklat")
+                        [
+                          _c("i", { staticClass: "icon-plus22" }),
+                          _vm._v(" Tambah\n\t\t\t\t\t"),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-light mb-1",
+                          attrs: {
+                            disabled:
+                              !_vm.selectedItemDiklat.id ||
+                              _vm.selectedItemDiklat.kegiatan_id != 0,
+                          },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.update("diklat")
+                            },
                           },
                         },
-                      },
-                      [
-                        _c("i", { staticClass: "icon-pencil5" }),
-                        _vm._v(" Ubah\n\t\t\t\t\t"),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-light mb-1",
-                        attrs: {
-                          disabled:
-                            !_vm.selectedItemDiklat.id ||
-                            _vm.selectedItemDiklat.kegiatan_id != 0,
-                        },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.update("diklat")
+                        [
+                          _c("i", { staticClass: "icon-pencil5" }),
+                          _vm._v(" Ubah\n\t\t\t\t\t"),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-light mb-1",
+                          attrs: {
+                            disabled:
+                              !_vm.selectedItemDiklat.id ||
+                              _vm.selectedItemDiklat.kegiatan_id != 0,
+                          },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.update("diklat")
+                            },
                           },
                         },
-                      },
-                      [
-                        _c("i", { staticClass: "icon-pencil5" }),
-                        _vm._v(" Lihat Diklat\n\t\t\t\t\t"),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-light mb-1",
-                        attrs: {
-                          disabled:
-                            !_vm.selectedItemDiklat.id ||
-                            _vm.selectedItemDiklat.kegiatan_id != 0,
-                        },
-                        on: {
-                          click: function ($event) {
-                            return _vm.destroy("diklat")
+                        [
+                          _c("i", { staticClass: "icon-pencil5" }),
+                          _vm._v(" Lihat Diklat\n\t\t\t\t\t"),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-light mb-1",
+                          attrs: {
+                            disabled:
+                              !_vm.selectedItemDiklat.id ||
+                              _vm.selectedItemDiklat.kegiatan_id != 0,
+                          },
+                          on: {
+                            click: function ($event) {
+                              return _vm.destroy("diklat")
+                            },
                           },
                         },
-                      },
-                      [
-                        _c("i", { staticClass: "icon-bin2" }),
-                        _vm._v(" Hapus\n\t\t\t\t\t"),
-                      ]
-                    ),
-                  ])
+                        [
+                          _c("i", { staticClass: "icon-bin2" }),
+                          _vm._v(" Hapus\n\t\t\t\t\t"),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm.selectedItemDiklat.id_sertifikat
+                        ? [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-light mb-1",
+                                attrs: {
+                                  disabled: _vm.selectedItemDiklat.status != 5,
+                                },
+                                on: {
+                                  click: function ($event) {
+                                    $event.preventDefault()
+                                    return _vm.generateSertifikat()
+                                  },
+                                },
+                              },
+                              [
+                                _c("i", { staticClass: "icon-certificate" }),
+                                _vm._v(" Generate Sertifikat\n\t\t\t\t\t\t"),
+                              ]
+                            ),
+                          ]
+                        : _vm._e(),
+                    ],
+                    2
+                  )
                 : _vm.mode != "edit_profile" &&
                   _vm.currentUser.can &&
                   _vm.currentUser.can["update_" + _vm.kelas]
-                ? _c("div", { staticClass: "col-md-12" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-light mb-1",
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.create("diklat")
+                ? _c(
+                    "div",
+                    { staticClass: "col-md-12" },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-light mb-1",
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.create("diklat")
+                            },
                           },
                         },
-                      },
-                      [
-                        _c("i", { staticClass: "icon-plus22" }),
-                        _vm._v(" Tambah\n\t\t\t\t\t"),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-light mb-1",
-                        attrs: {
-                          disabled:
-                            !_vm.selectedItemDiklat.id ||
-                            _vm.selectedItemDiklat.kegiatan_id != 0,
-                        },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.update("diklat")
+                        [
+                          _c("i", { staticClass: "icon-plus22" }),
+                          _vm._v(" Tambah\n\t\t\t\t\t"),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-light mb-1",
+                          attrs: {
+                            disabled:
+                              !_vm.selectedItemDiklat.id ||
+                              _vm.selectedItemDiklat.kegiatan_id != 0,
+                          },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.update("diklat")
+                            },
                           },
                         },
-                      },
-                      [
-                        _c("i", { staticClass: "icon-pencil5" }),
-                        _vm._v(" Ubah\n\t\t\t\t\t"),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-light mb-1",
-                        attrs: {
-                          disabled:
-                            !_vm.selectedItemDiklat.id ||
-                            _vm.selectedItemDiklat.kegiatan_id != 0,
-                        },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.update("diklat")
+                        [
+                          _c("i", { staticClass: "icon-pencil5" }),
+                          _vm._v(" Ubah\n\t\t\t\t\t"),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-light mb-1",
+                          attrs: {
+                            disabled:
+                              !_vm.selectedItemDiklat.id ||
+                              _vm.selectedItemDiklat.kegiatan_id != 0,
+                          },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.update("diklat")
+                            },
                           },
                         },
-                      },
-                      [
-                        _c("i", { staticClass: "icon-pencil5" }),
-                        _vm._v(" Lihat Diklat\n\t\t\t\t\t"),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-light mb-1",
-                        attrs: {
-                          disabled:
-                            !_vm.selectedItemDiklat.id ||
-                            _vm.selectedItemDiklat.kegiatan_id != 0,
-                        },
-                        on: {
-                          click: function ($event) {
-                            return _vm.destroy("diklat")
+                        [
+                          _c("i", { staticClass: "icon-pencil5" }),
+                          _vm._v(" Lihat Diklat\n\t\t\t\t\t"),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-light mb-1",
+                          attrs: {
+                            disabled:
+                              !_vm.selectedItemDiklat.id ||
+                              _vm.selectedItemDiklat.kegiatan_id != 0,
+                          },
+                          on: {
+                            click: function ($event) {
+                              return _vm.destroy("diklat")
+                            },
                           },
                         },
-                      },
-                      [
-                        _c("i", { staticClass: "icon-bin2" }),
-                        _vm._v(" Hapus\n\t\t\t\t\t"),
-                      ]
-                    ),
-                  ])
+                        [
+                          _c("i", { staticClass: "icon-bin2" }),
+                          _vm._v(" Hapus\n\t\t\t\t\t"),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm.selectedItemDiklat.id_sertifikat
+                        ? [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-light mb-1",
+                                attrs: {
+                                  disabled: _vm.selectedItemDiklat.status != 5,
+                                },
+                                on: {
+                                  click: function ($event) {
+                                    $event.preventDefault()
+                                    return _vm.generateSertifikat()
+                                  },
+                                },
+                              },
+                              [
+                                _c("i", { staticClass: "icon-certificate" }),
+                                _vm._v(" Generate Sertifikat\n\t\t\t\t\t\t"),
+                              ]
+                            ),
+                          ]
+                        : _vm._e(),
+                    ],
+                    2
+                  )
                 : _vm._e(),
             ]),
           ]),

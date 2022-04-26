@@ -40,7 +40,7 @@
 															<span v-else>Silahkan pilih tipe surat</span>
 														</span>
 													</option>
-													<option v-for="kode in modelKode" v-if="kode" :value="kode.id">{{kode.name}} / {{kode.periode}} / No. {{kode.kode}}</option>
+													<option v-for="kode in modelKode" v-if="kode" :value="kode.id">{{kode.name}} | {{kode.periode}}</option>
 												</select>
 
 											</div>
@@ -78,6 +78,13 @@
 											</div>
 										</div>
 
+										<div class="col-md-12">
+											<div class="card bg-primary text-white card-body">
+												<h3 class="mb-0">Nomor Surat: {{ itemData.kode }}</h3>
+											</div>
+											<hr/>
+										</div>
+
 										<!-- kategori -->
 										<div class="col-md-12">
 											<div class="form-group" :class="{'has-error' : errors.has('form.id_surat_kategori')}">
@@ -98,7 +105,7 @@
 																<span v-else>Silahkan pilih kategori</span>
 															</span>
 														</option>
-														<option v-for="kategori in itemData.kategori" v-if="kategori" :value="kategori.id">{{kategori.name}}</option>
+														<option v-for="kategori in itemData.kategori" v-if="kategori" :value="kategori.id">{{ kategori.name }} | {{ kategori.deskripsi }}</option>
 													</select>
 
 												</div>
@@ -121,7 +128,7 @@
 													Kode: <wajib-badge></wajib-badge></h5>
 
 												<!-- text -->
-												<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan kode" data-vv-as="name" v-model="form.name" readonly>
+												<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan kode" data-vv-as="name" v-model="form.name">
 
 												<!-- error message -->
 												<small class="text-muted text-danger" v-if="errors.has('form.name')">
@@ -443,7 +450,7 @@
 				});
 			},
 			back(){
-				this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu, periode: this.momentYear() }});
+				this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu,tipe: 'semua', periode: this.momentYear() }});
 			},
 			modalTutup() {
  				if(this.updateStat === 'success'){

@@ -10,14 +10,40 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.4.5 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#v345">Version 3.4.5<small class="text-muted"> / 24 April 2022</small></a> </h5>
+                </div>
+
+                <div id="v345" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi menambahkan fitur e-sertifikat, pendataan surat masuk dan keluar
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan fitur e-sertifikat pada kegiatan</li>
+                      <li>Penambahan fitur surat keluar</li>
+                      <li>Penambahan fitur surat masuk</li>
+                      <li>Penambahan informasi pengelola di bagian profil di website public</li>
+                      <li>Peningkatan performa migrasi data ESCETE</li>
+                      <li>Perbaikan bug pada bagian kegiatan dan migrasi data ESCETE</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.4.5 -->
+
               <!-- Version 3.4.4 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#v344">Version 3.4.4<small class="text-muted"> / 26 Januari 2022</small></a> </h5>
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v344">Version 3.4.4<small class="text-muted"> / 26 Januari 2022</small></a> </h5>
                 </div>
 
-                <div id="v344" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="v344" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi meningkatkan fungsi dari fitur voting dan pemilihan
                     <br/><br/>

@@ -1763,6 +1763,25 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2057,6 +2076,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }
 
       this.$store.dispatch('provinces/get');
+      this.$store.dispatch('sertifikatKegiatan/index');
     },
     checkTipe: function checkTipe(tipe) {
       if (tipe == 'diklat_bkcu') {
@@ -2074,6 +2094,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         this.titleDesc = 'Menambah ' + this.level2Title;
         this.titleIcon = 'icon-plus3';
       }
+    },
+    changeSertifikat: function changeSertifikat(event) {
+      this.form.formSertifikat = event;
     },
     changeProvinces: function changeProvinces(id) {
       this.$store.dispatch('regencies/getProvinces', id);
@@ -2289,7 +2312,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       return moment().year();
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('kegiatanBKCU', {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('kegiatanBKCU', {
     form: 'data',
     formStat: 'dataStat',
     rules: 'rules',
@@ -2308,6 +2331,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('tempat', {
     modelTempat: 'dataSForm',
     modelTempatStat: 'dataStatSForm'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('sertifikatKegiatan', {
+    itemData: 'dataS',
+    itemDataStat: 'dataStatS'
   }))
 });
 
@@ -7462,6 +7488,103 @@ var render = function () {
                     1
                   ),
                   _vm._v(" "),
+                  _c("div", { staticClass: "card" }, [
+                    _c("div", { staticClass: "card-header bg-white" }, [
+                      _c(
+                        "h5",
+                        { staticClass: "card-title" },
+                        [_vm._v("5. Sertifikat "), _c("wajib-badge")],
+                        1
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("div", { staticClass: "row col-md-12" }, [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.id_sertifikat,
+                                expression: "form.id_sertifikat",
+                              },
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              name: "id_sertifikat",
+                              "data-width": "100%",
+                              "data-vv-as": "Sertifikat",
+                              disabled: _vm.itemDataStat.length === 0,
+                            },
+                            on: {
+                              change: [
+                                function ($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function (o) {
+                                      return o.selected
+                                    })
+                                    .map(function (o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.form,
+                                    "id_sertifikat",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                },
+                                function ($event) {
+                                  return _vm.changeSertifikat(
+                                    $event.target.value
+                                  )
+                                },
+                              ],
+                            },
+                          },
+                          [
+                            _c(
+                              "option",
+                              { attrs: { disabled: "", value: "" } },
+                              [
+                                _vm.itemDataStat === "loading"
+                                  ? _c("span", [_vm._v("Mohon tunggu...")])
+                                  : _c("span", [
+                                      _vm._v("Silahkan pilih sertifikat"),
+                                    ]),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm._l(
+                              _vm.itemData.data,
+                              function (sertifikat, index) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: index,
+                                    domProps: { value: sertifikat.id },
+                                  },
+                                  [
+                                    _vm._v(
+                                      _vm._s(sertifikat.name) +
+                                        " -- " +
+                                        _vm._s(sertifikat.kode_sertifikat)
+                                    ),
+                                  ]
+                                )
+                              }
+                            ),
+                          ],
+                          2
+                        ),
+                      ]),
+                    ]),
+                  ]),
+                  _vm._v(" "),
                   _c(
                     "div",
                     { staticClass: "card" },
@@ -7887,7 +8010,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header bg-white" }, [
       _c("h5", { staticClass: "card-title" }, [
-        _vm._v("5. Interaksi Peserta "),
+        _vm._v("6. Interaksi Peserta "),
         _c("br"),
         _vm._v(" "),
         _c("small", { staticClass: "text-muted" }, [

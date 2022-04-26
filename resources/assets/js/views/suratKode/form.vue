@@ -247,6 +247,7 @@
 				}
 			},
 			save() {
+				this.form.id_cu = this.currentUser.id_cu;
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.$route.meta.mode == 'edit'){

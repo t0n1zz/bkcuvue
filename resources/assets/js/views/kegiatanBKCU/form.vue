@@ -643,10 +643,29 @@
 
 						</div>
 
+						<!-- sertifikat -->
+						<div class="card">
+							<div class="card-header bg-white">
+								<h5 class="card-title">5. Sertifikat <wajib-badge></wajib-badge></h5>
+							</div>
+
+							<div class="card-body">
+								<div class="row col-md-12">
+									<select class="form-control"  name="id_sertifikat" v-model="form.id_sertifikat" data-width="100%" data-vv-as="Sertifikat" @change="changeSertifikat($event.target.value)" :disabled="itemDataStat.length === 0">
+										<option disabled value="">
+											<span v-if="itemDataStat === 'loading'">Mohon tunggu...</span>
+											<span v-else>Silahkan pilih sertifikat</span>
+										</option>
+										<option v-for="(sertifikat, index) in itemData.data" :value="sertifikat.id" :key="index">{{sertifikat.name}} -- {{sertifikat.kode_sertifikat}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
 						<!-- keputusan -->
 						<div class="card">
 							<div class="card-header bg-white">
-								<h5 class="card-title">5. Interaksi Peserta <br/> 
+								<h5 class="card-title">6. Interaksi Peserta <br/> 
 									<small class="text-muted">Di isi apabila ada pengaturan pertanyaan dan keputusan</small></h5>
 							</div>
 							<div class="card-body pb-2">
@@ -1045,6 +1064,7 @@
 
 							this.itemDataPilih.push(formData);
 						}
+
 					}
 				}
 			},
@@ -1088,6 +1108,7 @@
 					this.$store.dispatch(this.kelas + '/create');
 				}
 				this.$store.dispatch('provinces/get');
+				this.$store.dispatch('sertifikatKegiatan/index');
 			},
 			checkTipe(tipe){
 				if(tipe == 'diklat_bkcu'){
@@ -1104,6 +1125,9 @@
 					this.titleDesc = 'Menambah ' + this.level2Title;
 					this.titleIcon = 'icon-plus3';
 				}	
+			},
+			changeSertifikat(event){
+				this.form.formSertifikat = event;
 			},
 			changeProvinces(id){
 				this.$store.dispatch('regencies/getProvinces', id);
@@ -1315,7 +1339,11 @@
 			...mapGetters('tempat',{
 				modelTempat: 'dataSForm',
 				modelTempatStat: 'dataStatSForm',
-			})
+			}),
+			...mapGetters('sertifikatKegiatan',{
+				itemData: 'dataS',
+				itemDataStat: 'dataStatS',
+			}),
 		}
 	}
 </script>

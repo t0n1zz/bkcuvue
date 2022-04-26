@@ -264,6 +264,12 @@
 						<button class="btn btn-light mb-1" @click="destroy('diklat')" :disabled="!selectedItemDiklat.id || selectedItemDiklat.kegiatan_id != 0">
 							<i class="icon-bin2"></i> Hapus
 						</button>
+						
+						<template v-if="selectedItemDiklat.id_sertifikat">
+							<button class="btn btn-light mb-1" @click.prevent="generateSertifikat()" :disabled="selectedItemDiklat.status != 5">
+								<i class="icon-certificate"></i> Generate Sertifikat
+							</button>
+						</template>
 
 					</div>
 
@@ -285,7 +291,13 @@
 
 						<button class="btn btn-light mb-1" @click="destroy('diklat')" :disabled="!selectedItemDiklat.id || selectedItemDiklat.kegiatan_id != 0">
 							<i class="icon-bin2"></i> Hapus
-						</button>
+						</button>	
+
+						<template v-if="selectedItemDiklat.id_sertifikat">
+							<button class="btn btn-light mb-1" @click.prevent="generateSertifikat()" :disabled="selectedItemDiklat.status != 5">
+								<i class="icon-certificate"></i> Generate Sertifikat
+							</button>
+						</template>
 
 					</div>
 
@@ -646,6 +658,19 @@
 			// 		this.back();
 			// 	}
 			// },
+
+			generateSertifikat(){
+				this.modalShow = true;
+				this.modalState = 'loading';
+				axios.post('/api/generateSertifikat', this.selectedItemDiklat, {
+						responseType: 'blob'
+				}).then((response) => {
+					FileSaver.saveAs(response.data, this.selectedItemDiklat.name+'.pdf')
+					this.state = "generateSertifikat";
+					this.modalState = 'success';
+					this.modalOpen("generateSertifikat");
+				})
+			},
 			selectedRowPekerjaan(item){
 				this.selectedItemPekerjaan = item;
 			},

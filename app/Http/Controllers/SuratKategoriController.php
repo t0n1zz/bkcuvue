@@ -10,9 +10,7 @@ class SuratKategoriController extends Controller{
 
 	public function index()
 	{
-			DB::statement(DB::raw('set @cnt:=0'));
-
-    	$table_data = SuratKategori::with('Cu')->withCount('hasSurat')->advancedFilter();
+    	$table_data = SuratKategori::with('kode')->withCount('hasSurat')->advancedFilter();
 
     	return response()
 			->json([
@@ -32,7 +30,7 @@ class SuratKategoriController extends Controller{
   
   public function indexCu($id)
 	{
-		$table_data = SuratKategori::with('Cu')->withCount('hasSurat')->where('id_cu',$id)->advancedFilter();
+		$table_data = SuratKategori::with('kode')->withCount('hasSurat')->where('id_cu',$id)->advancedFilter();
 
 		return response()
 			->json([

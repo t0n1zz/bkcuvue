@@ -178,7 +178,7 @@
 
             <!-- table transaksi -->
             <div class="card" v-if="itemDataSaldoStat != ''">
-              <div class="card-header bg-white">
+            <div class="card-header bg-white">
                 <h5 class="card-title">Tabel Transaksi {{ selectedProduk.produk_cu.name }} dengan no rek: {{ selectedProduk.no_rek  }}</h5>
               </div>
 

@@ -40,6 +40,18 @@ export default {
     return axios.get('/api/kegiatanBKCU/indexMateri/' + id , {params: p});
   },
 
+  indexListMateri: function(p, id) {
+    return axios.get('/api/kegiatanBKCU/indexListMateri/' + id, { params: p });
+  },
+
+  indexNilaiListMateri: function(id) {
+      return axios.get('/api/kegiatanBKCU/indexNilaiListMateri/' + id);
+  },
+
+  indexNilai: function(p, id, aktivis_id) {
+      return axios.get('/api/kegiatanBKCU/indexNilai/' + id + '/' + aktivis_id);
+  },
+
   indexKeputusan: function( p, id ){
     return axios.get('/api/kegiatanBKCU/indexKeputusan/' + id , {params: p});
   },
@@ -124,6 +136,14 @@ export default {
     return axios.post('/api/kegiatanBKCU/storeMateri/' + tipe + '/' + id, form);
   },
 
+  storeListMateri: function(tipe, id, form) {
+    return axios.post('/api/kegiatanBKCU/storeListMateri/' + tipe + '/' + id, form);
+  },
+
+  storeNilai: function(aktivis_id, kegiatan_id, materi_id, form) {
+      return axios.post('/api/kegiatanBKCU/storeNilai/' + kegiatan_id + '/' + aktivis_id + '/' + materi_id, form);
+  },
+
   storeKeputusan: function ( id, form ){
     return axios.post('/api/kegiatanBKCU/storeKeputusan/' + id, form);
   },
@@ -166,6 +186,10 @@ export default {
 
   updateMateri: function ( id, form ){
     return axios.post('/api/kegiatanBKCU/updateMateri/' + id, form);
+  },
+
+  updateListMateri: function(id, form) {
+    return axios.post('/api/kegiatanBKCU/updateListMateri/' + id, form);
   },
 
   updateKeputusan: function ( id, form ){
@@ -218,6 +242,10 @@ export default {
 
   destroyMateri: function( tipe, id ){
     return axios.delete('/api/kegiatanBKCU/destroyMateri/' + tipe + '/' + id);
+  },
+
+  destroyListMateri: function(tipe, id) {
+    return axios.delete('/api/kegiatanBKCU/destroyListMateri/' + tipe + '/' + id);
   },
 
   destroyKeputusan: function( id ){

@@ -20,6 +20,38 @@
 							<div class="card-body">
 								<div class="row">
 
+									<div class="col-md-12">
+										<div class="form-group mb-0" :class="{'has-error' : errors.has('form.id_surat_kode')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.id_surat_kode')}">
+												<i class="icon-cross2" v-if="errors.has('form.id_surat_kode')"></i>
+												Tipe Surat: <wajib-badge></wajib-badge>
+											</h5>
+
+											<div class="input-group">
+
+												<!-- select -->
+												<select class="form-control" name="id_surat_kode" v-model="form.id_surat_kode" data-width="100%" v-validate="'required'" data-vv-as="Tipe" @change="changeKode($event.target.value)">
+													<option disabled value="">
+														<span>
+															<span v-if="formStat === 'loading'">Mohon tunggu...</span>
+															<span v-else>Silahkan pilih tipe surat</span>
+														</span>
+													</option>
+													<option v-for="kode in modelKode" v-if="kode" :value="kode.id">{{kode.name}} / {{kode.periode}} / No. {{kode.kode}}</option>
+												</select>
+
+											</div>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.id_surat_kode')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_surat_kode') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
 									<!-- name -->
 									<div class="col-md-12">
 										<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
@@ -199,6 +231,7 @@
 					this.titleDesc = 'Menambah kategori surat keluar';
 					this.titleIcon = 'icon-plus3';
 					this.$store.dispatch(this.kelas + '/create');
+					this.$store.dispatch('suratKode/get');
 				}
 			},
 			checkUser(permission,id_cu){
@@ -214,6 +247,7 @@
 				}
 			},
 			save() {
+				this.form.id_cu = this.currentUser.id_cu;
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.$route.meta.mode == 'edit'){
@@ -261,6 +295,10 @@
 				options: 'options',
 				updateResponse: 'update',
 				updateStat: 'updateStat'
+			}),
+			...mapGetters('suratKode',{
+				modelKode: 'dataS',
+				modelKodeStat: 'dataStatS',
 			}),
 			...mapGetters('cu',{
 				modelCU: 'headerDataS',

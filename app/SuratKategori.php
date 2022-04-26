@@ -41,7 +41,7 @@ class SuratKategori extends BaseEloquent {
 
     public static function initialize(){
         return [
-            'id_cu' => '', 'name' => '', 'deskripsi' => '', 'periode' => ''
+            'id_cu' => '', 'id_surat_kode' => '','name' => '', 'deskripsi' => '', 'periode' => ''
         ];
     }
 

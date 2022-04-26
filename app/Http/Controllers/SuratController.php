@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use File;
 use Image;
 use Auth;
+use Illuminate\Support\Carbon;
 
 class SuratController extends Controller{
 
@@ -76,32 +77,30 @@ class SuratController extends Controller{
 		$suratKode = SuratKode::findOrFail($id);
 		$suratKategori = SuratKategori::where('id_surat_kode',$suratKode->id)->get();
 
+		// clean surat with null id_surat that less than today
+		SuratKodeTemp::where('id_surat_kode',$suratKode->id)->whereNull('id_surat')->where('created_at', '<', Carbon::now()->subDay())->delete();
+		
 		// check if there is blocking surat kode by this user
 		$suratKodeTemp = SuratKodeTemp::where('id_surat_kode',$suratKode->id)->where('id_user', $id_user)->whereNull('id_surat')->first();
-			
+		
 		// if yes then use the blocking surat kode by this user
 		if($suratKodeTemp){		
+			// if more than 30 minutes
 			if(time() >= strtotime($suratKodeTemp->created_at) + 1800){
-				$suratKodeTemp->delete();
-				$kode = $suratKode;
+				$suratKodeTemp->created_at = Carbon::now()->timestamp;
+				$suratKodeTemp->update();
 
-				$suratKodeTemp2 = SuratKodeTemp::create([
-					'id_surat_kode' => $kode->id,
-					'id_user' => $id_user,
-					'kode' => $kode->kode,
-					'periode' => $periode,
-					'bulan' => $bulan
-				]);
+				$kode = $suratKode;
 
 				return response()
 					->json([
 							'model' => [ 
 								'kategori' => $suratKategori,
 								'suratKode' => $kode,
-								'kode' => $kode->kode,
+								'kode' => $suratKodeTemp->kode,
 								'periode' => $periode,
 								'bulan' => $bulan,
-								'waktu' => (strtotime($suratKodeTemp2->created_at) + 1800 - time())
+								'waktu' => (strtotime($suratKodeTemp->created_at) + 1800 - time())
 							],
 					]);
 			}else{
@@ -110,7 +109,7 @@ class SuratController extends Controller{
 							'model' => [ 
 								'kategori' => $suratKategori,
 								'suratKode' => $suratKode,
-								'kode' => $suratKode->kode,
+								'kode' => $suratKodeTemp->kode,
 								'periode' => $periode,
 								'bulan' => $bulan,
 								'waktu' => (strtotime($suratKodeTemp->created_at) + 1800 - time())
@@ -121,45 +120,38 @@ class SuratController extends Controller{
 		}else{
 
 			// check if there is blocking surat kode by general
-			$suratKodeTempKosong = SuratKodeTemp::where('id_surat_kode',$suratKode->id)->whereNull('id_surat')->first();
+			$suratKodeTempKosong = SuratKodeTemp::where('id_surat_kode',$suratKode->id)->whereNull('id_surat')->orderBy('kode','asc')->first();
 
 			// if yes then use the blocking surat kode by general
 			if($suratKodeTempKosong){
 				// if more than 30 minutes
 				if(time() >= strtotime($suratKodeTempKosong->created_at) + 1800)
-				{
-					$suratKodeTempKosong->delete();
+				{	
+					$suratKodeTempKosong->id_user = $id_user;
+					$suratKodeTempKosong->created_at = Carbon::now()->timestamp;
+					$suratKodeTempKosong->update();
 
 					$kode = $suratKode;
-		
-					$suratKodeTemp2 = SuratKodeTemp::create([
-						'id_surat_kode' => $kode->id,
-						'id_user' => $id_user,
-						'kode' => $kode->kode,
-						'periode' => $periode,
-						'bulan' => $bulan,
-					]);
 
 					return response()
 						->json([
 								'model' => [ 
 									'kategori' => $suratKategori,
 									'suratKode' => $kode,
-									'kode' => $kode->kode,
+									'kode' => $suratKodeTempKosong->kode,
 									'periode' => $periode,
 									'bulan' => $bulan,
-									'waktu' => (strtotime($suratKodeTemp2->created_at) + 1800 - time())
+									'waktu' => (strtotime($suratKodeTempKosong->created_at) + 1800 - time())
 								],
 						]);
 				}else{
-					$kode = SuratKode::where('id_cu',$id_cu)->where('periode',$periode)->where('kode', $suratKodeTempKosong->kode)->first();
-
-					$kode->kode = $kode->kode + 1;
+					$suratKodeTempLatest = SuratKodeTemp::where('id_surat_kode',$suratKode->id)->whereNull('id_surat')->orderBy('kode','desc')->first();
+					$kode = $suratKode;
 
 					$suratKodeTemp2 = SuratKodeTemp::create([
 						'id_surat_kode' => $kode->id,
 						'id_user' => $id_user,
-						'kode' => $kode->kode,
+						'kode' => $suratKodeTempLatest->kode + 1,
 						'periode' => $periode,
 						'bulan' => $bulan
 					]);
@@ -169,7 +161,7 @@ class SuratController extends Controller{
 								'model' => [ 
 									'kategori' => $suratKategori,
 									'suratKode' => $kode,
-									'kode' => $kode->kode,
+									'kode' => $suratKodeTempLatest->kode + 1,
 									'periode' => $periode,
 									'bulan' => $bulan,
 									'waktu' => (strtotime($suratKodeTemp2->created_at) + 1800 - time())
@@ -218,8 +210,8 @@ class SuratController extends Controller{
 		$this->validate($request,Surat::$rules);
 
 		$name = $request->name;
-
-		$suratKodeTempKosong = SuratKodeTemp::where('id_surat_kode',$request->id_surat_kode)->where('kode', $request->kode)->whereNull('id_surat')->first();
+		$id_user = Auth::user()->id;
+		$suratKodeTempKosong = SuratKodeTemp::where('id_surat_kode',$request->id_surat_kode)->where('kode', $request->kode)->where('id_user',$id_user)->whereNull('id_surat')->first();
 
 		if($suratKodeTempKosong){
 			$id_cu = Auth::user()->id_cu;
@@ -261,16 +253,21 @@ class SuratController extends Controller{
 				'keterangan' => $request->perihal
 			]);
 
-			$request['id_surat_kode'] = $suratKodeTempKosong->id;
+			// $request['id_surat_kode'] = $suratKodeTempKosong->id;
 
 			$kelas = Surat::create($request->except('id_dokumen') + [
 				'id_dokumen' => $kelasDokumen->id
 			]);
 
-			$suratKode = SuratKode::where('id_cu',$id_cu)->where('periode', $periode)->first();
-			if($suratKode->kode == $request->kode){
-				$suratKode->kode = $request->kode + 1;
-				$suratKode->update();
+			$suratKodeTempDesc = SuratKodeTemp::where('id_surat_kode', $request->id_surat_kode)->orderBy('kode','desc')->first();
+
+			$suratKode = SuratKode::findOrFail($request->id_surat_kode);
+
+			if($suratKodeTempDesc->kode == $request->kode){
+				if($request->kode >= $suratKode->kode){
+					$suratKode->kode = $request->kode + 1;
+					$suratKode->update();
+				}
 			}
 
 			$suratKodeTempKosong->id_surat = $kelas->id;

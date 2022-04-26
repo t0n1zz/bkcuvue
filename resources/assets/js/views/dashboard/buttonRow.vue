@@ -110,6 +110,16 @@
       <count-widget :title="'Laporan Statistik Gerakan'" :color="'bg-grey-400'" :icon="'icon-stats-bars'"></count-widget>
     </div>
 
+		<!-- surat keluar -->
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" @click.prevent="goTo(suratKeluarWidgetRoute)" v-if="currentUser && currentUser.can['index_surat']">
+      <count-widget :title="'Surat Keluar'" :color="'bg-warning-400'" :icon="'icon-envelop2'"></count-widget>
+    </div>
+
+		<!-- surat masuk -->
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" @click.prevent="goTo(suratMasukWidgetRoute)" v-if="currentUser && currentUser.can['index_surat']">
+      <count-widget :title="'Surat Masuk'" :color="'bg-green-400'" :icon="'icon-envelop2'"></count-widget>
+    </div>
+
 		<!-- dokumen PUSKOPCUINA -->
     <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" @click.prevent="goTo(dokumenGerakanPublikWidgetRoute)">
       <count-widget :title="'Dokumen GERAKAN & PUBLIK'" :color="'bg-violet-400'" :icon="'icon-books'"></count-widget>
@@ -179,6 +189,8 @@
 				monitoringAccessWidgetRoute: {},
 				dokumenGerakanPublikWidgetRoute: {},
 				dokumenWidgetRoute: {},
+				suratKeluarWidgetRoute: {},
+				suratMasukWidgetRoute: {},
 				asetTetapWidgetRoute: {},
 			}
 		},
@@ -202,6 +214,8 @@
 				this.userWidgetRoute = { name: 'userCu', params:{cu: this.currentUser.id_cu} };
 				this.kegiatanBKCUJalanWidgetRoute = { name: 'kegiatanBKCUJalan' };
 				this.dokumenGerakanPublikWidgetRoute = { name: 'dokumenGerakanPublik', params:{cu: 'semua'} };
+				this.suratKeluarWidgetRoute = { name: 'suratCu', params:{cu: this.currentUser.id_cu, tipe: 'semua', periode: this.momentYear() } };
+				this.suratMasukWidgetRoute = { name: 'suratMasukCu', params:{cu: this.currentUser.id_cu, periode: this.momentYear() } };
 
 				if(this.currentUser.id_cu != 0){
 					this.anggotaCuWidgetRoute = { name: 'anggotaCuCu', params:{cu: this.currentUser.id_cu, tp: 'semua'} };

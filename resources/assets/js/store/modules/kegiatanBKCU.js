@@ -21,11 +21,18 @@ export const kegiatanBKCU = {
     dataS10: [], //collection
     dataS11: [], //collection
     dataJalan: [], //collection
+    dataSertifikat: {},
+    dataNilai: [],
+    nilai: [],
+    dataListMateri: [],
     periode: [],
     count: {},
     count2: {},
     count3: {},
     count4: {},
+    dataListMateriStat: '',
+    dataNilaiStat: '',
+    nilaiStat: '',
     dataStat: '',
     dataStat2: '',
     dataStat3: '',
@@ -49,6 +56,7 @@ export const kegiatanBKCU = {
     countStat4: '',
     update: [], //update data
     updateStat: '',
+    updateNilaiStat: '',
     update2: [], //update data
     updateStat2: '',
     rules: [], //laravel rules
@@ -73,11 +81,18 @@ export const kegiatanBKCU = {
     dataS10: state => state.dataS10,
     dataS11: state => state.dataS11,
     dataJalan: state => state.dataJalan,
+    dataSertifikat: state => state.dataSertifikat,
+    dataNilai: state => state.dataNilai,
+    dataListMateri: state => state.dataListMateri,
+    nilai: state => state.nilai,
     periode: state => state.periode,
     count: state => state.count,
     count2: state => state.count2,
     count3: state => state.count3,
     count4: state => state.count4,
+    dataNilaiStat: state => state.dataNilaiStat,
+    dataListMateriStat: state => state.dataListMateriStat,
+    nilaiStat: state => state.nilaiStat,
     dataStat: state => state.dataStat,
     dataStat2: state => state.dataStat2,
     dataStat3: state => state.dataStat3,
@@ -100,7 +115,9 @@ export const kegiatanBKCU = {
     countStat3: state => state.countStat3,
     countStat4: state => state.countStat4,
     update: state => state.update,
+    updateNilai: state => state.updateNilai,
     updateStat: state => state.updateStat,
+    updateNilaiStat: state => state.updateNilaiStat,
     update2: state => state.update2,
     updateStat2: state => state.updateStat2,
     rules: state => state.rules,
@@ -246,6 +263,46 @@ export const kegiatanBKCU = {
         .catch( error => {
           commit('setDataS3', error.response);
           commit('setDataStatS3', 'fail');
+        });
+    },
+
+    indexListMateri({ commit }, [p, id]) {
+      commit('setDataListMateriStat', 'loading');
+      KEGIATANBKCUAPI.indexListMateri(p, id)
+        .then(function(response) {
+          commit('setDataListMateri', response.data.model);
+          commit('setDataListMateriStat', 'success');
+        })
+        .catch(error => {
+          commit('setDataListMateri', error.response);
+          commit('setDataListMateriStat', 'fail');
+        });
+    },
+
+    indexNilaiListMateri({ commit }, id) {
+      commit('setDataNilaiStat', 'loading');
+      KEGIATANBKCUAPI.indexNilaiListMateri(id)
+        .then(function(response) {
+          commit('setDataNilai', response.data.model);
+          commit('setDataNilaiStat', 'success');
+        })
+        .catch(error => {
+          commit('setDataNilai', error.response);
+          commit('setDataNilaiStat', 'fail');
+        });
+    },
+
+    indexNilai({ commit }, [p, id, aktivis_id]) {
+      commit('setNilaiStat', 'loading');
+
+      KEGIATANBKCUAPI.indexNilai(p, id, aktivis_id)
+        .then(function(response) {
+          commit('setNilai', response.data.model);
+          commit('setNilaiStat', 'success');
+        })
+        .catch(error => {
+          commit('setNilai', error.response);
+          commit('setNilaiStat', 'fail');
         });
     },
 
@@ -478,6 +535,41 @@ export const kegiatanBKCU = {
         });
     },
 
+    storeListMateri({ commit, state, dispatch }, [tipe, id, form]) {
+      commit('setUpdateStat', 'loading');
+
+      KEGIATANBKCUAPI.storeListMateri(tipe, id, form)
+        .then(function(response) {
+          if (response.data.saved) {
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          } else {
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    storeNilai({ commit, state, dispatch }, [aktivis_id, kegiatan_id, materi_id, form]) {
+      commit('setUpdateNilaiStat', 'loading');
+      KEGIATANBKCUAPI.storeNilai(aktivis_id, kegiatan_id, materi_id, form)
+        .then(function(response) {
+          if (response.data.saved) {
+            commit('setUpdateNilai', response.data);
+            commit('setUpdateNilaiStat', 'success');
+          } else {
+            commit('setUpdateNilaiStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdateNilai', error.response);
+          commit('setUpdateNilaiStat', 'fail');
+        });
+    },
+
     storeKeputusan( {commit, state, dispatch}, [id, form] ){
       commit('setUpdateStat', 'loading');
 
@@ -594,6 +686,7 @@ export const kegiatanBKCU = {
       KEGIATANBKCUAPI.edit( id )
         .then( function( response ){
           commit('setData', response.data.form);
+          commit('setDataSertifikat', response.data.form1);
           commit('setRules', response.data.rules);
           commit('setOptions', response.data.options)
           commit('setDataStat', 'success');
@@ -693,6 +786,24 @@ export const kegiatanBKCU = {
         })
         .catch(error => {
           commit('setUpdate', error.response);   
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    updateListMateri({ commit, state, dispatch }, [id, form]) {
+      commit('setUpdateStat', 'loading');
+
+      KEGIATANBKCUAPI.updateListMateri(id, form)
+        .then(function(response) {
+          if (response.data.saved) {
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          } else {
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);
           commit('setUpdateStat', 'fail');
         });
     },
@@ -910,6 +1021,24 @@ export const kegiatanBKCU = {
         })
         .catch(error => {
           commit('setUpdate', error.response);         
+          commit('setUpdateStat', 'fail');
+        });
+    },
+
+    destroyListMateri({ commit, state, dispatch }, [tipe, id]) {
+      commit('setUpdateStat', 'loading');
+
+      KEGIATANBKCUAPI.destroyListMateri(tipe, id)
+        .then(function(response) {
+          if (response.data.deleted) {
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
+          } else {
+            commit('setUpdateStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setUpdate', error.response);
           commit('setUpdateStat', 'fail');
         });
     },
