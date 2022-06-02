@@ -23,4 +23,5 @@
   @include('panduan.user')
   @include('panduan.assesment')
   @include('panduan.voting')
+  @include('panduan.generateSertifikat')
 @stop

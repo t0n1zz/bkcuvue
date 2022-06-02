@@ -160,6 +160,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
+
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -174,7 +176,7 @@ return [
     */
 
     'aliases' => [
-
+        'PDF' => Barryvdh\DomPDF\Facade::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
@@ -210,7 +212,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'cdn' => [
             "92032-259220-raikfcquaxqncofqfm.stackpathdns.com" => "css|js|eot|woff|ttf,jpg|jpeg|png|gif|svg"
-            ],
+        ],
     ],
 
 ];

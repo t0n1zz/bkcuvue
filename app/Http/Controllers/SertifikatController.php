@@ -28,7 +28,7 @@ class SertifikatController extends Controller
     public function index()
     {
         $table_data = Sertifikat::select('id', 'kode_sertifikat', 'name', 'gambar_depan', 'gambar_belakang')->advancedFilter();
-        
+
         return response()
             ->json([
                 'model' => $table_data
@@ -134,7 +134,6 @@ class SertifikatController extends Controller
         $kegiatanData = Kegiatan::with('tempat')->where('id', $formData->kegiatan_id)->first();
         $nomorData = SertifikatGenerate::where('id_aktivis', $formData->aktivis_id)->where('id_kegiatan', $formData->kegiatan_id)->first();
         $sertifikat = Sertifikat::where('id', $kegiatanData->id_sertifikat)->select('gambar_depan', 'gambar_belakang', 'kode_sertifikat')->first();
-
         $listMateri = KegiatanListMateri::select("kegiatan_list_materi.waktu", "kegiatan_list_materi.nama", "kegiatan_materi_nilai.nilai")
             ->join("kegiatan_materi_nilai", "kegiatan_materi_nilai.materi_id", "=", "kegiatan_list_materi.id")
             ->where('kegiatan_materi_nilai.kegiatan_id', $formData->kegiatan_id)
@@ -158,6 +157,7 @@ class SertifikatController extends Controller
             $tempat = 'secara ' . strtolower($kegiatanData->tipe_tempat);
         }
         $imageDepan = 'images/sertifikatKegiatan/' . $sertifikat->gambar_depan . '.jpg';
+
         $imageBelakang = 'images/sertifikatKegiatan/' . $sertifikat->gambar_belakang . '.jpg';
         $nama = $formData->name_sertifikat;
         $jabatan = $formData->jabatan;

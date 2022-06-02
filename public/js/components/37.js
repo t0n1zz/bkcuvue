@@ -6162,7 +6162,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.mx-datepicker-popup {\n    z-index: 99999;\n}\n", ""]);
+exports.push([module.i, "\n.mx-datepicker-popup {\r\n    z-index: 99999;\n}\r\n", ""]);
 
 // exports
 
@@ -8660,7 +8660,8 @@ var render = function () {
                                     {
                                       key: "button-desktop",
                                       fn: function (props) {
-                                        return _vm.tipeUser != "peserta"
+                                        return _vm.currentUser.id_cu == 0 &&
+                                          _vm.tipeUser != "peserta"
                                           ? [
                                               _c(
                                                 "button",
@@ -8984,6 +8985,7 @@ var render = function () {
                               },
                               [
                                 _vm._v(" "),
+                                _vm.currentUser.id_cu == 0 &&
                                 _vm.tipeUser != "peserta"
                                   ? _c("template", { slot: "button-mobile" }, [
                                       _c(

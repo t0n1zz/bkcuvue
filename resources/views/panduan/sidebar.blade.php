@@ -90,6 +90,9 @@
           {{-- voting --}}
           <li class="nav-item"><a href="#voting" class="nav-link">22. Voting</a></li>
 
+          {{-- e-sertifikat --}}
+          <li class="nav-item"><a href="#generateSertifikat" class="nav-link">23. Generate Sertifikat</a></li>
+
           {{-- divider --}}
           <li class="nav-item-divider"></li>
 
