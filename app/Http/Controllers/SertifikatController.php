@@ -211,9 +211,15 @@ class SertifikatController extends Controller
 
         $hari = \Carbon\Carbon::parse($date_mulai)->diffInDays(\Carbon\Carbon::parse($date_selesai), false);
 
+        $hari = ($hari == 0 ? 1 : $hari);
+
         $tahun = $kegiatanData->periode;
 
-        $tgl = $mulai->format('d') . ' ' . $selesai->format('F') . ' ' . $selesai->format('Y') . " s.d " . $selesai->format('d') . ' ' . $selesai->format('F') . ' ' . $selesai->format('Y');
+        if($hari > 1){
+            $tgl = $mulai->format('d') . ' ' . $mulai->format('F') . ' ' . $mulai->format('Y') . " s.d " . $selesai->format('d') . ' ' . $selesai->format('F') . ' ' . $selesai->format('Y');
+        }else{
+            $tgl = $mulai->format('d') . ' ' . $mulai->format('F') . ' ' . $mulai->format('Y');
+        }
 
         $tglGenerate = $selesai->format('d') . ' ' . $selesai->format('F') . ' ' . $selesai->format('Y');
 

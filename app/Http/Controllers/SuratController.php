@@ -326,13 +326,16 @@ class SuratController extends Controller{
 			$kelas = Surat::findOrFail($id);
 			$name = $kelas->name;
 
-			$kelasDokumen = Dokumen::findOrFail($kelas->id_dokumen);
-
-			if(!empty($kelasDokumen->filename)){
-				File::delete($this->filepath . $kelasDokumen->filename);
-			}
+			if($kelas->id_dokumen){
+				$kelasDokumen = Dokumen::where('id',$kelas->id_dokumen)->first();
 	
-			$kelasDokumen->delete();
+				if($kelasDokumen){
+					if(!empty($kelasDokumen->filename)){
+						File::delete($this->filepath . $kelasDokumen->filename);
+					}
+					$kelasDokumen->delete();
+				}
+			}
 	
 			$kelas->delete();
 

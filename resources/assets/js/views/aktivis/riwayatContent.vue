@@ -265,7 +265,7 @@
 							<i class="icon-bin2"></i> Hapus
 						</button>
 						
-						<template v-if="selectedItemDiklat.id_sertifikat">
+						<template v-if="selectedItemDiklat.kegiatan && selectedItemDiklat.kegiatan.id_sertifikat">
 							<button class="btn btn-light mb-1" @click.prevent="generateSertifikat()" :disabled="selectedItemDiklat.status != 5">
 								<i class="icon-certificate"></i> Generate Sertifikat
 							</button>
@@ -293,7 +293,7 @@
 							<i class="icon-bin2"></i> Hapus
 						</button>	
 
-						<template v-if="selectedItemDiklat.id_sertifikat">
+						<template v-if="selectedItemDiklat.kegiatan && selectedItemDiklat.kegiatan.id_sertifikat">
 							<button class="btn btn-light mb-1" @click.prevent="generateSertifikat()" :disabled="selectedItemDiklat.status != 5">
 								<i class="icon-certificate"></i> Generate Sertifikat
 							</button>
@@ -509,6 +509,7 @@
 	import formInfo from "../../components/formInfo.vue";
 	import checkValue from '../../components/checkValue.vue';
 	import identitas from "../../components/identitas2.vue";
+	import FileSaver from 'file-saver';
 
 	export default {
 		props: ['id_aktivis','id_cu','mode'],
@@ -525,7 +526,8 @@
 			formKeterangan,
 			formDiklat,
 			checkValue,
-			identitas
+			identitas,
+			FileSaver
 		},
 		data() {
 			return {

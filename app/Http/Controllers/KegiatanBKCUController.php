@@ -5,6 +5,7 @@ use DB;
 use Auth;
 use File;
 use Image;
+use App\Nilai;
 use App\Kegiatan;
 use App\Support\Helper;
 use App\KegiatanPanitia;
@@ -439,11 +440,10 @@ class KegiatanBKCUController extends Controller{
 			$fileName = '';
 		}
 
-		$kelas = Kegiatan::create($request->except('tipe','status','gambar','id_sertifikat') + [
+		$kelas = Kegiatan::create($request->except('tipe','status','gambar') + [
 			'tipe' => $kegiatan_tipe, 
 			'status' => '1', 
-			'gambar' => $fileName, 
-			'id_sertifikat' =>  $request->formSertifikat[0]['id_sertifikat']
+			'gambar' => $fileName
 		]);
 
 		$sasaran_ar = array();
@@ -876,17 +876,8 @@ class KegiatanBKCUController extends Controller{
 
 		$kelas->status = $request->status;
 		$statusPeserta = $request->status;
-		$status= '';
 
-		if($request->status == 1){
-			$status= 'sedang menunggu';
-		}else if($request->status == 2){
-			$status= 'pendaftaran buka';
-		}else if($request->status == 3){
-			$status= 'pendaftaran tutup';
-		}else if($request->status == 4){
-			$status= 'sedang berjalan';
-		}else if($request->status == 5){
+		if($request->status == 5){
 			$periode = Kegiatan::where('id', $id)->select('periode')->get();
 			$idAktivis = KegiatanPeserta::where('kegiatan_id', $id)->select('aktivis_id')->get();
 			$lastNomor = SertifikatGenerate::where('periode', $periode->first()->periode)->max('nomor');
@@ -900,9 +891,6 @@ class KegiatanBKCUController extends Controller{
 					SertifikatGenerate::create(['id_aktivis' => $peserta->aktivis_id, 'id_kegiatan' => $id, 'nomor' => $lastNomor, 'periode' => $periode->first()->periode]);
 				}
 			}
-			$status = 'terlaksana';
-		}else if($request->status == 6){
-			$status= 'batal';
 		}
 
 		if($request->status == 6){
@@ -913,10 +901,10 @@ class KegiatanBKCUController extends Controller{
 
 		$kelas->update();
 
-		$dataPeserta = KegiatanPeserta::with('aktivis.pekerjaan_aktif')->where('kegiatan_id', $id)->get();
+		// $dataPeserta = KegiatanPeserta::with('aktivis.pekerjaan_aktif')->where('kegiatan_id', $id)->get();
 
 		if($statusPeserta){
-			$updatePeserta = KegiatanPeserta::where('kegiatan_id', $id)->where('status','!=',7)->update(['status' => $statusPeserta]);
+			KegiatanPeserta::where('kegiatan_id', $id)->where('status','!=',7)->update(['status' => $statusPeserta]);
 
 			// $id_cus = [];
 			// foreach($dataPeserta as $peserta){

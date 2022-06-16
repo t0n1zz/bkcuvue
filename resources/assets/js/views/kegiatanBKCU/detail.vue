@@ -517,7 +517,7 @@
 									<!-- list materi table -->
 									<data-viewer :title="'List Materi'" :itemData="itemDataListMateri" :columnData="columnDataListMateri" :itemDataStat="itemDataListMateriStat" :query="queryListMateri" @fetch="fetchListMateri"  :isNoExcel="'true'" :isDasar="'true'" :isNoKolom="'true'" :isDisable="isDisableTable">
 										<!-- button desktop -->
-										<template slot="button-desktop" slot-scope="props" v-if="tipeUser != 'peserta'" >
+										<template slot="button-desktop" slot-scope="props" v-if="currentUser.id_cu == 0 && tipeUser != 'peserta'" >
 											<button type="button" class="btn btn-light mb-1" @click.prevent="modalOpen('tambahListMateri')"><i class="icon-plus3"></i> Tambah List Materi</button>
 											<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahListMateri',false,props.item)" :disabled="!selectedItem.id" >
 												<i class="icon-pencil5"></i> Ubah
@@ -529,7 +529,7 @@
 										</template>
 
 										<!-- button mobile -->
-										<template slot="button-mobile"  v-if="tipeUser != 'peserta'">
+										<template slot="button-mobile"  v-if="currentUser.id_cu == 0 && tipeUser != 'peserta'">
 											<button type="button" class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('tambahListMateri')"><i class="icon-plus3"></i> Tambah List Materi</button>
 											<button class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('ubahListMateri')"
 											:disabled="!selectedItem.id" >

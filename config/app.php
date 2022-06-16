@@ -160,6 +160,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class
     ],
 
     /*
@@ -211,6 +212,7 @@ return [
         'cdn' => [
             "92032-259220-raikfcquaxqncofqfm.stackpathdns.com" => "css|js|eot|woff|ttf,jpg|jpeg|png|gif|svg"
             ],
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

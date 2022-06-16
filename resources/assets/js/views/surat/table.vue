@@ -24,7 +24,7 @@
 				</button>
 
 				<!-- lihat -->
-				<button @click.prevent="downloadMateri(selectedItem.filename)" class="btn btn-light mb-1" :disabled="!selectedItem.id" v-if="selectedItem.dokumen && selectedItem.dokumen.format == 'upload'">
+				<button @click.prevent="downloadMateri(selectedItem.dokumen.filename)" class="btn btn-light mb-1" :disabled="!selectedItem.id" v-if="selectedItem.dokumen && selectedItem.dokumen.format == 'upload'">
 					<i class="icon-file-eye"></i> Lihat
 				</button>
 				<a type="button" class="btn btn-light mb-1" :href="selectedItem.dokumen.link" target="_blank" v-else-if="selectedItem.dokumen && selectedItem.dokumen.format == 'link'">

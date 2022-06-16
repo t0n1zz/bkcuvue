@@ -268,6 +268,7 @@ export const kegiatanBKCU = {
 
     indexListMateri({ commit }, [p, id]) {
       commit('setDataListMateriStat', 'loading');
+
       KEGIATANBKCUAPI.indexListMateri(p, id)
         .then(function(response) {
           commit('setDataListMateri', response.data.model);
@@ -1288,6 +1289,15 @@ export const kegiatanBKCU = {
     setDataJalan ( state, data ){
       state.dataJalan = data;
     },
+    setDataSertifikat ( state, data){
+      state.dataSertifikat = data;
+    },
+    setDataNilai ( state, data){
+      state.dataNilai = data;
+    },
+    setDataListMateri ( state, data){
+      state.dataListMateri = data;
+    },
     setCount ( state, data ){
       state.count = data;
     },
@@ -1350,6 +1360,12 @@ export const kegiatanBKCU = {
     },
     setDataJalanStat( state, status ){
       state.dataJalanStat = status;
+    },
+    setDataNilaiStat ( state, data){
+      state.dataNilaiStat = data;
+    },
+    setDataListMateriStat ( state, data){
+      state.dataListMateriStat = data;
     },
     setCountStat( state, status ){
       state.countStat = status;

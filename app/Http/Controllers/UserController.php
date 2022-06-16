@@ -217,17 +217,7 @@ class UserController extends Controller
 
 	public function indexCu($id)
 	{
-		if($id == 0){
-			$tipe = 3;
-			$id = 1;
-		}else{
-			$tipe = 1;
-		}
-
-		$table_data = User::with(['aktivis.pekerjaans' => function ($q) use ($id,$tipe){
-			$q->with('cu')->where('tipe',$tipe)->where('id_tempat',$id)
-					->where('status',1);
-		}])->with('pus','cu','aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('id','!=',1)->where('id_cu',$id)->advancedFilter();
+		$table_data = User::with('pus','cu','aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('id','!=',1)->where('id_cu',$id)->advancedFilter();
 		
 		return response()
 		->json([
