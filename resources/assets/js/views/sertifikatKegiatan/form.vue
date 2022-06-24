@@ -308,10 +308,8 @@
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.$route.meta.mode == 'edit'){
-							console.log(this.form.gambar_depan);
 							this.$store.dispatch(this.kelas + '/update',[this.$route.params.id, formData]);
 						}else{
-							console.log(this.form.gambar_depan);
 							this.$store.dispatch(this.kelas + '/store', formData);
 					}
 						this.submited = false;

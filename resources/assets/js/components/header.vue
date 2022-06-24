@@ -390,6 +390,13 @@
 							<router-link :to="{ name: 'kegiatanBKCUJalan' }" class="dropdown-item" active-class="active" exact>
 								<i class="icon-feed"></i> Kegiatan Berjalan
 							</router-link>
+							
+							<!-- divider -->
+							<div class="dropdown-divider" v-if="currentUser.can['create_diklat_bkcu']"></div>
+
+							<router-link :to="{ name: 'kodeKegiatan' }" class="dropdown-item" active-class="active" v-if="currentUser.can['create_diklat_bkcu']" exact>
+								<i class="icon-pencil-ruler"></i> Kode Kegiatan
+							</router-link>
 
 							<!-- divider -->
 							<div class="dropdown-divider" v-if="currentUser.can['create_diklat_bkcu']"></div>

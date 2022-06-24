@@ -46,8 +46,13 @@
 												Kode Kegiatan: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
-											<input type="text" name="kode_diklat" class="form-control" placeholder="Silahkan masukkan kode kegiatan" v-validate="'required|min:5'" data-vv-as="Kode Kegiatan" v-model="form.kode_diklat">
-											
+											<select class="form-control"  name="id_kode" v-model="form.id_kode" data-width="100%" data-vv-as="KodeKegiatan" @change="changeKodeKegiatan($event.target.value)" :disabled="itemDataStat.length === 0">
+												<option disabled value="">
+													<span v-if="itemDataStat === 'loading'">Mohon tunggu...</span>
+													<span v-else>Silahkan pilih sertifikat</span>
+												</option>
+												<option v-for="(kodeKegiatan, index) in itemKodeKegiatan.data" :value="kodeKegiatan.id" :key="index">{{kodeKegiatan.kode}} -- {{kodeKegiatan.nama}}</option>
+											</select>
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.kode_diklat')">
@@ -662,6 +667,7 @@
 							</div>
 						</div>
 
+
 						<!-- keputusan -->
 						<div class="card">
 							<div class="card-header bg-white">
@@ -1109,6 +1115,7 @@
 				}
 				this.$store.dispatch('provinces/get');
 				this.$store.dispatch('sertifikatKegiatan/index');
+				this.$store.dispatch('kodeKegiatan/index');
 			},
 			checkTipe(tipe){
 				if(tipe == 'diklat_bkcu'){
@@ -1128,6 +1135,9 @@
 			},
 			changeSertifikat(event){
 				this.form.formSertifikat = event;
+			},
+			changeKodeKegiatan(event){
+				this.form.idKodeKegiatan = event;
 			},
 			changeProvinces(id){
 				this.$store.dispatch('regencies/getProvinces', id);
@@ -1178,6 +1188,7 @@
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
+						// console.log(this.form);
 						if(this.$route.meta.mode == 'edit'){
 							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, formData]);
 						}else{
@@ -1322,7 +1333,7 @@
 				rules: 'rules',
 				options: 'options',
 				updateResponse: 'update',
-				updateStat: 'updateStat'
+				updateStat: 'updateStat',
 			}),
 			...mapGetters('tempat',{
 				updateTempatResponse: 'update',
@@ -1343,6 +1354,10 @@
 			...mapGetters('sertifikatKegiatan',{
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',
+			}),
+			...mapGetters('kodeKegiatan',{
+				itemKodeKegiatan: 'dataStore',
+				itemKodeKegiatanStat: 'dataStoreStat'
 			}),
 		}
 	}

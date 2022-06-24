@@ -28,7 +28,7 @@ class SertifikatController extends Controller
     public function index()
     {
         $table_data = Sertifikat::select('id', 'kode_sertifikat', 'name', 'gambar_depan', 'gambar_belakang')->advancedFilter();
-        
+
         return response()
             ->json([
                 'model' => $table_data
@@ -215,9 +215,9 @@ class SertifikatController extends Controller
 
         $tahun = $kegiatanData->periode;
 
-        if($hari > 1){
+        if ($hari > 1) {
             $tgl = $mulai->format('d') . ' ' . $mulai->format('F') . ' ' . $mulai->format('Y') . " s.d " . $selesai->format('d') . ' ' . $selesai->format('F') . ' ' . $selesai->format('Y');
-        }else{
+        } else {
             $tgl = $mulai->format('d') . ' ' . $mulai->format('F') . ' ' . $mulai->format('Y');
         }
 
