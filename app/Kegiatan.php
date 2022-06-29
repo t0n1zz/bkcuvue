@@ -19,7 +19,7 @@ class Kegiatan extends Model
     protected $dates = ['deleted_at'];
 
     public static $rules = [
-        'name' => 'required'
+        // 'name' => 'required'
     ];
 
     public function sluggable()
@@ -33,7 +33,7 @@ class Kegiatan extends Model
     }
 
     protected $fillable = [
-        'id_regencies', 'id_districts', 'id_regencies', 'id_provinces', 'id_tempat', 'id_sertifikat', 'id_kode', 'id_jenis', 'name', 'periode', 'durasi', 'mulai', 'selesai', 'jadwal', 'keterangan', 'keteranganBatal', 'status', 'tipe', 'peserta_max', 'peserta_max_cu', 'peserta_min', 'created_at', 'updated_at', 'deleted_at', 'gambar', 'tipe_tempat', 'keputusan_cu', 'keputusan_user', 'pertanyaan_cu', 'pertanyaan_user'
+        'id_regencies', 'id_districts', 'id_regencies', 'id_provinces', 'id_kode', 'name', 'id_tempat', 'id_sertifikat', 'id_jenis', 'periode', 'durasi', 'mulai', 'selesai', 'jadwal', 'keterangan', 'keteranganBatal', 'status', 'tipe', 'peserta_max', 'peserta_max_cu', 'peserta_min', 'created_at', 'updated_at', 'deleted_at', 'gambar', 'tipe_tempat', 'keputusan_cu', 'keputusan_user', 'pertanyaan_cu', 'pertanyaan_user'
     ];
 
     protected $allowedFilters = [
@@ -80,9 +80,9 @@ class Kegiatan extends Model
         return $this->belongsTo('App\Tempat', 'id_tempat', 'id');
     }
 
-    public function jenis_diklat()
+    public function kode()
     {
-        return $this->belongsTo('App\KegiatanJenisDiklat', 'id_jenis', 'id');
+        return $this->belongsTo('App\KodeKegiatan', 'id_kode', 'id')->select('id', 'kode');
     }
 
     public function sasaran()

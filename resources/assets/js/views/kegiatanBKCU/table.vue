@@ -137,7 +137,7 @@
 						<span v-html="$options.filters.statusDiklat(props.item.status)" v-else></span>
 					</td>
 			 		<td v-if="!columnData[2].hide">
-						<check-value :value="props.item.kode_diklat"></check-value>
+						<check-value :value="props.item.kode.kode" v-if="props.item.kode"></check-value>
 					</td>
 					<td v-if="!columnData[3].hide">
 						<check-value :value="props.item.name"></check-value>
@@ -188,7 +188,7 @@
 					<div class="card cursor-pointer" @click.prevent="detail(props.item.id)">
 						
 						<div class="card-header bg-light header-elements-inline">
-							<h6 class="card-title"><check-value :value="props.item.kode_diklat"></check-value>
+							<h6 class="card-title"><check-value :value="props.item.kode.kode" v-if="props.item.kode"></check-value>
 								</h6>
 							<div class="header-elements">
 								<span v-html="$options.filters.statusDiklat(props.item.status)"></span>
@@ -334,7 +334,7 @@
 					},
 					{
 						title: 'Kode',
-						name: 'kode_diklat',
+						name: 'kode',
 						tipe: 'string',
 						sort: false,
 						hide: false,
@@ -463,6 +463,7 @@
 		},
 		created(){
 			this.fetch(this.query);
+			
 		},
 		watch: {
 			'$route' (to, from){

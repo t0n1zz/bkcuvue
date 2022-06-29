@@ -588,7 +588,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         disable: false
       }, {
         title: 'Kode',
-        name: 'kode_diklat',
+        name: 'kode',
         tipe: 'string',
         sort: false,
         hide: false,
@@ -1220,9 +1220,11 @@ var render = function () {
                         ? _c(
                             "td",
                             [
-                              _c("check-value", {
-                                attrs: { value: props.item.kode_diklat },
-                              }),
+                              props.item.kode
+                                ? _c("check-value", {
+                                    attrs: { value: props.item.kode.kode },
+                                  })
+                                : _vm._e(),
                             ],
                             1
                           )
@@ -1433,9 +1435,11 @@ var render = function () {
                               "h6",
                               { staticClass: "card-title" },
                               [
-                                _c("check-value", {
-                                  attrs: { value: props.item.kode_diklat },
-                                }),
+                                props.item.kode
+                                  ? _c("check-value", {
+                                      attrs: { value: props.item.kode.kode },
+                                    })
+                                  : _vm._e(),
                               ],
                               1
                             ),

@@ -1768,26 +1768,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -1824,6 +1804,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   data: function data() {
     return {
+      selectedKode: '',
       title: 'Tambah Pertemuan BKCU',
       titleDesc: 'Menambah pertemuan BKCU baru',
       titleIcon: 'icon-plus3',
@@ -2106,7 +2087,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.form.formSertifikat = event;
     },
     changeKodeKegiatan: function changeKodeKegiatan(event) {
-      this.form.idKodeKegiatan = event;
+      this.form.id_kode = event;
     },
     changeProvinces: function changeProvinces(id) {
       this.$store.dispatch('regencies/getProvinces', id);
@@ -2160,7 +2141,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var formData = Object(_helpers_form__WEBPACK_IMPORTED_MODULE_5__["toMulipartedForm"])(this.form, this.$route.meta.mode);
       this.$validator.validateAll('form').then(function (result) {
         if (result) {
-          // console.log(this.form);
           if (_this.$route.meta.mode == 'edit') {
             _this.$store.dispatch(_this.kelas + '/update', [_this.$route.params.id, formData]);
           } else {
@@ -4852,7 +4832,8 @@ var render = function () {
                             {
                               staticClass: "form-group",
                               class: {
-                                "has-error": _vm.errors.has("form.kode_diklat"),
+                                "has-error":
+                                  _vm.errors.has("form.kode_kegiatan"),
                               },
                             },
                             [
@@ -4861,15 +4842,15 @@ var render = function () {
                                 {
                                   class: {
                                     "text-danger":
-                                      _vm.errors.has("form.kode_diklat"),
+                                      _vm.errors.has("form.kode_kegiatan"),
                                   },
                                 },
                                 [
-                                  _vm.errors.has("form.kode_diklat")
+                                  _vm.errors.has("form.kode_kegiatan")
                                     ? _c("i", { staticClass: "icon-cross2" })
                                     : _vm._e(),
                                   _vm._v(
-                                    "\n\t\t\t\t\t\t\t\t\t\t\tKode Kegiatan: "
+                                    "\n\t\t\t\t\t\t\t\t\t\t\tKode & Nama Kegiatan: "
                                   ),
                                   _c("wajib-badge"),
                                 ],
@@ -4892,7 +4873,8 @@ var render = function () {
                                     name: "id_kode",
                                     "data-width": "100%",
                                     "data-vv-as": "KodeKegiatan",
-                                    disabled: _vm.itemDataStat.length === 0,
+                                    disabled:
+                                      _vm.itemKodeKegiatanStat.length === 0,
                                   },
                                   on: {
                                     change: [
@@ -4933,12 +4915,12 @@ var render = function () {
                                     "option",
                                     { attrs: { disabled: "", value: "" } },
                                     [
-                                      _vm.itemDataStat === "loading"
+                                      _vm.itemKodeKegiatanStat === "loading"
                                         ? _c("span", [
                                             _vm._v("Mohon tunggu..."),
                                           ])
                                         : _c("span", [
-                                            _vm._v("Silahkan pilih sertifikat"),
+                                            _vm._v("Silahkan pilih kode"),
                                           ]),
                                     ]
                                   ),
@@ -4966,7 +4948,7 @@ var render = function () {
                                 2
                               ),
                               _vm._v(" "),
-                              _vm.errors.has("form.kode_diklat")
+                              _vm.errors.has("form.kode_kegiatan")
                                 ? _c(
                                     "small",
                                     { staticClass: "text-muted text-danger" },
@@ -4977,7 +4959,9 @@ var render = function () {
                                       _vm._v(
                                         " " +
                                           _vm._s(
-                                            _vm.errors.first("form.kode_diklat")
+                                            _vm.errors.first(
+                                              "form.kode_kegiatan"
+                                            )
                                           ) +
                                           "\n\t\t\t\t\t\t\t\t\t\t"
                                       ),
@@ -4991,94 +4975,6 @@ var render = function () {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-6" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "form-group",
-                              class: {
-                                "has-error": _vm.errors.has("form.name"),
-                              },
-                            },
-                            [
-                              _c(
-                                "h5",
-                                {
-                                  class: {
-                                    "text-danger": _vm.errors.has("form.name"),
-                                  },
-                                },
-                                [
-                                  _vm.errors.has("form.name")
-                                    ? _c("i", { staticClass: "icon-cross2" })
-                                    : _vm._e(),
-                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tNama: "),
-                                  _c("wajib-badge"),
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "validate",
-                                    rawName: "v-validate",
-                                    value: "required|min:5",
-                                    expression: "'required|min:5'",
-                                  },
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form.name,
-                                    expression: "form.name",
-                                  },
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  name: "name",
-                                  placeholder: "Silahkan masukkan nama diklat",
-                                  "data-vv-as": "Nama",
-                                },
-                                domProps: { value: _vm.form.name },
-                                on: {
-                                  input: function ($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.form,
-                                      "name",
-                                      $event.target.value
-                                    )
-                                  },
-                                },
-                              }),
-                              _vm._v(" "),
-                              _vm.errors.has("form.name")
-                                ? _c(
-                                    "small",
-                                    { staticClass: "text-muted text-danger" },
-                                    [
-                                      _c("i", {
-                                        staticClass: "icon-arrow-small-right",
-                                      }),
-                                      _vm._v(
-                                        " " +
-                                          _vm._s(
-                                            _vm.errors.first("form.name")
-                                          ) +
-                                          "\n\t\t\t\t\t\t\t\t\t\t"
-                                      ),
-                                    ]
-                                  )
-                                : _c("small", { staticClass: "text-muted" }, [
-                                    _vm._v(" "),
-                                  ]),
-                            ]
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-4" }, [
                           _c(
                             "div",
                             {

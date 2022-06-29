@@ -2240,12 +2240,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       selectedItemKeputusan: '',
       selectedItemPertanyaan: '',
       formModalMode: ''
-    }, _defineProperty(_ref, "itemDataPanitia", []), _defineProperty(_ref, "itemDataPanitiaStat", 'success'), _defineProperty(_ref, "cancelState", 'methods'), _defineProperty(_ref, "state", ''), _defineProperty(_ref, "modalShow", false), _defineProperty(_ref, "modalState", ''), _defineProperty(_ref, "modalTitle", ''), _defineProperty(_ref, "modalColor", ''), _defineProperty(_ref, "modalContent", ''), _defineProperty(_ref, "modalSize", ''), _defineProperty(_ref, "submited", false), _ref;
+    }, _defineProperty(_ref, "itemDataPanitia", []), _defineProperty(_ref, "itemDataPanitiaStat", 'success'), _defineProperty(_ref, "cancelState", 'methods'), _defineProperty(_ref, "state", ''), _defineProperty(_ref, "modalShow", false), _defineProperty(_ref, "modalState", ''), _defineProperty(_ref, "modalTitle", ''), _defineProperty(_ref, "modalColor", ''), _defineProperty(_ref, "modalContent", ''), _defineProperty(_ref, "kode", ''), _defineProperty(_ref, "modalSize", ''), _defineProperty(_ref, "submited", false), _ref;
   },
   beforeRouteEnter: function beforeRouteEnter(to, from, next) {
     next(function (vm) {
       return vm.fetch();
     });
+  },
+  created: function created() {
+    this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
+  },
+  updated: function updated() {
+    this.kode = this.item.kode.kode;
   },
   watch: {
     itemStat: function itemStat(value) {
@@ -6940,7 +6946,7 @@ var render = function () {
                             _c("td", { staticClass: "text-right" }, [
                               _vm._v(
                                 "\n\t\t\t\t\t\t\t\t\t\t\t" +
-                                  _vm._s(_vm.item.kode_diklat) +
+                                  _vm._s(this.kode) +
                                   "\n\t\t\t\t\t\t\t\t\t\t"
                               ),
                             ]),

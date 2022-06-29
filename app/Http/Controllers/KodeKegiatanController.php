@@ -87,7 +87,7 @@ class KodeKegiatanController extends Controller
         return response()
             ->json([
                 'deleted' => true,
-                'message' =>  $this->message . ' ' . $nama . 'berhasil dihapus'
+                'message' =>  $this->message . ' ' . $nama . ' berhasil dihapus'
             ]);
     }
 }

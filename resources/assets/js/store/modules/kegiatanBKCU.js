@@ -131,6 +131,7 @@ export const kegiatanBKCU = {
 
             KEGIATANBKCUAPI.index(p, tipe)
                 .then(function(response) {
+
                     commit('setDataS', response.data.model);
                     commit('setDataStatS', 'success');
                 })
@@ -408,7 +409,6 @@ export const kegiatanBKCU = {
 
         indexKegiatan({ commit }) {
             commit('setDataStatS', 'loading');
-
             KEGIATANBKCUAPI.indexKegiatan()
                 .then(function(response) {
                     commit('setDataS', response.data.model);
@@ -465,7 +465,7 @@ export const kegiatanBKCU = {
         // create page
         create({ commit }) {
             commit('setDataStat', 'loading');
-
+            // console.log('masuk');
             KEGIATANBKCUAPI.create()
                 .then(function(response) {
                     commit('setData', response.data.form);
@@ -684,7 +684,7 @@ export const kegiatanBKCU = {
         // edit page
         edit({ commit }, id) {
             commit('setDataStat', 'loading');
-
+            // console.log('masuk');
             KEGIATANBKCUAPI.edit(id)
                 .then(function(response) {
                     commit('setData', response.data.form);

@@ -38,52 +38,32 @@
 
 									<!-- kode -->
 									<div class="col-md-6">
-										<div class="form-group" :class="{'has-error' : errors.has('form.kode_diklat')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form.kode_kegiatan')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.kode_diklat')}">
-												<i class="icon-cross2" v-if="errors.has('form.kode_diklat')"></i>
-												Kode Kegiatan: <wajib-badge></wajib-badge></h5>
+											<h5 :class="{ 'text-danger' : errors.has('form.kode_kegiatan')}">
+												<i class="icon-cross2" v-if="errors.has('form.kode_kegiatan')"></i>
+												Kode & Nama Kegiatan: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
-											<select class="form-control"  name="id_kode" v-model="form.id_kode" data-width="100%" data-vv-as="KodeKegiatan" @change="changeKodeKegiatan($event.target.value)" :disabled="itemDataStat.length === 0">
+											<select class="form-control"  name="id_kode" v-model="form.id_kode" data-width="100%" data-vv-as="KodeKegiatan" @change="changeKodeKegiatan($event.target.value)" :disabled="itemKodeKegiatanStat.length === 0">
 												<option disabled value="">
-													<span v-if="itemDataStat === 'loading'">Mohon tunggu...</span>
-													<span v-else>Silahkan pilih sertifikat</span>
+													<span v-if="itemKodeKegiatanStat === 'loading'">Mohon tunggu...</span>
+													<span v-else>Silahkan pilih kode</span>
 												</option>
 												<option v-for="(kodeKegiatan, index) in itemKodeKegiatan.data" :value="kodeKegiatan.id" :key="index">{{kodeKegiatan.kode}} -- {{kodeKegiatan.nama}}</option>
 											</select>
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.kode_diklat')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.kode_diklat') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- name -->
-									<div class="col-md-6">
-										<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.name')}">
-												<i class="icon-cross2" v-if="errors.has('form.name')"></i>
-												Nama: <wajib-badge></wajib-badge></h5>
-
-											<!-- text -->
-											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama diklat" v-validate="'required|min:5'" data-vv-as="Nama" v-model="form.name">
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.name')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
+											<small class="text-muted text-danger" v-if="errors.has('form.kode_kegiatan')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.kode_kegiatan') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
 									</div>
 
 									<!-- periode -->
-									<div class="col-md-4">
+									<div class="col-md-6">
 										<div class="form-group" :class="{'has-error' : errors.has('form.periode')}">
 
 											<!-- title -->
@@ -891,6 +871,7 @@
 		},
 		data() {
 			return {
+				selectedKode :'',
 				title: 'Tambah Pertemuan BKCU',
 				titleDesc: 'Menambah pertemuan BKCU baru',
 				titleIcon: 'icon-plus3',
@@ -992,6 +973,7 @@
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
 		},
+		
 		watch: {
 			formStat(value){
 				if(value === "success"){
@@ -1137,7 +1119,7 @@
 				this.form.formSertifikat = event;
 			},
 			changeKodeKegiatan(event){
-				this.form.idKodeKegiatan = event;
+				this.form.id_kode = event;
 			},
 			changeProvinces(id){
 				this.$store.dispatch('regencies/getProvinces', id);
@@ -1188,7 +1170,7 @@
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
-						// console.log(this.form);
+						
 						if(this.$route.meta.mode == 'edit'){
 							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, formData]);
 						}else{
