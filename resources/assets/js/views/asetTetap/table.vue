@@ -130,6 +130,7 @@
 					</td>
 					<td v-if="!columnData[12].hide">
 						<check-value :value="props.item.pembeli.name" v-if="props.item.pembeli"></check-value>
+						<span v-else>Mitra</span>
 					</td>
 					<td v-if="!columnData[13].hide">
 						<check-value :value="props.item.has_aset_count" valueType="currency"></check-value>

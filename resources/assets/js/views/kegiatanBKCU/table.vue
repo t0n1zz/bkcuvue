@@ -31,12 +31,12 @@
 
 					<!-- detail-->
 					<button @click.prevent="detail(selectedItem.id)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['index_diklat_bkcu']" :disabled="!selectedItem.id">
-						<i class="icon-stack2"></i> Detail
+						<i class="icon-stack2"></i> Detail / Daftar
 					</button>
 				</template>
 
 				<!-- pertemuan bkcu button -->
-				<template v-else-if="$route.params.tipe == 'pertemuan_bkcu'">
+				<template v-else-if="$route.params.tipe == 'pertemuan_bkcu' || $route.params.tipe == 'pertemuan_bkcu_internal'">
 					<!-- tambah -->
 					<router-link :to="{ name: kelas + 'Create', params:{tipe: $route.params.tipe}}" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['create_pertemuan_bkcu']">
 						<i class="icon-plus3"></i> Tambah
@@ -59,7 +59,7 @@
 
 					<!-- detail-->
 					<button @click.prevent="detail(selectedItem.id)" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['index_pertemuan_bkcu']" :disabled="!selectedItem.id">
-						<i class="icon-stack2"></i> Detail
+						<i class="icon-stack2"></i> Detail / Daftar
 					</button>
 				</template>
 
@@ -92,7 +92,7 @@
 
 					<!-- detail -->
 					<button @click.prevent="detail(selectedItem.id)" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['index_diklat_bkcu']" :disabled="!selectedItem.id">
-						<i class="icon-stack2"></i> Detail
+						<i class="icon-stack2"></i> Detail / Daftar
 					</button>
 				</template>
 
@@ -120,7 +120,7 @@
 
 					<!-- detail -->
 					<button @click.prevent="detail(selectedItem.id)" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['index_pertemuan_bkcu']" :disabled="!selectedItem.id">
-						<i class="icon-stack2"></i> Detail
+						<i class="icon-stack2"></i> Detail / Daftar
 					</button>
 				</template>
 
@@ -137,7 +137,8 @@
 						<span v-html="$options.filters.statusDiklat(props.item.status)" v-else></span>
 					</td>
 			 		<td v-if="!columnData[2].hide">
-						<check-value :value="props.item.kode_diklat"></check-value>
+						<check-value :value="props.item.kode_diklat" v-if="props.item.kode_diklat"></check-value >
+						<check-value :value="props.item.kode.kode" v-else></check-value>
 					</td>
 					<td v-if="!columnData[3].hide">
 						<check-value :value="props.item.name"></check-value>

@@ -13,6 +13,9 @@ Route::group(['middleware' => 'throttle:1000,1'], function () {
     Route::get('/voting/indexPilihan/{name}', 'VotingController@indexPilihan');
     Route::get('/voting/indexSuara/{id}', 'VotingController@indexSuara');
     Route::post('/voting/storePilihan', 'VotingController@storePilihan');
+
+    //aset tetap
+    Route::get('/asetTetap/get/{kode}', 'AsetTetapController@get');
 });
 
 Route::group(['middleware' => 'throttle:60,1'], function () {
@@ -227,6 +230,14 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         //generate sertifikat
         Route::post('/generateSertifikat', 'SertifikatController@generateSertifikat');
 
+         // kode kegiatan
+         Route::get('/kodeKegiatan', 'KodeKegiatanController@index');
+         Route::get('/kodeKegiatan/create', 'KodeKegiatanController@create');
+         Route::post('/kodeKegiatan/store', 'KodeKegiatanController@store');
+         Route::get('/kodeKegiatan/edit/{id}', 'KodeKegiatanController@edit');
+         Route::post('/kodeKegiatan/update/{id}', 'KodeKegiatanController@update');
+         Route::delete('/kodeKegiatan/{id}', 'KodeKegiatanController@destroy');
+
         // kegiatan bkcu
         Route::get('/kegiatanBKCU/index/{kegiatan_tipe}', 'KegiatanBKCUController@index');
         Route::get('/kegiatanBKCU/baru', 'KegiatanBKCUController@indexBaru');
@@ -355,7 +366,6 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/asetTetap/generate/{id}', 'AsetTetapController@generate');
         Route::get('/asetTetap', 'AsetTetapController@index');
         Route::get('/asetTetap/history', 'AsetTetapController@history');
-        Route::get('/asetTetap/get/{kode}', 'AsetTetapController@get');
         Route::get('/asetTetap/indexSub/{id}', 'AsetTetapController@indexSub');
         Route::group(['middleware' => ['permission:index_aset_tetap']], function () {
             

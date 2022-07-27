@@ -46,6 +46,7 @@ import { jalinanIuran } from './modules/jalinanIuran';
 import { produkCu } from './modules/produkCu';
 import { kegiatanBKCU } from './modules/kegiatanBKCU';
 import { sertifikatKegiatan } from './modules/sertifikatKegiatan';
+import { kodeKegiatan } from './modules/kodeKegiatan';
 import { tempat } from './modules/tempat';
 import { pemilihan } from './modules/pemilihan';
 import { voting } from './modules/voting';
@@ -104,6 +105,7 @@ export default new Vuex.Store({
 		 produkCu,
 		 kegiatanBKCU,
 		 sertifikatKegiatan,
+		 kodeKegiatan,
 		 tempat,
 		 pemilihan,
 		 voting,

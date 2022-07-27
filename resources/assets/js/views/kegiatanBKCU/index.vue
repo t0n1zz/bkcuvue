@@ -72,6 +72,10 @@
 					this.title = 'Pertemuan PUSKOPCUINA';
 					this.titleDesc = 'Mengelola data pertemuan PUSKOPCUINA';
 					this.titleIcon = 'icon-ungroup';
+				}else if(this.$route.params.tipe == 'pertemuan_bkcu_internal'){
+					this.title = 'Pertemuan Internal PUSKOPCUINA';
+					this.titleDesc = 'Mengelola data pertemuan internal PUSKOPCUINA';
+					this.titleIcon = 'icon-hat';
 				}else if(this.$route.meta.mode == 'jalan'){
 					this.title = 'Kegiatan PUSKOPCUINA Berjalan';
 					this.titleDesc = 'Mengelola data kegiatan PUSKOPCUINA berjalan';

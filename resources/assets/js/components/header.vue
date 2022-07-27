@@ -362,6 +362,21 @@
 										Pertemuan PUSKOPCUINA
 									</router-link>
 
+									<!-- tambah pertemuan bkcu internal -->
+									<router-link :to="{ name:'kegiatanBKCUCreate', params:{tipe: 'pertemuan_bkcu_internal'} }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0">
+										Pertemuan Internal PUSKOPCUINA
+									</router-link>
+
+									<!-- tambah sertifikat -->
+									<router-link :to="{ name:'sertifikatKegiatanCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0">
+										Sertifikat Kegiatan
+									</router-link>
+
+									<!-- tambah kode -->
+									<router-link :to="{ name:'kodeKegiatanCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0">
+										Kode Kegiatan
+									</router-link>
+
 									<!-- tambah voting -->
 									<router-link :to="{ name:'votingCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_voting']">
 										Voting
@@ -387,6 +402,11 @@
 								<i class="icon-ungroup"></i> Pertemuan PUSKOPCUINA
 							</router-link>
 
+							<!-- pertemuan bkcu internal-->
+							<router-link :to="{ name: 'kegiatanBKCU', params:{tipe: 'pertemuan_bkcu_internal', periode: momentYear() }}" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['create_tempat']">
+								<i class="icon-hat"></i> Pertemuan Internal PUSKOPCUINA
+							</router-link>
+
 							<router-link :to="{ name: 'kegiatanBKCUJalan' }" class="dropdown-item" active-class="active" exact>
 								<i class="icon-feed"></i> Kegiatan Berjalan
 							</router-link>
@@ -397,6 +417,11 @@
 							<router-link :to="{ name: 'sertifikatKegiatan' }" class="dropdown-item" active-class="active" v-if="currentUser.can['create_diklat_bkcu']" exact>
 								<i class="icon-clipboard6"></i> Sertifikat Kegiatan
 							</router-link>
+
+							<router-link :to="{ name: 'kodeKegiatan' }" class="dropdown-item" active-class="active" v-if="currentUser.can['create_diklat_bkcu']" exact>
+								<i class="icon-pencil-ruler"></i> Kode Kegiatan
+							</router-link>
+
 
 							<!-- divider -->
 							<div class="dropdown-divider" v-if="currentUser.can['index_tempat'] || currentUser.can['index_voting']"></div> 
@@ -919,19 +944,11 @@
 										Dokumen GERAKAN & PUBLIK
 									</router-link>
 
-									<router-link :to="{ name: 'dokumenCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.id_cu != 0">
+									<router-link :to="{ name: 'dokumenCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser">
 										Dokumen 
 									</router-link>
 
-									<router-link :to="{ name: 'dokumenCu', params:{cu: 'semua'} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.id_cu == 0">
-										Dokumen
-									</router-link>
-
-									<router-link :to="{ name: 'dokumenKategoriCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_dokumen_kategori'] && currentUser.id_cu != 0">
-										Kategori Dokumen
-									</router-link>
-
-									<router-link :to="{ name: 'dokumenKategoriCu', params:{cu: 'semua'} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_dokumen_kategori'] && currentUser.id_cu == 0">
+									<router-link :to="{ name: 'dokumenKategoriCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_dokumen_kategori']">
 										Kategori Dokumen
 									</router-link>
 

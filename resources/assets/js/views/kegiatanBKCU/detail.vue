@@ -153,7 +153,7 @@
 										<tr>
 											<td class="font-weight-semibold">Kode:</td>
 											<td class="text-right">
-												{{item.kode_diklat}}
+												{{ item.kode_diklat ? item.kode_diklat : kode }}
 											</td>
 										</tr>
 										<tr>
@@ -2059,12 +2059,19 @@
 				modalTitle: '',
 				modalColor: '',
 				modalContent: '',
+				kode: '',
 				modalSize: '',
 				submited: false,
 			}
 		},
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
+		},
+		created(){
+			this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
+		},
+		updated(){
+			this.kode = this.item.kode.kode;
 		},
 		watch: {
 			itemStat(value) {

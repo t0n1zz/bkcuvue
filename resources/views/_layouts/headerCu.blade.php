@@ -29,7 +29,7 @@
 
             <li><a href="tel:+62561765591" class="si-call"><span class="ts-icon"><i class="icon-call"></i></span><span class="ts-text">+62 561-765591</span></a></li>
 
-            <li><a href="mailto:cucoborneo@hotmail.com" class="si-email3"><span class="ts-icon"><i class="icon-email3"></i></span><span class="ts-text">cucoborneo@hotmail.com</span></a></li>
+            <li><a href="mailto:nacufina@puskopcuina.org" class="si-email3"><span class="ts-icon"><i class="icon-email3"></i></span><span class="ts-text">nacufina@puskopcuina.org</span></a></li>
           </ul>
         </div><!-- #top-social end -->
 

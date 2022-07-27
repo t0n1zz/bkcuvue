@@ -95,7 +95,7 @@
               <ul>
                 <li><strong>Kantor:</strong> Jl. Imam Bonjol, Gang Haji Mursyid 1 No. 7-8 Pontianak, Kalimantan Barat 78123</li>
                 <li><abbr title="Phone Number"><strong>Phone:</strong></abbr> +62 561-765591</li>
-                <li><abbr title="Email Address"><strong>Email:</strong></abbr> cucoborneo@hotmail.com</li>
+                <li><abbr title="Email Address"><strong>Email:</strong></abbr> nacufina@puskopcuina.org</li>
               </ul>
             </div>
 
@@ -139,7 +139,7 @@
 
             <div class="clear"></div>
 
-            <i class="icon-envelope2"></i> cucoborneo@hotmail.com <span class="middot">&middot;</span> <i class="icon-headphones"></i> +62 561-765591
+            <i class="icon-envelope2"></i> nacufina@puskopcuina.org <span class="middot">&middot;</span> <i class="icon-headphones"></i> +62 561-765591
           </div>
 
         </div>

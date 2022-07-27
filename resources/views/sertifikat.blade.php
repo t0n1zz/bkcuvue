@@ -45,7 +45,6 @@
 
 <body>
     <div class="belakang">
-        @if($listMateri->isNotEmpty())
         <div>
             <table class="table center" style="width: 75%">
                 <thead>
@@ -109,7 +108,6 @@
                 </tbody>
             </table>
          </div>
-         @endif
          <div class="ttdBawah"> <p><span>Pontianak, {{$tglGenerate}}</p></div>
             @if($averageNilai != 0)
                 <div class="rentangNilai"><p><span>Rentang Nilai :</p></div>

@@ -17,6 +17,7 @@ use App\KegiatanTugasJawaban;
 use App\KegiatanKeputusan;
 use App\KegiatanPertanyaan;
 use App\KegiatanPilih;
+use App\KodeKegiatan;
 use App\Sertifikat;
 use App\SertifikatGenerate;
 use Illuminate\Http\Request;
@@ -34,7 +35,7 @@ class KegiatanBKCUController extends Controller{
 
 	public function index($kegiatan_tipe)
 	{
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->withCount('hasPeserta')->where('tipe',$kegiatan_tipe)->advancedFilter();
+		$table_data = Kegiatan::with('tempat','sasaran','Regencies','Provinces','kode')->withCount('hasPeserta')->where('tipe',$kegiatan_tipe)->advancedFilter();
 
 		return response()
 		->json([
@@ -44,7 +45,7 @@ class KegiatanBKCUController extends Controller{
 
 	public function indexPeriode($kegiatan_tipe, $periode)
 	{
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies','Provinces')->withCount('hasPeserta')->where('tipe',$kegiatan_tipe)->where('periode',$periode)->advancedFilter();
+		$table_data = Kegiatan::with('tempat','sasaran','Regencies','Provinces','kode')->withCount('hasPeserta')->where('tipe',$kegiatan_tipe)->where('periode',$periode)->advancedFilter();
 
 		return response()
 		->json([
@@ -332,7 +333,7 @@ class KegiatanBKCUController extends Controller{
 	{
 		$periode = date("Y");
 
-		$table_data = Kegiatan::where('periode',$periode)->select('id','name','mulai','periode')->get();
+		$table_data = Kegiatan::where('periode',$periode)->select('id','name','mulai','periode','kode')->get();
 
 		return response()
 		->json([
@@ -426,7 +427,12 @@ class KegiatanBKCUController extends Controller{
 	{	
 		$this->validate($request,Kegiatan::$rules);
 
-		$name = $request->name;
+		if($kegiatan_tipe == 'diklat_bkcu'){
+			$name = KodeKegiatan::where('id', $request->id_kode)->first();
+			$name = $name->name;
+		}else{
+			$name = $request->name;
+		}
 
 		// processing single image upload
 		if(!empty($request->gambar)){
@@ -440,10 +446,11 @@ class KegiatanBKCUController extends Controller{
 			$fileName = '';
 		}
 
-		$kelas = Kegiatan::create($request->except('tipe','status','gambar') + [
+		$kelas = Kegiatan::create($request->except('tipe','status','gambar','name') + [
 			'tipe' => $kegiatan_tipe, 
 			'status' => '1', 
-			'gambar' => $fileName
+			'gambar' => $fileName,
+			'name' => $name
 		]);
 
 		$sasaran_ar = array();
@@ -785,7 +792,7 @@ class KegiatanBKCUController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = Kegiatan::with('tempat','sasaran','panitia_dalam.pekerjaan_aktif.cu','panitia_luar','panitia_luar_lembaga','pilih')->findOrFail($id);
+		$kelas = Kegiatan::with('tempat','sasaran','panitia_dalam.pekerjaan_aktif.cu','panitia_luar','panitia_luar_lembaga','pilih','kode')->findOrFail($id);
 		$kelas2 = Sertifikat::where('id', $kelas->id_sertifikat)->get();
 
 		return response()
@@ -811,10 +818,14 @@ class KegiatanBKCUController extends Controller{
 	public function update(Request $request, $id)
 	{
 		// $this->validate($request, Kegiatan::$rules);
-
-		$name = $request->name;
-
 		$kelas = Kegiatan::with('pilih')->findOrFail($id);
+
+		if($kelas->tipe == 'diklat_bkcu'){
+			$name = KodeKegiatan::where('id', $request->id_kode)->first();
+			$name = $name->name;
+		}else{
+			$name = $kelas->name;
+		}
 
 		// processing single image upload
 		if(!empty($request->gambar)){
@@ -828,8 +839,9 @@ class KegiatanBKCUController extends Controller{
 			$fileName = '';
 		}
 
-		$kelas->update($request->except('gambar') + [
-			'gambar' => $fileName
+		$kelas->update($request->except('gambar','name') + [
+			'gambar' => $fileName,
+			'name' => $name,
 		]);
 
 		$sasaran_ar = array();

@@ -258,7 +258,7 @@
       <p class="nobottommargin">Jalan Imam Bonjol Gg. H. Mursyid 1 No. 7-8 Pontianak<br/>
       Kalimantan Barat 78123<br/>
       Telp : 0561-765591 • Fax : 0561-769459<br/>
-      cucoborneo@hotmail.com</p>
+      nacufina@puskopcuina.org</p>
 
       </div>
 

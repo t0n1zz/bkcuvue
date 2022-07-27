@@ -176,10 +176,10 @@ class NotificationHelper{
 	public static function monitoring($request, $message)
 	{
 		if(Auth::user()->id_cu == 0){
-			$users = User::permission(['index_assesment_access'])->where('id_cu', $request->id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
+			$users = User::permission(['index_monitoring'])->where('id_cu', $request->id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
 			$cu_name = ' (PUSKOPCUINA) ';
 		}else{
-			$users = User::permission(['index_assesment_access'])->where('id_cu', 0)->where('status',1)->get();
+			$users = User::permission(['index_monitoring'])->where('id_cu', 0)->where('status',1)->get();
 			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
 			$cu_name = ' (CU ' .$cu->name. ') ';	
 		}
@@ -195,10 +195,10 @@ class NotificationHelper{
 	public static function monitoring_pencapaian($request, $message)
 	{
 		if(Auth::user()->id_cu == 0){
-			$users = User::permission(['index_assesment_access'])->where('id_cu', $request->id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
+			$users = User::permission(['index_monitoring'])->where('id_cu', $request->id_cu)->where('status',1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();	
 			$cu_name = ' (PUSKOPCUINA) ';
 		}else{
-			$users = User::permission(['index_assesment_access'])->where('id_cu', 0)->where('status',1)->get();
+			$users = User::permission(['index_monitoring'])->where('id_cu', 0)->where('status',1)->get();
 			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
 			$cu_name = ' (CU ' .$cu->name. ') ';	
 		}

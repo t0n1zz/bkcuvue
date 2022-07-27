@@ -22,7 +22,7 @@
                 Pontianak, Kalimantan Barat 78123<br>
               </address>
               <abbr title="Phone Number"><strong>Phone:</strong></abbr> +62 561-765591<br>
-              <abbr title="Email Address"><strong>Email:</strong></abbr> cucoborneo@hotmail.com
+              <abbr title="Email Address"><strong>Email:</strong></abbr> nacufina@puskopcuina.org
             </div>
 
           </div>
@@ -153,7 +153,7 @@
 
         <div class="clear"></div>
 
-        <i class="icon-envelope2"></i> cucoborneo@hotmail.com <span class="middot">&middot;</span> <i class="icon-headphones"></i> +62 561-765591
+        <i class="icon-envelope2"></i> nacufina@puskopcuina.org <span class="middot">&middot;</span> <i class="icon-headphones"></i> +62 561-765591
       </div>
 
     </div>

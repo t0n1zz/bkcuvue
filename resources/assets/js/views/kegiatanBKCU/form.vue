@@ -35,9 +35,34 @@
 										</div>
 									</div>
 
+									<!-- kode diklat bkcu -->
+									<div class="col-md-12" v-if="$route.params.tipe == 'diklat_bkcu'">
+										<div class="form-group" :class="{'has-error' : errors.has('form.kode_kegiatan')}">
 
-									<!-- kode -->
-									<div class="col-md-6">
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.kode_kegiatan')}">
+												<i class="icon-cross2" v-if="errors.has('form.kode_kegiatan')"></i>
+												Kode & Nama Kegiatan: <wajib-badge></wajib-badge></h5>
+
+											<!-- text -->
+											<select class="form-control" name="id_kode" v-model="form.id_kode" data-width="100%" data-vv-as="KodeKegiatan" @change="changeKodeKegiatan($event.target.value)" :disabled="itemKodeKegiatanStat.length === 0">
+												<option disabled value="">
+													<span v-if="itemKodeKegiatanStat === 'loading'">Mohon tunggu...</span>
+													<span v-else>Silahkan pilih kode</span>
+												</option>
+												<option v-for="(kodeKegiatan, index) in itemKodeKegiatan.data" :value="kodeKegiatan.id" :key="index">{{kodeKegiatan.kode}} -- {{kodeKegiatan.name}}</option>
+											</select>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.kode_kegiatan')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.kode_kegiatan') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- kode pertemuan bkcu -->
+									<div class="col-md-6" v-else>
 										<div class="form-group" :class="{'has-error' : errors.has('form.kode_diklat')}">
 
 											<!-- title -->
@@ -46,7 +71,7 @@
 												Kode Kegiatan: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
-											<input type="text" name="kode_diklat" class="form-control" placeholder="Silahkan masukkan kode kegiatan" v-validate="'required|min:5'" data-vv-as="Kode Kegiatan" v-model="form.kode_diklat">
+											<input type="text" name="kode_" class="form-control" placeholder="Silahkan masukkan kode kegiatan" v-validate="'required|min:5'" data-vv-as="Kode Kegiatan" v-model="form.kode_diklat">
 											
 
 											<!-- error message -->
@@ -58,7 +83,7 @@
 									</div>
 
 									<!-- name -->
-									<div class="col-md-6">
+									<div class="col-md-6" v-if="$route.params.tipe != 'diklat_bkcu'">
 										<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
 
 											<!-- title -->
@@ -949,6 +974,7 @@
             delimiter: '.'
           }
 				},
+				selectedKode: '',
 				columnDataPanitia:[
 					{ title: 'No.' },
 					{ title: 'Foto' },
@@ -1109,12 +1135,17 @@
 				}
 				this.$store.dispatch('provinces/get');
 				this.$store.dispatch('sertifikatKegiatan/index');
+				if(this.$route.params.tipe == 'diklat_bkcu'){
+					this.$store.dispatch('kodeKegiatan/index');
+				}
 			},
 			checkTipe(tipe){
 				if(tipe == 'diklat_bkcu'){
-					this.level2Title = 'Diklat BKCU';
-				}else{
-					this.level2Title = 'Pertemuan BKCU';
+					this.level2Title = 'Diklat PUSKOPCUINA';
+				}else if(tipe == 'pertemuan_bkcu'){
+					this.level2Title = 'Pertemuan PUSKOPCUINA';
+				}else if(tipe == 'pertemuan_bkcu_internal'){
+					this.level2Title = 'Pertemuan Internal PUSKOPCUINA';
 				}
 				if(this.$route.meta.mode == 'edit'){
 					this.title = 'Ubah ' + this.level2Title;
@@ -1128,6 +1159,9 @@
 			},
 			changeSertifikat(event){
 				this.form.formSertifikat = event;
+			},
+			changeKodeKegiatan(event){
+				this.form.id_kode = event;
 			},
 			changeProvinces(id){
 				this.$store.dispatch('regencies/getProvinces', id);
@@ -1343,6 +1377,10 @@
 			...mapGetters('sertifikatKegiatan',{
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',
+			}),
+			...mapGetters('kodeKegiatan',{
+				itemKodeKegiatan: 'dataStore',
+				itemKodeKegiatanStat: 'dataStoreStat'
 			}),
 		}
 	}

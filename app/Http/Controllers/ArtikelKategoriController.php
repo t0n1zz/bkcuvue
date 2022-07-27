@@ -66,7 +66,6 @@ class ArtikelKategoriController extends Controller{
 
 		$name = $request->name;
 
-
 		$kelas = ArtikelKategori::create($request->all());
 		
 		return response()

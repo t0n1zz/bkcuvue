@@ -32,6 +32,8 @@ const kegiatanBKCU_form = () => import('./views/kegiatanBKCU/form.vue');
 const kegiatanBKCU_detail = () => import('./views/kegiatanBKCU/detail.vue');
 const sertifikatKegiatan = () => import ('./views/sertifikatKegiatan/index.vue');
 const sertifikatKegiatan_form = () => import ('./views/sertifikatKegiatan/form.vue');
+const kodeKegiatan = () => import ('./views/kodeKegiatan/index.vue');
+const kodeKegiatan_form = () => import ('./views/kodeKegiatan/form.vue');
 const tempat = () => import('./views/tempat/index.vue');
 const tempat_form = () => import('./views/tempat/form.vue');
 const cu = () => import('./views/cu/index.vue');
@@ -254,26 +256,6 @@ const routes = [
 		name: 'artikelSimoEdit', 
 		components: { default: artikelSimo_form, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true, mode:'edit' } },
-
-	// sertifikat kegiatan
-	{
-		path: '/sertifikatKegiatan',
-		name: 'sertifikatKegiatan',
-		components: { default: sertifikatKegiatan, 'header': header, 'footer': footer },
-		meta: { requiresAuth: true }
-	},
-	{
-			path: '/sertifikatKegiatan/create',
-			name: 'sertifikatKegiatanCreate',
-			components: { default: sertifikatKegiatan_form, 'header': header, 'footer': footer },
-			meta: { requiresAuth: true }
-	},
-	{
-			path: '/sertifikatKegiatan/edit/:id',
-			name: 'sertifikatKegiatanEdit',
-			components: { default: sertifikatKegiatan_form, 'header': header, 'footer': footer },
-			meta: { requiresAuth: true, mode: 'edit' }
-	},
 	
 	// kegiatan bkcu
 	{ path: '/kegiatanBKCU/:tipe/periode/:periode',
@@ -313,6 +295,46 @@ const routes = [
 		name: 'tempatEdit', 
 		components: { default: tempat_form, 'header': header, 'footer': footer }, 
 		meta: { requiresAuth: true, mode:'edit' } },	
+
+	// sertifikat kegiatan
+	{
+		path: '/sertifikatKegiatan',
+		name: 'sertifikatKegiatan',
+		components: { default: sertifikatKegiatan, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }
+	},
+	{
+			path: '/sertifikatKegiatan/create',
+			name: 'sertifikatKegiatanCreate',
+			components: { default: sertifikatKegiatan_form, 'header': header, 'footer': footer },
+			meta: { requiresAuth: true }
+	},
+	{
+			path: '/sertifikatKegiatan/edit/:id',
+			name: 'sertifikatKegiatanEdit',
+			components: { default: sertifikatKegiatan_form, 'header': header, 'footer': footer },
+			meta: { requiresAuth: true, mode: 'edit' }
+	},
+
+		// kode kegiatan
+		{
+        path: '/kodeKegiatan',
+        name: 'kodeKegiatan',
+        components: { default: kodeKegiatan, 'header': header, 'footer': footer },
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/kodeKegiatan/create',
+        name: 'kodeKegiatanCreate',
+        components: { default: kodeKegiatan_form, 'header': header, 'footer': footer },
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/kodeKegiatan/edit/:id',
+        name: 'kodeKegiatanEdit',
+        components: { default: kodeKegiatan_form, 'header': header, 'footer': footer },
+        meta: { requiresAuth: true, mode: 'edit' }
+    },
 
 	// cu
 	{ path: '/cu',
@@ -390,7 +412,7 @@ const routes = [
 	{ path: '/asetTetap/detail/:kode',
 		name: 'asetTetapDetail', 
 		components: { default: asetTetap_detail },
-		meta: { requiresAuth: false, mode:'cu' }},	
+		meta: { requiresAuth: false }},	
 	{ path: '/asetTetap/create',
 		name: 'asetTetapCreate', 
 		components: { default: asetTetap_form, 'header': header, 'footer': footer },

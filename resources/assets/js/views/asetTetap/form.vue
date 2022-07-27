@@ -443,9 +443,9 @@
 													<span v-if="modelAktivisStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih pembeli</span>
 												</option>
-												<option v-for="(datas, index) in modelAktivis" :value="datas.id" :key="index">{{datas.name}}</option>
+												<option value="0">Mitra</option>
 												<option disabled value="">----------------</option>
-												<option v-for="(datas, index) in modelMitra" :value="datas.id" :key="index">{{datas.name}}</option>
+												<option v-for="(datas, index) in modelAktivis" :value="datas.id" :key="index">{{datas.name}}</option>
 											</select>
 
 											<!-- error message -->
@@ -493,7 +493,7 @@
 												class="form-control" 
 												name="harga"
 												:options="cleaveOption.numeric"
-												v-validate="'required|min:5'" data-vv-as="Harga"
+												v-validate="'required'" data-vv-as="Harga"
 												placeholder="Silahkan masukkan harga"></cleave>
 
 											<!-- error message -->
