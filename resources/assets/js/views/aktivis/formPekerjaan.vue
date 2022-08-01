@@ -99,6 +99,7 @@
 						<option value="11">Kelompok Inti</option>
 						<option value="12">Supporting Unit</option>
 						<option value="13">Vendor sMartCu</option>
+						<option value="14">Magang</option>
 					</select>
 
 					<!-- error message -->

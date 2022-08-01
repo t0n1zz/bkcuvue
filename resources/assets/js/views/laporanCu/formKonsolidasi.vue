@@ -173,7 +173,7 @@
 							<div class="form-group">
 
 								<!-- title -->
-								<h5>Aset Tidak Menghasilkan</h5>
+								<h5>Aset Tidak Menghasilkan <info-icon :message="'Kas + Persedian + Pembayaran dimuka dan biaya dibayar dimuka + pendapatan yang masih harus diterima + nilai buku aset tetap+ aset lain-lain + jumlah rekening antar kantor TP (jika saldo debet) + tagihan nominal trf dari bank lain'"></info-icon></h5>
 
 								<!-- text -->
 								<cleave 
@@ -192,7 +192,7 @@
 							<div class="form-group">
 
 								<!-- title -->
-								<h5>Aset Likuid Tidak Menghasilkan</h5>
+								<h5>Aset Likuid Tidak Menghasilkan </h5>
 
 								<!-- text -->
 								<cleave 
@@ -211,7 +211,7 @@
 							<div class="form-group">
 
 								<!-- title -->
-								<h5>Investasi Likuid</h5>
+								<h5>Investasi Likuid <info-icon :message="'Total tabungan, giro bank dan simpanan di PUSKOPCUINA + deposito bank + simpanan di lembaga lainnya'"></info-icon></h5>
 
 								<!-- text -->
 								<cleave 
@@ -388,7 +388,7 @@
 							<div class="form-group">
 
 								<!-- title -->
-								<h5>Hutang Tidak Berbiaya &lt; 30 Hari </h5>
+								<h5>Hutang Tidak Berbiaya &lt; 30 Hari <info-icon :message="'Utang pajak + dana titipan anggota + dana titipan IT + pembayaran diterima dimuka + biaya yang masih harus dibayar + jumlah rekening antar kantor TP (jika saldo kredit)'"></info-icon></h5>
 
 								<!-- text -->
 								<cleave 

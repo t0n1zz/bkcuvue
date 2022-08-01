@@ -300,6 +300,8 @@ class LaporanTpController extends Controller{
 				$kelas3->update($konsolidasi);
 			}
 
+			LaporanCu::flushCache();
+
 			NotificationHelper::laporan_tp($kelas,'menghapus');
 
 			\DB::commit();

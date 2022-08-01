@@ -3536,7 +3536,19 @@ var render = function () {
                     "div",
                     { staticClass: "form-group" },
                     [
-                      _c("h5", [_vm._v("Aset Tidak Menghasilkan")]),
+                      _c(
+                        "h5",
+                        [
+                          _vm._v("Aset Tidak Menghasilkan "),
+                          _c("info-icon", {
+                            attrs: {
+                              message:
+                                "Kas + Persedian + Pembayaran dimuka dan biaya dibayar dimuka + pendapatan yang masih harus diterima + nilai buku aset tetap+ aset lain-lain + jumlah rekening antar kantor TP (jika saldo debet) + tagihan nominal trf dari bank lain",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("cleave", {
                         staticClass: "form-control",
@@ -3565,7 +3577,7 @@ var render = function () {
                     "div",
                     { staticClass: "form-group" },
                     [
-                      _c("h5", [_vm._v("Aset Likuid Tidak Menghasilkan")]),
+                      _c("h5", [_vm._v("Aset Likuid Tidak Menghasilkan ")]),
                       _vm._v(" "),
                       _c("cleave", {
                         staticClass: "form-control",
@@ -3598,7 +3610,19 @@ var render = function () {
                     "div",
                     { staticClass: "form-group" },
                     [
-                      _c("h5", [_vm._v("Investasi Likuid")]),
+                      _c(
+                        "h5",
+                        [
+                          _vm._v("Investasi Likuid "),
+                          _c("info-icon", {
+                            attrs: {
+                              message:
+                                "Total tabungan, giro bank dan simpanan di PUSKOPCUINA + deposito bank + simpanan di lembaga lainnya",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("cleave", {
                         staticClass: "form-control",
@@ -3908,7 +3932,19 @@ var render = function () {
                     "div",
                     { staticClass: "form-group" },
                     [
-                      _c("h5", [_vm._v("Hutang Tidak Berbiaya < 30 Hari ")]),
+                      _c(
+                        "h5",
+                        [
+                          _vm._v("Hutang Tidak Berbiaya < 30 Hari "),
+                          _c("info-icon", {
+                            attrs: {
+                              message:
+                                "Utang pajak + dana titipan anggota + dana titipan IT + pembayaran diterima dimuka + biaya yang masih harus dibayar + jumlah rekening antar kantor TP (jika saldo kredit)",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("cleave", {
                         staticClass: "form-control",

@@ -41,19 +41,19 @@
 
 									<!-- name -->
 									<div class="col-md-12">
-										<div class="form-group" :class="{'has-error' : errors.has('form.nama')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.nama')}">
-												<i class="icon-cross2" v-if="errors.has('form.nama')"></i>
+											<h5 :class="{ 'text-danger' : errors.has('form.name')}">
+												<i class="icon-cross2" v-if="errors.has('form.name')"></i>
 												Nama: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
-											<input type="text" name="nama" class="form-control" placeholder="Silahkan masukkan nama kegiatan" v-validate="'required|min:5'" data-vv-as="Nama" v-model="form.nama">
+											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama kegiatan" v-validate="'required|min:5'" data-vv-as="Name" v-model="form.name">
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.nama')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.nama') }}
+											<small class="text-muted text-danger" v-if="errors.has('form.name')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>

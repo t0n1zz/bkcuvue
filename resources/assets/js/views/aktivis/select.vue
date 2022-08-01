@@ -121,6 +121,7 @@
 						<option value="kolektor">Kolektor</option>
 						<option value="kelompok_inti">Kelompok Inti</option>
 						<option value="vendor_smartcu">Vendor sMartCU</option>
+						<option value="magang">Magang</option>
 						<option disabled value="">----------------</option>
 						<option value="senior_manajer">Senior Manajer</option>
 						<option value="manajer">Manajer</option>

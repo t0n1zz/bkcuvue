@@ -681,6 +681,7 @@
 											<span v-if="itemDataStat === 'loading'">Mohon tunggu...</span>
 											<span v-else>Silahkan pilih sertifikat</span>
 										</option>
+										<option value="0">Tidak menggunakan sertifikat</option>
 										<option v-for="(sertifikat, index) in itemData.data" :value="sertifikat.id" :key="index">{{sertifikat.name}} -- {{sertifikat.kode_sertifikat}}</option>
 									</select>
 								</div>

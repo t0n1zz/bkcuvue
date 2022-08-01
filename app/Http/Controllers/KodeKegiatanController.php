@@ -8,9 +8,10 @@ use Illuminate\Http\Request;
 class KodeKegiatanController extends Controller
 {
     protected $message = "Kode Kegiatan";
+
     public function index()
     {
-        $table_data = KodeKegiatan::advancedFilter();
+        $table_data = KodeKegiatan::withCount('hasKegiatan')->advancedFilter();
 
         return response()
             ->json([
@@ -30,20 +31,16 @@ class KodeKegiatanController extends Controller
 
     public function store(Request $request)
     {
-        $data = [
-            'kode' => $request->kode,
-            'nama' => $request->nama
-        ];
-        // $this->validate($data, KodeKegiatan::$rules);
+        $this->validate($request, KodeKegiatan::$rules);
 
-        $nama = $request->nama;
+        $name = $request->name;
 
-        $kelas = KodeKegiatan::create($data);
+        $kelas = KodeKegiatan::create($request->all());
 
         return response()
             ->json([
                 'saved' => true,
-                'message' => $this->message . ' ' . $nama . ' berhasil ditambah',
+                'message' => $this->message . ' ' . $name . ' berhasil ditambah',
                 'id' => $kelas->id
             ]);
     }
@@ -61,33 +58,30 @@ class KodeKegiatanController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data = [
-            'kode' => $request->kode,
-            'nama' => $request->nama
-        ];
+        $this->validate($request, KodeKegiatan::$rules);
 
-        $nama = $request->nama;
+        $name = $request->name;
         $kelas = KodeKegiatan::findOrFail($id);
 
+        $kelas->update($request->all());
 
-        $kelas->update($data);
         return response()
             ->json([
                 'saved' => true,
-                'message' => $this->message . ' ' . $nama . ' berhasil diubah'
+                'message' => $this->message . ' ' . $name . ' berhasil diubah'
             ]);
     }
 
     public function destroy($id)
     {
         $kelas = KodeKegiatan::findOrFail($id);
-        $nama = $kelas->nama;
+        $name = $kelas->name;
         $kelas->delete();
 
         return response()
             ->json([
                 'deleted' => true,
-                'message' =>  $this->message . ' ' . $nama . ' berhasil dihapus'
+                'message' =>  $this->message . ' ' . $name . ' berhasil dihapus'
             ]);
     }
 }

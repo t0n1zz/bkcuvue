@@ -1268,7 +1268,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     modalConfirmOk: function modalConfirmOk() {
       if (this.state == "hapus") {
-        if (this.selectedItem.tp) {
+        if (this.selectedItem.id_tp) {
           this.$store.dispatch("laporanTp/destroy", this.selectedItem.id);
         } else {
           this.$store.dispatch(this.kelas + "/destroy", this.selectedItem.id);

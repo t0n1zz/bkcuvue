@@ -303,15 +303,24 @@ class LaporanCuController extends Controller{
 	public function destroy($id)
 	{
 		$kelas = LaporanCu::findOrFail($id);
+		$id_cu = $kelas->id_cu;
+
+		if($kelas->tp){
+			LaporanTp::whereHas('Tp',function($query) use ($id_cu){
+				$query->where('id_cu',$id_cu);
+			})->where('periode', $kelas->periode)->delete();
+		}
 
 		$kelas->delete();
+
+		LaporanTp::flushCache();
 
 		NotificationHelper::laporan_cu($kelas,'menghapus');
 
 		return response()
 			->json([
 				'deleted' => true,
-				'message' => $this->message. 'berhasil dihapus'
+				'message' => $this->message. ' berhasil dihapus'
 			]);
 	}
 

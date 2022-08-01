@@ -36,4 +36,9 @@ class KodeKegiatan extends Model
         'name' => 'required'
     ];
 
+    public function hasKegiatan()
+    {
+        return $this->hasMany('App\Kegiatan','id_kode','id');
+    }
+
 }

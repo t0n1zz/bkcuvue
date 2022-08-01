@@ -1292,6 +1292,18 @@ export const kegiatanBKCU = {
     setDataSertifikat ( state, data){
       state.dataSertifikat = data;
     },
+    setNilai(state, data) {
+      state.nilai = data;
+    },
+    setNilaiStat(state, data) {
+        state.nilaiStat = data;
+    },
+    setUpdateNilai(state, data) {
+        state.nilai = data;
+    },
+    setUpdateNilaiStat(state, data) {
+        state.nilaiStat = data;
+    },
     setDataNilai ( state, data){
       state.dataNilai = data;
     },

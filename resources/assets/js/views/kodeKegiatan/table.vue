@@ -52,42 +52,12 @@
 						<check-value :value="props.item.kode"></check-value>
 					</td>
 					<td v-if="!columnData[2].hide">
-						<check-value :value="props.item.nama"></check-value>
+						<check-value :value="props.item.name"></check-value>
 					</td>
-					
+					<td v-if="!columnData[3].hide">
+						{{props.item.has_kegiatan_count}}
+					</td>
 				</tr>
-			</template>
-
-			<!-- item mobile -->
-			<template slot="item-mobile" slot-scope="props">
-				<div class="col-lg-4 col-md-6">
-					<div class="card cursor-pointer" @click.prevent="ubahData(props.item.id)">						
-						<div class="card-header bg-light header-elements-inline">
-							<h6 class="card-title"><check-value :value="props.item.kode"></check-value>
-								</h6>
-						</div>
-						<div class="card-body">
-							
-							<hr/>
-							<h6 class="text-primary">{{ props.item.nama }}</h6>
-							
-							<hr/>
-
-							<div class="row">
-								<div class="col-sm-6">
-									<ul class="list list-unstyled mb-1">
-										<li>Kode: <span class="text-muted">{{ props.item.kode }}</span></li>
-										</ul>
-								</div>
-								<div class="col-sm-6">
-									<ul class="list list-unstyled mb-1">
-										<li>Nama: <span class="text-muted">{{ props.item.nama }}</span></li>
-										</ul>
-								</div>
-							</div>
-						</div>					
-					</div>
-				</div>
 			</template>
 
 		</data-viewer>
@@ -122,7 +92,7 @@
 			return {
 				selectedItem: [],
 				query: {
-					order_column: "nama",
+					order_column: "name",
 					order_direction: "asc",
 					filter_match: "and",
 					limit: 10,
@@ -145,7 +115,6 @@
 						disable: false,
 						filter: true,
 						filterDefault: true
-						
 					},
 					{
 						title: 'Nama',
@@ -155,9 +124,15 @@
 						hide: false,
 						disable: false,
 						filter: true,
-						filterDefault: false
-						
-					}
+					},
+					{
+						title: 'Kegiatan',
+						name: 'has_kegiatan_count',
+						tipe: 'numeric',
+						sort: true,
+						hide: false,
+						disable: false
+					},
 				],
 				keteranganBatal: '',
 				state: '',
