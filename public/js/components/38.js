@@ -1625,6 +1625,79 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2865,7 +2938,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }).then(function (response) {
           file_saver__WEBPACK_IMPORTED_MODULE_23___default.a.saveAs(response.data, filename);
         });
-      } else if (this.item.tipe == 'pertemuan_bkcu') {
+      } else if (this.item.tipe == 'pertemuan_bkcu' || this.item.tipe == 'pertemuan_bkcu_internal') {
         axios.get('/api/download_folder/' + filename + '/pertemuan', {
           responseType: 'blob'
         }).then(function (response) {
@@ -6516,7 +6589,8 @@ var render = function () {
                                 })
                               : _vm._e(),
                           ]
-                        : _vm.item.tipe == "pertemuan_bkcu"
+                        : _vm.item.tipe == "pertemuan_bkcu" ||
+                          _vm.item.tipe == "pertemuan_bkcu_internal"
                         ? [
                             _vm.item.gambar
                               ? _c("img", {
@@ -6542,824 +6616,798 @@ var render = function () {
                   ),
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-lg-3 col-md-4 order-md-12" }, [
+                _c("div", { staticClass: "col-md-12" }, [
                   _c("div", { staticClass: "card" }, [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "card-body" },
-                      [
-                        _vm.item.tipe == "diklat_bkcu"
-                          ? [
-                              _vm.tipeUser == "panitia"
-                                ? _c(
-                                    "button",
-                                    {
-                                      staticClass:
-                                        "btn btn-light btn-block mb-2",
-                                      on: {
-                                        click: function ($event) {
-                                          $event.preventDefault()
-                                          return _vm.modalOpen("tambahMateri")
+                    _c("div", { staticClass: "card-header d-print-none" }, [
+                      _c(
+                        "div",
+                        { staticClass: "d-none d-sm-block" },
+                        [
+                          _vm.item.tipe == "diklat_bkcu"
+                            ? [
+                                _vm.currentUser.can &&
+                                _vm.currentUser.can["update_diklat_bkcu"] &&
+                                _vm.currentUser.id_cu == 0
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-light mb-1",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.modalOpen("tambahMateri")
+                                          },
                                         },
                                       },
-                                    },
-                                    [
-                                      _c("i", { staticClass: "icon-plus22" }),
-                                      _vm._v(
-                                        " Tambah Materi\n\t\t\t\t\t\t\t\t\t"
-                                      ),
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.tipeUser == "panitia"
-                                ? _c(
-                                    "button",
-                                    {
-                                      staticClass:
-                                        "btn btn-light btn-block mb-2",
-                                      on: {
-                                        click: function ($event) {
-                                          $event.preventDefault()
-                                          return _vm.ubahKegiatan(_vm.item.id)
+                                      [
+                                        _c("i", { staticClass: "icon-plus22" }),
+                                        _vm._v(
+                                          " Tambah Materi\n\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.currentUser.can &&
+                                _vm.currentUser.can["update_diklat_bkcu"] &&
+                                _vm.currentUser.id_cu == 0
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-light mb-1",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.ubahKegiatan(_vm.item.id)
+                                          },
                                         },
                                       },
-                                    },
-                                    [
-                                      _c("i", { staticClass: "icon-pencil5" }),
-                                      _vm._v(
-                                        " Ubah Diklat\n\t\t\t\t\t\t\t\t\t"
-                                      ),
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.tipeUser == "panitia"
-                                ? _c(
-                                    "button",
-                                    {
-                                      staticClass:
-                                        "btn btn-light btn-block mb-2",
-                                      on: {
-                                        click: function ($event) {
-                                          $event.preventDefault()
-                                          return _vm.modalOpen(
-                                            "statusPertemuan"
+                                      [
+                                        _c("i", {
+                                          staticClass: "icon-pencil5",
+                                        }),
+                                        _vm._v(
+                                          " Ubah Diklat\n\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.currentUser.can &&
+                                _vm.currentUser.can["update_diklat_bkcu"] &&
+                                _vm.currentUser.id_cu == 0
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-light mb-1",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.modalOpen(
+                                              "statusPertemuan"
+                                            )
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "icon-calendar5",
+                                        }),
+                                        _vm._v(
+                                          " Status Diklat\n\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.currentUser.can &&
+                                _vm.currentUser.can["update_diklat_bkcu"] &&
+                                _vm.currentUser.id_cu == 0
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-light mb-1",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.modalOpen(
+                                              "hapusPertemuan"
+                                            )
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("i", { staticClass: "icon-bin2" }),
+                                        _vm._v(
+                                          " Hapus Diklat\n\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.item.status != 5 && _vm.item.status != 6
+                                  ? [
+                                      _vm.currentUser.can &&
+                                      _vm.currentUser.can[
+                                        "update_diklat_bkcu"
+                                      ] &&
+                                      _vm.currentUser.id_cu == 0
+                                        ? _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn bg-warning-400 mb-1",
+                                              on: {
+                                                click: function ($event) {
+                                                  $event.preventDefault()
+                                                  return _vm.modalOpen(
+                                                    "tambahPeserta"
+                                                  )
+                                                },
+                                              },
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "icon-people",
+                                              }),
+                                              _vm._v(
+                                                " Daftar Peserta Diklat\n\t\t\t\t\t\t\t\t\t\t\t"
+                                              ),
+                                            ]
                                           )
-                                        },
-                                      },
-                                    },
-                                    [
-                                      _c("i", {
-                                        staticClass: "icon-calendar5",
-                                      }),
-                                      _vm._v(
-                                        " Status Diklat\n\t\t\t\t\t\t\t\t\t"
-                                      ),
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.tipeUser == "panitia"
-                                ? _c(
-                                    "button",
-                                    {
-                                      staticClass:
-                                        "btn btn-light btn-block mb-2",
-                                      on: {
-                                        click: function ($event) {
-                                          $event.preventDefault()
-                                          return _vm.modalOpen("hapusPertemuan")
-                                        },
-                                      },
-                                    },
-                                    [
-                                      _c("i", { staticClass: "icon-bin2" }),
-                                      _vm._v(
-                                        " Hapus Diklat\n\t\t\t\t\t\t\t\t\t"
-                                      ),
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.item.status != 5 && _vm.item.status != 6
-                                ? [
-                                    _vm.currentUser.id_cu == 0
-                                      ? _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "btn bg-warning-400 btn-block mb-2",
-                                            on: {
-                                              click: function ($event) {
-                                                $event.preventDefault()
-                                                return _vm.modalOpen(
-                                                  "tambahPeserta"
-                                                )
+                                        : _vm.currentUser.can &&
+                                          _vm.currentUser.can[
+                                            "index_diklat_bkcu"
+                                          ] &&
+                                          _vm.currentUser.id_cu != 0 &&
+                                          _vm.item.status == 2
+                                        ? _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn bg-warning-400 mb-1",
+                                              on: {
+                                                click: function ($event) {
+                                                  $event.preventDefault()
+                                                  return _vm.modalOpen(
+                                                    "tambahPeserta"
+                                                  )
+                                                },
                                               },
                                             },
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "icon-people",
-                                            }),
-                                            _vm._v(
-                                              " Daftar Peserta Diklat\n\t\t\t\t\t\t\t\t\t\t"
-                                            ),
-                                          ]
-                                        )
-                                      : _vm.currentUser.can &&
-                                        _vm.currentUser.can[
-                                          "index_diklat_bkcu"
-                                        ] &&
-                                        _vm.currentUser.id_cu != 0 &&
-                                        _vm.item.status == 2
-                                      ? _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "btn bg-warning-400 btn-block mb-2",
-                                            on: {
-                                              click: function ($event) {
-                                                $event.preventDefault()
-                                                return _vm.modalOpen(
-                                                  "tambahPeserta"
-                                                )
-                                              },
-                                            },
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "icon-people",
-                                            }),
-                                            _vm._v(
-                                              " Daftar Peserta Diklat\n\t\t\t\t\t\t\t\t\t\t"
-                                            ),
-                                          ]
-                                        )
-                                      : _vm._e(),
-                                  ]
-                                : _vm._e(),
-                            ]
-                          : _vm.item.tipe == "pertemuan_bkcu"
-                          ? [
-                              _vm.tipeUser == "panitia"
-                                ? _c(
-                                    "button",
-                                    {
-                                      staticClass:
-                                        "btn btn-light btn-block mb-2",
-                                      on: {
-                                        click: function ($event) {
-                                          $event.preventDefault()
-                                          return _vm.modalOpen("tambahMateri")
-                                        },
-                                      },
-                                    },
-                                    [
-                                      _c("i", { staticClass: "icon-plus22" }),
-                                      _vm._v(
-                                        " Tambah Materi\n\t\t\t\t\t\t\t\t\t"
-                                      ),
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.tipeUser == "panitia"
-                                ? _c(
-                                    "button",
-                                    {
-                                      staticClass:
-                                        "btn btn-light btn-block mb-2",
-                                      on: {
-                                        click: function ($event) {
-                                          $event.preventDefault()
-                                          return _vm.ubahKegiatan(_vm.item.id)
-                                        },
-                                      },
-                                    },
-                                    [
-                                      _c("i", { staticClass: "icon-pencil5" }),
-                                      _vm._v(
-                                        " Ubah Pertemuan\n\t\t\t\t\t\t\t\t\t"
-                                      ),
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.tipeUser == "panitia"
-                                ? _c(
-                                    "button",
-                                    {
-                                      staticClass:
-                                        "btn btn-light btn-block mb-2",
-                                      on: {
-                                        click: function ($event) {
-                                          $event.preventDefault()
-                                          return _vm.modalOpen(
-                                            "statusPertemuan"
+                                            [
+                                              _c("i", {
+                                                staticClass: "icon-people",
+                                              }),
+                                              _vm._v(
+                                                " Daftar Peserta Diklat\n\t\t\t\t\t\t\t\t\t\t\t"
+                                              ),
+                                            ]
                                           )
+                                        : _vm._e(),
+                                    ]
+                                  : _vm._e(),
+                              ]
+                            : _vm.item.tipe == "pertemuan_bkcu" ||
+                              _vm.item.tipe == "pertemuan_bkcu_internal"
+                            ? [
+                                _vm.currentUser.can &&
+                                _vm.currentUser.can["update_diklat_bkcu"] &&
+                                _vm.currentUser.id_cu == 0
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-light mb-1",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.modalOpen("tambahMateri")
+                                          },
                                         },
                                       },
-                                    },
-                                    [
-                                      _c("i", {
-                                        staticClass: "icon-calendar5",
-                                      }),
-                                      _vm._v(
-                                        " Status Pertemuan\n\t\t\t\t\t\t\t\t\t"
-                                      ),
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.tipeUser == "panitia" && _vm.item.status == 1
-                                ? _c(
-                                    "button",
-                                    {
-                                      staticClass:
-                                        "btn btn-light btn-block mb-2",
-                                      on: {
-                                        click: function ($event) {
-                                          $event.preventDefault()
-                                          return _vm.modalOpen("hapusPertemuan")
+                                      [
+                                        _c("i", { staticClass: "icon-plus22" }),
+                                        _vm._v(
+                                          " Tambah Materi\n\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.currentUser.can &&
+                                _vm.currentUser.can["update_diklat_bkcu"] &&
+                                _vm.currentUser.id_cu == 0
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-light mb-1",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.ubahKegiatan(_vm.item.id)
+                                          },
                                         },
                                       },
-                                    },
-                                    [
-                                      _c("i", { staticClass: "icon-bin2" }),
-                                      _vm._v(
-                                        " Hapus Pertemuan\n\t\t\t\t\t\t\t\t\t"
-                                      ),
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.item.status != 5 && _vm.item.status != 6
-                                ? [
-                                    _vm.currentUser.id_cu == 0
-                                      ? _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "btn bg-warning-400 btn-block mb-2",
-                                            on: {
-                                              click: function ($event) {
-                                                $event.preventDefault()
-                                                return _vm.modalOpen(
-                                                  "tambahPeserta"
-                                                )
+                                      [
+                                        _c("i", {
+                                          staticClass: "icon-pencil5",
+                                        }),
+                                        _vm._v(
+                                          " Ubah Pertemuan\n\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.currentUser.can &&
+                                _vm.currentUser.can["update_diklat_bkcu"] &&
+                                _vm.currentUser.id_cu == 0
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-light mb-1",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.modalOpen(
+                                              "statusPertemuan"
+                                            )
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "icon-calendar5",
+                                        }),
+                                        _vm._v(
+                                          " Status Pertemuan\n\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.currentUser.can &&
+                                _vm.currentUser.can["update_diklat_bkcu"] &&
+                                _vm.currentUser.id_cu == 0
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-light mb-1",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.modalOpen(
+                                              "hapusPertemuan"
+                                            )
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("i", { staticClass: "icon-bin2" }),
+                                        _vm._v(
+                                          " Hapus Pertemuan\n\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.item.status != 5 && _vm.item.status != 6
+                                  ? [
+                                      _vm.currentUser.can &&
+                                      _vm.currentUser.can[
+                                        "update_diklat_bkcu"
+                                      ] &&
+                                      _vm.currentUser.id_cu == 0
+                                        ? _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn bg-warning-400 mb-1",
+                                              on: {
+                                                click: function ($event) {
+                                                  $event.preventDefault()
+                                                  return _vm.modalOpen(
+                                                    "tambahPeserta"
+                                                  )
+                                                },
                                               },
                                             },
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "icon-people",
-                                            }),
-                                            _vm._v(
-                                              " Daftar Peserta Pertemuan\n\t\t\t\t\t\t\t\t\t\t"
-                                            ),
-                                          ]
-                                        )
-                                      : _vm.currentUser.can &&
-                                        _vm.currentUser.can[
-                                          "index_pertemuan_bkcu"
-                                        ] &&
-                                        _vm.currentUser.id_cu != 0 &&
-                                        _vm.item.status == 2
-                                      ? _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "btn bg-warning-400 btn-block mb-2",
-                                            on: {
-                                              click: function ($event) {
-                                                $event.preventDefault()
-                                                return _vm.modalOpen(
-                                                  "tambahPeserta"
-                                                )
-                                              },
-                                            },
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "icon-people",
-                                            }),
-                                            _vm._v(
-                                              " Daftar Peserta Pertemuan\n\t\t\t\t\t\t\t\t\t\t"
-                                            ),
-                                          ]
-                                        )
-                                      : _vm._e(),
-                                  ]
-                                : _vm._e(),
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.item.pilih && _vm.item.pilih.length > 0
-                          ? [
-                              _vm.item.status == 4 && _vm.tipeUser == "peserta"
-                                ? _c(
-                                    "button",
-                                    {
-                                      staticClass:
-                                        "btn bg-success btn-block mb-2",
-                                      on: {
-                                        click: function ($event) {
-                                          $event.preventDefault()
-                                          return _vm.modalOpen(
-                                            "tambahKeputusan"
+                                            [
+                                              _c("i", {
+                                                staticClass: "icon-people",
+                                              }),
+                                              _vm._v(
+                                                " Daftar Peserta Pertemuan\n\t\t\t\t\t\t\t\t\t\t\t"
+                                              ),
+                                            ]
                                           )
+                                        : _vm.currentUser.can &&
+                                          _vm.currentUser.can[
+                                            "index_pertemuan_bkcu"
+                                          ] &&
+                                          _vm.currentUser.id_cu != 0 &&
+                                          _vm.item.status == 2
+                                        ? _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn bg-warning-400 mb-1",
+                                              on: {
+                                                click: function ($event) {
+                                                  $event.preventDefault()
+                                                  return _vm.modalOpen(
+                                                    "tambahPeserta"
+                                                  )
+                                                },
+                                              },
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "icon-people",
+                                              }),
+                                              _vm._v(
+                                                " Daftar Peserta Pertemuan\n\t\t\t\t\t\t\t\t\t\t\t"
+                                              ),
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                    ]
+                                  : _vm._e(),
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.item.pilih && _vm.item.pilih.length > 0
+                            ? [
+                                _vm.item.status == 4 &&
+                                _vm.tipeUser == "peserta"
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn bg-success mb-1",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.modalOpen(
+                                              "tambahKeputusan"
+                                            )
+                                          },
                                         },
                                       },
+                                      [
+                                        _c("i", { staticClass: "icon-hammer" }),
+                                        _vm._v(
+                                          " Beri Keputusan\n\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.item.status == 4 && _vm.tipeUser == "peserta"
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass: "btn bg-info mb-1",
+                                  on: {
+                                    click: function ($event) {
+                                      $event.preventDefault()
+                                      return _vm.modalOpen("tambahPertanyaan")
                                     },
-                                    [
-                                      _c("i", { staticClass: "icon-hammer" }),
-                                      _vm._v(
-                                        " Beri Keputusan\n\t\t\t\t\t\t\t\t\t"
-                                      ),
-                                    ]
-                                  )
-                                : _vm._e(),
-                            ]
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.item.status == 4 && _vm.tipeUser == "peserta"
-                          ? _c(
-                              "button",
-                              {
-                                staticClass: "btn bg-info btn-block mb-2",
-                                on: {
-                                  click: function ($event) {
-                                    $event.preventDefault()
-                                    return _vm.modalOpen("tambahPertanyaan")
                                   },
                                 },
-                              },
-                              [
-                                _c("i", { staticClass: "icon-question7" }),
-                                _vm._v(" Ajukan Pertanyaan\n\t\t\t\t\t\t\t\t"),
-                              ]
-                            )
-                          : _vm._e(),
-                      ],
-                      2
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card" }, [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c(
-                      "table",
-                      {
-                        staticClass:
-                          "table table-borderless table-xs border-top-0 my-2",
-                      },
-                      [
-                        _c("tbody", [
-                          _c("tr", [
-                            _c("td", { staticClass: "font-weight-semibold" }, [
-                              _vm._v("Status:"),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-right" }, [
-                              _c("span", {
-                                domProps: {
-                                  innerHTML: _vm._s(
-                                    _vm.$options.filters.statusDiklat(
-                                      _vm.item.status
-                                    )
-                                  ),
-                                },
-                              }),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", { staticClass: "font-weight-semibold" }, [
-                              _vm._v("Kode:"),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-right" }, [
-                              _vm._v(
-                                "\n\t\t\t\t\t\t\t\t\t\t\t" +
-                                  _vm._s(
-                                    _vm.item.kode_diklat
-                                      ? _vm.item.kode_diklat
-                                      : _vm.kode
-                                  ) +
-                                  "\n\t\t\t\t\t\t\t\t\t\t"
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", { staticClass: "font-weight-semibold" }, [
-                              _vm._v("Durasi:"),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-right" }, [
-                              _vm._v(_vm._s(_vm.item.durasi) + " jam"),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", { staticClass: "font-weight-semibold" }, [
-                              _vm._v("Tgl. Mulai:"),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", {
-                              staticClass: "text-right",
-                              domProps: {
-                                innerHTML: _vm._s(
-                                  _vm.$options.filters.dateMonth(_vm.item.mulai)
-                                ),
-                              },
-                            }),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", { staticClass: "font-weight-semibold" }, [
-                              _vm._v("Tgl. Selesai:"),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", {
-                              staticClass: "text-right",
-                              domProps: {
-                                innerHTML: _vm._s(
-                                  _vm.$options.filters.dateMonth(
-                                    _vm.item.selesai
-                                  )
-                                ),
-                              },
-                            }),
-                          ]),
-                          _vm._v(" "),
-                          _vm._m(2),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", { staticClass: "font-weight-semibold" }, [
-                              _vm._v("Peserta Min:"),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-right" }, [
-                              _vm._v(_vm._s(_vm.item.peserta_min) + " orang"),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", { staticClass: "font-weight-semibold" }, [
-                              _vm._v("Peserta Max:"),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-right" }, [
-                              _vm._v(_vm._s(_vm.item.peserta_max) + " orang"),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", [
-                            _c("td", { staticClass: "font-weight-semibold" }, [
-                              _vm._v("Peserta Max Per CU:"),
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-right" }, [
-                              _vm._v(
-                                _vm._s(_vm.item.peserta_max_cu) + " orang"
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _vm.item.keputusan_cu ||
-                          _vm.item.pertanyaan_cu ||
-                          _vm.item.keputusan_user ||
-                          _vm.item.pertanyaan_user
-                            ? _c("tr", [_vm._m(3)])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.item.keputusan_cu
-                            ? _c("tr", [
-                                _c(
-                                  "td",
-                                  { staticClass: "font-weight-semibold" },
-                                  [_vm._v("Keputusan Max Per CU:")]
-                                ),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right" }, [
-                                  _vm._v(
-                                    _vm._s(_vm.item.keputusan_cu) + " kali"
-                                  ),
-                                ]),
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.item.keputusan_user
-                            ? _c("tr", [
-                                _c(
-                                  "td",
-                                  { staticClass: "font-weight-semibold" },
-                                  [_vm._v("Keputusan Max Per Peserta:")]
-                                ),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right" }, [
-                                  _vm._v(
-                                    _vm._s(_vm.item.keputusan_user) + " kali"
-                                  ),
-                                ]),
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.item.pertanyaan_cu
-                            ? _c("tr", [
-                                _c(
-                                  "td",
-                                  { staticClass: "font-weight-semibold" },
-                                  [_vm._v("Pertanyaan Max Per CU:")]
-                                ),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right" }, [
-                                  _vm._v(
-                                    _vm._s(_vm.item.pertanyaan_cu) + " kali"
-                                  ),
-                                ]),
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.item.pertanyaan_user
-                            ? _c("tr", [
-                                _c(
-                                  "td",
-                                  { staticClass: "font-weight-semibold" },
-                                  [_vm._v("Pertanyaan Max Per Peserta:")]
-                                ),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "text-right" }, [
-                                  _vm._v(
-                                    _vm._s(_vm.item.pertanyaan_user) + " kali"
-                                  ),
-                                ]),
-                              ])
-                            : _vm._e(),
-                        ]),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card" }, [
-                    _vm._m(4),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "card-body" }, [
-                      _vm.item.sasaran
-                        ? _c(
-                            "span",
-                            _vm._l(_vm.item.sasaran, function (sasaran, index) {
-                              return _c(
-                                "label",
-                                {
-                                  key: index,
-                                  staticClass: "badge badge-primary ml-1",
-                                },
                                 [
+                                  _c("i", { staticClass: "icon-question7" }),
                                   _vm._v(
-                                    "\n\t\t\t\t\t\t\t\t\t\t" +
-                                      _vm._s(sasaran.name) +
-                                      "\n\t\t\t\t\t\t\t\t\t"
+                                    " Ajukan Pertanyaan\n\t\t\t\t\t\t\t\t\t"
                                   ),
                                 ]
                               )
-                            }),
-                            0
-                          )
-                        : _vm._e(),
+                            : _vm._e(),
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "d-block d-sm-none" },
+                        [
+                          _vm.item.tipe == "diklat_bkcu"
+                            ? [
+                                _vm.currentUser.can &&
+                                _vm.currentUser.can["update_diklat_bkcu"] &&
+                                _vm.currentUser.id_cu == 0
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-light btn-block mb-2",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.modalOpen("tambahMateri")
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("i", { staticClass: "icon-plus22" }),
+                                        _vm._v(
+                                          " Tambah Materi\n\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.currentUser.can &&
+                                _vm.currentUser.can["update_diklat_bkcu"] &&
+                                _vm.currentUser.id_cu == 0
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-light btn-block mb-2",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.ubahKegiatan(_vm.item.id)
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "icon-pencil5",
+                                        }),
+                                        _vm._v(
+                                          " Ubah Diklat\n\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.currentUser.can &&
+                                _vm.currentUser.can["update_diklat_bkcu"] &&
+                                _vm.currentUser.id_cu == 0
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-light btn-block mb-2",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.modalOpen(
+                                              "statusPertemuan"
+                                            )
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "icon-calendar5",
+                                        }),
+                                        _vm._v(
+                                          " Status Diklat\n\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.currentUser.can &&
+                                _vm.currentUser.can["update_diklat_bkcu"] &&
+                                _vm.currentUser.id_cu == 0
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-light btn-block mb-2",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.modalOpen(
+                                              "hapusPertemuan"
+                                            )
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("i", { staticClass: "icon-bin2" }),
+                                        _vm._v(
+                                          " Hapus Diklat\n\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.item.status != 5 && _vm.item.status != 6
+                                  ? [
+                                      _vm.currentUser.can &&
+                                      _vm.currentUser.can[
+                                        "update_diklat_bkcu"
+                                      ] &&
+                                      _vm.currentUser.id_cu == 0
+                                        ? _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn bg-warning-400 btn-block mb-2",
+                                              on: {
+                                                click: function ($event) {
+                                                  $event.preventDefault()
+                                                  return _vm.modalOpen(
+                                                    "tambahPeserta"
+                                                  )
+                                                },
+                                              },
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "icon-people",
+                                              }),
+                                              _vm._v(
+                                                " Daftar Peserta Diklat\n\t\t\t\t\t\t\t\t\t\t\t"
+                                              ),
+                                            ]
+                                          )
+                                        : _vm.currentUser.can &&
+                                          _vm.currentUser.can[
+                                            "index_diklat_bkcu"
+                                          ] &&
+                                          _vm.currentUser.id_cu != 0 &&
+                                          _vm.item.status == 2
+                                        ? _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn bg-warning-400 btn-block mb-2",
+                                              on: {
+                                                click: function ($event) {
+                                                  $event.preventDefault()
+                                                  return _vm.modalOpen(
+                                                    "tambahPeserta"
+                                                  )
+                                                },
+                                              },
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "icon-people",
+                                              }),
+                                              _vm._v(
+                                                " Daftar Peserta Diklat\n\t\t\t\t\t\t\t\t\t\t\t"
+                                              ),
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                    ]
+                                  : _vm._e(),
+                              ]
+                            : _vm.item.tipe == "pertemuan_bkcu" ||
+                              _vm.item.tipe == "pertemuan_bkcu_internal"
+                            ? [
+                                _vm.currentUser.can &&
+                                _vm.currentUser.can["update_diklat_bkcu"] &&
+                                _vm.currentUser.id_cu == 0
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-light btn-block mb-2",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.modalOpen("tambahMateri")
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("i", { staticClass: "icon-plus22" }),
+                                        _vm._v(
+                                          " Tambah Materi\n\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.currentUser.can &&
+                                _vm.currentUser.can["update_diklat_bkcu"] &&
+                                _vm.currentUser.id_cu == 0
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-light btn-block mb-2",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.ubahKegiatan(_vm.item.id)
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "icon-pencil5",
+                                        }),
+                                        _vm._v(
+                                          " Ubah Pertemuan\n\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.currentUser.can &&
+                                _vm.currentUser.can["update_diklat_bkcu"] &&
+                                _vm.currentUser.id_cu == 0
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-light btn-block mb-2",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.modalOpen(
+                                              "statusPertemuan"
+                                            )
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "icon-calendar5",
+                                        }),
+                                        _vm._v(
+                                          " Status Pertemuan\n\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.currentUser.can &&
+                                _vm.currentUser.can["update_diklat_bkcu"] &&
+                                _vm.currentUser.id_cu == 0
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-light btn-block mb-2",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.modalOpen(
+                                              "hapusPertemuan"
+                                            )
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("i", { staticClass: "icon-bin2" }),
+                                        _vm._v(
+                                          " Hapus Pertemuan\n\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.item.status != 5 && _vm.item.status != 6
+                                  ? [
+                                      _vm.currentUser.id_cu == 0
+                                        ? _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn bg-warning-400 btn-block mb-2",
+                                              on: {
+                                                click: function ($event) {
+                                                  $event.preventDefault()
+                                                  return _vm.modalOpen(
+                                                    "tambahPeserta"
+                                                  )
+                                                },
+                                              },
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "icon-people",
+                                              }),
+                                              _vm._v(
+                                                " Daftar Peserta Pertemuan\n\t\t\t\t\t\t\t\t\t\t\t"
+                                              ),
+                                            ]
+                                          )
+                                        : _vm.currentUser.can &&
+                                          _vm.currentUser.can[
+                                            "index_pertemuan_bkcu"
+                                          ] &&
+                                          _vm.currentUser.id_cu != 0 &&
+                                          _vm.item.status == 2
+                                        ? _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn bg-warning-400 btn-block mb-2",
+                                              on: {
+                                                click: function ($event) {
+                                                  $event.preventDefault()
+                                                  return _vm.modalOpen(
+                                                    "tambahPeserta"
+                                                  )
+                                                },
+                                              },
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "icon-people",
+                                              }),
+                                              _vm._v(
+                                                " Daftar Peserta Pertemuan\n\t\t\t\t\t\t\t\t\t\t\t"
+                                              ),
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                    ]
+                                  : _vm._e(),
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.item.pilih && _vm.item.pilih.length > 0
+                            ? [
+                                _vm.item.status == 4 &&
+                                _vm.tipeUser == "peserta"
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn bg-success btn-block mb-2",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.modalOpen(
+                                              "tambahKeputusan"
+                                            )
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("i", { staticClass: "icon-hammer" }),
+                                        _vm._v(
+                                          " Beri Keputusan\n\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                              ]
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.item.status == 4 && _vm.tipeUser == "peserta"
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass: "btn bg-info btn-block mb-2",
+                                  on: {
+                                    click: function ($event) {
+                                      $event.preventDefault()
+                                      return _vm.modalOpen("tambahPertanyaan")
+                                    },
+                                  },
+                                },
+                                [
+                                  _c("i", { staticClass: "icon-question7" }),
+                                  _vm._v(
+                                    " Ajukan Pertanyaan\n\t\t\t\t\t\t\t\t\t"
+                                  ),
+                                ]
+                              )
+                            : _vm._e(),
+                        ],
+                        2
+                      ),
                     ]),
                   ]),
-                  _vm._v(" "),
-                  _vm.item.tempat
-                    ? _c("div", { staticClass: "card" }, [
-                        _vm._m(5),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "card-img-actions mx-1 mt-1" },
-                          [
-                            _vm.item.tempat && _vm.item.tempat.gambar
-                              ? _c(
-                                  "a",
-                                  {
-                                    attrs: { href: "#" },
-                                    on: {
-                                      click: function ($event) {
-                                        $event.preventDefault()
-                                        return _vm.modalImageOpen(
-                                          "/images/tempat/" +
-                                            _vm.item.tempat.gambar +
-                                            ".jpg"
-                                        )
-                                      },
-                                    },
-                                  },
-                                  [
-                                    _c("img", {
-                                      staticClass: "card-img img-fluid",
-                                      attrs: {
-                                        src:
-                                          "/images/tempat/" +
-                                          _vm.item.tempat.gambar +
-                                          "n.jpg",
-                                      },
-                                    }),
-                                    _vm._v(" "),
-                                    _vm._m(6),
-                                  ]
-                                )
-                              : _c(
-                                  "a",
-                                  {
-                                    attrs: { href: "#" },
-                                    on: {
-                                      click: function ($event) {
-                                        $event.preventDefault()
-                                        return _vm.modalImageOpen(
-                                          "/images/no_image.jpg"
-                                        )
-                                      },
-                                    },
-                                  },
-                                  [
-                                    _c("img", {
-                                      staticClass: "card-img img-fluid",
-                                      attrs: { src: "/images/no_image.jpg" },
-                                    }),
-                                    _vm._v(" "),
-                                    _vm._m(7),
-                                  ]
-                                ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _vm.itemStat == "success"
-                          ? _c(
-                              "table",
-                              {
-                                staticClass:
-                                  "table table-borderless table-xs border-top-0 my-2",
-                              },
-                              [
-                                _c("tbody", [
-                                  _c("tr", [
-                                    _c(
-                                      "td",
-                                      { staticClass: "font-weight-semibold" },
-                                      [_vm._v("Nama:")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      { staticClass: "text-right" },
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: _vm.item.tempat.name,
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("tr", [
-                                    _c(
-                                      "td",
-                                      { staticClass: "font-weight-semibold" },
-                                      [_vm._v("Email:")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      { staticClass: "text-right" },
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: _vm.item.tempat.email,
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("tr", [
-                                    _c(
-                                      "td",
-                                      { staticClass: "font-weight-semibold" },
-                                      [_vm._v("No. Telp:")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      { staticClass: "text-right" },
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: _vm.item.tempat.telp,
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("tr", [
-                                    _c(
-                                      "td",
-                                      { staticClass: "font-weight-semibold" },
-                                      [_vm._v("No. Hp:")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      { staticClass: "text-right" },
-                                      [
-                                        _c("check-value", {
-                                          attrs: { value: _vm.item.tempat.hp },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("tr", [
-                                    _c(
-                                      "td",
-                                      { staticClass: "font-weight-semibold" },
-                                      [_vm._v("Alamat:")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      { staticClass: "text-right" },
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: _vm.item.tempat.alamat,
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("tr", [
-                                    _c(
-                                      "td",
-                                      { staticClass: "font-weight-semibold" },
-                                      [_vm._v("Website:")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      { staticClass: "text-right" },
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: _vm.item.tempat.website,
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                  ]),
-                                ]),
-                              ]
-                            )
-                          : _vm._e(),
-                      ])
-                    : _vm.item.tipe_tempat == "ONLINE"
-                    ? _c("div", { staticClass: "card" }, [
-                        _vm._m(8),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "card-body" }, [
-                          _vm._v(
-                            "\n\t\t\t\t\t\t\t\tDilaksanakan secara online\n\t\t\t\t\t\t\t"
-                          ),
-                        ]),
-                      ])
-                    : _c("div", { staticClass: "card" }, [
-                        _vm._m(9),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "card-body" }, [
-                          _vm._v(
-                            "\n\t\t\t\t\t\t\t\tBelum menentukan tempat pertemuan\n\t\t\t\t\t\t\t"
-                          ),
-                        ]),
-                      ]),
                 ]),
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "col-lg-9 col-md-8 order-md-1" },
+                  { staticClass: "col-md-12" },
                   [
                     _c("div", { staticClass: "card" }, [
                       _c("div", { staticClass: "nav-tabs-responsive" }, [
@@ -7387,8 +7435,81 @@ var render = function () {
                                 [
                                   _c("i", { staticClass: "icon-menu7 mr-2" }),
                                   _vm._v(
-                                    "\n\t\t\t\t\t\t\t\t\t\tUmum\n\t\t\t\t\t\t\t\t\t"
+                                    "\n\t\t\t\t\t\t\t\t\t\tInformasi\n\t\t\t\t\t\t\t\t\t"
                                   ),
+                                ]
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c("li", { staticClass: "nav-item" }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "nav-link",
+                                  class: {
+                                    active: _vm.tabName == "pesertaTerdaftar",
+                                  },
+                                  attrs: { href: "#" },
+                                  on: {
+                                    click: function ($event) {
+                                      $event.preventDefault()
+                                      return _vm.changeTab("pesertaTerdaftar")
+                                    },
+                                  },
+                                },
+                                [
+                                  _c("i", { staticClass: "icon-people mr-2" }),
+                                  _vm._v(
+                                    "\n\t\t\t\t\t\t\t\t\t\tPeserta Terdaftar\n\t\t\t\t\t\t\t\t\t\t"
+                                  ),
+                                  _vm.countPesertaStat == "success" &&
+                                  _vm.countPeserta > 0 &&
+                                  _vm.currentUser.id_cu == 0
+                                    ? _c(
+                                        "span",
+                                        {
+                                          staticClass: "badge badge-dark ml-2",
+                                        },
+                                        [_vm._v(_vm._s(_vm.countPeserta))]
+                                      )
+                                    : _vm._e(),
+                                ]
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c("li", { staticClass: "nav-item" }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "nav-link",
+                                  class: {
+                                    active: _vm.tabName == "pesertaHadir",
+                                  },
+                                  attrs: { href: "#" },
+                                  on: {
+                                    click: function ($event) {
+                                      $event.preventDefault()
+                                      return _vm.changeTab("pesertaHadir")
+                                    },
+                                  },
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "icon-accessibility mr-2",
+                                  }),
+                                  _vm._v(
+                                    "\n\t\t\t\t\t\t\t\t\t\tPeserta Hadir \n\t\t\t\t\t\t\t\t\t\t"
+                                  ),
+                                  _vm.countPesertaHadirStat == "success" &&
+                                  _vm.countPesertaHadir > 0
+                                    ? _c(
+                                        "span",
+                                        {
+                                          staticClass: "badge badge-dark ml-2",
+                                        },
+                                        [_vm._v(_vm._s(_vm.countPesertaHadir))]
+                                      )
+                                    : _vm._e(),
                                 ]
                               ),
                             ]),
@@ -7552,79 +7673,6 @@ var render = function () {
                                 "a",
                                 {
                                   staticClass: "nav-link",
-                                  class: {
-                                    active: _vm.tabName == "pesertaTerdaftar",
-                                  },
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function ($event) {
-                                      $event.preventDefault()
-                                      return _vm.changeTab("pesertaTerdaftar")
-                                    },
-                                  },
-                                },
-                                [
-                                  _c("i", { staticClass: "icon-people mr-2" }),
-                                  _vm._v(
-                                    "\n\t\t\t\t\t\t\t\t\t\tTerdaftar\n\t\t\t\t\t\t\t\t\t\t"
-                                  ),
-                                  _vm.countPesertaStat == "success" &&
-                                  _vm.countPeserta > 0 &&
-                                  _vm.currentUser.id_cu == 0
-                                    ? _c(
-                                        "span",
-                                        {
-                                          staticClass: "badge badge-dark ml-2",
-                                        },
-                                        [_vm._v(_vm._s(_vm.countPeserta))]
-                                      )
-                                    : _vm._e(),
-                                ]
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c("li", { staticClass: "nav-item" }, [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "nav-link",
-                                  class: {
-                                    active: _vm.tabName == "pesertaHadir",
-                                  },
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function ($event) {
-                                      $event.preventDefault()
-                                      return _vm.changeTab("pesertaHadir")
-                                    },
-                                  },
-                                },
-                                [
-                                  _c("i", {
-                                    staticClass: "icon-accessibility mr-2",
-                                  }),
-                                  _vm._v(
-                                    "\n\t\t\t\t\t\t\t\t\t\tHadir \n\t\t\t\t\t\t\t\t\t\t"
-                                  ),
-                                  _vm.countPesertaHadirStat == "success" &&
-                                  _vm.countPesertaHadir > 0
-                                    ? _c(
-                                        "span",
-                                        {
-                                          staticClass: "badge badge-dark ml-2",
-                                        },
-                                        [_vm._v(_vm._s(_vm.countPesertaHadir))]
-                                      )
-                                    : _vm._e(),
-                                ]
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c("li", { staticClass: "nav-item" }, [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "nav-link",
                                   class: { active: _vm.tabName == "statistik" },
                                   attrs: { href: "#" },
                                   on: {
@@ -7671,337 +7719,1261 @@ var render = function () {
                             ],
                           },
                           [
-                            _vm.item.keterangan
-                              ? _c("div", { staticClass: "card" }, [
-                                  _c(
-                                    "div",
-                                    { staticClass: "card-header bg-white" },
-                                    [
-                                      _c("h5", { staticClass: "card-title" }, [
-                                        _vm._v("1. Kerangka Acuan"),
-                                      ]),
-                                    ]
-                                  ),
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "col-lg-3 col-md-4 order-md-12",
+                                },
+                                [
+                                  _c("div", { staticClass: "card" }, [
+                                    _c(
+                                      "table",
+                                      {
+                                        staticClass:
+                                          "table table-borderless table-xs border-top-0 my-2",
+                                      },
+                                      [
+                                        _c("tbody", [
+                                          _c("tr", [
+                                            _c(
+                                              "td",
+                                              {
+                                                staticClass:
+                                                  "font-weight-semibold",
+                                              },
+                                              [_vm._v("Status:")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              { staticClass: "text-right" },
+                                              [
+                                                _c("span", {
+                                                  domProps: {
+                                                    innerHTML: _vm._s(
+                                                      _vm.$options.filters.statusDiklat(
+                                                        _vm.item.status
+                                                      )
+                                                    ),
+                                                  },
+                                                }),
+                                              ]
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("tr", [
+                                            _c(
+                                              "td",
+                                              {
+                                                staticClass:
+                                                  "font-weight-semibold",
+                                              },
+                                              [_vm._v("Kode:")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              { staticClass: "text-right" },
+                                              [
+                                                _vm._v(
+                                                  "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                    _vm._s(
+                                                      _vm.item.kode_diklat
+                                                        ? _vm.item.kode_diklat
+                                                        : _vm.kode
+                                                    ) +
+                                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                ),
+                                              ]
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("tr", [
+                                            _c(
+                                              "td",
+                                              {
+                                                staticClass:
+                                                  "font-weight-semibold",
+                                              },
+                                              [_vm._v("Durasi:")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              { staticClass: "text-right" },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(_vm.item.durasi) +
+                                                    " jam"
+                                                ),
+                                              ]
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("tr", [
+                                            _c(
+                                              "td",
+                                              {
+                                                staticClass:
+                                                  "font-weight-semibold",
+                                              },
+                                              [_vm._v("Tgl. Mulai:")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c("td", {
+                                              staticClass: "text-right",
+                                              domProps: {
+                                                innerHTML: _vm._s(
+                                                  _vm.$options.filters.dateMonth(
+                                                    _vm.item.mulai
+                                                  )
+                                                ),
+                                              },
+                                            }),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("tr", [
+                                            _c(
+                                              "td",
+                                              {
+                                                staticClass:
+                                                  "font-weight-semibold",
+                                              },
+                                              [_vm._v("Tgl. Selesai:")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c("td", {
+                                              staticClass: "text-right",
+                                              domProps: {
+                                                innerHTML: _vm._s(
+                                                  _vm.$options.filters.dateMonth(
+                                                    _vm.item.selesai
+                                                  )
+                                                ),
+                                              },
+                                            }),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("tr", [
+                                            _c(
+                                              "td",
+                                              { attrs: { colspan: "2" } },
+                                              [
+                                                _c("hr", {
+                                                  staticClass: "mt-0 mb-0",
+                                                }),
+                                              ]
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("tr", [
+                                            _c(
+                                              "td",
+                                              {
+                                                staticClass:
+                                                  "font-weight-semibold",
+                                              },
+                                              [_vm._v("Peserta Min:")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              { staticClass: "text-right" },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(_vm.item.peserta_min) +
+                                                    " orang"
+                                                ),
+                                              ]
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("tr", [
+                                            _c(
+                                              "td",
+                                              {
+                                                staticClass:
+                                                  "font-weight-semibold",
+                                              },
+                                              [_vm._v("Peserta Max:")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              { staticClass: "text-right" },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(_vm.item.peserta_max) +
+                                                    " orang"
+                                                ),
+                                              ]
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("tr", [
+                                            _c(
+                                              "td",
+                                              {
+                                                staticClass:
+                                                  "font-weight-semibold",
+                                              },
+                                              [_vm._v("Peserta Max Per CU:")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              { staticClass: "text-right" },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm.item.peserta_max_cu
+                                                  ) + " orang"
+                                                ),
+                                              ]
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _vm.item.keputusan_cu ||
+                                          _vm.item.pertanyaan_cu ||
+                                          _vm.item.keputusan_user ||
+                                          _vm.item.pertanyaan_user
+                                            ? _c("tr", [
+                                                _c(
+                                                  "td",
+                                                  { attrs: { colspan: "2" } },
+                                                  [
+                                                    _c("hr", {
+                                                      staticClass: "mt-0 mb-0",
+                                                    }),
+                                                  ]
+                                                ),
+                                              ])
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _vm.item.keputusan_cu
+                                            ? _c("tr", [
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "font-weight-semibold",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "Keputusan Max Per CU:"
+                                                    ),
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "td",
+                                                  { staticClass: "text-right" },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.item.keputusan_cu
+                                                      ) + " kali"
+                                                    ),
+                                                  ]
+                                                ),
+                                              ])
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _vm.item.keputusan_user
+                                            ? _c("tr", [
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "font-weight-semibold",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "Keputusan Max Per Peserta:"
+                                                    ),
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "td",
+                                                  { staticClass: "text-right" },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.item.keputusan_user
+                                                      ) + " kali"
+                                                    ),
+                                                  ]
+                                                ),
+                                              ])
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _vm.item.pertanyaan_cu
+                                            ? _c("tr", [
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "font-weight-semibold",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "Pertanyaan Max Per CU:"
+                                                    ),
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "td",
+                                                  { staticClass: "text-right" },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.item.pertanyaan_cu
+                                                      ) + " kali"
+                                                    ),
+                                                  ]
+                                                ),
+                                              ])
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          _vm.item.pertanyaan_user
+                                            ? _c("tr", [
+                                                _c(
+                                                  "td",
+                                                  {
+                                                    staticClass:
+                                                      "font-weight-semibold",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "Pertanyaan Max Per Peserta:"
+                                                    ),
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "td",
+                                                  { staticClass: "text-right" },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        _vm.item.pertanyaan_user
+                                                      ) + " kali"
+                                                    ),
+                                                  ]
+                                                ),
+                                              ])
+                                            : _vm._e(),
+                                        ]),
+                                      ]
+                                    ),
+                                  ]),
                                   _vm._v(" "),
-                                  _c("div", {
-                                    staticClass: "card-body",
-                                    domProps: {
-                                      innerHTML: _vm._s(_vm.item.keterangan),
-                                    },
-                                  }),
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.item.jadwal
-                              ? _c("div", { staticClass: "card" }, [
-                                  _c(
-                                    "div",
-                                    { staticClass: "card-header bg-white" },
-                                    [
-                                      _c("h5", { staticClass: "card-title" }, [
-                                        _vm._v("2. Jadwal"),
-                                      ]),
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", {
-                                    staticClass: "card-body",
-                                    domProps: {
-                                      innerHTML: _vm._s(_vm.item.jadwal),
-                                    },
-                                  }),
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.itemDataPanitia
-                              ? _c(
-                                  "div",
-                                  { staticClass: "card" },
-                                  [
+                                  _c("div", { staticClass: "card" }, [
                                     _c(
                                       "div",
-                                      { staticClass: "card-header bg-white" },
+                                      {
+                                        staticClass:
+                                          "card-header bg-transparent header-elements-inline",
+                                      },
                                       [
                                         _c(
-                                          "h5",
-                                          { staticClass: "card-title" },
-                                          [_vm._v("3. Panitia dan Fasilitator")]
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "text-uppercase font-size-sm font-weight-semibold",
+                                          },
+                                          [_vm._v("Sasaran Peserta")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: "header-elements" },
+                                          [
+                                            _c(
+                                              "div",
+                                              { staticClass: "list-icons" },
+                                              [
+                                                _c("a", {
+                                                  staticClass:
+                                                    "list-icons-item",
+                                                  attrs: {
+                                                    "data-action": "collapse",
+                                                  },
+                                                }),
+                                              ]
+                                            ),
+                                          ]
                                         ),
                                       ]
                                     ),
                                     _vm._v(" "),
-                                    _c("data-table", {
-                                      attrs: {
-                                        items: _vm.itemDataPanitia,
-                                        columnData: _vm.columnDataPanitia,
-                                        itemDataStat: _vm.itemStat,
-                                      },
-                                      scopedSlots: _vm._u(
-                                        [
+                                    _c("div", { staticClass: "card-body" }, [
+                                      _vm.item.sasaran
+                                        ? _c(
+                                            "span",
+                                            _vm._l(
+                                              _vm.item.sasaran,
+                                              function (sasaran, index) {
+                                                return _c(
+                                                  "label",
+                                                  {
+                                                    key: index,
+                                                    staticClass:
+                                                      "badge badge-primary ml-1",
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                        _vm._s(sasaran.name) +
+                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                    ),
+                                                  ]
+                                                )
+                                              }
+                                            ),
+                                            0
+                                          )
+                                        : _vm._e(),
+                                    ]),
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm.item.tempat
+                                    ? _c("div", { staticClass: "card" }, [
+                                        _c(
+                                          "div",
                                           {
-                                            key: "item-desktop",
-                                            fn: function (props) {
-                                              return [
-                                                props.item
-                                                  ? _c("tr", [
-                                                      _c("td", [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            props.index + 1
-                                                          )
-                                                        ),
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c("td", [
-                                                        props.item.gambar
-                                                          ? _c("img", {
-                                                              staticClass:
-                                                                "img-rounded img-fluid wmin-sm",
-                                                              attrs: {
-                                                                src:
-                                                                  "/images/aktivis/" +
-                                                                  props.item
-                                                                    .gambar +
-                                                                  "n.jpg",
-                                                                width: "35px",
-                                                              },
-                                                            })
-                                                          : _c("img", {
-                                                              staticClass:
-                                                                "img-rounded img-fluid wmin-sm",
-                                                              attrs: {
-                                                                src: "/images/no_image_man.jpg",
-                                                                width: "35px",
-                                                              },
-                                                            }),
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "td",
-                                                        [
-                                                          _c("check-value", {
-                                                            attrs: {
-                                                              value:
-                                                                props.item.name,
-                                                            },
-                                                          }),
-                                                        ],
-                                                        1
-                                                      ),
-                                                      _vm._v(" "),
-                                                      props.item.pivot.asal ==
-                                                      "dalam"
-                                                        ? _c("td", [
-                                                            props.item
-                                                              .pekerjaan_aktif &&
-                                                            props.item
-                                                              .pekerjaan_aktif
-                                                              .tipe == 1
-                                                              ? _c(
-                                                                  "span",
-                                                                  [
-                                                                    props.item
-                                                                      .pekerjaan_aktif
-                                                                      .cu
-                                                                      ? _c(
-                                                                          "check-value",
-                                                                          {
-                                                                            attrs:
-                                                                              {
-                                                                                "front-text":
-                                                                                  "CU",
-                                                                                value:
-                                                                                  props
-                                                                                    .item
-                                                                                    .pekerjaan_aktif
-                                                                                    .cu
-                                                                                    .name,
-                                                                              },
-                                                                          }
-                                                                        )
-                                                                      : _c(
-                                                                          "span",
-                                                                          [
-                                                                            _vm._v(
-                                                                              "-"
-                                                                            ),
-                                                                          ]
-                                                                        ),
-                                                                  ],
-                                                                  1
-                                                                )
-                                                              : props.item
-                                                                  .pekerjaan_aktif &&
-                                                                props.item
-                                                                  .pekerjaan_aktif
-                                                                  .tipe == 2
-                                                              ? _c(
-                                                                  "span",
-                                                                  [
-                                                                    props.item
-                                                                      .pekerjaan_aktif
-                                                                      .lembaga_lain
-                                                                      ? _c(
-                                                                          "check-value",
-                                                                          {
-                                                                            attrs:
-                                                                              {
-                                                                                value:
-                                                                                  props
-                                                                                    .item
-                                                                                    .pekerjaan_aktif
-                                                                                    .lembaga_lain
-                                                                                    .name,
-                                                                              },
-                                                                          }
-                                                                        )
-                                                                      : _c(
-                                                                          "span",
-                                                                          [
-                                                                            _vm._v(
-                                                                              "-"
-                                                                            ),
-                                                                          ]
-                                                                        ),
-                                                                  ],
-                                                                  1
-                                                                )
-                                                              : props.item
-                                                                  .pekerjaan_aktif &&
-                                                                props.item
-                                                                  .pekerjaan_aktif
-                                                                  .tipe == 3
-                                                              ? _c("span", [
-                                                                  _vm._v(
-                                                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tPUSKOPCUINA\n\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                                  ),
-                                                                ])
-                                                              : _c("span", [
-                                                                  _vm._v("-"),
-                                                                ]),
-                                                          ])
-                                                        : props.item.pivot
-                                                            .asal == "luar"
-                                                        ? _c(
-                                                            "td",
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      props.item
-                                                                        .lembaga,
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          )
-                                                        : props.item.pivot
-                                                            .asal ==
-                                                          "luar lembaga"
-                                                        ? _c(
-                                                            "td",
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      props.item
-                                                                        .name,
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          )
-                                                        : _vm._e(),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "td",
-                                                        [
-                                                          _c("check-value", {
-                                                            attrs: {
-                                                              value:
-                                                                props.item.pivot
-                                                                  .asal,
-                                                            },
-                                                          }),
-                                                        ],
-                                                        1
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "td",
-                                                        [
-                                                          _c("check-value", {
-                                                            attrs: {
-                                                              value:
-                                                                props.item.pivot
-                                                                  .peran,
-                                                            },
-                                                          }),
-                                                        ],
-                                                        1
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "td",
-                                                        [
-                                                          _c("check-value", {
-                                                            attrs: {
-                                                              value:
-                                                                props.item.pivot
-                                                                  .keterangan,
-                                                            },
-                                                          }),
-                                                        ],
-                                                        1
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "td",
-                                                        [
-                                                          _c("check-value", {
-                                                            attrs: {
-                                                              value:
-                                                                props.item
-                                                                  .email,
-                                                            },
-                                                          }),
-                                                        ],
-                                                        1
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "td",
-                                                        [
-                                                          _c("check-value", {
-                                                            attrs: {
-                                                              value:
-                                                                props.item.hp,
-                                                            },
-                                                          }),
-                                                        ],
-                                                        1
-                                                      ),
-                                                    ])
-                                                  : _vm._e(),
-                                              ]
-                                            },
+                                            staticClass:
+                                              "card-header bg-transparent header-elements-inline",
                                           },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "text-uppercase font-size-sm font-weight-semibold",
+                                              },
+                                              [_vm._v("Tempat")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass: "header-elements",
+                                              },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "list-icons" },
+                                                  [
+                                                    _c("a", {
+                                                      staticClass:
+                                                        "list-icons-item",
+                                                      attrs: {
+                                                        "data-action":
+                                                          "collapse",
+                                                      },
+                                                    }),
+                                                  ]
+                                                ),
+                                              ]
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "card-img-actions mx-1 mt-1",
+                                          },
+                                          [
+                                            _vm.item.tempat &&
+                                            _vm.item.tempat.gambar
+                                              ? _c(
+                                                  "a",
+                                                  {
+                                                    attrs: { href: "#" },
+                                                    on: {
+                                                      click: function ($event) {
+                                                        $event.preventDefault()
+                                                        return _vm.modalImageOpen(
+                                                          "/images/tempat/" +
+                                                            _vm.item.tempat
+                                                              .gambar +
+                                                            ".jpg"
+                                                        )
+                                                      },
+                                                    },
+                                                  },
+                                                  [
+                                                    _c("img", {
+                                                      staticClass:
+                                                        "card-img img-fluid",
+                                                      attrs: {
+                                                        src:
+                                                          "/images/tempat/" +
+                                                          _vm.item.tempat
+                                                            .gambar +
+                                                          "n.jpg",
+                                                      },
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "card-img-actions-overlay card-img",
+                                                      },
+                                                      [
+                                                        _c("i", {
+                                                          staticClass:
+                                                            "icon-enlarge6 icon-2x",
+                                                        }),
+                                                      ]
+                                                    ),
+                                                  ]
+                                                )
+                                              : _c(
+                                                  "a",
+                                                  {
+                                                    attrs: { href: "#" },
+                                                    on: {
+                                                      click: function ($event) {
+                                                        $event.preventDefault()
+                                                        return _vm.modalImageOpen(
+                                                          "/images/no_image.jpg"
+                                                        )
+                                                      },
+                                                    },
+                                                  },
+                                                  [
+                                                    _c("img", {
+                                                      staticClass:
+                                                        "card-img img-fluid",
+                                                      attrs: {
+                                                        src: "/images/no_image.jpg",
+                                                      },
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "card-img-actions-overlay card-img",
+                                                      },
+                                                      [
+                                                        _c("i", {
+                                                          staticClass:
+                                                            "icon-enlarge6 icon-2x",
+                                                        }),
+                                                      ]
+                                                    ),
+                                                  ]
+                                                ),
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm.itemStat == "success"
+                                          ? _c(
+                                              "table",
+                                              {
+                                                staticClass:
+                                                  "table table-borderless table-xs border-top-0 my-2",
+                                              },
+                                              [
+                                                _c("tbody", [
+                                                  _c("tr", [
+                                                    _c(
+                                                      "td",
+                                                      {
+                                                        staticClass:
+                                                          "font-weight-semibold",
+                                                      },
+                                                      [_vm._v("Nama:")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      {
+                                                        staticClass:
+                                                          "text-right",
+                                                      },
+                                                      [
+                                                        _c("check-value", {
+                                                          attrs: {
+                                                            value:
+                                                              _vm.item.tempat
+                                                                .name,
+                                                          },
+                                                        }),
+                                                      ],
+                                                      1
+                                                    ),
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("tr", [
+                                                    _c(
+                                                      "td",
+                                                      {
+                                                        staticClass:
+                                                          "font-weight-semibold",
+                                                      },
+                                                      [_vm._v("Email:")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      {
+                                                        staticClass:
+                                                          "text-right",
+                                                      },
+                                                      [
+                                                        _c("check-value", {
+                                                          attrs: {
+                                                            value:
+                                                              _vm.item.tempat
+                                                                .email,
+                                                          },
+                                                        }),
+                                                      ],
+                                                      1
+                                                    ),
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("tr", [
+                                                    _c(
+                                                      "td",
+                                                      {
+                                                        staticClass:
+                                                          "font-weight-semibold",
+                                                      },
+                                                      [_vm._v("No. Telp:")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      {
+                                                        staticClass:
+                                                          "text-right",
+                                                      },
+                                                      [
+                                                        _c("check-value", {
+                                                          attrs: {
+                                                            value:
+                                                              _vm.item.tempat
+                                                                .telp,
+                                                          },
+                                                        }),
+                                                      ],
+                                                      1
+                                                    ),
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("tr", [
+                                                    _c(
+                                                      "td",
+                                                      {
+                                                        staticClass:
+                                                          "font-weight-semibold",
+                                                      },
+                                                      [_vm._v("No. Hp:")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      {
+                                                        staticClass:
+                                                          "text-right",
+                                                      },
+                                                      [
+                                                        _c("check-value", {
+                                                          attrs: {
+                                                            value:
+                                                              _vm.item.tempat
+                                                                .hp,
+                                                          },
+                                                        }),
+                                                      ],
+                                                      1
+                                                    ),
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("tr", [
+                                                    _c(
+                                                      "td",
+                                                      {
+                                                        staticClass:
+                                                          "font-weight-semibold",
+                                                      },
+                                                      [_vm._v("Alamat:")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      {
+                                                        staticClass:
+                                                          "text-right",
+                                                      },
+                                                      [
+                                                        _c("check-value", {
+                                                          attrs: {
+                                                            value:
+                                                              _vm.item.tempat
+                                                                .alamat,
+                                                          },
+                                                        }),
+                                                      ],
+                                                      1
+                                                    ),
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("tr", [
+                                                    _c(
+                                                      "td",
+                                                      {
+                                                        staticClass:
+                                                          "font-weight-semibold",
+                                                      },
+                                                      [_vm._v("Website:")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      {
+                                                        staticClass:
+                                                          "text-right",
+                                                      },
+                                                      [
+                                                        _c("check-value", {
+                                                          attrs: {
+                                                            value:
+                                                              _vm.item.tempat
+                                                                .website,
+                                                          },
+                                                        }),
+                                                      ],
+                                                      1
+                                                    ),
+                                                  ]),
+                                                ]),
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                      ])
+                                    : _vm.item.tipe_tempat == "ONLINE"
+                                    ? _c("div", { staticClass: "card" }, [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "card-header bg-transparent header-elements-inline",
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "text-uppercase font-size-sm font-weight-semibold",
+                                              },
+                                              [_vm._v("Tempat")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass: "header-elements",
+                                              },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "list-icons" },
+                                                  [
+                                                    _c("a", {
+                                                      staticClass:
+                                                        "list-icons-item",
+                                                      attrs: {
+                                                        "data-action":
+                                                          "collapse",
+                                                      },
+                                                    }),
+                                                  ]
+                                                ),
+                                              ]
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: "card-body" },
+                                          [
+                                            _vm._v(
+                                              "\n\t\t\t\t\t\t\t\t\t\t\t\tDilaksanakan secara online\n\t\t\t\t\t\t\t\t\t\t\t"
+                                            ),
+                                          ]
+                                        ),
+                                      ])
+                                    : _c("div", { staticClass: "card" }, [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "card-header bg-transparent header-elements-inline",
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "text-uppercase font-size-sm font-weight-semibold",
+                                              },
+                                              [_vm._v("Tempat")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass: "header-elements",
+                                              },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  { staticClass: "list-icons" },
+                                                  [
+                                                    _c("a", {
+                                                      staticClass:
+                                                        "list-icons-item",
+                                                      attrs: {
+                                                        "data-action":
+                                                          "collapse",
+                                                      },
+                                                    }),
+                                                  ]
+                                                ),
+                                              ]
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: "card-body" },
+                                          [
+                                            _vm._v(
+                                              "\n\t\t\t\t\t\t\t\t\t\t\t\tBelum menentukan tempat pertemuan\n\t\t\t\t\t\t\t\t\t\t\t"
+                                            ),
+                                          ]
+                                        ),
+                                      ]),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "col-lg-9 col-md-8 order-md-1" },
+                                [
+                                  _vm.item.keterangan
+                                    ? _c("div", { staticClass: "card" }, [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass: "card-header bg-white",
+                                          },
+                                          [
+                                            _c(
+                                              "h5",
+                                              { staticClass: "card-title" },
+                                              [_vm._v("Kerangka Acuan")]
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("div", {
+                                          staticClass: "card-body",
+                                          domProps: {
+                                            innerHTML: _vm._s(
+                                              _vm.item.keterangan
+                                            ),
+                                          },
+                                        }),
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.item.jadwal
+                                    ? _c("div", { staticClass: "card" }, [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass: "card-header bg-white",
+                                          },
+                                          [
+                                            _c(
+                                              "h5",
+                                              { staticClass: "card-title" },
+                                              [_vm._v("Jadwal")]
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("div", {
+                                          staticClass: "card-body",
+                                          domProps: {
+                                            innerHTML: _vm._s(_vm.item.jadwal),
+                                          },
+                                        }),
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.itemDataPanitia
+                                    ? _c(
+                                        "div",
+                                        { staticClass: "card" },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "card-header bg-white",
+                                            },
+                                            [
+                                              _c(
+                                                "h5",
+                                                { staticClass: "card-title" },
+                                                [
+                                                  _vm._v(
+                                                    "Panitia dan Fasilitator"
+                                                  ),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("data-table", {
+                                            attrs: {
+                                              items: _vm.itemDataPanitia,
+                                              columnData: _vm.columnDataPanitia,
+                                              itemDataStat: _vm.itemStat,
+                                            },
+                                            scopedSlots: _vm._u(
+                                              [
+                                                {
+                                                  key: "item-desktop",
+                                                  fn: function (props) {
+                                                    return [
+                                                      props.item
+                                                        ? _c("tr", [
+                                                            _c("td", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  props.index +
+                                                                    1
+                                                                )
+                                                              ),
+                                                            ]),
+                                                            _vm._v(" "),
+                                                            _c("td", [
+                                                              props.item.gambar
+                                                                ? _c("img", {
+                                                                    staticClass:
+                                                                      "img-rounded img-fluid wmin-sm",
+                                                                    attrs: {
+                                                                      src:
+                                                                        "/images/aktivis/" +
+                                                                        props
+                                                                          .item
+                                                                          .gambar +
+                                                                        "n.jpg",
+                                                                      width:
+                                                                        "35px",
+                                                                    },
+                                                                  })
+                                                                : _c("img", {
+                                                                    staticClass:
+                                                                      "img-rounded img-fluid wmin-sm",
+                                                                    attrs: {
+                                                                      src: "/images/no_image_man.jpg",
+                                                                      width:
+                                                                        "35px",
+                                                                    },
+                                                                  }),
+                                                            ]),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "td",
+                                                              [
+                                                                _c(
+                                                                  "check-value",
+                                                                  {
+                                                                    attrs: {
+                                                                      value:
+                                                                        props
+                                                                          .item
+                                                                          .name,
+                                                                    },
+                                                                  }
+                                                                ),
+                                                              ],
+                                                              1
+                                                            ),
+                                                            _vm._v(" "),
+                                                            props.item.pivot
+                                                              .asal == "dalam"
+                                                              ? _c("td", [
+                                                                  props.item
+                                                                    .pekerjaan_aktif &&
+                                                                  props.item
+                                                                    .pekerjaan_aktif
+                                                                    .tipe == 1
+                                                                    ? _c(
+                                                                        "span",
+                                                                        [
+                                                                          props
+                                                                            .item
+                                                                            .pekerjaan_aktif
+                                                                            .cu
+                                                                            ? _c(
+                                                                                "check-value",
+                                                                                {
+                                                                                  attrs:
+                                                                                    {
+                                                                                      "front-text":
+                                                                                        "CU",
+                                                                                      value:
+                                                                                        props
+                                                                                          .item
+                                                                                          .pekerjaan_aktif
+                                                                                          .cu
+                                                                                          .name,
+                                                                                    },
+                                                                                }
+                                                                              )
+                                                                            : _c(
+                                                                                "span",
+                                                                                [
+                                                                                  _vm._v(
+                                                                                    "-"
+                                                                                  ),
+                                                                                ]
+                                                                              ),
+                                                                        ],
+                                                                        1
+                                                                      )
+                                                                    : props.item
+                                                                        .pekerjaan_aktif &&
+                                                                      props.item
+                                                                        .pekerjaan_aktif
+                                                                        .tipe ==
+                                                                        2
+                                                                    ? _c(
+                                                                        "span",
+                                                                        [
+                                                                          props
+                                                                            .item
+                                                                            .pekerjaan_aktif
+                                                                            .lembaga_lain
+                                                                            ? _c(
+                                                                                "check-value",
+                                                                                {
+                                                                                  attrs:
+                                                                                    {
+                                                                                      value:
+                                                                                        props
+                                                                                          .item
+                                                                                          .pekerjaan_aktif
+                                                                                          .lembaga_lain
+                                                                                          .name,
+                                                                                    },
+                                                                                }
+                                                                              )
+                                                                            : _c(
+                                                                                "span",
+                                                                                [
+                                                                                  _vm._v(
+                                                                                    "-"
+                                                                                  ),
+                                                                                ]
+                                                                              ),
+                                                                        ],
+                                                                        1
+                                                                      )
+                                                                    : props.item
+                                                                        .pekerjaan_aktif &&
+                                                                      props.item
+                                                                        .pekerjaan_aktif
+                                                                        .tipe ==
+                                                                        3
+                                                                    ? _c(
+                                                                        "span",
+                                                                        [
+                                                                          _vm._v(
+                                                                            "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tPUSKOPCUINA\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                                          ),
+                                                                        ]
+                                                                      )
+                                                                    : _c(
+                                                                        "span",
+                                                                        [
+                                                                          _vm._v(
+                                                                            "-"
+                                                                          ),
+                                                                        ]
+                                                                      ),
+                                                                ])
+                                                              : props.item.pivot
+                                                                  .asal ==
+                                                                "luar"
+                                                              ? _c(
+                                                                  "td",
+                                                                  [
+                                                                    _c(
+                                                                      "check-value",
+                                                                      {
+                                                                        attrs: {
+                                                                          value:
+                                                                            props
+                                                                              .item
+                                                                              .lembaga,
+                                                                        },
+                                                                      }
+                                                                    ),
+                                                                  ],
+                                                                  1
+                                                                )
+                                                              : props.item.pivot
+                                                                  .asal ==
+                                                                "luar lembaga"
+                                                              ? _c(
+                                                                  "td",
+                                                                  [
+                                                                    _c(
+                                                                      "check-value",
+                                                                      {
+                                                                        attrs: {
+                                                                          value:
+                                                                            props
+                                                                              .item
+                                                                              .name,
+                                                                        },
+                                                                      }
+                                                                    ),
+                                                                  ],
+                                                                  1
+                                                                )
+                                                              : _vm._e(),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "td",
+                                                              [
+                                                                _c(
+                                                                  "check-value",
+                                                                  {
+                                                                    attrs: {
+                                                                      value:
+                                                                        props
+                                                                          .item
+                                                                          .pivot
+                                                                          .asal,
+                                                                    },
+                                                                  }
+                                                                ),
+                                                              ],
+                                                              1
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "td",
+                                                              [
+                                                                _c(
+                                                                  "check-value",
+                                                                  {
+                                                                    attrs: {
+                                                                      value:
+                                                                        props
+                                                                          .item
+                                                                          .pivot
+                                                                          .peran,
+                                                                    },
+                                                                  }
+                                                                ),
+                                                              ],
+                                                              1
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "td",
+                                                              [
+                                                                _c(
+                                                                  "check-value",
+                                                                  {
+                                                                    attrs: {
+                                                                      value:
+                                                                        props
+                                                                          .item
+                                                                          .pivot
+                                                                          .keterangan,
+                                                                    },
+                                                                  }
+                                                                ),
+                                                              ],
+                                                              1
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "td",
+                                                              [
+                                                                _c(
+                                                                  "check-value",
+                                                                  {
+                                                                    attrs: {
+                                                                      value:
+                                                                        props
+                                                                          .item
+                                                                          .email,
+                                                                    },
+                                                                  }
+                                                                ),
+                                                              ],
+                                                              1
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "td",
+                                                              [
+                                                                _c(
+                                                                  "check-value",
+                                                                  {
+                                                                    attrs: {
+                                                                      value:
+                                                                        props
+                                                                          .item
+                                                                          .hp,
+                                                                    },
+                                                                  }
+                                                                ),
+                                                              ],
+                                                              1
+                                                            ),
+                                                          ])
+                                                        : _vm._e(),
+                                                    ]
+                                                  },
+                                                },
+                                              ],
+                                              null,
+                                              false,
+                                              96805529
+                                            ),
+                                          }),
                                         ],
-                                        null,
-                                        false,
-                                        4144858265
-                                      ),
-                                    }),
-                                  ],
-                                  1
-                                )
-                              : _vm._e(),
+                                        1
+                                      )
+                                    : _vm._e(),
+                                ]
+                              ),
+                            ]),
                           ]
                         ),
                       ]
@@ -12150,7 +13122,9 @@ var render = function () {
                                                     : _vm._e(),
                                                 ]
                                               : _vm.item.tipe ==
-                                                "pertemuan_bkcu"
+                                                  "pertemuan_bkcu" ||
+                                                _vm.item.tipe ==
+                                                  "pertemuan_bkcu_internal"
                                               ? [
                                                   _vm.currentUser.can &&
                                                   _vm.currentUser.can[
@@ -12348,7 +13322,9 @@ var render = function () {
                                                     : _vm._e(),
                                                 ]
                                               : _vm.item.tipe ==
-                                                "pertemuan_bkcu"
+                                                  "pertemuan_bkcu" ||
+                                                _vm.item.tipe ==
+                                                  "pertemuan_bkcu_internal"
                                               ? [
                                                   _vm.currentUser.can &&
                                                   _vm.currentUser.can[
@@ -13872,192 +14848,7 @@ var render = function () {
     1
   )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "card-header bg-transparent header-elements-inline" },
-      [
-        _c(
-          "span",
-          { staticClass: "text-uppercase font-size-sm font-weight-semibold" },
-          [_vm._v("Menu")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "header-elements" }, [
-          _c("div", { staticClass: "list-icons" }, [
-            _c("a", {
-              staticClass: "list-icons-item",
-              attrs: { "data-action": "collapse" },
-            }),
-          ]),
-        ]),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "card-header bg-transparent header-elements-inline" },
-      [
-        _c(
-          "span",
-          { staticClass: "text-uppercase font-size-sm font-weight-semibold" },
-          [_vm._v("Info")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "header-elements" }, [
-          _c("div", { staticClass: "list-icons" }, [
-            _c("a", {
-              staticClass: "list-icons-item",
-              attrs: { "data-action": "collapse" },
-            }),
-          ]),
-        ]),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", { attrs: { colspan: "2" } }, [
-        _c("hr", { staticClass: "mt-0 mb-0" }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { attrs: { colspan: "2" } }, [
-      _c("hr", { staticClass: "mt-0 mb-0" }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "card-header bg-transparent header-elements-inline" },
-      [
-        _c(
-          "span",
-          { staticClass: "text-uppercase font-size-sm font-weight-semibold" },
-          [_vm._v("Sasaran Peserta")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "header-elements" }, [
-          _c("div", { staticClass: "list-icons" }, [
-            _c("a", {
-              staticClass: "list-icons-item",
-              attrs: { "data-action": "collapse" },
-            }),
-          ]),
-        ]),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "card-header bg-transparent header-elements-inline" },
-      [
-        _c(
-          "span",
-          { staticClass: "text-uppercase font-size-sm font-weight-semibold" },
-          [_vm._v("Tempat")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "header-elements" }, [
-          _c("div", { staticClass: "list-icons" }, [
-            _c("a", {
-              staticClass: "list-icons-item",
-              attrs: { "data-action": "collapse" },
-            }),
-          ]),
-        ]),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "card-img-actions-overlay card-img" }, [
-      _c("i", { staticClass: "icon-enlarge6 icon-2x" }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "card-img-actions-overlay card-img" }, [
-      _c("i", { staticClass: "icon-enlarge6 icon-2x" }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "card-header bg-transparent header-elements-inline" },
-      [
-        _c(
-          "span",
-          { staticClass: "text-uppercase font-size-sm font-weight-semibold" },
-          [_vm._v("Tempat")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "header-elements" }, [
-          _c("div", { staticClass: "list-icons" }, [
-            _c("a", {
-              staticClass: "list-icons-item",
-              attrs: { "data-action": "collapse" },
-            }),
-          ]),
-        ]),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "card-header bg-transparent header-elements-inline" },
-      [
-        _c(
-          "span",
-          { staticClass: "text-uppercase font-size-sm font-weight-semibold" },
-          [_vm._v("Tempat")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "header-elements" }, [
-          _c("div", { staticClass: "list-icons" }, [
-            _c("a", {
-              staticClass: "list-icons-item",
-              attrs: { "data-action": "collapse" },
-            }),
-          ]),
-        ]),
-      ]
-    )
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

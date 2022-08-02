@@ -367,25 +367,26 @@
 										Pertemuan Internal PUSKOPCUINA
 									</router-link>
 
+									<!-- tambah tempat -->
+									<router-link :to="{ name:'tempatCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['create_tempat']">
+										Tempat
+									</router-link>
+
 									<!-- tambah sertifikat -->
 									<router-link :to="{ name:'sertifikatKegiatanCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0">
-										Sertifikat Kegiatan
+										Sertifikat
 									</router-link>
 
 									<!-- tambah kode -->
 									<router-link :to="{ name:'kodeKegiatanCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0">
-										Kode Kegiatan
+										Kode
 									</router-link>
 
 									<!-- tambah voting -->
 									<router-link :to="{ name:'votingCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_voting']">
 										Voting
 									</router-link>
-
-									<!-- tambah tempat -->
-									<router-link :to="{ name:'tempatCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['create_tempat']">
-										Tempat
-									</router-link>
+									
 								</div>
 							</div>		
 
@@ -414,12 +415,17 @@
 							<!-- divider -->
 							<div class="dropdown-divider" v-if="currentUser.can['create_diklat_bkcu']"></div>
 
+							<!-- tempat -->
+							<router-link :to="{ name: 'tempat' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 &&  currentUser.can['index_tempat']">
+								<i class="icon-location4"></i> Tempat
+							</router-link>
+
 							<router-link :to="{ name: 'sertifikatKegiatan' }" class="dropdown-item" active-class="active" v-if="currentUser.can['create_diklat_bkcu']" exact>
-								<i class="icon-clipboard6"></i> Sertifikat Kegiatan
+								<i class="icon-clipboard6"></i> Sertifikat
 							</router-link>
 
 							<router-link :to="{ name: 'kodeKegiatan' }" class="dropdown-item" active-class="active" v-if="currentUser.can['create_diklat_bkcu']" exact>
-								<i class="icon-pencil-ruler"></i> Kode Kegiatan
+								<i class="icon-pencil-ruler"></i> Kode
 							</router-link>
 
 
@@ -456,11 +462,6 @@
 							<!-- if cu account -->
 							<router-link :to="{ name: 'voting', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_voting'] && currentUser.id_cu != 0">
 								<i class="icon-point-up"></i> Voting
-							</router-link>
-
-							<!-- tempat -->
-							<router-link :to="{ name: 'tempat' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 &&  currentUser.can['index_tempat']">
-								<i class="icon-location4"></i> Tempat
 							</router-link>
 
 						</div>

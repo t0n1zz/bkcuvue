@@ -1919,6 +1919,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -8264,6 +8266,24 @@ var render = function () {
                   ],
                 },
                 [
+                  _c(
+                    "div",
+                    { staticClass: "alert bg-warning alert-styled-left" },
+                    [
+                      _c("h6", [
+                        _vm._v(
+                          "Anggota yang meninggal dengan usia diatas 70 tahun "
+                        ),
+                        _c("b", [
+                          _vm._v("WAJIB UPLOAD dan KIRIM BERKAS FISIK"),
+                        ]),
+                        _vm._v(
+                          " untuk buku simpanan / buku pinjaman / SPP perjanjian"
+                        ),
+                      ]),
+                    ]
+                  ),
+                  _vm._v(" "),
                   _c("div", { staticClass: "nav-tabs-responsive mb-3" }, [
                     _c(
                       "ul",

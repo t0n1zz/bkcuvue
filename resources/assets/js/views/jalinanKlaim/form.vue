@@ -319,7 +319,9 @@
 											<h5 class="card-title">Dokumen</h5>
 										</div>
 										<div class="card-body">
-											
+											<div class="alert bg-warning alert-styled-left" v-if="tipe == 'MENINGGAL'">
+												<h6>Anggota yang meninggal dengan usia diatas 70 tahun <b>WAJIB UPLOAD dan KIRIM BERKAS FISIK</b> untuk buku simpanan / buku pinjaman / SPP perjanjian</h6>
+											</div>
 											<!-- nav -->
 											<div class="nav-tabs-responsive mb-3">
 												<ul class="nav nav-tabs nav-tabs-solid  bg-light">

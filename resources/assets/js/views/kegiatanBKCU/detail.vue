@@ -22,7 +22,7 @@
 								<template v-if="item.tipe == 'diklat_bkcu'">
 									<img :src="'/images/diklat/' + item.gambar + '.jpg'" class="img-fluid wmin-sm" v-if="item.gambar">
 								</template>
-								<template v-else-if="item.tipe == 'pertemuan_bkcu'">
+								<template v-else-if="item.tipe == 'pertemuan_bkcu' || item.tipe == 'pertemuan_bkcu_internal'">
 									<img :src="'/images/pertemuan/' + item.gambar + '.jpg'" class="img-fluid wmin-sm" v-if="item.gambar">
 								</template>
 
@@ -33,276 +33,181 @@
 							</div>
 						</div>
 
-						<!-- sidebar -->
-						<div class="col-lg-3 col-md-4 order-md-12">
-
-							<!-- action -->
+						<!-- action -->
+						<div class="col-md-12">
 							<div class="card">
-								<div class="card-header bg-transparent header-elements-inline">
-									<span class="text-uppercase font-size-sm font-weight-semibold">Menu</span>
-									<div class="header-elements">
-										<div class="list-icons">
-											<a class="list-icons-item" data-action="collapse"></a>
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
+								<div class="card-header d-print-none">
+									<div class="d-none d-sm-block">
+										<!-- diklat bkcu -->
+										<template v-if="item.tipe == 'diklat_bkcu'">
+												<!-- tambah materi -->
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahMateri')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+												<i class="icon-plus22"></i> Tambah Materi
+											</button>
 
-									<!-- diklat bkcu -->
-									<template v-if="item.tipe == 'diklat_bkcu'">
+											<!-- ubah diklat -->
+											<button class="btn btn-light mb-1" @click.prevent="ubahKegiatan(item.id)" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+												<i class="icon-pencil5"></i> Ubah Diklat
+											</button>
+
+											<!-- status -->
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('statusPertemuan')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+												<i class="icon-calendar5"></i> Status Diklat
+											</button>
+
+											<!-- status -->
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusPertemuan')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+												<i class="icon-bin2"></i> Hapus Diklat
+											</button>
+
+											<!-- daftar -->
+											<template v-if="item.status != 5 && item.status != 6">
+												<button class="btn bg-warning-400 mb-1" @click.prevent="modalOpen('tambahPeserta')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+													<i class="icon-people"></i> Daftar Peserta Diklat
+												</button>
+
+												<!-- daftar -->
+												<button class="btn bg-warning-400 mb-1" @click.prevent="modalOpen('tambahPeserta')" v-else-if="currentUser.can && currentUser.can['index_diklat_bkcu'] && currentUser.id_cu != 0 && item.status == 2">
+													<i class="icon-people"></i> Daftar Peserta Diklat
+												</button>
+											</template>
+										</template>
+
+										<!-- pertemuan bkcu -->
+										<template v-else-if="item.tipe == 'pertemuan_bkcu' || item.tipe == 'pertemuan_bkcu_internal'">
 											<!-- tambah materi -->
-										<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('tambahMateri')" v-if="tipeUser == 'panitia'">
-											<i class="icon-plus22"></i> Tambah Materi
-										</button>
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahMateri')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+												<i class="icon-plus22"></i> Tambah Materi
+											</button>
 
-										<!-- ubah diklat -->
-										<button class="btn btn-light btn-block mb-2" @click.prevent="ubahKegiatan(item.id)" v-if="tipeUser == 'panitia'">
-											<i class="icon-pencil5"></i> Ubah Diklat
-										</button>
+											<!-- ubah pertemuan -->
+											<button class="btn btn-light mb-1" @click.prevent="ubahKegiatan(item.id)" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+												<i class="icon-pencil5"></i> Ubah Pertemuan
+											</button>
 
-										<!-- status -->
-										<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('statusPertemuan')" v-if="tipeUser == 'panitia'">
-											<i class="icon-calendar5"></i> Status Diklat
-										</button>
+											<!-- status -->
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('statusPertemuan')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0" >
+												<i class="icon-calendar5"></i> Status Pertemuan
+											</button>
 
-										<!-- status -->
-										<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('hapusPertemuan')" v-if="tipeUser == 'panitia'">
-											<i class="icon-bin2"></i> Hapus Diklat
-										</button>
-
-										<!-- daftar -->
-										<template v-if="item.status != 5 && item.status != 6">
-											<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambahPeserta')" v-if="currentUser.id_cu == 0">
-												<i class="icon-people"></i> Daftar Peserta Diklat
+											<!-- status -->
+											<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusPertemuan')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+												<i class="icon-bin2"></i> Hapus Pertemuan
 											</button>
 
 											<!-- daftar -->
-											<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambahPeserta')" v-else-if="currentUser.can && currentUser.can['index_diklat_bkcu'] && currentUser.id_cu != 0 && item.status == 2">
-												<i class="icon-people"></i> Daftar Peserta Diklat
+											<template v-if="item.status != 5 && item.status != 6">
+												<button class="btn bg-warning-400 mb-1" @click.prevent="modalOpen('tambahPeserta')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+													<i class="icon-people"></i> Daftar Peserta Pertemuan
+												</button>
+
+												<!-- daftar -->
+												<button class="btn bg-warning-400 mb-1" @click.prevent="modalOpen('tambahPeserta')" v-else-if="currentUser.can && currentUser.can['index_pertemuan_bkcu'] && currentUser.id_cu != 0 && item.status == 2">
+													<i class="icon-people"></i> Daftar Peserta Pertemuan
+												</button>
+											</template>
+										</template>
+
+										<!-- keputusan -->
+										<template v-if="item.pilih && item.pilih.length > 0">
+											<button class="btn bg-success mb-1" @click.prevent="modalOpen('tambahKeputusan')" v-if="item.status == 4 && tipeUser == 'peserta'">
+												<i class="icon-hammer"></i> Beri Keputusan
 											</button>
 										</template>
-									</template>
 
-									<!-- pertemuan bkcu -->
-									<template v-else-if="item.tipe == 'pertemuan_bkcu'">
-										<!-- tambah materi -->
-										<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('tambahMateri')" v-if="tipeUser == 'panitia'">
-											<i class="icon-plus22"></i> Tambah Materi
+										<button class="btn bg-info mb-1" @click.prevent="modalOpen('tambahPertanyaan')" v-if="item.status == 4 && tipeUser == 'peserta'">
+											<i class="icon-question7"></i> Ajukan Pertanyaan
 										</button>
+									</div>
+									<div class="d-block d-sm-none">
+										<!-- diklat bkcu -->
+										<template v-if="item.tipe == 'diklat_bkcu'">
+												<!-- tambah materi -->
+											<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('tambahMateri')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+												<i class="icon-plus22"></i> Tambah Materi
+											</button>
 
-										<!-- ubah pertemuan -->
-										<button class="btn btn-light btn-block mb-2" @click.prevent="ubahKegiatan(item.id)" v-if="tipeUser == 'panitia'">
-											<i class="icon-pencil5"></i> Ubah Pertemuan
-										</button>
+											<!-- ubah diklat -->
+											<button class="btn btn-light btn-block mb-2" @click.prevent="ubahKegiatan(item.id)" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+												<i class="icon-pencil5"></i> Ubah Diklat
+											</button>
 
-										<!-- status -->
-										<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('statusPertemuan')" v-if="tipeUser == 'panitia'" >
-											<i class="icon-calendar5"></i> Status Pertemuan
-										</button>
+											<!-- status -->
+											<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('statusPertemuan')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+												<i class="icon-calendar5"></i> Status Diklat
+											</button>
 
-										<!-- status -->
-										<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('hapusPertemuan')" v-if="tipeUser == 'panitia' && item.status == 1">
-											<i class="icon-bin2"></i> Hapus Pertemuan
-										</button>
-
-										<!-- daftar -->
-										<template v-if="item.status != 5 && item.status != 6">
-											<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambahPeserta')" v-if="currentUser.id_cu == 0">
-												<i class="icon-people"></i> Daftar Peserta Pertemuan
+											<!-- status -->
+											<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('hapusPertemuan')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+												<i class="icon-bin2"></i> Hapus Diklat
 											</button>
 
 											<!-- daftar -->
-											<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambahPeserta')" v-else-if="currentUser.can && currentUser.can['index_pertemuan_bkcu'] && currentUser.id_cu != 0 && item.status == 2">
-												<i class="icon-people"></i> Daftar Peserta Pertemuan
+											<template v-if="item.status != 5 && item.status != 6">
+												<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambahPeserta')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+													<i class="icon-people"></i> Daftar Peserta Diklat
+												</button>
+
+												<!-- daftar -->
+												<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambahPeserta')" v-else-if="currentUser.can && currentUser.can['index_diklat_bkcu'] && currentUser.id_cu != 0 && item.status == 2">
+													<i class="icon-people"></i> Daftar Peserta Diklat
+												</button>
+											</template>
+										</template>
+
+										<!-- pertemuan bkcu -->
+										<template v-else-if="item.tipe == 'pertemuan_bkcu' || item.tipe == 'pertemuan_bkcu_internal'">
+											<!-- tambah materi -->
+											<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('tambahMateri')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+												<i class="icon-plus22"></i> Tambah Materi
+											</button>
+
+											<!-- ubah pertemuan -->
+											<button class="btn btn-light btn-block mb-2" @click.prevent="ubahKegiatan(item.id)" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+												<i class="icon-pencil5"></i> Ubah Pertemuan
+											</button>
+
+											<!-- status -->
+											<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('statusPertemuan')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0" >
+												<i class="icon-calendar5"></i> Status Pertemuan
+											</button>
+
+											<!-- status -->
+											<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('hapusPertemuan')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+												<i class="icon-bin2"></i> Hapus Pertemuan
+											</button>
+
+											<!-- daftar -->
+											<template v-if="item.status != 5 && item.status != 6">
+												<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambahPeserta')" v-if="currentUser.id_cu == 0">
+													<i class="icon-people"></i> Daftar Peserta Pertemuan
+												</button>
+
+												<!-- daftar -->
+												<button class="btn bg-warning-400 btn-block mb-2" @click.prevent="modalOpen('tambahPeserta')" v-else-if="currentUser.can && currentUser.can['index_pertemuan_bkcu'] && currentUser.id_cu != 0 && item.status == 2">
+													<i class="icon-people"></i> Daftar Peserta Pertemuan
+												</button>
+											</template>
+										</template>
+
+										<!-- keputusan -->
+										<template v-if="item.pilih && item.pilih.length > 0">
+											<button class="btn bg-success btn-block mb-2" @click.prevent="modalOpen('tambahKeputusan')" v-if="item.status == 4 && tipeUser == 'peserta'">
+												<i class="icon-hammer"></i> Beri Keputusan
 											</button>
 										</template>
-									</template>
 
-									<!-- keputusan -->
-									<template v-if="item.pilih && item.pilih.length > 0">
-										<button class="btn bg-success btn-block mb-2" @click.prevent="modalOpen('tambahKeputusan')" v-if="item.status == 4 && tipeUser == 'peserta'">
-											<i class="icon-hammer"></i> Beri Keputusan
+										<button class="btn bg-info btn-block mb-2" @click.prevent="modalOpen('tambahPertanyaan')" v-if="item.status == 4 && tipeUser == 'peserta'">
+											<i class="icon-question7"></i> Ajukan Pertanyaan
 										</button>
-									</template>
-
-									<button class="btn bg-info btn-block mb-2" @click.prevent="modalOpen('tambahPertanyaan')" v-if="item.status == 4 && tipeUser == 'peserta'">
-										<i class="icon-question7"></i> Ajukan Pertanyaan
-									</button>
-
-								</div>
-							</div>
-
-							<!-- detail -->
-							<div class="card">
-								<div class="card-header bg-transparent header-elements-inline">
-									<span class="text-uppercase font-size-sm font-weight-semibold">Info</span>
-									<div class="header-elements">
-										<div class="list-icons">
-											<a class="list-icons-item" data-action="collapse"></a>
-										</div>
 									</div>
-								</div>
-								<table class="table table-borderless table-xs border-top-0 my-2">
-									<tbody>
-										<tr>
-											<td class="font-weight-semibold">Status:</td>
-											<td class="text-right">
-												<span v-html="$options.filters.statusDiklat(item.status)"></span>
-											</td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">Kode:</td>
-											<td class="text-right">
-												{{ item.kode_diklat ? item.kode_diklat : kode }}
-											</td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">Durasi:</td>
-											<td class="text-right">{{ item.durasi }} jam</td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">Tgl. Mulai:</td>
-											<td class="text-right" v-html="$options.filters.dateMonth(item.mulai)"></td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">Tgl. Selesai:</td>
-											<td class="text-right" v-html="$options.filters.dateMonth(item.selesai)"></td>
-										</tr>
-										<tr><td colspan="2"><hr class="mt-0 mb-0"/></td></tr>
-										<tr>
-											<td class="font-weight-semibold">Peserta Min:</td>
-											<td class="text-right">{{item.peserta_min}} orang</td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">Peserta Max:</td>
-											<td class="text-right">{{item.peserta_max}} orang</td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">Peserta Max Per CU:</td>
-											<td class="text-right">{{item.peserta_max_cu}} orang</td>
-										</tr>
-										<tr v-if="item.keputusan_cu || item.pertanyaan_cu || item.keputusan_user || item.pertanyaan_user"><td colspan="2"><hr class="mt-0 mb-0"/></td></tr>
-										<tr v-if="item.keputusan_cu">
-											<td class="font-weight-semibold">Keputusan Max Per CU:</td>
-											<td class="text-right">{{ item.keputusan_cu }} kali</td>
-										</tr>
-										<tr v-if="item.keputusan_user">
-											<td class="font-weight-semibold">Keputusan Max Per Peserta:</td>
-											<td class="text-right">{{ item.keputusan_user }} kali</td>
-										</tr>
-										<tr v-if="item.pertanyaan_cu">
-											<td class="font-weight-semibold">Pertanyaan Max Per CU:</td>
-											<td class="text-right">{{ item.pertanyaan_cu }} kali</td>
-										</tr>
-										<tr v-if="item.pertanyaan_user">
-											<td class="font-weight-semibold">Pertanyaan Max Per Peserta:</td>
-											<td class="text-right">{{ item.pertanyaan_user }} kali</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
 
-							<!-- sasaran -->
-							<div class="card">
-								<div class="card-header bg-transparent header-elements-inline">
-									<span class="text-uppercase font-size-sm font-weight-semibold">Sasaran Peserta</span>
-									<div class="header-elements">
-										<div class="list-icons">
-											<a class="list-icons-item" data-action="collapse"></a>
-										</div>
-									</div>
-								</div>
-
-								<div class="card-body">
-									<span v-if="item.sasaran">
-										<label v-for="(sasaran, index) in item.sasaran" :key="index" class="badge badge-primary ml-1">
-											{{ sasaran.name }}
-										</label>
-									</span>
 								</div>
 							</div>
-
-							<!-- tempat -->
-							<div class="card" v-if="item.tempat">
-								<div class="card-header bg-transparent header-elements-inline">
-									<span class="text-uppercase font-size-sm font-weight-semibold">Tempat</span>
-									<div class="header-elements">
-										<div class="list-icons">
-											<a class="list-icons-item" data-action="collapse"></a>
-										</div>
-									</div>
-								</div>
-								<div class="card-img-actions mx-1 mt-1">
-									<a href="#" @click.prevent="modalImageOpen('/images/tempat/' + item.tempat.gambar + '.jpg')" v-if="item.tempat && item.tempat.gambar">
-										<img :src="'/images/tempat/' + item.tempat.gambar + 'n.jpg'" class="card-img img-fluid" >
-										<span class="card-img-actions-overlay card-img"><i class="icon-enlarge6 icon-2x"></i></span>
-									</a>
-									<a href="#" @click.prevent="modalImageOpen('/images/no_image.jpg')" v-else>
-										<img :src="'/images/no_image.jpg'" class="card-img img-fluid" >
-										<span class="card-img-actions-overlay card-img"><i class="icon-enlarge6 icon-2x"></i></span>
-									</a>
-								</div>
-
-								<table class="table table-borderless table-xs border-top-0 my-2" v-if="itemStat == 'success'">
-									<tbody>
-										<tr>
-											<td class="font-weight-semibold">Nama:</td>
-											<td class="text-right"><check-value :value="item.tempat.name"></check-value></td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">Email:</td>
-											<td class="text-right"><check-value :value="item.tempat.email"></check-value></td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">No. Telp:</td>
-											<td class="text-right"><check-value :value="item.tempat.telp"></check-value></td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">No. Hp:</td>
-											<td class="text-right"><check-value :value="item.tempat.hp"></check-value></td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">Alamat:</td>
-											<td class="text-right"><check-value :value="item.tempat.alamat"></check-value></td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold">Website:</td>
-											<td class="text-right"><check-value :value="item.tempat.website"></check-value></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="card" v-else-if="item.tipe_tempat == 'ONLINE'">
-								<div class="card-header bg-transparent header-elements-inline">
-									<span class="text-uppercase font-size-sm font-weight-semibold">Tempat</span>
-									<div class="header-elements">
-										<div class="list-icons">
-											<a class="list-icons-item" data-action="collapse"></a>
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-									Dilaksanakan secara online
-								</div>
-							</div>
-							<div class="card" v-else>
-								<div class="card-header bg-transparent header-elements-inline">
-									<span class="text-uppercase font-size-sm font-weight-semibold">Tempat</span>
-									<div class="header-elements">
-										<div class="list-icons">
-											<a class="list-icons-item" data-action="collapse"></a>
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-									Belum menentukan tempat pertemuan
-								</div>
-							</div>
-
 						</div>
 
 						<!-- content -->
-						<div class="col-lg-9 col-md-8 order-md-1">
+						<div class="col-md-12">
 
 							<!-- navbar -->
 							<div class="card">
@@ -310,8 +215,18 @@
 									<ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
 
 										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'info'}" @click.prevent="changeTab('info')"><i class="icon-menu7 mr-2"></i>
-											Umum
+											Informasi
 										</a></li>
+
+										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'pesertaTerdaftar'}" @click.prevent="changeTab('pesertaTerdaftar')"><i class="icon-people mr-2"></i>
+											Peserta Terdaftar
+											<span class="badge badge-dark ml-2" v-if="countPesertaStat == 'success' && countPeserta > 0 && currentUser.id_cu == 0">{{ countPeserta }}</span>
+										</a></li>
+
+										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'pesertaHadir'}" @click.prevent="changeTab('pesertaHadir')"><i class="icon-accessibility mr-2"></i>
+											Peserta Hadir 
+											<span class="badge badge-dark ml-2" v-if="countPesertaHadirStat == 'success' && countPesertaHadir> 0">{{ countPesertaHadir }}</span>
+										</a></li>	
 
 										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'materi'}" @click.prevent="changeTab('materi')"><i class="icon-folder-download2 mr-2"></i>
 											Unduhan
@@ -333,17 +248,9 @@
 										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'pertanyaan'}" @click.prevent="changeTab('pertanyaan')"><i class="icon-question7 mr-2"></i>
 											Pertanyaan 
 											<span class="badge badge-info ml-2" v-if="countPertanyaanStat == 'success' && countPertanyaan[0] > 0">{{ countPertanyaan[0] }}</span>
-										</a></li>	
+										</a></li>		
 
-										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'pesertaTerdaftar'}" @click.prevent="changeTab('pesertaTerdaftar')"><i class="icon-people mr-2"></i>
-											Terdaftar
-											<span class="badge badge-dark ml-2" v-if="countPesertaStat == 'success' && countPeserta > 0 && currentUser.id_cu == 0">{{ countPeserta }}</span>
-										</a></li>
-
-										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'pesertaHadir'}" @click.prevent="changeTab('pesertaHadir')"><i class="icon-accessibility mr-2"></i>
-											Hadir 
-											<span class="badge badge-dark ml-2" v-if="countPesertaHadirStat == 'success' && countPesertaHadir> 0">{{ countPesertaHadir }}</span>
-										</a></li>	
+										
 
 										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'statistik'}" @click.prevent="changeTab('statistik')"><i class="icon-equalizer mr-2"></i>
 											Statistik
@@ -356,76 +263,242 @@
 							<!-- tabinformasi -->
 							<transition enter-active-class="animated fadeIn" mode="out-in">
 								<div v-show="tabName == 'info'">
-									<div class="card" v-if="item.keterangan">
-										<div class="card-header bg-white">
-											<h5 class="card-title">1. Kerangka Acuan</h5>
-										</div>
-										<div class="card-body" v-html="item.keterangan">
-										</div>
-									</div>
+									<div class="row">
+										<!-- sidebar -->
+										<div class="col-lg-3 col-md-4 order-md-12">
+											<!-- detail -->
+											<div class="card">
+												<table class="table table-borderless table-xs border-top-0 my-2">
+													<tbody>
+														<tr>
+															<td class="font-weight-semibold">Status:</td>
+															<td class="text-right">
+																<span v-html="$options.filters.statusDiklat(item.status)"></span>
+															</td>
+														</tr>
+														<tr>
+															<td class="font-weight-semibold">Kode:</td>
+															<td class="text-right">
+																{{ item.kode_diklat ? item.kode_diklat : kode }}
+															</td>
+														</tr>
+														<tr>
+															<td class="font-weight-semibold">Durasi:</td>
+															<td class="text-right">{{ item.durasi }} jam</td>
+														</tr>
+														<tr>
+															<td class="font-weight-semibold">Tgl. Mulai:</td>
+															<td class="text-right" v-html="$options.filters.dateMonth(item.mulai)"></td>
+														</tr>
+														<tr>
+															<td class="font-weight-semibold">Tgl. Selesai:</td>
+															<td class="text-right" v-html="$options.filters.dateMonth(item.selesai)"></td>
+														</tr>
+														<tr><td colspan="2"><hr class="mt-0 mb-0"/></td></tr>
+														<tr>
+															<td class="font-weight-semibold">Peserta Min:</td>
+															<td class="text-right">{{item.peserta_min}} orang</td>
+														</tr>
+														<tr>
+															<td class="font-weight-semibold">Peserta Max:</td>
+															<td class="text-right">{{item.peserta_max}} orang</td>
+														</tr>
+														<tr>
+															<td class="font-weight-semibold">Peserta Max Per CU:</td>
+															<td class="text-right">{{item.peserta_max_cu}} orang</td>
+														</tr>
+														<tr v-if="item.keputusan_cu || item.pertanyaan_cu || item.keputusan_user || item.pertanyaan_user"><td colspan="2"><hr class="mt-0 mb-0"/></td></tr>
+														<tr v-if="item.keputusan_cu">
+															<td class="font-weight-semibold">Keputusan Max Per CU:</td>
+															<td class="text-right">{{ item.keputusan_cu }} kali</td>
+														</tr>
+														<tr v-if="item.keputusan_user">
+															<td class="font-weight-semibold">Keputusan Max Per Peserta:</td>
+															<td class="text-right">{{ item.keputusan_user }} kali</td>
+														</tr>
+														<tr v-if="item.pertanyaan_cu">
+															<td class="font-weight-semibold">Pertanyaan Max Per CU:</td>
+															<td class="text-right">{{ item.pertanyaan_cu }} kali</td>
+														</tr>
+														<tr v-if="item.pertanyaan_user">
+															<td class="font-weight-semibold">Pertanyaan Max Per Peserta:</td>
+															<td class="text-right">{{ item.pertanyaan_user }} kali</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
 
-									<div class="card" v-if="item.jadwal">
-										<div class="card-header bg-white">
-											<h5 class="card-title">2. Jadwal</h5>
-										</div>
-										<div class="card-body" v-html="item.jadwal">
-										</div>
-									</div>
-									
+											<!-- sasaran -->
+											<div class="card">
+												<div class="card-header bg-transparent header-elements-inline">
+													<span class="text-uppercase font-size-sm font-weight-semibold">Sasaran Peserta</span>
+													<div class="header-elements">
+														<div class="list-icons">
+															<a class="list-icons-item" data-action="collapse"></a>
+														</div>
+													</div>
+												</div>
 
-									<div class="card" v-if="itemDataPanitia">
-										<div class="card-header bg-white">
-											<h5 class="card-title">3. Panitia dan Fasilitator</h5>
+												<div class="card-body">
+													<span v-if="item.sasaran">
+														<label v-for="(sasaran, index) in item.sasaran" :key="index" class="badge badge-primary ml-1">
+															{{ sasaran.name }}
+														</label>
+													</span>
+												</div>
+											</div>
+
+											<!-- tempat -->
+											<div class="card" v-if="item.tempat">
+												<div class="card-header bg-transparent header-elements-inline">
+													<span class="text-uppercase font-size-sm font-weight-semibold">Tempat</span>
+													<div class="header-elements">
+														<div class="list-icons">
+															<a class="list-icons-item" data-action="collapse"></a>
+														</div>
+													</div>
+												</div>
+												<div class="card-img-actions mx-1 mt-1">
+													<a href="#" @click.prevent="modalImageOpen('/images/tempat/' + item.tempat.gambar + '.jpg')" v-if="item.tempat && item.tempat.gambar">
+														<img :src="'/images/tempat/' + item.tempat.gambar + 'n.jpg'" class="card-img img-fluid" >
+														<span class="card-img-actions-overlay card-img"><i class="icon-enlarge6 icon-2x"></i></span>
+													</a>
+													<a href="#" @click.prevent="modalImageOpen('/images/no_image.jpg')" v-else>
+														<img :src="'/images/no_image.jpg'" class="card-img img-fluid" >
+														<span class="card-img-actions-overlay card-img"><i class="icon-enlarge6 icon-2x"></i></span>
+													</a>
+												</div>
+
+												<table class="table table-borderless table-xs border-top-0 my-2" v-if="itemStat == 'success'">
+													<tbody>
+														<tr>
+															<td class="font-weight-semibold">Nama:</td>
+															<td class="text-right"><check-value :value="item.tempat.name"></check-value></td>
+														</tr>
+														<tr>
+															<td class="font-weight-semibold">Email:</td>
+															<td class="text-right"><check-value :value="item.tempat.email"></check-value></td>
+														</tr>
+														<tr>
+															<td class="font-weight-semibold">No. Telp:</td>
+															<td class="text-right"><check-value :value="item.tempat.telp"></check-value></td>
+														</tr>
+														<tr>
+															<td class="font-weight-semibold">No. Hp:</td>
+															<td class="text-right"><check-value :value="item.tempat.hp"></check-value></td>
+														</tr>
+														<tr>
+															<td class="font-weight-semibold">Alamat:</td>
+															<td class="text-right"><check-value :value="item.tempat.alamat"></check-value></td>
+														</tr>
+														<tr>
+															<td class="font-weight-semibold">Website:</td>
+															<td class="text-right"><check-value :value="item.tempat.website"></check-value></td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div class="card" v-else-if="item.tipe_tempat == 'ONLINE'">
+												<div class="card-header bg-transparent header-elements-inline">
+													<span class="text-uppercase font-size-sm font-weight-semibold">Tempat</span>
+													<div class="header-elements">
+														<div class="list-icons">
+															<a class="list-icons-item" data-action="collapse"></a>
+														</div>
+													</div>
+												</div>
+												<div class="card-body">
+													Dilaksanakan secara online
+												</div>
+											</div>
+											<div class="card" v-else>
+												<div class="card-header bg-transparent header-elements-inline">
+													<span class="text-uppercase font-size-sm font-weight-semibold">Tempat</span>
+													<div class="header-elements">
+														<div class="list-icons">
+															<a class="list-icons-item" data-action="collapse"></a>
+														</div>
+													</div>
+												</div>
+												<div class="card-body">
+													Belum menentukan tempat pertemuan
+												</div>
+											</div>
 										</div>
-										<data-table :items="itemDataPanitia" :columnData="columnDataPanitia" :itemDataStat="itemStat">
-											<template slot="item-desktop" slot-scope="props">
-												<tr v-if="props.item">
-													<td>{{ props.index + 1 }}</td>
-													<td>
-														<img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
-														<img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
-													</td>
-													<td>
-														<check-value :value="props.item.name"></check-value>
-													</td>
-													<td v-if="props.item.pivot.asal == 'dalam'">
-														<span v-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 1">
-															<check-value :front-text="'CU'" :value="props.item.pekerjaan_aktif.cu.name" v-if="props.item.pekerjaan_aktif.cu"></check-value>
-															<span v-else>-</span>
-														</span>
-														<span v-else-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 2">
-															<check-value :value="props.item.pekerjaan_aktif.lembaga_lain.name" v-if="props.item.pekerjaan_aktif.lembaga_lain"></check-value>
-															<span v-else>-</span>
-														</span>
-														<span v-else-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 3">
-															PUSKOPCUINA
-														</span>
-														<span v-else>-</span>
-													</td>
-													<td v-else-if="props.item.pivot.asal == 'luar'">
-														<check-value :value="props.item.lembaga"></check-value>
-													</td>
-													<td v-else-if="props.item.pivot.asal == 'luar lembaga'">
-														<check-value :value="props.item.name"></check-value>
-													</td>
-													<td>
-														<check-value :value="props.item.pivot.asal"></check-value>
-													</td>
-													<td>
-														<check-value :value="props.item.pivot.peran"></check-value>
-													</td>
-													<td>
-														<check-value :value="props.item.pivot.keterangan"></check-value>
-													</td>
-													<td>
-														<check-value :value="props.item.email"></check-value>
-													</td>
-													<td>
-														<check-value :value="props.item.hp"></check-value>
-													</td>
-												</tr>
-											</template>	
-										</data-table>
+										<!-- content  -->
+										<div class="col-lg-9 col-md-8 order-md-1">
+											<div class="card" v-if="item.keterangan">
+												<div class="card-header bg-white">
+													<h5 class="card-title">Kerangka Acuan</h5>
+												</div>
+												<div class="card-body" v-html="item.keterangan">
+												</div>
+											</div>
+
+											<div class="card" v-if="item.jadwal">
+												<div class="card-header bg-white">
+													<h5 class="card-title">Jadwal</h5>
+												</div>
+												<div class="card-body" v-html="item.jadwal">
+												</div>
+											</div>
+											
+
+											<div class="card" v-if="itemDataPanitia">
+												<div class="card-header bg-white">
+													<h5 class="card-title">Panitia dan Fasilitator</h5>
+												</div>
+												<data-table :items="itemDataPanitia" :columnData="columnDataPanitia" :itemDataStat="itemStat">
+													<template slot="item-desktop" slot-scope="props">
+														<tr v-if="props.item">
+															<td>{{ props.index + 1 }}</td>
+															<td>
+																<img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+																<img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+															</td>
+															<td>
+																<check-value :value="props.item.name"></check-value>
+															</td>
+															<td v-if="props.item.pivot.asal == 'dalam'">
+																<span v-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 1">
+																	<check-value :front-text="'CU'" :value="props.item.pekerjaan_aktif.cu.name" v-if="props.item.pekerjaan_aktif.cu"></check-value>
+																	<span v-else>-</span>
+																</span>
+																<span v-else-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 2">
+																	<check-value :value="props.item.pekerjaan_aktif.lembaga_lain.name" v-if="props.item.pekerjaan_aktif.lembaga_lain"></check-value>
+																	<span v-else>-</span>
+																</span>
+																<span v-else-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 3">
+																	PUSKOPCUINA
+																</span>
+																<span v-else>-</span>
+															</td>
+															<td v-else-if="props.item.pivot.asal == 'luar'">
+																<check-value :value="props.item.lembaga"></check-value>
+															</td>
+															<td v-else-if="props.item.pivot.asal == 'luar lembaga'">
+																<check-value :value="props.item.name"></check-value>
+															</td>
+															<td>
+																<check-value :value="props.item.pivot.asal"></check-value>
+															</td>
+															<td>
+																<check-value :value="props.item.pivot.peran"></check-value>
+															</td>
+															<td>
+																<check-value :value="props.item.pivot.keterangan"></check-value>
+															</td>
+															<td>
+																<check-value :value="props.item.email"></check-value>
+															</td>
+															<td>
+																<check-value :value="props.item.hp"></check-value>
+															</td>
+														</tr>
+													</template>	
+												</data-table>
+											</div>
+										</div>
 									</div>
 
 								</div>
@@ -907,7 +980,7 @@
 												</button>
 											</template>
 
-											<template v-else-if="item.tipe == 'pertemuan_bkcu'">
+											<template v-else-if="item.tipe == 'pertemuan_bkcu' || item.tipe == 'pertemuan_bkcu_internal'">
 												<button class="btn bg-warning-400 mb-1" @click.prevent="modalOpen('tambahPeserta')" v-if="currentUser.can && currentUser.can['index_pertemuan_bkcu'] && item.status == 2">
 													<i class="icon-people"></i> Daftar Peserta
 												</button>
@@ -938,7 +1011,7 @@
 												</button>
 											</template>
 
-											<template v-else-if="item.tipe == 'pertemuan_bkcu'">
+											<template v-else-if="item.tipe == 'pertemuan_bkcu' || item.tipe == 'pertemuan_bkcu_internal'">
 												<button class="btn bg-warning-400 btn-block mb-1" @click.prevent="modalOpen('tambahPeserta')" v-if="currentUser.can && currentUser.can['index_pertemuan_bkcu'] && item.status == 2">
 													<i class="icon-people"></i> Daftar Peserta
 												</button>
@@ -2636,7 +2709,7 @@
 					.then(response => {
 						FileSaver.saveAs(response.data, filename)
 					});
-				}else if(this.item.tipe == 'pertemuan_bkcu'){
+				}else if(this.item.tipe == 'pertemuan_bkcu' || this.item.tipe == 'pertemuan_bkcu_internal'){
 					axios.get('/api/download_folder/' + filename + '/pertemuan', {
 					responseType: 'blob'})
 					.then(response => {

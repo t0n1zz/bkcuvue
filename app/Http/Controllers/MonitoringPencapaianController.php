@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Monitoring;
 use App\MonitoringPencapaian;
 use App\Support\NotificationHelper;
 use Illuminate\Http\Request;

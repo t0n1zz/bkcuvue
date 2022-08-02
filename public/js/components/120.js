@@ -680,6 +680,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
 
 
 
@@ -2752,6 +2754,17 @@ var render = function () {
                                           "div",
                                           { staticClass: "card-body" },
                                           [
+                                            _vm.tipe == "MENINGGAL"
+                                              ? _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "alert bg-warning alert-styled-left",
+                                                  },
+                                                  [_vm._m(6)]
+                                                )
+                                              : _vm._e(),
+                                            _vm._v(" "),
                                             _c(
                                               "div",
                                               {
@@ -4322,6 +4335,16 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header bg-white" }, [
       _c("h5", { staticClass: "card-title" }, [_vm._v("Dokumen")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [
+      _vm._v("Anggota yang meninggal dengan usia diatas 70 tahun "),
+      _c("b", [_vm._v("WAJIB UPLOAD dan KIRIM BERKAS FISIK")]),
+      _vm._v(" untuk buku simpanan / buku pinjaman / SPP perjanjian"),
     ])
   },
 ]

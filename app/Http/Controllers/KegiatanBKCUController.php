@@ -612,7 +612,6 @@ class KegiatanBKCUController extends Controller{
 			if($fileExtension != 'pdf'){
 				$formatedName = Helper::image_processing($materipath,$this->width,$this->height,$file,'',$name);
 			}else{
-				$filename = $file->getClientOriginalName();
 				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). $fileExtension;
 				$file->move($materipath,$formatedName);
 			}
@@ -901,7 +900,12 @@ class KegiatanBKCUController extends Controller{
 					$checkPeserta = SertifikatGenerate::where('id_aktivis', $peserta->aktivis_id)->where('id_kegiatan', $id)->get()->first();
 					if (!$checkPeserta) {
 						$lastNomor++;
-						SertifikatGenerate::create(['id_aktivis' => $peserta->aktivis_id, 'id_kegiatan' => $id, 'nomor' => $lastNomor, 'periode' => $periode->first()->periode]);
+						SertifikatGenerate::create([
+							'id_aktivis' => $peserta->aktivis_id, 
+							'id_kegiatan' => $id, 
+							'nomor' => $lastNomor, 
+							'periode' => $periode->first()->periode,
+						]);
 					}
 				}
 			}

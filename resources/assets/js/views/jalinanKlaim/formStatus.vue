@@ -779,7 +779,9 @@
     <!-- dokumen -->
     <transition enter-active-class="animated fadeIn" mode="out-in">
       <div v-show="tabName == 'dokumen'" v-if="isDokumen">
-
+        <div class="alert bg-warning alert-styled-left">
+          <h6>Anggota yang meninggal dengan usia diatas 70 tahun <b>WAJIB UPLOAD dan KIRIM BERKAS FISIK</b> untuk buku simpanan / buku pinjaman / SPP perjanjian</h6>
+        </div>
         <div class="nav-tabs-responsive mb-3">
           <ul class="nav nav-tabs nav-tabs-solid bg-light">
             <li class="nav-item" v-show="selected.dokumen_meninggal">
