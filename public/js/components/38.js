@@ -2323,14 +2323,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
   },
-  updated: function updated() {
-    this.kode = this.item.kode.kode;
-  },
   watch: {
     itemStat: function itemStat(value) {
       if (value === "success") {
         this.hideColumn();
         this.checkTipe(this.item.tipe);
+
+        if (this.item.kode) {
+          this.kode = this.item.kode.kode;
+        }
 
         if (this.currentUser.aktivis) {
           if (this.item.status == 4) {
@@ -2525,8 +2526,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     checkTipe: function checkTipe(tipe) {
       if (tipe == 'diklat_bkcu') {
         this.level2Title = 'Diklat PUSKOPCUINA';
-      } else {
+      } else if (tipe == 'pertemuan_bkcu') {
         this.level2Title = 'Pertemuan PUSKOPCUINA';
+      } else if (tipe == 'diklat_bkcu_internal') {
+        this.level2Title = 'Diklat internal PUSKOPCUINA';
+      } else if (tipe == 'pertemuan_bkcu_internal') {
+        this.level2Title = 'Pertemuan internal PUSKOPCUINA';
       }
 
       this.title = 'Detail ' + this.level2Title;
@@ -2932,7 +2937,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.isDisableTable = false;
     },
     downloadMateri: function downloadMateri(filename) {
-      if (this.item.tipe == 'diklat_bkcu') {
+      if (this.item.tipe == 'diklat_bkcu' || this.item.tipe == 'diklat_bkcu_internal') {
         axios.get('/api/download_folder/' + filename + '/diklat', {
           responseType: 'blob'
         }).then(function (response) {
@@ -6200,13 +6205,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$emit('tutup');
     },
     downloadMateri: function downloadMateri(filename) {
-      if (this.kegiatan_tipe == 'diklat_bkcu') {
+      if (this.kegiatan_tipe == 'diklat_bkcu' || this.kegiatan_tipe == 'diklat_bkcu_internal') {
         axios.get('/api/download_folder/' + filename + '/diklat', {
           responseType: 'blob'
         }).then(function (response) {
           file_saver__WEBPACK_IMPORTED_MODULE_5___default.a.saveAs(response.data, filename);
         });
-      } else if (this.kegiatan_tipe == 'pertemuan_bkcu') {
+      } else if (this.kegiatan_tipe == 'pertemuan_bkcu' || this.kegiatan_tipe == 'pertemuan_bkcu_internal') {
         axios.get('/api/download_folder/' + filename + '/pertemuan', {
           responseType: 'blob'
         }).then(function (response) {
@@ -6575,7 +6580,8 @@ var render = function () {
                     "div",
                     { staticClass: "card" },
                     [
-                      _vm.item.tipe == "diklat_bkcu"
+                      _vm.item.tipe == "diklat_bkcu" ||
+                      _vm.item.tipe == "diklat_bkcu_internal"
                         ? [
                             _vm.item.gambar
                               ? _c("img", {
@@ -6623,7 +6629,8 @@ var render = function () {
                         "div",
                         { staticClass: "d-none d-sm-block" },
                         [
-                          _vm.item.tipe == "diklat_bkcu"
+                          _vm.item.tipe == "diklat_bkcu" ||
+                          _vm.item.tipe == "diklat_bkcu_internal"
                             ? [
                                 _vm.currentUser.can &&
                                 _vm.currentUser.can["update_diklat_bkcu"] &&
@@ -6642,7 +6649,7 @@ var render = function () {
                                       [
                                         _c("i", { staticClass: "icon-plus22" }),
                                         _vm._v(
-                                          " Tambah Materi\n\t\t\t\t\t\t\t\t\t\t"
+                                          " Tambah List Materi Di Sertifikat\n\t\t\t\t\t\t\t\t\t\t"
                                         ),
                                       ]
                                     )
@@ -6808,7 +6815,7 @@ var render = function () {
                                       [
                                         _c("i", { staticClass: "icon-plus22" }),
                                         _vm._v(
-                                          " Tambah Materi\n\t\t\t\t\t\t\t\t\t\t"
+                                          " Tambah List Materi Di Sertifikat\n\t\t\t\t\t\t\t\t\t\t"
                                         ),
                                       ]
                                     )
@@ -7032,7 +7039,7 @@ var render = function () {
                                       [
                                         _c("i", { staticClass: "icon-plus22" }),
                                         _vm._v(
-                                          " Tambah Materi\n\t\t\t\t\t\t\t\t\t\t"
+                                          " Tambah List Materi Di Sertifikat\n\t\t\t\t\t\t\t\t\t\t"
                                         ),
                                       ]
                                     )
@@ -7202,7 +7209,7 @@ var render = function () {
                                       [
                                         _c("i", { staticClass: "icon-plus22" }),
                                         _vm._v(
-                                          " Tambah Materi\n\t\t\t\t\t\t\t\t\t\t"
+                                          " Tambah List Materi Di Sertifikat\n\t\t\t\t\t\t\t\t\t\t"
                                         ),
                                       ]
                                     )
@@ -7558,7 +7565,7 @@ var render = function () {
                                 [
                                   _c("i", { staticClass: "icon-copy mr-2" }),
                                   _vm._v(
-                                    "\n\t\t\t\t\t\t\t\t\t\tMateri\n\t\t\t\t\t\t\t\t\t"
+                                    "\n\t\t\t\t\t\t\t\t\t\tList Materi Di Sertifikat\n\t\t\t\t\t\t\t\t\t"
                                   ),
                                 ]
                               ),

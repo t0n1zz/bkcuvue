@@ -244,8 +244,15 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/kegiatanBKCU/mulai', 'KegiatanBKCUController@indexMulai');
         Route::get('/kegiatanBKCU/buka', 'KegiatanBKCUController@indexBuka');
         Route::get('/kegiatanBKCU/jalan', 'KegiatanBKCUController@indexJalan');
+        Route::get('/kegiatanBKCU/diikuti', 'KegiatanBKCUController@indexDiikuti');
         Route::get('/kegiatanBKCU/kegiatan', 'KegiatanBKCUController@indexKegiatan');
         Route::get('/kegiatanBKCU/periode/{kegiatan_tipe}/{periode}', 'KegiatanBKCUController@indexPeriode');
+        Route::get('/kegiatanBKCU/indexSemuaPeserta', 'KegiatanBKCUController@indexSemuaPeserta');
+        Route::get('/kegiatanBKCU/indexSemuaPesertaCu/{id}', 'KegiatanBKCUController@indexSemuaPesertaCu');
+        Route::get('/kegiatanBKCU/indexSemuaPanitia', 'KegiatanBKCUController@indexSemuaPanitia');
+        Route::get('/kegiatanBKCU/indexSemuaPanitiaCu/{id}', 'KegiatanBKCUController@indexSemuaPanitiaCu');
+        Route::get('/kegiatanBKCU/indexSemuaFasilitator', 'KegiatanBKCUController@indexSemuaFasilitator');
+        Route::get('/kegiatanBKCU/indexSemuaFasilitatorCu/{id}', 'KegiatanBKCUController@indexSemuaFasilitatorCu');
         Route::get('/kegiatanBKCU/indexPeserta/{id}', 'KegiatanBKCUController@indexPeserta');
         Route::get('/kegiatanBKCU/indexMateri/{id}', 'KegiatanBKCUController@indexMateri');
         Route::get('/kegiatanBKCU/indexListMateri/{id}', 'KegiatanBKCUController@indexListMateri');
@@ -269,6 +276,8 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/kegiatanBKCU/checkPanitia/{kegiatan_id}/{aktivis_id}', 'KegiatanBKCUController@checkPanitia');
         Route::post('/kegiatanBKCU/updatePesertaHadir/{kegiatan_id}/{aktivis_id}', 'KegiatanBKCUController@updatePesertaHadir');
         Route::post('/kegiatanBKCU/updatePanitiaHadir/{kegiatan_id}/{aktivis_id}', 'KegiatanBKCUController@updatePanitiaHadir');
+        Route::get('/kegiatanBKCU/countJalan', 'KegiatanBKCUController@countJalan');
+        Route::get('/kegiatanBKCU/countDiikuti', 'KegiatanBKCUController@countDiikuti');
         Route::get('/kegiatanBKCU/countPeserta/{id}', 'KegiatanBKCUController@countPeserta');
         Route::get('/kegiatanBKCU/countPesertaHadir/{id}', 'KegiatanBKCUController@countPesertaHadir');
         Route::get('/kegiatanBKCU/countKeputusan/{id}/{cu}/{user}', 'KegiatanBKCUController@countKeputusan');

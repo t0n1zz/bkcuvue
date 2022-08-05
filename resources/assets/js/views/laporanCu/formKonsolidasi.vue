@@ -154,7 +154,7 @@
 							<div class="form-group">
 
 								<!-- title -->
-								<h5>Aset Masalah <info-icon :message="'Nilai dari investasi CU Primer yang sudah tidak menghasilkan dan atau saldo dari piutang anggota yang sudah berhenti tetapi simpanannya tidak tersedia untuk pelunasan piutang tersebut.'"></info-icon></h5>
+								<h5>Aset Masalah <info-icon :message="'Aset masalah atau Aset dalam penyelesaian adalah sejumlah aset yang mengalami permasalahan dalam pengelolaannya dan berpotensi menjadi kerugian bagi lembaga. Misalnya: 1. selisih program simpanan dan pinjaman dengan laporan keuangan, atau 2. investasi yang tidak kembali pokoknya, atau 3. saldo piutang anggota yang tidak terselesaikan oleh klaim JALINAN karena tidak memenuhi syarat untuk dicairkan dan kondisi ekonomi ahli waris anggota yang bersangkutan dipastikan tidak mampu untuk mengembalikan pinjaman. Jumlah diatas akan tetap di akun Aset Dalam Penyelesaian selama belum ada keputusan pengurus CU untuk penyelesaiannya.'"></info-icon></h5>
 
 								<!-- text -->
 								<cleave 
@@ -192,7 +192,7 @@
 							<div class="form-group">
 
 								<!-- title -->
-								<h5>Aset Likuid Tidak Menghasilkan </h5>
+								<h5>Aset Likuid Tidak Menghasilkan <info-icon :message="'Aset Likuid Tidak Menghasilkan atau Investasi Likuid terdiri dari Tabungan, Giro Bank, Simpanan di Puskopdit BKCU Kalimantan dan Simpanan di lembaga lainnya'"></info-icon></h5>
 
 								<!-- text -->
 								<cleave 
@@ -230,7 +230,7 @@
 							<div class="form-group">
 
 								<!-- title -->
-								<h5>Aktiva Lancar</h5>
+								<h5>Aktiva Lancar <info-icon :message="'Aset Lancar'"></info-icon></h5>
 
 								<!-- text -->
 								<cleave 
@@ -252,7 +252,7 @@
 							<div class="form-group">
 
 								<!-- title -->
-								<h5>Simp. Saham</h5>
+								<h5>Simp. Saham <info-icon :message="'Simpanan pokok dan simpanan wajib'"></info-icon></h5>
 
 								<!-- text -->
 								<cleave 
@@ -271,7 +271,7 @@
 							<div class="form-group">
 
 								<!-- title -->
-								<h5>Simp. Non Saham (Unggulan)</h5>
+								<h5>Simp. Non Saham (Unggulan) <info-icon :message="'Jenis simpanan yang memiliki tujuan tertentu serta pada umumnya menjadi jaminan atas jenis pinjaman yang sejenis. Penarikannya hanya dapat dilakukan dalam jangka waktu tertentu menurut perjanjian antara anggota dan CU yang bersangkutan atau selama tidak menjadi jaminan atas pinjaman.'"></info-icon></h5>
 
 								<!-- text -->
 								<cleave 
@@ -467,7 +467,7 @@
 							<div class="form-group">
 
 								<!-- title -->
-								<h5>Cadangan Umum</h5>
+								<h5>Cadangan Umum <info-icon :message="'Cadangan yang dibentuk dari penyisihan laba ditahan atau dari SHU bersih setelah dikurangi pajak, mendapat persetujuan rapat anggota tahunan atau rapat anggota lainnya sesuai dengan ketentuan pendirian atau anggaran dasar setiap CU.'"></info-icon></h5>
 
 								<!-- text -->
 								<cleave 
@@ -486,7 +486,7 @@
 							<div class="form-group">
 
 								<!-- title -->
-								<h5>Cadangan Resiko</h5>
+								<h5>Cadangan Resiko <info-icon :message="'Cadangan yang dibentuk dengan upaya untuk meminimalkan resiko kerugian yang timbul dari kegiatan pemberian pinjaman kepada anggota akibat perubahan-perubahan tidak terduga dari nilai mata uang, kredit, komoditas, dan modal.'"></info-icon></h5>
 
 								<!-- text -->
 								<cleave 
@@ -505,7 +505,7 @@
 							<div class="form-group">
 
 								<!-- title -->
-								<h5>Dana Gedung</h5>
+								<h5>Dana Gedung <info-icon :message="'Dana untuk keperluan pembangunan gedung kantor yang harus dibayarkan anggota CU saat pertama kali menjadi anggota dan hanya dilakukan sekali selama menjadi anggota serta dalam jumlah yang sama sesuai ketentuan CU yang bersangkutan. Penggunaannya akan mengurangi Dana Gedung dan menambah nilai aset tetap gedung.'"></info-icon></h5>
 
 								<!-- text -->
 								<cleave 
@@ -524,7 +524,7 @@
 							<div class="form-group">
 
 								<!-- title -->
-								<h5>Donasi</h5>
+								<h5>Donasi <info-icon :message="'Mencatat pemberian yang bersifat secara fisik oleh perorangan atau badan hukum, pemberian ini mempunyai sifat sukarela dengan tanpa adanya imbalan bersifat keuntungan kepada orang lain. Jenisnya pemberian donasi dapat berupa uang atau barang yang dapat dinilai dalam bentuk uang.'"></info-icon></h5>
 
 								<!-- text -->
 								<cleave 
@@ -603,7 +603,7 @@
 							<div class="form-group">
 
 								<!-- title -->
-								<h5>Sisa Hasil Usaha (SHU)</h5>
+								<h5>Sisa Hasil Usaha (SHU) <info-icon :message="'Sisa Hasil Usaha (SHU) atau SHU Tahun berjalan merupakan Jumlah pendapatan CU yang diperoleh dalam satu tahun buku dikurangi dengan biaya, penyusutan, dan kewajiban lain termasuk pajak dalam tahun buku yang bersangkutan.'"></info-icon></h5>
 
 								<!-- text -->
 								<cleave 
@@ -622,7 +622,7 @@
 							<div class="form-group">
 
 								<!-- title -->
-								<h5>Sisa Hasil Usaha (SHU) Tahun Lalu</h5>
+								<h5>Sisa Hasil Usaha (SHU) Tahun Lalu <info-icon :message="'Jumlah SHU yang tidak dibagi sebagai keputusan bersama dalam Rapat Anggota Tahunan, dan digunakan oleh CU sebagai cadangan biaya, tambahan modal agar kegiatan operasional perusahaan terjamin keberlangsungannya, biaya untuk mengembangkan perusahaan di masa depan,  atau bisa juga untuk membayar utang CU.'"></info-icon></h5>
 
 								<!-- text -->
 								<cleave 
@@ -641,7 +641,7 @@
 							<div class="form-group">
 
 								<!-- title -->
-								<h5>BJS Saham</h5>
+								<h5>BJS Saham <info-icon :message="'Mencatat penyisihan dividen atas simpanan saham anggota setiap bulan dan akan dikeluarkan saat pembagian dividen akhir tahun.'"></info-icon></h5>
 
 								<!-- text -->
 								<cleave 
@@ -663,7 +663,7 @@
 							<div class="form-group">
 
 								<!-- title -->
-								<h5>Inflasi</h5>
+								<h5>Inflasi <info-icon :message="'Data tingkat inflasi dalam bulan berjalan sesuai data yang dirilis oleh Bank Indonesia'"></info-icon></h5>
 
 								<!-- text -->
 								<cleave 
@@ -682,7 +682,7 @@
 							<div class="form-group">
 
 								<!-- title -->
-								<h5>Harga Pasar</h5>
+								<h5>Harga Pasar <info-icon :message="'Data tingkat suku bunga dalam bulan berjalan sesuai data yang dirilis oleh Bank Indonesia ( suku bunga acuan atau suku bunga kebijakan baru yaitu BI-7 Day Reverse Repo Rate (BI7DRR)'"></info-icon></h5>
 
 								<!-- text -->
 								<cleave 

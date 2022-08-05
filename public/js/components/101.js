@@ -88,6 +88,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.title = 'Diklat PUSKOPCUINA';
         this.titleDesc = 'Mengelola data diklat PUSKOPCUINA';
         this.titleIcon = 'icon-graduation2';
+      } else if (this.$route.params.tipe == 'diklat_bkcu_internal') {
+        this.title = 'Diklat Internal PUSKOPCUINA';
+        this.titleDesc = 'Mengelola data diklat internal PUSKOPCUINA';
+        this.titleIcon = 'icon-graduation2';
       } else if (this.$route.params.tipe == 'pertemuan_bkcu') {
         this.title = 'Pertemuan PUSKOPCUINA';
         this.titleDesc = 'Mengelola data pertemuan PUSKOPCUINA';
@@ -95,11 +99,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       } else if (this.$route.params.tipe == 'pertemuan_bkcu_internal') {
         this.title = 'Pertemuan Internal PUSKOPCUINA';
         this.titleDesc = 'Mengelola data pertemuan internal PUSKOPCUINA';
-        this.titleIcon = 'icon-hat';
+        this.titleIcon = 'icon-ungroup';
       } else if (this.$route.meta.mode == 'jalan') {
         this.title = 'Kegiatan PUSKOPCUINA Berjalan';
         this.titleDesc = 'Mengelola data kegiatan PUSKOPCUINA berjalan';
         this.titleIcon = 'icon-feed';
+      } else if (this.$route.meta.mode == 'diikuti') {
+        this.title = 'Kegiatan PUSKOPCUINA Diikuti';
+        this.titleDesc = 'Mengelola data kegiatan PUSKOPCUINA yang diikuti';
+        this.titleIcon = 'icon-station';
       }
     }
   },
@@ -750,6 +758,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.isNoButtonRow = true;
         this.query.limit = 15;
         this.excelDownloadUrl = this.kelas + '/indexJalan';
+      } else if (this.$route.meta.mode == 'diikuti') {
+        this.$store.dispatch(this.kelas + '/indexDiikuti', params);
+        this.dataview = 'grid';
+        this.isNoButtonRow = true;
+        this.query.limit = 15;
+        this.excelDownloadUrl = this.kelas + '/indexDiikuti';
       } else {
         this.$store.dispatch(this.kelas + '/indexPeriode', [params, this.$route.params.tipe, this.$route.params.periode]);
         this.excelDownloadUrl = this.kelas + '/indexPeriode/' + this.$route.params.periode;
@@ -890,7 +904,8 @@ var render = function () {
                   })
                 : _vm._e(),
               _vm._v(" "),
-              _vm.$route.meta.mode != "jalan"
+              _vm.$route.meta.mode != "jalan" &&
+              _vm.$route.meta.mode != "diikuti"
                 ? _c("select-data", { attrs: { kelas: _vm.kelas } })
                 : _vm._e(),
               _vm._v(" "),
@@ -1467,7 +1482,8 @@ var render = function () {
                           "div",
                           { staticClass: "card-body" },
                           [
-                            props.item.tipe == "diklat_bkcu"
+                            props.item.tipe == "diklat_bkcu" ||
+                            props.item.tipe == "diklat_bkcu_internal"
                               ? [
                                   props.item.gambar
                                     ? _c("img", {
@@ -1481,7 +1497,8 @@ var render = function () {
                                       })
                                     : _vm._e(),
                                 ]
-                              : props.item.tipe == "pertemuan_bkcu"
+                              : props.item.tipe == "pertemuan_bkcu" ||
+                                props.item.tipe == "pertemuan_bkcu_internal"
                               ? [
                                   props.item.gambar
                                     ? _c("img", {
@@ -1497,23 +1514,11 @@ var render = function () {
                                 ]
                               : _vm._e(),
                             _vm._v(" "),
-                            _c("hr"),
+                            props.item.gambar ? _c("hr") : _vm._e(),
                             _vm._v(" "),
-                            _c("h6", { staticClass: "text-primary" }, [
+                            _c("h5", { staticClass: "text-primary" }, [
                               _vm._v(_vm._s(props.item.name)),
                             ]),
-                            _vm._v(" "),
-                            props.item.keterangan
-                              ? _c("p", { staticClass: "mb-3" }, [
-                                  _vm._v(
-                                    _vm._s(
-                                      _vm._f("trimString")(
-                                        props.item.keterangan
-                                      )
-                                    )
-                                  ),
-                                ])
-                              : _vm._e(),
                             _vm._v(" "),
                             _c("hr"),
                             _vm._v(" "),
@@ -1703,7 +1708,8 @@ var render = function () {
             "template",
             { slot: "button-desktop" },
             [
-              _vm.$route.params.tipe == "diklat_bkcu"
+              _vm.$route.params.tipe == "diklat_bkcu" ||
+              _vm.$route.params.tipe == "diklat_bkcu_internal"
                 ? [
                     _vm.currentUser.can &&
                     _vm.currentUser.can["create_diklat_bkcu"]
@@ -1925,7 +1931,8 @@ var render = function () {
             "template",
             { slot: "button-mobile" },
             [
-              _vm.$route.params.tipe == "diklat_bkcu"
+              _vm.$route.params.tipe == "diklat_bkcu" ||
+              _vm.$route.params.tipe == "diklat_bkcu_internal"
                 ? [
                     _vm.currentUser.can &&
                     _vm.currentUser.can["create_diklat_bkcu"]
@@ -2031,7 +2038,8 @@ var render = function () {
                         )
                       : _vm._e(),
                   ]
-                : _vm.$route.params.tipe == "pertemuan_bkcu"
+                : _vm.$route.params.tipe == "pertemuan_bkcu" ||
+                  _vm.$route.params.tipe == "pertemuan_bkcu_internal"
                 ? [
                     _vm.currentUser.can &&
                     _vm.currentUser.can["create_pertemuan_bkcu"]

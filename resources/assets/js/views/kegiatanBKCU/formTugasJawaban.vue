@@ -523,13 +523,13 @@
 				this.$emit('tutup');
       },
       downloadMateri(filename){
-				if(this.kegiatan_tipe == 'diklat_bkcu'){
+				if(this.kegiatan_tipe == 'diklat_bkcu' || this.kegiatan_tipe == 'diklat_bkcu_internal'){
 					axios.get('/api/download_folder/' + filename + '/diklat', {
 					responseType: 'blob'})
 					.then(response => {
 						FileSaver.saveAs(response.data, filename)
 					});
-				}else if(this.kegiatan_tipe == 'pertemuan_bkcu'){
+				}else if(this.kegiatan_tipe == 'pertemuan_bkcu' || this.kegiatan_tipe == 'pertemuan_bkcu_internal'){
 					axios.get('/api/download_folder/' + filename + '/pertemuan', {
 					responseType: 'blob'})
 					.then(response => {

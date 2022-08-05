@@ -2,7 +2,7 @@
   <div class="card">
 			<!-- title -->
 		<div class="card-header bg-green-400 text-white header-elements-inline">
-			<h5 class="card-title"><i class="icon-equalizer mr-2"></i> Jumlah Data Organisasi</h5>
+			<h5 class="card-title"><i class="icon-equalizer mr-2"></i> Data Gerakan Organisasi</h5>
 			<div class="header-elements">
 				<div class="list-icons">
 					<a class="list-icons-item" data-action="collapse"></a>

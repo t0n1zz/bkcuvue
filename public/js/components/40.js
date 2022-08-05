@@ -2105,13 +2105,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.$store.dispatch('provinces/get');
       this.$store.dispatch('sertifikatKegiatan/index');
 
-      if (this.$route.params.tipe == 'diklat_bkcu') {
+      if (this.$route.params.tipe == 'diklat_bkcu' || this.$route.params.tipe == 'diklat_bkcu_internal') {
         this.$store.dispatch('kodeKegiatan/index');
       }
     },
     checkTipe: function checkTipe(tipe) {
       if (tipe == 'diklat_bkcu') {
         this.level2Title = 'Diklat PUSKOPCUINA';
+      } else if (tipe == 'diklat_bkcu_internal') {
+        this.level2Title = 'Diklat Internal PUSKOPCUINA';
       } else if (tipe == 'pertemuan_bkcu') {
         this.level2Title = 'Pertemuan PUSKOPCUINA';
       } else if (tipe == 'pertemuan_bkcu_internal') {
@@ -4871,7 +4873,8 @@ var render = function () {
                           ),
                         ]),
                         _vm._v(" "),
-                        _vm.$route.params.tipe == "diklat_bkcu"
+                        _vm.$route.params.tipe == "diklat_bkcu" ||
+                        _vm.$route.params.tipe == "diklat_bkcu_internal"
                           ? _c("div", { staticClass: "col-md-12" }, [
                               _c(
                                 "div",
@@ -5130,7 +5133,8 @@ var render = function () {
                               ),
                             ]),
                         _vm._v(" "),
-                        _vm.$route.params.tipe != "diklat_bkcu"
+                        _vm.$route.params.tipe != "diklat_bkcu" &&
+                        _vm.$route.params.tipe != "diklat_bkcu_internal"
                           ? _c("div", { staticClass: "col-md-6" }, [
                               _c(
                                 "div",

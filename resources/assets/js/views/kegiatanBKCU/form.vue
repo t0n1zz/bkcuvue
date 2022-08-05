@@ -36,7 +36,7 @@
 									</div>
 
 									<!-- kode diklat bkcu -->
-									<div class="col-md-12" v-if="$route.params.tipe == 'diklat_bkcu'">
+									<div class="col-md-12" v-if="$route.params.tipe == 'diklat_bkcu' || $route.params.tipe == 'diklat_bkcu_internal'">
 										<div class="form-group" :class="{'has-error' : errors.has('form.kode_kegiatan')}">
 
 											<!-- title -->
@@ -83,7 +83,7 @@
 									</div>
 
 									<!-- name -->
-									<div class="col-md-6" v-if="$route.params.tipe != 'diklat_bkcu'">
+									<div class="col-md-6" v-if="$route.params.tipe != 'diklat_bkcu' && $route.params.tipe != 'diklat_bkcu_internal'">
 										<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
 
 											<!-- title -->
@@ -1136,13 +1136,15 @@
 				}
 				this.$store.dispatch('provinces/get');
 				this.$store.dispatch('sertifikatKegiatan/index');
-				if(this.$route.params.tipe == 'diklat_bkcu'){
+				if(this.$route.params.tipe == 'diklat_bkcu' || this.$route.params.tipe == 'diklat_bkcu_internal'){
 					this.$store.dispatch('kodeKegiatan/index');
 				}
 			},
 			checkTipe(tipe){
 				if(tipe == 'diklat_bkcu'){
 					this.level2Title = 'Diklat PUSKOPCUINA';
+				}else if(tipe == 'diklat_bkcu_internal'){
+					this.level2Title = 'Diklat Internal PUSKOPCUINA';
 				}else if(tipe == 'pertemuan_bkcu'){
 					this.level2Title = 'Pertemuan PUSKOPCUINA';
 				}else if(tipe == 'pertemuan_bkcu_internal'){

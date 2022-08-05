@@ -3503,7 +3503,7 @@ var render = function () {
                           _c("info-icon", {
                             attrs: {
                               message:
-                                "Nilai dari investasi CU Primer yang sudah tidak menghasilkan dan atau saldo dari piutang anggota yang sudah berhenti tetapi simpanannya tidak tersedia untuk pelunasan piutang tersebut.",
+                                "Aset masalah atau Aset dalam penyelesaian adalah sejumlah aset yang mengalami permasalahan dalam pengelolaannya dan berpotensi menjadi kerugian bagi lembaga. Misalnya: 1. selisih program simpanan dan pinjaman dengan laporan keuangan, atau 2. investasi yang tidak kembali pokoknya, atau 3. saldo piutang anggota yang tidak terselesaikan oleh klaim JALINAN karena tidak memenuhi syarat untuk dicairkan dan kondisi ekonomi ahli waris anggota yang bersangkutan dipastikan tidak mampu untuk mengembalikan pinjaman. Jumlah diatas akan tetap di akun Aset Dalam Penyelesaian selama belum ada keputusan pengurus CU untuk penyelesaiannya.",
                             },
                           }),
                         ],
@@ -3577,7 +3577,19 @@ var render = function () {
                     "div",
                     { staticClass: "form-group" },
                     [
-                      _c("h5", [_vm._v("Aset Likuid Tidak Menghasilkan ")]),
+                      _c(
+                        "h5",
+                        [
+                          _vm._v("Aset Likuid Tidak Menghasilkan "),
+                          _c("info-icon", {
+                            attrs: {
+                              message:
+                                "Aset Likuid Tidak Menghasilkan atau Investasi Likuid terdiri dari Tabungan, Giro Bank, Simpanan di Puskopdit BKCU Kalimantan dan Simpanan di lembaga lainnya",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("cleave", {
                         staticClass: "form-control",
@@ -3651,7 +3663,16 @@ var render = function () {
                     "div",
                     { staticClass: "form-group" },
                     [
-                      _c("h5", [_vm._v("Aktiva Lancar")]),
+                      _c(
+                        "h5",
+                        [
+                          _vm._v("Aktiva Lancar "),
+                          _c("info-icon", {
+                            attrs: { message: "Aset Lancar" },
+                          }),
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("cleave", {
                         staticClass: "form-control",
@@ -3681,7 +3702,18 @@ var render = function () {
                     "div",
                     { staticClass: "form-group" },
                     [
-                      _c("h5", [_vm._v("Simp. Saham")]),
+                      _c(
+                        "h5",
+                        [
+                          _vm._v("Simp. Saham "),
+                          _c("info-icon", {
+                            attrs: {
+                              message: "Simpanan pokok dan simpanan wajib",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("cleave", {
                         staticClass: "form-control",
@@ -3709,7 +3741,19 @@ var render = function () {
                     "div",
                     { staticClass: "form-group" },
                     [
-                      _c("h5", [_vm._v("Simp. Non Saham (Unggulan)")]),
+                      _c(
+                        "h5",
+                        [
+                          _vm._v("Simp. Non Saham (Unggulan) "),
+                          _c("info-icon", {
+                            attrs: {
+                              message:
+                                "Jenis simpanan yang memiliki tujuan tertentu serta pada umumnya menjadi jaminan atas jenis pinjaman yang sejenis. Penarikannya hanya dapat dilakukan dalam jangka waktu tertentu menurut perjanjian antara anggota dan CU yang bersangkutan atau selama tidak menjadi jaminan atas pinjaman.",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("cleave", {
                         staticClass: "form-control",
@@ -4066,7 +4110,19 @@ var render = function () {
                     "div",
                     { staticClass: "form-group" },
                     [
-                      _c("h5", [_vm._v("Cadangan Umum")]),
+                      _c(
+                        "h5",
+                        [
+                          _vm._v("Cadangan Umum "),
+                          _c("info-icon", {
+                            attrs: {
+                              message:
+                                "Cadangan yang dibentuk dari penyisihan laba ditahan atau dari SHU bersih setelah dikurangi pajak, mendapat persetujuan rapat anggota tahunan atau rapat anggota lainnya sesuai dengan ketentuan pendirian atau anggaran dasar setiap CU.",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("cleave", {
                         staticClass: "form-control",
@@ -4094,7 +4150,19 @@ var render = function () {
                     "div",
                     { staticClass: "form-group" },
                     [
-                      _c("h5", [_vm._v("Cadangan Resiko")]),
+                      _c(
+                        "h5",
+                        [
+                          _vm._v("Cadangan Resiko "),
+                          _c("info-icon", {
+                            attrs: {
+                              message:
+                                "Cadangan yang dibentuk dengan upaya untuk meminimalkan resiko kerugian yang timbul dari kegiatan pemberian pinjaman kepada anggota akibat perubahan-perubahan tidak terduga dari nilai mata uang, kredit, komoditas, dan modal.",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("cleave", {
                         staticClass: "form-control",
@@ -4123,7 +4191,19 @@ var render = function () {
                     "div",
                     { staticClass: "form-group" },
                     [
-                      _c("h5", [_vm._v("Dana Gedung")]),
+                      _c(
+                        "h5",
+                        [
+                          _vm._v("Dana Gedung "),
+                          _c("info-icon", {
+                            attrs: {
+                              message:
+                                "Dana untuk keperluan pembangunan gedung kantor yang harus dibayarkan anggota CU saat pertama kali menjadi anggota dan hanya dilakukan sekali selama menjadi anggota serta dalam jumlah yang sama sesuai ketentuan CU yang bersangkutan. Penggunaannya akan mengurangi Dana Gedung dan menambah nilai aset tetap gedung.",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("cleave", {
                         staticClass: "form-control",
@@ -4151,7 +4231,19 @@ var render = function () {
                     "div",
                     { staticClass: "form-group" },
                     [
-                      _c("h5", [_vm._v("Donasi")]),
+                      _c(
+                        "h5",
+                        [
+                          _vm._v("Donasi "),
+                          _c("info-icon", {
+                            attrs: {
+                              message:
+                                "Mencatat pemberian yang bersifat secara fisik oleh perorangan atau badan hukum, pemberian ini mempunyai sifat sukarela dengan tanpa adanya imbalan bersifat keuntungan kepada orang lain. Jenisnya pemberian donasi dapat berupa uang atau barang yang dapat dinilai dalam bentuk uang.",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("cleave", {
                         staticClass: "form-control",
@@ -4266,7 +4358,19 @@ var render = function () {
                     "div",
                     { staticClass: "form-group" },
                     [
-                      _c("h5", [_vm._v("Sisa Hasil Usaha (SHU)")]),
+                      _c(
+                        "h5",
+                        [
+                          _vm._v("Sisa Hasil Usaha (SHU) "),
+                          _c("info-icon", {
+                            attrs: {
+                              message:
+                                "Sisa Hasil Usaha (SHU) atau SHU Tahun berjalan merupakan Jumlah pendapatan CU yang diperoleh dalam satu tahun buku dikurangi dengan biaya, penyusutan, dan kewajiban lain termasuk pajak dalam tahun buku yang bersangkutan.",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("cleave", {
                         staticClass: "form-control",
@@ -4295,7 +4399,19 @@ var render = function () {
                     "div",
                     { staticClass: "form-group" },
                     [
-                      _c("h5", [_vm._v("Sisa Hasil Usaha (SHU) Tahun Lalu")]),
+                      _c(
+                        "h5",
+                        [
+                          _vm._v("Sisa Hasil Usaha (SHU) Tahun Lalu "),
+                          _c("info-icon", {
+                            attrs: {
+                              message:
+                                "Jumlah SHU yang tidak dibagi sebagai keputusan bersama dalam Rapat Anggota Tahunan, dan digunakan oleh CU sebagai cadangan biaya, tambahan modal agar kegiatan operasional perusahaan terjamin keberlangsungannya, biaya untuk mengembangkan perusahaan di masa depan,  atau bisa juga untuk membayar utang CU.",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("cleave", {
                         staticClass: "form-control",
@@ -4324,7 +4440,19 @@ var render = function () {
                     "div",
                     { staticClass: "form-group" },
                     [
-                      _c("h5", [_vm._v("BJS Saham")]),
+                      _c(
+                        "h5",
+                        [
+                          _vm._v("BJS Saham "),
+                          _c("info-icon", {
+                            attrs: {
+                              message:
+                                "Mencatat penyisihan dividen atas simpanan saham anggota setiap bulan dan akan dikeluarkan saat pembagian dividen akhir tahun.",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("cleave", {
                         staticClass: "form-control",
@@ -4354,7 +4482,19 @@ var render = function () {
                     "div",
                     { staticClass: "form-group" },
                     [
-                      _c("h5", [_vm._v("Inflasi")]),
+                      _c(
+                        "h5",
+                        [
+                          _vm._v("Inflasi "),
+                          _c("info-icon", {
+                            attrs: {
+                              message:
+                                "Data tingkat inflasi dalam bulan berjalan sesuai data yang dirilis oleh Bank Indonesia",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("cleave", {
                         staticClass: "form-control",
@@ -4382,7 +4522,19 @@ var render = function () {
                     "div",
                     { staticClass: "form-group" },
                     [
-                      _c("h5", [_vm._v("Harga Pasar")]),
+                      _c(
+                        "h5",
+                        [
+                          _vm._v("Harga Pasar "),
+                          _c("info-icon", {
+                            attrs: {
+                              message:
+                                "Data tingkat suku bunga dalam bulan berjalan sesuai data yang dirilis oleh Bank Indonesia ( suku bunga acuan atau suku bunga kebijakan baru yaitu BI-7 Day Reverse Repo Rate (BI7DRR)",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("cleave", {
                         staticClass: "form-control",

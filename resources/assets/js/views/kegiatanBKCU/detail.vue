@@ -19,7 +19,7 @@
 						<div class="col-md-12">
 							<div class="card">
 
-								<template v-if="item.tipe == 'diklat_bkcu'">
+								<template v-if="item.tipe == 'diklat_bkcu' || item.tipe == 'diklat_bkcu_internal'">
 									<img :src="'/images/diklat/' + item.gambar + '.jpg'" class="img-fluid wmin-sm" v-if="item.gambar">
 								</template>
 								<template v-else-if="item.tipe == 'pertemuan_bkcu' || item.tipe == 'pertemuan_bkcu_internal'">
@@ -39,10 +39,10 @@
 								<div class="card-header d-print-none">
 									<div class="d-none d-sm-block">
 										<!-- diklat bkcu -->
-										<template v-if="item.tipe == 'diklat_bkcu'">
+										<template v-if="item.tipe == 'diklat_bkcu' || item.tipe == 'diklat_bkcu_internal'">
 												<!-- tambah materi -->
 											<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahMateri')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
-												<i class="icon-plus22"></i> Tambah Materi
+												<i class="icon-plus22"></i> Tambah List Materi Di Sertifikat
 											</button>
 
 											<!-- ubah diklat -->
@@ -77,7 +77,7 @@
 										<template v-else-if="item.tipe == 'pertemuan_bkcu' || item.tipe == 'pertemuan_bkcu_internal'">
 											<!-- tambah materi -->
 											<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahMateri')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
-												<i class="icon-plus22"></i> Tambah Materi
+												<i class="icon-plus22"></i> Tambah List Materi Di Sertifikat
 											</button>
 
 											<!-- ubah pertemuan -->
@@ -124,7 +124,7 @@
 										<template v-if="item.tipe == 'diklat_bkcu'">
 												<!-- tambah materi -->
 											<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('tambahMateri')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
-												<i class="icon-plus22"></i> Tambah Materi
+												<i class="icon-plus22"></i> Tambah List Materi Di Sertifikat
 											</button>
 
 											<!-- ubah diklat -->
@@ -159,7 +159,7 @@
 										<template v-else-if="item.tipe == 'pertemuan_bkcu' || item.tipe == 'pertemuan_bkcu_internal'">
 											<!-- tambah materi -->
 											<button class="btn btn-light btn-block mb-2" @click.prevent="modalOpen('tambahMateri')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
-												<i class="icon-plus22"></i> Tambah Materi
+												<i class="icon-plus22"></i> Tambah List Materi Di Sertifikat
 											</button>
 
 											<!-- ubah pertemuan -->
@@ -233,7 +233,7 @@
 										</a></li>
 
 										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'listMateri'}" @click.prevent="changeTab('listMateri')"><i class="icon-copy mr-2"></i>
-											Materi
+											List Materi Di Sertifikat
 										</a></li>
 
 										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'tugas'}" @click.prevent="changeTab('tugas')"><i class="icon-paste mr-2"></i>
@@ -2143,14 +2143,15 @@
 		created(){
 			this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
 		},
-		updated(){
-			this.kode = this.item.kode.kode;
-		},
 		watch: {
 			itemStat(value) {
 				if (value === "success") {
 					this.hideColumn();
 					this.checkTipe(this.item.tipe);
+
+					if(this.item.kode){
+						this.kode = this.item.kode.kode;
+					}
 					
 					if(this.currentUser.aktivis){
 						if(this.item.status == 4){
@@ -2311,9 +2312,14 @@
 			checkTipe(tipe){
 				if(tipe == 'diklat_bkcu'){
 					this.level2Title = 'Diklat PUSKOPCUINA';
-				}else{
+				}else if(tipe == 'pertemuan_bkcu'){
 					this.level2Title = 'Pertemuan PUSKOPCUINA';
+				}else if(tipe == 'diklat_bkcu_internal'){
+					this.level2Title = 'Diklat internal PUSKOPCUINA';
+				}else if(tipe == 'pertemuan_bkcu_internal'){
+					this.level2Title = 'Pertemuan internal PUSKOPCUINA';
 				}
+
 				this.title = 'Detail ' + this.level2Title;
 				this.titleDesc = 'Informasi detail ' + this.level2Title;
 			},
@@ -2703,7 +2709,7 @@
 				this.isDisableTable = false;
 			},
 			downloadMateri(filename){
-				if(this.item.tipe == 'diklat_bkcu'){
+				if(this.item.tipe == 'diklat_bkcu' || this.item.tipe == 'diklat_bkcu_internal'){
 					axios.get('/api/download_folder/' + filename + '/diklat', {
 					responseType: 'blob'})
 					.then(response => {

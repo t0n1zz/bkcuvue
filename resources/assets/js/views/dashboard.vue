@@ -4,10 +4,10 @@
 <div class="page-header">
 	<div class="page-header-content header-elements-md-inline">
 		<div class="page-title d-flex">
-			<h4><i class="icon-screen3 mr-2"></i> <span class="font-weight-semibold">Dashboard</span><small>Halo 
-				<span class="font-weight-semibold" v-if="currentUser.aktivis">{{ currentUser.aktivis.name + '!' }}</span>
-				<span class="font-weight-semibold" v-else>{{ currentUser.name + '!' }}</span>
-				 Apa kabarnya hari ini?</small>
+			<h4><i class="icon-screen3 mr-2"></i>Halo 
+				<span class="font-weight-semibold" v-if="currentUser.aktivis">{{ currentUser.aktivis.name + ',' }}</span>
+				<span class="font-weight-semibold" v-else>{{ currentUser.name + ',' }}</span>
+				 Apa kabarnya hari ini?
 			</h4>
 		</div>
 	</div>
@@ -16,14 +16,17 @@
 <!-- page container -->
 <div class="page-content pt-0">
 	<div class="content-wrapper"> 
-		
-		<!-- news carousel -->
-	 	<news-slider></news-slider>
-
-		<!-- button row -->
-		<button-row></button-row>
 
 		<div class="row align-items-stretch">
+
+			<div class="col-lg-12">
+				<!-- news carousel -->
+	 			<news-slider></news-slider>
+
+				<!-- button row -->
+				<button-row></button-row>
+
+			</div>
 
 			<div class="col-lg-8">
 				<kegiatan-bkcu-widget></kegiatan-bkcu-widget>

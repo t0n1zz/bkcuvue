@@ -337,7 +337,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       titleDesc: 'Mengelola data profile',
       titleIcon: 'icon-user',
       selectCuPath: 'userCu',
-      tabName: 'password',
+      tabName: 'riwayat',
       isAktivitas: false,
       formPassword: {},
       formIdentitas: {},
@@ -713,26 +713,28 @@ var render = function () {
                   "ul",
                   { staticClass: "nav nav-tabs nav-tabs-solid bg-light" },
                   [
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          class: { active: _vm.tabName == "password" },
-                          attrs: { href: "#" },
-                          on: {
-                            click: function ($event) {
-                              $event.preventDefault()
-                              return _vm.changeTab("password")
+                    _vm.currentUser.id_aktivis
+                      ? _c("li", { staticClass: "nav-item" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "nav-link",
+                              class: { active: _vm.tabName == "riwayat" },
+                              attrs: { href: "#" },
+                              on: {
+                                click: function ($event) {
+                                  $event.preventDefault()
+                                  return _vm.changeTab("riwayat")
+                                },
+                              },
                             },
-                          },
-                        },
-                        [
-                          _c("i", { staticClass: "icon-pencil5 mr-2" }),
-                          _vm._v(" Ubah Password"),
-                        ]
-                      ),
-                    ]),
+                            [
+                              _c("i", { staticClass: "icon-list2 mr-2" }),
+                              _vm._v(" Riwayat"),
+                            ]
+                          ),
+                        ])
+                      : _vm._e(),
                     _vm._v(" "),
                     _vm.currentUser.id_aktivis
                       ? _c("li", { staticClass: "nav-item" }, [
@@ -750,31 +752,8 @@ var render = function () {
                               },
                             },
                             [
-                              _c("i", { staticClass: "icon-pencil5 mr-2" }),
+                              _c("i", { staticClass: "icon-user-tie mr-2" }),
                               _vm._v(" Ubah Identitas"),
-                            ]
-                          ),
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.currentUser.id_aktivis
-                      ? _c("li", { staticClass: "nav-item" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "nav-link",
-                              class: { active: _vm.tabName == "riwayat" },
-                              attrs: { href: "#" },
-                              on: {
-                                click: function ($event) {
-                                  $event.preventDefault()
-                                  return _vm.changeTab("riwayat")
-                                },
-                              },
-                            },
-                            [
-                              _c("i", { staticClass: "icon-pencil5 mr-2" }),
-                              _vm._v(" Ubah Riwayat"),
                             ]
                           ),
                         ])
@@ -797,6 +776,27 @@ var render = function () {
                         [
                           _c("i", { staticClass: "icon-eye2 mr-2" }),
                           _vm._v(" Lihat Aktivitas"),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          class: { active: _vm.tabName == "password" },
+                          attrs: { href: "#" },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.changeTab("password")
+                            },
+                          },
+                        },
+                        [
+                          _c("i", { staticClass: "icon-pencil5 mr-2" }),
+                          _vm._v(" Ubah Password"),
                         ]
                       ),
                     ]),

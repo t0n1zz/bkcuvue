@@ -103,7 +103,126 @@ class KegiatanBKCUController extends Controller{
 
 	public function indexJalan()
 	{
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies')->whereIn('tipe',['diklat_bkcu','pertemuan_bkcu'])->where('status',4)->advancedFilter();
+		$id_cu = \Auth::user()->id_cu;
+
+		if($id_cu == 0){
+			$table_data = Kegiatan::with('tempat','sasaran','Regencies')->where('status',4)->advancedFilter();
+		}else{
+			$table_data = Kegiatan::with('tempat','sasaran','Regencies')->whereIn('tipe',['diklat_bkcu','pertemuan_bkcu'])->where('status',4)->advancedFilter();
+		}
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexDiikuti()
+	{
+		$aktivis_id = \Auth::user()->id_aktivis;
+
+		$table_data = Kegiatan::with('tempat','sasaran','Regencies')->whereHas('hasPeserta', function($query) use ($aktivis_id){
+			$query->where('aktivis_id',$aktivis_id);
+		})->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexSemuaPeserta()
+	{
+		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi','kegiatan')->advancedFilter();
+
+		$table_data = $this->formatQuery($table_data);
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexSemuaPesertaCu($id)
+	{
+		if($id == 0){
+			$tipe = 3;
+			$id = 1;
+		}else{
+			$tipe = 1;
+		}
+
+		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi','kegiatan')->whereHas('aktivis.pekerjaan', function($query) use ($id, $tipe){
+			$query->where('tipe',$tipe)->where('id_tempat',$id);
+		})->advancedFilter();
+
+		$table_data = $this->formatQuery($table_data);
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexSemuaPanitia()
+	{
+		$table_data = KegiatanPanitia::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi','kegiatan','mitra_orang','mitra_lembaga')->where('peran','panitia')->advancedFilter();
+
+		$table_data = $this->formatQuery($table_data);
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexSemuaPanitiaCu($id)
+	{
+		if($id == 0){
+			$tipe = 3;
+			$id = 1;
+		}else{
+			$tipe = 1;
+		}
+
+		$table_data = KegiatanPanitia::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi','kegiatan')->whereHas('aktivis.pekerjaan', function($query) use ($id,$tipe){
+			$query->where('tipe',$tipe)->where('id_tempat',$id);
+		})->where('peran','panitia')->advancedFilter();
+
+		$table_data = $this->formatQuery($table_data);
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexSemuaFasilitator()
+	{
+		$table_data = KegiatanPanitia::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi','kegiatan','mitra_orang','mitra_lembaga')->where('peran','fasilitator')->advancedFilter();
+
+		$table_data = $this->formatQuery($table_data);
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexSemuaFasilitatorCu($id)
+	{
+		if($id == 0){
+			$tipe = 3;
+			$id = 1;
+		}else{
+			$tipe = 1;
+		}
+
+		$table_data = KegiatanPanitia::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi','kegiatan')->whereHas('aktivis.pekerjaan', function($query) use ($id,$tipe){
+			$query->where('tipe',$tipe)->where('id_tempat',$id);
+		})->where('peran','fasilitator')->advancedFilter();
+
+		$table_data = $this->formatQuery($table_data);
 
 		return response()
 		->json([
@@ -122,6 +241,8 @@ class KegiatanBKCUController extends Controller{
 			'model' => $table_data
 		]);
 	}
+
+	
 
 	public function indexPesertaCu($id, $cu)
 	{
@@ -821,7 +942,11 @@ class KegiatanBKCUController extends Controller{
 
 		if($kelas->tipe == 'diklat_bkcu'){
 			$name = KodeKegiatan::where('id', $request->id_kode)->first();
-			$name = $name->name;
+			if($name){
+				$name = $name->name;
+			}else{
+				$name = $kelas->name;
+			}
 		}else{
 			$name = $kelas->name;
 		}
@@ -1417,6 +1542,37 @@ class KegiatanBKCUController extends Controller{
 		return response()
 		->json([
 			'model' => [$table_data, $table_data2]
+		]);
+	}
+
+	public function countJalan()
+	{
+		$id_cu = \Auth::user()->id_cu;
+
+		if($id_cu == 0){
+			$table_data = Kegiatan::where('status',4)->count();
+		}else{
+			$table_data = Kegiatan::whereIn('tipe',['diklat_bkcu','pertemuan_bkcu'])->where('status',4)->count();
+		}
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+
+	public function countDiikuti()
+	{
+		$aktivis_id = \Auth::user()->id_aktivis;
+
+		$table_data = Kegiatan::whereHas('hasPeserta', function($query) use ($aktivis_id){
+			$query->where('aktivis_id',$aktivis_id);
+		})->count();
+
+		return response()
+		->json([
+			'model' => $table_data
 		]);
 	}
 }

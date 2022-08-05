@@ -105,6 +105,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -307,6 +310,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -318,6 +337,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     return _ref = {
       kegiatanBKCUJalanWidgetRoute: {},
+      kegiatanBKCUDiikutiWidgetRoute: {},
+      profileWidgetRoute: {},
       artikelWidgetRoute: {},
       artikelKategoriWidgetRoute: {},
       artikelPenulisWidgetRoute: {},
@@ -337,10 +358,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   created: function created() {
     this.countWidgetRoute();
-    this.fetchKegiatanBerjalan();
+    this.fetchKegiatan();
   },
   methods: {
     countWidgetRoute: function countWidgetRoute() {
+      this.profileWidgetRoute = {
+        name: 'profile',
+        params: {
+          id: this.currentUser.id
+        }
+      };
       this.artikelWidgetRoute = {
         name: 'artikelCu',
         params: {
@@ -406,6 +433,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
       this.kegiatanBKCUJalanWidgetRoute = {
         name: 'kegiatanBKCUJalan'
+      };
+      this.kegiatanBKCUDiikutiWidgetRoute = {
+        name: 'kegiatanBKCUDiikuti'
       };
       this.dokumenGerakanPublikWidgetRoute = {
         name: 'dokumenGerakanPublik',
@@ -575,18 +605,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     goTo: function goTo(route) {
       this.$router.push(route);
     },
-    fetchKegiatanBerjalan: function fetchKegiatanBerjalan() {
-      var query = {
-        order_column: "mulai",
-        order_direction: "asc",
-        filter_match: "and",
-        limit: 6,
-        page: 1
-      };
-
-      if (this.modelKegiatanStat != 'success') {
-        this.$store.dispatch('kegiatanBKCU/indexJalanHeader', query);
-      }
+    fetchKegiatan: function fetchKegiatan() {
+      this.$store.dispatch('kegiatanBKCU/countJalan');
+      this.$store.dispatch('kegiatanBKCU/countDiikuti');
     },
     momentYear: function momentYear() {
       return moment().year();
@@ -595,8 +616,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
     currentUser: 'currentUser'
   })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('kegiatanBKCU', {
-    modelKegiatan: 'dataJalan',
-    modelKegiatanStat: 'dataJalanStat'
+    countJalan: 'count',
+    countJalanStat: 'countStat',
+    countDiikuti: 'count2',
+    countDiikutiStat: 'countStat2'
   }))
 });
 
@@ -1974,21 +1997,15 @@ var render = function () {
           _c("div", { staticClass: "page-title d-flex" }, [
             _c("h4", [
               _c("i", { staticClass: "icon-screen3 mr-2" }),
-              _vm._v(" "),
-              _c("span", { staticClass: "font-weight-semibold" }, [
-                _vm._v("Dashboard"),
-              ]),
-              _c("small", [
-                _vm._v("Halo \n\t\t\t\t"),
-                _vm.currentUser.aktivis
-                  ? _c("span", { staticClass: "font-weight-semibold" }, [
-                      _vm._v(_vm._s(_vm.currentUser.aktivis.name + "!")),
-                    ])
-                  : _c("span", { staticClass: "font-weight-semibold" }, [
-                      _vm._v(_vm._s(_vm.currentUser.name + "!")),
-                    ]),
-                _vm._v("\n\t\t\t\t Apa kabarnya hari ini?"),
-              ]),
+              _vm._v("Halo \n\t\t\t\t"),
+              _vm.currentUser.aktivis
+                ? _c("span", { staticClass: "font-weight-semibold" }, [
+                    _vm._v(_vm._s(_vm.currentUser.aktivis.name + ",")),
+                  ])
+                : _c("span", { staticClass: "font-weight-semibold" }, [
+                    _vm._v(_vm._s(_vm.currentUser.name + ",")),
+                  ]),
+              _vm._v("\n\t\t\t\t Apa kabarnya hari ini?\n\t\t\t"),
             ]),
           ]),
         ]
@@ -1996,60 +2013,58 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "page-content pt-0" }, [
-      _c(
-        "div",
-        { staticClass: "content-wrapper" },
-        [
-          _c("news-slider"),
+      _c("div", { staticClass: "content-wrapper" }, [
+        _c("div", { staticClass: "row align-items-stretch" }, [
+          _c(
+            "div",
+            { staticClass: "col-lg-12" },
+            [_c("news-slider"), _vm._v(" "), _c("button-row")],
+            1
+          ),
           _vm._v(" "),
-          _c("button-row"),
+          _c(
+            "div",
+            { staticClass: "col-lg-8" },
+            [
+              _c("kegiatan-bkcu-widget"),
+              _vm._v(" "),
+              _vm.currentUser.id_cu == 0
+                ? _c("history-organisasi-widget")
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.currentUser.can && _vm.currentUser.can["index_laporan_cu"]
+                ? _c("grafik-laporan-cu-widget", {
+                    attrs: {
+                      id_cu: _vm.currentUser.id_cu,
+                      columnData: _vm.columnData,
+                      columnDataPearls: _vm.columnDataPearls,
+                    },
+                  })
+                : _vm._e(),
+            ],
+            1
+          ),
           _vm._v(" "),
-          _c("div", { staticClass: "row align-items-stretch" }, [
-            _c(
-              "div",
-              { staticClass: "col-lg-8" },
-              [
-                _c("kegiatan-bkcu-widget"),
-                _vm._v(" "),
-                _vm.currentUser.id_cu == 0
-                  ? _c("history-organisasi-widget")
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.currentUser.can && _vm.currentUser.can["index_laporan_cu"]
-                  ? _c("grafik-laporan-cu-widget", {
-                      attrs: {
-                        id_cu: _vm.currentUser.id_cu,
-                        columnData: _vm.columnData,
-                        columnDataPearls: _vm.columnDataPearls,
-                      },
-                    })
-                  : _vm._e(),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-lg-4" },
-              [
-                _c("count-organisasi-widget"),
-                _vm._v(" "),
-                _vm.currentUser.can && _vm.currentUser.can["index_laporan_cu"]
-                  ? _c("table-laporan-cu-widget", {
-                      attrs: {
-                        id_cu: _vm.currentUser.id_cu,
-                        columnData: _vm.columnData,
-                        columnDataPearls: _vm.columnDataPearls,
-                      },
-                    })
-                  : _vm._e(),
-              ],
-              1
-            ),
-          ]),
-        ],
-        1
-      ),
+          _c(
+            "div",
+            { staticClass: "col-lg-4" },
+            [
+              _c("count-organisasi-widget"),
+              _vm._v(" "),
+              _vm.currentUser.can && _vm.currentUser.can["index_laporan_cu"]
+                ? _c("table-laporan-cu-widget", {
+                    attrs: {
+                      id_cu: _vm.currentUser.id_cu,
+                      columnData: _vm.columnData,
+                      columnDataPearls: _vm.columnDataPearls,
+                    },
+                  })
+                : _vm._e(),
+            ],
+            1
+          ),
+        ]),
+      ]),
     ]),
   ])
 }
@@ -2076,11 +2091,11 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
-    _vm.modelKegiatanStat == "success" && _vm.modelKegiatan.data.length > 0
+    _vm.countJalanStat == "success"
       ? _c(
           "div",
           {
-            staticClass: "col-12 cursor-pointer",
+            staticClass: "col-lg-6 col-md-6 col-sm-12 col-12 cursor-pointer",
             on: {
               click: function ($event) {
                 $event.preventDefault()
@@ -2091,14 +2106,65 @@ var render = function () {
           [
             _c("count-widget", {
               attrs: {
-                count:
-                  "Terdapat " +
-                  _vm.modelKegiatan.data.length +
-                  " Kegiatan Berjalan",
+                count: "Terdapat " + _vm.countJalan + " Kegiatan Berjalan",
                 title:
                   "Silahkan menekan tombol ini untuk melihat kegiatan yang sedang berlangsung",
                 color: "bg-warning",
                 icon: "icon-feed",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.countDiikutiStat == "success"
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-6 col-md-6 col-sm-12 col-12 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.kegiatanBKCUDiikutiWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                count: "Terdapat " + _vm.countDiikuti + " Kegiatan Diikuti",
+                title:
+                  "Silahkan menekan tombol ini untuk melihat kegiatan yang telah diikuti",
+                color: "bg-info",
+                icon: "icon-station",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.profileWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Profile",
+                color: "bg-primary",
+                icon: "icon-user",
               },
             }),
           ],
@@ -2220,7 +2286,7 @@ var render = function () {
       [
         _c("count-widget", {
           attrs: {
-            title: "Diklat BKCU",
+            title: "Diklat PUSKOPCUINA",
             color: "bg-blue-400",
             icon: "icon-graduation2",
           },
@@ -2243,7 +2309,7 @@ var render = function () {
       [
         _c("count-widget", {
           attrs: {
-            title: "Pertemuan BKCU",
+            title: "Pertemuan PUSKOPCUINA",
             color: "bg-pink-400",
             icon: "icon-ungroup",
           },
@@ -2369,7 +2435,7 @@ var render = function () {
           [
             _c("count-widget", {
               attrs: {
-                title: "CU",
+                title: "Profil CU",
                 color: "bg-green-400",
                 icon: "icon-office",
               },
@@ -2394,7 +2460,7 @@ var render = function () {
           [
             _c("count-widget", {
               attrs: {
-                title: "TP/KP",
+                title: "Profil TP/KP",
                 color: "bg-brown-400",
                 icon: "icon-home9",
               },
@@ -2772,7 +2838,16 @@ var render = function () {
       : _vm._e(),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12" }, [
+      _c("hr", { staticClass: "mt-0" }),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -3003,7 +3078,7 @@ var staticRenderFns = [
       [
         _c("h5", { staticClass: "card-title" }, [
           _c("i", { staticClass: "icon-equalizer mr-2" }),
-          _vm._v(" Jumlah Data Organisasi"),
+          _vm._v(" Data Gerakan Organisasi"),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "header-elements" }, [

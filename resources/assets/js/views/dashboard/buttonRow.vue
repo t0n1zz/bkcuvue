@@ -2,12 +2,28 @@
   <div class="row">
 
 		<!-- kegiatan berjalan -->
-		<div class="col-12 cursor-pointer" v-if="modelKegiatanStat == 'success' && modelKegiatan.data.length > 0" @click.prevent="goTo(kegiatanBKCUJalanWidgetRoute)">
+		<div class="col-lg-6 col-md-6 col-sm-12 col-12 cursor-pointer" @click.prevent="goTo(kegiatanBKCUJalanWidgetRoute)" v-if="countJalanStat == 'success'">
       <count-widget 
-				:count="'Terdapat ' + modelKegiatan.data.length + ' Kegiatan Berjalan'" 
+				:count="'Terdapat ' + countJalan + ' Kegiatan Berjalan'" 
 				:title="'Silahkan menekan tombol ini untuk melihat kegiatan yang sedang berlangsung'" 
 				:color="'bg-warning'" 
 				:icon="'icon-feed'"></count-widget>
+    </div>
+
+		<!-- kegiatan diikuti -->
+		<div class="col-lg-6 col-md-6 col-sm-12 col-12 cursor-pointer" @click.prevent="goTo(kegiatanBKCUDiikutiWidgetRoute)" v-if="countDiikutiStat == 'success'">
+      <count-widget 
+				:count="'Terdapat ' + countDiikuti + ' Kegiatan Diikuti'" 
+				:title="'Silahkan menekan tombol ini untuk melihat kegiatan yang telah diikuti'" 
+				:color="'bg-info'" 
+				:icon="'icon-station'"></count-widget>
+    </div>
+
+		<div class="col-12"><hr class="mt-0"/></div>
+
+		<!-- profile -->
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser" @click.prevent="goTo(profileWidgetRoute)">
+      <count-widget :title="'Profile'" :color="'bg-primary'" :icon="'icon-user'"></count-widget>
     </div>
 		
     <!-- artikel -->
@@ -32,12 +48,12 @@
 
     <!-- diklat bkcu -->
     <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" @click.prevent="goTo(diklatBKCUWidgetRoute)">
-      <count-widget :title="'Diklat BKCU'" :color="'bg-blue-400'" :icon="'icon-graduation2'"></count-widget>
+      <count-widget :title="'Diklat PUSKOPCUINA'" :color="'bg-blue-400'" :icon="'icon-graduation2'"></count-widget>
     </div>
 
     <!-- pertemuan bkcu -->
     <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" @click.prevent="goTo(pertemuanBKCUWidgetRoute)">
-      <count-widget :title="'Pertemuan BKCU'" :color="'bg-pink-400'" :icon="'icon-ungroup'"></count-widget>
+      <count-widget :title="'Pertemuan PUSKOPCUINA'" :color="'bg-pink-400'" :icon="'icon-ungroup'"></count-widget>
     </div>
 
     <!-- tempat -->
@@ -67,12 +83,12 @@
 
     <!-- cu -->
     <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_cu']" @click.prevent="goTo(cuWidgetRoute)">
-      <count-widget :title="'CU'" :color="'bg-green-400'" :icon="'icon-office'"></count-widget>
+      <count-widget :title="'Profil CU'" :color="'bg-green-400'" :icon="'icon-office'"></count-widget>
     </div>
 
     <!-- tp -->
     <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_tp']" @click.prevent="goTo(tpWidgetRoute)">
-      <count-widget :title="'TP/KP'" :color="'bg-brown-400'" :icon="'icon-home9'"></count-widget>
+      <count-widget :title="'Profil TP/KP'" :color="'bg-brown-400'" :icon="'icon-home9'"></count-widget>
     </div>
 
     <!-- produkCu -->
@@ -164,6 +180,8 @@
 		data(){
 			return{
 				kegiatanBKCUJalanWidgetRoute: {},
+				kegiatanBKCUDiikutiWidgetRoute: {},
+				profileWidgetRoute: {},
 				artikelWidgetRoute: {},
 				artikelKategoriWidgetRoute: {},
 				artikelPenulisWidgetRoute: {},
@@ -196,10 +214,11 @@
 		},
 		created(){
 			this.countWidgetRoute();
-			this.fetchKegiatanBerjalan();
+			this.fetchKegiatan();
 		},
 		methods:{
 			countWidgetRoute(){
+				this.profileWidgetRoute = { name: 'profile', params:{id: this.currentUser.id} };
 				this.artikelWidgetRoute = { name: 'artikelCu', params:{cu: this.currentUser.id_cu} };
 				this.artikelPenulisWidgetRoute = { name: 'artikelPenulisCu', params:{cu: this.currentUser.id_cu} };
 				this.artikelKategoriWidgetRoute = { name: 'artikelKategoriCu', params:{cu: this.currentUser.id_cu} };
@@ -213,6 +232,7 @@
 				this.mitraLembagaWidgetRoute = { name: 'mitraLembaga' };
 				this.userWidgetRoute = { name: 'userCu', params:{cu: this.currentUser.id_cu} };
 				this.kegiatanBKCUJalanWidgetRoute = { name: 'kegiatanBKCUJalan' };
+				this.kegiatanBKCUDiikutiWidgetRoute = { name: 'kegiatanBKCUDiikuti' };
 				this.dokumenGerakanPublikWidgetRoute = { name: 'dokumenGerakanPublik', params:{cu: 'semua'} };
 				this.suratKeluarWidgetRoute = { name: 'suratCu', params:{cu: this.currentUser.id_cu, tipe: 'semua', periode: this.momentYear() } };
 				this.suratMasukWidgetRoute = { name: 'suratMasukCu', params:{cu: this.currentUser.id_cu, periode: this.momentYear() } };
@@ -248,17 +268,9 @@
 			goTo(route){
 				this.$router.push(route);
 			},
-			fetchKegiatanBerjalan(){
-				var query = {
-					order_column: "mulai",
-					order_direction: "asc",
-					filter_match: "and",
-					limit: 6,
-					page: 1
-				};
-				if(this.modelKegiatanStat != 'success'){
-					this.$store.dispatch('kegiatanBKCU/indexJalanHeader', query);
-				}
+			fetchKegiatan(){
+				this.$store.dispatch('kegiatanBKCU/countJalan');
+				this.$store.dispatch('kegiatanBKCU/countDiikuti');
 			},
 			momentYear(){
 				return moment().year();
@@ -269,8 +281,10 @@
 				currentUser: 'currentUser'
 			}),
 			...mapGetters('kegiatanBKCU',{
-				modelKegiatan: 'dataJalan',
-				modelKegiatanStat: 'dataJalanStat',
+				countJalan: 'count',
+				countJalanStat: 'countStat',
+				countDiikuti: 'count2',
+				countDiikutiStat: 'countStat2',
 			}),
 		}
 	}

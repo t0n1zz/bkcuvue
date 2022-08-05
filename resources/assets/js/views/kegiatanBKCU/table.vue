@@ -8,7 +8,7 @@
 			<template slot="button-desktop">
 
 				<!-- diklat bkcu button -->
-				<template v-if="$route.params.tipe == 'diklat_bkcu'">
+				<template v-if="$route.params.tipe == 'diklat_bkcu' || $route.params.tipe == 'diklat_bkcu_internal'">
 					<!-- tambah -->
 					<router-link :to="{ name: kelas + 'Create', params:{tipe: $route.params.tipe}}" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['create_diklat_bkcu']">
 						<i class="icon-plus3"></i> Tambah
@@ -69,7 +69,7 @@
 			<template slot="button-mobile">
 
 				<!-- diklat bkcu button -->
-				<template v-if="$route.params.tipe == 'diklat_bkcu'">
+				<template v-if="$route.params.tipe == 'diklat_bkcu' || $route.params.tipe == 'diklat_bkcu_internal'">
 					<!-- tambah -->
 					<router-link :to="{ name: kelas + 'Create', params:{tipe: $route.params.tipe}}" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['create_diklat_bkcu']">
 						<i class="icon-plus3"></i> Tambah
@@ -97,7 +97,7 @@
 				</template>
 
 				<!-- pertemuan bkcu button -->
-				<template v-else-if="$route.params.tipe == 'pertemuan_bkcu'">
+				<template v-else-if="$route.params.tipe == 'pertemuan_bkcu' || $route.params.tipe == 'pertemuan_bkcu_internal'">
 					<!-- tambah -->
 					<router-link :to="{ name: kelas + 'Create', params:{tipe: $route.params.tipe}}" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['create_pertemuan_bkcu']">
 						<i class="icon-plus3"></i> Tambah
@@ -196,16 +196,16 @@
 							</div>
 						</div>
 						<div class="card-body">
-							<template v-if="props.item.tipe == 'diklat_bkcu'">
+							<template v-if="props.item.tipe == 'diklat_bkcu' || props.item.tipe == 'diklat_bkcu_internal'">
 								<img :src="'/images/diklat/' + props.item.gambar + '.jpg'" class="img-fluid wmin-sm" v-if="props.item.gambar">
 							</template>
-							<template v-else-if="props.item.tipe == 'pertemuan_bkcu'">
+							<template v-else-if="props.item.tipe == 'pertemuan_bkcu' || props.item.tipe == 'pertemuan_bkcu_internal'">
 								<img :src="'/images/pertemuan/' + props.item.gambar + '.jpg'" class="img-fluid wmin-sm" v-if="props.item.gambar">
 							</template>
-							<hr/>
-							<h6 class="text-primary">{{ props.item.name }}</h6>
+							<hr v-if="props.item.gambar"/>
+							<h5 class="text-primary">{{ props.item.name }}</h5>
 
-							<p class="mb-3" v-if="props.item.keterangan">{{ props.item.keterangan | trimString }}</p>
+							<!-- <p class="mb-3" v-if="props.item.keterangan">{{ props.item.keterangan | trimString }}</p> -->
 							
 							<hr/>
 
@@ -505,6 +505,12 @@
 					this.isNoButtonRow = true;
 					this.query.limit = 15;
 					this.excelDownloadUrl = this.kelas + '/indexJalan';
+				}else if(this.$route.meta.mode == 'diikuti'){
+					this.$store.dispatch(this.kelas + '/indexDiikuti', params);
+					this.dataview = 'grid';
+					this.isNoButtonRow = true;
+					this.query.limit = 15;
+					this.excelDownloadUrl = this.kelas + '/indexDiikuti';
 				}else{
 					this.$store.dispatch(this.kelas + '/indexPeriode', [params,  this.$route.params.tipe, this.$route.params.periode]);
 					this.excelDownloadUrl = this.kelas + '/indexPeriode/' + this.$route.params.periode;

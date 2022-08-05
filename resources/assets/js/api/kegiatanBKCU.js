@@ -20,6 +20,10 @@ export default {
     return axios.get('/api/kegiatanBKCU/jalan', {params: p});
   },
 
+  indexDiikuti: function( p ){
+    return axios.get('/api/kegiatanBKCU/diikuti', {params: p});
+  },
+
   indexPeriode: function( p, tipe, periode ){
     return axios.get('/api/kegiatanBKCU/periode/' + tipe + '/' + periode , {params: p});
   },
@@ -274,6 +278,14 @@ export default {
 
   batalPeserta: function( tipe, id, form){
     return axios.post('/api/kegiatanBKCU/batalPeserta/' + tipe + '/' + id, form);
+  },
+
+  countJalan: function(){
+    return axios.get('/api/kegiatanBKCU/countJalan');
+  },
+
+  countDiikuti: function(){
+    return axios.get('/api/kegiatanBKCU/countDiikuti');
   },
 
   countPeserta: function( id ){

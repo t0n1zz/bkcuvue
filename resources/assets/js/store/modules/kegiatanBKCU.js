@@ -20,7 +20,6 @@ export const kegiatanBKCU = {
     dataS9: [], //collection
     dataS10: [], //collection
     dataS11: [], //collection
-    dataJalan: [], //collection
     dataSertifikat: {},
     dataNilai: [],
     nilai: [],
@@ -50,6 +49,7 @@ export const kegiatanBKCU = {
     dataStatS10: '',
     dataStatS11: '',
     dataJalanStat: '',
+    dataDiikutiStat: '',
     countStat: '',
     countStat2: '',
     countStat3: '',
@@ -80,7 +80,6 @@ export const kegiatanBKCU = {
     dataS9: state => state.dataS9,
     dataS10: state => state.dataS10,
     dataS11: state => state.dataS11,
-    dataJalan: state => state.dataJalan,
     dataSertifikat: state => state.dataSertifikat,
     dataNilai: state => state.dataNilai,
     dataListMateri: state => state.dataListMateri,
@@ -109,7 +108,6 @@ export const kegiatanBKCU = {
     dataStatS9: state => state.dataStatS9,
     dataStatS10: state => state.dataStatS10,
     dataStatS11: state => state.dataStatS11,
-    dataJalanStat: state => state.dataJalanStat,
     countStat: state => state.countStat,
     countStat2: state => state.countStat2,
     countStat3: state => state.countStat3,
@@ -154,6 +152,20 @@ export const kegiatanBKCU = {
         });
     },
 
+    indexDiikuti( { commit }, p ){
+      commit('setDataStatS', 'loading');
+      
+      KEGIATANBKCUAPI.indexDiikuti( p )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     indexJalanHeader( { commit }, p ){
       commit('setDataJalanStat', 'loading');
       
@@ -165,6 +177,20 @@ export const kegiatanBKCU = {
         .catch( error => {
           commit('setDataJalan', error.response);
           commit('setDataJalanStat', 'fail');
+        });
+    },
+
+    indexDiikutiHeader( { commit }, p ){
+      commit('setDataDiikutiStat', 'loading');
+      
+      KEGIATANBKCUAPI.indexDiikuti( p )
+        .then( function( response ){
+          commit('setDataDiikuti', response.data.model );
+          commit('setDataDiikutiStat', 'success');
+        })
+        .catch( error => {
+          commit('setDataDiikuti', error.response);
+          commit('setDataDiikutiStat', 'fail');
         });
     },
 
@@ -1170,6 +1196,34 @@ export const kegiatanBKCU = {
         });
     },
 
+    countJalan( { commit } ){
+      commit('setCountStat', 'loading');
+      
+      KEGIATANBKCUAPI.countJalan()
+        .then( function( response ){
+          commit('setCount', response.data.model);
+          commit('setCountStat', 'success');
+        })
+        .catch( error => {
+          commit('setCount', error.response);
+          commit('setCountStat', 'fail');
+        });
+    },
+
+    countDiikuti( { commit } ){
+      commit('setCountStat2', 'loading');
+      
+      KEGIATANBKCUAPI.countDiikuti()
+        .then( function( response ){
+          commit('setCount2', response.data.model);
+          commit('setCountStat2', 'success');
+        })
+        .catch( error => {
+          commit('setCount2', error.response);
+          commit('setCountStat2', 'fail');
+        });
+    },
+
     countPeserta( { commit }, id ){
       commit('setCountStat', 'loading');
       
@@ -1286,9 +1340,6 @@ export const kegiatanBKCU = {
     setDataS11 ( state, data ){
       state.dataS11 = data;
     },
-    setDataJalan ( state, data ){
-      state.dataJalan = data;
-    },
     setDataSertifikat ( state, data){
       state.dataSertifikat = data;
     },
@@ -1369,9 +1420,6 @@ export const kegiatanBKCU = {
     },
     setDataStatS11( state, status ){
       state.dataStatS11 = status;
-    },
-    setDataJalanStat( state, status ){
-      state.dataJalanStat = status;
     },
     setDataNilaiStat ( state, data){
       state.dataNilaiStat = data;

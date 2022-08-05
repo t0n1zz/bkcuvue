@@ -17,17 +17,17 @@
 
 					<div class="nav-tabs-responsive">
 						<ul class="nav nav-tabs nav-tabs-solid bg-light">
-							<li class="nav-item">
-								<a href="#" class="nav-link" :class="{'active' : tabName == 'password'}" @click.prevent="changeTab('password')"><i class="icon-pencil5 mr-2"></i> Ubah Password</a>
+							<li class="nav-item" v-if="currentUser.id_aktivis">
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'riwayat'}" @click.prevent="changeTab('riwayat')"><i class="icon-list2 mr-2"></i> Riwayat</a>
 							</li>
 							<li class="nav-item" v-if="currentUser.id_aktivis">
-								<a href="#" class="nav-link" :class="{'active' : tabName == 'identitas'}" @click.prevent="changeTab('identitas')"><i class="icon-pencil5 mr-2"></i> Ubah Identitas</a>
-							</li>
-							<li class="nav-item" v-if="currentUser.id_aktivis">
-								<a href="#" class="nav-link" :class="{'active' : tabName == 'riwayat'}" @click.prevent="changeTab('riwayat')"><i class="icon-pencil5 mr-2"></i> Ubah Riwayat</a>
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'identitas'}" @click.prevent="changeTab('identitas')"><i class="icon-user-tie mr-2"></i> Ubah Identitas</a>
 							</li>
 							<li class="nav-item">
 								<a href="#" class="nav-link" :class="{'active' : tabName == 'aktivitas'}" @click.prevent="changeTab('aktivitas')"><i class="icon-eye2 mr-2"></i> Lihat Aktivitas</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link" :class="{'active' : tabName == 'password'}" @click.prevent="changeTab('password')"><i class="icon-pencil5 mr-2"></i> Ubah Password</a>
 							</li>
 						</ul>
 					</div>
@@ -231,7 +231,7 @@
 				titleDesc: 'Mengelola data profile',
 				titleIcon: 'icon-user',
 				selectCuPath: 'userCu',
-				tabName: 'password',
+				tabName: 'riwayat',
 				isAktivitas: false,
 				formPassword: {},
 				formIdentitas: {},
