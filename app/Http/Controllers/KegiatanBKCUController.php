@@ -359,7 +359,8 @@ class KegiatanBKCUController extends Controller{
 
 	public function indexListMateri($id)
 	{
-		$table_data = KegiatanListMateri::where('kegiatan_id', $id)->advancedFilter();
+		$table_data = KegiatanListMateri::where('kegiatan_id', $id)->get();
+		
 		return response()
 			->json([
 				'model' => $table_data

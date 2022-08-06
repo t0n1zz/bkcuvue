@@ -292,10 +292,10 @@ export const kegiatanBKCU = {
         });
     },
 
-    indexListMateri({ commit }, [p, id]) {
+    indexListMateri({ commit }, id) {
       commit('setDataListMateriStat', 'loading');
 
-      KEGIATANBKCUAPI.indexListMateri(p, id)
+      KEGIATANBKCUAPI.indexListMateri(id)
         .then(function(response) {
           commit('setDataListMateri', response.data.model);
           commit('setDataListMateriStat', 'success');

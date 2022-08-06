@@ -44,8 +44,8 @@ export default {
     return axios.get('/api/kegiatanBKCU/indexMateri/' + id , {params: p});
   },
 
-  indexListMateri: function(p, id) {
-    return axios.get('/api/kegiatanBKCU/indexListMateri/' + id, { params: p });
+  indexListMateri: function(id) {
+    return axios.get('/api/kegiatanBKCU/indexListMateri/' + id);
   },
 
   indexNilaiListMateri: function(id) {
