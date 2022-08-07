@@ -130,8 +130,6 @@ class SertifikatController extends Controller
 
     public function generateSertifikat(Request $formData)
     {
-        $aktivisId = $formData->aktivis_id;
-        $kegiatanId = $formData->kegiatan_id;
         $kegiatanData = Kegiatan::with('tempat')->where('id', $formData->kegiatan_id)->first();
         $nomorData = SertifikatGenerate::where('id_aktivis', $formData->aktivis_id)->where('id_kegiatan', $formData->kegiatan_id)->first();
         $sertifikat = Sertifikat::where('id', $kegiatanData->id_sertifikat)->select('gambar_depan', 'gambar_belakang', 'kode_sertifikat')->first();
@@ -142,7 +140,7 @@ class SertifikatController extends Controller
             $listMateri = KegiatanListMateri::select("kegiatan_list_materi.waktu", "kegiatan_list_materi.nama", "kegiatan_materi_nilai.nilai")
             ->join("kegiatan_materi_nilai", "kegiatan_materi_nilai.materi_id", "=", "kegiatan_list_materi.id")
             ->where('kegiatan_materi_nilai.kegiatan_id', $formData->kegiatan_id)
-            ->where('kegiatan_materi_nilai.aktivis_id', $formData->aktivis_id)
+            ->where('kegiatan_materi_nilai.kegiatan_peserta_id', $formData->id)
             ->get();
         }else{
             $listMateri = KegiatanListMateri::select("kegiatan_list_materi.waktu", "kegiatan_list_materi.nama")->where('kegiatan_id', $formData->kegiatan_id)
@@ -152,7 +150,7 @@ class SertifikatController extends Controller
         $sumWaktu = KegiatanListMateri::where('kegiatan_id', $formData->kegiatan_id)->sum('waktu');
         $sumNilai = KegiatanListMateri::join("kegiatan_materi_nilai", "kegiatan_materi_nilai.materi_id", "=", "kegiatan_list_materi.id")
             ->where('kegiatan_materi_nilai.kegiatan_id', $formData->kegiatan_id)
-            ->where('kegiatan_materi_nilai.aktivis_id', $formData->aktivis_id)
+            ->where('kegiatan_materi_nilai.kegiatan_peserta_id', $formData->id)
             ->sum("kegiatan_materi_nilai.nilai");
 
         $averageNilai = 0;

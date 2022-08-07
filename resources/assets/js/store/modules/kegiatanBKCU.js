@@ -319,20 +319,6 @@ export const kegiatanBKCU = {
         });
     },
 
-    indexNilai({ commit }, [p, id, aktivis_id]) {
-      commit('setNilaiStat', 'loading');
-
-      KEGIATANBKCUAPI.indexNilai(p, id, aktivis_id)
-        .then(function(response) {
-          commit('setNilai', response.data.model);
-          commit('setNilaiStat', 'success');
-        })
-        .catch(error => {
-          commit('setNilai', error.response);
-          commit('setNilaiStat', 'fail');
-        });
-    },
-
     indexKeputusan( { commit }, [p, id] ){
       commit('setDataStatS4', 'loading');
       
@@ -580,20 +566,21 @@ export const kegiatanBKCU = {
         });
     },
 
-    storeNilai({ commit, state, dispatch }, [aktivis_id, kegiatan_id, materi_id, form]) {
-      commit('setUpdateNilaiStat', 'loading');
-      KEGIATANBKCUAPI.storeNilai(aktivis_id, kegiatan_id, materi_id, form)
+    saveNilai({ commit, state, dispatch }, [id, form]) {
+      commit('setUpdateStat', 'loading');
+      
+      KEGIATANBKCUAPI.saveNilai(id, form)
         .then(function(response) {
           if (response.data.saved) {
-            commit('setUpdateNilai', response.data);
-            commit('setUpdateNilaiStat', 'success');
+            commit('setUpdate', response.data);
+            commit('setUpdateStat', 'success');
           } else {
-            commit('setUpdateNilaiStat', 'fail');
+            commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          commit('setUpdateNilai', error.response);
-          commit('setUpdateNilaiStat', 'fail');
+          commit('setUpdate', error.response);
+          commit('setUpdateStat', 'fail');
         });
     },
 
@@ -976,6 +963,20 @@ export const kegiatanBKCU = {
         .catch(error => {
           commit('setUpdate', error.response);   
           commit('setUpdateStat', 'fail');
+        });
+    },
+
+    editNilai({ commit }, [id, aktivis_id]) {
+      commit('setDataStat4', 'loading');
+
+      KEGIATANBKCUAPI.editNilai(id, aktivis_id)
+        .then(function(response) {
+          commit('setData4', response.data.model);
+          commit('setDataStat4', 'success');
+        })
+        .catch(error => {
+          commit('setData4', error.response);
+          commit('setDataStat4', 'fail');
         });
     },
 

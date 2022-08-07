@@ -5,9 +5,9 @@
 		</message>
 
 		<form @submit.prevent="save" data-vv-scope="formStatus">
-      <h5>Selamat Datang di {{ item.name }}</h5>
+      <h5>Selamat Datang, silahkan mengisi presensi</h5>
 			<div class="card card-body">
-				Disini anda dapat mengakses materi untuk kegiatan ini serta anda dapat melakukan interaksi terhadap kegiatan ini seperti memberikan keputusan (apabila diminta), mengajukan pertanyaan dan mengerjakan tugas (apabila diminta).
+				Disini anda dapat mengakses materi untuk kegiatan ini serta anda dapat melakukan interaksi terhadap kegiatan ini.
 			</div>
 
 			<div class="card">

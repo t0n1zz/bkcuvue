@@ -27,8 +27,8 @@
         </button>
 
         <template v-if="item.id_sertifikat">
-          <button type="button" class="btn btn-light mb-1" @click.prevent="modalOpen('tambahNilai')" v-if="selectedItem.status == 5 && selectedItem.status != 6 && currentUser.can['create_diklat_bkcu']">
-            <i class="icon-plus3"></i> Tambah Nilai 
+          <button type="button" class="btn btn-light mb-1" @click.prevent="modalOpen('tambahNilai')" v-if="selectedItem.status == 5 && selectedItem.status != 6 && currentUser.can['update_diklat_bkcu'] && itemDataListMateri">
+            <i class="icon-markup"></i> Nilai 
           </button>
 
           <button class="btn btn-light mb-1" @click.prevent="generateSertifikat()" v-if="selectedItem.status == 5 && selectedItem.status != 6">
@@ -56,8 +56,8 @@
         </button>
 
         <template v-if="item.id_sertifikat">
-          <button type="button" class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('tambahNilai')" v-if="selectedItem.status == 5 && selectedItem.status != 6 && currentUser.can['create_diklat_bkcu']">
-            <i class="icon-plus3"></i> Tambah Nilai
+          <button type="button" class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('tambahNilai')" v-if="selectedItem.status == 5 && selectedItem.status != 6 && currentUser.can['update_diklat_bkcu'] && itemDataListMateri">
+            <i class="icon-markup"></i> Nilai
           </button>
 
           <button class="btn btn-block mb-1" @click.prevent="generateSertifikat()" v-if="selectedItem.status == 5 && !selectedItem.status == 6">
@@ -232,11 +232,7 @@
 
       <template slot="modal-body2">
         <form-nilai
-				:mode="formModalMode"
-				:selected="selectedItemNilai"
-				:kegiatan_id="this.item.id"
-				:kegiatan_tipe="this.item.tipe"
-				:aktivis_id="this.selectedItem.aktivis_id"
+				:selected="selectedItem"
 				@tutup="modalTutup" 
 				@modalTutup="modalTutup"
 				v-if="state == 'tambahNilai'"></form-nilai>
@@ -259,6 +255,7 @@
 	import formPesertaBatal from "./formPesertaBatal.vue";
   import formNilai from "./formNilai.vue";
   import dataViewer from '../../components/dataviewer2.vue';
+	import FileSaver from 'file-saver';
 
 	export default {
 		props: ['kelas'],
@@ -516,7 +513,6 @@
         }
       },
       updateStat(value) {
-				this.modalShow = true;
 				this.modalState = value;
 				this.modalColor = '';
 
@@ -529,9 +525,6 @@
       }
 		},
 		methods: {
-      fetchNilai(params){
-				this.$store.dispatch(this.kelas+'/indexNilai',[params,this.item.id, this.selectedItem.aktivis_id])
-			},
       fetchPesertaTerdaftar(params){
 				if(this.item.status == '2'){
 					if(this.currentUser.id_cu == 0){
@@ -622,7 +615,7 @@
 				}else if (state == 'tambahNilai') {
 					this.modalState = 'normal2';
 					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Tambah Nilai';
+					this.modalTitle = 'Nilai';
 					this.formModalMode = 'create';
 				}else if (this.state == 'generateSertifikat'){
 					this.modalState = 'content-tutup';
@@ -642,10 +635,9 @@
         if(this.state == 'tambahPeserta' || this.state == 'ubahPeserta' || this.state == 'hapusPeserta' || this.state == 'batalPeserta'){
 					this.fetchCountPeserta();
 				}
-        if(this.state == 'tambahNilai' || this.state == 'ubahNilai' || this.state == 'hapusNilai'){
-					this.fetchNilai(this.queryNilai);
-					this.state = '';
-				}
+
+				this.isDisableTable = false;
+				this.modalShow = false;
       },
       modalBackgroundClick() {
 				if (this.modalState === 'success') {
@@ -665,6 +657,7 @@
       ...mapGetters('kegiatanBKCU', {
         item: 'data',
 				itemStat: 'dataStat',
+				itemDataListMateri: 'dataListMateri',
 				itemDataPesertaTerdaftar: 'dataS',
 				itemDataPesertaTerdaftarStat: 'dataStatS',
         updateResponse: 'update',

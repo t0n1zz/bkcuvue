@@ -257,7 +257,6 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/kegiatanBKCU/indexMateri/{id}', 'KegiatanBKCUController@indexMateri');
         Route::get('/kegiatanBKCU/indexListMateri/{id}', 'KegiatanBKCUController@indexListMateri');
         Route::get('/kegiatanBKCU/indexNilaiListMateri/{id}', 'KegiatanBKCUController@indexNilaiListMateri');
-        Route::get('/kegiatanBKCU/indexNilai/{id}/{aktivis_id}', 'KegiatanBKCUController@indexNilai');
         Route::get('/kegiatanBKCU/indexKeputusan/{id}', 'KegiatanBKCUController@indexKeputusan');
         Route::get('/kegiatanBKCU/indexKeputusanKomentar/{id}', 'KegiatanBKCUController@indexKeputusanKomentar');
         Route::get('/kegiatanBKCU/indexPertanyaan/{id}', 'KegiatanBKCUController@indexPertanyaan');
@@ -314,9 +313,11 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::post('/kegiatanBKCU/updateTugasJawaban/{id}', 'KegiatanBKCUController@updateTugasJawaban');
         Route::delete('/kegiatanBKCU/destroyTugas/{kegiatan_tipe}/{id}', 'KegiatanBKCUController@destroyTugas');
         Route::delete('/kegiatanBKCU/destroyTugasJawaban/{kegiatan_tipe}/{id}', 'KegiatanBKCUController@destroyTugasJawaban');
+       
 
         Route::post('/kegiatanBKCU/storeListMateri/{kegiatan_tipe}/{id}', 'KegiatanBKCUController@storeListMateri');
-        Route::post('/kegiatanBKCU/storeNilai/{kegiatan_id}/{aktivis_id}/{materi_id}', 'KegiatanBKCUController@storeNilai');
+        Route::get('/kegiatanBKCU/editNilai/{id}/{kegiatan_id}', 'KegiatanBKCUController@editNilai');
+        Route::post('/kegiatanBKCU/saveNilai/{id}', 'KegiatanBKCUController@saveNilai');
         Route::post('/kegiatanBKCU/updateListMateri/{id}', 'KegiatanBKCUController@updateListMateri');
         Route::delete('/kegiatanBKCU/destroyListMateri/{kegiatan_tipe}/{id}', 'KegiatanBKCUController@destroyListMateri');
 

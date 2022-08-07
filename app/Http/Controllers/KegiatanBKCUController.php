@@ -377,20 +377,6 @@ class KegiatanBKCUController extends Controller{
 			]);
 	}
 
-	public function indexNilai($id, $aktivis_id)
-	{
-		$table_data = KegiatanListMateri::select("kegiatan_list_materi.id", "kegiatan_list_materi.nama", "kegiatan_materi_nilai.nilai")
-			->join("kegiatan_materi_nilai", "kegiatan_materi_nilai.materi_id", "=", "kegiatan_list_materi.id")
-			->where('kegiatan_materi_nilai.aktivis_id', $aktivis_id)
-			->where('kegiatan_materi_nilai.kegiatan_id', $id)
-			->get();
-
-		return response()
-			->json([
-				'model' => $table_data
-			]);
-	}
-
 	public function indexKeputusan($id)
 	{
 		$table_data = KegiatanKeputusan::with('pilih','cu','user.aktivis')->withCount('haskomentar')->where('kegiatan_id',$id)->whereNull('kegiatan_keputusan_id')->advancedFilter();
@@ -1218,6 +1204,55 @@ class KegiatanBKCUController extends Controller{
 				'message' => "Panitia berhasil hadir"
 			]);
 	}
+
+	public function editNilai($id, $kegiatan_id)
+	{
+		$table_data = KegiatanListMateri::with(['nilai' => function($q) use($id){
+				$q->where('kegiatan_peserta_id',$id);
+		}])->where('kegiatan_id', $kegiatan_id)->get();
+
+		foreach($table_data as $t){
+			$t->jumlah_nilai = 0;
+		
+			if(isset($t['nilai'][0])){
+				$t->jumlah_nilai = $t['nilai'][0]['nilai'];
+			};
+		}
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function saveNilai(Request $request, $id)
+	{
+		$table_data = $request->all();
+
+		if(!empty($table_data)){
+			foreach($table_data as $a){
+				
+				if(!empty($a['nilai'][0])){
+					$kelas = Nilai::findOrFail($a['nilai'][0]['id']);
+				}else{
+					$kelas = new Nilai();
+				}
+
+				$kelas->kegiatan_id = $a['kegiatan_id'];
+				$kelas->kegiatan_peserta_id = $id;
+				$kelas->materi_id = $a['id'];
+				$kelas->nilai = $a['jumlah_nilai'];
+				$kelas->save();
+			}
+		}
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Nilai berhasil disimpan'
+			]);
+	}
+
 
 	public function jawabanPertanyaan($id, $tipe)
 	{

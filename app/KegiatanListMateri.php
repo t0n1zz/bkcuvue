@@ -26,7 +26,7 @@ class KegiatanListMateri extends Model
 
     protected $orderable = ['kegiatan_id', 'nama', 'waktu'];
 
-    public function nilaiList()
+    public function nilai()
     {
         return $this->hasMany('App\Nilai', 'materi_id', 'id');
     }

@@ -14,7 +14,7 @@ class Nilai extends Model
     protected static $logFillable = true;
 
     protected $fillable = [
-        'aktivis_id', 'kegiatan_id', 'materi_id', 'nilai', 'created_at', 'updated_at', 'deleted_at'
+        'kegiatan_peserta_id', 'kegiatan_id', 'materi_id', 'nilai', 'created_at', 'updated_at', 'deleted_at'
     ];
 
     protected $allowedFilters = [
@@ -28,12 +28,12 @@ class Nilai extends Model
     public static function initialize()
     {
         return [
-            'aktivis_id' => '', 'kegiatan_id' => '', 'materi_id' => '', 'nilai' => ''
+            'kegiatan_peserta_id' => '', 'kegiatan_id' => '', 'materi_id' => '', 'nilai' => ''
         ];
     }
 
     public static $rules = [
-        'aktivis_id' => 'required',
+        'kegiatan_peserta_id' => 'required',
         'kegiatan_id' => 'required',
         'materi_id' => 'required',
         'nilai' => 'required',

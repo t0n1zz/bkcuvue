@@ -52,8 +52,8 @@ export default {
       return axios.get('/api/kegiatanBKCU/indexNilaiListMateri/' + id);
   },
 
-  indexNilai: function(p, id, aktivis_id) {
-      return axios.get('/api/kegiatanBKCU/indexNilai/' + id + '/' + aktivis_id);
+  editNilai: function(id, kegiatan_id) {
+      return axios.get('/api/kegiatanBKCU/editNilai/' + id + '/' + kegiatan_id);
   },
 
   indexKeputusan: function( p, id ){
@@ -144,8 +144,8 @@ export default {
     return axios.post('/api/kegiatanBKCU/storeListMateri/' + tipe + '/' + id, form);
   },
 
-  storeNilai: function(aktivis_id, kegiatan_id, materi_id, form) {
-      return axios.post('/api/kegiatanBKCU/storeNilai/' + kegiatan_id + '/' + aktivis_id + '/' + materi_id, form);
+  saveNilai: function(id, form) {
+      return axios.post('/api/kegiatanBKCU/saveNilai/' + id, form);
   },
 
   storeKeputusan: function ( id, form ){

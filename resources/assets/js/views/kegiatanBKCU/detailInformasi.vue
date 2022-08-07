@@ -5,6 +5,34 @@
       <div class="col-lg-3 col-md-4 order-md-12">
         <!-- detail -->
         <div class="card">
+          <div class="card-header bg-white">
+            <!-- ubah  -->
+            <button class="btn btn-light btn-block mb-1" @click.prevent="ubahKegiatan(item.id)" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+              <i class="icon-pencil5"></i> Ubah
+            </button>
+
+            <!-- status -->
+            <button class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('statusKegiatan')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+              <i class="icon-calendar5"></i> Status
+            </button>
+
+            <!-- hapus -->
+            <button class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('hapusKegiatan')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+              <i class="icon-bin2"></i> Hapus
+            </button>
+
+            <!-- daftar -->
+            <template v-if="item.status != 5 && item.status != 6">
+              <button class="btn bg-warning-400 btn-block mb-1" @click.prevent="modalOpen('tambahPeserta')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+                <i class="icon-people"></i> Daftar Peserta
+              </button>
+
+              <!-- daftar -->
+              <button class="btn bg-warning-400 mb-1" @click.prevent="modalOpen('tambahPeserta')" v-else-if="currentUser.can && currentUser.can['index_diklat_bkcu'] && currentUser.id_cu != 0 && item.status == 2">
+                <i class="icon-people"></i> Daftar Peserta
+              </button>
+            </template>
+          </div>
           <table class="table table-borderless table-xs border-top-0 my-2">
             <tbody>
               <tr>
@@ -164,6 +192,14 @@
       </div>
       <!-- content  -->
       <div class="col-lg-9 col-md-8 order-md-1">
+        <div class="card" v-if="item.gambar">
+          <template v-if="item.tipe == 'diklat_bkcu' || item.tipe == 'diklat_bkcu_internal'">
+            <img :src="'/images/diklat/' + item.gambar + '.jpg'" class="img-fluid wmin-sm" v-if="item.gambar">
+          </template>
+          <template v-else-if="item.tipe == 'pertemuan_bkcu' || item.tipe == 'pertemuan_bkcu_internal'">
+            <img :src="'/images/pertemuan/' + item.gambar + '.jpg'" class="img-fluid wmin-sm" v-if="item.gambar">
+          </template>
+        </div>
         <div class="card" v-if="item.keterangan">
           <div class="card-header bg-white">
             <h5 class="card-title">Kerangka Acuan</h5>
@@ -284,7 +320,19 @@
         {{ modalTitle }}
       </template>
 
+			<template slot="modal-body1">
+				<form-peserta 
+				:mode="formModalMode"
+				:selected="selectedItem"
+				:item="item"
+				:tingkat="item.sasaran"
+				@tutup="modalTutup" v-if="state == 'tambahPeserta'"></form-peserta>
+			</template>
+
       <template slot="modal-body2">
+        <form-status :kelas="kelas" :id="item.id" :status="item.status" :keteranganBatal="item.keteranganBatal"
+				@tutup="modalTutup" v-if="state == 'statusKegiatan'"></form-status>
+
         <form-list-materi 
 				:mode="formModalMode"
 				:selected="selectedItemListMateri"
@@ -307,7 +355,8 @@
   import Cleave from 'vue-cleave-component';
   import checkValue from '../../components/checkValue.vue';
   import formListMateri from "./formListMateri.vue";
-
+  import formPeserta from "./formPeserta.vue";
+  import formStatus from "./formStatus.vue";
 
 	export default {
 		props: ['kelas'],
@@ -320,7 +369,8 @@
       Cleave,
       checkValue,
       formListMateri,
-      
+      formPeserta,
+      formStatus,
 		},
 		data() {
 			return {
@@ -419,6 +469,8 @@
 						this.kode = this.item.kode.kode;
 					}
 
+          this.itemDataPanitia = [];
+
           var valDalam;
 					for(valDalam of this.item.panitia_dalam){
 						this.itemDataPanitia.push(valDalam);
@@ -437,7 +489,6 @@
         }
       },
       updateStat(value) {
-				this.modalShow = true;
 				this.modalState = value;
 				this.modalColor = '';
 
@@ -456,11 +507,25 @@
       selectedRow(item) {
 				this.selectedItemListMateri = item;
 			},
+      ubahKegiatan(id) {
+				this.$router.push({name: this.kelas + 'EditDetail', params: { id: id }});
+			},
       modalOpen(state, isMobile, itemMobile) {
 				this.modalShow = true;
 				this.modalSize = '';
 				this.state = state;
 				this.isDisableTable = true;
+
+        if (state == 'hapusKegiatan') {
+					this.modalState = 'confirm-tutup';
+					this.modalColor = '';
+					this.modalTitle = 'Hapus Diklat ' + this.item.name + ' ?';
+					this.modalButton = 'Iya, Hapus';
+				} else if (state == 'statusKegiatan') {
+					this.modalState = 'normal2';
+					this.modalTitle = 'Ubah status ' + this.item.name + ' ini?';
+					this.modalColor = 'bg-primary';
+				}
 
 				if (state == 'ubahListMateri') {
 					this.modalState = 'normal2';
@@ -478,6 +543,29 @@
 					this.modalTitle = 'Hapus Materi ini ?';
 					this.modalButton = 'Iya, Hapus';
 				}
+
+        if (state == 'tambahPeserta') {
+					if(this.countPeserta >= this.item.peserta_max ){
+						this.modalState = 'content-tutup';
+						this.modalColor = '';
+
+						this.modalTitle = 'Kegiatan sudah penuh';
+						this.modalContent = 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena kuota peserta pada kegiatan ini sudah terpenuhi.';
+					}
+					
+					if(this.countPeserta >= this.item.peserta_max_cu && this.currentUser.id_cu != 0){
+						this.modalState = 'content-tutup';
+						this.modalColor = '';
+						this.modalTitle = 'CU anda tidak bisa mendaftarkan peserta lagi';
+						this.modalContent = 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena jumlah maksimal peserta per CU adalah ' + this.item.peserta_max_cu + ' orang.';
+					}else{
+						this.modalState = 'normal1';
+						this.modalColor = 'bg-primary';
+						this.modalTitle = 'Tambah Peserta';
+						this.modalSize = 'modal-lg';
+						this.formModalMode = 'create';
+					}
+				}
 			},
       modalConfirmOk() {
 				this.modalShow = false;
@@ -490,6 +578,21 @@
         if(this.state == 'tambahListMateri' || this.state == 'ubahListMateri' || this.state == 'hapusListMateri'){
 					this.fetchListMateri();
 				}
+
+        if(this.state == 'tambahPeserta'){
+          this.$emit('changeTab', 'pesertaTerdaftar');
+					this.$emit('fetchCountPeserta');
+				}
+
+        if(this.state == 'hapusKegiatan'){
+					this.$emit('back');
+				}
+        if(this.state == 'statusKegiatan'){
+					this.$emit('fetch');
+				}
+
+        this.isDisableTable = false;
+				this.modalShow = false;
       },
       modalBackgroundClick() {
 				if (this.modalState === 'success') {
@@ -509,6 +612,8 @@
       ...mapGetters('kegiatanBKCU', {
 				item: 'data',
 				itemStat: 'dataStat',
+        countPeserta: 'count',
+				countPesertaStat: 'countStat',
         itemDataListMateri: 'dataListMateri',
 				itemDataListMateriStat: 'dataListMateriStat',
         updateResponse: 'update',

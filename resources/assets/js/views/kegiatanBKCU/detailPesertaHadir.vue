@@ -389,7 +389,6 @@
         }
       },
       updateStat(value) {
-				this.modalShow = true;
 				this.modalState = value;
 				this.modalColor = '';
 
