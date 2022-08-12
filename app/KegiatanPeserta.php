@@ -14,27 +14,33 @@ class KegiatanPeserta extends Model {
     protected static $logOnlyDirty = true;
 
     protected $fillable = [
-        'aktivis_id','kegiatan_id','name_nametag','name_sertifikat','keterangan','keteranganBatal','datang','pulang','status','created_at','updated_at','name','tempat','lembaga','jabatan','tingkat','tanggal_hadir'
+        'aktivis_id','kegiatan_id','mitra_orang_id','anggota_cu_cu_id','lembaga_id','name_nametag','name_sertifikat','keterangan','keteranganBatal','datang','pulang','status','created_at','updated_at','name','tempat','lembaga_name','pekerjaan_name','pekerjaan_tingkat','tanggal_hadir','kegiatan_tipe','kegiatan_name','pendidikan_name','pendidikan_tingkat'
     ];
 
     protected $allowedFilters = [
-        'aktivis.name','name_nametag','name_sertifikat','datang','pulang','status','name','tempat','lembaga','jabatan','tingkat','tanggal_hadir','created_at','updated_at',
+        'name_nametag','name_sertifikat','datang','pulang','status','name','tempat','lembaga_name','pekerjaan_name','pekerjaan_tingkat','tanggal_hadir','created_at','updated_at','kegiatan_tipe','kegiatan_name','pendidikan_name','pendidikan_tingkat'
     ];
 
     protected $orderable = [
-        'name_nametag','name_sertifikat','datang','pulang','status','name','tempat','lembaga','jabatan','tingkat','tanggal_hadir','created_at','updated_at',
+        'name_nametag','name_sertifikat','datang','pulang','status','name','tempat','lembaga_name','pekerjaan_name','pekerjaan_tingkat','tanggal_hadir','created_at','updated_at','kegiatan_tipe','kegiatan_name',
+        'pendidikan_name','pendidikan_tingkat'
     ];
 
     public static function initialize()
     {
         return [
-            'name' => '','tempat' => '','lembaga' => '','datang' => '','pulang' => '','tanggal_hadir' => '',
+            'name' => '','tempat' => '','lembaga_name' => '','datang' => '','pulang' => '','tanggal_hadir' => '',
         ];
     }
     
     public function aktivis()
     {
         return $this->belongsTo('App\Aktivis','aktivis_id','id');
+    }
+
+    public function mitra_orang()
+    {
+        return $this->belongsTo('App\MitraOrang','mitra_orang_id','id');
     }
 
     public function kegiatan()

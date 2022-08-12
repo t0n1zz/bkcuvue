@@ -28,8 +28,24 @@ export default {
     return axios.get('/api/kegiatanBKCU/periode/' + tipe + '/' + periode , {params: p});
   },
 
+  indexSemuaPeserta: function( p, tipe ){
+    return axios.get('/api/kegiatanBKCU/indexSemuaPeserta/' + tipe, {params: p});
+  },
+
+  indexSemuaPesertaMitra: function( p, tipe ){
+    return axios.get('/api/kegiatanBKCU/indexSemuaPesertaMitra/' + tipe, {params: p});
+  },
+
+  indexSemuaPesertaCu: function( p, tipe, cu ){
+    return axios.get('/api/kegiatanBKCU/indexSemuaPesertaCu/' + tipe + '/cu/' + cu  , {params: p});
+  },
+
   indexPeserta: function( p, id ){
     return axios.get('/api/kegiatanBKCU/indexPeserta/' + id , {params: p});
+  },
+
+  indexPesertaCu: function( p, id, cu ){
+    return axios.get('/api/kegiatanBKCU/indexPesertaCu/' + id + '/cu/' + cu  , {params: p});
   },
 
   indexPesertaCountCu: function( id ){
@@ -104,10 +120,6 @@ export default {
     return axios.get('/api/kegiatanBKCU/indexPesertaBatal/' + id);
   },
 
-  indexPesertaCu: function( p, id, cu ){
-    return axios.get('/api/kegiatanBKCU/indexPesertaCu/' + id + '/cu/' + cu  , {params: p});
-  },
-
   indexKegiatan: function(){
     return axios.get('/api/kegiatanBKCU/kegiatan');
   },
@@ -145,7 +157,7 @@ export default {
   },
 
   saveNilai: function(id, form) {
-      return axios.post('/api/kegiatanBKCU/saveNilai/' + id, form);
+    return axios.post('/api/kegiatanBKCU/saveNilai/' + id, form);
   },
 
   storeKeputusan: function ( id, form ){

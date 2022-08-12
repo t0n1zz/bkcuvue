@@ -229,11 +229,11 @@
                 <i class="icon-plus3"></i> Tambah
                 </button>
                 <!-- ubah -->
-                <button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahListMateri',false,props.item)" :disabled="!selectedItem.id" >
+                <button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahListMateri')" :disabled="!selectedItemListMateri.id" >
                   <i class="icon-pencil5"></i> Ubah
                 </button>
                 <!-- hapus -->
-                <button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusListMateri',false,props.item)" :disabled="!selectedItem.id">
+                <button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusListMateri')" :disabled="!selectedItemListMateri.id">
                   <i class="icon-bin2"></i> Hapus
                 </button>
               </div>
@@ -241,7 +241,7 @@
           </div>
           <data-table :items="itemDataListMateri" :columnData="columnDataListMateri" :itemDataStat="itemDataListMateriStat">
             <template slot="item-desktop" slot-scope="props">
-              <tr :class="{ 'bg-info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)" v-if="props.item">
+              <tr :class="{ 'bg-info': selectedItemListMateri.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)" v-if="props.item">
                 <td>{{ props.index + 1 }}</td>
                 <td>
                   <check-value :value="props.item.nama"></check-value>
@@ -493,6 +493,7 @@
 				this.modalColor = '';
 
 				if (value === "success") {
+          this.fetchListMateri();
 					this.modalTitle = this.updateResponse.message;
 				} else {
 					this.modalTitle = 'Oops terjadi kesalahan :(';
@@ -548,7 +549,6 @@
 					if(this.countPeserta >= this.item.peserta_max ){
 						this.modalState = 'content-tutup';
 						this.modalColor = '';
-
 						this.modalTitle = 'Kegiatan sudah penuh';
 						this.modalContent = 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena kuota peserta pada kegiatan ini sudah terpenuhi.';
 					}
@@ -562,23 +562,17 @@
 						this.modalState = 'normal1';
 						this.modalColor = 'bg-primary';
 						this.modalTitle = 'Tambah Peserta';
-						this.modalSize = 'modal-lg';
+						this.modalSize = 'modal-full';
 						this.formModalMode = 'create';
 					}
 				}
 			},
       modalConfirmOk() {
-				this.modalShow = false;
-
 				if (this.state == 'hapusListMateri') {
 					this.$store.dispatch(this.kelas + '/destroyListMateri', [this.item.tipe, this.selectedItemListMateri.id]);
 				}
 			},
       modalTutup() {
-        if(this.state == 'tambahListMateri' || this.state == 'ubahListMateri' || this.state == 'hapusListMateri'){
-					this.fetchListMateri();
-				}
-
         if(this.state == 'tambahPeserta'){
           this.$emit('changeTab', 'pesertaTerdaftar');
 					this.$emit('fetchCountPeserta');

@@ -30,6 +30,7 @@ const coa_form = () => import('./views/coa/form.vue');
 const kegiatanBKCU = () => import('./views/kegiatanBKCU/index.vue');
 const kegiatanBKCU_form = () => import('./views/kegiatanBKCU/form.vue');
 const kegiatanBKCU_detail = () => import('./views/kegiatanBKCU/detail.vue');
+const kegiatanPeserta = () => import('./views/kegiatanPeserta/index.vue');
 const sertifikatKegiatan = () => import ('./views/sertifikatKegiatan/index.vue');
 const sertifikatKegiatan_form = () => import ('./views/sertifikatKegiatan/form.vue');
 const kodeKegiatan = () => import ('./views/kodeKegiatan/index.vue');
@@ -285,6 +286,13 @@ const routes = [
 	{ path: '/kegiatanBKCU/detail/:id',
 		name: 'kegiatanBKCUDetail', 
 		components: { default: kegiatanBKCU_detail, 'header': header, 'footer': footer }, 
+		meta: { requiresAuth: true } },
+
+
+	// kegiatan peserta
+	{ path: '/kegiatanPeserta/indexSemuaPeserta/:tipe/cu/:cu',
+		name: 'kegiatanSemuaPeserta', 
+		components: { default: kegiatanPeserta, 'header': header, 'footer': footer },	
 		meta: { requiresAuth: true } },
 
 	// kegiatan tempat

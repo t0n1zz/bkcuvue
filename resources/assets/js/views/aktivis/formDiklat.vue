@@ -5,19 +5,19 @@
 
 			<!-- name -->
 			<div class="col-sm-6">
-				<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
+				<div class="form-group" :class="{'has-error' : errors.has('form.kegiatan_name')}">
 
 					<!-- title -->
-					<h6 :class="{ 'text-danger' : errors.has('form.name')}">
-						<i class="icon-cross2" v-if="errors.has('form.name')"></i>
+					<h6 :class="{ 'text-danger' : errors.has('form.kegiatan_name')}">
+						<i class="icon-cross2" v-if="errors.has('form.kegiatan_name')"></i>
 						Nama Diklat: <wajib-badge></wajib-badge></h6>
 
 					<!-- text -->
-					<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama diklat" v-validate="'required'" data-vv-as="Nama Diklat" v-model="form.name">
+					<input type="text" name="kegiatan_name" class="form-control" placeholder="Silahkan masukkan nama diklat" v-validate="'required'" data-vv-as="Nama Diklat" v-model="form.kegiatan_name">
 
 					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('form.name')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
+					<small class="text-muted text-danger" v-if="errors.has('form.kegiatan_name')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.kegiatan_name') }}
 					</small>
 					<small class="text-muted" v-else>&nbsp;</small>
 				</div>

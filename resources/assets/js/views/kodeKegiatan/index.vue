@@ -39,9 +39,9 @@
 		},
 		data() {
 			return {
-				title: 'Kode Kegiatan',
+				title: 'Kode Diklat',
 				kelas: 'kodeKegiatan',
-				titleDesc: 'Mengelola data kode kegiatan',
+				titleDesc: 'Mengelola data kode diklat',
 				titleIcon: 'icon-pencil-ruler',
 			}
 		},

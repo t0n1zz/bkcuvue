@@ -61,19 +61,19 @@
 											Informasi
 										</a></li>
 
-										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'pengumuman'}" @click.prevent="changeTab('pengumuman')"><i class="icon-pushpin mr-2"></i>
+										<!-- <li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'pengumuman'}" @click.prevent="changeTab('pengumuman')"><i class="icon-pushpin mr-2"></i>
 											Mading
-										</a></li>	
+										</a></li>	 -->
 
 										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'pesertaTerdaftar'}" @click.prevent="changeTab('pesertaTerdaftar')"><i class="icon-people mr-2"></i>
 											Peserta Terdaftar
 											<span class="badge badge-dark ml-2" v-if="countPesertaStat == 'success' && countPeserta > 0 && currentUser.id_cu == 0">{{ countPeserta }}</span>
 										</a></li>
 
-										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'pesertaHadir'}" @click.prevent="changeTab('pesertaHadir')"><i class="icon-accessibility mr-2"></i>
+										<!-- <li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'pesertaHadir'}" @click.prevent="changeTab('pesertaHadir')"><i class="icon-accessibility mr-2"></i>
 											Peserta Hadir 
 											<span class="badge badge-dark ml-2" v-if="countPesertaHadirStat == 'success' && countPesertaHadir> 0">{{ countPesertaHadir }}</span>
-										</a></li>	
+										</a></li>	 -->
 
 										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'statistik'}" @click.prevent="changeTab('statistik')"><i class="icon-equalizer mr-2"></i>
 											Statistik
@@ -103,12 +103,6 @@
 									<detail-peserta-hadir :kelas="kelas"></detail-peserta-hadir>
 								</div>
 							</transition>
-
-							<!-- dokumen -->
-							<transition enter-active-class="animated fadeIn" mode="out-in">
-								<div v-show="tabName == 'dokumen'">
-								</div>
-							</transition>	
 
 							<!-- tabstatistik -->
 							<transition enter-active-class="animated fadeIn" mode="out-in">

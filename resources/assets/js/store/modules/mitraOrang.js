@@ -55,6 +55,20 @@ export const mitraOrang = {
         });
     },
 
+    indexPeserta( { commit }, [p, kegiatan_id] ){
+      commit('setDataStatS', 'loading');
+      
+      MitraOrangAPI.indexPeserta( p, kegiatan_id )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     // create page
     create( {commit} ){
       commit('setDataStat', 'loading');

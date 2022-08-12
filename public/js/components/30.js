@@ -975,6 +975,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             }
 
             if (valData.tipe == 'Anak') {
+              this.formAnak = [];
               this.formAnak.push(valData);
             }
           }
@@ -2073,7 +2074,7 @@ var render = function () {
                       ),
                     ]),
                     _vm._v(" "),
-                    _vm.mode == "edit"
+                    _vm.mode == "edit" || _vm.mode == "edit_profile"
                       ? _c("div", { staticClass: "col-md-4" }, [
                           _c(
                             "div",

@@ -88,30 +88,8 @@
 				{{ modalTitle }}
 			</template>
 
-			<!-- peserta -->
-			<template slot="modal-body1">
-				<form-peserta 
-				:mode="formModalMode"
-				:selected="selectedItem"
-				:item="item"
-				:tingkat="item.sasaran"
-				@tutup="modalTutup" v-if="state == 'tambahPeserta' || state == 'ubahPeserta'"></form-peserta>
-
-				<form-peserta-batal :kelas="kelas" :id="selectedItem.id" :tipe="item.tipe"
-				@tutup="modalTutup" v-else-if="state == 'batalPeserta'"></form-peserta-batal>
+			<template slot="modal-body1">x
 			</template>
-
-      <template slot="modal-body2">
-        <form-nilai
-				:mode="formModalMode"
-				:selected="selectedItemNilai"
-				:kegiatan_id="this.item.id"
-				:kegiatan_tipe="this.item.tipe"
-				:aktivis_id="this.selectedItem.aktivis_id"
-				@tutup="modalTutup" 
-				@modalTutup="modalTutup"
-				v-if="state == 'tambahNilai'"></form-nilai>
-      </template>
 
 		</app-modal>
   </div>
@@ -126,9 +104,6 @@
   import dataTable from '../../components/datatable.vue';
   import Cleave from 'vue-cleave-component';
   import checkValue from '../../components/checkValue.vue';
-  import formPeserta from "./formPeserta.vue";
-	import formPesertaBatal from "./formPesertaBatal.vue";
-  import formNilai from "./formNilai.vue";
   import dataViewer from '../../components/dataviewer2.vue';
 
 	export default {
@@ -141,9 +116,6 @@
       dataTable,
       Cleave,
       checkValue,
-      formPeserta,
-      formPesertaBatal,
-      formNilai,
       dataViewer
 		},
 		data() {
@@ -401,9 +373,6 @@
       }
 		},
 		methods: {
-      fetchNilai(params){
-				this.$store.dispatch(this.kelas+'/indexNilai',[params,this.item.id, this.selectedItem.aktivis_id])
-			},
       fetchPesertaHadir(params){
 				this.$store.dispatch(this.kelas + '/indexPesertaHadir', [params,this.item.id]);
 				this.excelDownloadUrl2 = this.kelas + '/indexPesertaHadir';	
@@ -418,18 +387,6 @@
 					this.columnDataPesertaHadir[6].disable = false;
 				}
 			},
-      generateSertifikat(){
-				this.modalShow = true;
-				this.modalState = 'loading';
-				axios.post('/api/generateSertifikat', this.selectedItem, {
-					responseType: 'blob'
-				}).then((response) => {
-					FileSaver.saveAs(response.data, this.selectedItem.name+'.pdf')
-					this.state = "generateSertifikat";
-					this.modalState = 'success';
-					this.modalOpen("generateSertifikat");
-				})
-			},
       selectedRow(item) {
 				this.selectedItem = item;
 			},
@@ -439,75 +396,14 @@
 				this.state = state;
 				this.isDisableTable = true;
 
-				if (state == 'hapusPeserta') {
-					this.modalState = 'confirm-tutup';
-					this.modalColor = '';
-					this.modalTitle = 'Hapus Peserta ' + this.selectedItem.aktivis.name + ' ?';
-					this.modalButton = 'Iya, Hapus';
-				}else if(state == 'alasanPeserta'){
-					this.modalState = 'content-tutup';
-					this.modalColor = '';
-					this.modalTitle = 'Maaf anda belum bisa mengikuti pertemuan ini';
-					this.modalContent = 'Alasan penolakkan: <br/>' + this.selectedItem.keteranganBatal;
-				}else if (state == 'batalPeserta') {
-					this.modalState = 'normal1';
-					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Tolak Peserta ' + this.selectedItem.aktivis.name + ' ?';
-					this.modalButton = 'Ok';
-				} else if (state == 'ubahPeserta') {
-					this.modalState = 'normal1';
-					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Ubah Peserta';
-					this.modalSize = 'modal-lg';
-					this.formModalMode = 'edit';
-				} else if (state == 'tambahPeserta') {
-					if(this.countPeserta >= this.item.peserta_max ){
-						this.modalState = 'content-tutup';
-						this.modalColor = '';
-
-						this.modalTitle = 'Diklat sudah penuh';
-						this.modalContent = 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena kuota peserta pada diklat ini sudah terpenuhi.';
-					}
-					
-					if(this.itemDataPesertaHadir.data.length >= this.item.peserta_max_cu && this.currentUser.id_cu != 0){
-						this.modalState = 'content-tutup';
-						this.modalColor = '';
-						this.modalTitle = 'CU anda tidak bisa mendaftarkan peserta lagi';
-						this.modalContent = 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena jumlah maksimal peserta per CU adalah ' + this.item.peserta_max_cu + ' orang.';
-					}else{
-						this.modalState = 'normal1';
-						this.modalColor = 'bg-primary';
-						this.modalTitle = 'Tambah Peserta';
-						this.modalSize = 'modal-lg';
-						this.formModalMode = 'create';
-					}
-				}else if (state == 'tambahNilai') {
-					this.modalState = 'normal2';
-					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Tambah Nilai';
-					this.formModalMode = 'create';
-				}else if (this.state == 'generateSertifikat'){
-					this.modalState = 'content-tutup';
-					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Generate Sertifikat Berhasil';
-					this.modalButton = 'Ok';
-				}
 			},
       modalConfirmOk() {
+				this.isDisableTable = false;
 				this.modalShow = false;
-
-				if (this.state == 'hapusPeserta') {
-					this.$store.dispatch(this.kelas + '/destroyPeserta', this.selectedItem.id);
-        }
 			},
       modalTutup() {
-        if(this.state == 'tambahPeserta' || this.state == 'ubahPeserta' || this.state == 'hapusPeserta' || this.state == 'batalPeserta'){
-					this.fetchCountPeserta();
-				}
-        if(this.state == 'tambahNilai' || this.state == 'ubahNilai' || this.state == 'hapusNilai'){
-					this.fetchNilai(this.queryNilai);
-					this.state = '';
-				}
+				this.isDisableTable = false;
+				this.modalShow = false;
       },
       modalBackgroundClick() {
 				if (this.modalState === 'success') {

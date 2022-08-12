@@ -49,7 +49,7 @@
 						</div>
 
 						<!-- nik -->
-						<div class="col-md-4" v-if="mode == 'edit'">
+						<div class="col-md-4" v-if="mode == 'edit' || mode == 'edit_profile'">
 							<div class="form-group" :class="{'has-error' : errors.has('form.nik')}">
 
 								<!-- title -->
@@ -894,6 +894,7 @@
 							keluarga.pasangan = valData.name;
 						}
 						if(valData.tipe == 'Anak'){
+							this.formAnak = [];
 							this.formAnak.push(valData);
 						}
 					}

@@ -16,6 +16,14 @@ export default {
     return axios.get('/api/aktivis/indexCu/' + id + '/' + tingkat + '/' + status, {params: p});
   },
 
+  indexTingkatArr: function( p, kegiatan_id, tingkat ){
+    return axios.get('/api/aktivis/indexTingkatArr/' + kegiatan_id + '/' + tingkat, {params: p});
+  },
+
+  indexCuTingkatArr: function( p, kegiatan_id, id, tingkat ){
+    return axios.get('/api/aktivis/indexCuTingkatArr/' + kegiatan_id + '/' + id + '/' + tingkat, {params: p});
+  },
+
   indexPekerjaan: function( id ){
     return axios.get('/api/aktivis/indexPekerjaan/' + id);
   },

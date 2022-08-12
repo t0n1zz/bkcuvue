@@ -238,6 +238,60 @@ class AktivisController extends Controller{
 		]);
 	}
 
+	public function indexTingkatArr($kegiatan_id, $tingkat)
+	{
+		$kegiatanPeserta = KegiatanPeserta::where('kegiatan_id',$kegiatan_id)->whereNotNull('aktivis_id')->pluck('aktivis_id')->toArray();
+
+		$tingkat = explode(',',str_replace('[','',str_replace(']','',$tingkat)));
+
+		$table_data = Aktivis::with(['pekerjaans' => function($q) use ($tingkat){
+			$q->with('cu')->whereIn('tipe',[1,3])
+			->whereIn('tingkat',$tingkat)
+			->where('status',1);
+		}])->with('pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')->whereHas('pekerjaan',function($query) use ($tingkat){
+			$query->whereIn('tipe',[1,3])
+			->whereIn('tingkat',$tingkat)
+			->where('status',1);
+		})->whereNotIn('id', $kegiatanPeserta)->advancedFilter();
+
+		$table_data = $this->formatQuery($table_data);
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexCuTingkatArr($kegiatan_id, $id, $tingkat)
+	{
+		if($id == 0){
+			$tipe = 3;
+			$id = 1;
+		}else{
+			$tipe = 1;
+		}
+
+		$kegiatanPeserta = KegiatanPeserta::where('kegiatan_id',$kegiatan_id)->whereNotNull('aktivis_id')->pluck('aktivis_id')->toArray();
+
+		$tingkat = explode(',',str_replace('[','',str_replace(']','',$tingkat)));
+
+		$table_data = Aktivis::with(['pekerjaans' => function($q) use ($id,$tipe){
+			$q->with('cu')->where('tipe',$tipe)->where('id_tempat',$id)
+			->where('status',1);
+		}])->with('pendidikan_tertinggi','Villages','Districts','Regencies','Provinces')
+		->whereHas('pekerjaan', function($query) use ($id,$tipe, $tingkat){
+			$query->whereIn('tingkat',$tingkat)->where('tipe',$tipe)->where('id_tempat',$id)
+			->where('status',1);
+		})->whereNotIn('id', $kegiatanPeserta)->advancedFilter();
+
+		$table_data = $this->formatQuery($table_data);
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
 	public function formatQuery($table_data){
 		foreach($table_data as $t){
 			$t->pekerjaan_aktif = '';
@@ -878,6 +932,8 @@ class AktivisController extends Controller{
 		}else{
 			$kelas = new KegiatanPeserta();
 		}
+
+		$kelas->kegiatan_tipe = 'diklat_bkcu';
 
 		if(!empty($id)){
 			$kelas->aktivis_id = $id;

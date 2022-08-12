@@ -131,9 +131,13 @@ class KegiatanBKCUController extends Controller{
 		]);
 	}
 
-	public function indexSemuaPeserta()
+	public function indexSemuaPeserta($kegiatan_tipe)
 	{
-		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi','kegiatan')->advancedFilter();
+		if($kegiatan_tipe == 'semua'){
+			$table_data = KegiatanPeserta::with('aktivis.pendidikan_tertinggi','kegiatan','mitra_orang')->advancedFilter();
+		}else{
+			$table_data = KegiatanPeserta::with('aktivis.pendidikan_tertinggi','kegiatan','mitra_orang')->where('kegiatan_tipe', $kegiatan_tipe)->advancedFilter();
+		}
 
 		$table_data = $this->formatQuery($table_data);
 
@@ -143,7 +147,23 @@ class KegiatanBKCUController extends Controller{
 		]);
 	}
 
-	public function indexSemuaPesertaCu($id)
+	public function indexSemuaPesertaMitra($kegiatan_tipe)
+	{
+		if($kegiatan_tipe == 'semua'){
+			$table_data = KegiatanPeserta::with('mitra_orang')->whereNotNull('mitra_orang_id')->advancedFilter();
+		}else{
+			$table_data = KegiatanPeserta::with('mitra_orang')->whereNotNull('mitra_orang_id')->where('kegiatan_tipe', $kegiatan_tipe)->advancedFilter();
+		}
+
+		$table_data = $this->formatQuery($table_data);
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexSemuaPesertaCu($kegiatan_tipe, $id)
 	{
 		if($id == 0){
 			$tipe = 3;
@@ -152,9 +172,15 @@ class KegiatanBKCUController extends Controller{
 			$tipe = 1;
 		}
 
-		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi','kegiatan')->whereHas('aktivis.pekerjaan', function($query) use ($id, $tipe){
-			$query->where('tipe',$tipe)->where('id_tempat',$id);
-		})->advancedFilter();
+		if($kegiatan_tipe == 'semua'){
+			$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi','kegiatan')->whereHas('aktivis.pekerjaan', function($query) use ($id, $tipe){
+				$query->where('tipe',$tipe)->where('id_tempat',$id);
+			})->advancedFilter();
+		}else{
+			$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi','kegiatan')->whereHas('aktivis.pekerjaan', function($query) use ($id, $tipe){
+				$query->where('tipe',$tipe)->where('id_tempat',$id);
+			})->where('kegiatan_tipe', $kegiatan_tipe)->advancedFilter();
+		}
 
 		$table_data = $this->formatQuery($table_data);
 
@@ -164,11 +190,108 @@ class KegiatanBKCUController extends Controller{
 		]);
 	}
 
+	public function indexPeserta($id)
+	{
+		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','mitra_orang')->where('kegiatan_id',$id)->advancedFilter();
+
+		$table_data = $this->formatQuery($table_data);
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexPesertaCu($id, $cu)
+	{
+		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','mitra_orang')->where('kegiatan_id',$id)->whereHas('aktivis.pekerjaan', function($query) use ($cu){
+			$query->where('tipe','1')->where('id_tempat',$cu);
+		})->advancedFilter();
+		
+		$table_data = $this->formatQuery($table_data);
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexPesertaHadir($id)
+	{
+		$table_data = KegiatanPeserta::with('aktivis','mitra_orang')->where('kegiatan_id',$id)->whereNotNull('tanggal_hadir')->advancedFilter();
+
+		$table_data = $this->formatQuery($table_data);
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function formatQuery($table_data){
+		foreach($table_data as $t){
+			if($t->aktivis_id){
+				if(isset($t->aktivis)){
+					$t->tanggal_lahir = $t->aktivis->tanggal_lahir;
+					$t->tempat_lahir = $t->aktivis->tempat_lahir;
+					$t->tinggi = $t->aktivis->tinggi;
+					$t->agama = $t->aktivis->agama;
+					$t->email = $t->aktivis->email;
+					$t->hp = $t->aktivis->hp;
+					$t->kontak = $t->aktivis->kontak;
+					$t->kelamin = $t->aktivis->kelamin;
+					$t->status_pernikahan = $t->aktivis->status;
+				}
+			}elseif($t->mitra_orang_id){
+				if(isset($t->mitra_orang)){
+					$t->tanggal_lahir = $t->mitra_orang->tanggal_lahir;
+					$t->tempat_lahir = $t->mitra_orang->tempat_lahir;
+					$t->tinggi = $t->mitra_orang->tinggi;
+					$t->agama = $t->mitra_orang->agama;
+					$t->email = $t->mitra_orang->email;
+					$t->hp = $t->mitra_orang->hp;
+					$t->kontak = $t->mitra_orang->kontak;
+					$t->kelamin = $t->mitra_orang->kelamin;
+					$t->status_pernikahan = $t->mitra_orang->status;
+				}
+			}
+
+			if ($t->pekerjaan_tingkat == 1) {
+				$t->pekerjaan_tingkat = 'Pengurus';
+			} else if($t->pekerjaan_tingkat == 2) {
+				$t->pekerjaan_tingkat = 'Pengawas';
+			}	else if($t->pekerjaan_tingkat == 3) {
+				$t->pekerjaan_tingkat = 'Komite';
+			} else if($t->pekerjaan_tingkat == 4) {
+				$t->pekerjaan_tingkat = 'Penasihat';
+			} else if($t->pekerjaan_tingkat == 5) {
+				$t->pekerjaan_tingkat = 'Senior Manajer';
+			} else if($t->pekerjaan_tingkat == 6) {
+				$t->pekerjaan_tingkat = 'Manajer';
+			} else if($t->pekerjaan_tingkat == 7) {
+				$t->pekerjaan_tingkat = 'Supervisor';
+			} else if($t->pekerjaan_tingkat == 8) {
+				$t->pekerjaan_tingkat = 'Staf';
+			} else if($t->pekerjaan_tingkat == 9) {
+				$t->pekerjaan_tingkat = 'Kontrak';
+			} else if($t->pekerjaan_tingkat == 10) {
+				$t->pekerjaan_tingkat = 'Kolektor';
+			} else if($t->pekerjaan_tingkat == 11) {
+				$t->pekerjaan_tingkat = 'Kelompok Inti';
+			} else if($t->pekerjaan_tingkat == 12) {
+				$t->pekerjaan_tingkat = 'Supporting Unit';
+			} else if($t->pekerjaan_tingkat == 13) {
+				$t->pekerjaan_tingkat = 'Vendor sMartCU';
+			} else if($t->pekerjaan_tingkat == 14) {
+				$t->pekerjaan_tingkat = 'Magang';
+			} 
+		}
+		return $table_data;
+	}
+
 	public function indexSemuaPanitia()
 	{
 		$table_data = KegiatanPanitia::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi','kegiatan','mitra_orang','mitra_lembaga')->where('peran','panitia')->advancedFilter();
-
-		$table_data = $this->formatQuery($table_data);
 
 		return response()
 		->json([
@@ -189,8 +312,6 @@ class KegiatanBKCUController extends Controller{
 			$query->where('tipe',$tipe)->where('id_tempat',$id);
 		})->where('peran','panitia')->advancedFilter();
 
-		$table_data = $this->formatQuery($table_data);
-
 		return response()
 		->json([
 			'model' => $table_data
@@ -200,8 +321,6 @@ class KegiatanBKCUController extends Controller{
 	public function indexSemuaFasilitator()
 	{
 		$table_data = KegiatanPanitia::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi','kegiatan','mitra_orang','mitra_lembaga')->where('peran','fasilitator')->advancedFilter();
-
-		$table_data = $this->formatQuery($table_data);
 
 		return response()
 		->json([
@@ -222,54 +341,11 @@ class KegiatanBKCUController extends Controller{
 			$query->where('tipe',$tipe)->where('id_tempat',$id);
 		})->where('peran','fasilitator')->advancedFilter();
 
-		$table_data = $this->formatQuery($table_data);
-
 		return response()
 		->json([
 			'model' => $table_data
 		]);
 	}
-
-	public function indexPeserta($id)
-	{
-		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->advancedFilter();
-
-		$table_data = $this->formatQuery($table_data);
-
-		return response()
-		->json([
-			'model' => $table_data
-		]);
-	}
-
-	
-
-	public function indexPesertaCu($id, $cu)
-	{
-		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->whereHas('aktivis.pekerjaan', function($query) use ($cu){
-			$query->where('tipe','1')->where('id_tempat',$cu);
-		})->advancedFilter();
-		
-		$table_data = $this->formatQuery($table_data);
-
-		return response()
-		->json([
-			'model' => $table_data
-		]);
-	}
-
-	public function indexPesertaHadir($id)
-	{
-		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->whereNotNull('tanggal_hadir')->advancedFilter();
-
-		$table_data = $this->formatQuery($table_data);
-
-		return response()
-		->json([
-			'model' => $table_data
-		]);
-	}
-
 
 	public function indexPesertaCountCu($id)
 	{
@@ -449,47 +525,6 @@ class KegiatanBKCUController extends Controller{
 		]);
 	}
 
-	public function formatQuery($table_data){
-		foreach($table_data as $t){
-			if(isset($t->aktivis->pekerjaan_aktif)){
-				if($t->aktivis->pekerjaan_aktif->status == 1){
-					$t->aktivis->pekerjaan_aktif = $t->aktivis->pekerjaan_aktif;
-					if($t->aktivis->pekerjaan_aktif->tipe == 3){
-						$t->aktivis->pekerjaan_aktif->cu->name = 'PUSKOPCUINA';
-					}
-					if ($t->tingkat == 1) {
-						$t->tingkat_name = 'Pengurus';
-					} else if($t->tingkat == 2) {
-						$t->tingkat_name = 'Pengawas';
-					}	else if($t->tingkat == 3) {
-						$t->tingkat_name = 'Komite';
-					} else if($t->tingkat == 4) {
-						$t->tingkat_name = 'Penasihat';
-					} else if($t->tingkat == 5) {
-						$t->tingkat_name = 'Senior Manajer';
-					} else if($t->tingkat == 6) {
-						$t->tingkat_name = 'Manajer';
-					} else if($t->tingkat == 7) {
-						$t->tingkat_name = 'Supervisor';
-					} else if($t->tingkat == 8) {
-						$t->tingkat_name = 'Staf';
-					} else if($t->tingkat == 9) {
-						$t->tingkat_name = 'Kontrak';
-					} else if($t->tingkat == 10) {
-						$t->tingkat_name = 'Kolektor';
-					} else if($t->tingkat == 11) {
-						$t->tingkat_name = 'Kelompok Inti';
-					} else if($t->tingkat == 12) {
-						$t->tingkat_name = 'Supporting Unit';
-					} else if($t->tingkat == 13) {
-						$t->tingkat_name = 'Vendor sMartCU';
-					}
-				}
-			}
-		}
-		return $table_data;
-	}
-
 	
 	public function checkPeserta($kegiatan_id, $aktivis_id)
 	{
@@ -636,62 +671,75 @@ class KegiatanBKCUController extends Controller{
 	{
 		$id_cu = Auth::user()->id_cu;
 		$kegiatan = Kegiatan::findOrFail($id);
+		$asal = $request->asal;
 
-		$semuaPesertaTerdaftar = $table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->count();
+		// check peserta count
+		$semuaPesertaTerdaftar = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->count();
 		
+		// check peserta
 		if($semuaPesertaTerdaftar < $kegiatan->peserta_max){
-			if($id_cu != 0){
-				$pesertaTerdaftar = $table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->whereHas('aktivis.pekerjaan', function($query) use ($id_cu){
-					$query->where('tipe','1')->where('id_tempat',$id_cu);
-				})->count();
-			}else{
-				$pesertaTerdaftar = $table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->whereHas('aktivis.pekerjaan', function($query) use ($id_cu){
-					$query->where('tipe','3')->where('id_tempat',$id_cu);
-				})->count();
-			}
-	
-			if($pesertaTerdaftar <  $kegiatan->peserta_max_cu){
-				$kelas = KegiatanPeserta::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id ]);
-	
+
+			if($asal == 'luar'){
+				$kelas = KegiatanPeserta::create($request->all());
+			}else if($asal == 'dalam'){
 				if($id_cu != 0){
-					// check interval
-					$dataPeserta = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->where('kegiatan_id', $id)->whereHas('aktivis.pekerjaan_aktif.cu', function($query) use($id_cu){
-						$query->where('id', $id_cu);
-					})->orderBy('created_at','desc')->first();
-					$time = \Carbon\Carbon::now();
-			
-					// send notif if interval different is more than 2 hours
-					if($dataPeserta){
-						$diff = $time->diffInHours($dataPeserta->created_at);
-						if($diff > 2){
+					$pesertaTerdaftar = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->whereHas('aktivis.pekerjaan', function($query) use ($id_cu){
+						$query->where('tipe','1')->where('id_tempat',$id_cu);
+					})->count();
+				}else{
+					$pesertaTerdaftar = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->whereHas('aktivis.pekerjaan', function($query) use ($id_cu){
+						$query->where('tipe','3')->where('id_tempat',$id_cu);
+					})->count();
+				}
+				
+				// check peserta per-cu
+				if($pesertaTerdaftar <  $kegiatan->peserta_max_cu){
+
+					// create
+					$kelas = KegiatanPeserta::create($request->all());
+		
+					// send notification
+					if($id_cu != 0){
+						// check interval
+						$dataPeserta = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->where('kegiatan_id', $id)->whereHas('aktivis.pekerjaan_aktif.cu', function($query) use($id_cu){
+							$query->where('id', $id_cu);
+						})->orderBy('created_at','desc')->first();
+						$time = \Carbon\Carbon::now();
+				
+						// send notif if interval different is more than 2 hours
+						if($dataPeserta){
+							$diff = $time->diffInHours($dataPeserta->created_at);
+							if($diff > 2){
+								if($kegiatan_tipe == 'diklat_bkcu'){
+									NotificationHelper::diklat_bkcu($id_cu, $id,'menambah peserta');
+								}else{
+									NotificationHelper::pertemuan_bkcu($id_cu, $id,'menambah peserta');
+								}
+							}
+						}else{
 							if($kegiatan_tipe == 'diklat_bkcu'){
 								NotificationHelper::diklat_bkcu($id_cu, $id,'menambah peserta');
 							}else{
 								NotificationHelper::pertemuan_bkcu($id_cu, $id,'menambah peserta');
 							}
 						}
-					}else{
-						if($kegiatan_tipe == 'diklat_bkcu'){
-							NotificationHelper::diklat_bkcu($id_cu, $id,'menambah peserta');
-						}else{
-							NotificationHelper::pertemuan_bkcu($id_cu, $id,'menambah peserta');
-						}
 					}
+					
+					return response()
+						->json([
+							'saved' => true,
+							'message' => 'Peserta ' . $this->message. ' berhasil ditambah',
+							'id' => $kelas->id
+						]);	
+				}else{
+					return response()
+						->json([
+							'saved' => false,
+							'message' => 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena jumlah maksimal peserta per CU adalah ' . $kegiatan->peserta_max_cu . ' orang.',
+						]);	
 				}
-				
-				return response()
-					->json([
-						'saved' => true,
-						'message' => 'Peserta ' . $this->message. ' berhasil ditambah',
-						'id' => $kelas->id
-					]);	
-			}else{
-				return response()
-					->json([
-						'saved' => false,
-						'message' => 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena jumlah maksimal peserta per CU adalah ' . $kegiatan->peserta_max_cu . ' orang.',
-					]);	
 			}
+
 		}else{
 			return response()
 					->json([

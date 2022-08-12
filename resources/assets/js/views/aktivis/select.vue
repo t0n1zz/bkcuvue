@@ -57,6 +57,8 @@
 								<option value="supervisor">Supervisor</option>
 								<option value="staf">Staf</option>
 								<option value="supporting_unit">Supporting Unit</option>
+								<option value="vendor">Vendor sMartCU</option>
+								<option value="magang">Magang</option>
 							</select>
 						</div>
  

@@ -106,6 +106,34 @@ export const aktivis = {
       }
     },
 
+    indexTingkatArr( { commit }, [p, kegiatan_id, tingkat] ){
+      commit('setDataStatS', 'loading');
+      
+      aktivisAPI.indexTingkatArr( p, kegiatan_id, tingkat )
+        .then( function( response ){
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
+    indexCuTingkatArr( { commit }, [p, kegiatan_id, id, tingkat] ){
+      commit('setDataStatS', 'loading');
+      
+      aktivisAPI.indexCuTingkatArr( p, kegiatan_id, id, tingkat )
+        .then( function( response ){
+          commit('setDataS', response.data.model);
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     indexTingkat( { commit }, [ p, tingkat ] ){
       commit('setDataStatS', 'loading');
       

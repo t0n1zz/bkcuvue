@@ -247,8 +247,9 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/kegiatanBKCU/diikuti', 'KegiatanBKCUController@indexDiikuti');
         Route::get('/kegiatanBKCU/kegiatan', 'KegiatanBKCUController@indexKegiatan');
         Route::get('/kegiatanBKCU/periode/{kegiatan_tipe}/{periode}', 'KegiatanBKCUController@indexPeriode');
-        Route::get('/kegiatanBKCU/indexSemuaPeserta', 'KegiatanBKCUController@indexSemuaPeserta');
-        Route::get('/kegiatanBKCU/indexSemuaPesertaCu/{id}', 'KegiatanBKCUController@indexSemuaPesertaCu');
+        Route::get('/kegiatanBKCU/indexSemuaPeserta/{tipe_kegiatan}', 'KegiatanBKCUController@indexSemuaPeserta');
+        Route::get('/kegiatanBKCU/indexSemuaPesertaMitra/{tipe_kegiatan}', 'KegiatanBKCUController@indexSemuaPesertaMitra');
+        Route::get('/kegiatanBKCU/indexSemuaPesertaCu/{tipe_kegiatan}/cu/{id}', 'KegiatanBKCUController@indexSemuaPesertaCu');
         Route::get('/kegiatanBKCU/indexSemuaPanitia', 'KegiatanBKCUController@indexSemuaPanitia');
         Route::get('/kegiatanBKCU/indexSemuaPanitiaCu/{id}', 'KegiatanBKCUController@indexSemuaPanitiaCu');
         Route::get('/kegiatanBKCU/indexSemuaFasilitator', 'KegiatanBKCUController@indexSemuaFasilitator');
@@ -359,6 +360,8 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::post('/aktivis/indexTingkat/', 'AktivisController@indexTingkat');
         Route::get('/aktivis/indexLembaga', 'AktivisController@indexLembaga');
         Route::get('/aktivis/indexCu/{id}/{tingkat}/{status}', 'AktivisController@indexCu');
+        Route::get('/aktivis/indexTingkatArr/{kegiatan_id}/{tingkat}', 'AktivisController@indexTingkatArr');
+        Route::get('/aktivis/indexCuTingkatArr/{kegiatan_id}/{id}/{tingkat}', 'AktivisController@indexCuTingkatArr');
         // Route::group(['middleware' => ['permission:index_aktivis']], function () {
         // });
         Route::group(['middleware' => ['permission:create_aktivis']], function () {
@@ -620,6 +623,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         // mitra perserorangan
         Route::get('/mitraOrang/history', 'MitraOrangController@history');
         Route::get('/mitraOrang', 'MitraOrangController@index');
+        Route::get('/mitraOrang/indexPeserta/{kegiatan_id}', 'MitraOrangController@indexPeserta');
         Route::group(['middleware' => ['permission:index_mitra_orang']], function () {
             Route::get('/mitraOrang/count', 'MitraOrangController@count');
         });

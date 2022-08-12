@@ -208,6 +208,48 @@ export const kegiatanBKCU = {
         });
     },
 
+    indexSemuaPeserta( { commit }, [p, tipe] ){
+      commit('setDataStatS', 'loading');
+      
+      KEGIATANBKCUAPI.indexSemuaPeserta( p, tipe )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
+    indexSemuaPesertaMitra( { commit }, [p, tipe] ){
+      commit('setDataStatS', 'loading');
+      
+      KEGIATANBKCUAPI.indexSemuaPesertaMitra( p, tipe )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
+    indexSemuaPesertaCu( { commit }, [p, tipe, cu] ){
+      commit('setDataStatS', 'loading');
+      
+      KEGIATANBKCUAPI.indexSemuaPesertaCu( p, tipe, cu )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     indexPeserta( { commit }, [p, id] ){
       commit('setDataStatS', 'loading');
       

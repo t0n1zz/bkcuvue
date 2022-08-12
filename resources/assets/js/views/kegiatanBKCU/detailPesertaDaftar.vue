@@ -137,71 +137,75 @@
             <span v-html="$options.filters.statusPeserta(props.item.status)"></span>
           </td>
           <td v-if="!columnDataPesertaTerdaftar[2].hide">
-            <img :src="'/images/aktivis/' + props.item.aktivis.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.aktivis && props.item.aktivis.gambar">
-            <img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+						<!-- if aktivis -->
+						<template v-if="props.item.aktivis">
+							<img :src="'/images/aktivis/' + props.item.aktivis.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.aktivis.gambar">
+							<img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+						</template>
+						<!-- if mitra orang -->
+						<template v-else-if="props.item.mitra_orang">
+							<img :src="'/images/mitra_orang/' + props.item.mitra_orang.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.mitra_orang.gambar">
+							<img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+						</template>
+						<img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
           </td>
-          <td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[3].hide">
-            <check-value :value="props.item.aktivis.name"></check-value>
+					<td v-if="!columnDataPesertaTerdaftar[3].hide">
+            <check-value :value="props.item.name_sertifikat"></check-value>
           </td>
           <td v-if="!columnDataPesertaTerdaftar[4].hide && !columnDataPesertaTerdaftar[4].disable">
             <check-value :value="props.item.name_nametag"></check-value>
           </td>
-          <td v-if="!columnDataPesertaTerdaftar[5].hide">
-            <check-value :value="props.item.name_sertifikat"></check-value>
-          </td>
-          <td v-if="!columnDataPesertaTerdaftar[6].hide && !columnDataPesertaTerdaftar[6].disable" >
+          <td v-if="!columnDataPesertaTerdaftar[5].hide && !columnDataPesertaTerdaftar[5].disable" >
             <span v-html="$options.filters.date(props.item.datang)"></span>
           </td>
-          <td v-if="!columnDataPesertaTerdaftar[7].hide && !columnDataPesertaTerdaftar[7].disable">
+          <td v-if="!columnDataPesertaTerdaftar[6].hide && !columnDataPesertaTerdaftar[6].disable">
             <span v-html="$options.filters.date(props.item.pulang)"></span>
           </td>
-          <td v-if="!columnDataPesertaTerdaftar[8].hide">
+          <td v-if="!columnDataPesertaTerdaftar[7].hide">
             <check-value :value="props.item.keterangan"></check-value>
           </td>
-          <td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[9].hide">
-            <check-value :value="props.item.aktivis.kelamin"></check-value>
+          <td v-if="!columnDataPesertaTerdaftar[8].hide">
+            <check-value :value="props.item.kelamin"></check-value>
           </td>
-          <td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[10].hide">
-            <check-value :value="props.item.lembaga"></check-value>
+          <td v-if="!columnDataPesertaTerdaftar[9].hide">
+            <check-value :value="props.item.lembaga_name"></check-value>
           </td>
-          <td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[11].hide" >
-            <check-value :value="props.item.tingkat_name"></check-value>
+          <td v-if="!columnDataPesertaTerdaftar[10].hide" >
+            <check-value :value="props.item.pekerjaan_tingkat"></check-value>
           </td>
-          <td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[12].hide">
-            <check-value :value="props.item.jabatan"></check-value>
+          <td v-if="!columnDataPesertaTerdaftar[11].hide">
+            <check-value :value="props.item.pekerjaan_name"></check-value>
           </td>
-          <td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[13].hide">
-            <check-value :value="props.item.aktivis.pendidikan_tertinggi.tingkat" v-if="props.item.aktivis.pendidikan_tertinggi"></check-value>
-            <span v-else>-</span>
+          <td v-if="!columnDataPesertaTerdaftar[12].hide">
+            <check-value :value="props.item.pendidikan_tingkat"></check-value>
           </td>
-          <td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[14].hide">
-            <check-value :value="props.item.aktivis.pendidikan_tertinggi.name" v-if="props.item.aktivis.pendidikan_tertinggi"></check-value>
-            <span v-else>-</span>
+          <td v-if="!columnDataPesertaTerdaftar[13].hide">
+            <check-value :value="props.item.pendidikan_name"></check-value>
           </td>
-          <td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[15].hide" v-html="$options.filters.date(props.item.aktivis.tanggal_lahir)">
+          <td v-if="!columnDataPesertaTerdaftar[14].hide" v-html="$options.filters.date(props.item.tanggal_lahir)">
           </td>
-          <td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[16].hide">
-            <check-value :value="props.item.aktivis.tempat_lahir"></check-value>
+          <td v-if="!columnDataPesertaTerdaftar[15].hide">
+            <check-value :value="props.item.tempat_lahir"></check-value>
           </td>
-          <td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[17].hide">
-            <check-value :value="props.item.aktivis.tinggi"></check-value>
+          <td v-if="!columnDataPesertaTerdaftar[16].hide">
+            <check-value :value="props.item.tinggi"></check-value>
           </td>
-          <td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[18].hide">
-            <check-value :value="props.item.aktivis.agama"></check-value>
+          <td v-if="!columnDataPesertaTerdaftar[17].hide">
+            <check-value :value="props.item.agama"></check-value>
           </td>
-          <td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[19].hide">
-            <check-value :value="props.item.aktivis.status"></check-value>
+          <td v-if="!columnDataPesertaTerdaftar[18].hide">
+            <check-value :value="props.item.status_pernikahan"></check-value>
           </td>
-          <td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[20].hide">
-            <check-value :value="props.item.aktivis.email"></check-value>
+          <td v-if="!columnDataPesertaTerdaftar[19].hide">
+            <check-value :value="props.item.email"></check-value>
           </td>
-          <td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[21].hide">
-            <check-value :value="props.item.aktivis.hp"></check-value>
+          <td v-if="!columnDataPesertaTerdaftar[20].hide">
+            <check-value :value="props.item.hp"></check-value>
           </td>
-          <td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[22].hide">
-            <check-value :value="props.item.aktivis.kontak"></check-value>
+          <td v-if="!columnDataPesertaTerdaftar[21].hide">
+            <check-value :value="props.item.kontak"></check-value>
           </td>
-          <td v-if="props.item.aktivis && !columnDataPesertaTerdaftar[22].hide" v-html="$options.filters.dateTime(props.item.created_at)">
+          <td v-if="!columnDataPesertaTerdaftar[22].hide" v-html="$options.filters.dateTime(props.item.created_at)">
           </td>
         </tr>
       </template>	
@@ -301,9 +305,10 @@
 						hide: false,
 					},
 					{
-						title: 'Nama',
-						name: 'aktivis.name',
+						title: 'Nama Di Sertifikat',
+						name: 'name_sertifikat',
 						tipe: 'string',
+						sort: true,
 						hide: false,
 						disable: false,
 						filter: true,
@@ -312,15 +317,6 @@
 					{
 						title: 'Nama Di Nametag',
 						name: 'name_nametag',
-						tipe: 'string',
-						sort: true,
-						hide: false,
-						disable: false,
-						filter: true,
-					},
-					{
-						title: 'Nama Di Sertifikat',
-						name: 'name_sertifikat',
 						tipe: 'string',
 						sort: true,
 						hide: false,
@@ -356,7 +352,7 @@
 					},
 					{
 						title: 'Gender',
-						name: 'aktivis.kelamin',
+						name: 'kelamin',
 						tipe: 'string',
 						hide: false,
 						disable: false,
@@ -364,32 +360,32 @@
 					},
 					{
 						title: 'Lembaga',
-						name: 'lembaga',
+						name: 'lembaga_name',
 						tipe: 'string',
 					},
 					{
 						title: 'Tingkat',
-						name: 'tingkat_name',
+						name: 'pekerjaan_tingkat',
 						tipe: 'string',
 					},
 					{
 						title: 'Jabatan',
-						name: 'jabatan',
+						name: 'pekerjaan_name',
 						tipe: 'string',
 					},
 					{
 						title: 'Pendidikan',
-						name: 'aktivis.pendidikan_tertinggi.tingkat',
+						name: 'pendidikan_tingkat',
 						tipe: 'string',
 					},
 					{
 						title: 'Jurusan',
-						name: 'aktivis.pendidikan_tertinggi.name',
+						name: 'pendidikan_name',
 						tipe: 'string',
 					},
 					{
 						title: 'Tgl. Lahir',
-						name: 'aktivis.tanggal_lahir',
+						name: 'tanggal_lahir',
 						tipe: 'datetime',
 						hide: false,
 						disable: false,
@@ -397,7 +393,7 @@
 					},
 					{
 						title: 'Tempat Lahir',
-						name: 'aktivis.tempat_lahir',
+						name: 'tempat_lahir',
 						tipe: 'string',
 						hide: false,
 						disable: false,
@@ -405,7 +401,7 @@
 					},
 					{
 						title: 'Tinggi',
-						name: 'aktivis.tinggi',
+						name: 'tinggi',
 						tipe: 'numeric',
 						hide: false,
 						disable: false,
@@ -413,7 +409,7 @@
 					},
 					{
 						title: 'Agama',
-						name: 'aktivis.agama',
+						name: 'agama',
 						tipe: 'string',
 						hide: false,
 						disable: false,
@@ -421,7 +417,7 @@
 					},
 					{
 						title: 'Status Pernikahan',
-						name: 'aktivis.status',
+						name: 'status_pernikahan',
 						tipe: 'string',
 						hide: false,
 						disable: false,
@@ -429,7 +425,7 @@
 					},
 					{
 						title: 'Email',
-						name: 'aktivis.email',
+						name: 'email',
 						tipe: 'string',
 						hide: false,
 						disable: false,
@@ -437,7 +433,7 @@
 					},
 					{
 						title: 'No. Hp',
-						name: 'aktivis.hp',
+						name: 'hp',
 						tipe: 'numeric',
 						hide: false,
 						disable: false,
@@ -445,7 +441,7 @@
 					},
 					{
 						title: 'Kontak Lain',
-						name: 'aktivis.kontak',
+						name: 'kontak',
 						tipe: 'string',
 						hide: false,
 						disable: false,
@@ -517,6 +513,8 @@
 				this.modalColor = '';
 
 				if (value === "success") {
+					this.fetchPesertaTerdaftar(this.queryPesertaTerdaftar);
+					this.fetchCountPeserta();
 					this.modalTitle = this.updateResponse.message;
 				} else {
 					this.modalTitle = 'Oops terjadi kesalahan :(';
@@ -541,13 +539,18 @@
 
         if(this.item.tipe_tempat == 'ONLINE'){
           this.columnDataPesertaTerdaftar[4].disable = true;
+          this.columnDataPesertaTerdaftar[5].disable = true;
           this.columnDataPesertaTerdaftar[6].disable = true;
-          this.columnDataPesertaTerdaftar[7].disable = true;
         }else{
           this.columnDataPesertaTerdaftar[4].disable = false;
+          this.columnDataPesertaTerdaftar[5].disable = false;
           this.columnDataPesertaTerdaftar[6].disable = false;
-          this.columnDataPesertaTerdaftar[7].disable = false;
         }
+			},
+			fetchCountPeserta() {
+				this.$store.dispatch(this.kelas + '/countPeserta', this.item.id);
+				if(this.item.tipe_tempat == 'ONLINE')
+					this.$store.dispatch(this.kelas + '/countPesertaHadir', this.item.id);
 			},
       generateSertifikat(){
 				this.modalShow = true;
@@ -632,10 +635,6 @@
         }
 			},
       modalTutup() {
-        if(this.state == 'tambahPeserta' || this.state == 'ubahPeserta' || this.state == 'hapusPeserta' || this.state == 'batalPeserta'){
-					this.fetchCountPeserta();
-				}
-
 				this.isDisableTable = false;
 				this.modalShow = false;
       },

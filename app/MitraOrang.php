@@ -25,23 +25,23 @@ class MitraOrang extends BaseEloquent {
     }
     
     protected $fillable = [
-        'nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','gambar','darah','tinggi','lembaga','jabatan','pendidikan','kontak','gambar','id_villages','id_districts','id_regencies','id_provinces','bidang','npwp'
+        'nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','gambar','darah','tinggi','lembaga','pekerjaan_name','pendidikan_name','pekerjaan_tingkat','pendidikan_tingkat','kontak','gambar','id_villages','id_districts','id_regencies','id_provinces','bidang','npwp'
     ];
 
     protected $allowedFilters = [
-        'nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','jabatan','pendidikan','kontak','created_at','updated_at','bidang',
+        'nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','pekerjaan_name','pendidikan_name','kontak','created_at','updated_at','bidang','pekerjaan_tingkat','pendidikan_tingkat',
         
         'villages.name', 'districts.name', 'regencies.name', 'provinces.name'
     ];
 
     protected $orderable = [
-        'nim','nim_cu','nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','jabatan','pendidikan','kontak','created_at','updated_at','bidang'
+        'nim','nim_cu','nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','pekerjaan_name','pendidikan_name','kontak','created_at','updated_at','bidang','pekerjaan_tingkat','pendidikan_tingkat'
     ];
 
     public static function initialize()
     {
         return [
-            'nik' => '','name' => '','tempat_lahir' => '','tanggal_lahir' => '','kelamin' => '','agama' => '','status' => '','alamat' => '','hp' => '','email' => '','darah' => '','tinggi' => '','kontak' => '','lembaga' => '','jabatan' => '','pendidikan' => '','gambar'=> '','id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '', 'bidang' => ''
+            'nik' => '','name' => '','tempat_lahir' => '','tanggal_lahir' => '','kelamin' => '','agama' => '','status' => '','alamat' => '','hp' => '','email' => '','darah' => '','tinggi' => '','kontak' => '','lembaga' => '','pekerjaan_name' => '','pendidikan_name' => '','pekerjaan_tingkat' => '','pendidikan_tingkat' => '','gambar'=> '','id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '', 'bidang' => ''
         ];
     }
 

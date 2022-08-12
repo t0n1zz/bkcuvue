@@ -2514,14 +2514,18 @@ var render = function () {
               "div",
               {
                 staticClass: "form-group",
-                class: { "has-error": _vm.errors.has("form.name") },
+                class: { "has-error": _vm.errors.has("form.kegiatan_name") },
               },
               [
                 _c(
                   "h6",
-                  { class: { "text-danger": _vm.errors.has("form.name") } },
+                  {
+                    class: {
+                      "text-danger": _vm.errors.has("form.kegiatan_name"),
+                    },
+                  },
                   [
-                    _vm.errors.has("form.name")
+                    _vm.errors.has("form.kegiatan_name")
                       ? _c("i", { staticClass: "icon-cross2" })
                       : _vm._e(),
                     _vm._v("\n\t\t\t\t\tNama Diklat: "),
@@ -2541,34 +2545,34 @@ var render = function () {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.form.name,
-                      expression: "form.name",
+                      value: _vm.form.kegiatan_name,
+                      expression: "form.kegiatan_name",
                     },
                   ],
                   staticClass: "form-control",
                   attrs: {
                     type: "text",
-                    name: "name",
+                    name: "kegiatan_name",
                     placeholder: "Silahkan masukkan nama diklat",
                     "data-vv-as": "Nama Diklat",
                   },
-                  domProps: { value: _vm.form.name },
+                  domProps: { value: _vm.form.kegiatan_name },
                   on: {
                     input: function ($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.form, "name", $event.target.value)
+                      _vm.$set(_vm.form, "kegiatan_name", $event.target.value)
                     },
                   },
                 }),
                 _vm._v(" "),
-                _vm.errors.has("form.name")
+                _vm.errors.has("form.kegiatan_name")
                   ? _c("small", { staticClass: "text-muted text-danger" }, [
                       _c("i", { staticClass: "icon-arrow-small-right" }),
                       _vm._v(
                         " " +
-                          _vm._s(_vm.errors.first("form.name")) +
+                          _vm._s(_vm.errors.first("form.kegiatan_name")) +
                           "\n\t\t\t\t"
                       ),
                     ])
@@ -6067,9 +6071,9 @@ var render = function () {
                                             name: "tooltip",
                                             rawName: "v-tooltip",
                                             value:
-                                              "Riwayat diklat ini berasal dari data diklat BKCU di SIMO yang terdaftar secara online, oleh karena itut tidak bisa di edit atau dihapus",
+                                              "Riwayat diklat ini berasal dari data diklat PUSKOPCUINA di SIMO yang terdaftar secara online, oleh karena itut tidak bisa di edit atau dihapus",
                                             expression:
-                                              "'Riwayat diklat ini berasal dari data diklat BKCU di SIMO yang terdaftar secara online, oleh karena itut tidak bisa di edit atau dihapus'",
+                                              "'Riwayat diklat ini berasal dari data diklat PUSKOPCUINA di SIMO yang terdaftar secara online, oleh karena itut tidak bisa di edit atau dihapus'",
                                           },
                                         ],
                                         staticClass:
@@ -6088,9 +6092,9 @@ var render = function () {
                                             name: "tooltip",
                                             rawName: "v-tooltip",
                                             value:
-                                              "Riwayat diklat ini berasal dari inputan manual dan tidak terhubung dengan data diklat BKCU di SIMO",
+                                              "Riwayat diklat ini berasal dari inputan manual dan tidak terhubung dengan data diklat PUSKOPCUINA di SIMO",
                                             expression:
-                                              "'Riwayat diklat ini berasal dari inputan manual dan tidak terhubung dengan data diklat BKCU di SIMO'",
+                                              "'Riwayat diklat ini berasal dari inputan manual dan tidak terhubung dengan data diklat PUSKOPCUINA di SIMO'",
                                           },
                                         ],
                                         staticClass:

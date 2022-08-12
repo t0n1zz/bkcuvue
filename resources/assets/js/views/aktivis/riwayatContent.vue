@@ -310,10 +310,10 @@
 						<td>{{ props.index + 1 }}</td>
 						<td>
 							<span v-if="props.item.kegiatan_id != 0">
-								<span class="badge bg-blue-400 align-self-center ml-auto" v-tooltip="'Riwayat diklat ini berasal dari data diklat BKCU di SIMO yang terdaftar secara online, oleh karena itut tidak bisa di edit atau dihapus'">Terintegrasi</span>
+								<span class="badge bg-blue-400 align-self-center ml-auto" v-tooltip="'Riwayat diklat ini berasal dari data diklat PUSKOPCUINA di SIMO yang terdaftar secara online, oleh karena itut tidak bisa di edit atau dihapus'">Terintegrasi</span>
 							</span>
 							<span v-else-if="props.item.kegiatan_id == 0">
-								<span class="badge bg-brown-400 align-self-center ml-auto" v-tooltip="'Riwayat diklat ini berasal dari inputan manual dan tidak terhubung dengan data diklat BKCU di SIMO'">Manual</span>
+								<span class="badge bg-brown-400 align-self-center ml-auto" v-tooltip="'Riwayat diklat ini berasal dari inputan manual dan tidak terhubung dengan data diklat PUSKOPCUINA di SIMO'">Manual</span>
 							</span>
 							<span v-else>-</span>
 						</td>

@@ -5,6 +5,7 @@ use DB;
 use File;
 use Image;
 use App\MitraOrang;
+use App\KegiatanPeserta;
 use App\Support\Helper;
 use Illuminate\Http\Request;
 use Venturecraft\Revisionable\Revision;
@@ -19,6 +20,18 @@ class MitraOrangController extends Controller{
 	public function index()
 	{
 		$table_data = MitraOrang::with('Villages','Districts','Regencies','Provinces')->advancedFilter();
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
+	public function indexPeserta($kegiatan_id)
+	{
+		$kegiatanPeserta = KegiatanPeserta::where('kegiatan_id',$kegiatan_id)->whereNotNull('mitra_orang_id')->pluck('mitra_orang_id')->toArray(); 
+
+		$table_data = MitraOrang::with('Villages','Districts','Regencies','Provinces')->whereNotIn('id', $kegiatanPeserta)->advancedFilter();
 
 		return response()
 		->json([

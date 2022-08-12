@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[142],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sertifikatKegiatan/form.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/sertifikatKegiatan/form.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/kodeKegiatan/form.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/kodeKegiatan/form.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -32,33 +32,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -184,12 +157,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      title: 'Tambah Sertifikat Kegiatan',
-      titleDesc: 'Menambah Sertifikat Kegiatan',
+      title: 'Tambah Kode Kegiatan',
+      titleDesc: 'Menambah Kode Kegiatan',
       titleIcon: 'icon-plus3',
       level: 2,
-      level2Title: 'Sertifikat Kegiatan',
-      kelas: 'sertifikatKegiatan',
+      level2Title: 'Kode Kegiatan',
+      kelas: 'kodeKegiatan',
       sasaran: [],
       tempatData: '',
       ckeditorNoImageConfig: {
@@ -268,19 +241,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalTitle = 'Oops terjadi kesalahan :(';
         this.modalContent = this.updateResponse;
       }
-    },
-    updateTempatStat: function updateTempatStat(value) {
-      this.modalShow = true;
-      this.modalState = value;
-      this.modalColor = '';
-
-      if (value === "success") {
-        this.modalTitle = this.updateTempatResponse.message;
-        this.changeRegencies(this.form.id_regencies);
-      } else {
-        this.modalTitle = 'Oops terjadi kesalahan :(';
-        this.modalContent = this.updateTempatResponse;
-      }
     }
   },
   methods: {
@@ -325,12 +285,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$validator.validateAll('form').then(function (result) {
         if (result) {
           if (_this.$route.meta.mode == 'edit') {
-            console.log(_this.form.gambar_depan);
-
             _this.$store.dispatch(_this.kelas + '/update', [_this.$route.params.id, formData]);
           } else {
-            console.log(_this.form.gambar_depan);
-
             _this.$store.dispatch(_this.kelas + '/store', formData);
           }
 
@@ -439,13 +395,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     modalConfirmOk: function modalConfirmOk() {
       this.modalShow = false;
 
-      if (this.state == 'hapusPanitia') {
-        lodash__WEBPACK_IMPORTED_MODULE_1___default.a.remove(this.itemDataPanitia, {
-          index: this.selectedItemPanitia.index
-        });
-
-        this.selectedItemPanitia = {};
-      } else if (this.state == 'hapusPilih') {
+      if (this.state == 'hapusPilih') {
         lodash__WEBPACK_IMPORTED_MODULE_1___default.a.remove(this.itemDataPilih, {
           index: this.selectedItemPilih.index
         });
@@ -478,15 +428,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalShow = false;
       }
     },
-    processFile: function processFile(event) {
-      this.form.gambar_depan = event.target.files[0];
-      this.form.gambar_belakang = event.target.files[0];
-    },
     momentYear: function momentYear() {
       return moment().year();
     }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('sertifikatKegiatan', {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('kodeKegiatan', {
     form: 'data',
     formStat: 'dataStat',
     rules: 'rules',
@@ -498,10 +444,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sertifikatKegiatan/form.vue?vue&type=template&id=2d1cf94e&":
-/*!****************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/sertifikatKegiatan/form.vue?vue&type=template&id=2d1cf94e& ***!
-  \****************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/kodeKegiatan/form.vue?vue&type=template&id=069e9a8f&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/kodeKegiatan/form.vue?vue&type=template&id=069e9a8f& ***!
+  \**********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -568,73 +514,10 @@ var render = function () {
                         _c("div", { staticClass: "col-md-12" }, [
                           _c(
                             "div",
-                            { staticClass: "form-group" },
-                            [
-                              _c(
-                                "h5",
-                                [_vm._v("Gambar Depan:"), _c("wajib-ukuran")],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c("app-image-upload", {
-                                attrs: {
-                                  image_loc: "/images/sertifikatKegiatan/",
-                                  image_temp: _vm.form.gambar_depan,
-                                },
-                                model: {
-                                  value: _vm.form.gambar_depan,
-                                  callback: function ($$v) {
-                                    _vm.$set(_vm.form, "gambar_depan", $$v)
-                                  },
-                                  expression: "form.gambar_depan",
-                                },
-                              }),
-                            ],
-                            1
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c(
-                            "div",
-                            { staticClass: "form-group" },
-                            [
-                              _c(
-                                "h5",
-                                [
-                                  _vm._v("Gambar Belakang:"),
-                                  _c("wajib-ukuran"),
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c("app-image-upload", {
-                                attrs: {
-                                  image_loc: "/images/sertifikatKegiatan/",
-                                  image_temp: _vm.form.gambar_belakang,
-                                },
-                                model: {
-                                  value: _vm.form.gambar_belakang,
-                                  callback: function ($$v) {
-                                    _vm.$set(_vm.form, "gambar_belakang", $$v)
-                                  },
-                                  expression: "form.gambar_belakang",
-                                },
-                              }),
-                            ],
-                            1
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c(
-                            "div",
                             {
                               staticClass: "form-group",
                               class: {
-                                "has-error": _vm.errors.has(
-                                  "form.kode_sertifikat"
-                                ),
+                                "has-error": _vm.errors.has("form.kode"),
                               },
                             },
                             [
@@ -642,17 +525,14 @@ var render = function () {
                                 "h5",
                                 {
                                   class: {
-                                    "text-danger":
-                                      _vm.errors.has("form.kode_diklat"),
+                                    "text-danger": _vm.errors.has("form.kode"),
                                   },
                                 },
                                 [
-                                  _vm.errors.has("form.kode_sertifikat")
+                                  _vm.errors.has("form.kode")
                                     ? _c("i", { staticClass: "icon-cross2" })
                                     : _vm._e(),
-                                  _vm._v(
-                                    "\n\t\t\t\t\t\t\t\t\t\t\tKode Sertifikat: "
-                                  ),
+                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tKode : "),
                                   _c("wajib-badge"),
                                 ],
                                 1
@@ -669,19 +549,19 @@ var render = function () {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.form.kode_sertifikat,
-                                    expression: "form.kode_sertifikat",
+                                    value: _vm.form.kode,
+                                    expression: "form.kode",
                                   },
                                 ],
                                 staticClass: "form-control",
                                 attrs: {
                                   type: "text",
-                                  name: "kode_sertifikat",
+                                  name: "kode",
                                   placeholder:
-                                    "Silahkan masukkan kode sertifikat",
-                                  "data-vv-as": "Kode Sertifikat",
+                                    "Silahkan masukkan kode kegiatan",
+                                  "data-vv-as": "Kode Kegiatan",
                                 },
-                                domProps: { value: _vm.form.kode_sertifikat },
+                                domProps: { value: _vm.form.kode },
                                 on: {
                                   input: function ($event) {
                                     if ($event.target.composing) {
@@ -689,14 +569,14 @@ var render = function () {
                                     }
                                     _vm.$set(
                                       _vm.form,
-                                      "kode_sertifikat",
+                                      "kode",
                                       $event.target.value
                                     )
                                   },
                                 },
                               }),
                               _vm._v(" "),
-                              _vm.errors.has("form.kode_sertifikat")
+                              _vm.errors.has("form.kode")
                                 ? _c(
                                     "small",
                                     { staticClass: "text-muted text-danger" },
@@ -707,9 +587,7 @@ var render = function () {
                                       _vm._v(
                                         " " +
                                           _vm._s(
-                                            _vm.errors.first(
-                                              "form.kode_sertifikat"
-                                            )
+                                            _vm.errors.first("form.kode")
                                           ) +
                                           "\n\t\t\t\t\t\t\t\t\t\t"
                                       ),
@@ -722,14 +600,13 @@ var render = function () {
                           ),
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
                           _c(
                             "div",
                             {
                               staticClass: "form-group",
                               class: {
-                                "has-error":
-                                  _vm.errors.has("form.nama_kegiatan"),
+                                "has-error": _vm.errors.has("form.name"),
                               },
                             },
                             [
@@ -771,7 +648,7 @@ var render = function () {
                                   name: "name",
                                   placeholder:
                                     "Silahkan masukkan nama kegiatan",
-                                  "data-vv-as": "Nama",
+                                  "data-vv-as": "Name",
                                 },
                                 domProps: { value: _vm.form.name },
                                 on: {
@@ -880,17 +757,17 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/sertifikatKegiatan/form.vue":
-/*!***************************************************************!*\
-  !*** ./resources/assets/js/views/sertifikatKegiatan/form.vue ***!
-  \***************************************************************/
+/***/ "./resources/assets/js/views/kodeKegiatan/form.vue":
+/*!*********************************************************!*\
+  !*** ./resources/assets/js/views/kodeKegiatan/form.vue ***!
+  \*********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _form_vue_vue_type_template_id_2d1cf94e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./form.vue?vue&type=template&id=2d1cf94e& */ "./resources/assets/js/views/sertifikatKegiatan/form.vue?vue&type=template&id=2d1cf94e&");
-/* harmony import */ var _form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./form.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/sertifikatKegiatan/form.vue?vue&type=script&lang=js&");
+/* harmony import */ var _form_vue_vue_type_template_id_069e9a8f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./form.vue?vue&type=template&id=069e9a8f& */ "./resources/assets/js/views/kodeKegiatan/form.vue?vue&type=template&id=069e9a8f&");
+/* harmony import */ var _form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./form.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/kodeKegiatan/form.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -901,8 +778,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _form_vue_vue_type_template_id_2d1cf94e___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _form_vue_vue_type_template_id_2d1cf94e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _form_vue_vue_type_template_id_069e9a8f___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _form_vue_vue_type_template_id_069e9a8f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -912,38 +789,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/views/sertifikatKegiatan/form.vue"
+component.options.__file = "resources/assets/js/views/kodeKegiatan/form.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/sertifikatKegiatan/form.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************!*\
-  !*** ./resources/assets/js/views/sertifikatKegiatan/form.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************/
+/***/ "./resources/assets/js/views/kodeKegiatan/form.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/assets/js/views/kodeKegiatan/form.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./form.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sertifikatKegiatan/form.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./form.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/kodeKegiatan/form.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/sertifikatKegiatan/form.vue?vue&type=template&id=2d1cf94e&":
-/*!**********************************************************************************************!*\
-  !*** ./resources/assets/js/views/sertifikatKegiatan/form.vue?vue&type=template&id=2d1cf94e& ***!
-  \**********************************************************************************************/
+/***/ "./resources/assets/js/views/kodeKegiatan/form.vue?vue&type=template&id=069e9a8f&":
+/*!****************************************************************************************!*\
+  !*** ./resources/assets/js/views/kodeKegiatan/form.vue?vue&type=template&id=069e9a8f& ***!
+  \****************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_2d1cf94e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./form.vue?vue&type=template&id=2d1cf94e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sertifikatKegiatan/form.vue?vue&type=template&id=2d1cf94e&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_2d1cf94e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_069e9a8f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./form.vue?vue&type=template&id=069e9a8f& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/kodeKegiatan/form.vue?vue&type=template&id=069e9a8f&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_069e9a8f___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_2d1cf94e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_069e9a8f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

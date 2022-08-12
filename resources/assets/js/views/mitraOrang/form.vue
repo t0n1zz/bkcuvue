@@ -248,10 +248,65 @@
 										<div class="form-group">
 
 											<!-- title -->
+											<h6>Tingkat Pekerjaan:</h6>
+
+											<!-- text -->
+											<select class="form-control" name="pekerjaan_tingkat" v-model="form.pekerjaan_tingkat" data-width="100%" v-validate="'required'" data-vv-as="Tingkat Pekerjaan">
+												<option disabled value="">Silahkan pilih tingkat pekerjaan</option>
+												<option value="1">Pengurus</option>
+												<option value="2">Pengawas</option>
+												<option value="3">Komite</option>
+												<option value="4">Penasihat</option>
+												<option value="5">Senior Manajer (General Manager, CEO, Deputy)</option>
+												<option value="6">Manajer</option>
+												<option value="7">Supervisor (Kepala Bagian, Kepala Divisi, Kepala/Koordinator TP, Kepala Bidang)</option>
+												<option value="8">Staf</option>
+												<option value="9">Kontrak</option>
+												<option value="10">Kolektor</option>
+												<option value="11">Kelompok Inti</option>
+												<option value="12">Supporting Unit</option>
+												<option value="13">Vendor sMartCU</option>
+												<option value="14">Magang</option>
+											</select>
+										</div>
+									</div>
+
+									<!-- jabatan -->
+									<div class="col-md-4">
+										<div class="form-group">
+
+											<!-- title -->
 											<h6>Jabatan:</h6>
 
 											<!-- text -->
-											<input type="text" name="jabatan" class="form-control" placeholder="Silahkan masukkan jabatan" v-model="form.jabatan">
+											<input type="text" name="pekerjaan_name" class="form-control" placeholder="Silahkan masukkan jabatan" v-model="form.pekerjaan_name">
+										</div>
+									</div>
+
+									<!-- pendidikan tingkat -->
+									<div class="col-md-4">
+										<div class="form-group">
+
+											<!-- title -->
+											<h6>Tingkat Pendidikan:</h6>
+
+											<!-- text -->
+											<select class="form-control" name="pendidikan_tingkat" v-model="form.pendidikan_tingkat" data-width="100%" v-validate="'required'" data-vv-as="Tingkat pendidikan">
+												<option disabled value="">Silahkan pilih tingkat pendidikan</option>
+												<option value="TK">TK</option>
+												<option value="SD">SD</option>
+												<option value="SMP">SMP</option>
+												<option value="SMA/SMK">SMA/SMK</option>
+												<option value="D1">D1</option>
+												<option value="D2">D2</option>
+												<option value="D3">D3</option>
+												<option value="D4">D4</option>
+												<option value="S1">S1</option>
+												<option value="S2">S2</option>
+												<option value="S3">S3</option>
+												<option value="LAIN-LAIN">Lain-lain</option>
+											</select>
+
 										</div>
 									</div>
 
@@ -263,7 +318,7 @@
 											<h6>Pendidikan:</h6>
 
 											<!-- text -->
-											<input type="text" name="pendidikan" class="form-control" placeholder="Silahkan masukkan pendidikan" v-model="form.pendidikan">
+											<input type="text" name="pendidikan_name" class="form-control" placeholder="Silahkan masukkan pendidikan" v-model="form.pendidikan_name">
 
 										</div>
 									</div>

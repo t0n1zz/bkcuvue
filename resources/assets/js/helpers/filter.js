@@ -63,6 +63,8 @@ Vue.filter('checkTingkatAktivis', function(value){
 		return 'Supporting Unit';
 	} else if(value == 13) {
 		return 'Vendor sMartCU';
+	} else if(value == 14) {
+		return 'Magang';
 	} else {
 		return '-';
 	}
