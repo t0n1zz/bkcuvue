@@ -1,0 +1,39 @@
+<?php
+namespace App;
+
+use illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+use App\Support\Dataviewer;
+
+class KegiatanRekom extends Model {
+    
+    use LogsActivity, Dataviewer;
+
+    protected $table = 'kegiatan_rekom';
+    protected static $logFillable = true;
+    protected static $logOnlyDirty = true;
+    
+    public static $rules = [
+        'name' => 'required'
+    ];
+    
+    protected $fillable = [
+        'kegiatan_id','name','pic','waktu','tipe'
+    ];
+
+    protected $allowedFilters = [
+        'kegiatan_id','name','pic','waktu','tipe','created_at','updated_at'
+    ];
+
+    protected $orderable = [
+        'kegiatan_id','name','pic','waktu','tipe','created_at','updated_at'
+    ];
+
+    public function Kegiatan(){
+        return $this->belongsTo('App\Kegiatan','kegiatan_id','id');
+    }
+
+    public function hasil(){
+        return $this->hasMany('App\KegiatanRekomHasil','kegiatan_rekom_id','id');
+    }
+}

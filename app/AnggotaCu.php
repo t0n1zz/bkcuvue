@@ -63,7 +63,6 @@ class AnggotaCu extends Model {
     }
 
     public function anggota_cu_cu(){
-        $cu = \Auth::user()->id_cu;
         if($cu != 0){
             return $this->hasMany('App\AnggotaCuCu','anggota_cu_id','id')->where('cu_id',$cu);
         }else{

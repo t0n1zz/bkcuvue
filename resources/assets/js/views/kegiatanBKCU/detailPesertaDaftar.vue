@@ -549,8 +549,6 @@
 			},
 			fetchCountPeserta() {
 				this.$store.dispatch(this.kelas + '/countPeserta', this.item.id);
-				if(this.item.tipe_tempat == 'ONLINE')
-					this.$store.dispatch(this.kelas + '/countPesertaHadir', this.item.id);
 			},
       generateSertifikat(){
 				this.modalShow = true;
@@ -592,7 +590,7 @@
 					this.modalState = 'normal1';
 					this.modalColor = 'bg-primary';
 					this.modalTitle = 'Ubah Peserta';
-					this.modalSize = 'modal-lg';
+					this.modalSize = 'modal-full';
 					this.formModalMode = 'edit';
 				} else if (state == 'tambahPeserta') {
 					if(this.countPeserta >= this.item.peserta_max ){
@@ -612,7 +610,7 @@
 						this.modalState = 'normal1';
 						this.modalColor = 'bg-primary';
 						this.modalTitle = 'Tambah Peserta';
-						this.modalSize = 'modal-lg';
+						this.modalSize = 'modal-full';
 						this.formModalMode = 'create';
 					}
 				}else if (state == 'tambahNilai') {

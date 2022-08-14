@@ -803,7 +803,8 @@ var render = function () {
                   ),
                 ])
               : _c("span", { staticStyle: { display: "inline-block" } }, [
-                  _vm._v(_vm._s(_vm.frontText) + " " + _vm._s(_vm.value)),
+                  _c("b", [_vm._v(_vm._s(_vm.frontText))]),
+                  _vm._v(" " + _vm._s(_vm.value)),
                 ]),
           ])
         : _c("span", { staticStyle: { display: "inline-block" } }, [

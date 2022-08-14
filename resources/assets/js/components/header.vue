@@ -404,13 +404,13 @@
 								</a>
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'diklat'}">
 
-									<router-link :to="{ name: 'kegiatanBKCU', params:{tipe: 'diklat_bkcu_internal', periode: momentYear() }}" class="dropdown-item" active-class="active" exact >
-										Internal PUSKOPCUINA
-									</router-link>
-									
 									<router-link :to="{ name: 'kegiatanBKCU', params:{tipe: 'diklat_bkcu', periode: momentYear() }}" class="dropdown-item" active-class="active" exact >
 										PUSKOPCUINA
 									</router-link>
+
+									<router-link :to="{ name: 'kegiatanBKCU', params:{tipe: 'diklat_bkcu_internal', periode: momentYear() }}" class="dropdown-item" active-class="active" exact >
+										Internal PUSKOPCUINA
+									</router-link>	
 
 								</div>
 							</div>
@@ -421,14 +421,14 @@
 								</a>
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'pertemuan'}">
 
-									<router-link :to="{ name: 'kegiatanBKCU', params:{tipe: 'pertemuan_bkcu_internal', periode: momentYear() }}" class="dropdown-item" active-class="active" exact >
-										Internal PUSKOPCUINA
-									</router-link>
-									
 									<router-link :to="{ name: 'kegiatanBKCU', params:{tipe: 'pertemuan_bkcu', periode: momentYear() }}" class="dropdown-item" active-class="active" exact >
 										PUSKOPCUINA
 									</router-link>
 
+									<router-link :to="{ name: 'kegiatanBKCU', params:{tipe: 'pertemuan_bkcu_internal', periode: momentYear() }}" class="dropdown-item" active-class="active" exact >
+										Internal PUSKOPCUINA
+									</router-link>
+									
 								</div>
 							</div>
 
@@ -475,11 +475,11 @@
 								</a>
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'pesertaDiklat'}">
 
-									<router-link :to="{ name: 'kegiatanSemuaPesertaCu', params:{tipe: 'diklat_bkcu', cu: currentUser.id_cu }}" class="dropdown-item" active-class="active" exact >
+									<router-link :to="{ name: 'kegiatanSemuaPeserta', params:{tipe: 'diklat_bkcu', cu: currentUser.id_cu }}" class="dropdown-item" active-class="active" exact >
 										Diklat PUSKOPCUINA
 									</router-link>
 									
-									<router-link :to="{ name: 'kegiatanSemuaPesertaCu', params:{tipe: 'pertemuan_bkcu', cu: currentUser.id_cu }}" class="dropdown-item" active-class="active" exact >
+									<router-link :to="{ name: 'kegiatanSemuaPeserta', params:{tipe: 'pertemuan_bkcu', cu: currentUser.id_cu }}" class="dropdown-item" active-class="active" exact >
 										Pertemuan PUSKOPCUINA
 									</router-link>
 

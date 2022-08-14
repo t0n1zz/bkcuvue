@@ -29,7 +29,6 @@
 					<i class="icon-bin2"></i> Hapus
 				</button>
 
-
 			</template>
 
 			<!-- button mobile -->

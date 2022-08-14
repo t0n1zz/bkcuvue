@@ -322,6 +322,18 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::post('/kegiatanBKCU/updateListMateri/{id}', 'KegiatanBKCUController@updateListMateri');
         Route::delete('/kegiatanBKCU/destroyListMateri/{kegiatan_tipe}/{id}', 'KegiatanBKCUController@destroyListMateri');
 
+        // kegiatan rekom
+        Route::get('/kegiatanRekom/history', 'KegiatanRekomController@history');
+        Route::get('/kegiatanRekom', 'KegiatanRekomController@index');
+        Route::get('/kegiatanRekom/get', 'KegiatanRekomController@get');
+        Route::get('/kegiatanRekom/indexKegiatan/{id}', 'KegiatanRekomController@indexKegiatan');
+        Route::get('/kegiatanRekom/indexHasil/{id}', 'KegiatanRekomController@indexHasil');
+        Route::get('/kegiatanRekom/create', 'KegiatanRekomController@create');
+        Route::post('/kegiatanRekom/store', 'KegiatanRekomController@store');
+        Route::get('/kegiatanRekom/edit/{id}', 'KegiatanRekomController@edit');
+        Route::post('/kegiatanRekom/update/{id}', 'KegiatanRekomController@update');
+        Route::delete('/kegiatanRekom/{id}', 'KegiatanRekomController@destroy');
+
         // aktivis
         Route::get('/aktivis/get/{id}', 'AktivisController@get');
         Route::get('/aktivis/history', 'AktivisController@history');

@@ -581,7 +581,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       selectedItem: [],
       query: {
         order_column: "mulai",
-        order_direction: "asc",
+        order_direction: "desc",
         filter_match: "and",
         limit: 10,
         page: 1

@@ -7,7 +7,7 @@
 		</message>
 
 		<!-- asal -->
-		<div class="form-group" :class="{'has-error' : errors.has('formPeserta.asal')}" v-if="mode == 'create' && currentUser.id_cu == 0 && formPeserta.aktivis_id == ''">
+		<div class="form-group" :class="{'has-error' : errors.has('formPeserta.asal')}" v-if="mode == 'create' && currentUser.id_cu == 0 && formPeserta.aktivis_id == '' && formPeserta.mitra_orang_id == ''">
 
 			<!-- title -->
 			<h5 :class="{ 'text-danger' : errors.has('formPeserta.asal')}">
@@ -452,6 +452,14 @@
 			}
 		},
 		created(){
+			var i;
+			for(i = 0; i < this.tingkat.length; i++){
+				this.tingkatArray.push(this.tingkat[i].id);
+			}
+			for(i = 0; i < this.tingkat.length; i++){
+				this.tingkatName.push(this.tingkat[i].name);
+			}
+
 			if(this.mode == 'edit'){
 				this.formPeserta = this.selected;
 
@@ -467,12 +475,8 @@
 				this.formPeserta.kegiatan_tipe = this.item.tipe;
 				this.formPeserta.status = this.selected.status;
 			}else{
-				var i;
-				for(i = 0; i < this.tingkat.length; i++){
-					this.tingkatArray.push(this.tingkat[i].id);
-				}
-				for(i = 0; i < this.tingkat.length; i++){
-					this.tingkatName.push(this.tingkat[i].name);
+				if(this.currentUser.id_cu != 0){
+					this.changeAsal('dalam');
 				}
 			}
 		},
@@ -484,7 +488,7 @@
 					this.$store.dispatch('aktivis/indexTingkatArr', [params, this.item.id, JSON.stringify(this.tingkatArray)]);
 					this.disableColumnCu(false);
 				}else{
-					this.$store.dispatch('aktivis/indexCuTingkatArr', [params, this.item.id, this.currentUser.id_cu, this.tingkatArray])
+					this.$store.dispatch('aktivis/indexCuTingkatArr', [params, this.item.id, this.currentUser.id_cu, JSON.stringify(this.tingkatArray)])
 					this.disableColumnCu(true);
 				}
 			},
@@ -497,6 +501,7 @@
 				}else if(asal == 'luar'){
 					this.fetchMitra(this.query);
 				}
+				this.formPeserta.asal = asal;
 				this.deleteSelected();
 			},
 			disableColumnCu(value){

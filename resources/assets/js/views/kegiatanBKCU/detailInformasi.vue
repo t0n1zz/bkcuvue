@@ -28,7 +28,7 @@
               </button>
 
               <!-- daftar -->
-              <button class="btn bg-warning-400 mb-1" @click.prevent="modalOpen('tambahPeserta')" v-else-if="currentUser.can && currentUser.can['index_diklat_bkcu'] && currentUser.id_cu != 0 && item.status == 2">
+              <button class="btn bg-warning-400 btn-block mb-1" @click.prevent="modalOpen('tambahPeserta')" v-else-if="currentUser.can && currentUser.can['index_diklat_bkcu'] && currentUser.id_cu != 0 && item.status == 2">
                 <i class="icon-people"></i> Daftar Peserta
               </button>
             </template>
@@ -71,23 +71,6 @@
               <tr>
                 <td class="font-weight-semibold">Peserta Max Per CU:</td>
                 <td class="text-right">{{item.peserta_max_cu}} orang</td>
-              </tr>
-              <tr v-if="item.keputusan_cu || item.pertanyaan_cu || item.keputusan_user || item.pertanyaan_user"><td colspan="2"><hr class="mt-0 mb-0"/></td></tr>
-              <tr v-if="item.keputusan_cu">
-                <td class="font-weight-semibold">Keputusan Max Per CU:</td>
-                <td class="text-right">{{ item.keputusan_cu }} kali</td>
-              </tr>
-              <tr v-if="item.keputusan_user">
-                <td class="font-weight-semibold">Keputusan Max Per Peserta:</td>
-                <td class="text-right">{{ item.keputusan_user }} kali</td>
-              </tr>
-              <tr v-if="item.pertanyaan_cu">
-                <td class="font-weight-semibold">Pertanyaan Max Per CU:</td>
-                <td class="text-right">{{ item.pertanyaan_cu }} kali</td>
-              </tr>
-              <tr v-if="item.pertanyaan_user">
-                <td class="font-weight-semibold">Pertanyaan Max Per Peserta:</td>
-                <td class="text-right">{{ item.pertanyaan_user }} kali</td>
               </tr>
             </tbody>
           </table>
@@ -221,23 +204,19 @@
           <div class="card-header bg-white">
             <h5 class="card-title">Materi</h5>
           </div>
-          <div class="card-body pb-2">
-            <div class="row">
-              <div class="col-md-12">
-                <!-- tambah -->
-                <button type="button" class="btn btn-light mb-1" @click.prevent="modalOpen('tambahListMateri')">
-                <i class="icon-plus3"></i> Tambah
-                </button>
-                <!-- ubah -->
-                <button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahListMateri')" :disabled="!selectedItemListMateri.id" >
-                  <i class="icon-pencil5"></i> Ubah
-                </button>
-                <!-- hapus -->
-                <button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusListMateri')" :disabled="!selectedItemListMateri.id">
-                  <i class="icon-bin2"></i> Hapus
-                </button>
-              </div>
-            </div>
+          <div class="card-body pb-2" v-if="currentUser.id_cu == 0">
+            <!-- tambah -->
+            <button type="button" class="btn btn-light mb-1" @click.prevent="modalOpen('tambahListMateri')">
+            <i class="icon-plus3"></i> Tambah
+            </button>
+            <!-- ubah -->
+            <button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahListMateri')" :disabled="!selectedItemListMateri.id" >
+              <i class="icon-pencil5"></i> Ubah
+            </button>
+            <!-- hapus -->
+            <button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusListMateri')" :disabled="!selectedItemListMateri.id">
+              <i class="icon-bin2"></i> Hapus
+            </button>
           </div>
           <data-table :items="itemDataListMateri" :columnData="columnDataListMateri" :itemDataStat="itemDataListMateriStat">
             <template slot="item-desktop" slot-scope="props">

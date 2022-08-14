@@ -688,136 +688,6 @@
 							</div>
 						</div>
 
-						<!-- keputusan -->
-						<div class="card">
-							<div class="card-header bg-white">
-								<h5 class="card-title">6. Interaksi Peserta <br/> 
-									<small class="text-muted">Di isi apabila ada pengaturan pertanyaan dan keputusan</small></h5>
-							</div>
-							<div class="card-body pb-2">
-								
-								<div class="row">
-
-									<!-- pertanyaan keputusan-->
-									<div class="col-md-6">
-										<div class="form-group" >
-
-											<!-- title -->
-											<h5>Batasan Jumlah Pertanyaan Per-CU</h5>
-
-											<!-- input -->
-											<cleave 
-												name="pertanyaan_cu"
-												v-model="form.pertanyaan_cu" 
-												class="form-control" 
-												:raw="false" 
-												:options="cleaveOption.number3" 
-												placeholder="Silahkan masukkan batasan"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">Kosongkan apabila tidak ada batasan pada jumlah pertanyaan yang bisa diberikan CU</small>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group" >
-
-											<!-- title -->
-											<h5>Batasan Jumlah Pertanyaan Per-Peserta</h5>
-
-											<!-- input -->
-											<cleave 
-												name="pertanyaan_cu"
-												v-model="form.pertanyaan_user" 
-												class="form-control" 
-												:raw="false" 
-												:options="cleaveOption.number3" 
-												placeholder="Silahkan masukkan batasan"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">Kosongkan apabila tidak ada batasan pada jumlah pertanyaan yang bisa diberikan peserta</small>
-										</div>
-									</div>
-
-									<div class="col-md-12"><hr/></div>
-
-									<!-- jumlah keputusan-->
-									<div class="col-md-6">
-										<div class="form-group" >
-
-											<!-- title -->
-											<h5>Batasan Jumlah Keputusan Per-CU</h5>
-
-											<!-- input -->
-											<cleave 
-												name="keputusan_cu"
-												v-model="form.keputusan_cu" 
-												class="form-control" 
-												:raw="false" 
-												:options="cleaveOption.number3" 
-												placeholder="Silahkan masukkan batasan"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">Kosongkan apabila tidak ada batasan pada jumlah keputusan yang bisa diberikan CU</small>
-										</div>
-									</div>
-
-									<div class="col-md-6">
-										<div class="form-group" >
-
-											<!-- title -->
-											<h5>Batasan Jumlah Keputusan Per-Peserta</h5>
-
-											<!-- input -->
-											<cleave 
-												name="keputusan_cu"
-												v-model="form.keputusan_user" 
-												class="form-control" 
-												:raw="false" 
-												:options="cleaveOption.number3" 
-												placeholder="Silahkan masukkan batasan"></cleave>
-
-											<!-- error message -->
-											<small class="text-muted">Kosongkan apabila tidak ada batasan pada jumlah keputusan yang bisa diberikan peserta</small>
-										</div>
-									</div>
-
-									<!-- pilihan keputusan -->
-									<div class="col-md-12">
-
-										<h5>
-											Pilihan persetujuan pada keputusan 
-											<br/>
-											<small class="text-muted">Kosongkan apabila tidak membutuhkan persetujuan</small>
-										</h5>
-										<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahPilih')">
-											<i class="icon-plus22"></i> Tambah
-										</button>
-
-										<button class="btn btn-light mb-1" @click.prevent="modalOpen('ubahPilih')"
-										:disabled="!selectedItemPilih.index">
-											<i class="icon-pencil5"></i> Ubah
-										</button>
-
-										<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusPilih')" :disabled="!selectedItemPilih.index">
-											<i class="icon-bin2"></i> Hapus
-										</button>
-
-									</div>
-
-								</div>		
-							</div>
-
-							<data-table :items="itemDataPilih" :columnData="columnDataPilih" :itemDataStat="itemDataPilihStat">
-								<template slot="item-desktop" slot-scope="props">
-									<tr :class="{ 'bg-info': selectedItemPilih.index == props.index  + 1}" class="text-nowrap" @click="selectedRow(props.item, props.index + 1, 'pilih')" v-if="props.item">
-										<td>{{ props.index + 1 }}</td>
-										<td>{{ props.item.name }}</td>
-									</tr>
-								</template>	
-							</data-table>
-
-						</div>
-
 						<!-- form info -->
 						<form-info></form-info>	
 						<br/>
@@ -886,7 +756,6 @@
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
 	import formPanitia from "./formPanitia.vue";
-	import formPilih from "./formPilih.vue";
 	import formTempat from "./formTempat.vue";
 	import Cleave from 'vue-cleave-component';
 	import dataTable from '../../components/datatable.vue';
@@ -901,7 +770,6 @@
 			formButton,
 			formInfo,
 			formPanitia,
-			formPilih,
 			formTempat,
 			Cleave,
 			dataTable,
@@ -991,14 +859,6 @@
 				formPanitiaMode: '',
 				itemDataPanitia: [],
 				itemDataPanitiaStat: 'success',
-				columnDataPilih:[
-					{ title: 'No.' },
-					{ title: 'Nama' },
-				],
-				selectedItemPilih: '',
-				formPilihMode: '',
-				itemDataPilih: [],
-				itemDataPilihStat: 'success',
 				cancelState: 'methods',
 				state: '',
 				modalShow: false,
@@ -1081,15 +941,6 @@
 							formData.hp = valLuarLembaga.hp;
 
 							this.itemDataPanitia.push(formData);
-						}
-
-						var valPilih;
-						for (valPilih of this.form.pilih) {
-							let formData = {};
-							formData.id = valPilih.id;
-							formData.name = valPilih.name;
-
-							this.itemDataPilih.push(formData);
 						}
 
 					}
@@ -1275,26 +1126,6 @@
 					this.modalButton = 'Ok';
 					this.modalSize = 'modal-lg';
 					this.formPanitiaMode = 'create';
-				}else if (state == 'hapusPilih') {
-					this.modalState = 'confirm-tutup';
-					this.modalColor = '';
-					this.modalTitle = 'Hapus Pilihan ' + this.selectedItemPilih.name + ' ?';
-					this.modalButton = 'Iya, Hapus';
-					this.modalSize = '';
-				}else if(state == 'ubahPilih'){
-					this.modalState = 'normal1';
-					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Ubah Pilihan';
-					this.modalButton = 'Ok';
-					this.modalSize = 'modal-lg';
-					this.formPilihMode = 'edit';
-				}else if(state == 'tambahPilih'){
-					this.modalState = 'normal1';
-					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Tambah Pilihan';
-					this.modalButton = 'Ok';
-					this.modalSize = 'modal-lg';
-					this.formPilihMode = 'create';
 				}else if(state == 'tempat'){
 					this.modalState = 'normal2';
 					this.modalColor = 'bg-primary';
@@ -1318,11 +1149,6 @@
 						index: this.selectedItemPanitia.index
 					});
 					this.selectedItemPanitia = {};
-				}else if(this.state == 'hapusPilih'){
-					_.remove(this.itemDataPilih, {
-						index: this.selectedItemPilih.index
-					});
-					this.selectedItemPilih = {};
 				}else{
 					if(this.$route.meta.isDetail){
 						this.$router.push({name: this.kelas + 'Detail', params: { id: this.form.id }});

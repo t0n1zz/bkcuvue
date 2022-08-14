@@ -45,6 +45,7 @@ import { jalinanKlaim } from './modules/jalinanKlaim';
 import { jalinanIuran } from './modules/jalinanIuran';
 import { produkCu } from './modules/produkCu';
 import { kegiatanBKCU } from './modules/kegiatanBKCU';
+import { kegiatanRekom } from './modules/kegiatanRekom';
 import { sertifikatKegiatan } from './modules/sertifikatKegiatan';
 import { kodeKegiatan } from './modules/kodeKegiatan';
 import { tempat } from './modules/tempat';
@@ -104,6 +105,7 @@ export default new Vuex.Store({
 		 jalinanIuran,
 		 produkCu,
 		 kegiatanBKCU,
+		 kegiatanRekom,
 		 sertifikatKegiatan,
 		 kodeKegiatan,
 		 tempat,

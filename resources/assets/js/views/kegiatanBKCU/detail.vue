@@ -74,6 +74,10 @@
 											Peserta Hadir 
 											<span class="badge badge-dark ml-2" v-if="countPesertaHadirStat == 'success' && countPesertaHadir> 0">{{ countPesertaHadir }}</span>
 										</a></li>	 -->
+										
+										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'rekom'}" @click.prevent="changeTab('rekom')"><i class="icon-equalizer mr-2"></i>
+											Rekomendasi
+										</a></li>			
 
 										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'statistik'}" @click.prevent="changeTab('statistik')"><i class="icon-equalizer mr-2"></i>
 											Statistik
@@ -101,6 +105,13 @@
 							<transition enter-active-class="animated fadeIn" mode="out-in">
 								<div v-if="tabName == 'pesertaHadir'">
 									<detail-peserta-hadir :kelas="kelas"></detail-peserta-hadir>
+								</div>
+							</transition>
+
+							<!-- tabrekomendasi -->
+							<transition enter-active-class="animated fadeIn" mode="out-in">
+								<div v-if="tabName == 'rekom'">
+									<detail-rekom></detail-rekom>
 								</div>
 							</transition>
 
@@ -142,6 +153,7 @@
 	import detailInformasi from "./detailInformasi.vue";
 	import detailPesertaDaftar from "./detailPesertaDaftar.vue";
 	import detailPesertaHadir from "./detailPesertaHadir.vue";
+	import detailRekom from "./detailRekom.vue";
 	import detailStatistik from "./detailStatistik.vue";
 	
 	export default {
@@ -158,6 +170,7 @@
 			detailInformasi,
 			detailPesertaDaftar,
 			detailPesertaHadir,
+			detailRekom,
 			detailStatistik,
 		},
 		data() {
@@ -210,9 +223,6 @@
 				kode: '',
 				submited: false,
 			}
-		},
-		beforeRouteEnter(to, from, next) {
-			next(vm => vm.fetch());
 		},
 		created(){
 			this.fetch();

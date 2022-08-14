@@ -96,16 +96,8 @@ class Kegiatan extends Model {
         return $this->belongsToMany('App\Peserta','kegiatan_peserta')->withTimestamps();
     }
 
-    public function pilih(){
-        return $this->hasMany('App\KegiatanPilih','kegiatan_id','id');
-    }
-
     public function hasPeserta(){
         return $this->hasMany('App\KegiatanPeserta','kegiatan_id','id');
-    }
-
-    public function hasKeputusan(){
-        return $this->hasMany('App\KegiatanKeputusan','kegiatan_id','id');
     }
 
     public function hasMateri(){

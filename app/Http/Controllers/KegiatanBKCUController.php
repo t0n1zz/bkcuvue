@@ -16,7 +16,6 @@ use App\KegiatanTugas;
 use App\KegiatanTugasJawaban;
 use App\KegiatanKeputusan;
 use App\KegiatanPertanyaan;
-use App\KegiatanPilih;
 use App\KodeKegiatan;
 use App\Sertifikat;
 use App\SertifikatGenerate;
@@ -622,49 +621,12 @@ class KegiatanBKCUController extends Controller{
 			$kelas->panitia_dalam()->sync($panitiaArray);
 		}
 
-		if($request->pilih){
-			$this->syncPilih($request, $kelas);
-		}
- 
 		return response()
 			->json([
 				'saved' => true,
 				'message' => $this->message. ' ' .$name. ' berhasil ditambah',
 				'id' => $kelas->id
 			]);	
-	}
-
-	private function syncPilih($request, $kelas)
-	{
-		$aTmp1 = [];
-		$aTmp2 = [];
-		foreach($kelas->pilih as $aV){ $aTmp1[] = $aV['id']; }
-		foreach($request->pilih as $aV){ 
-			if(array_key_exists('id', $aV)){
-				$aTmp2[] = $aV['id']; 
-			}
-		}
-		$diff = array_diff($aTmp1, $aTmp2);
-
-		if($diff){
-			$val = array_values($diff)[0];
-			KegiatanPilih::findOrFail($val)->delete();
-		}
-
-		foreach($request->pilih as $pilih){
-			if(array_key_exists('id', $pilih)){
-				$kelasPilih = KegiatanPilih::findOrFail($pilih['id']);
-				$kelasPilih->update([
-					'kegiatan_id' => $kelas->id,
-					'name' => array_key_exists('name', $pilih) ? $pilih['name'] : null,
-				]);
-			}else{
-				KegiatanPilih::create([
-					'kegiatan_id' => $kelas->id,
-					'name' => array_key_exists('name', $pilih) ? $pilih['name'] : null,
-				]);
-			}
-		}
 	}
 
 	public function storePeserta(Request $request, $kegiatan_tipe, $id)
@@ -947,7 +909,7 @@ class KegiatanBKCUController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = Kegiatan::with('tempat','sasaran','panitia_dalam.pekerjaan_aktif.cu','panitia_luar','panitia_luar_lembaga','pilih','kode')->findOrFail($id);
+		$kelas = Kegiatan::with('tempat','sasaran','panitia_dalam.pekerjaan_aktif.cu','panitia_luar','panitia_luar_lembaga','kode')->findOrFail($id);
 		$kelas2 = Sertifikat::where('id', $kelas->id_sertifikat)->get();
 
 		return response()
@@ -1028,10 +990,6 @@ class KegiatanBKCUController extends Controller{
 			\App\Aktivis::flushCache();
 			\App\MitraOrang::flushCache();
 			\App\MitraLembaga::flushCache();
-		}
-
-		if($request->pilih){
-			$this->syncPilih($request, $kelas);
 		}
 
 		return response()
@@ -1147,33 +1105,6 @@ class KegiatanBKCUController extends Controller{
 			]);
 	}
 
-	public function updateKeputusan(Request $request, $id)
-	{
-		$kelas = KegiatanKeputusan::findOrFail($id);
-
-		$kelas->update($request->all());
-
-		$this->syncKeputusanPilih($request, $kelas);
-
-		return response()
-			->json([
-				'saved' => true,
-				'message' => "Keputusan berhasil diubah"
-			]);
-	}
-
-	public function updateKeputusanKomentar(Request $request, $id)
-	{
-		$kelas = KegiatanKeputusan::findOrFail($id);
-
-		$kelas->update($request->all());
-
-		return response()
-			->json([
-				'saved' => true,
-				'message' => "Komentar berhasil diubah"
-			]);
-	}
 
 	public function updatePertanyaan(Request $request, $id)
 	{
