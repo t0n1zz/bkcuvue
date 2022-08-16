@@ -15,7 +15,7 @@ use Response;
 
 class Authcontroller extends Controller
 {
-	/**
+    /**
      * Create a new AuthController instance.
      *
      * @return void
@@ -33,22 +33,29 @@ class Authcontroller extends Controller
     public function login()
     {
         $credentials = request(['username', 'password']);
+        $captcha = request(['captcha']);
 
-        if (! $token = auth('api')->setTTL(720)->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+        if ($captcha['captcha']['isTrusted'] == true) {
+
+
+            if (!$token = auth('api')->setTTL(720)->attempt($credentials)) {
+                return response()->json(['error' => 'Unauthorized'], 401);
+            }
+
+            $id = Auth::user()->getId();
+            $admin = User::find($id);
+
+            if ($admin->status == 0) {
+                return response()->json(['error' => 'Maaf akun anda tidak aktif'], 401);
+            }
+
+            $admin->login = Date::now();
+            $admin->update();
+
+            return $this->respondWithToken($token);
+        } else {
+            return response()->json(['error' => 'Captcha Salah'], 401);
         }
-
-        $id = Auth::user()->getId();
-        $admin = User::find($id);
-
-        if($admin->status == 0){
-            return response()->json(['error' => 'Maaf akun anda tidak aktif'], 401);
-        }
-
-        $admin->login = Date::now();
-        $admin->update();
-
-        return $this->respondWithToken($token);
     }
 
     /**
@@ -93,8 +100,8 @@ class Authcontroller extends Controller
     protected function respondWithToken($token)
     {
         $id = auth('api')->user()->getId();
-        $kelas = User::with('pus','cu','aktivis.pekerjaan_aktif.cu')->findOrFail($id);
-        
+        $kelas = User::with('pus', 'cu', 'aktivis.pekerjaan_aktif.cu')->findOrFail($id);
+
         return response()->json([
             'access_token' => $token,
             'user' => $kelas,
@@ -102,10 +109,9 @@ class Authcontroller extends Controller
             'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
     }
-		
+
     public function guard()
     {
         return Auth::Guard('api');
     }
-
 }

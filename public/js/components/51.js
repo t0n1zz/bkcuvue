@@ -1997,7 +1997,7 @@ var render = function () {
           _c("div", { staticClass: "page-title d-flex" }, [
             _c("h4", [
               _c("i", { staticClass: "icon-screen3 mr-2" }),
-              _vm._v("Halo \n\t\t\t\t"),
+              _vm._v("Halo \r\n\t\t\t\t"),
               _vm.currentUser.aktivis
                 ? _c("span", { staticClass: "font-weight-semibold" }, [
                     _vm._v(_vm._s(_vm.currentUser.aktivis.name + ",")),
@@ -2005,7 +2005,7 @@ var render = function () {
                 : _c("span", { staticClass: "font-weight-semibold" }, [
                     _vm._v(_vm._s(_vm.currentUser.name + ",")),
                   ]),
-              _vm._v("\n\t\t\t\t Apa kabarnya hari ini?\n\t\t\t"),
+              _vm._v("\r\n\t\t\t\t Apa kabarnya hari ini?\r\n\t\t\t"),
             ]),
           ]),
         ]

@@ -764,7 +764,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.echart-container[data-v-b8cc02d0] {\n  overflow-x: scroll;\n  overflow-y: visible;\n  max-width: 100%;\n  position: relative;\n  width: 100%;\n}\n.echarts[data-v-b8cc02d0] {\n  width: 100vw;\n  height: 70vh;\n}\n.btn-group.special[data-v-b8cc02d0] {\n  display: flex;\n}\n.special .btn[data-v-b8cc02d0] {\n  flex: 1;\n}\n", ""]);
+exports.push([module.i, "\n.echart-container[data-v-b8cc02d0] {\r\n  overflow-x: scroll;\r\n  overflow-y: visible;\r\n  max-width: 100%;\r\n  position: relative;\r\n  width: 100%;\n}\n.echarts[data-v-b8cc02d0] {\r\n  width: 100vw;\r\n  height: 70vh;\n}\n.btn-group.special[data-v-b8cc02d0] {\r\n  display: flex;\n}\n.special .btn[data-v-b8cc02d0] {\r\n  flex: 1;\n}\r\n", ""]);
 
 // exports
 
