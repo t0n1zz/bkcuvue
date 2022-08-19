@@ -28,9 +28,13 @@ class KegiatanRekomController extends Controller{
 	{
 		$cu = \Auth::user()->id_cu;
 
-		$table_data = KegiatanRekom::with(['hasil' => function($q) use($cu){
-			$q->where('id_cu', $cu);
-		}])->where('kegiatan_id', $id)->advancedFilter();
+		if($cu == 0){
+			$table_data = KegiatanRekom::with('hasil.cu','hasil.user')->where('kegiatan_id', $id)->advancedFilter();
+		}else{
+			$table_data = KegiatanRekom::with(['hasil.cu','hasil.user', 'hasil' => function($q) use($cu){
+				$q->where('id_cu', $cu);
+			}])->where('kegiatan_id', $id)->advancedFilter();
+		}
 
 		return response()
 		->json([
@@ -40,7 +44,7 @@ class KegiatanRekomController extends Controller{
 
 	public function indexHasil($id)
 	{
-		$table_data = KegiatanRekomHasil::with('cu','user')->where('kegiatan_id', $id)->get();
+		$table_data = KegiatanRekomHasil::with('cu','user')->where('kegiatan_rekom_id', $id)->advancedFilter();
 
 		return response()
 		->json([
@@ -86,6 +90,47 @@ class KegiatanRekomController extends Controller{
 			]);	
 	}
 
+	public function storeHasil(Request $request)
+	{
+		$this->validate($request,KegiatanRekomHasil::$rules);
+
+		$kegiatan_rekom_id = $request->kegiatan_rekom_id;
+		$id_cu = $request->id_cu;
+		$id_user = $request->id_user;
+		$kegiatanRekom = KegiatanRekom::findOrFail($kegiatan_rekom_id);
+		
+		if($kegiatanRekom->tipe == 1){
+			$kegiatanHasil = KegiatanRekomHasil::where('kegiatan_rekom_id', $kegiatan_rekom_id)->where('id_cu', $id_cu)->first();
+			if($kegiatanHasil){
+				return response()
+					->json([
+						'saved' => false,
+						'message' => 'Maaf CU ini sudah memberikan hasil rekomendasi',
+					]);	
+			}else{
+				$kelas = KegiatanRekomHasil::create($request->all());
+			}
+		}elseif($kegiatanRekom->tipe == 2){
+			$kegiatanHasil = KegiatanRekomHasil::where('kegiatan_rekom_id', $kegiatan_rekom_id)->where('id_user', $id_user)->first();
+			if($kegiatanHasil){
+				return response()
+					->json([
+						'saved' => false,
+						'message' => 'Maaf user anda sudah memberikan hasil rekomendasi',
+					]);	
+			}else{
+				$kelas = KegiatanRekomHasil::create($request->all());
+			}
+		}
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Tindaklanjut rekomendasi berhasil ditambah',
+				'id' => $kelas->id
+			]);	
+	}
+
 	public function update(Request $request, $id)
 	{
 		$this->validate($request, KegiatanRekom::$rules);
@@ -103,13 +148,27 @@ class KegiatanRekomController extends Controller{
 			]);
 	}
 
+	public function updateHasil(Request $request, $id)
+	{
+		$this->validate($request, KegiatanRekomHasil::$rules);
+
+		$kelas = KegiatanRekomHasil::findOrFail($id);
+
+		$kelas->update($request->all());
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Tindaklanjut rekomendasi berhasil diubah'
+			]);
+	}
 
 	public function destroy($id)
 	{
 		\DB::beginTransaction(); 
 		try{
 			$kelas = KegiatanRekom::findOrFail($id);
-			$kelas2 = KegiatanRekomHasil::where('id_monitoring',$id);
+			$kelas2 = KegiatanRekomHasil::where('kegiatan_rekom_id',$id);
 
 			$name = $kelas->name;
 
@@ -126,6 +185,21 @@ class KegiatanRekomController extends Controller{
 			\DB::rollBack();
 			abort(500, $e->getMessage());
 		}			
+	}
+
+	public function destroyHasil($id)
+	{
+		$kelas = KegiatanRekomHasil::findOrFail($id);
+
+		$name = $kelas->keterangan;
+
+		$kelas->delete();
+		
+		return response()
+			->json([
+				'deleted' => true,
+				'message' =>  'Hasil Rekomendasi ' .$name. 'berhasil dihapus'
+			]);
 	}
 
 	public function count()

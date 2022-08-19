@@ -242,8 +242,8 @@
 				currentUser: 'currentUser'
 			}),
 			...mapGetters('kodeKegiatan',{
-				itemData: 'dataStore',
-				itemDataStat: 'dataStoreStat',
+				itemData: 'dataS',
+				itemDataStat: 'dataStatS',
 				updateMessage: 'update',
 				updateStat: 'updateStat'
 			}),	

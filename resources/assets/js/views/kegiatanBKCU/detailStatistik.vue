@@ -25,7 +25,7 @@
 			</data-table>
 		</div>
 
-		<div class="card">
+		<!-- <div class="card">
 			<div class="card-header bg-light">
 				<h6 class="card-title">CU Hadir</h6>
 			</div>
@@ -48,7 +48,8 @@
 					</tr>
 				</template>	
 			</data-table>
-		</div>
+		</div> -->
+
   </div>
 </template>
 

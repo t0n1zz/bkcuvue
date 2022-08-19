@@ -1120,7 +1120,7 @@
 										Self Assesment ACCESS
 									</router-link>
 									<!-- tambah assesment -->
-									<router-link :to="{ name:'monitoringCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_monitoring']">
+									<router-link :to="{ name:'monitoringCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_monitoring'] && currentUser.id_cu == 0">
 										Monitoring
 									</router-link>
 								</div>

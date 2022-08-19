@@ -4,13 +4,13 @@
 
       <!-- if bkcu -->
       <template slot="button-desktop">
-				<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahRekom')" v-if="currentUser.id_cu == 0">
+				<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahRekom')" v-if="tipeUser == 'panitia' || tipeUser == 'fasilitator'">
 					<i class="icon-plus3"></i> Tambah Rekomendasi
 				</button>
 			</template>
 
       <template slot="button-mobile">
-				<button class="btn btn-light mb-1 btn-block" @click.prevent="modalOpen('tambahRekom')" v-if="currentUser.id_cu == 0">
+				<button class="btn btn-light mb-1 btn-block" @click.prevent="modalOpen('tambahRekom')" v-if="tipeUser == 'panitia' || tipeUser == 'fasilitator'">
 					<i class="icon-plus3"></i> Tambah Rekomendasi
 				</button>
       </template>
@@ -24,7 +24,7 @@
 							<div class="row">
 								<!-- info -->
 								<div class="col-md-12">
-									<div class="card mb-2 cursor-pointer">
+									<div class="card mb-2 bg-success">
 										<div class="card-header">
 											<h6 class="card-title"><b>Rekomendasi {{ props.index + 1 }}</b> </h6>
 										</div>
@@ -33,8 +33,8 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-4">
-											<div class="card mb-1">
+										<div class="col-md-2">
+											<div class="card mb-1 bg-info" v-tooltip="'PIC'">
 												<div class="card-header pt-2 pb-2">
 													<h6 class="card-title">
 														<i class="icon-people mr-2"></i>
@@ -43,8 +43,8 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-md-4">
-											<div class="card mb-1">
+										<div class="col-md-2">
+											<div class="card mb-1 bg-info" v-tooltip="'Waktu'">
 												<div class="card-header pt-2 pb-2">
 													<h6 class="card-title">
 														<i class="icon-alarm-check mr-2"></i>
@@ -53,8 +53,8 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-md-4">
-											<div class="card mb-1">
+										<div class="col-md-2">
+											<div class="card mb-1 bg-info" v-tooltip="'Tipe'">
 												<div class="card-header pt-2 pb-2">
 													<h6 class="card-title">
 														<i class="icon-file-check mr-2"></i>
@@ -65,17 +65,60 @@
 												</div>
 											</div>
 										</div>
+										<div class="col-md-3">
+											<div class="card mb-1 bg-info" v-tooltip="'Tgl. Buat'">
+												<div class="card-header pt-2 pb-2">
+													<h6 class="card-title">
+														<i class="icon-plus3 mr-2"></i>
+														<span v-html="$options.filters.dateTime(props.item.created_at)"></span>
+													</h6>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="card mb-1 bg-info" v-tooltip="'Tgl. Ubah'">
+												<div class="card-header pt-2 pb-2">
+													<h6 class="card-title">
+														<i class="icon-pencil5 mr-2"></i>
+														<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
+														<span v-else>-</span>
+													</h6>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 								<!-- form -->
-								<div class="col-md-12">
+								<div class="col-md-12" v-if="tipeUser == 'peserta'">
 									<hr/>
 									<div class="card card-body mb-0">
 										<form-rekom-hasil 
-											:selected="props.item.hasil"
-											:kegiatan_id="item.id"
+											:selected="props.item"
 											:kelas="kelas"
-											@tutup="modalTutup"></form-rekom-hasil>
+											:isModal="false"
+											@tutup="modalTutup" ></form-rekom-hasil>
+									</div>
+								</div>
+								<div class="col-md-12" v-else>
+									<hr/>
+									<table-rekom-hasil
+										:kelas="kelas"
+										:selected="props.item"
+										:tipeUser="tipeUser"
+										@fetch="fetch"></table-rekom-hasil>
+									<div class="row" v-if="tipeUser == 'panitia' || tipeUser == 'fasilitator'">
+										<div class="col-md-12"><hr/></div>
+										
+										<div class="col-md-6">
+											<button class="btn btn-light mb-1 btn-block" @click.prevent="modalOpen('ubahRekom', props.item)">
+												<i class="icon-pencil5"></i> Ubah Rekomendasi
+											</button>
+										</div>
+										<div class="col-md-6">
+											<button class="btn btn-light mb-1 btn-block" @click.prevent="modalOpen('hapusRekom', props.item)">
+												<i class="icon-bin"></i> Hapus Rekomendasi
+											</button>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -122,9 +165,10 @@
   import dataViewer from '../../components/dataviewer2.vue';
 	import formRekom from "./formRekom.vue";
 	import formRekomHasil from "./formRekomHasil.vue";
+	import tableRekomHasil from "./tableRekomHasil.vue";
 
 	export default {
-		props: [],
+		props: ['tipeUser'],
 		components: {
       appModal,
 			formInfo,
@@ -136,6 +180,7 @@
       dataViewer,
 			formRekom,
 			formRekomHasil,
+			tableRekomHasil,
 		},
 		data() {
 			return {
@@ -225,11 +270,6 @@
 		},
 		created() {
       this.fetch(this.query);
-			if(this.currentUser.id_cu != 0){
-				this.isNoButtonRow = true;
-			}else{
-				this.isNoButtonRow = false;
-			}
 		},
 		watch: {
       itemStat(value){
@@ -257,18 +297,20 @@
       selectedRow(item) {
 				this.selectedItem = item;
 			},
-      modalOpen(state) {
+      modalOpen(state, selected) {
 				this.modalShow = true;
 				this.modalSize = '';
 				this.state = state;
 				this.isDisableTable = true;
 
 				if (state == 'hapusRekom') {
+					this.selectedItem = selected;
 					this.modalState = 'confirm-tutup';
 					this.modalColor = '';
 					this.modalTitle = 'Hapus Rekomendasi ' + this.selectedItem.name + ' ?';
 					this.modalButton = 'Iya, Hapus';
 				}else if (state == 'ubahRekom') {
+					this.selectedItem = selected;
 					this.modalState = 'normal1';
 					this.modalColor = 'bg-primary';
 					this.modalTitle = 'Ubah Rekomendasi';
@@ -283,8 +325,6 @@
 				}
 			},
       modalConfirmOk() {
-				this.modalShow = false;
-
 				if (this.state == 'hapusRekom') {
 					this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
         }
@@ -311,8 +351,6 @@
       ...mapGetters('kegiatanBKCU', {
         item: 'data',
 				itemStat: 'dataStat',
-        updateResponse: 'update',
-				updateStat: 'updateStat',
 			}),
 			...mapGetters('kegiatanRekom', {
         itemData: 'dataS',

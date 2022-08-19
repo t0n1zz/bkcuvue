@@ -66,7 +66,7 @@
 										</a></li>	 -->
 
 										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'pesertaTerdaftar'}" @click.prevent="changeTab('pesertaTerdaftar')"><i class="icon-people mr-2"></i>
-											Peserta Terdaftar
+											Peserta
 											<span class="badge badge-dark ml-2" v-if="countPesertaStat == 'success' && countPeserta > 0 && currentUser.id_cu == 0">{{ countPeserta }}</span>
 										</a></li>
 
@@ -75,7 +75,7 @@
 											<span class="badge badge-dark ml-2" v-if="countPesertaHadirStat == 'success' && countPesertaHadir> 0">{{ countPesertaHadir }}</span>
 										</a></li>	 -->
 										
-										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'rekom'}" @click.prevent="changeTab('rekom')"><i class="icon-equalizer mr-2"></i>
+										<li class="nav-item"><a href="#" class="nav-link" :class="{'active': tabName == 'rekom'}" @click.prevent="changeTab('rekom')"><i class="icon-pen-plus mr-2"></i>
 											Rekomendasi
 										</a></li>			
 
@@ -111,7 +111,7 @@
 							<!-- tabrekomendasi -->
 							<transition enter-active-class="animated fadeIn" mode="out-in">
 								<div v-if="tabName == 'rekom'">
-									<detail-rekom></detail-rekom>
+									<detail-rekom :tipeUser="tipeUser"></detail-rekom>
 								</div>
 							</transition>
 
@@ -232,13 +232,30 @@
 				if (value === "success") {
 					this.checkTipe(this.item.tipe);
 					this.fetchCountPeserta();
+					this.checkPanitia();
 				}
 			},
 			updateStat(value) {
 				if (value === "success") {
 					
 				}
-			}
+			},
+			checkPanitiaDataStat(value){
+				if(value == 'success'){
+					if(this.checkPanitiaData){
+						this.tipeUser = this.checkPanitiaData.peran;
+					}else{
+						this.checkPeserta();
+					}
+				}
+			},
+			checkPesertaDataStat(value){
+				if(value == 'success'){
+					if(this.checkPesertaData){
+						this.tipeUser = 'peserta';
+					}
+				}
+			},
 		},
 		methods: {
 			fetch() {
@@ -266,6 +283,14 @@
 			changeTab(value){
 				this.tabName = value;
 			},
+			checkPeserta(){
+				this.$store.dispatch(this.kelas + '/checkPeserta', [this.item.id, this.currentUser.id_aktivis]);
+			},
+			checkPanitia(){
+				if(this.currentUser.aktivis){
+					this.$store.dispatch(this.kelas + '/checkPanitia', [this.item.id, this.currentUser.id_aktivis]);
+				}
+			},
 			back() {
 				this.$router.push({name: this.kelas, params:{tipe:this.item.tipe, periode: this.momentYear()}});
 			},
@@ -280,6 +305,10 @@
 			...mapGetters('kegiatanBKCU', {
 				item: 'data',
 				itemStat: 'dataStat',
+				checkPesertaData: 'data2',
+				checkPesertaDataStat: 'dataStat2',
+				checkPanitiaData: 'data3',
+				checkPanitiaDataStat: 'dataStat3',
 				itemDataPesertaTerdaftarCU: 'dataS6',
 				itemDataPesertaTerdaftarCUStat: 'dataStatS6',
 				itemDataPesertaHadirCU: 'dataS7',

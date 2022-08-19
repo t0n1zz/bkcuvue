@@ -1508,7 +1508,7 @@ var render = function () {
                   })
                 }),
                 _vm._v(" "),
-                _vm.items.length == 0
+                _vm.items && _vm.items.length == 0
                   ? _c("tr", [
                       _c("td", { attrs: { colspan: _vm.columnData.length } }, [
                         _vm._v("Belum terdapat data..."),

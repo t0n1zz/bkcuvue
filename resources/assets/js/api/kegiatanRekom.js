@@ -24,11 +24,23 @@ export default {
     return axios.post('/api/kegiatanRekom/store', form);
   },
 
+  storeHasil: function ( form ){
+    return axios.post('/api/kegiatanRekom/storeHasil', form);
+  },
+
   update: function ( id, form ){
     return axios.post('/api/kegiatanRekom/update/' + id, form);
   },
 
+  updateHasil: function ( id, form ){
+    return axios.post('/api/kegiatanRekom/updateHasil/' + id, form);
+  },
+
   destroy: function( id ){
     return axios.delete('/api/kegiatanRekom/' + id);
+  },
+
+  destroyHasil: function( id ){
+    return axios.delete('/api/kegiatanRekom/destroyHasil/' + id);
   }
 }

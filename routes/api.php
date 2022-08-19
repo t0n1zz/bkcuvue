@@ -334,6 +334,11 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::post('/kegiatanRekom/update/{id}', 'KegiatanRekomController@update');
         Route::delete('/kegiatanRekom/{id}', 'KegiatanRekomController@destroy');
 
+        // kegiatan rekom hasil
+        Route::post('/kegiatanRekom/storeHasil', 'KegiatanRekomController@storeHasil');
+        Route::post('/kegiatanRekom/updateHasil/{id}', 'KegiatanRekomController@updateHasil');
+        Route::delete('/kegiatanRekom/destroyHasil/{id}', 'KegiatanRekomController@destroyHasil');
+
         // aktivis
         Route::get('/aktivis/get/{id}', 'AktivisController@get');
         Route::get('/aktivis/history', 'AktivisController@history');

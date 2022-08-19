@@ -339,8 +339,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('auth', {
     currentUser: 'currentUser'
   })), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('kodeKegiatan', {
-    itemData: 'dataStore',
-    itemDataStat: 'dataStoreStat',
+    itemData: 'dataS',
+    itemDataStat: 'dataStatS',
     updateMessage: 'update',
     updateStat: 'updateStat'
   }))

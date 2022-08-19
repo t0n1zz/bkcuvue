@@ -935,7 +935,7 @@ class KegiatanBKCUController extends Controller{
 	public function update(Request $request, $id)
 	{
 		// $this->validate($request, Kegiatan::$rules);
-		$kelas = Kegiatan::with('pilih')->findOrFail($id);
+		$kelas = Kegiatan::findOrFail($id);
 
 		if($kelas->tipe == 'diklat_bkcu'){
 			$name = KodeKegiatan::where('id', $request->id_kode)->first();
