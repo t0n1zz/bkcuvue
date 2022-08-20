@@ -222,6 +222,35 @@ export const aktivis = {
         });
     },
 
+    indexPertemuan( {commit}, id ){
+      commit('setDataStatS6', 'loading');
+      
+      aktivisAPI.indexPertemuan( id )
+        .then( function( response ){
+          commit('setDataS6', response.data.model);
+          commit('setDataStatS6', 'success');
+        })
+        .catch( error => {
+          commit('setDataS6', error.response);
+          commit('setDataStatS6', 'fail');
+        });
+    },
+
+    // load by keterangan
+    indexKeterangan( {commit}, id ){
+      commit('setDataStatS5', 'loading');
+      
+      aktivisAPI.indexKeterangan( id )
+        .then( function( response ){
+          commit('setDataS5', response.data.model);
+          commit('setDataStatS5', 'success');
+        })
+        .catch( error => {
+          commit('setDataS5', error.response);
+          commit('setDataStatS5', 'fail');
+        });
+    },
+
     // load by keluarga
     indexKeluarga( {commit}, id ){
       commit('setDataStatS', 'loading');
@@ -249,21 +278,6 @@ export const aktivis = {
         .catch( error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
-        });
-    },
-
-    // load by keterangan
-    indexKeterangan( {commit}, id ){
-      commit('setDataStatS5', 'loading');
-      
-      aktivisAPI.indexKeterangan( id )
-        .then( function( response ){
-          commit('setDataS5', response.data.model);
-          commit('setDataStatS5', 'success');
-        })
-        .catch( error => {
-          commit('setDataS5', error.response);
-          commit('setDataStatS5', 'fail');
         });
     },
 

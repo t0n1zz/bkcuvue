@@ -10,14 +10,43 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+              <!-- Version 3.4.6 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#v346">Version 3.4.6<small class="text-muted"> / 20 Agustus 2022</small></a> </h5>
+                </div>
+
+                <div id="v346" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi menambahkan fitur untuk kegiatan yaitu penambahan kolom rekomendasi, mendukung diklat dan pertemuan internal PUSKOPCUINA, mendaftarkan mitra perseorangan sebagai peserta kegiatan
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan fitur rekomendasi untuk kegiatan</li>
+                      <li>Penambahan fitur pendaftaran mitra perseorangan untuk peserta kegiatan</li>
+                      <li>Penambahan fitur diklat dan pertemuan untuk internal PUSKOPCUINA</li>
+                      <li>Penambahan fitur tabel peserta yang menampilkan semua peserta kegiatan</li>
+                      <li>Penambahan fitur kegiatan diikuti yang menampilkan semua kegiatan yang diikuti oleh masing-masing user SIMO</li>
+                      <li>Peningkatan tampilan dan performa kegiatan</li>
+                      <li>Perbaikan bug untuk sertifikat kegiatan</li>
+                      <li>Perbaikan bug untuk aset tetap</li>
+                      <li>Perbaikan bug untuk riwayat aktivis</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.4.5 -->
+
               <!-- Version 3.4.5 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#v345">Version 3.4.5<small class="text-muted"> / 24 April 2022</small></a> </h5>
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v345">Version 3.4.5<small class="text-muted"> / 24 April 2022</small></a> </h5>
                 </div>
 
-                <div id="v345" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="v345" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi menambahkan fitur e-sertifikat, pendataan surat masuk dan keluar
                     <br/><br/>

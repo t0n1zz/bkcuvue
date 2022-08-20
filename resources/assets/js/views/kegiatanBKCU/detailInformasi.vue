@@ -23,12 +23,12 @@
 
             <!-- daftar -->
             <template v-if="item.status != 5 && item.status != 6">
-              <button class="btn bg-warning-400 btn-block mb-1" @click.prevent="modalOpen('tambahPeserta')" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
+              <button class="btn bg-warning-400 btn-block mb-1" @click.prevent="tambahPeserta()" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0">
                 <i class="icon-people"></i> Daftar Peserta
               </button>
 
               <!-- daftar -->
-              <button class="btn bg-warning-400 btn-block mb-1" @click.prevent="modalOpen('tambahPeserta')" v-else-if="currentUser.can && currentUser.can['index_diklat_bkcu'] && currentUser.id_cu != 0 && item.status == 2">
+              <button class="btn bg-warning-400 btn-block mb-1" @click.prevent="tambahPeserta()" v-else-if="currentUser.can && currentUser.can['index_diklat_bkcu'] && currentUser.id_cu != 0 && item.status == 2">
                 <i class="icon-people"></i> Daftar Peserta
               </button>
             </template>
@@ -523,29 +523,10 @@
 					this.modalTitle = 'Hapus Materi ini ?';
 					this.modalButton = 'Iya, Hapus';
 				}
-
-        if (state == 'tambahPeserta') {
-					if(this.countPeserta >= this.item.peserta_max ){
-						this.modalState = 'content-tutup';
-						this.modalColor = '';
-						this.modalTitle = 'Kegiatan sudah penuh';
-						this.modalContent = 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena kuota peserta pada kegiatan ini sudah terpenuhi.';
-					}
-					
-					if(this.countPeserta >= this.item.peserta_max_cu && this.currentUser.id_cu != 0){
-						this.modalState = 'content-tutup';
-						this.modalColor = '';
-						this.modalTitle = 'CU anda tidak bisa mendaftarkan peserta lagi';
-						this.modalContent = 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena jumlah maksimal peserta per CU adalah ' + this.item.peserta_max_cu + ' orang.';
-					}else{
-						this.modalState = 'normal1';
-						this.modalColor = 'bg-primary';
-						this.modalTitle = 'Tambah Peserta';
-						this.modalSize = 'modal-full';
-						this.formModalMode = 'create';
-					}
-				}
 			},
+      tambahPeserta(){
+        this.$emit('changeTab', 'pesertaTerdaftar');
+      },
       modalConfirmOk() {
 				if (this.state == 'hapusListMateri') {
 					this.$store.dispatch(this.kelas + '/destroyListMateri', [this.item.tipe, this.selectedItemListMateri.id]);

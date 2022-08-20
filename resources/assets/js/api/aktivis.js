@@ -40,6 +40,10 @@ export default {
     return axios.get('/api/aktivis/indexDiklat/' + id);
   },
 
+  indexPertemuan: function( id ){
+    return axios.get('/api/aktivis/indexPertemuan/' + id);
+  },
+
   indexKeluarga: function( id ){
     return axios.get('/api/aktivis/indexKeluarga/' + id);
   },

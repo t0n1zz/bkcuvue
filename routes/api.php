@@ -352,6 +352,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/aktivis/indexKeluarga/{id}', 'AktivisController@indexKeluarga');
         Route::get('/aktivis/indexOrganisasi/{id}', 'AktivisController@indexOrganisasi');
         Route::get('/aktivis/indexDiklat/{id}', 'AktivisController@indexDiklat');
+        Route::get('/aktivis/indexPertemuan/{id}', 'AktivisController@indexPertemuan');
         Route::get('/aktivis/indexKeterangan/{id}', 'AktivisController@indexKeterangan');
         Route::get('/aktivis/createPekerjaan', 'AktivisController@createPekerjaan');
         Route::get('/aktivis/createPendidikan', 'AktivisController@createPendidikan');

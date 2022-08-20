@@ -101,6 +101,17 @@ Vue.filter('statusPeserta', function(value){
 		return '<span class="badge badge-danger">DITOLAK</span>';
 	}
 });
+Vue.filter('kegiatanTipe', function(value){
+	if(value == 'diklat_bkcu'){
+		return 'Diklat PUSKOPCUINA';
+	}else if(value == 'pertemuan_bkcu'){
+		return 'Pertemuan PUSKOPCUINA';
+	}else if(value == 'diklat_bkcu_internal'){
+		return 'Diklat Internal PUSKOPCUINA';
+	}else if(value == 'pertemuan_bkcu_internal'){
+		return 'Pertemuan Internal PUSKOPCUINA';
+	}
+});
 Vue.filter('statusJalinan', function(value){
 	if(value == 1){
 		return '<span class="badge badge-warning">CACAT</span>';

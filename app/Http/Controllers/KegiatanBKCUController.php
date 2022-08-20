@@ -1009,17 +1009,18 @@ class KegiatanBKCUController extends Controller{
 		if($request->status == 5){
 			if($kelas->id_sertifikat > 0){
 				$periode = Kegiatan::where('id', $id)->select('periode')->get();
-				$idAktivis = KegiatanPeserta::where('kegiatan_id', $id)->select('aktivis_id')->get();
+				$kegiatanPeserta = KegiatanPeserta::where('kegiatan_id', $id)->select('aktivis_id')->get();
 				$lastNomor = SertifikatGenerate::where('periode', $periode->first()->periode)->max('nomor');
 				if ($lastNomor == null) {
 					$lastNomor = 0;
 				}
-				foreach ($idAktivis as $peserta) {
-					$checkPeserta = SertifikatGenerate::where('id_aktivis', $peserta->aktivis_id)->where('id_kegiatan', $id)->get()->first();
+				foreach ($kegiatanPeserta as $peserta) {
+					$checkPeserta = SertifikatGenerate::where('kegiatan_peserta_id', $peserta->id)->where('id_kegiatan', $id)->first();
+					
 					if (!$checkPeserta) {
 						$lastNomor++;
 						SertifikatGenerate::create([
-							'id_aktivis' => $peserta->aktivis_id, 
+							'kegiatan_peserta_id' => $peserta->id, 
 							'id_kegiatan' => $id, 
 							'nomor' => $lastNomor, 
 							'periode' => $periode->first()->periode,

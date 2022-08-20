@@ -26,63 +26,63 @@
 								<div class="col-md-12">
 									<div class="card mb-2 bg-success">
 										<div class="card-header">
-											<h6 class="card-title"><b>Rekomendasi {{ props.index + 1 }}</b> </h6>
+											<h5 class="card-title"><b>Rekomendasi {{ props.index + 1 }}</b> </h5>
 										</div>
 										<div class="card-body">
-											<span v-html="props.item.name"></span>
+											<h6 v-html="props.item.name"></h6>
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<div class="card mb-1 bg-info" v-tooltip="'PIC'">
 												<div class="card-header pt-2 pb-2">
-													<h6 class="card-title">
+													<span class="card-title">
 														<i class="icon-people mr-2"></i>
 														<check-value :value="props.item.pic"></check-value>
-													</h6>
+													</span>
 												</div>
 											</div>
 										</div>
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<div class="card mb-1 bg-info" v-tooltip="'Waktu'">
 												<div class="card-header pt-2 pb-2">
-													<h6 class="card-title">
+													<span class="card-title">
 														<i class="icon-alarm-check mr-2"></i>
 														<check-value :value="props.item.waktu"></check-value>
-													</h6>
+													</span>
 												</div>
 											</div>
 										</div>
-										<div class="col-md-2">
+										<div class="col-md-4">
 											<div class="card mb-1 bg-info" v-tooltip="'Tipe'">
 												<div class="card-header pt-2 pb-2">
-													<h6 class="card-title">
+													<span class="card-title">
 														<i class="icon-file-check mr-2"></i>
 														<span v-if="props.item.tipe == 1">Per Lembaga</span>
 														<span v-else-if="props.item.tipe == 2">Per Peserta</span>
 														<span v-else>-</span>
-													</h6>
+													</span>
 												</div>
 											</div>
 										</div>
-										<div class="col-md-3">
+										<div class="col-md-6">
 											<div class="card mb-1 bg-info" v-tooltip="'Tgl. Buat'">
 												<div class="card-header pt-2 pb-2">
-													<h6 class="card-title">
+													<span class="card-title">
 														<i class="icon-plus3 mr-2"></i>
 														<span v-html="$options.filters.dateTime(props.item.created_at)"></span>
-													</h6>
+													</span>
 												</div>
 											</div>
 										</div>
-										<div class="col-md-3">
+										<div class="col-md-6">
 											<div class="card mb-1 bg-info" v-tooltip="'Tgl. Ubah'">
 												<div class="card-header pt-2 pb-2">
-													<h6 class="card-title">
+													<span class="card-title">
 														<i class="icon-pencil5 mr-2"></i>
 														<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 														<span v-else>-</span>
-													</h6>
+													</span>
 												</div>
 											</div>
 										</div>
