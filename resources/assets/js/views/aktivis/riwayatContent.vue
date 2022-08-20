@@ -240,7 +240,7 @@
 		<!-- diklat -->
 		<div class="card">
 			<div class="card-header bg-white">
-				<h5 class="card-title">Diklat</h5>
+				<h5 class="card-title">Kegiatan</h5>
 			</div>
 			<div class="card-body pb-2">
 				<div class="row">
@@ -322,12 +322,12 @@
 								<span v-if="props.item.kegiatan">{{ props.item.kegiatan.name }}</span>
 							</span>
 							<span v-else-if="props.item.kegiatan_id == 0">
-								{{ props.item.name }}
+								{{ props.item.kegiatan_name }}
 							</span>
 							<span v-else>-</span>
 						</td>
 						<td>
-							<span v-if="props.item.kegiatan_id != 0">
+							<span v-if="props.item.kegiatan">
 								<span v-if="props.item.kegiatan.provinces">{{ props.item.kegiatan.provinces.name }}</span>
 							</span>
 							<span v-else-if="props.item.kegiatan_id == 0">
@@ -336,16 +336,19 @@
 							<span v-else>-</span>
 						</td>
 						<td>
-							<span v-if="props.item.kegiatan_id != 0">
+							<span v-if="props.item.kegiatan">
 								<span v-if="props.item.kegiatan.tipe == 'diklat_bkcu'">PUSKOPCUINA</span>
 							</span>
 							<span v-else-if="props.item.kegiatan_id == 0">
-								{{ props.item.lembaga }}
+								{{ props.item.penyelenggara }}
 							</span>
 							<span v-else>-</span>
 						</td>
 						<td>
-							<span v-if="props.item.kegiatan_id != 0">
+							<span v-html="$options.filters.kegiatanTipe(props.item.kegiatan_tipe)"></span>
+						</td>
+						<td>
+							<span v-if="props.item.kegiatan">
 								<span v-for="(panitiaD, index) in props.item.kegiatan.panitia_dalam" :key="index">
 									<span v-if="panitiaD.pivot.peran == 'fasilitator'">{{ panitiaD.name + ', ' }}</span>
 								</span>
@@ -359,7 +362,7 @@
 							<span v-else>-</span>
 						</td>
 						<td>
-							<span v-if="props.item.kegiatan_id != 0">
+							<span v-if="props.item.kegiatan">
 								<span v-html="$options.filters.date(props.item.kegiatan.mulai)" v-if="props.item.kegiatan"></span>
 								<span v-else>-</span>
 							</span>		
@@ -370,7 +373,7 @@
 							<span v-else>-</span>
 						</td>
 						<td>
-							<span v-if="props.item.kegiatan_id != 0">
+							<span v-if="props.item.kegiatan">
 								<span v-html="$options.filters.date(props.item.kegiatan.selesai)" v-if="props.item.kegiatan"></span>
 								<span v-else>-</span>
 							</span>		
@@ -466,7 +469,7 @@
 		</div>
 
 		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :color="modalColor" @batal="modalTutup" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup"  @backgroundClick="modalTutup">
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :size="modalSize" :color="modalColor" @batal="modalTutup" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup"  @backgroundClick="modalTutup">
 			 <template slot="modal-title">
 				 {{ modalTitle }}
 			 </template>
@@ -574,7 +577,8 @@
 					{ title: 'Tipe*' },
 					{ title: 'Nama' },
 					{ title: 'Tempat' },
-					{ title: 'Lembaga' },
+					{ title: 'Penyelenggara' },
+					{ title: 'Tipe Kegiatan' },
 					{ title: 'Fasilitator' },
 					{ title: 'Mulai' },
 					{ title: 'Selesai' },
@@ -594,6 +598,7 @@
 				modalTitle: '',
 				modalColor: '',
 				modalContent: '',
+				modalSize: 'modal-lg',
 				modalImageShow: false,
 				modalImageContent: '',
 				submited: false,

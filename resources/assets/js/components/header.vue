@@ -379,7 +379,7 @@
 
 									<!-- tambah sertifikat -->
 									<router-link :to="{ name:'sertifikatKegiatanCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0">
-										Sertifikat
+										Sertifikat Kegiatan
 									</router-link>
 
 									<!-- tambah kode -->
@@ -486,6 +486,29 @@
 								</div>
 							</div>
 
+							<!-- pengaturan -->
+							<div class="dropdown-submenu" v-if="currentUser.id_cu == 0 && currentUser.can['create_diklat_bkcu']" :class="{'show' : dropdownMenu2 == 'pengaturanKegiatan'}">
+								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('pengaturanKegiatan')">
+									<i class="icon-cogs"></i> Pengaturan
+								</a>
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'pengaturanKegiatan'}">
+
+											<!-- tempat -->
+									<router-link :to="{ name: 'tempat' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 &&  currentUser.can['index_tempat']">
+ 										Tempat
+									</router-link>
+
+									<router-link :to="{ name: 'sertifikatKegiatan' }" class="dropdown-item" active-class="active" exact>
+										Sertifikat Kegiatan
+									</router-link>
+
+									<router-link :to="{ name: 'kodeKegiatan' }" class="dropdown-item" active-class="active" exact>
+										Kode Diklat
+									</router-link>
+
+								</div>
+							</div>
+
 							<!-- divider -->
 							<div class="dropdown-divider"></div>
 
@@ -495,22 +518,6 @@
 
 							<router-link :to="{ name: 'kegiatanBKCUDiikuti' }" class="dropdown-item" active-class="active" exact>
 								<i class="icon-station"></i> Kegiatan Diikuti
-							</router-link>
-
-							<!-- divider -->
-							<div class="dropdown-divider" v-if="currentUser.can['create_diklat_bkcu']"></div>
-
-							<!-- tempat -->
-							<router-link :to="{ name: 'tempat' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 &&  currentUser.can['index_tempat']">
-								<i class="icon-location4"></i> Tempat
-							</router-link>
-
-							<router-link :to="{ name: 'sertifikatKegiatan' }" class="dropdown-item" active-class="active" v-if="currentUser.can['create_diklat_bkcu']" exact>
-								<i class="icon-clipboard6"></i> Sertifikat
-							</router-link>
-
-							<router-link :to="{ name: 'kodeKegiatan' }" class="dropdown-item" active-class="active" v-if="currentUser.can['create_diklat_bkcu']" exact>
-								<i class="icon-pencil-ruler"></i> Kode Diklat
 							</router-link>
 
 							<!-- divider -->
@@ -1402,7 +1409,7 @@
 		},
 		data(){
 			return{
-				clientVersion: '3.4.5',
+				clientVersion: '3.4.6',
 				dropdownMenu1: '',
 				dropdownMenu2: '',
 				state: '',

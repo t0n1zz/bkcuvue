@@ -942,12 +942,12 @@ class AktivisController extends Controller{
 		}
 
 		$kelas->kegiatan_id = 0;
-		$kelas->name = $request->diklat['name'];
+		$kelas->kegiatan_name = $request->diklat['kegiatan_name'];
 		if(array_key_exists('tempat', $request->diklat)){
 			$kelas->tempat = $request->diklat['tempat'];
 		}
-		if(array_key_exists('lembaga', $request->diklat)){
-			$kelas->lembaga = $request->diklat['lembaga'];
+		if(array_key_exists('penyelenggara', $request->diklat)){
+			$kelas->penyelenggara = $request->diklat['penyelenggara'];
 		}
 		if(array_key_exists('fasilitator', $request->diklat)){
 			$kelas->fasilitator = $request->diklat['fasilitator'];

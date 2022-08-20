@@ -4,6 +4,32 @@
 		<div class="row">
 
 			<!-- name -->
+			<div class="col-sm-12">
+				<div class="form-group" :class="{'has-error' : errors.has('form.kegiatan_tipe')}">
+
+					<!-- title -->
+					<h6 :class="{ 'text-danger' : errors.has('form.kegiatan_tipe')}">
+						<i class="icon-cross2" v-if="errors.has('form.kegiatan_tipe')"></i>
+						Tipe Kegiatan: <wajib-badge></wajib-badge></h6>
+
+					<!-- select -->
+					<select class="form-control" name="kegiatan_tipe" v-model="form.kegiatan_tipe" data-width="100%" v-validate="'required'" data-vv-as="Tipe Kegiatan">
+						<option disabled value="">Silahkan pilih tipe kegiatan</option>
+						<option value="diklat_bkcu">Diklat PUSKOPCUINA</option>
+						<option value="pertemuan_bkcu">Pertemuan PUSKOPCUINA</option>
+						<option value="diklat_bkcu_internal" v-if="currentUser.id_cu == 0">Diklat Internal PUSKOPCUINA</option>
+						<option value="pertemuan_bkcu_internal" v-if="currentUser.id_cu == 0">Pertemuan Internal PUSKOPCUINA</option>
+					</select>
+
+					<!-- error message -->
+					<small class="text-muted text-danger" v-if="errors.has('form.kegiatan_tipe')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.kegiatan_tipe') }}
+					</small>
+					<small class="text-muted" v-else>&nbsp;</small>
+				</div>
+			</div>
+
+			<!-- name -->
 			<div class="col-sm-6">
 				<div class="form-group" :class="{'has-error' : errors.has('form.kegiatan_name')}">
 
@@ -45,24 +71,25 @@
 
 			<!-- lembaga -->
 			<div class="col-sm-6">
-				<div class="form-group" :class="{'has-error' : errors.has('form.lembaga')}">
+				<div class="form-group" :class="{'has-error' : errors.has('form.penyelenggara')}">
 
 					<!-- title -->
-					<h6 :class="{ 'text-danger' : errors.has('form.lembaga')}">
-						<i class="icon-cross2" v-if="errors.has('form.lembaga')"></i>
+					<h6 :class="{ 'text-danger' : errors.has('form.penyelenggara')}">
+						<i class="icon-cross2" v-if="errors.has('form.penyelenggara')"></i>
 						Nama Lembaga Penyelenggara: <wajib-badge></wajib-badge></h6>
 
 					<!-- text -->
-					<input type="text" name="lembaga" class="form-control" placeholder="Silahkan masukkan nama lembaga penyelenggara diklat" v-validate="'required'" data-vv-as="Tempat diklat" v-model="form.lembaga">
+					<input type="text" name="penyelenggara" class="form-control" placeholder="Silahkan masukkan nama lembaga penyelenggara diklat" v-validate="'required'" data-vv-as="Penyelenggara" v-model="form.penyelenggara">
 
 					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('form.lembaga')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('form.lembaga') }}
+					<small class="text-muted text-danger" v-if="errors.has('form.penyelenggara')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('form.penyelenggara') }}
 					</small>
 					<small class="text-muted" v-else>&nbsp;</small>
 				</div>
 			</div>
 
+			<!-- fasilitator -->
 			<div class="col-sm-6">
 				<div class="form-group">
 
@@ -86,7 +113,7 @@
 
 					<!-- input -->
 					<date-picker @dateSelected="form.datang = $event" :defaultDate="form.datang"></date-picker>	
-					<input v-model="form.datang" v-show="false" v-validate="'required'" data-vv-as="Tgl. mulai"/>
+					<input name="datang" v-model="form.datang" v-show="false" v-validate="'required'" data-vv-as="Tgl. mulai"/>
 
 					<!-- error message -->
 					<small class="text-muted text-danger" v-if="errors.has('form.datang')">
@@ -107,7 +134,7 @@
 
 					<!-- input -->
 					<date-picker @dateSelected="form.pulang = $event" :defaultDate="form.pulang"></date-picker>	
-					<input v-model="form.pulang" v-show="false" v-validate="'required'" data-vv-as="Tgl selesai"/>
+					<input name="selesai" v-model="form.pulang" v-show="false" v-validate="'required'" data-vv-as="Tgl selesai"/>
 
 					<!-- error message -->
 					<small class="text-muted text-danger" v-if="errors.has('form.pulang')">
@@ -217,6 +244,11 @@
 			tutup(){
 				this.$emit('tutup');
 			}
+		},
+		computed:{
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
+			}),
 		}
 	}
 </script>

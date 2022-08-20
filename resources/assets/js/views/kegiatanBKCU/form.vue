@@ -71,7 +71,7 @@
 												Kode Kegiatan: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
-											<input type="text" name="kode_" class="form-control" placeholder="Silahkan masukkan kode kegiatan" v-validate="'required|min:5'" data-vv-as="Kode Kegiatan" v-model="form.kode_diklat">
+											<input type="text" name="kode kegiatan" class="form-control" placeholder="Silahkan masukkan kode kegiatan" v-validate="'required|min:5'" data-vv-as="Kode Kegiatan" v-model="form.kode_diklat">
 											
 
 											<!-- error message -->
@@ -140,7 +140,7 @@
 
 											<!-- input -->
 											<date-picker @dateSelected="form.mulai = $event" :defaultDate="form.mulai"></date-picker>	
-											<input v-model="form.mulai" v-show="false" v-validate="'required'" data-vv-as="Tgl. mulai"/>
+											<input name="mulai" v-model="form.mulai" v-show="false" v-validate="'required'" data-vv-as="Tgl. mulai"/>
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.mulai')">
@@ -161,7 +161,7 @@
 
 											<!-- input  -->
 											<date-picker @dateSelected="form.selesai = $event" :defaultDate="form.selesai"></date-picker>	
-											<input v-model="form.selesai" v-show="false" v-validate="'required'" data-vv-as="Tgl. selesai"/>
+											<input name="selesai" v-model="form.selesai" v-show="false" v-validate="'required'" data-vv-as="Tgl. selesai"/>
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.selesai')">
@@ -1208,8 +1208,8 @@
 				itemDataStat: 'dataStatS',
 			}),
 			...mapGetters('kodeKegiatan',{
-				itemKodeKegiatan: 'dataStore',
-				itemKodeKegiatanStat: 'dataStoreStat'
+				itemKodeKegiatan: 'dataS',
+				itemKodeKegiatanStat: 'dataStatS'
 			}),
 		}
 	}

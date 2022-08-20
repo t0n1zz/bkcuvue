@@ -619,6 +619,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -701,6 +707,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, {
         title: 'Kegiatan',
         name: 'kegiatan_name',
+        tipe: 'string',
+        sort: true,
+        hide: false,
+        disable: false,
+        filter: true
+      }, {
+        title: 'Tipe Kegiatan',
+        name: 'kegiatan_tipe',
+        tipe: 'string',
+        sort: true,
+        hide: false,
+        disable: false,
+        filter: true
+      }, {
+        title: 'Penyelenggara',
+        name: 'penyelenggara',
         tipe: 'string',
         sort: true,
         hide: false,
@@ -1956,15 +1978,17 @@ var render = function () {
                             : _vm._e(),
                           _vm._v(" "),
                           !_vm.columnDataPesertaTerdaftar[8].hide
-                            ? _c(
-                                "td",
-                                [
-                                  _c("check-value", {
-                                    attrs: { value: props.item.keterangan },
-                                  }),
-                                ],
-                                1
-                              )
+                            ? _c("td", [
+                                _c("span", {
+                                  domProps: {
+                                    innerHTML: _vm._s(
+                                      _vm.$options.filters.kegiatanTipe(
+                                        props.item.kegiatan_tipe
+                                      )
+                                    ),
+                                  },
+                                }),
+                              ])
                             : _vm._e(),
                           _vm._v(" "),
                           !_vm.columnDataPesertaTerdaftar[9].hide
@@ -1972,7 +1996,7 @@ var render = function () {
                                 "td",
                                 [
                                   _c("check-value", {
-                                    attrs: { value: props.item.kelamin },
+                                    attrs: { value: props.item.penyelenggara },
                                   }),
                                 ],
                                 1
@@ -1984,7 +2008,7 @@ var render = function () {
                                 "td",
                                 [
                                   _c("check-value", {
-                                    attrs: { value: props.item.lembaga_name },
+                                    attrs: { value: props.item.keterangan },
                                   }),
                                 ],
                                 1
@@ -1992,6 +2016,30 @@ var render = function () {
                             : _vm._e(),
                           _vm._v(" "),
                           !_vm.columnDataPesertaTerdaftar[11].hide
+                            ? _c(
+                                "td",
+                                [
+                                  _c("check-value", {
+                                    attrs: { value: props.item.kelamin },
+                                  }),
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          !_vm.columnDataPesertaTerdaftar[12].hide
+                            ? _c(
+                                "td",
+                                [
+                                  _c("check-value", {
+                                    attrs: { value: props.item.lembaga_name },
+                                  }),
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          !_vm.columnDataPesertaTerdaftar[13].hide
                             ? _c(
                                 "td",
                                 [
@@ -2005,7 +2053,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          !_vm.columnDataPesertaTerdaftar[12].hide
+                          !_vm.columnDataPesertaTerdaftar[14].hide
                             ? _c(
                                 "td",
                                 [
@@ -2017,7 +2065,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          !_vm.columnDataPesertaTerdaftar[13].hide
+                          !_vm.columnDataPesertaTerdaftar[15].hide
                             ? _c(
                                 "td",
                                 [
@@ -2031,7 +2079,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          !_vm.columnDataPesertaTerdaftar[14].hide
+                          !_vm.columnDataPesertaTerdaftar[16].hide
                             ? _c(
                                 "td",
                                 [
@@ -2045,7 +2093,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          !_vm.columnDataPesertaTerdaftar[15].hide
+                          !_vm.columnDataPesertaTerdaftar[17].hide
                             ? _c("td", {
                                 domProps: {
                                   innerHTML: _vm._s(
@@ -2057,7 +2105,7 @@ var render = function () {
                               })
                             : _vm._e(),
                           _vm._v(" "),
-                          !_vm.columnDataPesertaTerdaftar[16].hide
+                          !_vm.columnDataPesertaTerdaftar[18].hide
                             ? _c(
                                 "td",
                                 [
@@ -2069,7 +2117,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          !_vm.columnDataPesertaTerdaftar[17].hide
+                          !_vm.columnDataPesertaTerdaftar[19].hide
                             ? _c(
                                 "td",
                                 [
@@ -2081,7 +2129,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          !_vm.columnDataPesertaTerdaftar[18].hide
+                          !_vm.columnDataPesertaTerdaftar[20].hide
                             ? _c(
                                 "td",
                                 [
@@ -2093,7 +2141,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          !_vm.columnDataPesertaTerdaftar[19].hide
+                          !_vm.columnDataPesertaTerdaftar[21].hide
                             ? _c(
                                 "td",
                                 [
@@ -2107,7 +2155,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          !_vm.columnDataPesertaTerdaftar[20].hide
+                          !_vm.columnDataPesertaTerdaftar[22].hide
                             ? _c(
                                 "td",
                                 [
@@ -2119,7 +2167,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          !_vm.columnDataPesertaTerdaftar[21].hide
+                          !_vm.columnDataPesertaTerdaftar[23].hide
                             ? _c(
                                 "td",
                                 [
@@ -2131,7 +2179,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          !_vm.columnDataPesertaTerdaftar[22].hide
+                          !_vm.columnDataPesertaTerdaftar[24].hide
                             ? _c(
                                 "td",
                                 [
@@ -2143,7 +2191,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          !_vm.columnDataPesertaTerdaftar[23].hide
+                          !_vm.columnDataPesertaTerdaftar[25].hide
                             ? _c("td", {
                                 domProps: {
                                   innerHTML: _vm._s(

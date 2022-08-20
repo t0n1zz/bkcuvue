@@ -42,7 +42,7 @@
 				title: 'Sertifikat Kegiatan',
 				kelas: 'sertifikatKegiatan',
 				titleDesc: 'Mengelola data sertifikat kegiatan',
-				titleIcon: 'icon-clipboard6',
+				titleIcon: 'icon-gradient',
 			}
 		},
 		watch: {
