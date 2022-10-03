@@ -63,7 +63,7 @@
     <hr/>
     <h6>D. Navigasi</h6>
     <div class="mb-3 text-center">
-      <img src="{{ asset('images/panduan/komponen-navigasi.png') }}" class="img-thumbnail" alt="">
+      <img src="{{ asset('images/panduan/komponen-navigasiUser.png') }}" class="img-thumbnail" alt="">
     </div>
     <p>
       Bagian navigasi adalah bagian yang terletak pada header bagian kedua. Bagian ini berfungsi sebagai tempat pengguna untuk berpindah ke halaman lain. Masing-masing halaman yang ditampilkan adalah sesuai dengan hak akses dari pengguna.

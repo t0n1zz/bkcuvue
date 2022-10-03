@@ -24,4 +24,13 @@
   @include('panduan.assesment')
   @include('panduan.voting')
   @include('panduan.generateSertifikat')
+  @include('panduan.menambahAktivis')
+  @include('panduan.menambahUser')
+  @include('panduan.resetPassword')
+  @include('panduan.mengubahPassword')
+  @include('panduan.websiteCU')
+  @include('panduan.profileCU')
+  @include('panduan.menambahArtikel')
+  @include('panduan.menambahAnggotaCU')
+  @include('panduan.mendaftarDiklat')
 @stop

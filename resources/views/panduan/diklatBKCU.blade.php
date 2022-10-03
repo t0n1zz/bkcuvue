@@ -9,27 +9,28 @@
   </div>
   <div class="card-body">	
     <div class="mb-3 text-center">
-      <img src="{{ asset('images/panduan/diklatBKCU.png') }}" class="img-thumbnail" alt="">
+      <img src="{{ asset('images/panduan/diklatPuskopcuina.png') }}" class="img-thumbnail" alt="">
     </div>
     <p>
-        Halaman diklat BKCU menampilkan semua diklat yang diselenggarakan oleh PUSKOPCUINA. Di halaman ini pengguna dapat mendaftarkan Aktivis CU untuk mengikuti diklat yang diselenggarakan.
+        Halaman diklat PUSKOPCUINA menampilkan semua diklat yang diselenggarakan oleh PUSKOPCUINA. Di halaman ini pengguna dapat mendaftarkan Aktivis CU untuk mengikuti diklat yang diselenggarakan.
     </p>
 
-    <h6>A. Bagaimana cara mendaftar diklat BKCU?</h6>
+    <h6>A. Bagaimana cara mendaftar diklat PUSKOPCUINA?</h6>
     <p>
-        Untuk mendaftar diklat BKCU maka pertama-tama pastikan status diklat <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">1</span> sudah berubah menjadi <span class="badge badge-warning">PENDAFTARAN BUKA</span>, kemudian pengguna tinggal menekan/click ke diklat tersebut, maka pengguna akan dibawa ke halaman detail diklat BKCU
+        Untuk mendaftar diklat PUSKOPCUINA maka pertama-tama pastikan status diklat <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">1</span> sudah berubah menjadi <span class="badge badge-warning">PENDAFTARAN BUKA</span>, kemudian pengguna tinggal menekan/click ke diklat tersebut, maka pengguna akan dibawa ke halaman detail diklat PUSKOPCUINA
     </p>
 
     <div class="mb-3 text-center">
-      <img src="{{ asset('images/panduan/diklatBKCU-detail.png') }}" class="img-thumbnail" alt="">
+      <img src="{{ asset('images/panduan/diklatPuskopcuina-detail.png') }}" class="img-thumbnail" alt="">
     </div>
 
      <p>
-        Di halaman terdapat 2 tab yaitu tab informasi diklat <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">1</span> yang berisi kerangka acuan, jadwal dan informasi mengenai panitia dan fasilitator pada kegiatan ini. Kemudian di tab peserta <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">2</span> terdapat daftar peserta yang telah mendaftar pada pelatihan ini. Daftar peserta yang muncul adalah daftar peserta per masing-masing CU.
-    </p>
+        Di halaman terdapat 4 tab yaitu tab informasi diklat <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">1</span> yang berisi kerangka acuan, jadwal dan informasi mengenai panitia dan fasilitator pada kegiatan ini. Kemudian di tab peserta <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">2</span> terdapat daftar peserta yang telah mendaftar pada pelatihan ini. Daftar peserta yang muncul adalah daftar peserta per masing-masing CU.
+        <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">3</span> Tab Rekomendasi berisi rekomendasi hasil diklat untuk ditindaklanjuti. <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">4</span>  Tab yang berisikan statistik peserta dari CU yang terdaftar.
+      </p>
 
     <p>
-      Kemudian untuk melakukan pendaftaran maka apabila status diklat sudah menjadi <span class="badge badge-warning">PENDAFTARAN BUKA</span>, maka pengguna dapat menekan tombol daftar <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">3</span> untuk memilih dari data aktivis mana yang akan didaftarkan menjadi peserta pada pelatihan ini.
+      Kemudian untuk melakukan pendaftaran maka apabila status diklat sudah menjadi <span class="badge badge-warning">PENDAFTARAN BUKA</span>, maka pengguna dapat menekan tombol daftar <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">5</span> untuk memilih dari data aktivis mana yang akan didaftarkan menjadi peserta pada pelatihan ini.
     </p>
 
     <div class="mb-3 text-center">
@@ -49,12 +50,8 @@
     </ol>
 
     <p>
-      Setelah mendaftarkan peserta, maka semua peserta yang didaftarkan oleh pengguna akan muncul di tabel peserta dan disana pengguna bisa menambah peserta, mengubah informasi khusus dan menghapus peserta dari diklat. Semua peserta yang didaftarkan akan berstatus <span class="badge badge-info">MENUNGGU</span> dan akan berubah nanti ketika bagian Diklat PUSKOPCUINA melakukan verifikasi dan mengubah status dari peserta. Masing-masing CU akan mendapatkan <a href="#komponen-notifikasi">notifikasi</a> ketika terjadi perubahan status peserta serta akan juga muncul di <a href="#dashboard">dashboard</a> 
+      Setelah mendaftarkan peserta, maka semua peserta yang didaftarkan oleh pengguna akan muncul di tabel peserta dan disana pengguna bisa menambah peserta, mengubah informasi khusus dan menghapus peserta dari diklat.</p>
     </p>
-
-    <div class="mb-3 text-center">
-      <img src="{{ asset('images/panduan/diklatBKCU-widget.png') }}" class="img-thumbnail" alt="">
-    </div>
 
   </div>
   

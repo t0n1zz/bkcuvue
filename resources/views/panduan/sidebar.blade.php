@@ -55,7 +55,7 @@
           <li class="nav-item"><a href="#pengumuman" class="nav-link">10. Pengumuman</a></li>
 
           {{-- diklat BKCU --}}
-          <li class="nav-item"><a href="#diklatBKCU" class="nav-link">11. Diklat BKCU</a></li>
+          <li class="nav-item"><a href="#diklatBKCU" class="nav-link">11. Diklat PUSKOPCUINA</a></li>
 
           {{-- anggota CU --}}
           <li class="nav-item"><a href="#anggotaCU" class="nav-link">12. Anggota CU</a></li>
@@ -93,6 +93,19 @@
           {{-- e-sertifikat --}}
           <li class="nav-item"><a href="#generateSertifikat" class="nav-link">23. Generate Sertifikat</a></li>
 
+          {{-- divider --}}
+          <li class="nav-item-divider"></li>
+          
+          <li class="nav-item"><a class="nav-link"><b>Panduan Umum</b></a></li>
+          <li class="nav-item"><a href="#menambahAktivis" class="nav-link">A. Cara Menambah Aktivis CU</a></li>
+          <li class="nav-item"><a href="#menambahUser" class="nav-link">B. Cara Menambah User SIMO</a></li>
+          <li class="nav-item"><a href="#resetPassword" class="nav-link">C. Cara Reset Password SIMO</a></li>
+          <li class="nav-item"><a href="#mengubahPassword" class="nav-link">D. Cara Mengubah Password SIMO</a></li>
+          <li class="nav-item"><a href="#websiteCU" class="nav-link">E. Cara Mengakses Website CU</a></li>
+          <li class="nav-item"><a href="#profileCU" class="nav-link">F. Cara Mengubah profile CU</a></li>
+          <li class="nav-item"><a href="#menambahArtikel" class="nav-link">G. Cara Menambah Artikel</a></li>
+          <li class="nav-item"><a href="#menambahAnggotaCU" class="nav-link">H. Cara Menambah Anggota CU</a></li>
+          <li class="nav-item"><a href="#mendaftarDiklat" class="nav-link">I. Cara Mendaftar Diklat</a></li>
           {{-- divider --}}
           <li class="nav-item-divider"></li>
 

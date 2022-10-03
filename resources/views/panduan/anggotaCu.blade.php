@@ -8,28 +8,58 @@
     </div>
   </div>
   <div class="card-body">	
+
+    <h6>1. Tab Masih anggota CU</h6>
     <div class="mb-3 text-center">
-      <img src="{{ asset('images/panduan/anggotaCu.png') }}" class="img-thumbnail" alt="">
+      <img src="{{ asset('images/panduan/masihAnggota.png') }}" class="img-thumbnail" alt="">
     </div>
     <p>
         Halaman anggota CU menampilkan semua anggota CU yang telah ditulis sesuai dengan CU pada user tersebut. 
 
         Pada halaman ini pengguna dapat menambah anggota CU <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">1</span>,
-        mengubah identitas anggota CU <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">2</span>, 
-        mengubah produk anggota CU <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">3</span>, 
-        mengajukan anggota CU untuk bantuan solidaritas Jalinan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">4</span>, 
-        menghapus anggota CU <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">5</span>
+        mengubah NIK atau Nomor KTP anggota CU <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">2</span>,
+        mengubah identitas anggota CU <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">3</span>,  
+        mengubah produk anggota CU <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">4</span>, 
+        mengubah TP anggota CU <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">5</span>, 
+        mengeluarkan anggota dari kenaggotaan CU <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">6</span>,
+        menghapus anggota CU <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">7</span> 
+        mengajukan anggota CU untuk bantuan solidaritas Jalinan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">8</span>, 
+        
     </p>
 
     <p>Berikut adalah rincian masing-masing tombol</p>
 
     <ol>
       <li><strong>Tambah</strong> untuk menambah anggota CU baru</li>
+      <li><strong>Ubah NIK / No.KTP</strong> untuk mengubah NIK/No.KTP anggota CU yang sudah dipilih pada tabel</li>
       <li><strong>Ubah Identitas</strong> untuk mengubah identitas anggota CU yang sudah dipilih pada tabel</li>
       <li><strong>Ubah Produk</strong> untuk mengubah produk anggota CU yang sudah dipilih pada tabel</li>
-      <li><strong>Ajukan Bantuan Solidaritas Jalinan</strong> untuk mengajukan anggota CU yang sudah dipilih pada tabel untuk bantuan solidaritas Jalinan</li>
+      <li><strong>Pindah TP</strong> untuk mengubah TP anggota CU yang sudah dipilih pada tabel</li>
+      <li><strong>Anggota Keluar</strong> untuk mengeluarkan anggota CU yang sudah dipilih pada tabel</li>
       <li><strong>Hapus</strong> untuk menghapus anggota CU yang sudah dipilih pada tabel</li>
+      <li><strong>Ajukan Bantuan Solidaritas Jalinan</strong> untuk mengajukan anggota CU yang sudah dipilih pada tabel untuk bantuan solidaritas Jalinan</li>    
     </ol>
+
+    <h6>2. Tab Sudah Keluar</h6>
+    <div class="mb-3 text-center">
+      <img src="{{ asset('images/panduan/anggotaSudahKeluar.png') }}" class="img-thumbnail" alt="">
+    </div>
+    <p>
+      Halaman anggota CU menampilkan semua anggota CU yang telah keluar sesuai dengan CU pada user tersebut. 
+
+      Pada halaman ini pengguna dapat mengubah NIK/No.KTP anggota CU <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">1</span>,
+      mengubah TP anggota CU <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">2</span>,
+      membatalkan mengeluarkan anggota CU <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">3</span>,  
+    </p>
+    <h6>3. Tab Sudah Meninggal</h6>
+    <div class="mb-3 text-center">
+      <img src="{{ asset('images/panduan/anggotaSudahMeninggal.png') }}" class="img-thumbnail" alt="">
+    </div>
+    <p>
+      Halaman anggota CU menampilkan semua anggota CU yang telah meninggal sesuai dengan CU pada user tersebut. 
+
+      Pada halaman ini pengguna dapat mengubah NIK/No.KTP anggota CU yang telah meninggal<span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">1</span>,
+     </p>
 
     <hr/> 
     <h6>A. Menambah Anggota CU</h6>

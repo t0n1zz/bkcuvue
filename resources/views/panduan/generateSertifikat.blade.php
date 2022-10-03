@@ -10,7 +10,7 @@
     <div class="card-body">	
       <h6>A. Generate Sertifikat Pada Diklat/Kegiatan PUSKOPCUINA</h6>
       <div class="mb-3 text-center">
-        <img src="{{ asset('images/panduan/diklat depan.png') }}" class="img-thumbnail" alt="">
+        <img src="{{ asset('images/panduan/diklatDepan.png') }}" class="img-thumbnail" alt="">
       </div>
       <p>
         Halaman diklat menampilkan semua daftar diklat yang diselenggarakan oleh PUSKOPCUINA,
@@ -30,16 +30,11 @@
     <hr/> 
     <h6>B. Generate Sertifikat Pada Halaman Riwayat Kegiatan</h6>
     <div class="mb-3 text-center">
-      <img src="{{ asset('images/panduan/tab profile.png') }}" class="img-thumbnail" alt="">
+      <img src="{{ asset('images/panduan/riwayatDiklat.png') }}" class="img-thumbnail" alt="">
     </div>
     <p>
-      Untuk generate sertifikat pada diklat yang telah diikuti sebelumnya,pengguna harus masuk ke halaman Profile dan masuk ke tab Ubah Riwayat <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">1</span>
-    </p>
-  
-    <hr/> 
-    <p>Pada tab Ubah Riwayat terdapat data diklat yang telah diikuti sebelumnya.
-      <br/>
-      Untuk generate sertifikat, pengguna memilih diklat yang telah diikuti sebelumnya <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">1</span> dan menekan tombol Generate Sertifikat <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">2</span>
+      Untuk generate sertifikat pada diklat yang telah diikuti sebelumnya,pengguna harus masuk ke halaman Profile dan masuk ke tab Ubah Riwayat 
+      Untuk generate sertifikat, pengguna memilih diklat yang telah diikuti sebelumnya dan menekan tombol Generate Sertifikat <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">1</span>
     </p>
     <div class="mb-3 text-center">
       <img src="{{ asset('images/panduan/table diklat.png') }}" class="img-thumbnail" alt="">

@@ -9,36 +9,39 @@
   </div>
   <div class="card-body">	
     <div class="mb-3 text-center">
-      <img src="{{ asset('images/panduan/klaimJALINAN.png') }}" class="img-thumbnail" alt="">
+      <img src="{{ asset('images/panduan/klaimJalinan.png') }}" class="img-thumbnail" alt="">
     </div>
     <p>
         Halaman bantuan solidaritas Jalinan di kelompokan dalam 8 bagian yaitu: 
-        bagian verifikasi yang berarti bantuan solidaritas sudah terinput tapi masih membutuhkan verifikasi dari user yang dimiliki oleh pengurus (biasanya ketua pengurus), pengawas (biasanya ketua pengawas), dan manajemen (biasanya GM atau pimpinan manajemen) dengan cara masing-masing dari ketiga user tersebut membuka SIMO dan masuk ke bagian ini juga dan memilih bantuan solidaritas mana yang akan diverifikasi di tabel kemudian menekan tombol verifikasi <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">2</span>,
+        bagian verifikasi yang berarti bantuan solidaritas sudah terinput tapi masih membutuhkan verifikasi dari user yang dimiliki oleh pengurus (biasanya ketua pengurus), pengawas (biasanya ketua pengawas), dan manajemen (biasanya GM atau pimpinan manajemen) dengan cara masing-masing dari ketiga user tersebut membuka SIMO dan masuk ke bagian ini juga dan memilih bantuan solidaritas mana yang akan diverifikasi di tabel kemudian menekan tombol verifikasi <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">1</span>,
         
         <br/> <br/>
-        kemudian apabila ketiga user tersebut sudah melakukan verifikasi maka akan otomatis masuk ke bagian menunggu yang berarti pengajuan sudah diterima oleh BKCU Kalimantan dan sedang dalam proses analisa <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">3</span>,
-        Kemudian bagian ini adalah bagian dimana ada pengajuan bantuan solidaritas yang dokumennya tidak lengkap menurut staf Jalinan BKCU Kalimantan dan berarti CU mesti melengkapinya dan melakukan konfirmasi ulang ke staf Jalinan BKCU Kalimantan apabila sudah melengkapi dokumen yang dibutuhkan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">4</span>, 
+        kemudian apabila ketiga user tersebut sudah melakukan verifikasi maka akan otomatis masuk ke bagian menunggu yang berarti pengajuan sudah diterima oleh BKCU Kalimantan dan sedang dalam proses analisa <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">2</span>,
+        Kemudian bagian ini adalah bagian dimana ada pengajuan bantuan solidaritas yang dokumennya tidak lengkap menurut staf Jalinan BKCU Kalimantan dan berarti CU mesti melengkapinya dan melakukan konfirmasi ulang ke staf Jalinan BKCU Kalimantan apabila sudah melengkapi dokumen yang dibutuhkan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">3</span>, 
         
         <br/> <br/>
-        Selanjutnya adalah bagian ditolak yang merupakan bagian dimana pengajuan ditolak oleh staf Jalinan BKCU Kalimantan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">5</span>, Kemudian apabila pengajuan disetujui maka akan muncul dibagian disetujui dan tinggal menunggu proses pencairan saja oleh bagian SPD BKCU Kalimantan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">6</span> 
+        Selanjutnya adalah bagian ditolak yang merupakan bagian dimana pengajuan ditolak oleh staf Jalinan BKCU Kalimantan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">4</span>, Kemudian apabila pengajuan disetujui maka akan muncul dibagian disetujui dan tinggal menunggu proses pencairan saja oleh bagian SPD BKCU Kalimantan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">5</span> 
         
         <br/> <br/>
-        dan apabila sudah dicairkan maka akan pindah ke bagian Dicairkan dan kemudian apabila dari CU sudah menyerahkan hasil pencairan bantuan solidaritas beserta semua dokumen pendukung kepada ahli waris anggota atau yang bersangkutan maka bisa menekan tombol selesai pada bantuan solidaritas tersebut <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">7</span> dan otomatis pengajuan yang sudah selesai akan pindah ke bagian selesai <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">8</span>
+        dan apabila sudah dicairkan maka akan pindah ke bagian Dicairkan dan kemudian apabila dari CU sudah menyerahkan hasil pencairan bantuan solidaritas beserta semua dokumen pendukung kepada ahli waris anggota atau yang bersangkutan maka bisa menekan tombol selesai pada bantuan solidaritas tersebut <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">6</span> dan otomatis pengajuan yang sudah selesai akan pindah ke bagian selesai <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">7</span>
 
         <br/> <br/>
-        Terakhir terdapat juga bagian koreksi <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">9</span> yang bertugas menampung hasil koreksi/perbaikan dalam penginputan bantuan solidaritas Jalinan yang kemudian akan diperiksa oleh bagian Jalinan PUSKOPCUINA terkait pengajuan koreksi terhadap klaim.
+        Terakhir terdapat juga bagian koreksi <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">8</span> yang bertugas menampung hasil koreksi/perbaikan dalam penginputan bantuan solidaritas Jalinan yang kemudian akan diperiksa oleh bagian Jalinan PUSKOPCUINA terkait pengajuan koreksi terhadap klaim.
 
         <br/> <br/>
-        Kemudian pada ada halaman ini pengguna dapat menambah bantuan solidaritas Jalinan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">11</span>,
-        mengubah bantuan solidaritas Jalinan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">12</span>, 
-        verifikasi bantuan solidaritas Jalinan (hanya untuk verifikator Bantuan Solidaritas Jalinan) <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">13</span>
-        menghapus bantuan solidaritas Jalinan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">14</span>
+        Kemudian pada ada halaman ini pengguna dapat menambah bantuan solidaritas Jalinan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">10</span>,
+        mengubah bantuan solidaritas Jalinan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">11</span>,
+        mengubah identitas anggota yang mengklaim Jalinan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">12</span>,
+        mengubah produk anggota yang mengklaim Jalinan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">13</span>,
+        melihat bantuan solidaritas Jalinan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">14</span>,   
+        verifikasi bantuan solidaritas Jalinan (hanya untuk verifikator Bantuan Solidaritas Jalinan) <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">15</span>
+        menghapus bantuan solidaritas Jalinan <span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">16</span>
     </p>
 
     <p>Berikut adalah rincian masing-masing bagian</p>
 
     <ol>
-      <li><strong>Pilih TP/KP</strong> berguna untuk memilah data bantuan solidaritas berdasarkan TP/KP dari anggota</li>
+      
       <li><strong>Tab Verifikasi</strong> untuk menampilkan daftar bantuan solidaritas yang masih belum diverifikasi oleh user pengurus, user pengawas dan user manajemen yang telah ditunjuk dan diberitahukan kepada BKCU Kalimantan untuk bisa melakukan verifikasi</li>
       <li><strong>Tab Menunggu</strong> untuk menampilkan daftar bantuan solidaritas yang masih dalam status memunggu</li>
       <li><strong>Tab Dokument Tidak Lengkap</strong> untuk menampilkan daftar bantuan solidaritas yang masih dalam status memunggu</li>
@@ -52,6 +55,7 @@
       <li><strong>Ubah</strong> untuk mengubah bantuan solidaritas Jalinan yang sudah dipilih pada tabel</li>
       <li><strong>Verifikasi</strong> untuk verifikasi bantuan solidaritas Jalinan yang sudah dipilih pada tabel</li>
       <li><strong>Hapus</strong> untuk menghapus bantuan solidaritas Jalinan yang sudah dipilih pada tabel</li>
+      <li><strong>Pilih TP/KP</strong> berguna untuk memilah data bantuan solidaritas berdasarkan TP/KP dari anggota</li>
     </ol>
 
     <hr/> 

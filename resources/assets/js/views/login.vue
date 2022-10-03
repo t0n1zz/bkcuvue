@@ -94,6 +94,7 @@
 				form: {
 					username: "",
 					password: "",
+					remember:""
 				},
 				loadingState: '',
 				submited: '',
