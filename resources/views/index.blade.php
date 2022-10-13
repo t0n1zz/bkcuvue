@@ -99,16 +99,6 @@
             </div>
             <ul class="entry-meta">
               <li><i class="icon-calendar3"></i> {{ $item->created_at->diffForHumans()}}</li>
-              @if($item->kategori)
-                <li><a href="{{ route('artikel.kategori',$item->kategori->slug) }}"><i class="icon-line-grid"></i>{{ $item->kategori->name }}</a></li>
-              @else 
-                <li><i class="icon-line-grid"></i>{{"-"}}</li> 
-              @endif
-              @if($item->penulis)
-                <li><a href="{{ route('artikel.penulis',$item->penulis->slug) }}"><i class="icon-user"></i>{{ $item->penulis->name }}</a></li>
-              @else 
-                <li><i class="icon-user"></i>{{"-"}}</li> 
-              @endif
             </ul>
           </div>
         </div>
@@ -145,11 +135,7 @@
                 </div>
                 <ul class="entry-meta clearfix">
                   <li><i class="icon-building"></i>{{ $item->cu ? "CU " . $item->cu->name : "-" }}</li>
-                  @if($item->kategori)
-                    <li><a href="{{ route('artikel.kategori',$item->kategori->slug) }}"><i class="icon-line-grid"></i>{{ $item->kategori->name }}</a></li>
-                  @else 
-                    <li><i class="icon-line-grid"></i>{{"-"}}</li> 
-                  @endif
+                  <li><i class="icon-calendar3"></i> {{ $item->created_at->diffForHumans()}}</li>
                 </ul>
               </div>
             </div>

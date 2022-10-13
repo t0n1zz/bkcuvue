@@ -75,7 +75,7 @@ class LaporanCuHelper{
 		THEN
 			@p1 := IFNULL(laporan_cu.dcr, 0) / IFNULL(laporan_cu.piutang_lalai_12bulan,0)
 		ELSE
-			@p1 := IFNULL(laporan_cu.dcr, 0) / 0.01
+			@p1 := 1
 		END as p1,
 
 		CASE WHEN

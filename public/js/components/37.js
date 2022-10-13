@@ -1595,6 +1595,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -2599,6 +2603,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2636,7 +2674,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       dataview: 'grid',
       isNoButtonRow: '',
       query: {
-        order_column: "name",
+        order_column: "created_at",
         order_direction: "desc",
         filter_match: "and",
         limit: 10,
@@ -2663,6 +2701,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         title: 'Waktu',
         name: 'waktu',
         tipe: 'string',
+        sort: true,
+        hide: false,
+        disable: false,
+        filter: true
+      }, {
+        title: 'Tipe',
+        name: 'tipe',
+        tipe: 'string',
+        sort: true,
+        hide: false,
+        disable: false,
+        filter: true
+      }, {
+        title: 'Tgl. Buat',
+        name: 'created_at',
+        tipe: 'datetime',
+        sort: true,
+        hide: false,
+        disable: false,
+        filter: true
+      }, {
+        title: 'Tgl. Ubah',
+        name: 'updated_at',
+        tipe: 'datetime',
         sort: true,
         hide: false,
         disable: false,
@@ -4212,6 +4274,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -4426,6 +4489,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4434,7 +4504,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['selected', 'kelas', 'isModal', 'mode', 'kegiatan_rekom_id'],
+  props: ['selected', 'kelas', 'isModal', 'mode', 'kegiatan_rekom_id', 'isReadOnly'],
   components: {
     formInfo: _components_formInfo_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     message: _components_message_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -4476,6 +4546,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           this.formRekomHasil = Object.assign({}, lodash__WEBPACK_IMPORTED_MODULE_0___default.a.find(this.selected.hasil, {
             id_user: this.currentUser.id
           }));
+        } else if (this.selected.tipe == 3) {
+          // puskopcuina
+          this.formRekomHasil = Object.assign({}, lodash__WEBPACK_IMPORTED_MODULE_0___default.a.find(this.selected.hasil, {
+            id_cu: 0
+          }));
         }
 
         if (this.formRekomHasil.foto) {
@@ -4497,7 +4572,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       this.formRekomHasil.id_user = this.currentUser.id;
-      var formData = Object(_helpers_form__WEBPACK_IMPORTED_MODULE_2__["toMulipartedForm"])(this.formRekomHasil, this.$route.meta.mode);
+      var formData = Object(_helpers_form__WEBPACK_IMPORTED_MODULE_2__["toMulipartedForm"])(this.formRekomHasil, this.mode);
       this.$validator.validateAll('formRekomHasil').then(function (result) {
         if (result) {
           if (_this.formRekomHasil.id) {
@@ -7373,7 +7448,7 @@ var render = function () {
                               },
                               [
                                 _c("i", { staticClass: "icon-certificate" }),
-                                _vm._v(" Generate Sertifikat \n          "),
+                                _vm._v(" Generate Sertifikat \n\t\t\t\t\t\t"),
                               ]
                             )
                           : _vm._e(),
@@ -7637,23 +7712,28 @@ var render = function () {
                       )
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.selectedItem.status == 5 && _vm.selectedItem.status != 6
-                    ? _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-light mb-1",
-                          on: {
-                            click: function ($event) {
-                              $event.preventDefault()
-                              return _vm.generateSertifikat()
-                            },
-                          },
-                        },
-                        [
-                          _c("i", { staticClass: "icon-certificate" }),
-                          _vm._v(" Generate Sertifikat\n        "),
-                        ]
-                      )
+                  _vm.item.id_sertifikat
+                    ? [
+                        _vm.selectedItem.status == 5 &&
+                        _vm.selectedItem.status != 6
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-light mb-1",
+                                on: {
+                                  click: function ($event) {
+                                    $event.preventDefault()
+                                    return _vm.generateSertifikat()
+                                  },
+                                },
+                              },
+                              [
+                                _c("i", { staticClass: "icon-certificate" }),
+                                _vm._v(" Generate Sertifikat\n\t\t\t\t\t"),
+                              ]
+                            )
+                          : _vm._e(),
+                      ]
                     : _vm._e(),
                 ],
                 2
@@ -7780,23 +7860,28 @@ var render = function () {
                       )
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.selectedItem.status == 5 && _vm.selectedItem.status != 6
-                    ? _c(
-                        "button",
-                        {
-                          staticClass: "btn bg-light btn-block mb-1",
-                          on: {
-                            click: function ($event) {
-                              $event.preventDefault()
-                              return _vm.generateSertifikat()
-                            },
-                          },
-                        },
-                        [
-                          _c("i", { staticClass: "icon-certificate" }),
-                          _vm._v(" Generate Sertifikat\n        "),
-                        ]
-                      )
+                  _vm.item.id_sertifikat
+                    ? [
+                        _vm.selectedItem.status == 5 &&
+                        _vm.selectedItem.status != 6
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn bg-light btn-block mb-1",
+                                on: {
+                                  click: function ($event) {
+                                    $event.preventDefault()
+                                    return _vm.generateSertifikat()
+                                  },
+                                },
+                              },
+                              [
+                                _c("i", { staticClass: "icon-certificate" }),
+                                _vm._v(" Generate Sertifikat\n\t\t\t\t\t"),
+                              ]
+                            )
+                          : _vm._e(),
+                      ]
                     : _vm._e(),
                 ],
                 2
@@ -8451,15 +8536,15 @@ var render = function () {
                                                 "icon-file-check mr-2",
                                             }),
                                             _vm._v(" "),
-                                            props.item.tipe == 1
-                                              ? _c("span", [
-                                                  _vm._v("Per Lembaga"),
-                                                ])
-                                              : props.item.tipe == 2
-                                              ? _c("span", [
-                                                  _vm._v("Per Peserta"),
-                                                ])
-                                              : _c("span", [_vm._v("-")]),
+                                            _c("span", {
+                                              domProps: {
+                                                innerHTML: _vm._s(
+                                                  _vm.$options.filters.tipeRekom(
+                                                    props.item.tipe
+                                                  )
+                                                ),
+                                              },
+                                            }),
                                           ]
                                         ),
                                       ]
@@ -8561,7 +8646,7 @@ var render = function () {
                             ]),
                           ]),
                           _vm._v(" "),
-                          _vm.tipeUser == "peserta"
+                          props.item.tipe == 1
                             ? _c("div", { staticClass: "col-md-12" }, [
                                 _c("hr"),
                                 _vm._v(" "),
@@ -8569,100 +8654,153 @@ var render = function () {
                                   "div",
                                   { staticClass: "card card-body mb-0" },
                                   [
-                                    _c("form-rekom-hasil", {
-                                      attrs: {
-                                        selected: props.item,
-                                        kelas: _vm.kelas,
-                                        isModal: false,
-                                      },
-                                      on: { tutup: _vm.modalTutup },
-                                    }),
+                                    _vm.tipeUser == "peserta"
+                                      ? _c("form-rekom-hasil", {
+                                          attrs: {
+                                            selected: props.item,
+                                            kelas: _vm.kelas,
+                                            isModal: false,
+                                            isReadOnly: false,
+                                          },
+                                          on: { tutup: _vm.modalTutup },
+                                        })
+                                      : _c("table-rekom-hasil", {
+                                          attrs: {
+                                            kelas: _vm.kelas,
+                                            selected: props.item,
+                                            tipeUser: _vm.tipeUser,
+                                          },
+                                          on: { fetch: _vm.fetch },
+                                        }),
                                   ],
                                   1
                                 ),
                               ])
-                            : _c(
-                                "div",
-                                { staticClass: "col-md-12" },
-                                [
-                                  _c("hr"),
+                            : props.item.tipe == 2
+                            ? _c("div", { staticClass: "col-md-12" }, [
+                                _c("hr"),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "card card-body mb-0" },
+                                  [
+                                    _vm.tipeUser == "peserta"
+                                      ? _c("form-rekom-hasil", {
+                                          attrs: {
+                                            selected: props.item,
+                                            kelas: _vm.kelas,
+                                            isModal: false,
+                                            isReadOnly: false,
+                                          },
+                                          on: { tutup: _vm.modalTutup },
+                                        })
+                                      : _c("table-rekom-hasil", {
+                                          attrs: {
+                                            kelas: _vm.kelas,
+                                            selected: props.item,
+                                            tipeUser: _vm.tipeUser,
+                                          },
+                                          on: { fetch: _vm.fetch },
+                                        }),
+                                  ],
+                                  1
+                                ),
+                              ])
+                            : props.item.tipe == 3
+                            ? _c("div", { staticClass: "col-md-12" }, [
+                                _c("hr"),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "card card-body mb-0" },
+                                  [
+                                    _vm.tipeUser == "peserta"
+                                      ? _c("form-rekom-hasil", {
+                                          attrs: {
+                                            selected: props.item,
+                                            kelas: _vm.kelas,
+                                            isModal: false,
+                                            isReadOnly: true,
+                                          },
+                                          on: { tutup: _vm.modalTutup },
+                                        })
+                                      : _c("form-rekom-hasil", {
+                                          attrs: {
+                                            selected: props.item,
+                                            kelas: _vm.kelas,
+                                            isModal: false,
+                                            isReadOnly: false,
+                                          },
+                                          on: { tutup: _vm.modalTutup },
+                                        }),
+                                  ],
+                                  1
+                                ),
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.tipeUser == "panitia" ||
+                          _vm.tipeUser == "fasilitator"
+                            ? _c("div", { staticClass: "col-md-12" }, [
+                                _c("div", { staticClass: "row" }, [
+                                  _c("div", { staticClass: "col-md-12" }, [
+                                    _c("hr"),
+                                  ]),
                                   _vm._v(" "),
-                                  _c("table-rekom-hasil", {
-                                    attrs: {
-                                      kelas: _vm.kelas,
-                                      selected: props.item,
-                                      tipeUser: _vm.tipeUser,
-                                    },
-                                    on: { fetch: _vm.fetch },
-                                  }),
-                                  _vm._v(" "),
-                                  _vm.tipeUser == "panitia" ||
-                                  _vm.tipeUser == "fasilitator"
-                                    ? _c("div", { staticClass: "row" }, [
-                                        _c(
-                                          "div",
-                                          { staticClass: "col-md-12" },
-                                          [_c("hr")]
+                                  _c("div", { staticClass: "col-md-6" }, [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-light mb-1 btn-block",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.modalOpen(
+                                              "ubahRekom",
+                                              props.item
+                                            )
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "icon-pencil5",
+                                        }),
+                                        _vm._v(
+                                          " Ubah Rekomendasi\n\t\t\t\t\t\t\t\t\t\t\t"
                                         ),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-md-6" }, [
-                                          _c(
-                                            "button",
-                                            {
-                                              staticClass:
-                                                "btn btn-light mb-1 btn-block",
-                                              on: {
-                                                click: function ($event) {
-                                                  $event.preventDefault()
-                                                  return _vm.modalOpen(
-                                                    "ubahRekom",
-                                                    props.item
-                                                  )
-                                                },
-                                              },
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "icon-pencil5",
-                                              }),
-                                              _vm._v(
-                                                " Ubah Rekomendasi\n\t\t\t\t\t\t\t\t\t\t\t"
-                                              ),
-                                            ]
-                                          ),
-                                        ]),
-                                        _vm._v(" "),
-                                        _c("div", { staticClass: "col-md-6" }, [
-                                          _c(
-                                            "button",
-                                            {
-                                              staticClass:
-                                                "btn btn-light mb-1 btn-block",
-                                              on: {
-                                                click: function ($event) {
-                                                  $event.preventDefault()
-                                                  return _vm.modalOpen(
-                                                    "hapusRekom",
-                                                    props.item
-                                                  )
-                                                },
-                                              },
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "icon-bin",
-                                              }),
-                                              _vm._v(
-                                                " Hapus Rekomendasi\n\t\t\t\t\t\t\t\t\t\t\t"
-                                              ),
-                                            ]
-                                          ),
-                                        ]),
-                                      ])
-                                    : _vm._e(),
-                                ],
-                                1
-                              ),
+                                      ]
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-6" }, [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-light mb-1 btn-block",
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.modalOpen(
+                                              "hapusRekom",
+                                              props.item
+                                            )
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("i", { staticClass: "icon-bin" }),
+                                        _vm._v(
+                                          " Hapus Rekomendasi\n\t\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                      ]
+                                    ),
+                                  ]),
+                                ]),
+                              ])
+                            : _vm._e(),
                         ]),
                       ]),
                     ]),
@@ -11098,6 +11236,10 @@ var render = function () {
                   _c("option", { attrs: { value: "2" } }, [
                     _vm._v("Per peserta"),
                   ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "3" } }, [
+                    _vm._v("PUSKOPCUINA"),
+                  ]),
                 ]
               ),
               _vm._v(" "),
@@ -11261,6 +11403,7 @@ var render = function () {
                           name: "tercapai",
                           "data-width": "100%",
                           "data-vv-as": "Tindaklanjut",
+                          disabled: _vm.isReadOnly,
                         },
                         on: {
                           change: function ($event) {
@@ -11321,7 +11464,7 @@ var render = function () {
                             attrs: {
                               name: "id_cu",
                               "data-width": "100%",
-                              disabled: _vm.modelCuStat === "loading",
+                              disabled: _vm.isReadOnly,
                             },
                             on: {
                               change: function ($event) {
@@ -11347,7 +11490,7 @@ var render = function () {
                             _c(
                               "option",
                               { attrs: { disabled: "", value: "" } },
-                              [_vm._v("Silahkan pilih CU")]
+                              [_vm._v("Silahkan pilih Lembaga")]
                             ),
                             _vm._v(" "),
                             _vm._t("default"),
@@ -11431,6 +11574,7 @@ var render = function () {
                           name: "keterangan",
                           placeholder: "Silahkan masukkan keterangan",
                           "data-vv-as": "Keterangan",
+                          readonly: _vm.isReadOnly,
                         },
                         domProps: { value: _vm.formRekomHasil.keterangan },
                         on: {
@@ -11469,6 +11613,7 @@ var render = function () {
                         type: "text",
                         name: "bukti",
                         placeholder: "Silahkan masukkan bukti",
+                        readonly: _vm.isReadOnly,
                       },
                       domProps: { value: _vm.formRekomHasil.bukti },
                       on: {
@@ -11487,106 +11632,19 @@ var render = function () {
                   ]),
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-md-12" }, [
-                  _c("div", { staticClass: "form-group mb-1" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-light btn-block",
-                        attrs: { type: "button" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.showFoto.apply(null, arguments)
-                          },
-                        },
-                      },
-                      [_vm._v("\n\t\t\t\t\t\t\t\tFoto\n\t\t\t\t\t\t\t")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.isShowFoto,
-                            expression: "isShowFoto",
-                          },
-                        ],
-                        staticClass: "card card-body mt-2 mb-1",
-                      },
-                      [
-                        _c("app-image-upload", {
-                          attrs: {
-                            image_loc: "/images/rekom/",
-                            image_temp: _vm.formRekomHasil.gambar,
-                          },
-                          model: {
-                            value: _vm.formRekomHasil.gambar,
-                            callback: function ($$v) {
-                              _vm.$set(_vm.formRekomHasil, "gambar", $$v)
-                            },
-                            expression: "formRekomHasil.gambar",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-                  ]),
-                ]),
-                _vm._v(" "),
                 _vm._m(3),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-md-12" },
-                  [
-                    !_vm.isModal
-                      ? [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-primary btn-block pb-2",
-                              attrs: {
-                                type: "submit",
-                                disabled: _vm.formRekomHasil.tercapai == "",
-                              },
-                            },
-                            [
-                              _c("i", { staticClass: "icon-floppy-disk" }),
-                              _vm._v(" Simpan"),
-                            ]
-                          ),
-                        ]
-                      : [
-                          _c(
-                            "div",
-                            { staticClass: "text-center d-none d-md-block" },
-                            [
+                !_vm.isReadOnly
+                  ? _c(
+                      "div",
+                      { staticClass: "col-md-12" },
+                      [
+                        !_vm.isModal
+                          ? [
                               _c(
                                 "button",
                                 {
-                                  staticClass: "btn btn-light",
-                                  attrs: { type: "button" },
-                                  on: {
-                                    click: function ($event) {
-                                      $event.preventDefault()
-                                      return _vm.tutup.apply(null, arguments)
-                                    },
-                                  },
-                                },
-                                [
-                                  _c("i", { staticClass: "icon-cross" }),
-                                  _vm._v(" Tutup"),
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-primary",
+                                  staticClass: "btn btn-primary btn-block pb-2",
                                   attrs: {
                                     type: "submit",
                                     disabled: _vm.formRekomHasil.tercapai == "",
@@ -11598,46 +11656,97 @@ var render = function () {
                                 ]
                               ),
                             ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "d-block d-md-none" }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-primary btn-block pb-2",
-                                attrs: {
-                                  type: "submit",
-                                  disabled: _vm.formRekomHasil.tercapai == "",
+                          : [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "text-center d-none d-md-block",
                                 },
-                              },
-                              [
-                                _c("i", { staticClass: "icon-floppy-disk" }),
-                                _vm._v(" Simpan"),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-light btn-block pb-2",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function ($event) {
-                                    $event.preventDefault()
-                                    return _vm.tutup.apply(null, arguments)
+                                [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-light",
+                                      attrs: { type: "button" },
+                                      on: {
+                                        click: function ($event) {
+                                          $event.preventDefault()
+                                          return _vm.tutup.apply(
+                                            null,
+                                            arguments
+                                          )
+                                        },
+                                      },
+                                    },
+                                    [
+                                      _c("i", { staticClass: "icon-cross" }),
+                                      _vm._v(" Tutup"),
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-primary",
+                                      attrs: {
+                                        type: "submit",
+                                        disabled:
+                                          _vm.formRekomHasil.tercapai == "",
+                                      },
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-floppy-disk",
+                                      }),
+                                      _vm._v(" Simpan"),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "d-block d-md-none" }, [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "btn btn-primary btn-block pb-2",
+                                    attrs: {
+                                      type: "submit",
+                                      disabled:
+                                        _vm.formRekomHasil.tercapai == "",
+                                    },
                                   },
-                                },
-                              },
-                              [
-                                _c("i", { staticClass: "icon-cross" }),
-                                _vm._v(" Tutup"),
-                              ]
-                            ),
-                          ]),
-                        ],
-                  ],
-                  2
-                ),
+                                  [
+                                    _c("i", {
+                                      staticClass: "icon-floppy-disk",
+                                    }),
+                                    _vm._v(" Simpan"),
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-light btn-block pb-2",
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function ($event) {
+                                        $event.preventDefault()
+                                        return _vm.tutup.apply(null, arguments)
+                                      },
+                                    },
+                                  },
+                                  [
+                                    _c("i", { staticClass: "icon-cross" }),
+                                    _vm._v(" Tutup"),
+                                  ]
+                                ),
+                              ]),
+                            ],
+                      ],
+                      2
+                    )
+                  : _vm._e(),
               ]),
         ]
       ),
@@ -11675,7 +11784,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "input-group-prepend" }, [
-      _c("span", { staticClass: "input-group-text" }, [_vm._v("Pilih CU")]),
+      _c("span", { staticClass: "input-group-text" }, [
+        _vm._v("Pilih Lembaga"),
+      ]),
     ])
   },
   function () {

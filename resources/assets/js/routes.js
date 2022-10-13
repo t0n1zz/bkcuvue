@@ -25,6 +25,7 @@ const laporanCu_detail = () => import('./views/laporanCu/detail.vue');
 const laporanCu_draft = () => import('./views/laporanCu/draft.vue');
 const laporanTp_draft = () => import('./views/laporanCu/draftTp.vue');
 const laporanGerakan = () => import('./views/laporanGerakan/index.vue');
+const laporanGerakan_form = () => import('./views/laporanGerakan/form.vue');
 const coa = () => import('./views/coa/index.vue');
 const coa_form = () => import('./views/coa/form.vue');
 const kegiatanBKCU = () => import('./views/kegiatanBKCU/index.vue');
@@ -903,10 +904,18 @@ const routes = [
 		meta: { requiresAuth: true, mode:'editTp' } },
 
 	// laporan gerakan
-	{ path: '/laporangerakan',
+	{ path: '/laporanGerakan',
 		name: 'laporanGerakan', 
 		components: { default: laporanGerakan, 'header': header, 'footer': footer  },
 		meta: { requiresAuth: true  }},	
+	{ path: '/laporanGerakan/create',
+		name: 'laporanGerakanCreate', 
+		components: { default: laporanGerakan_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true }},
+	{ path: '/laporanGerakan/edit/:id',
+		name: 'laporanGerakanEdit', 
+		components: { default: laporanGerakan_form, 'header': header, 'footer': footer },
+		meta: { requiresAuth: true, mode:'edit' }},
 
 	// laporan draft
 	{ path: '/laporancu/draft',

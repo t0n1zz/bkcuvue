@@ -33,7 +33,7 @@
 
 				<history-organisasi-widget v-if="currentUser.id_cu == 0"></history-organisasi-widget>
 
-				<grafik-laporan-cu-widget v-if="currentUser.can && currentUser.can['index_laporan_cu']" :id_cu="currentUser.id_cu" :columnData="columnData" :columnDataPearls="columnDataPearls"></grafik-laporan-cu-widget>
+				<!-- <grafik-laporan-cu-widget v-if="currentUser.can && currentUser.can['index_laporan_cu']" :id_cu="currentUser.id_cu" :columnData="columnData" :columnDataPearls="columnDataPearls"></grafik-laporan-cu-widget> -->
 			</div>
 
 			<div class="col-lg-4">
@@ -41,7 +41,7 @@
 
 				<count-organisasi-widget></count-organisasi-widget>
 
-				<table-laporan-cu-widget v-if="currentUser.can && currentUser.can['index_laporan_cu']"  :id_cu="currentUser.id_cu" :columnData="columnData" :columnDataPearls="columnDataPearls"></table-laporan-cu-widget>
+				<!-- <table-laporan-cu-widget v-if="currentUser.can && currentUser.can['index_laporan_cu']"  :id_cu="currentUser.id_cu" :columnData="columnData" :columnDataPearls="columnDataPearls"></table-laporan-cu-widget> -->
 			</div>
 		
 		</div>

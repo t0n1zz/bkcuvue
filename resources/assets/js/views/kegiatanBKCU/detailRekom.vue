@@ -58,9 +58,7 @@
 												<div class="card-header pt-2 pb-2">
 													<span class="card-title">
 														<i class="icon-file-check mr-2"></i>
-														<span v-if="props.item.tipe == 1">Per Lembaga</span>
-														<span v-else-if="props.item.tipe == 2">Per Peserta</span>
-														<span v-else>-</span>
+														<span v-html="$options.filters.tipeRekom(props.item.tipe)"></span>
 													</span>
 												</div>
 											</div>
@@ -89,24 +87,60 @@
 									</div>
 								</div>
 								<!-- form -->
-								<div class="col-md-12" v-if="tipeUser == 'peserta'">
+								<!-- if per-lembaga -->
+								<div class="col-md-12" v-if="props.item.tipe == 1">
 									<hr/>
 									<div class="card card-body mb-0">
 										<form-rekom-hasil 
 											:selected="props.item"
 											:kelas="kelas"
 											:isModal="false"
-											@tutup="modalTutup" ></form-rekom-hasil>
+											:isReadOnly="false"
+											@tutup="modalTutup" v-if="tipeUser == 'peserta'"></form-rekom-hasil>
+										<table-rekom-hasil
+											:kelas="kelas"
+											:selected="props.item"
+											:tipeUser="tipeUser"
+											@fetch="fetch" v-else></table-rekom-hasil>
 									</div>
 								</div>
-								<div class="col-md-12" v-else>
+								<!-- if per-peserta -->
+								<div class="col-md-12" v-else-if="props.item.tipe == 2">
 									<hr/>
-									<table-rekom-hasil
-										:kelas="kelas"
-										:selected="props.item"
-										:tipeUser="tipeUser"
-										@fetch="fetch"></table-rekom-hasil>
-									<div class="row" v-if="tipeUser == 'panitia' || tipeUser == 'fasilitator'">
+									<div class="card card-body mb-0">
+										<form-rekom-hasil 
+											:selected="props.item"
+											:kelas="kelas"
+											:isModal="false"
+											:isReadOnly="false"
+											@tutup="modalTutup" v-if="tipeUser == 'peserta'"></form-rekom-hasil>
+										<table-rekom-hasil
+											:kelas="kelas"
+											:selected="props.item"
+											:tipeUser="tipeUser"
+											@fetch="fetch" v-else></table-rekom-hasil>
+									</div>
+								</div>
+								<!-- if puskopcuina -->
+								<div class="col-md-12" v-else-if="props.item.tipe == 3">
+									<hr/>
+									<div class="card card-body mb-0">
+										<form-rekom-hasil 
+											:selected="props.item"
+											:kelas="kelas"
+											:isModal="false"
+											:isReadOnly="true"
+											@tutup="modalTutup" v-if="tipeUser == 'peserta'"></form-rekom-hasil>
+										<form-rekom-hasil 
+											:selected="props.item"
+											:kelas="kelas"
+											:isModal="false"
+											:isReadOnly="false"
+											@tutup="modalTutup" v-else></form-rekom-hasil>
+									</div>
+								</div>
+								<div class="col-md-12" v-if="tipeUser == 'panitia' || tipeUser == 'fasilitator'">
+									<div class="row" >
 										<div class="col-md-12"><hr/></div>
 										
 										<div class="col-md-6">
@@ -192,7 +226,7 @@
 				dataview: 'grid',
 				isNoButtonRow:'',
 				query: {
-					order_column: "name",
+					order_column: "created_at",
 					order_direction: "desc",
 					filter_match: "and",
 					limit: 10,
@@ -227,6 +261,33 @@
 						disable: false,
 						filter: true,
 					},
+					{
+						title: 'Tipe',
+						name: 'tipe',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Tgl. Buat',
+						name: 'created_at',
+						tipe: 'datetime',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Tgl. Ubah',
+						name: 'updated_at',
+						tipe: 'datetime',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					}
 				],
         cleaveOption: {
 					date: {

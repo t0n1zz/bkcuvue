@@ -46,7 +46,7 @@
       <div v-show="tabGrafikName == 'grafikGerakan'" v-if="isGrafikGerakan && id_cu == 0">
         <infografis-gerakan
           :title="'Laporan Perkembangan Gerakan'"
-          :kelas="'laporanCu'"
+          :kelas="'laporanGerakan'"
           :columnData="columnData"></infografis-gerakan>
       </div>
     </transition>

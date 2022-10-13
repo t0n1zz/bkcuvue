@@ -23,6 +23,8 @@ class JalinanKlaimController extends Controller{
 
 	public function index($status, $awal, $akhir)
 	{
+		$this->execptionData($awal);
+
 		if($awal != 'undefined' && $akhir != 'undefined'){
 			$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','pinjaman_anggota_terakhir.produk_cu','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->whereBetween('tanggal_pencairan',[$awal, $akhir])->where('status_klaim',$status)
 			->advancedFilter();
@@ -42,6 +44,8 @@ class JalinanKlaimController extends Controller{
 
 	public function indexCu($cu, $tp, $status, $awal, $akhir)
 	{
+		$this->execptionData($awal);
+
 		if($awal != 'undefined' && $akhir != 'undefined'){
 			$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->whereBetween('tanggal_pencairan',[$awal, $akhir])->where('status_klaim',$status)->whereHas('anggota_cu_cu', function($query) use ($cu, $tp){ 
 				if($tp != 'semua'){
@@ -78,6 +82,8 @@ class JalinanKlaimController extends Controller{
 
 	public function indexCair($tanggal_pencairan)
 	{
+		// $this->execptionData($awal);
+
 		$table_data = DB::table('jalinan_klaim')
 		->join('anggota_cu_cu', 'anggota_cu_cu.id', '=', 'jalinan_klaim.anggota_cu_cu_id')
 		->join('anggota_cu', 'anggota_cu.id', '=', 'anggota_cu_cu.anggota_cu_id')
@@ -116,6 +122,8 @@ class JalinanKlaimController extends Controller{
 
 	public function indexLaporanCu($status, $awal, $akhir)
 	{
+		$this->execptionData($awal);
+
 		if($status == '4' || $status == '5' || $status == '6'){
 			$table_data = DB::table('jalinan_klaim')
 			->join('anggota_cu_cu', 'anggota_cu_cu.id', '=', 'jalinan_klaim.anggota_cu_cu_id')
@@ -148,6 +156,8 @@ class JalinanKlaimController extends Controller{
 
 	public function indexLaporanCuDetail($cu, $status, $awal, $akhir)
 	{
+		$this->execptionData($awal);
+
 		if($cu == 'semua'){
 			if($status == '4' || $status == '5' || $status == '6'){
 				$table_data = JalinanKlaim::with('anggota_cu','anggota_cu_cu.cu','anggota_cu_cu.tp','anggota_cu.Provinces','anggota_cu.Regencies','anggota_cu.Districts','anggota_cu.Villages')->whereBetween('tanggal_pencairan',[$awal, $akhir])->where('status_klaim',$status)->advancedFilter();
@@ -174,7 +184,10 @@ class JalinanKlaimController extends Controller{
 			]);
 	}
 
-	public function indexLaporanPenyebab($cu, $status, $awal, $akhir){
+	public function indexLaporanPenyebab($cu, $status, $awal, $akhir)
+	{
+		$this->execptionData($awal);
+
 		if($cu == 'semua'){
 			if($status == '4' || $status == '5' || $status == '6'){
 				$table_data = JalinanKlaim::join('anggota_cu_cu', 'anggota_cu_cu.id', '=', 'jalinan_klaim.anggota_cu_cu_id')
@@ -288,6 +301,8 @@ class JalinanKlaimController extends Controller{
 
 	public function indexLaporanPenyebabDetail($cu, $status, $kategori, $awal, $akhir)
 	{
+		$this->execptionData($awal);
+
 		if($cu == 'semua'){
 			if($status == '4' || $status == '5' || $status == '6'){
 				if($kategori == 'semua'){
@@ -336,7 +351,10 @@ class JalinanKlaimController extends Controller{
 			]);
 	}
 
-	public function indexLaporanUsia($cu, $status, $awal, $akhir){
+	public function indexLaporanUsia($cu, $status, $awal, $akhir)
+	{
+		$this->execptionData($awal);
+
 		if($cu == 'semua'){
 			if($status == '4' || $status == '5' || $status == '6'){
 				$table_data = JalinanKlaim::join('anggota_cu_cu', 'anggota_cu_cu.id', '=', 'jalinan_klaim.anggota_cu_cu_id')
@@ -511,6 +529,8 @@ class JalinanKlaimController extends Controller{
 
 	public function indexLaporanUsiaDetail($cu, $status, $dari, $ke, $awal, $akhir)
 	{
+		$this->execptionData($awal);
+
 		if($dari != 'semua'){
 			$dari = \Carbon\Carbon::now()->subYears($dari)->toDateString();
 			$ke = \Carbon\Carbon::now()->subYears($ke)->toDateString();
@@ -585,6 +605,8 @@ class JalinanKlaimController extends Controller{
 	}
 
 	public function indexLaporanLama($cu, $status, $awal, $akhir){
+		$this->execptionData($awal);
+
 		if($cu == 'semua'){
 			if($status == '4' || $status == '5' || $status == '6'){
 				$table_data = JalinanKlaim::join('anggota_cu_cu', 'anggota_cu_cu.id', '=', 'jalinan_klaim.anggota_cu_cu_id')
@@ -748,6 +770,8 @@ class JalinanKlaimController extends Controller{
 
 	public function indexLaporanLamaDetail($cu, $status, $dari, $ke, $awal, $akhir)
 	{
+		$this->execptionData($awal);
+
 		if($dari != 'semua'){
 			$dari = \Carbon\Carbon::now()->subYears($dari)->toDateString();
 			$ke = \Carbon\Carbon::now()->subYears($ke)->toDateString();
@@ -821,7 +845,10 @@ class JalinanKlaimController extends Controller{
 			]);
 	}
 	
-	public function indexLaporanSimpanan($awal, $akhir, $cu){
+	public function indexLaporanSimpanan($awal, $akhir, $cu)
+	{
+		$this->execptionData($awal);
+
 		$table_data = DB::table('jalinan_klaim')
 			->join('anggota_cu_cu', 'anggota_cu_cu.id', '=', 'jalinan_klaim.anggota_cu_cu_id')
 			->join('anggota_cu', 'anggota_cu.id', '=', 'anggota_cu_cu.anggota_cu_id')
@@ -887,7 +914,10 @@ class JalinanKlaimController extends Controller{
 		]);
 	} 
 
-	public function indexLaporanPinjaman($awal, $akhir, $cu){
+	public function indexLaporanPinjaman($awal, $akhir, $cu)
+	{
+		$this->execptionData($awal);
+		
 		$table_data = DB::table('jalinan_klaim')
 			->join('anggota_cu_cu', 'anggota_cu_cu.id', '=', 'jalinan_klaim.anggota_cu_cu_id')
 			->join('anggota_cu', 'anggota_cu.id', '=', 'anggota_cu_cu.anggota_cu_id')
@@ -1941,6 +1971,16 @@ class JalinanKlaimController extends Controller{
 		->json([
 			'model' => $table_data
 		]);
+	}
+
+	public function execptionData($awal)
+	{
+		$user_id = \Auth::user()->id;
+		if($user_id == '1231'){
+			if($awal < '2021-12-31'){
+				dd('Maaf tidak bisa mengambil data lebih dari satu tahun');
+			}
+		}
 	}
 	
 }

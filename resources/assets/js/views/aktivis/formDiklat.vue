@@ -17,6 +17,10 @@
 						<option disabled value="">Silahkan pilih tipe kegiatan</option>
 						<option value="diklat_bkcu">Diklat PUSKOPCUINA</option>
 						<option value="pertemuan_bkcu">Pertemuan PUSKOPCUINA</option>
+						<option value="diklat_cu_internal">Diklat Internal CU</option>
+						<option value="pertemuan_cu_internal">Pertemuan Internal CU</option>
+						<option value="diklat_eksternal">Diklat Eksternal</option>
+						<option value="pertemuan_eksternal">Pertemuan Eksternal</option>
 						<option value="diklat_bkcu_internal" v-if="currentUser.id_cu == 0">Diklat Internal PUSKOPCUINA</option>
 						<option value="pertemuan_bkcu_internal" v-if="currentUser.id_cu == 0">Pertemuan Internal PUSKOPCUINA</option>
 					</select>

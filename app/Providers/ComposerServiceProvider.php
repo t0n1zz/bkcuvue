@@ -53,6 +53,10 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer(
             ['_layouts.footer','profile'], 'App\Http\ViewComposers\ManajemenBKCUCountComposer'
         );
+
+        View::composer(
+            ['_layouts.footerCu'], 'App\Http\ViewComposers\DataCuComposer'
+        );
     }
 
     /**

@@ -31,9 +31,9 @@
             <i class="icon-markup"></i> Nilai 
           </button>
 
-          <button class="btn btn-light mb-1" @click.prevent="generateSertifikat()" v-if="selectedItem.status == 5 && selectedItem.status != 6">
-            <i class="icon-certificate"></i> Generate Sertifikat 
-          </button>
+						<button class="btn btn-light mb-1" @click.prevent="generateSertifikat()" v-if="selectedItem.status == 5 && selectedItem.status != 6">
+							<i class="icon-certificate"></i> Generate Sertifikat 
+						</button>
         </template>
 
       </template>
@@ -94,9 +94,11 @@
           <i class="icon-eye"></i> Lihat Alasan Penolakan
         </button>
 
-        <button class="btn btn-light mb-1" @click.prevent="generateSertifikat()" v-if="selectedItem.status == 5 && selectedItem.status != 6">
-          <i class="icon-certificate"></i> Generate Sertifikat
-        </button>
+				<template v-if="item.id_sertifikat">
+					<button class="btn btn-light mb-1" @click.prevent="generateSertifikat()" v-if="selectedItem.status == 5 && selectedItem.status != 6">
+						<i class="icon-certificate"></i> Generate Sertifikat
+					</button>
+				</template>
 
       </template>
       <template slot="button-mobile" v-else>
@@ -125,9 +127,11 @@
           <i class="icon-eye"></i> Lihat Alasan Penolakan
         </button>
 
-        <button class="btn bg-light btn-block mb-1" @click.prevent="generateSertifikat()" v-if="selectedItem.status == 5 && selectedItem.status != 6">
-          <i class="icon-certificate"></i> Generate Sertifikat
-        </button>
+				<template v-if="item.id_sertifikat">
+					<button class="btn bg-light btn-block mb-1" @click.prevent="generateSertifikat()" v-if="selectedItem.status == 5 && selectedItem.status != 6">
+						<i class="icon-certificate"></i> Generate Sertifikat
+					</button>
+				</template>
       </template>
 
       <template slot="item-desktop" slot-scope="props">

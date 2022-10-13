@@ -31,14 +31,14 @@ class PublicCuController extends Controller
             abort(404);
         }
 
-        $artikelsUtama = Artikel::with('kategori')->where('id_cu',$cu->id)->where('terbitkan',1)->where('utamakan',1)->orderBy('created_at','desc')->take(6)->get();
+        // $artikelsUtama = Artikel::with('kategori')->where('id_cu',$cu->id)->where('terbitkan',1)->where('utamakan',1)->orderBy('created_at','desc')->take(6)->get();
 
-        $artikelsNew = Artikel::with('kategori','penulis')->where('id_cu',$cu->id)->where('terbitkan',1)->where('utamakan','!=',1)->orderBy('created_at','desc')->take(5)->get();
+        $artikelsNew = Artikel::with('kategori','penulis')->where('id_cu',$cu->id)->where('terbitkan',1)->orderBy('created_at','desc')->take(7)->get();
 
-        if($artikelsUtama->isEmpty()){
-            $artikelsUtama = $artikelsNew;
-            $artikelsNew = collect();
-        }
+        // if($artikelsUtama->isEmpty()){
+        //     $artikelsUtama = $artikelsNew;
+        //     $artikelsNew = collect();
+        // }
 
         $kategories = ArtikelKategori::where('id_cu',$cu->id)->get()->chunk(8);
 
@@ -47,7 +47,7 @@ class PublicCuController extends Controller
         SEO::setDescription(strip_tags($cu->deskripsi));
         SEO::opengraph()->setUrl(url()->full());
 
-        return view('cu.index', compact('cu','artikelsUtama','artikelsNew','kategories'));
+        return view('cu.index', compact('cu','artikelsNew','kategories'));
     }
 
     public function tp()

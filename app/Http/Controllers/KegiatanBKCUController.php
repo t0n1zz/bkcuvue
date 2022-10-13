@@ -942,10 +942,10 @@ class KegiatanBKCUController extends Controller{
 			if($name){
 				$name = $name->name;
 			}else{
-				$name = $kelas->name;
+				$name = $request->name;
 			}
 		}else{
-			$name = $kelas->name;
+			$name = $request->name;
 		}
 
 		// processing single image upload

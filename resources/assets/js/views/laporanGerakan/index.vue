@@ -13,19 +13,19 @@
 					</message>
 
 					<div class="row">
-						<!-- grafik -->
-						<div class="col-lg-8" >	
+						<!-- widget grafik -->
+						<div class="col-lg-12" >	
 							<grafik-laporan-cu-widget :id_cu="'0'" :columnData="columnData" :columnDataPearls="columnDataPearls"></grafik-laporan-cu-widget>
 						</div>
 
-						<!-- tabel -->
-						<div class="col-lg-4">
+						<!-- widget tabel -->
+						<!-- <div class="col-lg-4">
 							<table-laporan-cu-widget :id_cu="'0'" :columnData="columnData" :columnDataPearls="columnDataPearls"></table-laporan-cu-widget>
-						</div>
+						</div> -->
 					</div>
 
-					<table-data :title="title" :kelas="kelas"></table-data>
-
+					<!-- table -->
+					<table-data :title="title" :kelas="kelas" :columnData="columnData"></table-data>
 				</div>
 			</div>
 		</div>
@@ -54,9 +54,173 @@
 		data() {
 			return {
 				title: 'Laporan Statistik Gerakan',
-				kelas: 'laporanCu',
+				kelas: 'laporanGerakan',
 				titleDesc: 'Mengelola data statistik gerakan',
 				titleIcon: 'icon-stats-bars',
+				columnData: [
+					{
+						title: 'No.',
+						name: 'No.',
+						tipe: 'string',
+						sort: false,
+						hide: false,
+						disable: false,
+						isChart: false,
+					},
+					{
+						title: 'Periode',
+						name: 'periode',
+						tipe: 'datetime',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						filterDefault: true,
+						isChart: false,
+					},
+          {
+						title: 'Laki-laki',
+						name: 'lk',
+						tipe: 'numeric',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						isChart: true,
+        		isChartSelect: false,
+					},
+          {
+						title: 'Perempuan',
+						name: 'pr',
+						tipe: 'numeric',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						isChart: true,
+        		isChartSelect: false,
+					},
+          {
+						title: 'Total Anggota',
+						name: 'total_anggota',
+						tipe: 'numeric',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						isChart: true,
+        		isChartSelect: false,
+					},
+          {
+						title: 'Aset',
+						name: 'aset',
+						tipe: 'numeric',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						isChart: true,
+        		isChartSelect: false,
+					},
+					{
+						title: 'SHU',
+						name: 'shu',
+						tipe: 'numeric',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						isChart: true,
+        		isChartSelect: false,
+					},
+          {
+						title: 'Piutang Anggota',
+						name: 'piutang_anggota',
+						tipe: 'numeric',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						isChart: true,
+        		isChartSelect: false,
+					},
+          {
+						title: 'Piutang Lalai',
+						name: 'piutang_lalai',
+						tipe: 'numeric',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						isChart: true,
+        		isChartSelect: false,
+					},
+          {
+						title: 'Simpanan Anggota',
+						name: 'simpanan_anggota',
+						tipe: 'numeric',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						isChart: true,
+        		isChartSelect: false,
+					},
+          {
+						title: 'DCU',
+						name: 'dcu',
+						tipe: 'numeric',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						isChart: true,
+        		isChartSelect: false,
+					},
+          {
+						title: 'DCR',
+						name: 'dcr',
+						tipe: 'numeric',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						isChart: true,
+        		isChartSelect: false,
+					},
+          {
+						title: 'Aset Lancar',
+						name: 'aset_lancar',
+						tipe: 'numeric',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						isChart: true,
+        		isChartSelect: false,
+					},
+					{
+						title: 'Tgl. Buat',
+						name: 'created_at',
+						tipe: 'datetime',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						isChart: false,
+					},
+					{
+						title: 'Tgl. Ubah',
+						name: 'updated_at',
+						tipe: 'datetime',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						isChart: false,
+					}
+				],
+				columnDataPearls: [],
 			}
 		},
 		methods: {
@@ -65,11 +229,9 @@
 			...mapGetters('auth',{
 				currentUser: 'currentUser'
 			}),
-			...mapGetters('laporanCu', {
+			...mapGetters('laporanGerakan',{
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS',
-				columnData: 'columnData',
-				columnDataPearls: 'columnDataPearls',
 			}),
 		}
 	}

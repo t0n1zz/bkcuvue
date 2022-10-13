@@ -44,16 +44,16 @@ export default {
 	methods: {
 		// fetching data from database
 		fetch(){
-			this.$store.dispatch(this.kelas + '/grafikGerakan');
+			this.$store.dispatch(this.kelas + '/index');
 		},
 	},
 	computed: {
-		...mapGetters('laporanCu',{
-			itemData: 'grafik',
-			itemDataStat: 'grafikStat',
+		...mapGetters('laporanGerakan',{
+			itemData: 'dataS',
+			itemDataStat: 'dataStatS',
 		}),
 		sortedItemData: function () {
-      return _.sortBy(this.itemData, ['periode']);
+      return _.sortBy(this.itemData.data, ['periode']);
     }
 	}
 }

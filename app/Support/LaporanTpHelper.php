@@ -1,6 +1,7 @@
 <?php
 namespace App\Support;
 
+use App\Cu;
 use App\LaporanTp;
 use App\LaporanCu;
 use Illuminate\Http\Request;
@@ -9,7 +10,7 @@ class LaporanTpHelper{
 
 	public static function konsolidasi($request){
 		$id_cu = $request->id_cu;
-		$no_ba = $request->no_ba;
+		$cu = Cu::findOrFail($id_cu);
 		$periode = $request->periode;
 
 		$laporantp = LaporanTp::whereHas('Tp',function($query) use ($id_cu){
@@ -23,7 +24,7 @@ class LaporanTpHelper{
 		}
 
 		$konsolidasi['id_cu'] = $id_cu;
-		$konsolidasi['no_ba'] = $no_ba;
+		$konsolidasi['no_ba'] = $cu->no_ba;
 		$konsolidasi['tp'] = $laporantp->count();
 		$konsolidasi['laju_inflasi'] = $request->laju_inflasi;
 		$konsolidasi['harga_pasar'] = $request->harga_pasar;
@@ -59,7 +60,13 @@ class LaporanTpHelper{
 
 		@rata_aset := (IFNULL(laporan_tp.aset,0) + IFNULL(laporan_tp.aset_lalu,0)) / 2 as rata_aset,
 
-		@p1 := IFNULL(laporan_tp.dcr, 0) / IFNULL(laporan_tp.piutang_lalai_12bulan,0) as p1,
+		CASE WHEN
+			IFNULL(laporan_tp.piutang_lalai_12bulan,0) > 0
+		THEN
+			@p1 := IFNULL(laporan_tp.dcr, 0) / IFNULL(laporan_tp.piutang_lalai_12bulan,0)
+		ELSE
+			@p1 := 1
+		END as p1,
 
 		@p2_1 := (IFNULL(laporan_tp.dcr,0) - IFNULL(laporan_tp.piutang_lalai_12bulan,0))/IFNULL(laporan_tp.piutang_lalai_1bulan,0) as p2_1,
 

@@ -813,6 +813,20 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         //     Route::delete('/jalinanIuran/{id}', 'JalinanIuranController@destroy');
         // });
 
+        //laporan gerakan
+        Route::get('/laporanGerakan', 'LaporanGerakanController@index');
+        Route::group(['middleware' => ['permission:create_laporan_cu']], function () {
+            Route::get('/laporanGerakan/create', 'LaporanGerakanController@create');
+            Route::post('/laporanGerakan/store', 'LaporanGerakanController@store');
+        });
+        Route::group(['middleware' => ['permission:update_laporan_cu']], function () {
+            Route::get('/laporanGerakan/edit/{id}', 'LaporanGerakanController@edit');
+            Route::post('/laporanGerakan/update/{id}', 'LaporanGerakanController@update');
+        });
+        Route::group(['middleware' => ['permission:destroy_laporan_cu']], function () {
+            Route::delete('/laporanGerakan/{id}', 'LaporanGerakanController@destroy');
+        });
+
         //laporan cu
         Route::get('/laporanCu/history', 'LaporanCuController@history');
         Route::group(['middleware' => ['permission:index_laporan_cu']], function () {

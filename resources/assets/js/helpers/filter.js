@@ -110,6 +110,23 @@ Vue.filter('kegiatanTipe', function(value){
 		return 'Diklat Internal PUSKOPCUINA';
 	}else if(value == 'pertemuan_bkcu_internal'){
 		return 'Pertemuan Internal PUSKOPCUINA';
+	}else if(value == 'pertemuan_cu_internal'){
+		return 'Pertemuan Internal CU';
+	}else if(value == 'diklat_cu_internal'){
+		return 'Diklat Internal CU';
+	}else if(value == 'pertemuan_eksternal'){
+		return 'Pertemuan Eksternal';
+	}else if(value == 'diklat_eksternal'){
+		return 'Diklat Eksternal';
+	}
+});
+Vue.filter('tipeRekom', function(value){
+	if(value == 1){
+		return 'Per-Lembaga';
+	}else if(value == 2){
+		return 'Per-Peserta';
+	}else if(value == 3){
+		return 'PUSKOPCUINA';
 	}
 });
 Vue.filter('statusJalinan', function(value){

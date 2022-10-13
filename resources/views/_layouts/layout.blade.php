@@ -75,7 +75,11 @@
         @yield('content')
 
         <!-- footer -->
-        @include('_layouts.footer')
+        @if($subdomain)
+            @include('_layouts.footerCu')
+        @else
+            @include('_layouts.footer')
+        @endif
         
     </div>
 

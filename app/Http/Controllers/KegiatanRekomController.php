@@ -121,13 +121,23 @@ class KegiatanRekomController extends Controller{
 			}else{
 				$kelas = KegiatanRekomHasil::create($request->all());
 			}
+		}elseif($kegiatanRekom->tipe == 3){
+			$kegiatanHasil = KegiatanRekomHasil::where('kegiatan_rekom_id', $kegiatan_rekom_id)->where('id_cu', 0)->first();
+			if($kegiatanHasil){
+				return response()
+					->json([
+						'saved' => false,
+						'message' => 'Maaf Anda ini sudah memberikan hasil rekomendasi',
+					]);	
+			}else{
+				$kelas = KegiatanRekomHasil::create($request->all());
+			}
 		}
 
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Tindaklanjut rekomendasi berhasil ditambah',
-				'id' => $kelas->id
+				'message' => 'Tindaklanjut rekomendasi berhasil ditambah'
 			]);	
 	}
 

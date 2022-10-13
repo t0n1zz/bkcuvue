@@ -19,6 +19,7 @@ import { provinces } from './modules/provinces';
 import { regencies } from './modules/regencies';
 import { districts } from './modules/districts';
 import { villages } from './modules/villages';
+import { laporanGerakan } from './modules/laporanGerakan';
 import { laporanCu } from './modules/laporanCu';
 import { laporanCuDiskusi } from './modules/laporanCuDiskusi';
 import { laporanTp } from './modules/laporanTp';
@@ -79,6 +80,7 @@ export default new Vuex.Store({
 		 regencies,
 		 districts,
 		 villages,
+		 laporanGerakan,
 		 laporanCu,
 		 laporanCuDiskusi,
 		 laporanTp,

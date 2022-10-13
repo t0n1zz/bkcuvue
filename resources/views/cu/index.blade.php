@@ -76,19 +76,6 @@
   </div>
 </div>
 
-<div class="container clearfix">
-  <div class="promo promo-light bottommargin">
-    <div class="heading-block bottommargin-sm">
-      <h3>Apa itu Credit Union?</h3>
-    </div>
-    <p>
-      Credit Union (CU) adalah lembaga yang dimiliki oleh sekumpulan orang yang saling percaya dalam ikatan pemersatu, yang
-      bersepakat untuk menabungkan uang mereka sehingga menciptakan modal bersama guna dipinjamkan di antara sesama mereka dengan bunga
-      yang layak untuk tujuan produktif dan kesejahteraan. 
-    </p>
-  </div>
-</div>
-
 <!-- ultah cu -->
 @foreach($birthdayList as $item)
   @if($item->name == $cu->name)
@@ -104,6 +91,90 @@
     </div>
   @endif
 @endforeach
+
+<!-- artikel terbaru -->
+<div class="container clearfix">
+  <div class="fancy-title title-border">
+    <h3>ARTIKEL</h3>
+  </div>
+
+  <div class="row bottommargin-sm clearfix">
+    @php $imagepath = 'images/artikel/' @endphp
+    <div class="col-lg-8 bottommargin">
+      @foreach($artikelsNew as $item)
+      <div class="ipost clearfix">
+        <div class="entry-image">
+          @if(!empty($item->gambar) && is_file($imagepath.$item->gambar.".jpg"))
+            <a href="{{ route('artikel.lihat',$item->slug) }}"><img class="image_fade" src="{{ asset($imagepath . $item->gambar . '.jpg') }}" alt="Image"></a>
+          @else
+            <a href="{{ route('artikel.lihat',$item->slug) }}"><img class="image_fade" src="{{ asset('images/image-article.jpg') }}" alt="Image"></a>
+          @endif
+        </div>
+        <div class="entry-title">
+          <h3><a href="{{ route('artikel.lihat',$item->slug) }}">{{ $item->name }}</a></h3>
+        </div>
+        <ul class="entry-meta clearfix">
+          <li><i class="icon-calendar3"></i>{{ $item->created_at->diffForHumans() }}</li>
+          @if($item->kategori)
+            <li><a href="{{ route('artikel.kategori',$item->kategori->slug) }}"><i class="icon-line-grid"></i>{{ $item->kategori->name }}</a></li>
+          @else 
+            <li><i class="icon-line-grid"></i>{{"-"}}</li> 
+          @endif
+          @if($item->penulis)
+            <li><a href="{{ route('artikel.penulis',$item->penulis->slug) }}"><i class="icon-user"></i>{{ $item->penulis->name }}</a></li>
+          @else 
+            <li><i class="icon-user"></i>{{"-"}}</li> 
+          @endif
+        </ul>
+        <div class="entry-content">
+          <p>{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->content),200) }}</p>
+        </div>
+      </div>
+      @break
+      @endforeach
+    </div>
+
+    <div class="col-lg-4 bottommargin">
+      @php $i = 0 @endphp
+      @foreach($artikelsNew as $item)
+      @php $i++ @endphp
+      @if($i != 1)
+      <div class="spost clearfix">
+        <div class="entry-image">
+          @if(!empty($item->gambar) && is_file($imagepath.$item->gambar."n.jpg"))
+            <a href="{{ route('artikel.lihat',$item->slug) }}"><img src="{{ asset($imagepath . $item->gambar . 'n.jpg') }}" alt=""></a>
+          @else
+          <a href="{{ route('artikel.lihat',$item->slug) }}"><img src="{{ asset('images/image-articlen.jpg') }}" alt=""></a>
+          @endif
+        </div>
+        <div class="entry-c">
+          <div class="entry-title">
+            <h4><a href="{{ route('artikel.lihat',$item->slug) }}">{{ $item->name }}</a></h4>
+          </div>
+          <ul class="entry-meta">
+            <li><i class="icon-calendar3"></i> {{ $item->created_at->diffForHumans()}}</li>
+          </ul>
+        </div>
+      </div>
+      @endif
+      @endforeach
+    </div>
+
+  </div>
+</div>
+
+<div class="container clearfix">
+  <div class="promo promo-light bottommargin">
+    <div class="heading-block bottommargin-sm">
+      <h3>Apa itu Credit Union?</h3>
+    </div>
+    <p>
+      Credit Union (CU) adalah lembaga yang dimiliki oleh sekumpulan orang yang saling percaya dalam ikatan pemersatu, yang
+      bersepakat untuk menabungkan uang mereka sehingga menciptakan modal bersama guna dipinjamkan di antara sesama mereka dengan bunga
+      yang layak untuk tujuan produktif dan kesejahteraan. 
+    </p>
+  </div>
+</div>
 
 <div class="section">
   <div class="container clearfix">
@@ -137,87 +208,6 @@
       </ul>
     </div>
 
-  </div>
-</div>
-
-<div class="container clearfix">
-  <div class="postcontent">
-
-    @if(!$artikelsUtama->isEmpty())
-      <div class="@if(!$artikelsNew->isEmpty()) col_three_fifth @else col_full @endif">
-        <div class="fslider flex-thumb-grid grid-6" data-speed="400" data-arrows="true" data-thumbs="true" data-easing="easeOutQuad">
-          <div class="flexslider">
-            <div class="slider-wrap">
-              @php $imagepath = 'images/artikel/' @endphp
-              @foreach($artikelsUtama as $item)
-                @if(!empty($item->gambar) && is_file($imagepath.$item->gambar.".jpg"))
-                  <div class="slide" data-thumb="{{ asset($imagepath . $item->gambar . 'n.jpg') }}">
-                @else
-                  <div class="slide" data-thumb="{{ asset( 'images/image-articlen.jpg') }}">
-                @endif
-                <a href="{{ route('artikel.lihat.cu',['cu'=>$subdomain,'slug'=>$item->slug]) }}">
-                  @if(!empty($item->gambar) && is_file($imagepath.$item->gambar.".jpg"))
-                    <img src="{{ asset($imagepath . $item->gambar . '.jpg') }}" alt="{{ $item->name }}">
-                  @else
-                    <img src="{{ asset( 'images/image-article.jpg') }}" alt="{{ $item->name }}">
-                  @endif
-                  <div class="overlay">
-                    <div class="text-overlay">
-                      <div class="text-overlay-title">
-                        <h3>{{ $item->name }}</h3>
-                      </div>
-                      <div class="text-overlay-meta">
-                        <span>{{ $item->kategori ? $item->kategori->name : "-" }}</span>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              @endforeach
-
-            </div>
-          </div>
-        </div>
-      </div>
-    @endif
-
-    @if(!$artikelsNew->isEmpty())
-      <div class="col_two_fifth col_last">
-
-        @foreach($artikelsNew as $item)
-        <div class="spost clearfix">
-          <div class="entry-c">
-            <div class="entry-title">
-              <h4><a href="{{ route('artikel.lihat.cu',['cu'=>$subdomain,'slug'=>$item->slug]) }}">{{ $item->name }}</a></h4>
-            </div>
-          </div>
-        </div>
-        @endforeach
-
-      </div>
-    @endif
-
-  </div>
-
-  <div class="sidebar col_last">
-    <div class="sidebar-widgets-wrap clearfix">
-      <div class="widget widget_links clearfix">
-        @if(!$kategories->isEmpty())
-          <h4>Kategori Artikel</h4>
-        @endif
-        @php  $i = 0  @endphp
-        @foreach($kategories as $items)
-          @php $i++ @endphp
-          <div class="col_half nobottommargin @if ($i > 1) col_last  @endif">
-            <ul>
-              @foreach($items as $item)
-                <li><a href="{{ route('artikel.kategori.cu',['cu'=>$subdomain,'slug'=>$item->slug]) }}">{{ $item->name }}</a></li>
-              @endforeach
-            </ul>
-          </div>
-        @endforeach
-      </div>
-    </div>
   </div>
 </div>
 

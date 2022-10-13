@@ -52,6 +52,7 @@
 					<option disabled value="">Silahkan pilih tipe tindak lanjut</option>
 					<option value="1">Per lembaga</option>
 					<option value="2">Per peserta</option>
+					<option value="3">PUSKOPCUINA</option>
 				</select>
 
 				<!-- error message -->

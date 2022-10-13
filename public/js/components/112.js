@@ -198,8 +198,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         limit: 10,
         page: 1
       },
-      dataview: '',
-      isNoButtonRow: '',
       excelDownloadUrl: '',
       columnData: [{
         title: 'No.',
@@ -264,8 +262,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     fetch: function fetch(params) {
-      this.dataview = 'list';
-      this.isNoButtonRow = false;
+      ;
       this.$store.dispatch(this.kelas + '/index', params);
       this.excelDownloadUrl = this.kelas;
     },
@@ -290,26 +287,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (state == 'hapus') {
         this.modalState = 'confirm-tutup';
-        this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.nama + ' ini?';
+        this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.name + ' ini?';
         this.modalButton = 'Iya, Hapus';
         this.modalColor = '';
-      } else if (state == 'status') {
-        this.modalState = 'normal1';
-        this.modalTitle = 'Ubah status ' + this.title + ' ' + this.selectedItem.nama + ' ini?';
-        this.modalColor = 'bg-primary';
-      } else if (state == 'keteranganBatal') {
-        this.modalState = 'normal2';
-        this.modalTitle = 'Keterangan pembatalan ' + this.title + ' ' + this.selectedItem.nama;
-        this.modalColor = 'bg-primary';
-        this.keteranganBatal = this.selectedItem.keteranganBatal;
       }
-    },
-    modalKeteranganBatalOpen: function modalKeteranganBatalOpen(value) {
-      this.modalShow = true;
-      this.modalState = 'normal2';
-      this.modalTitle = 'Keterangan pembatalan ' + this.title + ' ' + this.selectedItem.nama;
-      this.modalColor = 'bg-primary';
-      this.keteranganBatal = value;
     },
     modalTutup: function modalTutup() {
       this.modalShow = false;
@@ -318,21 +299,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     modalConfirmOk: function modalConfirmOk() {
       if (this.state == 'hapus') {
         this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
-      }
-    },
-    gridColor: function gridColor(value) {
-      if (value == 1) {
-        return 'border-left-primary-400';
-      } else if (value == 2) {
-        return 'border-left-warning-400';
-      } else if (value == 3) {
-        return 'border-left-secondary-400';
-      } else if (value == 4) {
-        return 'border-left-success-400';
-      } else if (value == 5) {
-        return 'border-left-primary-400';
-      } else if (value == 6) {
-        return 'border-left-danger-400';
       }
     }
   },
@@ -453,8 +419,6 @@ var render = function () {
             query: _vm.query,
             itemDataStat: _vm.itemDataStat,
             excelDownloadUrl: _vm.excelDownloadUrl,
-            isNoButtonRow: _vm.isNoButtonRow,
-            dataview: _vm.dataview,
           },
           on: { fetch: _vm.fetch },
           scopedSlots: _vm._u([

@@ -368,7 +368,7 @@
 			}
 			if(this.$route.meta.mode !== 'edit' && this.form.id_cu === undefined){
 				this.form.id_cu = this.currentUser.id_cu;
-				this.changeCU(this.currentUser.id_cu);
+				this.changeCU(this.currentUser.id_cu);f
 			}
 		},
 		watch: {

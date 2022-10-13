@@ -34,7 +34,7 @@
 
       <!-- Posts -->
       <div id="posts" class="small-thumbs alt">
-        @php $imagepath = 'images/produk/' @endphp
+        @php $imagepath = 'images/produk_cu/' @endphp
         @foreach($produks as $item)
         <div class="entry clearfix">
           <div class="entry-image">

@@ -370,19 +370,7 @@
 				}else if(this.$route.meta.mode === 'editTpDraft'){
 					this.$router.push({name: 'laporanTpDraft'});
 				}else{
-					if(this.currentUser.id_cu == 0){
-						if(this.form.id_cu == 0){
-							this.$router.push({name: this.kelas});
-						}else{
-							if(this.form.id_tp == 0){
-								this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu, tp: 0}});
-							}else{
-								this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu, tp: this.form.id_tp}});
-							}
-						}
-					}else{
-						this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu, tp: this.form.id_tp}});
-					}
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.form.id_cu, tp: this.form.id_tp}});
 				}
 			},
 		},

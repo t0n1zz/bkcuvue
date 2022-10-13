@@ -357,6 +357,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -2631,6 +2635,24 @@ var render = function () {
                     _vm._v(" "),
                     _c("option", { attrs: { value: "pertemuan_bkcu" } }, [
                       _vm._v("Pertemuan PUSKOPCUINA"),
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "diklat_cu_internal" } }, [
+                      _vm._v("Diklat Internal CU"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "option",
+                      { attrs: { value: "pertemuan_cu_internal" } },
+                      [_vm._v("Pertemuan Internal CU")]
+                    ),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "diklat_eksternal" } }, [
+                      _vm._v("Diklat Eksternal"),
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "pertemuan_eksternal" } }, [
+                      _vm._v("Pertemuan Eksternal"),
                     ]),
                     _vm._v(" "),
                     _vm.currentUser.id_cu == 0

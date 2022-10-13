@@ -24,7 +24,7 @@
 						</div>
 
 						<!-- select -->
-						<select class="form-control" name="tercapai" v-model="formRekomHasil.tercapai" data-width="100%" v-validate="'required'" data-vv-as="Tindaklanjut">
+						<select class="form-control" name="tercapai" v-model="formRekomHasil.tercapai" data-width="100%" v-validate="'required'" data-vv-as="Tindaklanjut" :disabled="isReadOnly">
 							<option disabled value="">Silahkan pilih kondisi tindaklanjut</option>
 							<option value="Sudah Tercapai">Sudah Tercapai</option>
 							<option value="Belum Tercapai">Belum Tercapai</option>
@@ -34,12 +34,12 @@
 
 					<div class="input-group mb-3" v-if="this.currentUser.id_cu === 0">
 						<div class="input-group-prepend">
-							<span class="input-group-text">Pilih CU</span>
+							<span class="input-group-text">Pilih Lembaga</span>
 						</div>
 
 						<!-- select -->
-						<select class="form-control" name="id_cu" v-model="formRekomHasil.id_cu" data-width="100%" :disabled="modelCuStat === 'loading'">
-							<option disabled value="">Silahkan pilih CU</option>
+						<select class="form-control" name="id_cu" v-model="formRekomHasil.id_cu" data-width="100%" :disabled="isReadOnly">
+							<option disabled value="">Silahkan pilih Lembaga</option>
 							<slot></slot>
 							<option value="0"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>PUSKOPCUINA</span></option>
 							<option disabled value="">----------------</option>
@@ -60,7 +60,7 @@
 						</h6>
 
 						<!-- textarea -->
-						<textarea rows="3" type="text" name="keterangan" class="form-control" placeholder="Silahkan masukkan keterangan" v-validate="'required'" data-vv-as="Keterangan" v-model="formRekomHasil.keterangan"></textarea>
+						<textarea rows="3" type="text" name="keterangan" class="form-control" placeholder="Silahkan masukkan keterangan" v-validate="'required'" data-vv-as="Keterangan" v-model="formRekomHasil.keterangan" :readonly="isReadOnly"></textarea>
 					</div>
 				</div>
 
@@ -71,24 +71,31 @@
 						<h6>Bukti-bukti</h6>
 
 						<!-- textarea -->
-						<textarea rows="3" type="text" name="bukti" class="form-control" placeholder="Silahkan masukkan bukti" v-model="formRekomHasil.bukti"></textarea>
+						<textarea rows="3" type="text" name="bukti" class="form-control" placeholder="Silahkan masukkan bukti" v-model="formRekomHasil.bukti" :readonly="isReadOnly"></textarea>
 					</div>
 				</div>
 
 				<!-- foto -->
-				<div class="col-md-12">
+				<!-- <div class="col-md-12">
 					<div class="form-group mb-1">
-							<!-- title -->
+
 							<button type="button" class="btn btn-light btn-block" @click.prevent="showFoto">
 								Foto
 							</button>
 
-							<!-- imageupload -->
-							<div class="card card-body mt-2 mb-1" v-show="isShowFoto">
-								<app-image-upload :image_loc="'/images/rekom/'" :image_temp="formRekomHasil.gambar" v-model="formRekomHasil.gambar"></app-image-upload>
+							<div v-show="isShowFoto">
+								<div v-if="!isReadOnly">
+									<div class="card card-body mt-2 mb-1">
+										<app-image-upload :image_loc="'/images/rekom/'" :image_temp="formRekomHasil.gambar" v-model="formRekomHasil.gambar"></app-image-upload>
+									</div>
+								</div>
+								<div class="card-body text-center" v-else>
+									<img :src="'/images/rekom/' + formRekomHasil.gambar + 'n.jpg'" class="img-rounded img-fluid wmin-sm" v-if="formRekomHasil.gambar">
+									<img :src="'/images/no_image.jpg'" class="img-rounded img-fluid wmin-sm" v-else>
+								</div>
 							</div>
 					</div>
-				</div>
+				</div> -->
 
 				<!-- divider -->
 				<div class="col-md-12">
@@ -96,7 +103,7 @@
 				</div>
 
 				<!-- button -->
-				<div class="col-md-12">
+				<div class="col-md-12" v-if="!isReadOnly">
 					<template v-if="!isModal">
 						<button type="submit" class="btn btn-primary btn-block pb-2" :disabled="formRekomHasil.tercapai == ''">
 							<i class="icon-floppy-disk"></i> Simpan</button>
@@ -139,7 +146,7 @@
 	import appImageUpload from '../../components/ImageUpload.vue';
 
 	export default {
-		props: ['selected','kelas','isModal','mode','kegiatan_rekom_id'],
+		props: ['selected','kelas','isModal','mode','kegiatan_rekom_id','isReadOnly'],
 		components: {
 			formInfo,
 			message,
@@ -177,6 +184,9 @@
 					}else if(this.selected.tipe == 2){
 						// peserta
 						this.formRekomHasil = Object.assign({}, _.find(this.selected.hasil, {id_user: this.currentUser.id}));
+					}else if(this.selected.tipe == 3){
+						// puskopcuina
+						this.formRekomHasil = Object.assign({}, _.find(this.selected.hasil, {id_cu: 0}));
 					}
 					if(this.formRekomHasil.foto){
 						this.isShowFoto = true;
@@ -196,7 +206,7 @@
 				}
 				this.formRekomHasil.id_user = this.currentUser.id;
 
-				const formData = toMulipartedForm(this.formRekomHasil, this.$route.meta.mode);
+				const formData = toMulipartedForm(this.formRekomHasil, this.mode);
 				this.$validator.validateAll('formRekomHasil').then((result) => {
 					if (result) {
 						if(this.formRekomHasil.id){
