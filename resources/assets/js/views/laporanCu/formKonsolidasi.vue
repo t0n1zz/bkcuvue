@@ -192,7 +192,7 @@
 							<div class="form-group">
 
 								<!-- title -->
-								<h5>Aset Likuid Tidak Menghasilkan <info-icon :message="'Aset Likuid Tidak Menghasilkan atau Investasi Likuid terdiri dari Tabungan, Giro Bank, Simpanan di Puskopdit BKCU Kalimantan dan Simpanan di lembaga lainnya'"></info-icon></h5>
+								<h5>Aset Likuid Tidak Menghasilkan <info-icon :message="'Aset Likuid Tidak Menghasilkan atau Investasi Likuid terdiri dari Tabungan, Giro Bank, Simpanan di PUSKOPCUINA dan Simpanan di lembaga lainnya'"></info-icon></h5>
 
 								<!-- text -->
 								<cleave 

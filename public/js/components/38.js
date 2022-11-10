@@ -16774,7 +16774,7 @@ var render = function () {
                             ? _c("score-p1", {
                                 attrs: {
                                   form: _vm.form,
-                                  jumlahIndikator: "56",
+                                  jumlahIndikator: "52",
                                   bobotSkor: "40",
                                   mode: _vm.$route.meta.mode,
                                   nilaiSkorCUP1A: _vm.nilaiSkorCUP1A,

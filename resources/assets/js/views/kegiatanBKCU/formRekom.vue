@@ -5,6 +5,30 @@
 		</message>
 
 		<form @submit.prevent="save" enctype="multipart/form-data" data-vv-scope="formRekom">
+
+			<div class="form-group" :class="{'has-error' : errors.has('formRekom.name')}">
+				<!-- title -->
+				<h5 :class="{ 'text-danger' : errors.has('formRekom.no')}">
+					<i class="icon-cross2" v-if="errors.has('formRekom.no')"></i>
+					No.: <wajib-badge></wajib-badge>
+				</h5>
+
+				<!-- text -->
+				<cleave 
+					v-model="formRekom.no" 
+					class="form-control" 
+					:options="cleaveOption.number4"
+					v-validate="'required'" data-vv-as="Nomor rekomendasi"
+					placeholder="Silahkan masukkan nomor rekomendasi"></cleave>
+
+				<!-- error message -->
+				<small class="text-muted text-danger" v-if="errors.has('formRekom.no')">
+					<i class="icon-arrow-small-right"></i> {{ errors.first('formRekom.no') }}
+				</small>
+				<small class="text-muted" v-else>&nbsp;
+				</small>
+			</div>
+
       <!-- name -->
 			<div class="form-group" :class="{'has-error' : errors.has('formRekom.name')}">
 
@@ -93,13 +117,15 @@
 	import message from "../../components/message.vue";
 	import formInfo from "../../components/formInfo.vue";
 	import wajibBadge from "../../components/wajibBadge.vue";
+	import Cleave from 'vue-cleave-component';
 
 	export default {
 		props: ['mode','selected','kegiatan_id','kelas'],
 		components: {
 			formInfo,
 			message,
-			wajibBadge
+			wajibBadge,
+			Cleave
 		},
 		data() {
 			return {
@@ -113,6 +139,14 @@
         },
         penjelasanStatus: '',
 				submited: false,
+				cleaveOption: {
+					number4: {
+            numeral: true,
+            numeralIntegerScale: 4,
+            numeralDecimalScale: 0,
+            stripLeadingZeroes: false
+          },
+				},
 			}
 		},
 		created() {

@@ -372,7 +372,7 @@
                 <score-p1
                   v-if="formStat == 'success'"
                   :form="form"
-                  :jumlahIndikator="'56'"
+                  :jumlahIndikator="'52'"
                   :bobotSkor="'40'"
                   :mode="$route.meta.mode"
                   :nilaiSkorCUP1A="nilaiSkorCUP1A"

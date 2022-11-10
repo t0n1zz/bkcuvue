@@ -98,7 +98,7 @@
 				</div> -->
 
 				<!-- divider -->
-				<div class="col-md-12">
+				<div class="col-md-12" v-if="!isReadOnly">
 					<hr>
 				</div>
 

@@ -3558,7 +3558,7 @@ var render = function () {
                           _c("info-icon", {
                             attrs: {
                               message:
-                                "Aset Likuid Tidak Menghasilkan atau Investasi Likuid terdiri dari Tabungan, Giro Bank, Simpanan di Puskopdit BKCU Kalimantan dan Simpanan di lembaga lainnya",
+                                "Aset Likuid Tidak Menghasilkan atau Investasi Likuid terdiri dari Tabungan, Giro Bank, Simpanan di PUSKOPCUINA dan Simpanan di lembaga lainnya",
                             },
                           }),
                         ],

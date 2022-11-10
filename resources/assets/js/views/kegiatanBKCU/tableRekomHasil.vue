@@ -6,7 +6,7 @@
 					<!-- button desktop  -->
           <div class="col-md-9 col-lg-9 d-none d-sm-block">
 						<template v-if="tipeUser == 'panitia' || tipeUser == 'fasilitator'">
-							<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahHasil')">
+							<!-- <button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahHasil')">
 								<i class="icon-plus3"></i> Tambah Hasil
 							</button>
 
@@ -16,13 +16,13 @@
 
 							<button class="btn btn-light mb-1" @click.prevent="modalOpen('hapusHasil')" :disabled="!selectedItem.id">
 								<i class="icon-bin"></i> Hapus Hasil
-							</button>
+							</button> -->
 						</template>
 					</div>
 
 					<!-- button mobile -->
           <div class="col-md-12 d-block d-sm-none">
-						<template v-if="tipeUser == 'panitia' || tipeUser == 'fasilitator'">
+						<!-- <template v-if="tipeUser == 'panitia' || tipeUser == 'fasilitator'">
 							<button class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('tambahHasil')">
 								<i class="icon-plus3"></i> Tambah Hasil
 							</button>
@@ -34,7 +34,7 @@
 							<button class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('hapusHasil')" :disabled="!selectedItem.id">
 								<i class="icon-bin"></i> Hapus Hasil
 							</button>
-						</template>
+						</template> -->
 
 						<!-- excel -->
 						<json-excel 

@@ -18,15 +18,15 @@ class KegiatanRekom extends Model {
     ];
     
     protected $fillable = [
-        'kegiatan_id','name','pic','waktu','tipe'
+        'kegiatan_id','name','pic','waktu','tipe','no'
     ];
 
     protected $allowedFilters = [
-        'kegiatan_id','name','pic','waktu','tipe','created_at','updated_at'
+        'kegiatan_id','name','pic','waktu','tipe','created_at','updated_at','no'
     ];
 
     protected $orderable = [
-        'kegiatan_id','name','pic','waktu','tipe','created_at','updated_at'
+        'kegiatan_id','name','pic','waktu','tipe','created_at','updated_at','no'
     ];
 
     public function Kegiatan(){

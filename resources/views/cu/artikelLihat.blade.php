@@ -179,7 +179,7 @@
 
               <ul class="tab-nav clearfix">
                 <li><a href="#tabs-1">CU</a></li>
-                <li><a href="#tabs-2">BKCU Kalimantan</a></li>
+                <li><a href="#tabs-2">PUSKOPCUINA</a></li>
               </ul>
 
               <div class="tab-container">

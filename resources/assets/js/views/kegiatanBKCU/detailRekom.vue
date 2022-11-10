@@ -26,10 +26,10 @@
 								<div class="col-md-12">
 									<div class="card mb-2 bg-success">
 										<div class="card-header">
-											<h5 class="card-title"><b>Rekomendasi {{ props.index + 1 }}</b> </h5>
+											<h5 class="card-title"><b>Rekomendasi {{ props.item.no }}</b> </h5>
 										</div>
 										<div class="card-body">
-											<h6 v-html="props.item.name"></h6>
+											<textarea rows="5" type="text" name="rekomendasi" class="form-control" v-model="props.item.name" readonly></textarea>
 										</div>
 									</div>
 									<div class="row">
@@ -86,59 +86,6 @@
 										</div>
 									</div>
 								</div>
-								<!-- form -->
-								<!-- if per-lembaga -->
-								<div class="col-md-12" v-if="props.item.tipe == 1">
-									<hr/>
-									<div class="card card-body mb-0">
-										<form-rekom-hasil 
-											:selected="props.item"
-											:kelas="kelas"
-											:isModal="false"
-											:isReadOnly="false"
-											@tutup="modalTutup" v-if="tipeUser == 'peserta'"></form-rekom-hasil>
-										<table-rekom-hasil
-											:kelas="kelas"
-											:selected="props.item"
-											:tipeUser="tipeUser"
-											@fetch="fetch" v-else></table-rekom-hasil>
-									</div>
-								</div>
-								<!-- if per-peserta -->
-								<div class="col-md-12" v-else-if="props.item.tipe == 2">
-									<hr/>
-									<div class="card card-body mb-0">
-										<form-rekom-hasil 
-											:selected="props.item"
-											:kelas="kelas"
-											:isModal="false"
-											:isReadOnly="false"
-											@tutup="modalTutup" v-if="tipeUser == 'peserta'"></form-rekom-hasil>
-										<table-rekom-hasil
-											:kelas="kelas"
-											:selected="props.item"
-											:tipeUser="tipeUser"
-											@fetch="fetch" v-else></table-rekom-hasil>
-									</div>
-								</div>
-								<!-- if puskopcuina -->
-								<div class="col-md-12" v-else-if="props.item.tipe == 3">
-									<hr/>
-									<div class="card card-body mb-0">
-										<form-rekom-hasil 
-											:selected="props.item"
-											:kelas="kelas"
-											:isModal="false"
-											:isReadOnly="true"
-											@tutup="modalTutup" v-if="tipeUser == 'peserta'"></form-rekom-hasil>
-										<form-rekom-hasil 
-											:selected="props.item"
-											:kelas="kelas"
-											:isModal="false"
-											:isReadOnly="false"
-											@tutup="modalTutup" v-else></form-rekom-hasil>
-									</div>
-								</div>
 								<div class="col-md-12" v-if="tipeUser == 'panitia' || tipeUser == 'fasilitator'">
 									<div class="row" >
 										<div class="col-md-12"><hr/></div>
@@ -155,6 +102,47 @@
 										</div>
 									</div>
 								</div>
+								
+								
+							</div>
+						</div>
+						<div class="card-footer">
+							<div class="col-md-12 pr-0 pl-0">
+								<!-- form -->
+								<!-- if per-lembaga / per-peserta -->
+								<div v-if="props.item.tipe == 1 || props.item.tipe == 2">
+									<div class="card card-body mb-0" v-if="tipeUser == 'peserta'">
+										<form-rekom-hasil 
+											:selected="props.item"
+											:kelas="kelas"
+											:isModal="false"
+											:isReadOnly="false"
+											@tutup="modalTutup"></form-rekom-hasil>
+									</div>
+								</div>
+								<!-- if puskopcuina -->
+								<div v-else-if="props.item.tipe == 3">
+									<div class="card card-body mb-0" v-if="tipeUser == 'peserta'">
+										<form-rekom-hasil 
+											:selected="props.item"
+											:kelas="kelas"
+											:isModal="false"
+											:isReadOnly="true"
+											@tutup="modalTutup" v-if="currentUser.id_cu != 0"></form-rekom-hasil>
+										<form-rekom-hasil 
+											:selected="props.item"
+											:kelas="kelas"
+											:isModal="false"
+											:isReadOnly="false"
+											@tutup="modalTutup" v-else></form-rekom-hasil>
+									</div>
+								</div>
+								<!-- hasil -->
+								<table-rekom-hasil
+									:kelas="kelas"
+									:selected="props.item"
+									:tipeUser="tipeUser"
+									@fetch="fetch" v-if="tipeUser == 'panitia' || tipeUser == 'fasilitator'"></table-rekom-hasil>
 							</div>
 						</div>
 					</div>
@@ -226,13 +214,22 @@
 				dataview: 'grid',
 				isNoButtonRow:'',
 				query: {
-					order_column: "created_at",
-					order_direction: "desc",
+					order_column: "no",
+					order_direction: "asc",
 					filter_match: "and",
 					limit: 10,
 					page: 1
 				},
 				columnData: [
+					{
+						title: 'No',
+						name: 'no',
+						tipe: 'numeric',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
 					{
 						title: 'Nama',
 						name: 'name',

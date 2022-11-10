@@ -327,8 +327,8 @@
 						]
 					},
 					{
-						name: 'Diklat BKCU',
-						keterangan: 'Mengelola data diklat yang diselenggarakan oleh BKCU Kalimantan',
+						name: 'Diklat PUSKOPCUINA',
+						keterangan: 'Mengelola data diklat yang diselenggarakan oleh PUSKOPCUINA',
 						icon: 'icon-graduation2',
 						secondRow: true,
 						tipe: 'all',
@@ -376,8 +376,8 @@
 						]
 					},
 					{
-						name: 'Pertemuan BKCU',
-						keterangan: 'Mengelola data pertemuan yang diselenggarakan oleh BKCU Kalimantan',
+						name: 'Pertemuan PUSKOPCUINA',
+						keterangan: 'Mengelola data pertemuan yang diselenggarakan oleh PUSKOPCUINA',
 						icon: 'icon-ungroup',
 						secondRow: true,
 						tipe: 'all',
@@ -426,7 +426,7 @@
 					},
 					{
 						name: 'Tempat',
-						keterangan: 'Mengelola data tempat diklat dan pertemuan yang diselenggarakan oleh BKCU Kalimantan',
+						keterangan: 'Mengelola data tempat diklat dan pertemuan yang diselenggarakan oleh PUSKOPCUINA',
 						icon: 'icon-location4',
 						secondRow: true,
 						tipe: 'bkcu',

@@ -524,7 +524,6 @@ class KegiatanBKCUController extends Controller{
 		]);
 	}
 
-	
 	public function checkPeserta($kegiatan_id, $aktivis_id)
 	{
 		$table_data = KegiatanPeserta::where('kegiatan_id',$kegiatan_id)->where('aktivis_id',$aktivis_id)->first();
@@ -570,10 +569,12 @@ class KegiatanBKCUController extends Controller{
 		$this->validate($request,Kegiatan::$rules);
 
 		if($kegiatan_tipe == 'diklat_bkcu'){
-			$name = KodeKegiatan::where('id', $request->id_kode)->first();
-			$name = $name->name;
+			$kodeKegiatan = KodeKegiatan::where('id', $request->id_kode)->first();
+			$name = $kodeKegiatan->name;
+			$kode_diklat = $kodeKegiatan->kode;
 		}else{
 			$name = $request->name;
+			$kode_diklat = $request->kode_diklat;
 		}
 
 		// processing single image upload
@@ -588,11 +589,12 @@ class KegiatanBKCUController extends Controller{
 			$fileName = '';
 		}
 
-		$kelas = Kegiatan::create($request->except('tipe','status','gambar','name') + [
+		$kelas = Kegiatan::create($request->except('tipe','status','gambar','name','kode_diklat') + [
 			'tipe' => $kegiatan_tipe, 
 			'status' => '1', 
 			'gambar' => $fileName,
-			'name' => $name
+			'name' => $name,
+			'kode_diklat' => $kode_diklat
 		]);
 
 		$sasaran_ar = array();
@@ -938,14 +940,17 @@ class KegiatanBKCUController extends Controller{
 		$kelas = Kegiatan::findOrFail($id);
 
 		if($kelas->tipe == 'diklat_bkcu'){
-			$name = KodeKegiatan::where('id', $request->id_kode)->first();
-			if($name){
-				$name = $name->name;
+			$kodeKegiatan = KodeKegiatan::where('id', $request->id_kode)->first();
+			if($kodeKegiatan){
+				$name = $kodeKegiatan->name;
+				$kode_diklat = $kodeKegiatan->kode;
 			}else{
 				$name = $request->name;
+				$kode_diklat = $request->kode_diklat;
 			}
 		}else{
 			$name = $request->name;
+			$kode_diklat = $request->kode_diklat;
 		}
 
 		// processing single image upload
@@ -960,9 +965,10 @@ class KegiatanBKCUController extends Controller{
 			$fileName = '';
 		}
 
-		$kelas->update($request->except('gambar','name') + [
+		$kelas->update($request->except('gambar','name','kode_diklat') + [
 			'gambar' => $fileName,
 			'name' => $name,
+			'kode_diklat' => $kode_diklat
 		]);
 
 		$sasaran_ar = array();

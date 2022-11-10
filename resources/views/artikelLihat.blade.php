@@ -178,7 +178,7 @@
             <div class="tabs nobottommargin clearfix" id="sidebar-tabs">
 
               <ul class="tab-nav clearfix">
-                <li><a href="#tabs-1">BKCU Kalimantan</a></li>
+                <li><a href="#tabs-1">PUSKOPCUINA</a></li>
                 <li><a href="#tabs-2">CU</a></li>
               </ul>
 
