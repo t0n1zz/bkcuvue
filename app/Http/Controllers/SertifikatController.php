@@ -38,7 +38,7 @@ class SertifikatController extends Controller
 
   public function indexKode()
   {
-    $table_data = SertifikatGenerate::with('peserta','kegiatan')->advancedFilter();
+    $table_data = SertifikatGenerate::with('peserta', 'kegiatan')->advancedFilter();
 
     return response()
       ->json([

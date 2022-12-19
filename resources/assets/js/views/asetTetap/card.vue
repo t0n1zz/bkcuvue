@@ -9,6 +9,16 @@
         />
         <img :src="'/images/no_image.jpg'" class="img-fluid img-preview rounded" v-else />
       </div>
+      <!-- divider -->
+      <div class="col-16"><hr/></div>
+      <div class="card-img-actions">
+        <img
+          :src="'/images/asetTetap/' + itemData.nota + '.jpg'"
+          class="img-fluid img-preview rounded"
+          v-if="itemData.nota"
+        />
+        <img :src="'/images/no_image.jpg'" class="img-fluid img-preview rounded" v-else />
+      </div>
     </div>
 
     <div class="media-body">
@@ -83,6 +93,18 @@
             <li>
               <b>Total Harga:</b>
               <check-value :value="itemData.total_harga" valueType="currency"></check-value>
+            </li>
+            <li>
+              <b>Bulan Penyusutan:</b>
+              <check-value :value="itemData.bulan_penyusutan" valueType="currency"></check-value>
+            </li>
+            <li>
+              <b>Sisa Bulan Penyusutan:</b>
+              <check-value :value="itemData.sisa_bulan_penyusutan" valueType="currency"></check-value>
+            </li>
+            <li>
+              <b>Sisa Penyusutan:</b>
+              <check-value :value="itemData.sisa_penyusutan" valueType="currency"></check-value>
             </li>
             
           </ul>
