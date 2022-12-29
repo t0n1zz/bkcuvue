@@ -103,6 +103,10 @@
         Copyrights &copy; <?php echo date("Y") ?> All Rights Reserved by PUSKOPCUINA<br>
       </div>
 
+      <div class="clear"></div>
+
+      <i class="icon-envelope2"></i> {{ $cu->email }} <span class="middot">&middot;</span> <i class="icon-headphones"></i> {{ $cu->telp }}
+
     </div>
 
   </div><!-- #copyrights end -->

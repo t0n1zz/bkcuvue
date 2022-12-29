@@ -116,7 +116,6 @@
 
         </div>
 
-
       </div>
 
     </div><!-- .footer-widgets-wrap end -->
@@ -140,15 +139,16 @@
             <i class="icon-facebook"></i>
           </a>
 
-          <a href="https://twitter.com/puskopcuina" class="social-icon si-small si-borderless si-twitter" target="_blank">
-            <i class="icon-twitter"></i>
-            <i class="icon-twitter"></i>
-          </a>
-
           <a href="https://www.instagram.com/puskopcuina/" class="social-icon si-small si-borderless si-instagram" target="_blank">
             <i class="icon-instagram2"></i>
             <i class="icon-instagram2"></i>
           </a>
+
+          <a href="https://www.youtube.com/@PuskopcuinaOfficial" class="social-icon si-small si-borderless si-youtube" target="_blank">
+            <i class="icon-youtube"></i>
+            <i class="icon-youtube"></i>
+          </a>
+
         </div>
 
         <div class="clear"></div>

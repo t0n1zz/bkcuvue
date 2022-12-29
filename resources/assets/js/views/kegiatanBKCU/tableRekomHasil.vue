@@ -67,18 +67,18 @@
 
 				<!-- item desktop -->
 				<template slot="item-desktop" slot-scope="props">
-					<tr :class="{ 'bg-info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)">
+					<tr>
 						<td v-if="!columnData[0].hide">
 							{{ props.index + 1 }}
 						</td>
 						<td v-if="!columnData[1].hide">
-							<check-value :value="props.item.tercapai"></check-value>
+							<check-value :value="props.item.tercapai" :valueType="''"></check-value>
 						</td>
 						<td v-if="!columnData[2].hide">
-							<check-value :value="props.item.keterangan"></check-value>
+							<check-value :value="props.item.keterangan" :valueType="''"></check-value>
 						</td>
 						<td v-if="!columnData[3].hide">
-							<check-value :value="props.item.bukti"></check-value>
+							<check-value :value="props.item.bukti" :valueType="''"></check-value>
 						</td>
 						<td v-if="!columnData[4].hide">
 							<check-value :value="props.item.cu.name" v-if="props.item.cu"></check-value>

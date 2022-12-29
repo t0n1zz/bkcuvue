@@ -142,7 +142,7 @@
 									:kelas="kelas"
 									:selected="props.item"
 									:tipeUser="tipeUser"
-									@fetch="fetch" v-if="tipeUser == 'panitia' || tipeUser == 'fasilitator'"></table-rekom-hasil>
+									@fetch="fetch" v-if="tipeUser == 'panitia' || tipeUser == 'fasilitator' || currentUser.id_cu == 0"></table-rekom-hasil>
 							</div>
 						</div>
 					</div>
