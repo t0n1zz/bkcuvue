@@ -4,6 +4,10 @@ export default {
         return axios.get('/api/kodeKegiatan', { params: p });
     },
 
+    get: function() {
+        return axios.get('/api/kodeKegiatan/get');
+    },
+
     create: function() {
         return axios.get('/api/kodeKegiatan/create');
     },

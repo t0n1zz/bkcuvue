@@ -119,7 +119,7 @@
 			this.formData = Object.assign({},this.selectedItem);
 		},
 		watch: {
-			modelLokasiStat(value){
+			modelKondisiStat(value){
 				if(value === "success"){
 					this.formData = Object.assign({},this.selectedItem);
 				}
@@ -129,15 +129,15 @@
 			save(){
 				this.$validator.validateAll('formData').then((result) => {
 					if (result) {
-						this.$store.dispatch(this.kelas + '/update',[this.selectedItem.id, this.formData]);
+						this.$store.dispatch(this.kelas + '/updateKondisi',[this.selectedItem.id, this.formData]);
 					}else{
 						this.submited = true;
 					}	
 				});
 			},
 			fetch(){
-				this.$store.dispatch('asetTetapLokasi/resetDataS');
-				this.$store.dispatch('asetTetapLokasi/get');
+				this.$store.dispatch('asetTetapKondisi/resetDataS');
+				this.$store.dispatch('asetTetapKondisi/get');
 			},
 			tutup(){
 				this.$emit('tutup');
@@ -147,11 +147,11 @@
 			...mapGetters('auth',{
 				currentUser: 'currentUser'
 			}),
-			...mapGetters('asetTetapLokasi',{
-				modelLokasi: 'dataS',
-				modelLokasiStat: 'dataStatS',
-				updateLokasiResponse: 'update',
-				updateLokasiStat: 'updateStat',
+			...mapGetters('asetTetapKondisi',{
+				modeKondisi: 'dataS',
+				modelKondisiStat: 'dataStatS',
+				updateKondisiResponse: 'update',
+				updateKondisiStat: 'updateStat',
 			}),
 		}
 	}

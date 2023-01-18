@@ -12,7 +12,7 @@
       <img src="{{ asset('images/panduan/profilCU.png') }}" class="img-thumbnail" alt="">
     </div>
     <p>
-        Halaman profil CU berfungsi untuk mengubah informasi CU pada aplikasi SIMO yang nanti juga akan muncul pada halaman publik di website <a href="http://puskopcuina.org" target="_blank">PUSKOPCUINA</a>. dengan format <b><i>nama-cu.puskopcuina.org</i></b> jadi contohnya jika nama cu adalah <b>coba coba</b> maka alamat website di halaman publik adalah <b><i>coba-coba.puskopcuina.org</i></b>
+        Halaman profil CU berfungsi untuk mengubah informasi CU pada aplikasi SIMO yang nanti juga akan muncul pada halaman publik di website <a href="https://puskopcuina.org" target="_blank">PUSKOPCUINA</a>. dengan format <b><i>nama-cu.puskopcuina.org</i></b> jadi contohnya jika nama cu adalah <b>coba coba</b> maka alamat website di halaman publik adalah <b><i>coba-coba.puskopcuina.org</i></b>
     </p>
 
     <div class="mb-3 text-center">

@@ -1,34 +1,34 @@
 export default {
-  
-  index: function( p ){
-    return axios.get('/api/asetTetapLokasi' , {params: p});
-  },
 
-  get: function(){
-    return axios.get('/api/asetTetapLokasi/get');
-  },
-  
-  create: function(){
-    return axios.get('/api/asetTetapLokasi/create');
-  },
+    index: function(p) {
+        return axios.get('/api/asetTetapLokasi', { params: p });
+    },
 
-  store: function ( form ){
-    return axios.post('/api/asetTetapLokasi/store', form);
-  },
+    get: function() {
+        return axios.get('/api/asetTetapLokasi/get');
+    },
 
-  edit: function( id ){
-    return axios.get('/api/asetTetapLokasi/edit/' + id);
-  },
+    create: function() {
+        return axios.get('/api/asetTetapLokasi/create');
+    },
 
-  update: function ( id, form ){
-    return axios.post('/api/asetTetapLokasi/update/' + id, form);
-  },
+    store: function(form) {
+        return axios.post('/api/asetTetapLokasi/store', form);
+    },
 
-  destroy: function( id ){
-    return axios.delete('/api/asetTetapLokasi/' + id);
-  },
+    edit: function(id) {
+        return axios.get('/api/asetTetapLokasi/edit/' + id);
+    },
 
-  count: function(){
-    return axios.get('/api/asetTetapLokasi/count');
-  },
+    update: function(id, form) {
+        return axios.post('/api/asetTetapLokasi/update/' + id, form);
+    },
+
+    destroy: function(id) {
+        return axios.delete('/api/asetTetapLokasi/' + id);
+    },
+
+    count: function() {
+        return axios.get('/api/asetTetapLokasi/count');
+    },
 }

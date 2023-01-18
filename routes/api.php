@@ -232,6 +232,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
 
          // kode kegiatan
          Route::get('/kodeKegiatan', 'KodeKegiatanController@index');
+         Route::get('/kodeKegiatan/get', 'KodeKegiatanController@get');
          Route::get('/kodeKegiatan/create', 'KodeKegiatanController@create');
          Route::post('/kodeKegiatan/store', 'KodeKegiatanController@store');
          Route::get('/kodeKegiatan/edit/{id}', 'KodeKegiatanController@edit');
@@ -392,10 +393,12 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::group(['middleware' => ['permission:destroy_aktivis']], function () {
             Route::delete('/aktivis/{id}', 'AktivisController@destroy');
         });
-
+ 
         //aset tetap
         Route::get('/asetTetap/generate/{id}', 'AsetTetapController@generate');
         Route::get('/asetTetap', 'AsetTetapController@index');
+        Route::get('/asetTetap/indexSelesai', 'AsetTetapController@indexSelesai');
+        Route::get('/asetTetap/indexHapus', 'AsetTetapController@indexHapus');
         Route::get('/asetTetap/history', 'AsetTetapController@history');
         Route::get('/asetTetap/indexSub/{id}', 'AsetTetapController@indexSub');
         Route::group(['middleware' => ['permission:index_aset_tetap']], function () {

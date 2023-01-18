@@ -19,6 +19,16 @@ class KodeKegiatanController extends Controller
             ]);
     }
 
+    public function get()
+    {
+        $table_data = KodeKegiatan::get();
+
+        return response()
+            ->json([
+                'model' => $table_data
+            ]);
+    }
+
     public function create()
     {
         return response()

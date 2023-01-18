@@ -12,9 +12,7 @@ class Kernel extends ConsoleKernel
      *
      * @var array
      */
-    protected $commands = [
-        //
-    ];
+    protected $commands = [Commands\HitungPenyusutan::class,];
 
     /**
      * Define the application's command schedule.
@@ -25,6 +23,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('activitylog:clean')->daily();
+
+        $schedule->command('hitung:penyusutan')
+            ->dailyAt('01:00');
     }
 
     /**
@@ -34,7 +35,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

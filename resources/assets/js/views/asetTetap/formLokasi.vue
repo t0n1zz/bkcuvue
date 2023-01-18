@@ -18,7 +18,7 @@
 					</h6>
 
 					<!-- select -->
-					<select class="form-control" name="lokasi" v-model="formData.aset_tetap_lokasi_id" data-width="100%" v-validate="'required'" data-vv-as="Lokasi" :disabled="modelLokasi.length == 0">
+					<select class="form-control" name="lokasi" v-model="formData.aset_tetap_lokasi_id" data-width="100%" v-validate="'required'" data-vv-as="Lokasi" :disabled="modelLokasi.length == 0" @change="changeLokasi($event.target.value)">
 						<option disabled value="">
 							<span v-if="modelLokasiStat === 'loading'">Mohon tunggu...</span>
 							<span v-else>Silahkan pilih lokasi</span>
@@ -126,11 +126,12 @@
 			save(){
 				this.$validator.validateAll('formData').then((result) => {
 					if (result) {
-						this.$store.dispatch(this.kelas + '/update',[this.selectedItem.id, this.formData]);
+						this.$store.dispatch(this.kelas +'/updateLokasi',[this.selectedItem.lokasi.id, this.formData]);
 					}else{
+						
 						this.submited = true;
 					}	
-				});
+				});	
 			},
 			fetch(){
 				this.$store.dispatch('asetTetapLokasi/resetDataS');
@@ -138,7 +139,10 @@
 			},
 			tutup(){
 				this.$emit('tutup');
-			}
+			},
+			changeLokasi(event){
+				this.selectedItem.lokasi.id = event;
+			},
 		},
 		computed: {
 			...mapGetters('auth',{

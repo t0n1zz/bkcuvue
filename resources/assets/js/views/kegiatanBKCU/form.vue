@@ -50,7 +50,7 @@
 													<span v-if="itemKodeKegiatanStat === 'loading'">Mohon tunggu...</span>
 													<span v-else>Silahkan pilih kode</span>
 												</option>
-												<option v-for="(kodeKegiatan, index) in itemKodeKegiatan.data" :value="kodeKegiatan.id" :key="index">{{kodeKegiatan.kode}} -- {{kodeKegiatan.name}}</option>
+												<option v-for="(kodeKegiatan, index) in itemKodeKegiatan" :value="kodeKegiatan.id" :key="index">{{kodeKegiatan.kode}} - {{kodeKegiatan.name}}</option>
 											</select>
 
 											<!-- error message -->
@@ -988,7 +988,7 @@
 				this.$store.dispatch('provinces/get');
 				this.$store.dispatch('sertifikatKegiatan/index');
 				if(this.$route.params.tipe == 'diklat_bkcu' || this.$route.params.tipe == 'diklat_bkcu_internal'){
-					this.$store.dispatch('kodeKegiatan/index');
+					this.$store.dispatch('kodeKegiatan/get');
 				}
 			},
 			checkTipe(tipe){
@@ -1208,8 +1208,8 @@
 				itemDataStat: 'dataStatS',
 			}),
 			...mapGetters('kodeKegiatan',{
-				itemKodeKegiatan: 'dataS',
-				itemKodeKegiatanStat: 'dataStatS'
+				itemKodeKegiatan: 'dataS2',
+				itemKodeKegiatanStat: 'dataStatS2'
 			}),
 		}
 	}

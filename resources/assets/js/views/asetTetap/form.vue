@@ -94,6 +94,16 @@
 												<check-value :value="props.item.harga" valueType="currency"></check-value>
 											</td>
 											<td>
+												<check-value :value="props.item.bulan_penyusutan" valueType="currency"></check-value>
+											</td>
+											<td>
+												<check-value :value="props.item.pokok_penyusutan" valueType="currency"></check-value>
+											</td>
+											<td>
+												<img :src="'/images/asetTetap/' + props.item.nota + 'n.jpg'" class="img-rounded img-fluid wmin-sm" v-if="props.item.nota">
+												<img :src="'/images/no_image.jpg'" class="img-rounded img-fluid wmin-sm" v-else>
+											</td>
+											<td>
 												<check-value :value="props.item.has_aset_count" valueType="currency"></check-value>
 											</td>
 											<td>
@@ -495,6 +505,7 @@
 												:options="cleaveOption.numeric"
 												v-validate="'required'" data-vv-as="Harga"
 												placeholder="Silahkan masukkan harga"></cleave>
+												
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.harga')">
@@ -503,6 +514,120 @@
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
 									</div>
+
+									<!-- penyusutan -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.pokok_penyusutan')}">
+
+											<!-- title -->
+											<h5>
+												Harga Perolehan / Pokok Penyusutan: <wajib-badge></wajib-badge></h5>
+
+											<!-- text -->
+											<cleave 
+												v-model="form.pokok_penyusutan" 
+												class="form-control" 
+												name="pokok_penyusutan"
+												:options="cleaveOption.numeric"
+												v-validate="'required'" data-vv-as="pokok_penyusutan"
+												placeholder="Silahkan masukkan jumlah pokok penyusutan"
+												>
+											</cleave>
+										</div>
+									</div>
+
+									<!-- bulan penyusutan -->
+									<div class="col-md-4">
+										<div class="form-group" :class="{'has-error' : errors.has('form.bulan_penyusutan')}">
+
+											<!-- title -->
+											<h5>
+												Bulan Penyusutan: <wajib-badge></wajib-badge></h5>
+
+											<!-- text -->
+											<cleave 
+												v-model="form.bulan_penyusutan" 
+												class="form-control" 
+												name="bulan_penyusutan"
+												:options="cleaveOption.numeric"
+												v-validate="'required'" data-vv-as="bulan_penyusutan"
+												placeholder="Silahkan masukkan lama bulan penyusutan"></cleave>											
+										</div>
+									</div>
+									
+									<!-- sesuaikan -->
+									<div class="col-md-4">
+										<div class="form-group">
+
+											<!-- title -->
+											<h6 :class="{ 'text-danger' : errors.has('form.sesuaikan')}">
+												<i class="icon-cross2" v-if="errors.has('form.sesuaikan')"></i>
+												Sesuaikan sisa penyusutan dan sisa bulan penyusutan: <wajib-badge></wajib-badge>
+											</h6>
+
+											<!-- select -->
+											<select class="form-control" name="sesuaikan" v-model="form.sesuaikan" data-width="100%" v-validate="'required'" data-vv-as="Sesuaikan">
+												<option disabled value="">Silahkan pilih sesuaikan</option>
+												<option value="Tidak">Tidak</option>
+												<option value="Sesuaikan">Sesuaikan</option>
+											</select>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.sesuaikan')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.sesuaikan') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- penyusutan -->
+									<div class="col-md-6">
+										<div class="form-group" :class="{'has-error' : errors.has('form.sisa_penyusutan')}" >
+
+											<!-- title -->
+											<h5>
+												Sisa Penyusutan: </h5>
+
+											<!-- text -->
+											<cleave 
+												v-model="form.sisa_penyusutan" 
+												class="form-control" 
+												name="sisa_penyusutan"
+												:disabled="true"
+												:options="cleaveOption.numeric"
+												v-validate="'required'" data-vv-as="sisa_penyusutan"></cleave>
+
+										</div>
+									</div>
+									<!-- penyusutan -->
+									<div class="col-md-6">
+										<div class="form-group" :class="{'has-error' : errors.has('form.sisa_bulan_penyusutan')}" >
+
+											<!-- title -->
+											<h5>
+												Sisa Bulan Penyusutan: </h5>
+											<!-- text -->
+											<cleave 
+												v-model="form.sisa_bulan_penyusutan" 
+												class="form-control" 
+												name="sisa_bulan_penyusutan"
+												:disabled="true"
+												:options="cleaveOption.numeric"
+												v-validate="'required'" data-vv-as="sisa_bulan_penyusutan"></cleave>
+										</div>
+									</div>
+
+									<!-- nota -->
+									<div class="col-md-12">
+										<div class="form-group">
+
+											<!-- title -->
+											<h6>Bukti Pembelian:</h6>
+
+											<!-- imageupload -->
+											<app-image-upload :image_loc="'/images/asetTetap/'" :image_temp="form.nota" v-model="form.nota"></app-image-upload>
+										</div>
+									</div> 
 
 									<!-- keterangan -->
 									<div class="col-md-12">
@@ -644,6 +769,7 @@
 				columnData: [
 					{ title: 'No.' },
 					{ title: 'Foto' },
+					{ title: 'Nota' },
 					{ title: 'Kode' },
 					{
 						title: 'Nama',
@@ -663,6 +789,8 @@
 					{ title: 'Tgl. Beli' },
 					{ title: 'Pembeli' },
 					{ title: 'Harga' },
+					{ title: 'Pokok Penyusutan'},
+					{ title: 'Bulan Penyusutan'},
 					{ title: 'Sub' },
 					{ title: 'Kondisi' },
 				],

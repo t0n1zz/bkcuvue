@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use DB;
@@ -10,7 +11,8 @@ use App\AsetTetapLokasi;
 use Illuminate\Http\Request;
 use Venturecraft\Revisionable\Revision;
 
-class AsetTetapLokasiController extends Controller{
+class AsetTetapLokasiController extends Controller
+{
 
 	protected $message = "Lokasi Aset Tetap";
 
@@ -19,45 +21,45 @@ class AsetTetapLokasiController extends Controller{
 		$table_data = AsetTetapLokasi::advancedFilter();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function get()
 	{
-		$table_data = AsetTetapLokasi::select('id','name')->orderby('name','asc')->get();
+		$table_data = AsetTetapLokasi::select('id', 'name')->orderby('name', 'asc')->get();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function create()
 	{
 		return response()
 			->json([
-					'form' => AsetTetapLokasi::initialize(),
-					'rules' => AsetTetapLokasi::$rules,
-					'option' => []
+				'form' => AsetTetapLokasi::initialize(),
+				'rules' => AsetTetapLokasi::$rules,
+				'option' => []
 			]);
 	}
 
 	public function store(Request $request)
 	{
-		$this->validate($request,AsetTetapLokasi::$rules);
+		$this->validate($request, AsetTetapLokasi::$rules);
 
 		$name = $request->name;
 
 		$kelas = AsetTetapLokasi::create($request->all());
-			
+
 		return response()
 			->json([
 				'saved' => true,
-				'message' => $this->message. ' ' .$name. ' berhasil ditambah',
+				'message' => $this->message . ' ' . $name . ' berhasil ditambah',
 				'id' => $kelas->id
-			]);	
+			]);
 	}
 
 
@@ -67,8 +69,8 @@ class AsetTetapLokasiController extends Controller{
 
 		return response()
 			->json([
-					'form' => $kelas,
-					'option' => []
+				'form' => $kelas,
+				'option' => []
 			]);
 	}
 
@@ -79,12 +81,12 @@ class AsetTetapLokasiController extends Controller{
 		$name = $request->name;
 
 		$kelas = AsetTetapLokasi::findOrFail($id);
-		$kelas->update($request->all());	
+		$kelas->update($request->all());
 
 		return response()
 			->json([
 				'saved' => true,
-				'message' => $this->message. ' ' .$name. ' berhasil diubah'
+				'message' => $this->message . ' ' . $name . ' berhasil diubah'
 			]);
 	}
 
@@ -100,17 +102,17 @@ class AsetTetapLokasiController extends Controller{
 		return response()
 			->json([
 				'deleted' => true,
-				'message' => $this->message. ' ' .$name. ' berhasil dihapus'
+				'message' => $this->message . ' ' . $name . ' berhasil dihapus'
 			]);
 	}
 
 	public function count()
 	{
-			$table_data = AsetTetapLokasi::count();
+		$table_data = AsetTetapLokasi::count();
 
-			return response()
+		return response()
 			->json([
-					'model' => $table_data
+				'model' => $table_data
 			]);
 	}
 }

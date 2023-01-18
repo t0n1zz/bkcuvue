@@ -16,6 +16,7 @@
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 			<div v-show="tabName == 'qrBig'">
 				<div class="row" ref="qrBig" id="qrBig" >
+					<div v-if="this.tab1">
 					<div class="col-md-6" v-for="(item, index) in itemData.data" :key="index">						
 						<div class="d-flex align-items-end">
 							<qrcode-vue :value="'puskopcuina.org/admins/asetTetap/detail/' + item.kode" :size="'130'" :renderAs="'svg'" level="M" class="mr-3 mt-2 ml-2 mb-2"></qrcode-vue>
@@ -28,14 +29,71 @@
 							</div>
 						</div>
 					</div>
+					</div>
+					<div v-else-if="this.tab2">
+					<div class="col-md-6" v-for="(item, index) in itemDataS.data" :key="index">						
+						<div class="d-flex align-items-end">
+							<qrcode-vue :value="'puskopcuina.org/admins/asetTetap/detail/' + item.kode" :size="'130'" :renderAs="'svg'" level="M" class="mr-3 mt-2 ml-2 mb-2"></qrcode-vue>
+							<div>
+								<ul class="list list-unstyled mb-2">
+									<li class="mt-0"><b style="font-size: 1.5em;"><span style="color:blue;">PUSKOPCUINA</span></b></li>
+									<li class="mt-0"><b style="font-size: 1em;">Kode: {{ item.kode }}</b></li>
+									<li class="mt-0"><b style="font-size: 1em;">Nama: {{ item.name }}</b></li>
+								</ul>	
+							</div>
+						</div>
+					</div>
+					</div>
+					<div v-else-if="this.tab3">
+					<div class="col-md-6" v-for="(item, index) in itemDataH.data" :key="index">						
+						<div class="d-flex align-items-end">
+							<qrcode-vue :value="'puskopcuina.org/admins/asetTetap/detail/' + item.kode" :size="'130'" :renderAs="'svg'" level="M" class="mr-3 mt-2 ml-2 mb-2"></qrcode-vue>
+							<div>
+								<ul class="list list-unstyled mb-2">
+									<li class="mt-0"><b style="font-size: 1.5em;"><span style="color:blue;">PUSKOPCUINA</span></b></li>
+									<li class="mt-0"><b style="font-size: 1em;">Kode: {{ item.kode }}</b></li>
+									<li class="mt-0"><b style="font-size: 1em;">Nama: {{ item.name }}</b></li>
+								</ul>	
+							</div>
+						</div>
+					</div>
+					</div>
 				</div>
 			</div>
 		</transition>	
 
 		<transition enter-active-class="animated fadeIn" mode="out-in">
 			<div v-show="tabName == 'qrSmall'" class="align-items-center">
-				<div class="row" ref="qrSmall" id="qrSmall" >
+				<div v-if="tab1" class="row" ref="qrSmall" id="qrSmall" >
 					<div class="col-md-3" v-for="(item, index) in itemData.data" :key="index">
+						<div class="d-flex justify-content-center">
+							<div>
+								<qrcode-vue :value="'puskopcuina.org/admins/asetTetap/detail/' + item.kode" :size="'150'" :renderAs="'svg'" level="M" class="mt-2"></qrcode-vue>
+								<ul class="list list-unstyled mb-0 mt-1">
+									<li class="mt-0 mb-0"><b style="font-size: 0.8em;"><span style="color:blue;">PUSKOPCUINA</span></b></li>
+									<li class="mt-0"><b style="font-size: 0.7em;">Kode: {{ item.kode }}</b></li>
+									<li class="mt-0"><b style="font-size: 0.7em;">Nama: {{ item.name }}</b></li>
+								</ul>	
+							</div>
+						</div>
+					</div>
+				</div>
+				<div v-if="tab2" class="row" ref="qrSmall" id="qrSmall" >
+					<div class="col-md-3" v-for="(item, index) in itemDataS.data" :key="index">
+						<div class="d-flex justify-content-center">
+							<div>
+								<qrcode-vue :value="'puskopcuina.org/admins/asetTetap/detail/' + item.kode" :size="'150'" :renderAs="'svg'" level="M" class="mt-2"></qrcode-vue>
+								<ul class="list list-unstyled mb-0 mt-1">
+									<li class="mt-0 mb-0"><b style="font-size: 0.8em;"><span style="color:blue;">PUSKOPCUINA</span></b></li>
+									<li class="mt-0"><b style="font-size: 0.7em;">Kode: {{ item.kode }}</b></li>
+									<li class="mt-0"><b style="font-size: 0.7em;">Nama: {{ item.name }}</b></li>
+								</ul>	
+							</div>
+						</div>
+					</div>
+				</div>
+				<div v-if="tab3" class="row" ref="qrSmall" id="qrSmall" >
+					<div class="col-md-3" v-for="(item, index) in itemDataH.data" :key="index">
 						<div class="d-flex justify-content-center">
 							<div>
 								<qrcode-vue :value="'puskopcuina.org/admins/asetTetap/detail/' + item.kode" :size="'150'" :renderAs="'svg'" level="M" class="mt-2"></qrcode-vue>
@@ -83,7 +141,7 @@
 		components: {
 			QrcodeVue,
 		},
-		props:['itemData'],
+		props:['itemData','itemDataH','itemDataS','tab1','tab2','tab3'],
 		data() {
 			return {
 				tabName: 'qrBig',
@@ -95,7 +153,7 @@
 				this.tabName = value;
       },
 			print(){
-        this.$htmlToPaper(this.tabName);
+        	this.$htmlToPaper(this.tabName);
 			},
 			async download() {
 				const options = {
@@ -107,8 +165,13 @@
 				}else{
 					this.output = await this.$html2canvas(this.$refs.qrSmall, options);
 				}
-				
+				if(this.itemData){
 				FileSaver.saveAs(this.output, 'aset tetap halaman ' + this.itemData.current_page);
+				}else if(this.itemDataH){
+					FileSaver.saveAs(this.output, 'aset tetap halaman ' + this.itemDataH.current_page);
+				}else if(this.itemDataS){
+					FileSaver.saveAs(this.output, 'aset tetap halaman ' + this.itemDataS.current_page);
+				}
 			},
 			tutup(){
 				this.$emit('tutup');

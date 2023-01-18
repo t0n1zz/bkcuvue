@@ -51,6 +51,21 @@ export const kodeKegiatan = {
         });
     },
 
+    //load collection with params
+    get({ commit }) {
+      commit("setDataStatS2", "loading");
+      KodeKegiatanAPI.get()
+        .then(function (response) {
+          // console.log(response.data.model);
+          commit("setDataS2", response.data.model);
+          commit("setDataStatS2", "success");
+        })
+        .catch((error) => {
+          commit("setDataS2", error.response);
+          commit("setDataStatS2", "fail");
+        });
+    },
+
     // create page
     create({ commit }) {
       commit("setDataStat", "loading");
