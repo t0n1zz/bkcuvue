@@ -13,6 +13,7 @@ use Venturecraft\Revisionable\Revision;
 class CuController extends Controller{
 
 	protected $imagepath = 'images/cu/';
+	protected $logopath = 'images/logo/';
 	protected $width = 200;
 	protected $height = 200;
 	protected $message = "Cu";
@@ -141,8 +142,14 @@ class CuController extends Controller{
 		else
 			$fileName = '';
 
-		$kelas = Cu::create($request->except('gambar') + [
-			'gambar' => $fileName
+		if(!empty($request->logo))
+			$fileName2 = Helper::image_processing($this->logopath,$this->width,$this->height,$request->logo,'', $name);
+		else
+			$fileName2 = '';
+
+		$kelas = Cu::create($request->except('gambar','logo') + [
+			'gambar' => $fileName,
+			'logo' => $fileName2,
 		]);
 		
 		return response()
@@ -189,8 +196,14 @@ class CuController extends Controller{
 		else
 			$fileName = '';
 
-		$kelas->update($request->except('gambar') + [
-			'gambar' => $fileName
+		if(!empty($request->logo))
+			$fileName2 = Helper::image_processing($this->logopath,$this->width,$this->height,$request->logo,$kelas->logo, $name);
+		else
+			$fileName2 = '';
+
+		$kelas->update($request->except('gambar','logo') + [
+			'gambar' => $fileName,
+			'logo' => $fileName2,
 		]);	
 
 		return response()
@@ -204,6 +217,16 @@ class CuController extends Controller{
 	{
 		$kelas = Cu::findOrFail($id);
 		$name = $kelas->name;
+
+		if(!empty($kelas->gambar)){
+			File::delete($this->imagepath . $kelas->gambar . '.jpg');
+			File::delete($this->imagepath . $kelas->gambar . 'n.jpg');
+		}
+
+		if(!empty($kelas->logo)){
+			File::delete($this->logopath . $kelas->logo . '.jpg');
+			File::delete($this->logopath . $kelas->logo . 'n.jpg');
+		}
 
 		$kelas->delete();
 

@@ -1041,6 +1041,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1327,12 +1339,13 @@ var render = function () {
   return _c("div", [
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-body text-center" }, [
-        _vm.image === "" && _vm.image_temp === ""
+        (_vm.image == "" && _vm.image_temp == "") ||
+        (!_vm.image && !_vm.image_temp)
           ? _c("img", {
               staticStyle: { width: "15em" },
               attrs: { src: "/images/no_image.jpg" },
             })
-          : _vm.image === "" && _vm.image_temp !== ""
+          : _vm.image == "" && _vm.image_temp !== ""
           ? _c("img", {
               staticStyle: { width: "15em" },
               attrs: { src: _vm.image_loc + _vm.image_temp + _vm.image_type },
@@ -1731,7 +1744,7 @@ var render = function () {
                     _vm._v(" "),
                     _c("div", { staticClass: "card-body" }, [
                       _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-12" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
                           _c(
                             "div",
                             { staticClass: "form-group" },
@@ -1749,6 +1762,31 @@ var render = function () {
                                     _vm.$set(_vm.form, "gambar", $$v)
                                   },
                                   expression: "form.gambar",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _c("h5", [_vm._v("Logo CU:")]),
+                              _vm._v(" "),
+                              _c("app-image-upload", {
+                                attrs: {
+                                  image_loc: "/images/logo/",
+                                  image_temp: _vm.form.logo,
+                                },
+                                model: {
+                                  value: _vm.form.logo,
+                                  callback: function ($$v) {
+                                    _vm.$set(_vm.form, "logo", $$v)
+                                  },
+                                  expression: "form.logo",
                                 },
                               }),
                             ],

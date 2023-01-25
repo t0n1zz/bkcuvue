@@ -599,12 +599,13 @@ var render = function () {
   return _c("div", [
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-body text-center" }, [
-        _vm.image === "" && _vm.image_temp === ""
+        (_vm.image == "" && _vm.image_temp == "") ||
+        (!_vm.image && !_vm.image_temp)
           ? _c("img", {
               staticStyle: { width: "15em" },
               attrs: { src: "/images/no_image.jpg" },
             })
-          : _vm.image === "" && _vm.image_temp !== ""
+          : _vm.image == "" && _vm.image_temp !== ""
           ? _c("img", {
               staticStyle: { width: "15em" },
               attrs: { src: _vm.image_loc + _vm.image_temp + _vm.image_type },

@@ -27,6 +27,10 @@
   <div class="col_three_fifth topmargin-sm bottommargin-lg col_last">
 
     <div class="heading-block ">
+      @php $imagepathCu = 'images/logo/' @endphp
+      @if(!empty($cu->logo) && is_file($imagepathCu.$cu->logo.".jpg"))
+        <img src="{{ asset($imagepathCu . $cu->logo . '.jpg') }}" alt="{{ $cu->name }}" style="width:10em;">
+      @endif
       <h2>Credit Union {{ $cu->name }}</h2>
       <span>Selamat datang di Credit Union {{ $cu->name }}</span>
     </div>

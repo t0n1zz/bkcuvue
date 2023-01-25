@@ -62,137 +62,141 @@
 						<img :src="'/images/' + kelas + '/' + props.item.gambar + 'n.jpg'" width="40" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
 						<img :src="'/images/no_image.jpg'" width="40" class="img-rounded img-fluid wmin-sm" v-else>
 					</td>
-					<td v-if="!columnData[2].hide">
+          <td v-if="!columnData[2].hide">
+						<img :src="'/images/logo/' + props.item.logo + 'n.jpg'" width="40" class="img-rounded img-fluid wmin-sm" v-if="props.item.logo">
+						<img :src="'/images/no_image.jpg'" width="40" class="img-rounded img-fluid wmin-sm" v-else>
+					</td>
+					<td v-if="!columnData[3].hide">
 						<check-value :value="props.item.name"></check-value>
 					</td>
-          <td v-if="!columnData[3].hide">
+          <td v-if="!columnData[4].hide">
 						<check-value :value="props.item.name_legal"></check-value>
 					</td>
-					<td v-if="!columnData[4].hide">
+					<td v-if="!columnData[5].hide">
 						<check-value :value="props.item.no_ba"></check-value>
 					</td>
-					<td v-if="!columnData[5].hide">
+					<td v-if="!columnData[6].hide">
 						<check-value :value="props.item.has_tp_count"></check-value>
 					</td>
-					<td v-if="!columnData[6].hide">
+					<td v-if="!columnData[7].hide">
 						<check-value :value="props.item.has_manajemen_count"></check-value>
 					</td>
-					<td v-if="!columnData[7].hide">
+					<td v-if="!columnData[8].hide">
 						<check-value :value="props.item.has_pengurus_count"></check-value>
 					</td>
-					<td v-if="!columnData[8].hide">
+					<td v-if="!columnData[9].hide">
 						<check-value :value="props.item.has_pengawas_count"></check-value>
 					</td>
-					<td v-if="!columnData[9].hide">
+					<td v-if="!columnData[10].hide">
 						<check-value :value="props.item.has_komite_count"></check-value>
 					</td>
-					<td v-if="!columnData[10].hide">
+					<td v-if="!columnData[11].hide">
 						<check-value :value="props.item.has_penasihat_count"></check-value>
 					</td>
-					<td v-if="!columnData[11].hide">
+					<td v-if="!columnData[12].hide">
 						<check-value :value="props.item.has_kolektor_count"></check-value>
 					</td>
-					<td v-if="!columnData[12].hide">
+					<td v-if="!columnData[13].hide">
 						<check-value :value="props.item.has_kelompok_inti_count"></check-value>
 					</td>
-					<td v-if="!columnData[13].hide">
+					<td v-if="!columnData[14].hide">
 						<check-value :value="props.item.has_senior_manajer_count"></check-value>
 					</td>
-					<td v-if="!columnData[14].hide">
+					<td v-if="!columnData[15].hide">
 						<check-value :value="props.item.has_manajer_count"></check-value>
 					</td>
-					<td v-if="!columnData[15].hide">
+					<td v-if="!columnData[16].hide">
 						<check-value :value="props.item.has_supervisor_count"></check-value>
 					</td>
-					<td v-if="!columnData[16].hide">
+					<td v-if="!columnData[17].hide">
 						<check-value :value="props.item.has_staf_count"></check-value>
 					</td>
-					<td v-if="!columnData[17].hide">
+					<td v-if="!columnData[18].hide">
 						<check-value :value="props.item.has_kontrak_count"></check-value>
 					</td>
-					<td v-if="!columnData[18].hide">
+					<td v-if="!columnData[19].hide">
 						<check-value :value="props.item.has_aktivis_tidak_aktif_count"></check-value>
 					</td>
-					<td v-if="!columnData[19].hide">
+					<td v-if="!columnData[20].hide">
 						<check-value :value="props.item.has_simpanan_count"></check-value>
 					</td>
-					<td v-if="!columnData[20].hide">
+					<td v-if="!columnData[21].hide">
 						<check-value :value="props.item.has_pinjaman_count"></check-value>
 					</td>
-					<td v-if="!columnData[21].hide">
+					<td v-if="!columnData[22].hide">
 						<check-value :value="props.item.has_simpanan_jalinan_count"></check-value>
 					</td>
-					<td v-if="!columnData[22].hide">
+					<td v-if="!columnData[23].hide">
 						<check-value :value="props.item.has_pinjaman_jalinan_count"></check-value>
 					</td>
-					<td v-if="!columnData[23].hide">
+					<td v-if="!columnData[24].hide">
 						<check-value :value="props.item.has_user_count"></check-value>
 					</td>
-					<td v-if="!columnData[24].hide">
+					<td v-if="!columnData[25].hide">
 						<check-value :value="props.item.has_artikel_count"></check-value>
 					</td>
-					<td v-if="!columnData[25].hide">
+					<td v-if="!columnData[26].hide">
 						<check-value :value="props.item.has_anggota_cu_count"></check-value>
 					</td>
-					<td v-if="!columnData[26].hide">
+					<td v-if="!columnData[27].hide">
 						<check-value :value="props.item.badan_hukum"></check-value>
 					</td>
-          <td v-if="!columnData[27].hide">
+          <td v-if="!columnData[28].hide">
 						<check-value :value="props.item.npwp"></check-value>
 					</td>
-          <td v-if="!columnData[28].hide">
+          <td v-if="!columnData[29].hide">
 						<check-value :value="props.item.nik"></check-value>
 					</td>
-          <td v-if="!columnData[29].hide">
+          <td v-if="!columnData[30].hide">
 						<check-value :value="props.item.situ"></check-value>
 					</td>
-          <td v-if="!columnData[30].hide">
+          <td v-if="!columnData[31].hide">
 						<check-value :value="props.item.siusp"></check-value>
 					</td>
-          <td v-if="!columnData[31].hide">
+          <td v-if="!columnData[32].hide">
 						<check-value :value="props.item.izin_operasional"></check-value>
 					</td>
-					<td v-if="!columnData[32].hide">
+					<td v-if="!columnData[33].hide">
 						<check-value :value="props.item.provinces.name" v-if="props.item.provinces"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[33].hide">
+					<td v-if="!columnData[34].hide">
 						<check-value :value="props.item.regencies.name" v-if="props.item.regencies"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[34].hide">
+					<td v-if="!columnData[35].hide">
 						<check-value :value="props.item.districts.name" v-if="props.item.districts"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[35].hide">
+					<td v-if="!columnData[36].hide">
 						<check-value :value="props.item.villages.name" v-if="props.item.villages"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[36].hide">
+					<td v-if="!columnData[37].hide">
 						<check-value :value="props.item.alamat"></check-value>
 					</td>
-					<td v-if="!columnData[37].hide">
+					<td v-if="!columnData[38].hide">
 						<check-value :value="props.item.app"></check-value>
 					</td>
-					<td v-if="!columnData[38].hide" v-html="$options.filters.date(props.item.ultah)"></td>
-					<td v-if="!columnData[39].hide" v-html="$options.filters.date(props.item.bergabung)"></td>
-					<td v-if="!columnData[40].hide">
+					<td v-if="!columnData[39].hide" v-html="$options.filters.date(props.item.ultah)"></td>
+					<td v-if="!columnData[40].hide" v-html="$options.filters.date(props.item.bergabung)"></td>
+					<td v-if="!columnData[41].hide">
 						<check-value :value="props.item.website"></check-value>
 					</td>
-					<td v-if="!columnData[41].hide">
+					<td v-if="!columnData[42].hide">
 						<check-value :value="props.item.email"></check-value>
 					</td>
-					<td v-if="!columnData[42].hide">
+					<td v-if="!columnData[43].hide">
 						<check-value :value="props.item.telp"></check-value>
 					</td>
-					<td v-if="!columnData[43].hide">
+					<td v-if="!columnData[44].hide">
 						<check-value :value="props.item.hp"></check-value>
 					</td>
-					<td v-if="!columnData[44].hide">
+					<td v-if="!columnData[45].hide">
 						<check-value :value="props.item.pos"></check-value>
 					</td>
-					<td v-if="!columnData[45].hide" v-html="$options.filters.dateTime(props.item.created_at)"  class="text-nowrap"></td>
-					<td v-if="!columnData[46].hide">
+					<td v-if="!columnData[46].hide" v-html="$options.filters.dateTime(props.item.created_at)"  class="text-nowrap"></td>
+					<td v-if="!columnData[47].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -243,6 +247,11 @@ export default {
         {
           title: "Foto",
           name: "gambar",
+          hide: false,
+        },
+        {
+          title: "Logo",
+          name: "logo",
           hide: false,
         },
         {

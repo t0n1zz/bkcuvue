@@ -398,6 +398,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -429,6 +433,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, {
         title: "Foto",
         name: "gambar",
+        hide: false
+      }, {
+        title: "Logo",
+        name: "logo",
         hide: false
       }, {
         title: "Nama",
@@ -1687,6 +1695,29 @@ var render = function () {
                         : _vm._e(),
                       _vm._v(" "),
                       !_vm.columnData[2].hide
+                        ? _c("td", [
+                            props.item.logo
+                              ? _c("img", {
+                                  staticClass: "img-rounded img-fluid wmin-sm",
+                                  attrs: {
+                                    src:
+                                      "/images/logo/" +
+                                      props.item.logo +
+                                      "n.jpg",
+                                    width: "40",
+                                  },
+                                })
+                              : _c("img", {
+                                  staticClass: "img-rounded img-fluid wmin-sm",
+                                  attrs: {
+                                    src: "/images/no_image.jpg",
+                                    width: "40",
+                                  },
+                                }),
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[3].hide
                         ? _c(
                             "td",
                             [
@@ -1698,7 +1729,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[3].hide
+                      !_vm.columnData[4].hide
                         ? _c(
                             "td",
                             [
@@ -1710,7 +1741,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[4].hide
+                      !_vm.columnData[5].hide
                         ? _c(
                             "td",
                             [
@@ -1722,7 +1753,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[5].hide
+                      !_vm.columnData[6].hide
                         ? _c(
                             "td",
                             [
@@ -1734,7 +1765,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[6].hide
+                      !_vm.columnData[7].hide
                         ? _c(
                             "td",
                             [
@@ -1748,7 +1779,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[7].hide
+                      !_vm.columnData[8].hide
                         ? _c(
                             "td",
                             [
@@ -1760,7 +1791,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[8].hide
+                      !_vm.columnData[9].hide
                         ? _c(
                             "td",
                             [
@@ -1772,7 +1803,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[9].hide
+                      !_vm.columnData[10].hide
                         ? _c(
                             "td",
                             [
@@ -1784,7 +1815,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[10].hide
+                      !_vm.columnData[11].hide
                         ? _c(
                             "td",
                             [
@@ -1798,7 +1829,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[11].hide
+                      !_vm.columnData[12].hide
                         ? _c(
                             "td",
                             [
@@ -1810,7 +1841,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[12].hide
+                      !_vm.columnData[13].hide
                         ? _c(
                             "td",
                             [
@@ -1824,7 +1855,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[13].hide
+                      !_vm.columnData[14].hide
                         ? _c(
                             "td",
                             [
@@ -1838,7 +1869,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[14].hide
+                      !_vm.columnData[15].hide
                         ? _c(
                             "td",
                             [
@@ -1850,7 +1881,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[15].hide
+                      !_vm.columnData[16].hide
                         ? _c(
                             "td",
                             [
@@ -1864,7 +1895,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[16].hide
+                      !_vm.columnData[17].hide
                         ? _c(
                             "td",
                             [
@@ -1876,7 +1907,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[17].hide
+                      !_vm.columnData[18].hide
                         ? _c(
                             "td",
                             [
@@ -1888,7 +1919,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[18].hide
+                      !_vm.columnData[19].hide
                         ? _c(
                             "td",
                             [
@@ -1903,7 +1934,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[19].hide
+                      !_vm.columnData[20].hide
                         ? _c(
                             "td",
                             [
@@ -1915,7 +1946,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[20].hide
+                      !_vm.columnData[21].hide
                         ? _c(
                             "td",
                             [
@@ -1927,7 +1958,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[21].hide
+                      !_vm.columnData[22].hide
                         ? _c(
                             "td",
                             [
@@ -1941,7 +1972,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[22].hide
+                      !_vm.columnData[23].hide
                         ? _c(
                             "td",
                             [
@@ -1955,7 +1986,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[23].hide
+                      !_vm.columnData[24].hide
                         ? _c(
                             "td",
                             [
@@ -1967,7 +1998,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[24].hide
+                      !_vm.columnData[25].hide
                         ? _c(
                             "td",
                             [
@@ -1979,7 +2010,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[25].hide
+                      !_vm.columnData[26].hide
                         ? _c(
                             "td",
                             [
@@ -1993,7 +2024,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[26].hide
+                      !_vm.columnData[27].hide
                         ? _c(
                             "td",
                             [
@@ -2005,7 +2036,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[27].hide
+                      !_vm.columnData[28].hide
                         ? _c(
                             "td",
                             [
@@ -2017,7 +2048,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[28].hide
+                      !_vm.columnData[29].hide
                         ? _c(
                             "td",
                             [
@@ -2029,7 +2060,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[29].hide
+                      !_vm.columnData[30].hide
                         ? _c(
                             "td",
                             [
@@ -2041,7 +2072,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[30].hide
+                      !_vm.columnData[31].hide
                         ? _c(
                             "td",
                             [
@@ -2053,7 +2084,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[31].hide
+                      !_vm.columnData[32].hide
                         ? _c(
                             "td",
                             [
@@ -2065,7 +2096,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[32].hide
+                      !_vm.columnData[33].hide
                         ? _c(
                             "td",
                             [
@@ -2079,7 +2110,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[33].hide
+                      !_vm.columnData[34].hide
                         ? _c(
                             "td",
                             [
@@ -2093,7 +2124,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[34].hide
+                      !_vm.columnData[35].hide
                         ? _c(
                             "td",
                             [
@@ -2107,7 +2138,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[35].hide
+                      !_vm.columnData[36].hide
                         ? _c(
                             "td",
                             [
@@ -2121,7 +2152,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[36].hide
+                      !_vm.columnData[37].hide
                         ? _c(
                             "td",
                             [
@@ -2133,7 +2164,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[37].hide
+                      !_vm.columnData[38].hide
                         ? _c(
                             "td",
                             [
@@ -2145,7 +2176,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[38].hide
+                      !_vm.columnData[39].hide
                         ? _c("td", {
                             domProps: {
                               innerHTML: _vm._s(
@@ -2155,7 +2186,7 @@ var render = function () {
                           })
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[39].hide
+                      !_vm.columnData[40].hide
                         ? _c("td", {
                             domProps: {
                               innerHTML: _vm._s(
@@ -2165,7 +2196,7 @@ var render = function () {
                           })
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[40].hide
+                      !_vm.columnData[41].hide
                         ? _c(
                             "td",
                             [
@@ -2177,7 +2208,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[41].hide
+                      !_vm.columnData[42].hide
                         ? _c(
                             "td",
                             [
@@ -2189,7 +2220,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[42].hide
+                      !_vm.columnData[43].hide
                         ? _c(
                             "td",
                             [
@@ -2201,7 +2232,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[43].hide
+                      !_vm.columnData[44].hide
                         ? _c(
                             "td",
                             [
@@ -2213,7 +2244,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[44].hide
+                      !_vm.columnData[45].hide
                         ? _c(
                             "td",
                             [
@@ -2225,7 +2256,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[45].hide
+                      !_vm.columnData[46].hide
                         ? _c("td", {
                             staticClass: "text-nowrap",
                             domProps: {
@@ -2238,7 +2269,7 @@ var render = function () {
                           })
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[46].hide
+                      !_vm.columnData[47].hide
                         ? _c("td", [
                             props.item.created_at !== props.item.updated_at
                               ? _c("span", {

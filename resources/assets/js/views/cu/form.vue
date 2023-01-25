@@ -24,7 +24,7 @@
 								<div class="row">
 									
 									<!-- foto -->
-									<div class="col-md-12">
+									<div class="col-md-6">
 										<div class="form-group">
 
 											<!-- title -->
@@ -34,6 +34,18 @@
 											<app-image-upload :image_loc="'/images/cu/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
 										</div>
 									</div>  
+
+									<!-- logo -->
+									<div class="col-md-6">
+										<div class="form-group">
+
+											<!-- title -->
+											<h5>Logo CU:</h5>
+
+											<!-- imageupload -->
+											<app-image-upload :image_loc="'/images/logo/'" :image_temp="form.logo" v-model="form.logo"></app-image-upload>
+										</div>
+									</div> 
 
 									<!-- no_ba -->
 									<div class="col-md-2">
