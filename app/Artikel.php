@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use illuminate\Database\Eloquent\Model;
@@ -7,7 +8,8 @@ use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-class Artikel extends BaseEloquent {
+class Artikel extends BaseEloquent
+{
 
     use Dataviewer, LogsActivity, Sluggable, SoftDeletes;
 
@@ -32,42 +34,42 @@ class Artikel extends BaseEloquent {
             ]
         ];
     }
-    
+
     protected $fillable = [
-        'id_cu','id_artikel_kategori','id_artikel_penulis','name','content','terbitkan','gambar','gambar_thumb','utamakan'
+        'id_cu', 'id_artikel_kategori', 'id_artikel_penulis', 'name', 'content', 'terbitkan', 'gambar', 'gambar_thumb', 'gambar_cloud', 'utamakan'
     ];
 
     protected $allowedFilters = [
-        'id','id_cu','id_artikel_kategori','id_artikel_penulis','name','content','terbitkan','gambar','utamakan','created_at','updated_at',
-        
-        'kategori.name','penulis.name','cu.name'
+        'id', 'id_cu', 'id_artikel_kategori', 'id_artikel_penulis', 'name', 'content', 'terbitkan', 'gambar', 'utamakan', 'created_at', 'updated_at',
+
+        'kategori.name', 'penulis.name', 'cu.name'
     ];
 
     protected $orderable = [
-        'id','id_cu','id_artikel_kategori','id_artikel_penulis','name','content','terbitkan','gambar','utamakan','created_at','updated_at',
-        
-        'kategori.name','penulis.name','cu.name'
+        'id', 'id_cu', 'id_artikel_kategori', 'id_artikel_penulis', 'name', 'content', 'terbitkan', 'gambar', 'utamakan', 'created_at', 'updated_at',
+
+        'kategori.name', 'penulis.name', 'cu.name'
     ];
 
     public static function initialize()
     {
         return [
-            'id_cu' => '' , 'id_artikel_kategori' => '','id_artikel_penulis' => '', 'name' => '', 'content' => '', 'terbitkan' => '', 'utamakan' => '', 'gambar' => ''
+            'id_cu' => '', 'id_artikel_kategori' => '', 'id_artikel_penulis' => '', 'name' => '', 'content' => '', 'terbitkan' => '', 'utamakan' => '', 'gambar' => ''
         ];
     }
 
     public function kategori()
     {
-        return $this->belongsTo('App\ArtikelKategori','id_artikel_kategori','id')->select('id','name','slug','created_at');
+        return $this->belongsTo('App\ArtikelKategori', 'id_artikel_kategori', 'id')->select('id', 'name', 'slug', 'created_at');
     }
 
     public function penulis()
     {
-        return $this->belongsTo('App\ArtikelPenulis','id_artikel_penulis','id');
+        return $this->belongsTo('App\ArtikelPenulis', 'id_artikel_penulis', 'id');
     }
 
     public function Cu()
     {
-        return $this->belongsTo('App\Cu','id_cu','id')->select('id','no_ba','name');
+        return $this->belongsTo('App\Cu', 'id_cu', 'id')->select('id', 'no_ba', 'name');
     }
 }

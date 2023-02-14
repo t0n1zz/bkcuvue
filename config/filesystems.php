@@ -51,7 +51,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
         ],
 
@@ -62,6 +62,22 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
+        ],
+
+        'google_main' => [
+            'driver' => 'google',
+            'clientId' => env('GOOGLE_DRIVE_CLIENT_ID'),
+            'clientSecret' => env('GOOGLE_DRIVE_CLIENT_SECRET'),
+            'refreshToken' => env('GOOGLE_DRIVE_REFRESH_TOKEN'),
+            'folderId' => env('GOOGLE_DRIVE_FOLDER'),
+        ],
+
+        'google_backup' => [
+            'driver' => 'google',
+            'clientId' => env('GOOGLE_DRIVE_CLIENT_ID_BACKUP'),
+            'clientSecret' => env('GOOGLE_DRIVE_CLIENT_SECRET_BACKUP'),
+            'refreshToken' => env('GOOGLE_DRIVE_REFRESH_TOKEN_BACKUP'),
+            'folderId' => env('GOOGLE_DRIVE_FOLDER_BACKUP'),
         ],
 
     ],

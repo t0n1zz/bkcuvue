@@ -147,6 +147,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
         /*
          * Package Service Providers...
          */
@@ -160,6 +161,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
+        App\Providers\GoogleDriveProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class
     ],
 
@@ -211,7 +213,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'cdn' => [
             "92032-259220-raikfcquaxqncofqfm.stackpathdns.com" => "css|js|eot|woff|ttf,jpg|jpeg|png|gif|svg"
-            ],
+        ],
         'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 

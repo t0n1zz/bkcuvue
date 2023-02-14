@@ -212,7 +212,7 @@
 											<h5>Gambar Utama:</h5>
 
 											<!-- imageupload -->
-											<app-image-upload :image_loc="'/images/artikel/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
+											<app-image-upload :image_loc="'/images/artikel/'" :image_temp="form.gambar" :image_cloud="form.gambar_cloud" v-model="form.gambar"></app-image-upload>
 										</div>
 									</div>
 
