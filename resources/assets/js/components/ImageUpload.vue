@@ -4,8 +4,9 @@
 		
 			<!-- image preview -->
 			<div class="card-body text-center">
-				<img :src="'/images/no_image.jpg'" style="width:15em;" v-if="(image == '' && image_temp == '') || (!image && !image_temp)">
-				<img :src="image_loc + image_temp + image_type" style="width:15em;" v-else-if="image == '' && image_temp !== ''">
+				<img :src="'/images/no_image.jpg'" style="width:15em;" v-if="(image == '' && image_temp == '' && image_aws=='') || (!image && !image_temp && !image_aws)">
+				<img :src="image_loc + image_temp + image_type" style="width:15em;" v-else-if="image == '' && image_temp !== '' && image_aws==''">
+				<img :src="image_aws" style="width:15em;" v-else-if=" image == '' && image_aws!==''">
 				<img :src="image" style="width:15em;" v-else> 
 			</div>
 		</div>
@@ -42,6 +43,9 @@
 			image_temp: {
 				default: ''
 			},
+			image_aws: {
+				default: ''
+		    },
 			value: {
 				type: [String, File],
 				default: 'no_image'

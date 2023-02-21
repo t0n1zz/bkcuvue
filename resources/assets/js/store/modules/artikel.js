@@ -15,6 +15,8 @@ export const artikel = {
     updateStat: '',
     rules: [], //laravel rules
     options: [], //laravel options
+    gambarS: '',
+    gambar:''
   },
 
   // getters
@@ -29,6 +31,8 @@ export const artikel = {
     updateStat: state => state.updateStat,
     rules: state => state.rules,
     options: state => state.options,
+    gambar: state => state.gambar,
+    gambarS: state=> state.gambarS
   },
 
   actions: {
@@ -41,6 +45,7 @@ export const artikel = {
         .then( function( response ){
           commit('setDataS', response.data.model );
           commit('setDataStatS', 'success');
+          commit('setGambarS', response.data.gambar);
         })
         .catch( error => {
           commit('setDataS', error.response);
@@ -106,10 +111,11 @@ export const artikel = {
       commit('setDataStat', 'loading');
       
       ArtikelAPI.edit( id )
-        .then( function( response ){
+        .then(function (response) {
+          commit("setGambar", response.data.gambar);
           commit('setData', response.data.form);
           commit('setRules', response.data.rules);
-          commit('setOptions', response.data.options)
+          commit('setOptions', response.data.options);
           commit('setDataStat', 'success');
         })
         .catch(error => {
@@ -254,6 +260,14 @@ export const artikel = {
     },
     setOptions( state, options ){
       state.options = options;
+    },
+    setGambar (state, gambar) { 
+      state.gambar = gambar;
+    },
+
+    setGambarS (state, gambarS) { 
+      state.gambarS = gambarS;
     }
+      
   }
 }

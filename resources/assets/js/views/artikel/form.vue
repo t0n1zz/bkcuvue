@@ -212,7 +212,7 @@
 											<h5>Gambar Utama:</h5>
 
 											<!-- imageupload -->
-											<app-image-upload :image_loc="'/images/artikel/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
+											<app-image-upload :image_loc="'/images/artikel/'" :image_temp="form.gambar" :image_aws="gambar_aws" v-model="form.gambar"></app-image-upload>
 										</div>
 									</div>
 
@@ -249,7 +249,6 @@
 								:formValidation="'form'"
 								@cancelClick="back"></form-button>
 						</div>
-						
 					</form>
 
 				</div>
@@ -354,13 +353,14 @@
 				modalContent: '',
 				submited: false,
 				submitedKategori: false,
-				submitedPenulis: false
+				submitedPenulis: false,
+				gambar_aws:''
 			}
 		},
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
 		},
-		created(){
+        created () {
 			if(this.currentUser.id_cu === 0){
 				if(this.modelCuStat != 'success'){
 					this.$store.dispatch('cu/getHeader');
@@ -369,8 +369,16 @@
 			if(this.$route.meta.mode !== 'edit' && this.form.id_cu === undefined){
 				this.form.id_cu = this.currentUser.id_cu;
 				this.changeCU(this.currentUser.id_cu);f
-			}
-		},
+		}
+		
+	},
+
+	updated () { 
+		if (!this.images) { 
+			this.gambar_aws = this.image
+		}
+	},
+
 		watch: {
 			formStat(value){
 				if(value === "success"){
@@ -430,9 +438,12 @@
 						this.$store.dispatch('cu/getHeader');
 					}
 				}
-
+				
 				if(this.$route.meta.mode === 'edit'){
-					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
+					this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
+					if (this.images) {
+						this.gambar_aws = this.images[this.$route.params.id]
+					}
 					this.title = 'Ubah Artikel';
 					this.titleDesc = 'Mengubah artikel';
 					this.titleIcon = 'icon-pencil5';
@@ -530,7 +541,9 @@
 				rules: 'rules',
 				options: 'options',
 				updateResponse: 'update',
-				updateStat: 'updateStat'
+				updateStat: 'updateStat',
+				image: 'gambar',
+				images:'gambarS'
 			}),
 			...mapGetters('cu',{
 				modelCU: 'headerDataS',

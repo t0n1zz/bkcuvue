@@ -87,30 +87,30 @@
 
           <div class="row">
 
-            <div class="col-lg-12">
+            {{-- <div class="col-lg-12">
               <h4>DATA PERIODE {{ date('F Y',strtotime($dataGerakan->periode)) }}</h4>
               <p>Data akumulasi dari gerakan PUSKOPCUINA per {{ date('F Y',strtotime($dataGerakan->periode)) }}</p>
-            </div>
+            </div> --}}
 
-            <div class="col-lg-6 bottommargin-sm">
+            {{-- <div class="col-lg-6 bottommargin-sm">
               <div class="counter counter-small"><span data-from="50" data-to="{{ $dataGerakan->total_anggota }}" data-refresh-interval="100" data-speed="2000" data-comma="true"></span></div>
               <h5 class="nobottommargin">Anggota Credit Union</h5>
-            </div>
+            </div> --}}
 
-            <div class="col-lg-6 bottommargin-sm">
+            {{-- <div class="col-lg-6 bottommargin-sm">
               <div class="counter counter-small"><span data-from="10" data-to="{{ $cuCount }}" data-refresh-interval="5" data-speed="1000" data-comma="true"></span></div>
               <h5 class="nobottommargin">Credit Union</h5>
-            </div>
+            </div> --}}
 
-            <div class="col-lg-6 bottommargin-sm">
+            {{-- <div class="col-lg-6 bottommargin-sm">
               <div class="counter counter-small"><span data-from="50" data-to="{{ $aktivisCount }}" data-refresh-interval="100" data-speed="2000" data-comma="true"></span></div>
               <h5 class="nobottommargin">Aktivis Credit Union</h5>
-            </div> 
+            </div>  --}}
 
-            <div class="col-lg-6 bottommargin-sm">
+            {{-- <div class="col-lg-6 bottommargin-sm">
               <div class="counter counter-small"><span data-from="50" data-to="{{ $manajemenBKCUCount }}" data-refresh-interval="100" data-speed="2000" data-comma="true"></span></div>
               <h5 class="nobottommargin">Manajemen PUSKOPCUINA</h5>
-            </div> 
+            </div>  --}}
 
           </div>
 
