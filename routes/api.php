@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 
-Route::group(['middleware' => 'throttle:1000,1'], function () {
+Route::group(['middleware' => 'throttle:1000,1', 'withoutMiddleware' => 'throttle:api'], function () {
     //pemilihan
     Route::get('/pemilihan/indexCalon/{name}', 'PemilihanController@indexCalon');
     Route::get('/pemilihan/indexCalonTerpilih/{id}', 'PemilihanController@indexCalonTerpilih');
@@ -18,7 +18,7 @@ Route::group(['middleware' => 'throttle:1000,1'], function () {
     Route::get('/asetTetap/get/{kode}', 'AsetTetapController@get');
 });
 
-Route::group(['middleware' => 'throttle:60,1'], function () {
+Route::group(['middleware' => 'throttle:200,1'], function () {
 
     Route::group(['prefix' => 'auth'],function($router){
         Route::post('/login', 'AuthController@login');
@@ -112,9 +112,9 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         //artikel penulis
         Route::get('/artikelPenulis/count', 'ArtikelPenulisController@count');
         Route::get('/artikelPenulis/history', 'ArtikelPenulisController@history');
+        Route::get('/artikelPenulis', 'ArtikelPenulisController@index');
+        Route::get('/artikelPenulis/get', 'ArtikelPenulisController@get');
         Route::group(['middleware' => ['permission:index_artikel_penulis']], function () {
-            Route::get('/artikelPenulis', 'ArtikelPenulisController@index');
-            Route::get('/artikelPenulis/get', 'ArtikelPenulisController@get');
             Route::get('/artikelPenulis/indexCu/{id}', 'ArtikelPenulisController@indexCu');
             Route::get('/artikelPenulis/getCu/{id}', 'ArtikelPenulisController@getCu');
         });

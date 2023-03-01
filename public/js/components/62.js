@@ -914,7 +914,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.post('/api/generateSertifikat', this.selectedItem, {
         responseType: 'blob'
       }).then(function (response) {
-        file_saver__WEBPACK_IMPORTED_MODULE_9___default.a.saveAs(response.data, _this.selectedItem.name_sertifikat + '.pdf');
+        file_saver__WEBPACK_IMPORTED_MODULE_9___default.a.saveAs(response.data, 'Sertifikat ' + _this.selectedItem.kegiatan_name + ' ' + _this.selectedItem.aktivis.name + '.pdf');
         _this.state = "generateSertifikat";
         _this.modalState = 'success';
 

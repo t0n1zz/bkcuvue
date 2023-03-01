@@ -140,8 +140,8 @@ class SertifikatController extends Controller
 
   public function generateSertifikat(Request $formData)
   {
-    $kegiatanData = Kegiatan::with('tempat')->where('id', $formData->kegiatan_id)->first();
-    $nomorData = SertifikatGenerate::where('kegiatan_peserta_id', $formData->id)->where('id_kegiatan', $formData->kegiatan_id)->first();
+    $kegiatanData = Kegiatan::with('tempat')->where('id', $formData['kegiatan_id'])->first();
+    $nomorData = SertifikatGenerate::where('kegiatan_peserta_id',  $formData['aktivis_id'])->where('id_kegiatan',  $formData['kegiatan_id'])->first();
     $sertifikat = Sertifikat::where('id', $kegiatanData->id_sertifikat)->select('gambar_depan', 'gambar_belakang', 'kode_sertifikat')->first();
 
     $cekNilai = KegiatanMateriNilai::where('kegiatan_id', $formData->kegiatan_id)->first();
@@ -174,7 +174,13 @@ class SertifikatController extends Controller
       $tempat = 'secara ' . strtolower($kegiatanData->tipe_tempat);
     }
     $imageDepan = 'images/sertifikatKegiatan/' . $sertifikat->gambar_depan . '.jpg';
-    $imageBelakang = 'images/sertifikatKegiatan/' . $sertifikat->gambar_belakang . '.jpg';
+    if ($sertifikat->gambar_belakang) {
+      $imageBelakang = 'images/sertifikatKegiatan/' . $sertifikat->gambar_belakang . '.jpg';
+    } else {
+      $imageBelakang = '';
+    }
+
+
     $nama = $formData->name_sertifikat;
     $jabatan = $formData->pekerjaan_name;
     $lembaga = $formData->lembaga_name;
@@ -184,6 +190,8 @@ class SertifikatController extends Controller
     $mulai = new DateTime($date_mulai);
     $selesai = new DateTime($date_selesai);
     $selesai2 = '';
+    $selesai3 = '';
+    $mulai2 = '';
     switch ($selesai->format('m')) {
       case '01':
         $selesai2 = 'I';
@@ -223,7 +231,84 @@ class SertifikatController extends Controller
         break;
     }
 
-    $nomor = $nomorData->nomor . '/' . $sertifikat->kode_sertifikat . '/' . $selesai2 . '/' . $selesai->format('Y');
+    switch ($mulai->format('F')) {
+      case 'January':
+        $mulai2 = 'Januari';
+        break;
+      case 'February':
+        $mulai2 = 'Februari';
+        break;
+      case 'March':
+        $mulai2 = 'Maret';
+        break;
+      case 'April':
+        $mulai2 = 'April';
+        break;
+      case 'May':
+        $mulai2 = 'Mei';
+        break;
+      case 'June':
+        $mulai2 = 'Juni';
+        break;
+      case 'July':
+        $mulai2 = 'Juli';
+        break;
+      case 'August':
+        $mulai2 = 'Agustus';
+        break;
+      case 'September':
+        $mulai2 = 'September';
+        break;
+      case 'October':
+        $selesai3 = 'Oktober';
+        break;
+      case 'November':
+        $mulai2 = 'November';
+        break;
+      case 'December':
+        $mulai2 = 'Desember';
+        break;
+    }
+    switch ($selesai->format('F')) {
+      case 'January':
+        $selesai3 = 'Januari';
+        break;
+      case 'February':
+        $selesai3 = 'Februari';
+        break;
+      case 'March':
+        $selesai3 = 'Maret';
+        break;
+      case 'April':
+        $selesai3 = 'April';
+        break;
+      case 'May':
+        $selesai3 = 'Mei';
+        break;
+      case 'June':
+        $selesai3 = 'Juni';
+        break;
+      case 'July':
+        $selesai3 = 'Juli';
+        break;
+      case 'August':
+        $selesai3 = 'Agustus';
+        break;
+      case 'September':
+        $selesai3 = 'September';
+        break;
+      case 'October':
+        $selesai3 = 'Oktober';
+        break;
+      case 'November':
+        $selesai3 = 'November';
+        break;
+      case 'December':
+        $selesai3 = 'Desember';
+        break;
+    }
+
+    $nomor = $nomorData['nomor'] . '/' . $sertifikat->kode_sertifikat . '/' . $selesai2 . '/' . $selesai->format('Y');
 
     $hari = \Carbon\Carbon::parse($date_mulai)->diffInDays(\Carbon\Carbon::parse($date_selesai), false);
 
@@ -232,16 +317,15 @@ class SertifikatController extends Controller
     $tahun = $kegiatanData->periode;
 
     if ($hari > 1) {
-      $tgl = $mulai->format('d') . ' ' . $mulai->format('F') . ' ' . $mulai->format('Y') . " s.d " . $selesai->format('d') . ' ' . $selesai->format('F') . ' ' . $selesai->format('Y');
+      $tgl = $mulai->format('d') . ' ' . $mulai2 . ' ' . $mulai->format('Y') . " s.d " . $selesai->format('d') . ' ' . $selesai3 . ' ' . $selesai->format('Y');
     } else {
-      $tgl = $mulai->format('d') . ' ' . $mulai->format('F') . ' ' . $mulai->format('Y');
+      $tgl = $mulai->format('d') . ' ' . $mulai2 . ' ' . $mulai->format('Y');
     }
 
-    $tglGenerate = $selesai->format('d') . ' ' . $selesai->format('F') . ' ' . $selesai->format('Y');
+    $tglGenerate = $selesai->format('d') . ' ' . $selesai3 . ' ' . $selesai->format('Y');
 
     $customPaper = array(0, 0, 1502.25, 1956);
-
-    $pdf_doc = PDF::loadView('sertifikat', compact('nama', 'jabatan', 'lembaga', 'kegiatan', 'hari', 'tahun', 'tgl', 'nomor', 'imageDepan', 'imageBelakang', 'listMateri', 'sumWaktu', 'tempat', 'tglGenerate', 'averageNilai')); // <--- load your view into theDOM wrapper;
+    $pdf_doc = PDF::loadView('sertifikat', compact('nama', 'jabatan', 'lembaga', 'kegiatan', 'hari', 'tahun', 'tgl', 'nomor', 'imageDepan', 'listMateri', 'sumWaktu', 'tempat', 'tglGenerate', 'averageNilai', 'imageBelakang')); // <--- load your view into theDOM wrapper;
 
     $pdf_doc->setPaper($customPaper, 'landscape');
 

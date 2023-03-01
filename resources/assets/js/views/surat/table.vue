@@ -129,8 +129,8 @@
 			return {
 				selectedItem: [],
 				query: {
-					order_column: "name",
-					order_direction: "asc",
+					order_column: "created_at",
+					order_direction: "desc",
 					filter_match: "and",
 					limit: 10,
 					page: 1

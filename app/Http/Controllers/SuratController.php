@@ -14,6 +14,7 @@ use File;
 use Image;
 use Auth;
 use Illuminate\Support\Carbon;
+use PDO;
 
 class SuratController extends Controller{
 
@@ -90,13 +91,11 @@ class SuratController extends Controller{
 				$suratKodeTemp->created_at = Carbon::now()->timestamp;
 				$suratKodeTemp->update();
 
-				$kode = $suratKode;
-
 				return response()
 					->json([
 							'model' => [ 
 								'kategori' => $suratKategori,
-								'suratKode' => $kode,
+								'suratKode' => $suratKode,
 								'kode' => $suratKodeTemp->kode,
 								'periode' => $periode,
 								'bulan' => $bulan,
@@ -104,6 +103,7 @@ class SuratController extends Controller{
 							],
 					]);
 			}else{
+
 				return response()
 					->json([
 							'model' => [ 
@@ -120,7 +120,7 @@ class SuratController extends Controller{
 		}else{
 
 			// check if there is blocking surat kode by general
-			$suratKodeTempKosong = SuratKodeTemp::where('id_surat_kode',$suratKode->id)->whereNull('id_surat')->orderBy('kode','asc')->first();
+			$suratKodeTempKosong = SuratKodeTemp::where('id_surat_kode',$suratKode->id)->whereNull('id_surat')->first();
 
 			// if yes then use the blocking surat kode by general
 			if($suratKodeTempKosong){
@@ -131,13 +131,11 @@ class SuratController extends Controller{
 					$suratKodeTempKosong->created_at = Carbon::now()->timestamp;
 					$suratKodeTempKosong->update();
 
-					$kode = $suratKode;
-
 					return response()
 						->json([
 								'model' => [ 
 									'kategori' => $suratKategori,
-									'suratKode' => $kode,
+									'suratKode' => $suratKode,
 									'kode' => $suratKodeTempKosong->kode,
 									'periode' => $periode,
 									'bulan' => $bulan,
@@ -145,11 +143,10 @@ class SuratController extends Controller{
 								],
 						]);
 				}else{
-					$suratKodeTempLatest = SuratKodeTemp::where('id_surat_kode',$suratKode->id)->whereNull('id_surat')->orderBy('kode','desc')->first();
-					$kode = $suratKode;
+					$suratKodeTempLatest = SuratKodeTemp::where('id_surat_kode',$suratKode->id)->whereNull('id_surat')->orderBy('created_at','desc')->first();
 
 					$suratKodeTemp2 = SuratKodeTemp::create([
-						'id_surat_kode' => $kode->id,
+						'id_surat_kode' => $suratKode->id,
 						'id_user' => $id_user,
 						'kode' => $suratKodeTempLatest->kode + 1,
 						'periode' => $periode,
@@ -160,7 +157,7 @@ class SuratController extends Controller{
 						->json([
 								'model' => [ 
 									'kategori' => $suratKategori,
-									'suratKode' => $kode,
+									'suratKode' => $suratKode,
 									'kode' => $suratKodeTempLatest->kode + 1,
 									'periode' => $periode,
 									'bulan' => $bulan,
@@ -170,12 +167,18 @@ class SuratController extends Controller{
 				}
 			// if no then use recent surat kode	
 			}else{
-				$kode = $suratKode;
-		
+				// $suratKodeTemp = SuratKodeTemp::where('id_surat_kode',$suratKode->id)->orderBy('created_at','desc')->first();
+
+				// if($suratKodeTemp){
+				// 	$kode = $suratKodeTemp->kode;
+				// }else{
+				// 	$kode = 0;
+				// }
+
 				$suratKodeTemp2 = SuratKodeTemp::create([
-					'id_surat_kode' => $kode->id,
+					'id_surat_kode' => $suratKode->id,
 					'id_user' => $id_user,
-					'kode' => $kode->kode,
+					'kode' => $suratKode->kode + 1,
 					'periode' => $periode,
 					'bulan' => $bulan
 				]);
@@ -185,7 +188,7 @@ class SuratController extends Controller{
 							'model' => [ 
 								'kategori' => $suratKategori,
 								'suratKode' => $suratKode,
-								'kode' => $kode->kode,
+								'kode' => $suratKode->kode + 1,
 								'periode' => $periode,
 								'bulan' => $bulan,
 								'waktu' => (strtotime($suratKodeTemp2->created_at) + 1800 - time())
@@ -290,12 +293,16 @@ class SuratController extends Controller{
 	public function edit($id)
 	{
 		$kelas = Surat::findOrFail($id);
+		$suratKode = SuratKode::findOrFail($kelas->id_surat_kode);
 		$suratKategori = SuratKategori::where('id_surat_kode',$kelas->id_surat_kode)->get();
+		$periode = \Carbon\Carbon::now()->year;
 
 		return response()
 				->json([
 						'model' => [
 							'kategori' => $suratKategori,
+							'suratKode' => $suratKode,
+							'periode' => $periode
 						],
 						'form' => $kelas,
 						'option' => []
@@ -336,8 +343,9 @@ class SuratController extends Controller{
 					$kelasDokumen->delete();
 				}
 			}
-	
+
 			$kelas->delete();
+			SuratKodeTemp::where('id_surat', $id)->delete();
 
 			\DB::commit();
 			return response()

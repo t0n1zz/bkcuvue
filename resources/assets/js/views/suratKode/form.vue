@@ -41,7 +41,7 @@
 									</div>
 
 									<!-- kode -->
-									<div class="col-md-12" v-if="$route.meta.mode != 'edit'">
+									<div class="col-md-12">
 										<div class="form-group" :class="{'has-error' : errors.has('form.kode')}">
 
 											<!-- title -->

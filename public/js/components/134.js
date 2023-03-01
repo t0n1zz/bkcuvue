@@ -74,7 +74,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       kelas: 'pemilihan',
       titleDesc: 'Mengelola data pemilihan',
       titleIcon: 'icon-quill4',
-      selectCuPath: 'pemilihanCu'
+      selectCuPath: 'pemilihan'
     };
   },
   created: function created() {

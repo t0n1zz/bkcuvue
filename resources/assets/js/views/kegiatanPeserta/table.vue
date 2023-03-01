@@ -445,7 +445,7 @@
 				axios.post('/api/generateSertifikat', this.selectedItem, {
 					responseType: 'blob'
 				}).then((response) => {
-					FileSaver.saveAs(response.data, this.selectedItem.name_sertifikat +'.pdf')
+					FileSaver.saveAs(response.data, 'Sertifikat '+this.selectedItem.kegiatan_name+' '+this.selectedItem.aktivis.name+'.pdf')
 					this.state = "generateSertifikat";
 					this.modalState = 'success';
 					this.modalOpen("generateSertifikat");

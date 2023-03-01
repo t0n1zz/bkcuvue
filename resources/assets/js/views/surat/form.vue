@@ -35,7 +35,10 @@
 												<!-- select -->
 												<select class="form-control" name="id_surat_kode" v-model="form.id_surat_kode" data-width="100%" v-validate="'required'" data-vv-as="Tipe" @change="changeKode($event.target.value)">
 													<option disabled value="">
-														<span>
+														<span v-if="modelKode.length < 1">
+															Silahkan menambahkan terlebih dahulu tipe surat di menu tipe surat
+														</span>
+														<span v-else>
 															<span v-if="formStat === 'loading'">Mohon tunggu...</span>
 															<span v-else>Silahkan pilih tipe surat</span>
 														</span>
@@ -100,7 +103,10 @@
 													<!-- select -->
 													<select class="form-control" name="id_surat_kategori" v-model="form.id_surat_kategori" data-width="100%" v-validate="'required'" data-vv-as="Kategori" @change="changeKategori($event.target.value)">
 														<option disabled value="">
-															<span>
+															<span v-if="itemData.kategori.length < 1">
+																Silahkan menambahkan terlebih dahulu tipe surat di menu tipe surat
+															</span>
+															<span v-else>
 																<span v-if="formStat === 'loading'">Mohon tunggu...</span>
 																<span v-else>Silahkan pilih kategori</span>
 															</span>

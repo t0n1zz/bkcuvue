@@ -54,7 +54,7 @@
 				kelas: 'pemilihan',
 				titleDesc: 'Mengelola data pemilihan',
 				titleIcon: 'icon-quill4',
-				selectCuPath: 'pemilihanCu',
+				selectCuPath: 'pemilihan',
 			}
 		},
 		created(){

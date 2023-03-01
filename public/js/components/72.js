@@ -574,6 +574,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1241,17 +1247,25 @@ var render = function () {
                                             attrs: { disabled: "", value: "" },
                                           },
                                           [
-                                            _c("span", [
-                                              _vm.formStat === "loading"
-                                                ? _c("span", [
-                                                    _vm._v("Mohon tunggu..."),
-                                                  ])
-                                                : _c("span", [
-                                                    _vm._v(
-                                                      "Silahkan pilih tipe surat"
-                                                    ),
-                                                  ]),
-                                            ]),
+                                            _vm.modelKode.length < 1
+                                              ? _c("span", [
+                                                  _vm._v(
+                                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tSilahkan menambahkan terlebih dahulu tipe surat di menu tipe surat\n\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                  ),
+                                                ])
+                                              : _c("span", [
+                                                  _vm.formStat === "loading"
+                                                    ? _c("span", [
+                                                        _vm._v(
+                                                          "Mohon tunggu..."
+                                                        ),
+                                                      ])
+                                                    : _c("span", [
+                                                        _vm._v(
+                                                          "Silahkan pilih tipe surat"
+                                                        ),
+                                                      ]),
+                                                ]),
                                           ]
                                         ),
                                         _vm._v(" "),
@@ -1479,19 +1493,27 @@ var render = function () {
                                                     },
                                                   },
                                                   [
-                                                    _c("span", [
-                                                      _vm.formStat === "loading"
-                                                        ? _c("span", [
-                                                            _vm._v(
-                                                              "Mohon tunggu..."
-                                                            ),
-                                                          ])
-                                                        : _c("span", [
-                                                            _vm._v(
-                                                              "Silahkan pilih kategori"
-                                                            ),
-                                                          ]),
-                                                    ]),
+                                                    _vm.itemData.kategori
+                                                      .length < 1
+                                                      ? _c("span", [
+                                                          _vm._v(
+                                                            "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tSilahkan menambahkan terlebih dahulu tipe surat di menu tipe surat\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                          ),
+                                                        ])
+                                                      : _c("span", [
+                                                          _vm.formStat ===
+                                                          "loading"
+                                                            ? _c("span", [
+                                                                _vm._v(
+                                                                  "Mohon tunggu..."
+                                                                ),
+                                                              ])
+                                                            : _c("span", [
+                                                                _vm._v(
+                                                                  "Silahkan pilih kategori"
+                                                                ),
+                                                              ]),
+                                                        ]),
                                                   ]
                                                 ),
                                                 _vm._v(" "),
