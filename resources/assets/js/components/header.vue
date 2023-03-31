@@ -506,6 +506,10 @@
 										Kode Diklat
 									</router-link>
 
+									<router-link :to="{ name: 'formEvaluasi' }" class="dropdown-item" active-class="active" exact>
+										Form Evaluasi
+									</router-link>
+
 								</div>
 							</div>
 

@@ -40,7 +40,7 @@
 		data() {
 			return {
 				title: 'Kode Diklat',
-				kelas: 'kodeKegiatan',
+				kelas: 'formEvaluasi',
 				titleDesc: 'Mengelola data kode diklat',
 				titleIcon: 'icon-pencil-ruler',
 			}

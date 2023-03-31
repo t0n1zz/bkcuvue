@@ -1,5 +1,89 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[45],{
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/ImageUpload.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/ImageUpload.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      image: ''
+    };
+  },
+  props: {
+    image_loc: {
+      type: [String],
+      "default": ''
+    },
+    image_type: {
+      type: [String],
+      "default": '.jpg'
+    },
+    image_temp: {
+      "default": ''
+    },
+    value: {
+      type: [String, File],
+      "default": 'no_image'
+    }
+  },
+  methods: {
+    upload: function upload(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length) return;
+      this.createImage(files[0]);
+      this.$emit('input', files[0]);
+    },
+    createImage: function createImage(file) {
+      var reader = new FileReader();
+      var vm = this;
+
+      reader.onload = function (e) {
+        vm.image = e.target.result; // this.$emit('input', vm.image)
+      };
+
+      reader.readAsDataURL(file);
+    },
+    close: function close() {
+      this.$emit('input', 'no_image');
+      this.image = '/images/no_image.jpg';
+      this.$refs.fileInput.value = '';
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/checkValue.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/checkValue.vue?vue&type=script&lang=js& ***!
@@ -89,17 +173,15 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/datatable.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/datatable.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/checkbox.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/checkbox.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
-/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -111,172 +193,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['columnData', 'itemDataStat', 'items'],
-  components: {},
-  data: function data() {
-    return {};
-  },
-  methods: {}
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/datePicker.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/datePicker.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue2_datepicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue2-datepicker */ "./node_modules/vue2-datepicker/index.esm.js");
-/* harmony import */ var vue2_datepicker_index_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue2-datepicker/index.css */ "./node_modules/vue2-datepicker/index.css");
-/* harmony import */ var vue2_datepicker_index_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue2_datepicker_index_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vue2_datepicker_locale_id__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue2-datepicker/locale/id */ "./node_modules/vue2-datepicker/locale/id.js");
-/* harmony import */ var vue2_datepicker_locale_id__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue2_datepicker_locale_id__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['defaultDate'],
-  components: {
-    DatePicker: vue2_datepicker__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  data: function data() {
-    return {
-      time: '',
-      dateVal: ''
-    };
-  },
-  mounted: function mounted() {
-    if (this.defaultDate == '') {
-      var today = new Date();
-      var date = today.getDate() + '-0' + (today.getMonth() + 1) + '-' + today.getFullYear();
-      this.time = date;
-      this.dateVal = moment__WEBPACK_IMPORTED_MODULE_3___default()(this.time, "DD-MM-YYYY").format("YYYY-MM-DD");
-      this.$emit('dateSelected', this.dateVal);
-    } else {
-      this.time = moment__WEBPACK_IMPORTED_MODULE_3___default()(this.defaultDate, "YYYY-MM-DD").format("DD-MM-YYYY");
-      this.$emit('dateSelected', this.defaultDate);
-    }
-  },
-  watch: {
-    defaultDate: function defaultDate(newVal, oldVal) {
-      this.time = moment__WEBPACK_IMPORTED_MODULE_3___default()(this.defaultDate, "YYYY-MM-DD").format("DD-MM-YYYY");
-    }
-  },
+  props: ['form', 'title'],
   methods: {
-    onChanged: function onChanged(event) {
-      this.dateVal = moment__WEBPACK_IMPORTED_MODULE_3___default()(this.time, "DD-MM-YYYY").format("YYYY-MM-DD");
-      this.$emit('dateSelected', this.dateVal);
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/formInfo.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/formInfo.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: []
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/infoIcon.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/infoIcon.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    message: {
-      "default": ''
+    check: function check() {
+      this.$emit('check');
     }
   }
 });
@@ -437,9 +358,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/jalinanIuran/form.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/monitoring/detail.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/jalinanIuran/form.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/monitoring/detail.vue?vue&type=script&lang=js& ***!
   \******************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -450,17 +371,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/pageHeader.vue */ "./resources/assets/js/components/pageHeader.vue");
-/* harmony import */ var _components_infoIcon_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/infoIcon.vue */ "./resources/assets/js/components/infoIcon.vue");
-/* harmony import */ var _components_wajibBadge_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/wajibBadge.vue */ "./resources/assets/js/components/wajibBadge.vue");
-/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
-/* harmony import */ var _components_message_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/message.vue */ "./resources/assets/js/components/message.vue");
-/* harmony import */ var _components_formButton_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/formButton.vue */ "./resources/assets/js/components/formButton.vue");
-/* harmony import */ var _components_formInfo_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/formInfo.vue */ "./resources/assets/js/components/formInfo.vue");
-/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
-/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _components_datatable_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/datatable.vue */ "./resources/assets/js/components/datatable.vue");
-/* harmony import */ var _components_datePicker_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/datePicker.vue */ "./resources/assets/js/components/datePicker.vue");
-/* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
+/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
+/* harmony import */ var _components_message_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/message.vue */ "./resources/assets/js/components/message.vue");
+/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
+/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
+/* harmony import */ var _components_checkbox_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/checkbox.vue */ "./resources/assets/js/components/checkbox.vue");
+/* harmony import */ var _pic_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pic.vue */ "./resources/assets/js/views/monitoring/pic.vue");
+/* harmony import */ var _formPencapaian_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./formPencapaian.vue */ "./resources/assets/js/views/monitoring/formPencapaian.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -769,269 +687,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
 
 
 
@@ -1045,32 +700,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     pageHeader: _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    appModal: _components_modal__WEBPACK_IMPORTED_MODULE_5__["default"],
-    message: _components_message_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
-    formButton: _components_formButton_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
-    formInfo: _components_formInfo_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
-    Cleave: vue_cleave_component__WEBPACK_IMPORTED_MODULE_9___default.a,
-    dataTable: _components_datatable_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
-    infoIcon: _components_infoIcon_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    wajibBadge: _components_wajibBadge_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    DatePicker: _components_datePicker_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
-    checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
+    appModal: _components_modal__WEBPACK_IMPORTED_MODULE_3__["default"],
+    message: _components_message_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Cleave: vue_cleave_component__WEBPACK_IMPORTED_MODULE_5___default.a,
+    checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    checkbox: _components_checkbox_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+    pic: _pic_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
+    formPencapaian: _formPencapaian_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
   },
   data: function data() {
     return {
-      title: 'Tambah Setoran Solidaritas Jalinan',
-      titleDesc: 'Menambah iuran Jalinan baru',
-      titleIcon: 'icon-plus3',
+      title: 'Detail Monitoring',
+      titleDesc: 'Informasi detail monitoring',
+      titleIcon: 'icon-stack2',
       level: 2,
-      level2Title: 'Setoran Solidaritas Jalinan',
-      kelas: 'jalinanIuran',
-      sasaran: [],
-      tempatData: '',
-      idCu: '',
-      periodeBulan: '',
-      periodeTahun: '',
-      itemTahun: [],
-      tabName: 'iuran',
+      level2Title: 'Monitoring',
+      kelas: 'monitoring',
+      selectedItem: {},
       cleaveOption: {
         date: {
           date: true,
@@ -1102,9 +748,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           delimiter: '.'
         }
       },
-      anggotaMasukData: [],
-      cancelState: 'methods',
       state: '',
+      modalFormState: '',
       modalShow: false,
       modalState: '',
       modalTitle: '',
@@ -1115,27 +760,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   created: function created() {
-    this.formStat == '';
-    this.anggotaDataStat == '';
-
-    if (this.currentUser.id_cu != 0) {
-      this.changeCU(this.currentUser.id_cu);
-    } else {
-      if (this.currentUser.id_pus !== undefined) {
-        this.fetchCU();
-      }
-    }
-
-    this.generateYear();
+    this.fetch();
+    this.fetchPencapaian();
   },
   watch: {
-    anggotaDataStat: function anggotaDataStat(value) {
-      if (value == 'success') {
-        this.anggotaData.forEach(function (column) {});
-      }
+    // check route changes
+    '$route': function $route(to, from) {
+      this.fetch();
+      this.fetchPencapaian();
     },
-    anggotaKeluarDataStat: function anggotaKeluarDataStat(value) {
-      if (value == 'success') {}
+    itemStat: function itemStat(value) {
+      if (value === "success") {
+        this.fetchTemuan();
+      }
     },
     updateStat: function updateStat(value) {
       this.modalShow = true;
@@ -1143,10 +780,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.modalColor = '';
 
       if (value === "success") {
+        this.fetch();
         this.modalTitle = this.updateResponse.message;
       } else {
         this.modalTitle = 'Oops terjadi kesalahan :(';
         this.modalContent = this.updateResponse;
+      }
+    },
+    updatePencapaianStat: function updatePencapaianStat(value) {
+      this.modalShow = true;
+      this.modalState = value;
+      this.modalColor = '';
+
+      if (value === "success") {
+        this.modalTitle = this.updatePencapaianResponse.message;
+        this.fetchPencapaian();
+      } else {
+        this.modalTitle = 'Oops terjadi kesalahan :(';
+        this.modalContent = this.updatePencapaianResponse;
       }
     }
   },
@@ -1154,94 +805,97 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     fetch: function fetch() {
       this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
     },
-    fetchCU: function fetchCU() {
-      if (this.modelCuStat != 'success') {
-        this.$store.dispatch('cu/getHeader');
+    fetchTemuan: function fetchTemuan() {
+      this.$store.dispatch(this.kelas + '/get', this.item.id_cu);
+    },
+    fetchPencapaian: function fetchPencapaian() {
+      this.$store.dispatch('monitoringPencapaian/get', this.$route.params.id);
+    },
+    back: function back() {
+      if (this.item.id_tp == 0) {
+        this.$router.push({
+          name: this.kelas + 'Cu',
+          params: {
+            cu: this.item.id_cu,
+            tp: 'semua'
+          }
+        });
+      } else {
+        this.$router.push({
+          name: this.kelas + 'Cu',
+          params: {
+            cu: this.item.id_cu,
+            tp: this.item.id_tp
+          }
+        });
       }
     },
-    save: function save() {
-      var _this = this;
-
-      this.form.id_cu = this.idCu;
-      this.state = '';
-      this.$validator.validateAll('form').then(function (result) {
-        if (result) {
-          if (_this.$route.meta.mode == 'edit') {
-            _this.$store.dispatch(_this.kelas + '/update', [_this.$route.params.id, _this.form]);
-          } else {
-            _this.$store.dispatch(_this.kelas + '/store', _this.form);
-          }
-
-          _this.submited = false;
-        } else {
-          window.scrollTo(0, 0);
-          _this.submited = true;
+    ubahData: function ubahData() {
+      this.$router.push({
+        name: this.kelas + 'Edit',
+        params: {
+          id: this.$route.params.id
         }
       });
     },
-    back: function back() {
+    changeTemuan: function changeTemuan(value) {
       this.$router.push({
-        name: this.kelas
+        name: this.kelas + 'Detail',
+        params: {
+          id: value
+        }
       });
     },
-    changeTab: function changeTab(value) {
-      this.tabName = value;
-    },
-    selectedRow: function selectedRow(item, index) {
-      this.selectedItemCalon = item;
-      this.selectedItemCalon.index = index;
-    },
-    selectedRow2: function selectedRow2(item, index) {
-      this.selectedItemSuara = item;
-      this.selectedItemSuara.index = index;
-    },
-    modalOpen: function modalOpen(state, isMobile, itemMobile) {
+    modalOpen: function modalOpen(state, selectedItem) {
       this.modalShow = true;
       this.state = state;
+      this.selectedItem = selectedItem;
 
-      if (isMobile) {
-        this.selectedItemCalon = itemMobile;
-      }
-
-      if (state == 'hapusCalon') {
+      if (state == 'hapus') {
         this.modalState = 'confirm-tutup';
         this.modalColor = '';
-        this.modalTitle = 'Hapus Calon' + this.selectedItemCalon.name + ' ?';
+        this.modalTitle = 'Hapus Keputusan?';
         this.modalButton = 'Iya, Hapus';
         this.modalSize = '';
-      } else if (state == 'ubahCalon') {
+      } else if (state == 'ubah') {
         this.modalState = 'normal1';
         this.modalColor = 'bg-primary';
-        this.modalTitle = 'Ubah Calon';
+        this.modalTitle = 'Ubah Keputusan';
         this.modalButton = 'Ok';
         this.modalSize = 'modal-lg';
-        this.formCalonMode = 'edit';
-      } else if (state == 'tambahCalon') {
+        this.modalFormState = 'edit';
+      } else if (state == 'tambah') {
         this.modalState = 'normal1';
         this.modalColor = 'bg-primary';
-        this.modalTitle = 'Tambah Calon';
+        this.modalTitle = 'Tambah Keputusan';
         this.modalButton = 'Ok';
         this.modalSize = 'modal-lg';
-        this.formCalonMode = 'create';
+        this.modalFormState = 'create';
+      } else if (state == 'catatan') {
+        this.modalState = 'normal1';
+        this.modalColor = 'bg-primary';
+        this.modalTitle = !selectedItem.catatan ? 'Tambah Catatan PUSKOPCUINA' : 'Ubah Catatan PUSKOPCUINA';
+        this.modalButton = 'Ok';
+        this.modalSize = 'modal-lg';
+        this.modalFormState = 'catatan';
+      } else if (state == 'rekomendasi') {
+        this.modalState = 'confirm-tutup';
+        this.modalColor = '';
+        this.modalTitle = selectedItem.status == 0 ? 'Selesaikan rekomendasi ' + selectedItem.rekomendasi + ' ?' : 'Tidak selesaikan rekomendasi ' + selectedItem.rekomendasi + ' ?';
+        this.modalButton = selectedItem.status == 0 ? 'Iya, Selesaikan' : 'Iya, Tidak selesaikan';
+        this.modalSize = '';
       }
     },
     modalConfirmOk: function modalConfirmOk() {
       this.modalShow = false;
 
-      if (this.state == 'hapusCalon') {
-        lodash__WEBPACK_IMPORTED_MODULE_1___default.a.remove(this.itemDataCalon, {
-          index: this.selectedItemCalon.index
-        });
-
-        this.selectedItemCalon = {};
+      if (this.state == 'hapus') {
+        this.$store.dispatch('monitoringPencapaian/destroy', this.selectedItem.id);
+      } else if (this.state == 'rekomendasi') {
+        this.$store.dispatch(this.kelas + '/updateRekom', this.selectedItem.id);
       }
     },
     modalTutup: function modalTutup() {
-      if (this.updateStat == 'success' && this.state == '') {
-        this.$store.dispatch(this.kelas + '/resetUpdateStat');
-        this.back();
-      }
-
       this.modalShow = false;
     },
     modalBackgroundClick: function modalBackgroundClick() {
@@ -1254,89 +908,367 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     momentYear: function momentYear() {
       return moment().year();
-    },
-    generateYear: function generateYear() {
-      var years = function years(back) {
-        var year = new Date().getFullYear();
-        return Array.from({
-          length: back
-        }, function (v, i) {
-          return year - back + i + 1;
-        });
-      };
-
-      this.itemTahun = years(5);
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
     currentUser: 'currentUser'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('cu', {
-    modelCu: 'headerDataS',
-    modelCuStat: 'headerDataStatS'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('jalinanIuran', {
-    form: 'data',
-    produkData: 'dataS',
-    formStat: 'dataStat',
-    rules: 'rules',
-    options: 'options',
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('monitoring', {
+    item: 'data',
+    itemStat: 'dataStat',
+    modelTemuan: 'dataS',
+    modelTemuanStat: 'dataStatS',
     updateResponse: 'update',
     updateStat: 'updateStat'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('anggotaCu', {
-    anggotaData: 'dataS',
-    anggotaDataStat: 'dataStatS',
-    anggotaKeluarData: 'dataS2',
-    anggotaKeluarDataStat: 'dataStatS2'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('monitoringPencapaian', {
+    itemData: 'dataS',
+    itemDataStat: 'dataStatS',
+    updatePencapaianResponse: 'update',
+    updatePencapaianStat: 'updateStat'
   }))
 });
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/datePicker.vue?vue&type=style&index=0&lang=css&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/datePicker.vue?vue&type=style&index=0&lang=css& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/monitoring/formPencapaian.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/monitoring/formPencapaian.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
+/* harmony import */ var _components_message_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/message.vue */ "./resources/assets/js/components/message.vue");
+/* harmony import */ var _components_wajibBadge_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/wajibBadge.vue */ "./resources/assets/js/components/wajibBadge.vue");
+/* harmony import */ var _components_ImageUpload_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/ImageUpload.vue */ "./resources/assets/js/components/ImageUpload.vue");
+/* harmony import */ var _helpers_form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../helpers/form */ "./resources/assets/js/helpers/form.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
-// module
-exports.push([module.i, "\n.mx-datepicker-popup {\n    z-index: 99999;\n}\n", ""]);
 
-// exports
 
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['mode', 'selected'],
+  components: {
+    checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Message: _components_message_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    wajibBadge: _components_wajibBadge_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    appImageUpload: _components_ImageUpload_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+  },
+  data: function data() {
+    return {
+      title: '',
+      kelas: 'monitoringPencapaian',
+      formDataLanjut: {
+        id: '',
+        id_user: '',
+        id_monitoring: '',
+        pencapaian: '',
+        bukti: '',
+        kendala: '',
+        tindak: '',
+        catatan: '',
+        gambar: ''
+      },
+      message: {
+        show: false,
+        content: ''
+      },
+      submited: false
+    };
+  },
+  created: function created() {
+    if (this.mode != 'create') {
+      this.formDataLanjut = Object.assign({}, this.selected);
+    }
+  },
+  watch: {},
+  methods: {
+    save: function save() {
+      var _this = this;
+
+      this.formDataLanjut.id_monitoring = this.$route.params.id;
+      var formData = Object(_helpers_form__WEBPACK_IMPORTED_MODULE_6__["toMulipartedForm"])(this.formDataLanjut, this.$route.meta.mode);
+      this.$validator.validateAll('formDataLanjut').then(function (result) {
+        if (result) {
+          if (_this.mode == 'create') {
+            _this.$store.dispatch(_this.kelas + '/store', formData);
+          } else {
+            _this.$store.dispatch(_this.kelas + '/update', [_this.formDataLanjut.id, formData]);
+          }
+
+          _this.submited = false;
+        } else {
+          _this.submited = true;
+        }
+      });
+    },
+    messageClose: function messageClose() {
+      this.message.show = false;
+    },
+    tutup: function tutup() {
+      this.$emit('tutup');
+    }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('auth', {
+    currentUser: 'currentUser'
+  }))
+});
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/datePicker.vue?vue&type=style&index=0&lang=css&":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/datePicker.vue?vue&type=style&index=0&lang=css& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/monitoring/pic.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/monitoring/pic.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["title", "itemData", "itemDataStat"],
+  methods: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/ImageUpload.vue?vue&type=template&id=319f68d5&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/ImageUpload.vue?vue&type=template&id=319f68d5& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-body text-center" }, [
+        (_vm.image == "" && _vm.image_temp == "") ||
+        (!_vm.image && !_vm.image_temp)
+          ? _c("img", {
+              staticStyle: { width: "15em" },
+              attrs: { src: "/images/no_image.jpg" },
+            })
+          : _vm.image == "" && _vm.image_temp !== ""
+          ? _c("img", {
+              staticStyle: { width: "15em" },
+              attrs: { src: _vm.image_loc + _vm.image_temp + _vm.image_type },
+            })
+          : _c("img", {
+              staticStyle: { width: "15em" },
+              attrs: { src: _vm.image },
+            }),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-10" }, [
+        _c("input", {
+          ref: "fileInput",
+          staticClass: "form-control",
+          attrs: { type: "file", accept: ".jpg, .jpeg, .png" },
+          on: { change: _vm.upload },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-2" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-light btn-block",
+            attrs: { type: "button", disabled: _vm.image_temp === "" },
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.close()
+              },
+            },
+          },
+          [_c("i", { staticClass: "icon-cross" }), _vm._v(" Batal")]
+        ),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
 
 
-var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./datePicker.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/datePicker.vue?vue&type=style&index=0&lang=css&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
 
 /***/ }),
 
@@ -1453,10 +1385,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/datatable.vue?vue&type=template&id=80417746&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/datatable.vue?vue&type=template&id=80417746& ***!
-  \*******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/checkbox.vue?vue&type=template&id=7d32a75a&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/checkbox.vue?vue&type=template&id=7d32a75a& ***!
+  \******************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1471,209 +1403,32 @@ var render = function () {
   return _c(
     "div",
     {
-      staticClass: "table-responsive table-scrollable",
-      staticStyle: { "max-height": "33rem" },
+      staticClass: "card card-body mb-2",
+      class: { "bg-warning": _vm.form == 1 },
+      staticStyle: { cursor: "pointer" },
+      on: {
+        click: function ($event) {
+          $event.preventDefault()
+          return _vm.check.apply(null, arguments)
+        },
+      },
     },
     [
-      _c("table", { staticClass: "table table-striped" }, [
-        _c("thead", { staticClass: "bg-primary" }, [
-          _c(
-            "tr",
-            { staticClass: "text-nowrap" },
-            _vm._l(_vm.columnData, function (item, index) {
-              return _c("th", { key: index }, [
-                _c("span", { domProps: { innerHTML: _vm._s(item.title) } }),
-              ])
-            }),
-            0
-          ),
-        ]),
-        _vm._v(" "),
-        _vm.itemDataStat === "loading"
-          ? _c("tbody", [
-              _c("tr", [
-                _c("td", { attrs: { colspan: _vm.columnData.length } }, [
-                  _vm._m(0),
-                ]),
-              ]),
-            ])
-          : _vm.itemDataStat === "success"
-          ? _c(
-              "tbody",
-              [
-                _vm._l(_vm.items, function (item, index) {
-                  return _vm._t("item-desktop", null, {
-                    item: item,
-                    index: index,
-                  })
-                }),
-                _vm._v(" "),
-                _vm.items && _vm.items.length == 0
-                  ? _c("tr", [
-                      _c("td", { attrs: { colspan: _vm.columnData.length } }, [
-                        _vm._v("Belum terdapat data..."),
-                      ]),
-                    ])
-                  : _vm._e(),
-              ],
-              2
-            )
-          : _vm.itemDataStat === "fail"
-          ? _c("tbody", [
-              _c("tr", [
-                _c("td", { attrs: { colspan: _vm.columnData.length } }, [
-                  _vm._v(
-                    "\n\t\t\t\t\tOops.. Terjadi kesalahan, silahkan coba lagi.\n\t\t\t\t"
-                  ),
-                ]),
-              ]),
-            ])
-          : _c("tbody", [
-              _c("tr", [
-                _c("td", { attrs: { colspan: _vm.columnData.length } }, [
-                  _vm._v("-"),
-                ]),
-              ]),
+      _c("div", { staticClass: "form-check" }, [
+        _c("label", { staticClass: "form-check-label" }, [
+          _c("div", { staticClass: "uniform-checker" }, [
+            _c("span", { class: { checked: _vm.form == 1 } }, [
+              _c("input", {
+                staticClass: "form-check-input-styled",
+                attrs: { type: "checkbox", checked: "", "data-fouc": "" },
+              }),
             ]),
+          ]),
+          _vm._v("\n\t\t\t" + _vm._s(_vm.title) + "\n\t\t"),
+        ]),
       ]),
     ]
   )
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "progress" }, [
-      _c(
-        "div",
-        {
-          staticClass:
-            "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
-          staticStyle: { width: "100%" },
-        },
-        [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-      ),
-    ])
-  },
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/datePicker.vue?vue&type=template&id=0e041d33&":
-/*!********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/datePicker.vue?vue&type=template&id=0e041d33& ***!
-  \********************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("DatePicker", {
-    staticClass: "w-100",
-    attrs: {
-      format: "DD-MM-YYYY",
-      "value-type": "format",
-      placeholder: "Pilih Tanggal",
-      editable: true,
-    },
-    on: { change: _vm.onChanged },
-    model: {
-      value: _vm.time,
-      callback: function ($$v) {
-        _vm.time = $$v
-      },
-      expression: "time",
-    },
-  })
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/formInfo.vue?vue&type=template&id=77f7efa9&":
-/*!******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/formInfo.vue?vue&type=template&id=77f7efa9& ***!
-  \******************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "alert bg-info alert-styled-left" }, [
-        _c("h6", [
-          _vm._v(
-            "Pastikan data yang dimasukkan sudah benar sebelum menyimpan."
-          ),
-        ]),
-      ]),
-    ])
-  },
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/infoIcon.vue?vue&type=template&id=78a8b7de&":
-/*!******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/infoIcon.vue?vue&type=template&id=78a8b7de& ***!
-  \******************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticStyle: { display: "inline-block" } }, [
-    _c("i", {
-      directives: [
-        {
-          name: "tooltip",
-          rawName: "v-tooltip",
-          value: _vm.message,
-          expression: "message",
-        },
-      ],
-      staticClass: "icon-info22 d-none d-sm-block",
-    }),
-    _vm._v(" "),
-    _c("small", { staticClass: "text-muted d-block d-sm-none" }, [
-      _c("i", [_vm._v(_vm._s(_vm.message))]),
-    ]),
-  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1845,9 +1600,9 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/jalinanIuran/form.vue?vue&type=template&id=1bd85044&":
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/monitoring/detail.vue?vue&type=template&id=2827a256&":
 /*!**********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/jalinanIuran/form.vue?vue&type=template&id=1bd85044& ***!
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/monitoring/detail.vue?vue&type=template&id=2827a256& ***!
   \**********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1894,2055 +1649,1147 @@ var render = function () {
                   })
                 : _vm._e(),
               _vm._v(" "),
-              _c(
-                "form",
-                {
-                  attrs: {
-                    enctype: "multipart/form-data",
-                    "data-vv-scope": "form",
-                  },
-                  on: {
-                    submit: function ($event) {
-                      $event.preventDefault()
-                      return _vm.save.apply(null, arguments)
-                    },
-                  },
-                },
-                [
-                  _c("div", { staticClass: "card" }, [
-                    _c("div", { staticClass: "card-body" }, [
-                      _c("div", { staticClass: "row" }, [
-                        this.currentUser.id_cu == 0
-                          ? _c("div", { staticClass: "col-sm-4" }, [
-                              _c("div", { staticClass: "input-group" }, [
-                                _vm._m(0),
-                                _vm._v(" "),
-                                _c(
-                                  "select",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.idCu,
-                                        expression: "idCu",
-                                      },
-                                    ],
-                                    staticClass: "form-control",
-                                    attrs: {
-                                      name: "idCu",
-                                      "data-width": "100%",
-                                      disabled: _vm.modelCuStat === "loading",
-                                    },
-                                    on: {
-                                      change: function ($event) {
-                                        var $$selectedVal =
-                                          Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function (o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function (o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                        _vm.idCu = $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      },
-                                    },
-                                  },
-                                  [
-                                    _c(
-                                      "option",
-                                      { attrs: { disabled: "", value: "" } },
-                                      [_vm._v("Silahkan pilih data")]
-                                    ),
-                                    _vm._v(" "),
-                                    _vm._t("default"),
-                                    _vm._v(" "),
-                                    _c(
-                                      "option",
-                                      { attrs: { disabled: "", value: "" } },
-                                      [_vm._v("----------------")]
-                                    ),
-                                    _vm._v(" "),
-                                    _vm._l(_vm.modelCu, function (cu, index) {
-                                      return _c(
-                                        "option",
-                                        {
-                                          key: index,
-                                          domProps: { value: cu.id },
-                                        },
-                                        [_vm._v(_vm._s(cu.name))]
-                                      )
-                                    }),
-                                  ],
-                                  2
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "input-group-append" },
-                                  [
-                                    _c(
-                                      "button",
-                                      {
-                                        staticClass: "btn btn-light",
-                                        attrs: {
-                                          disabled:
-                                            _vm.modelCuStat === "loading",
-                                        },
-                                        on: { click: _vm.fetchCU },
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "icon-sync",
-                                          class: {
-                                            spinner:
-                                              _vm.modelCuStat === "loading",
-                                          },
-                                        }),
-                                      ]
-                                    ),
-                                  ]
-                                ),
-                              ]),
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            class: {
-                              "col-sm-6": _vm.currentUser.id_cu == 0,
-                              "col-sm-12": _vm.currentUser.id_cu != 0,
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-12" }, [
+                  _c("div", { staticClass: "card card-body" }, [
+                    _c("div", { staticClass: "input-group" }, [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.item.id,
+                              expression: "item.id",
                             },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            name: "id_temuan",
+                            "data-width": "100%",
+                            disabled: _vm.modelTemuanStat == "loading",
+                          },
+                          on: {
+                            change: [
+                              function ($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function (o) {
+                                    return o.selected
+                                  })
+                                  .map(function (o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.item,
+                                  "id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              },
+                              function ($event) {
+                                return _vm.changeTemuan($event.target.value)
+                              },
+                            ],
+                          },
+                        },
+                        [
+                          _c("option", { attrs: { disabled: "", value: "" } }, [
+                            _vm._v("Silahkan pilih data"),
+                          ]),
+                          _vm._v(" "),
+                          _vm._t("default"),
+                          _vm._v(" "),
+                          _vm._l(_vm.modelTemuan, function (te, index) {
+                            return _c(
+                              "option",
+                              { key: index, domProps: { value: te.id } },
+                              [
+                                te.tanggal
+                                  ? _c("span", {
+                                      domProps: {
+                                        innerHTML: _vm._s(
+                                          _vm.$options.filters.date(
+                                            _vm.item.tanggal
+                                          )
+                                        ),
+                                      },
+                                    })
+                                  : _vm._e(),
+                                _vm._v(
+                                  " " +
+                                    _vm._s(te.tanggal ? " | " : "") +
+                                    " " +
+                                    _vm._s(te.name) +
+                                    " "
+                                ),
+                              ]
+                            )
+                          }),
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-append" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-light",
+                            attrs: {
+                              disabled: _vm.modelTemuanStat == "loading",
+                            },
+                            on: { click: _vm.fetchTemuan },
                           },
                           [
-                            _c("div", { staticClass: "row" }, [
-                              _c("div", { staticClass: "col-6" }, [
-                                _c("div", { staticClass: "input-group" }, [
-                                  _vm._m(1),
-                                  _vm._v(" "),
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.periodeBulan,
-                                          expression: "periodeBulan",
-                                        },
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        name: "periodeBulan",
-                                        "data-width": "100%",
-                                        disabled: _vm.idCu == "",
-                                      },
-                                      on: {
-                                        change: function ($event) {
-                                          var $$selectedVal =
-                                            Array.prototype.filter
-                                              .call(
-                                                $event.target.options,
-                                                function (o) {
-                                                  return o.selected
-                                                }
-                                              )
-                                              .map(function (o) {
-                                                var val =
-                                                  "_value" in o
-                                                    ? o._value
-                                                    : o.value
-                                                return val
-                                              })
-                                          _vm.periodeBulan = $event.target
-                                            .multiple
-                                            ? $$selectedVal
-                                            : $$selectedVal[0]
-                                        },
-                                      },
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        { attrs: { disabled: "", value: "" } },
-                                        [_vm._v("Bulan")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "option",
-                                        { attrs: { disabled: "", value: "" } },
-                                        [_vm._v("----------------")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "1" } }, [
-                                        _vm._v("1"),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "2" } }, [
-                                        _vm._v("2"),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "3" } }, [
-                                        _vm._v("3"),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "4" } }, [
-                                        _vm._v("4"),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "5" } }, [
-                                        _vm._v("5"),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "6" } }, [
-                                        _vm._v("6"),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "7" } }, [
-                                        _vm._v("7"),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "8" } }, [
-                                        _vm._v("8"),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "9" } }, [
-                                        _vm._v("9"),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "10" } }, [
-                                        _vm._v("10"),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "11" } }, [
-                                        _vm._v("11"),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "12" } }, [
-                                        _vm._v("12"),
-                                      ]),
-                                    ]
-                                  ),
-                                ]),
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col-6" }, [
-                                _c("div", { staticClass: "input-group" }, [
-                                  _vm._m(2),
-                                  _vm._v(" "),
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.periodeTahun,
-                                          expression: "periodeTahun",
-                                        },
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        name: "periodeTahun",
-                                        "data-width": "100%",
-                                        disabled: _vm.periodeBulan == "",
-                                      },
-                                      on: {
-                                        change: function ($event) {
-                                          var $$selectedVal =
-                                            Array.prototype.filter
-                                              .call(
-                                                $event.target.options,
-                                                function (o) {
-                                                  return o.selected
-                                                }
-                                              )
-                                              .map(function (o) {
-                                                var val =
-                                                  "_value" in o
-                                                    ? o._value
-                                                    : o.value
-                                                return val
-                                              })
-                                          _vm.periodeTahun = $event.target
-                                            .multiple
-                                            ? $$selectedVal
-                                            : $$selectedVal[0]
-                                        },
-                                      },
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        { attrs: { disabled: "", value: "" } },
-                                        [_vm._v("Tahun")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "option",
-                                        { attrs: { disabled: "", value: "" } },
-                                        [_vm._v("----------------")]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm._l(
-                                        _vm.itemTahun,
-                                        function (y, index) {
-                                          return _c(
-                                            "option",
-                                            {
-                                              key: index,
-                                              domProps: { value: y },
-                                            },
-                                            [_vm._v(_vm._s(y))]
-                                          )
-                                        }
-                                      ),
-                                    ],
-                                    2
-                                  ),
-                                ]),
-                              ]),
-                            ]),
+                            _c("i", {
+                              staticClass: "icon-sync",
+                              class: {
+                                spinner: _vm.modelTemuanStat == "loading",
+                              },
+                            }),
                           ]
                         ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-sm-2" }, [
-                          _vm.formStat != "loading" &&
-                          _vm.anggotaDataStat != "loading"
-                            ? _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn btn-light btn-icon btn-block",
-                                  attrs: {
-                                    type: "button",
-                                    disabled: _vm.periodeTahun == "",
-                                  },
-                                  on: {
-                                    click: function ($event) {
-                                      $event.preventDefault()
-                                      return _vm.fetch()
-                                    },
-                                  },
-                                },
-                                [
-                                  _c("i", { staticClass: "icon-folder-open3" }),
-                                  _vm._v("  Buat\n\t\t\t\t\t\t\t\t\t"),
-                                ]
-                              )
-                            : _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn btn-light btn-icon btn-block",
-                                  attrs: { type: "button" },
-                                },
-                                [_c("i", { staticClass: "icon-sync spinner" })]
-                              ),
-                        ]),
                       ]),
                     ]),
                   ]),
-                  _vm._v(" "),
-                  _vm.formStat == "success"
-                    ? _c(
-                        "div",
-                        [
-                          _c("div", { staticClass: "card" }, [
-                            _c("div", { staticClass: "nav-tabs-responsive" }, [
-                              _c(
-                                "ul",
-                                {
-                                  staticClass:
-                                    "nav nav-tabs nav-tabs-solid  bg-light mb-0",
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-lg-9 col-md-8" }, [
+                  _c("div", { staticClass: "card" }, [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("div", { staticClass: "progress" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "progress-bar-striped bg-orange",
+                            style: {
+                              width:
+                                Math.round(
+                                  (_vm.item.rekom_ok / _vm.item.total_rekom) *
+                                    100
+                                ) + "%",
+                            },
+                          },
+                          [
+                            _c(
+                              "span",
+                              { staticClass: "text-default font-size-lg" },
+                              [
+                                _vm._v(
+                                  "\n\t\t\t\t\t\t\t\t\t\t\t\t \n\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                    _vm._s(
+                                      Math.round(
+                                        (_vm.item.rekom_ok /
+                                          _vm.item.total_rekom) *
+                                          100
+                                      ) + "%"
+                                    ) +
+                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t          \n\t\t\t\t\t\t\t\t\t\t\t"
+                                ),
+                              ]
+                            ),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c("h5", [_vm._v("Temuan:")]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card card-body bg-light" }, [
+                        _vm._v(_vm._s(_vm.item.name)),
+                      ]),
+                      _vm._v(" "),
+                      _c("h5", [_vm._v("Rekomendasi:")]),
+                      _vm._v(" "),
+                      _vm.currentUser.can &&
+                      _vm.currentUser.can["update_" + _vm.kelas] &&
+                      _vm.currentUser.id_cu == 0
+                        ? _c(
+                            "div",
+                            _vm._l(_vm.item.monitoring_rekom, function (rk) {
+                              return _c("checkbox", {
+                                key: rk.id,
+                                attrs: {
+                                  form: rk.status,
+                                  title: rk.rekomendasi,
                                 },
-                                [
-                                  _c("li", { staticClass: "nav-item" }, [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "nav-link",
-                                        class: {
-                                          active: _vm.tabName == "iuran",
-                                        },
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.changeTab("iuran")
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "icon-menu7 mr-2",
-                                        }),
-                                        _vm._v(
-                                          "\n\t\t\t\t\t\t\t\t\t\tIuran\n\t\t\t\t\t\t\t\t\t"
-                                        ),
-                                      ]
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("li", { staticClass: "nav-item" }, [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "nav-link",
-                                        class: {
-                                          active: _vm.tabName == "masuk",
-                                        },
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.changeTab("masuk")
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "icon-equalizer mr-2",
-                                        }),
-                                        _vm._v(
-                                          "\n\t\t\t\t\t\t\t\t\t\tAnggota Masuk\n\t\t\t\t\t\t\t\t\t"
-                                        ),
-                                      ]
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("li", { staticClass: "nav-item" }, [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "nav-link",
-                                        class: {
-                                          active: _vm.tabName == "keluar",
-                                        },
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.changeTab("keluar")
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "icon-equalizer mr-2",
-                                        }),
-                                        _vm._v(
-                                          "\n\t\t\t\t\t\t\t\t\t\tAnggota Keluar\n\t\t\t\t\t\t\t\t\t"
-                                        ),
-                                      ]
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("li", { staticClass: "nav-item" }, [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "nav-link",
-                                        class: {
-                                          active: _vm.tabName == "simp5",
-                                        },
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.changeTab("simp5")
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "icon-equalizer mr-2",
-                                        }),
-                                        _vm._v(
-                                          "\n\t\t\t\t\t\t\t\t\t\tSIMP > 5JT\n\t\t\t\t\t\t\t\t\t"
-                                        ),
-                                      ]
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("li", { staticClass: "nav-item" }, [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "nav-link",
-                                        class: {
-                                          active: _vm.tabName == "simp10",
-                                        },
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.changeTab("simp10")
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "icon-equalizer mr-2",
-                                        }),
-                                        _vm._v(
-                                          "\n\t\t\t\t\t\t\t\t\t\tSIMP > 10JT | 60 S.d. 70 Thn\n\t\t\t\t\t\t\t\t\t"
-                                        ),
-                                      ]
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("li", { staticClass: "nav-item" }, [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "nav-link",
-                                        class: {
-                                          active: _vm.tabName == "simp701",
-                                        },
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.changeTab("simp701")
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "icon-equalizer mr-2",
-                                        }),
-                                        _vm._v(
-                                          "\n\t\t\t\t\t\t\t\t\t\t> 70 Thn | Masuk < 60 Thn\n\t\t\t\t\t\t\t\t\t"
-                                        ),
-                                      ]
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("li", { staticClass: "nav-item" }, [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "nav-link",
-                                        class: {
-                                          active: _vm.tabName == "simp702",
-                                        },
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.changeTab("simp702")
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "icon-equalizer mr-2",
-                                        }),
-                                        _vm._v(
-                                          "\n\t\t\t\t\t\t\t\t\t\t> 70 Thn | Masuk > 60 Thn\n\t\t\t\t\t\t\t\t\t"
-                                        ),
-                                      ]
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("li", { staticClass: "nav-item" }, [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "nav-link",
-                                        class: {
-                                          active: _vm.tabName == "simp703",
-                                        },
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.changeTab("simp703")
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "icon-equalizer mr-2",
-                                        }),
-                                        _vm._v(
-                                          "\n\t\t\t\t\t\t\t\t\t\t> 70 Thn | Masuk > 70 Thn\n\t\t\t\t\t\t\t\t\t"
-                                        ),
-                                      ]
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]),
-                          ]),
-                          _vm._v(" "),
+                                on: {
+                                  check: function ($event) {
+                                    return _vm.modalOpen("rekomendasi", rk)
+                                  },
+                                },
+                              })
+                            }),
+                            1
+                          )
+                        : _c(
+                            "div",
+                            _vm._l(_vm.item.monitoring_rekom, function (rk) {
+                              return _c("checkbox", {
+                                key: rk.id,
+                                attrs: {
+                                  form: rk.status,
+                                  title: rk.rekomendasi,
+                                },
+                              })
+                            }),
+                            1
+                          ),
+                    ]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-lg-3 col-md-4" }, [
+                  _c("div", { staticClass: "card" }, [
+                    _vm.currentUser.can &&
+                    _vm.currentUser.can["update_" + _vm.kelas] &&
+                    _vm.currentUser.id_cu == 0
+                      ? _c("div", { staticClass: "card-header bg-light" }, [
                           _c(
-                            "transition",
+                            "button",
                             {
-                              attrs: {
-                                "enter-active-class": "animated fadeIn",
-                                mode: "out-in",
+                              staticClass: "btn btn-light btn-block",
+                              on: {
+                                click: function ($event) {
+                                  $event.preventDefault()
+                                  return _vm.ubahData.apply(null, arguments)
+                                },
                               },
                             },
                             [
-                              _c(
-                                "div",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.tabName == "iuran",
-                                      expression: "tabName == 'iuran'",
-                                    },
-                                  ],
-                                },
-                                [
-                                  _c("div", { staticClass: "row" }, [
-                                    _c("div", { staticClass: "col-lg-6" }, [
-                                      _c("div", { staticClass: "card" }, [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass: "card-header bg-white",
-                                          },
-                                          [
-                                            _c(
-                                              "h5",
-                                              { staticClass: "card-title" },
-                                              [
-                                                _vm._v(
-                                                  "Santunan Solidaritas (TUNAS)"
-                                                ),
-                                              ]
-                                            ),
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          { staticClass: "card-body" },
-                                          [
-                                            _c("div", { staticClass: "card" }, [
-                                              _c(
-                                                "div",
-                                                { staticClass: "card-header" },
-                                                [
-                                                  _c("b", [
-                                                    _vm._v(
-                                                      "A. Simpanan yang disolidaritaskan"
-                                                    ),
-                                                  ]),
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "table-responsive",
-                                                },
-                                                [
-                                                  _c(
-                                                    "table",
-                                                    { staticClass: "table" },
-                                                    [
-                                                      _c(
-                                                        "tbody",
-                                                        [
-                                                          _vm._l(
-                                                            _vm.form.produk,
-                                                            function (
-                                                              produk,
-                                                              index
-                                                            ) {
-                                                              return produk.tipe ==
-                                                                "Simpanan Pokok" ||
-                                                                produk.tipe ==
-                                                                  "Simpanan Wajib" ||
-                                                                produk.tipe ==
-                                                                  "Simpanan Non Saham"
-                                                                ? _c("tr", [
-                                                                    _c("th", [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          produk.name
-                                                                        )
-                                                                      ),
-                                                                    ]),
-                                                                    _vm._v(" "),
-                                                                    _c(
-                                                                      "td",
-                                                                      {
-                                                                        staticClass:
-                                                                          "text-right",
-                                                                      },
-                                                                      [
-                                                                        _c(
-                                                                          "check-value",
-                                                                          {
-                                                                            attrs:
-                                                                              {
-                                                                                value:
-                                                                                  produk.saldo,
-                                                                                valueType:
-                                                                                  "currency",
-                                                                              },
-                                                                          }
-                                                                        ),
-                                                                      ],
-                                                                      1
-                                                                    ),
-                                                                  ])
-                                                                : _vm._e()
-                                                            }
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c("tr", [
-                                                            _c("th", [
-                                                              _vm._v(
-                                                                "Jumlah Simpanan yang disolidaritaskan"
-                                                              ),
-                                                            ]),
-                                                            _vm._v(" "),
-                                                            _c("td", {
-                                                              staticClass:
-                                                                "text-right",
-                                                            }),
-                                                          ]),
-                                                        ],
-                                                        2
-                                                      ),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("div", { staticClass: "card" }, [
-                                              _c(
-                                                "div",
-                                                { staticClass: "card-header" },
-                                                [
-                                                  _c("b", [
-                                                    _vm._v(
-                                                      "B. Simpanan sebagai pengurang"
-                                                    ),
-                                                  ]),
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "table-responsive",
-                                                },
-                                                [
-                                                  _c(
-                                                    "table",
-                                                    { staticClass: "table" },
-                                                    [
-                                                      _c("tbody", [
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "1. Simpanan usia 0 s.d 1 thn diatas plafon (5.000.000)"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_3,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "2. Simpanan usia > 1 s.d 70 thn diatas plafon (50.000.000)"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_4,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "3. Simpanan usia masuk 60 s.d 70 thn diatas plafon (10.000.000)"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_5,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "4. Pertambahan simpanan usia diatas  70 thn - yang menjadi anggota CU pada usia di bawah 60 tahun (Maks. 50 juta)"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_6,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "5. Pertambahan simpanan usia diatas  70 thn - yang menjadi anggota CU pada usia 60 s.d 70 tahun (Maks. 10 juta)"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_7,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "6. Pertambahan simpanan usia diatas  70 thn - Anggota masuk usia diatas 70 tahun"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_8,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "7. Simpanan Kapitalisasi anggota baru  < 30 hari sejak menjadi anggota"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_9,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "8. Simpanan kapitalisasi  yang piutangnya tidak pernah diangsur 3 bln berturut-turut atau lebih"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_10,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "9. Simpanan lembaga yang diatasnamakan lembaga atau perorangan"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_11,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "Jumlah Simpanan sebagai pengurang"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_3,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                      ]),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("div", { staticClass: "card" }, [
-                                              _c(
-                                                "div",
-                                                { staticClass: "card-header" },
-                                                [
-                                                  _c("b", [
-                                                    _vm._v(
-                                                      "C. Simpanan Yang Disolidaritaskan"
-                                                    ),
-                                                  ]),
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "table-responsive",
-                                                },
-                                                [
-                                                  _c(
-                                                    "table",
-                                                    { staticClass: "table" },
-                                                    [
-                                                      _c("tbody", [
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v("A - B"),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [_vm._v("0")]
-                                                          ),
-                                                        ]),
-                                                      ]),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("div", { staticClass: "card" }, [
-                                              _c(
-                                                "div",
-                                                { staticClass: "card-header" },
-                                                [_c("b", [_vm._v("D. Iuran")])]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "table-responsive",
-                                                },
-                                                [
-                                                  _c(
-                                                    "table",
-                                                    { staticClass: "table" },
-                                                    [
-                                                      _c("tbody", [
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "Setoran Solidaritas Tunas"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [_vm._v("0")]
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "Pembulatan Setoran Solidaritas Tunas"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [_vm._v("0")]
-                                                          ),
-                                                        ]),
-                                                      ]),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                            ]),
-                                          ]
-                                        ),
-                                      ]),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-lg-6" }, [
-                                      _c("div", { staticClass: "card" }, [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass: "card-header bg-white",
-                                          },
-                                          [
-                                            _c(
-                                              "h5",
-                                              { staticClass: "card-title" },
-                                              [
-                                                _vm._v(
-                                                  "Perlindungan Piutang Anggota (LINTANG)"
-                                                ),
-                                              ]
-                                            ),
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          { staticClass: "card-body" },
-                                          [
-                                            _c("div", { staticClass: "card" }, [
-                                              _c(
-                                                "div",
-                                                { staticClass: "card-header" },
-                                                [
-                                                  _c("b", [
-                                                    _vm._v(
-                                                      "A. Piutang yang disolidaritaskan"
-                                                    ),
-                                                  ]),
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "table-responsive",
-                                                },
-                                                [
-                                                  _c(
-                                                    "table",
-                                                    { staticClass: "table" },
-                                                    [
-                                                      _c(
-                                                        "tbody",
-                                                        [
-                                                          _vm._l(
-                                                            _vm.form.produk,
-                                                            function (
-                                                              produk,
-                                                              index
-                                                            ) {
-                                                              return produk.tipe ==
-                                                                "Pinjaman Kapitalisasi" ||
-                                                                produk.tipe ==
-                                                                  "Pinjaman Umum" ||
-                                                                produk.tipe ==
-                                                                  "Pinjaman Produktif"
-                                                                ? _c(
-                                                                    "tr",
-                                                                    {
-                                                                      key: index,
-                                                                    },
-                                                                    [
-                                                                      _c("th", [
-                                                                        _vm._v(
-                                                                          _vm._s(
-                                                                            produk.name
-                                                                          )
-                                                                        ),
-                                                                      ]),
-                                                                      _vm._v(
-                                                                        " "
-                                                                      ),
-                                                                      _c(
-                                                                        "td",
-                                                                        {
-                                                                          staticClass:
-                                                                            "text-right",
-                                                                        },
-                                                                        [
-                                                                          _c(
-                                                                            "check-value",
-                                                                            {
-                                                                              attrs:
-                                                                                {
-                                                                                  value:
-                                                                                    produk.saldo,
-                                                                                  valueType:
-                                                                                    "currency",
-                                                                                },
-                                                                            }
-                                                                          ),
-                                                                        ],
-                                                                        1
-                                                                      ),
-                                                                    ]
-                                                                  )
-                                                                : _vm._e()
-                                                            }
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c("tr", [
-                                                            _c("th", [
-                                                              _vm._v(
-                                                                "Jumlah Piutang yang disolidaritaskan"
-                                                              ),
-                                                            ]),
-                                                            _vm._v(" "),
-                                                            _c("td", {
-                                                              staticClass:
-                                                                "text-right",
-                                                            }),
-                                                          ]),
-                                                        ],
-                                                        2
-                                                      ),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("div", { staticClass: "card" }, [
-                                              _c(
-                                                "div",
-                                                { staticClass: "card-header" },
-                                                [
-                                                  _c("b", [
-                                                    _vm._v(
-                                                      "B. Piutang sebagai pengurang"
-                                                    ),
-                                                  ]),
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "table-responsive",
-                                                },
-                                                [
-                                                  _c(
-                                                    "table",
-                                                    { staticClass: "table" },
-                                                    [
-                                                      _c("tbody", [
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "1. Saldo piutang cair usia dewasa s.d 60 thn diatas plafon (150.000.000)"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_12,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "2. Saldo piutang cair diatas usia 60 s.d 70 thn diatas plafon (50.000.000)"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_13,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "3. Saldo piutang kapitalisasi diatas plafon (25.000.000)"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_14,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "4. Saldo piutang usia diatas 70 tahun"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_15,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "5. Saldo piutang macet  lebih dari 6 bulan berturut-turut"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_16,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "6. Saldo piutang kapitalisasi anggota baru < 30 hari sejak menjadi anggota"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_17,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "7. Saldo piutang kapitalisasi yang tidak pernah diangsur ≥ 3 bln berturut-turut"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_18,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "8. Saldo piutang dengan tujuan untuk biaya berobat sendiri"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_19,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "9. Saldo piutang lembaga atas nama perorangan atau nama lembaga"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_20,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "10. Saldo piutang produktif  diatas plafon (300.000.000)"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_21,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "11. Saldo piutang produktif dan piutang lain diatas plafon (300.000.000)"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_22,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "12. Saldo piutang kapitalisasi yang umur piutang diatas 5 tahun"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_23,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "13. Saldo piutang selain  kapitalisasi yang umur piutang diatas 15 tahun"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_24,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "14. Saldo piutang yang angsuran ditarik dari simpanan saham (SP dan SW)"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_25,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "15. Saldo piutang luar biasa usia < 17 tahun dan belum menikah"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "check-value",
-                                                                {
-                                                                  attrs: {
-                                                                    value:
-                                                                      _vm.form
-                                                                        .total_sheet_26,
-                                                                    valueType:
-                                                                      "currency",
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "Jumlah Simpanan sebagai pengurang"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [_vm._v("0")]
-                                                          ),
-                                                        ]),
-                                                      ]),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("div", { staticClass: "card" }, [
-                                              _c(
-                                                "div",
-                                                { staticClass: "card-header" },
-                                                [
-                                                  _c("b", [
-                                                    _vm._v(
-                                                      "C. Piutang Yang Disolidaritaskan"
-                                                    ),
-                                                  ]),
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "table-responsive",
-                                                },
-                                                [
-                                                  _c(
-                                                    "table",
-                                                    { staticClass: "table" },
-                                                    [
-                                                      _c("tbody", [
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v("A - B"),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [_vm._v("0")]
-                                                          ),
-                                                        ]),
-                                                      ]),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("div", { staticClass: "card" }, [
-                                              _c(
-                                                "div",
-                                                { staticClass: "card-header" },
-                                                [_c("b", [_vm._v("D. Iuran")])]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "table-responsive",
-                                                },
-                                                [
-                                                  _c(
-                                                    "table",
-                                                    { staticClass: "table" },
-                                                    [
-                                                      _c("tbody", [
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "Setoran Solidaritas Lintang"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [_vm._v("0")]
-                                                          ),
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("tr", [
-                                                          _c("th", [
-                                                            _vm._v(
-                                                              "Pembulatan Setoran Solidaritas Lintang"
-                                                            ),
-                                                          ]),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "td",
-                                                            {
-                                                              staticClass:
-                                                                "text-right",
-                                                            },
-                                                            [_vm._v("0")]
-                                                          ),
-                                                        ]),
-                                                      ]),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                            ]),
-                                          ]
-                                        ),
-                                      ]),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "col-lg-12" }, [
-                                      _c("div", { staticClass: "card" }, [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass: "card-header bg-white",
-                                          },
-                                          [
-                                            _c(
-                                              "h5",
-                                              { staticClass: "card-title" },
-                                              [_vm._v("Total")]
-                                            ),
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          { staticClass: "table-responsive" },
-                                          [
-                                            _c(
-                                              "table",
-                                              { staticClass: "table" },
-                                              [
-                                                _c("tbody", [
-                                                  _c("tr", [
-                                                    _c("th", [
-                                                      _vm._v(
-                                                        "Jumlah Setoran Solidaritas Jalinan ( TUNAS + LINTANG )"
-                                                      ),
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "td",
-                                                      {
-                                                        staticClass:
-                                                          "text-right",
-                                                      },
-                                                      [_vm._v("0")]
-                                                    ),
-                                                  ]),
-                                                  _vm._v(" "),
-                                                  _c("tr", [
-                                                    _c("th", [
-                                                      _vm._v(
-                                                        "Jumlah Setoran Solidaritas Jalinan Yang Dibayarkan"
-                                                      ),
-                                                    ]),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "td",
-                                                      {
-                                                        staticClass:
-                                                          "text-right",
-                                                      },
-                                                      [_vm._v("0")]
-                                                    ),
-                                                  ]),
-                                                ]),
-                                              ]
-                                            ),
-                                          ]
-                                        ),
-                                      ]),
-                                    ]),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("form-info"),
-                                  _vm._v(" "),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "card card-body" },
-                                    [
-                                      _c("form-button", {
-                                        attrs: {
-                                          cancelState: _vm.cancelState,
-                                          formValidation: "form",
-                                        },
-                                        on: { cancelClick: _vm.back },
-                                      }),
-                                    ],
-                                    1
-                                  ),
-                                ],
-                                1
-                              ),
+                              _c("i", { staticClass: "icon-pencil5" }),
+                              _vm._v(" Ubah Temuan"),
                             ]
                           ),
-                        ],
-                        1
-                      )
-                    : _vm.formStat == "loading"
-                    ? _c("div", [_vm._m(3)])
-                    : _c("div", [
-                        _c(
-                          "div",
-                          { staticClass: "card card-body" },
-                          [
-                            _c("form-button", {
-                              attrs: {
-                                cancelState: _vm.cancelState,
-                                isSingleButton: true,
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "table",
+                      {
+                        staticClass:
+                          "table table-borderless table-xs border-top-0 my-2",
+                      },
+                      [
+                        _c("tbody", [
+                          _c("tr", [
+                            _c("td", { staticClass: "font-weight-semibold" }, [
+                              _vm._v("CU:"),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              { staticClass: "text-right" },
+                              [
+                                _vm.item.cu
+                                  ? _c("check-value", {
+                                      attrs: { value: _vm.item.cu.name },
+                                    })
+                                  : _c("span", [_vm._v("-")]),
+                              ],
+                              1
+                            ),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", { staticClass: "font-weight-semibold" }, [
+                              _vm._v("TP:"),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              { staticClass: "text-right" },
+                              [
+                                _vm.item.tp
+                                  ? _c("check-value", {
+                                      attrs: { value: _vm.item.tp.name },
+                                    })
+                                  : _vm.item.id_tp == 0
+                                  ? _c("span", [_vm._v("Semua")])
+                                  : _c("span", [_vm._v("-")]),
+                              ],
+                              1
+                            ),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", { staticClass: "font-weight-semibold" }, [
+                              _vm._v("Tanggal:"),
+                            ]),
+                            _vm._v(" "),
+                            _c("td", { staticClass: "text-right" }, [
+                              _vm.item.tanggal
+                                ? _c("span", {
+                                    domProps: {
+                                      innerHTML: _vm._s(
+                                        _vm.$options.filters.date(
+                                          _vm.item.tanggal
+                                        )
+                                      ),
+                                    },
+                                  })
+                                : _c("span", [_vm._v("-")]),
+                            ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", { staticClass: "font-weight-semibold" }, [
+                              _vm._v("Jenis:"),
+                            ]),
+                            _vm._v(" "),
+                            _c("td", { staticClass: "text-right" }, [
+                              _vm.item.jenis == "MAYOR"
+                                ? _c(
+                                    "span",
+                                    { staticClass: "badge badge-danger" },
+                                    [_vm._v(_vm._s(_vm.item.jenis))]
+                                  )
+                                : _vm.item.jenis == "MINOR"
+                                ? _c(
+                                    "span",
+                                    { staticClass: "badge badge-success" },
+                                    [_vm._v(_vm._s(_vm.item.jenis))]
+                                  )
+                                : _vm._e(),
+                            ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", { staticClass: "font-weight-semibold" }, [
+                              _vm._v("Perspektif:"),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              { staticClass: "text-right" },
+                              [
+                                _c("check-value", {
+                                  attrs: { value: _vm.item.perspektif },
+                                }),
+                              ],
+                              1
+                            ),
+                          ]),
+                        ]),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "card-body pb-0" },
+                      [
+                        _c("pic", {
+                          attrs: {
+                            title: "PIC CU",
+                            itemData: _vm.item.aktivis_cu,
+                            itemDataStat: _vm.itemStat,
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c("pic", {
+                          attrs: {
+                            title: "PIC PUSKOPCUINA",
+                            itemData: _vm.item.aktivis_bkcu,
+                            itemDataStat: _vm.itemStat,
+                          },
+                        }),
+                      ],
+                      1
+                    ),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12" }, [
+                  _c("div", { staticClass: "card card-body" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-7 col-lg-9 d-none d-sm-block" },
+                        [
+                          _vm.currentUser.can &&
+                          _vm.currentUser.can["create_" + _vm.kelas]
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-light",
+                                  on: {
+                                    click: function ($event) {
+                                      $event.preventDefault()
+                                      return _vm.modalOpen("tambah", "")
+                                    },
+                                  },
+                                },
+                                [
+                                  _c("i", { staticClass: "icon-plus3" }),
+                                  _vm._v(" Tambah Keputusan"),
+                                ]
+                              )
+                            : _vm._e(),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "col-md-5 col-lg-3 text-right d-none d-sm-block",
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-light",
+                              on: {
+                                click: function ($event) {
+                                  $event.preventDefault()
+                                  return _vm.back.apply(null, arguments)
+                                },
                               },
-                              on: { cancelClick: _vm.back },
-                            }),
-                          ],
-                          1
-                        ),
-                      ]),
-                ]
-              ),
+                            },
+                            [
+                              _c("i", { staticClass: "icon-arrow-left13" }),
+                              _vm._v(" Kembali"),
+                            ]
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-md-12 d-block d-sm-none" },
+                        [
+                          _vm.currentUser.can &&
+                          _vm.currentUser.can["create_" + _vm.kelas]
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-light btn-block mb-1",
+                                  on: {
+                                    click: function ($event) {
+                                      $event.preventDefault()
+                                      return _vm.modalOpen("tambah", "")
+                                    },
+                                  },
+                                },
+                                [
+                                  _c("i", { staticClass: "icon-plus3" }),
+                                  _vm._v(" Tambah Keputusan"),
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-light btn-block",
+                              on: {
+                                click: function ($event) {
+                                  $event.preventDefault()
+                                  return _vm.back.apply(null, arguments)
+                                },
+                              },
+                            },
+                            [
+                              _c("i", { staticClass: "icon-arrow-left13" }),
+                              _vm._v(" Kembali"),
+                            ]
+                          ),
+                        ]
+                      ),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _vm.itemDataStat == "success"
+                    ? _c("div", [
+                        _vm.itemData.length > 0
+                          ? _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "timeline timeline-left content-group",
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "timeline-container" },
+                                  _vm._l(_vm.itemData, function (pc, index) {
+                                    return _c(
+                                      "div",
+                                      {
+                                        key: index,
+                                        staticClass: "timeline-row",
+                                      },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "timeline-icon" },
+                                          [
+                                            _c(
+                                              "div",
+                                              { staticClass: "bg-blue" },
+                                              [
+                                                _vm._v(
+                                                  "\n\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                    _vm._s(index + 1) +
+                                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                ),
+                                              ]
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("div", { staticClass: "row" }, [
+                                          _c(
+                                            "div",
+                                            { staticClass: "col-sm-12" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "card" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "card-header bg-white",
+                                                    },
+                                                    [
+                                                      _c("span", {
+                                                        staticClass:
+                                                          "badge badge-primary",
+                                                        domProps: {
+                                                          innerHTML: _vm._s(
+                                                            _vm.$options.filters.dateTime(
+                                                              pc.created_at
+                                                            )
+                                                          ),
+                                                        },
+                                                      }),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass: "card-body",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        { staticClass: "row" },
+                                                        [
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "col-md-6",
+                                                            },
+                                                            [
+                                                              _c("h5", [
+                                                                _vm._v(
+                                                                  "Pencapaian:"
+                                                                ),
+                                                              ]),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "card card-body bg-light",
+                                                                },
+                                                                [
+                                                                  pc.pencapaian
+                                                                    ? _c(
+                                                                        "span",
+                                                                        {
+                                                                          domProps:
+                                                                            {
+                                                                              innerHTML:
+                                                                                _vm._s(
+                                                                                  pc.pencapaian
+                                                                                ),
+                                                                            },
+                                                                        }
+                                                                      )
+                                                                    : _c(
+                                                                        "span",
+                                                                        [
+                                                                          _vm._v(
+                                                                            "-"
+                                                                          ),
+                                                                        ]
+                                                                      ),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "col-md-6",
+                                                            },
+                                                            [
+                                                              _c("h5", [
+                                                                _vm._v(
+                                                                  "Bukti-bukti:"
+                                                                ),
+                                                              ]),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "card card-body bg-light",
+                                                                },
+                                                                [
+                                                                  pc.bukti
+                                                                    ? _c(
+                                                                        "span",
+                                                                        {
+                                                                          domProps:
+                                                                            {
+                                                                              innerHTML:
+                                                                                _vm._s(
+                                                                                  pc.bukti
+                                                                                ),
+                                                                            },
+                                                                        }
+                                                                      )
+                                                                    : _c(
+                                                                        "span",
+                                                                        [
+                                                                          _vm._v(
+                                                                            "-"
+                                                                          ),
+                                                                        ]
+                                                                      ),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "col-md-6",
+                                                            },
+                                                            [
+                                                              _c("h5", [
+                                                                _vm._v(
+                                                                  "Kendala:"
+                                                                ),
+                                                              ]),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "card card-body bg-light",
+                                                                },
+                                                                [
+                                                                  pc.kendala
+                                                                    ? _c(
+                                                                        "span",
+                                                                        {
+                                                                          domProps:
+                                                                            {
+                                                                              innerHTML:
+                                                                                _vm._s(
+                                                                                  pc.kendala
+                                                                                ),
+                                                                            },
+                                                                        }
+                                                                      )
+                                                                    : _c(
+                                                                        "span",
+                                                                        [
+                                                                          _vm._v(
+                                                                            "-"
+                                                                          ),
+                                                                        ]
+                                                                      ),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "col-md-6",
+                                                            },
+                                                            [
+                                                              _c("h5", [
+                                                                _vm._v(
+                                                                  "Tindak Lanjut:"
+                                                                ),
+                                                              ]),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "card card-body bg-light",
+                                                                },
+                                                                [
+                                                                  pc.tindak
+                                                                    ? _c(
+                                                                        "span",
+                                                                        {
+                                                                          domProps:
+                                                                            {
+                                                                              innerHTML:
+                                                                                _vm._s(
+                                                                                  pc.tindak
+                                                                                ),
+                                                                            },
+                                                                        }
+                                                                      )
+                                                                    : _c(
+                                                                        "span",
+                                                                        [
+                                                                          _vm._v(
+                                                                            "-"
+                                                                          ),
+                                                                        ]
+                                                                      ),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "col-md-12",
+                                                            },
+                                                            [
+                                                              _c("h5", [
+                                                                _vm._v("Foto:"),
+                                                              ]),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "card card-body d-flex align-items-center",
+                                                                },
+                                                                [
+                                                                  pc.gambar
+                                                                    ? _c(
+                                                                        "img",
+                                                                        {
+                                                                          staticClass:
+                                                                            "img-fluid",
+                                                                          attrs:
+                                                                            {
+                                                                              src:
+                                                                                "/images/monitoring/" +
+                                                                                pc.gambar +
+                                                                                ".jpg",
+                                                                            },
+                                                                        }
+                                                                      )
+                                                                    : _c(
+                                                                        "img",
+                                                                        {
+                                                                          staticStyle:
+                                                                            {
+                                                                              width:
+                                                                                "15em",
+                                                                            },
+                                                                          attrs:
+                                                                            {
+                                                                              src: "/images/no_image.jpg",
+                                                                            },
+                                                                        }
+                                                                      ),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "card-body pb-0",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        { staticClass: "row" },
+                                                        [
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "col-md-12",
+                                                            },
+                                                            [
+                                                              _c("h5", [
+                                                                _vm._v(
+                                                                  "Catatan PUSKOPCUINA:"
+                                                                ),
+                                                              ]),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "card card-body bg-light",
+                                                                },
+                                                                [
+                                                                  pc.catatan
+                                                                    ? _c(
+                                                                        "span",
+                                                                        {
+                                                                          domProps:
+                                                                            {
+                                                                              innerHTML:
+                                                                                _vm._s(
+                                                                                  pc.catatan
+                                                                                ),
+                                                                            },
+                                                                        }
+                                                                      )
+                                                                    : _c(
+                                                                        "span",
+                                                                        [
+                                                                          _vm._v(
+                                                                            "-"
+                                                                          ),
+                                                                        ]
+                                                                      ),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass: "card-body",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "d-none d-sm-block",
+                                                        },
+                                                        [
+                                                          _vm.currentUser.can &&
+                                                          _vm.currentUser.can[
+                                                            "update_" +
+                                                              _vm.kelas
+                                                          ] &&
+                                                          _vm.currentUser
+                                                            .id_cu == 0
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-light mb-1",
+                                                                  on: {
+                                                                    click:
+                                                                      function (
+                                                                        $event
+                                                                      ) {
+                                                                        $event.preventDefault()
+                                                                        return _vm.modalOpen(
+                                                                          "catatan",
+                                                                          pc
+                                                                        )
+                                                                      },
+                                                                  },
+                                                                },
+                                                                [
+                                                                  !pc.catatan
+                                                                    ? _c(
+                                                                        "span",
+                                                                        [
+                                                                          _c(
+                                                                            "i",
+                                                                            {
+                                                                              staticClass:
+                                                                                "icon-plus3",
+                                                                            }
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " Tambah Catatan PUSKOPCUINA"
+                                                                          ),
+                                                                        ]
+                                                                      )
+                                                                    : _c(
+                                                                        "span",
+                                                                        [
+                                                                          _c(
+                                                                            "i",
+                                                                            {
+                                                                              staticClass:
+                                                                                "icon-pencil5",
+                                                                            }
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " Ubah Catatan PUSKOPCUINA"
+                                                                          ),
+                                                                        ]
+                                                                      ),
+                                                                ]
+                                                              )
+                                                            : _vm._e(),
+                                                          _vm._v(" "),
+                                                          _vm.currentUser.can &&
+                                                          _vm.currentUser.can[
+                                                            "update_" +
+                                                              _vm.kelas
+                                                          ]
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-light mb-1",
+                                                                  on: {
+                                                                    click:
+                                                                      function (
+                                                                        $event
+                                                                      ) {
+                                                                        $event.preventDefault()
+                                                                        return _vm.modalOpen(
+                                                                          "ubah",
+                                                                          pc
+                                                                        )
+                                                                      },
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _c("i", {
+                                                                    staticClass:
+                                                                      "icon-pencil5",
+                                                                  }),
+                                                                  _vm._v(
+                                                                    " Ubah"
+                                                                  ),
+                                                                ]
+                                                              )
+                                                            : _vm._e(),
+                                                          _vm._v(" "),
+                                                          _vm.currentUser.can &&
+                                                          _vm.currentUser.can[
+                                                            "update_" +
+                                                              _vm.kelas
+                                                          ]
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-light mb-1",
+                                                                  on: {
+                                                                    click:
+                                                                      function (
+                                                                        $event
+                                                                      ) {
+                                                                        $event.preventDefault()
+                                                                        return _vm.modalOpen(
+                                                                          "hapus",
+                                                                          pc
+                                                                        )
+                                                                      },
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _c("i", {
+                                                                    staticClass:
+                                                                      "icon-bin2",
+                                                                  }),
+                                                                  _vm._v(
+                                                                    " Hapus"
+                                                                  ),
+                                                                ]
+                                                              )
+                                                            : _vm._e(),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "d-block d-sm-none",
+                                                        },
+                                                        [
+                                                          _vm.currentUser.can &&
+                                                          _vm.currentUser.can[
+                                                            "update_" +
+                                                              _vm.kelas
+                                                          ] &&
+                                                          _vm.currentUser
+                                                            .id_cu == 0
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-light btn-block mb-1",
+                                                                  on: {
+                                                                    click:
+                                                                      function (
+                                                                        $event
+                                                                      ) {
+                                                                        $event.preventDefault()
+                                                                        return _vm.modalOpen(
+                                                                          "catatan",
+                                                                          pc
+                                                                        )
+                                                                      },
+                                                                  },
+                                                                },
+                                                                [
+                                                                  !pc.catatan
+                                                                    ? _c(
+                                                                        "span",
+                                                                        [
+                                                                          _c(
+                                                                            "i",
+                                                                            {
+                                                                              staticClass:
+                                                                                "icon-plus3",
+                                                                            }
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " Tambah Catatan PUSKOPCUINA"
+                                                                          ),
+                                                                        ]
+                                                                      )
+                                                                    : _c(
+                                                                        "span",
+                                                                        [
+                                                                          _c(
+                                                                            "i",
+                                                                            {
+                                                                              staticClass:
+                                                                                "icon-pencil5",
+                                                                            }
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " Ubah Catatan PUSKOPCUINA"
+                                                                          ),
+                                                                        ]
+                                                                      ),
+                                                                ]
+                                                              )
+                                                            : _vm._e(),
+                                                          _vm._v(" "),
+                                                          _vm.currentUser.can &&
+                                                          _vm.currentUser.can[
+                                                            "update_" +
+                                                              _vm.kelas
+                                                          ]
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-light btn-block mb-1",
+                                                                  on: {
+                                                                    click:
+                                                                      function (
+                                                                        $event
+                                                                      ) {
+                                                                        $event.preventDefault()
+                                                                        return _vm.modalOpen(
+                                                                          "ubah",
+                                                                          pc
+                                                                        )
+                                                                      },
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _c("i", {
+                                                                    staticClass:
+                                                                      "icon-pencil5",
+                                                                  }),
+                                                                  _vm._v(
+                                                                    " Ubah"
+                                                                  ),
+                                                                ]
+                                                              )
+                                                            : _vm._e(),
+                                                          _vm._v(" "),
+                                                          _vm.currentUser.can &&
+                                                          _vm.currentUser.can[
+                                                            "update_" +
+                                                              _vm.kelas
+                                                          ]
+                                                            ? _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-light btn-block mb-1",
+                                                                  on: {
+                                                                    click:
+                                                                      function (
+                                                                        $event
+                                                                      ) {
+                                                                        $event.preventDefault()
+                                                                        return _vm.modalOpen(
+                                                                          "hapus",
+                                                                          pc
+                                                                        )
+                                                                      },
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _c("i", {
+                                                                    staticClass:
+                                                                      "icon-bin2",
+                                                                  }),
+                                                                  _vm._v(
+                                                                    " Hapus"
+                                                                  ),
+                                                                ]
+                                                              )
+                                                            : _vm._e(),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]),
+                                      ]
+                                    )
+                                  }),
+                                  0
+                                ),
+                              ]
+                            )
+                          : _vm._e(),
+                      ])
+                    : _vm.itemDataStat == "loading"
+                    ? _c("div", [_vm._m(1)])
+                    : _vm._e(),
+                ]),
+              ]),
             ],
             1
           ),
@@ -3971,10 +2818,20 @@ var render = function () {
         },
         [
           _c("template", { slot: "modal-title" }, [
-            _vm._v("\n\t\t\t" + _vm._s(_vm.modalTitle) + "\n\t\t"),
+            _vm._v("\n\t\t\t\t" + _vm._s(_vm.modalTitle) + "\n\t\t\t"),
           ]),
           _vm._v(" "),
-          _c("template", { slot: "modal-body1" }),
+          _c(
+            "template",
+            { slot: "modal-body1" },
+            [
+              _c("form-pencapaian", {
+                attrs: { mode: _vm.modalFormState, selected: _vm.selectedItem },
+                on: { tutup: _vm.modalTutup },
+              }),
+            ],
+            1
+          ),
         ],
         2
       ),
@@ -3988,49 +2845,526 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "input-group-prepend" }, [
-      _c("span", { staticClass: "input-group-text" }, [_vm._v("Pilih CU")]),
+      _c("span", { staticClass: "input-group-text" }, [_vm._v("Pilih Temuan")]),
     ])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c("span", { staticClass: "input-group-text" }, [_vm._v("Pilih Bulan")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c("span", { staticClass: "input-group-text" }, [_vm._v(" Pilih Tahun")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-body" }, [
-        _c("h4", [_vm._v("Mohon tunggu...")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "progress" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
-              staticStyle: { width: "100%" },
-            },
-            [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-          ),
-        ]),
-      ]),
+    return _c("div", { staticClass: "progress" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+          staticStyle: { width: "100%" },
+        },
+        [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
+      ),
     ])
   },
 ]
 render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/monitoring/formPencapaian.vue?vue&type=template&id=5a8b8bd6&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/monitoring/formPencapaian.vue?vue&type=template&id=5a8b8bd6& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "form",
+      {
+        attrs: { "data-vv-scope": "formDataLanjut" },
+        on: {
+          submit: function ($event) {
+            $event.preventDefault()
+            return _vm.save.apply(null, arguments)
+          },
+        },
+      },
+      [
+        _vm.message.show
+          ? _c("message", {
+              attrs: {
+                title: "Oops terjadi kesalahan",
+                errorData: _vm.message.content,
+                showDebug: false,
+              },
+              on: { close: _vm.messageClose },
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _vm.mode != "catatan"
+            ? _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("h6", [_vm._v("Pencapaian:")]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.formDataLanjut.pencapaian,
+                        expression: "formDataLanjut.pencapaian",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      rows: "3",
+                      cols: "3",
+                      placeholder: "Silahkan masukkan pencapaian",
+                    },
+                    domProps: { value: _vm.formDataLanjut.pencapaian },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.formDataLanjut,
+                          "pencapaian",
+                          $event.target.value
+                        )
+                      },
+                    },
+                  }),
+                ]),
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.mode != "catatan"
+            ? _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("h6", [_vm._v("Bukti-bukti:")]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.formDataLanjut.bukti,
+                        expression: "formDataLanjut.bukti",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      rows: "3",
+                      cols: "3",
+                      placeholder: "Silahkan masukkan bukti",
+                    },
+                    domProps: { value: _vm.formDataLanjut.bukti },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.formDataLanjut,
+                          "bukti",
+                          $event.target.value
+                        )
+                      },
+                    },
+                  }),
+                ]),
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.mode != "catatan"
+            ? _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("h6", [_vm._v("Kendala:")]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.formDataLanjut.kendala,
+                        expression: "formDataLanjut.kendala",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      rows: "3",
+                      cols: "3",
+                      placeholder: "Silahkan masukkan kendala",
+                    },
+                    domProps: { value: _vm.formDataLanjut.kendala },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.formDataLanjut,
+                          "kendala",
+                          $event.target.value
+                        )
+                      },
+                    },
+                  }),
+                ]),
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.mode != "catatan"
+            ? _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("h6", [_vm._v("Tindak Lanjut:")]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.formDataLanjut.tindak,
+                        expression: "formDataLanjut.tindak",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      rows: "3",
+                      cols: "3",
+                      placeholder: "Silahkan masukkan tindak lanjut",
+                    },
+                    domProps: { value: _vm.formDataLanjut.tindak },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.formDataLanjut,
+                          "tindak",
+                          $event.target.value
+                        )
+                      },
+                    },
+                  }),
+                ]),
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.mode != "catatan"
+            ? _c("div", { staticClass: "col-md-12" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c("h6", [_vm._v("Upload Foto:")]),
+                    _vm._v(" "),
+                    _c("app-image-upload", {
+                      attrs: {
+                        image_loc: "/images/monitoring/",
+                        image_temp: _vm.formDataLanjut.gambar,
+                      },
+                      model: {
+                        value: _vm.formDataLanjut.gambar,
+                        callback: function ($$v) {
+                          _vm.$set(_vm.formDataLanjut, "gambar", $$v)
+                        },
+                        expression: "formDataLanjut.gambar",
+                      },
+                    }),
+                  ],
+                  1
+                ),
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.mode == "catatan"
+            ? _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("h6", [_vm._v("Catatan BKCU:")]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.formDataLanjut.catatan,
+                        expression: "formDataLanjut.catatan",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      rows: "3",
+                      cols: "3",
+                      placeholder: "Silahkan masukkan catatan bkcu",
+                    },
+                    domProps: { value: _vm.formDataLanjut.catatan },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.formDataLanjut,
+                          "catatan",
+                          $event.target.value
+                        )
+                      },
+                    },
+                  }),
+                ]),
+              ])
+            : _vm._e(),
+        ]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("div", { staticClass: "text-center d-none d-md-block" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-light",
+              attrs: { type: "button" },
+              on: {
+                click: function ($event) {
+                  $event.preventDefault()
+                  return _vm.tutup.apply(null, arguments)
+                },
+              },
+            },
+            [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              attrs: {
+                type: "submit",
+                disabled: _vm.formDataLanjut.cu_id == "",
+              },
+            },
+            [_c("i", { staticClass: "icon-floppy-disk" }), _vm._v(" Simpan")]
+          ),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "d-block d-md-none" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary btn-block pb-2",
+              attrs: {
+                type: "submit",
+                disabled: _vm.formDataLanjut.cu_id == "",
+              },
+            },
+            [_c("i", { staticClass: "icon-floppy-disk" }), _vm._v(" Simpan")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-light btn-block pb-2",
+              attrs: { type: "button" },
+              on: {
+                click: function ($event) {
+                  $event.preventDefault()
+                  return _vm.tutup.apply(null, arguments)
+                },
+              },
+            },
+            [_c("i", { staticClass: "icon-cross" }), _vm._v(" Tutup")]
+          ),
+        ]),
+      ],
+      1
+    ),
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/monitoring/pic.vue?vue&type=template&id=38acd236&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/monitoring/pic.vue?vue&type=template&id=38acd236& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.itemDataStat != "success"
+      ? _c("div", { staticClass: "progress mb-3" }, [_vm._m(0)])
+      : _c("span", [
+          _c("div", { staticClass: "media mt-0 mb-3" }, [
+            _c("div", { staticClass: "mr-3 mb-2 mb-0" }, [
+              _c("div", { staticClass: "card-img-actions" }, [
+                _vm.itemData && _vm.itemData.gambar
+                  ? _c("img", {
+                      staticClass: "img-fluid img-preview img-rounded",
+                      attrs: {
+                        src: "/images/aktivis/" + _vm.itemData.gambar + "n.jpg",
+                      },
+                    })
+                  : _c("img", {
+                      staticClass: "img-fluid img-preview img-rounded",
+                      attrs: { src: "/images/no_image_man.jpg" },
+                    }),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "media-body" }, [
+              _c("b", [_vm._v(_vm._s(_vm.title))]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("Nama:")]),
+              _vm._v(
+                "\n        " +
+                  _vm._s(_vm.itemData ? _vm.itemData.name : "-") +
+                  "\n        "
+              ),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("Tingkat:")]),
+              _vm._v(
+                "\n        " +
+                  _vm._s(
+                    _vm.itemData && _vm.itemData.pekerjaan_aktif
+                      ? _vm.$options.filters.checkTingkatAktivis(
+                          _vm.itemData.pekerjaan_aktif.tingkat
+                        )
+                      : ""
+                  ) +
+                  "\n        "
+              ),
+              _c("br"),
+              _vm._v(" "),
+              _c("b", [_vm._v("Jabatan:")]),
+              _vm._v(
+                "\n        " +
+                  _vm._s(
+                    _vm.itemData && _vm.itemData.pekerjaan_aktif
+                      ? _vm.itemData.pekerjaan_aktif.name
+                      : ""
+                  ) +
+                  "\n        "
+              ),
+              _c("br"),
+            ]),
+          ]),
+        ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+        staticStyle: { width: "100%" },
+      },
+      [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
+    )
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/ImageUpload.vue":
+/*!********************************************************!*\
+  !*** ./resources/assets/js/components/ImageUpload.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ImageUpload_vue_vue_type_template_id_319f68d5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ImageUpload.vue?vue&type=template&id=319f68d5& */ "./resources/assets/js/components/ImageUpload.vue?vue&type=template&id=319f68d5&");
+/* harmony import */ var _ImageUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ImageUpload.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/ImageUpload.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ImageUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ImageUpload_vue_vue_type_template_id_319f68d5___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ImageUpload_vue_vue_type_template_id_319f68d5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/components/ImageUpload.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/ImageUpload.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/assets/js/components/ImageUpload.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ImageUpload.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/ImageUpload.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/ImageUpload.vue?vue&type=template&id=319f68d5&":
+/*!***************************************************************************************!*\
+  !*** ./resources/assets/js/components/ImageUpload.vue?vue&type=template&id=319f68d5& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUpload_vue_vue_type_template_id_319f68d5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ImageUpload.vue?vue&type=template&id=319f68d5& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/ImageUpload.vue?vue&type=template&id=319f68d5&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUpload_vue_vue_type_template_id_319f68d5___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUpload_vue_vue_type_template_id_319f68d5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -4105,173 +3439,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/datatable.vue":
-/*!******************************************************!*\
-  !*** ./resources/assets/js/components/datatable.vue ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _datatable_vue_vue_type_template_id_80417746___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./datatable.vue?vue&type=template&id=80417746& */ "./resources/assets/js/components/datatable.vue?vue&type=template&id=80417746&");
-/* harmony import */ var _datatable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./datatable.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/datatable.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _datatable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _datatable_vue_vue_type_template_id_80417746___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _datatable_vue_vue_type_template_id_80417746___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/assets/js/components/datatable.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/assets/js/components/datatable.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/assets/js/components/datatable.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_datatable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./datatable.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/datatable.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_datatable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/assets/js/components/datatable.vue?vue&type=template&id=80417746&":
-/*!*************************************************************************************!*\
-  !*** ./resources/assets/js/components/datatable.vue?vue&type=template&id=80417746& ***!
-  \*************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_datatable_vue_vue_type_template_id_80417746___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./datatable.vue?vue&type=template&id=80417746& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/datatable.vue?vue&type=template&id=80417746&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_datatable_vue_vue_type_template_id_80417746___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_datatable_vue_vue_type_template_id_80417746___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/components/datePicker.vue":
-/*!*******************************************************!*\
-  !*** ./resources/assets/js/components/datePicker.vue ***!
-  \*******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _datePicker_vue_vue_type_template_id_0e041d33___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./datePicker.vue?vue&type=template&id=0e041d33& */ "./resources/assets/js/components/datePicker.vue?vue&type=template&id=0e041d33&");
-/* harmony import */ var _datePicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./datePicker.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/datePicker.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _datePicker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./datePicker.vue?vue&type=style&index=0&lang=css& */ "./resources/assets/js/components/datePicker.vue?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _datePicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _datePicker_vue_vue_type_template_id_0e041d33___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _datePicker_vue_vue_type_template_id_0e041d33___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/assets/js/components/datePicker.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/assets/js/components/datePicker.vue?vue&type=script&lang=js&":
-/*!********************************************************************************!*\
-  !*** ./resources/assets/js/components/datePicker.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_datePicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./datePicker.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/datePicker.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_datePicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/assets/js/components/datePicker.vue?vue&type=style&index=0&lang=css&":
-/*!****************************************************************************************!*\
-  !*** ./resources/assets/js/components/datePicker.vue?vue&type=style&index=0&lang=css& ***!
-  \****************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_datePicker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./datePicker.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/datePicker.vue?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_datePicker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_datePicker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_datePicker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_datePicker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/components/datePicker.vue?vue&type=template&id=0e041d33&":
-/*!**************************************************************************************!*\
-  !*** ./resources/assets/js/components/datePicker.vue?vue&type=template&id=0e041d33& ***!
-  \**************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_datePicker_vue_vue_type_template_id_0e041d33___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./datePicker.vue?vue&type=template&id=0e041d33& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/datePicker.vue?vue&type=template&id=0e041d33&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_datePicker_vue_vue_type_template_id_0e041d33___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_datePicker_vue_vue_type_template_id_0e041d33___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/components/formInfo.vue":
+/***/ "./resources/assets/js/components/checkbox.vue":
 /*!*****************************************************!*\
-  !*** ./resources/assets/js/components/formInfo.vue ***!
+  !*** ./resources/assets/js/components/checkbox.vue ***!
   \*****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _formInfo_vue_vue_type_template_id_77f7efa9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./formInfo.vue?vue&type=template&id=77f7efa9& */ "./resources/assets/js/components/formInfo.vue?vue&type=template&id=77f7efa9&");
-/* harmony import */ var _formInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./formInfo.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/formInfo.vue?vue&type=script&lang=js&");
+/* harmony import */ var _checkbox_vue_vue_type_template_id_7d32a75a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./checkbox.vue?vue&type=template&id=7d32a75a& */ "./resources/assets/js/components/checkbox.vue?vue&type=template&id=7d32a75a&");
+/* harmony import */ var _checkbox_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./checkbox.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/checkbox.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -4281,9 +3459,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _formInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _formInfo_vue_vue_type_template_id_77f7efa9___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _formInfo_vue_vue_type_template_id_77f7efa9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _checkbox_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _checkbox_vue_vue_type_template_id_7d32a75a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _checkbox_vue_vue_type_template_id_7d32a75a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -4293,107 +3471,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/components/formInfo.vue"
+component.options.__file = "resources/assets/js/components/checkbox.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/formInfo.vue?vue&type=script&lang=js&":
+/***/ "./resources/assets/js/components/checkbox.vue?vue&type=script&lang=js&":
 /*!******************************************************************************!*\
-  !*** ./resources/assets/js/components/formInfo.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/assets/js/components/checkbox.vue?vue&type=script&lang=js& ***!
   \******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_formInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./formInfo.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/formInfo.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_formInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_checkbox_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./checkbox.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/checkbox.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_checkbox_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/formInfo.vue?vue&type=template&id=77f7efa9&":
+/***/ "./resources/assets/js/components/checkbox.vue?vue&type=template&id=7d32a75a&":
 /*!************************************************************************************!*\
-  !*** ./resources/assets/js/components/formInfo.vue?vue&type=template&id=77f7efa9& ***!
+  !*** ./resources/assets/js/components/checkbox.vue?vue&type=template&id=7d32a75a& ***!
   \************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_formInfo_vue_vue_type_template_id_77f7efa9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./formInfo.vue?vue&type=template&id=77f7efa9& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/formInfo.vue?vue&type=template&id=77f7efa9&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_formInfo_vue_vue_type_template_id_77f7efa9___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_checkbox_vue_vue_type_template_id_7d32a75a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./checkbox.vue?vue&type=template&id=7d32a75a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/checkbox.vue?vue&type=template&id=7d32a75a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_checkbox_vue_vue_type_template_id_7d32a75a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_formInfo_vue_vue_type_template_id_77f7efa9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/components/infoIcon.vue":
-/*!*****************************************************!*\
-  !*** ./resources/assets/js/components/infoIcon.vue ***!
-  \*****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _infoIcon_vue_vue_type_template_id_78a8b7de___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./infoIcon.vue?vue&type=template&id=78a8b7de& */ "./resources/assets/js/components/infoIcon.vue?vue&type=template&id=78a8b7de&");
-/* harmony import */ var _infoIcon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./infoIcon.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/infoIcon.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _infoIcon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _infoIcon_vue_vue_type_template_id_78a8b7de___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _infoIcon_vue_vue_type_template_id_78a8b7de___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/assets/js/components/infoIcon.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/assets/js/components/infoIcon.vue?vue&type=script&lang=js&":
-/*!******************************************************************************!*\
-  !*** ./resources/assets/js/components/infoIcon.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_infoIcon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./infoIcon.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/infoIcon.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_infoIcon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/assets/js/components/infoIcon.vue?vue&type=template&id=78a8b7de&":
-/*!************************************************************************************!*\
-  !*** ./resources/assets/js/components/infoIcon.vue?vue&type=template&id=78a8b7de& ***!
-  \************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_infoIcon_vue_vue_type_template_id_78a8b7de___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./infoIcon.vue?vue&type=template&id=78a8b7de& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/infoIcon.vue?vue&type=template&id=78a8b7de&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_infoIcon_vue_vue_type_template_id_78a8b7de___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_infoIcon_vue_vue_type_template_id_78a8b7de___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_checkbox_vue_vue_type_template_id_7d32a75a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -4537,17 +3646,68 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/jalinanIuran/form.vue":
+/***/ "./resources/assets/js/helpers/form.js":
+/*!*********************************************!*\
+  !*** ./resources/assets/js/helpers/form.js ***!
+  \*********************************************/
+/*! exports provided: toMulipartedForm, objectToFormData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toMulipartedForm", function() { return toMulipartedForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "objectToFormData", function() { return objectToFormData; });
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function toMulipartedForm(form, mode) {
+  if (mode === 'edit' && typeof form.image === 'string') {
+    var temp = JSON.parse(JSON.stringify(form));
+    delete temp.image;
+    return temp;
+  } else {
+    return objectToFormData(form);
+  }
+}
+function objectToFormData(obj, form, namespace) {
+  var fd = form || new FormData();
+  var formKey;
+
+  for (var property in obj) {
+    if (obj.hasOwnProperty(property)) {
+      if (namespace) {
+        formKey = namespace + '[' + property + ']';
+      } else {
+        formKey = property;
+      }
+
+      if (obj[property] instanceof Array) {
+        for (var i = 0; i < obj[property].length; i++) {
+          objectToFormData(obj[property][i], fd, "".concat(property, "[").concat(i, "]"));
+        }
+      } else if (_typeof(obj[property]) === 'object' && !(obj[property] instanceof File)) {
+        objectToFormData(obj[property], fd, property);
+      } else {
+        fd.append(formKey, obj[property]);
+      }
+    }
+  }
+
+  return fd;
+}
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/monitoring/detail.vue":
 /*!*********************************************************!*\
-  !*** ./resources/assets/js/views/jalinanIuran/form.vue ***!
+  !*** ./resources/assets/js/views/monitoring/detail.vue ***!
   \*********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _form_vue_vue_type_template_id_1bd85044___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./form.vue?vue&type=template&id=1bd85044& */ "./resources/assets/js/views/jalinanIuran/form.vue?vue&type=template&id=1bd85044&");
-/* harmony import */ var _form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./form.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/jalinanIuran/form.vue?vue&type=script&lang=js&");
+/* harmony import */ var _detail_vue_vue_type_template_id_2827a256___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./detail.vue?vue&type=template&id=2827a256& */ "./resources/assets/js/views/monitoring/detail.vue?vue&type=template&id=2827a256&");
+/* harmony import */ var _detail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./detail.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/monitoring/detail.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -4557,9 +3717,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _form_vue_vue_type_template_id_1bd85044___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _form_vue_vue_type_template_id_1bd85044___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _detail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _detail_vue_vue_type_template_id_2827a256___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _detail_vue_vue_type_template_id_2827a256___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -4569,38 +3729,176 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/views/jalinanIuran/form.vue"
+component.options.__file = "resources/assets/js/views/monitoring/detail.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/jalinanIuran/form.vue?vue&type=script&lang=js&":
+/***/ "./resources/assets/js/views/monitoring/detail.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************!*\
-  !*** ./resources/assets/js/views/jalinanIuran/form.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/assets/js/views/monitoring/detail.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./form.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/jalinanIuran/form.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./detail.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/monitoring/detail.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/jalinanIuran/form.vue?vue&type=template&id=1bd85044&":
+/***/ "./resources/assets/js/views/monitoring/detail.vue?vue&type=template&id=2827a256&":
 /*!****************************************************************************************!*\
-  !*** ./resources/assets/js/views/jalinanIuran/form.vue?vue&type=template&id=1bd85044& ***!
+  !*** ./resources/assets/js/views/monitoring/detail.vue?vue&type=template&id=2827a256& ***!
   \****************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_1bd85044___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./form.vue?vue&type=template&id=1bd85044& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/jalinanIuran/form.vue?vue&type=template&id=1bd85044&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_1bd85044___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_template_id_2827a256___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./detail.vue?vue&type=template&id=2827a256& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/monitoring/detail.vue?vue&type=template&id=2827a256&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_template_id_2827a256___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_1bd85044___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_template_id_2827a256___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/monitoring/formPencapaian.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/assets/js/views/monitoring/formPencapaian.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _formPencapaian_vue_vue_type_template_id_5a8b8bd6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./formPencapaian.vue?vue&type=template&id=5a8b8bd6& */ "./resources/assets/js/views/monitoring/formPencapaian.vue?vue&type=template&id=5a8b8bd6&");
+/* harmony import */ var _formPencapaian_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./formPencapaian.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/monitoring/formPencapaian.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _formPencapaian_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _formPencapaian_vue_vue_type_template_id_5a8b8bd6___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _formPencapaian_vue_vue_type_template_id_5a8b8bd6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/views/monitoring/formPencapaian.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/monitoring/formPencapaian.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/assets/js/views/monitoring/formPencapaian.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_formPencapaian_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./formPencapaian.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/monitoring/formPencapaian.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_formPencapaian_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/monitoring/formPencapaian.vue?vue&type=template&id=5a8b8bd6&":
+/*!************************************************************************************************!*\
+  !*** ./resources/assets/js/views/monitoring/formPencapaian.vue?vue&type=template&id=5a8b8bd6& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_formPencapaian_vue_vue_type_template_id_5a8b8bd6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./formPencapaian.vue?vue&type=template&id=5a8b8bd6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/monitoring/formPencapaian.vue?vue&type=template&id=5a8b8bd6&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_formPencapaian_vue_vue_type_template_id_5a8b8bd6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_formPencapaian_vue_vue_type_template_id_5a8b8bd6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/monitoring/pic.vue":
+/*!******************************************************!*\
+  !*** ./resources/assets/js/views/monitoring/pic.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _pic_vue_vue_type_template_id_38acd236___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pic.vue?vue&type=template&id=38acd236& */ "./resources/assets/js/views/monitoring/pic.vue?vue&type=template&id=38acd236&");
+/* harmony import */ var _pic_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pic.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/monitoring/pic.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _pic_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _pic_vue_vue_type_template_id_38acd236___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _pic_vue_vue_type_template_id_38acd236___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/views/monitoring/pic.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/monitoring/pic.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/assets/js/views/monitoring/pic.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_pic_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./pic.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/monitoring/pic.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_pic_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/monitoring/pic.vue?vue&type=template&id=38acd236&":
+/*!*************************************************************************************!*\
+  !*** ./resources/assets/js/views/monitoring/pic.vue?vue&type=template&id=38acd236& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_pic_vue_vue_type_template_id_38acd236___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./pic.vue?vue&type=template&id=38acd236& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/monitoring/pic.vue?vue&type=template&id=38acd236&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_pic_vue_vue_type_template_id_38acd236___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_pic_vue_vue_type_template_id_38acd236___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

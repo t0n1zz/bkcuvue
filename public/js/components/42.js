@@ -89,16 +89,55 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/pageHeader.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/pageHeader.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/countWidget.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/countWidget.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['title', 'icon', 'color', 'count']
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _dashboard_newsSlider_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dashboard/newsSlider.vue */ "./resources/assets/js/views/dashboard/newsSlider.vue");
+/* harmony import */ var _dashboard_buttonRow_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dashboard/buttonRow.vue */ "./resources/assets/js/views/dashboard/buttonRow.vue");
+/* harmony import */ var _dashboard_kegiatanBKCUWidget_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dashboard/kegiatanBKCUWidget.vue */ "./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue");
+/* harmony import */ var _dashboard_grafikLaporanCuWidget_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dashboard/grafikLaporanCuWidget.vue */ "./resources/assets/js/views/dashboard/grafikLaporanCuWidget.vue");
+/* harmony import */ var _dashboard_tableLaporanCuWidget_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dashboard/tableLaporanCuWidget.vue */ "./resources/assets/js/views/dashboard/tableLaporanCuWidget.vue");
+/* harmony import */ var _dashboard_historyOrganisasiWidget_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./dashboard/historyOrganisasiWidget.vue */ "./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue");
+/* harmony import */ var _dashboard_countOrganisasiWidget_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./dashboard/countOrganisasiWidget.vue */ "./resources/assets/js/views/dashboard/countOrganisasiWidget.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -142,72 +181,704 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+ // import pesertaDiklatBkcuWidget from './dashboard/pesertaDiklatBKCUWidget.vue';
+
+
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    title: {
-      "default": ''
-    },
-    titleIcon: {
-      "default": ''
-    },
-    titleDesc: {
-      "default": ''
-    },
-    level: {
-      "default": 1
-    },
-    level2Title: {
-      "default": ''
-    },
-    level2Route: {
-      "default": ''
-    }
+  components: {
+    newsSlider: _dashboard_newsSlider_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    buttonRow: _dashboard_buttonRow_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    kegiatanBkcuWidget: _dashboard_kegiatanBKCUWidget_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    // pesertaDiklatBkcuWidget,
+    grafikLaporanCuWidget: _dashboard_grafikLaporanCuWidget_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    tableLaporanCuWidget: _dashboard_tableLaporanCuWidget_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    historyOrganisasiWidget: _dashboard_historyOrganisasiWidget_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    countOrganisasiWidget: _dashboard_countOrganisasiWidget_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+    currentUser: 'currentUser'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('laporanCu', {
+    columnData: 'columnData',
+    columnDataPearls: 'columnDataPearls'
+  }))
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_countWidget__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/countWidget */ "./resources/assets/js/components/countWidget.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    countWidget: _components_countWidget__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    var _ref;
+
+    return _ref = {
+      kegiatanBKCUJalanWidgetRoute: {},
+      kegiatanBKCUDiikutiWidgetRoute: {},
+      profileWidgetRoute: {},
+      artikelWidgetRoute: {},
+      artikelKategoriWidgetRoute: {},
+      artikelPenulisWidgetRoute: {},
+      pengumumanWidgetRoute: {},
+      diklatBKCUWidgetRoute: {},
+      pertemuanBKCUWidgetRoute: {},
+      anggotaCuWidgetRoute: {},
+      saldoWidgetRoute: {},
+      jalinanKlaimWidgetRoute: {},
+      cuWidgetRoute: {},
+      tpWidgetRoute: {},
+      produkCuWidgetRoute: {},
+      aktivisWidgetRoute: {},
+      pemilihanWidgetRoute: {},
+      votingWidgetRoute: {}
+    }, _defineProperty(_ref, "produkCuWidgetRoute", {}), _defineProperty(_ref, "mitraPerseoranganWidgetRoute", {}), _defineProperty(_ref, "mitraLembagaWidgetRoute", {}), _defineProperty(_ref, "userWidgetRoute", {}), _defineProperty(_ref, "laporanCUWidgetRoute", {}), _defineProperty(_ref, "laporanGerakanWidgetRoute", {}), _defineProperty(_ref, "assesmentAccessWidgetRoute", {}), _defineProperty(_ref, "monitoringAccessWidgetRoute", {}), _defineProperty(_ref, "dokumenGerakanPublikWidgetRoute", {}), _defineProperty(_ref, "dokumenWidgetRoute", {}), _defineProperty(_ref, "suratKeluarWidgetRoute", {}), _defineProperty(_ref, "suratMasukWidgetRoute", {}), _defineProperty(_ref, "asetTetapWidgetRoute", {}), _ref;
+  },
+  created: function created() {
+    this.countWidgetRoute();
+    this.fetchKegiatan();
   },
   methods: {
-    level2Back: function level2Back() {
-      this.$emit('level2Back');
-    },
-    route1: function route1() {
-      if (this.btn1RouteParams) {
-        this.$router.push({
-          name: this.btn1Route,
+    countWidgetRoute: function countWidgetRoute() {
+      this.profileWidgetRoute = {
+        name: 'profile',
+        params: {
+          id: this.currentUser.id
+        }
+      };
+      this.artikelWidgetRoute = {
+        name: 'artikelCu',
+        params: {
+          cu: this.currentUser.id_cu
+        }
+      };
+      this.artikelPenulisWidgetRoute = {
+        name: 'artikelPenulisCu',
+        params: {
+          cu: this.currentUser.id_cu
+        }
+      };
+      this.artikelKategoriWidgetRoute = {
+        name: 'artikelKategoriCu',
+        params: {
+          cu: this.currentUser.id_cu
+        }
+      };
+      this.pengumumanWidgetRoute = {
+        name: 'pengumumanCu',
+        params: {
+          cu: this.currentUser.id_cu
+        }
+      };
+      this.diklatBKCUWidgetRoute = {
+        name: 'kegiatanBKCU',
+        params: {
+          tipe: 'diklat_bkcu',
+          periode: this.momentYear()
+        }
+      };
+      this.pertemuanBKCUWidgetRoute = {
+        name: 'kegiatanBKCU',
+        params: {
+          tipe: 'pertemuan_bkcu',
+          periode: this.momentYear()
+        }
+      };
+      this.saldoWidgetRoute = {
+        name: 'saldo'
+      };
+      this.aktivisWidgetRoute = {
+        name: 'aktivisCu',
+        params: {
+          cu: this.currentUser.id_cu,
+          tingkat: 'semua'
+        }
+      };
+      this.laporanGerakanWidgetRoute = {
+        name: 'laporanGerakan'
+      };
+      this.mitraPerseoranganWidgetRoute = {
+        name: 'mitraOrang'
+      };
+      this.mitraLembagaWidgetRoute = {
+        name: 'mitraLembaga'
+      };
+      this.userWidgetRoute = {
+        name: 'userCu',
+        params: {
+          cu: this.currentUser.id_cu
+        }
+      };
+      this.kegiatanBKCUJalanWidgetRoute = {
+        name: 'kegiatanBKCUJalan'
+      };
+      this.kegiatanBKCUDiikutiWidgetRoute = {
+        name: 'kegiatanBKCUDiikuti'
+      };
+      this.dokumenGerakanPublikWidgetRoute = {
+        name: 'dokumenGerakanPublik',
+        params: {
+          cu: 'semua'
+        }
+      };
+      this.suratKeluarWidgetRoute = {
+        name: 'suratCu',
+        params: {
+          cu: this.currentUser.id_cu,
+          tipe: 'semua',
+          periode: this.momentYear()
+        }
+      };
+      this.suratMasukWidgetRoute = {
+        name: 'suratMasukCu',
+        params: {
+          cu: this.currentUser.id_cu,
+          periode: this.momentYear()
+        }
+      };
+
+      if (this.currentUser.id_cu != 0) {
+        this.anggotaCuWidgetRoute = {
+          name: 'anggotaCuCu',
           params: {
-            cu: this.btn1RouteParams
+            cu: this.currentUser.id_cu,
+            tp: 'semua'
           }
-        });
+        };
+        this.jalinanKlaimWidgetRoute = {
+          name: 'jalinanKlaimCu',
+          params: {
+            cu: this.currentUser.id_cu,
+            tp: 'semua'
+          }
+        };
+        this.cuWidgetRoute = {
+          name: 'cuProfile',
+          params: {
+            id: this.currentUser.id_cu
+          }
+        };
+        this.tpWidgetRoute = {
+          name: 'tpCu',
+          params: {
+            cu: this.currentUser.id_cu
+          }
+        };
+        this.produkCuWidgetRoute = {
+          name: 'produkCuCu',
+          params: {
+            cu: this.currentUser.id_cu
+          }
+        };
+        this.pemilihanWidgetRoute = {
+          name: 'pemilihan',
+          params: {
+            cu: this.currentUser.id_cu
+          }
+        };
+        this.votingWidgetRoute = {
+          name: 'voting',
+          params: {
+            cu: this.currentUser.id_cu
+          }
+        };
+        this.laporanCUWidgetRoute = {
+          name: 'laporanCuCu',
+          params: {
+            cu: this.currentUser.id_cu,
+            tp: 'konsolidasi'
+          }
+        };
+        this.assesmentAccessWidgetRoute = {
+          name: 'assesmentAccessCu',
+          params: {
+            cu: this.currentUser.id_cu
+          }
+        };
+        this.monitoringWidgetRoute = {
+          name: 'monitoringCu',
+          params: {
+            cu: this.currentUser.id_cu,
+            tp: 'semua'
+          }
+        };
+        this.dokumenWidgetRoute = {
+          name: 'dokumenCu',
+          params: {
+            cu: this.currentUser.id_cu
+          }
+        };
       } else {
-        this.$router.push({
-          name: this.btn1Route
-        });
+        this.tempatWidgetRoute = {
+          name: 'tempat'
+        };
+        this.anggotaCuWidgetRoute = {
+          name: 'anggotaCuCu',
+          params: {
+            cu: 'semua',
+            tp: 'semua'
+          }
+        };
+        this.jalinanKlaimWidgetRoute = {
+          name: 'jalinanKlaimCu',
+          params: {
+            cu: 'semua',
+            tp: 'semua'
+          }
+        };
+        this.cuWidgetRoute = {
+          name: 'cu'
+        };
+        this.tpWidgetRoute = {
+          name: 'tpCu',
+          params: {
+            cu: 'semua'
+          }
+        };
+        this.produkCuWidgetRoute = {
+          name: 'produkCuCu',
+          params: {
+            cu: 'semua'
+          }
+        };
+        this.pemilihanWidgetRoute = {
+          name: 'pemilihan',
+          params: {
+            cu: 'semua'
+          }
+        };
+        this.votingWidgetRoute = {
+          name: 'voting',
+          params: {
+            cu: 'semua'
+          }
+        };
+        this.laporanCUWidgetRoute = {
+          name: 'laporanCu'
+        };
+        this.assesmentAccessWidgetRoute = {
+          name: 'assesmentAccessCu',
+          params: {
+            cu: 'semua'
+          }
+        };
+        this.monitoringWidgetRoute = {
+          name: 'monitoringCu',
+          params: {
+            cu: 'semua',
+            tp: 'semua'
+          }
+        };
+        this.dokumenWidgetRoute = {
+          name: 'dokumenCu',
+          params: {
+            cu: 'semua'
+          }
+        };
+        this.asetTetapWidgetRoute = {
+          name: 'asetTetap'
+        };
       }
     },
-    route2: function route2() {
-      if (this.btn2RouteParams) {
-        this.$router.push({
-          name: this.btn2Route,
-          params: {
-            cu: this.btn2RouteParams
-          }
-        });
-      } else {
-        this.$router.push({
-          name: this.btn2Route
-        });
-      }
+    goTo: function goTo(route) {
+      this.$router.push(route);
     },
-    route3: function route3() {
-      if (this.btn3RouteParams) {
-        this.$router.push({
-          name: this.btn3Route,
-          params: {
-            cu: this.btn3RouteParams
-          }
-        });
-      } else {
-        this.$router.push({
-          name: this.btn3Route
-        });
+    fetchKegiatan: function fetchKegiatan() {
+      this.$store.dispatch('kegiatanBKCU/countJalan');
+      this.$store.dispatch('kegiatanBKCU/countDiikuti');
+    },
+    momentYear: function momentYear() {
+      return moment().year();
+    }
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+    currentUser: 'currentUser'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('kegiatanBKCU', {
+    countJalan: 'count',
+    countJalanStat: 'countStat',
+    countDiikuti: 'count2',
+    countDiikutiStat: 'countStat2'
+  }))
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
+/* harmony import */ var _api_system_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api/system.js */ "./resources/assets/js/api/system.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      kelas: 'sistem',
+      countCu: '',
+      countTp: '',
+      countProdukCu: '',
+      countAktivis: '',
+      countMitraOrang: '',
+      countMitraLembaga: '',
+      itemData: '',
+      itemDataStat: ''
+    };
+  },
+  created: function created() {
+    this.fetch();
+  },
+  methods: {
+    fetch: function fetch() {
+      var _this = this;
+
+      this.itemdataStat = 'loading';
+      _api_system_js__WEBPACK_IMPORTED_MODULE_2__["default"].countOrganisasi().then(function (response) {
+        _this.countCu = response.data.countCu;
+        _this.countTp = response.data.countTp;
+        _this.countProdukCu = response.data.countProdukCu;
+        _this.countAktivis = response.data.countAktivis;
+        _this.countMitraOrang = response.data.countMitraOrang;
+        _this.countMitraLembaga = response.data.countMitraLembaga;
+        _this.itemdataStat = 'success';
+      })["catch"](function (error) {
+        _this.itemdata = error.response;
+        _this.itemdataStat = 'fail';
+      });
+    },
+    detail: function detail(value) {
+      var id = this.currentUser.id_cu;
+
+      if (value == 'cu') {
+        if (this.currentUser.can['index_cu']) {
+          this.$router.push({
+            name: 'cu'
+          });
+        }
+      } else if (value == 'tp') {
+        if (this.currentUser.can['index_tp']) {
+          this.$router.push({
+            name: 'tpCu',
+            params: {
+              cu: id
+            }
+          });
+        }
+      } else if (value == 'produkCu') {
+        if (this.currentUser.can['index_produk_cu']) {
+          this.$router.push({
+            name: 'produkCuCu',
+            params: {
+              cu: id
+            }
+          });
+        }
+      } else if (value == 'aktivis') {
+        if (this.currentUser.can['index_aktivis']) {
+          this.$router.push({
+            name: 'aktivisCu',
+            params: {
+              cu: id
+            }
+          });
+        }
+      } else if (value == 'mitra_orang') {
+        if (this.currentUser.can['index_mitra_orang']) {
+          this.$router.push({
+            name: 'mitraOrang'
+          });
+        }
+      } else if (value == 'mitra_lembaga') {
+        if (this.currentUser.can['index_mitra_lembaga']) {
+          this.$router.push({
+            name: 'mitraLembaga'
+          });
+        }
       }
     }
   },
@@ -218,25 +889,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/detail.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/laporanCu/detail.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/pageHeader.vue */ "./resources/assets/js/components/pageHeader.vue");
-/* harmony import */ var _components_message_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/message.vue */ "./resources/assets/js/components/message.vue");
-/* harmony import */ var _selectDetail_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./selectDetail.vue */ "./resources/assets/js/views/laporanCu/selectDetail.vue");
-/* harmony import */ var _detailLaporanCu_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./detailLaporanCu.vue */ "./resources/assets/js/views/laporanCu/detailLaporanCu.vue");
-/* harmony import */ var _detailPearls_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./detailPearls.vue */ "./resources/assets/js/views/laporanCu/detailPearls.vue");
-/* harmony import */ var _diskusi_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./diskusi.vue */ "./resources/assets/js/views/laporanCu/diskusi.vue");
-/* harmony import */ var _revisi_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./revisi.vue */ "./resources/assets/js/views/laporanCu/revisi.vue");
-/* harmony import */ var _infografis_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./infografis.vue */ "./resources/assets/js/views/laporanCu/infografis.vue");
-/* harmony import */ var _infografisPearls_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./infografisPearls.vue */ "./resources/assets/js/views/laporanCu/infografisPearls.vue");
+/* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
+/* harmony import */ var _api_cu_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api/cu.js */ "./resources/assets/js/api/cu.js");
+/* harmony import */ var _api_tp_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../api/tp.js */ "./resources/assets/js/api/tp.js");
+/* harmony import */ var _api_produkCu_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../api/produkCu.js */ "./resources/assets/js/api/produkCu.js");
+/* harmony import */ var _api_aktivis_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../api/aktivis.js */ "./resources/assets/js/api/aktivis.js");
+/* harmony import */ var _api_mitraOrang_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../api/mitraOrang.js */ "./resources/assets/js/api/mitraOrang.js");
+/* harmony import */ var _api_mitraLembaga_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../api/mitraLembaga.js */ "./resources/assets/js/api/mitraLembaga.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -357,8 +1026,71 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -369,118 +1101,237 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    pageHeader: _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    message: _components_message_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    selectData: _selectDetail_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    detailLaporanCu: _detailLaporanCu_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    detailPearls: _detailPearls_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-    infografisData: _infografis_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
-    infografisPearlsData: _infografisPearls_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
-    diskusi: _diskusi_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
-    revisi: _revisi_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+    checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
-      title: 'Detail Laporan CU',
-      titlePearls: 'P.E.A.R.L.S',
-      kelas: 'laporanCu',
-      titleDesc: 'Mengelola data perkembangan CU',
-      titleIcon: 'icon-stats-bars2',
-      level2Title: 'Laporan CU',
-      selectCUPath: 'laporanCuCU',
-      tabName: 'analisisLaporanCu',
-      katax: '\\frac{1.7888}{1,6777}',
-      isPearls: false,
-      isDiskusi: false,
-      isRevisi: false
+      kelas: 'diklatBKCU',
+      selectedItemBaru: [],
+      selectedItemMulai: [],
+      selectedItemBuka: [],
+      selectedItemJalan: [],
+      tabName: 'cu',
+      isTp: false,
+      isProdukCu: false,
+      isAktivis: false,
+      isMitraOrang: false,
+      isMitraLembaga: false,
+      itemCu: [],
+      itemTp: [],
+      itemProdukCu: [],
+      itemAktivis: [],
+      itemMitraOrang: [],
+      itemMitraLembaga: [],
+      countCu: '',
+      countTp: '',
+      countProdukCu: '',
+      countAktivis: '',
+      countMitraOrang: '',
+      countMitraLembaga: '',
+      itemCuStat: '',
+      itemTpStat: '',
+      itemProdukCuStat: '',
+      itemAktivisStat: '',
+      itemMitraOrangStat: '',
+      itemMitraLembagaStat: ''
     };
   },
+  created: function created() {
+    if (this.currentUser.can['index_cu']) {
+      this.tabName = 'cu';
+      this.fetchCu();
+    } else if (this.currentUser.can['index_tp']) {
+      this.tabName = 'tp';
+      this.isTp = true;
+      this.fetchTp();
+    } else if (this.currentUser.can['index_produk_cu']) {
+      this.tabName = 'produk_cu';
+      this.isProdukCu = true;
+      this.fetchProdukCu();
+    } else if (this.currentUser.can['index_aktivis']) {
+      this.tabName = 'aktivis';
+      this.isAktivis = true;
+      this.fetchAktivis();
+    } else if (this.currentUser.can['index_mitra_orang']) {
+      this.tabName = 'mitra_orang';
+      this.isMitraOrang = true;
+      this.fetchMitraOrang();
+    } else if (this.currentUser.can['index_mitra_lembaga']) {
+      this.tabName = 'mitra_lembaga';
+      this.isMitraLembaga = true;
+      this.fetchMitraLembaga();
+    }
+  },
   methods: {
+    fetchCu: function fetchCu() {
+      var _this = this;
+
+      this.itemCuStat = 'loading';
+      _api_cu_js__WEBPACK_IMPORTED_MODULE_2__["default"].history().then(function (response) {
+        _this.itemCu = response.data.model;
+        _this.itemCuStat = 'success';
+      })["catch"](function (error) {
+        _this.itemCu = error.response;
+        _this.itemCuStat = 'fail';
+      });
+    },
+    fetchTp: function fetchTp() {
+      var _this2 = this;
+
+      this.itemTpStat = 'loading';
+      _api_tp_js__WEBPACK_IMPORTED_MODULE_3__["default"].history().then(function (response) {
+        _this2.itemTp = response.data.model;
+        _this2.itemTpStat = 'success';
+      })["catch"](function (error) {
+        _this2.itemTp = error.response;
+        _this2.itemTpStat = 'fail';
+      });
+    },
+    fetchProdukCu: function fetchProdukCu() {
+      var _this3 = this;
+
+      this.itemProdukCuStat = 'loading';
+      _api_produkCu_js__WEBPACK_IMPORTED_MODULE_4__["default"].history().then(function (response) {
+        _this3.itemProdukCu = response.data.model;
+        _this3.itemProdukCuStat = 'success';
+      })["catch"](function (error) {
+        _this3.itemProdukCu = error.response;
+        _this3.itemProdukCuStat = 'fail';
+      });
+    },
+    fetchAktivis: function fetchAktivis() {
+      var _this4 = this;
+
+      this.itemAktivisStat = 'loading';
+      _api_aktivis_js__WEBPACK_IMPORTED_MODULE_5__["default"].history().then(function (response) {
+        _this4.itemAktivis = response.data.model;
+        _this4.itemAktivisStat = 'success';
+      })["catch"](function (error) {
+        _this4.itemAktivis = error.response;
+        _this4.itemAktivisStat = 'fail';
+      });
+    },
+    fetchMitraOrang: function fetchMitraOrang() {
+      var _this5 = this;
+
+      this.itemMitraOrangStat = 'loading';
+      _api_mitraOrang_js__WEBPACK_IMPORTED_MODULE_6__["default"].history().then(function (response) {
+        _this5.itemMitraOrang = response.data.model;
+        _this5.itemMitraOrangStat = 'success';
+      })["catch"](function (error) {
+        _this5.itemMitraOrang = error.response;
+        _this5.itemMitraOrangStat = 'fail';
+      });
+    },
+    fetchMitraLembaga: function fetchMitraLembaga() {
+      var _this6 = this;
+
+      this.itemMitraLembagaStat = 'loading';
+      _api_mitraLembaga_js__WEBPACK_IMPORTED_MODULE_7__["default"].history().then(function (response) {
+        _this6.itemMitraLembaga = response.data.model;
+        _this6.itemMitraLembagaStat = 'success';
+      })["catch"](function (error) {
+        _this6.itemMitraLembaga = error.response;
+        _this6.itemMitraLembagaStat = 'fail';
+      });
+    },
     changeTab: function changeTab(value) {
       this.tabName = value;
 
-      if (value == 'analisisPearls' && !this.isPearls) {
-        this.isPearls = true;
-      }
-
-      if (value == 'diskusi' && !this.isDiskusi) {
-        this.isDiskusi = true;
-      }
-
-      if (value == 'revisi' && !this.isRevisi) {
-        this.isRevisi = true;
+      if (value == 'tp' && !this.isTp) {
+        this.isTp = true;
+        this.fetchTp();
+      } else if (value == 'produk_cu' && !this.isProdukCu) {
+        this.isProdukCu = true;
+        this.fetchProdukCu();
+      } else if (value == 'aktivis' && !this.isAktivis) {
+        this.isAktivis = true;
+        this.fetchAktivis();
+      } else if (value == 'mitra_orang' && !this.isMitraOrang) {
+        this.isMitraOrang = true;
+        this.fetchMitraOrang();
+      } else if (value == 'mitra_lembaga' && !this.isMitraLembaga) {
+        this.isMitraLembaga = true;
+        this.fetchMitraLembaga();
       }
     },
-    back: function back() {
-      if (this.itemData.id_cu) {
-        if (this.itemData.id_cu != 0) {
+    detail: function detail(value, id) {
+      if (value == 'cu') {
+        if (this.currentUser.can['update_cu']) {
           this.$router.push({
-            name: this.kelas + 'Cu',
+            name: 'cuEdit',
             params: {
-              cu: this.itemData.id_cu,
-              tp: 'konsolidasi'
-            }
-          });
-        } else {
-          this.$router.push({
-            name: this.kelas + 'Cu',
-            params: {
-              cu: this.itemData.id_cu,
-              tp: this.itemData.id_tp
+              id: id
             }
           });
         }
-      } else {
-        if (this.itemData.tp.id_cu != 0) {
+      } else if (value == 'tp') {
+        if (this.currentUser.can['update_tp']) {
           this.$router.push({
-            name: this.kelas + 'Cu',
+            name: 'tpEdit',
             params: {
-              cu: this.itemData.tp.id_cu,
-              tp: 'konsolidasi'
+              id: id
             }
           });
-        } else {
+        }
+      } else if (value == 'produkCu') {
+        if (this.currentUser.can['update_produk_cu']) {
           this.$router.push({
-            name: this.kelas + 'Cu',
+            name: 'produkCuEdit',
             params: {
-              cu: this.itemData.tp.id_cu,
-              tp: this.itemData.id_tp
+              id: id
+            }
+          });
+        }
+      } else if (value == 'aktivis') {
+        if (this.currentUser.can['update_aktivis']) {
+          this.$router.push({
+            name: 'aktivisEdit',
+            params: {
+              id: id
+            }
+          });
+        }
+      } else if (value == 'mitra_orang') {
+        if (this.currentUser.can['update_mitra_orang']) {
+          this.$router.push({
+            name: 'mitraOrangEdit',
+            params: {
+              id: id
+            }
+          });
+        }
+      } else if (value == 'mitra_lembaga') {
+        if (this.currentUser.can['update_mitra_lembaga']) {
+          this.$router.push({
+            name: 'mitraLembagaEdit',
+            params: {
+              id: id
             }
           });
         }
       }
     }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('laporanCu', {
-    itemData: 'data',
-    itemDataStat: 'dataStat',
-    itemPearls: 'pearls',
-    itemPearlsStat: 'pearlsStat',
-    columnData: 'columnData',
-    columnDataPearls: 'columnDataPearls'
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+    currentUser: 'currentUser'
   }))
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/detailLaporanCu.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/laporanCu/detailLaporanCu.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _widgetLaporanCu__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./widgetLaporanCu */ "./resources/assets/js/views/laporanCu/widgetLaporanCu.vue");
-/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
-/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
-/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
+/* harmony import */ var _api_kegiatanBKCU_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api/kegiatanBKCU.js */ "./resources/assets/js/api/kegiatanBKCU.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -775,738 +1626,220 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      kelas: 'kegiatanBKCU',
+      selectedItemBaru: [],
+      selectedItemMulai: [],
+      selectedItemBuka: [],
+      selectedItemJalan: [],
+      tabName: 'baru',
+      isMulai: false,
+      isBuka: false,
+      isJalan: false,
+      itemBaru: [],
+      itemMulai: [],
+      itemBuka: [],
+      itemJalan: [],
+      countBaru: '',
+      countMulai: '',
+      countBuka: '',
+      countJalan: '',
+      itemBaruStat: '',
+      itemMulaiStat: '',
+      itemBukaStat: '',
+      itemJalanStat: ''
+    };
+  },
+  created: function created() {
+    this.fetchBaru();
+  },
+  methods: {
+    fetchBaru: function fetchBaru() {
+      var _this = this;
+
+      this.itemBaruStat = 'loading';
+      _api_kegiatanBKCU_js__WEBPACK_IMPORTED_MODULE_2__["default"].indexBaru().then(function (response) {
+        _this.itemBaru = response.data.model;
+        _this.countBaru = response.data.model.length;
+        _this.countMulai = response.data.countMulai;
+        _this.countBuka = response.data.countBuka;
+        _this.countJalan = response.data.countJalan;
+        _this.itemBaruStat = 'success';
+      })["catch"](function (error) {
+        _this.itemBaru = error.response;
+        _this.itemBaruStat = 'fail';
+      });
+    },
+    fetchMulai: function fetchMulai() {
+      var _this2 = this;
+
+      this.itemMulaiStat = 'loading';
+      _api_kegiatanBKCU_js__WEBPACK_IMPORTED_MODULE_2__["default"].indexMulai().then(function (response) {
+        _this2.itemMulai = response.data.model;
+        _this2.itemMulaiStat = 'success';
+      })["catch"](function (error) {
+        _this2.itemMulai = error.response;
+        _this2.itemMulaiStat = 'fail';
+      });
+    },
+    fetchBuka: function fetchBuka() {
+      var _this3 = this;
+
+      this.itemBukaStat = 'loading';
+      _api_kegiatanBKCU_js__WEBPACK_IMPORTED_MODULE_2__["default"].indexBuka().then(function (response) {
+        _this3.itemBuka = response.data.model;
+        _this3.itemBukaStat = 'success';
+      })["catch"](function (error) {
+        _this3.itemBuka = error.response;
+        _this3.itemBukaStat = 'fail';
+      });
+    },
+    fetchJalan: function fetchJalan() {
+      var _this4 = this;
+
+      var query = {
+        order_column: "mulai",
+        order_direction: "asc",
+        filter_match: "and",
+        limit: 6,
+        page: 1
+      };
+      this.itemJalanStat = 'loading';
+      _api_kegiatanBKCU_js__WEBPACK_IMPORTED_MODULE_2__["default"].indexJalan(query).then(function (response) {
+        _this4.itemJalan = response.data.model;
+        _this4.itemJalanStat = 'success';
+      })["catch"](function (error) {
+        _this4.itemJalan = error.response;
+        _this4.itemJalanStat = 'fail';
+      });
+    },
+    changeTab: function changeTab(value) {
+      this.tabName = value;
+      this.selectedItemBaru = [];
+      this.selectedItemMulai = [];
+      this.selectedItemBuka = [];
+      this.selectedItemJalan = [];
+
+      if (value == 'mulai' && !this.isMulai) {
+        this.isMulai = true;
+        this.fetchMulai();
+      } else if (value == 'buka' && !this.isBuka) {
+        this.isBuka = true;
+        this.fetchBuka();
+      } else if (value == 'jalan' && !this.isJalan) {
+        this.isJalan = true;
+        this.fetchJalan();
+      }
+    },
+    selectedRowBaru: function selectedRowBaru(item) {
+      this.selectedItemBaru = item;
+    },
+    selectedRowMulai: function selectedRowMulai(item) {
+      this.selectedItemMulai = item;
+    },
+    selectedRowBuka: function selectedRowBuka(item) {
+      this.selectedItemBuka = item;
+    },
+    selectedRowJalan: function selectedRowJalan(item) {
+      this.selectedItemJalan = item;
+    },
+    detail: function detail(id) {
+      this.$router.push({
+        name: this.kelas + 'Detail',
+        params: {
+          id: id
+        }
+      });
+    },
+    // goToDiklatBKCU(){
+    // 	this.$router.push({ name: 'kegiatanBKCU', params:{periode: this.momentYear()} });
+    // },
+    momentYear: function momentYear() {
+      return moment().year();
+    }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+    currentUser: 'currentUser'
+  }))
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var hooper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! hooper */ "./node_modules/hooper/dist/hooper.esm.js");
+/* harmony import */ var hooper_dist_hooper_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! hooper/dist/hooper.css */ "./node_modules/hooper/dist/hooper.css");
+/* harmony import */ var hooper_dist_hooper_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(hooper_dist_hooper_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _api_cu__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../api/cu */ "./resources/assets/js/api/cu.js");
+/* harmony import */ var _api_artikelSimo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../api/artikelSimo */ "./resources/assets/js/api/artikelSimo.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1514,2570 +1847,157 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    widgetData: _widgetLaporanCu__WEBPACK_IMPORTED_MODULE_3__["default"],
-    appModal: _components_modal__WEBPACK_IMPORTED_MODULE_4__["default"],
-    Cleave: vue_cleave_component__WEBPACK_IMPORTED_MODULE_5___default.a
+    Hooper: hooper__WEBPACK_IMPORTED_MODULE_1__["Hooper"],
+    Slide: hooper__WEBPACK_IMPORTED_MODULE_1__["Slide"],
+    HooperNavigation: hooper__WEBPACK_IMPORTED_MODULE_1__["Navigation"],
+    HooperPagination: hooper__WEBPACK_IMPORTED_MODULE_1__["Pagination"]
   },
-  props: ['kelas', 'columnData'],
   data: function data() {
     return {
-      idCu: '',
-      idTp: '',
-      periode: '',
-      periodeTp: '',
-      itemDataBefore: [],
-      modalShow: false,
-      modalState: '',
-      modalTitle: '',
-      modalSize: '',
-      modalColor: '',
-      modalButton: '',
-      modalDetail: {
-        id: '',
-        title: '',
-        type: '',
-        itemData: '',
-        itemDataBefore: '',
-        grafikData: [],
-        form: [],
-        analisis1: '',
-        tab: 'analisis',
-        isUbah: false,
-        isOpposite: false,
-        isPercent: false,
-        canUbah: true
-      },
-      form: [],
-      cleaveOption: {
-        numeric: {
-          numeral: true,
-          numeralThousandsGroupStyle: 'thousand',
-          numeralDecimalScale: 2,
-          numeralDecimalMark: ',',
-          delimiter: '.'
+      birthdayData: [],
+      birthdayDataStat: '',
+      newsData: [],
+      newsDataStat: '',
+      slideData: [],
+      sliderItem: [{
+        name: 'welcome',
+        title: 'Selamat Datang Di SIMO',
+        content: '<h5 class="d-none d-md-block">Sistem Informasi Manajemen Organisasi yang menyimpan dan mengolah data CU dalam gerakan PUSKOPCUINA.</h5> Baru pertama kali masuk ke SIMO? <br/>agar tidak bingung silahkan membaca panduan terlebih dahulu',
+        isButton: true,
+        buttonUrl: 'https://puskopcuina.org/panduan',
+        buttonTitle: '<i class="icon-book mr-2"></i>Panduan',
+        style: {
+          'background-image': 'url("/images/welcomeSIMO.png")',
+          'background-position': 'center',
+          'background-repeat': 'no-repeat',
+          'background-size': 'cover',
+          'color': '#FFFFFF'
         }
-      }
+      }]
     };
   },
   created: function created() {
-    this.fetch();
+    this.getBirthday();
   },
   watch: {
-    '$route': function $route(to, from) {
-      // check current page meta
-      this.fetch();
-    },
-    grafikDataStat: function grafikDataStat(value) {
+    birthdayDataStat: function birthdayDataStat(value) {
       if (value == 'success') {
-        var periodeNow = this.itemData.periode;
-
-        var itemDataSorted = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.orderBy(this.grafikData.data, ['periode'], ['desc']);
-
-        this.itemDataBefore = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.find(itemDataSorted, function (o) {
-          return o.periode < periodeNow;
-        });
-      }
-    },
-    // when updating data
-    updateStat: function updateStat(value) {
-      this.modalState = value;
-      this.modalButton = 'Ok';
-
-      if (value === "success") {
-        this.modalTitle = this.updateMessage.message;
-        this.modalContent = '';
-        this.fetch();
-      } else if (value === "fail") {
-        this.modalContent = this.updateMessage;
-      } else {
-        this.modalContent = '';
-      }
-    }
-  },
-  methods: {
-    fetch: function fetch() {
-      if (this.$route.meta.mode == 'detail') {
-        this.$store.dispatch('laporanCu/detail', this.$route.params.id);
-      } else {
-        this.$store.dispatch('laporanCu/detailTp', this.$route.params.id);
-      }
-    },
-    save: function save() {
-      this.form = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.chain(this.modalDetail.form).keyBy('key').mapValues('value').value();
-      this.form.periode = this.modalDetail.periode;
-
-      if (this.itemData.id_tp) {
-        this.form.id_tp = this.modalDetail.id_tp;
-        this.form.no_tp = this.modalDetailpr.no_tp;
-        this.form.id_cu = this.itemData.tp.cu.id;
-        this.form.no_ba = this.itemData.tp.cu.no_ba;
-        this.$store.dispatch('laporanCu/updateTp', [this.modalDetail.id, this.form]);
-      } else {
-        this.form.id_cu = this.modalDetail.id_cu;
-        this.form.no_ba = this.modalDetail.no_ba;
-        this.$store.dispatch('laporanCu/update', [this.modalDetail.id, this.form]);
-      }
-    },
-    modalBuka: function modalBuka(title, key, itemData, periode, itemDataBefore, periodeBefore, grafikData, form) {
-      var type = arguments.length > 8 && arguments[8] !== undefined ? arguments[8] : 'currency';
-      var isOpposite = arguments.length > 9 && arguments[9] !== undefined ? arguments[9] : false;
-      // modal attribute
-      this.modalColor = 'bg-primary';
-      this.modalShow = true;
-      this.modalState = 'normal1';
-      this.modalTitle = 'Detail Akun ' + title;
-      this.modalDetail.tab = 'analisis';
-      this.modalDetail.title = title.toUpperCase();
-      this.modalDetail.type = type;
-      this.modalDetail.itemData = itemData;
-      this.modalDetail.itemDataBefore = itemDataBefore;
-      this.modalDetail.isUbah = false;
-      this.modalDetail.isOpposite = isOpposite;
-
-      if (type != 'currency') {
-        this.modalDetail.isPercent = true;
-      } else {
-        this.modalDetail.isPercent = false;
-      } // analisis view
-
-
-      var selisih = itemData - itemDataBefore;
-      var keterangan = '';
-      var selisihView = this.formatCurrency(Math.abs(selisih));
-
-      if (selisih > 0) {
-        keterangan = " mengalami peningkatan sebanyak " + selisihView;
-      } else if (selisih < 0) {
-        keterangan = " mengalami penurunan sebanyak " + selisihView;
-      } else {
-        keterangan = " tidak mengalami perubahan ";
-      }
-
-      var formatedPeriodeBefore = '';
-
-      if (periodeBefore != '') {
-        formatedPeriodeBefore = " dari periode " + this.formatPeriode(periodeBefore);
-      }
-
-      this.modalDetail.analisis1 = "Akun " + title + " sejumlah " + this.formatCurrency(itemData) + ' periode ' + this.formatPeriode(periode) + keterangan + formatedPeriodeBefore; // table view
-
-      this.modalDetail.grafikData = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.orderBy(lodash__WEBPACK_IMPORTED_MODULE_1___default.a.map(grafikData, lodash__WEBPACK_IMPORTED_MODULE_1___default.a.partialRight(lodash__WEBPACK_IMPORTED_MODULE_1___default.a.pick, ['periode', key])), ['periode'], ['desc']); // ubah view
-
-      this.modalDetail.id = this.itemData.id;
-
-      if (this.itemData.id_tp) {
-        this.modalDetail.id_tp = this.itemData.id_tp;
-        this.modalDetail.no_tp = this.itemData.no_tp;
-        this.modalDetail.canUbah = true;
-      } else {
-        if (this.itemData.tp) {
-          this.modalDetail.canUbah = false;
-        } else {
-          this.modalDetail.canUbah = true;
+        if (this.birthdayData.length > 0) {
+          var item = {
+            name: 'birthday',
+            title: 'Selamat Ulang Tahun Kepada',
+            content: 'Semoga semakin maju berkembang dan bertumbuh bersama anggota',
+            cu: [],
+            style: {
+              'background-image': 'url("/images/birthday.jpg")',
+              'background-position': 'center',
+              'background-repeat': 'no-repeat',
+              'background-size': 'cover',
+              'color': '#FFFFFF'
+            }
+          };
+          item.cu = this.birthdayData;
+          this.sliderItem.push(item);
         }
 
-        this.modalDetail.id_cu = this.itemData.id_cu;
-        this.modalDetail.no_ba = this.itemData.cu.no_ba;
+        this.getNews();
       }
-
-      this.modalDetail.periode = periode;
-      this.modalDetail.form = form;
     },
-    modalTutup: function modalTutup() {
-      this.modalShow = false;
-    },
-    formatPeriode: function formatPeriode(value) {
-      return vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('month')(value) + ' ' + vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('year')(value);
-    },
-    formatCurrency: function formatCurrency(value) {
-      return this.$options.filters.currency(value, '', 0, {
-        thousandsSeparator: '.'
-      });
-    },
-    formatPercentage: function formatPercentage(value) {
-      return vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('percentage2')(value, 2);
-    },
-    countTotal: function countTotal(value1, value2) {
-      return value1 - value2;
-    },
-    countPercentage: function countPercentage(value1, value2) {
-      if (value2 > 0) {
-        return this.formatPercentage(this.countTotal(value1, value2) / value2);
-      } else {
-        return this.formatPercentage('0');
-      }
-    }
-  },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('auth', {
-    currentUser: 'currentUser'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('laporanCu', {
-    itemData: 'data',
-    itemDataStat: 'dataStat',
-    grafikData: 'grafik',
-    grafikDataStat: 'grafikStat',
-    modelPeriode: 'periode',
-    modelPeriodeStat: 'periodeStat',
-    updateMessage: 'update',
-    updateStat: 'updateStat'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('laporanTp', {
-    modelTp: 'dataS',
-    modelTpStat: 'dataStatS'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('cu', {
-    modelCU: 'dataS',
-    modelCUStat: 'dataStatS'
-  }))
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/detailPearls.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/laporanCu/detailPearls.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _formKatex_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./formKatex.vue */ "./resources/assets/js/views/laporanCu/formKatex.vue");
-/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
-/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
-/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_5__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    formKatex: _formKatex_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    appModal: _components_modal__WEBPACK_IMPORTED_MODULE_4__["default"],
-    Cleave: vue_cleave_component__WEBPACK_IMPORTED_MODULE_5___default.a
-  },
-  props: ['kelas', 'columnData'],
-  data: function data() {
-    return {
-      idCu: '',
-      idTp: '',
-      periode: '',
-      periodeTp: '',
-      itemDataBefore: [],
-      modalShow: false,
-      modalState: '',
-      modalTitle: '',
-      modalSize: '',
-      modalColor: '',
-      modalButton: '',
-      modalKatex: {
-        id: '',
-        id_cu: '',
-        no_ba: '',
-        periode: '',
-        section: '',
-        katex1: [],
-        katex2: [],
-        form: [],
-        indikator: '',
-        isUbah: false
-      },
-      form: [],
-      cleaveOption: {
-        numeric: {
-          numeral: true,
-          numeralThousandsGroupStyle: 'thousand',
-          numeralDecimalScale: 2,
-          numeralDecimalMark: ',',
-          delimiter: '.'
-        }
-      }
-    };
-  },
-  created: function created() {
-    this.fetch();
-  },
-  watch: {
-    '$route': function $route(to, from) {
-      // check current page meta
-      this.fetch();
-    },
-    grafikDataStat: function grafikDataStat(value) {
+    newsDataStat: function newsDataStat(value) {
       if (value == 'success') {
-        var periodeNow = this.itemData.periode;
+        var valData;
 
-        var itemDataSorted = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.orderBy(this.grafikData.data, ['periode'], ['desc']);
+        var _iterator = _createForOfIteratorHelper(this.newsData),
+            _step;
 
-        this.itemDataBefore = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.find(itemDataSorted, function (o) {
-          return o.periode < periodeNow;
-        });
-      }
-    },
-    // when updating data
-    updateStat: function updateStat(value) {
-      this.modalState = value;
-      this.modalButton = 'Ok';
-
-      if (value === "success") {
-        this.modalTitle = this.updateMessage.message;
-        this.modalContent = '';
-        this.fetch();
-      } else if (value === "fail") {
-        this.modalContent = this.updateMessage;
-      } else {
-        this.modalContent = '';
-      }
-    },
-    updateTpStat: function updateTpStat(value) {
-      this.modalState = value;
-      this.modalButton = "Ok";
-
-      if (value === "success") {
-        this.modalTitle = this.updateTpMessage.message;
-        this.modalContent = "";
-        this.fetch(this.query);
-      } else if (value === "fail") {
-        this.modalContent = this.updateTpMessage;
-      } else {
-        this.modalContent = "";
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            valData = _step.value;
+            this.addNewsSlide(valData.name, valData.ringkasan, valData.gambar);
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
       }
     }
   },
   methods: {
-    fetch: function fetch() {
-      if (this.$route.meta.mode == 'detail') {
-        this.$store.dispatch('laporanCu/detailPearls', this.$route.params.id);
-      } else {
-        this.$store.dispatch('laporanCu/detailPearlsTp', this.$route.params.id);
-      }
-    },
-    save: function save() {
-      this.form = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.chain(this.modalDetail.form).keyBy('key').mapValues('value').value();
-      this.form.periode = this.modalDetail.periode;
+    getBirthday: function getBirthday() {
+      var _this = this;
 
-      if (this.itemData.id_tp) {
-        this.form.id_tp = this.modalDetail.id_tp;
-        this.form.no_tp = this.modalDetailpr.no_tp;
-        this.form.id_cu = this.itemData.tp.cu.id;
-        this.form.no_ba = this.itemData.tp.cu.no_ba;
-        this.$store.dispatch('laporanCu/updateTp', [this.modalDetail.id, this.form]);
-      } else {
-        this.form.id_cu = this.modalDetail.id_cu;
-        this.form.no_ba = this.modalDetail.no_ba;
-        this.$store.dispatch('laporanCu/update', [this.modalDetail.id, this.form]);
-      }
-    },
-    modalBuka: function modalBuka(itemData, type) {
-      this.modalSize = 'modal-lg';
-      this.modalColor = 'bg-primary';
-      this.modalShow = true;
-      this.modalState = 'normal1';
-      this.modalKatex.id = itemData.id;
-      this.modalKatex.periode = itemData.periode;
-
-      if (itemData.id_tp) {
-        this.modalKatex.id_cu = itemData.tp.id_cu;
-        this.modalKatex.no_ba = itemData.tp.cu.no_ba;
-        this.modalKatex.id_tp = itemData.id_tp;
-        this.modalKatex.no_tp = itemData.no_tp;
-        this.modalKatex.section = 'CU ' + itemData.tp.cu.name + ' periode ' + this.formatPeriode(itemData.periode);
-      } else {
-        this.modalKatex.id_tp = '';
-        this.modalKatex.no_tp = '';
-        this.modalKatex.id_cu = itemData.id_cu;
-        this.modalKatex.no_ba = itemData.no_ba;
-        this.modalKatex.section = 'CU ' + itemData.cu.name + ' periode ' + this.formatPeriode(itemData.periode);
-      }
-
-      this.modalKatex.id_cu = itemData.id_cu; // p1	
-
-      if (type == 'p1') {
-        this.modalTitle = 'P1 - Provisi pinjaman lalai di atas 12 bulan';
-        this.modalKatex.form.push({
-          title: 'Cadangan Resiko',
-          key: 'dcr',
-          value: itemData.dcr
-        }, {
-          title: 'Piutang Lalai Di Atas 12 Bulan',
-          key: 'piutang_lalai_12bulan',
-          value: itemData.piutang_lalai_12bulan
-        });
-        this.modalKatex.indikator = '100% provisi tersedia untuk pinjaman lalai di atas 12 bulan dan setiap triwulan dilakukan charge off secara konsisten.';
-        var katex1Content1 = '\\text{P1} = \\dfrac{\\text{' + this.modalKatex.form[0].title + '}}{\\text{' + this.modalKatex.form[1].title + '}} \\times \\text{100} \\% = \\text{100} \\% (\\text{IDEAL})';
-        var katex2Content1 = '\\text{P1} = \\dfrac{' + this.formatCurrency(this.modalKatex.form[0].value) + '}{\\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.p1) + ' \\% (\\text{' + (itemData.p1 >= 1 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-        this.modalKatex.katex1.push({
-          title: '',
-          content: katex1Content1
-        });
-        this.modalKatex.katex2.push({
-          title: '',
-          content: katex2Content1
-        }); // p2
-      } else if (type == 'p2') {
-        this.modalTitle = 'P2 -  Provisi pinjaman lalai 1 - 12 bulan';
-        this.modalKatex.form.push({
-          title: 'Cadangan Resiko',
-          key: 'dcr',
-          value: itemData.dcr
-        }, {
-          title: 'Piutang Lalai Di Atas 12 Bulan',
-          key: 'piutang_lalai_12bulan',
-          value: itemData.piutang_lalai_12bulan
-        }, {
-          title: 'Piutang Lalai 1 - 12 Bulan',
-          key: 'piutang_lalai_1bulan',
-          value: itemData.piutang_lalai_1bulan
-        });
-        this.modalKatex.indikator = '35% provisi tersedia untuk pinjaman lalai 1 – 12 bulan dan setiap triwulan dilakukan charge off dari waktu ke waktu';
-
-        var _katex1Content = '\\text{P2} = \\dfrac{\\text{Saldo Cadangan Resiko setelah P1}[\\text{' + this.modalKatex.form[0].title + '} - \\text{' + this.modalKatex.form[1].title + '}]}{\\text{' + this.modalKatex.form[2].title + '}} \\times \\text{100} \\% = \\text{Di Atas 35} \\% (\\text{IDEAL})';
-
-        var _katex2Content = '\\text{P2} = \\dfrac{' + this.formatCurrency(this.modalKatex.form[0].value) + ' - \\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}}{\\text{' + this.formatCurrency(this.modalKatex.form[2].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.p2) + ' \\% (\\text{' + (itemData.p2 >= 0.35 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
-        this.modalKatex.katex1.push({
-          title: '',
-          content: _katex1Content
-        });
-
-        if (itemData.p1 >= 1) {
-          this.modalKatex.katex2.push({
-            title: '',
-            content: _katex2Content
-          });
-        } else {
-          this.modalKatex.katex2.push({
-            title: 'Karena tidak ada saldo cadangan resiko setelah P1, maka P2 (TIDAK IDEAL)',
-            content: _katex2Content
-          });
-        } // e1
-
-      } else if (type == 'e1') {
-        this.modalTitle = 'E1 - Piutang bersih / total aset';
-
-        if (itemData.p1 >= 1 && itemData.p2 > 0.35) {
-          this.modalKatex.form.push({
-            title: 'Piutang Beredar',
-            key: 'piutang_beredar',
-            value: itemData.piutang_beredar
-          }, {
-            title: 'Piutang Lalai Di Atas 12 Bulan',
-            key: 'piutang_lalai_12bulan',
-            value: itemData.piutang_lalai_12bulan
-          }, {
-            title: 'Piutang Lalai 1 - 12 Bulan',
-            key: 'piutang_lalai_1bulan',
-            value: itemData.piutang_lalai_1bulan
-          }, {
-            title: 'Aset',
-            key: 'aset',
-            value: itemData.aset
-          });
-        } else {
-          this.modalKatex.form.push({
-            title: 'Piutang Beredar',
-            key: 'piutang_beredar',
-            value: itemData.piutang_beredar
-          }, {
-            title: 'Cadangan Resiko',
-            key: 'dcr',
-            value: itemData.dcr
-          }, {
-            title: 'Aset',
-            key: 'aset',
-            value: itemData.aset
-          });
-        }
-
-        this.modalKatex.indikator = 'Rasio Piutang Bersih adalah 70% – 80% dari total aset dan portofolio pinjaman beragam dengan setidaknya 5 macam produk pinjaman yang berbeda';
-        var _katex1Content2 = '\\text{E1} = \\dfrac{\\text{Piutang Beredar} - ((\\text{100} \\% \\times \\text{Piutang Lalai Di Atas 12 Bulan}) + (\\text{35} \\% \\times \\text{Piutang Lalai 1 - 12 Bulan}))}{\\text{Aset}} \\times \\text{100} \\% = \\text{70} \\% \\text{ Sampai } \\text{80} \\% (\\text{IDEAL})';
-        var katex1Content2 = '\\text{E1} = \\dfrac{\\text{Piutang Beredar} - \\text{Cadangan Resiko}}{\\text{Aset}} \\times \\text{100} \\% = \\text{70} \\% \\text{ Sampai } \\text{80} \\% (\\text{IDEAL})';
-        var _katex2Content2 = '';
-        var katex2Title1 = '';
-
-        if (itemData.p1 >= 1 && itemData.p2 > 0.35) {
-          katex2Title1 = 'Dikarenakan P1 dan P2 (IDEAL), maka rumus yang digunakan adalah rumus 1';
-          _katex2Content2 = '\\text{E1} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '} - ((\\text{100} \\% \\times \\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}) + (\\text{35} \\% \\times \\text{' + this.formatCurrency(this.modalKatex.form[2].value) + '}))}{\\text{' + this.formatCurrency(this.modalKatex.form[3].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.e1) + ' \\% (\\text{' + (itemData.e1 >= 0.7 && itemData.e1 <= 0.8 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-        } else {
-          katex2Title1 = 'Dikarenakan P1 dan P2 (TIDAK IDEAL), maka rumus yang digunakan adalah rumus 2';
-          _katex2Content2 = '\\text{E1} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '} - \\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}}{\\text{' + this.formatCurrency(this.modalKatex.form[2].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.e1) + ' \\% (\\text{' + (itemData.e1 >= 0.7 && itemData.e1 <= 0.8 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-        }
-
-        this.modalKatex.katex1.push({
-          title: 'Rumus 1 - apabila P1 dan P2 (IDEAL)',
-          content: _katex1Content2
-        }, {
-          title: 'Rumus 2 - apabila P1 dan P2 (TIDAK IDEAL)',
-          content: katex1Content2
-        });
-        this.modalKatex.katex2.push({
-          title: katex2Title1,
-          content: _katex2Content2
-        }); // e5
-      } else if (type == 'e5') {
-        this.modalTitle = 'E5 - Simpanan non saham / total aset';
-        this.modalKatex.form.push({
-          title: 'Simpanan Non Saham Unggulan',
-          key: 'nonsaham_unggulan',
-          value: itemData.nonsaham_unggulan
-        }, {
-          title: 'Simpanan Non Saham Harian',
-          key: 'nonsaham_harian',
-          value: itemData.nonsaham_harian
-        }, {
-          title: 'Aset',
-          key: 'aset',
-          value: itemData.aset
-        });
-        this.modalKatex.indikator = 'Rasio 70% – 80% dari total aset dan memiliki beragam jenis simpanan minimal 5 jenis produk simpanan yang berbeda.';
-
-        var _katex1Content3 = '\\text{E5} = \\dfrac{\\text{' + this.modalKatex.form[0].title + '} + \\text{' + this.modalKatex.form[1].title + '}}{\\text{' + this.modalKatex.form[2].title + '}} \\times \\text{100} \\% = \\text{70} \\% \\text{ Sampai } \\text{80} \\%(\\text{IDEAL})';
-
-        var _katex2Content3 = '\\text{E5} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '} + \\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}}{\\text{' + this.formatCurrency(this.modalKatex.form[2].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.e5) + ' \\% (\\text{' + (itemData.e5 >= 0.7 && itemData.e5 <= 0.8 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
-        this.modalKatex.katex1.push({
-          title: '',
-          content: _katex1Content3
-        });
-        this.modalKatex.katex2.push({
-          title: '',
-          content: _katex2Content3
-        }); // e6
-      } else if (type == 'e6') {
-        this.modalTitle = 'E6 - Pinjaman kepada pihak luar terhadap total aset';
-        this.modalKatex.form.push({
-          title: 'Total Hutang Pihak Ke-3',
-          key: 'total_hutang_pihak3',
-          value: itemData.total_hutang_pihak3
-        }, {
-          title: 'Aset',
-          key: 'aset',
-          value: itemData.aset
-        });
-        this.modalKatex.indikator = 'Jumlah pinjaman kepada pihak eksternal 1% – 5% dari total aset.';
-
-        var _katex1Content4 = '\\text{E6} = \\dfrac{\\text{' + this.modalKatex.form[0].title + '}}{\\text{' + this.modalKatex.form[1].title + '}} \\times \\text{100} \\% = \\text{Kurang Dari Sama Dengan 5} \\% (\\text{IDEAL})';
-
-        var _katex2Content4 = '\\text{E6} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '}}{\\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.e6) + ' \\% ( \\text{' + (itemData.e6 <= 0.05 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
-        this.modalKatex.katex1.push({
-          title: '',
-          content: _katex1Content4
-        });
-        this.modalKatex.katex2.push({
-          title: '',
-          content: _katex2Content4
-        }); // e7
-      } else if (type == "e7") {
-        this.modalTitle = "E7 - Persentase total aset yang didanai dari simpanan saham";
-        this.modalKatex.form.push({
-          title: "Simpanan Saham",
-          key: "simpanan_saham",
-          value: itemData.simpanan_saham
-        }, {
-          title: "Aset",
-          key: "aset",
-          value: itemData.aset
-        });
-        this.modalKatex.indikator = "10-20% total aset yang didanai dari simpanan saham";
-
-        var _katex1Content5 = "\\text{E7} = \\dfrac{\\text{" + this.modalKatex.form[0].title + "}}{\\text{" + this.modalKatex.form[1].title + "}} \\times \\text{100} \\% = \\text{10} \\% \\text{ Sampai } \\text{20} \\%(\\text{IDEAL})";
-
-        var _katex2Content5 = "\\text{E7} = \\dfrac{" + this.formatCurrency(this.modalKatex.form[0].value) + "}{\\text{" + this.formatCurrency(this.modalKatex.form[1].value) + "}} \\times \\text{100} \\% = " + this.formatPercentage(itemData.e7) + " \\% (\\text{" + (itemData.e7 >= 0.1 && itemData.e7 <= 0.2 ? "IDEAL" : "TIDAK IDEAL") + "})";
-
-        this.modalKatex.katex1.push({
-          title: "",
-          content: _katex1Content5
-        });
-        this.modalKatex.katex2.push({
-          title: "",
-          content: _katex2Content5
-        }); // e9
-      } else if (type == 'e9') {
-        this.modalTitle = 'E9 - Modal lembaga bersih';
-        this.modalKatex.form.push({
-          title: 'Cadangan Resiko',
-          key: 'dcr',
-          value: itemData.dcr
-        }, {
-          title: 'Cadangan Umum',
-          key: 'dcu',
-          value: itemData.dcu
-        }, {
-          title: 'Dana Gedung',
-          key: 'dana_gedung',
-          value: itemData.dana_gedung
-        }, {
-          title: 'Donasi',
-          key: 'donasi',
-          value: itemData.donasi
-        }, {
-          title: 'SHU Tahun Lalu',
-          key: 'shu_lalu',
-          value: itemData.shu_lalu
-        }, {
-          title: 'Piutang Lalai Di Atas 12 Bulan',
-          key: 'piutang_lalai_12bulan',
-          value: itemData.piutang_lalai_12bulan
-        }, {
-          title: 'Piutang Lalai 1 - 12 Bulan',
-          key: 'piutang_lalai_1bulan',
-          value: itemData.piutang_lalai_1bulan
-        }, {
-          title: 'Aset Bermasalah',
-          key: 'aset_masalah',
-          value: itemData.aset_masalah
-        }, {
-          title: 'Aset',
-          key: 'aset',
-          value: itemData.aset
-        });
-        this.modalKatex.indikator = 'Modal lembaga bersih sebesar 10% dari total aset.';
-
-        var _katex1Content6 = '\\text{E9} = \\dfrac{(\\text{' + this.modalKatex.form[0].title + '} + \\text{' + this.modalKatex.form[1].title + '} + \\text{' + this.modalKatex.form[2].title + '} + \\text{' + this.modalKatex.form[3].title + '} + \\text{' + this.modalKatex.form[4].title + '}) - ((\\text{100} \\% \\times \\text{' + this.modalKatex.form[5].title + '}) + (\\text{35} \\% \\times \\text{' + this.modalKatex.form[6].title + '}) + \\text{' + this.modalKatex.form[7].title + '})}{\\text{' + this.modalKatex.form[8].title + '}} \\times \\text{100} \\% = \\text{Lebih Dari Sama Dengan 10} \\% (\\text{IDEAL})';
-
-        var _katex2Content6 = '\\text{E9} = \\dfrac{(\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '} + \\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '} + \\text{' + this.formatCurrency(this.modalKatex.form[2].value) + '} + \\text{' + this.formatCurrency(this.modalKatex.form[3].value) + '} + \\text{' + this.formatCurrency(this.modalKatex.form[4].value) + '}) - ((\\text{100} \\% \\times \\text{' + this.formatCurrency(this.modalKatex.form[5].value) + '}) + (\\text{35} \\% \\times \\text{' + this.formatCurrency(this.modalKatex.form[6].value) + '}) + \\text{' + this.formatCurrency(this.modalKatex.form[7].value) + '})}{\\text{' + this.formatCurrency(this.modalKatex.form[8].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.e9) + ' \\% ( \\text{' + (itemData.e9 >= 0.1 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
-        this.modalKatex.katex1.push({
-          title: '',
-          content: _katex1Content6
-        });
-        this.modalKatex.katex2.push({
-          title: '',
-          content: _katex2Content6
-        }); // a1
-      } else if (type == 'a1') {
-        this.modalTitle = 'A1 - Total pinjaman lalai / total pinjaman beredar';
-        this.modalKatex.form.push({
-          title: 'Piutang Lalai Di Atas 12 Bulan',
-          key: 'piutang_lalai_12bulan',
-          value: itemData.piutang_lalai_12bulan
-        }, {
-          title: 'Piutang Lalai 1 - 12 Bulan',
-          key: 'piutang_lalai_1bulan',
-          value: itemData.piutang_lalai_1bulan
-        }, {
-          title: 'Piutang Beredar',
-          key: 'piutang_beredar',
-          value: itemData.piutang_beredar
-        });
-        this.modalKatex.indikator = 'Total pinjaman lalai &le; 5% dari total pinjaman beredar.';
-
-        var _katex1Content7 = '\\text{A1} = \\dfrac{\\text{Total Pinjaman Lalai}[\\text{' + this.modalKatex.form[0].title + '} + \\text{' + this.modalKatex.form[1].title + '}]}{\\text{' + this.modalKatex.form[2].title + '}} \\times \\text{100} \\% = \\text{Kurang Dari Sama Dengan 5} \\% (\\text{IDEAL})';
-
-        var _katex2Content7 = '\\text{A1} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '} + \\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}}{\\text{' + this.formatCurrency(this.modalKatex.form[2].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.a1) + ' \\% ( \\text{' + (itemData.a1 <= 0.05 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
-        this.modalKatex.katex1.push({
-          title: '',
-          content: _katex1Content7
-        });
-        this.modalKatex.katex2.push({
-          title: '',
-          content: _katex2Content7
-        }); // a2	
-      } else if (type == 'a2') {
-        this.modalTitle = 'A2 - Aset yang tidak menghasilkan / total aset';
-        this.modalKatex.form.push({
-          title: 'Aset Tidak Menghasilkan',
-          key: 'aset_tidak_menghasilkan',
-          value: itemData.aset_tidak_menghasilkan
-        }, {
-          title: 'Aset',
-          key: 'aset',
-          value: itemData.aset
-        });
-        this.modalKatex.indikator = 'Aset tidak menghasilkan 5% dari total aset.';
-
-        var _katex1Content8 = '\\text{A2} = \\dfrac{\\text{' + this.modalKatex.form[0].title + '}}{\\text{' + this.modalKatex.form[1].title + '}} \\times \\text{100} \\% = \\text{Kurang Dari Sama Dengan 5} \\% (\\text{IDEAL})';
-
-        var _katex2Content8 = '\\text{A2} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '}}{\\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.a2) + ' \\% ( \\text{' + (itemData.a2 <= 0.05 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
-        this.modalKatex.katex1.push({
-          title: '',
-          content: _katex1Content8
-        });
-        this.modalKatex.katex2.push({
-          title: '',
-          content: _katex2Content8
-        }); // r7
-      } else if (type == 'r7') {
-        this.modalTitle = 'R7 - BJS saham terhadap rata-rata aset';
-        this.modalKatex.form.push({
-          title: 'BJS Saham',
-          key: 'bjs_saham',
-          value: itemData.bjs_saham
-        }, {
-          title: 'Simpanan Saham Bulan Desember',
-          key: 'simpanan_saham_des',
-          value: itemData.aset
-        }, {
-          title: 'Simpanan Saham Bulan ' + this.formatPeriodeMonth(itemData.periode),
-          key: 'simpanan_saham',
-          value: itemData.simpanan_saham
-        }, {
-          title: 'Simpanan Saham Tahun Lalu',
-          key: 'simpanan_saham_lalu',
-          value: itemData.simpanan_saham_lalu
-        }, {
-          title: 'Harga Pasar',
-          key: 'harga_pasar',
-          value: itemData.harga_pasar
-        });
-        this.modalKatex.indikator = 'Dividen saham dibayar 1% lebih tinggi daripada suku bunga pasar';
-
-        if (itemData.simpanan_saham_des != 0) {
-          var _katex1Content9 = '\\text{R7} = \\dfrac{\\text{' + this.modalKatex.form[0].title + '}}{\\text{Simpanan Saham Rata-rata}(\\frac{\\text{' + this.modalKatex.form[1].title + '} + \\text{' + this.modalKatex.form[2].title + '}}{\\text{Jumlah Bulan Berjalan}} \\times \\text{12})} \\times \\text{100} \\% = \\text{Harga Pasar} \\% (\\text{IDEAL})';
-
-          var _katex2Content9 = '\\text{R7} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '}}{(\\frac{\\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '} + \\text{' + this.formatCurrency(this.modalKatex.form[2].value) + '}}{\\text{' + this.formatPeriodeMonth(itemData.periode) + '}} \\times \\text{12})} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.r7_1) + ' \\% ( \\text{' + (itemData.r7_1 == itemData.harga_pasar ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
-          this.modalKatex.katex1.push({
-            title: 'Jika simpanan saham bersumber dari saldo bulan desember tahun lalu',
-            content: _katex1Content9
-          });
-          this.modalKatex.katex2.push({
-            title: '',
-            content: _katex2Content9
-          });
-        }
-
-        if (itemData.simpanan_saham_lalu != 0) {
-          var _katex1Content10 = '\\text{R7} = \\dfrac{\\text{' + this.modalKatex.form[0].title + '}}{\\text{Simpanan Saham Rata-rata}(\\frac{\\text{' + this.modalKatex.form[3].title + '} + \\text{' + this.modalKatex.form[2].title + '}}{\\text{2}})} \\times \\text{100} \\% = \\text{Harga Pasar} \\% (\\text{IDEAL})';
-
-          var katex2Content2 = '\\text{R7} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '}}{(\\frac{\\text{' + this.formatCurrency(this.modalKatex.form[3].value) + '} + \\text{' + this.formatCurrency(this.modalKatex.form[2].value) + '}}{\\text{2}})} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.r7_2) + ' \\% ( \\text{' + (itemData.r7_2 == itemData.harga_pasar ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-          this.modalKatex.katex1.push({
-            title: 'Jika simpanan saham bersumber dari saldo tahun lalu bulan ' + this.formatPeriodeMonth(itemData.periode),
-            content: _katex1Content10
-          });
-          this.modalKatex.katex2.push({
-            title: '',
-            content: katex2Content2
-          });
-        } //r9	
-
-      } else if (type == 'r9') {
-        this.modalTitle = 'R9 - biaya operasional terhadap rata-rata aset';
-        this.modalKatex.form.push({
-          title: 'Total Biaya',
-          key: 'total_biaya',
-          value: itemData.total_biaya
-        }, {
-          title: 'Beban Penyisihan Cadangan Resiko',
-          key: 'beban_penyisihan_dcr',
-          value: itemData.beban_penyisihan_dcr
-        }, {
-          title: 'Aset',
-          key: 'aset',
-          value: itemData.aset
-        }, {
-          title: 'Aset Tahun Lalu',
-          key: 'aset_lalu',
-          value: itemData.aset_lalu
-        });
-        this.modalKatex.indikator = 'Beban operasional terhadap rata-rata aset sebesar 5%.';
-
-        var _katex1Content11 = '\\text{R9} = \\dfrac{\\text{Beban Operasional}(\\text{' + this.modalKatex.form[0].title + '} - \\text{' + this.modalKatex.form[1].title + '})}{\\text{Rata-rata Aset}(\\frac{\\text{' + this.modalKatex.form[2].title + '} + \\text{' + this.modalKatex.form[3].title + '}}{\\text{2}})} \\times \\text{100} \\% <= \\text{5} \\% (\\text{IDEAL})';
-
-        var _katex2Content10 = '\\text{R9} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '} - \\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}}{\\frac{\\text{' + this.formatCurrency(this.modalKatex.form[2].value) + '} + \\text{' + this.formatCurrency(this.modalKatex.form[3].value) + '}}{\\text{2}}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.e6) + ' \\% ( \\text{' + (itemData.r9 <= 0.05 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
-        this.modalKatex.katex1.push({
-          title: '',
-          content: _katex1Content11
-        });
-        this.modalKatex.katex2.push({
-          title: '',
-          content: _katex2Content10
-        }); //l1
-      } else if (type == 'l1') {
-        this.modalTitle = 'L1 - (investasi likuid + aset-aset likuid - hutang jangka pendek < 30 Hari) / simpanan non saham';
-        this.modalKatex.form.push({
-          title: 'Investasi Likuid',
-          key: 'investasi_likuid',
-          value: itemData.investasi_likuid
-        }, {
-          title: 'Aset Likuid Tidak Menghasilkan',
-          key: 'aset_likuid_tidak_menghasilkan',
-          value: itemData.aset_likuid_tidak_menghasilkan
-        }, {
-          title: 'Hutang Tidak Berbiaya < 30 Hari',
-          key: 'hutang_tidak_berbiaya_30hari',
-          value: itemData.hutang_tidak_berbiaya_30hari
-        }, {
-          title: 'Total Simpanan Non Saham',
-          key: 'tot_nonsaham',
-          value: itemData.tot_nonsaham
-        });
-        this.modalKatex.indikator = 'Likuiditas sebesar 15% dari total simpanan non saham tetapi tidak melampaui 20% dari total aset.';
-
-        var _katex1Content12 = '\\text{L1} = \\dfrac{(\\text{' + this.modalKatex.form[0].title + '} + \\text{' + this.modalKatex.form[1].title + '}) - \\text{' + this.modalKatex.form[2].title + '}}{\\text{' + this.modalKatex.form[3].title + '}} \\times \\text{100} \\% = \\text{15} \\% \\text{ Sampai } \\text{20} \\% (\\text{IDEAL})';
-
-        var _katex2Content11 = '\\text{L1} = \\dfrac{(\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '} + \\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}) - \\text{' + this.formatCurrency(this.modalKatex.form[2].value) + '}}{\\text{' + this.formatCurrency(this.modalKatex.form[3].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.l1) + ' \\% (\\text{' + (itemData.l1 >= 0.15 && itemData.l1 <= 0.2 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
-        this.modalKatex.katex1.push({
-          title: '',
-          content: _katex1Content12
-        });
-        this.modalKatex.katex2.push({
-          title: '',
-          content: _katex2Content11
-        }); // l2
-      } else if (type == "l2") {
-        this.modalTitle = "L2 - Likuiditas untuk memenuhi permintaan penarikan setelah membayar semua kewajiban < 30 hari";
-        this.modalKatex.form.push({
-          title: "Investasi Likuid",
-          key: "investasi_likuid",
-          value: itemData.investasi_likuid
-        }, {
-          title: "Aset Likuid Tidak Menghasilkan",
-          key: "aset_likuid_tidak_menghasilkan",
-          value: itemData.aset_likuid_tidak_menghasilkan
-        }, {
-          title: "Hutang Tidak Berbiaya < 30 Hari",
-          key: "hutang_tidak_berbiaya_30hari",
-          value: itemData.hutang_tidak_berbiaya_30hari
-        }, {
-          title: "Aset",
-          key: "aset",
-          value: itemData.aset
-        });
-        this.modalKatex.indikator = "Likuiditas sebesar 15% dari total simpanan non saham tetapi tidak melampaui 20% dari total aset.";
-
-        var _katex1Content13 = "\\text{L1} = \\dfrac{(\\text{" + this.modalKatex.form[0].title + "} + \\text{" + this.modalKatex.form[1].title + "}) - \\text{" + this.modalKatex.form[2].title + "}}{\\text{" + this.modalKatex.form[3].title + "}} \\times \\text{100} \\% = \\text{15} \\% \\text{ Sampai } \\text{20} \\% (\\text{IDEAL})";
-
-        var _katex2Content12 = "\\text{L1} = \\dfrac{(\\text{" + this.formatCurrency(this.modalKatex.form[0].value) + "} + \\text{" + this.formatCurrency(this.modalKatex.form[1].value) + "}) - \\text{" + this.formatCurrency(this.modalKatex.form[2].value) + "}}{\\text{" + this.formatCurrency(this.modalKatex.form[3].value) + "}} \\times \\text{100} \\% = " + this.formatPercentage(itemData.l1) + " \\% (\\text{" + (itemData.l1 >= 0.15 && itemData.l1 <= 0.2 ? "IDEAL" : "TIDAK IDEAL") + "})";
-
-        this.modalKatex.katex1.push({
-          title: "",
-          content: _katex1Content13
-        });
-        this.modalKatex.katex2.push({
-          title: "",
-          content: _katex2Content12
-        }); //s10	
-      } else if (type == 's10') {
-        this.modalTitle = 'S10 - Pertumbuhan anggota';
-        this.modalKatex.form.push({
-          title: 'Lelaki Biasa',
-          key: 'l_biasa',
-          value: itemData.l_biasa
-        }, {
-          title: 'Lelaki L. Biasa',
-          key: 'l_lbiasa',
-          value: itemData.l_lbiasa
-        }, {
-          title: 'Perempuan Biasa',
-          key: 'p_biasa',
-          value: itemData.p_biasa
-        }, {
-          title: 'Perempuan L.Biasa',
-          key: 'p_lbiasa',
-          value: itemData.p_lbiasa
-        }, {
-          title: 'Total Anggota',
-          key: 'total_anggota',
-          value: itemData.total_anggota,
-          hideForm: true
-        }, {
-          title: 'Total Anggota Tahun Lalu',
-          key: 'total_anggota_lalu',
-          value: itemData.total_anggota_lalu
-        });
-        this.modalKatex.indikator = 'Pertumbuhan anggota di atas 12% per tahun.';
-
-        var _katex1Content14 = '\\text{s10} = \\dfrac{\\text{' + this.modalKatex.form[4].title + '} - \\text{' + this.modalKatex.form[5].title + '}}{\\text{' + this.modalKatex.form[5].title + '}} \\times \\text{100} \\% = \\text{Di Atas 12} \\% (\\text{IDEAL})';
-
-        var _katex2Content13 = '\\text{s10} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[4].value) + '}} - \\text{' + this.formatCurrency(this.modalKatex.form[5].value) + '}{\\text{' + this.formatCurrency(this.modalKatex.form[5].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.s10) + ' \\% ( \\text{' + (itemData.s10 > 0.12 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
-        this.modalKatex.katex1.push({
-          title: '',
-          content: _katex1Content14
-        });
-        this.modalKatex.katex2.push({
-          title: '',
-          content: _katex2Content13
-        }); //s11
-      } else if (type == 's11') {
-        this.modalTitle = 'S11 - Pertumbuhan aset';
-        this.modalKatex.form.push({
-          title: 'Aset',
-          key: 'aset',
-          value: itemData.aset
-        }, {
-          title: 'Aset Tahun Lalu',
-          key: 'aset_lalu',
-          value: itemData.aset_lalu
-        });
-        this.modalKatex.indikator = 'Pertumbuhan aset 10% di atas laju inflasi.';
-
-        var _katex1Content15 = '\\text{s11} = \\dfrac{\\text{' + this.modalKatex.form[0].title + '} - \\text{' + this.modalKatex.form[1].title + '}}{\\text{' + this.modalKatex.form[1].title + '}} \\times \\text{100} \\% = \\text{10} \\% \\text{ Di Atas Laju Inflasi} (\\text{IDEAL})';
-
-        var _katex2Content14 = '\\text{S11} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '}} - \\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}{\\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.s11) + ' \\% ( \\text{' + (itemData.s11 > itemData.laju_inflasi + 0.1 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
-        this.modalKatex.katex1.push({
-          title: '',
-          content: _katex1Content15
-        });
-        this.modalKatex.katex2.push({
-          title: '',
-          content: _katex2Content14
-        });
-      }
-    },
-    modalKatexReset: function modalKatexReset() {
-      this.modalKatex.isUbah = false;
-      this.modalKatex.katex1 = [];
-      this.modalKatex.katex2 = [];
-      this.modalKatex.form = [];
-    },
-    modalTutup: function modalTutup() {
-      this.modalSize = '';
-      this.modalShow = false;
-      this.modalKatexReset();
-    },
-    formatPeriode: function formatPeriode(value) {
-      return vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('month')(value) + ' ' + vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('year')(value);
-    },
-    formatPeriodeMonth: function formatPeriodeMonth(value) {
-      return vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('month')(value);
-    },
-    formatCurrency: function formatCurrency(value) {
-      return this.$options.filters.currency(value, '', 0, {
-        thousandsSeparator: '.'
+      this.birthdayDataStat = 'loading';
+      _api_cu__WEBPACK_IMPORTED_MODULE_3__["default"].getBirthday().then(function (response) {
+        _this.birthdayData = response.data.model;
+        _this.birthdayDataStat = 'success';
+      })["catch"](function (error) {
+        _this.birthdayData = error.response;
+        _this.birthdayDataStat = 'fail';
       });
     },
-    formatPercentage: function formatPercentage(value) {
-      return vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('percentage2')(value, 2);
+    getNews: function getNews() {
+      var _this2 = this;
+
+      this.newsDataStat = 'loading';
+      _api_artikelSimo__WEBPACK_IMPORTED_MODULE_4__["default"].get().then(function (response) {
+        _this2.newsData = response.data.model;
+        _this2.newsDataStat = 'success';
+      })["catch"](function (error) {
+        _this2.newsData = error.response;
+        _this2.newsDataStat = 'fail';
+      });
     },
-    countTotal: function countTotal(value1, value2) {
-      return value1 - value2;
-    },
-    countPercentage: function countPercentage(value1, value2) {
-      if (value2 > 0) {
-        return this.formatPercentage(this.countTotal(value1, value2) / value2);
-      } else {
-        return this.formatPercentage('0');
-      }
+    addNewsSlide: function addNewsSlide(title, content, image) {
+      var item = {
+        name: 'news',
+        title: title,
+        content: content,
+        style: {
+          'background-image': 'url("/images/artikel_simo/' + image + '.jpg")',
+          'background-position': 'center',
+          'background-repeat': 'no-repeat',
+          'background-size': 'cover'
+        }
+      };
+      this.sliderItem.push(item);
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('laporanCu', {
-    itemData: 'pearls',
-    itemDataStat: 'pearlsStat',
-    grafikData: 'grafikPearls',
-    grafikDataStat: 'grafikPearlsStat',
-    modelPeriode: 'periode',
-    modelPeriodeStat: 'periodeStat',
-    updateMessage: 'update',
-    updateStat: 'updateStat'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('laporanTp', {
-    modelTp: 'dataS',
-    modelTpStat: 'dataStatS',
-    updateTpMessage: "update",
-    updateTpStat: "updateStat"
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('cu', {
-    modelCU: 'dataS',
-    modelCUStat: 'dataStatS'
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+    currentUser: 'currentUser'
   }))
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/diskusi.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/laporanCu/diskusi.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _helpers_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../helpers/form */ "./resources/assets/js/helpers/form.js");
-/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
-/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
-/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_5__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    appModal: _components_modal__WEBPACK_IMPORTED_MODULE_4__["default"],
-    Cleave: vue_cleave_component__WEBPACK_IMPORTED_MODULE_5___default.a
-  },
-  data: function data() {
-    return {
-      kelas: 'laporanCuDiskusi',
-      idCu: '',
-      idTp: '',
-      periode: '',
-      periodeTp: '',
-      modalShow: false,
-      modalState: '',
-      modalTitle: '',
-      modalSize: '',
-      modalColor: '',
-      modalButton: '',
-      modalContent: '',
-      form: {
-        id: '',
-        id_laporan: '',
-        id_user: '',
-        id_cu: '',
-        id_tp: '',
-        periode: '',
-        content: ''
-      },
-      formEdit: {
-        id: '',
-        id_laporan: '',
-        id_user: '',
-        id_cu: '',
-        id_tp: '',
-        periode: '',
-        content: ''
-      },
-      ckeditorNoImageConfig: {
-        toolbar: {
-          items: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'insertTable', 'mediaEmbed', 'undo', 'redo']
-        },
-        table: {
-          contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
-        }
-      },
-      cleaveOption: {
-        numeric: {
-          numeral: true,
-          numeralThousandsGroupStyle: 'thousand',
-          numeralDecimalScale: 2,
-          numeralDecimalMark: ',',
-          delimiter: '.'
-        }
-      }
-    };
-  },
-  created: function created() {
-    this.fetch();
-    this.form.id_user = this.currentUser.id;
-  },
-  watch: {
-    '$route': function $route(to, from) {
-      // check current page meta
-      this.fetch();
-    },
-    itemDataStat: function itemDataStat(value) {
-      if (value == 'success') {}
-    },
-    // when updating data
-    updateStat: function updateStat(value) {
-      this.modalState = value;
-      this.modalButton = 'Ok';
-
-      if (value === "success") {
-        this.modalTitle = this.updateMessage.message;
-        this.modalContent = '';
-        this.form.content = '';
-        this.fetch();
-      } else if (value === "fail") {
-        this.modalContent = this.updateMessage;
-      } else {
-        this.modalContent = '';
-      }
-    }
-  },
-  methods: {
-    fetch: function fetch() {
-      if (this.$route.meta.mode == 'detail') {
-        this.$store.dispatch(this.kelas + '/get', this.$route.params.id);
-      } else if (this.$route.meta.mode == 'detailTp') {
-        this.$store.dispatch(this.kelas + '/getTp', this.$route.params.id);
-      }
-    },
-    save: function save(type) {
-      if (type == 'create') {
-        this.form.id = '';
-        this.form.id_laporan = this.$route.params.id;
-        this.form.id_user = this.currentUser.id;
-        this.form.periode = this.modelLaporan.periode;
-
-        if (this.$route.meta.mode == 'detail') {
-          this.form.id_cu = this.modelLaporan.id_cu;
-          this.form.id_tp = '';
-          this.$store.dispatch(this.kelas + '/store', this.form);
-        } else if (this.$route.meta.mode == 'detailTp') {
-          this.form.id_cu = this.modelLaporan.tp.id_cu;
-          this.form.id_tp = this.modelLaporan.tp.id;
-          this.$store.dispatch(this.kelas + '/storeTp', this.form);
-        }
-
-        this.modalShow = true;
-      } else if (type == 'edit') {
-        this.formEdit.periode = this.modelLaporan.periode;
-
-        if (this.$route.meta.mode == 'detail') {
-          this.formEdit.id_cu = this.modelLaporan.id_cu;
-          this.formEdit.id_tp = '';
-          this.$store.dispatch(this.kelas + '/update', [this.formEdit.id, this.formEdit]);
-        } else if (this.$route.meta.mode == 'detailTp') {
-          this.formEdit.id_cu = this.modelLaporan.tp.id_cu;
-          this.formEdit.id_tp = this.modelLaporan.tp.id;
-          this.$store.dispatch(this.kelas + '/updateTp', [this.formEdit.id, this.formEdit]);
-        }
-      }
-
-      this.modalSize = '';
-      this.modalColor = '';
-    },
-    modalTambah: function modalTambah() {
-      this.modalShow = true;
-      this.modalTitle = 'Tambah Komentar';
-      this.modalState = 'normal1';
-      this.modalSize = 'modal-lg';
-      this.modalColor = 'bg-primary';
-    },
-    modalUbah: function modalUbah(item) {
-      this.modalShow = true;
-      this.modalTitle = 'Ubah Komentar';
-      this.modalState = 'normal1';
-      this.modalSize = 'modal-lg';
-      this.modalColor = 'bg-primary';
-      this.formEdit.id = item.id;
-      this.formEdit.id_user = item.id_user;
-      this.formEdit.id_laporan = item.id_laporan;
-      this.formEdit.content = item.content;
-    },
-    modalHapus: function modalHapus(item) {
-      this.modalShow = true;
-      this.modalTitle = 'Hapus Komentar ini?';
-      this.modalState = 'confirm-tutup';
-      this.modalSize = '';
-      this.modalColor = '';
-      this.modalButton = 'Iya, Hapus';
-      this.formEdit.id = item.id;
-    },
-    modalConfirmOk: function modalConfirmOk() {
-      // execute destroy
-      if (this.$route.meta.mode == 'detail') {
-        this.$store.dispatch(this.kelas + '/destroy', this.formEdit.id);
-      } else if (this.$route.meta.mode == 'detailTp') {
-        this.$store.dispatch(this.kelas + '/destroyTp', this.formEdit.id);
-      }
-    },
-    modalTutup: function modalTutup() {
-      this.modalShow = false;
-    },
-    // formating
-    formatPeriode: function formatPeriode(value) {
-      return vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('month')(value) + ' ' + vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('year')(value);
-    },
-    formatCurrency: function formatCurrency(value) {
-      return this.$options.filters.currency(value, '', 0, {
-        thousandsSeparator: '.'
-      });
-    },
-    formatPercentage: function formatPercentage(value) {
-      return vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('percentage2')(value, 2);
-    },
-    countTotal: function countTotal(value1, value2) {
-      return value1 - value2;
-    },
-    countPercentage: function countPercentage(value1, value2) {
-      if (value2 > 0) {
-        return this.formatPercentage(this.countTotal(value1, value2) / value2);
-      } else {
-        return this.formatPercentage('0');
-      }
-    }
-  },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('auth', {
-    currentUser: 'currentUser'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('laporanCuDiskusi', {
-    itemData: 'dataS',
-    itemDataStat: 'dataStatS',
-    updateMessage: 'update',
-    updateStat: 'updateStat'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('laporanCu', {
-    modelLaporan: 'data',
-    modelLaporanStat: 'dataStat'
-  }))
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/revisi.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/laporanCu/revisi.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _helpers_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../helpers/form */ "./resources/assets/js/helpers/form.js");
-/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
-/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
-/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    appModal: _components_modal__WEBPACK_IMPORTED_MODULE_4__["default"],
-    checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
-  },
-  data: function data() {
-    return {
-      kelas: 'laporanCuDiskusi',
-      idCu: '',
-      idTp: '',
-      periode: '',
-      periodeTp: '',
-      modalShow: false,
-      modalState: '',
-      modalTitle: '',
-      modalSize: '',
-      modalColor: '',
-      modalButton: '',
-      modalContent: '',
-      form: {
-        id: '',
-        id_laporan: '',
-        id_user: '',
-        id_cu: '',
-        id_tp: '',
-        periode: '',
-        content: ''
-      },
-      formEdit: {
-        id: '',
-        id_laporan: '',
-        id_user: '',
-        id_cu: '',
-        id_tp: '',
-        periode: '',
-        content: ''
-      },
-      cleaveOption: {
-        numeric: {
-          numeral: true,
-          numeralThousandsGroupStyle: 'thousand',
-          numeralDecimalScale: 2,
-          numeralDecimalMark: ',',
-          delimiter: '.'
-        }
-      }
-    };
-  },
-  created: function created() {
-    this.fetch();
-    this.form.id_user = this.currentUser.id;
-  },
-  watch: {
-    '$route': function $route(to, from) {
-      // check current page meta
-      this.fetch();
-    },
-    // when updating data
-    updateStat: function updateStat(value) {
-      this.modalState = value;
-      this.modalButton = 'Ok';
-
-      if (value === "success") {
-        this.modalTitle = this.updateMessage.message;
-        this.modalContent = '';
-        this.form.content = '';
-        this.fetch();
-      } else if (value === "fail") {
-        this.modalContent = this.updateMessage;
-      } else {
-        this.modalContent = '';
-      }
-    }
-  },
-  methods: {
-    fetch: function fetch() {
-      if (this.$route.meta.mode == 'detail') {
-        this.$store.dispatch(this.kelas + '/get', this.$route.params.id);
-      } else if (this.$route.meta.mode == 'detailTp') {
-        this.$store.dispatch(this.kelas + '/getTp', this.$route.params.id);
-      }
-    },
-    save: function save(type) {
-      if (type == 'create') {
-        this.form.id = '';
-        this.form.id_laporan = this.$route.params.id;
-        this.form.id_user = this.currentUser.id;
-        this.form.periode = this.modelLaporan.periode;
-
-        if (this.$route.meta.mode == 'detail') {
-          this.form.id_cu = this.modelLaporan.id_cu;
-          this.form.id_tp = '';
-          this.$store.dispatch(this.kelas + '/store', this.form);
-        } else if (this.$route.meta.mode == 'detailTp') {
-          this.form.id_cu = this.modelLaporan.tp.id_cu;
-          this.form.id_tp = this.modelLaporan.tp.id;
-          this.$store.dispatch(this.kelas + '/storeTp', this.form);
-        }
-
-        this.modalShow = true;
-      } else if (type == 'edit') {
-        this.formEdit.periode = this.modelLaporan.periode;
-
-        if (this.$route.meta.mode == 'detail') {
-          this.formEdit.id_cu = this.modelLaporan.id_cu;
-          this.formEdit.id_tp = '';
-          this.$store.dispatch(this.kelas + '/update', [this.formEdit.id, this.formEdit]);
-        } else if (this.$route.meta.mode == 'detailTp') {
-          this.formEdit.id_cu = this.modelLaporan.tp.id_cu;
-          this.formEdit.id_tp = this.modelLaporan.tp.id;
-          this.$store.dispatch(this.kelas + '/updateTp', [this.formEdit.id, this.formEdit]);
-        }
-      }
-
-      this.modalSize = '';
-      this.modalColor = '';
-    },
-    modalTambah: function modalTambah() {
-      this.modalShow = true;
-      this.modalTitle = 'Tambah Komentar';
-      this.modalState = 'normal1';
-      this.modalSize = 'modal-lg';
-      this.modalColor = 'bg-primary';
-    },
-    modalUbah: function modalUbah(item) {
-      this.modalShow = true;
-      this.modalTitle = 'Ubah Komentar';
-      this.modalState = 'normal1';
-      this.modalSize = 'modal-lg';
-      this.modalColor = 'bg-primary';
-      this.formEdit.id = item.id;
-      this.formEdit.id_user = item.id_user;
-      this.formEdit.id_laporan = item.id_laporan;
-      this.formEdit.content = item.content;
-    },
-    modalHapus: function modalHapus(item) {
-      this.modalShow = true;
-      this.modalTitle = 'Hapus Komentar ini?';
-      this.modalState = 'confirm-tutup';
-      this.modalSize = '';
-      this.modalColor = '';
-      this.modalButton = 'Iya, Hapus';
-      this.formEdit.id = item.id;
-    },
-    modalConfirmOk: function modalConfirmOk() {
-      // execute destroy
-      if (this.$route.meta.mode == 'detail') {
-        this.$store.dispatch(this.kelas + '/destroy', this.formEdit.id);
-      } else if (this.$route.meta.mode == 'detailTp') {
-        this.$store.dispatch(this.kelas + '/destroyTp', this.formEdit.id);
-      }
-    },
-    modalTutup: function modalTutup() {
-      this.modalShow = false;
-    },
-    // formating
-    formatPeriode: function formatPeriode(value) {
-      return vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('month')(value) + ' ' + vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('year')(value);
-    },
-    formatCurrency: function formatCurrency(value) {
-      return this.$options.filters.currency(value, '', 0, {
-        thousandsSeparator: '.'
-      });
-    },
-    formatPercentage: function formatPercentage(value) {
-      return vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('percentage2')(value, 2);
-    },
-    countTotal: function countTotal(value1, value2) {
-      return value1 - value2;
-    },
-    countPercentage: function countPercentage(value1, value2) {
-      if (value2 > 0) {
-        return this.formatPercentage(this.countTotal(value1, value2) / value2);
-      } else {
-        return this.formatPercentage('0');
-      }
-    }
-  },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('auth', {
-    currentUser: 'currentUser'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('laporanCu', {
-    itemData: 'history',
-    itemDataStat: 'dataStat',
-    columnData: 'columnData'
-  })), {}, {
-    history: function history() {
-      return lodash__WEBPACK_IMPORTED_MODULE_1___default.a.groupBy(this.itemData, 'created_at');
-    },
-    revisionField: function revisionField() {
-      var newData = {};
-      this.columnData.forEach(function (e) {
-        newData[e.name] = e.title;
-      });
-      return newData;
-    }
-  })
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/selectDetail.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/laporanCu/selectDetail.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['kelas', 'path'],
-  data: function data() {
-    return {
-      idCu: '',
-      idTp: '',
-      periode: '',
-      periodeTp: ''
-    };
-  },
-  created: function created() {
-    this.checkProfileIdCU();
-  },
-  watch: {
-    itemDataStat: function itemDataStat(value) {
-      if (value === "success") {
-        if (this.currentUser.id_cu == 0) {
-          this.fetchCU();
-        }
-
-        this.periode = this.itemData.periode;
-        this.changePeriode(this.periode);
-      }
-    },
-    modelCUStat: function modelCUStat(value) {
-      if (value === "success") {
-        if (this.itemDataStat == 'success') {
-          if (this.$route.meta.mode == 'detail') {
-            this.idCu = this.itemData.id_cu;
-          } else {
-            this.idCu = this.itemData.tp.id_cu;
-          }
-        }
-
-        this.changeCu(this.idCu);
-      }
-    },
-    modelTpStat: function modelTpStat(value) {
-      if (value === "success") {
-        if (this.$route.meta.mode == 'detail') {
-          this.idTp = 'konsolidasi';
-        } else {
-          this.idTp = this.itemData.id;
-        }
-      }
-    },
-    modelPeriodeStat: function modelPeriodeStat(value) {
-      if (value === "success") {
-        if (this.itemDataStat == 'success') {
-          this.periode = this.itemData.periode;
-          this.changePeriode(this.periode);
-        }
-      }
-    }
-  },
-  methods: {
-    checkProfileIdCU: function checkProfileIdCU() {
-      if (this.currentUser.id_cu !== 0) {
-        this.idCu = this.currentUser.id_cu;
-        this.changeCu(this.idCu);
-      } else {
-        this.fetchCU();
-      }
-    },
-    fetch: function fetch() {
-      if (this.idTp == 'konsolidasi') {
-        var periode = 0;
-        periode = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.find(this.modelPeriode, {
-          'periode': this.periode
-        });
-        this.$router.push({
-          name: 'laporanCuDetail',
-          params: {
-            id: periode.id
-          }
-        });
-      } else {
-        this.$router.push({
-          name: 'laporanTpDetail',
-          params: {
-            id: this.idTp
-          }
-        });
-      }
-    },
-    fetchCU: function fetchCU() {
-      if (this.modelCuStat != 'success') {
-        this.$store.dispatch('cu/getHeader');
-      }
-    },
-    fetchPeriode: function fetchPeriode(id) {
-      this.$store.dispatch('laporanCu/getPeriodeCu', id);
-    },
-    fetchTp: function fetchTp(id, periode) {
-      this.$store.dispatch('laporanTp/getPeriodeTp', [id, periode]);
-    },
-    changeCu: function changeCu(value) {
-      if (value) {
-        this.fetchPeriode(value);
-      }
-    },
-    changePeriode: function changePeriode(value) {
-      if (this.idCu) {
-        this.fetchTp(this.idCu, value);
-      }
-    }
-  },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('auth', {
-    currentUser: 'currentUser'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('laporanCu', {
-    itemData: 'data',
-    itemDataStat: 'dataStat',
-    modelPeriode: 'periode',
-    modelPeriodeStat: 'periodeStat'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('laporanTp', {
-    modelTp: 'dataS',
-    modelTpStat: 'dataStatS'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('cu', {
-    modelCU: 'headerDataS',
-    modelCUStat: 'headerDataStatS',
-    updateMessage: 'update',
-    updateStat: 'updateStat'
-  }))
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/widgetLaporanCu.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/laporanCu/widgetLaporanCu.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
-/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    appModal: _components_modal__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  props: {
-    title: {
-      "default": ''
-    },
-    itemData: {
-      "default": ''
-    },
-    itemDataBefore: {
-      "default": ''
-    },
-    isPercent: {
-      "default": false
-    },
-    isOpposite: {
-      "default": false
-    }
-  },
-  data: function data() {
-    return {
-      modalShow: false,
-      modalState: 'normal1',
-      modalColor: 'bg-primary',
-      modalTitle: '',
-      modalButton: '',
-      modalMobileOptionState: ''
-    };
-  },
-  methods: {
-    modalOpen: function modalOpen() {},
-    modalTutup: function modalTutup() {},
-    checkClass: function checkClass() {
-      var className = '';
-
-      if (this.isOpposite) {
-        if (this.totalData > 0) {
-          className = 'bg-danger';
-        } else if (this.totalData < 0) {
-          className = 'bg-primary';
-        } else {
-          className = 'bg-orange-300';
-        }
-      } else {
-        if (this.totalData > 0) {
-          className = 'bg-primary';
-        } else if (this.totalData < 0) {
-          className = 'bg-danger';
-        } else {
-          className = 'bg-orange-300';
-        }
-      }
-
-      return className;
-    }
-  },
-  computed: {
-    totalData: function totalData() {
-      return this.itemData - this.itemDataBefore;
-    },
-    percentageData: function percentageData() {
-      if (this.itemDataBefore > 0) {
-        return this.totalData / this.itemDataBefore;
-      } else {
-        return '0';
-      }
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/detail.vue?vue&type=style&index=0&lang=css&":
-/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/laporanCu/detail.vue?vue&type=style&index=0&lang=css& ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=style&index=0&lang=css&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=style&index=0&lang=css& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
 // imports
-exports.i(__webpack_require__(/*! -!../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/katex/dist/katex.min.css */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/katex/dist/katex.min.css"), "");
+
 
 // module
-exports.push([module.i, "\n", ""]);
+exports.push([module.i, "\n.slideStyle {\n\tpadding-top: 3em;\n\tpadding-left: 2em;\n\tpadding-right: 2em;\n\ttext-align: center;\n\talign-items: center;\n\tjustify-content: center;\n\tborder-radius: 10px;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/detail.vue?vue&type=style&index=0&lang=css&":
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/laporanCu/detail.vue?vue&type=style&index=0&lang=css& ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=style&index=0&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=style&index=0&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./detail.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/detail.vue?vue&type=style&index=0&lang=css&");
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./newsSlider.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=style&index=0&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -4212,10 +2132,54 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/pageHeader.vue?vue&type=template&id=0af8ed53&":
-/*!********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/pageHeader.vue?vue&type=template&id=0af8ed53& ***!
-  \********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/countWidget.vue?vue&type=template&id=b9608b28&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/countWidget.vue?vue&type=template&id=b9608b28& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "card card-body has-bg-image", class: _vm.color },
+    [
+      _c("div", { staticClass: "media" }, [
+        _c("div", { staticClass: "media-body" }, [
+          _vm.count
+            ? _c("h3", { staticClass: "mb-0" }, [_vm._v(_vm._s(_vm.count))])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("span", { staticClass: "text-uppercase font-size-xs" }, [
+            _vm._v(_vm._s(_vm.title)),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "ml-3 align-self-center" }, [
+          _c("i", { staticClass: "icon-3x opacity-75", class: _vm.icon }),
+        ]),
+      ]),
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard.vue?vue&type=template&id=067b0c71&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard.vue?vue&type=template&id=067b0c71& ***!
+  \**************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4235,480 +2199,2118 @@ var render = function () {
         [
           _c("div", { staticClass: "page-title d-flex" }, [
             _c("h4", [
-              _c("i", { staticClass: "mr-2", class: _vm.titleIcon }),
-              _vm._v(" "),
-              _c("span", { staticClass: "font-weight-semibold" }, [
-                _vm._v(_vm._s(_vm.title)),
-              ]),
-              _vm._v(" "),
-              _c("small", { staticClass: "d-block text-muted" }, [
-                _vm._v(_vm._s(_vm.titleDesc)),
-              ]),
+              _c("i", { staticClass: "icon-screen3 mr-2" }),
+              _vm._v("Halo\n\t\t\t\t\t"),
+              _vm.currentUser.aktivis
+                ? _c("span", { staticClass: "font-weight-semibold" }, [
+                    _vm._v(_vm._s(_vm.currentUser.aktivis.name + ",")),
+                  ])
+                : _c("span", { staticClass: "font-weight-semibold" }, [
+                    _vm._v(_vm._s(_vm.currentUser.name + ",")),
+                  ]),
+              _vm._v("\n\t\t\t\t\tApa kabarnya hari ini?\n\t\t\t\t"),
             ]),
           ]),
+        ]
+      ),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "page-content pt-0" }, [
+      _c("div", { staticClass: "content-wrapper" }, [
+        _c("div", { staticClass: "row align-items-stretch" }, [
+          _c(
+            "div",
+            { staticClass: "col-lg-12" },
+            [_c("news-slider"), _vm._v(" "), _c("button-row")],
+            1
+          ),
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "header-elements d-none py-0 mb-3 mb-md-0" },
+            { staticClass: "col-lg-8" },
             [
-              _vm.level === 1
-                ? _c(
-                    "div",
-                    { staticClass: "breadcrumb" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "breadcrumb-item",
-                          attrs: { to: { name: "dashboard" } },
-                        },
-                        [
-                          _c("i", { staticClass: "icon-home4" }),
-                          _vm._v("  Dashboard "),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "breadcrumb-item active" }, [
-                        _vm._v(_vm._s(_vm.title)),
-                      ]),
-                    ],
-                    1
-                  )
-                : _vm._e(),
+              _c("kegiatan-bkcu-widget"),
               _vm._v(" "),
-              _vm.level === 2
-                ? _c(
-                    "div",
-                    { staticClass: "breadcrumb" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "breadcrumb-item",
-                          attrs: { to: { name: "dashboard" } },
+              _vm.currentUser.id_cu == 0
+                ? _c("history-organisasi-widget")
+                : _vm._e(),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "col-lg-4" },
+            [_c("count-organisasi-widget")],
+            1
+          ),
+        ]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=template&id=2697e6aa&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=template&id=2697e6aa& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row" }, [
+    _vm.countJalanStat == "success"
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-6 col-md-6 col-sm-12 col-12 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.kegiatanBKCUJalanWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                count: "Terdapat " + _vm.countJalan + " Kegiatan Berjalan",
+                title:
+                  "Silahkan menekan tombol ini untuk melihat kegiatan yang sedang berlangsung",
+                color: "bg-warning",
+                icon: "icon-feed",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.countDiikutiStat == "success"
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-6 col-md-6 col-sm-12 col-12 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.kegiatanBKCUDiikutiWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                count: "Terdapat " + _vm.countDiikuti + " Kegiatan Diikuti",
+                title:
+                  "Silahkan menekan tombol ini untuk melihat kegiatan yang telah diikuti",
+                color: "bg-info",
+                icon: "icon-station",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.profileWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Profile",
+                color: "bg-primary",
+                icon: "icon-user",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_artikel"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.artikelWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Artikel",
+                color: "bg-info-400",
+                icon: "icon-newspaper",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_artikel_kategori"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.artikelKategoriWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Kategori Artikel",
+                color: "bg-teal-400",
+                icon: "icon-grid6",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_artikel_penulis"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.artikelPenulisWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Penulis Artikel",
+                color: "bg-orange-400",
+                icon: "icon-pencil6",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_pengumuman"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.pengumumanWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Pengumuman",
+                color: "bg-slate-400",
+                icon: "icon-megaphone",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+        on: {
+          click: function ($event) {
+            $event.preventDefault()
+            return _vm.goTo(_vm.diklatBKCUWidgetRoute)
+          },
+        },
+      },
+      [
+        _c("count-widget", {
+          attrs: {
+            title: "Diklat PUSKOPCUINA",
+            color: "bg-blue-400",
+            icon: "icon-graduation2",
+          },
+        }),
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+        on: {
+          click: function ($event) {
+            $event.preventDefault()
+            return _vm.goTo(_vm.pertemuanBKCUWidgetRoute)
+          },
+        },
+      },
+      [
+        _c("count-widget", {
+          attrs: {
+            title: "Pertemuan PUSKOPCUINA",
+            color: "bg-pink-400",
+            icon: "icon-ungroup",
+          },
+        }),
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _vm.currentUser.can &&
+    _vm.currentUser.can["index_tempat"] &&
+    _vm.currentUser.id_cu == "0"
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.tempatWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Tempat",
+                color: "bg-purple-400",
+                icon: "icon-location4",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_voting"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.votingWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Voting",
+                color: "bg-warning-400",
+                icon: "icon-point-up",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_anggota_cu"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.anggotaCuWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Anggota CU",
+                color: "bg-success-400",
+                icon: "icon-man-woman",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_jalinan_klaim"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.jalinanKlaimWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Bantuan Solidaritas Jalinan",
+                color: "bg-warning-400",
+                icon: "icon-accessibility2",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_cu"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.cuWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Profil CU",
+                color: "bg-green-400",
+                icon: "icon-office",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_tp"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.tpWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Profil TP/KP",
+                color: "bg-brown-400",
+                icon: "icon-home9",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_produk_cu"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.produkCuWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Produk & Pelayanan",
+                color: "bg-warning-400",
+                icon: "icon-list3",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_aktivis"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.aktivisWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Aktivis",
+                color: "bg-indigo-400",
+                icon: "icon-user-tie",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_pemilihan"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.pemilihanWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Pemilihan",
+                color: "bg-warning-400",
+                icon: "icon-quill4",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_mitra_orang"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.mitraPerseoranganWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Mitra Perseorangan",
+                color: "bg-pink-400",
+                icon: "icon-briefcase",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_mitra_lembaga"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.mitraLembagaWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Lembaga Mitra",
+                color: "bg-violet-400",
+                icon: "icon-briefcase",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_laporan_cu"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.laporanCUWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Laporan Statistik CU",
+                color: "bg-success-400",
+                icon: "icon-stats-bars2",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_laporan_cu"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.laporanGerakanWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Laporan Statistik Gerakan",
+                color: "bg-grey-400",
+                icon: "icon-stats-bars",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser && _vm.currentUser.can["index_surat"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.suratKeluarWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Surat Keluar",
+                color: "bg-warning-400",
+                icon: "icon-envelop2",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser && _vm.currentUser.can["index_surat"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.suratMasukWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Surat Masuk",
+                color: "bg-green-400",
+                icon: "icon-envelop2",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+        on: {
+          click: function ($event) {
+            $event.preventDefault()
+            return _vm.goTo(_vm.dokumenGerakanPublikWidgetRoute)
+          },
+        },
+      },
+      [
+        _c("count-widget", {
+          attrs: {
+            title: "Dokumen GERAKAN & PUBLIK",
+            color: "bg-violet-400",
+            icon: "icon-books",
+          },
+        }),
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+        on: {
+          click: function ($event) {
+            $event.preventDefault()
+            return _vm.goTo(_vm.dokumenWidgetRoute)
+          },
+        },
+      },
+      [
+        _c("count-widget", {
+          attrs: { title: "Dokumen", color: "bg-info-400", icon: "icon-books" },
+        }),
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_aset_tetap"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.asetTetapWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Aset Tetap",
+                color: "bg-indigo-400",
+                icon: "icon-bag",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_assesment_access"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.assesmentAccessWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Self Assesment Access",
+                color: "bg-warning-400",
+                icon: "icon-reading",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_monitoring"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.monitoringWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "Monitoring",
+                color: "bg-green-400",
+                icon: "icon-collaboration",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.currentUser.can && _vm.currentUser.can["index_user"]
+      ? _c(
+          "div",
+          {
+            staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.goTo(_vm.userWidgetRoute)
+              },
+            },
+          },
+          [
+            _c("count-widget", {
+              attrs: {
+                title: "User",
+                color: "bg-primary-400",
+                icon: "icon-users",
+              },
+            }),
+          ],
+          1
+        )
+      : _vm._e(),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12" }, [
+      _c("hr", { staticClass: "mt-0" }),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=template&id=277315de&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=template&id=277315de& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" }, [
+      _c("div", { staticClass: "row text-center" }, [
+        _vm.currentUser.can["index_cu"] && _vm.currentUser.id_cu == 0
+          ? _c(
+              "div",
+              {
+                staticClass:
+                  "col-lg-4 col-3 pb-3 cursor-pointer cursor-pointer",
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    return _vm.detail("cu")
+                  },
+                },
+              },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("h5", { staticClass: "font-weight-semibold mb-0" }, [
+                  _vm._v(_vm._s(_vm.countCu) + " "),
+                  _vm.itemdataStat == "loading"
+                    ? _c("i", {
+                        staticClass: "icon-spinner2 spinner font-size-xs",
+                      })
+                    : _vm._e(),
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-muted font-size-sm" }, [
+                  _vm._v("CU"),
+                ]),
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.currentUser.can["index_tp"]
+          ? _c(
+              "div",
+              {
+                staticClass: "col-lg-4 col-3 pb-3 cursor-pointer",
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    return _vm.detail("tp")
+                  },
+                },
+              },
+              [
+                _vm._m(2),
+                _vm._v(" "),
+                _c("h5", { staticClass: "font-weight-semibold mb-0" }, [
+                  _vm._v(_vm._s(_vm.countTp) + " "),
+                  _vm.itemdataStat == "loading"
+                    ? _c("i", {
+                        staticClass: "icon-spinner2 spinner font-size-xs",
+                      })
+                    : _vm._e(),
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-muted font-size-sm" }, [
+                  _vm._v("TP/KP"),
+                ]),
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.currentUser.can["index_produk_cu"]
+          ? _c(
+              "div",
+              {
+                staticClass: "col-lg-4 col-3 pb-3 cursor-pointer",
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    return _vm.detail("produk_cu")
+                  },
+                },
+              },
+              [
+                _vm._m(3),
+                _vm._v(" "),
+                _c("h5", { staticClass: "font-weight-semibold mb-0" }, [
+                  _vm._v(_vm._s(_vm.countProdukCu) + " "),
+                  _vm.itemdataStat == "loading"
+                    ? _c("i", {
+                        staticClass: "icon-spinner2 spinner font-size-xs",
+                      })
+                    : _vm._e(),
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-muted font-size-sm" }, [
+                  _vm._v("Produk & Pelayanan"),
+                ]),
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.currentUser.can["index_aktivis"]
+          ? _c(
+              "div",
+              {
+                staticClass: "col-lg-4 col-3 pb-3 cursor-pointer",
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    return _vm.detail("aktivis")
+                  },
+                },
+              },
+              [
+                _vm._m(4),
+                _vm._v(" "),
+                _c("h5", { staticClass: "font-weight-semibold mb-0" }, [
+                  _vm._v(_vm._s(_vm.countAktivis) + " "),
+                  _vm.itemdataStat == "loading"
+                    ? _c("i", {
+                        staticClass: "icon-spinner2 spinner font-size-xs",
+                      })
+                    : _vm._e(),
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-muted font-size-sm" }, [
+                  _vm._v("Aktivis"),
+                ]),
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.currentUser.can["index_mitra_orang"]
+          ? _c(
+              "div",
+              {
+                staticClass: "col-lg-4 col-3 pb-3 cursor-pointer",
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    return _vm.detail("mitra_orang")
+                  },
+                },
+              },
+              [
+                _vm._m(5),
+                _vm._v(" "),
+                _c("h5", { staticClass: "font-weight-semibold mb-0" }, [
+                  _vm._v(_vm._s(_vm.countMitraOrang) + " "),
+                  _vm.itemdataStat == "loading"
+                    ? _c("i", {
+                        staticClass: "icon-spinner2 spinner font-size-xs",
+                      })
+                    : _vm._e(),
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-muted font-size-sm" }, [
+                  _vm._v("Mitra Perseorangan"),
+                ]),
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.currentUser.can["index_mitra_lembaga"]
+          ? _c(
+              "div",
+              {
+                staticClass: "col-lg-4 col-3 pb-3 cursor-pointer",
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    return _vm.detail("mitra_lembaga")
+                  },
+                },
+              },
+              [
+                _vm._m(6),
+                _vm._v(" "),
+                _c("h5", { staticClass: "font-weight-semibold mb-0" }, [
+                  _vm._v(_vm._s(_vm.countMitraLembaga) + " "),
+                  _vm.itemdataStat == "loading"
+                    ? _c("i", {
+                        staticClass: "icon-spinner2 spinner font-size-xs",
+                      })
+                    : _vm._e(),
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-muted font-size-sm" }, [
+                  _vm._v("Lembaga Mitra"),
+                ]),
+              ]
+            )
+          : _vm._e(),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "card-header bg-green-400 text-white header-elements-inline",
+      },
+      [
+        _c("h5", { staticClass: "card-title" }, [
+          _c("i", { staticClass: "icon-equalizer mr-2" }),
+          _vm._v(" Data Gerakan Organisasi"),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "header-elements" }, [
+          _c("div", { staticClass: "list-icons" }, [
+            _c("a", {
+              staticClass: "list-icons-item",
+              attrs: { "data-action": "collapse" },
+            }),
+          ]),
+        ]),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("i", { staticClass: "icon-office icon-2x d-inline-block text-info" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("i", { staticClass: "icon-home9 icon-2x d-inline-block text-info" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("i", { staticClass: "icon-list3 icon-2x d-inline-block text-info" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("i", {
+        staticClass: "icon-user-tie icon-2x d-inline-block text-info",
+      }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("i", {
+        staticClass: "icon-briefcase icon-2x d-inline-block text-info",
+      }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("i", {
+        staticClass: "icon-briefcase icon-2x d-inline-block text-info",
+      }),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=template&id=0e2d4996&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=template&id=0e2d4996& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "card" },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "nav-tabs-responsive bg-light border-top" }, [
+        _c(
+          "ul",
+          { staticClass: "nav nav-tabs nav-tabs-bottom flex-nowrap mb-0" },
+          [
+            _vm.currentUser.can["index_cu"]
+              ? _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link text-nowrap",
+                      class: { active: _vm.tabName == "cu" },
+                      attrs: { href: "#" },
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          return _vm.changeTab("cu")
                         },
-                        [
-                          _c("i", { staticClass: "icon-home4" }),
-                          _vm._v(" Dashboard "),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "breadcrumb-item",
-                          attrs: { href: "#" },
-                          on: {
-                            click: function ($event) {
-                              $event.preventDefault()
-                              return _vm.level2Back()
+                      },
+                    },
+                    [
+                      _c("i", { staticClass: "icon-office mr-2" }),
+                      _vm._v("\n\t\t\t\t\tCU "),
+                      _vm.countCu > 0
+                        ? _c(
+                            "span",
+                            {
+                              staticClass:
+                                "badge bg-blue-400 align-self-center ml-2",
                             },
-                          },
+                            [_vm._v(_vm._s(_vm.countCu))]
+                          )
+                        : _vm._e(),
+                    ]
+                  ),
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.currentUser.can["index_tp"]
+              ? _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link text-nowrap",
+                      class: { active: _vm.tabName == "tp" },
+                      attrs: { href: "#" },
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          return _vm.changeTab("tp")
                         },
-                        [_vm._v(_vm._s(_vm.level2Title))]
+                      },
+                    },
+                    [
+                      _c("i", { staticClass: "icon-home9 mr-2" }),
+                      _vm._v("\n\t\t\t\t\tTP/KP "),
+                      _vm.countTp > 0
+                        ? _c(
+                            "span",
+                            {
+                              staticClass:
+                                "badge bg-blue-400 align-self-center ml-2",
+                            },
+                            [_vm._v(_vm._s(_vm.countTp))]
+                          )
+                        : _vm._e(),
+                    ]
+                  ),
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.currentUser.can["index_produk_cu"]
+              ? _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link text-nowrap",
+                      class: { active: _vm.tabName == "produk_cu" },
+                      attrs: { href: "#" },
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          return _vm.changeTab("produk_cu")
+                        },
+                      },
+                    },
+                    [
+                      _c("i", { staticClass: "icon-list3 mr-2" }),
+                      _vm._v("\n\t\t\t\t\tProduk & Pelayanan "),
+                      _vm.countProdukCu > 0
+                        ? _c(
+                            "span",
+                            {
+                              staticClass:
+                                "badge bg-blue-400 align-self-center ml-2",
+                            },
+                            [_vm._v(_vm._s(_vm.countProdukCu))]
+                          )
+                        : _vm._e(),
+                    ]
+                  ),
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.currentUser.can["index_aktivis"]
+              ? _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link text-nowrap",
+                      class: { active: _vm.tabName == "aktivis" },
+                      attrs: { href: "#" },
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          return _vm.changeTab("aktivis")
+                        },
+                      },
+                    },
+                    [
+                      _c("i", { staticClass: "icon-user-tie mr-2" }),
+                      _vm._v("\n\t\t\t\t\tAktivis "),
+                      _vm.countAktivis > 0
+                        ? _c(
+                            "span",
+                            {
+                              staticClass:
+                                "badge bg-blue-400 align-self-center ml-2",
+                            },
+                            [_vm._v(_vm._s(_vm.countAktivis))]
+                          )
+                        : _vm._e(),
+                    ]
+                  ),
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.currentUser.can["index_mitra_orang"]
+              ? _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link text-nowrap",
+                      class: { active: _vm.tabName == "mitra_orang" },
+                      attrs: { href: "#" },
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          return _vm.changeTab("mitra_orang")
+                        },
+                      },
+                    },
+                    [
+                      _c("i", { staticClass: "icon-briefcase mr-2" }),
+                      _vm._v("\n\t\t\t\t\tMitra Perseorangan "),
+                      _vm.countMitraOrang > 0
+                        ? _c(
+                            "span",
+                            {
+                              staticClass:
+                                "badge bg-blue-400 align-self-center ml-2",
+                            },
+                            [_vm._v(_vm._s(_vm.countMitraOrang))]
+                          )
+                        : _vm._e(),
+                    ]
+                  ),
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.currentUser.can["index_mitra_lembaga"]
+              ? _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link text-nowrap",
+                      class: { active: _vm.tabName == "mitra_lembaga" },
+                      attrs: { href: "#" },
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          return _vm.changeTab("mitra_lembaga")
+                        },
+                      },
+                    },
+                    [
+                      _c("i", { staticClass: "icon-briefcase mr-2" }),
+                      _vm._v("\n\t\t\t\t\tLembaga Mitra "),
+                      _vm.countMitraLembaga > 0
+                        ? _c(
+                            "span",
+                            {
+                              staticClass:
+                                "badge bg-blue-400 align-self-center ml-2",
+                            },
+                            [_vm._v(_vm._s(_vm.countMitraLembaga))]
+                          )
+                        : _vm._e(),
+                    ]
+                  ),
+                ])
+              : _vm._e(),
+          ]
+        ),
+      ]),
+      _vm._v(" "),
+      _c(
+        "transition",
+        { attrs: { "enter-active-class": "animated fadeIn", mode: "out-in" } },
+        [
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.tabName == "cu",
+                  expression: "tabName == 'cu'",
+                },
+              ],
+            },
+            [
+              _c("div", { staticClass: "card-body pb-2" }, [
+                _vm.itemCuStat === "success"
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "list-feed overflow-auto",
+                        staticStyle: { "max-height": "20rem" },
+                      },
+                      [
+                        _vm._l(_vm.itemCu, function (item) {
+                          return _c(
+                            "div",
+                            {
+                              staticClass: "list-feed-item cursor-pointer",
+                              on: {
+                                click: function ($event) {
+                                  $event.preventDefault()
+                                  return _vm.detail("cu", item.revisionable_id)
+                                },
+                              },
+                            },
+                            [
+                              _c("div", {
+                                staticClass: "text-muted",
+                                domProps: {
+                                  innerHTML: _vm._s(
+                                    _vm.$options.filters.dateTime(
+                                      item.created_at
+                                    )
+                                  ),
+                                },
+                              }),
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\t" +
+                                  _vm._s(item.user.name) +
+                                  " mengubah "
+                              ),
+                              _c("mark", [_vm._v(_vm._s(item.key))]),
+                              _vm._v(
+                                " CU " +
+                                  _vm._s(item.revisionable.name) +
+                                  " dari \n\t\t\t\t\t\t\t"
+                              ),
+                              _c(
+                                "mark",
+                                [
+                                  _c("check-value", {
+                                    attrs: { value: item.old_value },
+                                  }),
+                                ],
+                                1
+                              ),
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\tmenjadi \n\t\t\t\t\t\t\t"
+                              ),
+                              _c(
+                                "mark",
+                                [
+                                  _c("check-value", {
+                                    attrs: { value: item.new_value },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ]
+                          )
+                        }),
+                        _vm._v(" "),
+                        _vm.itemCu.length == 0
+                          ? _c("div", [
+                              _vm._v("Tidak terdapat data perubahan aktivitas"),
+                            ])
+                          : _vm._e(),
+                      ],
+                      2
+                    )
+                  : _vm.itemCuStat === "loading"
+                  ? _c("div", { staticClass: "progress" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+                          staticStyle: { width: "100%" },
+                        },
+                        [
+                          _c("span", { staticClass: "sr-only" }, [
+                            _vm._v("100% Complete"),
+                          ]),
+                        ]
                       ),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "breadcrumb-item active" }, [
-                        _vm._v(_vm._s(_vm.title)),
-                      ]),
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.level === 3
-                ? _c(
-                    "div",
-                    { staticClass: "breadcrumb" },
-                    [_vm._t("breadcrumb")],
-                    2
-                  )
-                : _vm._e(),
+                    ])
+                  : _vm._e(),
+              ]),
             ]
           ),
         ]
       ),
-    ]),
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/detail.vue?vue&type=template&id=984e60d4&":
-/*!*********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/laporanCu/detail.vue?vue&type=template&id=984e60d4& ***!
-  \*********************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("page-header", {
-        attrs: {
-          title: _vm.title,
-          titleDesc: _vm.titleDesc,
-          titleIcon: _vm.titleIcon,
-          level: 2,
-          level2Title: _vm.level2Title,
-        },
-        on: {
-          level2Back: function ($event) {
-            return _vm.back()
-          },
-        },
-      }),
       _vm._v(" "),
-      _c("div", { staticClass: "page-content pt-0" }, [
-        _c("div", { staticClass: "content-wrapper" }, [
+      _c(
+        "transition",
+        { attrs: { "enter-active-class": "animated fadeIn", mode: "out-in" } },
+        [
           _c(
             "div",
-            { staticClass: "content" },
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.tabName == "tp",
+                  expression: "tabName == 'tp'",
+                },
+              ],
+            },
             [
-              _vm.itemDataStat === "fail"
-                ? _c("message", {
-                    attrs: {
-                      title: "Oops terjadi kesalahan:",
-                      errorData: _vm.itemData,
-                    },
-                  })
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.itemPearlsStat === "fail"
-                ? _c("message", {
-                    attrs: {
-                      title: "Oops terjadi kesalahan:",
-                      errorData: _vm.itemPearls,
-                    },
-                  })
-                : _vm._e(),
-              _vm._v(" "),
-              _c("select-data", {
-                attrs: { kelas: _vm.kelas, isPus: false, isNo_ba: true },
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "nav-tabs-responsive mb-3" }, [
-                _c(
-                  "ul",
-                  { staticClass: "nav nav-tabs nav-tabs-solid bg-light" },
-                  [
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          class: { active: _vm.tabName == "analisisLaporanCu" },
-                          attrs: { href: "#" },
-                          on: {
-                            click: function ($event) {
-                              $event.preventDefault()
-                              return _vm.changeTab("analisisLaporanCu")
-                            },
-                          },
-                        },
-                        [
-                          _c("i", { staticClass: "icon-dots mr-2" }),
-                          _vm._v(" Laporan CU"),
-                        ]
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          class: { active: _vm.tabName == "analisisPearls" },
-                          attrs: { href: "#" },
-                          on: {
-                            click: function ($event) {
-                              $event.preventDefault()
-                              return _vm.changeTab("analisisPearls")
-                            },
-                          },
-                        },
-                        [
-                          _c("i", { staticClass: "icon-dots mr-2" }),
-                          _vm._v(" P.E.A.R.L.S."),
-                        ]
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          class: { active: _vm.tabName == "diskusi" },
-                          attrs: { href: "#" },
-                          on: {
-                            click: function ($event) {
-                              $event.preventDefault()
-                              return _vm.changeTab("diskusi")
-                            },
-                          },
-                        },
-                        [
-                          _c("i", { staticClass: "icon-bubble2 mr-2" }),
-                          _vm._v(" Diskusi"),
-                        ]
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          class: { active: _vm.tabName == "revisi" },
-                          attrs: { href: "#" },
-                          on: {
-                            click: function ($event) {
-                              $event.preventDefault()
-                              return _vm.changeTab("revisi")
-                            },
-                          },
-                        },
-                        [
-                          _c("i", { staticClass: "icon-copy3 mr-2" }),
-                          _vm._v(" Revisi"),
-                        ]
-                      ),
-                    ]),
-                  ]
-                ),
-              ]),
-              _vm._v(" "),
-              _c(
-                "transition",
-                {
-                  attrs: {
-                    "enter-active-class": "animated fadeIn",
-                    mode: "out-in",
-                  },
-                },
-                [
-                  _c(
-                    "div",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.tabName == "analisisLaporanCu",
-                          expression: "tabName == 'analisisLaporanCu'",
-                        },
-                      ],
-                    },
-                    [
-                      _vm.itemDataStat == "success"
-                        ? _c("infografis-data", {
-                            attrs: {
-                              title: _vm.title,
-                              kelas: _vm.kelas,
-                              columnData: _vm.columnData,
-                            },
-                          })
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.itemDataStat == "loading"
-                        ? _c("div", [
-                            _c("div", { staticClass: "card" }, [
-                              _c("div", { staticClass: "card-body" }, [
-                                _c("h4", [_vm._v("Mohon tunggu...")]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "progress" }, [
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
-                                      staticStyle: { width: "100%" },
-                                    },
-                                    [
-                                      _c("span", { staticClass: "sr-only" }, [
-                                        _vm._v("100% Complete"),
-                                      ]),
-                                    ]
-                                  ),
-                                ]),
-                              ]),
-                            ]),
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c("detail-laporan-cu", {
-                        attrs: { kelas: _vm.kelas, columnData: _vm.columnData },
-                      }),
-                    ],
-                    1
-                  ),
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "transition",
-                {
-                  attrs: {
-                    "enter-active-class": "animated fadeIn",
-                    mode: "out-in",
-                  },
-                },
-                [
-                  _vm.isPearls
-                    ? _c(
-                        "div",
-                        {
-                          directives: [
+              _c("div", { staticClass: "card-body pb-2" }, [
+                _vm.itemTpStat === "success"
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "list-feed overflow-auto",
+                        staticStyle: { "max-height": "20rem" },
+                      },
+                      [
+                        _vm._l(_vm.itemTp, function (item) {
+                          return _c(
+                            "div",
                             {
-                              name: "show",
-                              rawName: "v-show",
-                              value: _vm.tabName == "analisisPearls",
-                              expression: "tabName == 'analisisPearls'",
-                            },
-                          ],
-                        },
-                        [
-                          _vm.itemPearlsStat == "success"
-                            ? _c("infografis-pearls-data", {
-                                attrs: {
-                                  title: _vm.titlePearls,
-                                  kelas: _vm.kelas,
-                                  columnData: _vm.columnDataPearls,
+                              staticClass: "list-feed-item cursor-pointer",
+                              on: {
+                                click: function ($event) {
+                                  $event.preventDefault()
+                                  return _vm.detail("tp", item.revisionable_id)
                                 },
-                              })
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.itemPearlsStat == "loading"
-                            ? _c("div", [
-                                _c("div", { staticClass: "card" }, [
-                                  _c("div", { staticClass: "card-body" }, [
-                                    _c("h4", [_vm._v("Mohon tunggu...")]),
-                                    _vm._v(" "),
-                                    _c("div", { staticClass: "progress" }, [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
-                                          staticStyle: { width: "100%" },
-                                        },
-                                        [
-                                          _c(
-                                            "span",
-                                            { staticClass: "sr-only" },
-                                            [_vm._v("100% Complete")]
-                                          ),
-                                        ]
-                                      ),
-                                    ]),
-                                  ]),
-                                ]),
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c("detail-pearls", {
-                            attrs: {
-                              kelas: _vm.kelas,
-                              columnData: _vm.columnData,
+                              },
                             },
-                          }),
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "transition",
-                {
-                  attrs: {
-                    "enter-active-class": "animated fadeIn",
-                    mode: "out-in",
-                  },
-                },
-                [
-                  _vm.isDiskusi
-                    ? _c(
+                            [
+                              _c("div", {
+                                staticClass: "text-muted",
+                                domProps: {
+                                  innerHTML: _vm._s(
+                                    _vm.$options.filters.dateTime(
+                                      item.created_at
+                                    )
+                                  ),
+                                },
+                              }),
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\t" +
+                                  _vm._s(item.user.name) +
+                                  " mengubah "
+                              ),
+                              _c("mark", [_vm._v(_vm._s(item.key))]),
+                              _vm._v(
+                                " CU " +
+                                  _vm._s(item.revisionable.name) +
+                                  " dari \n\t\t\t\t\t\t\t"
+                              ),
+                              _c(
+                                "mark",
+                                [
+                                  _c("check-value", {
+                                    attrs: { value: item.old_value },
+                                  }),
+                                ],
+                                1
+                              ),
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\tmenjadi \n\t\t\t\t\t\t\t"
+                              ),
+                              _c(
+                                "mark",
+                                [
+                                  _c("check-value", {
+                                    attrs: { value: item.new_value },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ]
+                          )
+                        }),
+                        _vm._v(" "),
+                        _vm.itemTp.length == 0
+                          ? _c("div", [
+                              _vm._v("Tidak terdapat data perubahan aktivitas"),
+                            ])
+                          : _vm._e(),
+                      ],
+                      2
+                    )
+                  : _vm.itemTpStat === "loading"
+                  ? _c("div", { staticClass: "progress" }, [
+                      _c(
                         "div",
                         {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value: _vm.tabName == "diskusi",
-                              expression: "tabName == 'diskusi'",
-                            },
-                          ],
+                          staticClass:
+                            "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+                          staticStyle: { width: "100%" },
                         },
-                        [_c("diskusi")],
-                        1
-                      )
-                    : _vm._e(),
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "transition",
-                {
-                  attrs: {
-                    "enter-active-class": "animated fadeIn",
-                    mode: "out-in",
-                  },
-                },
-                [
-                  _vm.isRevisi
-                    ? _c(
-                        "div",
-                        {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value: _vm.tabName == "revisi",
-                              expression: "tabName =='revisi'",
-                            },
-                          ],
-                        },
-                        [_c("revisi")],
-                        1
-                      )
-                    : _vm._e(),
-                ]
-              ),
-            ],
-            1
+                        [
+                          _c("span", { staticClass: "sr-only" }, [
+                            _vm._v("100% Complete"),
+                          ]),
+                        ]
+                      ),
+                    ])
+                  : _vm._e(),
+              ]),
+            ]
           ),
-        ]),
-      ]),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "transition",
+        { attrs: { "enter-active-class": "animated fadeIn", mode: "out-in" } },
+        [
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.tabName == "produk_cu",
+                  expression: "tabName == 'produk_cu'",
+                },
+              ],
+            },
+            [
+              _c("div", { staticClass: "card-body pb-2" }, [
+                _vm.itemProdukCuStat === "success"
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "list-feed overflow-auto",
+                        staticStyle: { "max-height": "20rem" },
+                      },
+                      [
+                        _vm._l(_vm.itemProdukCu, function (item) {
+                          return _c(
+                            "div",
+                            {
+                              staticClass: "list-feed-item cursor-pointer",
+                              on: {
+                                click: function ($event) {
+                                  $event.preventDefault()
+                                  return _vm.detail(
+                                    "produk_cu",
+                                    item.revisionable_id
+                                  )
+                                },
+                              },
+                            },
+                            [
+                              _c("div", {
+                                staticClass: "text-muted",
+                                domProps: {
+                                  innerHTML: _vm._s(
+                                    _vm.$options.filters.dateTime(
+                                      item.created_at
+                                    )
+                                  ),
+                                },
+                              }),
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\t" +
+                                  _vm._s(item.user.name) +
+                                  " mengubah "
+                              ),
+                              _c("mark", [_vm._v(_vm._s(item.key))]),
+                              _vm._v(
+                                " CU " +
+                                  _vm._s(item.revisionable.name) +
+                                  " dari \n\t\t\t\t\t\t\t"
+                              ),
+                              _c(
+                                "mark",
+                                [
+                                  _c("check-value", {
+                                    attrs: { value: item.old_value },
+                                  }),
+                                ],
+                                1
+                              ),
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\tmenjadi \n\t\t\t\t\t\t\t"
+                              ),
+                              _c(
+                                "mark",
+                                [
+                                  _c("check-value", {
+                                    attrs: { value: item.new_value },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ]
+                          )
+                        }),
+                        _vm._v(" "),
+                        _vm.itemProdukCu.length == 0
+                          ? _c("div", [
+                              _vm._v("Tidak terdapat data perubahan aktivitas"),
+                            ])
+                          : _vm._e(),
+                      ],
+                      2
+                    )
+                  : _vm.itemProdukCuStat === "loading"
+                  ? _c("div", { staticClass: "progress" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+                          staticStyle: { width: "100%" },
+                        },
+                        [
+                          _c("span", { staticClass: "sr-only" }, [
+                            _vm._v("100% Complete"),
+                          ]),
+                        ]
+                      ),
+                    ])
+                  : _vm._e(),
+              ]),
+            ]
+          ),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "transition",
+        { attrs: { "enter-active-class": "animated fadeIn", mode: "out-in" } },
+        [
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.tabName == "aktivis",
+                  expression: "tabName == 'aktivis'",
+                },
+              ],
+            },
+            [
+              _c("div", { staticClass: "card-body pb-2" }, [
+                _vm.itemAktivisStat === "success"
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "list-feed overflow-auto",
+                        staticStyle: { "max-height": "20rem" },
+                      },
+                      [
+                        _vm._l(_vm.itemAktivis, function (item) {
+                          return _c(
+                            "div",
+                            {
+                              staticClass: "list-feed-item cursor-pointer",
+                              on: {
+                                click: function ($event) {
+                                  $event.preventDefault()
+                                  return _vm.detail(
+                                    "aktivis",
+                                    item.revisionable_id
+                                  )
+                                },
+                              },
+                            },
+                            [
+                              _c("div", {
+                                staticClass: "text-muted",
+                                domProps: {
+                                  innerHTML: _vm._s(
+                                    _vm.$options.filters.dateTime(
+                                      item.created_at
+                                    )
+                                  ),
+                                },
+                              }),
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\t" +
+                                  _vm._s(item.user.name) +
+                                  " mengubah "
+                              ),
+                              _c("mark", [_vm._v(_vm._s(item.key))]),
+                              _vm._v(
+                                " CU " +
+                                  _vm._s(item.revisionable.name) +
+                                  " dari \n\t\t\t\t\t\t\t"
+                              ),
+                              _c(
+                                "mark",
+                                [
+                                  _c("check-value", {
+                                    attrs: { value: item.old_value },
+                                  }),
+                                ],
+                                1
+                              ),
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\tmenjadi \n\t\t\t\t\t\t\t"
+                              ),
+                              _c(
+                                "mark",
+                                [
+                                  _c("check-value", {
+                                    attrs: { value: item.new_value },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ]
+                          )
+                        }),
+                        _vm._v(" "),
+                        _vm.itemAktivis.length == 0
+                          ? _c("div", [
+                              _vm._v("Tidak terdapat data perubahan aktivitas"),
+                            ])
+                          : _vm._e(),
+                      ],
+                      2
+                    )
+                  : _vm.itemAktivisStat === "loading"
+                  ? _c("div", { staticClass: "progress" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+                          staticStyle: { width: "100%" },
+                        },
+                        [
+                          _c("span", { staticClass: "sr-only" }, [
+                            _vm._v("100% Complete"),
+                          ]),
+                        ]
+                      ),
+                    ])
+                  : _vm._e(),
+              ]),
+            ]
+          ),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "transition",
+        { attrs: { "enter-active-class": "animated fadeIn", mode: "out-in" } },
+        [
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.tabName == "mitra_orang",
+                  expression: "tabName == 'mitra_orang'",
+                },
+              ],
+            },
+            [
+              _c("div", { staticClass: "card-body pb-2" }, [
+                _vm.itemMitraOrangStat === "success"
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "list-feed overflow-auto",
+                        staticStyle: { "max-height": "20rem" },
+                      },
+                      [
+                        _vm._l(_vm.itemMitraOrang, function (item) {
+                          return _c(
+                            "div",
+                            {
+                              staticClass: "list-feed-item cursor-pointer",
+                              on: {
+                                click: function ($event) {
+                                  $event.preventDefault()
+                                  return _vm.detail(
+                                    "mitra_orang",
+                                    item.revisionable_id
+                                  )
+                                },
+                              },
+                            },
+                            [
+                              _c("div", {
+                                staticClass: "text-muted",
+                                domProps: {
+                                  innerHTML: _vm._s(
+                                    _vm.$options.filters.dateTime(
+                                      item.created_at
+                                    )
+                                  ),
+                                },
+                              }),
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\t" +
+                                  _vm._s(item.user.name) +
+                                  " mengubah "
+                              ),
+                              _c("mark", [_vm._v(_vm._s(item.key))]),
+                              _vm._v(
+                                " CU " +
+                                  _vm._s(item.revisionable.name) +
+                                  " dari \n\t\t\t\t\t\t\t"
+                              ),
+                              _c(
+                                "mark",
+                                [
+                                  _c("check-value", {
+                                    attrs: { value: item.old_value },
+                                  }),
+                                ],
+                                1
+                              ),
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\tmenjadi \n\t\t\t\t\t\t\t"
+                              ),
+                              _c(
+                                "mark",
+                                [
+                                  _c("check-value", {
+                                    attrs: { value: item.new_value },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ]
+                          )
+                        }),
+                        _vm._v(" "),
+                        _vm.itemMitraOrang.length == 0
+                          ? _c("div", [
+                              _vm._v("Tidak terdapat data perubahan aktivitas"),
+                            ])
+                          : _vm._e(),
+                      ],
+                      2
+                    )
+                  : _vm.itemMitraOrangStat === "loading"
+                  ? _c("div", { staticClass: "progress" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+                          staticStyle: { width: "100%" },
+                        },
+                        [
+                          _c("span", { staticClass: "sr-only" }, [
+                            _vm._v("100% Complete"),
+                          ]),
+                        ]
+                      ),
+                    ])
+                  : _vm._e(),
+              ]),
+            ]
+          ),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "transition",
+        { attrs: { "enter-active-class": "animated fadeIn", mode: "out-in" } },
+        [
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.tabName == "mitra_lembaga",
+                  expression: "tabName == 'mitra_lembaga'",
+                },
+              ],
+            },
+            [
+              _c("div", { staticClass: "card-body pb-2" }, [
+                _vm.itemMitraLembagaStat === "success"
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "list-feed overflow-auto",
+                        staticStyle: { "max-height": "20rem" },
+                      },
+                      [
+                        _vm._l(_vm.itemMitraLembaga, function (item) {
+                          return _c(
+                            "div",
+                            {
+                              staticClass: "list-feed-item cursor-pointer",
+                              on: {
+                                click: function ($event) {
+                                  $event.preventDefault()
+                                  return _vm.detail(
+                                    "mitra_lembaga",
+                                    item.revisionable_id
+                                  )
+                                },
+                              },
+                            },
+                            [
+                              _c("div", {
+                                staticClass: "text-muted",
+                                domProps: {
+                                  innerHTML: _vm._s(
+                                    _vm.$options.filters.dateTime(
+                                      item.created_at
+                                    )
+                                  ),
+                                },
+                              }),
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\t" +
+                                  _vm._s(item.user.name) +
+                                  " mengubah "
+                              ),
+                              _c("mark", [_vm._v(_vm._s(item.key))]),
+                              _vm._v(
+                                " CU " +
+                                  _vm._s(item.revisionable.name) +
+                                  " dari \n\t\t\t\t\t\t\t"
+                              ),
+                              _c(
+                                "mark",
+                                [
+                                  _c("check-value", {
+                                    attrs: { value: item.old_value },
+                                  }),
+                                ],
+                                1
+                              ),
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\tmenjadi \n\t\t\t\t\t\t\t"
+                              ),
+                              _c(
+                                "mark",
+                                [
+                                  _c("check-value", {
+                                    attrs: { value: item.new_value },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ]
+                          )
+                        }),
+                        _vm._v(" "),
+                        _vm.itemMitraLembaga.length == 0
+                          ? _c("div", [
+                              _vm._v("Tidak terdapat data perubahan aktivitas"),
+                            ])
+                          : _vm._e(),
+                      ],
+                      2
+                    )
+                  : _vm.itemMitraLembagaStat === "loading"
+                  ? _c("div", { staticClass: "progress" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+                          staticStyle: { width: "100%" },
+                        },
+                        [
+                          _c("span", { staticClass: "sr-only" }, [
+                            _vm._v("100% Complete"),
+                          ]),
+                        ]
+                      ),
+                    ])
+                  : _vm._e(),
+              ]),
+            ]
+          ),
+        ]
+      ),
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "card-header bg-brown-400 text-white header-elements-inline",
+      },
+      [
+        _c("h5", { staticClass: "card-title" }, [
+          _c("i", { staticClass: "icon-copy3 mr-2" }),
+          _vm._v(" Perubahan Data Organisasi"),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "header-elements" }, [
+          _c("div", { staticClass: "list-icons" }, [
+            _c("a", {
+              staticClass: "list-icons-item",
+              attrs: { "data-action": "collapse" },
+            }),
+          ]),
+        ]),
+      ]
+    )
+  },
+]
 render._withStripped = true
 
 
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/detailLaporanCu.vue?vue&type=template&id=2f6c7ff7&":
-/*!******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/laporanCu/detailLaporanCu.vue?vue&type=template&id=2f6c7ff7& ***!
-  \******************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=template&id=0165c089&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=template&id=0165c089& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4722,6435 +4324,1041 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "card" },
     [
-      _c("div", { staticClass: "timeline timeline-left content-group" }, [
-        _c("div", { staticClass: "timeline-container" }, [
-          _c("div", { staticClass: "timeline-row" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Lelaki Biasa",
-                              "l_biasa",
-                              _vm.itemData.l_biasa,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.l_biasa,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Lelaki Biasa",
-                                  key: "l_biasa",
-                                  value: _vm.itemData.l_biasa,
-                                },
-                              ]
-                            )
-                          },
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "nav-tabs-responsive bg-light border-top" }, [
+        _c(
+          "ul",
+          { staticClass: "nav nav-tabs nav-tabs-bottom flex-nowrap mb-0" },
+          [
+            _c("li", { staticClass: "nav-item" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link text-nowrap",
+                  class: { active: _vm.tabName == "baru" },
+                  attrs: { href: "#" },
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      return _vm.changeTab("baru")
+                    },
+                  },
+                },
+                [
+                  _c("i", { staticClass: "icon-new mr-2" }),
+                  _vm._v("\n\t\t\t\t\t\tTerbaru "),
+                  _vm.countBaru > 0
+                    ? _c(
+                        "span",
+                        {
+                          staticClass:
+                            "badge bg-blue-400 align-self-center ml-2",
                         },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "lelaki biasa",
-                            itemData: _vm.itemData.l_biasa,
-                            itemDataBefore: _vm.itemDataBefore.l_biasa,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Lelaki Biasa",
-                              "l_biasa",
-                              _vm.itemData.l_biasa,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Lelaki Biasa",
-                                  key: "l_biasa",
-                                  value: _vm.itemData.l_biasa,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "lelaki biasa",
-                            itemData: _vm.itemData.l_biasa,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Lelaki L.Biasa",
-                              "l_lbiasa",
-                              _vm.itemData.l_lbiasa,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.l_lbiasa,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Lelaki L.Biasa",
-                                  key: "l_lbiasa",
-                                  value: _vm.itemData.l_lbiasa,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "lelaki l.biasa",
-                            itemData: _vm.itemData.l_lbiasa,
-                            itemDataBefore: _vm.itemDataBefore.l_lbiasa,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Lelaki L.Biasa",
-                              "l_lbiasa",
-                              _vm.itemData.l_lbiasa,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Lelaki L.Biasa",
-                                  key: "l_lbiasa",
-                                  value: _vm.itemData.l_lbiasa,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "lelaki l.biasa",
-                            itemData: _vm.itemData.l_lbiasa,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Perempuan Biasa",
-                              "p_biasa",
-                              _vm.itemData.p_biasa,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.p_biasa,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Perempuan Biasa",
-                                  key: "p_biasa",
-                                  value: _vm.itemData.p_biasa,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "perempuan biasa",
-                            itemData: _vm.itemData.p_biasa,
-                            itemDataBefore: _vm.itemDataBefore.p_biasa,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Perempuan Biasa",
-                              "p_biasa",
-                              _vm.itemData.p_biasa,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Perempuan Biasa",
-                                  key: "p_biasa",
-                                  value: _vm.itemData.p_biasa,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "perempuan biasa",
-                            itemData: _vm.itemData.p_biasa,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Perempuan L.Biasa",
-                              "p_lbiasa",
-                              _vm.itemData.p_lbiasa,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.p_lbiasa,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Perempuan L.Biasa",
-                                  key: "p_lbiasa",
-                                  value: _vm.itemData.p_lbiasa,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "perempuan l.biasa",
-                            itemData: _vm.itemData.p_lbiasa,
-                            itemDataBefore: _vm.itemDataBefore.p_lbiasa,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Perempuan L.Biasa",
-                              "p_lbiasa",
-                              _vm.itemData.p_lbiasa,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Perempuan L.Biasa",
-                                  key: "p_lbiasa",
-                                  value: _vm.itemData.p_lbiasa,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "perempuan l.biasa",
-                            itemData: _vm.itemData.p_lbiasa,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
+                        [_vm._v(_vm._s(_vm.countBaru))]
+                      )
+                    : _vm._e(),
+                ]
+              ),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Total Anggota",
-                              "total_anggota",
-                              _vm.itemData.total_anggota,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.total_anggota,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Lelaki Biasa",
-                                  key: "l_biasa",
-                                  value: _vm.itemData.l_biasa,
-                                },
-                                {
-                                  title: "Lelaki L.Biasa",
-                                  key: "l_lbiasa",
-                                  value: _vm.itemData.l_lbiasa,
-                                },
-                                {
-                                  title: "Perempuan Biasa",
-                                  key: "p_biasa",
-                                  value: _vm.itemData.p_biasa,
-                                },
-                                {
-                                  title: "Perempuan L.Biasa",
-                                  key: "p_lbiasa",
-                                  value: _vm.itemData.p_lbiasa,
-                                },
-                              ]
-                            )
-                          },
+            _c("li", { staticClass: "nav-item" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link text-nowrap",
+                  class: { active: _vm.tabName == "mulai" },
+                  attrs: { href: "#" },
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      return _vm.changeTab("mulai")
+                    },
+                  },
+                },
+                [
+                  _c("i", { staticClass: "icon-alarm mr-2" }),
+                  _vm._v("\n\t\t\t\t\t\tWaktu Mulai Terdekat "),
+                  _vm.countMulai > 0
+                    ? _c(
+                        "span",
+                        {
+                          staticClass:
+                            "badge bg-blue-400 align-self-center ml-2",
                         },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "total anggota",
-                            itemData: _vm.itemData.total_anggota,
-                            itemDataBefore: _vm.itemDataBefore.total_anggota,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Total Anggota",
-                              "total_anggota",
-                              _vm.itemData.total_anggota,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Lelaki Biasa",
-                                  key: "l_biasa",
-                                  value: _vm.itemData.l_biasa,
-                                },
-                                {
-                                  title: "Lelaki L.Biasa",
-                                  key: "l_lbiasa",
-                                  value: _vm.itemData.l_lbiasa,
-                                },
-                                {
-                                  title: "Perempuan Biasa",
-                                  key: "p_biasa",
-                                  value: _vm.itemData.p_biasa,
-                                },
-                                {
-                                  title: "Perempuan L.Biasa",
-                                  key: "p_lbiasa",
-                                  value: _vm.itemData.p_lbiasa,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "total anggota",
-                            itemData: _vm.itemData.total_anggota,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Total Anggota Lalu",
-                              "total_anggota_lalu",
-                              _vm.itemData.total_anggota_lalu,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.total_anggota_lalu,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Total Anggota Lalu",
-                                  key: "total_anggota_lalu",
-                                  value: _vm.itemData.total_anggota_lalu,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "total anggota lalu",
-                            itemData: _vm.itemData.total_anggota_lalu,
-                            itemDataBefore:
-                              _vm.itemDataBefore.total_anggota_lalu,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Total Anggota Lalu",
-                              "total_anggota_lalu",
-                              _vm.itemData.total_anggota_lalu,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Total Anggota Lalu",
-                                  key: "total_anggota_lalu",
-                                  value: _vm.itemData.total_anggota_lalu,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "total anggota lalu",
-                            itemData: _vm.itemData.total_anggota_lalu,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
+                        [_vm._v(_vm._s(_vm.countMulai))]
+                      )
+                    : _vm._e(),
+                ]
+              ),
             ]),
             _vm._v(" "),
-            _vm._m(1),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "timeline-row" }, [
-            _vm._m(2),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Aset",
-                              "aset",
-                              _vm.itemData.aset,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.aset,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Aset",
-                                  key: "aset",
-                                  value: _vm.itemData.aset,
-                                },
-                              ]
-                            )
-                          },
+            _c("li", { staticClass: "nav-item" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link text-nowrap",
+                  class: { active: _vm.tabName == "buka" },
+                  attrs: { href: "#" },
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      return _vm.changeTab("buka")
+                    },
+                  },
+                },
+                [
+                  _c("i", { staticClass: "icon-user-plus mr-2" }),
+                  _vm._v("\n\t\t\t\t\t\tStatus Pendaftaran Terbuka "),
+                  _vm.countBuka > 0
+                    ? _c(
+                        "span",
+                        {
+                          staticClass:
+                            "badge bg-blue-400 align-self-center ml-2",
                         },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "aset",
-                            itemData: _vm.itemData.aset,
-                            itemDataBefore: _vm.itemDataBefore.aset,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Aset",
-                              "aset",
-                              _vm.itemData.aset,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Aset",
-                                  key: "aset",
-                                  value: _vm.itemData.aset,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "aset",
-                            itemData: _vm.itemData.aset,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Aset Lalu",
-                              "aset_lalu",
-                              _vm.itemData.aset_lalu,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.aset_lalu,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Aset Lalu",
-                                  key: "aset_lalu",
-                                  value: _vm.itemData.aset_lalu,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "aset lalu",
-                            itemData: _vm.itemData.aset_lalu,
-                            itemDataBefore: _vm.itemDataBefore.aset_lalu,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Aset Lalu",
-                              "aset_lalu",
-                              _vm.itemData.aset_lalu,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Aset Lalu",
-                                  key: "aset_lalu",
-                                  value: _vm.itemData.aset_lalu,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "aset lalu",
-                            itemData: _vm.itemData.aset_lalu,
-                            itemDataBefore: "",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Aset Masalah",
-                              "aset_masalah",
-                              _vm.itemData.aset_masalah,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.aset_masalah,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Aset Masalah",
-                                  key: "aset_masalah",
-                                  value: _vm.itemData.aset_masalah,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "aset masalah",
-                            itemData: _vm.itemData.aset_masalah,
-                            itemDataBefore: _vm.itemDataBefore.aset_masalah,
-                            isOpposite: true,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Aset Masalah",
-                              "aset_masalah",
-                              _vm.itemData.aset_masalah,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Aset Masalah",
-                                  key: "aset_masalah",
-                                  value: _vm.itemData.aset_masalah,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "aset masalah",
-                            itemData: _vm.itemData.aset_masalah,
-                            itemDataBefore: "0",
-                            isOpposite: true,
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Aset Tidak Menghasilkan",
-                              "aset_tidak_menghasilkan",
-                              _vm.itemData.aset_tidak_menghasilkan,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.aset_tidak_menghasilkan,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Aset Tidak Menghasilkan",
-                                  key: "aset_tidak_menghasilkan",
-                                  value: _vm.itemData.aset_tidak_menghasilkan,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "aset tidak menghasilkan",
-                            itemData: _vm.itemData.aset_tidak_menghasilkan,
-                            itemDataBefore:
-                              _vm.itemDataBefore.aset_tidak_menghasilkan,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Aset Tidak Menghasilkan",
-                              "aset_tidak_menghasilkan",
-                              _vm.itemData.aset_tidak_menghasilkan,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Aset Tidak Menghasilkan",
-                                  key: "aset_tidak_menghasilkan",
-                                  value: _vm.itemData.aset_tidak_menghasilkan,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "aset tidak menghasilkan",
-                            itemData: _vm.itemData.aset_tidak_menghasilkan,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
+                        [_vm._v(_vm._s(_vm.countBuka))]
+                      )
+                    : _vm._e(),
+                ]
+              ),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Aktiva Lancar",
-                              "aktiva_lancar",
-                              _vm.itemData.aktiva_lancar,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.aktiva_lancar,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Aktiva Lancar",
-                                  key: "aktiva_lancar",
-                                  value: _vm.itemData.aktiva_lancar,
-                                },
-                              ]
-                            )
-                          },
+            _c("li", { staticClass: "nav-item" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link text-nowrap",
+                  class: { active: _vm.tabName == "jalan" },
+                  attrs: { href: "#" },
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      return _vm.changeTab("jalan")
+                    },
+                  },
+                },
+                [
+                  _c("i", { staticClass: "icon-feed mr-2" }),
+                  _vm._v("\n\t\t\t\t\t\tStatus Berjalan "),
+                  _vm.countJalan > 0
+                    ? _c(
+                        "span",
+                        {
+                          staticClass:
+                            "badge bg-blue-400 align-self-center ml-2",
                         },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "aktiva lancar",
-                            itemData: _vm.itemData.aktiva_lancar,
-                            itemDataBefore: _vm.itemDataBefore.aktiva_lancar,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Aktiva Lancar",
-                              "aktiva_lancar",
-                              _vm.itemData.aktiva_lancar,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Aktiva Lancar",
-                                  key: "aktiva_lancar",
-                                  value: _vm.itemData.aktiva_lancar,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "aktiva lancar",
-                            itemData: _vm.itemData.aktiva_lancar,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Rata-rata Aset",
-                              "rata_aset",
-                              _vm.itemData.rata_aset,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.rata_aset,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Rata-rata Aset",
-                                  key: "rata_aset",
-                                  value: _vm.itemData.rata_aset,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "rata-rata aset",
-                            itemData: _vm.itemData.rata_aset,
-                            itemDataBefore: _vm.itemDataBefore.rata_aset,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Rata-rata Aset",
-                              "rata_aset",
-                              _vm.itemData.rata_aset,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Rata-rata Aset",
-                                  key: "rata_aset",
-                                  value: _vm.itemData.rata_aset,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "rata-rata aset",
-                            itemData: _vm.itemData.rata_aset,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
+                        [_vm._v(_vm._s(_vm.countJalan))]
+                      )
+                    : _vm._e(),
+                ]
+              ),
             ]),
-            _vm._v(" "),
-            _vm._m(3),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "timeline-row" }, [
-            _vm._m(4),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Simp. Saham",
-                              "simpanan_saham",
-                              _vm.itemData.simpanan_saham,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.simpanan_saham,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Simp. Saham",
-                                  key: "simpanan_saham",
-                                  value: _vm.itemData.simpanan_saham,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "simp. saham",
-                            itemData: _vm.itemData.simpanan_saham,
-                            itemDataBefore: _vm.itemDataBefore.simpanan_saham,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Simp. Saham",
-                              "simpanan_saham",
-                              _vm.itemData.simpanan_saham,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Simp. Saham",
-                                  key: "simpanan_saham",
-                                  value: _vm.itemData.simpanan_saham,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "simp. saham",
-                            itemData: _vm.itemData.simpanan_saham,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Simp. Saham Lalu",
-                              "simpanan_saham_lalu",
-                              _vm.itemData.simpanan_saham_lalu,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.simpanan_saham_lalu,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Simp. Saham Lalu",
-                                  key: "simpanan_saham_lalu",
-                                  value: _vm.itemData.simpanan_saham_lalu,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "simp. saham lalu",
-                            itemData: _vm.itemData.simpanan_saham_lalu,
-                            itemDataBefore:
-                              _vm.itemDataBefore.simpanan_saham_lalu,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Simp. Saham Lalu",
-                              "simpanan_saham_lalu",
-                              _vm.itemData.simpanan_saham_lalu,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Simp. Saham Lalu",
-                                  key: "simpanan_saham_lalu",
-                                  value: _vm.itemData.simpanan_saham_lalu,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "simp. saham lalu",
-                            itemData: _vm.itemData.simpanan_saham_lalu,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Simp. Saham Des",
-                              "simpanan_saham_des",
-                              _vm.itemData.simpanan_saham_des,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.simpanan_saham_des,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Simp. Saham Des",
-                                  key: "simpanan_saham_des",
-                                  value: _vm.itemData.simpanan_saham_des,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "simp. saham des",
-                            itemData: _vm.itemData.simpanan_saham_des,
-                            itemDataBefore:
-                              _vm.itemDataBefore.simpanan_saham_des,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Simp. Saham Des",
-                              "simpanan_saham_des",
-                              _vm.itemData.simpanan_saham_des,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Simp. Saham Des",
-                                  key: "simpanan_saham_des",
-                                  value: _vm.itemData.simpanan_saham_des,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "simp. saham des",
-                            itemData: _vm.itemData.simpanan_saham_des,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Simp. Nonsaham Unggulan",
-                              "nonsaham_unggulan",
-                              _vm.itemData.nonsaham_unggulan,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.nonsaham_unggulan,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Simp. Nonsaham Unggulan",
-                                  key: "nonsaham_unggulan",
-                                  value: _vm.itemData.nonsaham_unggulan,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "simp. nonsaham unggulan",
-                            itemData: _vm.itemData.nonsaham_unggulan,
-                            itemDataBefore:
-                              _vm.itemDataBefore.nonsaham_unggulan,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Simp. Nonsaham Unggulan",
-                              "nonsaham_unggulan",
-                              _vm.itemData.nonsaham_unggulan,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Simp. Nonsaham Unggulan",
-                                  key: "nonsaham_unggulan",
-                                  value: _vm.itemData.nonsaham_unggulan,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "simp. nonsaham unggulan",
-                            itemData: _vm.itemData.nonsaham_unggulan,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Simp. Nonsaham Harian",
-                              "nonsaham_harian",
-                              _vm.itemData.nonsaham_harian,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.nonsaham_harian,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Simp. Nonsaham Harian",
-                                  key: "nonsaham_harian",
-                                  value: _vm.itemData.nonsaham_harian,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "simp. nonsaham harian",
-                            itemData: _vm.itemData.nonsaham_harian,
-                            itemDataBefore: _vm.itemDataBefore.nonsaham_harian,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Simp. Nonsaham Harian",
-                              "nonsaham_harian",
-                              _vm.itemData.nonsaham_harian,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Simp. Nonsaham Harian",
-                                  key: "nonsaham_harian",
-                                  value: _vm.itemData.nonsaham_harian,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "simp. nonsaham harian",
-                            itemData: _vm.itemData.nonsaham_harian,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Hutang SPD",
-                              "hutang_spd",
-                              _vm.itemData.hutang_spd,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.hutang_spd,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Hutang SPD",
-                                  key: "hutang_spd",
-                                  value: _vm.itemData.hutang_spd,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "hutang spd",
-                            itemData: _vm.itemData.hutang_spd,
-                            itemDataBefore: _vm.itemDataBefore.hutang_spd,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Hutang SPD",
-                              "hutang_spd",
-                              _vm.itemData.hutang_spd,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Hutang SPD",
-                                  key: "hutang_spd",
-                                  value: _vm.itemData.hutang_spd,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "hutang spd",
-                            itemData: _vm.itemData.hutang_spd,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Hutang Tidak Berbiaya",
-                              "hutang_tidak_berbiaya_30hari",
-                              _vm.itemData.hutang_tidak_berbiaya_30hari,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.hutang_tidak_berbiaya_30hari,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Hutang Tidak Berbiaya",
-                                  key: "hutang_tidak_berbiaya_30hari",
-                                  value:
-                                    _vm.itemData.hutang_tidak_berbiaya_30hari,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "hutang tidak berbiaya",
-                            itemData: _vm.itemData.hutang_tidak_berbiaya_30hari,
-                            itemDataBefore:
-                              _vm.itemDataBefore.hutang_tidak_berbiaya_30hari,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Hutang Tidak Berbiaya",
-                              "hutang_tidak_berbiaya_30hari",
-                              _vm.itemData.hutang_tidak_berbiaya_30hari,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Hutang Tidak Berbiaya",
-                                  key: "hutang_tidak_berbiaya_30hari",
-                                  value:
-                                    _vm.itemData.hutang_tidak_berbiaya_30hari,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "hutang tidak berbiaya",
-                            itemData: _vm.itemData.hutang_tidak_berbiaya_30hari,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Total Hutang Pihak Ke-3",
-                              "total_hutang_pihak3",
-                              _vm.itemData.total_hutang_pihak3,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.total_hutang_pihak3,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Total Hutang Pihak Ke-3",
-                                  key: "total_hutang_pihak3",
-                                  value: _vm.itemData.total_hutang_pihak3,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "total hutang pihak ke-3",
-                            itemData: _vm.itemData.total_hutang_pihak3,
-                            itemDataBefore:
-                              _vm.itemDataBefore.total_hutang_pihak3,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Total Hutang Pihak Ke-3",
-                              "total_hutang_pihak3",
-                              _vm.itemData.total_hutang_pihak3,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Total Hutang Pihak Ke-3",
-                                  key: "total_hutang_pihak3",
-                                  value: _vm.itemData.total_hutang_pihak3,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "total hutang pihak ke-3",
-                            itemData: _vm.itemData.total_hutang_pihak3,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Piutang Beredar",
-                              "piutang_beredar",
-                              _vm.itemData.piutang_beredar,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.piutang_beredar,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Piutang Beredar",
-                                  key: "piutang_beredar",
-                                  value: _vm.itemData.piutang_beredar,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "piutang beredar",
-                            itemData: _vm.itemData.piutang_beredar,
-                            itemDataBefore: _vm.itemDataBefore.piutang_beredar,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Piutang Beredar",
-                              "piutang_beredar",
-                              _vm.itemData.piutang_beredar,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Piutang Beredar",
-                                  key: "piutang_beredar",
-                                  value: _vm.itemData.piutang_beredar,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "piutang beredar",
-                            itemData: _vm.itemData.piutang_beredar,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Piutang Bersih",
-                              "piutang_bersih",
-                              _vm.itemData.piutang_bersih,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.piutang_bersih,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Piutang Beredar",
-                                  key: "piutang_beredar",
-                                  value: _vm.itemData.piutang_beredar,
-                                },
-                                {
-                                  title: "Piutang Lalai 1-12 Bulan",
-                                  key: "piutang_lalai_1bulan",
-                                  value: _vm.itemData.piutang_lalai_1bulan,
-                                },
-                                {
-                                  title: "Piutang Lalai > 12 Bulan",
-                                  key: "piutang_lalai_12bulan",
-                                  value: _vm.itemData.piutang_lalai_12bulan,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "piutang bersih",
-                            itemData: _vm.itemData.piutang_bersih,
-                            itemDataBefore: _vm.itemDataBefore.piutang_bersih,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Piutang Bersih",
-                              "piutang_bersih",
-                              _vm.itemData.piutang_bersih,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Piutang Beredar",
-                                  key: "piutang_beredar",
-                                  value: _vm.itemData.piutang_beredar,
-                                },
-                                {
-                                  title: "Piutang Lalai 1-12 Bulan",
-                                  key: "piutang_lalai_1bulan",
-                                  value: _vm.itemData.piutang_lalai_1bulan,
-                                },
-                                {
-                                  title: "Piutang Lalai > 12 Bulan",
-                                  key: "piutang_lalai_12bulan",
-                                  value: _vm.itemData.piutang_lalai_12bulan,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "piutang bersih",
-                            itemData: _vm.itemData.piutang_bersih,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Piutang Anggota",
-                              "piutang_anggota",
-                              _vm.itemData.piutang_anggota,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.piutang_anggota,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Piutang Anggota",
-                                  key: "piutang_anggota",
-                                  value: _vm.itemData.piutang_anggota,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "piutang anggota",
-                            itemData: _vm.itemData.piutang_anggota,
-                            itemDataBefore: _vm.itemDataBefore.piutang_anggota,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Piutang Anggota",
-                              "piutang_anggota",
-                              _vm.itemData.piutang_anggota,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.piutang_anggota,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Piutang Anggota",
-                                  key: "piutang_anggota",
-                                  value: _vm.itemData.piutang_anggota,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "piutang anggota",
-                            itemData: _vm.itemData.piutang_anggota,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Piutang Lalai 1-12 Bulan",
-                              "piutang_lalai_1bulan",
-                              _vm.itemData.piutang_lalai_1bulan,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.piutang_lalai_1bulan,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Piutang Lalai 1-12 Bulan",
-                                  key: "piutang_lalai_1bulan",
-                                  value: _vm.itemData.piutang_lalai_1bulan,
-                                },
-                              ],
-                              "currency",
-                              true
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "piutang lalai 1-12 bulan",
-                            itemData: _vm.itemData.piutang_lalai_1bulan,
-                            itemDataBefore:
-                              _vm.itemDataBefore.piutang_lalai_1bulan,
-                            isOpposite: true,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Piutang Lalai 1-12 Bulan",
-                              "piutang_lalai_1bulan",
-                              _vm.itemData.piutang_lalai_1bulan,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Piutang Lalai 1-12 Bulan",
-                                  key: "piutang_lalai_1bulan",
-                                  value: _vm.itemData.piutang_lalai_1bulan,
-                                },
-                              ],
-                              "currency",
-                              true
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "piutang lalai 1-12 bulan",
-                            itemData: _vm.itemData.piutang_lalai_1bulan,
-                            itemDataBefore: "0",
-                            isOpposite: true,
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Piutang Lalai > 12 Bulan",
-                              "piutang_lalai_12bulan",
-                              _vm.itemData.piutang_lalai_12bulan,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.piutang_lalai_12bulan,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Piutang Lalai > 12 Bulan",
-                                  key: "piutang_lalai_12bulan",
-                                  value: _vm.itemData.piutang_lalai_12bulan,
-                                },
-                              ],
-                              "currency",
-                              true
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _vm.itemDataBefore
-                          ? _c("widget-data", {
-                              attrs: {
-                                title: "piutang lalai > 12 bulan",
-                                itemData: _vm.itemData.piutang_lalai_12bulan,
-                                itemDataBefore:
-                                  _vm.itemDataBefore.piutang_lalai_12bulan,
-                                isOpposite: true,
-                              },
-                            })
-                          : _vm._e(),
-                      ],
-                      1
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Piutang Lalai > 12 Bulan",
-                              "piutang_lalai_12bulan",
-                              _vm.itemData.piutang_lalai_12bulan,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Piutang Lalai > 12 Bulan",
-                                  key: "piutang_lalai_12bulan",
-                                  value: _vm.itemData.piutang_lalai_12bulan,
-                                },
-                              ],
-                              "currency",
-                              true
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "piutang lalai > 12 bulan",
-                            itemData: _vm.itemData.piutang_lalai_12bulan,
-                            itemDataBefore: "0",
-                            isOpposite: true,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _vm._e(),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Rasio Piutang Beredar",
-                              "rasio_beredar",
-                              _vm.itemData.rasio_beredar,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.rasio_beredar,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Piutang Beredar",
-                                  key: "piutang_beredar",
-                                  value: _vm.itemData.piutang_beredar,
-                                },
-                                {
-                                  title: "Aset",
-                                  key: "aset",
-                                  value: _vm.itemData.aset,
-                                },
-                              ],
-                              "percent"
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "rasio piutang beredar",
-                            itemData: _vm.itemData.rasio_beredar,
-                            itemDataBefore: _vm.itemDataBefore.rasio_beredar,
-                            isPercent: true,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Rasio Piutang Beredar",
-                              "rasio_beredar",
-                              _vm.itemData.rasio_beredar,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Piutang Beredar",
-                                  key: "piutang_beredar",
-                                  value: _vm.itemData.piutang_beredar,
-                                },
-                                {
-                                  title: "Aset",
-                                  key: "aset",
-                                  value: _vm.itemData.aset,
-                                },
-                              ],
-                              "percent"
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "rasio piutang beredar",
-                            itemData: _vm.itemData.rasio_beredar,
-                            itemDataBefore: "0",
-                            isPercent: true,
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Rasio Piutang Lalai",
-                              "rasio_lalai",
-                              _vm.itemData.rasio_lalai,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.rasio_lalai,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Piutang Lalai 1-12 Bulan",
-                                  key: "piutang_lalai_1bulan",
-                                  value: _vm.itemData.piutang_lalai_1bulan,
-                                },
-                                {
-                                  title: "Piutang Lalai > 12 Bulan",
-                                  key: "piutang_lalai_12bulan",
-                                  value: _vm.itemData.piutang_lalai_12bulan,
-                                },
-                                {
-                                  title: "Piutang Beredar",
-                                  key: "piutang_beredar",
-                                  value: _vm.itemData.piutang_beredar,
-                                },
-                              ],
-                              "percent",
-                              true
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "rasio piutang lalai",
-                            itemData: _vm.itemData.rasio_lalai,
-                            itemDataBefore: _vm.itemDataBefore.rasio_lalai,
-                            isPercent: true,
-                            isOpposite: true,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Rasio Piutang Lalai",
-                              "rasio_lalai",
-                              _vm.itemData.rasio_lalai,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Piutang Lalai 1-12 Bulan",
-                                  key: "piutang_lalai_1bulan",
-                                  value: _vm.itemData.piutang_lalai_1bulan,
-                                },
-                                {
-                                  title: "Piutang Lalai > 12 Bulan",
-                                  key: "piutang_lalai_12bulan",
-                                  value: _vm.itemData.piutang_lalai_12bulan,
-                                },
-                                {
-                                  title: "Piutang Beredar",
-                                  key: "piutang_beredar",
-                                  value: _vm.itemData.piutang_beredar,
-                                },
-                              ],
-                              "percent",
-                              true
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "rasio piutang lalai",
-                            itemData: _vm.itemData.rasio_lalai,
-                            itemDataBefore: "0",
-                            isPercent: true,
-                            isOpposite: true,
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-            ]),
-            _vm._v(" "),
-            _vm._m(5),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "timeline-row" }, [
-            _vm._m(6),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "DCR",
-                              "dcr",
-                              _vm.itemData.dcr,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.dcr,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "DCR",
-                                  key: "dcr",
-                                  value: _vm.itemData.dcr,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "dcr",
-                            itemData: _vm.itemData.dcr,
-                            itemDataBefore: _vm.itemDataBefore.dcr,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "DCR",
-                              "dcr",
-                              _vm.itemData.dcr,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "DCR",
-                                  key: "dcr",
-                                  value: _vm.itemData.dcr,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "dcr",
-                            itemData: _vm.itemData.dcr,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "DCU",
-                              "dcu",
-                              _vm.itemData.dcu,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.dcu,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "DCU",
-                                  key: "dcu",
-                                  value: _vm.itemData.dcu,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "dcu",
-                            itemData: _vm.itemData.dcu,
-                            itemDataBefore: _vm.itemDataBefore.dcu,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "DCU",
-                              "dcu",
-                              _vm.itemData.dcu,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "DCU",
-                                  key: "dcu",
-                                  value: _vm.itemData.dcu,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "dcu",
-                            itemData: _vm.itemData.dcu,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Iuran Gedung",
-                              "dana_gedung",
-                              _vm.itemData.dana_gedung,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.dana_gedung,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Iuran Gedung",
-                                  key: "dana_gedung",
-                                  value: _vm.itemData.dana_gedung,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "iuran gedung",
-                            itemData: _vm.itemData.dana_gedung,
-                            itemDataBefore: _vm.itemDataBefore.dana_gedung,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Iuran Gedung",
-                              "dana_gedung",
-                              _vm.itemData.dana_gedung,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Iuran Gedung",
-                                  key: "dana_gedung",
-                                  value: _vm.itemData.dana_gedung,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "iuran gedung",
-                            itemData: _vm.itemData.dana_gedung,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Donasi",
-                              "donasi",
-                              _vm.itemData.donasi,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.donasi,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Donasi",
-                                  key: "donasi",
-                                  value: _vm.itemData.donasi,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "donasi",
-                            itemData: _vm.itemData.donasi,
-                            itemDataBefore: _vm.itemDataBefore.donasi,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Donasi",
-                              "donasi",
-                              _vm.itemData.donasi,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Donasi",
-                                  key: "donasi",
-                                  value: _vm.itemData.donasi,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "donasi",
-                            itemData: _vm.itemData.donasi,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "BJS Saham",
-                              "bjs_saham",
-                              _vm.itemData.bjs_saham,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.bjs_saham,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "BJS Saham",
-                                  key: "bjs_saham",
-                                  value: _vm.itemData.bjs_saham,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "bjs saham",
-                            itemData: _vm.itemData.bjs_saham,
-                            itemDataBefore: _vm.itemDataBefore.bjs_saham,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "BJS Saham",
-                              "bjs_saham",
-                              _vm.itemData.bjs_saham,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "BJS Saham",
-                                  key: "bjs_saham",
-                                  value: _vm.itemData.bjs_saham,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "bjs saham",
-                            itemData: _vm.itemData.bjs_saham,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Beban Penyisihan DCR",
-                              "beban_penyisihan_dcr",
-                              _vm.itemData.beban_penyisihan_dcr,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.beban_penyisihan_dcr,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Beban Penyisihan DCR",
-                                  key: "beban_penyisihan_dcr",
-                                  value: _vm.itemData.beban_penyisihan_dcr,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _vm.itemDataBefore
-                          ? _c("widget-data", {
-                              attrs: {
-                                title: "beban penyisihan dcr",
-                                itemData: _vm.itemData.beban_penyisihan_dcr,
-                                itemDataBefore:
-                                  _vm.itemDataBefore.beban_penyisihan_dcr,
-                              },
-                            })
-                          : _vm._e(),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Beban Penyisihan DCR",
-                              "beban_penyisihan_dcr",
-                              _vm.itemData.beban_penyisihan_dcr,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Beban Penyisihan DCR",
-                                  key: "beban_penyisihan_dcr",
-                                  value: _vm.itemData.beban_penyisihan_dcr,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "beban penyisihan dcr",
-                            itemData: _vm.itemData.beban_penyisihan_dcr,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Investasi Likuid",
-                              "investasi_likuid",
-                              _vm.itemData.investasi_likuid,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.investasi_likuid,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Investasi Likuid",
-                                  key: "investasi_likuid",
-                                  value: _vm.itemData.investasi_likuid,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _vm.itemDataBefore
-                          ? _c("widget-data", {
-                              attrs: {
-                                title: "investasi likuid",
-                                itemData: _vm.itemData.investasi_likuid,
-                                itemDataBefore:
-                                  _vm.itemDataBefore.investasi_likuid,
-                              },
-                            })
-                          : _vm._e(),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Investasi Likuid",
-                              "investasi_likuid",
-                              _vm.itemData.investasi_likuid,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Investasi Likuid",
-                                  key: "investasi_likuid",
-                                  value: _vm.itemData.investasi_likuid,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "investasi likuid",
-                            itemData: _vm.itemData.investasi_likuid,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-            ]),
-            _vm._v(" "),
-            _vm._m(7),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "timeline-row" }, [
-            _vm._m(8),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Total Pendapatan",
-                              "total_pendapatan",
-                              _vm.itemData.total_pendapatan,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.total_pendapatan,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Total Pendapatan",
-                                  key: "total_pendapatan",
-                                  value: _vm.itemData.total_pendapatan,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "total pendapatan",
-                            itemData: _vm.itemData.total_pendapatan,
-                            itemDataBefore: _vm.itemDataBefore.total_pendapatan,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Total Pendapatan",
-                              "total_pendapatan",
-                              _vm.itemData.total_pendapatan,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Total Pendapatan",
-                                  key: "total_pendapatan",
-                                  value: _vm.itemData.total_pendapatan,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "total pendapatan",
-                            itemData: _vm.itemData.total_pendapatan,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Total Biaya",
-                              "total_biaya",
-                              _vm.itemData.total_biaya,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.total_biaya,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Total Biaya",
-                                  key: "total_biaya",
-                                  value: _vm.itemData.total_biaya,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "total biaya",
-                            itemData: _vm.itemData.total_biaya,
-                            itemDataBefore: _vm.itemDataBefore.total_biaya,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Total Biaya",
-                              "total_biaya",
-                              _vm.itemData.total_biaya,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Total Biaya",
-                                  key: "total_biaya",
-                                  value: _vm.itemData.total_biaya,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "total biaya",
-                            itemData: _vm.itemData.total_biaya,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "SHU",
-                              "shu",
-                              _vm.itemData.shu,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.shu,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "SHU",
-                                  key: "shu",
-                                  value: _vm.itemData.shu,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "shu",
-                            itemData: _vm.itemData.shu,
-                            itemDataBefore: _vm.itemDataBefore.shu,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "SHU",
-                              "shu",
-                              _vm.itemData.shu,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "SHU",
-                                  key: "shu",
-                                  value: _vm.itemData.shu,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "shu",
-                            itemData: _vm.itemData.shu,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "SHU Lalu",
-                              "shu_lalu",
-                              _vm.itemData.shu_lalu,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.shu_lalu,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "SHU Lalu",
-                                  key: "shu_lalu",
-                                  value: _vm.itemData.shu_lalu,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "shu lalu",
-                            itemData: _vm.itemData.shu_lalu,
-                            itemDataBefore: _vm.itemDataBefore.shu_lalu,
-                          },
-                        }),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "SHU Lalu",
-                              "shu_lalu",
-                              _vm.itemData.shu_lalu,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "SHU Lalu",
-                                  key: "shu_lalu",
-                                  value: _vm.itemData.shu_lalu,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "shu lalu",
-                            itemData: _vm.itemData.shu_lalu,
-                            itemDataBefore: "0",
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Laju Inflasi",
-                              "laju_inflasi",
-                              _vm.itemData.laju_inflasi,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.laju_inflasi,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Laju Inflasi",
-                                  key: "laju_inflasi",
-                                  value: _vm.itemData.laju_inflasi,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _vm.itemDataBefore
-                          ? _c("widget-data", {
-                              attrs: {
-                                title: "laju inflasi",
-                                itemData: _vm.itemData.laju_inflasi,
-                                itemDataBefore: _vm.itemDataBefore.laju_inflasi,
-                                isPercent: true,
-                              },
-                            })
-                          : _vm._e(),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Laju Inflasi",
-                              "laju_inflasi",
-                              _vm.itemData.laju_inflasi,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Laju Inflasi",
-                                  key: "laju_inflasi",
-                                  value: _vm.itemData.laju_inflasi,
-                                },
-                              ]
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "laju inflasi",
-                            itemData: _vm.itemData.laju_inflasi,
-                            itemDataBefore: "0",
-                            isPercent: true,
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-3" }, [
-                _vm.itemDataBefore
-                  ? _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Harga Pasar",
-                              "harga_pasar",
-                              _vm.itemData.harga_pasar,
-                              _vm.itemData.periode,
-                              _vm.itemDataBefore.harga_pasar,
-                              _vm.itemDataBefore.periode,
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Harga Pasar",
-                                  key: "harga_pasar",
-                                  value: _vm.itemData.harga_pasar,
-                                },
-                              ],
-                              "percent"
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _vm.itemDataBefore
-                          ? _c("widget-data", {
-                              attrs: {
-                                title: "harga pasar",
-                                itemData: _vm.itemData.harga_pasar,
-                                itemDataBefore: _vm.itemDataBefore.harga_pasar,
-                                isPercent: true,
-                              },
-                            })
-                          : _vm._e(),
-                      ],
-                      1
-                    )
-                  : _c(
-                      "div",
-                      {
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.modalBuka(
-                              "Harga Pasar",
-                              "harga_pasar",
-                              _vm.itemData.harga_pasar,
-                              _vm.itemData.periode,
-                              "0",
-                              "",
-                              _vm.grafikData.data,
-                              [
-                                {
-                                  title: "Harga Pasar",
-                                  key: "harga_pasar",
-                                  value: _vm.itemData.harga_pasar,
-                                },
-                              ],
-                              "percent"
-                            )
-                          },
-                        },
-                      },
-                      [
-                        _c("widget-data", {
-                          attrs: {
-                            title: "harga pasar",
-                            itemData: _vm.itemData.harga_pasar,
-                            itemDataBefore: "0",
-                            isPercent: true,
-                          },
-                        }),
-                      ],
-                      1
-                    ),
-              ]),
-            ]),
-          ]),
-        ]),
+          ]
+        ),
       ]),
       _vm._v(" "),
       _c(
-        "app-modal",
-        {
-          attrs: {
-            show: _vm.modalShow,
-            state: _vm.modalState,
-            title: _vm.modalTitle,
-            size: _vm.modalSize,
-            color: _vm.modalColor,
-            button: _vm.modalButton,
-          },
-          on: {
-            tutup: _vm.modalTutup,
-            successOk: _vm.modalTutup,
-            failOk: _vm.modalTutup,
-            backgroundClick: _vm.modalTutup,
-          },
-        },
+        "transition",
+        { attrs: { "enter-active-class": "animated fadeIn", mode: "out-in" } },
         [
-          _c("template", { slot: "modal-title" }, [
-            _vm._v(_vm._s(_vm.modalTitle)),
-          ]),
-          _vm._v(" "),
-          _c("template", { slot: "modal-body1" }, [
-            _c(
-              "form",
-              {
-                attrs: { "data-vv-scope": "form" },
-                on: {
-                  submit: function ($event) {
-                    $event.preventDefault()
-                    return _vm.save.apply(null, arguments)
-                  },
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.tabName == "baru",
+                  expression: "tabName == 'baru'",
                 },
-              },
-              [
-                _c("div", { staticClass: "nav-tabs-responsive mb-3" }, [
-                  _c(
-                    "ul",
-                    {
-                      staticClass:
-                        "nav nav-tabs nav-tabs-bottom flex-nowrap mb-0",
-                    },
-                    [
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            class: {
-                              active: _vm.modalDetail.tab == "analisis",
-                            },
-                            attrs: { href: "#" },
-                            on: {
-                              click: function ($event) {
-                                $event.preventDefault()
-                                _vm.modalDetail.tab = "analisis"
-                              },
-                            },
-                          },
-                          [
-                            _c("i", { staticClass: "icon-wave2 mr-2" }),
-                            _vm._v(" Analisis"),
-                          ]
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "nav-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "nav-link",
-                            class: { active: _vm.modalDetail.tab == "tabel" },
-                            attrs: { href: "#" },
-                            on: {
-                              click: function ($event) {
-                                $event.preventDefault()
-                                _vm.modalDetail.tab = "tabel"
-                              },
-                            },
-                          },
-                          [
-                            _c("i", { staticClass: "icon-list2 mr-2" }),
-                            _vm._v(" Tabel"),
-                          ]
-                        ),
-                      ]),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
+              ],
+            },
+            [
+              _c("div", { staticClass: "table-responsive" }, [
                 _c(
-                  "div",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.modalDetail.tab == "analisis",
-                        expression: "modalDetail.tab == 'analisis'",
-                      },
-                    ],
-                  },
+                  "table",
+                  { staticClass: "table table-striped  table-hover" },
                   [
-                    _c("widget-data", {
-                      attrs: {
-                        title: _vm.modalDetail.title,
-                        itemData: _vm.modalDetail.itemData,
-                        itemDataBefore: _vm.modalDetail.itemDataBefore,
-                        isPercent: _vm.modalDetail.isPercent,
-                        isOpposite: _vm.modalDetail.isOpposite,
-                      },
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "card card-body border-top-blue" },
-                      [
-                        _c("h6", {
-                          domProps: {
-                            innerHTML: _vm._s(_vm.modalDetail.analisis1),
-                          },
-                        }),
-                      ]
-                    ),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.modalDetail.tab == "tabel",
-                        expression: "modalDetail.tab == 'tabel'",
-                      },
-                    ],
-                  },
-                  [
-                    _c("div", { staticClass: "pre-scrollable" }, [
-                      _c(
-                        "table",
-                        { staticClass: "table table-striped table-bordered" },
-                        [
-                          _c("thead", { staticClass: "bg-primary" }, [
-                            _c("tr", [
-                              _c("th", [_vm._v("Periode")]),
-                              _vm._v(" "),
-                              _c("th", [_vm._v("Jumlah ")]),
-                              _vm._v(" "),
-                              _c("th", [_vm._v("Pertumbuhan")]),
-                              _vm._v(" "),
-                              !_vm.modalDetail.isPercent
-                                ? _c("th", [_vm._v("Pertumbuhan (%)")])
-                                : _vm._e(),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "tbody",
-                            _vm._l(
-                              _vm.modalDetail.grafikData,
-                              function (grafik) {
-                                return _c(
-                                  "tr",
-                                  {
-                                    staticClass: "text-nowrap",
-                                    class: {
-                                      info:
-                                        Object.values(grafik)[0] ==
-                                        _vm.itemData.periode,
-                                    },
-                                  },
-                                  [
-                                    _c("td", [
-                                      _vm._v(
-                                        _vm._s(
-                                          _vm._f("dateMonth")(
-                                            Object.values(grafik)[0]
-                                          )
-                                        )
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _vm.modalDetail.isPercent
-                                      ? _c("td", [
-                                          _vm._v(
-                                            _vm._s(
-                                              _vm._f("percentage")(
-                                                Object.values(grafik)[1],
-                                                2
-                                              )
-                                            )
-                                          ),
-                                        ])
-                                      : _c("td", [
-                                          _vm._v(
-                                            _vm._s(
-                                              _vm._f("currency")(
-                                                Object.values(grafik)[1],
-                                                "",
-                                                0,
-                                                { thousandsSeparator: "." }
-                                              )
-                                            )
-                                          ),
-                                        ]),
-                                    _vm._v(" "),
-                                    _vm.itemData.periode !=
-                                    Object.values(grafik)[0]
-                                      ? _c(
-                                          "td",
-                                          {
-                                            class: {
-                                              "text-primary":
-                                                _vm.countTotal(
-                                                  _vm.modalDetail.itemData,
-                                                  Object.values(grafik)[1]
-                                                ) > 0,
-                                              "text-danger":
-                                                _vm.countTotal(
-                                                  _vm.modalDetail.itemData,
-                                                  Object.values(grafik)[1]
-                                                ) < 0,
-                                            },
-                                          },
-                                          [
-                                            _vm.countTotal(
-                                              _vm.modalDetail.itemData,
-                                              Object.values(grafik)[1]
-                                            ) > 0
-                                              ? _c("i", {
-                                                  staticClass:
-                                                    "icon-chevron-up",
-                                                })
-                                              : _vm.countTotal(
-                                                  _vm.modalDetail.itemData,
-                                                  Object.values(grafik)[1]
-                                                ) < 0
-                                              ? _c("i", {
-                                                  staticClass:
-                                                    "icon-chevron-down",
-                                                })
-                                              : _vm._e(),
-                                            _vm._v(" "),
-                                            _vm.modalDetail.isPercent
-                                              ? _c("span", [
-                                                  _vm._v(
-                                                    "\n\t\t\t\t\t\t\t\t\t\t" +
-                                                      _vm._s(
-                                                        _vm._f("percentage")(
-                                                          Math.abs(
-                                                            _vm.countTotal(
-                                                              _vm.modalDetail
-                                                                .itemData,
-                                                              Object.values(
-                                                                grafik
-                                                              )[1]
-                                                            )
-                                                          ),
-                                                          2
-                                                        )
-                                                      ) +
-                                                      "\n\t\t\t\t\t\t\t\t\t"
-                                                  ),
-                                                ])
-                                              : _c("span", [
-                                                  _vm._v(
-                                                    "\n\t\t\t\t\t\t\t\t\t\t" +
-                                                      _vm._s(
-                                                        _vm._f("currency")(
-                                                          Math.abs(
-                                                            _vm.countTotal(
-                                                              _vm.modalDetail
-                                                                .itemData,
-                                                              Object.values(
-                                                                grafik
-                                                              )[1]
-                                                            )
-                                                          ),
-                                                          "",
-                                                          0,
-                                                          {
-                                                            thousandsSeparator:
-                                                              ".",
-                                                          }
-                                                        )
-                                                      ) +
-                                                      "\n\t\t\t\t\t\t\t\t\t"
-                                                  ),
-                                                ]),
-                                          ]
-                                        )
-                                      : _c(
-                                          "td",
-                                          {
-                                            staticClass: "text-center",
-                                            attrs: { colspan: "2" },
-                                          },
-                                          [_vm._v("LAPORAN PERIODE INI")]
-                                        ),
-                                    _vm._v(" "),
-                                    _vm.itemData.periode !=
-                                      Object.values(grafik)[0] &&
-                                    !_vm.modalDetail.isPercent
-                                      ? _c("td", [
-                                          _c(
-                                            "span",
-                                            {
-                                              staticClass: "badge pull-right",
-                                              class: {
-                                                "badge-primary":
-                                                  _vm.countTotal(
-                                                    _vm.modalDetail.itemData,
-                                                    Object.values(grafik)[1]
-                                                  ) > 0,
-                                                "badge-danger":
-                                                  _vm.countTotal(
-                                                    _vm.modalDetail.itemData,
-                                                    Object.values(grafik)[1]
-                                                  ) < 0,
-                                              },
-                                            },
-                                            [
-                                              _vm.countTotal(
-                                                _vm.modalDetail.itemData,
-                                                Object.values(grafik)[1]
-                                              ) > 0
-                                                ? _c("span", [_vm._v("+")])
-                                                : _vm.countTotal(
-                                                    _vm.modalDetail.itemData,
-                                                    Object.values(grafik)[1]
-                                                  ) < 0
-                                                ? _c("span", [_vm._v("-")])
-                                                : _vm._e(),
-                                              _vm._v(
-                                                "\t\n\t\t\t\t\t\t\t\t\t\t" +
-                                                  _vm._s(
-                                                    _vm._f("currency")(
-                                                      Math.abs(
-                                                        _vm.countPercentage(
-                                                          _vm.modalDetail
-                                                            .itemData,
-                                                          Object.values(
-                                                            grafik
-                                                          )[1]
-                                                        )
-                                                      ),
-                                                      "",
-                                                      2,
-                                                      {
-                                                        thousandsSeparator: ".",
-                                                        decimalSeparator: ",",
-                                                      }
-                                                    )
-                                                  ) +
-                                                  " %\n\t\t\t\t\t\t\t\t\t"
-                                              ),
-                                            ]
-                                          ),
-                                        ])
-                                      : _vm._e(),
-                                  ]
-                                )
-                              }
-                            ),
-                            0
-                          ),
-                        ]
-                      ),
+                    _c("thead", [
+                      _c("tr", { staticClass: "text-nowarp" }, [
+                        _c("th", [_vm._v("Status")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Kode")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Nama")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Kabupaten/Kota")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Tempat")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Tgl. Mulai")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Sasaran")]),
+                      ]),
                     ]),
                     _vm._v(" "),
-                    _c("hr"),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "alert bg-info alert-styled-left mt-2 pt-1 pb-1",
-                      },
-                      [
-                        _c("span", { staticClass: "mb-2 text-semibold" }, [
-                          _c("u", [_vm._v("Bagaimana membaca tabel ini?")]),
-                        ]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            "Kolom pertumbuhan adalah perbandingan nilai pada laporan periode ini dibandingan dengan periode lainnya sesuai pada tabel"
-                          ),
-                        ]),
-                      ]
-                    ),
-                  ]
-                ),
-                _vm._v(" "),
-                _vm.modalDetail.isUbah
-                  ? _c("div", [
-                      _c("hr"),
-                      _vm._v(" "),
-                      _vm.modalDetail.canUbah
-                        ? _c("div", [
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "well well-sm border-top-lg border-top-warning",
-                              },
-                              _vm._l(_vm.modalDetail.form, function (form) {
-                                return form.title
-                                  ? _c("div", [
-                                      _c(
-                                        "div",
-                                        { staticClass: "form-group" },
-                                        [
-                                          _c("h5", [
-                                            _vm._v(_vm._s(form.title)),
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("cleave", {
-                                            staticClass: "form-control",
+                    _vm.itemBaruStat === "success"
+                      ? _c(
+                          "tbody",
+                          [
+                            _vm._l(_vm.itemBaru, function (item, index) {
+                              return _c(
+                                "tr",
+                                {
+                                  key: index,
+                                  staticClass: "text-nowrap  cursor-pointer",
+                                  class: {
+                                    "bg-info":
+                                      _vm.selectedItemBaru.id === item.id,
+                                  },
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.detail(item.id)
+                                    },
+                                  },
+                                },
+                                [
+                                  _c("td", [
+                                    item.status == "6"
+                                      ? _c("span", {
+                                          staticClass: "cursor-pointer",
+                                          domProps: {
+                                            innerHTML: _vm._s(
+                                              _vm.$options.filters.statusDiklat(
+                                                item.status
+                                              )
+                                            ),
+                                          },
+                                          on: {
+                                            click: function ($event) {
+                                              $event.preventDefault()
+                                              return _vm.modalKeteranganBatalOpen(
+                                                item.keteranganBatal
+                                              )
+                                            },
+                                          },
+                                        })
+                                      : _c("span", {
+                                          domProps: {
+                                            innerHTML: _vm._s(
+                                              _vm.$options.filters.statusDiklat(
+                                                item.status
+                                              )
+                                            ),
+                                          },
+                                        }),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "td",
+                                    [
+                                      _c("check-value", {
+                                        attrs: { value: item.kode_diklat },
+                                      }),
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c("td", [
+                                    _vm._v(
+                                      "\n\t\t\t\t\t\t\t\t\t" +
+                                        _vm._s(item.name) +
+                                        "\n\t\t\t\t\t\t\t\t"
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "td",
+                                    [
+                                      item.regencies
+                                        ? _c("check-value", {
                                             attrs: {
-                                              options: _vm.cleaveOption.numeric,
-                                              placeholder:
-                                                "Silahkan masukkan " +
-                                                form.title,
+                                              value: item.regencies.name,
                                             },
-                                            model: {
-                                              value: form.value,
-                                              callback: function ($$v) {
-                                                _vm.$set(form, "value", $$v)
-                                              },
-                                              expression: "form.value",
-                                            },
-                                          }),
-                                        ],
-                                        1
+                                          })
+                                        : _c("span", [_vm._v("-")]),
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "td",
+                                    [
+                                      item.tempat
+                                        ? _c("check-value", {
+                                            attrs: { value: item.tempat.name },
+                                          })
+                                        : item.tipe_tempat == "ONLINE"
+                                        ? _c("span", [
+                                            _vm._v("DILAKSANAKAN ONLINE"),
+                                          ])
+                                        : _c("span", [
+                                            _vm._v("Belum ditentukan tempat"),
+                                          ]),
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c("td", {
+                                    domProps: {
+                                      innerHTML: _vm._s(
+                                        _vm.$options.filters.date(item.mulai)
                                       ),
-                                    ])
-                                  : _vm._e()
-                              }),
-                              0
-                            ),
-                          ])
-                        : _c("div", [
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "alert bg-warning alert-styled-left mt-10 pt-5 pb-5",
-                              },
-                              [
+                                    },
+                                  }),
+                                  _vm._v(" "),
+                                  _c("td", { staticClass: "text-warp" }, [
+                                    item.sasaran
+                                      ? _c(
+                                          "span",
+                                          _vm._l(
+                                            item.sasaran,
+                                            function (sasaran, index) {
+                                              return _c(
+                                                "label",
+                                                {
+                                                  key: index,
+                                                  staticClass:
+                                                    "badge badge-primary ml-1",
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n\t\t\t\t\t\t\t\t\t\t\t" +
+                                                      _vm._s(sasaran.name) +
+                                                      "\n\t\t\t\t\t\t\t\t\t\t"
+                                                  ),
+                                                ]
+                                              )
+                                            }
+                                          ),
+                                          0
+                                        )
+                                      : _vm._e(),
+                                  ]),
+                                ]
+                              )
+                            }),
+                            _vm._v(" "),
+                            _vm.itemBaru.length == 0
+                              ? _c("tr", [
+                                  _c("td", { attrs: { colspan: 7 } }, [
+                                    _vm._v("Tidak terdapat data diklat"),
+                                  ]),
+                                ])
+                              : _vm._e(),
+                          ],
+                          2
+                        )
+                      : _vm.itemBaruStat === "loading"
+                      ? _c("tbody", [
+                          _c("tr", [
+                            _c("td", { attrs: { colspan: 7 } }, [
+                              _c("div", { staticClass: "progress" }, [
                                 _c(
-                                  "span",
-                                  { staticClass: "mb-5 text-semibold" },
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+                                    staticStyle: { width: "100%" },
+                                  },
                                   [
-                                    _c("u", [
-                                      _vm._v(
-                                        "Maaf tidak bisa mengubah data disini."
-                                      ),
+                                    _c("span", { staticClass: "sr-only" }, [
+                                      _vm._v("100% Complete"),
                                     ]),
                                   ]
                                 ),
-                                _vm._v(" "),
-                                _c("p", [
-                                  _vm._v(
-                                    "Laporan berikut merupakan laporan konsolidasi dari beberapa data laporan TP pada periode ini, untuk melakukan pengubahan data silahkan buka laporan TP pada periode ini."
-                                  ),
-                                ]),
-                              ]
-                            ),
+                              ]),
+                            ]),
                           ]),
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("hr"),
-                _vm._v(" "),
-                _c("div", { staticClass: "text-center d-none d-sm-block" }, [
-                  _c(
-                    "button",
-                    {
-                      directives: [
-                        {
-                          name: "tooltip",
-                          rawName: "v-tooltip:top",
-                          value: "Tutup",
-                          expression: "'Tutup'",
-                          arg: "top",
-                        },
-                      ],
-                      staticClass: "btn btn-light",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function ($event) {
-                          $event.preventDefault()
-                          return _vm.modalTutup.apply(null, arguments)
-                        },
-                      },
-                    },
-                    [
-                      _c("i", { staticClass: "icon-cross" }),
-                      _vm._v(" Tutup\n\t\t\t\t"),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  !_vm.modalDetail.isUbah &&
-                  _vm.currentUser.can &&
-                  _vm.currentUser.can["update_laporan_cu"]
-                    ? _c(
-                        "button",
-                        {
-                          directives: [
-                            {
-                              name: "tooltip",
-                              rawName: "v-tooltip:top",
-                              value: "Ubah data perhitungan",
-                              expression: "'Ubah data perhitungan'",
-                              arg: "top",
-                            },
-                          ],
-                          staticClass: "btn btn-light",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function ($event) {
-                              $event.preventDefault()
-                              _vm.modalDetail.isUbah = true
-                            },
-                          },
-                        },
-                        [
-                          _c("i", { staticClass: "icon-pencil5" }),
-                          _vm._v(" Ubah\n\t\t\t\t"),
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.modalDetail.isUbah
-                    ? _c(
-                        "button",
-                        {
-                          directives: [
-                            {
-                              name: "tooltip",
-                              rawName: "v-tooltip:top",
-                              value: "Batal mengubah data perhitungan",
-                              expression: "'Batal mengubah data perhitungan'",
-                              arg: "top",
-                            },
-                          ],
-                          staticClass: "btn btn-light",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function ($event) {
-                              $event.preventDefault()
-                              _vm.modalDetail.isUbah = false
-                            },
-                          },
-                        },
-                        [
-                          _c("i", { staticClass: "icon-arrow-left13" }),
-                          _vm._v(" Batal\n\t\t\t\t"),
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.modalDetail.isUbah &&
-                  _vm.currentUser.can &&
-                  _vm.currentUser.can["update_laporan_cu"] &&
-                  _vm.modalDetail.canUbah
-                    ? _c(
-                        "button",
-                        {
-                          directives: [
-                            {
-                              name: "tooltip",
-                              rawName: "v-tooltip:top",
-                              value: "Simpan data perhitungan",
-                              expression: "'Simpan data perhitungan'",
-                              arg: "top",
-                            },
-                          ],
-                          staticClass: "btn btn-primary",
-                          attrs: { type: "submit" },
-                        },
-                        [
-                          _c("i", { staticClass: "icon-floppy-disk" }),
-                          _vm._v(" Simpan\n\t\t\t\t"),
-                        ]
-                      )
-                    : _vm._e(),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "d-block d-sm-none" }, [
-                  _vm.modalDetail.isUbah &&
-                  _vm.currentUser.can &&
-                  _vm.currentUser.can["update_laporan_cu"] &&
-                  _vm.modalDetail.canUbah
-                    ? _c(
-                        "button",
-                        {
-                          directives: [
-                            {
-                              name: "tooltip",
-                              rawName: "v-tooltip:top",
-                              value: "Simpan data perhitungan",
-                              expression: "'Simpan data perhitungan'",
-                              arg: "top",
-                            },
-                          ],
-                          staticClass: "btn btn-primary btn-block",
-                          attrs: { type: "submit" },
-                        },
-                        [
-                          _c("i", { staticClass: "icon-floppy-disk" }),
-                          _vm._v(" Simpan\n\t\t\t\t"),
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.modalDetail.isUbah &&
-                  _vm.currentUser.can &&
-                  _vm.currentUser.can["update_laporan_cu"]
-                    ? _c(
-                        "button",
-                        {
-                          directives: [
-                            {
-                              name: "tooltip",
-                              rawName: "v-tooltip:top",
-                              value: "Batal mengubah data perhitungan",
-                              expression: "'Batal mengubah data perhitungan'",
-                              arg: "top",
-                            },
-                          ],
-                          staticClass: "btn btn-light btn-block",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function ($event) {
-                              $event.preventDefault()
-                              _vm.modalDetail.isUbah = false
-                            },
-                          },
-                        },
-                        [
-                          _c("i", { staticClass: "icon-arrow-left13" }),
-                          _vm._v(" Batal\n\t\t\t\t"),
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  !_vm.modalDetail.isUbah &&
-                  _vm.currentUser.can &&
-                  _vm.currentUser.can["update_laporan_cu"]
-                    ? _c(
-                        "button",
-                        {
-                          directives: [
-                            {
-                              name: "tooltip",
-                              rawName: "v-tooltip:top",
-                              value: "Ubah data perhitungan",
-                              expression: "'Ubah data perhitungan'",
-                              arg: "top",
-                            },
-                          ],
-                          staticClass: "btn btn-light btn-block",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function ($event) {
-                              $event.preventDefault()
-                              _vm.modalDetail.isUbah = true
-                            },
-                          },
-                        },
-                        [
-                          _c("i", { staticClass: "icon-pencil5" }),
-                          _vm._v(" Ubah\n\t\t\t\t"),
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      directives: [
-                        {
-                          name: "tooltip",
-                          rawName: "v-tooltip:top",
-                          value: "Tutup",
-                          expression: "'Tutup'",
-                          arg: "top",
-                        },
-                      ],
-                      staticClass: "btn btn-light btn-block",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function ($event) {
-                          $event.preventDefault()
-                          return _vm.modalTutup.apply(null, arguments)
-                        },
-                      },
-                    },
-                    [
-                      _c("i", { staticClass: "icon-cross" }),
-                      _vm._v(" Tutup\n\t\t\t\t"),
-                    ]
-                  ),
-                ]),
-              ]
-            ),
-          ]),
-        ],
-        2
+                        ])
+                      : _vm._e(),
+                  ]
+                ),
+              ]),
+            ]
+          ),
+        ]
       ),
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "timeline-icon" }, [
-      _c("div", { staticClass: "bg-blue" }, [
-        _c("i", { staticClass: "icon-people" }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [_c("hr")])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "timeline-icon" }, [
-      _c("div", { staticClass: "bg-orange" }, [
-        _c("i", { staticClass: "icon-briefcase3" }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [_c("hr")])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "timeline-icon" }, [
-      _c("div", { staticClass: "bg-brown" }, [
-        _c("i", { staticClass: "icon-piggy-bank" }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [_c("hr")])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "timeline-icon" }, [
-      _c("div", { staticClass: "bg-danger" }, [
-        _c("i", { staticClass: "icon-lifebuoy" }),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [_c("hr")])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "timeline-icon" }, [
-      _c("div", { staticClass: "bg-grey" }, [
-        _c("i", { staticClass: "icon-cash4" }),
-      ]),
-    ])
-  },
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/detailPearls.vue?vue&type=template&id=f6a3d8ba&":
-/*!***************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/laporanCu/detailPearls.vue?vue&type=template&id=f6a3d8ba& ***!
-  \***************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c(
-            "div",
-            {
-              staticClass: "card card-body",
-              class: {
-                "bg-primary": _vm.itemData.p1 >= 1,
-                "bg-danger": _vm.itemData.p1 < 1,
-              },
-              staticStyle: { cursor: "pointer" },
-              on: {
-                click: function ($event) {
-                  $event.preventDefault()
-                  return _vm.modalBuka(_vm.itemData, "p1")
-                },
-              },
-            },
-            [
-              _c("div", { staticClass: "media mb-3" }, [
-                _c("div", { staticClass: "media-body" }, [
-                  _c("h6", { staticClass: "font-weight-semibold mb-8" }, [
-                    _vm._v(_vm._s(_vm._f("percentage")(_vm.itemData.p1, 2))),
-                  ]),
-                  _vm._v(" "),
-                  _vm.itemData.p1 >= 1
-                    ? _c("span", { staticClass: "opacity-75" }, [
-                        _vm._v("\n\t\t\t\t\t\t\tIDEAL\n\t\t\t\t\t\t"),
-                      ])
-                    : _c("span", [
-                        _vm._v("\n\t\t\t\t\t\t\tTIDAK IDEAL\n\t\t\t\t\t\t"),
-                      ]),
-                ]),
-                _vm._v(" "),
-                _vm._m(0),
-              ]),
-              _vm._v(" "),
-              _vm._m(1),
-              _vm._v(" "),
-              _c("b", [_vm._v("Provisi pinjaman lalai di atas 12 bulan")]),
-            ]
-          ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c(
-            "div",
-            {
-              staticClass: "card card-body",
-              class: {
-                "bg-primary": _vm.itemData.p2 > 0.35,
-                "bg-danger": _vm.itemData.p2 <= 0.35,
-              },
-              staticStyle: { cursor: "pointer" },
-              on: {
-                click: function ($event) {
-                  $event.preventDefault()
-                  return _vm.modalBuka(_vm.itemData, "p2")
-                },
-              },
-            },
-            [
-              _c("div", { staticClass: "media no-margin-top content-group" }, [
-                _c("div", { staticClass: "media-body" }, [
-                  _c("h6", { staticClass: "font-weight-semibold mb-8" }, [
-                    _vm._v(_vm._s(_vm._f("percentage")(_vm.itemData.p2, 2))),
-                  ]),
-                  _vm._v(" "),
-                  _vm.itemData.p2 > 0.35
-                    ? _c("span", { staticClass: "opacity-75" }, [
-                        _vm._v("\n\t\t\t\t\t\t\tIDEAL\n\t\t\t\t\t\t"),
-                      ])
-                    : _c("span", [
-                        _vm._v("\n\t\t\t\t\t\t\tTIDAK IDEAL\n\t\t\t\t\t\t"),
-                      ]),
-                ]),
-                _vm._v(" "),
-                _vm._m(2),
-              ]),
-              _vm._v(" "),
-              _vm._m(3),
-              _vm._v(" "),
-              _c("b", [_vm._v("Provisi pinjaman lalai 1-12 bulan")]),
-            ]
-          ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c(
-            "div",
-            {
-              staticClass: "card card-body",
-              class: {
-                "bg-primary": _vm.itemData.e1 >= 0.7 && _vm.itemData.e1 <= 0.8,
-                "bg-danger": _vm.itemData.e1 < 0.7 || _vm.itemData.e1 > 0.8,
-              },
-              staticStyle: { cursor: "pointer" },
-              on: {
-                click: function ($event) {
-                  $event.preventDefault()
-                  return _vm.modalBuka(_vm.itemData, "e1")
-                },
-              },
-            },
-            [
-              _c("div", { staticClass: "media no-margin-top content-group" }, [
-                _c("div", { staticClass: "media-body" }, [
-                  _c("h6", { staticClass: "font-weight-semibold mb-8" }, [
-                    _vm._v(_vm._s(_vm._f("percentage")(_vm.itemData.e1, 2))),
-                  ]),
-                  _vm._v(" "),
-                  _vm.itemData.e1 >= 0.7 && _vm.itemData.e1 <= 0.8
-                    ? _c("span", { staticClass: "opacity-75" }, [
-                        _vm._v("\n\t\t\t\t\t\t\tIDEAL\n\t\t\t\t\t\t"),
-                      ])
-                    : _c("span", [
-                        _vm._v("\n\t\t\t\t\t\t\tTIDAK IDEAL\n\t\t\t\t\t\t"),
-                      ]),
-                ]),
-                _vm._v(" "),
-                _vm._m(4),
-              ]),
-              _vm._v(" "),
-              _vm._m(5),
-              _vm._v(" "),
-              _c("b", [_vm._v("Piutang bersih / total aset")]),
-            ]
-          ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c(
-            "div",
-            {
-              staticClass: "card card-body",
-              class: {
-                "bg-primary": _vm.itemData.e5 >= 0.7 && _vm.itemData.e5 <= 0.8,
-                "bg-danger": _vm.itemData.e5 < 0.7 || _vm.itemData.e5 > 0.8,
-              },
-              staticStyle: { cursor: "pointer" },
-              on: {
-                click: function ($event) {
-                  $event.preventDefault()
-                  return _vm.modalBuka(_vm.itemData, "e5")
-                },
-              },
-            },
-            [
-              _c("div", { staticClass: "media no-margin-top content-group" }, [
-                _c("div", { staticClass: "media-body" }, [
-                  _c("h6", { staticClass: "font-weight-semibold mb-8" }, [
-                    _vm._v(_vm._s(_vm._f("percentage")(_vm.itemData.e5, 2))),
-                  ]),
-                  _vm._v(" "),
-                  _vm.itemData.e5 >= 0.7 && _vm.itemData.e5 <= 0.8
-                    ? _c("span", { staticClass: "opacity-75" }, [
-                        _vm._v("\n\t\t\t\t\t\t\tIDEAL\n\t\t\t\t\t\t"),
-                      ])
-                    : _c("span", [
-                        _vm._v("\n\t\t\t\t\t\t\tTIDAK IDEAL\n\t\t\t\t\t\t"),
-                      ]),
-                ]),
-                _vm._v(" "),
-                _vm._m(6),
-              ]),
-              _vm._v(" "),
-              _vm._m(7),
-              _vm._v(" "),
-              _c("b", [_vm._v("Simpanan non saham / total aset")]),
-            ]
-          ),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c(
-            "div",
-            {
-              staticClass: "card card-body",
-              class: {
-                "bg-primary": _vm.itemData.e6 <= 0.05,
-                "bg-danger": _vm.itemData.e6 > 0.05,
-              },
-              staticStyle: { cursor: "pointer" },
-              on: {
-                click: function ($event) {
-                  $event.preventDefault()
-                  return _vm.modalBuka(_vm.itemData, "e6")
-                },
-              },
-            },
-            [
-              _c("div", { staticClass: "media no-margin-top content-group" }, [
-                _c("div", { staticClass: "media-body" }, [
-                  _c("h6", { staticClass: "font-weight-semibold mb-8" }, [
-                    _vm._v(_vm._s(_vm._f("percentage")(_vm.itemData.e6, 2))),
-                  ]),
-                  _vm._v(" "),
-                  _vm.itemData.e6 <= 0.05
-                    ? _c("span", { staticClass: "opacity-75" }, [
-                        _vm._v("\n\t\t\t\t\t\t\tIDEAL\n\t\t\t\t\t\t"),
-                      ])
-                    : _c("span", [
-                        _vm._v("\n\t\t\t\t\t\t\tTIDAK IDEAL\n\t\t\t\t\t\t"),
-                      ]),
-                ]),
-                _vm._v(" "),
-                _vm._m(8),
-              ]),
-              _vm._v(" "),
-              _vm._m(9),
-              _vm._v(" "),
-              _c("b", [
-                _vm._v("Pinjaman kepada pihak luar terhadap total aset"),
-              ]),
-            ]
-          ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c(
-            "div",
-            {
-              staticClass: "card card-body",
-              class: {
-                "bg-primary": _vm.itemData.e7 >= 0.1 && _vm.itemData.e7 <= 0.2,
-                "bg-danger": _vm.itemData.e7 < 0.1 || _vm.itemData.e7 > 0.2,
-              },
-              staticStyle: { cursor: "pointer" },
-              on: {
-                click: function ($event) {
-                  $event.preventDefault()
-                  return _vm.modalBuka(_vm.itemData, "e7")
-                },
-              },
-            },
-            [
-              _c("div", { staticClass: "media no-margin-top content-group" }, [
-                _c("div", { staticClass: "media-body" }, [
-                  _c("h6", { staticClass: "font-weight-semibold mb-8" }, [
-                    _vm._v(_vm._s(_vm._f("percentage")(_vm.itemData.e7, 2))),
-                  ]),
-                  _vm._v(" "),
-                  _vm.itemData.e7 >= 0.1 && _vm.itemData.e7 <= 0.2
-                    ? _c("span", { staticClass: "opacity-75" }, [
-                        _vm._v("\n\t\t\t\t\t\t\tIDEAL\n\t\t\t\t\t\t"),
-                      ])
-                    : _c("span", [
-                        _vm._v("\n\t\t\t\t\t\t\tTIDAK IDEAL\n\t\t\t\t\t\t"),
-                      ]),
-                ]),
-                _vm._v(" "),
-                _vm._m(10),
-              ]),
-              _vm._v(" "),
-              _vm._m(11),
-              _vm._v(" "),
-              _c("b", [_vm._v("Simpanan saham / total aset")]),
-            ]
-          ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c(
-            "div",
-            {
-              staticClass: "card card-body",
-              class: {
-                "bg-primary": _vm.itemData.e9 >= 0.1,
-                "bg-danger": _vm.itemData.e9 < 0.1,
-              },
-              staticStyle: { cursor: "pointer" },
-              on: {
-                click: function ($event) {
-                  $event.preventDefault()
-                  return _vm.modalBuka(_vm.itemData, "e9")
-                },
-              },
-            },
-            [
-              _c("div", { staticClass: "media no-margin-top content-group" }, [
-                _c("div", { staticClass: "media-body" }, [
-                  _c("h6", { staticClass: "font-weight-semibold mb-8" }, [
-                    _vm._v(_vm._s(_vm._f("percentage")(_vm.itemData.e9, 2))),
-                  ]),
-                  _vm._v(" "),
-                  _vm.itemData.e9 >= 0.1
-                    ? _c("span", { staticClass: "opacity-75" }, [
-                        _vm._v("\n\t\t\t\t\t\t\tIDEAL\n\t\t\t\t\t\t"),
-                      ])
-                    : _c("span", [
-                        _vm._v("\n\t\t\t\t\t\t\tTIDAK IDEAL\n\t\t\t\t\t\t"),
-                      ]),
-                ]),
-                _vm._v(" "),
-                _vm._m(12),
-              ]),
-              _vm._v(" "),
-              _vm._m(13),
-              _vm._v(" "),
-              _c("b", [_vm._v("Modal lembaga bersih")]),
-            ]
-          ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c(
-            "div",
-            {
-              staticClass: "card card-body",
-              class: {
-                "bg-primary": _vm.itemData.a1 <= 0.05,
-                "bg-danger": _vm.itemData.a1 > 0.05,
-              },
-              staticStyle: { cursor: "pointer" },
-              on: {
-                click: function ($event) {
-                  $event.preventDefault()
-                  return _vm.modalBuka(_vm.itemData, "a1")
-                },
-              },
-            },
-            [
-              _c("div", { staticClass: "media no-margin-top content-group" }, [
-                _c("div", { staticClass: "media-body" }, [
-                  _c("h6", { staticClass: "font-weight-semibold mb-8" }, [
-                    _vm._v(_vm._s(_vm._f("percentage")(_vm.itemData.a1, 2))),
-                  ]),
-                  _vm._v(" "),
-                  _vm.itemData.a1 <= 0.05
-                    ? _c("span", { staticClass: "opacity-75" }, [
-                        _vm._v("\n\t\t\t\t\t\t\tIDEAL\n\t\t\t\t\t\t"),
-                      ])
-                    : _c("span", [
-                        _vm._v("\n\t\t\t\t\t\t\tTIDAK IDEAL\n\t\t\t\t\t\t"),
-                      ]),
-                ]),
-                _vm._v(" "),
-                _vm._m(14),
-              ]),
-              _vm._v(" "),
-              _vm._m(15),
-              _vm._v(" "),
-              _c("b", [
-                _vm._v("Total pinjaman lalai / total ipnjaman beredar"),
-              ]),
-            ]
-          ),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c(
-            "div",
-            {
-              staticClass: "card card-body",
-              class: {
-                "bg-primary": _vm.itemData.a2 < 0.05,
-                "bg-danger": _vm.itemData.a2 >= 0.05,
-              },
-              staticStyle: { cursor: "pointer" },
-              on: {
-                click: function ($event) {
-                  $event.preventDefault()
-                  return _vm.modalBuka(_vm.itemData, "a2")
-                },
-              },
-            },
-            [
-              _c("div", { staticClass: "media no-margin-top content-group" }, [
-                _c("div", { staticClass: "media-body" }, [
-                  _c("h6", { staticClass: "font-weight-semibold mb-8" }, [
-                    _vm._v(_vm._s(_vm._f("percentage")(_vm.itemData.a2, 2))),
-                  ]),
-                  _vm._v(" "),
-                  _vm.itemData.a2 < 0.05
-                    ? _c("span", { staticClass: "opacity-75" }, [
-                        _vm._v("\n\t\t\t\t\t\t\tIDEAL\n\t\t\t\t\t\t"),
-                      ])
-                    : _c("span", [
-                        _vm._v("\n\t\t\t\t\t\t\tTIDAK IDEAL\n\t\t\t\t\t\t"),
-                      ]),
-                ]),
-                _vm._v(" "),
-                _vm._m(16),
-              ]),
-              _vm._v(" "),
-              _vm._m(17),
-              _vm._v(" "),
-              _c("b", [_vm._v("Aset yang tidak menghasilkan / total aset")]),
-            ]
-          ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c(
-            "div",
-            {
-              staticClass: "card card-body",
-              class: {
-                "bg-primary": _vm.itemData.r7_1 == _vm.itemData.harga_pasar,
-                "bg-danger": _vm.itemData.r7_1 != _vm.itemData.harga_pasar,
-              },
-              staticStyle: { cursor: "pointer" },
-              on: {
-                click: function ($event) {
-                  $event.preventDefault()
-                  return _vm.modalBuka(_vm.itemData, "r7")
-                },
-              },
-            },
-            [
-              _c("div", { staticClass: "media no-margin-top content-group" }, [
-                _c("div", { staticClass: "media-body" }, [
-                  _c("h6", { staticClass: "font-weight-semibold mb-8" }, [
-                    _vm._v(
-                      _vm._s(_vm._f("percentage")(_vm.itemData.r7_1, 2)) +
-                        " / " +
-                        _vm._s(_vm._f("percentage")(_vm.itemData.r7_2, 2))
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _vm.itemData.r7_1 == _vm.itemData.harga_pasar
-                    ? _c("span", { staticClass: "opacity-75" }, [
-                        _vm._v("\n\t\t\t\t\t\t\tIDEAL / \n\t\t\t\t\t\t"),
-                      ])
-                    : _c("span", [
-                        _vm._v("\n\t\t\t\t\t\t\tTIDAK IDEAL / \n\t\t\t\t\t\t"),
-                      ]),
-                  _vm._v(" "),
-                  _vm.itemData.r7_2 == _vm.itemData.harga_pasar
-                    ? _c("span", { staticClass: "opacity-75" }, [
-                        _vm._v("\n\t\t\t\t\t\t\tIDEAL  \n\t\t\t\t\t\t"),
-                      ])
-                    : _c("span", [
-                        _vm._v("\n\t\t\t\t\t\t\tTIDAK IDEAL \n\t\t\t\t\t\t"),
-                      ]),
-                ]),
-                _vm._v(" "),
-                _vm._m(18),
-              ]),
-              _vm._v(" "),
-              _vm._m(19),
-              _vm._v(" "),
-              _c("b", [_vm._v("BJS saham terhadap rata-rata aset")]),
-            ]
-          ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c(
-            "div",
-            {
-              staticClass: "card card-body",
-              class: {
-                "bg-primary": _vm.itemData.r9 <= 0.05,
-                "bg-danger": _vm.itemData.r9 > 0.05,
-              },
-              staticStyle: { cursor: "pointer" },
-              on: {
-                click: function ($event) {
-                  $event.preventDefault()
-                  return _vm.modalBuka(_vm.itemData, "r9")
-                },
-              },
-            },
-            [
-              _c("div", { staticClass: "media no-margin-top content-group" }, [
-                _c("div", { staticClass: "media-body" }, [
-                  _c("h6", { staticClass: "font-weight-semibold mb-8" }, [
-                    _vm._v(_vm._s(_vm._f("percentage")(_vm.itemData.r9, 2))),
-                  ]),
-                  _vm._v(" "),
-                  _vm.itemData.r9 <= 0.05
-                    ? _c("span", { staticClass: "opacity-75" }, [
-                        _vm._v("\n\t\t\t\t\t\t\tIDEAL\n\t\t\t\t\t\t"),
-                      ])
-                    : _c("span", [
-                        _vm._v("\n\t\t\t\t\t\t\tTIDAK IDEAL\n\t\t\t\t\t\t"),
-                      ]),
-                ]),
-                _vm._v(" "),
-                _vm._m(20),
-              ]),
-              _vm._v(" "),
-              _vm._m(21),
-              _vm._v(" "),
-              _c("b", [_vm._v("Biaya operasional terhadap rata-rata aset")]),
-            ]
-          ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c(
-            "div",
-            {
-              staticClass: "card card-body",
-              class: {
-                "bg-primary": _vm.itemData.l1 >= 0.15 && _vm.itemData.l1 <= 0.2,
-                "bg-danger": _vm.itemData.l1 < 0.15 || _vm.itemData.l1 > 0.2,
-              },
-              staticStyle: { cursor: "pointer" },
-              on: {
-                click: function ($event) {
-                  $event.preventDefault()
-                  return _vm.modalBuka(_vm.itemData, "l1")
-                },
-              },
-            },
-            [
-              _c("div", { staticClass: "media no-margin-top content-group" }, [
-                _c("div", { staticClass: "media-body" }, [
-                  _c("h6", { staticClass: "font-weight-semibold mb-8" }, [
-                    _vm._v(_vm._s(_vm._f("percentage")(_vm.itemData.l1, 2))),
-                  ]),
-                  _vm._v(" "),
-                  _vm.itemData.l1 >= 0.15 && _vm.itemData.l1 <= 0.2
-                    ? _c("span", { staticClass: "opacity-75" }, [
-                        _vm._v("\n\t\t\t\t\t\t\tIDEAL\n\t\t\t\t\t\t"),
-                      ])
-                    : _c("span", [
-                        _vm._v("\n\t\t\t\t\t\t\tTIDAK IDEAL\n\t\t\t\t\t\t"),
-                      ]),
-                ]),
-                _vm._v(" "),
-                _vm._m(22),
-              ]),
-              _vm._v(" "),
-              _vm._m(23),
-              _vm._v(" "),
-              _c("b", [
-                _vm._v(
-                  "(investasi likuid + aset-aset likuid - hutang jangka pendek < 30 hari) / simpanan non saham"
-                ),
-              ]),
-            ]
-          ),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c(
-            "div",
-            {
-              staticClass: "card card-body",
-              class: {
-                "bg-primary": _vm.itemData.l2 >= 0.15 && _vm.itemData.l2 <= 0.2,
-                "bg-danger": _vm.itemData.l2 < 0.15 || _vm.itemData.l2 > 0.2,
-              },
-              staticStyle: { cursor: "pointer" },
-              on: {
-                click: function ($event) {
-                  $event.preventDefault()
-                  return _vm.modalBuka(_vm.itemData, "l2")
-                },
-              },
-            },
-            [
-              _c("div", { staticClass: "media no-margin-top content-group" }, [
-                _c("div", { staticClass: "media-body" }, [
-                  _c("h6", { staticClass: "font-weight-semibold mb-8" }, [
-                    _vm._v(_vm._s(_vm._f("percentage")(_vm.itemData.l2, 2))),
-                  ]),
-                  _vm._v(" "),
-                  _vm.itemData.l2 >= 0.15 && _vm.itemData.l2 <= 0.2
-                    ? _c("span", { staticClass: "opacity-75" }, [
-                        _vm._v("\n\t\t\t\t\t\t\tIDEAL\n\t\t\t\t\t\t"),
-                      ])
-                    : _c("span", [
-                        _vm._v("\n\t\t\t\t\t\t\tTIDAK IDEAL\n\t\t\t\t\t\t"),
-                      ]),
-                ]),
-                _vm._v(" "),
-                _vm._m(24),
-              ]),
-              _vm._v(" "),
-              _vm._m(25),
-              _vm._v(" "),
-              _c("b", [
-                _vm._v(
-                  "(investasi likuid + aset-aset likuid - hutang jangka pendek < 30 hari) / total aset"
-                ),
-              ]),
-            ]
-          ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c(
-            "div",
-            {
-              staticClass: "card card-body",
-              class: {
-                "bg-primary": _vm.itemData.s10 > 0.12,
-                "bg-danger": _vm.itemData.s10 <= 0.12,
-              },
-              staticStyle: { cursor: "pointer" },
-              on: {
-                click: function ($event) {
-                  $event.preventDefault()
-                  return _vm.modalBuka(_vm.itemData, "s10")
-                },
-              },
-            },
-            [
-              _c("div", { staticClass: "media no-margin-top content-group" }, [
-                _c("div", { staticClass: "media-body" }, [
-                  _c("h6", { staticClass: "font-weight-semibold mb-8" }, [
-                    _vm._v(_vm._s(_vm._f("percentage")(_vm.itemData.s10, 2))),
-                  ]),
-                  _vm._v(" "),
-                  _vm.itemData.s10 >= 0.12
-                    ? _c("span", { staticClass: "opacity-75" }, [
-                        _vm._v("\n\t\t\t\t\t\t\tIDEAL\n\t\t\t\t\t\t"),
-                      ])
-                    : _c("span", [
-                        _vm._v("\n\t\t\t\t\t\t\tTIDAK IDEAL\n\t\t\t\t\t\t"),
-                      ]),
-                ]),
-                _vm._v(" "),
-                _vm._m(26),
-              ]),
-              _vm._v(" "),
-              _vm._m(27),
-              _vm._v(" "),
-              _c("b", [_vm._v("Pertumbuhan anggota")]),
-            ]
-          ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-3" }, [
-          _c(
-            "div",
-            {
-              staticClass: "card card-body",
-              class: {
-                "bg-primary":
-                  _vm.itemData.s11 > 0.1 + _vm.itemData.laju_inflasi,
-                "bg-danger":
-                  _vm.itemData.s11 <= 0.1 + _vm.itemData.laju_inflasi,
-              },
-              staticStyle: { cursor: "pointer" },
-              on: {
-                click: function ($event) {
-                  $event.preventDefault()
-                  return _vm.modalBuka(_vm.itemData, "s11")
-                },
-              },
-            },
-            [
-              _c("div", { staticClass: "media no-margin-top content-group" }, [
-                _c("div", { staticClass: "media-body" }, [
-                  _c("h6", { staticClass: "font-weight-semibold mb-8" }, [
-                    _vm._v(_vm._s(_vm._f("percentage")(_vm.itemData.s11, 2))),
-                  ]),
-                  _vm._v(" "),
-                  _vm.itemData.s11 > 0.1 + _vm.itemData.laju_inflasi
-                    ? _c("span", { staticClass: "opacity-75" }, [
-                        _vm._v("\n\t\t\t\t\t\t\tIDEAL\n\t\t\t\t\t\t"),
-                      ])
-                    : _c("span", [
-                        _vm._v("\n\t\t\t\t\t\t\tTIDAK IDEAL\n\t\t\t\t\t\t"),
-                      ]),
-                ]),
-                _vm._v(" "),
-                _vm._m(28),
-              ]),
-              _vm._v(" "),
-              _vm._m(29),
-              _vm._v(" "),
-              _c("b", [_vm._v("Pertumbuhan aset")]),
-            ]
-          ),
-        ]),
-      ]),
       _vm._v(" "),
       _c(
-        "app-modal",
-        {
-          attrs: {
-            show: _vm.modalShow,
-            state: _vm.modalState,
-            title: _vm.modalTitle,
-            size: _vm.modalSize,
-            color: _vm.modalColor,
-            button: _vm.modalButton,
-          },
-          on: {
-            tutup: _vm.modalTutup,
-            successOk: _vm.modalTutup,
-            failOk: _vm.modalTutup,
-            backgroundClick: _vm.modalTutup,
-          },
-        },
+        "transition",
+        { attrs: { "enter-active-class": "animated fadeIn", mode: "out-in" } },
         [
-          _c("template", { slot: "modal-title" }, [
-            _vm._v(_vm._s(_vm.modalTitle)),
-          ]),
-          _vm._v(" "),
-          _c(
-            "template",
-            { slot: "modal-body1" },
-            [
-              _c("form-katex", {
-                attrs: { kelas: _vm.kelas, modalKatex: _vm.modalKatex },
-                on: { tutup: _vm.modalTutup },
-              }),
-            ],
-            1
-          ),
-        ],
-        2
-      ),
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-light btn-icon rounded-round",
-          attrs: { type: "button" },
-        },
-        [_c("b", [_vm._v("P1")])]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "progress bg-blue mb-2",
-        staticStyle: { height: "0.125rem" },
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "progress-bar bg-white",
-            staticStyle: { width: "100%" },
-          },
-          [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-        ),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-light btn-icon rounded-round",
-          attrs: { type: "button" },
-        },
-        [_c("b", [_vm._v("P2")])]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "progress bg-blue mb-2",
-        staticStyle: { height: "0.125rem" },
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "progress-bar bg-white",
-            staticStyle: { width: "100%" },
-          },
-          [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-        ),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-light btn-icon rounded-round",
-          attrs: { type: "button" },
-        },
-        [_c("b", [_vm._v("E1")])]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "progress bg-blue mb-2",
-        staticStyle: { height: "0.125rem" },
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "progress-bar bg-white",
-            staticStyle: { width: "100%" },
-          },
-          [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-        ),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-light btn-icon rounded-round",
-          attrs: { type: "button" },
-        },
-        [_c("b", [_vm._v("E5")])]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "progress bg-blue mb-2",
-        staticStyle: { height: "0.125rem" },
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "progress-bar bg-white",
-            staticStyle: { width: "100%" },
-          },
-          [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-        ),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-light btn-icon rounded-round",
-          attrs: { type: "button" },
-        },
-        [_c("b", [_vm._v("E6")])]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "progress bg-blue mb-2",
-        staticStyle: { height: "0.125rem" },
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "progress-bar bg-white",
-            staticStyle: { width: "100%" },
-          },
-          [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-        ),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-light btn-icon rounded-round",
-          attrs: { type: "button" },
-        },
-        [_c("b", [_vm._v("E7")])]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "progress bg-blue mb-2",
-        staticStyle: { height: "0.125rem" },
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "progress-bar bg-white",
-            staticStyle: { width: "100%" },
-          },
-          [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-        ),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-light btn-icon rounded-round",
-          attrs: { type: "button" },
-        },
-        [_c("b", [_vm._v("E9")])]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "progress bg-blue mb-2",
-        staticStyle: { height: "0.125rem" },
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "progress-bar bg-white",
-            staticStyle: { width: "100%" },
-          },
-          [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-        ),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-light btn-icon rounded-round",
-          attrs: { type: "button" },
-        },
-        [_c("b", [_vm._v("A1")])]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "progress bg-blue mb-2",
-        staticStyle: { height: "0.125rem" },
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "progress-bar bg-white",
-            staticStyle: { width: "100%" },
-          },
-          [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-        ),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-light btn-icon rounded-round",
-          attrs: { type: "button" },
-        },
-        [_c("b", [_vm._v("A2")])]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "progress bg-blue mb-2",
-        staticStyle: { height: "0.125rem" },
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "progress-bar bg-white",
-            staticStyle: { width: "100%" },
-          },
-          [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-        ),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-light btn-icon rounded-round",
-          attrs: { type: "button" },
-        },
-        [_c("b", [_vm._v("R7")])]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "progress bg-blue mb-2",
-        staticStyle: { height: "0.125rem" },
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "progress-bar bg-white",
-            staticStyle: { width: "100%" },
-          },
-          [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-        ),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-light btn-icon rounded-round",
-          attrs: { type: "button" },
-        },
-        [_c("b", [_vm._v("R9")])]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "progress bg-blue mb-2",
-        staticStyle: { height: "0.125rem" },
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "progress-bar bg-white",
-            staticStyle: { width: "100%" },
-          },
-          [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-        ),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-light btn-icon rounded-round",
-          attrs: { type: "button" },
-        },
-        [_c("b", [_vm._v("L1")])]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "progress bg-blue mb-2",
-        staticStyle: { height: "0.125rem" },
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "progress-bar bg-white",
-            staticStyle: { width: "100%" },
-          },
-          [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-        ),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-light btn-icon rounded-round",
-          attrs: { type: "button" },
-        },
-        [_c("b", [_vm._v("L2")])]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "progress bg-blue mb-2",
-        staticStyle: { height: "0.125rem" },
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "progress-bar bg-white",
-            staticStyle: { width: "100%" },
-          },
-          [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-        ),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-light btn-icon rounded-round",
-          attrs: { type: "button" },
-        },
-        [_c("b", [_vm._v("S10")])]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "progress bg-blue mb-2",
-        staticStyle: { height: "0.125rem" },
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "progress-bar bg-white",
-            staticStyle: { width: "100%" },
-          },
-          [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-        ),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ml-3 align-self-center" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-light btn-icon rounded-round",
-          attrs: { type: "button" },
-        },
-        [_c("b", [_vm._v("S11")])]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "progress bg-blue mb-2",
-        staticStyle: { height: "0.125rem" },
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "progress-bar bg-white",
-            staticStyle: { width: "100%" },
-          },
-          [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-        ),
-      ]
-    )
-  },
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/diskusi.vue?vue&type=template&id=c66cba4e&":
-/*!**********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/laporanCu/diskusi.vue?vue&type=template&id=c66cba4e& ***!
-  \**********************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm.itemDataStat == "success"
-        ? _c("div", [
-            _vm.itemData.length > 0
-              ? _c(
-                  "div",
-                  _vm._l(_vm.itemData, function (diskusi, index) {
-                    return _c(
-                      "div",
-                      {
-                        staticClass:
-                          "card card-body border-left-primary rounded-left-0",
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "card-header bg-white header-elements-inline",
-                          },
-                          [
-                            _c("h6", { staticClass: "card-title" }, [
-                              _c("b", [_vm._v(_vm._s(diskusi.user.name))]),
-                              _vm._v(" "),
-                              _c("span", { staticClass: "text-muted" }, [
-                                _c("i", { staticClass: "icon-primitive-dot" }),
-                                _vm._v(" "),
-                                _c("small", {
-                                  domProps: {
-                                    innerHTML: _vm._s(
-                                      _vm.$options.filters.dateTime(
-                                        diskusi.created_at
-                                      )
-                                    ),
-                                  },
-                                }),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "header-elements" }, [
-                              _c("div", { staticClass: "list-icons" }, [
-                                diskusi.id_user == _vm.currentUser.id
-                                  ? _c(
-                                      "a",
-                                      {
-                                        staticClass: "list-icons-item",
-                                        attrs: {
-                                          href: "#",
-                                          "data-popup": "tooltip",
-                                          "data-container": "body",
-                                          title: "Ubah",
-                                        },
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.modalUbah(diskusi)
-                                          },
-                                        },
-                                      },
-                                      [_c("i", { staticClass: "icon-pencil5" })]
-                                    )
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                diskusi.id_user == _vm.currentUser.id
-                                  ? _c(
-                                      "a",
-                                      {
-                                        staticClass: "list-icons-item",
-                                        attrs: {
-                                          href: "#",
-                                          "data-popup": "tooltip",
-                                          "data-container": "body",
-                                          title: "Hapus",
-                                        },
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.modalHapus(diskusi)
-                                          },
-                                        },
-                                      },
-                                      [_c("i", { staticClass: "icon-bin2" })]
-                                    )
-                                  : _vm._e(),
-                              ]),
-                            ]),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "media card-body no-margin" },
-                          [
-                            _c("div", { staticClass: "mr-3" }, [
-                              diskusi.user.gambar
-                                ? _c("img", {
-                                    staticClass: "rounded-circle",
-                                    attrs: {
-                                      src:
-                                        "/images/user/" +
-                                        diskusi.user.gambar +
-                                        ".jpg",
-                                      width: "42",
-                                      height: "42",
-                                      alt: "user image",
-                                    },
-                                  })
-                                : _c("img", {
-                                    staticClass: "rounded-circle",
-                                    attrs: {
-                                      src: "/images/no_image_man.jpg",
-                                      width: "42",
-                                      height: "42",
-                                      alt: "user image",
-                                    },
-                                  }),
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "media-body" }, [
-                              _c("p", {
-                                domProps: {
-                                  innerHTML: _vm._s(diskusi.content),
-                                },
-                              }),
-                            ]),
-                          ]
-                        ),
-                      ]
-                    )
-                  }),
-                  0
-                )
-              : _c("div", [_vm._m(0)]),
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.itemDataStat == "loading" ? _c("div", [_vm._m(1)]) : _vm._e(),
-      _vm._v(" "),
-      _c("div", { staticClass: "card" }, [
-        _c(
-          "div",
-          { staticClass: "card-body" },
-          [
-            _c("h5", { staticClass: "text-semibold" }, [
-              _vm._v(
-                "Silahkan masukkan komentar anda terhadap laporan keuangan ini"
-              ),
-            ]),
-            _vm._v(" "),
-            _c("ckeditor", {
-              attrs: { type: "classic", config: _vm.ckeditorNoImageConfig },
-              model: {
-                value: _vm.form.content,
-                callback: function ($$v) {
-                  _vm.$set(_vm.form, "content", $$v)
-                },
-                expression: "form.content",
-              },
-            }),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                directives: [
-                  {
-                    name: "tooltip",
-                    rawName: "v-tooltip:top",
-                    value: "Kirim komentar",
-                    expression: "'Kirim komentar'",
-                    arg: "top",
-                  },
-                ],
-                staticClass: "btn btn-primary btn-block",
-                attrs: { type: "submit" },
-                on: {
-                  click: function ($event) {
-                    $event.preventDefault()
-                    return _vm.save("create")
-                  },
-                },
-              },
-              [
-                _c("i", { staticClass: "icon-paperplane" }),
-                _vm._v(" Kirim\n\t\t\t"),
-              ]
-            ),
-          ],
-          1
-        ),
-      ]),
-      _vm._v(" "),
-      _c(
-        "app-modal",
-        {
-          attrs: {
-            show: _vm.modalShow,
-            state: _vm.modalState,
-            title: _vm.modalTitle,
-            size: _vm.modalSize,
-            color: _vm.modalColor,
-            button: _vm.modalButton,
-            content: _vm.modalContent,
-          },
-          on: {
-            confirmOk: _vm.modalConfirmOk,
-            tutup: _vm.modalTutup,
-            successOk: _vm.modalTutup,
-            failOk: _vm.modalTutup,
-            backgroundClick: _vm.modalTutup,
-          },
-        },
-        [
-          _c("template", { slot: "modal-title" }, [
-            _vm._v(_vm._s(_vm.modalTitle)),
-          ]),
-          _vm._v(" "),
-          _c(
-            "template",
-            { slot: "modal-body1" },
-            [
-              _c("h5", { staticClass: "text-semibold" }, [
-                _vm._v("Komentar terhadap laporan keuangan ini"),
-              ]),
-              _vm._v(" "),
-              _c("ckeditor", {
-                attrs: { type: "classic", config: _vm.ckeditorNoImageConfig },
-                model: {
-                  value: _vm.formEdit.content,
-                  callback: function ($$v) {
-                    _vm.$set(_vm.formEdit, "content", $$v)
-                  },
-                  expression: "formEdit.content",
-                },
-              }),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _c("div", { staticClass: "d-none d-sm-block text-center" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-light",
-                    attrs: { type: "button" },
-                    on: {
-                      click: function ($event) {
-                        $event.preventDefault()
-                        return _vm.modalTutup.apply(null, arguments)
-                      },
-                    },
-                  },
-                  [
-                    _c("i", { staticClass: "icon-cross" }),
-                    _vm._v(" Tutup\n\t\t\t\t"),
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    attrs: { type: "button" },
-                    on: {
-                      click: function ($event) {
-                        $event.preventDefault()
-                        return _vm.save("edit")
-                      },
-                    },
-                  },
-                  [
-                    _c("i", { staticClass: "icon-paperplane" }),
-                    _vm._v(" Kirim\n\t\t\t\t"),
-                  ]
-                ),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "d-block d-sm-none" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary btn-block",
-                    attrs: { type: "button" },
-                    on: {
-                      click: function ($event) {
-                        $event.preventDefault()
-                        return _vm.save("edit")
-                      },
-                    },
-                  },
-                  [
-                    _c("i", { staticClass: "icon-paperplane" }),
-                    _vm._v(" Kirim\n\t\t\t\t"),
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-light btn-block",
-                    attrs: { type: "button" },
-                    on: {
-                      click: function ($event) {
-                        $event.preventDefault()
-                        return _vm.modalTutup.apply(null, arguments)
-                      },
-                    },
-                  },
-                  [
-                    _c("i", { staticClass: "icon-cross" }),
-                    _vm._v(" Tutup\n\t\t\t\t"),
-                  ]
-                ),
-              ]),
-            ],
-            1
-          ),
-        ],
-        2
-      ),
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "panel panel-white" }, [
-      _c("div", { staticClass: "panel-body" }, [
-        _c("h3", [_vm._v("Belum terdapat diskusi apapun...")]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-body" }, [
-        _c("h4", [_vm._v("Mohon tunggu...")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "progress" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
-              staticStyle: { width: "100%" },
-            },
-            [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-          ),
-        ]),
-      ]),
-    ])
-  },
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/revisi.vue?vue&type=template&id=d0913a7e&":
-/*!*********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/laporanCu/revisi.vue?vue&type=template&id=d0913a7e& ***!
-  \*********************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm.itemDataStat == "success"
-        ? _c("div", [
-            _vm.itemData.length > 0
-              ? _c(
-                  "div",
-                  _vm._l(_vm.revisi, function (revisi, index) {
-                    return _c(
-                      "div",
-                      {
-                        key: index,
-                        staticClass: "card border-left-primary rounded-left-0",
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "card-header bg-white header-elements-sm-inline",
-                          },
-                          [
-                            _c("h6", { staticClass: "card-title" }, [
-                              _vm._v("\n\t\t\t\t\t\t \n\t\t\t\t\t"),
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "header-elements" }, [
-                              _c("ul", { staticClass: "list-inline mb-0" }, [
-                                _c("li", { staticClass: "list-inline-item" }, [
-                                  _c("i", { staticClass: "icon-calendar2" }),
-                                  _vm._v(" "),
-                                  _c("span", {
-                                    domProps: {
-                                      innerHTML: _vm._s(
-                                        _vm.$options.filters.date(index)
-                                      ),
-                                    },
-                                  }),
-                                ]),
-                                _vm._v(" "),
-                                _c("li", { staticClass: "list-inline-item" }, [
-                                  _c("i"),
-                                  _c("i", { staticClass: "icon-alarm" }),
-                                  _vm._v(" "),
-                                  _c("span", {
-                                    domProps: {
-                                      innerHTML: _vm._s(
-                                        _vm.$options.filters.time(index)
-                                      ),
-                                    },
-                                  }),
-                                ]),
-                              ]),
-                            ]),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "card-body" },
-                          _vm._l(revisi, function (rev, index) {
-                            return _c(
-                              "div",
-                              { key: index, staticClass: "card card-body" },
-                              [
-                                _c("div", { staticClass: "media" }, [
-                                  _c(
-                                    "div",
-                                    { staticClass: "mr-3 position-relative" },
-                                    [
-                                      rev.user.gambar
-                                        ? _c("img", {
-                                            staticClass: "rounded-circle",
-                                            attrs: {
-                                              src:
-                                                "/images/user/" +
-                                                rev.user.gambar +
-                                                ".jpg",
-                                              width: "36",
-                                              height: "36",
-                                              alt: "user image",
-                                            },
-                                          })
-                                        : _c("img", {
-                                            staticClass: "rounded-circle",
-                                            attrs: {
-                                              src: "/images/no_image_man.jpg",
-                                              width: "36",
-                                              height: "36",
-                                              alt: "user image",
-                                            },
-                                          }),
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "media-body" }, [
-                                    _c("div", { staticClass: "media-title" }, [
-                                      _c("a", { attrs: { href: "#" } }, [
-                                        _c(
-                                          "span",
-                                          {
-                                            staticClass: "font-weight-semibold",
-                                          },
-                                          [_vm._v(_vm._s(rev.user.username))]
-                                        ),
-                                      ]),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("span", [
-                                      _vm._v("Telah mengubah nilai pada akun "),
-                                      _c("mark", [
-                                        _vm._v(
-                                          _vm._s(_vm.revisionField[rev.key])
-                                        ),
-                                      ]),
-                                      _vm._v(" dari "),
-                                      _c(
-                                        "mark",
-                                        [
-                                          _c("check-value", {
-                                            attrs: {
-                                              value: rev.old_value,
-                                              valueType: "currency",
-                                            },
-                                          }),
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" menjadi "),
-                                      _c(
-                                        "mark",
-                                        [
-                                          _c("check-value", {
-                                            attrs: {
-                                              value: rev.new_value,
-                                              valueType: "currency",
-                                            },
-                                          }),
-                                        ],
-                                        1
-                                      ),
-                                    ]),
-                                  ]),
-                                ]),
-                              ]
-                            )
-                          }),
-                          0
-                        ),
-                      ]
-                    )
-                  }),
-                  0
-                )
-              : _c("div", [_vm._m(0)]),
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.itemDataStat == "loading" ? _c("div", [_vm._m(1)]) : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "app-modal",
-        {
-          attrs: {
-            show: _vm.modalShow,
-            state: _vm.modalState,
-            title: _vm.modalTitle,
-            size: _vm.modalSize,
-            color: _vm.modalColor,
-            button: _vm.modalButton,
-            content: _vm.modalContent,
-          },
-          on: {
-            confirmOk: _vm.modalConfirmOk,
-            tutup: _vm.modalTutup,
-            successOk: _vm.modalTutup,
-            failOk: _vm.modalTutup,
-            backgroundClick: _vm.modalTutup,
-          },
-        },
-        [
-          _c("template", { slot: "modal-title" }, [
-            _vm._v(_vm._s(_vm.modalTitle)),
-          ]),
-          _vm._v(" "),
-          _c("template", { slot: "modal-body1" }),
-        ],
-        2
-      ),
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-body" }, [
-        _c("h3", [_vm._v("Belum terdapat revisi apapun...")]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-body" }, [
-        _c("h4", [_vm._v("Mohon tunggu...")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "progress" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
-              staticStyle: { width: "100%" },
-            },
-            [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-          ),
-        ]),
-      ]),
-    ])
-  },
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/selectDetail.vue?vue&type=template&id=cc65001c&":
-/*!***************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/laporanCu/selectDetail.vue?vue&type=template&id=cc65001c& ***!
-  \***************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "card d-print-none" }, [
-      _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "row" }, [
-          this.currentUser.id_cu === 0
-            ? _c("div", { staticClass: "col-sm-5" }, [
-                _c("div", { staticClass: "input-group" }, [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.idCu,
-                          expression: "idCu",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        name: "idCu",
-                        "data-width": "100%",
-                        disabled: _vm.modelCUStat === "loading",
-                      },
-                      on: {
-                        change: [
-                          function ($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function (o) {
-                                return o.selected
-                              })
-                              .map(function (o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.idCu = $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          },
-                          function ($event) {
-                            return _vm.changeCu($event.target.value)
-                          },
-                        ],
-                      },
-                    },
-                    [
-                      _c("option", { attrs: { disabled: "", value: "" } }, [
-                        _vm._v("Silahkan pilih data"),
-                      ]),
-                      _vm._v(" "),
-                      _vm._t("default"),
-                      _vm._v(" "),
-                      _vm._l(_vm.modelCU, function (cu) {
-                        return cu
-                          ? _c("option", { domProps: { value: cu.id } }, [
-                              _vm._v(_vm._s(cu.name)),
-                            ])
-                          : _vm._e()
-                      }),
-                    ],
-                    2
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "input-group-append" }, [
-                    _c(
-                      "button",
-                      {
-                        directives: [
-                          {
-                            name: "tooltip",
-                            rawName: "v-tooltip:top",
-                            value: "Reload",
-                            expression: "'Reload'",
-                            arg: "top",
-                          },
-                        ],
-                        staticClass: "btn btn-light",
-                        attrs: { disabled: _vm.modelCUStat === "loading" },
-                        on: { click: _vm.fetchCU },
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "icon-sync",
-                          class: { spinner: _vm.modelCUStat === "loading" },
-                        }),
-                      ]
-                    ),
-                  ]),
-                ]),
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-5" }, [
-            _c("div", { staticClass: "input-group" }, [
-              _vm._m(1),
-              _vm._v(" "),
-              _c(
-                "select",
+          _vm.isMulai
+            ? _c(
+                "div",
                 {
                   directives: [
                     {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.periode,
-                      expression: "periode",
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.tabName == "mulai",
+                      expression: "tabName == 'mulai'",
                     },
                   ],
-                  staticClass: "form-control",
-                  attrs: {
-                    name: "periode",
-                    "data-width": "100%",
-                    disabled: _vm.modelPeriodeStat === "loading",
-                  },
-                  on: {
-                    change: [
-                      function ($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function (o) {
-                            return o.selected
-                          })
-                          .map(function (o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.periode = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      },
-                      function ($event) {
-                        return _vm.changePeriode($event.target.value)
-                      },
-                    ],
-                  },
                 },
                 [
-                  _c("option", { attrs: { disabled: "", value: "" } }, [
-                    _vm._v("Silahkan pilih periode laporan"),
+                  _c("div", { staticClass: "table-responsive" }, [
+                    _c(
+                      "table",
+                      { staticClass: "table table-striped  table-hover" },
+                      [
+                        _c("thead", [
+                          _c("tr", { staticClass: "text-nowarp" }, [
+                            _c("th", [_vm._v("Status")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Kode")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Nama")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Kabupaten/Kota")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Tempat")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Tgl. Mulai")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Sasaran")]),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _vm.itemMulaiStat === "success"
+                          ? _c(
+                              "tbody",
+                              [
+                                _vm._l(_vm.itemMulai, function (item, index) {
+                                  return _c(
+                                    "tr",
+                                    {
+                                      key: index,
+                                      staticClass:
+                                        "text-nowrap  cursor-pointer",
+                                      class: {
+                                        "bg-info":
+                                          _vm.selectedItemMulai.id === item.id,
+                                      },
+                                      on: {
+                                        click: function ($event) {
+                                          return _vm.detail(item.id)
+                                        },
+                                      },
+                                    },
+                                    [
+                                      _c("td", [
+                                        item.status == "6"
+                                          ? _c("span", {
+                                              staticStyle: {
+                                                cursor: "pointer",
+                                              },
+                                              domProps: {
+                                                innerHTML: _vm._s(
+                                                  _vm.$options.filters.statusDiklat(
+                                                    item.status
+                                                  )
+                                                ),
+                                              },
+                                              on: {
+                                                click: function ($event) {
+                                                  $event.preventDefault()
+                                                  return _vm.modalKeteranganBatalOpen(
+                                                    item.keteranganBatal
+                                                  )
+                                                },
+                                              },
+                                            })
+                                          : _c("span", {
+                                              domProps: {
+                                                innerHTML: _vm._s(
+                                                  _vm.$options.filters.statusDiklat(
+                                                    item.status
+                                                  )
+                                                ),
+                                              },
+                                            }),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        [
+                                          _c("check-value", {
+                                            attrs: { value: item.kode_diklat },
+                                          }),
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        [
+                                          _c("check-value", {
+                                            attrs: { value: item.name },
+                                          }),
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        [
+                                          item.regencies
+                                            ? _c("check-value", {
+                                                attrs: {
+                                                  value: item.regencies.name,
+                                                },
+                                              })
+                                            : _c("span", [_vm._v("-")]),
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        [
+                                          item.tempat
+                                            ? _c("check-value", {
+                                                attrs: {
+                                                  value: item.tempat.name,
+                                                },
+                                              })
+                                            : item.tipe_tempat == "ONLINE"
+                                            ? _c("span", [
+                                                _vm._v("DILAKSANAKAN ONLINE"),
+                                              ])
+                                            : _c("span", [
+                                                _vm._v(
+                                                  "Belum ditentukan tempat"
+                                                ),
+                                              ]),
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c("td", {
+                                        domProps: {
+                                          innerHTML: _vm._s(
+                                            _vm.$options.filters.date(
+                                              item.mulai
+                                            )
+                                          ),
+                                        },
+                                      }),
+                                      _vm._v(" "),
+                                      _c("td", { staticClass: "text-warp" }, [
+                                        item.sasaran
+                                          ? _c(
+                                              "span",
+                                              _vm._l(
+                                                item.sasaran,
+                                                function (sasaran, index) {
+                                                  return _c(
+                                                    "label",
+                                                    {
+                                                      key: index,
+                                                      staticClass:
+                                                        "badge badge-primary ml-1",
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "\n\t\t\t\t\t\t\t\t\t\t\t" +
+                                                          _vm._s(sasaran.name) +
+                                                          "\n\t\t\t\t\t\t\t\t\t\t"
+                                                      ),
+                                                    ]
+                                                  )
+                                                }
+                                              ),
+                                              0
+                                            )
+                                          : _vm._e(),
+                                      ]),
+                                    ]
+                                  )
+                                }),
+                                _vm._v(" "),
+                                _vm.itemMulai.length == 0
+                                  ? _c("tr", [
+                                      _c("td", { attrs: { colspan: 7 } }, [
+                                        _vm._v("Tidak terdapat data diklat"),
+                                      ]),
+                                    ])
+                                  : _vm._e(),
+                              ],
+                              2
+                            )
+                          : _vm.itemMulaiStat === "loading"
+                          ? _c("tbody", [
+                              _c("tr", [
+                                _c("td", { attrs: { colspan: 7 } }, [
+                                  _c("div", { staticClass: "progress" }, [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+                                        staticStyle: { width: "100%" },
+                                      },
+                                      [
+                                        _c("span", { staticClass: "sr-only" }, [
+                                          _vm._v("100% Complete"),
+                                        ]),
+                                      ]
+                                    ),
+                                  ]),
+                                ]),
+                              ]),
+                            ])
+                          : _vm._e(),
+                      ]
+                    ),
                   ]),
-                  _vm._v(" "),
-                  _vm._t("default"),
-                  _vm._v(" "),
-                  _vm._l(_vm.modelPeriode, function (periode) {
-                    return periode
-                      ? _c("option", { domProps: { value: periode.periode } }, [
-                          _vm._v(_vm._s(_vm._f("dateMonth")(periode.periode))),
-                        ])
-                      : _vm._e()
-                  }),
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "input-group-append" }, [
-                _c(
-                  "button",
-                  {
-                    directives: [
-                      {
-                        name: "tooltip",
-                        rawName: "v-tooltip:top",
-                        value: "Reload",
-                        expression: "'Reload'",
-                        arg: "top",
-                      },
-                    ],
-                    staticClass: "btn btn-light",
-                    attrs: { disabled: _vm.modelPeriodeStat === "loading" },
-                    on: {
-                      click: function ($event) {
-                        return _vm.fetchPeriode(_vm.idCu)
-                      },
+                ]
+              )
+            : _vm._e(),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "transition",
+        { attrs: { "enter-active-class": "animated fadeIn", mode: "out-in" } },
+        [
+          _vm.isBuka
+            ? _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.tabName == "buka",
+                      expression: "tabName == 'buka'",
                     },
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "icon-sync",
-                      class: { spinner: _vm.modelPeriodeStat === "loading" },
-                    }),
-                  ]
-                ),
-              ]),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              class: {
-                "col-sm-5": this.currentUser.id_cu != 0,
-                "col-sm-10 pt-2": this.currentUser.id_cu == 0,
-              },
-            },
-            [
-              _c("div", { staticClass: "input-group" }, [
-                _vm._m(2),
-                _vm._v(" "),
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.idTp,
-                        expression: "idTp",
-                      },
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      name: "idTp",
-                      "data-width": "100%",
-                      disabled: _vm.modelTpStat === "loading",
-                    },
-                    on: {
-                      change: function ($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function (o) {
-                            return o.selected
-                          })
-                          .map(function (o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.idTp = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      },
-                    },
-                  },
-                  [
-                    _c("option", { attrs: { disabled: "", value: "" } }, [
-                      _vm._v("Silahkan pilih TP/KP"),
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "konsolidasi" } }, [
-                      _vm._v("Konsolidasi"),
-                    ]),
-                    _vm._v(" "),
-                    _vm.modelTp && _vm.modelTp.length != 0
-                      ? _c("option", { attrs: { disabled: "" } }, [
-                          _vm._v("----------------"),
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm._l(_vm.modelTp, function (tp) {
-                      return tp.tp
-                        ? _c("option", { domProps: { value: tp.id } }, [
-                            _vm._v(_vm._s(tp.tp.name)),
-                          ])
-                        : _vm._e()
-                    }),
                   ],
-                  2
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group-append" }, [
-                  _c(
-                    "button",
+                },
+                [
+                  _c("div", { staticClass: "table-responsive" }, [
+                    _c(
+                      "table",
+                      { staticClass: "table table-striped  table-hover" },
+                      [
+                        _c("thead", [
+                          _c("tr", { staticClass: "text-nowarp" }, [
+                            _c("th", [_vm._v("Kode")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Nama")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Kabupaten/Kota")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Tempat")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Tgl. Mulai")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Sasaran")]),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _vm.itemBukaStat === "success"
+                          ? _c(
+                              "tbody",
+                              [
+                                _vm._l(_vm.itemBuka, function (item, index) {
+                                  return _c(
+                                    "tr",
+                                    {
+                                      key: index,
+                                      staticClass:
+                                        "text-nowrap  cursor-pointer",
+                                      class: {
+                                        "bg-info":
+                                          _vm.selectedItemBuka.id === item.id,
+                                      },
+                                      on: {
+                                        click: function ($event) {
+                                          return _vm.detail(item.id)
+                                        },
+                                      },
+                                    },
+                                    [
+                                      _c(
+                                        "td",
+                                        [
+                                          _c("check-value", {
+                                            attrs: { value: item.kode_diklat },
+                                          }),
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        [
+                                          _c("check-value", {
+                                            attrs: { value: item.name },
+                                          }),
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        [
+                                          item.regencies
+                                            ? _c("check-value", {
+                                                attrs: {
+                                                  value: item.regencies.name,
+                                                },
+                                              })
+                                            : _c("span", [_vm._v("-")]),
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        [
+                                          item.tempat
+                                            ? _c("check-value", {
+                                                attrs: {
+                                                  value: item.tempat.name,
+                                                },
+                                              })
+                                            : item.tipe_tempat == "ONLINE"
+                                            ? _c("span", [
+                                                _vm._v("DILAKSANAKAN ONLINE"),
+                                              ])
+                                            : _c("span", [
+                                                _vm._v(
+                                                  "Belum ditentukan tempat"
+                                                ),
+                                              ]),
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c("td", {
+                                        domProps: {
+                                          innerHTML: _vm._s(
+                                            _vm.$options.filters.date(
+                                              item.mulai
+                                            )
+                                          ),
+                                        },
+                                      }),
+                                      _vm._v(" "),
+                                      _c("td", { staticClass: "text-warp" }, [
+                                        item.sasaran
+                                          ? _c(
+                                              "span",
+                                              _vm._l(
+                                                item.sasaran,
+                                                function (sasaran, index) {
+                                                  return _c(
+                                                    "label",
+                                                    {
+                                                      key: index,
+                                                      staticClass:
+                                                        "badge badge-primary ml-1",
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        "\n\t\t\t\t\t\t\t\t\t\t\t" +
+                                                          _vm._s(sasaran.name) +
+                                                          "\n\t\t\t\t\t\t\t\t\t\t"
+                                                      ),
+                                                    ]
+                                                  )
+                                                }
+                                              ),
+                                              0
+                                            )
+                                          : _vm._e(),
+                                      ]),
+                                    ]
+                                  )
+                                }),
+                                _vm._v(" "),
+                                _vm.itemBuka.length == 0
+                                  ? _c("tr", [
+                                      _c("td", { attrs: { colspan: 6 } }, [
+                                        _vm._v("Tidak terdapat data diklat"),
+                                      ]),
+                                    ])
+                                  : _vm._e(),
+                              ],
+                              2
+                            )
+                          : _vm.itemBukaStat === "loading"
+                          ? _c("tbody", [
+                              _c("tr", [
+                                _c("td", { attrs: { colspan: 6 } }, [
+                                  _c("div", { staticClass: "progress" }, [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+                                        staticStyle: { width: "100%" },
+                                      },
+                                      [
+                                        _c("span", { staticClass: "sr-only" }, [
+                                          _vm._v("100% Complete"),
+                                        ]),
+                                      ]
+                                    ),
+                                  ]),
+                                ]),
+                              ]),
+                            ])
+                          : _vm._e(),
+                      ]
+                    ),
+                  ]),
+                ]
+              )
+            : _vm._e(),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "transition",
+        { attrs: { "enter-active-class": "animated fadeIn", mode: "out-in" } },
+        [
+          _vm.isJalan
+            ? _c(
+                "div",
+                {
+                  directives: [
                     {
-                      directives: [
-                        {
-                          name: "tooltip",
-                          rawName: "v-tooltip:top",
-                          value: "Reload",
-                          expression: "'Reload'",
-                          arg: "top",
-                        },
-                      ],
-                      staticClass: "btn btn-light",
-                      attrs: { disabled: _vm.modelPeriodeStat === "loading" },
-                      on: {
-                        click: function ($event) {
-                          return _vm.fetchTp(_vm.idCu, _vm.periode)
-                        },
-                      },
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.tabName == "jalan",
+                      expression: "tabName == 'jalan'",
                     },
-                    [
-                      _c("i", {
-                        staticClass: "icon-sync",
-                        class: { spinner: _vm.modelCUStat === "loading" },
-                      }),
-                    ]
-                  ),
-                ]),
-              ]),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "col-sm-2",
-              class: { "pt-2": this.currentUser.id_cu == 0 },
-            },
-            [
-              _vm.itemDataStat != "loading"
-                ? _c(
-                    "button",
-                    {
-                      directives: [
-                        {
-                          name: "tooltip",
-                          rawName: "v-tooltip:top",
-                          value: "Tampilkan data sesuai pilihan",
-                          expression: "'Tampilkan data sesuai pilihan'",
-                          arg: "top",
-                        },
-                      ],
-                      staticClass: "btn btn-light btn-icon btn-block",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function ($event) {
-                          $event.preventDefault()
-                          return _vm.fetch()
-                        },
-                      },
-                    },
-                    [
-                      _c("i", { staticClass: "icon-folder-open3" }),
-                      _vm._v("  Tampilkan\n\t\t\t\t\t"),
-                    ]
-                  )
-                : _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-light btn-icon btn-block",
-                      attrs: { type: "button" },
-                    },
-                    [_c("i", { staticClass: "icon-sync spinner" })]
-                  ),
-            ]
-          ),
-        ]),
-      ]),
-    ]),
-  ])
+                  ],
+                },
+                [
+                  _c("div", { staticClass: "table-responsive" }, [
+                    _c(
+                      "table",
+                      { staticClass: "table table-striped  table-hover" },
+                      [
+                        _c("thead", [
+                          _c("tr", { staticClass: "text-nowarp" }, [
+                            _c("th", [_vm._v("Kode")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Nama")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Kabupaten/Kota")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Tempat")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Tgl. Mulai")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Sasaran")]),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _vm.itemJalanStat === "success"
+                          ? _c(
+                              "tbody",
+                              [
+                                _vm._l(
+                                  _vm.itemJalan.data,
+                                  function (item, index) {
+                                    return _c(
+                                      "tr",
+                                      {
+                                        key: index,
+                                        staticClass:
+                                          "text-nowrap  cursor-pointer",
+                                        class: {
+                                          "bg-info":
+                                            _vm.selectedItemJalan.id ===
+                                            item.id,
+                                        },
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.detail(item.id)
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c(
+                                          "td",
+                                          [
+                                            _c("check-value", {
+                                              attrs: {
+                                                value: item.kode_diklat,
+                                              },
+                                            }),
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          [
+                                            _c("check-value", {
+                                              attrs: { value: item.name },
+                                            }),
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          [
+                                            item.regencies
+                                              ? _c("check-value", {
+                                                  attrs: {
+                                                    value: item.regencies.name,
+                                                  },
+                                                })
+                                              : _c("span", [_vm._v("-")]),
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "td",
+                                          [
+                                            item.tempat
+                                              ? _c("check-value", {
+                                                  attrs: {
+                                                    value: item.tempat.name,
+                                                  },
+                                                })
+                                              : item.tipe_tempat == "ONLINE"
+                                              ? _c("span", [
+                                                  _vm._v("DILAKSANAKAN ONLINE"),
+                                                ])
+                                              : _c("span", [
+                                                  _vm._v(
+                                                    "Belum ditentukan tempat"
+                                                  ),
+                                                ]),
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c("td", {
+                                          domProps: {
+                                            innerHTML: _vm._s(
+                                              _vm.$options.filters.date(
+                                                item.mulai
+                                              )
+                                            ),
+                                          },
+                                        }),
+                                        _vm._v(" "),
+                                        _c("td", { staticClass: "text-warp" }, [
+                                          item.sasaran
+                                            ? _c(
+                                                "span",
+                                                _vm._l(
+                                                  item.sasaran,
+                                                  function (sasaran, index) {
+                                                    return _c(
+                                                      "label",
+                                                      {
+                                                        key: index,
+                                                        staticClass:
+                                                          "badge badge-primary ml-1",
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "\n\t\t\t\t\t\t\t\t\t\t\t" +
+                                                            _vm._s(
+                                                              sasaran.name
+                                                            ) +
+                                                            "\n\t\t\t\t\t\t\t\t\t\t"
+                                                        ),
+                                                      ]
+                                                    )
+                                                  }
+                                                ),
+                                                0
+                                              )
+                                            : _vm._e(),
+                                        ]),
+                                      ]
+                                    )
+                                  }
+                                ),
+                                _vm._v(" "),
+                                _vm.itemJalan.data.length == 0
+                                  ? _c("tr", [
+                                      _c("td", { attrs: { colspan: 6 } }, [
+                                        _vm._v("Tidak terdapat data diklat"),
+                                      ]),
+                                    ])
+                                  : _vm._e(),
+                              ],
+                              2
+                            )
+                          : _vm.itemJalanStat === "loading"
+                          ? _c("tbody", [
+                              _c("tr", [
+                                _c("td", { attrs: { colspan: 6 } }, [
+                                  _c("div", { staticClass: "progress" }, [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+                                        staticStyle: { width: "100%" },
+                                      },
+                                      [
+                                        _c("span", { staticClass: "sr-only" }, [
+                                          _vm._v("100% Complete"),
+                                        ]),
+                                      ]
+                                    ),
+                                  ]),
+                                ]),
+                              ]),
+                            ])
+                          : _vm._e(),
+                      ]
+                    ),
+                  ]),
+                ]
+              )
+            : _vm._e(),
+        ]
+      ),
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c("span", { staticClass: "input-group-text" }, [_vm._v("Pilih Data")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c("span", { staticClass: "input-group-text" }, [
-        _vm._v("Pilih Periode"),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c("span", { staticClass: "input-group-text" }, [_vm._v("Pilih TP/KP")]),
-    ])
+    return _c(
+      "div",
+      {
+        staticClass:
+          "card-header bg-blue-400 text-white header-elements-inline",
+      },
+      [
+        _c("h5", { staticClass: "card-title" }, [
+          _c("i", { staticClass: "icon-calendar mr-2" }),
+          _vm._v(" Kegiatan PUSKOPCUINA"),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "header-elements" }, [
+          _c("div", { staticClass: "list-icons" }, [
+            _c("a", {
+              staticClass: "list-icons-item",
+              attrs: { "data-action": "collapse" },
+            }),
+          ]),
+        ]),
+      ]
+    )
   },
 ]
 render._withStripped = true
@@ -11159,10 +5367,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/widgetLaporanCu.vue?vue&type=template&id=6ba740e4&":
-/*!******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/laporanCu/widgetLaporanCu.vue?vue&type=template&id=6ba740e4& ***!
-  \******************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=template&id=1f1476bc&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=template&id=1f1476bc& ***!
+  \*************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -11177,137 +5385,143 @@ var render = function () {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "card card-body", class: _vm.checkClass() }, [
-        _c("div", { staticClass: "media mb-3" }, [
-          _c("div", { staticClass: "media-body" }, [
-            _vm.isPercent
-              ? _c("h6", { staticClass: "font-weight-semibold mb-8" }, [
-                  _vm._v(_vm._s(_vm._f("percentage")(_vm.itemData, 2))),
-                ])
-              : _c("h6", { staticClass: "font-weight-semibold mb-8" }, [
-                  _vm._v(
-                    _vm._s(
-                      _vm._f("currency")(_vm.itemData, "", 0, {
-                        thousandsSeparator: ".",
-                      })
+      _c(
+        "hooper",
+        {
+          staticClass: "mb-3",
+          staticStyle: { width: "100%", "min-height": "20em" },
+          attrs: {
+            progress: true,
+            autoPlay: true,
+            playSpeed: 6000,
+            infiniteScroll: true,
+          },
+        },
+        [
+          _vm._l(_vm.sliderItem, function (item, index) {
+            return _c(
+              "slide",
+              { key: index, staticClass: "slideStyle", style: item.style },
+              [
+                item.name == "welcome"
+                  ? _c("div", [
+                      _c("h1", [_vm._v(_vm._s(item.title))]),
+                      _vm._v(" "),
+                      _c("span", {
+                        domProps: { innerHTML: _vm._s(item.content) },
+                      }),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      item.isButton
+                        ? _c("a", {
+                            staticClass: "btn btn-danger mt-1",
+                            attrs: { href: item.buttonUrl, target: "_blank" },
+                            domProps: { innerHTML: _vm._s(item.buttonTitle) },
+                          })
+                        : _vm._e(),
+                    ])
+                  : item.name == "birthday"
+                  ? _c(
+                      "div",
+                      [
+                        _c("h1", [_vm._v(_vm._s(item.title))]),
+                        _vm._v(" "),
+                        _vm._l(item.cu, function (item2, index2) {
+                          return _c(
+                            "span",
+                            {
+                              key: index2,
+                              staticClass:
+                                "badge bg-blue-400 align-self-center ml-2 mb-1",
+                            },
+                            [
+                              _c("h6", { staticClass: "mb-0" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    "CU " + item2.name + " Ke- " + item2.usia
+                                  )
+                                ),
+                              ]),
+                            ]
+                          )
+                        }),
+                        _vm._v(" "),
+                        _c("br"),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("h4", {
+                          staticClass: "d-none d-md-block",
+                          domProps: { innerHTML: _vm._s(item.content) },
+                        }),
+                      ],
+                      2
                     )
-                  ),
-                ]),
-            _vm._v(" "),
-            _vm.isPercent
-              ? _c("span", { staticClass: "opacity-75" }, [
-                  _c("i", {
-                    class: {
-                      "icon-chevron-up": _vm.totalData > 0,
-                      "icon-chevron-down": _vm.totalData < 0,
-                    },
-                  }),
-                  _vm._v(
-                    " " +
-                      _vm._s(_vm._f("percentage")(Math.abs(_vm.totalData), 2)) +
-                      "\t\t\t\t\n\t\t\t\t"
-                  ),
-                ])
-              : _c("span", { staticClass: "opacity-75" }, [
-                  _c("i", {
-                    class: {
-                      "icon-chevron-up": _vm.totalData > 0,
-                      "icon-chevron-down": _vm.totalData < 0,
-                    },
-                  }),
-                  _vm._v(
-                    " " +
-                      _vm._s(
-                        _vm._f("currency")(Math.abs(_vm.totalData), "", 0, {
-                          thousandsSeparator: ".",
-                        })
-                      ) +
-                      "\t\t\t\t\n\t\t\t\t"
-                  ),
-                ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "ml-3 align-self-center" }, [
-            _c("i", {
-              staticClass: "icon-2x opacity-75",
-              class: {
-                "icon-arrow-up16": _vm.totalData > 0,
-                "icon-arrow-down16": _vm.totalData < 0,
-              },
-            }),
-          ]),
-        ]),
-        _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", [
-          !_vm.isPercent
-            ? _c("span", { staticClass: "float-right" }, [
-                _vm.percentageData > 0
-                  ? _c("span", [_vm._v("+")])
-                  : _vm.percentageData < 0
-                  ? _c("span", [_vm._v("-")])
+                  : item.name == "news"
+                  ? _c("div", [
+                      _c("h1", [_vm._v(_vm._s(item.title))]),
+                      _vm._v(" "),
+                      _c("span", {
+                        domProps: { innerHTML: _vm._s(item.content) },
+                      }),
+                    ])
                   : _vm._e(),
-                _vm._v(
-                  "\n\t\t\t\t" +
-                    _vm._s(
-                      _vm._f("percentage")(Math.abs(_vm.percentageData), 2)
-                    ) +
-                    "\n\t\t\t"
-                ),
-              ])
-            : _vm._e(),
+              ]
+            )
+          }),
           _vm._v(" "),
-          _c("b", [_vm._v(_vm._s(_vm.title.toUpperCase()))]),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("app-modal", {
-        attrs: {
-          show: _vm.modalShow,
-          color: _vm.modalColor,
-          state: _vm.modalState,
-          title: _vm.modalTitle,
-          button: _vm.modalButton,
-        },
-        on: {
-          batal: _vm.modalTutup,
-          tutup: _vm.modalTutup,
-          errorOk: _vm.modalTutup,
-          backgroundClick: _vm.modalTutup,
-        },
-      }),
+          _c(
+            "hooper-navigation",
+            { attrs: { slot: "hooper-addons" }, slot: "hooper-addons" },
+            [
+              _c("i", { attrs: { slot: "hooper-prev" }, slot: "hooper-prev" }, [
+                _c("i", {
+                  staticClass: "icon-chevron-left",
+                  staticStyle: { color: "rgb(255, 251, 251)" },
+                }),
+              ]),
+              _vm._v(" "),
+              _c("i", { attrs: { slot: "hooper-next" }, slot: "hooper-next" }, [
+                _c("i", {
+                  staticClass: "icon-chevron-right",
+                  staticStyle: { color: "rgb(255, 251, 251)" },
+                }),
+              ]),
+            ]
+          ),
+          _vm._v(" "),
+          _c("hooper-pagination", {
+            attrs: { slot: "hooper-addons" },
+            slot: "hooper-addons",
+          }),
+        ],
+        2
+      ),
     ],
     1
   )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "progress bg-blue mb-2",
-        staticStyle: { height: "0.125rem" },
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "progress-bar bg-white",
-            staticStyle: { width: "100%" },
-          },
-          [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-        ),
-      ]
-    )
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
+
+/***/ }),
+
+/***/ "./resources/assets/js/api/system.js":
+/*!*******************************************!*\
+  !*** ./resources/assets/js/api/system.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  countOrganisasi: function countOrganisasi() {
+    return axios.get('/api/countOrganisasi');
+  }
+});
 
 /***/ }),
 
@@ -11380,17 +5594,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/pageHeader.vue":
-/*!*******************************************************!*\
-  !*** ./resources/assets/js/components/pageHeader.vue ***!
-  \*******************************************************/
+/***/ "./resources/assets/js/components/countWidget.vue":
+/*!********************************************************!*\
+  !*** ./resources/assets/js/components/countWidget.vue ***!
+  \********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _pageHeader_vue_vue_type_template_id_0af8ed53___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pageHeader.vue?vue&type=template&id=0af8ed53& */ "./resources/assets/js/components/pageHeader.vue?vue&type=template&id=0af8ed53&");
-/* harmony import */ var _pageHeader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pageHeader.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/pageHeader.vue?vue&type=script&lang=js&");
+/* harmony import */ var _countWidget_vue_vue_type_template_id_b9608b28___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./countWidget.vue?vue&type=template&id=b9608b28& */ "./resources/assets/js/components/countWidget.vue?vue&type=template&id=b9608b28&");
+/* harmony import */ var _countWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./countWidget.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/countWidget.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -11400,9 +5614,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _pageHeader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _pageHeader_vue_vue_type_template_id_0af8ed53___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _pageHeader_vue_vue_type_template_id_0af8ed53___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _countWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _countWidget_vue_vue_type_template_id_b9608b28___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _countWidget_vue_vue_type_template_id_b9608b28___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -11412,106 +5626,400 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/components/pageHeader.vue"
+component.options.__file = "resources/assets/js/components/countWidget.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/pageHeader.vue?vue&type=script&lang=js&":
-/*!********************************************************************************!*\
-  !*** ./resources/assets/js/components/pageHeader.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************/
+/***/ "./resources/assets/js/components/countWidget.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/assets/js/components/countWidget.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_pageHeader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./pageHeader.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/pageHeader.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_pageHeader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_countWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./countWidget.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/countWidget.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_countWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/pageHeader.vue?vue&type=template&id=0af8ed53&":
-/*!**************************************************************************************!*\
-  !*** ./resources/assets/js/components/pageHeader.vue?vue&type=template&id=0af8ed53& ***!
-  \**************************************************************************************/
+/***/ "./resources/assets/js/components/countWidget.vue?vue&type=template&id=b9608b28&":
+/*!***************************************************************************************!*\
+  !*** ./resources/assets/js/components/countWidget.vue?vue&type=template&id=b9608b28& ***!
+  \***************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_pageHeader_vue_vue_type_template_id_0af8ed53___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./pageHeader.vue?vue&type=template&id=0af8ed53& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/pageHeader.vue?vue&type=template&id=0af8ed53&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_pageHeader_vue_vue_type_template_id_0af8ed53___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_countWidget_vue_vue_type_template_id_b9608b28___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./countWidget.vue?vue&type=template&id=b9608b28& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/countWidget.vue?vue&type=template&id=b9608b28&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_countWidget_vue_vue_type_template_id_b9608b28___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_pageHeader_vue_vue_type_template_id_0af8ed53___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_countWidget_vue_vue_type_template_id_b9608b28___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
-
-/***/ }),
-
-/***/ "./resources/assets/js/helpers/form.js":
-/*!*********************************************!*\
-  !*** ./resources/assets/js/helpers/form.js ***!
-  \*********************************************/
-/*! exports provided: toMulipartedForm, objectToFormData */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toMulipartedForm", function() { return toMulipartedForm; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "objectToFormData", function() { return objectToFormData; });
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function toMulipartedForm(form, mode) {
-  if (mode === 'edit' && typeof form.image === 'string') {
-    var temp = JSON.parse(JSON.stringify(form));
-    delete temp.image;
-    return temp;
-  } else {
-    return objectToFormData(form);
-  }
-}
-function objectToFormData(obj, form, namespace) {
-  var fd = form || new FormData();
-  var formKey;
-
-  for (var property in obj) {
-    if (obj.hasOwnProperty(property)) {
-      if (namespace) {
-        formKey = namespace + '[' + property + ']';
-      } else {
-        formKey = property;
-      }
-
-      if (obj[property] instanceof Array) {
-        for (var i = 0; i < obj[property].length; i++) {
-          objectToFormData(obj[property][i], fd, "".concat(property, "[").concat(i, "]"));
-        }
-      } else if (_typeof(obj[property]) === 'object' && !(obj[property] instanceof File)) {
-        objectToFormData(obj[property], fd, property);
-      } else {
-        fd.append(formKey, obj[property]);
-      }
-    }
-  }
-
-  return fd;
-}
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/laporanCu/detail.vue":
-/*!********************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/detail.vue ***!
-  \********************************************************/
+/***/ "./resources/assets/js/views/dashboard.vue":
+/*!*************************************************!*\
+  !*** ./resources/assets/js/views/dashboard.vue ***!
+  \*************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _detail_vue_vue_type_template_id_984e60d4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./detail.vue?vue&type=template&id=984e60d4& */ "./resources/assets/js/views/laporanCu/detail.vue?vue&type=template&id=984e60d4&");
-/* harmony import */ var _detail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./detail.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/laporanCu/detail.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _detail_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./detail.vue?vue&type=style&index=0&lang=css& */ "./resources/assets/js/views/laporanCu/detail.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _dashboard_vue_vue_type_template_id_067b0c71___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dashboard.vue?vue&type=template&id=067b0c71& */ "./resources/assets/js/views/dashboard.vue?vue&type=template&id=067b0c71&");
+/* harmony import */ var _dashboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dashboard.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/dashboard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _dashboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _dashboard_vue_vue_type_template_id_067b0c71___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _dashboard_vue_vue_type_template_id_067b0c71___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/views/dashboard.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_dashboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./dashboard.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_dashboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard.vue?vue&type=template&id=067b0c71&":
+/*!********************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard.vue?vue&type=template&id=067b0c71& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_dashboard_vue_vue_type_template_id_067b0c71___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./dashboard.vue?vue&type=template&id=067b0c71& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard.vue?vue&type=template&id=067b0c71&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_dashboard_vue_vue_type_template_id_067b0c71___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_dashboard_vue_vue_type_template_id_067b0c71___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/buttonRow.vue":
+/*!***********************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/buttonRow.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _buttonRow_vue_vue_type_template_id_2697e6aa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./buttonRow.vue?vue&type=template&id=2697e6aa& */ "./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=template&id=2697e6aa&");
+/* harmony import */ var _buttonRow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./buttonRow.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _buttonRow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _buttonRow_vue_vue_type_template_id_2697e6aa___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _buttonRow_vue_vue_type_template_id_2697e6aa___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/views/dashboard/buttonRow.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_buttonRow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./buttonRow.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_buttonRow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=template&id=2697e6aa&":
+/*!******************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=template&id=2697e6aa& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_buttonRow_vue_vue_type_template_id_2697e6aa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./buttonRow.vue?vue&type=template&id=2697e6aa& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=template&id=2697e6aa&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_buttonRow_vue_vue_type_template_id_2697e6aa___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_buttonRow_vue_vue_type_template_id_2697e6aa___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/countOrganisasiWidget.vue":
+/*!***********************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/countOrganisasiWidget.vue ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _countOrganisasiWidget_vue_vue_type_template_id_277315de___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./countOrganisasiWidget.vue?vue&type=template&id=277315de& */ "./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=template&id=277315de&");
+/* harmony import */ var _countOrganisasiWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./countOrganisasiWidget.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _countOrganisasiWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _countOrganisasiWidget_vue_vue_type_template_id_277315de___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _countOrganisasiWidget_vue_vue_type_template_id_277315de___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/views/dashboard/countOrganisasiWidget.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_countOrganisasiWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./countOrganisasiWidget.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_countOrganisasiWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=template&id=277315de&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=template&id=277315de& ***!
+  \******************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_countOrganisasiWidget_vue_vue_type_template_id_277315de___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./countOrganisasiWidget.vue?vue&type=template&id=277315de& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=template&id=277315de&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_countOrganisasiWidget_vue_vue_type_template_id_277315de___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_countOrganisasiWidget_vue_vue_type_template_id_277315de___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue":
+/*!*************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _historyOrganisasiWidget_vue_vue_type_template_id_0e2d4996___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./historyOrganisasiWidget.vue?vue&type=template&id=0e2d4996& */ "./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=template&id=0e2d4996&");
+/* harmony import */ var _historyOrganisasiWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./historyOrganisasiWidget.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _historyOrganisasiWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _historyOrganisasiWidget_vue_vue_type_template_id_0e2d4996___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _historyOrganisasiWidget_vue_vue_type_template_id_0e2d4996___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/views/dashboard/historyOrganisasiWidget.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_historyOrganisasiWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./historyOrganisasiWidget.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_historyOrganisasiWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=template&id=0e2d4996&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=template&id=0e2d4996& ***!
+  \********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_historyOrganisasiWidget_vue_vue_type_template_id_0e2d4996___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./historyOrganisasiWidget.vue?vue&type=template&id=0e2d4996& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=template&id=0e2d4996&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_historyOrganisasiWidget_vue_vue_type_template_id_0e2d4996___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_historyOrganisasiWidget_vue_vue_type_template_id_0e2d4996___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue":
+/*!********************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _kegiatanBKCUWidget_vue_vue_type_template_id_0165c089___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./kegiatanBKCUWidget.vue?vue&type=template&id=0165c089& */ "./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=template&id=0165c089&");
+/* harmony import */ var _kegiatanBKCUWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./kegiatanBKCUWidget.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _kegiatanBKCUWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _kegiatanBKCUWidget_vue_vue_type_template_id_0165c089___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _kegiatanBKCUWidget_vue_vue_type_template_id_0165c089___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_kegiatanBKCUWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./kegiatanBKCUWidget.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_kegiatanBKCUWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=template&id=0165c089&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=template&id=0165c089& ***!
+  \***************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_kegiatanBKCUWidget_vue_vue_type_template_id_0165c089___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./kegiatanBKCUWidget.vue?vue&type=template&id=0165c089& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=template&id=0165c089&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_kegiatanBKCUWidget_vue_vue_type_template_id_0165c089___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_kegiatanBKCUWidget_vue_vue_type_template_id_0165c089___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/newsSlider.vue":
+/*!************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/newsSlider.vue ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _newsSlider_vue_vue_type_template_id_1f1476bc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./newsSlider.vue?vue&type=template&id=1f1476bc& */ "./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=template&id=1f1476bc&");
+/* harmony import */ var _newsSlider_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./newsSlider.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _newsSlider_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./newsSlider.vue?vue&type=style&index=0&lang=css& */ "./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -11522,9 +6030,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _detail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _detail_vue_vue_type_template_id_984e60d4___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _detail_vue_vue_type_template_id_984e60d4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _newsSlider_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _newsSlider_vue_vue_type_template_id_1f1476bc___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _newsSlider_vue_vue_type_template_id_1f1476bc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -11534,468 +6042,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/views/laporanCu/detail.vue"
+component.options.__file = "resources/assets/js/views/dashboard/newsSlider.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/laporanCu/detail.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/detail.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************/
+/***/ "./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./detail.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/detail.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_newsSlider_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./newsSlider.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_newsSlider_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/laporanCu/detail.vue?vue&type=style&index=0&lang=css&":
-/*!*****************************************************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/detail.vue?vue&type=style&index=0&lang=css& ***!
-  \*****************************************************************************************/
+/***/ "./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=style&index=0&lang=css&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=style&index=0&lang=css& ***!
+  \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./detail.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/detail.vue?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_newsSlider_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./newsSlider.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_newsSlider_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_newsSlider_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_newsSlider_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_newsSlider_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/laporanCu/detail.vue?vue&type=template&id=984e60d4&":
-/*!***************************************************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/detail.vue?vue&type=template&id=984e60d4& ***!
-  \***************************************************************************************/
+/***/ "./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=template&id=1f1476bc&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=template&id=1f1476bc& ***!
+  \*******************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_template_id_984e60d4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./detail.vue?vue&type=template&id=984e60d4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/detail.vue?vue&type=template&id=984e60d4&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_template_id_984e60d4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_newsSlider_vue_vue_type_template_id_1f1476bc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./newsSlider.vue?vue&type=template&id=1f1476bc& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=template&id=1f1476bc&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_newsSlider_vue_vue_type_template_id_1f1476bc___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_template_id_984e60d4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/views/laporanCu/detailLaporanCu.vue":
-/*!*****************************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/detailLaporanCu.vue ***!
-  \*****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _detailLaporanCu_vue_vue_type_template_id_2f6c7ff7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./detailLaporanCu.vue?vue&type=template&id=2f6c7ff7& */ "./resources/assets/js/views/laporanCu/detailLaporanCu.vue?vue&type=template&id=2f6c7ff7&");
-/* harmony import */ var _detailLaporanCu_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./detailLaporanCu.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/laporanCu/detailLaporanCu.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _detailLaporanCu_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _detailLaporanCu_vue_vue_type_template_id_2f6c7ff7___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _detailLaporanCu_vue_vue_type_template_id_2f6c7ff7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/assets/js/views/laporanCu/detailLaporanCu.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/assets/js/views/laporanCu/detailLaporanCu.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/detailLaporanCu.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_detailLaporanCu_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./detailLaporanCu.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/detailLaporanCu.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_detailLaporanCu_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/assets/js/views/laporanCu/detailLaporanCu.vue?vue&type=template&id=2f6c7ff7&":
-/*!************************************************************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/detailLaporanCu.vue?vue&type=template&id=2f6c7ff7& ***!
-  \************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detailLaporanCu_vue_vue_type_template_id_2f6c7ff7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./detailLaporanCu.vue?vue&type=template&id=2f6c7ff7& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/detailLaporanCu.vue?vue&type=template&id=2f6c7ff7&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detailLaporanCu_vue_vue_type_template_id_2f6c7ff7___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detailLaporanCu_vue_vue_type_template_id_2f6c7ff7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/views/laporanCu/detailPearls.vue":
-/*!**************************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/detailPearls.vue ***!
-  \**************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _detailPearls_vue_vue_type_template_id_f6a3d8ba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./detailPearls.vue?vue&type=template&id=f6a3d8ba& */ "./resources/assets/js/views/laporanCu/detailPearls.vue?vue&type=template&id=f6a3d8ba&");
-/* harmony import */ var _detailPearls_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./detailPearls.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/laporanCu/detailPearls.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _detailPearls_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _detailPearls_vue_vue_type_template_id_f6a3d8ba___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _detailPearls_vue_vue_type_template_id_f6a3d8ba___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/assets/js/views/laporanCu/detailPearls.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/assets/js/views/laporanCu/detailPearls.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/detailPearls.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_detailPearls_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./detailPearls.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/detailPearls.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_detailPearls_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/assets/js/views/laporanCu/detailPearls.vue?vue&type=template&id=f6a3d8ba&":
-/*!*********************************************************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/detailPearls.vue?vue&type=template&id=f6a3d8ba& ***!
-  \*********************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detailPearls_vue_vue_type_template_id_f6a3d8ba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./detailPearls.vue?vue&type=template&id=f6a3d8ba& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/detailPearls.vue?vue&type=template&id=f6a3d8ba&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detailPearls_vue_vue_type_template_id_f6a3d8ba___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detailPearls_vue_vue_type_template_id_f6a3d8ba___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/views/laporanCu/diskusi.vue":
-/*!*********************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/diskusi.vue ***!
-  \*********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _diskusi_vue_vue_type_template_id_c66cba4e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./diskusi.vue?vue&type=template&id=c66cba4e& */ "./resources/assets/js/views/laporanCu/diskusi.vue?vue&type=template&id=c66cba4e&");
-/* harmony import */ var _diskusi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./diskusi.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/laporanCu/diskusi.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _diskusi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _diskusi_vue_vue_type_template_id_c66cba4e___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _diskusi_vue_vue_type_template_id_c66cba4e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/assets/js/views/laporanCu/diskusi.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/assets/js/views/laporanCu/diskusi.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/diskusi.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_diskusi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./diskusi.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/diskusi.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_diskusi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/assets/js/views/laporanCu/diskusi.vue?vue&type=template&id=c66cba4e&":
-/*!****************************************************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/diskusi.vue?vue&type=template&id=c66cba4e& ***!
-  \****************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_diskusi_vue_vue_type_template_id_c66cba4e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./diskusi.vue?vue&type=template&id=c66cba4e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/diskusi.vue?vue&type=template&id=c66cba4e&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_diskusi_vue_vue_type_template_id_c66cba4e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_diskusi_vue_vue_type_template_id_c66cba4e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/views/laporanCu/revisi.vue":
-/*!********************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/revisi.vue ***!
-  \********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _revisi_vue_vue_type_template_id_d0913a7e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./revisi.vue?vue&type=template&id=d0913a7e& */ "./resources/assets/js/views/laporanCu/revisi.vue?vue&type=template&id=d0913a7e&");
-/* harmony import */ var _revisi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./revisi.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/laporanCu/revisi.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _revisi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _revisi_vue_vue_type_template_id_d0913a7e___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _revisi_vue_vue_type_template_id_d0913a7e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/assets/js/views/laporanCu/revisi.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/assets/js/views/laporanCu/revisi.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/revisi.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_revisi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./revisi.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/revisi.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_revisi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/assets/js/views/laporanCu/revisi.vue?vue&type=template&id=d0913a7e&":
-/*!***************************************************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/revisi.vue?vue&type=template&id=d0913a7e& ***!
-  \***************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_revisi_vue_vue_type_template_id_d0913a7e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./revisi.vue?vue&type=template&id=d0913a7e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/revisi.vue?vue&type=template&id=d0913a7e&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_revisi_vue_vue_type_template_id_d0913a7e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_revisi_vue_vue_type_template_id_d0913a7e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/views/laporanCu/selectDetail.vue":
-/*!**************************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/selectDetail.vue ***!
-  \**************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _selectDetail_vue_vue_type_template_id_cc65001c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./selectDetail.vue?vue&type=template&id=cc65001c& */ "./resources/assets/js/views/laporanCu/selectDetail.vue?vue&type=template&id=cc65001c&");
-/* harmony import */ var _selectDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./selectDetail.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/laporanCu/selectDetail.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _selectDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _selectDetail_vue_vue_type_template_id_cc65001c___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _selectDetail_vue_vue_type_template_id_cc65001c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/assets/js/views/laporanCu/selectDetail.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/assets/js/views/laporanCu/selectDetail.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/selectDetail.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_selectDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./selectDetail.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/selectDetail.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_selectDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/assets/js/views/laporanCu/selectDetail.vue?vue&type=template&id=cc65001c&":
-/*!*********************************************************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/selectDetail.vue?vue&type=template&id=cc65001c& ***!
-  \*********************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_selectDetail_vue_vue_type_template_id_cc65001c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./selectDetail.vue?vue&type=template&id=cc65001c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/selectDetail.vue?vue&type=template&id=cc65001c&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_selectDetail_vue_vue_type_template_id_cc65001c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_selectDetail_vue_vue_type_template_id_cc65001c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/views/laporanCu/widgetLaporanCu.vue":
-/*!*****************************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/widgetLaporanCu.vue ***!
-  \*****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _widgetLaporanCu_vue_vue_type_template_id_6ba740e4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./widgetLaporanCu.vue?vue&type=template&id=6ba740e4& */ "./resources/assets/js/views/laporanCu/widgetLaporanCu.vue?vue&type=template&id=6ba740e4&");
-/* harmony import */ var _widgetLaporanCu_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./widgetLaporanCu.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/laporanCu/widgetLaporanCu.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _widgetLaporanCu_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _widgetLaporanCu_vue_vue_type_template_id_6ba740e4___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _widgetLaporanCu_vue_vue_type_template_id_6ba740e4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/assets/js/views/laporanCu/widgetLaporanCu.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/assets/js/views/laporanCu/widgetLaporanCu.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/widgetLaporanCu.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_widgetLaporanCu_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./widgetLaporanCu.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/widgetLaporanCu.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_widgetLaporanCu_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/assets/js/views/laporanCu/widgetLaporanCu.vue?vue&type=template&id=6ba740e4&":
-/*!************************************************************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/widgetLaporanCu.vue?vue&type=template&id=6ba740e4& ***!
-  \************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_widgetLaporanCu_vue_vue_type_template_id_6ba740e4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./widgetLaporanCu.vue?vue&type=template&id=6ba740e4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/widgetLaporanCu.vue?vue&type=template&id=6ba740e4&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_widgetLaporanCu_vue_vue_type_template_id_6ba740e4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_widgetLaporanCu_vue_vue_type_template_id_6ba740e4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_newsSlider_vue_vue_type_template_id_1f1476bc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

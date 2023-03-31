@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Support;
 
 use File;
@@ -8,17 +9,18 @@ use App\LaporanTp;
 use App\LaporanCu;
 use Illuminate\Http\Request;
 
-class Helper{
+class Helper
+{
 
 	public static function image_processing($imagepath, $thumb_width, $thumb_height, $request, $kelas, $name)
 	{
 		$path = public_path($imagepath);
 		$formatedName = '';
 
-		if($kelas != '' && $request == "no_image"){// no image
+		if ($kelas != '' && $request == "no_image") { // no image
 			File::delete($path . $kelas . '.jpg');
 			File::delete($path . $kelas . 'n.jpg');
-		}else{
+		} else {
 
 			// validate image request
 			// $validator = Validator::make($request, [
@@ -35,41 +37,47 @@ class Helper{
 			// }
 
 			// no image change
-			if($kelas == $request){
+			if ($kelas == $request) {
 				return $request;
 			}
-			
+
 			// delete old image
-			if($kelas != '' && $request != ''){ 
+			if ($kelas != '' && $request != '') {
 				File::delete($path . $kelas . '.jpg');
 				File::delete($path . $kelas . 'n.jpg');
 			}
 
-			if($request != 'no_image'){
+			if ($request != 'no_image') {
 				$imageData = $request;
 				list($width, $height) = getimagesize($imageData);
-	
-				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),20,'') . '_' .uniqid();
-				
-				$fileName =  $formatedName. '.jpg';
-				$fileName2 =  $formatedName. 'n.jpg';
-	
+
+				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '', $name), 20, '') . '_' . uniqid();
+
+				$fileName =  $formatedName . '.jpg';
+				$fileName2 =  $formatedName . 'n.jpg';
+
 				//image
-				if($width > 1920){
-						Image::make($imageData->getRealPath())->resize(1920, null,
-							function ($constraint) {
-									$constraint->aspectRatio();
-							})
-							->save($path . $fileName);
-				}else{
-						Image::make($imageData->getRealPath())->save($path . $fileName);
-				}
-	
-				//thumbnail image
-				Image::make($imageData->getRealPath())->resize($thumb_width, $thumb_height,
-					function ($constraint) {
+				if ($width > 1920) {
+					Image::make($imageData->getRealPath())->resize(
+						1920,
+						null,
+						function ($constraint) {
 							$constraint->aspectRatio();
-					})
+						}
+					)
+						->save($path . $fileName);
+				} else {
+					Image::make($imageData->getRealPath())->save($path . $fileName);
+				}
+
+				//thumbnail image
+				Image::make($imageData->getRealPath())->resize(
+					$thumb_width,
+					$thumb_height,
+					function ($constraint) {
+						$constraint->aspectRatio();
+					}
+				)
 					->save($path . $fileName2);
 			}
 		}
@@ -82,37 +90,40 @@ class Helper{
 		$path = public_path($imagepath);
 		$formatedName = '';
 
-		if($kelas != '' && $request == "no_image"){// no image
+		if ($kelas != '' && $request == "no_image") { // no image
 			File::delete($path . $kelas . '.jpg');
-		}else{
+		} else {
 
 			// no image change
-			if($kelas == $request){
+			if ($kelas == $request) {
 				return $request;
 			}
-			
+
 			// delete old image
-			if($kelas != '' && $request != ''){ 
+			if ($kelas != '' && $request != '') {
 				File::delete($path . $kelas . '.jpg');
 			}
 
-			if($request != 'no_image'){
+			if ($request != 'no_image') {
 				$imageData = $request;
 				list($width, $height) = getimagesize($imageData);
-	
-				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),20,'') . '_' .uniqid();
-				
-				$fileName =  $formatedName. '.jpg';
-	
+
+				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '', $name), 20, '') . '_' . uniqid();
+
+				$fileName =  $formatedName . '.jpg';
+
 				//image
-				if($width > 1920){
-						Image::make($imageData->getRealPath())->resize(1920, null,
-							function ($constraint) {
-									$constraint->aspectRatio();
-							})
-							->save($path . $fileName);
-				}else{
-						Image::make($imageData->getRealPath())->save($path . $fileName);
+				if ($width > 1920) {
+					Image::make($imageData->getRealPath())->resize(
+						1920,
+						null,
+						function ($constraint) {
+							$constraint->aspectRatio();
+						}
+					)
+						->save($path . $fileName);
+				} else {
+					Image::make($imageData->getRealPath())->save($path . $fileName);
 				}
 			}
 		}
@@ -128,33 +139,32 @@ class Helper{
 		$images2 = $dom->getElementsByTagName('img');
 
 		foreach ($images2 as $img2) {
-				$src2 = $img2->getAttribute('src');
-				$array2[] = $src2;
+			$src2 = $img2->getAttribute('src');
+			$array2[] = $src2;
 		}
- 
+
 		return $dom->saveHTML();
 	}
 
 	public static function dom_processing_no_image($request)
 	{
 		$dom = new \DomDocument();
-		
+
 		libxml_use_internal_errors(true);
 		$dom->loadHTML("<div>$request->content</div>");
 		libxml_clear_errors();
-		
+
 		$container = $dom->getElementsByTagName('div')->item(0);
 		$container = $container->parentNode->removeChild($container);
 
-		while($dom->firstChild){
+		while ($dom->firstChild) {
 			$dom->removeChild($dom->firstChild);
 		}
 
-		while($container->firstChild){
+		while ($container->firstChild) {
 			$dom->appendChild($container->firstChild);
 		}
 
 		return $dom->saveHTML();
 	}
-
 }
