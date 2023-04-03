@@ -204,6 +204,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -230,37 +254,54 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         title: 'No.',
         name: 'No.'
       }, {
-        title: 'Nama',
-        name: 'user.name',
-        tipe: 'string',
-        sort: false,
-        hide: false,
-        disable: false,
-        filter: true,
-        filterDefault: true
-      }, {
-        title: 'Lembaga',
-        name: 'user.id_cu',
-        tipe: 'string',
+        title: 'Message',
+        name: 'message',
         sort: false,
         hide: false,
         disable: false,
         filter: true
       }, {
-        title: 'Status',
-        name: 'status',
-        tipe: 'string',
+        title: 'Context',
+        name: 'context',
         sort: false,
         hide: false,
         disable: false,
         filter: true
       }, {
-        title: 'content',
-        name: 'content',
+        title: 'Level',
+        name: 'level',
+        sort: true,
+        hide: false,
+        disable: false,
+        filter: true
+      }, {
+        title: 'Level Name',
+        name: 'level_name',
         sort: false,
         hide: false,
         disable: false,
-        filter: false
+        filter: true
+      }, {
+        title: 'Channel',
+        name: 'channel',
+        sort: false,
+        hide: false,
+        disable: false,
+        filter: true
+      }, {
+        title: 'Extra',
+        name: 'extra',
+        sort: false,
+        hide: false,
+        disable: false,
+        filter: true
+      }, {
+        title: 'Waktu',
+        name: 'datetime',
+        sort: true,
+        hide: false,
+        disable: false,
+        filter: true
       }, {
         title: 'Tgl. Tulis',
         name: 'created_at',
@@ -318,7 +359,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.modalSize = 'modal-lg';
       this.modalState = 'normal1';
       this.modalTitle = 'Detail ' + this.title;
-      this.modalContent = this.selectedItem.content;
+      this.modalContent = this.selectedItem.level;
       this.modalButton = 'Ok';
     },
     modalConfirmOpen: function modalConfirmOpen(state, isMobile, itemMobile) {
@@ -504,17 +545,12 @@ var render = function () {
                         ? _c(
                             "td",
                             [
-                              props.item.user && props.item.user.aktivis
-                                ? _c("check-value", {
-                                    attrs: {
-                                      value: props.item.user.aktivis.name,
-                                    },
-                                  })
-                                : props.item.user
-                                ? _c("check-value", {
-                                    attrs: { value: props.item.user.name },
-                                  })
-                                : _c("span", [_vm._v("-")]),
+                              _c("check-value", {
+                                attrs: {
+                                  value: props.item.message,
+                                  valueType: "modal",
+                                },
+                              }),
                             ],
                             1
                           )
@@ -524,11 +560,12 @@ var render = function () {
                         ? _c(
                             "td",
                             [
-                              props.item.user && props.item.user.cu
-                                ? _c("check-value", {
-                                    attrs: { value: props.item.user.cu.name },
-                                  })
-                                : _c("span", [_vm._v("PUSKOPCUINA")]),
+                              _c("check-value", {
+                                attrs: {
+                                  value: props.item.context,
+                                  valueType: "modal",
+                                },
+                              }),
                             ],
                             1
                           )
@@ -539,7 +576,7 @@ var render = function () {
                             "td",
                             [
                               _c("check-value", {
-                                attrs: { value: props.item.status },
+                                attrs: { value: props.item.level },
                               }),
                             ],
                             1
@@ -547,13 +584,54 @@ var render = function () {
                         : _vm._e(),
                       _vm._v(" "),
                       !_vm.columnData[4].hide
-                        ? _c("td", [
-                            _vm._v(
-                              "\n\t\t\t\t\t" +
-                                _vm._s(props.item.content.substring(0, 100)) +
-                                "...\n\t\t\t\t"
-                            ),
-                          ])
+                        ? _c(
+                            "td",
+                            [
+                              _c("check-value", {
+                                attrs: { value: props.item.level_name },
+                              }),
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[5].hide
+                        ? _c(
+                            "td",
+                            [
+                              _c("check-value", {
+                                attrs: { value: props.item.channel },
+                              }),
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[5].hide
+                        ? _c(
+                            "td",
+                            [
+                              _c("check-value", {
+                                attrs: {
+                                  value: props.item.extra,
+                                  valueType: "modal",
+                                },
+                              }),
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[5].hide
+                        ? _c("td", {
+                            domProps: {
+                              innerHTML: _vm._s(
+                                _vm.$options.filters.dateTime(
+                                  props.item.datetime
+                                )
+                              ),
+                            },
+                          })
                         : _vm._e(),
                       _vm._v(" "),
                       !_vm.columnData[5].hide
@@ -698,13 +776,68 @@ var render = function () {
             _c("br"),
             _vm._v(" "),
             _c("div", [
+              _c("h4", [_vm._v("Level")]),
+              _vm._v(" "),
               _c(
                 "pre",
                 {
                   staticClass:
                     "pre-scrollable language-markup content-group text-left",
                 },
-                [_c("code", [_vm._v(_vm._s(_vm.selectedItem.content))])]
+                [
+                  _c("code", [
+                    _vm._v(
+                      _vm._s(_vm.selectedItem.level) +
+                        " / " +
+                        _vm._s(_vm.selectedItem.level_name)
+                    ),
+                  ]),
+                ]
+              ),
+              _vm._v(" "),
+              _c("hr"),
+            ]),
+            _vm._v(" "),
+            _c("div", [
+              _c("h4", [_vm._v("Message")]),
+              _vm._v(" "),
+              _c(
+                "pre",
+                {
+                  staticClass:
+                    "pre-scrollable language-markup content-group text-left",
+                },
+                [_c("code", [_vm._v(_vm._s(_vm.selectedItem.message))])]
+              ),
+              _vm._v(" "),
+              _c("hr"),
+            ]),
+            _vm._v(" "),
+            _c("div", [
+              _c("h4", [_vm._v("Context")]),
+              _vm._v(" "),
+              _c(
+                "pre",
+                {
+                  staticClass:
+                    "pre-scrollable language-markup content-group text-left",
+                },
+                [_c("code", [_vm._v(_vm._s(_vm.selectedItem.context))])]
+              ),
+              _vm._v(" "),
+              _c("hr"),
+            ]),
+            _vm._v(" "),
+            _c("div", [
+              _c("h4", [_vm._v("Extra")]),
+              _vm._v(" "),
+              _c(
+                "pre",
+                {
+                  staticClass:
+                    "pre-scrollable language-markup content-group text-left",
+                },
+                [_c("code", [_vm._v(_vm._s(_vm.selectedItem.extra))])]
               ),
               _vm._v(" "),
               _c("hr"),

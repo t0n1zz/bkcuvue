@@ -65,6 +65,11 @@ return [
             'driver' => 'errorlog',
             'level' => 'debug',
         ],
+        'log' => [
+            'driver' => 'custom',
+            'via' => App\Logging\DatabaseHandler::class,
+            'level' => 'debug',
+        ],        
     ],
 
 ];

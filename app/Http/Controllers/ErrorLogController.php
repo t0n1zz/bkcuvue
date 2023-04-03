@@ -12,7 +12,7 @@ class ErrorLogController extends Controller{
 
 	public function index()
 	{
-			$table_data = ErrorLog::with('user.cu','user.aktivis')->advancedFilter();
+			$table_data = ErrorLog::advancedFilter();
 
     	return response()
 			->json([
@@ -20,33 +20,9 @@ class ErrorLogController extends Controller{
 			]);
 	}
 
-
-	public function create()
-	{
-		return response()
-			->json([
-					'form' => ErrorLog::initialize(),
-					'rules' => ErrorLog::$rules,
-					'option' => []
-			]);
-	}
-
-	public function store(Request $request)
-	{
-		$this->validate($request,ErrorLog::$rules);
-	
-		$kelas = ErrorLog::create($request->all());
-
-		return response()
-			->json([
-				'saved' => true,
-				'message' => $this->message. ' berhasil ditambah'
-			]);
-	}
-
 	public function show($id)
 	{
-		$kelas = ErrorLog::with('user')->findOrFail($id);
+		$kelas = ErrorLog::findOrFail($id);
 
 		return response()
 			->json([

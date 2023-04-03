@@ -120,6 +120,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -129,36 +161,36 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     value: {
-      "default": ''
+      "default": ""
     },
     frontText: {
-      "default": ''
+      "default": ""
     },
     trimLength: {
       "default": 50
     },
     valueType: {
-      "default": 'trim'
+      "default": "trim"
     },
     empty: {
-      "default": '-'
+      "default": "-"
     }
   },
   data: function data() {
     return {
       modalShow: false,
-      modalState: '',
-      modalTitle: '',
-      modalContent: '',
-      modalButton: ''
+      modalState: "",
+      modalTitle: "",
+      modalContent: "",
+      modalButton: ""
     };
   },
   methods: {
     modalOpen: function modalOpen() {
       this.modalShow = true;
-      this.modalState = 'content-tutup';
+      this.modalState = "content-tutup";
       this.modalContent = this.value;
-      this.modalButton = 'Tutup';
+      this.modalButton = "Tutup";
     },
     modalTutup: function modalTutup() {
       this.modalShow = false;
@@ -167,6 +199,11 @@ __webpack_require__.r(__webpack_exports__);
       var tmp = document.createElement("DIV");
       tmp.innerHTML = html;
       return tmp.textContent || tmp.innerText || "";
+    }
+  },
+  computed: {
+    isLongEnough: function isLongEnough() {
+      return this.value.length > this.trimLength;
     }
   }
 });
@@ -2159,26 +2196,41 @@ var render = function () {
                   1
                 )
               : _vm.valueType == "modal"
-              ? _c("span", { staticStyle: { display: "inline-block" } }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-light",
-                      on: {
-                        click: function ($event) {
-                          $event.preventDefault()
-                          return _vm.modalOpen()
-                        },
-                      },
-                    },
-                    [_vm._v("\n          Lihat\n      ")]
-                  ),
-                ])
+              ? _c(
+                  "span",
+                  { staticStyle: { display: "inline-block" } },
+                  [
+                    _vm._v(
+                      "\n      " +
+                        _vm._s(_vm.value.substring(0, 50)) +
+                        "\n      "
+                    ),
+                    _vm.isLongEnough
+                      ? [
+                          _vm._v("\n        ...\n        "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-light",
+                              on: {
+                                click: function ($event) {
+                                  $event.preventDefault()
+                                  return _vm.modalOpen()
+                                },
+                              },
+                            },
+                            [_vm._v("\n          Lihat\n        ")]
+                          ),
+                        ]
+                      : _vm._e(),
+                  ],
+                  2
+                )
               : _vm.valueType == "currency"
               ? _c("span", { staticStyle: { display: "inline-block" } }, [
                   _vm._v(
                     _vm._s(_vm.frontText) +
-                      " " +
+                      "\n      " +
                       _vm._s(
                         _vm._f("currency")(_vm.value, "", 0, {
                           thousandsSeparator: ".",

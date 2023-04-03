@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Monolog\Logger;
+use App\Logging\DatabaseHandler;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +30,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind('log', function ($app) {
+            $log = new Logger('log');
+            $log->pushHandler(new DatabaseHandler());
+            return $log;
+        });
     }
 }

@@ -525,7 +525,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         if (this.$route.meta.mode !== 'edit') {
           this.form.id_cu = this.currentUser.id_cu;
         } else {
-          this.checkUser('update_surat_kategori', this.form.id_cu);
+          this.checkUser('update_surat', this.form.id_cu);
         }
       }
     },

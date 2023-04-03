@@ -61,12 +61,12 @@
 
       </div>
 
+      @if($laporanCu)
       <div class="col_one_third col_last">
 
         <div class="widget clearfix" style="margin-bottom: -20px;">
 
           <div class="row">
-
             <div class="col-lg-12">
               <h4>DATA PERIODE {{ date('F Y',strtotime($laporanCu->periode)) }}</h4>
               <p>Data Konsolidasi CU {{ ucwords(str_replace('-', ' ', $subdomain)) }} per {{ date('F Y',strtotime($laporanCu->periode)) }}</p>
@@ -81,13 +81,14 @@
               <div class="counter counter-small"><span data-from="1" data-to="{{ $aktivisCount }}" data-refresh-interval="100" data-speed="2000" data-comma="true"></span></div>
               <h5 class="nobottommargin">Aktivis Credit Union</h5>
             </div> 
-
+            
           </div>
-
+          
         </div>
-
-
+        
+        
       </div>
+      @endif
 
     </div><!-- .footer-widgets-wrap end -->
 

@@ -580,6 +580,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1705,11 +1726,9 @@ var render = function () {
                                                 })
                                               : _vm._e(),
                                             _vm._v(
-                                              "\n\t\t\t\t\t\t\t\t\t\t\t\tHal: "
+                                              "\n\t\t\t\t\t\t\t\t\t\t\t\tHal:"
                                             ),
-                                            _c("wajib-badge"),
-                                          ],
-                                          1
+                                          ]
                                         ),
                                         _vm._v(" "),
                                         _c("input", {
@@ -1802,11 +1821,9 @@ var render = function () {
                                                 })
                                               : _vm._e(),
                                             _vm._v(
-                                              "\n\t\t\t\t\t\t\t\t\t\t\t\tPerihal: "
+                                              "\n\t\t\t\t\t\t\t\t\t\t\t\tPerihal:"
                                             ),
-                                            _c("wajib-badge"),
-                                          ],
-                                          1
+                                          ]
                                         ),
                                         _vm._v(" "),
                                         _c("input", {
@@ -1858,6 +1875,101 @@ var render = function () {
                                                     _vm._s(
                                                       _vm.errors.first(
                                                         "form.perihal"
+                                                      )
+                                                    ) +
+                                                    "\n\t\t\t\t\t\t\t\t\t\t\t"
+                                                ),
+                                              ]
+                                            )
+                                          : _c(
+                                              "small",
+                                              { staticClass: "text-muted" },
+                                              [_vm._v(" ")]
+                                            ),
+                                      ]
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-6" }, [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass: "form-group",
+                                        class: {
+                                          "has-error":
+                                            _vm.errors.has("form.tujuan"),
+                                        },
+                                      },
+                                      [
+                                        _c(
+                                          "h5",
+                                          {
+                                            class: {
+                                              "text-danger":
+                                                _vm.errors.has("form.tujuan"),
+                                            },
+                                          },
+                                          [
+                                            _vm.errors.has("form.tujuan")
+                                              ? _c("i", {
+                                                  staticClass: "icon-cross2",
+                                                })
+                                              : _vm._e(),
+                                            _vm._v(
+                                              "\n\t\t\t\t\t\t\t\t\t\t\t\tTujuan:"
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.form.tujuan,
+                                              expression: "form.tujuan",
+                                            },
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            type: "text",
+                                            name: "tujuan",
+                                            placeholder:
+                                              "Silahkan masukkan tujuan",
+                                            "data-vv-as": "tujuan",
+                                          },
+                                          domProps: { value: _vm.form.tujuan },
+                                          on: {
+                                            input: function ($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.form,
+                                                "tujuan",
+                                                $event.target.value
+                                              )
+                                            },
+                                          },
+                                        }),
+                                        _vm._v(" "),
+                                        _vm.errors.has("form.tujuan")
+                                          ? _c(
+                                              "small",
+                                              {
+                                                staticClass:
+                                                  "text-muted text-danger",
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass:
+                                                    "icon-arrow-small-right",
+                                                }),
+                                                _vm._v(
+                                                  " " +
+                                                    _vm._s(
+                                                      _vm.errors.first(
+                                                        "form.tujuan"
                                                       )
                                                     ) +
                                                     "\n\t\t\t\t\t\t\t\t\t\t\t"

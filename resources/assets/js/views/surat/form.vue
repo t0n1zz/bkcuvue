@@ -151,7 +151,7 @@
 												<!-- title -->
 												<h5 :class="{ 'text-danger' : errors.has('form.hal')}">
 													<i class="icon-cross2" v-if="errors.has('form.hal')"></i>
-													Hal: <wajib-badge></wajib-badge></h5>
+													Hal:</h5>
 
 												<!-- text -->
 												<input type="text" name="hal" class="form-control" placeholder="Silahkan masukkan hal" data-vv-as="hal" v-model="form.hal">
@@ -171,7 +171,7 @@
 												<!-- title -->
 												<h5 :class="{ 'text-danger' : errors.has('form.perihal')}">
 													<i class="icon-cross2" v-if="errors.has('form.perihal')"></i>
-													Perihal: <wajib-badge></wajib-badge></h5>
+													Perihal:</h5>
 
 												<!-- text -->
 												<input type="text" name="perihal" class="form-control" placeholder="Silahkan masukkan perihal" data-vv-as="perihal" v-model="form.perihal">
@@ -179,6 +179,27 @@
 												<!-- error message -->
 												<small class="text-muted text-danger" v-if="errors.has('form.perihal')">
 													<i class="icon-arrow-small-right"></i> {{ errors.first('form.perihal') }}
+												</small>
+												<small class="text-muted" v-else>&nbsp;</small>
+											</div>
+										</div>
+
+
+										<!-- tujuan -->
+										<div class="col-md-6">
+											<div class="form-group" :class="{'has-error' : errors.has('form.tujuan')}">
+
+												<!-- title -->
+												<h5 :class="{ 'text-danger' : errors.has('form.tujuan')}">
+													<i class="icon-cross2" v-if="errors.has('form.tujuan')"></i>
+													Tujuan:</h5>
+
+												<!-- text -->
+												<input type="text" name="tujuan" class="form-control" placeholder="Silahkan masukkan tujuan" data-vv-as="tujuan" v-model="form.tujuan">
+
+												<!-- error message -->
+												<small class="text-muted text-danger" v-if="errors.has('form.tujuan')">
+													<i class="icon-arrow-small-right"></i> {{ errors.first('form.tujuan') }}
 												</small>
 												<small class="text-muted" v-else>&nbsp;</small>
 											</div>

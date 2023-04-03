@@ -41,20 +41,24 @@
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
 					<td v-if="!columnData[1].hide">
-						<check-value :value="props.item.user.aktivis.name" v-if="props.item.user && props.item.user.aktivis"></check-value>
-						<check-value :value="props.item.user.name" v-else-if="props.item.user"></check-value>
-						<span v-else>-</span>
+						<check-value :value="props.item.message" :valueType="'modal'"></check-value>
 					</td>
 					<td v-if="!columnData[2].hide">
-						<check-value :value="props.item.user.cu.name" v-if="props.item.user && props.item.user.cu"></check-value>
-						<span v-else>PUSKOPCUINA</span>
+						<check-value :value="props.item.context" :valueType="'modal'"></check-value>
 					</td>
 					<td v-if="!columnData[3].hide">
-						<check-value :value="props.item.status"></check-value>
+						<check-value :value="props.item.level"></check-value>
 					</td>
 					<td v-if="!columnData[4].hide">
-						{{props.item.content.substring(0,100)}}...
+						<check-value :value="props.item.level_name"></check-value>
 					</td>
+					<td v-if="!columnData[5].hide">
+						<check-value :value="props.item.channel"></check-value>
+					</td>
+					<td v-if="!columnData[5].hide">
+						<check-value :value="props.item.extra" :valueType="'modal'"></check-value>
+					</td>
+					<td v-if="!columnData[5].hide" v-html="$options.filters.dateTime(props.item.datetime)"></td>
 					<td v-if="!columnData[5].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
 				</tr>
 			</template>
@@ -90,7 +94,27 @@
 
 				<!-- error detail -->
 				<div>
-					<pre class="pre-scrollable language-markup content-group text-left"><code>{{ selectedItem.content }}</code></pre>
+					<h4>Level</h4>
+					<pre class="pre-scrollable language-markup content-group text-left"><code>{{ selectedItem.level }} / {{ selectedItem.level_name}}</code></pre>
+					<hr/>
+				</div>
+
+				<!-- error detail -->
+				<div>
+					<h4>Message</h4>
+					<pre class="pre-scrollable language-markup content-group text-left"><code>{{ selectedItem.message }}</code></pre>
+					<hr/>
+				</div>
+
+				<div>
+					<h4>Context</h4>
+					<pre class="pre-scrollable language-markup content-group text-left"><code>{{ selectedItem.context }}</code></pre>
+					<hr/>
+				</div>
+
+				<div>
+					<h4>Extra</h4>
+					<pre class="pre-scrollable language-markup content-group text-left"><code>{{ selectedItem.extra }}</code></pre>
 					<hr/>
 				</div>
 				
@@ -137,41 +161,62 @@
 						name: 'No.',
 					},
 					{
-						title: 'Nama',
-						name: 'user.name',
-						tipe: 'string',
-						sort: false,
-						hide: false,
-						disable: false,
-						filter: true,
-						filterDefault: true
-					},
-					{
-						title: 'Lembaga',
-						name: 'user.id_cu',
-						tipe: 'string',
+						title: 'Message',
+						name: 'message',
 						sort: false,
 						hide: false,
 						disable: false,
 						filter: true,
 					},
 					{
-						title: 'Status',
-						name: 'status',
-						tipe: 'string',
+						title: 'Context',
+						name: 'context',
 						sort: false,
 						hide: false,
 						disable: false,
 						filter: true,
 					},
 					{
-						title: 'content',
-						name: 'content',
+						title: 'Level',
+						name: 'level',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Level Name',
+						name: 'level_name',
 						sort: false,
 						hide: false,
 						disable: false,
-						filter: false,
+						filter: true,
 					},
+					{
+						title: 'Channel',
+						name: 'channel',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Extra',
+						name: 'extra',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Waktu',
+						name: 'datetime',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					
 					{
 						title: 'Tgl. Tulis',
 						name: 'created_at',
@@ -231,7 +276,7 @@
 				this.modalSize = 'modal-lg';
 				this.modalState = 'normal1';
 				this.modalTitle = 'Detail ' + this.title;
-				this.modalContent = this.selectedItem.content;
+				this.modalContent = this.selectedItem.level;
 				this.modalButton = 'Ok';
 			},
 			modalConfirmOpen(state, isMobile, itemMobile) {

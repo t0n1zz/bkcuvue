@@ -248,6 +248,12 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::get('/kegiatanBKCU/diikuti', 'KegiatanBKCUController@indexDiikuti');
         Route::get('/kegiatanBKCU/kegiatan', 'KegiatanBKCUController@indexKegiatan');
         Route::get('/kegiatanBKCU/periode/{kegiatan_tipe}/{periode}', 'KegiatanBKCUController@indexPeriode');
+        Route::get('/kegiatanBKCU/dibuka/{kegiatan_tipe}/{periode}', 'KegiatanBKCUController@indexDibuka');
+        Route::get('/kegiatanBKCU/ditutup/{kegiatan_tipe}/{periode}', 'KegiatanBKCUController@indexDitutup');
+        Route::get('/kegiatanBKCU/berjalan/{kegiatan_tipe}/{periode}', 'KegiatanBKCUController@indexBerjalan');
+        Route::get('/kegiatanBKCU/terlaksana/{kegiatan_tipe}/{periode}', 'KegiatanBKCUController@indexTerlaksana');
+        Route::get('/kegiatanBKCU/menunggu/{kegiatan_tipe}/{periode}', 'KegiatanBKCUController@indexMenunggu');
+        Route::get('/kegiatanBKCU/batal/{kegiatan_tipe}/{periode}', 'KegiatanBKCUController@indexBatal');
         Route::get('/kegiatanBKCU/indexSemuaPeserta/{tipe_kegiatan}', 'KegiatanBKCUController@indexSemuaPeserta');
         Route::get('/kegiatanBKCU/indexSemuaPesertaMitra/{tipe_kegiatan}', 'KegiatanBKCUController@indexSemuaPesertaMitra');
         Route::get('/kegiatanBKCU/indexSemuaPesertaCu/{tipe_kegiatan}/cu/{id}', 'KegiatanBKCUController@indexSemuaPesertaCu');
@@ -414,6 +420,7 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         });
         Route::group(['middleware' => ['permission:destroy_aset_tetap']], function () {
             Route::delete('/asetTetap/{id}', 'AsetTetapController@destroy');
+            Route::delete('/asetTetap/hapusDariLaporan/{id}', 'AsetTetapController@hapusDariLaporan');
         });
 
         //aset tetap jenis

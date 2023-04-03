@@ -446,6 +446,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -498,13 +505,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         disable: false,
         filter: true
       }, {
+        title: 'Tujuan',
+        name: 'tujuan',
+        tipe: 'string',
+        sort: true,
+        hide: false,
+        disable: false,
+        filter: true
+      }, {
         title: 'Tipe',
         name: 'tipe.name',
         tipe: 'string',
         sort: false,
         hide: false,
         disable: false,
-        filter: true
+        filter: false
       }, {
         title: 'Kategori',
         name: 'kategori.name',
@@ -512,7 +527,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         sort: false,
         hide: false,
         disable: false,
-        filter: true
+        filter: false
       }, {
         title: 'Periode',
         name: 'periode',
@@ -521,6 +536,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         hide: false,
         disable: false,
         filter: true
+      }, {
+        title: 'User',
+        name: 'temp.user.username',
+        tipe: 'string',
+        sort: false,
+        hide: false,
+        disable: false,
+        filter: false
       }, {
         title: 'Tgl. Buat',
         name: 'created_at',
@@ -1263,6 +1286,18 @@ var render = function () {
                         ? _c(
                             "td",
                             [
+                              _c("check-value", {
+                                attrs: { value: props.item.tujuan },
+                              }),
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[5].hide
+                        ? _c(
+                            "td",
+                            [
                               props.item.tipe
                                 ? _c("check-value", {
                                     attrs: { value: props.item.tipe.name },
@@ -1273,7 +1308,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[5].hide
+                      !_vm.columnData[6].hide
                         ? _c(
                             "td",
                             [
@@ -1287,7 +1322,7 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[6].hide
+                      !_vm.columnData[7].hide
                         ? _c(
                             "td",
                             [
@@ -1299,7 +1334,23 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[7].hide
+                      !_vm.columnData[8].hide
+                        ? _c(
+                            "td",
+                            [
+                              props.item.temp
+                                ? _c("check-value", {
+                                    attrs: {
+                                      value: props.item.temp.user.username,
+                                    },
+                                  })
+                                : _c("span", [_vm._v("-")]),
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[9].hide
                         ? _c("td", {
                             domProps: {
                               innerHTML: _vm._s(
@@ -1311,7 +1362,7 @@ var render = function () {
                           })
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[8].hide
+                      !_vm.columnData[10].hide
                         ? _c("td", [
                             props.item.created_at !== props.item.updated_at
                               ? _c("span", {

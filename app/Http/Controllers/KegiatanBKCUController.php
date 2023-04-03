@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use DB;
@@ -7,6 +8,7 @@ use File;
 use Image;
 use App\Nilai;
 use App\Kegiatan;
+use Response;
 use App\Support\Helper;
 use App\KegiatanPanitia;
 use App\KegiatanPeserta;
@@ -21,216 +23,280 @@ use App\Sertifikat;
 use App\SertifikatGenerate;
 use Illuminate\Http\Request;
 use App\Support\NotificationHelper;
+use Illuminate\Support\Facades\Storage;
 
-class KegiatanBKCUController extends Controller{
+class KegiatanBKCUController extends Controller
+{
 
 	protected $imagepathPertemuan = 'images/pertemuan/';
 	protected $imagepathDiklat = 'images/diklat/';
 	protected $materipathPertemuan = 'files/pertemuan/';
 	protected $materipathDiklat = 'files/diklat/';
+	protected $suratTugas = 'files/suratTugas/';
 	protected $width = 300;
 	protected $height = 200;
 	protected $message = "Kegiatan";
 
 	public function index($kegiatan_tipe)
 	{
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies','Provinces','kode')->withCount('hasPeserta')->where('tipe',$kegiatan_tipe)->advancedFilter();
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->advancedFilter();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexPeriode($kegiatan_tipe, $periode)
 	{
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies','Provinces','kode')->withCount('hasPeserta')->where('tipe',$kegiatan_tipe)->where('periode',$periode)->advancedFilter();
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->advancedFilter();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
+	}
+	public function indexDibuka($kegiatan_tipe, $periode)
+	{
+
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->where('status', 2)->advancedFilter();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function indexDitutup($kegiatan_tipe, $periode)
+	{
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->where('status', 3)->advancedFilter();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function indexBerjalan($kegiatan_tipe, $periode)
+	{
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->where('status', 4)->advancedFilter();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function indexTerlaksana($kegiatan_tipe, $periode)
+	{
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->where('status', 5)->advancedFilter();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function indexMenunggu($kegiatan_tipe, $periode)
+	{
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->where('status', 1)->advancedFilter();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function indexBatal($kegiatan_tipe, $periode)
+	{
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->where('status', 6)->advancedFilter();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexBaru()
 	{
-		$periode= Kegiatan::distinct('periode')->orderBy('periode','desc')->pluck('periode')->first();
-		$now =\Carbon\Carbon::now()->format('Y-m-d');
+		$periode = Kegiatan::distinct('periode')->orderBy('periode', 'desc')->pluck('periode')->first();
+		$now = \Carbon\Carbon::now()->format('Y-m-d');
 
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies')->whereIn('tipe',['diklat_bkcu','pertemuan_bkcu'])->where('periode',$periode)->whereIn('status',[1,2])->orderBy('created_at','desc')->take(6)->get();
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('periode', $periode)->whereIn('status', [1, 2])->orderBy('created_at', 'desc')->take(6)->get();
 
-		$countMulai = Kegiatan::whereIn('tipe',['diklat_bkcu','pertemuan_bkcu'])->where('periode',$periode)->whereIn('status',[1,2])->where('mulai','>',$now)->orderBy('mulai','asc')->count();
+		$countMulai = Kegiatan::whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('periode', $periode)->whereIn('status', [1, 2])->where('mulai', '>', $now)->orderBy('mulai', 'asc')->count();
 
-		$countBuka = Kegiatan::whereIn('tipe',['diklat_bkcu','pertemuan_bkcu'])->where('periode',$periode)->where('status',2)->count();
+		$countBuka = Kegiatan::whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('periode', $periode)->where('status', 2)->count();
 
-		$countJalan = Kegiatan::whereIn('tipe',['diklat_bkcu','pertemuan_bkcu'])->where('status',4)->count();
+		$countJalan = Kegiatan::whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('status', 4)->count();
 
 		return response()
-		->json([
-			'model' => $table_data,
-			'countMulai' => $countMulai,
-			'countBuka' => $countBuka,
-			'countJalan' => $countJalan
-		]);
+			->json([
+				'model' => $table_data,
+				'countMulai' => $countMulai,
+				'countBuka' => $countBuka,
+				'countJalan' => $countJalan
+			]);
 	}
 
 	public function indexMulai()
 	{
-		$periode= Kegiatan::distinct('periode')->orderBy('periode','desc')->pluck('periode')->first();
+		$periode = Kegiatan::distinct('periode')->orderBy('periode', 'desc')->pluck('periode')->first();
 
-		$now =\Carbon\Carbon::now()->format('Y-m-d');
+		$now = \Carbon\Carbon::now()->format('Y-m-d');
 
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies')->whereIn('tipe',['diklat_bkcu','pertemuan_bkcu'])->where('periode',$periode)->whereIn('status',[1,2])->where('mulai','>',$now)->orderBy('mulai','asc')->take(6)->get();
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('periode', $periode)->whereIn('status', [1, 2])->where('mulai', '>', $now)->orderBy('mulai', 'asc')->take(6)->get();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexBuka()
 	{
-		$periode= Kegiatan::distinct('periode')->orderBy('periode','desc')->pluck('periode')->first();
+		$periode = Kegiatan::distinct('periode')->orderBy('periode', 'desc')->pluck('periode')->first();
 
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies')->whereIn('tipe',['diklat_bkcu','pertemuan_bkcu'])->where('periode',$periode)->where('status',2)->take(6)->get();
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('periode', $periode)->where('status', 2)->take(6)->get();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexJalan()
 	{
 		$id_cu = \Auth::user()->id_cu;
 
-		if($id_cu == 0){
-			$table_data = Kegiatan::with('tempat','sasaran','Regencies')->where('status',4)->advancedFilter();
-		}else{
-			$table_data = Kegiatan::with('tempat','sasaran','Regencies')->whereIn('tipe',['diklat_bkcu','pertemuan_bkcu'])->where('status',4)->advancedFilter();
+		if ($id_cu == 0) {
+			$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->where('status', 4)->advancedFilter();
+		} else {
+			$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('status', 4)->advancedFilter();
 		}
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexDiikuti()
 	{
 		$aktivis_id = \Auth::user()->id_aktivis;
 
-		$table_data = Kegiatan::with('tempat','sasaran','Regencies')->whereHas('hasPeserta', function($query) use ($aktivis_id){
-			$query->where('aktivis_id',$aktivis_id);
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->whereHas('hasPeserta', function ($query) use ($aktivis_id) {
+			$query->where('aktivis_id', $aktivis_id);
 		})->advancedFilter();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexSemuaPeserta($kegiatan_tipe)
 	{
-		if($kegiatan_tipe == 'semua'){
-			$table_data = KegiatanPeserta::with('aktivis.pendidikan_tertinggi','kegiatan','mitra_orang')->advancedFilter();
-		}else{
-			$table_data = KegiatanPeserta::with('aktivis.pendidikan_tertinggi','kegiatan','mitra_orang')->where('kegiatan_tipe', $kegiatan_tipe)->advancedFilter();
+		if ($kegiatan_tipe == 'semua') {
+			$table_data = KegiatanPeserta::with('aktivis.pendidikan_tertinggi', 'kegiatan', 'mitra_orang')->advancedFilter();
+		} else {
+			$table_data = KegiatanPeserta::with('aktivis.pendidikan_tertinggi', 'kegiatan', 'mitra_orang')->where('kegiatan_tipe', $kegiatan_tipe)->advancedFilter();
 		}
 
 		$table_data = $this->formatQuery($table_data);
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexSemuaPesertaMitra($kegiatan_tipe)
 	{
-		if($kegiatan_tipe == 'semua'){
+		if ($kegiatan_tipe == 'semua') {
 			$table_data = KegiatanPeserta::with('mitra_orang')->whereNotNull('mitra_orang_id')->advancedFilter();
-		}else{
+		} else {
 			$table_data = KegiatanPeserta::with('mitra_orang')->whereNotNull('mitra_orang_id')->where('kegiatan_tipe', $kegiatan_tipe)->advancedFilter();
 		}
 
 		$table_data = $this->formatQuery($table_data);
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexSemuaPesertaCu($kegiatan_tipe, $id)
 	{
-		if($id == 0){
+		if ($id == 0) {
 			$tipe = 3;
 			$id = 1;
-		}else{
+		} else {
 			$tipe = 1;
 		}
 
-		if($kegiatan_tipe == 'semua'){
-			$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi','kegiatan')->whereHas('aktivis.pekerjaan', function($query) use ($id, $tipe){
-				$query->where('tipe',$tipe)->where('id_tempat',$id);
+		if ($kegiatan_tipe == 'semua') {
+			$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu', 'aktivis.pendidikan_tertinggi', 'kegiatan')->whereHas('aktivis.pekerjaan', function ($query) use ($id, $tipe) {
+				$query->where('tipe', $tipe)->where('id_tempat', $id);
 			})->advancedFilter();
-		}else{
-			$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi','kegiatan')->whereHas('aktivis.pekerjaan', function($query) use ($id, $tipe){
-				$query->where('tipe',$tipe)->where('id_tempat',$id);
+		} else {
+			$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu', 'aktivis.pendidikan_tertinggi', 'kegiatan')->whereHas('aktivis.pekerjaan', function ($query) use ($id, $tipe) {
+				$query->where('tipe', $tipe)->where('id_tempat', $id);
 			})->where('kegiatan_tipe', $kegiatan_tipe)->advancedFilter();
 		}
 
 		$table_data = $this->formatQuery($table_data);
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexPeserta($id)
 	{
-		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','mitra_orang')->where('kegiatan_id',$id)->advancedFilter();
+		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu', 'mitra_orang')->where('kegiatan_id', $id)->advancedFilter();
 
 		$table_data = $this->formatQuery($table_data);
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexPesertaCu($id, $cu)
 	{
-		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','mitra_orang')->where('kegiatan_id',$id)->whereHas('aktivis.pekerjaan', function($query) use ($cu){
-			$query->where('tipe','1')->where('id_tempat',$cu);
+		$table_data = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu', 'mitra_orang')->where('kegiatan_id', $id)->whereHas('aktivis.pekerjaan', function ($query) use ($cu) {
+			$query->where('tipe', '1')->where('id_tempat', $cu);
 		})->advancedFilter();
-		
+
 		$table_data = $this->formatQuery($table_data);
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexPesertaHadir($id)
 	{
-		$table_data = KegiatanPeserta::with('aktivis','mitra_orang')->where('kegiatan_id',$id)->whereNotNull('tanggal_hadir')->advancedFilter();
+		$table_data = KegiatanPeserta::with('aktivis', 'mitra_orang')->where('kegiatan_id', $id)->whereNotNull('tanggal_hadir')->advancedFilter();
 
 		$table_data = $this->formatQuery($table_data);
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
-	public function formatQuery($table_data){
-		foreach($table_data as $t){
-			if($t->aktivis_id){
-				if(isset($t->aktivis)){
+	public function formatQuery($table_data)
+	{
+		foreach ($table_data as $t) {
+			if ($t->aktivis_id) {
+				if (isset($t->aktivis)) {
 					$t->tanggal_lahir = $t->aktivis->tanggal_lahir;
 					$t->tempat_lahir = $t->aktivis->tempat_lahir;
 					$t->tinggi = $t->aktivis->tinggi;
@@ -241,8 +307,8 @@ class KegiatanBKCUController extends Controller{
 					$t->kelamin = $t->aktivis->kelamin;
 					$t->status_pernikahan = $t->aktivis->status;
 				}
-			}elseif($t->mitra_orang_id){
-				if(isset($t->mitra_orang)){
+			} elseif ($t->mitra_orang_id) {
+				if (isset($t->mitra_orang)) {
 					$t->tanggal_lahir = $t->mitra_orang->tanggal_lahir;
 					$t->tempat_lahir = $t->mitra_orang->tempat_lahir;
 					$t->tinggi = $t->mitra_orang->tinggi;
@@ -257,154 +323,154 @@ class KegiatanBKCUController extends Controller{
 
 			if ($t->pekerjaan_tingkat == 1) {
 				$t->pekerjaan_tingkat = 'Pengurus';
-			} else if($t->pekerjaan_tingkat == 2) {
+			} else if ($t->pekerjaan_tingkat == 2) {
 				$t->pekerjaan_tingkat = 'Pengawas';
-			}	else if($t->pekerjaan_tingkat == 3) {
+			} else if ($t->pekerjaan_tingkat == 3) {
 				$t->pekerjaan_tingkat = 'Komite';
-			} else if($t->pekerjaan_tingkat == 4) {
+			} else if ($t->pekerjaan_tingkat == 4) {
 				$t->pekerjaan_tingkat = 'Penasihat';
-			} else if($t->pekerjaan_tingkat == 5) {
+			} else if ($t->pekerjaan_tingkat == 5) {
 				$t->pekerjaan_tingkat = 'Senior Manajer';
-			} else if($t->pekerjaan_tingkat == 6) {
+			} else if ($t->pekerjaan_tingkat == 6) {
 				$t->pekerjaan_tingkat = 'Manajer';
-			} else if($t->pekerjaan_tingkat == 7) {
+			} else if ($t->pekerjaan_tingkat == 7) {
 				$t->pekerjaan_tingkat = 'Supervisor';
-			} else if($t->pekerjaan_tingkat == 8) {
+			} else if ($t->pekerjaan_tingkat == 8) {
 				$t->pekerjaan_tingkat = 'Staf';
-			} else if($t->pekerjaan_tingkat == 9) {
+			} else if ($t->pekerjaan_tingkat == 9) {
 				$t->pekerjaan_tingkat = 'Kontrak';
-			} else if($t->pekerjaan_tingkat == 10) {
+			} else if ($t->pekerjaan_tingkat == 10) {
 				$t->pekerjaan_tingkat = 'Kolektor';
-			} else if($t->pekerjaan_tingkat == 11) {
+			} else if ($t->pekerjaan_tingkat == 11) {
 				$t->pekerjaan_tingkat = 'Kelompok Inti';
-			} else if($t->pekerjaan_tingkat == 12) {
+			} else if ($t->pekerjaan_tingkat == 12) {
 				$t->pekerjaan_tingkat = 'Supporting Unit';
-			} else if($t->pekerjaan_tingkat == 13) {
+			} else if ($t->pekerjaan_tingkat == 13) {
 				$t->pekerjaan_tingkat = 'Vendor sMartCU';
-			} else if($t->pekerjaan_tingkat == 14) {
+			} else if ($t->pekerjaan_tingkat == 14) {
 				$t->pekerjaan_tingkat = 'Magang';
-			} 
+			}
 		}
 		return $table_data;
 	}
 
 	public function indexSemuaPanitia()
 	{
-		$table_data = KegiatanPanitia::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi','kegiatan','mitra_orang','mitra_lembaga')->where('peran','panitia')->advancedFilter();
+		$table_data = KegiatanPanitia::with('aktivis.pekerjaan_aktif.cu', 'aktivis.pendidikan_tertinggi', 'kegiatan', 'mitra_orang', 'mitra_lembaga')->where('peran', 'panitia')->advancedFilter();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexSemuaPanitiaCu($id)
 	{
-		if($id == 0){
+		if ($id == 0) {
 			$tipe = 3;
 			$id = 1;
-		}else{
+		} else {
 			$tipe = 1;
 		}
 
-		$table_data = KegiatanPanitia::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi','kegiatan')->whereHas('aktivis.pekerjaan', function($query) use ($id,$tipe){
-			$query->where('tipe',$tipe)->where('id_tempat',$id);
-		})->where('peran','panitia')->advancedFilter();
+		$table_data = KegiatanPanitia::with('aktivis.pekerjaan_aktif.cu', 'aktivis.pendidikan_tertinggi', 'kegiatan')->whereHas('aktivis.pekerjaan', function ($query) use ($id, $tipe) {
+			$query->where('tipe', $tipe)->where('id_tempat', $id);
+		})->where('peran', 'panitia')->advancedFilter();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexSemuaFasilitator()
 	{
-		$table_data = KegiatanPanitia::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi','kegiatan','mitra_orang','mitra_lembaga')->where('peran','fasilitator')->advancedFilter();
+		$table_data = KegiatanPanitia::with('aktivis.pekerjaan_aktif.cu', 'aktivis.pendidikan_tertinggi', 'kegiatan', 'mitra_orang', 'mitra_lembaga')->where('peran', 'fasilitator')->advancedFilter();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexSemuaFasilitatorCu($id)
 	{
-		if($id == 0){
+		if ($id == 0) {
 			$tipe = 3;
 			$id = 1;
-		}else{
+		} else {
 			$tipe = 1;
 		}
 
-		$table_data = KegiatanPanitia::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi','kegiatan')->whereHas('aktivis.pekerjaan', function($query) use ($id,$tipe){
-			$query->where('tipe',$tipe)->where('id_tempat',$id);
-		})->where('peran','fasilitator')->advancedFilter();
+		$table_data = KegiatanPanitia::with('aktivis.pekerjaan_aktif.cu', 'aktivis.pendidikan_tertinggi', 'kegiatan')->whereHas('aktivis.pekerjaan', function ($query) use ($id, $tipe) {
+			$query->where('tipe', $tipe)->where('id_tempat', $id);
+		})->where('peran', 'fasilitator')->advancedFilter();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexPesertaCountCu($id)
 	{
 		$table_data = DB::table('kegiatan_peserta')
-		->join('aktivis', 'aktivis.id', '=', 'kegiatan_peserta.aktivis_id')
-		->join('aktivis_pekerjaan', 'aktivis_pekerjaan.id_aktivis', '=', 'aktivis.id')
+			->join('aktivis', 'aktivis.id', '=', 'kegiatan_peserta.aktivis_id')
+			->join('aktivis_pekerjaan', 'aktivis_pekerjaan.id_aktivis', '=', 'aktivis.id')
 			->join('cu', 'cu.id', '=', 'aktivis_pekerjaan.id_tempat')
 			->select(DB::raw(
-					'MAX(cu.no_ba) as no_ba,
+				'MAX(cu.no_ba) as no_ba,
 					MAX(cu.name) as name,
 					COUNT(CASE WHEN aktivis.kelamin="LAKI-LAKI" THEN 1 END) AS lakilaki, 
 					COUNT(CASE WHEN aktivis.kelamin="PEREMPUAN" THEN 1 END) AS perempuan, 
 					MAX(aktivis_pekerjaan.id_tempat) as cu_id, 
 					COUNT(*) as total'
 			))
-		->where('aktivis_pekerjaan.tipe', 1)
-		->where('aktivis_pekerjaan.status', 1)
-		->where('kegiatan_id', $id)
-		->groupBy('aktivis_pekerjaan.id_tempat')
-		->get();
-		
+			->where('aktivis_pekerjaan.tipe', 1)
+			->where('aktivis_pekerjaan.status', 1)
+			->where('kegiatan_id', $id)
+			->groupBy('aktivis_pekerjaan.id_tempat')
+			->get();
+
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexPesertaHadirCountCu($id)
 	{
 		$table_data = DB::table('kegiatan_peserta')
-		->join('aktivis', 'aktivis.id', '=', 'kegiatan_peserta.aktivis_id')
-		->join('aktivis_pekerjaan', 'aktivis_pekerjaan.id_aktivis', '=', 'aktivis.id')
+			->join('aktivis', 'aktivis.id', '=', 'kegiatan_peserta.aktivis_id')
+			->join('aktivis_pekerjaan', 'aktivis_pekerjaan.id_aktivis', '=', 'aktivis.id')
 			->join('cu', 'cu.id', '=', 'aktivis_pekerjaan.id_tempat')
 			->select(DB::raw(
-					'MAX(cu.no_ba) as no_ba,
+				'MAX(cu.no_ba) as no_ba,
 					MAX(cu.name) as name,
 					COUNT(CASE WHEN aktivis.kelamin="LAKI-LAKI" THEN 1 END) AS lakilaki, 
 					COUNT(CASE WHEN aktivis.kelamin="PEREMPUAN" THEN 1 END) AS perempuan, 
 					MAX(aktivis_pekerjaan.id_tempat) as cu_id, 
 					COUNT(*) as total'
 			))
-		->where('aktivis_pekerjaan.tipe', 1)
-		->where('aktivis_pekerjaan.status', 1)
-		->where('kegiatan_id', $id)
-		->whereNotNull('tanggal_hadir')
-		->groupBy('aktivis_pekerjaan.id_tempat')
-		->get();
-		
+			->where('aktivis_pekerjaan.tipe', 1)
+			->where('aktivis_pekerjaan.status', 1)
+			->where('kegiatan_id', $id)
+			->whereNotNull('tanggal_hadir')
+			->groupBy('aktivis_pekerjaan.id_tempat')
+			->get();
+
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexKeputusanCount($id)
 	{
 		$table_data = DB::table('kegiatan_pilih')
-		->join('kegiatan_pilih_pivot', 'kegiatan_pilih_pivot.kegiatan_pilih_id', '=', 'kegiatan_pilih.id')
+			->join('kegiatan_pilih_pivot', 'kegiatan_pilih_pivot.kegiatan_pilih_id', '=', 'kegiatan_pilih.id')
 			->select(DB::raw(
-					'MAX(kegiatan_pilih.name) as name,
+				'MAX(kegiatan_pilih.name) as name,
 					MAX(kegiatan_pilih.id) as id, 
 					COUNT(*) as total,
 					COUNT(CASE WHEN kegiatan_pilih_pivot.nilai=1 THEN 1 END) AS setuju,
@@ -412,30 +478,30 @@ class KegiatanBKCUController extends Controller{
 					COUNT(CASE WHEN kegiatan_pilih_pivot.nilai=3 THEN 1 END) AS takada
 					'
 			))
-		->where('kegiatan_id', $id)
-		->groupBy('kegiatan_pilih.id')
-		->get();
-		
+			->where('kegiatan_id', $id)
+			->groupBy('kegiatan_pilih.id')
+			->get();
+
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexMateri($id)
 	{
-		$table_data = KegiatanMateri::where('kegiatan_id',$id)->advancedFilter();
+		$table_data = KegiatanMateri::where('kegiatan_id', $id)->advancedFilter();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexListMateri($id)
 	{
 		$table_data = KegiatanListMateri::where('kegiatan_id', $id)->get();
-		
+
 		return response()
 			->json([
 				'model' => $table_data
@@ -454,170 +520,178 @@ class KegiatanBKCUController extends Controller{
 
 	public function indexKeputusan($id)
 	{
-		$table_data = KegiatanKeputusan::with('pilih','cu','user.aktivis')->withCount('haskomentar')->where('kegiatan_id',$id)->whereNull('kegiatan_keputusan_id')->advancedFilter();
+		$table_data = KegiatanKeputusan::with('pilih', 'cu', 'user.aktivis')->withCount('haskomentar')->where('kegiatan_id', $id)->whereNull('kegiatan_keputusan_id')->advancedFilter();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexKeputusanKomentar($id)
 	{
-		$table_data = KegiatanKeputusan::with('cu','user.aktivis')->where('kegiatan_keputusan_id',$id)->advancedFilter();
+		$table_data = KegiatanKeputusan::with('cu', 'user.aktivis')->where('kegiatan_keputusan_id', $id)->advancedFilter();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexPertanyaan($id)
 	{
-		$table_data = KegiatanPertanyaan::with('cu','user.aktivis')->withCount('haskomentar')->where('kegiatan_id',$id)->whereNull('kegiatan_pertanyaan_id')->advancedFilter();
+		$table_data = KegiatanPertanyaan::with('cu', 'user.aktivis')->withCount('haskomentar')->where('kegiatan_id', $id)->whereNull('kegiatan_pertanyaan_id')->advancedFilter();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexPertanyaanKomentar($id)
 	{
-		$table_data = KegiatanPertanyaan::with('cu','user.aktivis')->where('kegiatan_pertanyaan_id',$id)->advancedFilter();
+		$table_data = KegiatanPertanyaan::with('cu', 'user.aktivis')->where('kegiatan_pertanyaan_id', $id)->advancedFilter();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexTugas($id)
 	{
-		$table_data = KegiatanTugas::with('cu','user.aktivis')->withCount('hasjawaban')->where('kegiatan_id',$id)->advancedFilter();
+		$table_data = KegiatanTugas::with('cu', 'user.aktivis')->withCount('hasjawaban')->where('kegiatan_id', $id)->advancedFilter();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexTugasJawaban($id)
 	{
-		$table_data = KegiatanTugasJawaban::with('cu','user.aktivis')->where('kegiatan_tugas_id',$id)->advancedFilter();
+		$table_data = KegiatanTugasJawaban::with('cu', 'user.aktivis')->where('kegiatan_tugas_id', $id)->advancedFilter();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexKegiatan()
 	{
 		$periode = date("Y");
 
-		$table_data = Kegiatan::where('periode',$periode)->select('id','name','mulai','periode','kode')->get();
+		$table_data = Kegiatan::where('periode', $periode)->select('id', 'name', 'mulai', 'periode', 'kode')->get();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function checkPeserta($kegiatan_id, $aktivis_id)
 	{
-		$table_data = KegiatanPeserta::where('kegiatan_id',$kegiatan_id)->where('aktivis_id',$aktivis_id)->first();
+		$table_data = KegiatanPeserta::where('kegiatan_id', $kegiatan_id)->where('aktivis_id', $aktivis_id)->first();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function checkPanitia($kegiatan_id, $aktivis_id)
 	{
-		$table_data = KegiatanPanitia::where('kegiatan_id',$kegiatan_id)->where('aktivis_id',$aktivis_id)->first();
+		$table_data = KegiatanPanitia::where('kegiatan_id', $kegiatan_id)->where('aktivis_id', $aktivis_id)->first();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function getPeriode($kegiatan_tipe)
 	{
-		$table_data = Kegiatan::where('tipe',$kegiatan_tipe)->distinct('periode')->pluck('periode');
+		$table_data = Kegiatan::where('tipe', $kegiatan_tipe)->distinct('periode')->pluck('periode');
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function create()
 	{
 		return response()
 			->json([
-					'form' => Kegiatan::initialize(),
-					'rules' => Kegiatan::$rules,
-					'option' => []
+				'form' => Kegiatan::initialize(),
+				'rules' => Kegiatan::$rules,
+				'option' => []
 			]);
 	}
 
-	public function store(Request $request, $kegiatan_tipe)
-	{	
-		$this->validate($request,Kegiatan::$rules);
+	public function downloadSuratTugas($filename)
+	{
+		$file = storage_path() . "/app/public/files/suratTugas/" . $filename;
 
-		if($kegiatan_tipe == 'diklat_bkcu'){
+		return Response::download($file);
+	}
+
+	public function store(Request $request, $kegiatan_tipe)
+	{
+		$this->validate($request, Kegiatan::$rules);
+
+		if ($kegiatan_tipe == 'diklat_bkcu') {
 			$kodeKegiatan = KodeKegiatan::where('id', $request->id_kode)->first();
 			$name = $kodeKegiatan->name;
 			$kode_diklat = $kodeKegiatan->kode;
-		}else{
+		} else {
 			$name = $request->name;
 			$kode_diklat = $request->kode_diklat;
 		}
 
 		// processing single image upload
-		if(!empty($request->gambar)){
-			if($kegiatan_tipe == 'diklat_bkcu'){
+		if (!empty($request->gambar)) {
+			if ($kegiatan_tipe == 'diklat_bkcu') {
 				$imagepath = $this->imagepathDiklat;
-			}else{
+			} else {
 				$imagepath = $this->imagepathPertemuan;
-			}	
-			$fileName = Helper::image_processing($imagepath,$this->width,$this->height,$request->gambar,'',$name);
-		}else{
+			}
+			$fileName = Helper::image_processing($imagepath, $this->width, $this->height, $request->gambar, '', $name);
+		} else {
 			$fileName = '';
 		}
 
-		$kelas = Kegiatan::create($request->except('tipe','status','gambar','name','kode_diklat') + [
-			'tipe' => $kegiatan_tipe, 
-			'status' => '1', 
+		$kelas = Kegiatan::create($request->except('tipe', 'status', 'gambar', 'name', 'kode_diklat') + [
+			'tipe' => $kegiatan_tipe,
+			'status' => '1',
 			'gambar' => $fileName,
 			'name' => $name,
 			'kode_diklat' => $kode_diklat
 		]);
 
 		$sasaran_ar = array();
-		foreach($request->sasaran as $sasaran){
+		foreach ($request->sasaran as $sasaran) {
 			array_push($sasaran_ar, implode('', $sasaran));
 		}
-		
+
 		$kelas->sasaran()->sync($sasaran_ar);
 
 		// $kelas->sasaran()->sync(array_flatten($request->sasaran));
 
-		if($request->panitia){
+		if ($request->panitia) {
 			$panitiaArray = array();
 
-			foreach($request->panitia as $panitia){
+			foreach ($request->panitia as $panitia) {
 				$keterangan = '';
-				if (array_key_exists("keterangan",$panitia)){
+				if (array_key_exists("keterangan", $panitia)) {
 					$keterangan = $panitia['keterangan'];
 				}
 				$panitiaArray[$panitia['aktivis_id']] = [
 					'peran' => $panitia['peran'],
-					'keterangan' => $keterangan, 
-					'asal' => $panitia['asal'] ];
+					'keterangan' => $keterangan,
+					'asal' => $panitia['asal']
+				];
 			}
 
 			$kelas->panitia_dalam()->sync($panitiaArray);
@@ -626,9 +700,9 @@ class KegiatanBKCUController extends Controller{
 		return response()
 			->json([
 				'saved' => true,
-				'message' => $this->message. ' ' .$name. ' berhasil ditambah',
+				'message' => $this->message . ' ' . $name . ' berhasil ditambah',
 				'id' => $kelas->id
-			]);	
+			]);
 	}
 
 	public function storePeserta(Request $request, $kegiatan_tipe, $id)
@@ -636,80 +710,88 @@ class KegiatanBKCUController extends Controller{
 		$id_cu = Auth::user()->id_cu;
 		$kegiatan = Kegiatan::findOrFail($id);
 		$asal = $request->asal;
+		$name = $request->name_sertifikat;
 
 		// check peserta count
-		$semuaPesertaTerdaftar = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->count();
-		
-		// check peserta
-		if($semuaPesertaTerdaftar < $kegiatan->peserta_max){
+		$semuaPesertaTerdaftar = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu', 'aktivis.pendidikan_tertinggi')->where('kegiatan_id', $id)->count();
 
-			if($asal == 'luar'){
-				$kelas = KegiatanPeserta::create($request->all());
-			}else if($asal == 'dalam'){
-				if($id_cu != 0){
-					$pesertaTerdaftar = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->whereHas('aktivis.pekerjaan', function($query) use ($id_cu){
-						$query->where('tipe','1')->where('id_tempat',$id_cu);
+		// upload file to storage
+		if($request->surat_tugas){
+			$file = $request->surat_tugas;
+			
+			$fileExtension = $file->getClientOriginalExtension();
+			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
+			$file->move($this->suratTugas,$formatedName);
+		}
+
+		// check peserta
+		if ($semuaPesertaTerdaftar < $kegiatan->peserta_max) {
+			if ($asal == 'luar') {
+				$kelas = KegiatanPeserta::create($request->except('surat_tugas') + ['surat_tugas' => $formatedName]);
+			} else if ($asal == 'dalam') {
+				if ($id_cu != 0) {
+					$pesertaTerdaftar = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu', 'aktivis.pendidikan_tertinggi')->where('kegiatan_id', $id)->whereHas('aktivis.pekerjaan', function ($query) use ($id_cu) {
+						$query->where('tipe', '1')->where('id_tempat', $id_cu);
 					})->count();
-				}else{
-					$pesertaTerdaftar = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('kegiatan_id',$id)->whereHas('aktivis.pekerjaan', function($query) use ($id_cu){
-						$query->where('tipe','3')->where('id_tempat',$id_cu);
+				} else {
+					$pesertaTerdaftar = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu', 'aktivis.pendidikan_tertinggi')->where('kegiatan_id', $id)->whereHas('aktivis.pekerjaan', function ($query) use ($id_cu) {
+						$query->where('tipe', '3')->where('id_tempat', $id_cu);
 					})->count();
 				}
-				
+
 				// check peserta per-cu
-				if($pesertaTerdaftar <  $kegiatan->peserta_max_cu){
+				if ($pesertaTerdaftar <  $kegiatan->peserta_max_cu) {
 
 					// create
-					$kelas = KegiatanPeserta::create($request->all());
-		
+					$kelas = KegiatanPeserta::create($request->except('surat_tugas') + ['surat_tugas' => $formatedName]);
+
 					// send notification
-					if($id_cu != 0){
+					if ($id_cu != 0) {
 						// check interval
-						$dataPeserta = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->where('kegiatan_id', $id)->whereHas('aktivis.pekerjaan_aktif.cu', function($query) use($id_cu){
+						$dataPeserta = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu')->where('kegiatan_id', $id)->whereHas('aktivis.pekerjaan_aktif.cu', function ($query) use ($id_cu) {
 							$query->where('id', $id_cu);
-						})->orderBy('created_at','desc')->first();
+						})->orderBy('created_at', 'desc')->first();
 						$time = \Carbon\Carbon::now();
-				
+
 						// send notif if interval different is more than 2 hours
-						if($dataPeserta){
+						if ($dataPeserta) {
 							$diff = $time->diffInHours($dataPeserta->created_at);
-							if($diff > 2){
-								if($kegiatan_tipe == 'diklat_bkcu'){
-									NotificationHelper::diklat_bkcu($id_cu, $id,'menambah peserta');
-								}else{
-									NotificationHelper::pertemuan_bkcu($id_cu, $id,'menambah peserta');
+							if ($diff > 2) {
+								if ($kegiatan_tipe == 'diklat_bkcu') {
+									NotificationHelper::diklat_bkcu($id_cu, $id, 'menambah peserta');
+								} else {
+									NotificationHelper::pertemuan_bkcu($id_cu, $id, 'menambah peserta');
 								}
 							}
-						}else{
-							if($kegiatan_tipe == 'diklat_bkcu'){
-								NotificationHelper::diklat_bkcu($id_cu, $id,'menambah peserta');
-							}else{
-								NotificationHelper::pertemuan_bkcu($id_cu, $id,'menambah peserta');
+						} else {
+							if ($kegiatan_tipe == 'diklat_bkcu') {
+								NotificationHelper::diklat_bkcu($id_cu, $id, 'menambah peserta');
+							} else {
+								NotificationHelper::pertemuan_bkcu($id_cu, $id, 'menambah peserta');
 							}
 						}
 					}
-					
+
 					return response()
 						->json([
 							'saved' => true,
-							'message' => 'Peserta ' . $this->message. ' berhasil ditambah',
+							'message' => 'Peserta ' . $this->message . ' berhasil ditambah',
 							'id' => $kelas->id
-						]);	
-				}else{
+						]);
+				} else {
 					return response()
 						->json([
 							'saved' => false,
 							'message' => 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena jumlah maksimal peserta per CU adalah ' . $kegiatan->peserta_max_cu . ' orang.',
-						]);	
+						]);
 				}
 			}
-
-		}else{
+		} else {
 			return response()
-					->json([
-						'saved' => false,
-						'message' => 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena jumlah maksimal peserta adalah ' . $kegiatan->peserta_max,
-					]);	
+				->json([
+					'saved' => false,
+					'message' => 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena jumlah maksimal peserta adalah ' . $kegiatan->peserta_max,
+				]);
 		}
 	}
 
@@ -719,25 +801,25 @@ class KegiatanBKCUController extends Controller{
 		$format = $request->format;
 		$formatedName = '';
 		$fileExtension = 'link';
-		
-		if($format == 'upload'){
+
+		if ($format == 'upload') {
 			$file = $request->content;
-			if($kegiatan_tipe == 'diklat_bkcu'){
+			if ($kegiatan_tipe == 'diklat_bkcu') {
 				$materipath = $this->materipathDiklat;
-			}else{
+			} else {
 				$materipath = $this->materipathPertemuan;
 			}
-			
+
 			$fileExtension = $file->getClientOriginalExtension();
-			if($fileExtension != 'pdf'){
-				$formatedName = Helper::image_processing($materipath,$this->width,$this->height,$file,'',$name);
-			}else{
-				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). $fileExtension;
-				$file->move($materipath,$formatedName);
+			if ($fileExtension != 'pdf') {
+				$formatedName = Helper::image_processing($materipath, $this->width, $this->height, $file, '', $name);
+			} else {
+				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '', $name), 10, '') . '_' . uniqid() . $fileExtension;
+				$file->move($materipath, $formatedName);
 			}
 		}
 
-		$kelas = KegiatanMateri::create([ 
+		$kelas = KegiatanMateri::create([
 			'kegiatan_id' => $id,
 			'name' => $request->name,
 			'filename' => $formatedName,
@@ -746,13 +828,13 @@ class KegiatanBKCUController extends Controller{
 			'tipe' => $fileExtension,
 			'keterangan' => $request->keterangan
 		]);
-		
+
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Materi ' . $this->message. ' berhasil ditambah',
+				'message' => 'Materi ' . $this->message . ' berhasil ditambah',
 				'id' => $kelas->id
-			]);	
+			]);
 	}
 
 	public function storeListMateri(Request $request, $kegiatan_tipe, $id)
@@ -794,52 +876,52 @@ class KegiatanBKCUController extends Controller{
 
 	public function storeKeputusan(Request $request, $id)
 	{
-		$kelas = KegiatanKeputusan::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id ]);
+		$kelas = KegiatanKeputusan::create($request->except('kegiatan_id') + ['kegiatan_id' => $id]);
 
 		$this->syncKeputusanPilih($request, $kelas);
-		
+
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Keputusan ' . $this->message. ' berhasil ditambah',
+				'message' => 'Keputusan ' . $this->message . ' berhasil ditambah',
 				'id' => $kelas->id
-			]);	
+			]);
 	}
 
 	public function storeKeputusanKomentar(Request $request, $id)
 	{
-		$kelas = KegiatanKeputusan::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id ]);
-		
+		$kelas = KegiatanKeputusan::create($request->except('kegiatan_id') + ['kegiatan_id' => $id]);
+
 		return response()
 			->json([
 				'saved' => true,
 				'message' => 'Komentar keputusan berhasil ditambah',
 				'id' => $kelas->id
-			]);	
+			]);
 	}
 
 	public function storePertanyaan(Request $request, $id)
 	{
-		$kelas = KegiatanPertanyaan::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id ]);
-		
+		$kelas = KegiatanPertanyaan::create($request->except('kegiatan_id') + ['kegiatan_id' => $id]);
+
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Pertanyaan ' . $this->message. ' berhasil ditambah',
+				'message' => 'Pertanyaan ' . $this->message . ' berhasil ditambah',
 				'id' => $kelas->id
-			]);	
+			]);
 	}
 
 	public function storePertanyaanKomentar(Request $request, $id)
 	{
-		$kelas = KegiatanPertanyaan::create($request->except('kegiatan_id') + [ 'kegiatan_id' => $id ]);
-		
+		$kelas = KegiatanPertanyaan::create($request->except('kegiatan_id') + ['kegiatan_id' => $id]);
+
 		return response()
 			->json([
 				'saved' => true,
 				'message' => 'Komentar pertanyaan berhasil ditambah',
 				'id' => $kelas->id
-			]);	
+			]);
 	}
 
 	public function storeTugas(Request $request, $kegiatan_tipe, $id)
@@ -849,31 +931,31 @@ class KegiatanBKCUController extends Controller{
 		$format = $request->format;
 		$formatedName = '';
 		$fileExtension = 'link';
-		
-		if($format == 'upload'){
+
+		if ($format == 'upload') {
 			$file = $request->filename;
-			if($kegiatan_tipe == 'diklat_bkcu'){
+			if ($kegiatan_tipe == 'diklat_bkcu') {
 				$materipath = $this->materipathDiklat;
-			}else{
+			} else {
 				$materipath = $this->materipathPertemuan;
 			}
-			
+
 			$filename = $file->getClientOriginalName();
-			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.'.$fileExtension;
-			$file->move($materipath,$formatedName);
+			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '', $name), 10, '') . '_' . uniqid() . '.' . $fileExtension;
+			$file->move($materipath, $formatedName);
 		}
 
-		$kelas = KegiatanTugas::create($request->except('kegiatan_id','file') +[ 
+		$kelas = KegiatanTugas::create($request->except('kegiatan_id', 'file') + [
 			'kegiatan_id' => $id,
 			'file' => $formatedName,
 		]);
-		
+
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Tugas ' . $this->message. ' berhasil ditambah',
+				'message' => 'Tugas ' . $this->message . ' berhasil ditambah',
 				'id' => $kelas->id
-			]);	
+			]);
 	}
 
 	public function storeTugasJawaban(Request $request, $kegiatan_tipe)
@@ -882,56 +964,56 @@ class KegiatanBKCUController extends Controller{
 		$format = $request->format;
 		$formatedName = '';
 		$fileExtension = '';
-		
-		if($format == 'upload'){
+
+		if ($format == 'upload') {
 			$file = $request->filename;
-			if($kegiatan_tipe == 'diklat_bkcu'){
+			if ($kegiatan_tipe == 'diklat_bkcu') {
 				$materipath = $this->materipathDiklat;
-			}else{
+			} else {
 				$materipath = $this->materipathPertemuan;
 			}
-			
+
 			$fileExtension = $file->getClientOriginalExtension();
 			$filename = $file->getClientOriginalName();
-			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.'.$fileExtension;
-			$file->move($materipath,$formatedName);
+			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '', $name), 10, '') . '_' . uniqid() . '.' . $fileExtension;
+			$file->move($materipath, $formatedName);
 		}
 
-		$kelas = KegiatanTugasJawaban::create($request->except('file') +[ 
+		$kelas = KegiatanTugasJawaban::create($request->except('file') + [
 			'file' => $formatedName,
 		]);
-		
+
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Jawaban tugas ' . $this->message. ' berhasil ditambah',
+				'message' => 'Jawaban tugas ' . $this->message . ' berhasil ditambah',
 				'id' => $kelas->id
-			]);	
+			]);
 	}
 
 	public function edit($id)
 	{
-		$kelas = Kegiatan::with('tempat','sasaran','panitia_dalam.pekerjaan_aktif.cu','panitia_luar','panitia_luar_lembaga','kode')->findOrFail($id);
+		$kelas = Kegiatan::with('tempat', 'sasaran', 'panitia_dalam.pekerjaan_aktif.cu', 'panitia_luar', 'panitia_luar_lembaga', 'kode')->findOrFail($id);
 		$kelas2 = Sertifikat::where('id', $kelas->id_sertifikat)->get();
 
 		return response()
-				->json([
-						'form' => $kelas,
-						'form1' => $kelas2,
-						'option' => []
-				]);
+			->json([
+				'form' => $kelas,
+				'form1' => $kelas2,
+				'option' => []
+			]);
 	}
 
 	public function editTugasJawaban($id)
 	{
 		$id_user = Auth::user()->getId();
-		$kelas = KegiatanTugasJawaban::with('cu','user.aktivis')->where('kegiatan_tugas_id',$id)->where('id_user',$id_user)->first();
+		$kelas = KegiatanTugasJawaban::with('cu', 'user.aktivis')->where('kegiatan_tugas_id', $id)->where('id_user', $id_user)->first();
 
 		return response()
-				->json([
-						'form' => $kelas,
-						'option' => []
-				]);
+			->json([
+				'form' => $kelas,
+				'option' => []
+			]);
 	}
 
 	public function update(Request $request, $id)
@@ -939,57 +1021,58 @@ class KegiatanBKCUController extends Controller{
 		// $this->validate($request, Kegiatan::$rules);
 		$kelas = Kegiatan::findOrFail($id);
 
-		if($kelas->tipe == 'diklat_bkcu'){
+		if ($kelas->tipe == 'diklat_bkcu') {
 			$kodeKegiatan = KodeKegiatan::where('id', $request->id_kode)->first();
-			if($kodeKegiatan){
+			if ($kodeKegiatan) {
 				$name = $kodeKegiatan->name;
 				$kode_diklat = $kodeKegiatan->kode;
-			}else{
+			} else {
 				$name = $request->name;
 				$kode_diklat = $request->kode_diklat;
 			}
-		}else{
+		} else {
 			$name = $request->name;
 			$kode_diklat = $request->kode_diklat;
 		}
 
 		// processing single image upload
-		if(!empty($request->gambar)){
-			if($kelas->tipe == 'diklat_bkcu'){
+		if (!empty($request->gambar)) {
+			if ($kelas->tipe == 'diklat_bkcu') {
 				$imagepath = $this->imagepathDiklat;
-			}else{
+			} else {
 				$imagepath = $this->imagepathPertemuan;
 			}
-			$fileName = Helper::image_processing($imagepath,$this->width,$this->height,$request->gambar,$kelas->gambar, $name);
-		}else{
+			$fileName = Helper::image_processing($imagepath, $this->width, $this->height, $request->gambar, $kelas->gambar, $name);
+		} else {
 			$fileName = '';
 		}
 
-		$kelas->update($request->except('gambar','name','kode_diklat') + [
+		$kelas->update($request->except('gambar', 'name', 'kode_diklat') + [
 			'gambar' => $fileName,
 			'name' => $name,
 			'kode_diklat' => $kode_diklat
 		]);
 
 		$sasaran_ar = array();
-		foreach($request->sasaran as $sasaran){
+		foreach ($request->sasaran as $sasaran) {
 			array_push($sasaran_ar, implode('', $sasaran));
 		}
-		
+
 		$kelas->sasaran()->sync($sasaran_ar);
 
-		if($request->panitia){
+		if ($request->panitia) {
 			$panitiaArray = array();
 
-			foreach($request->panitia as $panitia){
+			foreach ($request->panitia as $panitia) {
 				$keterangan = '';
-				if (array_key_exists("keterangan",$panitia)){
+				if (array_key_exists("keterangan", $panitia)) {
 					$keterangan = $panitia['keterangan'];
 				}
 				$panitiaArray[$panitia['aktivis_id']] = [
-					'peran' => $panitia['peran'], 
-					'keterangan' => $keterangan, 
-					'asal' => $panitia['asal'] ];
+					'peran' => $panitia['peran'],
+					'keterangan' => $keterangan,
+					'asal' => $panitia['asal']
+				];
 			}
 
 			$kelas->panitia_dalam()->sync($panitiaArray);
@@ -1001,7 +1084,7 @@ class KegiatanBKCUController extends Controller{
 		return response()
 			->json([
 				'saved' => true,
-				'message' => $this->message. ' ' .$name. ' berhasil diubah'
+				'message' => $this->message . ' ' . $name . ' berhasil diubah'
 			]);
 	}
 
@@ -1012,23 +1095,26 @@ class KegiatanBKCUController extends Controller{
 		$kelas->status = $request->status;
 		$statusPeserta = $request->status;
 
-		if($request->status == 5){
-			if($kelas->id_sertifikat > 0){
+		if ($request->status == 5) {
+			if ($kelas->id_sertifikat > 0) {
 				$periode = Kegiatan::where('id', $id)->select('periode')->get();
-				$kegiatanPeserta = KegiatanPeserta::where('kegiatan_id', $id)->select('aktivis_id')->get();
+				$kegiatanPeserta = KegiatanPeserta::select('aktivis_id')->where('kegiatan_id', $id)->get();
+
 				$lastNomor = SertifikatGenerate::where('periode', $periode->first()->periode)->max('nomor');
+
 				if ($lastNomor == null) {
 					$lastNomor = 0;
 				}
+
 				foreach ($kegiatanPeserta as $peserta) {
-					$checkPeserta = SertifikatGenerate::where('kegiatan_peserta_id', $peserta->id)->where('id_kegiatan', $id)->first();
-					
+					$checkPeserta = SertifikatGenerate::where('kegiatan_peserta_id', $peserta->aktivis_id)->where('id_kegiatan', $id)->first();
+
 					if (!$checkPeserta) {
 						$lastNomor++;
 						SertifikatGenerate::create([
-							'kegiatan_peserta_id' => $peserta->id, 
-							'id_kegiatan' => $id, 
-							'nomor' => $lastNomor, 
+							'kegiatan_peserta_id' => $peserta->aktivis_id,
+							'id_kegiatan' => $id,
+							'nomor' => $lastNomor,
 							'periode' => $periode->first()->periode,
 						]);
 					}
@@ -1036,9 +1122,9 @@ class KegiatanBKCUController extends Controller{
 			}
 		}
 
-		if($request->status == 6){
+		if ($request->status == 6) {
 			$kelas->keteranganBatal = $request->keterangan;
-		}else{
+		} else {
 			$kelas->keteranganBatal = "";
 		}
 
@@ -1046,8 +1132,8 @@ class KegiatanBKCUController extends Controller{
 
 		// $dataPeserta = KegiatanPeserta::with('aktivis.pekerjaan_aktif')->where('kegiatan_id', $id)->get();
 
-		if($statusPeserta){
-			KegiatanPeserta::where('kegiatan_id', $id)->where('status','!=',7)->update(['status' => $statusPeserta]);
+		if ($statusPeserta) {
+			KegiatanPeserta::where('kegiatan_id', $id)->where('status', '!=', 7)->update(['status' => $statusPeserta]);
 
 			// $id_cus = [];
 			// foreach($dataPeserta as $peserta){
@@ -1167,7 +1253,7 @@ class KegiatanBKCUController extends Controller{
 
 	public function updatePesertaHadir($kegiatan_id, $aktivis_id)
 	{
-		$kelas = KegiatanPeserta::where('kegiatan_id',$kegiatan_id)->where('aktivis_id',$aktivis_id)->first();
+		$kelas = KegiatanPeserta::where('kegiatan_id', $kegiatan_id)->where('aktivis_id', $aktivis_id)->first();
 		$kelas->tanggal_hadir = \Carbon\Carbon::now();
 		$kelas->update();
 
@@ -1180,7 +1266,7 @@ class KegiatanBKCUController extends Controller{
 
 	public function updatePanitiaHadir($kegiatan_id, $aktivis_id)
 	{
-		$kelas = KegiatanPanitia::where('kegiatan_id',$kegiatan_id)->where('aktivis_id',$aktivis_id)->first();
+		$kelas = KegiatanPanitia::where('kegiatan_id', $kegiatan_id)->where('aktivis_id', $aktivis_id)->first();
 		$kelas->tanggal_hadir = \Carbon\Carbon::now();
 		$kelas->update();
 
@@ -1193,14 +1279,14 @@ class KegiatanBKCUController extends Controller{
 
 	public function editNilai($id, $kegiatan_id)
 	{
-		$table_data = KegiatanListMateri::with(['nilai' => function($q) use($id){
-				$q->where('kegiatan_peserta_id',$id);
+		$table_data = KegiatanListMateri::with(['nilai' => function ($q) use ($id) {
+			$q->where('kegiatan_peserta_id', $id);
 		}])->where('kegiatan_id', $kegiatan_id)->get();
 
-		foreach($table_data as $t){
+		foreach ($table_data as $t) {
 			$t->jumlah_nilai = 0;
-		
-			if(isset($t['nilai'][0])){
+
+			if (isset($t['nilai'][0])) {
 				$t->jumlah_nilai = $t['nilai'][0]['nilai'];
 			};
 		}
@@ -1215,12 +1301,12 @@ class KegiatanBKCUController extends Controller{
 	{
 		$table_data = $request->all();
 
-		if(!empty($table_data)){
-			foreach($table_data as $a){
-				
-				if(!empty($a['nilai'][0])){
+		if (!empty($table_data)) {
+			foreach ($table_data as $a) {
+
+				if (!empty($a['nilai'][0])) {
 					$kelas = Nilai::findOrFail($a['nilai'][0]['id']);
-				}else{
+				} else {
 					$kelas = new Nilai();
 				}
 
@@ -1242,12 +1328,12 @@ class KegiatanBKCUController extends Controller{
 
 	public function jawabanPertanyaan($id, $tipe)
 	{
-		if($tipe == 'jawaban'){
+		if ($tipe == 'jawaban') {
 			$kelasKomentar = KegiatanPertanyaan::findOrFail($id);
 			$kelasPertanyaan = KegiatanPertanyaan::findOrFail($kelasKomentar->kegiatan_pertanyaan_id);
 			$kelasKomentarJawaban = KegiatanPertanyaan::where('kegiatan_pertanyaan_id', $kelasPertanyaan->id)->whereNotNull('terjawab')->first();
 
-			if($kelasKomentarJawaban){
+			if ($kelasKomentarJawaban) {
 				$kelasKomentarJawaban->terjawab = null;
 				$kelasKomentarJawaban->update();
 			}
@@ -1257,7 +1343,7 @@ class KegiatanBKCUController extends Controller{
 
 			$kelasPertanyaan->terjawab = 1;
 			$kelasPertanyaan->update();
-		}else{
+		} else {
 			$kelasKomentarJawaban = KegiatanPertanyaan::findOrFail($id);
 			$kelasKomentarJawaban->terjawab = null;
 			$kelasKomentarJawaban->update();
@@ -1279,10 +1365,10 @@ class KegiatanBKCUController extends Controller{
 		$kelas = Kegiatan::findOrFail($id);
 		$name = $kelas->name;
 
-		if(!empty($kelas->gambar)){
-			if($kelas->tipe == 'diklat_bkcu'){
+		if (!empty($kelas->gambar)) {
+			if ($kelas->tipe == 'diklat_bkcu') {
 				$imagepath = $this->imagepathDiklat;
-			}else{
+			} else {
 				$imagepath = $this->imagepathPertemuan;
 			}
 			File::delete($imagepath . $kelas->gambar . '.jpg');
@@ -1297,7 +1383,7 @@ class KegiatanBKCUController extends Controller{
 		return response()
 			->json([
 				'deleted' => true,
-				'message' =>  $this->message. ' ' .$name. 'berhasil dihapus'
+				'message' =>  $this->message . ' ' . $name . 'berhasil dihapus'
 			]);
 	}
 
@@ -1306,12 +1392,16 @@ class KegiatanBKCUController extends Controller{
 		$kelas = KegiatanPeserta::findOrFail($id);
 		$name = $kelas->name;
 
+		if(!empty($kelas->surat_tugas)){
+			File::delete($this->suratTugas . $kelas->surat_tugas);
+		}
+
 		$kelas->delete();
 
 		return response()
 			->json([
 				'deleted' => true,
-				'message' =>  'Peserta ' .$name. 'berhasil dihapus'
+				'message' =>  'Peserta ' . $name . 'berhasil dihapus'
 			]);
 	}
 
@@ -1323,17 +1413,17 @@ class KegiatanBKCUController extends Controller{
 
 		$kelas->delete();
 
-		if($kegiatan_tipe == 'diklat_bkcu'){
+		if ($kegiatan_tipe == 'diklat_bkcu') {
 			$materipath = $this->materipathDiklat;
-		}else{
+		} else {
 			$materipath = $this->materipathPertemuan;
 		}
 
-		if(!empty($kelas->filename)){
-			if($format == 'jpg'){
+		if (!empty($kelas->filename)) {
+			if ($format == 'jpg') {
 				File::delete($materipath . $kelas->filename . '.jpg');
 				File::delete($materipath . $kelas->filename . 'n.jpg');
-			}else{
+			} else {
 				File::delete($materipath . $kelas->filename);
 			}
 		}
@@ -1341,7 +1431,7 @@ class KegiatanBKCUController extends Controller{
 		return response()
 			->json([
 				'deleted' => true,
-				'message' =>  'Materi ' .$name. 'berhasil dihapus'
+				'message' =>  'Materi ' . $name . 'berhasil dihapus'
 			]);
 	}
 
@@ -1365,17 +1455,17 @@ class KegiatanBKCUController extends Controller{
 		$name = $kelas->name;
 
 		$kelas->pilih()->sync([]);
-		KegiatanKeputusan::where('kegiatan_keputusan_id',$id)->delete();
+		KegiatanKeputusan::where('kegiatan_keputusan_id', $id)->delete();
 
 		$kelas->delete();
 
 		return response()
 			->json([
 				'deleted' => true,
-				'message' =>  'Keputusan ' .$name. 'berhasil dihapus'
+				'message' =>  'Keputusan ' . $name . 'berhasil dihapus'
 			]);
 	}
-	
+
 	public function destroyKeputusanKomentar($id)
 	{
 		$kelas = KegiatanKeputusan::findOrFail($id);
@@ -1386,7 +1476,7 @@ class KegiatanBKCUController extends Controller{
 		return response()
 			->json([
 				'deleted' => true,
-				'message' =>  'Komentar ' .$name. 'berhasil dihapus'
+				'message' =>  'Komentar ' . $name . 'berhasil dihapus'
 			]);
 	}
 
@@ -1395,17 +1485,17 @@ class KegiatanBKCUController extends Controller{
 		$kelas = KegiatanPertanyaan::findOrFail($id);
 		$name = $kelas->name;
 
-		KegiatanPertanyaan::where('kegiatan_pertanyaan_id',$id)->delete();
+		KegiatanPertanyaan::where('kegiatan_pertanyaan_id', $id)->delete();
 
 		$kelas->delete();
 
 		return response()
 			->json([
 				'deleted' => true,
-				'message' =>  'Pertanyaan ' .$name. 'berhasil dihapus'
+				'message' =>  'Pertanyaan ' . $name . 'berhasil dihapus'
 			]);
 	}
-	
+
 	public function destroyPertanyaanKomentar($id)
 	{
 		$kelas = KegiatanPertanyaan::findOrFail($id);
@@ -1416,7 +1506,7 @@ class KegiatanBKCUController extends Controller{
 		return response()
 			->json([
 				'deleted' => true,
-				'message' =>  'Komentar ' .$name. 'berhasil dihapus'
+				'message' =>  'Komentar ' . $name . 'berhasil dihapus'
 			]);
 	}
 
@@ -1428,31 +1518,31 @@ class KegiatanBKCUController extends Controller{
 
 		$kelas->delete();
 
-		if($kegiatan_tipe == 'diklat_bkcu'){
+		if ($kegiatan_tipe == 'diklat_bkcu') {
 			$materipath = $this->materipathDiklat;
-		}else{
+		} else {
 			$materipath = $this->materipathPertemuan;
 		}
 
-		if(!empty($kelas->filename)){
+		if (!empty($kelas->filename)) {
 			File::delete($materipath . $kelas->filename);
 		}
 
-		$jawaban = KegiatanTugasJawaban::where('kegiatan_tugas_id',$id)->get();
-		foreach($jawaban as $j){
+		$jawaban = KegiatanTugasJawaban::where('kegiatan_tugas_id', $id)->get();
+		foreach ($jawaban as $j) {
 			$kelasJ = KegiatanTugasJawaban::findOrFail($jawaban->id);
 			$name = $kelasJ->name;
 			$format = $kelasJ->format;
 
 			$kelasJ->delete();
 
-			if($kegiatan_tipe == 'diklat_bkcu'){
+			if ($kegiatan_tipe == 'diklat_bkcu') {
 				$materipath = $this->materipathDiklat;
-			}else{
+			} else {
 				$materipath = $this->materipathPertemuan;
 			}
 
-			if(!empty($kelas->filename)){
+			if (!empty($kelas->filename)) {
 				File::delete($materipath . $kelas->filename);
 			}
 		}
@@ -1460,7 +1550,7 @@ class KegiatanBKCUController extends Controller{
 		return response()
 			->json([
 				'deleted' => true,
-				'message' =>  'Tugas ' .$name. 'berhasil dihapus'
+				'message' =>  'Tugas ' . $name . 'berhasil dihapus'
 			]);
 	}
 
@@ -1472,19 +1562,19 @@ class KegiatanBKCUController extends Controller{
 
 		$kelas->delete();
 
-		if($kegiatan_tipe == 'diklat_bkcu'){
+		if ($kegiatan_tipe == 'diklat_bkcu') {
 			$materipath = $this->materipathDiklat;
-		}else{
+		} else {
 			$materipath = $this->materipathPertemuan;
 		}
-		if(!empty($kelas->filename)){
+		if (!empty($kelas->filename)) {
 			File::delete($materipath . $kelas->filename);
 		}
 
 		return response()
 			->json([
 				'deleted' => true,
-				'message' =>  'Jawaban tugas ' .$name. 'berhasil dihapus'
+				'message' =>  'Jawaban tugas ' . $name . 'berhasil dihapus'
 			]);
 	}
 
@@ -1500,17 +1590,17 @@ class KegiatanBKCUController extends Controller{
 
 		$kelas->update();
 
-		if($id_cu != 0){
-			if($request->keteranganBatal != ''){
-				if($kegiatan_tipe == 'diklat_bkcu'){
+		if ($id_cu != 0) {
+			if ($request->keteranganBatal != '') {
+				if ($kegiatan_tipe == 'diklat_bkcu') {
 					NotificationHelper::diklat_bkcu($id_cu, $kegiatan_id, 'membatalkan pendaftaran peserta dengan alasan ' . $request->keteranganBatal);
-				}else{
+				} else {
 					NotificationHelper::pertemuan_bkcu($id_cu, $kegiatan_id, 'membatalkan pendaftaran peserta dengan alasan ' . $request->keteranganBatal);
 				}
-			}else{
-				if($kegiatan_tipe == 'diklat_bkcu'){
+			} else {
+				if ($kegiatan_tipe == 'diklat_bkcu') {
 					NotificationHelper::diklat_bkcu($id_cu, $kegiatan_id, 'membatalkan pendaftaran peserta');
-				}else{
+				} else {
 					NotificationHelper::pertemuan_bkcu($id_cu, $kegiatan_id, 'membatalkan pendaftaran peserta');
 				}
 			}
@@ -1525,62 +1615,62 @@ class KegiatanBKCUController extends Controller{
 
 	public function countPeserta($id)
 	{
-			$table_data = KegiatanPeserta::where('kegiatan_id',$id)->count();
-			
-			return response()
+		$table_data = KegiatanPeserta::where('kegiatan_id', $id)->count();
+
+		return response()
 			->json([
-					'model' => $table_data
+				'model' => $table_data
 			]);
 	}
 
 	public function countPesertaHadir($id)
 	{
-			$table_data = KegiatanPeserta::where('kegiatan_id',$id)->whereNotNull('tanggal_hadir')->count();
-			
-			return response()
+		$table_data = KegiatanPeserta::where('kegiatan_id', $id)->whereNotNull('tanggal_hadir')->count();
+
+		return response()
 			->json([
-					'model' => $table_data
+				'model' => $table_data
 			]);
 	}
 
 	public function countKeputusan($id, $cu, $user)
 	{
-		$table_data = KegiatanKeputusan::where('kegiatan_id',$id)->whereNull('kegiatan_keputusan_id')->where('id_cu',$cu)->count();
+		$table_data = KegiatanKeputusan::where('kegiatan_id', $id)->whereNull('kegiatan_keputusan_id')->where('id_cu', $cu)->count();
 
-		$table_data2 = KegiatanKeputusan::where('kegiatan_id',$id)->whereNull('kegiatan_keputusan_id')->where('id_user',$user)->count();
+		$table_data2 = KegiatanKeputusan::where('kegiatan_id', $id)->whereNull('kegiatan_keputusan_id')->where('id_user', $user)->count();
 
 		return response()
-	->json([
-			'model' => [$table_data, $table_data2]
-		]);
+			->json([
+				'model' => [$table_data, $table_data2]
+			]);
 	}
 
 	public function countPertanyaan($id, $cu, $user)
 	{
-		$table_data = KegiatanPertanyaan::where('kegiatan_id',$id)->whereNull('kegiatan_pertanyaan_id')->where('id_cu',$cu)->count();
+		$table_data = KegiatanPertanyaan::where('kegiatan_id', $id)->whereNull('kegiatan_pertanyaan_id')->where('id_cu', $cu)->count();
 
-		$table_data2 = KegiatanPertanyaan::where('kegiatan_id',$id)->whereNull('kegiatan_pertanyaan_id')->where('id_user',$user)->count();
+		$table_data2 = KegiatanPertanyaan::where('kegiatan_id', $id)->whereNull('kegiatan_pertanyaan_id')->where('id_user', $user)->count();
 
 		return response()
-		->json([
-			'model' => [$table_data, $table_data2]
-		]);
+			->json([
+				'model' => [$table_data, $table_data2]
+			]);
 	}
 
 	public function countJalan()
 	{
 		$id_cu = \Auth::user()->id_cu;
 
-		if($id_cu == 0){
-			$table_data = Kegiatan::where('status',4)->count();
-		}else{
-			$table_data = Kegiatan::whereIn('tipe',['diklat_bkcu','pertemuan_bkcu'])->where('status',4)->count();
+		if ($id_cu == 0) {
+			$table_data = Kegiatan::where('status', 4)->count();
+		} else {
+			$table_data = Kegiatan::whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('status', 4)->count();
 		}
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 
@@ -1588,13 +1678,13 @@ class KegiatanBKCUController extends Controller{
 	{
 		$aktivis_id = \Auth::user()->id_aktivis;
 
-		$table_data = Kegiatan::whereHas('hasPeserta', function($query) use ($aktivis_id){
-			$query->where('aktivis_id',$aktivis_id);
+		$table_data = Kegiatan::whereHas('hasPeserta', function ($query) use ($aktivis_id) {
+			$query->where('aktivis_id', $aktivis_id);
 		})->count();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 }

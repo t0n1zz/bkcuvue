@@ -22,7 +22,7 @@ class Surat extends Model {
     ];
 
     protected $fillable = [
-        'id_cu','id_surat_kode','id_surat_kategori','id_surat_kode_temp','id_dokumen','name','hal','perihal','periode','created_at','updated_at','deleted_at'
+        'id_cu','id_surat_kode','id_surat_kategori','id_surat_kode_temp','id_dokumen','name','format','tipe','hal','perihal','tujuan','periode','created_at','updated_at','deleted_at'
     ];
 
     protected $allowedFilters = [
@@ -58,9 +58,9 @@ class Surat extends Model {
         return $this->belongsTo('App\Cu','id_cu','id')->select('id','no_ba','name');
     }
 
-    public function suratKodeTemp()
+    public function temp()
     {
-        return $this->belongsTo('App\SuratKodeTemp','id_surat_kode_temp','id');
+        return $this->belongsTo('App\SuratKodeTemp','id','id_surat');
     }
 
     public function dokumen()

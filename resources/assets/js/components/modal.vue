@@ -43,7 +43,8 @@
 											<i class="icon-exclamation" style="font-size: 5em"></i>
 										</span>
 										<h2>{{ title }}</h2>
-										<div style="color:black;" v-html="content"></div>
+
+										<pre class="pre-scrollable language-markup content-group text-left">{{ content }}</pre>
 										<hr>
 										<div class=" d-none d-sm-block">
 											<button type="button" class="btn btn-light" @click="tutup">
@@ -345,11 +346,11 @@
 					form.content = JSON.stringify(content);
 				}
 
-				ErrorLogAPI.store(form)
-        .then((response) => {})
-        .catch((error) => {
-					console.log(error.response);
-				});
+				// ErrorLogAPI.store(form)
+        // .then((response) => {})
+        // .catch((error) => {
+				// 	console.log(error.response);
+				// });
 			}
 		},
 		computed: {

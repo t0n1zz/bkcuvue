@@ -84,18 +84,25 @@
 						<check-value :value="props.item.perihal"></check-value>
 					</td>
 					<td v-if="!columnData[4].hide">
+						<check-value :value="props.item.tujuan"></check-value>
+					</td>
+					<td v-if="!columnData[5].hide">
 						<check-value :value="props.item.tipe.name" v-if="props.item.tipe"></check-value>
 						<span v-else>-</span>
 					</td>
-					<td v-if="!columnData[5].hide">
+					<td v-if="!columnData[6].hide">
 						<check-value :value="props.item.kategori.name" v-if="props.item.kategori"></check-value>
 						<span v-else>-</span>
 					</td>
-					<td v-if="!columnData[6].hide">
+					<td v-if="!columnData[7].hide">
 						<check-value :value="props.item.periode"></check-value>
 					</td>
-					<td v-if="!columnData[7].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
 					<td v-if="!columnData[8].hide">
+						<check-value :value="props.item.temp.user.username" v-if="props.item.temp"></check-value>
+						<span v-else>-</span>
+					</td>
+					<td v-if="!columnData[9].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[10].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -170,13 +177,22 @@
 						filter: true,
 					},
 					{
+						title: 'Tujuan',
+						name: 'tujuan',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
 						title: 'Tipe',
 						name: 'tipe.name',
 						tipe: 'string',
 						sort: false,
 						hide: false,
 						disable: false,
-						filter: true,
+						filter: false,
 					},
 					{
 						title: 'Kategori',
@@ -185,7 +201,7 @@
 						sort: false,
 						hide: false,
 						disable: false,
-						filter: true,
+						filter: false,
 					},
 					{
 						title: 'Periode',
@@ -195,6 +211,15 @@
 						hide: false,
 						disable: false,
 						filter: true,
+					},
+					{
+						title: 'User',
+						name: 'temp.user.username',
+						tipe: 'string',
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: false,
 					},
 					{
 						title: 'Tgl. Buat',

@@ -44,9 +44,6 @@
             "database/seeds",
             "database/factories"
         ],
-        "files": [
-            "app/cdn.php"
-        ],
         "psr-4": {
             "App\\": "app/"
         }

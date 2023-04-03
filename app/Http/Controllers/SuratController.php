@@ -27,23 +27,23 @@ class SuratController extends Controller{
 	{
 		if($periode == 'semua'){
 			if($tipe == 'semua'){
-				$table_data = Surat::with('kategori','tipe','Cu','dokumen')
+				$table_data = Surat::with('kategori','tipe','Cu','dokumen','temp.user')
 					->where('id_cu',$cu)
 					->advancedFilter();
 			}else{
-				$table_data = Surat::with('kategori','tipe','Cu','dokumen')
+				$table_data = Surat::with('kategori','tipe','Cu','dokumen','temp.user')
 					->where('id_cu',$cu)
 					->where('id_surat_kode',$tipe)
 					->advancedFilter();
 			}
 		}else{
 			if($tipe == 'semua'){
-				$table_data = Surat::with('kategori','tipe','Cu','dokumen')
+				$table_data = Surat::with('kategori','tipe','Cu','dokumen','temp.user')
 					->where('id_cu',$cu)
 					->where('periode',$periode)
 					->advancedFilter();
 			}else{
-				$table_data = Surat::with('kategori','tipe','Cu','dokumen')
+				$table_data = Surat::with('kategori','tipe','Cu','dokumen','temp.user')
 					->where('id_cu',$cu)
 					->where('periode',$periode)
 					->where('id_surat_kode',$tipe)
@@ -94,6 +94,7 @@ class SuratController extends Controller{
 				return response()
 					->json([
 							'model' => [ 
+								'tipe' => '1',
 								'kategori' => $suratKategori,
 								'suratKode' => $suratKode,
 								'kode' => $suratKodeTemp->kode,
@@ -107,6 +108,7 @@ class SuratController extends Controller{
 				return response()
 					->json([
 							'model' => [ 
+								'tipe' => '2',
 								'kategori' => $suratKategori,
 								'suratKode' => $suratKode,
 								'kode' => $suratKodeTemp->kode,
@@ -120,7 +122,7 @@ class SuratController extends Controller{
 		}else{
 
 			// check if there is blocking surat kode by general
-			$suratKodeTempKosong = SuratKodeTemp::where('id_surat_kode',$suratKode->id)->whereNull('id_surat')->first();
+			$suratKodeTempKosong = SuratKodeTemp::where('id_surat_kode',$suratKode->id)->whereNull('id_surat')->orderBy('created_at', 'desc')->first();
 
 			// if yes then use the blocking surat kode by general
 			if($suratKodeTempKosong){
@@ -134,6 +136,7 @@ class SuratController extends Controller{
 					return response()
 						->json([
 								'model' => [ 
+									'tipe' => '3',
 									'kategori' => $suratKategori,
 									'suratKode' => $suratKode,
 									'kode' => $suratKodeTempKosong->kode,
@@ -143,7 +146,7 @@ class SuratController extends Controller{
 								],
 						]);
 				}else{
-					$suratKodeTempLatest = SuratKodeTemp::where('id_surat_kode',$suratKode->id)->whereNull('id_surat')->orderBy('created_at','desc')->first();
+					$suratKodeTempLatest = SuratKodeTemp::where('id_surat_kode',$suratKode->id)->orderBy('created_at','desc')->first();
 
 					$suratKodeTemp2 = SuratKodeTemp::create([
 						'id_surat_kode' => $suratKode->id,
@@ -156,6 +159,7 @@ class SuratController extends Controller{
 					return response()
 						->json([
 								'model' => [ 
+									'tipe' => '4',
 									'kategori' => $suratKategori,
 									'suratKode' => $suratKode,
 									'kode' => $suratKodeTempLatest->kode + 1,
@@ -186,6 +190,7 @@ class SuratController extends Controller{
 				return response()
 					->json([
 							'model' => [ 
+								'tipe' => '5',
 								'kategori' => $suratKategori,
 								'suratKode' => $suratKode,
 								'kode' => $suratKode->kode + 1,
@@ -247,7 +252,7 @@ class SuratController extends Controller{
 			$kelasDokumen = Dokumen::create([ 
 				'id_cu' => $id_cu,
 				'id_dokumen_kategori' => $dokumenKategori->id,
-				'name' => $request->hal,
+				'name' => $request->name,
 				'filename' => $formatedName,
 				'link' => $request->link,
 				'format' => $format,
@@ -262,13 +267,13 @@ class SuratController extends Controller{
 				'id_dokumen' => $kelasDokumen->id
 			]);
 
-			$suratKodeTempDesc = SuratKodeTemp::where('id_surat_kode', $request->id_surat_kode)->orderBy('kode','desc')->first();
+			$suratKodeTempDesc = SuratKodeTemp::where('id_surat_kode', $request->id_surat_kode)->orderBy('created_at','desc')->first();
 
 			$suratKode = SuratKode::findOrFail($request->id_surat_kode);
 
 			if($suratKodeTempDesc->kode == $request->kode){
 				if($request->kode >= $suratKode->kode){
-					$suratKode->kode = $request->kode + 1;
+					$suratKode->kode = $request->kode;
 					$suratKode->update();
 				}
 			}
