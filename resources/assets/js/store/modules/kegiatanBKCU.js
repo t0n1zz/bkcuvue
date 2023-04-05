@@ -162,9 +162,9 @@ export const kegiatanBKCU = {
         });
     },
 
-    indexDibuka({ commit }, [p, tipe, periode]) {
+    indexDibuka({ commit }, [p, tipe, periode, status]) {
       commit("setDataDibukaStat", "loading");
-      KEGIATANBKCUAPI.indexDibuka(p, tipe, periode)
+      KEGIATANBKCUAPI.indexPisah(p, tipe, periode, status)
         .then(function (response) {
           commit("setDataDibuka", response.data.model);
           commit("setDataDibukaStat", "success");
@@ -174,10 +174,9 @@ export const kegiatanBKCU = {
           commit("setDataDibukaStat", "fail");
         });
     },
-    indexDitutup({ commit }, [p, tipe, periode]) {
+    indexDitutup({ commit }, [p, tipe, periode, status]) {
       commit("setDataDitutupStat", "loading");
-
-      KEGIATANBKCUAPI.indexDitutup(p, tipe, periode)
+      KEGIATANBKCUAPI.indexPisah(p, tipe, periode, status)
         .then(function (response) {
           commit("setDataDitutup", response.data.model);
           commit("setDataDitutupStat", "success");
@@ -187,10 +186,9 @@ export const kegiatanBKCU = {
           commit("setDataDitutupStat", "fail");
         });
     },
-    indexBerjalan({ commit }, [p, tipe, periode]) {
+    indexBerjalan({ commit }, [p, tipe, periode, status]) {
       commit("setDataBerjalanStat", "loading");
-
-      KEGIATANBKCUAPI.indexBerjalan(p, tipe, periode)
+      KEGIATANBKCUAPI.indexPisah(p, tipe, periode, status)
         .then(function (response) {
           commit("setDataBerjalan", response.data.model);
           commit("setDataBerjalanStat", "success");
@@ -200,10 +198,9 @@ export const kegiatanBKCU = {
           commit("setDataBerjalanStat", "fail");
         });
     },
-    indexTerlaksana({ commit }, [p, tipe, periode]) {
+    indexTerlaksana({ commit }, [p, tipe, periode, status]) {
       commit("setDataTerlaksanaStat", "loading");
-
-      KEGIATANBKCUAPI.indexTerlaksana(p, tipe, periode)
+      KEGIATANBKCUAPI.indexPisah(p, tipe, periode, status)
         .then(function (response) {
           commit("setDataTerlaksana", response.data.model);
           commit("setDataTerlaksanaStat", "success");
@@ -213,10 +210,9 @@ export const kegiatanBKCU = {
           commit("setDataTerlaksanaStat", "fail");
         });
     },
-    indexMenunggu({ commit }, [p, tipe, periode]) {
+    indexMenunggu({ commit }, [p, tipe, periode, status]) {
       commit("setDataMenungguStat", "loading");
-
-      KEGIATANBKCUAPI.indexMenunggu(p, tipe, periode)
+      KEGIATANBKCUAPI.indexPisah(p, tipe, periode, status)
         .then(function (response) {
           commit("setDataMenunggu", response.data.model);
           commit("setDataMenungguStat", "success");
@@ -226,10 +222,9 @@ export const kegiatanBKCU = {
           commit("setDataMenungguStat", "fail");
         });
     },
-    indexBatal({ commit }, [p, tipe, periode]) {
+    indexBatal({ commit }, [p, tipe, periode, status]) {
       commit("setDataBatalStat", "loading");
-
-      KEGIATANBKCUAPI.indexBatal(p, tipe, periode)
+      KEGIATANBKCUAPI.indexPisah(p, tipe, periode, status)
         .then(function (response) {
           commit("setDataBatal", response.data.model);
           commit("setDataBatalStat", "success");
@@ -258,6 +253,19 @@ export const kegiatanBKCU = {
       commit("setDataStatS", "loading");
 
       KEGIATANBKCUAPI.indexDiikuti(p)
+        .then(function (response) {
+          commit("setDataS", response.data.model);
+          commit("setDataStatS", "success");
+        })
+        .catch((error) => {
+          commit("setDataS", error.response);
+          commit("setDataStatS", "fail");
+        });
+    },
+
+    indexBuka({ commit }, p) {
+      commit("setDataStatS", "loading");
+      KEGIATANBKCUAPI.indexBuka(p)
         .then(function (response) {
           commit("setDataS", response.data.model);
           commit("setDataStatS", "success");

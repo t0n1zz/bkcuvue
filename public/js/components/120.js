@@ -134,6 +134,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -152,7 +159,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       kelas: 'kegiatanBKCU',
       titleDesc: 'Mengelola data kegiatan PUSKOPCUINA',
       titleIcon: 'icon-graduation2',
-      tabName: 'indexDibuka',
+      tabName: '',
       isIndexDitutup: false,
       isIndexBerjalan: false,
       isIndexTerlaksana: false,
@@ -172,29 +179,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     fetch: function fetch() {
       if (this.$route.params.tipe == 'diklat_bkcu') {
+        this.tabName = 'indexDibuka';
         this.title = 'Diklat PUSKOPCUINA';
         this.titleDesc = 'Mengelola data diklat PUSKOPCUINA';
         this.titleIcon = 'icon-graduation2';
       } else if (this.$route.params.tipe == 'diklat_bkcu_internal') {
+        this.tabName = 'indexDibuka';
         this.title = 'Diklat Internal PUSKOPCUINA';
         this.titleDesc = 'Mengelola data diklat internal PUSKOPCUINA';
         this.titleIcon = 'icon-graduation2';
       } else if (this.$route.params.tipe == 'pertemuan_bkcu') {
+        this.tabName = 'indexDibuka';
         this.title = 'Pertemuan PUSKOPCUINA';
         this.titleDesc = 'Mengelola data pertemuan PUSKOPCUINA';
         this.titleIcon = 'icon-ungroup';
       } else if (this.$route.params.tipe == 'pertemuan_bkcu_internal') {
+        this.tabName = 'indexDibuka';
         this.title = 'Pertemuan Internal PUSKOPCUINA';
         this.titleDesc = 'Mengelola data pertemuan internal PUSKOPCUINA';
         this.titleIcon = 'icon-ungroup';
       } else if (this.$route.meta.mode == 'jalan') {
+        this.tabName = '';
         this.title = 'Kegiatan PUSKOPCUINA Berjalan';
         this.titleDesc = 'Mengelola data kegiatan PUSKOPCUINA berjalan';
         this.titleIcon = 'icon-feed';
       } else if (this.$route.meta.mode == 'diikuti') {
+        this.tabName = '';
         this.title = 'Kegiatan PUSKOPCUINA Diikuti';
         this.titleDesc = 'Mengelola data kegiatan PUSKOPCUINA yang diikuti';
         this.titleIcon = 'icon-station';
+      } else if (this.$route.meta.mode == 'buka') {
+        this.tabName = '';
+        this.title = 'Pendaftaran Kegiatan PUSKOPCUINA Dibuka';
+        this.titleDesc = 'Mengelola data Pendaftaran Kegiatan PUSKOPCUINA Dibuka';
+        this.titleIcon = 'icon-feed';
       }
     },
     changeTab: function changeTab(value) {
@@ -900,23 +918,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     fetch: function fetch(params) {
       if (this.tipe == 'indexDibuka') {
-        this.$store.dispatch(this.kelas + '/indexDibuka', [params, this.$route.params.tipe, this.$route.params.periode]);
+        this.$store.dispatch(this.kelas + '/indexDibuka', [params, this.$route.params.tipe, this.$route.params.periode, 2]);
         this.excelDownloadUrl = this.kelas;
       } else if (this.tipe == 'indexDitutup') {
-        this.$store.dispatch(this.kelas + '/indexDitutup', [params, this.$route.params.tipe, this.$route.params.periode]);
+        this.$store.dispatch(this.kelas + '/indexDitutup', [params, this.$route.params.tipe, this.$route.params.periode, 3]);
         this.excelDownloadUrl = this.kelas + '/indexDitutup';
       } else if (this.tipe == 'indexBerjalan') {
-        this.$store.dispatch(this.kelas + '/indexBerjalan', [params, this.$route.params.tipe, this.$route.params.periode]);
+        this.$store.dispatch(this.kelas + '/indexBerjalan', [params, this.$route.params.tipe, this.$route.params.periode, 4]);
         this.excelDownloadUrl = this.kelas + '/indexBerjalan';
       } else if (this.tipe == 'indexTerlaksana') {
-        this.$store.dispatch(this.kelas + '/indexTerlaksana', [params, this.$route.params.tipe, this.$route.params.periode]);
+        this.$store.dispatch(this.kelas + '/indexTerlaksana', [params, this.$route.params.tipe, this.$route.params.periode, 5]);
         this.excelDownloadUrl = this.kelas + '/indexTerlaksana';
       } else if (this.tipe == 'indexMenunggu') {
-        this.$store.dispatch(this.kelas + '/indexMenunggu', [params, this.$route.params.tipe, this.$route.params.periode]);
+        this.$store.dispatch(this.kelas + '/indexMenunggu', [params, this.$route.params.tipe, this.$route.params.periode, 1]);
         this.excelDownloadUrl = this.kelas + '/indexMenunggu';
       } else if (this.tipe == 'indexBatal') {
-        this.$store.dispatch(this.kelas + '/indexBatal', [params, this.$route.params.tipe, this.$route.params.periode]);
+        this.$store.dispatch(this.kelas + '/indexBatal', [params, this.$route.params.tipe, this.$route.params.periode, 6]);
         this.excelDownloadUrl = this.kelas + '/indexBatal';
+      } else {
+        this.$store.dispatch(this.kelas + '/indexPeriode', [params, this.$route.params.tipe, this.$route.params.periode]);
+        this.excelDownloadUrl = this.kelas + '/indexPeriode/' + this.$route.params.periode;
       }
 
       if (this.currentUser.id_cu == 0) {
@@ -928,10 +949,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.query.limit = 15;
       }
 
-      if (this.$route.params.periode == 'semua') {
-        this.$store.dispatch(this.kelas + '/index', [params, this.$route.params.tipe]);
-        this.excelDownloadUrl = this.kelas;
-      } else if (this.$route.meta.mode == 'jalan') {
+      if (this.$route.meta.mode == 'jalan') {
         this.$store.dispatch(this.kelas + '/indexJalan', params);
         this.dataview = 'grid';
         this.isNoButtonRow = true;
@@ -943,10 +961,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.isNoButtonRow = true;
         this.query.limit = 15;
         this.excelDownloadUrl = this.kelas + '/indexDiikuti';
-      } else {
-        this.$store.dispatch(this.kelas + '/indexPeriode', [params, this.$route.params.tipe, this.$route.params.periode]);
-        this.excelDownloadUrl = this.kelas + '/indexPeriode/' + this.$route.params.periode;
-      }
+      } else if (this.$route.meta.mode == 'buka') {
+        this.$store.dispatch(this.kelas + '/indexBuka', params);
+        this.dataview = 'grid';
+        this.isNoButtonRow = true;
+        this.query.limit = 15;
+        this.excelDownloadUrl = this.kelas + '/indexBuka';
+      } // if (this.$route.params.periode == 'semuaa') {
+      // 	this.$store.dispatch(this.kelas + '/index', [params, this.$route.params.tipe]);
+      // 	this.excelDownloadUrl = this.kelas;
+      // } else if (this.$route.meta.mode == 'jalan') {
+      // 	this.$store.dispatch(this.kelas + '/indexJalan', params);
+      // 	this.dataview = 'grid';
+      // 	this.isNoButtonRow = true;
+      // 	this.query.limit = 15;
+      // 	this.excelDownloadUrl = this.kelas + '/indexJalan';
+      // } else if (this.$route.meta.mode == 'diikuti') {
+      // 	this.$store.dispatch(this.kelas + '/indexDiikuti', params);
+      // 	this.dataview = 'grid';
+      // 	this.isNoButtonRow = true;
+      // 	this.query.limit = 15;
+      // 	this.excelDownloadUrl = this.kelas + '/indexDiikuti';
+      // } else {
+      // 	this.$store.dispatch(this.kelas + '/indexPeriode', [params, this.$route.params.tipe, this.$route.params.periode]);
+      // 	this.excelDownloadUrl = this.kelas + '/indexPeriode/' + this.$route.params.periode;
+      // }
+
     },
     selectedRow: function selectedRow(item) {
       this.selectedItem = item;
@@ -1033,6 +1073,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('auth', {
     currentUser: 'currentUser'
   })), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('kegiatanBKCU', {
+    itemDataS: 'dataS',
+    itemDataStatS: 'dataStatS',
     updateMessage: 'update',
     updateStat: 'updateStat'
   }))
@@ -1082,143 +1124,162 @@ var render = function () {
                 })
               : _vm._e(),
             _vm._v(" "),
-            _vm.$route.meta.mode != "jalan" && _vm.$route.meta.mode != "diikuti"
+            _vm.$route.meta.mode != "jalan" &&
+            _vm.$route.meta.mode != "diikuti" &&
+            this.$route.meta.mode != "buka"
               ? _c("select-data", { attrs: { kelas: _vm.kelas } })
               : _vm._e(),
             _vm._v(" "),
-            _c("div", { staticClass: "nav-tabs-responsive" }, [
-              _c(
-                "ul",
-                { staticClass: "nav nav-tabs nav-tabs-solid bg-light" },
-                [
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        class: { active: _vm.tabName == "indexDibuka" },
-                        attrs: { href: "#" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.changeTab("indexDibuka")
+            _vm.$route.meta.mode == "jalan" ||
+            _vm.$route.meta.mode == "diikuti" ||
+            this.$route.meta.mode == "buka"
+              ? _c("table-data", {
+                  attrs: {
+                    title: _vm.title,
+                    kelas: _vm.kelas,
+                    itemData: _vm.itemData,
+                    itemDataStat: _vm.itemDataStat,
+                  },
+                })
+              : _vm._e(),
+            _vm._v(" "),
+            this.$route.meta.mode != "jalan" &&
+            this.$route.meta.mode != "diikuti" &&
+            this.$route.meta.mode != "buka"
+              ? _c("div", { staticClass: "nav-tabs-responsive" }, [
+                  _c(
+                    "ul",
+                    { staticClass: "nav nav-tabs nav-tabs-solid bg-light" },
+                    [
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            class: { active: _vm.tabName == "indexDibuka" },
+                            attrs: { href: "#" },
+                            on: {
+                              click: function ($event) {
+                                $event.preventDefault()
+                                return _vm.changeTab("indexDibuka")
+                              },
+                            },
                           },
-                        },
-                      },
-                      [
-                        _c("i", { staticClass: "icon-list2 mr-2" }),
-                        _vm._v(" Pendaftaran\n\t\t\t\t\t\t\tDibuka"),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        class: { active: _vm.tabName == "indexDitutup" },
-                        attrs: { href: "#" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.changeTab("indexDitutup")
+                          [
+                            _c("i", { staticClass: "icon-list2 mr-2" }),
+                            _vm._v(" Pendaftaran\n\t\t\t\t\t\t\tDibuka"),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            class: { active: _vm.tabName == "indexDitutup" },
+                            attrs: { href: "#" },
+                            on: {
+                              click: function ($event) {
+                                $event.preventDefault()
+                                return _vm.changeTab("indexDitutup")
+                              },
+                            },
                           },
-                        },
-                      },
-                      [
-                        _c("i", { staticClass: "icon-list2 mr-2" }),
-                        _vm._v("\n\t\t\t\t\t\t\tPendaftaran Ditutup"),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        class: { active: _vm.tabName == "indexBerjalan" },
-                        attrs: { href: "#" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.changeTab("indexBerjalan")
+                          [
+                            _c("i", { staticClass: "icon-list2 mr-2" }),
+                            _vm._v("\n\t\t\t\t\t\t\tPendaftaran Ditutup"),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            class: { active: _vm.tabName == "indexBerjalan" },
+                            attrs: { href: "#" },
+                            on: {
+                              click: function ($event) {
+                                $event.preventDefault()
+                                return _vm.changeTab("indexBerjalan")
+                              },
+                            },
                           },
-                        },
-                      },
-                      [
-                        _c("i", { staticClass: "icon-list2 mr-2" }),
-                        _vm._v(" Sedang\n\t\t\t\t\t\t\tBerjalan"),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        class: { active: _vm.tabName == "indexTerlaksana" },
-                        attrs: { href: "#" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.changeTab("indexTerlaksana")
+                          [
+                            _c("i", { staticClass: "icon-list2 mr-2" }),
+                            _vm._v(" Sedang\n\t\t\t\t\t\t\tBerjalan"),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            class: { active: _vm.tabName == "indexTerlaksana" },
+                            attrs: { href: "#" },
+                            on: {
+                              click: function ($event) {
+                                $event.preventDefault()
+                                return _vm.changeTab("indexTerlaksana")
+                              },
+                            },
                           },
-                        },
-                      },
-                      [
-                        _c("i", { staticClass: "icon-list2 mr-2" }),
-                        _vm._v(" Kegiatan\n\t\t\t\t\t\t\tTerlaksana"),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        class: { active: _vm.tabName == "indexMenunggu" },
-                        attrs: { href: "#" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.changeTab("indexMenunggu")
+                          [
+                            _c("i", { staticClass: "icon-list2 mr-2" }),
+                            _vm._v(" Kegiatan\n\t\t\t\t\t\t\tTerlaksana"),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            class: { active: _vm.tabName == "indexMenunggu" },
+                            attrs: { href: "#" },
+                            on: {
+                              click: function ($event) {
+                                $event.preventDefault()
+                                return _vm.changeTab("indexMenunggu")
+                              },
+                            },
                           },
-                        },
-                      },
-                      [
-                        _c("i", { staticClass: "icon-list2 mr-2" }),
-                        _vm._v(" Kegiatan\n\t\t\t\t\t\t\tMenunggu"),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link",
-                        class: { active: _vm.tabName == "indexBatal" },
-                        attrs: { href: "#" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.changeTab("indexBatal")
+                          [
+                            _c("i", { staticClass: "icon-list2 mr-2" }),
+                            _vm._v(" Kegiatan\n\t\t\t\t\t\t\tMenunggu"),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link",
+                            class: { active: _vm.tabName == "indexBatal" },
+                            attrs: { href: "#" },
+                            on: {
+                              click: function ($event) {
+                                $event.preventDefault()
+                                return _vm.changeTab("indexBatal")
+                              },
+                            },
                           },
-                        },
-                      },
-                      [
-                        _c("i", { staticClass: "icon-list2 mr-2" }),
-                        _vm._v(" Kegiatan\n\t\t\t\t\t\t\tBatal"),
-                      ]
-                    ),
-                  ]),
-                ]
-              ),
-            ]),
+                          [
+                            _c("i", { staticClass: "icon-list2 mr-2" }),
+                            _vm._v(" Kegiatan\n\t\t\t\t\t\t\tBatal"),
+                          ]
+                        ),
+                      ]),
+                    ]
+                  ),
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _c("br"),
             _vm._v(" "),

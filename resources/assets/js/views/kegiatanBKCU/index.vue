@@ -15,9 +15,16 @@
 
 				<!-- select data -->
 				<select-data :kelas="kelas"
-					v-if="$route.meta.mode != 'jalan' && $route.meta.mode != 'diikuti'"></select-data>
+					v-if="$route.meta.mode != 'jalan' && $route.meta.mode != 'diikuti' && this.$route.meta.mode != 'buka'"></select-data>
 
-				<div class="nav-tabs-responsive">
+				<!-- table data -->
+				<table-data
+					v-if="$route.meta.mode == 'jalan' || $route.meta.mode == 'diikuti' || this.$route.meta.mode == 'buka'"
+					:title="title" :kelas="kelas" :itemData="itemData" :itemDataStat="itemDataStat">
+				</table-data>
+
+				<div class="nav-tabs-responsive"
+					v-if="this.$route.meta.mode != 'jalan' && this.$route.meta.mode != 'diikuti' && this.$route.meta.mode != 'buka'">
 					<ul class="nav nav-tabs nav-tabs-solid bg-light">
 						<li class="nav-item">
 							<a href="#" class="nav-link" :class="{ 'active': tabName == 'indexDibuka' }"
@@ -132,7 +139,7 @@ export default {
 			kelas: 'kegiatanBKCU',
 			titleDesc: 'Mengelola data kegiatan PUSKOPCUINA',
 			titleIcon: 'icon-graduation2',
-			tabName: 'indexDibuka',
+			tabName: '',
 			isIndexDitutup: false,
 			isIndexBerjalan: false,
 			isIndexTerlaksana: false,
@@ -140,6 +147,7 @@ export default {
 			isIndexBatal: false
 		}
 	},
+
 	created() {
 		this.fetch();
 	},
@@ -152,29 +160,40 @@ export default {
 	methods: {
 		fetch() {
 			if (this.$route.params.tipe == 'diklat_bkcu') {
+				this.tabName = 'indexDibuka';
 				this.title = 'Diklat PUSKOPCUINA';
 				this.titleDesc = 'Mengelola data diklat PUSKOPCUINA';
 				this.titleIcon = 'icon-graduation2';
 			} else if (this.$route.params.tipe == 'diklat_bkcu_internal') {
+				this.tabName = 'indexDibuka';
 				this.title = 'Diklat Internal PUSKOPCUINA';
 				this.titleDesc = 'Mengelola data diklat internal PUSKOPCUINA';
 				this.titleIcon = 'icon-graduation2';
 			} else if (this.$route.params.tipe == 'pertemuan_bkcu') {
+				this.tabName = 'indexDibuka';
 				this.title = 'Pertemuan PUSKOPCUINA';
 				this.titleDesc = 'Mengelola data pertemuan PUSKOPCUINA';
 				this.titleIcon = 'icon-ungroup';
 			} else if (this.$route.params.tipe == 'pertemuan_bkcu_internal') {
+				this.tabName = 'indexDibuka';
 				this.title = 'Pertemuan Internal PUSKOPCUINA';
 				this.titleDesc = 'Mengelola data pertemuan internal PUSKOPCUINA';
 				this.titleIcon = 'icon-ungroup';
 			} else if (this.$route.meta.mode == 'jalan') {
+				this.tabName = '';
 				this.title = 'Kegiatan PUSKOPCUINA Berjalan';
 				this.titleDesc = 'Mengelola data kegiatan PUSKOPCUINA berjalan';
 				this.titleIcon = 'icon-feed';
 			} else if (this.$route.meta.mode == 'diikuti') {
+				this.tabName = '';
 				this.title = 'Kegiatan PUSKOPCUINA Diikuti';
 				this.titleDesc = 'Mengelola data kegiatan PUSKOPCUINA yang diikuti';
 				this.titleIcon = 'icon-station';
+			} else if (this.$route.meta.mode == 'buka') {
+				this.tabName = '';
+				this.title = 'Pendaftaran Kegiatan PUSKOPCUINA Dibuka';
+				this.titleDesc = 'Mengelola data Pendaftaran Kegiatan PUSKOPCUINA Dibuka';
+				this.titleIcon = 'icon-feed';
 			}
 		},
 		changeTab(value) {

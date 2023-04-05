@@ -504,16 +504,18 @@ export default {
 			modalColor: '',
 			modalTitle: '',
 			modalContent: '',
-			modalButton: ''
+			modalButton: '',
 		}
 	},
 	created() {
 		this.fetch(this.query);
+
 	},
 	watch: {
 		'$route'(to, from) {
 			// check current page meta
 			this.fetch(this.query);
+
 		},
 		updateStat(value) {
 			this.modalState = value;
@@ -533,23 +535,26 @@ export default {
 	methods: {
 		fetch(params) {
 			if (this.tipe == 'indexDibuka') {
-				this.$store.dispatch(this.kelas + '/indexDibuka', [params, this.$route.params.tipe, this.$route.params.periode]);
+				this.$store.dispatch(this.kelas + '/indexDibuka', [params, this.$route.params.tipe, this.$route.params.periode, 2]);
 				this.excelDownloadUrl = this.kelas;
 			} else if (this.tipe == 'indexDitutup') {
-				this.$store.dispatch(this.kelas + '/indexDitutup', [params, this.$route.params.tipe, this.$route.params.periode]);
+				this.$store.dispatch(this.kelas + '/indexDitutup', [params, this.$route.params.tipe, this.$route.params.periode, 3]);
 				this.excelDownloadUrl = this.kelas + '/indexDitutup';
 			} else if (this.tipe == 'indexBerjalan') {
-				this.$store.dispatch(this.kelas + '/indexBerjalan', [params, this.$route.params.tipe, this.$route.params.periode]);
+				this.$store.dispatch(this.kelas + '/indexBerjalan', [params, this.$route.params.tipe, this.$route.params.periode, 4]);
 				this.excelDownloadUrl = this.kelas + '/indexBerjalan';
 			} else if (this.tipe == 'indexTerlaksana') {
-				this.$store.dispatch(this.kelas + '/indexTerlaksana', [params, this.$route.params.tipe, this.$route.params.periode]);
+				this.$store.dispatch(this.kelas + '/indexTerlaksana', [params, this.$route.params.tipe, this.$route.params.periode, 5]);
 				this.excelDownloadUrl = this.kelas + '/indexTerlaksana';
 			} else if (this.tipe == 'indexMenunggu') {
-				this.$store.dispatch(this.kelas + '/indexMenunggu', [params, this.$route.params.tipe, this.$route.params.periode]);
+				this.$store.dispatch(this.kelas + '/indexMenunggu', [params, this.$route.params.tipe, this.$route.params.periode, 1]);
 				this.excelDownloadUrl = this.kelas + '/indexMenunggu';
 			} else if (this.tipe == 'indexBatal') {
-				this.$store.dispatch(this.kelas + '/indexBatal', [params, this.$route.params.tipe, this.$route.params.periode]);
+				this.$store.dispatch(this.kelas + '/indexBatal', [params, this.$route.params.tipe, this.$route.params.periode, 6]);
 				this.excelDownloadUrl = this.kelas + '/indexBatal';
+			} else {
+				this.$store.dispatch(this.kelas + '/indexPeriode', [params, this.$route.params.tipe, this.$route.params.periode]);
+				this.excelDownloadUrl = this.kelas + '/indexPeriode/' + this.$route.params.periode;
 			}
 
 			if (this.currentUser.id_cu == 0) {
@@ -561,10 +566,7 @@ export default {
 				this.query.limit = 15;
 			}
 
-			if (this.$route.params.periode == 'semua') {
-				this.$store.dispatch(this.kelas + '/index', [params, this.$route.params.tipe]);
-				this.excelDownloadUrl = this.kelas;
-			} else if (this.$route.meta.mode == 'jalan') {
+			if (this.$route.meta.mode == 'jalan') {
 				this.$store.dispatch(this.kelas + '/indexJalan', params);
 				this.dataview = 'grid';
 				this.isNoButtonRow = true;
@@ -576,10 +578,33 @@ export default {
 				this.isNoButtonRow = true;
 				this.query.limit = 15;
 				this.excelDownloadUrl = this.kelas + '/indexDiikuti';
-			} else {
-				this.$store.dispatch(this.kelas + '/indexPeriode', [params, this.$route.params.tipe, this.$route.params.periode]);
-				this.excelDownloadUrl = this.kelas + '/indexPeriode/' + this.$route.params.periode;
+			} else if (this.$route.meta.mode == 'buka') {
+				this.$store.dispatch(this.kelas + '/indexBuka', params);
+				this.dataview = 'grid';
+				this.isNoButtonRow = true;
+				this.query.limit = 15;
+				this.excelDownloadUrl = this.kelas + '/indexBuka';
 			}
+
+			// if (this.$route.params.periode == 'semuaa') {
+			// 	this.$store.dispatch(this.kelas + '/index', [params, this.$route.params.tipe]);
+			// 	this.excelDownloadUrl = this.kelas;
+			// } else if (this.$route.meta.mode == 'jalan') {
+			// 	this.$store.dispatch(this.kelas + '/indexJalan', params);
+			// 	this.dataview = 'grid';
+			// 	this.isNoButtonRow = true;
+			// 	this.query.limit = 15;
+			// 	this.excelDownloadUrl = this.kelas + '/indexJalan';
+			// } else if (this.$route.meta.mode == 'diikuti') {
+			// 	this.$store.dispatch(this.kelas + '/indexDiikuti', params);
+			// 	this.dataview = 'grid';
+			// 	this.isNoButtonRow = true;
+			// 	this.query.limit = 15;
+			// 	this.excelDownloadUrl = this.kelas + '/indexDiikuti';
+			// } else {
+			// 	this.$store.dispatch(this.kelas + '/indexPeriode', [params, this.$route.params.tipe, this.$route.params.periode]);
+			// 	this.excelDownloadUrl = this.kelas + '/indexPeriode/' + this.$route.params.periode;
+			// }
 
 		},
 		selectedRow(item) {
@@ -657,6 +682,8 @@ export default {
 			currentUser: 'currentUser'
 		}),
 		...mapGetters('kegiatanBKCU', {
+			itemDataS: 'dataS',
+			itemDataStatS: 'dataStatS',
 			updateMessage: 'update',
 			updateStat: 'updateStat'
 		}),

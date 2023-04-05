@@ -253,7 +253,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::delete('/formEvaluasi/{id}', 'FormEvaluasiController@destroy');
 
         // kegiatan bkcu
-        Route::get('/kegiatanBKCU/index/{kegiatan_tipe}', 'KegiatanBKCUController@index');
+        Route::get('/kegiatanBKCU/index/{kegiatan_tipe}/{status}', 'KegiatanBKCUController@index');
         Route::get('/kegiatanBKCU/baru', 'KegiatanBKCUController@indexBaru');
         Route::get('/kegiatanBKCU/mulai', 'KegiatanBKCUController@indexMulai');
         Route::get('/kegiatanBKCU/buka', 'KegiatanBKCUController@indexBuka');
@@ -263,12 +263,7 @@ Route::group(['middleware' => 'throttle:60,1'], function () {
         Route::get('/kegiatanBKCU/periode/{kegiatan_tipe}/{periode}', 'KegiatanBKCUController@indexPeriode');
 
         // get data
-        Route::get('/kegiatanBKCU/dibuka/{kegiatan_tipe}/{periode}', 'KegiatanBKCUController@indexDibuka');
-        Route::get('/kegiatanBKCU/ditutup/{kegiatan_tipe}/{periode}', 'KegiatanBKCUController@indexDitutup');
-        Route::get('/kegiatanBKCU/berjalan/{kegiatan_tipe}/{periode}', 'KegiatanBKCUController@indexBerjalan');
-        Route::get('/kegiatanBKCU/terlaksana/{kegiatan_tipe}/{periode}', 'KegiatanBKCUController@indexTerlaksana');
-        Route::get('/kegiatanBKCU/menunggu/{kegiatan_tipe}/{periode}', 'KegiatanBKCUController@indexMenunggu');
-        Route::get('/kegiatanBKCU/batal/{kegiatan_tipe}/{periode}', 'KegiatanBKCUController@indexBatal');
+        Route::get('/kegiatanBKCU/indexPisah/{kegiatan_tipe}/{periode}/{status}', 'KegiatanBKCUController@indexPisah');
 
         Route::get('/kegiatanBKCU/indexSemuaPeserta/{tipe_kegiatan}', 'KegiatanBKCUController@indexSemuaPeserta');
         Route::get('/kegiatanBKCU/indexSemuaPesertaMitra/{tipe_kegiatan}', 'KegiatanBKCUController@indexSemuaPesertaMitra');

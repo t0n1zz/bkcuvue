@@ -11,8 +11,8 @@ export default {
     return axios.get("/api/kegiatanBKCU/mulai");
   },
 
-  indexBuka: function () {
-    return axios.get("/api/kegiatanBKCU/buka");
+  indexBuka: function (p) {
+    return axios.get("/api/kegiatanBKCU/buka", { params: p });
   },
 
   indexJalan: function (p) {
@@ -28,35 +28,14 @@ export default {
       params: p,
     });
   },
-  indexDibuka: function (p, tipe, periode) {
-    return axios.get("/api/kegiatanBKCU/dibuka/" + tipe + "/" + periode, {
-      params: p,
-    });
-  },
-  indexDitutup: function (p, tipe, periode) {
-    return axios.get("/api/kegiatanBKCU/ditutup/" + tipe + "/" + periode, {
-      params: p,
-    });
-  },
-  indexBerjalan: function (p, tipe, periode) {
-    return axios.get("/api/kegiatanBKCU/berjalan/" + tipe + "/" + periode, {
-      params: p,
-    });
-  },
-  indexTerlaksana: function (p, tipe, periode) {
-    return axios.get("/api/kegiatanBKCU/terlaksana/" + tipe + "/" + periode, {
-      params: p,
-    });
-  },
-  indexMenunggu: function (p, tipe, periode) {
-    return axios.get("/api/kegiatanBKCU/menunggu/" + tipe + "/" + periode, {
-      params: p,
-    });
-  },
-  indexBatal: function (p, tipe, periode) {
-    return axios.get("/api/kegiatanBKCU/batal/" + tipe + "/" + periode, {
-      params: p,
-    });
+
+  indexPisah: function (p, tipe, periode, status) {
+    return axios.get(
+      "/api/kegiatanBKCU/indexPisah/" + tipe + "/" + periode + "/" + status,
+      {
+        params: p,
+      }
+    );
   },
 
   indexSemuaPeserta: function (p, tipe) {

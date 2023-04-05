@@ -36,9 +36,9 @@ class KegiatanBKCUController extends Controller
 	protected $height = 200;
 	protected $message = "Kegiatan";
 
-	public function index($kegiatan_tipe)
+	public function index($kegiatan_tipe, $status)
 	{
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->advancedFilter();
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('status', $status)->advancedFilter();
 
 		return response()
 			->json([
@@ -55,61 +55,14 @@ class KegiatanBKCUController extends Controller
 				'model' => $table_data
 			]);
 	}
-	public function indexDibuka($kegiatan_tipe, $periode)
+
+	public function indexPisah($kegiatan_tipe, $periode, $status)
 	{
-
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->where('status', 2)->advancedFilter();
-
-		return response()
-			->json([
-				'model' => $table_data
-			]);
-	}
-
-	public function indexDitutup($kegiatan_tipe, $periode)
-	{
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->where('status', 3)->advancedFilter();
-
-		return response()
-			->json([
-				'model' => $table_data
-			]);
-	}
-
-	public function indexBerjalan($kegiatan_tipe, $periode)
-	{
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->where('status', 4)->advancedFilter();
-
-		return response()
-			->json([
-				'model' => $table_data
-			]);
-	}
-
-	public function indexTerlaksana($kegiatan_tipe, $periode)
-	{
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->where('status', 5)->advancedFilter();
-
-		return response()
-			->json([
-				'model' => $table_data
-			]);
-	}
-
-	public function indexMenunggu($kegiatan_tipe, $periode)
-	{
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->where('status', 1)->advancedFilter();
-
-		return response()
-			->json([
-				'model' => $table_data
-			]);
-	}
-
-	public function indexBatal($kegiatan_tipe, $periode)
-	{
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->where('status', 6)->advancedFilter();
-
+		if ($periode !== 'semua') {
+			$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->where('status', $status)->advancedFilter();
+		} else {
+			$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('status', $status)->advancedFilter();
+		}
 		return response()
 			->json([
 				'model' => $table_data
@@ -154,9 +107,10 @@ class KegiatanBKCUController extends Controller
 
 	public function indexBuka()
 	{
+
 		$periode = Kegiatan::distinct('periode')->orderBy('periode', 'desc')->pluck('periode')->first();
 
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('periode', $periode)->where('status', 2)->take(6)->get();
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('periode', $periode)->where('status', 2)->take(6)->advancedFilter();
 
 		return response()
 			->json([
