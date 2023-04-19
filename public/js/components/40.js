@@ -920,6 +920,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_13__);
 /* harmony import */ var _components_datatable_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../components/datatable.vue */ "./resources/assets/js/components/datatable.vue");
 /* harmony import */ var _components_datePicker_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../components/datePicker.vue */ "./resources/assets/js/components/datePicker.vue");
+/* harmony import */ var vue3_select2_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! vue3-select2-component */ "./node_modules/vue3-select2-component/src/Select2.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -1677,6 +1678,75 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -1707,7 +1777,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     dataTable: _components_datatable_vue__WEBPACK_IMPORTED_MODULE_14__["default"],
     infoIcon: _components_infoIcon_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     wajibBadge: _components_wajibBadge_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    DatePicker: _components_datePicker_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
+    DatePicker: _components_datePicker_vue__WEBPACK_IMPORTED_MODULE_15__["default"],
+    Select2: vue3_select2_component__WEBPACK_IMPORTED_MODULE_16__["default"]
   },
   data: function data() {
     return {
@@ -1790,13 +1861,25 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       modalColor: '',
       modalContent: '',
       modalSize: '',
-      submited: false
+      submited: false,
+      query: {
+        order_column: "no_ba",
+        order_direction: "asc",
+        filter_match: "and",
+        limit: 10,
+        page: 1
+      }
     };
   },
   beforeRouteEnter: function beforeRouteEnter(to, from, next) {
     next(function (vm) {
       return vm.fetch();
     });
+  },
+  updated: function updated() {// console.log(this.dataCu);
+  },
+  created: function created() {
+    this.fetch(this.query);
   },
   watch: {
     formStat: function formStat(value) {
@@ -1933,7 +2016,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   },
   methods: {
-    fetch: function fetch() {
+    fetch: function fetch(params) {
+      this.$store.dispatch('cu/index', params);
+
       if (this.$route.meta.mode == 'edit') {
         this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
       } else {
@@ -2163,7 +2248,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       return moment().year();
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('kegiatanBKCU', {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('kegiatanBKCU', {
     form: 'data',
     formStat: 'dataStat',
     rules: 'rules',
@@ -2188,6 +2273,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('kodeKegiatan', {
     itemKodeKegiatan: 'dataS2',
     itemKodeKegiatanStat: 'dataStatS2'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])("cu", {
+    dataCu: 'dataS',
+    dataCuStat: 'dataStatS'
   }))
 });
 
@@ -3265,27 +3353,10 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.mx-datepicker-popup {\n    z-index: 99999;\n}\n", ""]);
+exports.push([module.i, "\n.mx-datepicker-popup {\r\n    z-index: 99999;\n}\r\n", ""]);
 
 // exports
 
-
-/***/ }),
-
-/***/ "./node_modules/file-saver/dist/FileSaver.min.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/file-saver/dist/FileSaver.min.js ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(a,b){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (b),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else {}})(this,function(){"use strict";function b(a,b){return"undefined"==typeof b?b={autoBom:!1}:"object"!=typeof b&&(console.warn("Deprecated: Expected third argument to be a object"),b={autoBom:!b}),b.autoBom&&/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(a.type)?new Blob(["\uFEFF",a],{type:a.type}):a}function c(a,b,c){var d=new XMLHttpRequest;d.open("GET",a),d.responseType="blob",d.onload=function(){g(d.response,b,c)},d.onerror=function(){console.error("could not download file")},d.send()}function d(a){var b=new XMLHttpRequest;b.open("HEAD",a,!1);try{b.send()}catch(a){}return 200<=b.status&&299>=b.status}function e(a){try{a.dispatchEvent(new MouseEvent("click"))}catch(c){var b=document.createEvent("MouseEvents");b.initMouseEvent("click",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),a.dispatchEvent(b)}}var f="object"==typeof window&&window.window===window?window:"object"==typeof self&&self.self===self?self:"object"==typeof global&&global.global===global?global:void 0,a=f.navigator&&/Macintosh/.test(navigator.userAgent)&&/AppleWebKit/.test(navigator.userAgent)&&!/Safari/.test(navigator.userAgent),g=f.saveAs||("object"!=typeof window||window!==f?function(){}:"download"in HTMLAnchorElement.prototype&&!a?function(b,g,h){var i=f.URL||f.webkitURL,j=document.createElement("a");g=g||b.name||"download",j.download=g,j.rel="noopener","string"==typeof b?(j.href=b,j.origin===location.origin?e(j):d(j.href)?c(b,g,h):e(j,j.target="_blank")):(j.href=i.createObjectURL(b),setTimeout(function(){i.revokeObjectURL(j.href)},4E4),setTimeout(function(){e(j)},0))}:"msSaveOrOpenBlob"in navigator?function(f,g,h){if(g=g||f.name||"download","string"!=typeof f)navigator.msSaveOrOpenBlob(b(f,h),g);else if(d(f))c(f,g,h);else{var i=document.createElement("a");i.href=f,i.target="_blank",setTimeout(function(){e(i)})}}:function(b,d,e,g){if(g=g||open("","_blank"),g&&(g.document.title=g.document.body.innerText="downloading..."),"string"==typeof b)return c(b,d,e);var h="application/octet-stream"===b.type,i=/constructor/i.test(f.HTMLElement)||f.safari,j=/CriOS\/[\d]+/.test(navigator.userAgent);if((j||h&&i||a)&&"undefined"!=typeof FileReader){var k=new FileReader;k.onloadend=function(){var a=k.result;a=j?a:a.replace(/^data:[^;]*;/,"data:attachment/file;"),g?g.location.href=a:location=a,g=null},k.readAsDataURL(b)}else{var l=f.URL||f.webkitURL,m=l.createObjectURL(b);g?g.location=m:location.href=m,g=null,setTimeout(function(){l.revokeObjectURL(m)},4E4)}});f.saveAs=g.saveAs=g, true&&(module.exports=g)});
-
-//# sourceMappingURL=FileSaver.min.js.map
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -4680,7 +4751,7 @@ var render = function () {
                                             [
                                               _vm._v(
                                                 _vm._s(kodeKegiatan.kode) +
-                                                  " - " +
+                                                  " -\n\t\t\t\t\t\t\t\t\t\t\t\t" +
                                                   _vm._s(kodeKegiatan.name)
                                               ),
                                             ]
@@ -4721,14 +4792,18 @@ var render = function () {
                                 ]
                               ),
                             ])
-                          : _c("div", { staticClass: "col-md-6" }, [
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.$route.params.tipe == "diklat_bkcu" ||
+                        _vm.$route.params.tipe == "diklat_bkcu_internal"
+                          ? _c("div", { staticClass: "col-md-12" }, [
                               _c(
                                 "div",
                                 {
                                   staticClass: "form-group",
                                   class: {
                                     "has-error":
-                                      _vm.errors.has("form.kode_diklat"),
+                                      _vm.errors.has("form.kode_kegiatan"),
                                   },
                                 },
                                 [
@@ -4737,62 +4812,117 @@ var render = function () {
                                     {
                                       class: {
                                         "text-danger":
-                                          _vm.errors.has("form.kode_diklat"),
+                                          _vm.errors.has("form.kode_kegiatan"),
                                       },
                                     },
                                     [
-                                      _vm.errors.has("form.kode_diklat")
+                                      _vm.errors.has("form.kode_kegiatan")
                                         ? _c("i", {
                                             staticClass: "icon-cross2",
                                           })
                                         : _vm._e(),
                                       _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\t\t\tKode Kegiatan: "
+                                        "\n\t\t\t\t\t\t\t\t\t\t\tKode & Nama Kegiatan: "
                                       ),
                                       _c("wajib-badge"),
                                     ],
                                     1
                                   ),
                                   _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "validate",
-                                        rawName: "v-validate",
-                                        value: "required|min:5",
-                                        expression: "'required|min:5'",
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.form.id_kode,
+                                          expression: "form.id_kode",
+                                        },
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        name: "id_kode",
+                                        "data-width": "100%",
+                                        "data-vv-as": "KodeKegiatan",
+                                        disabled:
+                                          _vm.itemKodeKegiatanStat.length === 0,
                                       },
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.kode_diklat,
-                                        expression: "form.kode_diklat",
+                                      on: {
+                                        change: [
+                                          function ($event) {
+                                            var $$selectedVal =
+                                              Array.prototype.filter
+                                                .call(
+                                                  $event.target.options,
+                                                  function (o) {
+                                                    return o.selected
+                                                  }
+                                                )
+                                                .map(function (o) {
+                                                  var val =
+                                                    "_value" in o
+                                                      ? o._value
+                                                      : o.value
+                                                  return val
+                                                })
+                                            _vm.$set(
+                                              _vm.form,
+                                              "id_kode",
+                                              $event.target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            )
+                                          },
+                                          function ($event) {
+                                            return _vm.changeKodeKegiatan(
+                                              $event.target.value
+                                            )
+                                          },
+                                        ],
                                       },
-                                    ],
-                                    staticClass: "form-control",
-                                    attrs: {
-                                      type: "text",
-                                      name: "kode kegiatan",
-                                      placeholder:
-                                        "Silahkan masukkan kode kegiatan",
-                                      "data-vv-as": "Kode Kegiatan",
                                     },
-                                    domProps: { value: _vm.form.kode_diklat },
-                                    on: {
-                                      input: function ($event) {
-                                        if ($event.target.composing) {
-                                          return
+                                    [
+                                      _c(
+                                        "option",
+                                        { attrs: { disabled: "", value: "" } },
+                                        [
+                                          _vm.itemKodeKegiatanStat === "loading"
+                                            ? _c("span", [
+                                                _vm._v("Mohon tunggu..."),
+                                              ])
+                                            : _c("span", [
+                                                _vm._v("Silahkan pilih kode"),
+                                              ]),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(
+                                        _vm.itemKodeKegiatan,
+                                        function (kodeKegiatan, index) {
+                                          return _c(
+                                            "option",
+                                            {
+                                              key: index,
+                                              domProps: {
+                                                value: kodeKegiatan.id,
+                                              },
+                                            },
+                                            [
+                                              _vm._v(
+                                                _vm._s(kodeKegiatan.kode) +
+                                                  " -\n\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                  _vm._s(kodeKegiatan.name)
+                                              ),
+                                            ]
+                                          )
                                         }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "kode_diklat",
-                                          $event.target.value
-                                        )
-                                      },
-                                    },
-                                  }),
+                                      ),
+                                    ],
+                                    2
+                                  ),
                                   _vm._v(" "),
-                                  _vm.errors.has("form.kode_diklat")
+                                  _vm.errors.has("form.kode_kegiatan")
                                     ? _c(
                                         "small",
                                         {
@@ -4807,7 +4937,7 @@ var render = function () {
                                             " " +
                                               _vm._s(
                                                 _vm.errors.first(
-                                                  "form.kode_diklat"
+                                                  "form.kode_kegiatan"
                                                 )
                                               ) +
                                               "\n\t\t\t\t\t\t\t\t\t\t"
@@ -4821,7 +4951,8 @@ var render = function () {
                                       ),
                                 ]
                               ),
-                            ]),
+                            ])
+                          : _vm._e(),
                         _vm._v(" "),
                         _vm.$route.params.tipe != "diklat_bkcu" &&
                         _vm.$route.params.tipe != "diklat_bkcu_internal"
@@ -6447,7 +6578,7 @@ var render = function () {
                                     },
                                     [
                                       _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\t\t\tProvinsi: \n\t\t\t\t\t\t\t\t\t\t\t"
+                                        "\n\t\t\t\t\t\t\t\t\t\t\tProvinsi:\n\t\t\t\t\t\t\t\t\t\t\t"
                                       ),
                                     ]
                                   ),
@@ -6565,7 +6696,7 @@ var render = function () {
                                     },
                                     [
                                       _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\t\t\tKabupaten: \n\t\t\t\t\t\t\t\t\t\t\t"
+                                        "\n\t\t\t\t\t\t\t\t\t\t\tKabupaten:\n\t\t\t\t\t\t\t\t\t\t\t"
                                       ),
                                     ]
                                   ),
@@ -6683,7 +6814,7 @@ var render = function () {
                                     },
                                     [
                                       _vm._v(
-                                        "\n\t\t\t\t\t\t\t\t\t\t\tTempat: \n\t\t\t\t\t\t\t\t\t\t\t"
+                                        "\n\t\t\t\t\t\t\t\t\t\t\tTempat:\n\t\t\t\t\t\t\t\t\t\t\t"
                                       ),
                                     ]
                                   ),

@@ -42,6 +42,7 @@
         "node-sass": "^6.0.1",
         "pusher-js": "^7.0.0",
         "qrcode.vue": "^1.7.0",
+        "v-select2-component": "^0.4.7",
         "v-tooltip": "^2.0.2",
         "vee-validate": "^2.2.15",
         "vue-ckeditor5": "^0.3.1",
@@ -58,6 +59,7 @@
         "vue-truncate-collapsed": "^1.9.0",
         "vue2-datepicker": "^3.7.0",
         "vue2-filters": "^0.3.0",
+        "vue3-select2-component": "^0.1.7",
         "vuex": "^3.1.2"
     }
 }

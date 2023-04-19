@@ -16,6 +16,7 @@ use DateTime;
 use App\KegiatanListMateri;
 use App\KegiatanMateriNilai;
 use App\Aktivis;
+use App\KegiatanPeserta;
 
 
 class SertifikatController extends Controller
@@ -38,7 +39,7 @@ class SertifikatController extends Controller
 
   public function indexKode()
   {
-    $table_data = SertifikatGenerate::with('peserta','kegiatan')->advancedFilter();
+    $table_data = SertifikatGenerate::with('peserta', 'kegiatan')->advancedFilter();
 
     return response()
       ->json([
@@ -141,7 +142,8 @@ class SertifikatController extends Controller
   public function generateSertifikat(Request $formData)
   {
     $kegiatanData = Kegiatan::with('tempat')->where('id', $formData['kegiatan_id'])->first();
-    $nomorData = SertifikatGenerate::where('kegiatan_peserta_id',  $formData['aktivis_id'])->where('id_kegiatan',  $formData['kegiatan_id'])->first();
+    // ubah disini
+    $nomorData = SertifikatGenerate::where('kegiatan_peserta_id',  $formData['id'])->first();
     $sertifikat = Sertifikat::where('id', $kegiatanData->id_sertifikat)->select('gambar_depan', 'gambar_belakang', 'kode_sertifikat')->first();
 
     $cekNilai = KegiatanMateriNilai::where('kegiatan_id', $formData->kegiatan_id)->first();

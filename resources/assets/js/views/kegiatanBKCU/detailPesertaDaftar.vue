@@ -668,15 +668,16 @@ export default {
 			axios.post('/api/generateSertifikat', this.selectedItem, {
 				responseType: 'blob'
 			}).then((response) => {
-				FileSaver.saveAs(response.data, this.selectedItem.kegiatan_name + ' ' + this.selectedItem.aktivis.name + '.pdf')
+				FileSaver.saveAs(response.data, this.selectedItem.kegiatan_name + ' ' + this.selectedItem.name_sertifikat + '.pdf');
 				this.state = "generateSertifikat";
 				this.modalState = 'success';
 				this.modalOpen("generateSertifikat");
-			})
+			});
 		},
 		downloadSuratTugas(filename) {
 			axios.get('/api/download_folder/' + filename + '/suratTugas', {
-				responseType: 'blob'})
+				responseType: 'blob'
+			})
 				.then(response => {
 					FileSaver.saveAs(response.data, filename)
 				});

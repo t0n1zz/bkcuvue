@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use DB;
@@ -10,7 +11,8 @@ use App\Support\Helper;
 use Illuminate\Http\Request;
 use Venturecraft\Revisionable\Revision;
 
-class CuController extends Controller{
+class CuController extends Controller
+{
 
 	protected $imagepath = 'images/cu/';
 	protected $logopath = 'images/logo/';
@@ -20,69 +22,68 @@ class CuController extends Controller{
 
 	public function index()
 	{
-		$table_data = Cu::with('Villages','Districts','Regencies','Provinces')
-		->withCount('hasTp')
-		->withCount('hasManajemen')
-		->withCount('hasPengurus')
-		->withCount('hasPengawas')
-		->withCount('hasKomite')
-		->withCount('hasPenasihat')
-		->withCount('hasSeniorManajer')
-		->withCount('hasManajer')
-		->withCount('hasSupervisor')
-		->withCount('hasStaf')
-		->withCount('hasKontrak')
-		->withCount('hasKolektor')
-		->withCount('hasKelompokInti')
-		->withCount('hasAktivisTidakAktif')
-		->withCount('hasSimpanan')
-		->withCount('hasPinjaman')
-		->withCount('hasSimpananJalinan')
-		->withCount('hasPinjamanJalinan')
-		->withCount('hasUser')
-		->withCount('hasArtikel')
-		->withCount('hasAnggotaCu')
-		->advancedFilter();
-
+		$table_data = Cu::with('Villages', 'Districts', 'Regencies', 'Provinces')
+			->withCount('hasTp')
+			->withCount('hasManajemen')
+			->withCount('hasPengurus')
+			->withCount('hasPengawas')
+			->withCount('hasKomite')
+			->withCount('hasPenasihat')
+			->withCount('hasSeniorManajer')
+			->withCount('hasManajer')
+			->withCount('hasSupervisor')
+			->withCount('hasStaf')
+			->withCount('hasKontrak')
+			->withCount('hasKolektor')
+			->withCount('hasKelompokInti')
+			->withCount('hasAktivisTidakAktif')
+			->withCount('hasSimpanan')
+			->withCount('hasPinjaman')
+			->withCount('hasSimpananJalinan')
+			->withCount('hasPinjamanJalinan')
+			->withCount('hasUser')
+			->withCount('hasArtikel')
+			->withCount('hasAnggotaCu')
+			->advancedFilter();
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexDeleted()
 	{
-		$table_data = Cu::onlyTrashed()->with('Villages','Districts','Regencies','Provinces')
-		->withCount('hasTp')
-		->withCount('hasSimpanan')
-		->withCount('hasPinjaman')
-		->withCount('hasSimpananJalinan')
-		->withCount('hasPinjamanJalinan')
-		->withCount('hasManajemen')
-		->withCount('hasPengurus')
-		->withCount('hasPengawas')
-		->withCount('hasKomite')
-		->withCount('hasPenasihat')
-		->withCount('hasSeniorManajer')
-		->withCount('hasManajer')
-		->withCount('hasSupervisor')
-		->withCount('hasStaf')
-		->withCount('hasKontrak')
-		->withCount('hasAktivisTidakAktif')
-		->withCount('hasUser')
-		->withCount('hasArtikel')
-		->withCount('hasAnggotaCu')
-		->advancedFilter();
+		$table_data = Cu::onlyTrashed()->with('Villages', 'Districts', 'Regencies', 'Provinces')
+			->withCount('hasTp')
+			->withCount('hasSimpanan')
+			->withCount('hasPinjaman')
+			->withCount('hasSimpananJalinan')
+			->withCount('hasPinjamanJalinan')
+			->withCount('hasManajemen')
+			->withCount('hasPengurus')
+			->withCount('hasPengawas')
+			->withCount('hasKomite')
+			->withCount('hasPenasihat')
+			->withCount('hasSeniorManajer')
+			->withCount('hasManajer')
+			->withCount('hasSupervisor')
+			->withCount('hasStaf')
+			->withCount('hasKontrak')
+			->withCount('hasAktivisTidakAktif')
+			->withCount('hasUser')
+			->withCount('hasArtikel')
+			->withCount('hasAnggotaCu')
+			->advancedFilter();
 
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function get()
 	{
-		$table_data = Cu::where('id','!=',0)->select('id','name')->orderby('name','asc')->get();
+		$table_data = Cu::where('id', '!=', 0)->select('id', 'name')->orderby('name', 'asc')->get();
 
 		return response()
 			->json([
@@ -92,27 +93,27 @@ class CuController extends Controller{
 
 	public function getHeader()
 	{
-		$table_data = Cu::with('hasTp')->where('id','!=',0)->select('id','name','no_ba')->orderby('name','asc')->get();
+		$table_data = Cu::with('hasTp')->where('id', '!=', 0)->select('id', 'name', 'no_ba')->orderby('name', 'asc')->get();
 
 		return response()
 			->json([
 				'model' => $table_data
 			]);
 	}
-	
+
 	public function getBirthday()
-	{		
-		$table_data = Cu::whereRaw('DATE_FORMAT(ultah, "%d-%m") = DATE_FORMAT(CURDATE(), "%d-%m")')->select('id','name','ultah', DB::raw('TIMESTAMPDIFF(YEAR, ultah, CURDATE()) AS usia'))->get();
+	{
+		$table_data = Cu::whereRaw('DATE_FORMAT(ultah, "%d-%m") = DATE_FORMAT(CURDATE(), "%d-%m")')->select('id', 'name', 'ultah', DB::raw('TIMESTAMPDIFF(YEAR, ultah, CURDATE()) AS usia'))->get();
 
 		return response()
 			->json([
 				'model' => $table_data
 			]);
 	}
-  
-  public function getPus($id)
+
+	public function getPus($id)
 	{
-		$table_data = Cu::where('id_pus','=',$id)->select('id','no_ba','name')->orderby('name','asc')->get();
+		$table_data = Cu::where('id_pus', '=', $id)->select('id', 'no_ba', 'name')->orderby('name', 'asc')->get();
 
 		return response()
 			->json([
@@ -124,62 +125,62 @@ class CuController extends Controller{
 	{
 		return response()
 			->json([
-					'form' => Cu::initialize(),
-					'rules' => Cu::$rules,
-					'option' => []
+				'form' => Cu::initialize(),
+				'rules' => Cu::$rules,
+				'option' => []
 			]);
 	}
 
 	public function store(Request $request)
 	{
-		$this->validate($request,Cu::$rules);
+		$this->validate($request, Cu::$rules);
 
 		$name = $request->name;
 
 		// processing single image upload
-		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->gambar,'', $name);
+		if (!empty($request->gambar))
+			$fileName = Helper::image_processing($this->imagepath, $this->width, $this->height, $request->gambar, '', $name);
 		else
 			$fileName = '';
 
-		if(!empty($request->logo))
-			$fileName2 = Helper::image_processing($this->logopath,$this->width,$this->height,$request->logo,'', $name);
+		if (!empty($request->logo))
+			$fileName2 = Helper::image_processing($this->logopath, $this->width, $this->height, $request->logo, '', $name);
 		else
 			$fileName2 = '';
 
-		$kelas = Cu::create($request->except('gambar','logo') + [
+		$kelas = Cu::create($request->except('gambar', 'logo') + [
 			'gambar' => $fileName,
 			'logo' => $fileName2,
 		]);
-		
+
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Cu ' .$name. ' berhasil ditambah',
+				'message' => 'Cu ' . $name . ' berhasil ditambah',
 				'id' => $kelas->id
-			]);	
+			]);
 	}
 
 	public function edit($id)
 	{
-		$kelas = Cu::with('Villages','Districts','Regencies','Provinces')->findOrFail($id);
+		$kelas = Cu::with('Villages', 'Districts', 'Regencies', 'Provinces')->findOrFail($id);
 
 		return response()
-				->json([
-						'form' => $kelas,
-						'option' => []
-				]);
+			->json([
+				'form' => $kelas,
+				'option' => []
+			]);
 	}
 
 	public function escete($id)
 	{
-		$kelas = Cu::select('id','name','escete')->findOrFail($id);
+		$kelas = Cu::select('id', 'name', 'escete')->findOrFail($id);
 
 		return response()
-				->json([
-						'form' => $kelas,
-						'option' => []
-				]);
+			->json([
+				'form' => $kelas,
+				'option' => []
+			]);
 	}
 
 	public function update(Request $request, $id)
@@ -191,25 +192,25 @@ class CuController extends Controller{
 		$kelas = Cu::findOrFail($id);
 
 		// processing single image upload
-		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->gambar,$kelas->gambar, $name);
+		if (!empty($request->gambar))
+			$fileName = Helper::image_processing($this->imagepath, $this->width, $this->height, $request->gambar, $kelas->gambar, $name);
 		else
 			$fileName = '';
 
-		if(!empty($request->logo))
-			$fileName2 = Helper::image_processing($this->logopath,$this->width,$this->height,$request->logo,$kelas->logo, $name);
+		if (!empty($request->logo))
+			$fileName2 = Helper::image_processing($this->logopath, $this->width, $this->height, $request->logo, $kelas->logo, $name);
 		else
 			$fileName2 = '';
 
-		$kelas->update($request->except('gambar','logo') + [
+		$kelas->update($request->except('gambar', 'logo') + [
 			'gambar' => $fileName,
 			'logo' => $fileName2,
-		]);	
+		]);
 
 		return response()
 			->json([
 				'saved' => true,
-				'message' => $this->message. ' ' .$name. ' berhasil diubah'
+				'message' => $this->message . ' ' . $name . ' berhasil diubah'
 			]);
 	}
 
@@ -218,12 +219,12 @@ class CuController extends Controller{
 		$kelas = Cu::findOrFail($id);
 		$name = $kelas->name;
 
-		if(!empty($kelas->gambar)){
+		if (!empty($kelas->gambar)) {
 			File::delete($this->imagepath . $kelas->gambar . '.jpg');
 			File::delete($this->imagepath . $kelas->gambar . 'n.jpg');
 		}
 
-		if(!empty($kelas->logo)){
+		if (!empty($kelas->logo)) {
 			File::delete($this->logopath . $kelas->logo . '.jpg');
 			File::delete($this->logopath . $kelas->logo . 'n.jpg');
 		}
@@ -233,7 +234,7 @@ class CuController extends Controller{
 		return response()
 			->json([
 				'deleted' => true,
-				'message' =>  $this->message. ' ' .$name. 'berhasil dihapus'
+				'message' =>  $this->message . ' ' . $name . 'berhasil dihapus'
 			]);
 	}
 
@@ -247,30 +248,30 @@ class CuController extends Controller{
 		return response()
 			->json([
 				'restored' => true,
-				'message' =>  $this->message. ' ' .$name. 'berhasil diaktifkan kembali'
+				'message' =>  $this->message . ' ' . $name . 'berhasil diaktifkan kembali'
 			]);
 	}
 
 	public function count()
 	{
-			$table_data = Cu::count();
+		$table_data = Cu::count();
 
-			return response()
+		return response()
 			->json([
-					'model' => $table_data
+				'model' => $table_data
 			]);
 	}
 
 	public function history()
-  {
+	{
 		$time = \Carbon\Carbon::now()->subMonths(6);
-		
-    $table_data = Revision::with('revisionable')->where('revisionable_type','App\Cu')->where('created_at','>=',$time)->orderBy('created_at','desc')->take(5);
 
-    $history = collect();		
-		foreach($table_data as $hs){
+		$table_data = Revision::with('revisionable')->where('revisionable_type', 'App\Cu')->where('created_at', '>=', $time)->orderBy('created_at', 'desc')->take(5);
+
+		$history = collect();
+		foreach ($table_data as $hs) {
 			$n = collect($hs);
-			$n->put('user',$hs->userResponsible());
+			$n->put('user', $hs->userResponsible());
 			$history->push($n);
 		}
 
@@ -279,5 +280,5 @@ class CuController extends Controller{
 				'model' => $history
 				// 'model' => []
 			]);
-  }
+	}
 }

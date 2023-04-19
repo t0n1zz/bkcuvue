@@ -716,12 +716,12 @@ class KegiatanBKCUController extends Controller
 		$semuaPesertaTerdaftar = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu', 'aktivis.pendidikan_tertinggi')->where('kegiatan_id', $id)->count();
 
 		// upload file to storage
-		if($request->surat_tugas){
+		if ($request->surat_tugas) {
 			$file = $request->surat_tugas;
-			
+
 			$fileExtension = $file->getClientOriginalExtension();
-			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
-			$file->move($this->suratTugas,$formatedName);
+			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '', $name), 10, '') . '_' . uniqid() . '.' . $fileExtension;
+			$file->move($this->suratTugas, $formatedName);
 		}
 
 		// check peserta
@@ -1088,6 +1088,7 @@ class KegiatanBKCUController extends Controller
 			]);
 	}
 
+
 	public function updateStatus(Request $request, $id)
 	{
 		$kelas = Kegiatan::findOrFail($id);
@@ -1098,7 +1099,8 @@ class KegiatanBKCUController extends Controller
 		if ($request->status == 5) {
 			if ($kelas->id_sertifikat > 0) {
 				$periode = Kegiatan::where('id', $id)->select('periode')->get();
-				$kegiatanPeserta = KegiatanPeserta::select('aktivis_id')->where('kegiatan_id', $id)->get();
+				// ubah disini
+				$kegiatanPeserta = KegiatanPeserta::select('id')->where('kegiatan_id', $id)->get();
 
 				$lastNomor = SertifikatGenerate::where('periode', $periode->first()->periode)->max('nomor');
 
@@ -1112,7 +1114,8 @@ class KegiatanBKCUController extends Controller
 					if (!$checkPeserta) {
 						$lastNomor++;
 						SertifikatGenerate::create([
-							'kegiatan_peserta_id' => $peserta->aktivis_id,
+							// ubah disini
+							'kegiatan_peserta_id' => $peserta->id,
 							'id_kegiatan' => $id,
 							'nomor' => $lastNomor,
 							'periode' => $periode->first()->periode,
@@ -1392,7 +1395,7 @@ class KegiatanBKCUController extends Controller
 		$kelas = KegiatanPeserta::findOrFail($id);
 		$name = $kelas->name;
 
-		if(!empty($kelas->surat_tugas)){
+		if (!empty($kelas->surat_tugas)) {
 			File::delete($this->suratTugas . $kelas->surat_tugas);
 		}
 

@@ -2080,7 +2080,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.post('/api/generateSertifikat', this.selectedItem, {
         responseType: 'blob'
       }).then(function (response) {
-        file_saver__WEBPACK_IMPORTED_MODULE_12___default.a.saveAs(response.data, _this.selectedItem.kegiatan_name + ' ' + _this.selectedItem.aktivis.name + '.pdf');
+        file_saver__WEBPACK_IMPORTED_MODULE_12___default.a.saveAs(response.data, _this.selectedItem.kegiatan_name + ' ' + _this.selectedItem.name_sertifikat + '.pdf');
         _this.state = "generateSertifikat";
         _this.modalState = 'success';
 
@@ -5432,7 +5432,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.mx-datepicker-popup {\n    z-index: 99999;\n}\n", ""]);
+exports.push([module.i, "\n.mx-datepicker-popup {\r\n    z-index: 99999;\n}\r\n", ""]);
 
 // exports
 
