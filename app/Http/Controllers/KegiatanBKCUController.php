@@ -716,12 +716,13 @@ class KegiatanBKCUController extends Controller
 		$semuaPesertaTerdaftar = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu', 'aktivis.pendidikan_tertinggi')->where('kegiatan_id', $id)->count();
 
 		// upload file to storage
-		if($request->surat_tugas){
+		$formatedName = '';
+		if ($request->surat_tugas) {
 			$file = $request->surat_tugas;
-			
+
 			$fileExtension = $file->getClientOriginalExtension();
-			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
-			$file->move($this->suratTugas,$formatedName);
+			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '', $name), 10, '') . '_' . uniqid() . '.' . $fileExtension;
+			$file->move($this->suratTugas, $formatedName);
 		}
 
 		// check peserta
@@ -1392,7 +1393,7 @@ class KegiatanBKCUController extends Controller
 		$kelas = KegiatanPeserta::findOrFail($id);
 		$name = $kelas->name;
 
-		if(!empty($kelas->surat_tugas)){
+		if (!empty($kelas->surat_tugas)) {
 			File::delete($this->suratTugas . $kelas->surat_tugas);
 		}
 
