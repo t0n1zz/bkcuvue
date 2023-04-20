@@ -196,9 +196,7 @@
 		height: 2003px;
 		background-size: cover;
 		display: inline-block;
-		background-image: url({{url($imageBelakang)
-	}
-	})
+		background-image: url({{url($imageBelakang)}});
 	}
 
 	.depan {
@@ -208,9 +206,7 @@
 		height: 2003px;
 		background-size: cover;
 		display: inline-block;
-		background-image: url({{url($imageDepan)
-	}
-	})
+		background-image: url({{url($imageDepan)}});
 	}
 
 	.fontBold {
@@ -277,38 +273,28 @@
 	@font-face {
 		/* font-family: 'Calibri'; */
 		font-family: 'Edwardian Script ITC';
-		src: url({{url('css/public/fonts/edw.ttf')
-	}
-	});
+		src: url({{url('css/public/fonts/edw.ttf')}});
 	/* src: url({{url('css/public/fonts/Calibri Regular.ttf')}});     */
 	}
 
 	p {
 		font-family: 'Calibri';
-		src: url({{url('css/public/fonts/Calibri Regilar.ttf')
-	}
-	});
+		src: url({{url('css/public/fonts/Calibri Regilar.ttf')}});
 	}
 
 	.font-bold {
 		font-family: 'Calibri';
-		src: url({{url('css/public/fonts/Calibri Bold.ttf')
-	}
-	});
+		src: url({{url('css/public/fonts/Calibri Bold.ttf')}});
 	}
 
 	.font-bold-italic {
 		font-family: 'Calibri';
-		src: url({{url('css/public/fonts/Calibri Bold Italic.ttf')
-	}
-	});
+		src: url({{url('css/public/fonts/Calibri Bold Italic.ttf')}});
 	}
 
 	.telah {
 		font-family: 'Edwardian Script ITC';
-		src: url({{url('css/public/fonts/edw.ttf')
-	}
-	});
+		src: url({{url('css/public/fonts/edw.ttf')}});
 	}
 
 	#position {
