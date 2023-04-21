@@ -155,7 +155,33 @@ class DokumenController extends Controller{
 
 		$kelas = Dokumen::findOrFail($id);
 
-		$kelas->update($request->all());
+		$format = $request->format;
+		$formatedName = $kelas->filename;
+		$fileExtension = $kelas->tipe;
+
+		if($format == 'upload'){
+			$file = $request->content;
+			
+			if(!empty($file)){
+				File::delete($this->filepath . $kelas->filename);
+
+				$fileExtension = $file->getClientOriginalExtension();
+				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
+				$file->move($this->filepath,$formatedName);
+			}
+		}else{
+			if(!empty($formatedName)){
+				File::delete($this->filepath . $kelas->filename);
+				$formatedName = '';
+			}
+		}
+
+		$kelas->update($request->except('format','link','filename','tipe') + [
+			'filename' => $formatedName,
+			'link' => $request->link,
+			'format' => $format,
+			'tipe' => $fileExtension,
+		]);
 
 		return response()
 			->json([

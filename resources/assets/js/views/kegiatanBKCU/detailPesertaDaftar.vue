@@ -653,10 +653,24 @@ export default {
 				this.columnDataPesertaTerdaftar[4].disable = true;
 				this.columnDataPesertaTerdaftar[5].disable = true;
 				this.columnDataPesertaTerdaftar[6].disable = true;
+				this.columnDataPesertaTerdaftar[21].disable = true;
+				this.columnDataPesertaTerdaftar[22].disable = true;
+				this.columnDataPesertaTerdaftar[23].disable = true;
+				this.columnDataPesertaTerdaftar[24].disable = true;
+				this.columnDataPesertaTerdaftar[25].disable = true;
+				this.columnDataPesertaTerdaftar[26].disable = true;
+				this.columnDataPesertaTerdaftar[27].disable = true;
 			} else {
 				this.columnDataPesertaTerdaftar[4].disable = false;
 				this.columnDataPesertaTerdaftar[5].disable = false;
 				this.columnDataPesertaTerdaftar[6].disable = false;
+				this.columnDataPesertaTerdaftar[21].disable = false;
+				this.columnDataPesertaTerdaftar[22].disable = false;
+				this.columnDataPesertaTerdaftar[23].disable = false;
+				this.columnDataPesertaTerdaftar[24].disable = false;
+				this.columnDataPesertaTerdaftar[25].disable = false;
+				this.columnDataPesertaTerdaftar[26].disable = false;
+				this.columnDataPesertaTerdaftar[27].disable = false;
 			}
 		},
 		fetchCountPeserta() {
@@ -670,7 +684,6 @@ export default {
 			}).then((response) => {
 				FileSaver.saveAs(response.data, this.selectedItem.kegiatan_name + ' ' + this.selectedItem.name_sertifikat + '.pdf')
 				this.state = "generateSertifikat";
-				this.modalState = 'success';
 				this.modalOpen("generateSertifikat");
 			})
 		},
@@ -738,7 +751,7 @@ export default {
 				this.modalTitle = 'Nilai';
 				this.formModalMode = 'create';
 			} else if (this.state == 'generateSertifikat') {
-				this.modalState = 'content-tutup';
+				this.modalState = 'success';
 				this.modalColor = 'bg-primary';
 				this.modalTitle = 'Generate Sertifikat Berhasil';
 				this.modalButton = 'Ok';

@@ -206,7 +206,7 @@
 										</div>
 
 										<!-- format -->
-										<div class="col-md-12" v-if="$route.meta.mode != 'edit'">
+										<div class="col-md-12">
 											<div class="form-group" :class="{'has-error' : errors.has('form.format')}">
 
 												<!-- title -->
@@ -231,11 +231,12 @@
 										</div>
 
 										<!-- upload -->
-										<div class="col-md-12" v-if="$route.meta.mode != 'edit'">
+										<div class="col-md-12">
 											<div class="form-group" v-if="form.format == 'upload'">
 
 												<!-- title -->
 												<h5> Upload dokumen: <wajib-badge></wajib-badge></h5>
+												
 
 												<!-- textarea -->
 												<div class="card-card-body">
@@ -370,8 +371,12 @@
 				if(value === "success"){
 					if(this.$route.meta.mode !== 'edit'){
 						this.form.id_cu = this.currentUser.id_cu;
+						this.form.format = '';
+						this.form.link = '';
 					}else{
 						this.checkUser('update_surat',this.form.id_cu);
+						this.form.format = this.form.dokumen.format;
+						this.form.link = this.form.dokumen.link;
 					}
 				}
 			},

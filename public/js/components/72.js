@@ -601,6 +601,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -660,8 +661,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (value === "success") {
         if (this.$route.meta.mode !== 'edit') {
           this.form.id_cu = this.currentUser.id_cu;
+          this.form.format = '';
+          this.form.link = '';
         } else {
           this.checkUser('update_surat', this.form.id_cu);
+          this.form.format = this.form.dokumen.format;
+          this.form.link = this.form.dokumen.link;
         }
       }
     },
@@ -1985,266 +1990,245 @@ var render = function () {
                                     ),
                                   ]),
                                   _vm._v(" "),
-                                  _vm.$route.meta.mode != "edit"
-                                    ? _c("div", { staticClass: "col-md-12" }, [
+                                  _c("div", { staticClass: "col-md-12" }, [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass: "form-group",
+                                        class: {
+                                          "has-error":
+                                            _vm.errors.has("form.format"),
+                                        },
+                                      },
+                                      [
                                         _c(
-                                          "div",
+                                          "h5",
                                           {
-                                            staticClass: "form-group",
                                             class: {
-                                              "has-error":
+                                              "text-danger":
                                                 _vm.errors.has("form.format"),
                                             },
                                           },
                                           [
-                                            _c(
-                                              "h5",
+                                            _vm.errors.has("form.format")
+                                              ? _c("i", {
+                                                  staticClass: "icon-cross2",
+                                                })
+                                              : _vm._e(),
+                                            _vm._v(
+                                              "\n\t\t\t\t\t\t\t\t\t\t\t\tPilih Format: "
+                                            ),
+                                            _c("wajib-badge"),
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "select",
+                                          {
+                                            directives: [
                                               {
-                                                class: {
-                                                  "text-danger":
-                                                    _vm.errors.has(
-                                                      "form.format"
-                                                    ),
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: _vm.form.format,
+                                                expression: "form.format",
+                                              },
+                                              {
+                                                name: "validate",
+                                                rawName: "v-validate",
+                                                value: "required",
+                                                expression: "'required'",
+                                              },
+                                            ],
+                                            staticClass: "form-control",
+                                            attrs: {
+                                              name: "format",
+                                              "data-width": "100%",
+                                              "data-vv-as": "format",
+                                            },
+                                            on: {
+                                              change: function ($event) {
+                                                var $$selectedVal =
+                                                  Array.prototype.filter
+                                                    .call(
+                                                      $event.target.options,
+                                                      function (o) {
+                                                        return o.selected
+                                                      }
+                                                    )
+                                                    .map(function (o) {
+                                                      var val =
+                                                        "_value" in o
+                                                          ? o._value
+                                                          : o.value
+                                                      return val
+                                                    })
+                                                _vm.$set(
+                                                  _vm.form,
+                                                  "format",
+                                                  $event.target.multiple
+                                                    ? $$selectedVal
+                                                    : $$selectedVal[0]
+                                                )
+                                              },
+                                            },
+                                          },
+                                          [
+                                            _c(
+                                              "option",
+                                              {
+                                                attrs: {
+                                                  disabled: "",
+                                                  value: "",
                                                 },
                                               },
+                                              [_vm._v("Silahkan pilih format")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
+                                              { attrs: { value: "upload" } },
+                                              [_vm._v("Upload")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
+                                              { attrs: { value: "link" } },
+                                              [_vm._v("Link")]
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm.errors.has("form.format")
+                                          ? _c(
+                                              "small",
+                                              {
+                                                staticClass:
+                                                  "text-muted text-danger",
+                                              },
                                               [
-                                                _vm.errors.has("form.format")
-                                                  ? _c("i", {
-                                                      staticClass:
-                                                        "icon-cross2",
-                                                    })
-                                                  : _vm._e(),
+                                                _c("i", {
+                                                  staticClass:
+                                                    "icon-arrow-small-right",
+                                                }),
                                                 _vm._v(
-                                                  "\n\t\t\t\t\t\t\t\t\t\t\t\tPilih Format: "
+                                                  " " +
+                                                    _vm._s(
+                                                      _vm.errors.first(
+                                                        "form.format"
+                                                      )
+                                                    ) +
+                                                    "\n\t\t\t\t\t\t\t\t\t\t\t"
                                                 ),
+                                              ]
+                                            )
+                                          : _c(
+                                              "small",
+                                              { staticClass: "text-muted" },
+                                              [_vm._v(" ")]
+                                            ),
+                                      ]
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-12" }, [
+                                    _vm.form.format == "upload"
+                                      ? _c(
+                                          "div",
+                                          { staticClass: "form-group" },
+                                          [
+                                            _c(
+                                              "h5",
+                                              [
+                                                _vm._v(" Upload dokumen: "),
                                                 _c("wajib-badge"),
                                               ],
                                               1
                                             ),
                                             _vm._v(" "),
                                             _c(
-                                              "select",
-                                              {
-                                                directives: [
-                                                  {
-                                                    name: "model",
-                                                    rawName: "v-model",
-                                                    value: _vm.form.format,
-                                                    expression: "form.format",
-                                                  },
-                                                  {
-                                                    name: "validate",
-                                                    rawName: "v-validate",
-                                                    value: "required",
-                                                    expression: "'required'",
-                                                  },
-                                                ],
-                                                staticClass: "form-control",
-                                                attrs: {
-                                                  name: "format",
-                                                  "data-width": "100%",
-                                                  "data-vv-as": "format",
-                                                },
-                                                on: {
-                                                  change: function ($event) {
-                                                    var $$selectedVal =
-                                                      Array.prototype.filter
-                                                        .call(
-                                                          $event.target.options,
-                                                          function (o) {
-                                                            return o.selected
-                                                          }
-                                                        )
-                                                        .map(function (o) {
-                                                          var val =
-                                                            "_value" in o
-                                                              ? o._value
-                                                              : o.value
-                                                          return val
-                                                        })
-                                                    _vm.$set(
-                                                      _vm.form,
-                                                      "format",
-                                                      $event.target.multiple
-                                                        ? $$selectedVal
-                                                        : $$selectedVal[0]
-                                                    )
-                                                  },
-                                                },
-                                              },
+                                              "div",
+                                              { staticClass: "card-card-body" },
                                               [
-                                                _c(
-                                                  "option",
-                                                  {
-                                                    attrs: {
-                                                      disabled: "",
-                                                      value: "",
-                                                    },
+                                                _c("input", {
+                                                  ref: "fileInput",
+                                                  staticClass: "form-control",
+                                                  attrs: {
+                                                    type: "file",
+                                                    accept:
+                                                      "application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.openxmlformats-officedocument.presentationml.slideshow, text/plain, application/pdf, image/*",
                                                   },
-                                                  [
-                                                    _vm._v(
-                                                      "Silahkan pilih format"
-                                                    ),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "option",
-                                                  {
-                                                    attrs: { value: "upload" },
-                                                  },
-                                                  [_vm._v("Upload")]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "option",
-                                                  { attrs: { value: "link" } },
-                                                  [_vm._v("Link")]
-                                                ),
+                                                  on: { change: _vm.upload },
+                                                }),
                                               ]
                                             ),
                                             _vm._v(" "),
-                                            _vm.errors.has("form.format")
-                                              ? _c(
-                                                  "small",
-                                                  {
-                                                    staticClass:
-                                                      "text-muted text-danger",
-                                                  },
-                                                  [
-                                                    _c("i", {
-                                                      staticClass:
-                                                        "icon-arrow-small-right",
-                                                    }),
-                                                    _vm._v(
-                                                      " " +
-                                                        _vm._s(
-                                                          _vm.errors.first(
-                                                            "form.format"
-                                                          )
-                                                        ) +
-                                                        "\n\t\t\t\t\t\t\t\t\t\t\t"
-                                                    ),
-                                                  ]
-                                                )
-                                              : _c(
-                                                  "small",
-                                                  { staticClass: "text-muted" },
-                                                  [_vm._v(" ")]
+                                            _c(
+                                              "small",
+                                              { staticClass: "text-muted" },
+                                              [
+                                                _vm._v(
+                                                  "File yang diterima adalah Word, Excel, Powerpoint, PDF dan gambar/foto"
                                                 ),
+                                              ]
+                                            ),
                                           ]
-                                        ),
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.$route.meta.mode != "edit"
-                                    ? _c("div", { staticClass: "col-md-12" }, [
-                                        _vm.form.format == "upload"
-                                          ? _c(
-                                              "div",
-                                              { staticClass: "form-group" },
+                                        )
+                                      : _vm.form.format == "link"
+                                      ? _c(
+                                          "div",
+                                          { staticClass: "form-group" },
+                                          [
+                                            _c("h5", [
+                                              _vm._v("Link dokumen: "),
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.form.link,
+                                                  expression: "form.link",
+                                                },
+                                              ],
+                                              staticClass: "form-control",
+                                              attrs: {
+                                                type: "text",
+                                                name: "link",
+                                                placeholder:
+                                                  "Silahkan masukkan link",
+                                              },
+                                              domProps: {
+                                                value: _vm.form.link,
+                                              },
+                                              on: {
+                                                input: function ($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "link",
+                                                    $event.target.value
+                                                  )
+                                                },
+                                              },
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "small",
+                                              { staticClass: "text-muted" },
                                               [
-                                                _c(
-                                                  "h5",
-                                                  [
-                                                    _vm._v(" Upload dokumen: "),
-                                                    _c("wajib-badge"),
-                                                  ],
-                                                  1
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "card-card-body",
-                                                  },
-                                                  [
-                                                    _c("input", {
-                                                      ref: "fileInput",
-                                                      staticClass:
-                                                        "form-control",
-                                                      attrs: {
-                                                        type: "file",
-                                                        accept:
-                                                          "application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.openxmlformats-officedocument.presentationml.slideshow, text/plain, application/pdf, image/*",
-                                                      },
-                                                      on: {
-                                                        change: _vm.upload,
-                                                      },
-                                                    }),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "small",
-                                                  { staticClass: "text-muted" },
-                                                  [
-                                                    _vm._v(
-                                                      "File yang diterima adalah Word, Excel, Powerpoint, PDF dan gambar/foto"
-                                                    ),
-                                                  ]
+                                                _vm._v(
+                                                  "Silahkan masukkan link ke dokumen"
                                                 ),
                                               ]
-                                            )
-                                          : _vm.form.format == "link"
-                                          ? _c(
-                                              "div",
-                                              { staticClass: "form-group" },
-                                              [
-                                                _c("h5", [
-                                                  _vm._v("Link dokumen: "),
-                                                ]),
-                                                _vm._v(" "),
-                                                _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.form.link,
-                                                      expression: "form.link",
-                                                    },
-                                                  ],
-                                                  staticClass: "form-control",
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "link",
-                                                    placeholder:
-                                                      "Silahkan masukkan link",
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.form.link,
-                                                  },
-                                                  on: {
-                                                    input: function ($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.$set(
-                                                        _vm.form,
-                                                        "link",
-                                                        $event.target.value
-                                                      )
-                                                    },
-                                                  },
-                                                }),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "small",
-                                                  { staticClass: "text-muted" },
-                                                  [
-                                                    _vm._v(
-                                                      "Silahkan masukkan link ke dokumen"
-                                                    ),
-                                                  ]
-                                                ),
-                                              ]
-                                            )
-                                          : _vm._e(),
-                                      ])
-                                    : _vm._e(),
+                                            ),
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                  ]),
                                 ])
                               : _vm._e(),
                           ])

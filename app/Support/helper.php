@@ -18,7 +18,7 @@ class Helper{
 		if($kelas != '' && $request == "no_image"){// no image
 			File::delete($path . $kelas . '.jpg');
 			File::delete($path . $kelas . 'n.jpg');
-		}else{
+	}else{
 
 			// validate image request
 			// $validator = Validator::make($request, [

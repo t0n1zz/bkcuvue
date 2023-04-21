@@ -712,6 +712,8 @@ class KegiatanBKCUController extends Controller
 		$asal = $request->asal;
 		$name = $request->name_sertifikat;
 
+		$formatedName="";
+
 		// check peserta count
 		$semuaPesertaTerdaftar = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu', 'aktivis.pendidikan_tertinggi')->where('kegiatan_id', $id)->count();
 

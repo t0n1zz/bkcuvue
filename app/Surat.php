@@ -39,7 +39,7 @@ class Surat extends Model {
     
     public static function initialize(){
         return [
-            'id_cu' => '','id_surat_kategori' =>'','id_dokumen' =>'', 'name' => '','hal' => '', 'perihal' => '',  'id_surat_kode' => '','periode' => '', 'format' => ''
+            'id_cu' => '','id_surat_kategori' =>'','id_dokumen' =>'', 'name' => '','hal' => '', 'perihal' => '',  'id_surat_kode' => '','periode' => '',
         ];
     }
 

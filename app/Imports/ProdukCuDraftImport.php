@@ -23,7 +23,9 @@ class ProdukCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts, 
         $no_rek = array_key_exists('no_rek', $row) ? preg_replace('/[^A-Za-z0-9]/', '',$row['no_rek']) : '';
 
         // check cu
-        $cu = Cu::where('no_ba', $row['no_ba_cu'])->select('id','no_ba')->first();
+        if(array_key_exists('no_ba_cu', $row)){
+            $cu = Cu::where('no_ba', $row['no_ba_cu'])->select('id','no_ba')->first();
+        }
 
         // check produk
         $produk = ProdukCu::where('id_cu', $cu->id)->where('kode_produk', $row['kode_produk'])->select('id')->first();

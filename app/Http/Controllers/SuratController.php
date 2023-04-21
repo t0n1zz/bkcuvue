@@ -233,7 +233,6 @@ class SuratController extends Controller{
 				$file = $request->content;
 				
 				$fileExtension = $file->getClientOriginalExtension();
-				$filename = $file->getClientOriginalName();
 				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
 				$file->move($this->filepath,$formatedName);
 			}
@@ -297,7 +296,7 @@ class SuratController extends Controller{
 
 	public function edit($id)
 	{
-		$kelas = Surat::findOrFail($id);
+		$kelas = Surat::with('dokumen')->findOrFail($id);
 		$suratKode = SuratKode::findOrFail($kelas->id_surat_kode);
 		$suratKategori = SuratKategori::where('id_surat_kode',$kelas->id_surat_kode)->get();
 		$periode = \Carbon\Carbon::now()->year;
@@ -323,6 +322,36 @@ class SuratController extends Controller{
 		$kelas = Surat::findOrFail($id);
 
 		$kelas->update($request->all());
+
+		$kelasDokumen = Dokumen::findOrFail($kelas->id_dokumen);
+
+		$format = $request->format;
+		$formatedName = $kelasDokumen->filename;
+		$fileExtension = $kelasDokumen->tipe;
+
+		if($format == 'upload'){
+			$file = $request->content;
+			
+			if(!empty($file)){
+				File::delete($this->filepath . $kelasDokumen->filename);
+
+				$fileExtension = $file->getClientOriginalExtension();
+				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
+				$file->move($this->filepath,$formatedName);
+			}
+		}else{
+			if(!empty($formatedName)){
+				File::delete($this->filepath . $kelasDokumen->filename);
+				$formatedName = '';
+			}
+		}
+
+		$kelasDokumen->update($request->except('format','link','filename','tipe') + [
+			'filename' => $formatedName,
+			'link' => $request->link,
+			'format' => $format,
+			'tipe' => $fileExtension,
+		]);
 
 		return response()
 			->json([

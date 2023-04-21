@@ -32,7 +32,11 @@ class AnggotaCuDraftImport implements ToModel, WithHeadingRow, WithBatchInserts,
         $agama = array_key_exists('agama', $row) ? strtoupper($row['agama']) : '';
         $ktp = array_key_exists('ktp', $row)? preg_replace('/[^A-Za-z0-9]/', '',$row['ktp']) : '';
         $no_ba = array_key_exists('no_ba', $row) ? preg_replace('/[^A-Za-z0-9]/', '',$row['no_ba']) : '';
-        $cu = Cu::where('no_ba', $row['no_ba_cu'])->select('id','no_ba')->first();
+
+        if(array_key_exists('no_ba_cu', $row)){
+            $cu = Cu::where('no_ba', $row['no_ba_cu'])->select('id','no_ba')->first();
+        }
+        
         $tp = Tp::where('id_cu', $cu->id)->where('no_tp','like', '%' .$row['kode_tp']. '%')->select('id','id_cu','no_tp')->first();
 
         // check gender
