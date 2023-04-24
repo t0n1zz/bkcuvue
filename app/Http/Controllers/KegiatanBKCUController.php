@@ -56,61 +56,14 @@ class KegiatanBKCUController extends Controller
 				'model' => $table_data
 			]);
 	}
-	public function indexDibuka($kegiatan_tipe, $periode)
+
+	public function indexPisah($kegiatan_tipe, $periode, $status)
 	{
-
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->where('status', 2)->advancedFilter();
-
-		return response()
-			->json([
-				'model' => $table_data
-			]);
-	}
-
-	public function indexDitutup($kegiatan_tipe, $periode)
-	{
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->where('status', 3)->advancedFilter();
-
-		return response()
-			->json([
-				'model' => $table_data
-			]);
-	}
-
-	public function indexBerjalan($kegiatan_tipe, $periode)
-	{
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->where('status', 4)->advancedFilter();
-
-		return response()
-			->json([
-				'model' => $table_data
-			]);
-	}
-
-	public function indexTerlaksana($kegiatan_tipe, $periode)
-	{
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->where('status', 5)->advancedFilter();
-
-		return response()
-			->json([
-				'model' => $table_data
-			]);
-	}
-
-	public function indexMenunggu($kegiatan_tipe, $periode)
-	{
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->where('status', 1)->advancedFilter();
-
-		return response()
-			->json([
-				'model' => $table_data
-			]);
-	}
-
-	public function indexBatal($kegiatan_tipe, $periode)
-	{
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->where('status', 6)->advancedFilter();
-
+		if ($periode !== 'semua') {
+			$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->where('status', $status)->advancedFilter();
+		} else {
+			$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('status', $status)->advancedFilter();
+		}
 		return response()
 			->json([
 				'model' => $table_data
