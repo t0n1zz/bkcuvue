@@ -74,62 +74,68 @@
 					<td v-if="!columnData[6].hide">
 						<check-value :value="props.item.lembaga"></check-value>
 					</td>
-					<td v-if="!columnData[7].hide">
-						<check-value :value="props.item.jabatan"></check-value>
+          <td v-if="!columnData[7].hide">
+						<check-value :value="props.item.pekerjaan_tingkat"></check-value>
 					</td>
 					<td v-if="!columnData[8].hide">
-						<check-value :value="props.item.pendidikan"></check-value>
+						<check-value :value="props.item.pekerjaan_name"></check-value>
 					</td>
 					<td v-if="!columnData[9].hide">
-						<check-value :value="props.item.email"></check-value>
+						<check-value :value="props.item.pendidikan_tingkat"></check-value>
 					</td>
 					<td v-if="!columnData[10].hide">
-						<check-value :value="props.item.hp"></check-value>
+						<check-value :value="props.item.pendidikan_name"></check-value>
 					</td>
 					<td v-if="!columnData[11].hide">
-						<check-value :value="props.item.kontak"></check-value>
+						<check-value :value="props.item.email"></check-value>
 					</td>
 					<td v-if="!columnData[12].hide">
-						<check-value :value="props.item.kelamin"></check-value>
+						<check-value :value="props.item.hp"></check-value>
 					</td>
 					<td v-if="!columnData[13].hide">
-						<check-value :value="props.item.darah"></check-value>
+						<check-value :value="props.item.kontak"></check-value>
 					</td>
 					<td v-if="!columnData[14].hide">
-						<check-value :value="props.item.tinggi"></check-value>
+						<check-value :value="props.item.kelamin"></check-value>
 					</td>
 					<td v-if="!columnData[15].hide">
-						<check-value :value="props.item.agama"></check-value>
+						<check-value :value="props.item.darah"></check-value>
 					</td>
 					<td v-if="!columnData[16].hide">
-						<check-value :value="props.item.status"></check-value>
+						<check-value :value="props.item.tinggi"></check-value>
 					</td>
-					<td v-if="!columnData[17].hide" v-html="$options.filters.date(props.item.tanggal_lahir)">
+					<td v-if="!columnData[17].hide">
+						<check-value :value="props.item.agama"></check-value>
 					</td>
 					<td v-if="!columnData[18].hide">
+						<check-value :value="props.item.status"></check-value>
+					</td>
+					<td v-if="!columnData[19].hide" v-html="$options.filters.date(props.item.tanggal_lahir)">
+					</td>
+					<td v-if="!columnData[20].hide">
 						<check-value :value="props.item.tempat_lahir"></check-value>
 					</td>
-					<td v-if="!columnData[19].hide && !columnData[19].disable">
+					<td v-if="!columnData[21].hide && !columnData[21].disable">
 						<check-value :value="props.item.provinces.name" v-if="props.item.provinces"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[20].hide && !columnData[20].disable">
+					<td v-if="!columnData[22].hide && !columnData[22].disable">
 						<check-value :value="props.item.regencies.name" v-if="props.item.regencies"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[21].hide && !columnData[21].disable">
+					<td v-if="!columnData[23].hide && !columnData[23].disable">
 						<check-value :value="props.item.districts.name" v-if="props.item.districts"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[22].hide && !columnData[22].disable">
+					<td v-if="!columnData[24].hide && !columnData[24].disable">
 						<check-value :value="props.item.villages.name" v-if="props.item.villages"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[23].hide">
+					<td v-if="!columnData[25].hide">
 						<check-value :value="props.item.alamat"></check-value>
 					</td>
-					<td v-if="!columnData[24].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
-					<td v-if="!columnData[25].hide">
+					<td v-if="!columnData[26].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
+					<td v-if="!columnData[27].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -231,8 +237,26 @@
             filter: false,
           },
           {
+            title: 'Tingkat Jabatan',
+            name: 'pekerjaan_tingkat',
+            tipe: 'string',
+            sort: false,
+            hide: false,
+            disable: false,
+            filter: false,
+          },
+          {
             title: 'Jabatan',
-            name: 'jabatan',
+            name: 'pekerjaan_name',
+            tipe: 'string',
+            sort: false,
+            hide: false,
+            disable: false,
+            filter: false,
+          },
+          {
+            title: 'Tingkat Pendidikan',
+            name: 'pendidikan_tingkat',
             tipe: 'string',
             sort: false,
             hide: false,
@@ -241,7 +265,7 @@
           },
           {
             title: 'Pendidikan',
-            name: 'pendidikan',
+            name: 'pendidikan_name',
             tipe: 'string',
             sort: false,
             hide: false,

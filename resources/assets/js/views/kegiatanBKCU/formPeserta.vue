@@ -189,10 +189,16 @@
 							<check-value :value="props.item.lembaga"></check-value>
 						</td>
 						<td>
-							<check-value :value="props.item.jabatan"></check-value>
+							<check-value :value="props.item.pekerjaan_tingkat"></check-value>
 						</td>
 						<td>
-							<check-value :value="props.item.pendidikan"></check-value>
+							<check-value :value="props.item.pekerjaan_name"></check-value>
+						</td>
+						<td>
+							<check-value :value="props.item.pendidikan_tingkat"></check-value>
+						</td>
+						<td>
+							<check-value :value="props.item.pendidikan_name"></check-value>
 						</td>
 						<td v-html="$options.filters.date(props.item.tanggal_lahir)">
 						</td>
@@ -598,7 +604,9 @@ export default {
 				},
 				{ title: 'Gender' },
 				{ title: 'Lembaga' },
+				{ title: 'Tingkat Jabatan' },
 				{ title: 'Jabatan' },
+				{ title: 'Tingkat Pendidikan' },
 				{ title: 'Pendidikan' },
 				{ title: 'Tgl. Lahir' },
 				{ title: 'Tempat Lahir' },

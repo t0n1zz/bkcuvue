@@ -1,6 +1,5 @@
 /node_modules
-/public/js/components
-public/js/components
+/public/js/components/
 /public/storage
 /storage/*.key
 /vendor

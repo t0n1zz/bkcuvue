@@ -86,6 +86,11 @@
 							<span v-else>-</span>
 						</td>
 						<td><check-value :value="props.item.keterangan_tidak_aktif"></check-value></td>
+						<td v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
+						<td>
+							<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
+							<span v-else>-</span>
+						</td>
 					</tr>
 				</template>	
 			</data-table>
@@ -153,6 +158,11 @@
 							<span v-if="props.item.selesai">
 								<span v-html="$options.filters.date(props.item.selesai)"></span>
 							</span>
+							<span v-else>-</span>
+						</td>
+						<td v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
+						<td>
+							<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 							<span v-else>-</span>
 						</td>
 					</tr>
@@ -225,6 +235,11 @@
 							<span v-if="props.item.selesai">
 								<span v-html="$options.filters.date(props.item.selesai)"></span>
 							</span>
+							<span v-else>-</span>
+						</td>
+						<td v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
+						<td>
+							<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 							<span v-else>-</span>
 						</td>
 					</tr>
@@ -449,6 +464,11 @@
 						<td><check-value :value="props.item.name"></check-value></td>
 						<td><check-value :value="props.item.keterangan"></check-value></td>
 						<td v-html="$options.filters.date(props.item.tanggal)"></td>
+						<td v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
+						<td>
+							<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
+							<span v-else>-</span>
+						</td>
 					</tr>
 				</template>	
 			</data-table>
@@ -555,6 +575,8 @@
 					{ title: 'Mulai' },
 					{ title: 'Selesai' },
 					{ title: 'Keterangan tidak aktif' },
+					{ title: 'Tgl. / Waktu Buat' },
+					{ title: 'Tgl. / Waktu Ubah' },
 				],
 				columnDataPendidikan:[
 					{ title: 'No.' },
@@ -563,6 +585,8 @@
 					{ title: 'Tempat' },
 					{ title: 'Mulai' },
 					{ title: 'Selesai' },
+					{ title: 'Tgl. / Waktu Buat' },
+					{ title: 'Tgl. / Waktu Ubah' },
 				],
 				columnDataOrganisasi:[
 					{ title: 'No.' },
@@ -571,6 +595,8 @@
 					{ title: 'Tempat' },
 					{ title: 'Mulai' },
 					{ title: 'Selesai' },
+					{ title: 'Tgl. / Waktu Buat' },
+					{ title: 'Tgl. / Waktu Ubah' },
 				],
 				columnDataDiklat:[
 					{ title: 'No.' },
@@ -582,6 +608,8 @@
 					{ title: 'Fasilitator' },
 					{ title: 'Mulai' },
 					{ title: 'Selesai' },
+					{ title: 'Tgl. / Waktu Buat' },
+					{ title: 'Tgl. / Waktu Ubah' },
 				],
 				columnDataKeterangan:[
 					{ title: 'No.' },
@@ -589,6 +617,8 @@
 					{ title: 'Nama' },
 					{ title: 'Keterangan' },
 					{ title: 'Tanggal' },
+					{ title: 'Tgl. / Waktu Buat' },
+					{ title: 'Tgl. / Waktu Ubah' },
 				],
 				cancelTitle: 'Tutup',
 				cancelIcon: 'icon-cross',

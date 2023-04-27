@@ -60,7 +60,7 @@
                 class="nav-link"
                 :class="{ active: tabName == 'indexDibuka' }"
                 @click.prevent="changeTab('indexDibuka')"
-                ><i class="icon-user-plus mr-2"></i> Pendaftaran Dibuka</a
+                ><i class="icon-user-plus mr-2"></i> Pendaftaran Buka</a
               >
             </li>
             <li class="nav-item">
@@ -69,7 +69,7 @@
                 class="nav-link"
                 :class="{ active: tabName == 'indexDitutup' }"
                 @click.prevent="changeTab('indexDitutup')"
-                ><i class="icon-user-minus mr-2"></i> Pendaftaran Ditutup</a
+                ><i class="icon-user-minus mr-2"></i> Pendaftaran Tutup</a
               >
             </li>
             <li class="nav-item">
@@ -78,7 +78,7 @@
                 class="nav-link"
                 :class="{ active: tabName == 'indexBerjalan' }"
                 @click.prevent="changeTab('indexBerjalan')"
-                ><i class="icon-feed mr-2"></i> Sedang Berjalan</a
+                ><i class="icon-feed mr-2"></i> Berjalan</a
               >
             </li>
             <li class="nav-item">
@@ -87,7 +87,7 @@
                 class="nav-link"
                 :class="{ active: tabName == 'indexTerlaksana' }"
                 @click.prevent="changeTab('indexTerlaksana')"
-                ><i class="icon-checkbox-checked mr-2"></i> Kegiatan Terlaksana</a
+                ><i class="icon-checkbox-checked mr-2"></i> Terlaksana</a
               >
             </li>
             <li class="nav-item">
@@ -96,7 +96,7 @@
                 class="nav-link"
                 :class="{ active: tabName == 'indexMenunggu' }"
                 @click.prevent="changeTab('indexMenunggu')"
-                ><i class="icon-new mr-2"></i> Kegiatan Menunggu</a
+                ><i class="icon-new mr-2"></i> Menunggu</a
               >
             </li>
             <li class="nav-item">
@@ -105,7 +105,7 @@
                 class="nav-link"
                 :class="{ active: tabName == 'indexBatal' }"
                 @click.prevent="changeTab('indexBatal')"
-                ><i class="icon-cancel-square mr-2"></i> Kegiatan Batal</a
+                ><i class="icon-cancel-square mr-2"></i> Batal</a
               >
             </li>
 						<li class="nav-item">
@@ -114,7 +114,7 @@
                 class="nav-link"
                 :class="{ active: tabName == 'indexSemua' }"
                 @click.prevent="changeTab('indexSemua')"
-                ><i class="icon-list2 mr-2"></i> Semua Kegiatan</a
+                ><i class="icon-list2 mr-2"></i> Semua</a
               >
             </li>
           </ul>
