@@ -36,6 +36,10 @@ export default {
     );
   },
 
+  getKegiatanTerbaru: function () {
+    return axios.get("/api/kegiatanBKCU/getKegiatanTerbaru");
+  },
+
   indexSemuaPeserta: function (p, tipe) {
     return axios.get("/api/kegiatanBKCU/indexSemuaPeserta/" + tipe, {
       params: p,

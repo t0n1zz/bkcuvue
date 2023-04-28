@@ -665,18 +665,18 @@ class KegiatanBKCUController extends Controller
 		$asal = $request->asal;
 		$name = $request->name_sertifikat;
 
-		$formatedName="";
+		$formatedName = "";
 
 		// check peserta count
 		$semuaPesertaTerdaftar = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu', 'aktivis.pendidikan_tertinggi')->where('kegiatan_id', $id)->count();
 
 		// upload file to storage
-		if($request->surat_tugas){
+		if ($request->surat_tugas) {
 			$file = $request->surat_tugas;
-			
+
 			$fileExtension = $file->getClientOriginalExtension();
-			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
-			$file->move($this->suratTugas,$formatedName);
+			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '', $name), 10, '') . '_' . uniqid() . '.' . $fileExtension;
+			$file->move($this->suratTugas, $formatedName);
 		}
 
 		// check peserta
@@ -1347,7 +1347,7 @@ class KegiatanBKCUController extends Controller
 		$kelas = KegiatanPeserta::findOrFail($id);
 		$name = $kelas->name;
 
-		if(!empty($kelas->surat_tugas)){
+		if (!empty($kelas->surat_tugas)) {
 			File::delete($this->suratTugas . $kelas->surat_tugas);
 		}
 
@@ -1637,6 +1637,14 @@ class KegiatanBKCUController extends Controller
 			$query->where('aktivis_id', $aktivis_id);
 		})->count();
 
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+	public function getKegiatanTerbaru()
+	{
+		$table_data = Kegiatan::where('status', 2)->orderBy('created_at', 'desc')->get();
 		return response()
 			->json([
 				'model' => $table_data

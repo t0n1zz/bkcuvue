@@ -689,7 +689,8 @@ export default {
 		},
 		downloadSuratTugas(filename) {
 			axios.get('/api/download_folder/' + filename + '/suratTugas', {
-				responseType: 'blob'})
+				responseType: 'blob'
+			})
 				.then(response => {
 					FileSaver.saveAs(response.data, filename)
 				});

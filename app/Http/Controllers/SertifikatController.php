@@ -17,7 +17,7 @@ use App\KegiatanListMateri;
 use App\KegiatanMateriNilai;
 use App\Aktivis;
 use App\KegiatanPeserta;
-
+use Predis\Command\ListLength;
 
 class SertifikatController extends Controller
 {
@@ -39,7 +39,7 @@ class SertifikatController extends Controller
 
   public function indexKode()
   {
-    $table_data = SertifikatGenerate::with('peserta','kegiatan')->advancedFilter();
+    $table_data = SertifikatGenerate::with('peserta', 'kegiatan')->advancedFilter();
 
     return response()
       ->json([
@@ -141,6 +141,7 @@ class SertifikatController extends Controller
 
   public function generateSertifikat(Request $formData)
   {
+
     $kegiatanData = Kegiatan::with('tempat')->where('id', $formData['kegiatan_id'])->first();
     $nomorData = SertifikatGenerate::where('kegiatan_peserta_id',  $formData['id'])->first();
     $sertifikat = Sertifikat::where('id', $kegiatanData->id_sertifikat)->select('gambar_depan', 'gambar_belakang', 'kode_sertifikat')->first();

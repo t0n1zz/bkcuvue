@@ -1,30 +1,43 @@
 <template>
-  <div>
-		<hooper class="mb-3" style="width:100%;min-height:20em;" :progress="true" :autoPlay="true" :playSpeed="6000" :infiniteScroll="true">
+	<div>
+		<hooper class="mb-3" style="width:100%;min-height:20em;" :progress="true" :autoPlay="true" :playSpeed="6000"
+			:infiniteScroll="true">
 			<slide v-for="(item, index) in sliderItem" :key="index" class="slideStyle" :style="item.style">
 
 				<!-- welcome -->
 				<div v-if="item.name == 'welcome'">
 					<h1>{{ item.title }}</h1>
 					<span v-html="item.content"></span>
-					<br/>
-					<a :href="item.buttonUrl" class="btn btn-danger mt-1" target="_blank" v-if="item.isButton" v-html="item.buttonTitle">
+					<br />
+					<a :href="item.buttonUrl" class="btn btn-danger mt-1" target="_blank" v-if="item.isButton"
+						v-html="item.buttonTitle">
 					</a>
 				</div>
 
 				<!-- birthday -->
 				<div v-else-if="item.name == 'birthday'">
 					<h1>{{ item.title }}</h1>
-					<span class="badge bg-blue-400 align-self-center ml-2 mb-1" v-for="(item2, index2) in item.cu" :key="index2">
+					<span class="badge bg-blue-400 align-self-center ml-2 mb-1" v-for="(item2, index2) in item.cu"
+						:key="index2">
 						<h6 class="mb-0">{{ 'CU ' + item2.name + ' Ke- ' + item2.usia }}</h6>
 					</span>
-					<br/><br/>
+					<br /><br />
 					<h4 v-html="item.content" class="d-none d-md-block"></h4>
 				</div>
 
 				<div v-else-if="item.name == 'news'">
 					<h1>{{ item.title }}</h1>
 					<span v-html="item.content"></span>
+				</div>
+
+				<!-- kegiatan -->
+				<div v-if="item.name == 'kegiatan'">
+					<h1>{{ item.title }}</h1>
+					<span v-html="item.content"></span>
+					<br />
+					<a :href="item.buttonUrl" class="btn btn-danger mt-1" target="_blank" v-if="item.isButton"
+						v-html="item.buttonTitle">
+					</a>
 				</div>
 
 			</slide>
@@ -34,143 +47,200 @@
 				<i slot="hooper-next"><i style="color: rgb(255, 251, 251);" class="icon-chevron-right"></i></i>
 			</hooper-navigation>
 			<hooper-pagination slot="hooper-addons"></hooper-pagination>
-		</hooper>  
-  </div>
+		</hooper>
+	</div>
 </template>
 
 <script type="text/javascript">
-	import { mapGetters } from 'vuex';
-  import { Hooper, Slide, Navigation as HooperNavigation, Pagination as HooperPagination } from 'hooper';
-	import 'hooper/dist/hooper.css';
-	import CUAPI from '../../api/cu';
-	import ARTIKELSIMOAPI from '../../api/artikelSimo';
-  
-	export default{
-		components: {
-			Hooper,
-			Slide,
-			HooperNavigation,
-			HooperPagination,
-		},
-		data(){
-			return{
-				birthdayData: [],
-				birthdayDataStat: '',
-				newsData: [],
-				newsDataStat: '',
-				slideData: [],
-				sliderItem: [
-					{
-						name: 'welcome',
-						title: 'Selamat Datang Di SIMO',
-						content: '<h5 class="d-none d-md-block">Sistem Informasi Manajemen Organisasi yang menyimpan dan mengolah data CU dalam gerakan PUSKOPCUINA.</h5> Baru pertama kali masuk ke SIMO? <br/>agar tidak bingung silahkan membaca panduan terlebih dahulu',
-						isButton: true,
-						buttonUrl: 'https://puskopcuina.org/panduan',
-						buttonTitle: '<i class="icon-book mr-2"></i>Panduan',
+import { mapGetters } from 'vuex';
+import { Hooper, Slide, Navigation as HooperNavigation, Pagination as HooperPagination } from 'hooper';
+import 'hooper/dist/hooper.css';
+import CUAPI from '../../api/cu';
+import ARTIKELSIMOAPI from '../../api/artikelSimo';
+import KEGIATANBKCUAPI from '../../api/kegiatanBKCU';
+
+export default {
+	components: {
+		Hooper,
+		Slide,
+		HooperNavigation,
+		HooperPagination,
+	},
+	data() {
+		return {
+			birthdayData: [],
+			birthdayDataStat: '',
+			kegiatanTerbaruData: [],
+			kegiatanTerbaruDataStat: '',
+			newsData: [],
+			newsDataStat: '',
+			slideData: [],
+			sliderItem: [
+				{
+					name: 'welcome',
+					title: 'Selamat Datang Di SIMO',
+					content: '<h5 class="d-none d-md-block">Sistem Informasi Manajemen Organisasi yang menyimpan dan mengolah data CU dalam gerakan PUSKOPCUINA.</h5> Baru pertama kali masuk ke SIMO? <br/>agar tidak bingung silahkan membaca panduan terlebih dahulu',
+					isButton: true,
+					buttonUrl: 'https://puskopcuina.org/panduan',
+					buttonTitle: '<i class="icon-book mr-2"></i>Panduan',
+					style: {
+						'background-image': 'url("/images/welcomeSIMO.png")',
+						'background-position': 'center',
+						'background-repeat': 'no-repeat',
+						'background-size': 'cover',
+						'color': '#FFFFFF',
+					}
+				},
+			],
+		}
+	},
+	created() {
+		this.getBirthday();
+		this.getKegiatanTerbaru();
+	},
+	watch: {
+		birthdayDataStat(value) {
+			if (value == 'success') {
+				if (this.birthdayData.length > 0) {
+					let item = {
+						name: 'birthday',
+						title: 'Selamat Ulang Tahun Kepada',
+						content: 'Semoga semakin maju berkembang dan bertumbuh bersama anggota',
+						cu: [],
 						style: {
-							'background-image': 'url("/images/welcomeSIMO.png")',
+							'background-image': 'url("/images/birthday.jpg")',
 							'background-position': 'center',
 							'background-repeat': 'no-repeat',
 							'background-size': 'cover',
 							'color': '#FFFFFF',
 						}
-					},
-				],
+					};
+					item.cu = this.birthdayData;
+					this.sliderItem.push(item);
+				}
+				this.getNews();
 			}
 		},
-		created(){
-			this.getBirthday();
-		},
-		watch: {
-			birthdayDataStat(value){
-				if(value == 'success'){
-					if(this.birthdayData.length > 0){
-						let item = {
-							name: 'birthday',
-							title: 'Selamat Ulang Tahun Kepada',
-							content: 'Semoga semakin maju berkembang dan bertumbuh bersama anggota',
-							cu: [],
-							style: {
-								'background-image': 'url("/images/birthday.jpg")',
-								'background-position': 'center',
-								'background-repeat': 'no-repeat',
-								'background-size': 'cover',
-								'color': '#FFFFFF',
-							}
-						};
-						item.cu = this.birthdayData;
-						this.sliderItem.push(item);
-					}
-					this.getNews();
-				}
-			},
-			newsDataStat(value){
-				if(value == 'success'){
-					var valData;
-					for(valData of this.newsData){
-						this.addNewsSlide(valData.name,valData.ringkasan,valData.gambar);
-					}
+		newsDataStat(value) {
+			if (value == 'success') {
+				var valData;
+				for (valData of this.newsData) {
+					this.addNewsSlide(valData.name, valData.ringkasan, valData.gambar);
 				}
 			}
 		},
-		methods:{
-			getBirthday(){
-				this.birthdayDataStat = 'loading';
+		kegiatanTerbaruDataStat(value) {
+			if (value == 'success') {
+				if (this.kegiatanTerbaruData.length > 0) {
 
-				CUAPI.getBirthday()
-        .then((response) => {
-					this.birthdayData = response.data.model;
-          this.birthdayDataStat = 'success';
-        })
-        .catch( error => {
-					this.birthdayData = error.response;
-          this.birthdayDataStat = 'fail';
-        });
-			},
-			getNews(){
-				this.newsDataStat = 'loading';
-
-				ARTIKELSIMOAPI.get()
-        .then((response) => {
-					this.newsData = response.data.model;
-          this.newsDataStat = 'success';
-        })
-        .catch( error => {
-					this.newsData = error.response;
-          this.newsDataStat = 'fail';
-        });
-			},
-			addNewsSlide(title,content,image){
-				let item = {
-					name: 'news',
-					title: title,
-					content: content,
-					style: {
-						'background-image': 'url("/images/artikel_simo/'+ image +'.jpg")',
-						'background-position': 'center',
-						'background-repeat': 'no-repeat',
-						'background-size': 'cover',
-					}
-				};
-				this.sliderItem.push(item);
+					let item = {
+						name: 'kegiatan',
+						title: 'Kegiatan PUSKOPCUINA Terbaru',
+						content: '<h5 class="d-none d-md-block">- ' + this.kegiatanTerbaruData[0].name + ' -</h5>',
+						isButton: true,
+						buttonUrl: 'http://puskopcuina.org/admins/kegiatanBKCU/detail/' + this.kegiatanTerbaruData[0].id,
+						buttonTitle: '<i class="icon-graduation mr-2"></i>Daftar Disini',
+						style: {
+							'background-image': 'url("/images/kegiatanDashboard.png")',
+							'background-position': 'center',
+							'background-repeat': 'no-repeat',
+							'background-size': 'cover',
+							'color': '#FFFFFF',
+						}
+					};
+					this.sliderItem.push(item);
+				}
 			}
-		},
-		computed: {
-			...mapGetters('auth',{
-				currentUser: 'currentUser'
-			})
 		}
+	},
+	methods: {
+		getBirthday() {
+			this.birthdayDataStat = 'loading';
+
+			CUAPI.getBirthday()
+				.then((response) => {
+					this.birthdayData = response.data.model;
+					this.birthdayDataStat = 'success';
+				})
+				.catch(error => {
+					this.birthdayData = error.response;
+					this.birthdayDataStat = 'fail';
+				});
+		},
+		getKegiatanTerbaru() {
+			this.kegiatanTerbaruDataStat = 'loading';
+			KEGIATANBKCUAPI.getKegiatanTerbaru().then((response) => {
+				this.kegiatanTerbaruData = response.data.model;
+				this.kegiatanTerbaruDataStat = 'success';
+			})
+				.catch(error => {
+					this.kegiatanTerbaruData = error.response;
+					this.kegiatanTerbaruDataStat = 'fail';
+				});
+		},
+		getNews() {
+			this.newsDataStat = 'loading';
+
+			ARTIKELSIMOAPI.get()
+				.then((response) => {
+					this.newsData = response.data.model;
+					this.newsDataStat = 'success';
+				})
+				.catch(error => {
+					this.newsData = error.response;
+					this.newsDataStat = 'fail';
+				});
+		},
+		addNewsSlide(title, content, image) {
+			let item = {
+				name: 'news',
+				title: title,
+				content: content,
+				style: {
+					'background-image': 'url("/images/artikel_simo/' + image + '.jpg")',
+					'background-position': 'center',
+					'background-repeat': 'no-repeat',
+					'background-size': 'cover',
+				}
+			};
+			this.sliderItem.push(item);
+		},
+		// newSlideKegiatan(params) {
+		// 	console.log('masuk');
+		// 	let item = {
+		// 		name: 'kegiatan',
+		// 		title: params.name,
+		// 		content: '<h5 class="d-none d-md-block">Kegiatan PUSKOPCUINA Terbaru .</h5>',
+		// 		isButton: true,
+		// 		buttonUrl: 'http://puskopcuina.org/admins/kegiatanBKCU/' + params.tipe + '/periode/' + params.periode,
+		// 		buttonTitle: '<i class="icon-graduation mr-2"></i>Kegiatan',
+		// 		style: {
+		// 			'background-image': 'url("/images/kegiatanDashboard.png")',
+		// 			'background-position': 'center',
+		// 			'background-repeat': 'no-repeat',
+		// 			'background-size': 'cover',
+		// 			'color': '#FFFFFF',
+		// 		}
+		// 	}
+		// 	this.sliderItem.push(item);
+		// }
+	},
+	computed: {
+		...mapGetters('auth', {
+			currentUser: 'currentUser'
+		})
 	}
+}
 </script>
 
 <style>
-	.slideStyle {
-		padding-top: 3em;
-		padding-left: 2em;
-		padding-right: 2em;
-		text-align: center;
-		align-items: center;
-		justify-content: center;
-		border-radius: 10px;
-	}
+.slideStyle {
+	padding-top: 3em;
+	padding-left: 2em;
+	padding-right: 2em;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	border-radius: 10px;
+}
 </style>

@@ -240,6 +240,7 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::delete('/kodeKegiatan/{id}', 'KodeKegiatanController@destroy');
 
         // kegiatan bkcu
+        Route::get('/kegiatanBKCU/getKegiatanTerbaru', 'KegiatanBKCUController@getKegiatanTerbaru');
         Route::get('/kegiatanBKCU/index/{kegiatan_tipe}', 'KegiatanBKCUController@index');
         Route::get('/kegiatanBKCU/baru', 'KegiatanBKCUController@indexBaru');
         Route::get('/kegiatanBKCU/mulai', 'KegiatanBKCUController@indexMulai');
