@@ -1524,6 +1524,54 @@
 						]
 					},
 					{
+					name: 'Presensi',
+					keterangan: 'Mengelola data presensi pada SIMO',
+					icon: 'icon-person',
+					secondRow: true,
+					tipe: 'bkcu',
+					permission: [{
+						name: 'Lihat QR',
+						key: 'index_qr',
+						icon: 'icon-eye',
+						tipe: 'all',
+						value: false,
+						group: 'User'
+					},
+					{
+						name: 'Tambah QR',
+						key: 'create_qr',
+						icon: 'icon-plus3',
+						tipe: 'all',
+						value: false,
+						group: 'User'
+					},
+					{
+						name: 'Ubah QR',
+						key: 'update_qr',
+						icon: 'icon-pencil',
+						tipe: 'all',
+						value: false,
+						group: 'User'
+					},
+					{
+						name: 'Hapus QR',
+						key: 'destroy_qr',
+						icon: 'icon-bin2',
+						tipe: 'all',
+						value: false,
+						group: 'User'
+						},
+					{
+						name: 'Personalia',
+						key: 'personalia_akses',
+						icon: 'icon-key',
+						tipe: 'all',
+						value: false,
+						group: 'User'
+					}
+					]
+				},
+					{
 						name: 'Saran',
 						keterangan: 'Melihat saran yang diberikan user untuk SIMO',
 						icon: 'icon-lifebuoy',

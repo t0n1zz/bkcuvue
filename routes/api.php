@@ -1132,5 +1132,28 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::get('/anggotaCuImportEscete/index/{id_cu}', 'AnggotaCuEsceteController@index');
         Route::post('/anggotaCuImportEscete/draft/{id_cu}/{id_user}', 'AnggotaCuEsceteController@uploadDraft');
         Route::post('/anggotaCuImportEscete/simpandraft/{id_cu}', 'AnggotaCuEsceteController@store');
+
+        //absen
+        Route::get('/presensi/indexQR/{id_qr}', 'PresensiController@indexQR');
+        Route::get('/presensi/indexQrAll/{id_cu}/{id_user}/{status}', 'PresensiController@indexQrAll');
+        Route::get('/presensi/getKegiatan/{id_cu}/{tipe}', 'PresensiController@indexKegiatan');
+        Route::get('/presensi/indexPresensi/{tahun}/{bulan}/{tipe}/{lingkup}', 'PresensiController@indexPresensiManajemen');
+        Route::get('/presensi/getUsers/{id_cu}', 'PresensiController@indexUser');
+        Route::post('/presensi/storeQR', 'PresensiController@storeQR');
+        Route::post('/presensi/updateQR/{id}', 'PresensiController@updateQR');
+        Route::post('/presensi/storePelanggaranSeragam', 'PresensiController@storePelanggaranSeragam');
+        Route::post('/presensi/storeIzin','PresensiController@storeIzin');
+        Route::post('/presensi/updateAlasan/{tipe}', 'PresensiController@updateAlasan');
+        Route::post('/presensi/updateIzin/{id}', 'PresensiController@updateIzin');
+        Route::post('/presensi/storePresensi/{lat}/{lon}', 'PresensiController@storePresensi');
+        Route::post('/presensi/storePresensiLain/{tipe}', 'PresensiController@storePresensiLain');
+        Route::post('/presensi/uploadOffBergilir/{tipe}', 'PresensiController@uploadExcelOffBergilir');
+        Route::get('/presensi/createFormTerlambat', 'PresensiController@createFormTerlambat');
+        Route::get('/presensi/createFormQR', 'PresensiController@createFormQR');
+        Route::post('/presensi/aktifQR/{id}/{id_user}/{status}', 'PresensiController@aktifQR');
+        Route::post('/presensi/storeSelesaiIzin/{id_user}', 'PresensiController@selesaiIzin');
+        Route::post('/presensi/storeKuliah/{id_cu}/{id_aktivis}/{id_user}/{tanggal}/{tipe}', 'PresensiController@storeKuliah');
+        Route::delete('/presensi/{id}/{tipe}', 'PresensiController@destroy');
+        Route::post('/downloadLaporanPresensi', 'PresensiController@downloadLaporan');
     });
 });

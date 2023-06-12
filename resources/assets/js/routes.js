@@ -33,7 +33,8 @@ const kegiatanBKCU_form = () => import("./views/kegiatanBKCU/form.vue");
 const kegiatanBKCU_detail = () => import("./views/kegiatanBKCU/detail.vue");
 const kegiatanPeserta = () => import("./views/kegiatanPeserta/index.vue");
 const sertifikatKegiatan = () => import("./views/sertifikatKegiatan/index.vue");
-const sertifikatKegiatan_form = () => import("./views/sertifikatKegiatan/form.vue");
+const sertifikatKegiatan_form = () =>
+  import("./views/sertifikatKegiatan/form.vue");
 const kodeKegiatan = () => import("./views/kodeKegiatan/index.vue");
 const kodeKegiatan_form = () => import("./views/kodeKegiatan/form.vue");
 const tempat = () => import("./views/tempat/index.vue");
@@ -51,9 +52,11 @@ const asetTetap_detail = () => import("./views/asetTetap/detail.vue");
 const asetTetapJenis = () => import("./views/asetTetapJenis/index.vue");
 const asetTetapJenis_form = () => import("./views/asetTetapJenis/create.vue");
 const asetTetapKelompok = () => import("./views/asetTetapKelompok/index.vue");
-const asetTetapKelompok_form = () => import("./views/asetTetapKelompok/create.vue");
+const asetTetapKelompok_form = () =>
+  import("./views/asetTetapKelompok/create.vue");
 const asetTetapGolongan = () => import("./views/asetTetapGolongan/index.vue");
-const asetTetapGolongan_form = () => import("./views/asetTetapGolongan/create.vue");
+const asetTetapGolongan_form = () =>
+  import("./views/asetTetapGolongan/create.vue");
 const asetTetapLokasi = () => import("./views/asetTetapLokasi/index.vue");
 const asetTetapLokasi_form = () => import("./views/asetTetapLokasi/create.vue");
 const surat = () => import("./views/surat/index.vue");
@@ -77,16 +80,21 @@ const anggotaCu_form = () => import("./views/anggotaCu/form.vue");
 const anggotaCu_produk = () => import("./views/anggotaCu/produk.vue");
 const anggotaCuDraft = () => import("./views/anggotaCuDraft/index.vue");
 const anggotaCuDraft_form = () => import("./views/anggotaCuDraft/form.vue");
-const anggotaProdukCuDraft = () => import("./views/anggotaProdukCuDraft/index.vue");
-const anggotaProdukCuDraft_form = () => import("./views/anggotaProdukCuDraft/form.vue");
+const anggotaProdukCuDraft = () =>
+  import("./views/anggotaProdukCuDraft/index.vue");
+const anggotaProdukCuDraft_form = () =>
+  import("./views/anggotaProdukCuDraft/form.vue");
 const saldo = () => import("./views/saldo/index.vue");
 const jalinanKlaim = () => import("./views/jalinanKlaim/index.vue");
 const jalinanKlaim_form = () => import("./views/jalinanKlaim/form.vue");
 const jalinanCair = () => import("./views/jalinanCair/index.vue");
 const jalinanLaporan_KlaimCu = () => import("./views/jalinanLaporan/cu.vue");
-const jalinanLaporan_KlaimPenyebab = () => import("./views/jalinanLaporan/penyebab.vue");
-const jalinanLaporan_KlaimUsia = () => import("./views/jalinanLaporan/usia.vue");
-const jalinanLaporan_KlaimLama = () => import("./views/jalinanLaporan/lama.vue");
+const jalinanLaporan_KlaimPenyebab = () =>
+  import("./views/jalinanLaporan/penyebab.vue");
+const jalinanLaporan_KlaimUsia = () =>
+  import("./views/jalinanLaporan/usia.vue");
+const jalinanLaporan_KlaimLama = () =>
+  import("./views/jalinanLaporan/lama.vue");
 const produkCu = () => import("./views/produkCu/index.vue");
 const produkCu_form = () => import("./views/produkCu/form.vue");
 const user = () => import("./views/user/index.vue");
@@ -112,6 +120,14 @@ const jalinanIuran = () => import("./views/jalinanIuran/index.vue");
 const jalinanIuran_form = () => import("./views/jalinanIuran/form.vue");
 const jalinanIuran_detail = () => import("./views/jalinanIuran/detail.vue");
 const dataAnggotaUpload = () => import("./views/sistem/dataAnggotaUpload.vue");
+const presensi_qr = () => import("./views/presensi/halamanPresensiQR.vue");
+const qr_index = () => import("./views/presensi/index.vue");
+const presensi_manajemen = () => import("./views/presensi/absenManajemen.vue");
+const presensi_input_kode = () =>
+  import("./views/presensi/halamanPresensiInputKode.vue");
+const presensi_pribadi = () =>
+  import("./views/presensi/tablePresensiPribadi.vue");
+const presensi_all = () => import("./views/presensi/tablePresensiAll.vue");
 
 const routes = [
   // login
@@ -1419,6 +1435,53 @@ const routes = [
     path: "/anggotaCuImportEscete",
     name: "dataAnggotaUpload",
     components: { default: dataAnggotaUpload, header: header, footer: footer },
+    meta: { requiresAuth: true },
+  },
+
+  //presensi
+  {
+    path: "/presensi/:id_qr",
+    name: "presensi",
+    components: { default: presensi_qr, header: header, footer: footer },
+    meta: { requiresAuth: true },
+  },
+
+  {
+    path: "/kelolaQR",
+    name: "kelolaQR",
+    components: { default: qr_index, header: header, footer: footer },
+    meta: { requiresAuth: true },
+  },
+
+  {
+    path: "/presensiPage/:kode_absen/:id_qr",
+    name: "presensiPage",
+    components: { default: presensi_manajemen, header: header, footer: footer },
+    meta: { requiresAuth: true },
+  },
+
+  {
+    path: "/presensiInputKodePage",
+    name: "presensiInputKodePage",
+    components: {
+      default: presensi_input_kode,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true },
+  },
+
+  {
+    path: "/indexPresensiPribadi/:tahun/:bulan",
+    name: "indexPresensiPribadi",
+    components: { default: presensi_pribadi, header: header, footer: footer },
+    meta: { requiresAuth: true },
+  },
+
+  {
+    path: "/indexPresensiAll/:tahun/:bulan",
+    name: "indexPresensiAll",
+    components: { default: presensi_all, header: header, footer: footer },
     meta: { requiresAuth: true },
   },
 ];

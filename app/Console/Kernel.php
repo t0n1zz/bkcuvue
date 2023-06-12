@@ -12,7 +12,7 @@ class Kernel extends ConsoleKernel
      *
      * @var array
      */
-    protected $commands = [Commands\HitungPenyusutan::class,];
+    protected $commands = [Commands\HitungPenyusutan::class, Commands\Presensi::class, Commands\UpdateQR::class];
 
     /**
      * Define the application's command schedule.
@@ -26,6 +26,12 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('hitung:penyusutan')
             ->dailyAt('01:00');
+
+        $schedule->command('qr:update')
+            ->dailyAt('01:00');
+
+        $schedule->command('alpa:create')
+            ->dailyAt('18:00');
     }
 
     /**

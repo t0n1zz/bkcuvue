@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Hash;
-use Image; 
+use Image;
 use File;
 use App\User;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ use Spatie\Activitylog\Models\Activity;
 class UserController extends Controller
 {
 	protected $imagepath = 'images/user/';
-	
+
 	protected $permissions = [
 		'index_artikel',
 		'create_artikel',
@@ -199,6 +199,12 @@ class UserController extends Controller
 		'upload_laporan_tp',
 		'diskusi_laporan_tp',
 
+		'index_qr',
+		'create_qr',
+		'update_qr',
+		'destroy_qr',
+		'personalia_akses'
+
 		// 'index_coa',
 		// 'create_coa',
 		// 'update_coa',
@@ -207,43 +213,43 @@ class UserController extends Controller
 
 	public function index()
 	{
-		$table_data = User::with('pus','cu','aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('id','!=',1)->advancedFilter();
-		
+		$table_data = User::with('pus', 'cu', 'aktivis.pekerjaan_aktif.cu', 'aktivis.pendidikan_tertinggi')->where('id', '!=', 1)->advancedFilter();
+
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexCu($id)
 	{
-		$table_data = User::with('pus','cu','aktivis.pekerjaan_aktif.cu','aktivis.pendidikan_tertinggi')->where('id','!=',1)->where('id_cu',$id)->advancedFilter();
-		
+		$table_data = User::with('pus', 'cu', 'aktivis.pekerjaan_aktif.cu', 'aktivis.pendidikan_tertinggi')->where('id', '!=', 1)->where('id_cu', $id)->advancedFilter();
+
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function indexCuPermission($id)
 	{
-		$table_data1 = User::with('aktivis.pekerjaan_aktif')->where('id_cu',$id)->permission('verifikasi_pengurus_jalinan_klaim')->get();
-		$table_data2 = User::with('aktivis.pekerjaan_aktif')->where('id_cu',$id)->permission('verifikasi_pengawas_jalinan_klaim')->get();
-		$table_data3 = User::with('aktivis.pekerjaan_aktif')->where('id_cu',$id)->permission('verifikasi_manajemen_jalinan_klaim')->get();
-		
+		$table_data1 = User::with('aktivis.pekerjaan_aktif')->where('id_cu', $id)->permission('verifikasi_pengurus_jalinan_klaim')->get();
+		$table_data2 = User::with('aktivis.pekerjaan_aktif')->where('id_cu', $id)->permission('verifikasi_pengawas_jalinan_klaim')->get();
+		$table_data3 = User::with('aktivis.pekerjaan_aktif')->where('id_cu', $id)->permission('verifikasi_manajemen_jalinan_klaim')->get();
+
 		return response()
-		->json([
-			'model1' => $table_data1,
-			'model2' => $table_data2,
-			'model3' => $table_data3,
-		]);
+			->json([
+				'model1' => $table_data1,
+				'model2' => $table_data2,
+				'model3' => $table_data3,
+			]);
 	}
 
 	public function getActivity($id)
 	{
 		$user = User::findOrFail($id);
 
-		$table_data = Activity::causedBy($user)->orderBy('created_at','desc')->paginate();
+		$table_data = Activity::causedBy($user)->orderBy('created_at', 'desc')->paginate();
 
 		return response()
 			->json([
@@ -253,77 +259,77 @@ class UserController extends Controller
 
 	public function indexActivity()
 	{
-		$table_data = Activity::orderBy('created_at','desc')->paginate();
+		$table_data = Activity::orderBy('created_at', 'desc')->paginate();
 
 		return response()
 			->json([
 				'model' => $table_data
 			]);
 	}
-	
+
 	public function create()
 	{
 		return response()
 			->json([
-					'form' => User::initialize(),
-					'rules' => User::$rules,
-					'option' => []
+				'form' => User::initialize(),
+				'rules' => User::$rules,
+				'option' => []
 			]);
 	}
 
 	public function store(Request $request)
 	{
-			// validate request
-			$this->validate($request,User::$rules);
+		// validate request
+		$this->validate($request, User::$rules);
 
-			$username = $request->username;
-			$password = $request->password;
-			$passwordConfirm = $request->passwordConfirm;
+		$username = $request->username;
+		$password = $request->password;
+		$passwordConfirm = $request->passwordConfirm;
 
-			//check data
-			$this->checkData($request);
+		//check data
+		$this->checkData($request);
 
-			// processing single image upload
-			if(!empty($request->gambar))
-				$fileName = Helper::image_processing($this->imagepath,'300','200',$request->gambar,'', $username);
-			else
-				$fileName = '';
+		// processing single image upload
+		if (!empty($request->gambar))
+			$fileName = Helper::image_processing($this->imagepath, '300', '200', $request->gambar, '', $username);
+		else
+			$fileName = '';
 
-			//password encryption	
-			$password = Hash::make($password);
+		//password encryption	
+		$password = Hash::make($password);
 
-			// save user
-			$kelas = User::create($request->except('gambar','password','status','id_pus') + [
-				'gambar' => $fileName, 
-				'password' => $password, 
-				'status' => 1,
-				'id_pus' => 1
+		// save user
+		$kelas = User::create($request->except('gambar', 'password', 'status', 'id_pus') + [
+			'gambar' => $fileName,
+			'password' => $password,
+			'status' => 1,
+			'id_pus' => 1
+		]);
+
+		$this->hakAksesSave($request->permission, $kelas);
+
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'User ' . $username . ' berhasil ditambah'
 			]);
-
-			$this->hakAksesSave($request->permission,$kelas);
-
-			return response()
-				->json([
-					'saved' => true,
-					'message' => 'User ' .$username. ' berhasil ditambah'
-				]);
 	}
 
 	public function edit($id)
 	{
-		$kelas = User::with('cu','aktivis','pus','roles')->findOrFail($id);
-		
+		$kelas = User::with('cu', 'aktivis', 'pus', 'roles')->findOrFail($id);
+
 		return response()
-				->json([
-						'form' => $kelas,
-						'option' => []
-				]);
+			->json([
+				'form' => $kelas,
+				'option' => []
+			]);
 	}
 
 	public function editHakAkses($id)
 	{
 		$kelas = User::findOrFail($id);
-		
+
 		$table_data = $kelas->getAllPermissions();
 
 		return response()
@@ -339,8 +345,8 @@ class UserController extends Controller
 		$username = $kelas->username;
 
 		// processing single image upload
-		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,'300','200',$request->gambar, $kelas->gambar, $username);
+		if (!empty($request->gambar))
+			$fileName = Helper::image_processing($this->imagepath, '300', '200', $request->gambar, $kelas->gambar, $username);
 		else
 			$fileName = '';
 
@@ -351,22 +357,22 @@ class UserController extends Controller
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'User ' .$username. ' berhasil diubah'
+				'message' => 'User ' . $username . ' berhasil diubah'
 			]);
 	}
 
-  public function updateStatus($id)
+	public function updateStatus($id)
 	{
 		$kelas = User::findOrFail($id);
 
 		$username = $kelas->username;
 
-		if($kelas->status == 1){
+		if ($kelas->status == 1) {
 			$kelas->status = 0;
-			$message = 'User ' .$username. ' berhasil dinon-aktifkan';
-		}else{
+			$message = 'User ' . $username . ' berhasil dinon-aktifkan';
+		} else {
 			$kelas->status = 1;
-			$message = 'User ' .$username. ' berhasil diaktifkan';
+			$message = 'User ' . $username . ' berhasil diaktifkan';
 		}
 
 		$kelas->update();
@@ -382,19 +388,19 @@ class UserController extends Controller
 	{
 		$kelas = User::findOrFail($id);
 
-		$this->hakAksesSave($request->all(),$kelas);
-		
+		$this->hakAksesSave($request->all(), $kelas);
+
 		$user = Auth::user();
 
-	  // add activity log for changing hak akses
+		// add activity log for changing hak akses
 		Activity()->performedOn($kelas)->causedBy($user)
-		->withProperties(['attributes' => ['hak akses']])
-		->log('updated');
-		
+			->withProperties(['attributes' => ['hak akses']])
+			->log('updated');
+
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Hak Akses User ' .$kelas->username. ' berhasil diubah. Apabila user tersebut saat ini sudah login ke SIMO, maka untuk melihat perubahannya user tersebut mesti logout dan login lagin.'
+				'message' => 'Hak Akses User ' . $kelas->username . ' berhasil diubah. Apabila user tersebut saat ini sudah login ke SIMO, maka untuk melihat perubahannya user tersebut mesti logout dan login lagin.'
 			]);
 	}
 
@@ -405,8 +411,8 @@ class UserController extends Controller
 		$username = $kelas->username;
 
 		// processing single image upload
-		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,'300','200',$request->gambar,$kelas->gambar,$username);
+		if (!empty($request->gambar))
+			$fileName = Helper::image_processing($this->imagepath, '300', '200', $request->gambar, $kelas->gambar, $username);
 		else
 			$fileName = '';
 
@@ -415,7 +421,7 @@ class UserController extends Controller
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Foto user ' .$username. ' berhasil diubah'
+				'message' => 'Foto user ' . $username . ' berhasil diubah'
 			]);
 	}
 
@@ -428,7 +434,7 @@ class UserController extends Controller
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Identitas user ' .$kelas->username. ' telah berhasil diubah, silahkan logout dan login kembali untuk melihat perubahannya'
+				'message' => 'Identitas user ' . $kelas->username . ' telah berhasil diubah, silahkan logout dan login kembali untuk melihat perubahannya'
 			]);
 	}
 
@@ -437,19 +443,19 @@ class UserController extends Controller
 		$kelas = User::findOrFail($id);
 
 		if (!Hash::check(request('password_old'), $kelas->password)) {
-				return response()->json([
-						'message' => 'Password lama anda salah',
-						'status' => 500
-				], 500);
+			return response()->json([
+				'message' => 'Password lama anda salah',
+				'status' => 500
+			], 500);
 		}
 
 		if (Hash::check(request('password'), $kelas->password)) {
 			return response()->json([
-					'message' => 'Password baru tidak boleh sama dengan yang lama',
-					'status' => 500
+				'message' => 'Password baru tidak boleh sama dengan yang lama',
+				'status' => 500
 			], 500);
 		}
-	
+
 		$password = $request->password;
 		$password = Hash::make($password);
 
@@ -462,7 +468,7 @@ class UserController extends Controller
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Password user ' .$username. ' telah berhasil diubah'
+				'message' => 'Password user ' . $username . ' telah berhasil diubah'
 			]);
 	}
 
@@ -482,7 +488,7 @@ class UserController extends Controller
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Password user ' .$username. ' telah berhasil direset menjadi ' . $a
+				'message' => 'Password user ' . $username . ' telah berhasil direset menjadi ' . $a
 			]);
 	}
 
@@ -496,7 +502,7 @@ class UserController extends Controller
 		return response()
 			->json([
 				'deleted' => true,
-				'message' => 'User ' .$name. 'berhasil dihapus'
+				'message' => 'User ' . $name . 'berhasil dihapus'
 			]);
 	}
 
@@ -507,8 +513,8 @@ class UserController extends Controller
 		$passwordConfirm = $request->passwordConfirm;
 
 		//check username
-		$checkUsername = User::where('username',$username)->first();
-		if(!empty($checkUsername)){
+		$checkUsername = User::where('username', $username)->first();
+		if (!empty($checkUsername)) {
 			return response()
 				->json([
 					'saved' => false,
@@ -517,7 +523,7 @@ class UserController extends Controller
 		}
 
 		//confirm password
-		if($password != $passwordConfirm){
+		if ($password != $passwordConfirm) {
 			return response()
 				->json([
 					'saved' => false,
@@ -529,46 +535,52 @@ class UserController extends Controller
 	private function image_processing($request)
 	{
 		$this->validate($request, [
-    		'gambar' => 'image|mimes:jpeg,png,jpg|max:2048',
-    	]);
+			'gambar' => 'image|mimes:jpeg,png,jpg|max:2048',
+		]);
 
 		$path = public_path($this->imagepath);
 		$imageData = $request->gambar;
 		list($width, $height) = getimagesize($imageData);
 
-		$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$request->name),10,'') . '_' .uniqid();
-		$fileName =  $formatedName. '.jpg';
-		$fileName2 =  $formatedName. 'n.jpg';
+		$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '', $request->name), 10, '') . '_' . uniqid();
+		$fileName =  $formatedName . '.jpg';
+		$fileName2 =  $formatedName . 'n.jpg';
 
 		//image
-		if($width > 720){
-				Image::make($imageData->getRealPath())->resize(720, null,
-						function ($constraint) {
-								$constraint->aspectRatio();
-						})
-						->save($path . $fileName);
-		}else{
-				Image::make($imageData->getRealPath())->save($path . $fileName);
+		if ($width > 720) {
+			Image::make($imageData->getRealPath())->resize(
+				720,
+				null,
+				function ($constraint) {
+					$constraint->aspectRatio();
+				}
+			)
+				->save($path . $fileName);
+		} else {
+			Image::make($imageData->getRealPath())->save($path . $fileName);
 		}
 
 		//thumbnail image
-		Image::make($imageData->getRealPath())->resize(200, 200,
-						function ($constraint) {
-								$constraint->aspectRatio();
-						})
-						->save($path . $fileName2);
+		Image::make($imageData->getRealPath())->resize(
+			200,
+			200,
+			function ($constraint) {
+				$constraint->aspectRatio();
+			}
+		)
+			->save($path . $fileName2);
 
 		return $formatedName;
 	}
-		
-	public function hakAksesSave($request,$user)
+
+	public function hakAksesSave($request, $user)
 	{
-		foreach($this->permissions as $item){
-			if(in_array($item, $request)) {
-				if(!$user->hasPermissionTo($item)){
+		foreach ($this->permissions as $item) {
+			if (in_array($item, $request)) {
+				if (!$user->hasPermissionTo($item)) {
 					$user->givePermissionTo($item);
 				}
-			}else{
+			} else {
 				$user->revokePermissionTo($item);
 			}
 		}
@@ -576,17 +588,17 @@ class UserController extends Controller
 
 	public function count()
 	{
-			$id = Auth::user('api')->id_cu;
+		$id = Auth::user('api')->id_cu;
 
-			if($id == 0){
-					$table_data = User::count();
-			}else{
-					$table_data = User::where('id_cu',$id)->count();
-			}
-			
-			return response()
+		if ($id == 0) {
+			$table_data = User::count();
+		} else {
+			$table_data = User::where('id_cu', $id)->count();
+		}
+
+		return response()
 			->json([
-					'model' => $table_data
+				'model' => $table_data
 			]);
 	}
 }

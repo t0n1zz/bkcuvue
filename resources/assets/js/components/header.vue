@@ -991,6 +991,29 @@
 								<i class="icon-quill4"></i> Pemilihan
 							</router-link>
 						
+							<!-- presensi -->
+									<!-- if bkcu account -->
+									<div v-if="currentUser.id_cu==0" class="dropdown-submenu" :class="{ 'show': dropdownMenu2 == 'presensi' }">
+										<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('presensi')">
+											<i class="icon-person"></i> Presensi
+										</a>
+										<div class="dropdown-menu dropdown-scrollable" :class="{ 'show': dropdownMenu2 == 'presensi' }">
+									
+											<router-link :to="{ name: 'indexPresensiPribadi', params: { tahun: new Date().getFullYear(), bulan: new Date().getMonth() + 1 } }" class="dropdown-item" active-class="active" exact >
+												Data Presensi Pribadi
+											</router-link>
+											<router-link :to="{ name: 'presensiInputKodePage'}" class="dropdown-item" active-class="active" exact >
+													Isi Presensi Dengan Kode
+												</router-link>
+											<router-link :to="{ name: 'kelolaQR' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_qr']">
+												QR Presensi
+											</router-link>
+											<router-link :to="{ name: 'indexPresensiAll', params: { tahun: new Date().getFullYear(), bulan: new Date().getMonth() + 1 } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['personalia_akses']">
+												Data Presensi Seluruh Manajemen
+											</router-link>
+										</div>
+									</div>
+
 							<!-- divider -->
 							<div class="dropdown-divider" v-if="currentUser.can['index_aset_tetap'] || currentUser.can['index_aset_tetap_jenis'] || currentUser.can['index_aset_tetap_lokasi'] || currentUser.can['index_dokumen_kategori'] || currentUser.can['index_surat'] || currentUser.can['index_surat_masuk']"></div> 
 

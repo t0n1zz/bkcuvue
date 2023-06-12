@@ -1,1 +1,3582 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[43,3],{"1m3L":function(t,e,a){"use strict";var s={props:{message:{default:""}}},i=a("KHd+"),n=Object(i.a)(s,(function(){var t=this.$createElement,e=this._self._c||t;return e("div",{staticStyle:{display:"inline-block"}},[e("i",{directives:[{name:"tooltip",rawName:"v-tooltip",value:this.message,expression:"message"}],staticClass:"icon-info22 d-none d-sm-block"}),this._v(" "),e("small",{staticClass:"text-muted d-block d-sm-none"},[e("i",[this._v(this._s(this.message))])])])}),[],!1,null,null,null);e.a=n.exports},"4gvd":function(t,e,a){"use strict";a.r(e);var s=a("L2JU"),i=a("Ll3F"),n=a("xuR2"),l=a("s20v"),r=a("8MVx"),o=a("Ocez"),c=(a("LvDl"),a("IIPP")),u=a.n(c),d=a("QO+t"),m=a("1m3L"),p=a("5tjT"),v=a("JAgV");function b(t,e){var a=Object.keys(t);if(Object.getOwnPropertySymbols){var s=Object.getOwnPropertySymbols(t);e&&(s=s.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),a.push.apply(a,s)}return a}function _(t){for(var e=1;e<arguments.length;e++){var a=null!=arguments[e]?arguments[e]:{};e%2?b(Object(a),!0).forEach((function(e){h(t,e,a[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(a)):b(Object(a)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(a,e))}))}return t}function h(t,e,a){return e in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}var f={props:["kelas","selectedItem"],components:{checkValue:o.a,Message:n.a,Cleave:u.a,infoIcon:m.a,wajibBadge:p.a,cardData:v.a,formInfo:d.a},data:function(){return{formData:{},modelProdukCu:[],modelProdukCuStat:"",cleaveOption:{date:{date:!0,datePattern:["Y","m","d"],delimiter:"-"},numeric:{numeral:!0,numeralThousandsGroupStyle:"thousand",numeralDecimalScale:2,numeralDecimalMark:",",delimiter:"."}},message:{show:!1,content:""},submited:!1}},created:function(){this.fetch(),this.formData=Object.assign({},this.selectedItem)},watch:{modelLokasiStat:function(t){"success"===t&&(this.formData=Object.assign({},this.selectedItem))}},methods:{save:function(){var t=this;this.$validator.validateAll("formData").then((function(e){e?t.$store.dispatch(t.kelas+"/updateLokasi",[t.selectedItem.lokasi.id,t.formData]):t.submited=!0}))},fetch:function(){this.$store.dispatch("asetTetapLokasi/resetDataS"),this.$store.dispatch("asetTetapLokasi/get")},tutup:function(){this.$emit("tutup")},changeLokasi:function(t){this.selectedItem.lokasi.id=t}},computed:_(_({},Object(s.b)("auth",{currentUser:"currentUser"})),Object(s.b)("asetTetapLokasi",{modelLokasi:"dataS",modelLokasiStat:"dataStatS",updateLokasiResponse:"update",updateLokasiStat:"updateStat"}))},g=a("KHd+"),C=Object(g.a)(f,(function(){var t=this,e=t.$createElement,a=t._self._c||e;return a("div",[a("div",{staticClass:"card card-body"},[a("card-data",{attrs:{itemData:t.selectedItem}})],1),t._v(" "),a("form",{attrs:{"data-vv-scope":"formData"},on:{submit:function(e){return e.preventDefault(),t.save.apply(null,arguments)}}},[a("div",{staticClass:"row"},[a("div",{staticClass:"col-md-12"},[a("div",{staticClass:"form-group"},[a("h6",{class:{"text-danger":t.errors.has("formData.aset_tetap_lokasi_id")}},[t.errors.has("formData.aset_tetap_lokasi_id")?a("i",{staticClass:"icon-cross2"}):t._e(),t._v("\n\t\t\t\t\tLokasi:\n\t\t\t\t")]),t._v(" "),a("select",{directives:[{name:"model",rawName:"v-model",value:t.formData.aset_tetap_lokasi_id,expression:"formData.aset_tetap_lokasi_id"},{name:"validate",rawName:"v-validate",value:"required",expression:"'required'"}],staticClass:"form-control",attrs:{name:"lokasi","data-width":"100%","data-vv-as":"Lokasi",disabled:0==t.modelLokasi.length},on:{change:[function(e){var a=Array.prototype.filter.call(e.target.options,(function(t){return t.selected})).map((function(t){return"_value"in t?t._value:t.value}));t.$set(t.formData,"aset_tetap_lokasi_id",e.target.multiple?a:a[0])},function(e){return t.changeLokasi(e.target.value)}]}},[a("option",{attrs:{disabled:"",value:""}},["loading"===t.modelLokasiStat?a("span",[t._v("Mohon tunggu...")]):a("span",[t._v("Silahkan pilih lokasi")])]),t._v(" "),t._l(t.modelLokasi,(function(e){return e?a("option",{domProps:{value:e.id}},[t._v(t._s(e.name))]):t._e()}))],2),t._v(" "),t.errors.has("formData.aset_tetap_lokasi_id")?a("small",{staticClass:"text-muted text-danger"},[a("i",{staticClass:"icon-arrow-small-right"}),t._v(" "+t._s(t.errors.first("formData.aset_tetap_lokasi_id"))+"\n\t\t\t\t")]):a("small",{staticClass:"text-muted"},[t._v(" ")])])])]),t._v(" "),a("form-info"),t._v(" "),a("br"),t._v(" "),a("div",{staticClass:"text-center d-none d-md-block"},[a("button",{staticClass:"btn btn-light",attrs:{type:"button"},on:{click:function(e){return e.preventDefault(),t.tutup.apply(null,arguments)}}},[a("i",{staticClass:"icon-cross"}),t._v(" Tutup")]),t._v(" "),a("button",{staticClass:"btn btn-primary",attrs:{type:"submit",disabled:""==t.formData.cu_id}},[a("i",{staticClass:"icon-floppy-disk"}),t._v(" Simpan")])]),t._v(" "),a("div",{staticClass:"d-block d-md-none"},[a("button",{staticClass:"btn btn-primary btn-block pb-2",attrs:{type:"submit",disabled:""==t.formData.cu_id}},[a("i",{staticClass:"icon-floppy-disk"}),t._v(" Simpan")]),t._v(" "),a("button",{staticClass:"btn btn-light btn-block pb-2",attrs:{type:"button"},on:{click:function(e){return e.preventDefault(),t.tutup.apply(null,arguments)}}},[a("i",{staticClass:"icon-cross"}),t._v(" Tutup")])])],1)])}),[],!1,null,null,null).exports;function k(t,e){var a=Object.keys(t);if(Object.getOwnPropertySymbols){var s=Object.getOwnPropertySymbols(t);e&&(s=s.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),a.push.apply(a,s)}return a}function y(t){for(var e=1;e<arguments.length;e++){var a=null!=arguments[e]?arguments[e]:{};e%2?k(Object(a),!0).forEach((function(e){D(t,e,a[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(a)):k(Object(a)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(a,e))}))}return t}function D(t,e,a){return e in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}var x={props:["kelas","selectedItem"],components:{checkValue:o.a,Message:n.a,Cleave:u.a,infoIcon:m.a,wajibBadge:p.a,cardData:v.a,formInfo:d.a},data:function(){return{formData:{},modelProdukCu:[],modelProdukCuStat:"",cleaveOption:{date:{date:!0,datePattern:["Y","m","d"],delimiter:"-"},numeric:{numeral:!0,numeralThousandsGroupStyle:"thousand",numeralDecimalScale:2,numeralDecimalMark:",",delimiter:"."}},message:{show:!1,content:""},submited:!1}},created:function(){this.fetch(),this.formData=Object.assign({},this.selectedItem)},watch:{modelKondisiStat:function(t){"success"===t&&(this.formData=Object.assign({},this.selectedItem))}},methods:{save:function(){var t=this;this.$validator.validateAll("formData").then((function(e){e?t.$store.dispatch(t.kelas+"/updateKondisi",[t.selectedItem.id,t.formData]):t.submited=!0}))},fetch:function(){this.$store.dispatch("asetTetapKondisi/resetDataS"),this.$store.dispatch("asetTetapKondisi/get")},tutup:function(){this.$emit("tutup")}},computed:y(y({},Object(s.b)("auth",{currentUser:"currentUser"})),Object(s.b)("asetTetapKondisi",{modeKondisi:"dataS",modelKondisiStat:"dataStatS",updateKondisiResponse:"update",updateKondisiStat:"updateStat"}))},S=Object(g.a)(x,(function(){var t=this,e=t.$createElement,a=t._self._c||e;return a("div",[a("div",{staticClass:"card card-body"},[a("card-data",{attrs:{itemData:t.selectedItem}})],1),t._v(" "),a("form",{attrs:{"data-vv-scope":"formData"},on:{submit:function(e){return e.preventDefault(),t.save.apply(null,arguments)}}},[a("div",{staticClass:"row"},[a("div",{staticClass:"col-md-12"},[a("div",{staticClass:"form-group"},[a("h6",{class:{"text-danger":t.errors.has("formData.kondisi")}},[t.errors.has("formData.kondisi")?a("i",{staticClass:"icon-cross2"}):t._e(),t._v("\n\t\t\t\t\tKondisi: \n\t\t\t\t")]),t._v(" "),a("select",{directives:[{name:"model",rawName:"v-model",value:t.formData.kondisi,expression:"formData.kondisi"},{name:"validate",rawName:"v-validate",value:"required",expression:"'required'"}],staticClass:"form-control",attrs:{name:"kondisi","data-width":"100%","data-vv-as":"Kondisi"},on:{change:function(e){var a=Array.prototype.filter.call(e.target.options,(function(t){return t.selected})).map((function(t){return"_value"in t?t._value:t.value}));t.$set(t.formData,"kondisi",e.target.multiple?a:a[0])}}},[a("option",{attrs:{disabled:"",value:""}},[t._v("Silahkan pilih kondisi")]),t._v(" "),a("option",{attrs:{value:"Baik"}},[t._v("Baik")]),t._v(" "),a("option",{attrs:{value:"Diperbaiki"}},[t._v("Diperbaiki")]),t._v(" "),a("option",{attrs:{value:"Rusak"}},[t._v("Rusak")]),t._v(" "),a("option",{attrs:{value:"Dijual"}},[t._v("Dijual")]),t._v(" "),a("option",{attrs:{value:"Hilang"}},[t._v("Hilang")]),t._v(" "),a("option",{attrs:{value:"Disewa"}},[t._v("Disewa")])]),t._v(" "),t.errors.has("formData.kondisi")?a("small",{staticClass:"text-muted text-danger"},[a("i",{staticClass:"icon-arrow-small-right"}),t._v(" "+t._s(t.errors.first("formData.kondisi"))+"\n\t\t\t\t")]):a("small",{staticClass:"text-muted"},[t._v(" ")])])])]),t._v(" "),a("form-info"),t._v(" "),a("br"),t._v(" "),a("div",{staticClass:"text-center d-none d-md-block"},[a("button",{staticClass:"btn btn-light",attrs:{type:"button"},on:{click:function(e){return e.preventDefault(),t.tutup.apply(null,arguments)}}},[a("i",{staticClass:"icon-cross"}),t._v(" Tutup")]),t._v(" "),a("button",{staticClass:"btn btn-primary",attrs:{type:"submit",disabled:""==t.formData.cu_id}},[a("i",{staticClass:"icon-floppy-disk"}),t._v(" Simpan")])]),t._v(" "),a("div",{staticClass:"d-block d-md-none"},[a("button",{staticClass:"btn btn-primary btn-block pb-2",attrs:{type:"submit",disabled:""==t.formData.cu_id}},[a("i",{staticClass:"icon-floppy-disk"}),t._v(" Simpan")]),t._v(" "),a("button",{staticClass:"btn btn-light btn-block pb-2",attrs:{type:"button"},on:{click:function(e){return e.preventDefault(),t.tutup.apply(null,arguments)}}},[a("i",{staticClass:"icon-cross"}),t._v(" Tutup")])])],1)])}),[],!1,null,null,null).exports,w=a("Iv0v"),O=a("o0o1"),q=a.n(O),P=a("17CV"),T=a("Iab2"),j=a.n(T);function I(t,e,a,s,i,n,l){try{var r=t[n](l),o=r.value}catch(t){return void a(t)}r.done?e(o):Promise.resolve(o).then(s,i)}var N={components:{QrcodeVue:P.a},props:["selectedItem"],data:function(){return{tabName:"qrBig",qrValue:""}},created:function(){this.qrValue="puskopcuina.org/admins/asetTetap/detail/"+this.selectedItem.kode},methods:{changeTab:function(t){this.tabName=t},print:function(){this.$htmlToPaper(this.tabName)},download:function(){var t,e=this;return(t=q.a.mark((function t(){var a;return q.a.wrap((function(t){for(;;)switch(t.prev=t.next){case 0:if(a={type:"dataURL"},"qrBig"!=e.tabName){t.next=7;break}return t.next=4,e.$html2canvas(e.$refs.qrBig,a);case 4:e.output=t.sent,t.next=10;break;case 7:return t.next=9,e.$html2canvas(e.$refs.qrSmall,a);case 9:e.output=t.sent;case 10:j.a.saveAs(e.output,e.selectedItem.kode);case 11:case"end":return t.stop()}}),t)})),function(){var e=this,a=arguments;return new Promise((function(s,i){var n=t.apply(e,a);function l(t){I(n,s,i,l,r,"next",t)}function r(t){I(n,s,i,l,r,"throw",t)}l(void 0)}))})()},tutup:function(){this.$emit("tutup")}}},U=Object(g.a)(N,(function(){var t=this,e=t.$createElement,a=t._self._c||e;return a("div",[a("div",{staticClass:"nav-tabs-responsive mb-3"},[a("ul",{staticClass:"nav nav-tabs nav-tabs-solid nav-justified bg-light"},[a("li",{staticClass:"nav-item"},[a("a",{staticClass:"nav-link",class:{active:"qrBig"==t.tabName},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.changeTab("qrBig")}}},[a("i",{staticClass:"icon-enlarge6 mr-2"}),t._v(" Ukuran Panjang")])]),t._v(" "),a("li",{staticClass:"nav-item"},[a("a",{staticClass:"nav-link",class:{active:"qrSmall"==t.tabName},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.changeTab("qrSmall")}}},[a("i",{staticClass:"icon-shrink6 mr-2"}),t._v(" Ukuran Ringkas")])])])]),t._v(" "),a("transition",{attrs:{"enter-active-class":"animated fadeIn",mode:"out-in"}},[a("div",{directives:[{name:"show",rawName:"v-show",value:"qrBig"==t.tabName,expression:"tabName == 'qrBig'"}]},[a("div",{ref:"qrBig",attrs:{id:"qrBig"}},[a("div",{staticClass:"d-flex align-items-end"},[a("qrcode-vue",{staticClass:"mr-3 mt-2 ml-2 mb-2",attrs:{value:t.qrValue,size:"130",renderAs:"svg",level:"M"}}),t._v(" "),a("div",[a("ul",{staticClass:"list list-unstyled mb-0"},[a("li",{staticClass:"mt-0"},[a("b",{staticStyle:{"font-size":"24px"}},[a("span",{staticStyle:{color:"blue"}},[t._v("PUSKOPCUINA")])])]),t._v(" "),a("li",{staticClass:"mt-0"},[a("b",{staticStyle:{"font-size":"18px"}},[t._v("Kode: "+t._s(t.selectedItem.kode))])]),t._v(" "),a("li",{staticClass:"mt-0"},[a("b",{staticStyle:{"font-size":"18px"}},[t._v("Nama: "+t._s(t.selectedItem.name))])])])])],1)])])]),t._v(" "),a("transition",{attrs:{"enter-active-class":"animated fadeIn",mode:"out-in"}},[a("div",{directives:[{name:"show",rawName:"v-show",value:"qrSmall"==t.tabName,expression:"tabName == 'qrSmall'"}],staticClass:"align-items-center"},[a("div",{ref:"qrSmall",attrs:{id:"qrSmall"}},[a("div",{staticClass:"d-flex justify-content-center"},[a("div",[a("qrcode-vue",{staticClass:"mt-2",attrs:{value:t.qrValue,size:"150",renderAs:"svg",level:"M"}}),t._v(" "),a("ul",{staticClass:"list list-unstyled mb-0 mt-1"},[a("li",{staticClass:"mt-0 mb-0"},[a("b",{staticStyle:{"font-size":"10px"}},[a("span",{staticStyle:{color:"blue"}},[t._v("PUSKOPCUINA")])])]),t._v(" "),a("li",{staticClass:"mt-0"},[a("b",{staticStyle:{"font-size":"12px"}},[t._v("Kode: "+t._s(t.selectedItem.kode))])]),t._v(" "),a("li",{staticClass:"mt-0"},[a("b",{staticStyle:{"font-size":"12px"}},[t._v("Nama: "+t._s(t.selectedItem.name))])])])],1)])])])]),t._v(" "),a("hr"),t._v(" "),a("div",{staticClass:"text-center d-none d-md-block"},[a("button",{staticClass:"btn btn-light",on:{click:function(e){return e.preventDefault(),t.tutup.apply(null,arguments)}}},[a("i",{staticClass:"icon-cross"}),t._v(" Tutup")]),t._v(" "),a("button",{staticClass:"btn btn-light",attrs:{type:"button"},on:{click:function(e){return e.preventDefault(),t.download()}}},[a("i",{staticClass:"icon-file-download"}),t._v(" Download")]),t._v(" "),a("button",{staticClass:"btn btn-light",attrs:{type:"button"},on:{click:function(e){return e.preventDefault(),t.print()}}},[a("i",{staticClass:"icon-printer"}),t._v(" Print")])]),t._v(" "),a("div",{staticClass:"d-block d-md-none"},[a("button",{staticClass:"btn btn-light btn-block pb-2",attrs:{type:"button"},on:{click:function(e){return e.preventDefault(),t.print()}}},[a("i",{staticClass:"icon-printer"}),t._v(" Print")]),t._v(" "),a("button",{staticClass:"btn btn-light btn-block pb-2",attrs:{type:"button"},on:{click:function(e){return e.preventDefault(),t.download()}}},[a("i",{staticClass:"icon-file-download"}),t._v(" Download")]),t._v(" "),a("button",{staticClass:"btn btn-light btn-block pb-2",on:{click:function(e){return e.preventDefault(),t.tutup.apply(null,arguments)}}},[a("i",{staticClass:"icon-cross"}),t._v(" Tutup")])])],1)}),[],!1,null,null,null).exports;function $(t,e,a,s,i,n,l){try{var r=t[n](l),o=r.value}catch(t){return void a(t)}r.done?e(o):Promise.resolve(o).then(s,i)}var E={components:{QrcodeVue:P.a},props:["itemData","itemDataH","itemDataS","tab1","tab2","tab3"],data:function(){return{tabName:"qrBig"}},created:function(){},methods:{changeTab:function(t){this.tabName=t},print:function(){this.$htmlToPaper(this.tabName)},download:function(){var t,e=this;return(t=q.a.mark((function t(){var a;return q.a.wrap((function(t){for(;;)switch(t.prev=t.next){case 0:if(a={type:"dataURL"},"qrBig"!=e.tabName){t.next=7;break}return t.next=4,e.$html2canvas(e.$refs.qrBig,a);case 4:e.output=t.sent,t.next=10;break;case 7:return t.next=9,e.$html2canvas(e.$refs.qrSmall,a);case 9:e.output=t.sent;case 10:e.itemData?j.a.saveAs(e.output,"aset tetap halaman "+e.itemData.current_page):e.itemDataH?j.a.saveAs(e.output,"aset tetap halaman "+e.itemDataH.current_page):e.itemDataS&&j.a.saveAs(e.output,"aset tetap halaman "+e.itemDataS.current_page);case 11:case"end":return t.stop()}}),t)})),function(){var e=this,a=arguments;return new Promise((function(s,i){var n=t.apply(e,a);function l(t){$(n,s,i,l,r,"next",t)}function r(t){$(n,s,i,l,r,"throw",t)}l(void 0)}))})()},tutup:function(){this.$emit("tutup")}}},A=Object(g.a)(E,(function(){var t=this,e=t.$createElement,a=t._self._c||e;return a("div",[a("div",{staticClass:"nav-tabs-responsive mb-3"},[a("ul",{staticClass:"nav nav-tabs nav-tabs-solid nav-justified bg-light"},[a("li",{staticClass:"nav-item"},[a("a",{staticClass:"nav-link",class:{active:"qrBig"==t.tabName},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.changeTab("qrBig")}}},[a("i",{staticClass:"icon-enlarge6 mr-2"}),t._v(" Ukuran Panjang")])]),t._v(" "),a("li",{staticClass:"nav-item"},[a("a",{staticClass:"nav-link",class:{active:"qrSmall"==t.tabName},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.changeTab("qrSmall")}}},[a("i",{staticClass:"icon-shrink6 mr-2"}),t._v(" Ukuran Ringkas")])])])]),t._v(" "),a("transition",{attrs:{"enter-active-class":"animated fadeIn",mode:"out-in"}},[a("div",{directives:[{name:"show",rawName:"v-show",value:"qrBig"==t.tabName,expression:"tabName == 'qrBig'"}]},[a("div",{ref:"qrBig",staticClass:"row",attrs:{id:"qrBig"}},[this.tab1?a("div",t._l(t.itemData.data,(function(e,s){return a("div",{key:s,staticClass:"col-md-6"},[a("div",{staticClass:"d-flex align-items-end"},[a("qrcode-vue",{staticClass:"mr-3 mt-2 ml-2 mb-2",attrs:{value:"puskopcuina.org/admins/asetTetap/detail/"+e.kode,size:"130",renderAs:"svg",level:"M"}}),t._v(" "),a("div",[a("ul",{staticClass:"list list-unstyled mb-2"},[a("li",{staticClass:"mt-0"},[a("b",{staticStyle:{"font-size":"1.5em"}},[a("span",{staticStyle:{color:"blue"}},[t._v("PUSKOPCUINA")])])]),t._v(" "),a("li",{staticClass:"mt-0"},[a("b",{staticStyle:{"font-size":"1em"}},[t._v("Kode: "+t._s(e.kode))])]),t._v(" "),a("li",{staticClass:"mt-0"},[a("b",{staticStyle:{"font-size":"1em"}},[t._v("Nama: "+t._s(e.name))])])])])],1)])})),0):this.tab2?a("div",t._l(t.itemDataS.data,(function(e,s){return a("div",{key:s,staticClass:"col-md-6"},[a("div",{staticClass:"d-flex align-items-end"},[a("qrcode-vue",{staticClass:"mr-3 mt-2 ml-2 mb-2",attrs:{value:"puskopcuina.org/admins/asetTetap/detail/"+e.kode,size:"130",renderAs:"svg",level:"M"}}),t._v(" "),a("div",[a("ul",{staticClass:"list list-unstyled mb-2"},[a("li",{staticClass:"mt-0"},[a("b",{staticStyle:{"font-size":"1.5em"}},[a("span",{staticStyle:{color:"blue"}},[t._v("PUSKOPCUINA")])])]),t._v(" "),a("li",{staticClass:"mt-0"},[a("b",{staticStyle:{"font-size":"1em"}},[t._v("Kode: "+t._s(e.kode))])]),t._v(" "),a("li",{staticClass:"mt-0"},[a("b",{staticStyle:{"font-size":"1em"}},[t._v("Nama: "+t._s(e.name))])])])])],1)])})),0):this.tab3?a("div",t._l(t.itemDataH.data,(function(e,s){return a("div",{key:s,staticClass:"col-md-6"},[a("div",{staticClass:"d-flex align-items-end"},[a("qrcode-vue",{staticClass:"mr-3 mt-2 ml-2 mb-2",attrs:{value:"puskopcuina.org/admins/asetTetap/detail/"+e.kode,size:"130",renderAs:"svg",level:"M"}}),t._v(" "),a("div",[a("ul",{staticClass:"list list-unstyled mb-2"},[a("li",{staticClass:"mt-0"},[a("b",{staticStyle:{"font-size":"1.5em"}},[a("span",{staticStyle:{color:"blue"}},[t._v("PUSKOPCUINA")])])]),t._v(" "),a("li",{staticClass:"mt-0"},[a("b",{staticStyle:{"font-size":"1em"}},[t._v("Kode: "+t._s(e.kode))])]),t._v(" "),a("li",{staticClass:"mt-0"},[a("b",{staticStyle:{"font-size":"1em"}},[t._v("Nama: "+t._s(e.name))])])])])],1)])})),0):t._e()])])]),t._v(" "),a("transition",{attrs:{"enter-active-class":"animated fadeIn",mode:"out-in"}},[a("div",{directives:[{name:"show",rawName:"v-show",value:"qrSmall"==t.tabName,expression:"tabName == 'qrSmall'"}],staticClass:"align-items-center"},[t.tab1?a("div",{ref:"qrSmall",staticClass:"row",attrs:{id:"qrSmall"}},t._l(t.itemData.data,(function(e,s){return a("div",{key:s,staticClass:"col-md-3"},[a("div",{staticClass:"d-flex justify-content-center"},[a("div",[a("qrcode-vue",{staticClass:"mt-2",attrs:{value:"puskopcuina.org/admins/asetTetap/detail/"+e.kode,size:"150",renderAs:"svg",level:"M"}}),t._v(" "),a("ul",{staticClass:"list list-unstyled mb-0 mt-1"},[a("li",{staticClass:"mt-0 mb-0"},[a("b",{staticStyle:{"font-size":"0.8em"}},[a("span",{staticStyle:{color:"blue"}},[t._v("PUSKOPCUINA")])])]),t._v(" "),a("li",{staticClass:"mt-0"},[a("b",{staticStyle:{"font-size":"0.7em"}},[t._v("Kode: "+t._s(e.kode))])]),t._v(" "),a("li",{staticClass:"mt-0"},[a("b",{staticStyle:{"font-size":"0.7em"}},[t._v("Nama: "+t._s(e.name))])])])],1)])])})),0):t._e(),t._v(" "),t.tab2?a("div",{ref:"qrSmall",staticClass:"row",attrs:{id:"qrSmall"}},t._l(t.itemDataS.data,(function(e,s){return a("div",{key:s,staticClass:"col-md-3"},[a("div",{staticClass:"d-flex justify-content-center"},[a("div",[a("qrcode-vue",{staticClass:"mt-2",attrs:{value:"puskopcuina.org/admins/asetTetap/detail/"+e.kode,size:"150",renderAs:"svg",level:"M"}}),t._v(" "),a("ul",{staticClass:"list list-unstyled mb-0 mt-1"},[a("li",{staticClass:"mt-0 mb-0"},[a("b",{staticStyle:{"font-size":"0.8em"}},[a("span",{staticStyle:{color:"blue"}},[t._v("PUSKOPCUINA")])])]),t._v(" "),a("li",{staticClass:"mt-0"},[a("b",{staticStyle:{"font-size":"0.7em"}},[t._v("Kode: "+t._s(e.kode))])]),t._v(" "),a("li",{staticClass:"mt-0"},[a("b",{staticStyle:{"font-size":"0.7em"}},[t._v("Nama: "+t._s(e.name))])])])],1)])])})),0):t._e(),t._v(" "),t.tab3?a("div",{ref:"qrSmall",staticClass:"row",attrs:{id:"qrSmall"}},t._l(t.itemDataH.data,(function(e,s){return a("div",{key:s,staticClass:"col-md-3"},[a("div",{staticClass:"d-flex justify-content-center"},[a("div",[a("qrcode-vue",{staticClass:"mt-2",attrs:{value:"puskopcuina.org/admins/asetTetap/detail/"+e.kode,size:"150",renderAs:"svg",level:"M"}}),t._v(" "),a("ul",{staticClass:"list list-unstyled mb-0 mt-1"},[a("li",{staticClass:"mt-0 mb-0"},[a("b",{staticStyle:{"font-size":"0.8em"}},[a("span",{staticStyle:{color:"blue"}},[t._v("PUSKOPCUINA")])])]),t._v(" "),a("li",{staticClass:"mt-0"},[a("b",{staticStyle:{"font-size":"0.7em"}},[t._v("Kode: "+t._s(e.kode))])]),t._v(" "),a("li",{staticClass:"mt-0"},[a("b",{staticStyle:{"font-size":"0.7em"}},[t._v("Nama: "+t._s(e.name))])])])],1)])])})),0):t._e()])]),t._v(" "),a("hr"),t._v(" "),a("div",{staticClass:"text-center d-none d-md-block"},[a("button",{staticClass:"btn btn-light",on:{click:function(e){return e.preventDefault(),t.tutup.apply(null,arguments)}}},[a("i",{staticClass:"icon-cross"}),t._v(" Tutup")]),t._v(" "),a("button",{staticClass:"btn btn-light",attrs:{type:"button"},on:{click:function(e){return e.preventDefault(),t.download()}}},[a("i",{staticClass:"icon-file-download"}),t._v(" Download")]),t._v(" "),a("button",{staticClass:"btn btn-light",attrs:{type:"button"},on:{click:function(e){return e.preventDefault(),t.print()}}},[a("i",{staticClass:"icon-printer"}),t._v(" Print")])]),t._v(" "),a("div",{staticClass:"d-block d-md-none"},[a("button",{staticClass:"btn btn-light btn-block pb-2",attrs:{type:"button"},on:{click:function(e){return e.preventDefault(),t.print()}}},[a("i",{staticClass:"icon-printer"}),t._v(" Print")]),t._v(" "),a("button",{staticClass:"btn btn-light btn-block pb-2",attrs:{type:"button"},on:{click:function(e){return e.preventDefault(),t.download()}}},[a("i",{staticClass:"icon-file-download"}),t._v(" Download")]),t._v(" "),a("button",{staticClass:"btn btn-light btn-block pb-2",on:{click:function(e){return e.preventDefault(),t.tutup.apply(null,arguments)}}},[a("i",{staticClass:"icon-cross"}),t._v(" Tutup")])])],1)}),[],!1,null,null,null).exports;function K(t,e){var a=Object.keys(t);if(Object.getOwnPropertySymbols){var s=Object.getOwnPropertySymbols(t);e&&(s=s.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),a.push.apply(a,s)}return a}function L(t){for(var e=1;e<arguments.length;e++){var a=null!=arguments[e]?arguments[e]:{};e%2?K(Object(a),!0).forEach((function(e){M(t,e,a[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(a)):K(Object(a)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(a,e))}))}return t}function M(t,e,a){return e in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}var H={components:{DataViewer:l.a,appModal:r.a,checkValue:o.a,formLokasi:C,formKondisi:S,formDetail:w.a,qrCode:U,qrCodeAll:A},props:["title","kelas","tipe","itemData","itemDataStat"],data:function(){return{selectedItem:[],tabName:"qrBig",query:{order_column:"name",order_direction:"asc",filter_match:"and",limit:10,page:1},excelDownloadUrl:"",columnData:[{title:"No.",name:"No.",tipe:"string",sort:!1,hide:!1,disable:!1},{title:"Foto",name:"gambar",hide:!1},{title:"Bukti Pembelian",name:"nota",hide:!1},{title:"Kode",name:"kode",tipe:"string",sort:!1,hide:!1,disable:!1,filter:!0},{title:"Nama",name:"name",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0,filterDefault:!0},{title:"Golongan",name:"golongan.name",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Kelompok",name:"kelompok.name",tipe:"string",sort:!1,hide:!1,disable:!1,filter:!0},{title:"Jenis",name:"jenis.name",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Merk",name:"merk",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Tipe",name:"tipe",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Lokasi",name:"lokasi.name",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Penanggungjawab",name:"aktivis.name",tipe:"string",sort:!1,hide:!1,disable:!1,filter:!0},{title:"Tgl. Beli",name:"tanggal",tipe:"datetime",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Pembeli",name:"pembeli.name",tipe:"string",sort:!1,hide:!1,disable:!1,filter:!0},{title:"Sub",name:"has_aset_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Harga Induk",name:"harga",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Harga Sub",name:"harga_sub",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Total Harga",name:"total_harga",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Kondisi",name:"kondisi",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Tgl. Buat",name:"created_at",tipe:"datetime",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Tgl. Ubah",name:"updated_at",tipe:"datetime",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Tgl. Dihapus Dari Laporan",name:"hapus_dari_laporan",tipe:"datetime",sort:!0,hide:!1,disable:!1,filter:!0}],state:"",modalShow:!1,modalState:"",modalTitle:"",modalContent:"",modalButton:"",modalColor:"",modalSize:""}},created:function(){this.fetch(this.query)},watch:{$route:function(t,e){this.fetch(this.query)},updateStat:function(t){this.modalState=t,this.modalButton="Ok","success"===t?(this.modalTitle=this.updateMessage.message,this.modalContent="",this.fetch(this.query)):this.modalContent="fail"===t?this.updateMessage:""}},methods:{fetch:function(t){"index"==this.tipe?(this.$store.dispatch(this.kelas+"/index",t),this.excelDownloadUrl=this.kelas):"indexHapus"==this.tipe?(this.$store.dispatch(this.kelas+"/indexHapus",t),this.excelDownloadUrl=this.kelas+"/indexHapus"):"indexSelesai"==this.tipe&&(this.$store.dispatch(this.kelas+"/indexSelesai",t),this.excelDownloadUrl=this.kelas+"/indexSelesai")},selectedRow:function(t){this.selectedItem=t},ubahData:function(t){this.$router.push({name:this.kelas+"Edit",params:{id:t}})},modalOpen:function(t,e,a){this.modalShow=!0,this.state=t,e&&(this.selectedItem=a),"hapus"==t?(this.modalTitle="Hapus "+this.title+" "+this.selectedItem.name+" ?",this.modalState="confirm-tutup",this.modalButton="Iya, Hapus",this.modalSize="''"):"hapusDariLaporan"==t?(this.modalTitle="Hapus "+this.title+" "+this.selectedItem.name+" Dari Laporan ?",this.modalState="confirm-tutup",this.modalButton="Iya, Hapus",this.modalSize="''"):"lokasi"==t?(this.modalTitle="Ubah lokasi aset dengan nama "+this.selectedItem.name+" ?",this.modalState="normal1",this.modalColor="bg-primary",this.modalSize="''"):"kondisi"==t?(this.modalTitle="Ubah kondisi aset dengan nama "+this.selectedItem.name+" ?",this.modalState="normal1",this.modalColor="bg-primary",this.modalSize="''"):"detail"==t?(this.modalTitle="Detail aset dengan nama "+this.selectedItem.name,this.modalState="normal1",this.modalColor="bg-primary",this.modalSize="modal-lg"):"qrCode"==t?(this.modalTitle="QR Code untuk aset dengan nama "+this.selectedItem.name,this.modalState="normal2",this.modalColor="bg-primary",this.modalSize=""):"qrCodeAll"==t&&(this.modalTitle="QR Code pada tabel",this.modalState="normal3",this.modalColor="bg-primary",this.modalSize="modal-full")},modalTutup:function(){this.modalShow=!1,this.$store.dispatch(this.kelas+"/resetUpdateStat")},modalConfirmOk:function(){"hapus"==this.state?this.$store.dispatch(this.kelas+"/destroy",this.selectedItem.id):"hapusDariLaporan"==this.state&&this.$store.dispatch(this.kelas+"/hapusDariLaporan",this.selectedItem.id)}},computed:L(L({},Object(s.b)("auth",{currentUser:"currentUser"})),Object(s.b)("asetTetap",{updateMessage:"update",updateStat:"updateStat"}))},B=Object(g.a)(H,(function(){var t=this,e=t.$createElement,a=t._self._c||e;return a("div",[a("data-viewer",{attrs:{title:t.title,columnData:t.columnData,itemData:t.itemData,query:t.query,itemDataStat:t.itemDataStat,excelDownloadUrl:t.excelDownloadUrl,isUploadExcel:!1},on:{fetch:t.fetch},scopedSlots:t._u([{key:"item-desktop",fn:function(e){return[a("tr",{staticClass:"text-nowrap",class:{"bg-info":t.selectedItem.id===e.item.id},on:{click:function(a){return t.selectedRow(e.item)}}},[t.columnData[0].hide?t._e():a("td",[t._v("\n\t\t\t\t\t"+t._s(e.index+1+(+t.itemData.current_page-1)*+t.itemData.per_page+".")+"\n\t\t\t\t")]),t._v(" "),t.columnData[1].hide?t._e():a("td",[e.item.gambar?a("img",{staticClass:"img-rounded img-fluid wmin-sm",attrs:{src:"/images/asetTetap/"+e.item.gambar+"n.jpg",width:"40"}}):a("img",{staticClass:"img-rounded img-fluid wmin-sm",attrs:{src:"/images/no_image.jpg",width:"40"}})]),t._v(" "),t.columnData[2].hide?t._e():a("td",[e.item.nota?a("img",{staticClass:"img-rounded img-fluid wmin-sm",attrs:{src:"/images/asetTetap/"+e.item.nota+"n.jpg",width:"30"}}):a("img",{staticClass:"img-rounded img-fluid wmin-sm",attrs:{src:"/images/no_image.jpg",width:"30"}})]),t._v(" "),t.columnData[3].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.kode}})],1),t._v(" "),t.columnData[4].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.name}})],1),t._v(" "),t.columnData[5].hide?t._e():a("td",[e.item.golongan?a("check-value",{attrs:{value:e.item.golongan.name}}):t._e()],1),t._v(" "),t.columnData[6].hide?t._e():a("td",[e.item.kelompok?a("check-value",{attrs:{value:e.item.kelompok.name}}):t._e()],1),t._v(" "),t.columnData[7].hide?t._e():a("td",[e.item.jenis?a("check-value",{attrs:{value:e.item.jenis.name}}):t._e()],1),t._v(" "),t.columnData[8].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.merk}})],1),t._v(" "),t.columnData[9].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.tipe}})],1),t._v(" "),t.columnData[10].hide?t._e():a("td",[e.item.lokasi?a("check-value",{attrs:{value:e.item.lokasi.name}}):t._e()],1),t._v(" "),t.columnData[11].hide?t._e():a("td",[e.item.aktivis?a("check-value",{attrs:{value:e.item.aktivis.name}}):t._e()],1),t._v(" "),t.columnData[12].hide?t._e():a("td",{domProps:{innerHTML:t._s(t.$options.filters.date(e.item.tanggal))}}),t._v(" "),t.columnData[13].hide?t._e():a("td",[e.item.pembeli?a("check-value",{attrs:{value:e.item.pembeli.name}}):a("span",[t._v("Mitra")])],1),t._v(" "),t.columnData[14].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_aset_count,valueType:"currency"}})],1),t._v(" "),t.columnData[15].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.harga,valueType:"currency"}})],1),t._v(" "),t.columnData[16].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.harga_sub,valueType:"currency"}})],1),t._v(" "),t.columnData[17].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.total_harga,valueType:"currency"}})],1),t._v(" "),t.columnData[18].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.kondisi}})],1),t._v(" "),t.columnData[19].hide?t._e():a("td",{domProps:{innerHTML:t._s(t.$options.filters.dateTime(e.item.created_at))}}),t._v(" "),t.columnData[20].hide?t._e():a("td",[e.item.created_at!==e.item.updated_at?a("span",{domProps:{innerHTML:t._s(t.$options.filters.dateTime(e.item.updated_at))}}):a("span",[t._v("-")])]),t._v(" "),t.columnData[21].hide?t._e():a("td",{domProps:{innerHTML:t._s(t.$options.filters.dateTime(e.item.hapus_dari_laporan))}})])]}}])},[a("template",{slot:"button-desktop"},[t.currentUser.can&&t.currentUser.can.create_aset_tetap&&"index"==t.tipe?a("router-link",{staticClass:"btn btn-light mb-1",attrs:{to:{name:t.kelas+"Create"}}},[a("i",{staticClass:"icon-plus3"}),t._v(" Tambah\n\t\t\t")]):t._e(),t._v(" "),t.currentUser.can&&t.currentUser.can.update_aset_tetap&&"indexHapus"!=t.tipe?a("button",{staticClass:"btn btn-light mb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(e){return e.preventDefault(),t.ubahData(t.selectedItem.id)}}},[a("i",{staticClass:"icon-pencil5"}),t._v(" Ubah\n\t\t\t")]):t._e(),t._v(" "),t.currentUser.can&&t.currentUser.can.update_aset_tetap&&"indexHapus"!=t.tipe?a("button",{staticClass:"btn btn-light mb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(e){return e.preventDefault(),t.modalOpen("lokasi")}}},[a("i",{staticClass:"icon-pencil5"}),t._v(" Ubah Lokasi\n\t\t\t")]):t._e(),t._v(" "),t.currentUser.can&&t.currentUser.can.update_aset_tetap&&"indexHapus"!=t.tipe?a("button",{staticClass:"btn btn-light mb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(e){return e.preventDefault(),t.modalOpen("kondisi")}}},[a("i",{staticClass:"icon-pencil5"}),t._v(" Ubah Kondisi\n\t\t\t")]):t._e(),t._v(" "),a("button",{staticClass:"btn btn-light mb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(e){return e.preventDefault(),t.modalOpen("detail")}}},[a("i",{staticClass:"icon-stack2"}),t._v(" Detail\n\t\t\t")]),t._v(" "),a("button",{staticClass:"btn btn-light mb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(e){return e.preventDefault(),t.modalOpen("qrCode")}}},[a("i",{staticClass:"icon-qrcode"}),t._v(" Buat QR Code\n\t\t\t")]),t._v(" "),a("button",{staticClass:"btn btn-light mb-1",on:{click:function(e){return e.preventDefault(),t.modalOpen("qrCodeAll")}}},[a("i",{staticClass:"icon-qrcode"}),t._v(" QR Code Pada Tabel\n\t\t\t")]),t._v(" "),t.currentUser.can&&t.currentUser.can.destroy_aset_tetap&&"indexHapus"!=t.tipe?a("button",{staticClass:"btn btn-light mb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(e){return e.preventDefault(),t.modalOpen("hapusDariLaporan")}}},[a("i",{staticClass:"icon-bin"}),t._v(" Hapus Dari Laporan\n\t\t\t")]):t._e(),t._v(" "),t.currentUser.can&&t.currentUser.can.destroy_aset_tetap?a("button",{staticClass:"btn btn-light mb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(e){return e.preventDefault(),t.modalOpen("hapus")}}},[a("i",{staticClass:"icon-bin2"}),t._v(" Hapus\n\t\t\t")]):t._e()],1),t._v(" "),a("template",{slot:"button-mobile"},[t.currentUser.can&&t.currentUser.can.create_aset_tetap?a("router-link",{staticClass:"btn btn-light btn-block mb-1",attrs:{to:{name:t.kelas+"Create"}}},[a("i",{staticClass:"icon-plus3"}),t._v(" Tambah\n\t\t\t")]):t._e(),t._v(" "),t.currentUser.can&&t.currentUser.can.update_aset_tetap?a("button",{staticClass:"btn btn-light btn-block mb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(e){return e.preventDefault(),t.ubahData(t.selectedItem.id)}}},[a("i",{staticClass:"icon-pencil5"}),t._v(" Ubah\n\t\t\t")]):t._e(),t._v(" "),t.currentUser.can&&t.currentUser.can.update_aset_tetap?a("button",{staticClass:"btn btn-light btn-block mb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(e){return e.preventDefault(),t.modalOpen("lokasi")}}},[a("i",{staticClass:"icon-pencil5"}),t._v(" Ubah Lokasi\n\t\t\t")]):t._e(),t._v(" "),t.currentUser.can&&t.currentUser.can.update_aset_tetap?a("button",{staticClass:"btn btn-light btn-block mb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(e){return e.preventDefault(),t.modalOpen("kondisi")}}},[a("i",{staticClass:"icon-pencil5"}),t._v(" Ubah Kondisi\n\t\t\t")]):t._e(),t._v(" "),a("button",{staticClass:"btn btn-light btn-block mb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(e){return e.preventDefault(),t.modalOpen("detail")}}},[a("i",{staticClass:"icon-stack2"}),t._v(" Detail\n\t\t\t")]),t._v(" "),a("button",{staticClass:"btn btn-light btn-block mb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(e){return e.preventDefault(),t.modalOpen("qrCode")}}},[a("i",{staticClass:"icon-qrcode"}),t._v(" Buat QR Code\n\t\t\t")]),t._v(" "),a("button",{staticClass:"btn btn-light btn-block mb-1",on:{click:function(e){return e.preventDefault(),t.modalOpen("qrCodeAll")}}},[a("i",{staticClass:"icon-qrcode"}),t._v(" QR Code Pada Tabel\n\t\t\t")]),t._v(" "),t.currentUser.can&&t.currentUser.can.destroy_aset_tetap?a("button",{staticClass:"btn btn-light btn-block mb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(e){return e.preventDefault(),t.modalOpen("hapus")}}},[a("i",{staticClass:"icon-bin2"}),t._v(" Hapus\n\t\t\t")]):t._e()],1)],2),t._v(" "),a("app-modal",{attrs:{show:t.modalShow,color:t.modalColor,size:t.modalSize,state:t.modalState,title:t.modalTitle,content:t.modalContent,button:t.modalButton},on:{tutup:t.modalTutup,confirmOk:t.modalConfirmOk,successOk:t.modalTutup,failOk:t.modalTutup,backgroundClick:t.modalTutup}},[a("template",{slot:"modal-title"},[t._v("\n\t\t\t"+t._s(t.modalTitle)+"\n\t\t")]),t._v(" "),a("template",{slot:"modal-body1"},["lokasi"==t.state?a("form-lokasi",{attrs:{kelas:t.kelas,selectedItem:t.selectedItem},on:{tutup:t.modalTutup}}):"kondisi"==t.state?a("form-kondisi",{attrs:{kelas:t.kelas,selectedItem:t.selectedItem},on:{tutup:t.modalTutup}}):"detail"==t.state?a("formDetail",{attrs:{kelas:t.kelas,selectedItem:t.selectedItem,isModal:!0},on:{tutup:t.modalTutup}}):t._e()],1),t._v(" "),a("template",{slot:"modal-body2"},[a("qr-code",{attrs:{selectedItem:t.selectedItem},on:{tutup:t.modalTutup}})],1),t._v(" "),a("template",{slot:"modal-body3"},[a("qr-code-all",{attrs:{itemData:t.itemData},on:{tutup:t.modalTutup}})],1)],2)],1)}),[],!1,null,null,null).exports;function R(t,e){var a=Object.keys(t);if(Object.getOwnPropertySymbols){var s=Object.getOwnPropertySymbols(t);e&&(s=s.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),a.push.apply(a,s)}return a}function z(t){for(var e=1;e<arguments.length;e++){var a=null!=arguments[e]?arguments[e]:{};e%2?R(Object(a),!0).forEach((function(e){F(t,e,a[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(a)):R(Object(a)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(a,e))}))}return t}function F(t,e,a){return e in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}var J={components:{pageHeader:i.a,message:n.a,tableData:B},data:function(){return{title:"Aset Tetap",kelas:"asetTetap",titleDesc:"Mengelola data aset tetap",titleIcon:"icon-bag",tabName:"index",isIndexSelesai:!1,isIndexHapus:!1}},created:function(){this.checkUser("index_aset_tetap",this.$route.params.cu)},methods:{checkUser:function(t,e){this.currentUser&&(this.currentUser.can&&this.currentUser.can[t]||this.$router.push("/notFound"))},changeTab:function(t){this.tabName=t,"indexSelesai"!=t||this.isIndexSelesai?"indexHapus"!=t||this.isIndexHapus||(this.isIndexHapus=!0):this.isIndexSelesai=!0}},computed:z(z({},Object(s.b)("auth",{currentUser:"currentUser"})),Object(s.b)("asetTetap",{itemData:"dataS",itemData3:"dataS3",itemData4:"dataS4",itemDataStat:"dataStatS",itemDataStat3:"dataStatS3",itemDataStat4:"dataStatS4"}))},V=Object(g.a)(J,(function(){var t=this,e=t.$createElement,a=t._self._c||e;return a("div",[a("page-header",{attrs:{title:t.title,titleDesc:t.titleDesc,titleIcon:t.titleIcon}}),t._v(" "),a("div",{staticClass:"page-content pt-0"},[a("div",{staticClass:"content-wrapper"},[a("div",{staticClass:"content"},["fail"===t.itemDataStat?a("message",{attrs:{title:"Oops terjadi kesalahan:",errorData:t.itemData}}):t._e(),t._v(" "),a("div",{staticClass:"nav-tabs-responsive"},[a("ul",{staticClass:"nav nav-tabs nav-tabs-solid bg-light"},[a("li",{staticClass:"nav-item"},[a("a",{staticClass:"nav-link",class:{active:"index"==t.tabName},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.changeTab("index")}}},[a("i",{staticClass:"icon-list2 mr-2"}),t._v(" Aset Tetap Dalam Penyusutan")])]),t._v(" "),a("li",{staticClass:"nav-item"},[a("a",{staticClass:"nav-link",class:{active:"indexSelesai"==t.tabName},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.changeTab("indexSelesai")}}},[a("i",{staticClass:"icon-notebook mr-2"}),t._v(" Aset Tetap Penyusutan Selesai")])]),t._v(" "),a("li",{staticClass:"nav-item"},[a("a",{staticClass:"nav-link",class:{active:"indexHapus"==t.tabName},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.changeTab("indexHapus")}}},[a("i",{staticClass:"icon-books mr-2"}),t._v(" Aset Tetap Dihapus Dari Laporan")])])])]),t._v(" "),a("br"),t._v(" "),a("transition",{attrs:{"enter-active-class":"animated fadeIn",mode:"out-in"}},[a("div",{directives:[{name:"show",rawName:"v-show",value:"index"==t.tabName,expression:"tabName == 'index'"}]},[a("table-data",{attrs:{title:t.title,kelas:t.kelas,tipe:"index",itemData:t.itemData,itemDataStat:t.itemDataStat}})],1)]),t._v(" "),a("transition",{attrs:{"enter-active-class":"animated fadeIn",mode:"out-in"}},[t.isIndexSelesai?a("div",{directives:[{name:"show",rawName:"v-show",value:"indexSelesai"==t.tabName,expression:"tabName == 'indexSelesai'"}]},[a("table-data",{attrs:{title:t.title,kelas:t.kelas,tipe:"indexSelesai",itemData:t.itemData3,itemDataStat:t.itemDataStat3}})],1):t._e()]),t._v(" "),a("transition",{attrs:{"enter-active-class":"animated fadeIn",mode:"out-in"}},[t.isIndexHapus?a("div",{directives:[{name:"show",rawName:"v-show",value:"indexHapus"==t.tabName,expression:"tabName == 'indexHapus'"}]},[a("table-data",{attrs:{title:t.title,kelas:t.kelas,tipe:"indexHapus",itemData:t.itemData4,itemDataStat:t.itemDataStat4}})],1):t._e()])],1)])])],1)}),[],!1,null,null,null);e.default=V.exports},"5tjT":function(t,e,a){"use strict";var s={props:{message:{default:""}}},i=a("KHd+"),n=Object(i.a)(s,(function(){var t=this.$createElement;this._self._c;return this._m(0)}),[function(){var t=this.$createElement,e=this._self._c||t;return e("div",{staticStyle:{display:"inline-block"}},[e("span",{staticClass:"badge bg-danger-400 align-self-center ml-auto"},[this._v("Wajib diisi")])])}],!1,null,null,null);e.a=n.exports},Iv0v:function(t,e,a){"use strict";a("LvDl");var s=a("L2JU"),i=a("Ocez"),n=a("xuR2"),l=a("IIPP"),r=a.n(l),o=a("1m3L"),c=a("5tjT"),u=a("s20v"),d=a("JAgV");function m(t,e){var a=Object.keys(t);if(Object.getOwnPropertySymbols){var s=Object.getOwnPropertySymbols(t);e&&(s=s.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),a.push.apply(a,s)}return a}function p(t){for(var e=1;e<arguments.length;e++){var a=null!=arguments[e]?arguments[e]:{};e%2?m(Object(a),!0).forEach((function(e){v(t,e,a[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(a)):m(Object(a)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(a,e))}))}return t}function v(t,e,a){return e in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}var b={props:["kelas","selectedItem","selectedItemStat","isModal"],components:{checkValue:i.a,Message:n.a,Cleave:r.a,infoIcon:o.a,wajibBadge:c.a,DataViewer:u.a,cardData:d.a},data:function(){return{formData:{},modelProdukCu:[],modelProdukCuStat:"",cleaveOption:{date:{date:!0,datePattern:["Y","m","d"],delimiter:"-"},numeric:{numeral:!0,numeralThousandsGroupStyle:"thousand",numeralDecimalScale:2,numeralDecimalMark:",",delimiter:"."}},selectedItemRow:{},query:{order_column:"name",order_direction:"asc",filter_match:"and",limit:10,page:1},columnData:[{title:"No."},{title:"Foto"},{title:"Kode"},{title:"Nama",name:"name",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0,filterDefault:!0},{title:"Jenis"},{title:"Merk"},{title:"Tipe"},{title:"Lokasi"},{title:"Penanggungjawab"},{title:"Tgl. Beli"},{title:"Pembeli"},{title:"Sub"},{title:"Harga Induk"},{title:"Harga Sub"},{title:"Total Harga"},{title:"Kondisi"}],message:{show:!1,content:""},submited:!1}},created:function(){this.isModal&&this.fetch(this.query),this.formData=Object.assign({},this.selectedItem)},watch:{modelLokasiStat:function(t){"success"===t&&(this.formData=Object.assign({},this.selectedItem))},selectedItemStat:function(t){"success"!==t||this.isModal||this.fetch(this.query)}},methods:{selectedRow:function(t){this.selectedItemRow=t},fetch:function(t){this.$store.dispatch(this.kelas+"/resetDataS2"),this.$store.dispatch(this.kelas+"/indexSub",[t,this.selectedItem.id])},tutup:function(){this.$emit("tutup")}},computed:p(p({},Object(s.b)("auth",{currentUser:"currentUser"})),Object(s.b)("asetTetap",{itemData:"dataS2",itemDataStat:"dataStatS2"}))},_=a("KHd+"),h=Object(_.a)(b,(function(){var t=this,e=t.$createElement,a=t._self._c||e;return a("div",[a("div",{staticClass:"card card-body"},[a("card-data",{attrs:{itemData:t.selectedItem}})],1),t._v(" "),t.itemData.data&&0!=t.itemData.data.length?a("data-viewer",{attrs:{title:"sub aset tetap",columnData:t.columnData,itemData:t.itemData,query:t.query,itemDataStat:t.itemDataStat,isDasar:"true",isNoButtonRow:"true"},on:{fetch:t.fetch},scopedSlots:t._u([{key:"item-desktop",fn:function(e){return[a("tr",{staticClass:"text-nowrap cursor-pointer",on:{click:function(a){return t.selectedRow(e.item)}}},[a("td",[t._v("\n\t\t\t\t\t"+t._s(e.index+1+(+t.itemData.current_page-1)*+t.itemData.per_page+".")+"\n\t\t\t\t")]),t._v(" "),a("td",[e.item.gambar?a("img",{staticClass:"img-rounded img-fluid wmin-sm",attrs:{src:"/images/asetTetap/"+e.item.gambar+"n.jpg"}}):a("img",{staticClass:"img-rounded img-fluid wmin-sm",attrs:{src:"/images/no_image.jpg"}})]),t._v(" "),a("td",[a("check-value",{attrs:{value:e.item.kode}})],1),t._v(" "),a("td",[a("check-value",{attrs:{value:e.item.name}})],1),t._v(" "),a("td",[e.item.jenis?a("check-value",{attrs:{value:e.item.jenis.name}}):t._e()],1),t._v(" "),a("td",[a("check-value",{attrs:{value:e.item.merk}})],1),t._v(" "),a("td",[a("check-value",{attrs:{value:e.item.tipe}})],1),t._v(" "),a("td",[e.item.lokasi?a("check-value",{attrs:{value:e.item.lokasi.name}}):t._e()],1),t._v(" "),a("td",[e.item.aktivis?a("check-value",{attrs:{value:e.item.aktivis.name}}):t._e()],1),t._v(" "),a("td",{domProps:{innerHTML:t._s(t.$options.filters.date(e.item.tanggal))}}),t._v(" "),a("td",[e.item.pembeli?a("check-value",{attrs:{value:e.item.pembeli.name}}):t._e()],1),t._v(" "),a("td",[a("check-value",{attrs:{value:e.item.has_aset_count,valueType:"currency"}})],1),t._v(" "),a("td",[a("check-value",{attrs:{value:e.item.harga,valueType:"currency"}})],1),t._v(" "),a("td",[a("check-value",{attrs:{value:e.item.harga_sub,valueType:"currency"}})],1),t._v(" "),a("td",[a("check-value",{attrs:{value:e.item.total_harga,valueType:"currency"}})],1),t._v(" "),a("td",[a("check-value",{attrs:{value:e.item.kondisi}})],1)])]}}],null,!1,362473727)}):t._e(),t._v(" "),t.isModal?a("hr"):t._e(),t._v(" "),t.isModal?a("div",{staticClass:"text-center d-none d-md-block"},[a("button",{staticClass:"btn btn-light",attrs:{type:"button"},on:{click:function(e){return e.preventDefault(),t.tutup.apply(null,arguments)}}},[a("i",{staticClass:"icon-cross"}),t._v(" Tutup")])]):t._e(),t._v(" "),t.isModal?a("div",{staticClass:"d-block d-md-none"},[a("button",{staticClass:"btn btn-light btn-block pb-2",attrs:{type:"button"},on:{click:function(e){return e.preventDefault(),t.tutup.apply(null,arguments)}}},[a("i",{staticClass:"icon-cross"}),t._v(" Tutup")])]):t._e()],1)}),[],!1,null,null,null);e.a=h.exports},JAgV:function(t,e,a){"use strict";var s={props:["itemData"],components:{checkValue:a("Ocez").a}},i=a("KHd+"),n=Object(i.a)(s,(function(){var t=this,e=t.$createElement,a=t._self._c||e;return a("div",{staticClass:"media flex-column flex-sm-row mt-0 mb-3"},[a("div",{staticClass:"mr-sm-3 mb-2 mb-sm-0"},[a("div",{staticClass:"card-img-actions"},[t.itemData.gambar?a("img",{staticClass:"img-fluid img-preview rounded",attrs:{src:"/images/asetTetap/"+t.itemData.gambar+".jpg"}}):a("img",{staticClass:"img-fluid img-preview rounded",attrs:{src:"/images/no_image.jpg"}})]),t._v(" "),t._m(0),t._v(" "),a("div",{staticClass:"card-img-actions"},[t.itemData.nota?a("img",{staticClass:"img-fluid img-preview rounded",attrs:{src:"/images/asetTetap/"+t.itemData.nota+".jpg"}}):a("img",{staticClass:"img-fluid img-preview rounded",attrs:{src:"/images/no_image.jpg"}})])]),t._v(" "),a("div",{staticClass:"media-body"},[a("div",{staticClass:"row"},[a("div",{staticClass:"col-sm-4"},[a("ul",{staticClass:"list list-unstyled mb-0"},[a("li",[a("b",[t._v("Kode:")]),t._v(" "),a("check-value",{attrs:{value:t.itemData.kode}})],1),t._v(" "),a("li",[a("b",[t._v("Nama:")]),t._v(" "),a("check-value",{attrs:{value:t.itemData.name}})],1),t._v(" "),a("li",[a("b",[t._v("Jenis")]),t._v(" "),t.itemData.jenis?a("check-value",{attrs:{value:t.itemData.jenis.name}}):a("span",[t._v("-")])],1),t._v(" "),a("li",[a("b",[t._v("Merk:")]),t._v(" "),a("check-value",{attrs:{value:t.itemData.merk}})],1),t._v(" "),a("li",[a("b",[t._v("Tipe:")]),t._v(" "),a("check-value",{attrs:{value:t.itemData.tipe}})],1)])]),t._v(" "),a("div",{staticClass:"col-sm-4"},[a("ul",{staticClass:"list list-unstyled mb-0"},[a("li",[a("b",[t._v("Lokasi:")]),t._v(" "),t.itemData.lokasi?a("check-value",{attrs:{value:t.itemData.lokasi.name}}):a("span",[t._v("-")])],1),t._v(" "),a("li",[a("b",[t._v("Penanggungjawab:")]),t._v(" "),t.itemData.aktivis?a("check-value",{attrs:{value:t.itemData.aktivis.name}}):a("span",[t._v("-")])],1),t._v(" "),a("li",[a("b",[t._v("Tgl. Beli:")]),t._v(" "),a("span",{domProps:{innerHTML:t._s(t.$options.filters.date(t.itemData.tanggal))}})]),t._v(" "),a("li",[a("b",[t._v("Pembeli:")]),t._v(" "),t.itemData.pembeli?a("check-value",{attrs:{value:t.itemData.pembeli.name}}):a("span",[t._v("-")])],1),t._v(" "),a("li",[a("b",[t._v("Kondisi:")]),t._v(" "),a("check-value",{attrs:{value:t.itemData.kondisi}})],1)])]),t._v(" "),a("div",{staticClass:"col-sm-4"},[a("ul",{staticClass:"list list-unstyled mb-0"},[a("li",[a("b",[t._v("Sub:")]),t._v(" "),a("check-value",{attrs:{value:t.itemData.has_aset_count,valueType:"currency"}})],1),t._v(" "),a("li",[a("b",[t._v("Harga Induk:")]),t._v(" "),a("check-value",{attrs:{value:t.itemData.harga,valueType:"currency"}})],1),t._v(" "),a("li",[a("b",[t._v("Harga Sub:")]),t._v(" "),a("check-value",{attrs:{value:t.itemData.harga_sub,valueType:"currency"}})],1),t._v(" "),a("li",[a("b",[t._v("Total Harga:")]),t._v(" "),a("check-value",{attrs:{value:t.itemData.total_harga,valueType:"currency"}})],1),t._v(" "),a("li",[a("b",[t._v("Bulan Penyusutan:")]),t._v(" "),a("check-value",{attrs:{value:t.itemData.bulan_penyusutan,valueType:"currency"}})],1),t._v(" "),a("li",[a("b",[t._v("Sisa Bulan Penyusutan:")]),t._v(" "),a("check-value",{attrs:{value:t.itemData.sisa_bulan_penyusutan,valueType:"currency"}})],1),t._v(" "),a("li",[a("b",[t._v("Sisa Penyusutan:")]),t._v(" "),a("check-value",{attrs:{value:t.itemData.sisa_penyusutan,valueType:"currency"}})],1)])])])])])}),[function(){var t=this.$createElement,e=this._self._c||t;return e("div",{staticClass:"col-16"},[e("hr")])}],!1,null,null,null);e.a=n.exports},Ll3F:function(t,e,a){"use strict";var s=a("L2JU");function i(t,e){var a=Object.keys(t);if(Object.getOwnPropertySymbols){var s=Object.getOwnPropertySymbols(t);e&&(s=s.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),a.push.apply(a,s)}return a}function n(t,e,a){return e in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}var l={props:{title:{default:""},titleIcon:{default:""},titleDesc:{default:""},level:{default:1},level2Title:{default:""},level2Route:{default:""}},methods:{level2Back:function(){this.$emit("level2Back")},route1:function(){this.btn1RouteParams?this.$router.push({name:this.btn1Route,params:{cu:this.btn1RouteParams}}):this.$router.push({name:this.btn1Route})},route2:function(){this.btn2RouteParams?this.$router.push({name:this.btn2Route,params:{cu:this.btn2RouteParams}}):this.$router.push({name:this.btn2Route})},route3:function(){this.btn3RouteParams?this.$router.push({name:this.btn3Route,params:{cu:this.btn3RouteParams}}):this.$router.push({name:this.btn3Route})}},computed:function(t){for(var e=1;e<arguments.length;e++){var a=null!=arguments[e]?arguments[e]:{};e%2?i(Object(a),!0).forEach((function(e){n(t,e,a[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(a)):i(Object(a)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(a,e))}))}return t}({},Object(s.b)("auth",{currentUser:"currentUser"}))},r=a("KHd+"),o=Object(r.a)(l,(function(){var t=this,e=t.$createElement,a=t._self._c||e;return a("div",[a("div",{staticClass:"page-header"},[a("div",{staticClass:"page-header-content header-elements-md-inline"},[a("div",{staticClass:"page-title d-flex"},[a("h4",[a("i",{staticClass:"mr-2",class:t.titleIcon}),t._v(" "),a("span",{staticClass:"font-weight-semibold"},[t._v(t._s(t.title))]),t._v(" "),a("small",{staticClass:"d-block text-muted"},[t._v(t._s(t.titleDesc))])])]),t._v(" "),a("div",{staticClass:"header-elements d-none py-0 mb-3 mb-md-0"},[1===t.level?a("div",{staticClass:"breadcrumb"},[a("router-link",{staticClass:"breadcrumb-item",attrs:{to:{name:"dashboard"}}},[a("i",{staticClass:"icon-home4"}),t._v("  Dashboard ")]),t._v(" "),a("span",{staticClass:"breadcrumb-item active"},[t._v(t._s(t.title))])],1):t._e(),t._v(" "),2===t.level?a("div",{staticClass:"breadcrumb"},[a("router-link",{staticClass:"breadcrumb-item",attrs:{to:{name:"dashboard"}}},[a("i",{staticClass:"icon-home4"}),t._v(" Dashboard ")]),t._v(" "),a("a",{staticClass:"breadcrumb-item",attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.level2Back()}}},[t._v(t._s(t.level2Title))]),t._v(" "),a("span",{staticClass:"breadcrumb-item active"},[t._v(t._s(t.title))])],1):t._e(),t._v(" "),3===t.level?a("div",{staticClass:"breadcrumb"},[t._t("breadcrumb")],2):t._e()])])])])}),[],!1,null,null,null);e.a=o.exports},Ocez:function(t,e,a){"use strict";var s=a("h2y9"),i=a("8MVx"),n={components:{truncate:s.a,appModal:i.a},props:{value:{default:""},frontText:{default:""},trimLength:{default:50},valueType:{default:"trim"},empty:{default:"-"}},data:function(){return{modalShow:!1,modalState:"",modalTitle:"",modalContent:"",modalButton:""}},methods:{modalOpen:function(){this.modalShow=!0,this.modalState="content-tutup",this.modalContent=this.value,this.modalButton="Tutup"},modalTutup:function(){this.modalShow=!1},strip:function(t){var e=document.createElement("DIV");return e.innerHTML=t,e.textContent||e.innerText||""}},computed:{isLongEnough:function(){return this.value.length>this.trimLength}}},l=a("KHd+"),r=Object(l.a)(n,(function(){var t=this,e=t.$createElement,a=t._self._c||e;return a("div",{staticStyle:{display:"inline-block"}},[t.value?a("span",{staticStyle:{display:"inline-block"}},["trim"==t.valueType?a("span",{staticStyle:{display:"inline-block"}},[a("truncate",{staticStyle:{display:"inline-block"},attrs:{"action-class":"badge bg-blue",clamp:"selengkapnya >",length:t.trimLength,less:"< kembali",text:t.frontText+" "+t.value}})],1):"modal"==t.valueType?a("span",{staticStyle:{display:"inline-block"}},[t._v("\n      "+t._s(t.value.substring(0,50))+"\n      "),t.isLongEnough?[t._v("\n        ...\n        "),a("button",{staticClass:"btn btn-light",on:{click:function(e){return e.preventDefault(),t.modalOpen()}}},[t._v("\n          Lihat\n        ")])]:t._e()],2):"currency"==t.valueType?a("span",{staticStyle:{display:"inline-block"}},[t._v(t._s(t.frontText)+"\n      "+t._s(t._f("currency")(t.value,"",0,{thousandsSeparator:"."})))]):"percentage"==t.valueType?a("span",{staticStyle:{display:"inline-block"}},[t._v(t._s(t.frontText)+" "+t._s(t._f("percentage")(t.value,2)))]):"decimal"==t.valueType?a("span",{staticStyle:{display:"inline-block"}},[t._v(t._s(t.frontText)+" "+t._s(t._f("round")(t.value,2)))]):a("span",{staticStyle:{display:"inline-block"}},[a("b",[t._v(t._s(t.frontText))]),t._v(" "+t._s(t.value))])]):a("span",{staticStyle:{display:"inline-block"}},[t._v(t._s(t.frontText)+" "+t._s(t.empty))]),t._v(" "),a("app-modal",{attrs:{show:t.modalShow,state:t.modalState,title:t.modalTitle,button:t.modalButton,content:t.modalContent},on:{tutup:t.modalTutup,backgroundClick:t.modalTutup}})],1)}),[],!1,null,null,null);e.a=r.exports},"QO+t":function(t,e,a){"use strict";var s={props:[]},i=a("KHd+"),n=Object(i.a)(s,(function(){var t=this.$createElement;this._self._c;return this._m(0)}),[function(){var t=this.$createElement,e=this._self._c||t;return e("div",[e("div",{staticClass:"alert bg-info alert-styled-left"},[e("h6",[this._v("Pastikan data yang dimasukkan sudah benar sebelum menyimpan.")])])])}],!1,null,null,null);e.a=n.exports},nEE4:function(t,e,a){"use strict";function s(t){return(s="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}function i(t,e){if("edit"===e&&"string"==typeof t.image){var a=JSON.parse(JSON.stringify(t));return delete a.image,a}return function t(e,a,i){var n,l=a||new FormData;for(var r in e)if(e.hasOwnProperty(r))if(n=i?i+"["+r+"]":r,e[r]instanceof Array)for(var o=0;o<e[r].length;o++)t(e[r][o],l,"".concat(r,"[").concat(o,"]"));else"object"!==s(e[r])||e[r]instanceof File?l.append(n,e[r]):t(e[r],l,r);return l}(t)}a.d(e,"a",(function(){return i}))},s20v:function(t,e,a){"use strict";var s=a("XuX8"),i=a.n(s),n=(a("nEE4"),a("LvDl")),l=a.n(n),r=a("8tky"),o=a("8MVx"),c=a("Iab2"),u=a.n(c);function d(t,e){var a=Object.keys(t);if(Object.getOwnPropertySymbols){var s=Object.getOwnPropertySymbols(t);e&&(s=s.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),a.push.apply(a,s)}return a}function m(t){for(var e=1;e<arguments.length;e++){var a=null!=arguments[e]?arguments[e]:{};e%2?d(Object(a),!0).forEach((function(e){p(t,e,a[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(a)):d(Object(a)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(a,e))}))}return t}function p(t,e,a){return e in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}var v={props:["title","columnData","itemData","itemDataStat","isUploadExcel","query","excelDownloadUrl","excelUploads","dataview","tableClass","isDasar","isNoKolom","isNoExcel","isNoButtonRow","isDisable"],components:{jsonExcel:r.a,appModal:o.a},data:function(){return{appliedFilters:[],filterCandidates:[],pages:[],tabName:"dasar",excel:{fields:{},data:[],meta:[[{key:"charset",value:"utf-8"}]]},excelAllData:{},excelAllDataStat:"",excelAll:{fields:{},data:[],meta:[[{key:"charset",value:"utf-8"}]]},excelUploadIndex:"",isExcelAll:!1,files:new FormData,state:"",updateStat:"",updateResponse:"",modalShow:!1,modalState:"",modalTitle:"",modalContent:"",modalButton:"",modalOptionState:""}},mounted:function(){var t=this;document.addEventListener("keydown",(function(e){1!=t.isDisable&&13==e.keyCode&&t.filterCandidates.length>0&&"success"===t.itemDataStat&&t.applyFilter()}))},created:function(){this.addFilter(),this.defaultFilter()},watch:{itemDataStat:function(t){"success"==t&&(this.query.page=this.itemData.current_page,this.fieldExcel(),this.calculatePagination())},excelAllDataStat:function(t){"success"==t&&this.fieldExcelAll()},updateStat:function(t){this.modalShow=!0,this.modalState=t,this.modalColor="","success"===t?this.modalTitle=this.updateResponse.message:(this.modalTitle="Oops terjadi kesalahan :(",this.modalContent=this.updateResponse)}},methods:{changeTab:function(t){this.tabName=t,this.appliedFilters.length>0&&this.resetFilter()},hideColumn:function(t){!1===this.columnData[t].hide?this.columnData[t].hide=!0:this.columnData[t].hide=!1,this.fieldExcel()},showAllColumn:function(t){for(var e in this.columnData)e!=t&&(this.columnData[e].hide=!1);this.fieldExcel()},updateOrderDirection:function(){"desc"===this.query.order_direction?this.query.order_direction="asc":this.query.order_direction="desc",this.applyChange()},updateOrderColumn:function(t){var e=t.target.value;i.a.set(this.query,"order_column",e),this.applyChange()},resetFilter:function(){this.appliedFilters.splice(0),this.filterCandidates.splice(0),this.addFilter(),this.defaultFilter(),this.query.page=1,this.applyChange()},applyFilter:function(){null!=this.filterCandidates[0].query_1&&""!=this.filterCandidates[0].query_1&&(i.a.set(this.$data,"appliedFilters",JSON.parse(JSON.stringify(this.filterCandidates))),this.query.page=1,this.applyChange())},removeFilter:function(t,e){this.filterCandidates.splice(e,1)},selectOperator:function(t,e,a){var s=a.target.value;if(0!==s.length){var n=JSON.parse(s);switch(i.a.set(this.filterCandidates[e],"operator",n),this.filterCandidates[e].query_1=null,this.filterCandidates[e].query_2=null,n.name){case"in_the_past":case"in_the_next":this.filterCandidates[e].query_1=28,this.filterCandidates[e].query_2="days";break;case"in_the_peroid":this.filterCandidates[e].query_1="today"}}else i.a.set(this.filterCandidates[e],"operator",s)},selectColumn:function(t,e,a){var s=a.target.value;if(0!==s.length){var n=JSON.parse(s);switch(i.a.set(this.filterCandidates[e],"column",n),n.tipe){case"numeric":case"string":this.filterCandidates[e].operator=this.availableOperators()[6],this.filterCandidates[e].query_1=null,this.filterCandidates[e].query_2=null;break;case"datetime":this.filterCandidates[e].operator=this.availableOperators()[6],this.filterCandidates[e].query_1="2019-01-31",this.filterCandidates[e].query_2=null;break;case"counter":this.filterCandidates[e].operator=this.availableOperators()[6],this.filterCandidates[e].query_1=null,this.filterCandidates[e].query_2=null}}else i.a.set(this.filterCandidates[e],"column",s)},addFilter:function(){this.filterCandidates.push({column:"",operator:"",query_1:null,query_2:null})},defaultFilter:function(){var t=l.a.find(this.columnData,{filterDefault:!0});switch(i.a.set(this.filterCandidates[0],"column",t),t.tipe){case"numeric":case"string":case"datetime":case"counter":this.filterCandidates[0].operator=this.availableOperators()[6],this.filterCandidates[0].query_1=null,this.filterCandidates[0].query_2=null}},applyChange:function(){this.fetch()},updateLimit:function(){this.query.page=1,this.applyChange()},calculatePagination:function(){var t,e=0,a=0,s=0;for(s=4+(a=this.query.page<3?1:this.query.page-1),a-=a-(t=a-(s=this.itemData.last_page<s?this.itemData.last_page:s)+4)>0?t:0,this.pages.length=0,e=a;e<=s;e++)this.pages.push(e)},prevPage:function(){this.itemData.prev_page_url&&(this.query.page=Number(this.query.page)-1,this.applyChange())},goToPage:function(t){this.query.page!=t&&(this.query.page=t,this.applyChange())},nextPage:function(){this.itemData.next_page_url&&(this.query.page=Number(this.query.page)+1,this.applyChange())},getFilters:function(){var t={};return this.appliedFilters.forEach((function(e,a){t["f[".concat(a,"][column]")]=e.column.name,t["f[".concat(a,"][operator]")]=e.operator.name,t["f[".concat(a,"][query_1]")]=e.query_1,t["f[".concat(a,"][query_2]")]=e.query_2})),t},fetch:function(){var t=m(m({},this.getFilters()),this.query);this.$emit("fetch",t)},fetchExcelAll:function(){var t=this;if(this.modalState="loading",this.query.limit>=this.itemData.total)this.excelAllData=this.itemData,this.excelAllDataStat="success",this.modalState="normal2";else{var e=m({},{order_column:this.query.order_column,order_direction:this.query.order_direction,filter_match:"and",limit:this.itemData.total,page:1});axios.get("/api/"+this.excelDownloadUrl,{params:e}).then((function(e){var a=e.data;t.excelAllData=a.model,t.modalState="normal2",t.excelAllDataStat="success"})).catch((function(e){var a=e.error;t.modalState="fail",t.modalContent=a,console.log(a)}))}},fieldExcel:function(){var t=this;t.excel.fields={},t.columnData.forEach((function(e){e.hide||e.disable||!e.tipe||(e.excelName?t.excel.fields[e.title]=e.excelName:t.excel.fields[e.title]=e.name)})),t.excel.data=t.itemData.data},fieldExcelAll:function(){var t=this;t.excelAll.fields={},t.columnData.forEach((function(e){!e.disable&&e.tipe&&(e.excelName?t.excelAll.fields[e.title]=e.excelName:t.excelAll.fields[e.title]=e.name)})),t.excelAll.data=t.excelAllData.data},changeUpload:function(t){this.files.append("file",t[0],t[0].name)},uploadExcel:function(t){var e=this;this.updateStat="loading",axios.post("/api/"+this.excelUploads[t].url,this.files).then((function(t){t.data.uploaded?(e.updateStat="success",e.updateResponse=t.data):(e.updateStat="fail",e.updateResponse=t.data)})).catch((function(t){e.updateStat="fail",t.response?e.updateResponse=t.response:e.updateResponse=t}))},downloadFormatExcel:function(t){var e=this;axios.get("/api/download/"+this.excelUploads[t].format_url,{responseType:"blob"}).then((function(a){u.a.saveAs(a.data,e.excelUploads[t].format_url)}))},modalExcelOpen:function(t){this.modalShow=!0,this.modalState="normal2",this.state=t,"excel"==t?this.fieldExcel():"excelAll"==t&&(this.excelAllDataStat="")},modalExcelOk:function(){this.isExcelAll=!0,this.fetchExcelAll()},modalExcelUploadOpen:function(t){this.modalState="normal2",this.state="upload",this.excelUploadIndex=t},modalOptionOpen:function(t){this.modalShow=!0,this.modalState="normal1",this.modalOptionState=t},modalTutup:function(){"success"===this.updateStat&&(this.excelUploads[this.excelUploadIndex].next_page_route?this.excelUploads[this.excelUploadIndex].params?this.$router.push({name:this.excelUploads[this.excelUploadIndex].next_page_route,params:this.excelUploads[this.excelUploadIndex].params}):this.$router.push({name:this.excelUploads[this.excelUploadIndex].next_page_route}):this.fetch()),this.modalShow=!1},modalBatal:function(t){this.modalOptionOpen(t)},availableOperators:function(){return[{title:"sama dengan",name:"equal_to",parent:["numeric","string"],component:"single"},{title:"tidak sama dengan",name:"not_equal_to",parent:["numeric","string"],component:"single"},{title:"kurang dari",name:"less_than",parent:["numeric"],component:"single"},{title:"lebih dari",name:"greater_than",parent:["numeric"],component:"single"},{title:"antara",name:"between",parent:["numeric"],component:"double"},{title:"tidak antara",name:"not_between",parent:["numeric"],component:"double"},{title:"mengandung kata",name:"contains",parent:["string","datetime","numeric","counter"],component:"single"},{title:"dimulai dari",name:"starts_with",parent:["string"],component:"single"},{title:"diakhiri dengan",name:"ends_with",parent:["string"],component:"single"},{title:"pada masa lalu",name:"in_the_past",parent:["datetime"],component:"datetime_1"},{title:"pada masa depan",name:"in_the_next",parent:["datetime"],component:"datetime_1"},{title:"pada periode",name:"in_the_peroid",parent:["datetime"],component:"datetime_2"},{title:"sama dengan",name:"equal_to_count",parent:["counter"],component:"single"},{title:"tidak sama dengan",name:"not_equal_to_count",parent:["counter"],component:"single"},{title:"kurang dari",name:"less_than_count",parent:["counter"],component:"single"},{title:"lebih dari",name:"greater_than_count",parent:["counter"],component:"single"}]}},computed:{fetchOperators:function(){var t=this;return function(e){return t.availableOperators().filter((function(t){if(e.column&&t.parent.includes(e.column.tipe))return t}))}}}},b=a("KHd+"),_=Object(b.a)(v,(function(){var t=this,e=t.$createElement,a=t._self._c||e;return a("div",[a("div",{staticClass:"card d-print-none"},[a("div",{staticClass:"card-header header-elements-inline bg-white"},[a("h5",{staticClass:"card-title"},[t._v("Pencarian data "+t._s(t.title))]),t._v(" "),t._m(0)]),t._v(" "),t.isDasar?t._e():a("div",{staticClass:"nav-tabs-responsive bg-light border-top"},[a("ul",{staticClass:"nav nav-tabs nav-tabs-bottom flex-nowrap mb-0"},[a("li",{staticClass:"nav-item"},[a("a",{staticClass:"nav-link",class:{active:"dasar"==t.tabName},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.changeTab("dasar")}}},[a("i",{staticClass:"icon-search4 mr-2"}),t._v("\n            Pencarian Dasar")])]),t._v(" "),a("li",{staticClass:"nav-item"},[a("a",{staticClass:"nav-link",class:{active:"lanjutan"==t.tabName},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.changeTab("lanjutan")}}},[a("i",{staticClass:"icon-folder-search mr-2"}),t._v("\n            Pencarian Lanjutan")])])])]),t._v(" "),a("transition",{attrs:{"enter-active-class":"animated fadeIn",mode:"out-in"}},[a("div",{directives:[{name:"show",rawName:"v-show",value:"dasar"==t.tabName,expression:"tabName == 'dasar'"}]},[a("div",{staticClass:"card-body"},[a("div",{staticClass:"row"},t._l(t.filterCandidates,(function(e,s,i){return a("div",{staticClass:"col-md-12"},[a("div",{staticClass:"row"},[a("div",{staticClass:"col-md-3 pb-2"},[a("div",{staticClass:"input-group"},[a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[t._v("Kolom")])]),t._v(" "),a("select",{staticClass:"form-control",attrs:{disabled:"success"!==t.itemDataStat},on:{input:function(a){return t.selectColumn(e,s,a)}}},[a("option",{attrs:{disabled:"",value:""}},[t._v("Silahkan masukkan kolom pencarian")]),t._v(" "),t._l(t.columnData,(function(s){return s.filter&&!s.disable?a("option",{domProps:{value:JSON.stringify(s),selected:e.column&&s.name===e.column.name}},[t._v("\n                        "+t._s(s.title)+"\n                      ")]):t._e()}))],2)])]),t._v(" "),e.column?a("div",{directives:[{name:"show",rawName:"v-show",value:!1,expression:"false"}],staticClass:"col-md-3 pb-2"},[a("div",{staticClass:"input-group"},[a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[t._v("Operator")])]),t._v(" "),a("select",{staticClass:"form-control",attrs:{disabled:"success"!==t.itemDataStat},on:{input:function(a){return t.selectOperator(e,s,a)}}},t._l(t.fetchOperators(e),(function(s){return a("option",{domProps:{value:JSON.stringify(s),selected:e.operator&&s.name===e.operator.name}},[t._v("\n                        "+t._s(s.title)+"\n                      ")])})),0)])]):t._e(),t._v(" "),e.column&&e.operator?["single"===e.operator.component?a("div",{staticClass:"col-md-9 pb-2"},[a("div",{staticClass:"input-group"},[a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[t._v("Kata Kunci")])]),t._v(" "),a("input",{directives:[{name:"model",rawName:"v-model",value:e.query_1,expression:"f.query_1"}],staticClass:"form-control",attrs:{type:"text",placeholder:"Masukkan kata kunci pencarian",disabled:"success"!==t.itemDataStat},domProps:{value:e.query_1},on:{input:function(a){a.target.composing||t.$set(e,"query_1",a.target.value)}}})])]):t._e(),t._v(" "),"double"===e.operator.component?[a("div",{staticClass:"col-md-5 pb-2"},[a("div",{staticClass:"input-group"},[a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[t._v("Kata Kunci")])]),t._v(" "),a("input",{directives:[{name:"model",rawName:"v-model",value:e.query_1,expression:"f.query_1"}],staticClass:"form-control",attrs:{type:"text",placeholder:"Masukkan kata kunci pencarian 1",disabled:"success"!==t.itemDataStat},domProps:{value:e.query_1},on:{input:function(a){a.target.composing||t.$set(e,"query_1",a.target.value)}}})])]),t._v(" "),a("div",{staticClass:"col-md-4 pb-2"},[a("div",{staticClass:"input-group"},[a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[t._v("Kata Kunci")])]),t._v(" "),a("input",{directives:[{name:"model",rawName:"v-model",value:e.query_2,expression:"f.query_2"}],staticClass:"form-control",attrs:{type:"text",placeholder:"Masukkan kata kunci pencarian 2",disabled:"success"!==t.itemDataStat},domProps:{value:e.query_2},on:{input:function(a){a.target.composing||t.$set(e,"query_2",a.target.value)}}})])])]:t._e(),t._v(" "),"datetime_1"===e.operator.component?[a("div",{staticClass:"col-md-5 pb-2"},[a("div",{staticClass:"input-group"},[a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[t._v("Kata Kunci")])]),t._v(" "),a("input",{directives:[{name:"model",rawName:"v-model",value:e.query_1,expression:"f.query_1"}],staticClass:"form-control",attrs:{type:"text",placeholder:"Masukkan kata kunci pencarian",disabled:"success"!==t.itemDataStat},domProps:{value:e.query_1},on:{input:function(a){a.target.composing||t.$set(e,"query_1",a.target.value)}}})])]),t._v(" "),a("div",{staticClass:"col-md-4 pb-2"},[a("div",{staticClass:"input-group"},[a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[t._v("Waktu")])]),t._v(" "),a("select",{directives:[{name:"model",rawName:"v-model",value:e.query_2,expression:"f.query_2"}],staticClass:"form-control",attrs:{disabled:"success"!==t.itemDataStat},on:{change:function(a){var s=Array.prototype.filter.call(a.target.options,(function(t){return t.selected})).map((function(t){return"_value"in t?t._value:t.value}));t.$set(e,"query_2",a.target.multiple?s:s[0])}}},[a("option",{attrs:{value:"hours"}},[t._v("jam")]),t._v(" "),a("option",{attrs:{value:"days"}},[t._v("hari")]),t._v(" "),a("option",{attrs:{value:"months"}},[t._v("bulan")]),t._v(" "),a("option",{attrs:{value:"years"}},[t._v("tahun")])])])])]:t._e(),t._v(" "),"datetime_2"===e.operator.component?[a("div",{staticClass:"col-md-9 pb-2"},[a("div",{staticClass:"input-group"},[a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[t._v("Waktu")])]),t._v(" "),a("select",{directives:[{name:"model",rawName:"v-model",value:e.query_1,expression:"f.query_1"}],staticClass:"form-control",attrs:{disabled:"success"!==t.itemDataStat},on:{change:function(a){var s=Array.prototype.filter.call(a.target.options,(function(t){return t.selected})).map((function(t){return"_value"in t?t._value:t.value}));t.$set(e,"query_1",a.target.multiple?s:s[0])}}},[a("option",{attrs:{value:"yesterday"}},[t._v("kemarin")]),t._v(" "),a("option",{attrs:{value:"today"}},[t._v("hari ini")]),t._v(" "),a("option",{attrs:{value:"tomorrow"}},[t._v("besok")]),t._v(" "),a("option",{attrs:{value:"last_month"}},[t._v("bulan lalu")]),t._v(" "),a("option",{attrs:{value:"this_month"}},[t._v("bulan ini")]),t._v(" "),a("option",{attrs:{value:"next_month"}},[t._v("bulan depan")]),t._v(" "),a("option",{attrs:{value:"last_year"}},[t._v("tahun lalu")]),t._v(" "),a("option",{attrs:{value:"this_year"}},[t._v("tahun ini")]),t._v(" "),a("option",{attrs:{value:"next_year"}},[t._v("tahun depan")])])])])]:t._e()]:t._e()],2)])})),0),t._v(" "),a("div",{staticClass:"row"},[a("div",{staticClass:"col-sm-12"},[a("hr",{staticClass:"mt-2"})])]),t._v(" "),a("div",{staticClass:"row justify-content-between"},[a("div",{staticClass:"col-md-5 col-lg-4 pb-2"},[a("div",{staticClass:"row"},[a("div",{staticClass:"col-md-6 pb-2"},[a("button",{staticClass:"btn btn-primary btn-block",attrs:{disabled:null==t.filterCandidates[0].query_1||""==t.filterCandidates[0].query_1||"success"!==t.itemDataStat},on:{click:function(e){return e.preventDefault(),t.applyFilter.apply(null,arguments)}}},[a("i",{staticClass:"icon-search4"}),t._v(" Cari")])]),t._v(" "),t.appliedFilters.length>0?a("div",{staticClass:"col-md-6 pb-2"},[a("button",{staticClass:"btn btn-warning btn-block",attrs:{disabled:"success"!==t.itemDataStat},on:{click:function(e){return e.preventDefault(),t.resetFilter.apply(null,arguments)}}},[a("i",{staticClass:"icon-reset"}),t._v(" Reset pencarian")])]):t._e()])]),t._v(" "),a("div",{staticClass:"col-md-7 col-lg-4 text-right"},[a("div",{staticClass:"row"},[a("div",{staticClass:"col-md-4 pb-2"},[a("div",{staticClass:"input-group"},[a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[t._v("Entri")])]),t._v(" "),a("select",{directives:[{name:"model",rawName:"v-model",value:t.query.limit,expression:"query.limit"}],staticClass:"form-control",attrs:{disabled:"success"!==t.itemDataStat},on:{change:[function(e){var a=Array.prototype.filter.call(e.target.options,(function(t){return t.selected})).map((function(t){return"_value"in t?t._value:t.value}));t.$set(t.query,"limit",e.target.multiple?a:a[0])},t.updateLimit]}},[a("option",[t._v("5")]),t._v(" "),a("option",[t._v("10")]),t._v(" "),a("option",[t._v("15")]),t._v(" "),a("option",[t._v("25")]),t._v(" "),a("option",[t._v("50")]),t._v(" "),a("option",[t._v("100")])])])]),t._v(" "),a("div",{staticClass:"col-md-6 pb-2"},[a("div",{staticClass:"input-group"},[a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[t._v("Urutkan")])]),t._v(" "),a("select",{staticClass:"form-control",attrs:{disabled:"success"!==t.itemDataStat},on:{input:t.updateOrderColumn}},t._l(t.columnData,(function(e){return e.sort&&!e.disable?a("option",{domProps:{value:e.name,selected:e&&e.name==t.query.order_column}},[t._v("\n                        "+t._s(e.title)+"\n                      ")]):t._e()})),0)])]),t._v(" "),a("div",{staticClass:"col-md-2"},[a("button",{staticClass:"btn bg-orange-300 btn-block",attrs:{disabled:"success"!==t.itemDataStat},on:{click:function(e){return e.preventDefault(),t.updateOrderDirection.apply(null,arguments)}}},["asc"===t.query.order_direction?a("i",{staticClass:"icon-arrow-up7"}):a("i",{staticClass:"icon-arrow-down7"})])])])])])])])]),t._v(" "),a("transition",{attrs:{"enter-active-class":"animated fadeIn",mode:"out-in"}},[t.isDasar?t._e():a("div",{directives:[{name:"show",rawName:"v-show",value:"lanjutan"==t.tabName,expression:"tabName == 'lanjutan'"}]},[a("div",{staticClass:"card-body"},[a("div",{staticClass:"row"},[t._l(t.filterCandidates,(function(e,s,i){return a("div",{staticClass:"col-md-12"},[a("div",{staticClass:"row"},[a("div",{staticClass:"col-md-4 pb-2"},[a("div",{staticClass:"input-group"},[a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[t._v("Kolom")])]),t._v(" "),a("select",{staticClass:"form-control",attrs:{disabled:"success"!==t.itemDataStat},on:{input:function(a){return t.selectColumn(e,s,a)}}},[a("option",{attrs:{disabled:"",value:""}},[t._v("Silahkan masukkan kolom pencarian")]),t._v(" "),t._l(t.columnData,(function(s){return s.filter&&!s.disable?a("option",{domProps:{value:JSON.stringify(s),selected:e.column&&s.name===e.column.name}},[t._v("\n                        "+t._s(s.title)+"\n                      ")]):t._e()}))],2)])]),t._v(" "),e.column?a("div",{staticClass:"col-md-3 pb-2"},[a("div",{staticClass:"input-group"},[a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[t._v("Operator")])]),t._v(" "),a("select",{staticClass:"form-control",attrs:{disabled:"success"!==t.itemDataStat},on:{input:function(a){return t.selectOperator(e,s,a)}}},t._l(t.fetchOperators(e),(function(s){return a("option",{domProps:{value:JSON.stringify(s),selected:e.operator&&s.name===e.operator.name}},[t._v("\n                        "+t._s(s.title)+"\n                      ")])})),0)])]):t._e(),t._v(" "),e.column&&e.operator?["single"===e.operator.component?a("div",{staticClass:"col-md-4 pb-2"},[a("div",{staticClass:"input-group"},[a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[t._v("Kata Kunci")])]),t._v(" "),a("input",{directives:[{name:"model",rawName:"v-model",value:e.query_1,expression:"f.query_1"}],staticClass:"form-control",attrs:{type:"text",placeholder:"Masukkan kata kunci pencarian",disabled:"success"!==t.itemDataStat},domProps:{value:e.query_1},on:{input:function(a){a.target.composing||t.$set(e,"query_1",a.target.value)}}})])]):t._e(),t._v(" "),"double"===e.operator.component?[a("div",{staticClass:"col-md-2 pb-2"},[a("div",{staticClass:"input-group"},[a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[t._v("Kata Kunci")])]),t._v(" "),a("input",{directives:[{name:"model",rawName:"v-model",value:e.query_1,expression:"f.query_1"}],staticClass:"form-control",attrs:{type:"text",placeholder:"Masukkan kata kunci pencarian 1",disabled:"success"!==t.itemDataStat},domProps:{value:e.query_1},on:{input:function(a){a.target.composing||t.$set(e,"query_1",a.target.value)}}})])]),t._v(" "),a("div",{staticClass:"col-md-2 pb-2"},[a("div",{staticClass:"input-group"},[a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[t._v("Kata Kunci")])]),t._v(" "),a("input",{directives:[{name:"model",rawName:"v-model",value:e.query_2,expression:"f.query_2"}],staticClass:"form-control",attrs:{type:"text",placeholder:"Masukkan kata kunci pencarian 2",disabled:"success"!==t.itemDataStat},domProps:{value:e.query_2},on:{input:function(a){a.target.composing||t.$set(e,"query_2",a.target.value)}}})])])]:t._e(),t._v(" "),"datetime_1"===e.operator.component?[a("div",{staticClass:"col-md-2 pb-2"},[a("div",{staticClass:"input-group"},[a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[t._v("Kata Kunci")])]),t._v(" "),a("input",{directives:[{name:"model",rawName:"v-model",value:e.query_1,expression:"f.query_1"}],staticClass:"form-control",attrs:{type:"text",placeholder:"Masukkan kata kunci pencarian",disabled:"success"!==t.itemDataStat},domProps:{value:e.query_1},on:{input:function(a){a.target.composing||t.$set(e,"query_1",a.target.value)}}})])]),t._v(" "),a("div",{staticClass:"col-md-2 pb-2"},[a("div",{staticClass:"input-group"},[a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[t._v("Waktu")])]),t._v(" "),a("select",{directives:[{name:"model",rawName:"v-model",value:e.query_2,expression:"f.query_2"}],staticClass:"form-control",attrs:{disabled:"success"!==t.itemDataStat},on:{change:function(a){var s=Array.prototype.filter.call(a.target.options,(function(t){return t.selected})).map((function(t){return"_value"in t?t._value:t.value}));t.$set(e,"query_2",a.target.multiple?s:s[0])}}},[a("option",{attrs:{value:"hours"}},[t._v("jam")]),t._v(" "),a("option",{attrs:{value:"days"}},[t._v("hari")]),t._v(" "),a("option",{attrs:{value:"months"}},[t._v("bulan")]),t._v(" "),a("option",{attrs:{value:"years"}},[t._v("tahun")])])])])]:t._e(),t._v(" "),"datetime_2"===e.operator.component?[a("div",{staticClass:"col-md-4 pb-2"},[a("div",{staticClass:"input-group"},[a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[t._v("Waktu")])]),t._v(" "),a("select",{directives:[{name:"model",rawName:"v-model",value:e.query_1,expression:"f.query_1"}],staticClass:"form-control",attrs:{disabled:"success"!==t.itemDataStat},on:{change:function(a){var s=Array.prototype.filter.call(a.target.options,(function(t){return t.selected})).map((function(t){return"_value"in t?t._value:t.value}));t.$set(e,"query_1",a.target.multiple?s:s[0])}}},[a("option",{attrs:{value:"yesterday"}},[t._v("kemarin")]),t._v(" "),a("option",{attrs:{value:"today"}},[t._v("hari ini")]),t._v(" "),a("option",{attrs:{value:"tomorrow"}},[t._v("besok")]),t._v(" "),a("option",{attrs:{value:"last_month"}},[t._v("bulan lalu")]),t._v(" "),a("option",{attrs:{value:"this_month"}},[t._v("bulan ini")]),t._v(" "),a("option",{attrs:{value:"next_month"}},[t._v("bulan depan")]),t._v(" "),a("option",{attrs:{value:"last_year"}},[t._v("tahun lalu")]),t._v(" "),a("option",{attrs:{value:"this_year"}},[t._v("tahun ini")]),t._v(" "),a("option",{attrs:{value:"next_year"}},[t._v("tahun depan")])])])])]:t._e()]:t._e(),t._v(" "),a("div",{staticClass:"col-md-1 pb-2"},[a("button",{staticClass:"btn bg-slate-300 btn-block",attrs:{disabled:"success"!==t.itemDataStat||1==t.filterCandidates.length},on:{click:function(a){return a.preventDefault(),t.removeFilter(e,s)}}},[a("i",{staticClass:"icon-cross3"})])])],2)])})),t._v(" "),a("div",{staticClass:"col-md-12"},[a("button",{staticClass:"btn btn-light btn-block",attrs:{disabled:"success"!==t.itemDataStat},on:{click:function(e){return e.preventDefault(),t.addFilter.apply(null,arguments)}}},[a("i",{staticClass:"icon-arrow-down5"}),t._v(" Tambah Parameter Pencarian "),a("i",{staticClass:"icon-arrow-down5"})])])],2),t._v(" "),a("div",{staticClass:"row"},[a("div",{staticClass:"col-sm-12"},[a("hr",{staticClass:"mt-2"})])]),t._v(" "),a("div",{staticClass:"row justify-content-between"},[a("div",{staticClass:"col-md-5 col-lg-4 pb-2"},[a("div",{staticClass:"row"},[a("div",{staticClass:"col-md-6 pb-2"},[a("button",{staticClass:"btn btn-primary btn-block",attrs:{disabled:null==t.filterCandidates[0].query_1||""==t.filterCandidates[0].query_1||"success"!==t.itemDataStat},on:{click:function(e){return e.preventDefault(),t.applyFilter.apply(null,arguments)}}},[a("i",{staticClass:"icon-search4"}),t._v(" Cari")])]),t._v(" "),t.appliedFilters.length>0?a("div",{staticClass:"col-md-6 pb-2"},[a("button",{staticClass:"btn btn-warning btn-block",attrs:{disabled:"success"!==t.itemDataStat},on:{click:function(e){return e.preventDefault(),t.resetFilter.apply(null,arguments)}}},[a("i",{staticClass:"icon-reset"}),t._v(" Reset pencarian")])]):t._e()])]),t._v(" "),a("div",{staticClass:"col-md-6 col-lg-4 text-right"},[a("div",{staticClass:"row"},[a("div",{staticClass:"col-md-4 pb-2"},[a("div",{staticClass:"input-group"},[a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[t._v("Entri")])]),t._v(" "),a("select",{directives:[{name:"model",rawName:"v-model",value:t.query.limit,expression:"query.limit"}],staticClass:"form-control",attrs:{disabled:"success"!==t.itemDataStat},on:{change:[function(e){var a=Array.prototype.filter.call(e.target.options,(function(t){return t.selected})).map((function(t){return"_value"in t?t._value:t.value}));t.$set(t.query,"limit",e.target.multiple?a:a[0])},t.updateLimit]}},[a("option",[t._v("5")]),t._v(" "),a("option",[t._v("10")]),t._v(" "),a("option",[t._v("15")]),t._v(" "),a("option",[t._v("25")]),t._v(" "),a("option",[t._v("50")])])])]),t._v(" "),a("div",{staticClass:"col-md-6 pb-2"},[a("div",{staticClass:"input-group"},[a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[t._v("Urutkan")])]),t._v(" "),a("select",{staticClass:"form-control",attrs:{disabled:"success"!==t.itemDataStat},on:{input:t.updateOrderColumn}},t._l(t.columnData,(function(e){return e.sort&&!e.disable?a("option",{domProps:{value:e.name,selected:e&&e.name==t.query.order_column}},[t._v("\n                        "+t._s(e.title)+"\n                      ")]):t._e()})),0)])]),t._v(" "),a("div",{staticClass:"col-md-2"},[a("button",{staticClass:"btn bg-orange-300 btn-block",attrs:{disabled:"success"!==t.itemDataStat},on:{click:function(e){return e.preventDefault(),t.updateOrderDirection.apply(null,arguments)}}},["asc"===t.query.order_direction?a("i",{staticClass:"icon-arrow-up7"}):a("i",{staticClass:"icon-arrow-down7"})])])])])])])])])],1),t._v(" "),"list"==this.dataview||null==this.dataview?a("div",{staticClass:"card"},[t.isNoButtonRow?t._e():a("div",{staticClass:"card-header d-print-none"},[a("div",{staticClass:"row"},[a("div",{staticClass:"col-md-7 col-lg-9 pb-2 d-none d-sm-block"},[t._t("button-desktop")],2),t._v(" "),a("div",{staticClass:"col-md-12 pb-2 d-block d-sm-none"},[t._t("button-mobile")],2),t._v(" "),a("div",{staticClass:"col-md-5 col-lg-3 text-right d-none d-sm-block"},[t.isNoKolom?t._e():a("button",{staticClass:"btn bg-blue-300 btn-icon mb-1",attrs:{type:"button",disabled:"loading"===t.itemDataStat},on:{click:function(e){return e.preventDefault(),t.modalOptionOpen("column")}}},[a("i",{staticClass:"icon-table2"}),t._v(" Kolom\n          ")]),t._v(" "),t.isNoExcel?t._e():a("button",{staticClass:"btn bg-green-300 btn-icon mb-1",attrs:{type:"button",disabled:"loading"===t.itemDataStat},on:{click:function(e){return e.preventDefault(),t.modalOptionOpen("excel")}}},[a("i",{staticClass:"icon-file-excel"}),t._v(" Excel\n          ")]),t._v(" "),a("button",{staticClass:"btn btn-light btn-icon mb-1",attrs:{type:"button",disabled:"loading"===t.itemDataStat},on:{click:function(e){return e.preventDefault(),t.fetch()}}},[a("i",{staticClass:"icon-sync",class:{spinner:"loading"===t.itemDataStat}})])]),t._v(" "),a("div",{staticClass:"col-md-12 d-block d-sm-none"},[t.isNoKolom?t._e():a("button",{staticClass:"btn bg-blue-300 btn-icon btn-block mb-1",attrs:{type:"button",disabled:"loading"===t.itemDataStat},on:{click:function(e){return e.preventDefault(),t.modalOptionOpen("column")}}},[a("i",{staticClass:"icon-table2"}),t._v(" Kolom\n          ")]),t._v(" "),t.isNoExcel?t._e():a("button",{staticClass:"btn bg-green-300 btn-icon btn-block mb-1",attrs:{type:"button",disabled:"loading"===t.itemDataStat},on:{click:function(e){return e.preventDefault(),t.modalOptionOpen("excel")}}},[a("i",{staticClass:"icon-file-excel"}),t._v(" Excel\n          ")]),t._v(" "),a("button",{staticClass:"btn btn-light btn-icon btn-block mb-1",attrs:{type:"button",disabled:"loading"===t.itemDataStat},on:{click:function(e){return e.preventDefault(),t.fetch()}}},[a("i",{staticClass:"icon-sync",class:{spinner:"loading"===t.itemDataStat}}),t._v(" Reload\n          ")])])])]),t._v(" "),a("div",{staticClass:"table-responsive table-scrollable",class:t.tableClass,staticStyle:{"max-height":"33rem"}},[a("table",{staticClass:"table table-striped"},[a("thead",{staticClass:"bg-primary"},[a("tr",{staticClass:"text-nowrap"},t._l(t.columnData,(function(e){return e.hide||e.disable?t._e():a("th",[a("span",{domProps:{innerHTML:t._s(e.title)}}),t._v(" "),e.name==t.query.order_column?a("i",{staticClass:"icon-menu-open"}):t._e()])})),0)]),t._v(" "),"loading"===t.itemDataStat?a("tbody",[a("tr",[a("td",{attrs:{colspan:t.columnData.length}},[t._m(1)])])]):"success"===t.itemDataStat?a("tbody",[0==t.itemData.data.length?a("tr",[a("td",{attrs:{colspan:t.columnData.length}},[t._v("\n              Belum terdapat data...\n            ")])]):t._l(t.itemData.data,(function(e,a){return t._t("item-desktop",null,{item:e,index:a})}))],2):"fail"===t.itemDataStat?a("tbody",[a("tr",[a("td",{attrs:{colspan:t.columnData.length}},[t._v("\n              Oops.. Terjadi kesalahan, silahkan coba lagi.\n            ")])])]):t._e()])]),t._v(" "),a("div",{staticClass:"card-footer bg-white d-print-none"},[a("div",{staticClass:"row"},[a("div",{staticClass:"col-md-4 pt-2"},["success"===t.itemDataStat?a("div",{staticClass:"d-none d-sm-block"},[t._v("Menampilkan "+t._s(t.itemData.from)+" -\n            "+t._s(t.itemData.to)+" entri dari "+t._s(t.itemData.total)+" entri\n          ")]):t._e(),t._v(" "),"success"===t.itemDataStat?a("div",{staticClass:"d-block d-sm-none text-center"},[t._v("Menampilkan "+t._s(t.itemData.from)+" -\n            "+t._s(t.itemData.to)+" entri dari "+t._s(t.itemData.total)+" entri\n          ")]):a("div",[t._v("Menampilkan\n            "),a("i",{staticClass:"icon-spinner2 spinner"}),t._v(" -\n            "),a("i",{staticClass:"icon-spinner2 spinner"}),t._v(" entri dari\n            "),a("i",{staticClass:"icon-spinner2 spinner"}),t._v(" entri\n          ")])]),t._v(" "),a("div",{staticClass:"col-md-8 pt-2 text-right d-none d-sm-block"},["success"===t.itemDataStat?a("div",{staticClass:"btn-group"},[a("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.prev_page_url},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.goToPage(1)}}},[a("i",{staticClass:"icon-backward2"})]),t._v(" "),a("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.prev_page_url},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.prevPage.apply(null,arguments)}}},[a("i",{staticClass:"icon-arrow-left5"})]),t._v(" "),t._l(t.pages,(function(e){return a("button",{staticClass:"btn",class:{"btn-primary":t.query.page==e,"btn-light":t.query.page!=e},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.goToPage(e)}}},[t._v("\n                "+t._s(e)+"\n            ")])})),t._v(" "),a("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.next_page_url},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.nextPage.apply(null,arguments)}}},[a("i",{staticClass:"icon-arrow-right5"})]),t._v(" "),a("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.next_page_url},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.goToPage(t.itemData.last_page)}}},[a("i",{staticClass:"icon-forward3"})])],2):a("div",{staticClass:"btn-group"},[t._m(2),t._v(" "),t._m(3),t._v(" "),t._m(4),t._v(" "),t._m(5),t._v(" "),t._m(6)])]),t._v(" "),a("div",{staticClass:"col-md-12 pt-2 text-center d-block d-sm-none"},["success"===t.itemDataStat?a("div",{staticClass:"btn-group"},t._l(t.pages,(function(e){return a("button",{staticClass:"btn",class:{"btn-primary":t.query.page==e,"btn-light":t.query.page!=e},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.goToPage(e)}}},[t._v("\n                "+t._s(e)+"\n            ")])})),0):t._e(),t._v(" "),a("br"),t._v(" "),"success"===t.itemDataStat?a("div",{staticClass:"btn-group pt-2"},[a("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.prev_page_url},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.goToPage(1)}}},[a("i",{staticClass:"icon-backward2"})]),t._v(" "),a("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.prev_page_url},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.prevPage.apply(null,arguments)}}},[a("i",{staticClass:"icon-arrow-left5"})]),t._v(" "),a("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.next_page_url},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.nextPage.apply(null,arguments)}}},[a("i",{staticClass:"icon-arrow-right5"})]),t._v(" "),a("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.next_page_url},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.goToPage(t.itemData.last_page)}}},[a("i",{staticClass:"icon-forward3"})])]):a("div",{staticClass:"btn-group"},[t._m(7),t._v(" "),t._m(8),t._v(" "),t._m(9),t._v(" "),t._m(10),t._v(" "),t._m(11)])])])])]):t._e(),t._v(" "),"grid"==this.dataview?a("div",[t.isNoButtonRow?t._e():a("div",{staticClass:"card card-body d-print-none"},[a("div",{staticClass:"row"},[a("div",{staticClass:"col-md-8 col-lg-10 d-none d-sm-block"},[t._t("button-desktop")],2),t._v(" "),a("div",{staticClass:"col-md-12 pb-2 d-block d-sm-none"},[t._t("button-mobile")],2),t._v(" "),a("div",{staticClass:"col-md-4 col-lg-2 text-right d-none d-sm-block"},[t.isNoExcel?t._e():a("button",{staticClass:"btn bg-green-300 btn-icon",attrs:{type:"button",disabled:"loading"===t.itemDataStat},on:{click:function(e){return e.preventDefault(),t.modalOptionOpen("excel")}}},[a("i",{staticClass:"icon-file-excel"}),t._v(" Excel\n          ")]),t._v(" "),a("button",{staticClass:"btn btn-light btn-icon",attrs:{type:"button",disabled:"loading"===t.itemDataStat},on:{click:function(e){return e.preventDefault(),t.fetch()}}},[a("i",{staticClass:"icon-sync",class:{spinner:"loading"===t.itemDataStat}})])]),t._v(" "),a("div",{staticClass:"col-md-4 col-lg-2 d-block d-sm-none"},[a("button",{staticClass:"btn bg-green-300 btn-icon btn-block mb-1",attrs:{type:"button",disabled:"loading"===t.itemDataStat},on:{click:function(e){return e.preventDefault(),t.modalOptionOpen("excel")}}},[a("i",{staticClass:"icon-file-excel"}),t._v(" Excel\n          ")]),t._v(" "),a("button",{staticClass:"btn btn-light btn-icon btn-block mb-1",attrs:{type:"button",disabled:"loading"===t.itemDataStat},on:{click:function(e){return e.preventDefault(),t.fetch()}}},[a("i",{staticClass:"icon-sync",class:{spinner:"loading"===t.itemDataStat}}),t._v(" Reload\n          ")])])])]),t._v(" "),"loading"===t.itemDataStat?a("div",{staticClass:"card card-body"},[a("h4",[t._v("Mohon tunggu...")]),t._v(" "),t._m(12)]):"success"===t.itemDataStat?a("div",[a("div",{staticClass:"row"},[t._l(t.itemData.data,(function(e,a){return t._t("item-mobile",null,{item:e,index:a})}))],2),t._v(" "),0==t.itemData.data.length?a("div",[t._m(13)]):t._e()]):"fail"===t.itemDataStat?a("div",{staticClass:"card card-body"},[a("h4",[t._v("Oops.. Terjadi kesalahan, silahkan coba lagi.")])]):t._e(),t._v(" "),a("div",{staticClass:"card card-body"},[a("div",{staticClass:"row pre-scrollable"},[a("div",{staticClass:"col-md-4 pt-2"},["success"===t.itemDataStat?a("div",{staticClass:"d-none d-sm-block"},[t._v("Menampilkan "+t._s(t.itemData.from)+" -\n              "+t._s(t.itemData.to)+" entri dari "+t._s(t.itemData.total)+" entri\n            ")]):t._e(),t._v(" "),"success"===t.itemDataStat?a("div",{staticClass:"d-block d-sm-none text-center"},[t._v("Menampilkan "+t._s(t.itemData.from)+" -\n              "+t._s(t.itemData.to)+" entri dari "+t._s(t.itemData.total)+" entri\n            ")]):a("div",[t._v("Menampilkan\n              "),a("i",{staticClass:"icon-spinner2 spinner"}),t._v(" -\n              "),a("i",{staticClass:"icon-spinner2 spinner"}),t._v(" entri dari\n              "),a("i",{staticClass:"icon-spinner2 spinner"}),t._v(" entri\n            ")])]),t._v(" "),a("div",{staticClass:"col-md-8 pt-2 text-right d-none d-sm-block"},["success"===t.itemDataStat?a("div",{staticClass:"btn-group"},[a("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.prev_page_url},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.goToPage(1)}}},[a("i",{staticClass:"icon-backward2"})]),t._v(" "),a("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.prev_page_url},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.prevPage.apply(null,arguments)}}},[a("i",{staticClass:"icon-arrow-left5"})]),t._v(" "),t._l(t.pages,(function(e){return a("button",{staticClass:"btn",class:{"btn-primary":t.query.page==e,"btn-light":t.query.page!=e},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.goToPage(e)}}},[t._v("\n                "+t._s(e)+"\n            ")])})),t._v(" "),a("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.next_page_url},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.nextPage.apply(null,arguments)}}},[a("i",{staticClass:"icon-arrow-right5"})]),t._v(" "),a("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.next_page_url},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.goToPage(t.itemData.last_page)}}},[a("i",{staticClass:"icon-forward3"})])],2):a("div",{staticClass:"btn-group"},[t._m(14),t._v(" "),t._m(15),t._v(" "),t._m(16),t._v(" "),t._m(17),t._v(" "),t._m(18)])]),t._v(" "),a("div",{staticClass:"col-md-12 pt-2 text-center d-block d-sm-none"},["success"===t.itemDataStat?a("div",{staticClass:"btn-group"},t._l(t.pages,(function(e){return a("button",{staticClass:"btn",class:{"btn-primary":t.query.page==e,"btn-light":t.query.page!=e},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.goToPage(e)}}},[t._v("\n                "+t._s(e)+"\n            ")])})),0):t._e(),t._v(" "),a("br"),t._v(" "),"success"===t.itemDataStat?a("div",{staticClass:"btn-group pt-2"},[a("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.prev_page_url},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.goToPage(1)}}},[a("i",{staticClass:"icon-backward2"})]),t._v(" "),a("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.prev_page_url},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.prevPage.apply(null,arguments)}}},[a("i",{staticClass:"icon-arrow-left5"})]),t._v(" "),a("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.next_page_url},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.nextPage.apply(null,arguments)}}},[a("i",{staticClass:"icon-arrow-right5"})]),t._v(" "),a("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.next_page_url},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.goToPage(t.itemData.last_page)}}},[a("i",{staticClass:"icon-forward3"})])]):a("div",{staticClass:"btn-group"},[t._m(19),t._v(" "),t._m(20),t._v(" "),t._m(21),t._v(" "),t._m(22),t._v(" "),t._m(23)])])])])]):t._e(),t._v(" "),a("app-modal",{attrs:{show:t.modalShow,state:t.modalState,title:t.modalTitle,content:t.modalContent},on:{batal:t.modalTutup,tutup:t.modalTutup,successOk:t.modalTutup,failOk:t.modalTutup,backgroundClick:t.modalTutup}},[a("div",{attrs:{slot:"modal-body1"},slot:"modal-body1"},["column"===t.modalOptionState?a("div",[a("h2",{staticClass:"text-center"},[t._v("Kolom yang ditampilkan")]),t._v(" "),a("hr"),t._v(" "),a("button",{staticClass:"btn btn-light btn-block",on:{click:function(e){return e.preventDefault(),t.showAllColumn.apply(null,arguments)}}},[t._v("Semua kolom")]),t._v(" "),t._t("button-kolom"),t._v(" "),a("hr"),t._v(" "),t._l(t.columnData,(function(e,s){return null==e.hide||e.disable?t._e():a("button",{staticClass:"btn btn-block",class:{"btn-primary":!e.hide},on:{click:function(e){return e.preventDefault(),t.hideColumn(s)}}},[t._v(t._s(e.title))])})),t._v(" "),a("hr"),t._v(" "),a("button",{staticClass:"btn btn-light btn-block",on:{click:function(e){return e.preventDefault(),t.modalTutup.apply(null,arguments)}}},[a("i",{staticClass:"icon-cross"}),t._v(" Tutup")])],2):"excel"===t.modalOptionState?a("div",[a("h2",{staticClass:"text-center"},[t._v("Excel")]),t._v(" "),a("hr"),t._v(" "),a("button",{staticClass:"btn btn-light btn-block",on:{click:function(e){return e.preventDefault(),t.modalExcelOpen("excel")}}},[a("i",{staticClass:"icon-folder-download2"}),t._v(" Download data di tabel")]),t._v(" "),a("button",{staticClass:"btn btn-light btn-block",on:{click:function(e){return e.preventDefault(),t.modalExcelOpen("excelAll")}}},[a("i",{staticClass:"icon-folder-download2"}),t._v(" Download semua data")]),t._v(" "),a("hr"),t._v(" "),t._l(t.excelUploads,(function(e,s){return e.enabled?a("button",{staticClass:"btn btn-light btn-block",on:{click:function(e){return e.preventDefault(),t.modalExcelUploadOpen(s)}}},[a("i",{staticClass:"icon-file-upload"}),t._v(" "+t._s(e.button))]):t._e()})),t._v(" "),t.excelUploads?a("hr"):t._e(),t._v(" "),a("button",{staticClass:"btn btn-light btn-block",on:{click:function(e){return e.preventDefault(),t.modalTutup.apply(null,arguments)}}},[a("i",{staticClass:"icon-cross"}),t._v(" Tutup")])],2):t._e()]),t._v(" "),a("div",{staticClass:"text-center",attrs:{slot:"modal-body2"},slot:"modal-body2"},["excel"===t.state?a("div",[a("span",{staticClass:"text-primary"},[a("i",{staticClass:"icon-checkmark-circle2",staticStyle:{"font-size":"5em"}})]),t._v(" "),a("h2",[t._v("Silahkan tekan tombol download")]),t._v(" "),a("button",{staticClass:"btn btn-light",attrs:{type:"button"},on:{click:function(e){return e.preventDefault(),t.modalTutup.apply(null,arguments)}}},[a("i",{staticClass:"icon-cross"}),t._v(" Tutup\n        ")]),t._v(" "),a("json-excel",{staticClass:"btn btn-light",attrs:{data:t.excel.data,exportFields:t.excel.fields,meta:t.excel.meta,title:"Data "+t.title,name:t.title+".xls"}},[a("i",{staticClass:"icon-file-download"}),t._v(" Download data di tabel")])],1):"excelAll"===t.state?a("div",[""===t.excelAllDataStat?a("div",[a("span",{staticClass:"text-warning"},[a("i",{staticClass:"icon-exclamation",staticStyle:{"font-size":"5em"}})]),t._v(" "),a("h2",[t._v("Yakin akan mendownload semua data ke excel?")]),t._v(" "),a("pre",{staticClass:"pre-scrollable text-center",attrs:{id:"stack"}},[t._v("Lama download tergantung pada jumlah data yang ada.")]),t._v(" "),a("br"),t._v(" "),a("button",{staticClass:"btn btn-light",attrs:{type:"button"},on:{click:function(e){return e.preventDefault(),t.modalBatal("excel")}}},[a("i",{staticClass:"icon-arrow-left13"}),t._v(" Batal")]),t._v(" "),a("button",{staticClass:"btn btn-warning",attrs:{type:"button"},on:{click:function(e){return e.preventDefault(),t.modalExcelOk.apply(null,arguments)}}},[a("i",{staticClass:"icon-checkmark5"}),t._v(" Ya, download semua")])]):"success"===t.excelAllDataStat?a("div",[a("span",{staticClass:"text-primary"},[a("i",{staticClass:"icon-checkmark-circle2",staticStyle:{"font-size":"5em"}})]),t._v(" "),a("h2",[t._v("Silahkan tekan tombol download")]),t._v(" "),a("button",{staticClass:"btn btn-light",attrs:{type:"button"},on:{click:function(e){return e.preventDefault(),t.modalTutup.apply(null,arguments)}}},[a("i",{staticClass:"icon-cross"}),t._v(" Tutup\n          ")]),t._v(" "),a("json-excel",{staticClass:"btn btn-light",attrs:{data:t.excelAll.data,exportFields:t.excelAll.fields,meta:t.excelAll.meta,title:"Data "+t.title,name:t.title+".xls"}},[a("i",{staticClass:"icon-folder-download2"}),t._v(" Download Excel")])],1):t._e()]):"upload"===t.state?a("div",[a("h2",[t._v("Silahkan pilih file excel yang ingin diupload kemudian tekan tombol upload")]),t._v(" "),t.excelUploads[t.excelUploadIndex].info?a("div",{staticClass:"alert bg-info alert-styled-left mt-2 pt-1 pb-1"},[a("span",{staticClass:"mb-5 text-semibold"},[a("u",[t._v("Info:")])]),t._v(" "),a("p",{domProps:{innerHTML:t._s(t.excelUploads[t.excelUploadIndex].info)}})]):t._e(),t._v(" "),a("input",{ref:"fileInput",staticClass:"form-control",attrs:{type:"file"},on:{change:function(e){return t.changeUpload(e.target.files)}}}),t._v(" "),a("p",{staticClass:"text-center mt-2"},[t._v("Silahkan menggunakan format ini untuk upload data: "),a("a",{attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.downloadFormatExcel(t.excelUploadIndex)}}},[t._v("format excel")])]),t._v(" "),a("button",{staticClass:"btn btn-light",attrs:{type:"button"},on:{click:function(e){return e.preventDefault(),t.modalBatal("excel")}}},[a("i",{staticClass:"icon-arrow-left13"}),t._v(" Batal\n        ")]),t._v(" "),a("button",{staticClass:"btn btn-light",attrs:{type:"button"},on:{click:function(e){return e.preventDefault(),t.uploadExcel(t.excelUploadIndex)}}},[a("i",{staticClass:"icon-upload"}),t._v(" Upload\n        ")])]):t._e()])])],1)}),[function(){var t=this.$createElement,e=this._self._c||t;return e("div",{staticClass:"header-elements"},[e("div",{staticClass:"list-icons"})])},function(){var t=this.$createElement,e=this._self._c||t;return e("div",{staticClass:"progress"},[e("div",{staticClass:"progress-bar progress-bar-info progress-bar-striped progress-bar-animated",staticStyle:{width:"100%"}},[e("span",{staticClass:"sr-only"},[this._v("100% Complete")])])])},function(){var t=this.$createElement,e=this._self._c||t;return e("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[e("i",{staticClass:"icon-backward2"})])},function(){var t=this.$createElement,e=this._self._c||t;return e("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[e("i",{staticClass:"icon-arrow-left5"})])},function(){var t=this.$createElement,e=this._self._c||t;return e("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[e("i",{staticClass:"icon-spinner2 spinner"})])},function(){var t=this.$createElement,e=this._self._c||t;return e("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[e("i",{staticClass:"icon-arrow-right5"})])},function(){var t=this.$createElement,e=this._self._c||t;return e("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[e("i",{staticClass:"icon-forward3"})])},function(){var t=this.$createElement,e=this._self._c||t;return e("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[e("i",{staticClass:"icon-backward2"})])},function(){var t=this.$createElement,e=this._self._c||t;return e("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[e("i",{staticClass:"icon-arrow-left5"})])},function(){var t=this.$createElement,e=this._self._c||t;return e("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[e("i",{staticClass:"icon-spinner2 spinner"})])},function(){var t=this.$createElement,e=this._self._c||t;return e("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[e("i",{staticClass:"icon-arrow-right5"})])},function(){var t=this.$createElement,e=this._self._c||t;return e("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[e("i",{staticClass:"icon-forward3"})])},function(){var t=this.$createElement,e=this._self._c||t;return e("div",{staticClass:"progress"},[e("div",{staticClass:"progress-bar progress-bar-info progress-bar-striped progress-bar-animated",staticStyle:{width:"100%"}},[e("span",{staticClass:"sr-only"},[this._v("100% Complete")])])])},function(){var t=this.$createElement,e=this._self._c||t;return e("div",{staticClass:"card"},[e("div",{staticClass:"card-body"},[e("h3",[this._v("Belum terdapat data...")])])])},function(){var t=this.$createElement,e=this._self._c||t;return e("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[e("i",{staticClass:"icon-backward2"})])},function(){var t=this.$createElement,e=this._self._c||t;return e("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[e("i",{staticClass:"icon-arrow-left5"})])},function(){var t=this.$createElement,e=this._self._c||t;return e("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[e("i",{staticClass:"icon-spinner2 spinner"})])},function(){var t=this.$createElement,e=this._self._c||t;return e("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[e("i",{staticClass:"icon-arrow-right5"})])},function(){var t=this.$createElement,e=this._self._c||t;return e("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[e("i",{staticClass:"icon-forward3"})])},function(){var t=this.$createElement,e=this._self._c||t;return e("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[e("i",{staticClass:"icon-backward2"})])},function(){var t=this.$createElement,e=this._self._c||t;return e("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[e("i",{staticClass:"icon-arrow-left5"})])},function(){var t=this.$createElement,e=this._self._c||t;return e("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[e("i",{staticClass:"icon-spinner2 spinner"})])},function(){var t=this.$createElement,e=this._self._c||t;return e("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[e("i",{staticClass:"icon-arrow-right5"})])},function(){var t=this.$createElement,e=this._self._c||t;return e("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[e("i",{staticClass:"icon-forward3"})])}],!1,null,null,null);e.a=_.exports}}]);
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[43],{
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/checkValue.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/checkValue.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_truncate_collapsed__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-truncate-collapsed */ "./node_modules/vue-truncate-collapsed/dist/vue-truncate-collapsed.es.js");
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modal */ "./resources/assets/js/components/modal.vue");
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    truncate: vue_truncate_collapsed__WEBPACK_IMPORTED_MODULE_0__["default"],
+    appModal: _modal__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  props: {
+    value: {
+      "default": ""
+    },
+    frontText: {
+      "default": ""
+    },
+    trimLength: {
+      "default": 50
+    },
+    valueType: {
+      "default": "trim"
+    },
+    empty: {
+      "default": "-"
+    }
+  },
+  data: function data() {
+    return {
+      modalShow: false,
+      modalState: "",
+      modalTitle: "",
+      modalContent: "",
+      modalButton: ""
+    };
+  },
+  methods: {
+    modalOpen: function modalOpen() {
+      this.modalShow = true;
+      this.modalState = "content-tutup";
+      this.modalContent = this.value;
+      this.modalButton = "Tutup";
+    },
+    modalTutup: function modalTutup() {
+      this.modalShow = false;
+    },
+    strip: function strip(html) {
+      var tmp = document.createElement("DIV");
+      tmp.innerHTML = html;
+      return tmp.textContent || tmp.innerText || "";
+    }
+  },
+  computed: {
+    isLongEnough: function isLongEnough() {
+      return this.value.length > this.trimLength;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/countWidget.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/countWidget.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['title', 'icon', 'color', 'count']
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _dashboard_newsSlider_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dashboard/newsSlider.vue */ "./resources/assets/js/views/dashboard/newsSlider.vue");
+/* harmony import */ var _dashboard_buttonRow_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dashboard/buttonRow.vue */ "./resources/assets/js/views/dashboard/buttonRow.vue");
+/* harmony import */ var _dashboard_kegiatanBKCUWidget_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dashboard/kegiatanBKCUWidget.vue */ "./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue");
+/* harmony import */ var _dashboard_grafikLaporanCuWidget_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dashboard/grafikLaporanCuWidget.vue */ "./resources/assets/js/views/dashboard/grafikLaporanCuWidget.vue");
+/* harmony import */ var _dashboard_tableLaporanCuWidget_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dashboard/tableLaporanCuWidget.vue */ "./resources/assets/js/views/dashboard/tableLaporanCuWidget.vue");
+/* harmony import */ var _dashboard_historyOrganisasiWidget_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./dashboard/historyOrganisasiWidget.vue */ "./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue");
+/* harmony import */ var _dashboard_countOrganisasiWidget_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./dashboard/countOrganisasiWidget.vue */ "./resources/assets/js/views/dashboard/countOrganisasiWidget.vue");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
+
+
+
+// import pesertaDiklatBkcuWidget from './dashboard/pesertaDiklatBKCUWidget.vue';
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    newsSlider: _dashboard_newsSlider_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    buttonRow: _dashboard_buttonRow_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    kegiatanBkcuWidget: _dashboard_kegiatanBKCUWidget_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    // pesertaDiklatBkcuWidget,
+    grafikLaporanCuWidget: _dashboard_grafikLaporanCuWidget_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    tableLaporanCuWidget: _dashboard_tableLaporanCuWidget_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    historyOrganisasiWidget: _dashboard_historyOrganisasiWidget_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    countOrganisasiWidget: _dashboard_countOrganisasiWidget_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+    currentUser: 'currentUser'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('laporanCu', {
+    columnData: 'columnData',
+    columnDataPearls: 'columnDataPearls'
+  }))
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_countWidget__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/countWidget */ "./resources/assets/js/components/countWidget.vue");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    countWidget: _components_countWidget__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    var _ref;
+    return _ref = {
+      kegiatanBKCUJalanWidgetRoute: {},
+      kegiatanBKCUDiikutiWidgetRoute: {},
+      profileWidgetRoute: {},
+      artikelWidgetRoute: {},
+      artikelKategoriWidgetRoute: {},
+      artikelPenulisWidgetRoute: {},
+      pengumumanWidgetRoute: {},
+      diklatBKCUWidgetRoute: {},
+      pertemuanBKCUWidgetRoute: {},
+      anggotaCuWidgetRoute: {},
+      saldoWidgetRoute: {},
+      jalinanKlaimWidgetRoute: {},
+      cuWidgetRoute: {},
+      tpWidgetRoute: {},
+      produkCuWidgetRoute: {},
+      aktivisWidgetRoute: {},
+      pemilihanWidgetRoute: {},
+      votingWidgetRoute: {}
+    }, _defineProperty(_ref, "produkCuWidgetRoute", {}), _defineProperty(_ref, "mitraPerseoranganWidgetRoute", {}), _defineProperty(_ref, "mitraLembagaWidgetRoute", {}), _defineProperty(_ref, "userWidgetRoute", {}), _defineProperty(_ref, "laporanCUWidgetRoute", {}), _defineProperty(_ref, "laporanGerakanWidgetRoute", {}), _defineProperty(_ref, "assesmentAccessWidgetRoute", {}), _defineProperty(_ref, "monitoringAccessWidgetRoute", {}), _defineProperty(_ref, "dokumenGerakanPublikWidgetRoute", {}), _defineProperty(_ref, "dokumenWidgetRoute", {}), _defineProperty(_ref, "suratKeluarWidgetRoute", {}), _defineProperty(_ref, "suratMasukWidgetRoute", {}), _defineProperty(_ref, "asetTetapWidgetRoute", {}), _ref;
+  },
+  created: function created() {
+    this.countWidgetRoute();
+    this.fetchKegiatan();
+  },
+  methods: {
+    countWidgetRoute: function countWidgetRoute() {
+      this.profileWidgetRoute = {
+        name: 'profile',
+        params: {
+          id: this.currentUser.id
+        }
+      };
+      this.artikelWidgetRoute = {
+        name: 'artikelCu',
+        params: {
+          cu: this.currentUser.id_cu
+        }
+      };
+      this.artikelPenulisWidgetRoute = {
+        name: 'artikelPenulisCu',
+        params: {
+          cu: this.currentUser.id_cu
+        }
+      };
+      this.artikelKategoriWidgetRoute = {
+        name: 'artikelKategoriCu',
+        params: {
+          cu: this.currentUser.id_cu
+        }
+      };
+      this.pengumumanWidgetRoute = {
+        name: 'pengumumanCu',
+        params: {
+          cu: this.currentUser.id_cu
+        }
+      };
+      this.diklatBKCUWidgetRoute = {
+        name: 'kegiatanBKCU',
+        params: {
+          tipe: 'diklat_bkcu',
+          periode: this.momentYear()
+        }
+      };
+      this.pertemuanBKCUWidgetRoute = {
+        name: 'kegiatanBKCU',
+        params: {
+          tipe: 'pertemuan_bkcu',
+          periode: this.momentYear()
+        }
+      };
+      this.saldoWidgetRoute = {
+        name: 'saldo'
+      };
+      this.aktivisWidgetRoute = {
+        name: 'aktivisCu',
+        params: {
+          cu: this.currentUser.id_cu,
+          tingkat: 'semua'
+        }
+      };
+      this.laporanGerakanWidgetRoute = {
+        name: 'laporanGerakan'
+      };
+      this.mitraPerseoranganWidgetRoute = {
+        name: 'mitraOrang'
+      };
+      this.mitraLembagaWidgetRoute = {
+        name: 'mitraLembaga'
+      };
+      this.userWidgetRoute = {
+        name: 'userCu',
+        params: {
+          cu: this.currentUser.id_cu
+        }
+      };
+      this.kegiatanBKCUJalanWidgetRoute = {
+        name: 'kegiatanBKCUJalan'
+      };
+      this.kegiatanBKCUDiikutiWidgetRoute = {
+        name: 'kegiatanBKCUDiikuti'
+      };
+      this.dokumenGerakanPublikWidgetRoute = {
+        name: 'dokumenGerakanPublik',
+        params: {
+          cu: 'semua'
+        }
+      };
+      this.suratKeluarWidgetRoute = {
+        name: 'suratCu',
+        params: {
+          cu: this.currentUser.id_cu,
+          tipe: 'semua',
+          periode: this.momentYear()
+        }
+      };
+      this.suratMasukWidgetRoute = {
+        name: 'suratMasukCu',
+        params: {
+          cu: this.currentUser.id_cu,
+          periode: this.momentYear()
+        }
+      };
+      if (this.currentUser.id_cu != 0) {
+        this.anggotaCuWidgetRoute = {
+          name: 'anggotaCuCu',
+          params: {
+            cu: this.currentUser.id_cu,
+            tp: 'semua'
+          }
+        };
+        this.jalinanKlaimWidgetRoute = {
+          name: 'jalinanKlaimCu',
+          params: {
+            cu: this.currentUser.id_cu,
+            tp: 'semua'
+          }
+        };
+        this.cuWidgetRoute = {
+          name: 'cuProfile',
+          params: {
+            id: this.currentUser.id_cu
+          }
+        };
+        this.tpWidgetRoute = {
+          name: 'tpCu',
+          params: {
+            cu: this.currentUser.id_cu
+          }
+        };
+        this.produkCuWidgetRoute = {
+          name: 'produkCuCu',
+          params: {
+            cu: this.currentUser.id_cu
+          }
+        };
+        this.pemilihanWidgetRoute = {
+          name: 'pemilihan',
+          params: {
+            cu: this.currentUser.id_cu
+          }
+        };
+        this.votingWidgetRoute = {
+          name: 'voting',
+          params: {
+            cu: this.currentUser.id_cu
+          }
+        };
+        this.laporanCUWidgetRoute = {
+          name: 'laporanCuCu',
+          params: {
+            cu: this.currentUser.id_cu,
+            tp: 'konsolidasi'
+          }
+        };
+        this.assesmentAccessWidgetRoute = {
+          name: 'assesmentAccessCu',
+          params: {
+            cu: this.currentUser.id_cu
+          }
+        };
+        this.monitoringWidgetRoute = {
+          name: 'monitoringCu',
+          params: {
+            cu: this.currentUser.id_cu,
+            tp: 'semua'
+          }
+        };
+        this.dokumenWidgetRoute = {
+          name: 'dokumenCu',
+          params: {
+            cu: this.currentUser.id_cu
+          }
+        };
+      } else {
+        this.tempatWidgetRoute = {
+          name: 'tempat'
+        };
+        this.anggotaCuWidgetRoute = {
+          name: 'anggotaCuCu',
+          params: {
+            cu: 'semua',
+            tp: 'semua'
+          }
+        };
+        this.jalinanKlaimWidgetRoute = {
+          name: 'jalinanKlaimCu',
+          params: {
+            cu: 'semua',
+            tp: 'semua'
+          }
+        };
+        this.cuWidgetRoute = {
+          name: 'cu'
+        };
+        this.tpWidgetRoute = {
+          name: 'tpCu',
+          params: {
+            cu: 'semua'
+          }
+        };
+        this.produkCuWidgetRoute = {
+          name: 'produkCuCu',
+          params: {
+            cu: 'semua'
+          }
+        };
+        this.pemilihanWidgetRoute = {
+          name: 'pemilihan',
+          params: {
+            cu: 'semua'
+          }
+        };
+        this.votingWidgetRoute = {
+          name: 'voting',
+          params: {
+            cu: 'semua'
+          }
+        };
+        this.laporanCUWidgetRoute = {
+          name: 'laporanCu'
+        };
+        this.assesmentAccessWidgetRoute = {
+          name: 'assesmentAccessCu',
+          params: {
+            cu: 'semua'
+          }
+        };
+        this.monitoringWidgetRoute = {
+          name: 'monitoringCu',
+          params: {
+            cu: 'semua',
+            tp: 'semua'
+          }
+        };
+        this.dokumenWidgetRoute = {
+          name: 'dokumenCu',
+          params: {
+            cu: 'semua'
+          }
+        };
+        this.asetTetapWidgetRoute = {
+          name: 'asetTetap'
+        };
+      }
+    },
+    goTo: function goTo(route) {
+      this.$router.push(route);
+    },
+    fetchKegiatan: function fetchKegiatan() {
+      this.$store.dispatch('kegiatanBKCU/countJalan');
+      this.$store.dispatch('kegiatanBKCU/countDiikuti');
+    },
+    momentYear: function momentYear() {
+      return moment().year();
+    }
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+    currentUser: 'currentUser'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('kegiatanBKCU', {
+    countJalan: 'count',
+    countJalanStat: 'countStat',
+    countDiikuti: 'count2',
+    countDiikutiStat: 'countStat2'
+  }))
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
+/* harmony import */ var _api_system_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api/system.js */ "./resources/assets/js/api/system.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      kelas: 'sistem',
+      countCu: '',
+      countTp: '',
+      countProdukCu: '',
+      countAktivis: '',
+      countMitraOrang: '',
+      countMitraLembaga: '',
+      itemData: '',
+      itemDataStat: ''
+    };
+  },
+  created: function created() {
+    this.fetch();
+  },
+  methods: {
+    fetch: function fetch() {
+      var _this = this;
+      this.itemdataStat = 'loading';
+      _api_system_js__WEBPACK_IMPORTED_MODULE_2__["default"].countOrganisasi().then(function (response) {
+        _this.countCu = response.data.countCu;
+        _this.countTp = response.data.countTp;
+        _this.countProdukCu = response.data.countProdukCu;
+        _this.countAktivis = response.data.countAktivis;
+        _this.countMitraOrang = response.data.countMitraOrang;
+        _this.countMitraLembaga = response.data.countMitraLembaga;
+        _this.itemdataStat = 'success';
+      })["catch"](function (error) {
+        _this.itemdata = error.response;
+        _this.itemdataStat = 'fail';
+      });
+    },
+    detail: function detail(value) {
+      var id = this.currentUser.id_cu;
+      if (value == 'cu') {
+        if (this.currentUser.can['index_cu']) {
+          this.$router.push({
+            name: 'cu'
+          });
+        }
+      } else if (value == 'tp') {
+        if (this.currentUser.can['index_tp']) {
+          this.$router.push({
+            name: 'tpCu',
+            params: {
+              cu: id
+            }
+          });
+        }
+      } else if (value == 'produkCu') {
+        if (this.currentUser.can['index_produk_cu']) {
+          this.$router.push({
+            name: 'produkCuCu',
+            params: {
+              cu: id
+            }
+          });
+        }
+      } else if (value == 'aktivis') {
+        if (this.currentUser.can['index_aktivis']) {
+          this.$router.push({
+            name: 'aktivisCu',
+            params: {
+              cu: id
+            }
+          });
+        }
+      } else if (value == 'mitra_orang') {
+        if (this.currentUser.can['index_mitra_orang']) {
+          this.$router.push({
+            name: 'mitraOrang'
+          });
+        }
+      } else if (value == 'mitra_lembaga') {
+        if (this.currentUser.can['index_mitra_lembaga']) {
+          this.$router.push({
+            name: 'mitraLembaga'
+          });
+        }
+      }
+    }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+    currentUser: 'currentUser'
+  }))
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
+/* harmony import */ var _api_cu_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api/cu.js */ "./resources/assets/js/api/cu.js");
+/* harmony import */ var _api_tp_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../api/tp.js */ "./resources/assets/js/api/tp.js");
+/* harmony import */ var _api_produkCu_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../api/produkCu.js */ "./resources/assets/js/api/produkCu.js");
+/* harmony import */ var _api_aktivis_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../api/aktivis.js */ "./resources/assets/js/api/aktivis.js");
+/* harmony import */ var _api_mitraOrang_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../api/mitraOrang.js */ "./resources/assets/js/api/mitraOrang.js");
+/* harmony import */ var _api_mitraLembaga_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../api/mitraLembaga.js */ "./resources/assets/js/api/mitraLembaga.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      kelas: 'diklatBKCU',
+      selectedItemBaru: [],
+      selectedItemMulai: [],
+      selectedItemBuka: [],
+      selectedItemJalan: [],
+      tabName: 'cu',
+      isTp: false,
+      isProdukCu: false,
+      isAktivis: false,
+      isMitraOrang: false,
+      isMitraLembaga: false,
+      itemCu: [],
+      itemTp: [],
+      itemProdukCu: [],
+      itemAktivis: [],
+      itemMitraOrang: [],
+      itemMitraLembaga: [],
+      countCu: '',
+      countTp: '',
+      countProdukCu: '',
+      countAktivis: '',
+      countMitraOrang: '',
+      countMitraLembaga: '',
+      itemCuStat: '',
+      itemTpStat: '',
+      itemProdukCuStat: '',
+      itemAktivisStat: '',
+      itemMitraOrangStat: '',
+      itemMitraLembagaStat: ''
+    };
+  },
+  created: function created() {
+    if (this.currentUser.can['index_cu']) {
+      this.tabName = 'cu';
+      this.fetchCu();
+    } else if (this.currentUser.can['index_tp']) {
+      this.tabName = 'tp';
+      this.isTp = true;
+      this.fetchTp();
+    } else if (this.currentUser.can['index_produk_cu']) {
+      this.tabName = 'produk_cu';
+      this.isProdukCu = true;
+      this.fetchProdukCu();
+    } else if (this.currentUser.can['index_aktivis']) {
+      this.tabName = 'aktivis';
+      this.isAktivis = true;
+      this.fetchAktivis();
+    } else if (this.currentUser.can['index_mitra_orang']) {
+      this.tabName = 'mitra_orang';
+      this.isMitraOrang = true;
+      this.fetchMitraOrang();
+    } else if (this.currentUser.can['index_mitra_lembaga']) {
+      this.tabName = 'mitra_lembaga';
+      this.isMitraLembaga = true;
+      this.fetchMitraLembaga();
+    }
+  },
+  methods: {
+    fetchCu: function fetchCu() {
+      var _this = this;
+      this.itemCuStat = 'loading';
+      _api_cu_js__WEBPACK_IMPORTED_MODULE_2__["default"].history().then(function (response) {
+        _this.itemCu = response.data.model;
+        _this.itemCuStat = 'success';
+      })["catch"](function (error) {
+        _this.itemCu = error.response;
+        _this.itemCuStat = 'fail';
+      });
+    },
+    fetchTp: function fetchTp() {
+      var _this2 = this;
+      this.itemTpStat = 'loading';
+      _api_tp_js__WEBPACK_IMPORTED_MODULE_3__["default"].history().then(function (response) {
+        _this2.itemTp = response.data.model;
+        _this2.itemTpStat = 'success';
+      })["catch"](function (error) {
+        _this2.itemTp = error.response;
+        _this2.itemTpStat = 'fail';
+      });
+    },
+    fetchProdukCu: function fetchProdukCu() {
+      var _this3 = this;
+      this.itemProdukCuStat = 'loading';
+      _api_produkCu_js__WEBPACK_IMPORTED_MODULE_4__["default"].history().then(function (response) {
+        _this3.itemProdukCu = response.data.model;
+        _this3.itemProdukCuStat = 'success';
+      })["catch"](function (error) {
+        _this3.itemProdukCu = error.response;
+        _this3.itemProdukCuStat = 'fail';
+      });
+    },
+    fetchAktivis: function fetchAktivis() {
+      var _this4 = this;
+      this.itemAktivisStat = 'loading';
+      _api_aktivis_js__WEBPACK_IMPORTED_MODULE_5__["default"].history().then(function (response) {
+        _this4.itemAktivis = response.data.model;
+        _this4.itemAktivisStat = 'success';
+      })["catch"](function (error) {
+        _this4.itemAktivis = error.response;
+        _this4.itemAktivisStat = 'fail';
+      });
+    },
+    fetchMitraOrang: function fetchMitraOrang() {
+      var _this5 = this;
+      this.itemMitraOrangStat = 'loading';
+      _api_mitraOrang_js__WEBPACK_IMPORTED_MODULE_6__["default"].history().then(function (response) {
+        _this5.itemMitraOrang = response.data.model;
+        _this5.itemMitraOrangStat = 'success';
+      })["catch"](function (error) {
+        _this5.itemMitraOrang = error.response;
+        _this5.itemMitraOrangStat = 'fail';
+      });
+    },
+    fetchMitraLembaga: function fetchMitraLembaga() {
+      var _this6 = this;
+      this.itemMitraLembagaStat = 'loading';
+      _api_mitraLembaga_js__WEBPACK_IMPORTED_MODULE_7__["default"].history().then(function (response) {
+        _this6.itemMitraLembaga = response.data.model;
+        _this6.itemMitraLembagaStat = 'success';
+      })["catch"](function (error) {
+        _this6.itemMitraLembaga = error.response;
+        _this6.itemMitraLembagaStat = 'fail';
+      });
+    },
+    changeTab: function changeTab(value) {
+      this.tabName = value;
+      if (value == 'tp' && !this.isTp) {
+        this.isTp = true;
+        this.fetchTp();
+      } else if (value == 'produk_cu' && !this.isProdukCu) {
+        this.isProdukCu = true;
+        this.fetchProdukCu();
+      } else if (value == 'aktivis' && !this.isAktivis) {
+        this.isAktivis = true;
+        this.fetchAktivis();
+      } else if (value == 'mitra_orang' && !this.isMitraOrang) {
+        this.isMitraOrang = true;
+        this.fetchMitraOrang();
+      } else if (value == 'mitra_lembaga' && !this.isMitraLembaga) {
+        this.isMitraLembaga = true;
+        this.fetchMitraLembaga();
+      }
+    },
+    detail: function detail(value, id) {
+      if (value == 'cu') {
+        if (this.currentUser.can['update_cu']) {
+          this.$router.push({
+            name: 'cuEdit',
+            params: {
+              id: id
+            }
+          });
+        }
+      } else if (value == 'tp') {
+        if (this.currentUser.can['update_tp']) {
+          this.$router.push({
+            name: 'tpEdit',
+            params: {
+              id: id
+            }
+          });
+        }
+      } else if (value == 'produkCu') {
+        if (this.currentUser.can['update_produk_cu']) {
+          this.$router.push({
+            name: 'produkCuEdit',
+            params: {
+              id: id
+            }
+          });
+        }
+      } else if (value == 'aktivis') {
+        if (this.currentUser.can['update_aktivis']) {
+          this.$router.push({
+            name: 'aktivisEdit',
+            params: {
+              id: id
+            }
+          });
+        }
+      } else if (value == 'mitra_orang') {
+        if (this.currentUser.can['update_mitra_orang']) {
+          this.$router.push({
+            name: 'mitraOrangEdit',
+            params: {
+              id: id
+            }
+          });
+        }
+      } else if (value == 'mitra_lembaga') {
+        if (this.currentUser.can['update_mitra_lembaga']) {
+          this.$router.push({
+            name: 'mitraLembagaEdit',
+            params: {
+              id: id
+            }
+          });
+        }
+      }
+    }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+    currentUser: 'currentUser'
+  }))
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
+/* harmony import */ var _api_kegiatanBKCU_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api/kegiatanBKCU.js */ "./resources/assets/js/api/kegiatanBKCU.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      kelas: 'kegiatanBKCU',
+      selectedItemBaru: [],
+      selectedItemMulai: [],
+      selectedItemBuka: [],
+      selectedItemJalan: [],
+      tabName: 'baru',
+      isMulai: false,
+      isBuka: false,
+      isJalan: false,
+      itemBaru: [],
+      itemMulai: [],
+      itemBuka: [],
+      itemJalan: [],
+      countBaru: '',
+      countMulai: '',
+      countBuka: '',
+      countJalan: '',
+      itemBaruStat: '',
+      itemMulaiStat: '',
+      itemBukaStat: '',
+      itemJalanStat: ''
+    };
+  },
+  created: function created() {
+    this.fetchBaru();
+  },
+  methods: {
+    fetchBaru: function fetchBaru() {
+      var _this = this;
+      this.itemBaruStat = 'loading';
+      _api_kegiatanBKCU_js__WEBPACK_IMPORTED_MODULE_2__["default"].indexBaru().then(function (response) {
+        _this.itemBaru = response.data.model;
+        _this.countBaru = response.data.model.length;
+        _this.countMulai = response.data.countMulai;
+        _this.countBuka = response.data.countBuka;
+        _this.countJalan = response.data.countJalan;
+        _this.itemBaruStat = 'success';
+      })["catch"](function (error) {
+        _this.itemBaru = error.response;
+        _this.itemBaruStat = 'fail';
+      });
+    },
+    fetchMulai: function fetchMulai() {
+      var _this2 = this;
+      this.itemMulaiStat = 'loading';
+      _api_kegiatanBKCU_js__WEBPACK_IMPORTED_MODULE_2__["default"].indexMulai().then(function (response) {
+        _this2.itemMulai = response.data.model;
+        _this2.itemMulaiStat = 'success';
+      })["catch"](function (error) {
+        _this2.itemMulai = error.response;
+        _this2.itemMulaiStat = 'fail';
+      });
+    },
+    fetchBuka: function fetchBuka() {
+      var _this3 = this;
+      this.itemBukaStat = 'loading';
+      _api_kegiatanBKCU_js__WEBPACK_IMPORTED_MODULE_2__["default"].indexBuka().then(function (response) {
+        _this3.itemBuka = response.data.model;
+        _this3.itemBukaStat = 'success';
+      })["catch"](function (error) {
+        _this3.itemBuka = error.response;
+        _this3.itemBukaStat = 'fail';
+      });
+    },
+    fetchJalan: function fetchJalan() {
+      var _this4 = this;
+      var query = {
+        order_column: "mulai",
+        order_direction: "asc",
+        filter_match: "and",
+        limit: 6,
+        page: 1
+      };
+      this.itemJalanStat = 'loading';
+      _api_kegiatanBKCU_js__WEBPACK_IMPORTED_MODULE_2__["default"].indexJalan(query).then(function (response) {
+        _this4.itemJalan = response.data.model;
+        _this4.itemJalanStat = 'success';
+      })["catch"](function (error) {
+        _this4.itemJalan = error.response;
+        _this4.itemJalanStat = 'fail';
+      });
+    },
+    changeTab: function changeTab(value) {
+      this.tabName = value;
+      this.selectedItemBaru = [];
+      this.selectedItemMulai = [];
+      this.selectedItemBuka = [];
+      this.selectedItemJalan = [];
+      if (value == 'mulai' && !this.isMulai) {
+        this.isMulai = true;
+        this.fetchMulai();
+      } else if (value == 'buka' && !this.isBuka) {
+        this.isBuka = true;
+        this.fetchBuka();
+      } else if (value == 'jalan' && !this.isJalan) {
+        this.isJalan = true;
+        this.fetchJalan();
+      }
+    },
+    selectedRowBaru: function selectedRowBaru(item) {
+      this.selectedItemBaru = item;
+    },
+    selectedRowMulai: function selectedRowMulai(item) {
+      this.selectedItemMulai = item;
+    },
+    selectedRowBuka: function selectedRowBuka(item) {
+      this.selectedItemBuka = item;
+    },
+    selectedRowJalan: function selectedRowJalan(item) {
+      this.selectedItemJalan = item;
+    },
+    detail: function detail(id) {
+      this.$router.push({
+        name: this.kelas + 'Detail',
+        params: {
+          id: id
+        }
+      });
+    },
+    // goToDiklatBKCU(){
+    // 	this.$router.push({ name: 'kegiatanBKCU', params:{periode: this.momentYear()} });
+    // },
+    momentYear: function momentYear() {
+      return moment().year();
+    }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+    currentUser: 'currentUser'
+  }))
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var hooper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! hooper */ "./node_modules/hooper/dist/hooper.esm.js");
+/* harmony import */ var hooper_dist_hooper_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! hooper/dist/hooper.css */ "./node_modules/hooper/dist/hooper.css");
+/* harmony import */ var hooper_dist_hooper_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(hooper_dist_hooper_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _api_cu__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../api/cu */ "./resources/assets/js/api/cu.js");
+/* harmony import */ var _api_artikelSimo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../api/artikelSimo */ "./resources/assets/js/api/artikelSimo.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Hooper: hooper__WEBPACK_IMPORTED_MODULE_1__["Hooper"],
+    Slide: hooper__WEBPACK_IMPORTED_MODULE_1__["Slide"],
+    HooperNavigation: hooper__WEBPACK_IMPORTED_MODULE_1__["Navigation"],
+    HooperPagination: hooper__WEBPACK_IMPORTED_MODULE_1__["Pagination"]
+  },
+  data: function data() {
+    return {
+      birthdayData: [],
+      birthdayDataStat: '',
+      newsData: [],
+      newsDataStat: '',
+      slideData: [],
+      sliderItem: [{
+        name: 'welcome',
+        title: 'Selamat Datang Di SIMO',
+        content: '<h5 class="d-none d-md-block">Sistem Informasi Manajemen Organisasi yang menyimpan dan mengolah data CU dalam gerakan PUSKOPCUINA.</h5> Baru pertama kali masuk ke SIMO? <br/>agar tidak bingung silahkan membaca panduan terlebih dahulu',
+        isButton: true,
+        buttonUrl: 'https://puskopcuina.org/panduan',
+        buttonTitle: '<i class="icon-book mr-2"></i>Panduan',
+        style: {
+          'background-image': 'url("/images/welcomeSIMO.png")',
+          'background-position': 'center',
+          'background-repeat': 'no-repeat',
+          'background-size': 'cover',
+          'color': '#FFFFFF'
+        }
+      }]
+    };
+  },
+  created: function created() {
+    this.getBirthday();
+  },
+  watch: {
+    birthdayDataStat: function birthdayDataStat(value) {
+      if (value == 'success') {
+        if (this.birthdayData.length > 0) {
+          var item = {
+            name: 'birthday',
+            title: 'Selamat Ulang Tahun Kepada',
+            content: 'Semoga semakin maju berkembang dan bertumbuh bersama anggota',
+            cu: [],
+            style: {
+              'background-image': 'url("/images/birthday.jpg")',
+              'background-position': 'center',
+              'background-repeat': 'no-repeat',
+              'background-size': 'cover',
+              'color': '#FFFFFF'
+            }
+          };
+          item.cu = this.birthdayData;
+          this.sliderItem.push(item);
+        }
+        this.getNews();
+      }
+    },
+    newsDataStat: function newsDataStat(value) {
+      if (value == 'success') {
+        var valData;
+        var _iterator = _createForOfIteratorHelper(this.newsData),
+          _step;
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            valData = _step.value;
+            this.addNewsSlide(valData.name, valData.ringkasan, valData.gambar);
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+      }
+    }
+  },
+  methods: {
+    getBirthday: function getBirthday() {
+      var _this = this;
+      this.birthdayDataStat = 'loading';
+      _api_cu__WEBPACK_IMPORTED_MODULE_3__["default"].getBirthday().then(function (response) {
+        _this.birthdayData = response.data.model;
+        _this.birthdayDataStat = 'success';
+      })["catch"](function (error) {
+        _this.birthdayData = error.response;
+        _this.birthdayDataStat = 'fail';
+      });
+    },
+    getNews: function getNews() {
+      var _this2 = this;
+      this.newsDataStat = 'loading';
+      _api_artikelSimo__WEBPACK_IMPORTED_MODULE_4__["default"].get().then(function (response) {
+        _this2.newsData = response.data.model;
+        _this2.newsDataStat = 'success';
+      })["catch"](function (error) {
+        _this2.newsData = error.response;
+        _this2.newsDataStat = 'fail';
+      });
+    },
+    addNewsSlide: function addNewsSlide(title, content, image) {
+      var item = {
+        name: 'news',
+        title: title,
+        content: content,
+        style: {
+          'background-image': 'url("/images/artikel_simo/' + image + '.jpg")',
+          'background-position': 'center',
+          'background-repeat': 'no-repeat',
+          'background-size': 'cover'
+        }
+      };
+      this.sliderItem.push(item);
+    }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+    currentUser: 'currentUser'
+  }))
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/checkValue.vue?vue&type=template&id=56ee5620&":
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/checkValue.vue?vue&type=template&id=56ee5620& ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticStyle: {
+      display: "inline-block"
+    }
+  }, [_vm.value ? _c("span", {
+    staticStyle: {
+      display: "inline-block"
+    }
+  }, [_vm.valueType == "trim" ? _c("span", {
+    staticStyle: {
+      display: "inline-block"
+    }
+  }, [_c("truncate", {
+    staticStyle: {
+      display: "inline-block"
+    },
+    attrs: {
+      "action-class": "badge bg-blue",
+      clamp: "selengkapnya >",
+      length: _vm.trimLength,
+      less: "< kembali",
+      text: _vm.frontText + " " + _vm.value
+    }
+  })], 1) : _vm.valueType == "modal" ? _c("span", {
+    staticStyle: {
+      display: "inline-block"
+    }
+  }, [_vm._v("\n      " + _vm._s(_vm.value.substring(0, 50)) + "\n      "), _vm.isLongEnough ? [_vm._v("\n        ...\n        "), _c("button", {
+    staticClass: "btn btn-light",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.modalOpen();
+      }
+    }
+  }, [_vm._v("\n          Lihat\n        ")])] : _vm._e()], 2) : _vm.valueType == "currency" ? _c("span", {
+    staticStyle: {
+      display: "inline-block"
+    }
+  }, [_vm._v(_vm._s(_vm.frontText) + "\n      " + _vm._s(_vm._f("currency")(_vm.value, "", 0, {
+    thousandsSeparator: "."
+  })))]) : _vm.valueType == "percentage" ? _c("span", {
+    staticStyle: {
+      display: "inline-block"
+    }
+  }, [_vm._v(_vm._s(_vm.frontText) + " " + _vm._s(_vm._f("percentage")(_vm.value, 2)))]) : _vm.valueType == "decimal" ? _c("span", {
+    staticStyle: {
+      display: "inline-block"
+    }
+  }, [_vm._v(_vm._s(_vm.frontText) + " " + _vm._s(_vm._f("round")(_vm.value, 2)))]) : _c("span", {
+    staticStyle: {
+      display: "inline-block"
+    }
+  }, [_c("b", [_vm._v(_vm._s(_vm.frontText))]), _vm._v(" " + _vm._s(_vm.value))])]) : _c("span", {
+    staticStyle: {
+      display: "inline-block"
+    }
+  }, [_vm._v(_vm._s(_vm.frontText) + " " + _vm._s(_vm.empty))]), _vm._v(" "), _c("app-modal", {
+    attrs: {
+      show: _vm.modalShow,
+      state: _vm.modalState,
+      title: _vm.modalTitle,
+      button: _vm.modalButton,
+      content: _vm.modalContent
+    },
+    on: {
+      tutup: _vm.modalTutup,
+      backgroundClick: _vm.modalTutup
+    }
+  })], 1);
+};
+var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/countWidget.vue?vue&type=template&id=b9608b28&":
+/*!***************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/countWidget.vue?vue&type=template&id=b9608b28& ***!
+  \***************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "card card-body has-bg-image",
+    "class": _vm.color
+  }, [_c("div", {
+    staticClass: "media"
+  }, [_c("div", {
+    staticClass: "media-body"
+  }, [_vm.count ? _c("h3", {
+    staticClass: "mb-0"
+  }, [_vm._v(_vm._s(_vm.count))]) : _vm._e(), _vm._v(" "), _c("span", {
+    staticClass: "text-uppercase font-size-xs"
+  }, [_vm._v(_vm._s(_vm.title))])]), _vm._v(" "), _c("div", {
+    staticClass: "ml-3 align-self-center"
+  }, [_c("i", {
+    staticClass: "icon-3x opacity-75",
+    "class": _vm.icon
+  })])])]);
+};
+var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard.vue?vue&type=template&id=067b0c71&":
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard.vue?vue&type=template&id=067b0c71& ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", [_c("div", {
+    staticClass: "page-header"
+  }, [_c("div", {
+    staticClass: "page-header-content header-elements-md-inline"
+  }, [_c("div", {
+    staticClass: "page-title d-flex"
+  }, [_c("h4", [_c("i", {
+    staticClass: "icon-screen3 mr-2"
+  }), _vm._v("Halo \r\n\t\t\t\t"), _vm.currentUser.aktivis ? _c("span", {
+    staticClass: "font-weight-semibold"
+  }, [_vm._v(_vm._s(_vm.currentUser.aktivis.name + ","))]) : _c("span", {
+    staticClass: "font-weight-semibold"
+  }, [_vm._v(_vm._s(_vm.currentUser.name + ","))]), _vm._v("\r\n\t\t\t\t Apa kabarnya hari ini?\r\n\t\t\t")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "page-content pt-0"
+  }, [_c("div", {
+    staticClass: "content-wrapper"
+  }, [_c("div", {
+    staticClass: "row align-items-stretch"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("news-slider"), _vm._v(" "), _c("button-row")], 1), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-8"
+  }, [_c("kegiatan-bkcu-widget"), _vm._v(" "), _vm.currentUser.id_cu == 0 ? _c("history-organisasi-widget") : _vm._e()], 1), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-4"
+  }, [_c("count-organisasi-widget")], 1)])])])]);
+};
+var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=template&id=2697e6aa&":
+/*!******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=template&id=2697e6aa& ***!
+  \******************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "row"
+  }, [_vm.countJalanStat == "success" ? _c("div", {
+    staticClass: "col-lg-6 col-md-6 col-sm-12 col-12 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.kegiatanBKCUJalanWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      count: "Terdapat " + _vm.countJalan + " Kegiatan Berjalan",
+      title: "Silahkan menekan tombol ini untuk melihat kegiatan yang sedang berlangsung",
+      color: "bg-warning",
+      icon: "icon-feed"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.countDiikutiStat == "success" ? _c("div", {
+    staticClass: "col-lg-6 col-md-6 col-sm-12 col-12 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.kegiatanBKCUDiikutiWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      count: "Terdapat " + _vm.countDiikuti + " Kegiatan Diikuti",
+      title: "Silahkan menekan tombol ini untuk melihat kegiatan yang telah diikuti",
+      color: "bg-info",
+      icon: "icon-station"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm.currentUser.can && _vm.currentUser ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.profileWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Profile",
+      color: "bg-primary",
+      icon: "icon-user"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.currentUser.can && _vm.currentUser.can["index_artikel"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.artikelWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Artikel",
+      color: "bg-info-400",
+      icon: "icon-newspaper"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.currentUser.can && _vm.currentUser.can["index_artikel_kategori"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.artikelKategoriWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Kategori Artikel",
+      color: "bg-teal-400",
+      icon: "icon-grid6"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.currentUser.can && _vm.currentUser.can["index_artikel_penulis"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.artikelPenulisWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Penulis Artikel",
+      color: "bg-orange-400",
+      icon: "icon-pencil6"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.currentUser.can && _vm.currentUser.can["index_pengumuman"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.pengumumanWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Pengumuman",
+      color: "bg-slate-400",
+      icon: "icon-megaphone"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.diklatBKCUWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Diklat PUSKOPCUINA",
+      color: "bg-blue-400",
+      icon: "icon-graduation2"
+    }
+  })], 1), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.pertemuanBKCUWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Pertemuan PUSKOPCUINA",
+      color: "bg-pink-400",
+      icon: "icon-ungroup"
+    }
+  })], 1), _vm._v(" "), _vm.currentUser.can && _vm.currentUser.can["index_tempat"] && _vm.currentUser.id_cu == "0" ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.tempatWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Tempat",
+      color: "bg-purple-400",
+      icon: "icon-location4"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.currentUser.can && _vm.currentUser.can["index_voting"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.votingWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Voting",
+      color: "bg-warning-400",
+      icon: "icon-point-up"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.currentUser.can && _vm.currentUser.can["index_anggota_cu"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.anggotaCuWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Anggota CU",
+      color: "bg-success-400",
+      icon: "icon-man-woman"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.currentUser.can && _vm.currentUser.can["index_jalinan_klaim"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.jalinanKlaimWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Bantuan Solidaritas Jalinan",
+      color: "bg-warning-400",
+      icon: "icon-accessibility2"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.currentUser.can && _vm.currentUser.can["index_cu"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.cuWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Profil CU",
+      color: "bg-green-400",
+      icon: "icon-office"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.currentUser.can && _vm.currentUser.can["index_tp"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.tpWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Profil TP/KP",
+      color: "bg-brown-400",
+      icon: "icon-home9"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.currentUser.can && _vm.currentUser.can["index_produk_cu"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.produkCuWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Produk & Pelayanan",
+      color: "bg-warning-400",
+      icon: "icon-list3"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.currentUser.can && _vm.currentUser.can["index_aktivis"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.aktivisWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Aktivis",
+      color: "bg-indigo-400",
+      icon: "icon-user-tie"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.currentUser.can && _vm.currentUser.can["index_pemilihan"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.pemilihanWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Pemilihan",
+      color: "bg-warning-400",
+      icon: "icon-quill4"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.currentUser.can && _vm.currentUser.can["index_mitra_orang"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.mitraPerseoranganWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Mitra Perseorangan",
+      color: "bg-pink-400",
+      icon: "icon-briefcase"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.currentUser.can && _vm.currentUser.can["index_mitra_lembaga"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.mitraLembagaWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Lembaga Mitra",
+      color: "bg-violet-400",
+      icon: "icon-briefcase"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.currentUser.can && _vm.currentUser.can["index_laporan_cu"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.laporanCUWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Laporan Statistik CU",
+      color: "bg-success-400",
+      icon: "icon-stats-bars2"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.currentUser.can && _vm.currentUser.can["index_laporan_cu"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.laporanGerakanWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Laporan Statistik Gerakan",
+      color: "bg-grey-400",
+      icon: "icon-stats-bars"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.currentUser && _vm.currentUser.can["index_surat"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.suratKeluarWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Surat Keluar",
+      color: "bg-warning-400",
+      icon: "icon-envelop2"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.currentUser && _vm.currentUser.can["index_surat"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.suratMasukWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Surat Masuk",
+      color: "bg-green-400",
+      icon: "icon-envelop2"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.dokumenGerakanPublikWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Dokumen GERAKAN & PUBLIK",
+      color: "bg-violet-400",
+      icon: "icon-books"
+    }
+  })], 1), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.dokumenWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Dokumen",
+      color: "bg-info-400",
+      icon: "icon-books"
+    }
+  })], 1), _vm._v(" "), _vm.currentUser.can && _vm.currentUser.can["index_aset_tetap"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.asetTetapWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Aset Tetap",
+      color: "bg-indigo-400",
+      icon: "icon-bag"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.currentUser.can && _vm.currentUser.can["index_assesment_access"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.assesmentAccessWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Self Assesment Access",
+      color: "bg-warning-400",
+      icon: "icon-reading"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.currentUser.can && _vm.currentUser.can["index_monitoring"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.monitoringWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "Monitoring",
+      color: "bg-green-400",
+      icon: "icon-collaboration"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm.currentUser.can && _vm.currentUser.can["index_user"] ? _c("div", {
+    staticClass: "col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.goTo(_vm.userWidgetRoute);
+      }
+    }
+  }, [_c("count-widget", {
+    attrs: {
+      title: "User",
+      color: "bg-primary-400",
+      icon: "icon-users"
+    }
+  })], 1) : _vm._e()]);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "col-12"
+  }, [_c("hr", {
+    staticClass: "mt-0"
+  })]);
+}];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=template&id=277315de&":
+/*!******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=template&id=277315de& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "card"
+  }, [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "card-body"
+  }, [_c("div", {
+    staticClass: "row text-center"
+  }, [_vm.currentUser.can["index_cu"] && _vm.currentUser.id_cu == 0 ? _c("div", {
+    staticClass: "col-lg-4 col-3 pb-3 cursor-pointer cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.detail("cu");
+      }
+    }
+  }, [_vm._m(1), _vm._v(" "), _c("h5", {
+    staticClass: "font-weight-semibold mb-0"
+  }, [_vm._v(_vm._s(_vm.countCu) + " "), _vm.itemdataStat == "loading" ? _c("i", {
+    staticClass: "icon-spinner2 spinner font-size-xs"
+  }) : _vm._e()]), _vm._v(" "), _c("span", {
+    staticClass: "text-muted font-size-sm"
+  }, [_vm._v("CU")])]) : _vm._e(), _vm._v(" "), _vm.currentUser.can["index_tp"] ? _c("div", {
+    staticClass: "col-lg-4 col-3 pb-3 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.detail("tp");
+      }
+    }
+  }, [_vm._m(2), _vm._v(" "), _c("h5", {
+    staticClass: "font-weight-semibold mb-0"
+  }, [_vm._v(_vm._s(_vm.countTp) + " "), _vm.itemdataStat == "loading" ? _c("i", {
+    staticClass: "icon-spinner2 spinner font-size-xs"
+  }) : _vm._e()]), _vm._v(" "), _c("span", {
+    staticClass: "text-muted font-size-sm"
+  }, [_vm._v("TP/KP")])]) : _vm._e(), _vm._v(" "), _vm.currentUser.can["index_produk_cu"] ? _c("div", {
+    staticClass: "col-lg-4 col-3 pb-3 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.detail("produk_cu");
+      }
+    }
+  }, [_vm._m(3), _vm._v(" "), _c("h5", {
+    staticClass: "font-weight-semibold mb-0"
+  }, [_vm._v(_vm._s(_vm.countProdukCu) + " "), _vm.itemdataStat == "loading" ? _c("i", {
+    staticClass: "icon-spinner2 spinner font-size-xs"
+  }) : _vm._e()]), _vm._v(" "), _c("span", {
+    staticClass: "text-muted font-size-sm"
+  }, [_vm._v("Produk & Pelayanan")])]) : _vm._e(), _vm._v(" "), _vm.currentUser.can["index_aktivis"] ? _c("div", {
+    staticClass: "col-lg-4 col-3 pb-3 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.detail("aktivis");
+      }
+    }
+  }, [_vm._m(4), _vm._v(" "), _c("h5", {
+    staticClass: "font-weight-semibold mb-0"
+  }, [_vm._v(_vm._s(_vm.countAktivis) + " "), _vm.itemdataStat == "loading" ? _c("i", {
+    staticClass: "icon-spinner2 spinner font-size-xs"
+  }) : _vm._e()]), _vm._v(" "), _c("span", {
+    staticClass: "text-muted font-size-sm"
+  }, [_vm._v("Aktivis")])]) : _vm._e(), _vm._v(" "), _vm.currentUser.can["index_mitra_orang"] ? _c("div", {
+    staticClass: "col-lg-4 col-3 pb-3 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.detail("mitra_orang");
+      }
+    }
+  }, [_vm._m(5), _vm._v(" "), _c("h5", {
+    staticClass: "font-weight-semibold mb-0"
+  }, [_vm._v(_vm._s(_vm.countMitraOrang) + " "), _vm.itemdataStat == "loading" ? _c("i", {
+    staticClass: "icon-spinner2 spinner font-size-xs"
+  }) : _vm._e()]), _vm._v(" "), _c("span", {
+    staticClass: "text-muted font-size-sm"
+  }, [_vm._v("Mitra Perseorangan")])]) : _vm._e(), _vm._v(" "), _vm.currentUser.can["index_mitra_lembaga"] ? _c("div", {
+    staticClass: "col-lg-4 col-3 pb-3 cursor-pointer",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.detail("mitra_lembaga");
+      }
+    }
+  }, [_vm._m(6), _vm._v(" "), _c("h5", {
+    staticClass: "font-weight-semibold mb-0"
+  }, [_vm._v(_vm._s(_vm.countMitraLembaga) + " "), _vm.itemdataStat == "loading" ? _c("i", {
+    staticClass: "icon-spinner2 spinner font-size-xs"
+  }) : _vm._e()]), _vm._v(" "), _c("span", {
+    staticClass: "text-muted font-size-sm"
+  }, [_vm._v("Lembaga Mitra")])]) : _vm._e()])])]);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "card-header bg-green-400 text-white header-elements-inline"
+  }, [_c("h5", {
+    staticClass: "card-title"
+  }, [_c("i", {
+    staticClass: "icon-equalizer mr-2"
+  }), _vm._v(" Data Gerakan Organisasi")]), _vm._v(" "), _c("div", {
+    staticClass: "header-elements"
+  }, [_c("div", {
+    staticClass: "list-icons"
+  }, [_c("a", {
+    staticClass: "list-icons-item",
+    attrs: {
+      "data-action": "collapse"
+    }
+  })])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("p", [_c("i", {
+    staticClass: "icon-office icon-2x d-inline-block text-info"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("p", [_c("i", {
+    staticClass: "icon-home9 icon-2x d-inline-block text-info"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("p", [_c("i", {
+    staticClass: "icon-list3 icon-2x d-inline-block text-info"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("p", [_c("i", {
+    staticClass: "icon-user-tie icon-2x d-inline-block text-info"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("p", [_c("i", {
+    staticClass: "icon-briefcase icon-2x d-inline-block text-info"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("p", [_c("i", {
+    staticClass: "icon-briefcase icon-2x d-inline-block text-info"
+  })]);
+}];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=template&id=0e2d4996&":
+/*!********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=template&id=0e2d4996& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "card"
+  }, [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "nav-tabs-responsive bg-light border-top"
+  }, [_c("ul", {
+    staticClass: "nav nav-tabs nav-tabs-bottom flex-nowrap mb-0"
+  }, [_vm.currentUser.can["index_cu"] ? _c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link text-nowrap",
+    "class": {
+      active: _vm.tabName == "cu"
+    },
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changeTab("cu");
+      }
+    }
+  }, [_c("i", {
+    staticClass: "icon-office mr-2"
+  }), _vm._v("\n\t\t\t\t\tCU "), _vm.countCu > 0 ? _c("span", {
+    staticClass: "badge bg-blue-400 align-self-center ml-2"
+  }, [_vm._v(_vm._s(_vm.countCu))]) : _vm._e()])]) : _vm._e(), _vm._v(" "), _vm.currentUser.can["index_tp"] ? _c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link text-nowrap",
+    "class": {
+      active: _vm.tabName == "tp"
+    },
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changeTab("tp");
+      }
+    }
+  }, [_c("i", {
+    staticClass: "icon-home9 mr-2"
+  }), _vm._v("\n\t\t\t\t\tTP/KP "), _vm.countTp > 0 ? _c("span", {
+    staticClass: "badge bg-blue-400 align-self-center ml-2"
+  }, [_vm._v(_vm._s(_vm.countTp))]) : _vm._e()])]) : _vm._e(), _vm._v(" "), _vm.currentUser.can["index_produk_cu"] ? _c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link text-nowrap",
+    "class": {
+      active: _vm.tabName == "produk_cu"
+    },
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changeTab("produk_cu");
+      }
+    }
+  }, [_c("i", {
+    staticClass: "icon-list3 mr-2"
+  }), _vm._v("\n\t\t\t\t\tProduk & Pelayanan "), _vm.countProdukCu > 0 ? _c("span", {
+    staticClass: "badge bg-blue-400 align-self-center ml-2"
+  }, [_vm._v(_vm._s(_vm.countProdukCu))]) : _vm._e()])]) : _vm._e(), _vm._v(" "), _vm.currentUser.can["index_aktivis"] ? _c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link text-nowrap",
+    "class": {
+      active: _vm.tabName == "aktivis"
+    },
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changeTab("aktivis");
+      }
+    }
+  }, [_c("i", {
+    staticClass: "icon-user-tie mr-2"
+  }), _vm._v("\n\t\t\t\t\tAktivis "), _vm.countAktivis > 0 ? _c("span", {
+    staticClass: "badge bg-blue-400 align-self-center ml-2"
+  }, [_vm._v(_vm._s(_vm.countAktivis))]) : _vm._e()])]) : _vm._e(), _vm._v(" "), _vm.currentUser.can["index_mitra_orang"] ? _c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link text-nowrap",
+    "class": {
+      active: _vm.tabName == "mitra_orang"
+    },
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changeTab("mitra_orang");
+      }
+    }
+  }, [_c("i", {
+    staticClass: "icon-briefcase mr-2"
+  }), _vm._v("\n\t\t\t\t\tMitra Perseorangan "), _vm.countMitraOrang > 0 ? _c("span", {
+    staticClass: "badge bg-blue-400 align-self-center ml-2"
+  }, [_vm._v(_vm._s(_vm.countMitraOrang))]) : _vm._e()])]) : _vm._e(), _vm._v(" "), _vm.currentUser.can["index_mitra_lembaga"] ? _c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link text-nowrap",
+    "class": {
+      active: _vm.tabName == "mitra_lembaga"
+    },
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changeTab("mitra_lembaga");
+      }
+    }
+  }, [_c("i", {
+    staticClass: "icon-briefcase mr-2"
+  }), _vm._v("\n\t\t\t\t\tLembaga Mitra "), _vm.countMitraLembaga > 0 ? _c("span", {
+    staticClass: "badge bg-blue-400 align-self-center ml-2"
+  }, [_vm._v(_vm._s(_vm.countMitraLembaga))]) : _vm._e()])]) : _vm._e()])]), _vm._v(" "), _c("transition", {
+    attrs: {
+      "enter-active-class": "animated fadeIn",
+      mode: "out-in"
+    }
+  }, [_c("div", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.tabName == "cu",
+      expression: "tabName == 'cu'"
+    }]
+  }, [_c("div", {
+    staticClass: "card-body pb-2"
+  }, [_vm.itemCuStat === "success" ? _c("div", {
+    staticClass: "list-feed overflow-auto",
+    staticStyle: {
+      "max-height": "20rem"
+    }
+  }, [_vm._l(_vm.itemCu, function (item) {
+    return _c("div", {
+      staticClass: "list-feed-item cursor-pointer",
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.detail("cu", item.revisionable_id);
+        }
+      }
+    }, [_c("div", {
+      staticClass: "text-muted",
+      domProps: {
+        innerHTML: _vm._s(_vm.$options.filters.dateTime(item.created_at))
+      }
+    }), _vm._v("\n\t\t\t\t\t\t\t" + _vm._s(item.user.name) + " mengubah "), _c("mark", [_vm._v(_vm._s(item.key))]), _vm._v(" CU " + _vm._s(item.revisionable.name) + " dari \n\t\t\t\t\t\t\t"), _c("mark", [_c("check-value", {
+      attrs: {
+        value: item.old_value
+      }
+    })], 1), _vm._v("\n\t\t\t\t\t\t\tmenjadi \n\t\t\t\t\t\t\t"), _c("mark", [_c("check-value", {
+      attrs: {
+        value: item.new_value
+      }
+    })], 1)]);
+  }), _vm._v(" "), _vm.itemCu.length == 0 ? _c("div", [_vm._v("Tidak terdapat data perubahan aktivitas")]) : _vm._e()], 2) : _vm.itemCuStat === "loading" ? _c("div", {
+    staticClass: "progress"
+  }, [_c("div", {
+    staticClass: "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+    staticStyle: {
+      width: "100%"
+    }
+  }, [_c("span", {
+    staticClass: "sr-only"
+  }, [_vm._v("100% Complete")])])]) : _vm._e()])])]), _vm._v(" "), _c("transition", {
+    attrs: {
+      "enter-active-class": "animated fadeIn",
+      mode: "out-in"
+    }
+  }, [_c("div", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.tabName == "tp",
+      expression: "tabName == 'tp'"
+    }]
+  }, [_c("div", {
+    staticClass: "card-body pb-2"
+  }, [_vm.itemTpStat === "success" ? _c("div", {
+    staticClass: "list-feed overflow-auto",
+    staticStyle: {
+      "max-height": "20rem"
+    }
+  }, [_vm._l(_vm.itemTp, function (item) {
+    return _c("div", {
+      staticClass: "list-feed-item cursor-pointer",
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.detail("tp", item.revisionable_id);
+        }
+      }
+    }, [_c("div", {
+      staticClass: "text-muted",
+      domProps: {
+        innerHTML: _vm._s(_vm.$options.filters.dateTime(item.created_at))
+      }
+    }), _vm._v("\n\t\t\t\t\t\t\t" + _vm._s(item.user.name) + " mengubah "), _c("mark", [_vm._v(_vm._s(item.key))]), _vm._v(" CU " + _vm._s(item.revisionable.name) + " dari \n\t\t\t\t\t\t\t"), _c("mark", [_c("check-value", {
+      attrs: {
+        value: item.old_value
+      }
+    })], 1), _vm._v("\n\t\t\t\t\t\t\tmenjadi \n\t\t\t\t\t\t\t"), _c("mark", [_c("check-value", {
+      attrs: {
+        value: item.new_value
+      }
+    })], 1)]);
+  }), _vm._v(" "), _vm.itemTp.length == 0 ? _c("div", [_vm._v("Tidak terdapat data perubahan aktivitas")]) : _vm._e()], 2) : _vm.itemTpStat === "loading" ? _c("div", {
+    staticClass: "progress"
+  }, [_c("div", {
+    staticClass: "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+    staticStyle: {
+      width: "100%"
+    }
+  }, [_c("span", {
+    staticClass: "sr-only"
+  }, [_vm._v("100% Complete")])])]) : _vm._e()])])]), _vm._v(" "), _c("transition", {
+    attrs: {
+      "enter-active-class": "animated fadeIn",
+      mode: "out-in"
+    }
+  }, [_c("div", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.tabName == "produk_cu",
+      expression: "tabName == 'produk_cu'"
+    }]
+  }, [_c("div", {
+    staticClass: "card-body pb-2"
+  }, [_vm.itemProdukCuStat === "success" ? _c("div", {
+    staticClass: "list-feed overflow-auto",
+    staticStyle: {
+      "max-height": "20rem"
+    }
+  }, [_vm._l(_vm.itemProdukCu, function (item) {
+    return _c("div", {
+      staticClass: "list-feed-item cursor-pointer",
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.detail("produk_cu", item.revisionable_id);
+        }
+      }
+    }, [_c("div", {
+      staticClass: "text-muted",
+      domProps: {
+        innerHTML: _vm._s(_vm.$options.filters.dateTime(item.created_at))
+      }
+    }), _vm._v("\n\t\t\t\t\t\t\t" + _vm._s(item.user.name) + " mengubah "), _c("mark", [_vm._v(_vm._s(item.key))]), _vm._v(" CU " + _vm._s(item.revisionable.name) + " dari \n\t\t\t\t\t\t\t"), _c("mark", [_c("check-value", {
+      attrs: {
+        value: item.old_value
+      }
+    })], 1), _vm._v("\n\t\t\t\t\t\t\tmenjadi \n\t\t\t\t\t\t\t"), _c("mark", [_c("check-value", {
+      attrs: {
+        value: item.new_value
+      }
+    })], 1)]);
+  }), _vm._v(" "), _vm.itemProdukCu.length == 0 ? _c("div", [_vm._v("Tidak terdapat data perubahan aktivitas")]) : _vm._e()], 2) : _vm.itemProdukCuStat === "loading" ? _c("div", {
+    staticClass: "progress"
+  }, [_c("div", {
+    staticClass: "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+    staticStyle: {
+      width: "100%"
+    }
+  }, [_c("span", {
+    staticClass: "sr-only"
+  }, [_vm._v("100% Complete")])])]) : _vm._e()])])]), _vm._v(" "), _c("transition", {
+    attrs: {
+      "enter-active-class": "animated fadeIn",
+      mode: "out-in"
+    }
+  }, [_c("div", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.tabName == "aktivis",
+      expression: "tabName == 'aktivis'"
+    }]
+  }, [_c("div", {
+    staticClass: "card-body pb-2"
+  }, [_vm.itemAktivisStat === "success" ? _c("div", {
+    staticClass: "list-feed overflow-auto",
+    staticStyle: {
+      "max-height": "20rem"
+    }
+  }, [_vm._l(_vm.itemAktivis, function (item) {
+    return _c("div", {
+      staticClass: "list-feed-item cursor-pointer",
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.detail("aktivis", item.revisionable_id);
+        }
+      }
+    }, [_c("div", {
+      staticClass: "text-muted",
+      domProps: {
+        innerHTML: _vm._s(_vm.$options.filters.dateTime(item.created_at))
+      }
+    }), _vm._v("\n\t\t\t\t\t\t\t" + _vm._s(item.user.name) + " mengubah "), _c("mark", [_vm._v(_vm._s(item.key))]), _vm._v(" CU " + _vm._s(item.revisionable.name) + " dari \n\t\t\t\t\t\t\t"), _c("mark", [_c("check-value", {
+      attrs: {
+        value: item.old_value
+      }
+    })], 1), _vm._v("\n\t\t\t\t\t\t\tmenjadi \n\t\t\t\t\t\t\t"), _c("mark", [_c("check-value", {
+      attrs: {
+        value: item.new_value
+      }
+    })], 1)]);
+  }), _vm._v(" "), _vm.itemAktivis.length == 0 ? _c("div", [_vm._v("Tidak terdapat data perubahan aktivitas")]) : _vm._e()], 2) : _vm.itemAktivisStat === "loading" ? _c("div", {
+    staticClass: "progress"
+  }, [_c("div", {
+    staticClass: "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+    staticStyle: {
+      width: "100%"
+    }
+  }, [_c("span", {
+    staticClass: "sr-only"
+  }, [_vm._v("100% Complete")])])]) : _vm._e()])])]), _vm._v(" "), _c("transition", {
+    attrs: {
+      "enter-active-class": "animated fadeIn",
+      mode: "out-in"
+    }
+  }, [_c("div", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.tabName == "mitra_orang",
+      expression: "tabName == 'mitra_orang'"
+    }]
+  }, [_c("div", {
+    staticClass: "card-body pb-2"
+  }, [_vm.itemMitraOrangStat === "success" ? _c("div", {
+    staticClass: "list-feed overflow-auto",
+    staticStyle: {
+      "max-height": "20rem"
+    }
+  }, [_vm._l(_vm.itemMitraOrang, function (item) {
+    return _c("div", {
+      staticClass: "list-feed-item cursor-pointer",
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.detail("mitra_orang", item.revisionable_id);
+        }
+      }
+    }, [_c("div", {
+      staticClass: "text-muted",
+      domProps: {
+        innerHTML: _vm._s(_vm.$options.filters.dateTime(item.created_at))
+      }
+    }), _vm._v("\n\t\t\t\t\t\t\t" + _vm._s(item.user.name) + " mengubah "), _c("mark", [_vm._v(_vm._s(item.key))]), _vm._v(" CU " + _vm._s(item.revisionable.name) + " dari \n\t\t\t\t\t\t\t"), _c("mark", [_c("check-value", {
+      attrs: {
+        value: item.old_value
+      }
+    })], 1), _vm._v("\n\t\t\t\t\t\t\tmenjadi \n\t\t\t\t\t\t\t"), _c("mark", [_c("check-value", {
+      attrs: {
+        value: item.new_value
+      }
+    })], 1)]);
+  }), _vm._v(" "), _vm.itemMitraOrang.length == 0 ? _c("div", [_vm._v("Tidak terdapat data perubahan aktivitas")]) : _vm._e()], 2) : _vm.itemMitraOrangStat === "loading" ? _c("div", {
+    staticClass: "progress"
+  }, [_c("div", {
+    staticClass: "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+    staticStyle: {
+      width: "100%"
+    }
+  }, [_c("span", {
+    staticClass: "sr-only"
+  }, [_vm._v("100% Complete")])])]) : _vm._e()])])]), _vm._v(" "), _c("transition", {
+    attrs: {
+      "enter-active-class": "animated fadeIn",
+      mode: "out-in"
+    }
+  }, [_c("div", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.tabName == "mitra_lembaga",
+      expression: "tabName == 'mitra_lembaga'"
+    }]
+  }, [_c("div", {
+    staticClass: "card-body pb-2"
+  }, [_vm.itemMitraLembagaStat === "success" ? _c("div", {
+    staticClass: "list-feed overflow-auto",
+    staticStyle: {
+      "max-height": "20rem"
+    }
+  }, [_vm._l(_vm.itemMitraLembaga, function (item) {
+    return _c("div", {
+      staticClass: "list-feed-item cursor-pointer",
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.detail("mitra_lembaga", item.revisionable_id);
+        }
+      }
+    }, [_c("div", {
+      staticClass: "text-muted",
+      domProps: {
+        innerHTML: _vm._s(_vm.$options.filters.dateTime(item.created_at))
+      }
+    }), _vm._v("\n\t\t\t\t\t\t\t" + _vm._s(item.user.name) + " mengubah "), _c("mark", [_vm._v(_vm._s(item.key))]), _vm._v(" CU " + _vm._s(item.revisionable.name) + " dari \n\t\t\t\t\t\t\t"), _c("mark", [_c("check-value", {
+      attrs: {
+        value: item.old_value
+      }
+    })], 1), _vm._v("\n\t\t\t\t\t\t\tmenjadi \n\t\t\t\t\t\t\t"), _c("mark", [_c("check-value", {
+      attrs: {
+        value: item.new_value
+      }
+    })], 1)]);
+  }), _vm._v(" "), _vm.itemMitraLembaga.length == 0 ? _c("div", [_vm._v("Tidak terdapat data perubahan aktivitas")]) : _vm._e()], 2) : _vm.itemMitraLembagaStat === "loading" ? _c("div", {
+    staticClass: "progress"
+  }, [_c("div", {
+    staticClass: "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+    staticStyle: {
+      width: "100%"
+    }
+  }, [_c("span", {
+    staticClass: "sr-only"
+  }, [_vm._v("100% Complete")])])]) : _vm._e()])])])], 1);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "card-header bg-brown-400 text-white header-elements-inline"
+  }, [_c("h5", {
+    staticClass: "card-title"
+  }, [_c("i", {
+    staticClass: "icon-copy3 mr-2"
+  }), _vm._v(" Perubahan Data Organisasi")]), _vm._v(" "), _c("div", {
+    staticClass: "header-elements"
+  }, [_c("div", {
+    staticClass: "list-icons"
+  }, [_c("a", {
+    staticClass: "list-icons-item",
+    attrs: {
+      "data-action": "collapse"
+    }
+  })])])]);
+}];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=template&id=0165c089&":
+/*!***************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=template&id=0165c089& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "card"
+  }, [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "nav-tabs-responsive bg-light border-top"
+  }, [_c("ul", {
+    staticClass: "nav nav-tabs nav-tabs-bottom flex-nowrap mb-0"
+  }, [_c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link text-nowrap",
+    "class": {
+      active: _vm.tabName == "baru"
+    },
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changeTab("baru");
+      }
+    }
+  }, [_c("i", {
+    staticClass: "icon-new mr-2"
+  }), _vm._v("\n\t\t\t\t\t\tTerbaru "), _vm.countBaru > 0 ? _c("span", {
+    staticClass: "badge bg-blue-400 align-self-center ml-2"
+  }, [_vm._v(_vm._s(_vm.countBaru))]) : _vm._e()])]), _vm._v(" "), _c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link text-nowrap",
+    "class": {
+      active: _vm.tabName == "mulai"
+    },
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changeTab("mulai");
+      }
+    }
+  }, [_c("i", {
+    staticClass: "icon-alarm mr-2"
+  }), _vm._v("\n\t\t\t\t\t\tWaktu Mulai Terdekat "), _vm.countMulai > 0 ? _c("span", {
+    staticClass: "badge bg-blue-400 align-self-center ml-2"
+  }, [_vm._v(_vm._s(_vm.countMulai))]) : _vm._e()])]), _vm._v(" "), _c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link text-nowrap",
+    "class": {
+      active: _vm.tabName == "buka"
+    },
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changeTab("buka");
+      }
+    }
+  }, [_c("i", {
+    staticClass: "icon-user-plus mr-2"
+  }), _vm._v("\n\t\t\t\t\t\tStatus Pendaftaran Terbuka "), _vm.countBuka > 0 ? _c("span", {
+    staticClass: "badge bg-blue-400 align-self-center ml-2"
+  }, [_vm._v(_vm._s(_vm.countBuka))]) : _vm._e()])]), _vm._v(" "), _c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link text-nowrap",
+    "class": {
+      active: _vm.tabName == "jalan"
+    },
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.changeTab("jalan");
+      }
+    }
+  }, [_c("i", {
+    staticClass: "icon-feed mr-2"
+  }), _vm._v("\n\t\t\t\t\t\tStatus Berjalan "), _vm.countJalan > 0 ? _c("span", {
+    staticClass: "badge bg-blue-400 align-self-center ml-2"
+  }, [_vm._v(_vm._s(_vm.countJalan))]) : _vm._e()])])])]), _vm._v(" "), _c("transition", {
+    attrs: {
+      "enter-active-class": "animated fadeIn",
+      mode: "out-in"
+    }
+  }, [_c("div", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.tabName == "baru",
+      expression: "tabName == 'baru'"
+    }]
+  }, [_c("div", {
+    staticClass: "table-responsive"
+  }, [_c("table", {
+    staticClass: "table table-striped table-hover"
+  }, [_c("thead", [_c("tr", {
+    staticClass: "text-nowarp"
+  }, [_c("th", [_vm._v("Status")]), _vm._v(" "), _c("th", [_vm._v("Kode")]), _vm._v(" "), _c("th", [_vm._v("Nama")]), _vm._v(" "), _c("th", [_vm._v("Kabupaten/Kota")]), _vm._v(" "), _c("th", [_vm._v("Tempat")]), _vm._v(" "), _c("th", [_vm._v("Tgl. Mulai")]), _vm._v(" "), _c("th", [_vm._v("Sasaran")])])]), _vm._v(" "), _vm.itemBaruStat === "success" ? _c("tbody", [_vm._l(_vm.itemBaru, function (item, index) {
+    return _c("tr", {
+      key: index,
+      staticClass: "text-nowrap cursor-pointer",
+      "class": {
+        "bg-info": _vm.selectedItemBaru.id === item.id
+      },
+      on: {
+        click: function click($event) {
+          return _vm.detail(item.id);
+        }
+      }
+    }, [_c("td", [item.status == "6" ? _c("span", {
+      staticClass: "cursor-pointer",
+      domProps: {
+        innerHTML: _vm._s(_vm.$options.filters.statusDiklat(item.status))
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.modalKeteranganBatalOpen(item.keteranganBatal);
+        }
+      }
+    }) : _c("span", {
+      domProps: {
+        innerHTML: _vm._s(_vm.$options.filters.statusDiklat(item.status))
+      }
+    })]), _vm._v(" "), _c("td", [_c("check-value", {
+      attrs: {
+        value: item.kode_diklat
+      }
+    })], 1), _vm._v(" "), _c("td", [_vm._v("\n\t\t\t\t\t\t\t\t\t" + _vm._s(item.name) + "\n\t\t\t\t\t\t\t\t")]), _vm._v(" "), _c("td", [item.regencies ? _c("check-value", {
+      attrs: {
+        value: item.regencies.name
+      }
+    }) : _c("span", [_vm._v("-")])], 1), _vm._v(" "), _c("td", [item.tempat ? _c("check-value", {
+      attrs: {
+        value: item.tempat.name
+      }
+    }) : item.tipe_tempat == "ONLINE" ? _c("span", [_vm._v("DILAKSANAKAN ONLINE")]) : _c("span", [_vm._v("Belum ditentukan tempat")])], 1), _vm._v(" "), _c("td", {
+      domProps: {
+        innerHTML: _vm._s(_vm.$options.filters.date(item.mulai))
+      }
+    }), _vm._v(" "), _c("td", {
+      staticClass: "text-warp"
+    }, [item.sasaran ? _c("span", _vm._l(item.sasaran, function (sasaran, index) {
+      return _c("label", {
+        key: index,
+        staticClass: "badge badge-primary ml-1"
+      }, [_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t" + _vm._s(sasaran.name) + "\n\t\t\t\t\t\t\t\t\t\t")]);
+    }), 0) : _vm._e()])]);
+  }), _vm._v(" "), _vm.itemBaru.length == 0 ? _c("tr", [_c("td", {
+    attrs: {
+      colspan: 7
+    }
+  }, [_vm._v("Tidak terdapat data diklat")])]) : _vm._e()], 2) : _vm.itemBaruStat === "loading" ? _c("tbody", [_c("tr", [_c("td", {
+    attrs: {
+      colspan: 7
+    }
+  }, [_c("div", {
+    staticClass: "progress"
+  }, [_c("div", {
+    staticClass: "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+    staticStyle: {
+      width: "100%"
+    }
+  }, [_c("span", {
+    staticClass: "sr-only"
+  }, [_vm._v("100% Complete")])])])])])]) : _vm._e()])])])]), _vm._v(" "), _c("transition", {
+    attrs: {
+      "enter-active-class": "animated fadeIn",
+      mode: "out-in"
+    }
+  }, [_vm.isMulai ? _c("div", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.tabName == "mulai",
+      expression: "tabName == 'mulai'"
+    }]
+  }, [_c("div", {
+    staticClass: "table-responsive"
+  }, [_c("table", {
+    staticClass: "table table-striped table-hover"
+  }, [_c("thead", [_c("tr", {
+    staticClass: "text-nowarp"
+  }, [_c("th", [_vm._v("Status")]), _vm._v(" "), _c("th", [_vm._v("Kode")]), _vm._v(" "), _c("th", [_vm._v("Nama")]), _vm._v(" "), _c("th", [_vm._v("Kabupaten/Kota")]), _vm._v(" "), _c("th", [_vm._v("Tempat")]), _vm._v(" "), _c("th", [_vm._v("Tgl. Mulai")]), _vm._v(" "), _c("th", [_vm._v("Sasaran")])])]), _vm._v(" "), _vm.itemMulaiStat === "success" ? _c("tbody", [_vm._l(_vm.itemMulai, function (item, index) {
+    return _c("tr", {
+      key: index,
+      staticClass: "text-nowrap cursor-pointer",
+      "class": {
+        "bg-info": _vm.selectedItemMulai.id === item.id
+      },
+      on: {
+        click: function click($event) {
+          return _vm.detail(item.id);
+        }
+      }
+    }, [_c("td", [item.status == "6" ? _c("span", {
+      staticStyle: {
+        cursor: "pointer"
+      },
+      domProps: {
+        innerHTML: _vm._s(_vm.$options.filters.statusDiklat(item.status))
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.modalKeteranganBatalOpen(item.keteranganBatal);
+        }
+      }
+    }) : _c("span", {
+      domProps: {
+        innerHTML: _vm._s(_vm.$options.filters.statusDiklat(item.status))
+      }
+    })]), _vm._v(" "), _c("td", [_c("check-value", {
+      attrs: {
+        value: item.kode_diklat
+      }
+    })], 1), _vm._v(" "), _c("td", [_c("check-value", {
+      attrs: {
+        value: item.name
+      }
+    })], 1), _vm._v(" "), _c("td", [item.regencies ? _c("check-value", {
+      attrs: {
+        value: item.regencies.name
+      }
+    }) : _c("span", [_vm._v("-")])], 1), _vm._v(" "), _c("td", [item.tempat ? _c("check-value", {
+      attrs: {
+        value: item.tempat.name
+      }
+    }) : item.tipe_tempat == "ONLINE" ? _c("span", [_vm._v("DILAKSANAKAN ONLINE")]) : _c("span", [_vm._v("Belum ditentukan tempat")])], 1), _vm._v(" "), _c("td", {
+      domProps: {
+        innerHTML: _vm._s(_vm.$options.filters.date(item.mulai))
+      }
+    }), _vm._v(" "), _c("td", {
+      staticClass: "text-warp"
+    }, [item.sasaran ? _c("span", _vm._l(item.sasaran, function (sasaran, index) {
+      return _c("label", {
+        key: index,
+        staticClass: "badge badge-primary ml-1"
+      }, [_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t" + _vm._s(sasaran.name) + "\n\t\t\t\t\t\t\t\t\t\t")]);
+    }), 0) : _vm._e()])]);
+  }), _vm._v(" "), _vm.itemMulai.length == 0 ? _c("tr", [_c("td", {
+    attrs: {
+      colspan: 7
+    }
+  }, [_vm._v("Tidak terdapat data diklat")])]) : _vm._e()], 2) : _vm.itemMulaiStat === "loading" ? _c("tbody", [_c("tr", [_c("td", {
+    attrs: {
+      colspan: 7
+    }
+  }, [_c("div", {
+    staticClass: "progress"
+  }, [_c("div", {
+    staticClass: "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+    staticStyle: {
+      width: "100%"
+    }
+  }, [_c("span", {
+    staticClass: "sr-only"
+  }, [_vm._v("100% Complete")])])])])])]) : _vm._e()])])]) : _vm._e()]), _vm._v(" "), _c("transition", {
+    attrs: {
+      "enter-active-class": "animated fadeIn",
+      mode: "out-in"
+    }
+  }, [_vm.isBuka ? _c("div", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.tabName == "buka",
+      expression: "tabName == 'buka'"
+    }]
+  }, [_c("div", {
+    staticClass: "table-responsive"
+  }, [_c("table", {
+    staticClass: "table table-striped table-hover"
+  }, [_c("thead", [_c("tr", {
+    staticClass: "text-nowarp"
+  }, [_c("th", [_vm._v("Kode")]), _vm._v(" "), _c("th", [_vm._v("Nama")]), _vm._v(" "), _c("th", [_vm._v("Kabupaten/Kota")]), _vm._v(" "), _c("th", [_vm._v("Tempat")]), _vm._v(" "), _c("th", [_vm._v("Tgl. Mulai")]), _vm._v(" "), _c("th", [_vm._v("Sasaran")])])]), _vm._v(" "), _vm.itemBukaStat === "success" ? _c("tbody", [_vm._l(_vm.itemBuka, function (item, index) {
+    return _c("tr", {
+      key: index,
+      staticClass: "text-nowrap cursor-pointer",
+      "class": {
+        "bg-info": _vm.selectedItemBuka.id === item.id
+      },
+      on: {
+        click: function click($event) {
+          return _vm.detail(item.id);
+        }
+      }
+    }, [_c("td", [_c("check-value", {
+      attrs: {
+        value: item.kode_diklat
+      }
+    })], 1), _vm._v(" "), _c("td", [_c("check-value", {
+      attrs: {
+        value: item.name
+      }
+    })], 1), _vm._v(" "), _c("td", [item.regencies ? _c("check-value", {
+      attrs: {
+        value: item.regencies.name
+      }
+    }) : _c("span", [_vm._v("-")])], 1), _vm._v(" "), _c("td", [item.tempat ? _c("check-value", {
+      attrs: {
+        value: item.tempat.name
+      }
+    }) : item.tipe_tempat == "ONLINE" ? _c("span", [_vm._v("DILAKSANAKAN ONLINE")]) : _c("span", [_vm._v("Belum ditentukan tempat")])], 1), _vm._v(" "), _c("td", {
+      domProps: {
+        innerHTML: _vm._s(_vm.$options.filters.date(item.mulai))
+      }
+    }), _vm._v(" "), _c("td", {
+      staticClass: "text-warp"
+    }, [item.sasaran ? _c("span", _vm._l(item.sasaran, function (sasaran, index) {
+      return _c("label", {
+        key: index,
+        staticClass: "badge badge-primary ml-1"
+      }, [_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t" + _vm._s(sasaran.name) + "\n\t\t\t\t\t\t\t\t\t\t")]);
+    }), 0) : _vm._e()])]);
+  }), _vm._v(" "), _vm.itemBuka.length == 0 ? _c("tr", [_c("td", {
+    attrs: {
+      colspan: 6
+    }
+  }, [_vm._v("Tidak terdapat data diklat")])]) : _vm._e()], 2) : _vm.itemBukaStat === "loading" ? _c("tbody", [_c("tr", [_c("td", {
+    attrs: {
+      colspan: 6
+    }
+  }, [_c("div", {
+    staticClass: "progress"
+  }, [_c("div", {
+    staticClass: "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+    staticStyle: {
+      width: "100%"
+    }
+  }, [_c("span", {
+    staticClass: "sr-only"
+  }, [_vm._v("100% Complete")])])])])])]) : _vm._e()])])]) : _vm._e()]), _vm._v(" "), _c("transition", {
+    attrs: {
+      "enter-active-class": "animated fadeIn",
+      mode: "out-in"
+    }
+  }, [_vm.isJalan ? _c("div", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.tabName == "jalan",
+      expression: "tabName == 'jalan'"
+    }]
+  }, [_c("div", {
+    staticClass: "table-responsive"
+  }, [_c("table", {
+    staticClass: "table table-striped table-hover"
+  }, [_c("thead", [_c("tr", {
+    staticClass: "text-nowarp"
+  }, [_c("th", [_vm._v("Kode")]), _vm._v(" "), _c("th", [_vm._v("Nama")]), _vm._v(" "), _c("th", [_vm._v("Kabupaten/Kota")]), _vm._v(" "), _c("th", [_vm._v("Tempat")]), _vm._v(" "), _c("th", [_vm._v("Tgl. Mulai")]), _vm._v(" "), _c("th", [_vm._v("Sasaran")])])]), _vm._v(" "), _vm.itemJalanStat === "success" ? _c("tbody", [_vm._l(_vm.itemJalan.data, function (item, index) {
+    return _c("tr", {
+      key: index,
+      staticClass: "text-nowrap cursor-pointer",
+      "class": {
+        "bg-info": _vm.selectedItemJalan.id === item.id
+      },
+      on: {
+        click: function click($event) {
+          return _vm.detail(item.id);
+        }
+      }
+    }, [_c("td", [_c("check-value", {
+      attrs: {
+        value: item.kode_diklat
+      }
+    })], 1), _vm._v(" "), _c("td", [_c("check-value", {
+      attrs: {
+        value: item.name
+      }
+    })], 1), _vm._v(" "), _c("td", [item.regencies ? _c("check-value", {
+      attrs: {
+        value: item.regencies.name
+      }
+    }) : _c("span", [_vm._v("-")])], 1), _vm._v(" "), _c("td", [item.tempat ? _c("check-value", {
+      attrs: {
+        value: item.tempat.name
+      }
+    }) : item.tipe_tempat == "ONLINE" ? _c("span", [_vm._v("DILAKSANAKAN ONLINE")]) : _c("span", [_vm._v("Belum ditentukan tempat")])], 1), _vm._v(" "), _c("td", {
+      domProps: {
+        innerHTML: _vm._s(_vm.$options.filters.date(item.mulai))
+      }
+    }), _vm._v(" "), _c("td", {
+      staticClass: "text-warp"
+    }, [item.sasaran ? _c("span", _vm._l(item.sasaran, function (sasaran, index) {
+      return _c("label", {
+        key: index,
+        staticClass: "badge badge-primary ml-1"
+      }, [_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t" + _vm._s(sasaran.name) + "\n\t\t\t\t\t\t\t\t\t\t")]);
+    }), 0) : _vm._e()])]);
+  }), _vm._v(" "), _vm.itemJalan.data.length == 0 ? _c("tr", [_c("td", {
+    attrs: {
+      colspan: 6
+    }
+  }, [_vm._v("Tidak terdapat data diklat")])]) : _vm._e()], 2) : _vm.itemJalanStat === "loading" ? _c("tbody", [_c("tr", [_c("td", {
+    attrs: {
+      colspan: 6
+    }
+  }, [_c("div", {
+    staticClass: "progress"
+  }, [_c("div", {
+    staticClass: "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
+    staticStyle: {
+      width: "100%"
+    }
+  }, [_c("span", {
+    staticClass: "sr-only"
+  }, [_vm._v("100% Complete")])])])])])]) : _vm._e()])])]) : _vm._e()])], 1);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "card-header bg-blue-400 text-white header-elements-inline"
+  }, [_c("h5", {
+    staticClass: "card-title"
+  }, [_c("i", {
+    staticClass: "icon-calendar mr-2"
+  }), _vm._v(" Kegiatan PUSKOPCUINA")]), _vm._v(" "), _c("div", {
+    staticClass: "header-elements"
+  }, [_c("div", {
+    staticClass: "list-icons"
+  }, [_c("a", {
+    staticClass: "list-icons-item",
+    attrs: {
+      "data-action": "collapse"
+    }
+  })])])]);
+}];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=template&id=1f1476bc&":
+/*!*******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=template&id=1f1476bc& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", [_c("hooper", {
+    staticClass: "mb-3",
+    staticStyle: {
+      width: "100%",
+      "min-height": "20em"
+    },
+    attrs: {
+      progress: true,
+      autoPlay: true,
+      playSpeed: 6000,
+      infiniteScroll: true
+    }
+  }, [_vm._l(_vm.sliderItem, function (item, index) {
+    return _c("slide", {
+      key: index,
+      staticClass: "slideStyle",
+      style: item.style
+    }, [item.name == "welcome" ? _c("div", [_c("h1", [_vm._v(_vm._s(item.title))]), _vm._v(" "), _c("span", {
+      domProps: {
+        innerHTML: _vm._s(item.content)
+      }
+    }), _vm._v(" "), _c("br"), _vm._v(" "), item.isButton ? _c("a", {
+      staticClass: "btn btn-danger mt-1",
+      attrs: {
+        href: item.buttonUrl,
+        target: "_blank"
+      },
+      domProps: {
+        innerHTML: _vm._s(item.buttonTitle)
+      }
+    }) : _vm._e()]) : item.name == "birthday" ? _c("div", [_c("h1", [_vm._v(_vm._s(item.title))]), _vm._v(" "), _vm._l(item.cu, function (item2, index2) {
+      return _c("span", {
+        key: index2,
+        staticClass: "badge bg-blue-400 align-self-center ml-2 mb-1"
+      }, [_c("h6", {
+        staticClass: "mb-0"
+      }, [_vm._v(_vm._s("CU " + item2.name + " Ke- " + item2.usia))])]);
+    }), _vm._v(" "), _c("br"), _c("br"), _vm._v(" "), _c("h4", {
+      staticClass: "d-none d-md-block",
+      domProps: {
+        innerHTML: _vm._s(item.content)
+      }
+    })], 2) : item.name == "news" ? _c("div", [_c("h1", [_vm._v(_vm._s(item.title))]), _vm._v(" "), _c("span", {
+      domProps: {
+        innerHTML: _vm._s(item.content)
+      }
+    })]) : _vm._e()]);
+  }), _vm._v(" "), _c("hooper-navigation", {
+    attrs: {
+      slot: "hooper-addons"
+    },
+    slot: "hooper-addons"
+  }, [_c("i", {
+    attrs: {
+      slot: "hooper-prev"
+    },
+    slot: "hooper-prev"
+  }, [_c("i", {
+    staticClass: "icon-chevron-left",
+    staticStyle: {
+      color: "rgb(255, 251, 251)"
+    }
+  })]), _vm._v(" "), _c("i", {
+    attrs: {
+      slot: "hooper-next"
+    },
+    slot: "hooper-next"
+  }, [_c("i", {
+    staticClass: "icon-chevron-right",
+    staticStyle: {
+      color: "rgb(255, 251, 251)"
+    }
+  })])]), _vm._v(" "), _c("hooper-pagination", {
+    attrs: {
+      slot: "hooper-addons"
+    },
+    slot: "hooper-addons"
+  })], 2)], 1);
+};
+var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=style&index=0&id=1f1476bc&lang=css&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=style&index=0&id=1f1476bc&lang=css& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.slideStyle {\n\tpadding-top: 3em;\n\tpadding-left: 2em;\n\tpadding-right: 2em;\n\ttext-align: center;\n\talign-items: center;\n\tjustify-content: center;\n\tborder-radius: 10px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=style&index=0&id=1f1476bc&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=style&index=0&id=1f1476bc&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./newsSlider.vue?vue&type=style&index=0&id=1f1476bc&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=style&index=0&id=1f1476bc&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./resources/assets/js/api/system.js":
+/*!*******************************************!*\
+  !*** ./resources/assets/js/api/system.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  countOrganisasi: function countOrganisasi() {
+    return axios.get('/api/countOrganisasi');
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/checkValue.vue":
+/*!*******************************************************!*\
+  !*** ./resources/assets/js/components/checkValue.vue ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _checkValue_vue_vue_type_template_id_56ee5620___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./checkValue.vue?vue&type=template&id=56ee5620& */ "./resources/assets/js/components/checkValue.vue?vue&type=template&id=56ee5620&");
+/* harmony import */ var _checkValue_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./checkValue.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/checkValue.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _checkValue_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _checkValue_vue_vue_type_template_id_56ee5620___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _checkValue_vue_vue_type_template_id_56ee5620___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/components/checkValue.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/checkValue.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/assets/js/components/checkValue.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_checkValue_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./checkValue.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/checkValue.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_checkValue_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/checkValue.vue?vue&type=template&id=56ee5620&":
+/*!**************************************************************************************!*\
+  !*** ./resources/assets/js/components/checkValue.vue?vue&type=template&id=56ee5620& ***!
+  \**************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_checkValue_vue_vue_type_template_id_56ee5620___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../node_modules/vue-loader/lib??vue-loader-options!./checkValue.vue?vue&type=template&id=56ee5620& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/checkValue.vue?vue&type=template&id=56ee5620&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_checkValue_vue_vue_type_template_id_56ee5620___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_checkValue_vue_vue_type_template_id_56ee5620___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/countWidget.vue":
+/*!********************************************************!*\
+  !*** ./resources/assets/js/components/countWidget.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _countWidget_vue_vue_type_template_id_b9608b28___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./countWidget.vue?vue&type=template&id=b9608b28& */ "./resources/assets/js/components/countWidget.vue?vue&type=template&id=b9608b28&");
+/* harmony import */ var _countWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./countWidget.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/countWidget.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _countWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _countWidget_vue_vue_type_template_id_b9608b28___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _countWidget_vue_vue_type_template_id_b9608b28___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/components/countWidget.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/countWidget.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/assets/js/components/countWidget.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_countWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./countWidget.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/countWidget.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_countWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/countWidget.vue?vue&type=template&id=b9608b28&":
+/*!***************************************************************************************!*\
+  !*** ./resources/assets/js/components/countWidget.vue?vue&type=template&id=b9608b28& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_countWidget_vue_vue_type_template_id_b9608b28___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../node_modules/vue-loader/lib??vue-loader-options!./countWidget.vue?vue&type=template&id=b9608b28& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/countWidget.vue?vue&type=template&id=b9608b28&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_countWidget_vue_vue_type_template_id_b9608b28___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_countWidget_vue_vue_type_template_id_b9608b28___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard.vue":
+/*!*************************************************!*\
+  !*** ./resources/assets/js/views/dashboard.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _dashboard_vue_vue_type_template_id_067b0c71___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dashboard.vue?vue&type=template&id=067b0c71& */ "./resources/assets/js/views/dashboard.vue?vue&type=template&id=067b0c71&");
+/* harmony import */ var _dashboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dashboard.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/dashboard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _dashboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _dashboard_vue_vue_type_template_id_067b0c71___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _dashboard_vue_vue_type_template_id_067b0c71___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/views/dashboard.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_dashboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./dashboard.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_dashboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard.vue?vue&type=template&id=067b0c71&":
+/*!********************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard.vue?vue&type=template&id=067b0c71& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_dashboard_vue_vue_type_template_id_067b0c71___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../node_modules/vue-loader/lib??vue-loader-options!./dashboard.vue?vue&type=template&id=067b0c71& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard.vue?vue&type=template&id=067b0c71&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_dashboard_vue_vue_type_template_id_067b0c71___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_dashboard_vue_vue_type_template_id_067b0c71___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/buttonRow.vue":
+/*!***********************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/buttonRow.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _buttonRow_vue_vue_type_template_id_2697e6aa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./buttonRow.vue?vue&type=template&id=2697e6aa& */ "./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=template&id=2697e6aa&");
+/* harmony import */ var _buttonRow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./buttonRow.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _buttonRow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _buttonRow_vue_vue_type_template_id_2697e6aa___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _buttonRow_vue_vue_type_template_id_2697e6aa___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/views/dashboard/buttonRow.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_buttonRow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./buttonRow.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_buttonRow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=template&id=2697e6aa&":
+/*!******************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=template&id=2697e6aa& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_buttonRow_vue_vue_type_template_id_2697e6aa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../../node_modules/vue-loader/lib??vue-loader-options!./buttonRow.vue?vue&type=template&id=2697e6aa& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/buttonRow.vue?vue&type=template&id=2697e6aa&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_buttonRow_vue_vue_type_template_id_2697e6aa___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_buttonRow_vue_vue_type_template_id_2697e6aa___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/countOrganisasiWidget.vue":
+/*!***********************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/countOrganisasiWidget.vue ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _countOrganisasiWidget_vue_vue_type_template_id_277315de___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./countOrganisasiWidget.vue?vue&type=template&id=277315de& */ "./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=template&id=277315de&");
+/* harmony import */ var _countOrganisasiWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./countOrganisasiWidget.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _countOrganisasiWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _countOrganisasiWidget_vue_vue_type_template_id_277315de___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _countOrganisasiWidget_vue_vue_type_template_id_277315de___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/views/dashboard/countOrganisasiWidget.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_countOrganisasiWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./countOrganisasiWidget.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_countOrganisasiWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=template&id=277315de&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=template&id=277315de& ***!
+  \******************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_countOrganisasiWidget_vue_vue_type_template_id_277315de___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../../node_modules/vue-loader/lib??vue-loader-options!./countOrganisasiWidget.vue?vue&type=template&id=277315de& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/countOrganisasiWidget.vue?vue&type=template&id=277315de&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_countOrganisasiWidget_vue_vue_type_template_id_277315de___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_countOrganisasiWidget_vue_vue_type_template_id_277315de___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue":
+/*!*************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _historyOrganisasiWidget_vue_vue_type_template_id_0e2d4996___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./historyOrganisasiWidget.vue?vue&type=template&id=0e2d4996& */ "./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=template&id=0e2d4996&");
+/* harmony import */ var _historyOrganisasiWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./historyOrganisasiWidget.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _historyOrganisasiWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _historyOrganisasiWidget_vue_vue_type_template_id_0e2d4996___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _historyOrganisasiWidget_vue_vue_type_template_id_0e2d4996___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/views/dashboard/historyOrganisasiWidget.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_historyOrganisasiWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./historyOrganisasiWidget.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_historyOrganisasiWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=template&id=0e2d4996&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=template&id=0e2d4996& ***!
+  \********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_historyOrganisasiWidget_vue_vue_type_template_id_0e2d4996___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../../node_modules/vue-loader/lib??vue-loader-options!./historyOrganisasiWidget.vue?vue&type=template&id=0e2d4996& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/historyOrganisasiWidget.vue?vue&type=template&id=0e2d4996&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_historyOrganisasiWidget_vue_vue_type_template_id_0e2d4996___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_historyOrganisasiWidget_vue_vue_type_template_id_0e2d4996___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue":
+/*!********************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _kegiatanBKCUWidget_vue_vue_type_template_id_0165c089___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./kegiatanBKCUWidget.vue?vue&type=template&id=0165c089& */ "./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=template&id=0165c089&");
+/* harmony import */ var _kegiatanBKCUWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./kegiatanBKCUWidget.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _kegiatanBKCUWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _kegiatanBKCUWidget_vue_vue_type_template_id_0165c089___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _kegiatanBKCUWidget_vue_vue_type_template_id_0165c089___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_kegiatanBKCUWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./kegiatanBKCUWidget.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_kegiatanBKCUWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=template&id=0165c089&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=template&id=0165c089& ***!
+  \***************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_kegiatanBKCUWidget_vue_vue_type_template_id_0165c089___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../../node_modules/vue-loader/lib??vue-loader-options!./kegiatanBKCUWidget.vue?vue&type=template&id=0165c089& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/kegiatanBKCUWidget.vue?vue&type=template&id=0165c089&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_kegiatanBKCUWidget_vue_vue_type_template_id_0165c089___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_kegiatanBKCUWidget_vue_vue_type_template_id_0165c089___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/newsSlider.vue":
+/*!************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/newsSlider.vue ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _newsSlider_vue_vue_type_template_id_1f1476bc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./newsSlider.vue?vue&type=template&id=1f1476bc& */ "./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=template&id=1f1476bc&");
+/* harmony import */ var _newsSlider_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./newsSlider.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _newsSlider_vue_vue_type_style_index_0_id_1f1476bc_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./newsSlider.vue?vue&type=style&index=0&id=1f1476bc&lang=css& */ "./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=style&index=0&id=1f1476bc&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _newsSlider_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _newsSlider_vue_vue_type_template_id_1f1476bc___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _newsSlider_vue_vue_type_template_id_1f1476bc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/views/dashboard/newsSlider.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_newsSlider_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./newsSlider.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_newsSlider_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=style&index=0&id=1f1476bc&lang=css&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=style&index=0&id=1f1476bc&lang=css& ***!
+  \*********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_newsSlider_vue_vue_type_style_index_0_id_1f1476bc_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./newsSlider.vue?vue&type=style&index=0&id=1f1476bc&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=style&index=0&id=1f1476bc&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_newsSlider_vue_vue_type_style_index_0_id_1f1476bc_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_newsSlider_vue_vue_type_style_index_0_id_1f1476bc_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_newsSlider_vue_vue_type_style_index_0_id_1f1476bc_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_newsSlider_vue_vue_type_style_index_0_id_1f1476bc_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=template&id=1f1476bc&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=template&id=1f1476bc& ***!
+  \*******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_newsSlider_vue_vue_type_template_id_1f1476bc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../../node_modules/vue-loader/lib??vue-loader-options!./newsSlider.vue?vue&type=template&id=1f1476bc& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/dashboard/newsSlider.vue?vue&type=template&id=1f1476bc&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_newsSlider_vue_vue_type_template_id_1f1476bc___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_newsSlider_vue_vue_type_template_id_1f1476bc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ })
+
+}]);
