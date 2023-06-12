@@ -3,6 +3,10 @@ export default {
     return axios.get("/api/kegiatanBKCU/index/" + tipe, { params: p });
   },
 
+  indexFormEvaluasi: function (id) {
+    return axios.get("/api/kegiatanBKCU/indexFormEvaluasi/" + id);
+  },
+
   indexBaru: function () {
     return axios.get("/api/kegiatanBKCU/baru");
   },
@@ -63,6 +67,13 @@ export default {
     return axios.get("/api/kegiatanBKCU/indexPesertaCu/" + id + "/cu/" + cu, {
       params: p,
     });
+  },
+
+  indexEvaluasiNilai: function (id) {
+    return axios.get("/api/kegiatanBKCU/indexEvaluasiNilai/" + id);
+  },
+  indexAllEvaluasiNilai: function (id) {
+    return axios.get("/api/kegiatanBKCU/indexAllEvaluasiNilai/" + id);
   },
 
   indexPesertaCountCu: function (id) {
@@ -148,7 +159,14 @@ export default {
   indexKegiatan: function () {
     return axios.get("/api/kegiatanBKCU/kegiatan");
   },
-
+  checkPesertaFilledForm: function (kegiatan_id, aktivis_id) {
+    return axios.get(
+      "/api/kegiatanBKCU/checkPesertaFilledForm/" +
+        kegiatan_id +
+        "/" +
+        aktivis_id
+    );
+  },
   checkPeserta: function (kegiatan_id, aktivis_id) {
     return axios.get(
       "/api/kegiatanBKCU/checkPeserta/" + kegiatan_id + "/" + aktivis_id
@@ -159,6 +177,9 @@ export default {
     return axios.get(
       "/api/kegiatanBKCU/checkPanitia/" + kegiatan_id + "/" + aktivis_id
     );
+  },
+  getFormEvaluasi: function () {
+    return axios.get("/api/kegiatanBKCU/getFormEvaluasi/");
   },
 
   getPeriode: function (tipe) {
@@ -217,6 +238,10 @@ export default {
 
   storeTugasJawaban: function (tipe, form) {
     return axios.post("/api/kegiatanBKCU/storeTugasJawaban/" + tipe, form);
+  },
+
+  storeFormEvaluasiNilai: function (form) {
+    return axios.post("/api/kegiatanBKCU/storeFormEvaluasiNilai", form);
   },
 
   edit: function (id) {

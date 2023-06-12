@@ -1,1 +1,1913 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[90],{Iab2:function(t,e,a){(function(a){var i,n,l;n=[],void 0===(l="function"==typeof(i=function(){"use strict";function e(t,e,a){var i=new XMLHttpRequest;i.open("GET",t),i.responseType="blob",i.onload=function(){r(i.response,e,a)},i.onerror=function(){console.error("could not download file")},i.send()}function i(t){var e=new XMLHttpRequest;e.open("HEAD",t,!1);try{e.send()}catch(t){}return 200<=e.status&&299>=e.status}function n(t){try{t.dispatchEvent(new MouseEvent("click"))}catch(a){var e=document.createEvent("MouseEvents");e.initMouseEvent("click",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),t.dispatchEvent(e)}}var l="object"==typeof window&&window.window===window?window:"object"==typeof self&&self.self===self?self:"object"==typeof a&&a.global===a?a:void 0,s=l.navigator&&/Macintosh/.test(navigator.userAgent)&&/AppleWebKit/.test(navigator.userAgent)&&!/Safari/.test(navigator.userAgent),r=l.saveAs||("object"!=typeof window||window!==l?function(){}:"download"in HTMLAnchorElement.prototype&&!s?function(t,a,s){var r=l.URL||l.webkitURL,o=document.createElement("a");a=a||t.name||"download",o.download=a,o.rel="noopener","string"==typeof t?(o.href=t,o.origin===location.origin?n(o):i(o.href)?e(t,a,s):n(o,o.target="_blank")):(o.href=r.createObjectURL(t),setTimeout((function(){r.revokeObjectURL(o.href)}),4e4),setTimeout((function(){n(o)}),0))}:"msSaveOrOpenBlob"in navigator?function(t,a,l){if(a=a||t.name||"download","string"!=typeof t)navigator.msSaveOrOpenBlob(function(t,e){return void 0===e?e={autoBom:!1}:"object"!=typeof e&&(console.warn("Deprecated: Expected third argument to be a object"),e={autoBom:!e}),e.autoBom&&/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(t.type)?new Blob(["\ufeff",t],{type:t.type}):t}(t,l),a);else if(i(t))e(t,a,l);else{var s=document.createElement("a");s.href=t,s.target="_blank",setTimeout((function(){n(s)}))}}:function(t,a,i,n){if((n=n||open("","_blank"))&&(n.document.title=n.document.body.innerText="downloading..."),"string"==typeof t)return e(t,a,i);var r="application/octet-stream"===t.type,o=/constructor/i.test(l.HTMLElement)||l.safari,c=/CriOS\/[\d]+/.test(navigator.userAgent);if((c||r&&o||s)&&"undefined"!=typeof FileReader){var d=new FileReader;d.onloadend=function(){var t=d.result;t=c?t:t.replace(/^data:[^;]*;/,"data:attachment/file;"),n?n.location.href=t:location=t,n=null},d.readAsDataURL(t)}else{var u=l.URL||l.webkitURL,m=u.createObjectURL(t);n?n.location=m:location.href=m,n=null,setTimeout((function(){u.revokeObjectURL(m)}),4e4)}});l.saveAs=r.saveAs=r,t.exports=r})?i.apply(e,n):i)||(t.exports=l)}).call(this,a("yLpj"))},"s2b/":function(t,e,a){"use strict";a.r(e);var i=a("L2JU"),n=a("Ll3F"),l=(a("LvDl"),a("s20v")),s=a("8MVx"),r=a("yunw"),o=a("Ocez");function c(t,e){var a=Object.keys(t);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(t);e&&(i=i.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),a.push.apply(a,i)}return a}function d(t){for(var e=1;e<arguments.length;e++){var a=null!=arguments[e]?arguments[e]:{};e%2?c(Object(a),!0).forEach((function(e){u(t,e,a[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(a)):c(Object(a)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(a,e))}))}return t}function u(t,e,a){return e in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}var m={components:{DataViewer:l.a,appModal:s.a,collapseButton:r.a,checkValue:o.a},props:["title","kelas"],data:function(){return{selectedItem:[],query:{order_column:"no_ba",order_direction:"asc",filter_match:"and",limit:10,page:1},excelDownloadUrl:"",columnData:[{title:"No.",name:"No."},{title:"Foto",name:"gambar",hide:!1},{title:"Logo",name:"logo",hide:!1},{title:"Nama",name:"name",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0,filterDefault:!0},{title:"Nama Legal",name:"name_legal",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0,filterDefault:!0},{title:"No. BA",name:"no_ba",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh TP/KP",name:"has_tp_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh Manajemen",name:"has_manajemen_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh Pengurus",name:"has_pengurus_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh Pengawas",name:"has_pengawas_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh Komite",name:"has_komite_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh Penasihat",name:"has_penasihat_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh Kolektor",name:"has_kolektor_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh Kelompok Inti",name:"has_kelompok_inti_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh Senior Manajer",name:"has_senior_manajer_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh Manajer",name:"has_manajer_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh Supervisor",name:"has_supervisor_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh Staf",name:"has_staf_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh Kontrak",name:"has_kontrak_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh Aktivis Tidak Aktif",name:"has_aktivis_tidak_aktif_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh Simpanan",name:"has_simpanan_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh Pinjaman",name:"has_pinjaman_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh Simpanan Jalinan",name:"has_simpanan_jalinan_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh Pinjaman Jalinan",name:"has_pinjaman_jalinan_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh User SIMO",name:"has_user_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh Artikel",name:"has_artikel_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh Anggota CU",name:"has_anggota_cu_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Badan Hukum",name:"badan_hukum",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"NPWP",name:"npwp",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"NIK",name:"nik",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"SITU",name:"situ",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"SIUSP",name:"siusp",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Izin Operasional",name:"izin_operasional",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Provinsi",name:"provinces.name",tipe:"string",sort:!1,hide:!1,disable:!1,filter:!0},{title:"Kabupaten/Kota",name:"regencies.name",tipe:"string",sort:!1,hide:!1,disable:!1,filter:!0},{title:"Kecamatan",name:"districts.name",tipe:"string",sort:!1,hide:!1,disable:!1,filter:!0},{title:"Kelurahan",name:"villages.name",tipe:"string",sort:!1,hide:!1,disable:!1,filter:!0},{title:"Alamat",name:"alamat",tipe:"string",sort:!1,hide:!1,disable:!1,filter:!0},{title:"Aplikasi",name:"app",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Tgl. Berdiri",name:"ultah",tipe:"datetime",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Tgl. Bergabung",name:"bergabung",tipe:"datetime",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Website",name:"website",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"E-mail",name:"email",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"No. Telp",name:"telp",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"No. Hp",name:"hp",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Kode Pos",name:"pos",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Tgl. / Waktu Buat",name:"created_at",tipe:"datetime",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Tgl. / Waktu Ubah",name:"updated_at",tipe:"datetime",sort:!0,hide:!1,disable:!1,filter:!0}],state:"",modalShow:!1,modalState:"",modalTitle:"",modalContent:"",modalButton:""}},created:function(){this.fetch(this.query)},watch:{updateStat:function(t){this.modalState=t,this.modalButton="Ok","success"===t?(this.modalTitle=this.updateMessage.message,this.modalContent="",this.fetch()):this.modalContent="fail"===t?this.updateMessage:""}},methods:{fetch:function(t){this.$store.dispatch(this.kelas+"/index",t),this.excelDownloadUrl=this.kelas},selectedRow:function(t){this.selectedItem=t},ubahData:function(t){this.$router.push({name:this.kelas+"Edit",params:{id:t}})},lihatTpCu:function(t){this.$router.push({name:"tpCu",params:{cu:t}})},modalConfirmOpen:function(t,e,a){this.modalShow=!0,this.modalState="confirm-tutup",this.state=t,e&&(this.selectedItem=a),"hapus"==t&&(this.modalTitle="Hapus "+this.title+" "+this.selectedItem.name+" ini?",this.modalButton="Iya, Hapus")},modalTutup:function(){this.modalShow=!1,this.$store.dispatch(this.kelas+"/resetUpdateStat")},modalConfirmOk:function(){"hapus"==this.state&&this.$store.dispatch(this.kelas+"/destroy",this.selectedItem.id)}},computed:d(d({},Object(i.b)("cu",{itemData:"dataS",itemDataStat:"dataStatS",updateMessage:"update",updateStat:"updateStat"})),Object(i.b)("auth",{currentUser:"currentUser"}))},h=a("KHd+"),p=Object(h.a)(m,(function(){var t=this,e=t.$createElement,a=t._self._c||e;return a("div",[a("data-viewer",{attrs:{title:t.title,columnData:t.columnData,itemData:t.itemData,query:t.query,itemDataStat:t.itemDataStat,excelDownloadUrl:t.excelDownloadUrl,isUploadExcel:!1},on:{fetch:t.fetch},scopedSlots:t._u([{key:"item-desktop",fn:function(e){return[a("tr",{staticClass:"text-nowrap",class:{"bg-info":t.selectedItem.id===e.item.id},on:{click:function(a){return t.selectedRow(e.item)}}},[a("td",[t._v("\n\t\t\t\t\t\t"+t._s(e.index+1+(+t.itemData.current_page-1)*+t.itemData.per_page+".")+"\n\t\t\t\t\t")]),t._v(" "),t.columnData[1].hide?t._e():a("td",[e.item.gambar?a("img",{staticClass:"img-rounded img-fluid wmin-sm",attrs:{src:"/images/"+t.kelas+"/"+e.item.gambar+"n.jpg",width:"40"}}):a("img",{staticClass:"img-rounded img-fluid wmin-sm",attrs:{src:"/images/no_image.jpg",width:"40"}})]),t._v(" "),t.columnData[2].hide?t._e():a("td",[e.item.logo?a("img",{staticClass:"img-rounded img-fluid wmin-sm",attrs:{src:"/images/logo/"+e.item.logo+"n.jpg",width:"40"}}):a("img",{staticClass:"img-rounded img-fluid wmin-sm",attrs:{src:"/images/no_image.jpg",width:"40"}})]),t._v(" "),t.columnData[3].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.name}})],1),t._v(" "),t.columnData[4].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.name_legal}})],1),t._v(" "),t.columnData[5].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.no_ba}})],1),t._v(" "),t.columnData[6].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_tp_count}})],1),t._v(" "),t.columnData[7].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_manajemen_count}})],1),t._v(" "),t.columnData[8].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_pengurus_count}})],1),t._v(" "),t.columnData[9].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_pengawas_count}})],1),t._v(" "),t.columnData[10].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_komite_count}})],1),t._v(" "),t.columnData[11].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_penasihat_count}})],1),t._v(" "),t.columnData[12].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_kolektor_count}})],1),t._v(" "),t.columnData[13].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_kelompok_inti_count}})],1),t._v(" "),t.columnData[14].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_senior_manajer_count}})],1),t._v(" "),t.columnData[15].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_manajer_count}})],1),t._v(" "),t.columnData[16].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_supervisor_count}})],1),t._v(" "),t.columnData[17].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_staf_count}})],1),t._v(" "),t.columnData[18].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_kontrak_count}})],1),t._v(" "),t.columnData[19].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_aktivis_tidak_aktif_count}})],1),t._v(" "),t.columnData[20].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_simpanan_count}})],1),t._v(" "),t.columnData[21].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_pinjaman_count}})],1),t._v(" "),t.columnData[22].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_simpanan_jalinan_count}})],1),t._v(" "),t.columnData[23].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_pinjaman_jalinan_count}})],1),t._v(" "),t.columnData[24].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_user_count}})],1),t._v(" "),t.columnData[25].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_artikel_count}})],1),t._v(" "),t.columnData[26].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_anggota_cu_count}})],1),t._v(" "),t.columnData[27].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.badan_hukum}})],1),t._v(" "),t.columnData[28].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.npwp}})],1),t._v(" "),t.columnData[29].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.nik}})],1),t._v(" "),t.columnData[30].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.situ}})],1),t._v(" "),t.columnData[31].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.siusp}})],1),t._v(" "),t.columnData[32].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.izin_operasional}})],1),t._v(" "),t.columnData[33].hide?t._e():a("td",[e.item.provinces?a("check-value",{attrs:{value:e.item.provinces.name}}):a("span",[t._v("-")])],1),t._v(" "),t.columnData[34].hide?t._e():a("td",[e.item.regencies?a("check-value",{attrs:{value:e.item.regencies.name}}):a("span",[t._v("-")])],1),t._v(" "),t.columnData[35].hide?t._e():a("td",[e.item.districts?a("check-value",{attrs:{value:e.item.districts.name}}):a("span",[t._v("-")])],1),t._v(" "),t.columnData[36].hide?t._e():a("td",[e.item.villages?a("check-value",{attrs:{value:e.item.villages.name}}):a("span",[t._v("-")])],1),t._v(" "),t.columnData[37].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.alamat}})],1),t._v(" "),t.columnData[38].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.app}})],1),t._v(" "),t.columnData[39].hide?t._e():a("td",{domProps:{innerHTML:t._s(t.$options.filters.date(e.item.ultah))}}),t._v(" "),t.columnData[40].hide?t._e():a("td",{domProps:{innerHTML:t._s(t.$options.filters.date(e.item.bergabung))}}),t._v(" "),t.columnData[41].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.website}})],1),t._v(" "),t.columnData[42].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.email}})],1),t._v(" "),t.columnData[43].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.telp}})],1),t._v(" "),t.columnData[44].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.hp}})],1),t._v(" "),t.columnData[45].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.pos}})],1),t._v(" "),t.columnData[46].hide?t._e():a("td",{staticClass:"text-nowrap",domProps:{innerHTML:t._s(t.$options.filters.dateTime(e.item.created_at))}}),t._v(" "),t.columnData[47].hide?t._e():a("td",[e.item.created_at!==e.item.updated_at?a("span",{domProps:{innerHTML:t._s(t.$options.filters.dateTime(e.item.updated_at))}}):a("span",[t._v("-")])])])]}}])},[a("template",{slot:"button-desktop"},[t.currentUser.can&&t.currentUser.can["create_"+t.kelas]?a("router-link",{staticClass:"btn btn-light btn-icon mb-1",attrs:{to:{name:t.kelas+"Create"}}},[a("i",{staticClass:"icon-plus3"}),t._v(" Tambah\n\t\t\t\t")]):t._e(),t._v(" "),t.currentUser.can&&t.currentUser.can["update_"+t.kelas]?a("button",{staticClass:"btn btn-light btn-icon mb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(e){return e.preventDefault(),t.ubahData(t.selectedItem.id)}}},[a("i",{staticClass:"icon-pencil5"}),t._v(" Ubah\n\t\t\t\t")]):t._e(),t._v(" "),t.currentUser.can&&t.currentUser.can["destroy_"+t.kelas]?a("button",{staticClass:"btn btn-light btn-icon mb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(e){return e.preventDefault(),t.modalConfirmOpen("hapus")}}},[a("i",{staticClass:"icon-bin2"}),t._v(" Hapus\n\t\t\t\t")]):t._e(),t._v(" "),t.currentUser.can&&t.currentUser.can.index_tp?a("button",{staticClass:"btn btn-light btn-icon mb-1",attrs:{disabled:!t.selectedItem.id||0===t.selectedItem.has_tp_cu_count},on:{click:function(e){return e.preventDefault(),t.lihatTpCu(t.selectedItem.id)}}},[a("i",{staticClass:"icon-file-eye"}),t._v(" Lihat TP/KP \n\t\t\t\t")]):t._e()],1),t._v(" "),a("template",{slot:"button-mobile"},[t.currentUser.can&&t.currentUser.can["create_"+t.kelas]?a("router-link",{staticClass:"btn btn-light btn-icon btn-block pb-1",attrs:{to:{name:t.kelas+"Create"}}},[a("i",{staticClass:"icon-plus3"}),t._v(" Tambah\n\t\t\t\t")]):t._e(),t._v(" "),t.currentUser.can&&t.currentUser.can["update_"+t.kelas]?a("button",{staticClass:"btn btn-light btn-icon btn-block pb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(e){return e.preventDefault(),t.ubahData(t.selectedItem.id)}}},[a("i",{staticClass:"icon-pencil5"}),t._v(" Ubah\n\t\t\t\t")]):t._e(),t._v(" "),t.currentUser.can&&t.currentUser.can["destroy_"+t.kelas]?a("button",{staticClass:"btn btn-light btn-icon btn-block pb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(e){return e.preventDefault(),t.modalConfirmOpen("hapus")}}},[a("i",{staticClass:"icon-bin2"}),t._v(" Hapus\n\t\t\t\t")]):t._e(),t._v(" "),t.currentUser.can&&t.currentUser.can.index_tp?a("button",{staticClass:"btn btn-light btn-icon btn-block pb-1",attrs:{disabled:!t.selectedItem.id||0===t.selectedItem.has_tp_cu_count},on:{click:function(e){return e.preventDefault(),t.lihatTpCu(t.selectedItem.id)}}},[a("i",{staticClass:"icon-file-eye"}),t._v(" Lihat TP/KP \n\t\t\t\t")]):t._e()],1)],2),t._v(" "),a("app-modal",{attrs:{show:t.modalShow,state:t.modalState,title:t.modalTitle,button:t.modalButton,content:t.modalContent},on:{tutup:t.modalTutup,confirmOk:t.modalConfirmOk,successOk:t.modalTutup,failOk:t.modalTutup,backgroundClick:t.modalTutup}})],1)}),[],!1,null,null,null).exports;function _(t,e){var a=Object.keys(t);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(t);e&&(i=i.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),a.push.apply(a,i)}return a}function v(t){for(var e=1;e<arguments.length;e++){var a=null!=arguments[e]?arguments[e]:{};e%2?_(Object(a),!0).forEach((function(e){b(t,e,a[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(a)):_(Object(a)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(a,e))}))}return t}function b(t,e,a){return e in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}var f={components:{DataViewer:l.a,appModal:s.a,collapseButton:r.a,checkValue:o.a},props:["title","kelas"],data:function(){return{selectedItem:[],query:{order_column:"no_ba",order_direction:"asc",filter_match:"and",limit:10,page:1},excelDownloadUrl:"",columnData:[{title:"No.",name:"No."},{title:"Foto",name:"gambar",hide:!1},{title:"Nama",name:"name",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0,filterDefault:!0},{title:"Nama Legal",name:"name_legal",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0,filterDefault:!0},{title:"No. BA",name:"no_ba",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Jmlh TP/KP",name:"has_tp_cu_count",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Badan Hukum",name:"badan_hukum",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"NPWP",name:"npwp",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"NIK",name:"nik",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"SITU",name:"situ",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"SIUSP",name:"siusp",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Izin Operasional",name:"izin_operasional",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Provinsi",name:"provinces.name",tipe:"string",sort:!1,hide:!1,disable:!1,filter:!0},{title:"Kabupaten/Kota",name:"regencies.name",tipe:"string",sort:!1,hide:!1,disable:!1,filter:!0},{title:"Kecamatan",name:"districts.name",tipe:"string",sort:!1,hide:!1,disable:!1,filter:!0},{title:"Kelurahan",name:"villages.name",tipe:"string",sort:!1,hide:!1,disable:!1,filter:!0},{title:"Alamat",name:"alamat",tipe:"string",sort:!1,hide:!1,disable:!1,filter:!0},{title:"Aplikasi",name:"app",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Tgl. Berdiri",name:"ultah",tipe:"datetime",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Tgl. Bergabung",name:"bergabung",tipe:"datetime",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Website",name:"website",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"E-mail",name:"email",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"No. Telp",name:"telp",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"No. Hp",name:"hp",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Kode Pos",name:"pos",tipe:"string",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Tgl. / Waktu Buat",name:"created_at",tipe:"datetime",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Tgl. / Waktu Ubah",name:"updated_at",tipe:"datetime",sort:!0,hide:!1,disable:!1,filter:!0},{title:"Tgl. / Waktu Hapus",name:"deleted_at",tipe:"datetime",sort:!0,hide:!1,disable:!1,filter:!0}],state:"",modalShow:!1,modalState:"",modalTitle:"",modalContent:"",modalButton:""}},created:function(){this.fetch(this.query)},watch:{updateStat:function(t){this.modalState=t,this.modalButton="Ok","success"===t?(this.modalTitle=this.updateMessage.message,this.modalContent="",this.fetch()):this.modalContent="fail"===t?this.updateMessage:""}},methods:{fetch:function(t){this.$store.dispatch(this.kelas+"/indexDeleted",t),this.excelDownloadUrl=this.kelas},selectedRow:function(t){this.selectedItem=t},lihatTpCu:function(t){this.$router.push({name:"tpCu",params:{cu:t}})},modalConfirmOpen:function(t,e,a){this.modalShow=!0,this.modalState="confirm-tutup",this.state=t,e&&(this.selectedItem=a),"restore"==t&&(this.modalTitle="Aktifkan kembali "+this.title+" "+this.selectedItem.name+" ini?",this.modalButton="Iya, Aktifkan")},modalTutup:function(){this.modalShow=!1,this.$store.dispatch(this.kelas+"/resetUpdateStat")},modalConfirmOk:function(){"restore"==this.state&&this.$store.dispatch(this.kelas+"/restore",this.selectedItem.id)}},computed:v(v({},Object(i.b)("cu",{itemData:"dataDeletedS",itemDataStat:"dataDeletedStatS",updateMessage:"update",updateStat:"updateStat"})),Object(i.b)("auth",{currentUser:"currentUser"}))},g=Object(h.a)(f,(function(){var t=this,e=t.$createElement,a=t._self._c||e;return a("div",[a("data-viewer",{attrs:{title:t.title,columnData:t.columnData,itemData:t.itemData,query:t.query,itemDataStat:t.itemDataStat,excelDownloadUrl:t.excelDownloadUrl,isUploadExcel:!1},on:{fetch:t.fetch},scopedSlots:t._u([{key:"item-desktop",fn:function(e){return[a("tr",{staticClass:"text-nowrap",class:{"bg-info":t.selectedItem.id===e.item.id},on:{click:function(a){return t.selectedRow(e.item)}}},[a("td",[t._v("\n\t\t\t\t\t\t"+t._s(e.index+1+(+t.itemData.current_page-1)*+t.itemData.per_page+".")+"\n\t\t\t\t\t")]),t._v(" "),t.columnData[1].hide?t._e():a("td",[e.item.gambar?a("img",{staticClass:"img-rounded img-fluid wmin-sm",attrs:{src:"/images/"+t.kelas+"/"+e.item.gambar+"n.jpg",width:"40"}}):a("img",{staticClass:"img-rounded img-fluid wmin-sm",attrs:{src:"/images/no_image.jpg",width:"40"}})]),t._v(" "),t.columnData[2].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.name}})],1),t._v(" "),t.columnData[3].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.name_legal}})],1),t._v(" "),t.columnData[4].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.no_ba}})],1),t._v(" "),t.columnData[5].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.has_tp_count}})],1),t._v(" "),t.columnData[6].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.badan_hukum}})],1),t._v(" "),t.columnData[7].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.npwp}})],1),t._v(" "),t.columnData[8].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.nik}})],1),t._v(" "),t.columnData[9].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.situ}})],1),t._v(" "),t.columnData[10].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.siusp}})],1),t._v(" "),t.columnData[11].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.izin_operasional}})],1),t._v(" "),t.columnData[12].hide||t.columnData[12].disable?t._e():a("td",[e.item.provinces?a("check-value",{attrs:{value:e.item.provinces.name}}):a("span",[t._v("-")])],1),t._v(" "),t.columnData[13].hide||t.columnData[13].disable?t._e():a("td",[e.item.regencies?a("check-value",{attrs:{value:e.item.regencies.name}}):a("span",[t._v("-")])],1),t._v(" "),t.columnData[14].hide||t.columnData[14].disable?t._e():a("td",[e.item.districts?a("check-value",{attrs:{value:e.item.districts.name}}):a("span",[t._v("-")])],1),t._v(" "),t.columnData[15].hide||t.columnData[15].disable?t._e():a("td",[e.item.villages?a("check-value",{attrs:{value:e.item.villages.name}}):a("span",[t._v("-")])],1),t._v(" "),t.columnData[16].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.alamat}})],1),t._v(" "),t.columnData[17].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.app}})],1),t._v(" "),t.columnData[18].hide?t._e():a("td",{domProps:{innerHTML:t._s(t.$options.filters.date(e.item.ultah))}}),t._v(" "),t.columnData[19].hide?t._e():a("td",{domProps:{innerHTML:t._s(t.$options.filters.date(e.item.bergabung))}}),t._v(" "),t.columnData[20].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.website}})],1),t._v(" "),t.columnData[21].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.email}})],1),t._v(" "),t.columnData[22].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.telp}})],1),t._v(" "),t.columnData[23].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.hp}})],1),t._v(" "),t.columnData[24].hide?t._e():a("td",[a("check-value",{attrs:{value:e.item.pos}})],1),t._v(" "),t.columnData[25].hide?t._e():a("td",{staticClass:"text-nowrap",domProps:{innerHTML:t._s(t.$options.filters.dateTime(e.item.created_at))}}),t._v(" "),t.columnData[26].hide?t._e():a("td",[e.item.created_at!==e.item.updated_at?a("span",{domProps:{innerHTML:t._s(t.$options.filters.dateTime(e.item.updated_at))}}):a("span",[t._v("-")])]),t._v(" "),t.columnData[27].hide?t._e():a("td",[a("span",{domProps:{innerHTML:t._s(t.$options.filters.dateTime(e.item.deleted_at))}})])])]}}])},[a("template",{slot:"button-desktop"},[t.currentUser.can&&t.currentUser.can["update_"+t.kelas]?a("button",{staticClass:"btn btn-light btn-icon mb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(e){return e.preventDefault(),t.modalConfirmOpen("restore")}}},[a("i",{staticClass:"icon-checkbox-checked2"}),t._v(" Aktifkan Kembali\n\t\t\t\t")]):t._e(),t._v(" "),t.currentUser.can&&t.currentUser.can.index_tp?a("button",{staticClass:"btn btn-light btn-icon mb-1",attrs:{disabled:!t.selectedItem.id||0===t.selectedItem.has_tp_cu_count},on:{click:function(e){return e.preventDefault(),t.lihatTpCu(t.selectedItem.id)}}},[a("i",{staticClass:"icon-file-eye"}),t._v(" Lihat TP/KP \n\t\t\t\t")]):t._e()]),t._v(" "),a("template",{slot:"button-mobile"},[t.currentUser.can&&t.currentUser.can["update_"+t.kelas]?a("button",{staticClass:"btn btn-light btn-icon btn-block pb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(e){return e.preventDefault(),t.modalConfirmOpen("restore")}}},[a("i",{staticClass:"icon-checkbox-checked2"}),t._v(" Aktifkan Kembali\n\t\t\t\t")]):t._e(),t._v(" "),t.currentUser.can&&t.currentUser.can.index_tp?a("button",{staticClass:"btn btn-light btn-icon btn-block pb-1",attrs:{disabled:!t.selectedItem.id||0===t.selectedItem.has_tp_cu_count},on:{click:function(e){return e.preventDefault(),t.lihatTpCu(t.selectedItem.id)}}},[a("i",{staticClass:"icon-file-eye"}),t._v(" Lihat TP/KP \n\t\t\t\t")]):t._e()])],2),t._v(" "),a("app-modal",{attrs:{show:t.modalShow,state:t.modalState,title:t.modalTitle,button:t.modalButton,content:t.modalContent},on:{tutup:t.modalTutup,confirmOk:t.modalConfirmOk,successOk:t.modalTutup,failOk:t.modalTutup,backgroundClick:t.modalTutup}})],1)}),[],!1,null,null,null).exports,k=a("xuR2");function D(t,e){var a=Object.keys(t);if(Object.getOwnPropertySymbols){var i=Object.getOwnPropertySymbols(t);e&&(i=i.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),a.push.apply(a,i)}return a}function w(t,e,a){return e in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}var O={components:{pageHeader:n.a,tableData:p,tableDataDeleted:g,message:k.a},data:function(){return{title:"CU",kelas:"cu",titleDesc:"Mengelola data CU",titleIcon:"icon-office",tabName:"table",isTableDeleted:!1}},methods:{changeTab:function(t){this.tabName=t,"tableDeleted"!=t||this.isTableDeleted||(this.isTableDeleted=!0)}},computed:function(t){for(var e=1;e<arguments.length;e++){var a=null!=arguments[e]?arguments[e]:{};e%2?D(Object(a),!0).forEach((function(e){w(t,e,a[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(a)):D(Object(a)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(a,e))}))}return t}({},Object(i.b)("cu",{itemData:"dataS",itemDataStat:"dataStatS",itemDataDeleted:"dataDeletedS",itemDataDeletedStat:"dataDeletedStatS"}))},C=Object(h.a)(O,(function(){var t=this,e=t.$createElement,a=t._self._c||e;return a("div",[a("page-header",{attrs:{title:t.title,titleDesc:t.titleDesc,titleIcon:t.titleIcon}}),t._v(" "),a("div",{staticClass:"page-content pt-0"},[a("div",{staticClass:"content-wrapper"},[a("div",{staticClass:"content"},["fail"===t.itemDataStat?a("message",{attrs:{title:"Oops terjadi kesalahan:",errorData:t.itemData}}):t._e(),t._v(" "),"fail"===t.itemDataDeletedStat?a("message",{attrs:{title:"Oops terjadi kesalahan:",errorData:t.itemDataDeleted}}):t._e(),t._v(" "),a("div",{staticClass:"nav-tabs-responsive mb-3"},[a("ul",{staticClass:"nav nav-tabs nav-tabs-solid bg-light"},[a("li",{staticClass:"nav-item"},[a("a",{staticClass:"nav-link",class:{active:"table"==t.tabName},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.changeTab("table")}}},[a("i",{staticClass:"icon-table2 mr-2"}),t._v(" CU Anggota")])]),t._v(" "),a("li",{staticClass:"nav-item"},[a("a",{staticClass:"nav-link",class:{active:"tableDeleted"==t.tabName},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.changeTab("tableDeleted")}}},[a("i",{staticClass:"icon-table2 mr-2"}),t._v(" CU Bukan Anggota Lagi")])])])]),t._v(" "),a("transition",{attrs:{"enter-active-class":"animated fadeIn",mode:"out-in"}},[a("div",{directives:[{name:"show",rawName:"v-show",value:"table"==t.tabName,expression:"tabName == 'table'"}]},[a("table-data",{attrs:{title:t.title,kelas:t.kelas}})],1)]),t._v(" "),a("transition",{attrs:{"enter-active-class":"animated fadeIn",mode:"out-in"}},[a("div",{directives:[{name:"show",rawName:"v-show",value:"tableDeleted"==t.tabName,expression:"tabName == 'tableDeleted'"}]},[a("table-data-deleted",{attrs:{title:t.title,kelas:t.kelas}})],1)])],1)])])],1)}),[],!1,null,null,null);e.default=C.exports},yunw:function(t,e,a){"use strict";var i={props:{id:{default:""}},data:function(){return{clicked:!1}},methods:{btnClick:function(){var t=this;this.clicked?setTimeout((function(){return t.clicked=!1}),400):this.clicked=!0}}},n=a("KHd+"),l=Object(n.a)(i,(function(){var t=this.$createElement,e=this._self._c||t;return e("div",[e("button",{staticClass:"btn btn-link btn-block",attrs:{"data-toggle":"collapse","data-target":".collap"+this.id},on:{click:this.btnClick}},[this.clicked?e("span",[e("i",{staticClass:"icon-arrow-up12"}),this._v(" Kembali "),e("i",{staticClass:"icon-arrow-up12"})]):e("span",[e("i",{staticClass:"icon-arrow-down12"}),this._v(" Selengkapnya "),e("i",{staticClass:"icon-arrow-down12"})])])])}),[],!1,null,null,null);e.a=l.exports}}]);
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[90],{
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/ImageUpload.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/ImageUpload.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      image: ''
+    };
+  },
+  props: {
+    image_loc: {
+      type: [String],
+      "default": ''
+    },
+    image_type: {
+      type: [String],
+      "default": '.jpg'
+    },
+    image_temp: {
+      "default": ''
+    },
+    value: {
+      type: [String, File],
+      "default": 'no_image'
+    }
+  },
+  methods: {
+    upload: function upload(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length) return;
+      this.createImage(files[0]);
+      this.$emit('input', files[0]);
+    },
+    createImage: function createImage(file) {
+      var reader = new FileReader();
+      var vm = this;
+
+      reader.onload = function (e) {
+        vm.image = e.target.result; // this.$emit('input', vm.image)
+      };
+
+      reader.readAsDataURL(file);
+    },
+    close: function close() {
+      this.$emit('input', 'no_image');
+      this.image = '/images/no_image.jpg';
+      this.$refs.fileInput.value = '';
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/formInfo.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/formInfo.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: []
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/user/form.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/user/form.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/pageHeader.vue */ "./resources/assets/js/components/pageHeader.vue");
+/* harmony import */ var _components_ImageUpload_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/ImageUpload.vue */ "./resources/assets/js/components/ImageUpload.vue");
+/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
+/* harmony import */ var _components_hakAkses_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/hakAkses.vue */ "./resources/assets/js/components/hakAkses.vue");
+/* harmony import */ var _components_message_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/message.vue */ "./resources/assets/js/components/message.vue");
+/* harmony import */ var _components_formButton_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/formButton.vue */ "./resources/assets/js/components/formButton.vue");
+/* harmony import */ var _components_formInfo_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/formInfo.vue */ "./resources/assets/js/components/formInfo.vue");
+/* harmony import */ var _components_wajibBadge_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/wajibBadge.vue */ "./resources/assets/js/components/wajibBadge.vue");
+/* harmony import */ var _components_dataviewer2_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/dataviewer2.vue */ "./resources/assets/js/components/dataviewer2.vue");
+/* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
+/* harmony import */ var _identitas_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./identitas.vue */ "./resources/assets/js/views/user/identitas.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    pageHeader: _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    appModal: _components_modal__WEBPACK_IMPORTED_MODULE_3__["default"],
+    appImageUpload: _components_ImageUpload_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    hakAkses: _components_hakAkses_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    message: _components_message_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    formButton: _components_formButton_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    formInfo: _components_formInfo_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+    wajibBadge: _components_wajibBadge_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
+    DataViewer: _components_dataviewer2_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
+    checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+    identitas: _identitas_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
+  },
+  data: function data() {
+    return {
+      title: 'Tambah User',
+      titleDesc: 'Menambah user baru',
+      titleIcon: 'icon-plus3',
+      level2Title: 'User',
+      kelas: 'user',
+      tipeUser: '',
+      selectedItem: [],
+      query: {
+        order_column: "name",
+        order_direction: "asc",
+        filter_match: "and",
+        limit: 10,
+        page: 1
+      },
+      columnData: [{
+        title: 'No.'
+      }, {
+        title: 'Foto'
+      }, {
+        title: 'Nama',
+        name: 'name',
+        tipe: 'string',
+        sort: true,
+        hide: false,
+        disable: false,
+        filter: true,
+        filterDefault: true
+      }, {
+        title: 'Gender'
+      }, {
+        title: 'CU',
+        disable: false
+      }, {
+        title: 'Tingkat'
+      }, {
+        title: 'Jabatan'
+      }, {
+        title: 'Pendidikan'
+      }, {
+        title: 'Jurusan'
+      }, {
+        title: 'Tgl. Lahir'
+      }, {
+        title: 'Tempat Lahir'
+      }, {
+        title: 'Tinggi'
+      }, {
+        title: 'Agama'
+      }, {
+        title: 'Status Pernikahan'
+      }],
+      modalShow: false,
+      modalState: '',
+      modalTitle: '',
+      modalColor: '',
+      modalContent: '',
+      submited: false
+    };
+  },
+  beforeRouteEnter: function beforeRouteEnter(to, from, next) {
+    next(function (vm) {
+      return vm.fetch();
+    });
+  },
+  created: function created() {},
+  watch: {
+    formStat: function formStat(value) {
+      if (value == 'success') {
+        if (this.currentUser.id_cu != 0) {
+          this.form.id_cu = this.currentUser.id_cu;
+          this.changeCU(this.currentUser.id_cu);
+        } else {
+          if (this.modelCuStat != 'success') {
+            this.$store.dispatch('cu/getHeader');
+          }
+        }
+      }
+    },
+    updateStat: function updateStat(value) {
+      this.modalShow = true;
+      this.modalState = value;
+      this.modalColor = '';
+
+      if (value === "success") {
+        this.modalTitle = this.updateResponse.message;
+      } else {
+        this.modalTitle = 'Oops terjadi kesalahan :(';
+        this.modalContent = this.updateResponse;
+      }
+    }
+  },
+  methods: {
+    fetch: function fetch() {
+      this.$store.dispatch(this.kelas + '/create');
+    },
+    fetchAktivis: function fetchAktivis(params) {
+      this.$store.dispatch('aktivis/indexCu', [params, this.form.id_cu, 'semua', 'aktif']);
+      this.disableColumnCu(true);
+    },
+    changeCU: function changeCU(value) {
+      this.fetchAktivis(this.query);
+
+      if (value == 0) {
+        this.tipeUser = 'bkcu';
+      } else {
+        this.tipeUser = 'cu';
+      }
+    },
+    disableColumnCu: function disableColumnCu(value) {
+      this.columnData[4].disable = value;
+    },
+    selectedRow: function selectedRow(item) {
+      this.selectedItem = item;
+      this.form.id_aktivis = item.id;
+      this.form.aktivis = item;
+    },
+    deleteSelected: function deleteSelected() {
+      this.selectedItem = [];
+      this.form.id_aktivis = '';
+      this.form.aktivis = {};
+    },
+    hakForm: function hakForm(value) {
+      this.form.permission = value;
+    },
+    changeRole: function changeRole(id) {
+      this.$store.dispatch('loadRolePermission', id);
+    },
+    checkUser: function checkUser(permission, id_cu) {
+      if (this.currentUser) {
+        if (!this.currentUser.can || !this.currentUser.can[permission]) {
+          this.$router.push('/notFound');
+        }
+
+        if (!id_cu || this.currentUser.id_cu) {
+          if (this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu) {
+            this.$router.push('/notFound');
+          }
+        }
+      }
+    },
+    save: function save() {
+      var _this = this;
+
+      this.$validator.validateAll('form').then(function (result) {
+        if (result) {
+          _this.$store.dispatch(_this.kelas + '/store', _this.form);
+
+          _this.submited = false;
+        } else {
+          window.scrollTo(0, 0);
+          _this.submited = true;
+        }
+      });
+    },
+    back: function back() {
+      this.$router.push({
+        name: this.kelas + 'Cu',
+        params: {
+          cu: this.currentUser.id_cu
+        }
+      });
+    },
+    modalTutup: function modalTutup() {
+      this.modalShow = false;
+
+      if (this.updateStat == 'success') {
+        this.back();
+      }
+    },
+    modalBackgroundClick: function modalBackgroundClick() {
+      if (this.modalState === 'success') {
+        this.modalTutup;
+      } else if (this.modalState === 'loading') {// do nothing
+      } else {
+        this.modalShow = false;
+      }
+    },
+    processFile: function processFile(event) {
+      this.form.gambar = event.target.files[0];
+    }
+  },
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+    currentUser: 'currentUser'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('user', {
+    form: 'data',
+    formStat: 'dataStat',
+    rules: 'rules',
+    options: 'options',
+    updateResponse: 'update',
+    updateStat: 'updateStat'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('aktivis', {
+    itemData: 'dataS',
+    itemDataStat: 'dataStatS'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('cu', {
+    modelCu: 'headerDataS',
+    modelCuStat: 'headerDataStatS'
+  }))
+});
+
+/***/ }),
+
+/***/ "./node_modules/file-saver/dist/FileSaver.min.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/file-saver/dist/FileSaver.min.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(a,b){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (b),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else {}})(this,function(){"use strict";function b(a,b){return"undefined"==typeof b?b={autoBom:!1}:"object"!=typeof b&&(console.warn("Deprecated: Expected third argument to be a object"),b={autoBom:!b}),b.autoBom&&/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(a.type)?new Blob(["\uFEFF",a],{type:a.type}):a}function c(a,b,c){var d=new XMLHttpRequest;d.open("GET",a),d.responseType="blob",d.onload=function(){g(d.response,b,c)},d.onerror=function(){console.error("could not download file")},d.send()}function d(a){var b=new XMLHttpRequest;b.open("HEAD",a,!1);try{b.send()}catch(a){}return 200<=b.status&&299>=b.status}function e(a){try{a.dispatchEvent(new MouseEvent("click"))}catch(c){var b=document.createEvent("MouseEvents");b.initMouseEvent("click",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),a.dispatchEvent(b)}}var f="object"==typeof window&&window.window===window?window:"object"==typeof self&&self.self===self?self:"object"==typeof global&&global.global===global?global:void 0,a=f.navigator&&/Macintosh/.test(navigator.userAgent)&&/AppleWebKit/.test(navigator.userAgent)&&!/Safari/.test(navigator.userAgent),g=f.saveAs||("object"!=typeof window||window!==f?function(){}:"download"in HTMLAnchorElement.prototype&&!a?function(b,g,h){var i=f.URL||f.webkitURL,j=document.createElement("a");g=g||b.name||"download",j.download=g,j.rel="noopener","string"==typeof b?(j.href=b,j.origin===location.origin?e(j):d(j.href)?c(b,g,h):e(j,j.target="_blank")):(j.href=i.createObjectURL(b),setTimeout(function(){i.revokeObjectURL(j.href)},4E4),setTimeout(function(){e(j)},0))}:"msSaveOrOpenBlob"in navigator?function(f,g,h){if(g=g||f.name||"download","string"!=typeof f)navigator.msSaveOrOpenBlob(b(f,h),g);else if(d(f))c(f,g,h);else{var i=document.createElement("a");i.href=f,i.target="_blank",setTimeout(function(){e(i)})}}:function(b,d,e,g){if(g=g||open("","_blank"),g&&(g.document.title=g.document.body.innerText="downloading..."),"string"==typeof b)return c(b,d,e);var h="application/octet-stream"===b.type,i=/constructor/i.test(f.HTMLElement)||f.safari,j=/CriOS\/[\d]+/.test(navigator.userAgent);if((j||h&&i||a)&&"undefined"!=typeof FileReader){var k=new FileReader;k.onloadend=function(){var a=k.result;a=j?a:a.replace(/^data:[^;]*;/,"data:attachment/file;"),g?g.location.href=a:location=a,g=null},k.readAsDataURL(b)}else{var l=f.URL||f.webkitURL,m=l.createObjectURL(b);g?g.location=m:location.href=m,g=null,setTimeout(function(){l.revokeObjectURL(m)},4E4)}});f.saveAs=g.saveAs=g, true&&(module.exports=g)});
+
+//# sourceMappingURL=FileSaver.min.js.map
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/ImageUpload.vue?vue&type=template&id=319f68d5&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/ImageUpload.vue?vue&type=template&id=319f68d5& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-body text-center" }, [
+        (_vm.image == "" && _vm.image_temp == "") ||
+        (!_vm.image && !_vm.image_temp)
+          ? _c("img", {
+              staticStyle: { width: "15em" },
+              attrs: { src: "/images/no_image.jpg" },
+            })
+          : _vm.image == "" && _vm.image_temp !== ""
+          ? _c("img", {
+              staticStyle: { width: "15em" },
+              attrs: { src: _vm.image_loc + _vm.image_temp + _vm.image_type },
+            })
+          : _c("img", {
+              staticStyle: { width: "15em" },
+              attrs: { src: _vm.image },
+            }),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-10" }, [
+        _c("input", {
+          ref: "fileInput",
+          staticClass: "form-control",
+          attrs: { type: "file", accept: ".jpg, .jpeg, .png" },
+          on: { change: _vm.upload },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-2" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-light btn-block",
+            attrs: { type: "button", disabled: _vm.image_temp === "" },
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.close()
+              },
+            },
+          },
+          [_c("i", { staticClass: "icon-cross" }), _vm._v(" Batal")]
+        ),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/formInfo.vue?vue&type=template&id=77f7efa9&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/formInfo.vue?vue&type=template&id=77f7efa9& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", { staticClass: "alert bg-info alert-styled-left" }, [
+        _c("h6", [
+          _vm._v(
+            "Pastikan data yang dimasukkan sudah benar sebelum menyimpan."
+          ),
+        ]),
+      ]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/user/form.vue?vue&type=template&id=fadbbf36&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/user/form.vue?vue&type=template&id=fadbbf36& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("page-header", {
+        attrs: {
+          title: _vm.title,
+          titleDesc: _vm.titleDesc,
+          titleIcon: _vm.titleIcon,
+          level: 2,
+          level2Title: _vm.level2Title,
+        },
+        on: {
+          level2Back: function ($event) {
+            return _vm.back()
+          },
+        },
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "page-content pt-0" }, [
+        _c("div", { staticClass: "content-wrapper" }, [
+          _c(
+            "div",
+            { staticClass: "content" },
+            [
+              _vm.errors.any("form") && _vm.submited
+                ? _c("message", {
+                    attrs: {
+                      title: "Oops, terjadi kesalahan",
+                      errorItem: _vm.errors.items,
+                    },
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  attrs: {
+                    enctype: "multipart/form-data",
+                    "data-vv-scope": "form",
+                  },
+                  on: {
+                    submit: function ($event) {
+                      $event.preventDefault()
+                      return _vm.save.apply(null, arguments)
+                    },
+                  },
+                },
+                [
+                  _c("div", { staticClass: "card" }, [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _vm._m(0),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group",
+                              class: {
+                                "has-error": _vm.errors.has("form.username"),
+                              },
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger":
+                                      _vm.errors.has("form.username"),
+                                  },
+                                },
+                                [
+                                  _vm.errors.has("form.username")
+                                    ? _c("i", { staticClass: "icon-cross2" })
+                                    : _vm._e(),
+                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tUsername: "),
+                                  _c("wajib-badge"),
+                                  _vm._v(" "),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _vm._m(1),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required|min:5|alpha_dash",
+                                    expression: "'required|min:5|alpha_dash'",
+                                  },
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.username,
+                                    expression: "form.username",
+                                  },
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "username",
+                                  placeholder: "Silahkan masukkan username",
+                                  "data-vv-as": "Username",
+                                },
+                                domProps: { value: _vm.form.username },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "username",
+                                      $event.target.value
+                                    )
+                                  },
+                                },
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.has("form.username")
+                                ? _c(
+                                    "small",
+                                    { staticClass: "text-muted text-danger" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-arrow-small-right",
+                                      }),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.errors.first("form.username")
+                                          ) +
+                                          "\n\t\t\t\t\t\t\t\t\t\t"
+                                      ),
+                                    ]
+                                  )
+                                : _c("small", { staticClass: "text-muted" }, [
+                                    _vm._v(" \n\t\t\t\t\t\t\t\t\t\t"),
+                                  ]),
+                            ]
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group",
+                              class: {
+                                "has-error": _vm.errors.has("form.password"),
+                              },
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger":
+                                      _vm.errors.has("form.password"),
+                                  },
+                                },
+                                [
+                                  _vm.errors.has("form.password")
+                                    ? _c("i", { staticClass: "icon-cross2" })
+                                    : _vm._e(),
+                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tPassword: "),
+                                  _c("wajib-badge"),
+                                  _vm._v(" "),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _vm._m(2),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required|min:8|verify_password",
+                                    expression:
+                                      "'required|min:8|verify_password'",
+                                  },
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.password,
+                                    expression: "form.password",
+                                  },
+                                ],
+                                ref: "password",
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "password",
+                                  name: "password",
+                                  placeholder: "Silahkan masukkan password",
+                                },
+                                domProps: { value: _vm.form.password },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "password",
+                                      $event.target.value
+                                    )
+                                  },
+                                },
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.has("form.password")
+                                ? _c(
+                                    "small",
+                                    { staticClass: "text-muted text-danger" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-arrow-small-right",
+                                      }),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.errors.first("form.password")
+                                          ) +
+                                          "\n\t\t\t\t\t\t\t\t\t\t"
+                                      ),
+                                    ]
+                                  )
+                                : _c("small", { staticClass: "text-muted" }, [
+                                    _vm._v(" \n\t\t\t\t\t\t\t\t\t\t"),
+                                  ]),
+                            ]
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group",
+                              class: {
+                                "has-error": _vm.errors.has(
+                                  "form.passwordConfirm"
+                                ),
+                              },
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "form.passwordConfirm"
+                                    ),
+                                  },
+                                },
+                                [
+                                  _vm.errors.has("form.passwordConfirm")
+                                    ? _c("i", { staticClass: "icon-cross2" })
+                                    : _vm._e(),
+                                  _vm._v(
+                                    "\n\t\t\t\t\t\t\t\t\t\t\tKonfirmasi Password: "
+                                  ),
+                                  _c("wajib-badge"),
+                                  _vm._v(" "),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _vm._m(3),
+                                  _vm._v(" "),
+                                  _c("br"),
+                                  _c("br"),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required|confirmed:password",
+                                    expression: "'required|confirmed:password'",
+                                  },
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.passwordConfirm,
+                                    expression: "form.passwordConfirm",
+                                  },
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "password",
+                                  name: "passwordConfirm",
+                                  placeholder:
+                                    "Silahkan masukkan password konfirmasi",
+                                  "data-vv-as": "password",
+                                },
+                                domProps: { value: _vm.form.passwordConfirm },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "passwordConfirm",
+                                      $event.target.value
+                                    )
+                                  },
+                                },
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.has("form.passwordConfirm")
+                                ? _c(
+                                    "small",
+                                    { staticClass: "text-muted text-danger" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-arrow-small-right",
+                                      }),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.errors.first(
+                                              "form.passwordConfirm"
+                                            )
+                                          ) +
+                                          "\n\t\t\t\t\t\t\t\t\t\t"
+                                      ),
+                                    ]
+                                  )
+                                : _c("small", { staticClass: "text-muted" }, [
+                                    _vm._v(" "),
+                                  ]),
+                            ]
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _vm.currentUser.id_cu == 0
+                          ? _c("div", { staticClass: "col-md-12" }, [
+                              _c("div", { staticClass: "form-group" }, [
+                                _c(
+                                  "h5",
+                                  [_vm._v("Tipe: "), _c("wajib-badge")],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.id_cu,
+                                        expression: "form.id_cu",
+                                      },
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: { name: "cu", "data-width": "100%" },
+                                    on: {
+                                      change: [
+                                        function ($event) {
+                                          var $$selectedVal =
+                                            Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function (o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function (o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                          _vm.$set(
+                                            _vm.form,
+                                            "id_cu",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        },
+                                        function ($event) {
+                                          return _vm.changeCU(
+                                            $event.target.value
+                                          )
+                                        },
+                                      ],
+                                    },
+                                  },
+                                  [
+                                    _c(
+                                      "option",
+                                      { attrs: { disabled: "", value: "" } },
+                                      [_vm._v("Silahkan pilih CU")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("option", { attrs: { value: "0" } }, [
+                                      _vm._v("PUSKOPCUINA"),
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.modelCu, function (cu, index) {
+                                      return _c(
+                                        "option",
+                                        {
+                                          key: index,
+                                          domProps: { value: cu.id },
+                                        },
+                                        [_vm._v(_vm._s(cu.name))]
+                                      )
+                                    }),
+                                  ],
+                                  2
+                                ),
+                              ]),
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.form.id_cu != "" && _vm.formStat == "success"
+                          ? _c(
+                              "div",
+                              { staticClass: "col-md-12" },
+                              [
+                                _c(
+                                  "h5",
+                                  [
+                                    _vm._v("Data Aktivis User: "),
+                                    _c("wajib-badge"),
+                                    _vm._v(" "),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _vm._m(4),
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _vm.form.id_aktivis != ""
+                                  ? _c("identitas", {
+                                      attrs: { itemData: _vm.form.aktivis },
+                                      on: {
+                                        deleteSelected: _vm.deleteSelected,
+                                      },
+                                    })
+                                  : _c("data-viewer", {
+                                      attrs: {
+                                        title: "Aktivis",
+                                        columnData: _vm.columnData,
+                                        itemData: _vm.itemData,
+                                        query: _vm.query,
+                                        itemDataStat: _vm.itemDataStat,
+                                        isDasar: "true",
+                                        isNoButtonRow: "true",
+                                      },
+                                      on: { fetch: _vm.fetchAktivis },
+                                      scopedSlots: _vm._u(
+                                        [
+                                          {
+                                            key: "item-desktop",
+                                            fn: function (props) {
+                                              return [
+                                                _c(
+                                                  "tr",
+                                                  {
+                                                    staticClass:
+                                                      "text-nowrap cursor-pointer",
+                                                    on: {
+                                                      click: function ($event) {
+                                                        return _vm.selectedRow(
+                                                          props.item
+                                                        )
+                                                      },
+                                                    },
+                                                  },
+                                                  [
+                                                    _c("td", [
+                                                      _vm._v(
+                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                          _vm._s(
+                                                            props.index +
+                                                              1 +
+                                                              (+_vm.itemData
+                                                                .current_page -
+                                                                1) *
+                                                                +_vm.itemData
+                                                                  .per_page +
+                                                              "."
+                                                          ) +
+                                                          "\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                      ),
+                                                    ]),
+                                                    _vm._v(" "),
+                                                    _c("td", [
+                                                      props.item.gambar
+                                                        ? _c("img", {
+                                                            staticClass:
+                                                              "img-rounded img-fluid wmin-sm",
+                                                            attrs: {
+                                                              src:
+                                                                "/images/aktivis/" +
+                                                                props.item
+                                                                  .gambar +
+                                                                "n.jpg",
+                                                            },
+                                                          })
+                                                        : _c("img", {
+                                                            staticClass:
+                                                              "img-rounded img-fluid wmin-sm",
+                                                            attrs: {
+                                                              src: "/images/no_image.jpg",
+                                                            },
+                                                          }),
+                                                    ]),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      [
+                                                        _c("check-value", {
+                                                          attrs: {
+                                                            value:
+                                                              props.item.name,
+                                                          },
+                                                        }),
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      [
+                                                        _c("check-value", {
+                                                          attrs: {
+                                                            value:
+                                                              props.item
+                                                                .kelamin,
+                                                          },
+                                                        }),
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    !_vm.columnData[4].disable
+                                                      ? _c("td", [
+                                                          props.item
+                                                            .pekerjaan_aktif &&
+                                                          props.item
+                                                            .pekerjaan_aktif
+                                                            .tipe == 1
+                                                            ? _c(
+                                                                "span",
+                                                                [
+                                                                  props.item
+                                                                    .pekerjaan_aktif
+                                                                    .cu
+                                                                    ? _c(
+                                                                        "check-value",
+                                                                        {
+                                                                          attrs:
+                                                                            {
+                                                                              value:
+                                                                                props
+                                                                                  .item
+                                                                                  .pekerjaan_aktif
+                                                                                  .cu
+                                                                                  .name,
+                                                                            },
+                                                                        }
+                                                                      )
+                                                                    : _c(
+                                                                        "span",
+                                                                        [
+                                                                          _vm._v(
+                                                                            "-"
+                                                                          ),
+                                                                        ]
+                                                                      ),
+                                                                ],
+                                                                1
+                                                              )
+                                                            : props.item
+                                                                .pekerjaan_aktif &&
+                                                              props.item
+                                                                .pekerjaan_aktif
+                                                                .tipe == 2
+                                                            ? _c(
+                                                                "span",
+                                                                [
+                                                                  props.item
+                                                                    .pekerjaan_aktif
+                                                                    .lembaga_lain
+                                                                    ? _c(
+                                                                        "check-value",
+                                                                        {
+                                                                          attrs:
+                                                                            {
+                                                                              value:
+                                                                                props
+                                                                                  .item
+                                                                                  .pekerjaan_aktif
+                                                                                  .lembaga_lain
+                                                                                  .name,
+                                                                            },
+                                                                        }
+                                                                      )
+                                                                    : _c(
+                                                                        "span",
+                                                                        [
+                                                                          _vm._v(
+                                                                            "-"
+                                                                          ),
+                                                                        ]
+                                                                      ),
+                                                                ],
+                                                                1
+                                                              )
+                                                            : props.item
+                                                                .pekerjaan_aktif &&
+                                                              props.item
+                                                                .pekerjaan_aktif
+                                                                .tipe == 3
+                                                            ? _c("span", [
+                                                                _vm._v(
+                                                                  "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tPUSKOPCUINA\n\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                                ),
+                                                              ])
+                                                            : _c("span", [
+                                                                _vm._v("-"),
+                                                              ]),
+                                                        ])
+                                                      : _vm._e(),
+                                                    _vm._v(" "),
+                                                    _c("td", {
+                                                      domProps: {
+                                                        innerHTML: _vm._s(
+                                                          _vm.$options.filters.checkTingkatAktivis(
+                                                            props.item
+                                                              .pekerjaan_aktif
+                                                              .tingkat
+                                                          )
+                                                        ),
+                                                      },
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      [
+                                                        props.item
+                                                          .pekerjaan_aktif
+                                                          ? _c("check-value", {
+                                                              attrs: {
+                                                                value:
+                                                                  props.item
+                                                                    .pekerjaan_aktif
+                                                                    .name,
+                                                              },
+                                                            })
+                                                          : _c("span", [
+                                                              _vm._v("-"),
+                                                            ]),
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      [
+                                                        props.item
+                                                          .pendidikan_tertinggi
+                                                          ? _c("check-value", {
+                                                              attrs: {
+                                                                value:
+                                                                  props.item
+                                                                    .pendidikan_tertinggi
+                                                                    .tingkat,
+                                                              },
+                                                            })
+                                                          : _c("span", [
+                                                              _vm._v("-"),
+                                                            ]),
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      [
+                                                        props.item
+                                                          .pendidikan_tertinggi
+                                                          ? _c("check-value", {
+                                                              attrs: {
+                                                                value:
+                                                                  props.item
+                                                                    .pendidikan_tertinggi
+                                                                    .name,
+                                                              },
+                                                            })
+                                                          : _c("span", [
+                                                              _vm._v("-"),
+                                                            ]),
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c("td", {
+                                                      domProps: {
+                                                        innerHTML: _vm._s(
+                                                          _vm.$options.filters.date(
+                                                            props.item
+                                                              .tanggal_lahir
+                                                          )
+                                                        ),
+                                                      },
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      [
+                                                        _c("check-value", {
+                                                          attrs: {
+                                                            value:
+                                                              props.item
+                                                                .tempat_lahir,
+                                                          },
+                                                        }),
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      [
+                                                        _c("check-value", {
+                                                          attrs: {
+                                                            value:
+                                                              props.item.tinggi,
+                                                          },
+                                                        }),
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      [
+                                                        _c("check-value", {
+                                                          attrs: {
+                                                            value:
+                                                              props.item.agama,
+                                                          },
+                                                        }),
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      [
+                                                        _c("check-value", {
+                                                          attrs: {
+                                                            value:
+                                                              props.item.status,
+                                                          },
+                                                        }),
+                                                      ],
+                                                      1
+                                                    ),
+                                                  ]
+                                                ),
+                                              ]
+                                            },
+                                          },
+                                        ],
+                                        null,
+                                        false,
+                                        952953435
+                                      ),
+                                    }),
+                              ],
+                              1
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.form.id_aktivis != "" && _vm.formStat == "success"
+                          ? _c(
+                              "div",
+                              { staticClass: "col-md-12" },
+                              [
+                                _c("br"),
+                                _vm._v(" "),
+                                _c(
+                                  "h5",
+                                  [
+                                    _vm._v("Hak Akses: "),
+                                    _c("wajib-badge"),
+                                    _vm._v(" "),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _vm._m(5),
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c("hak-akses", {
+                                  attrs: {
+                                    isPeran: true,
+                                    tipeUser: _vm.tipeUser,
+                                    dataStat: "success",
+                                  },
+                                  on: { hakForm: _vm.hakForm },
+                                }),
+                              ],
+                              1
+                            )
+                          : _vm._e(),
+                      ]),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("form-info"),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "card card-body" },
+                    [
+                      _c("form-button", {
+                        attrs: {
+                          cancelState: "methods",
+                          formValidation: "form",
+                        },
+                        on: { cancelClick: _vm.back },
+                      }),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("app-modal", {
+        attrs: {
+          show: _vm.modalShow,
+          state: _vm.modalState,
+          title: _vm.modalTitle,
+          content: _vm.modalContent,
+          color: _vm.modalColor,
+        },
+        on: {
+          batal: _vm.modalTutup,
+          tutup: _vm.modalTutup,
+          successOk: _vm.modalTutup,
+          failOk: _vm.modalTutup,
+          backgroundClick: _vm.modalBackgroundClick,
+        },
+      }),
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "alert alert-info alert-styled-left" }, [
+        _c("span", { staticClass: "font-weight-semibold" }, [
+          _vm._v("Informasi!"),
+        ]),
+        _vm._v(
+          " Mari menggunakan password dengan tingkat keamanan yang lebih tinggi!! \n\t\t\t\t\t\t\t\t\t\t"
+        ),
+        _c("br"),
+        _vm._v(
+          "\n\t\t\t\t\t\t\t\t\t\tDimana password anda harus minimal terdiri dari 8 karakter yang mengandung minimal 1 huruf besar, 1 huruf kecil dan 1 angka. \n\t\t\t\t\t\t\t\t\t\t"
+        ),
+        _c("br"),
+        _vm._v(
+          "\n\t\t\t\t\t\t\t\t\t\tUsahakan password anda bukan dari tanggal lahir, alamat, nomor telepon/hp dan dari kata yang sering anda gunakan atau mudah diketahui oleh orang lain.\n\t\t\t\t\t\t\t\t\t"
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("small", { staticClass: "text-muted" }, [
+      _c("i", [
+        _vm._v(
+          'format penulisan "namapanggilan-namasingkatancu" tanpa spasi. contoh: tony-cubcd'
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("small", { staticClass: "text-muted" }, [
+      _c("i", [
+        _vm._v(
+          "Minimal 8 karater yang mengandung minimal 1 huruf besar, 1 huruf kecil dan 1 angka"
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("small", { staticClass: "text-muted" }, [
+      _c("i", [_vm._v("Mengisi ulang password")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("small", { staticClass: "text-muted" }, [
+      _c("i", [
+        _vm._v(
+          "Silahkan memilih dari tabel dibawah data user ini terikat dengan data aktivis mana. untuk memilih dengan menekan nama di dalam tabel aktivis"
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("small", { staticClass: "text-muted" }, [
+      _c("i", [_vm._v("Silahkan memilih apa saja yang bisa dilakukan user.")]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/ImageUpload.vue":
+/*!********************************************************!*\
+  !*** ./resources/assets/js/components/ImageUpload.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ImageUpload_vue_vue_type_template_id_319f68d5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ImageUpload.vue?vue&type=template&id=319f68d5& */ "./resources/assets/js/components/ImageUpload.vue?vue&type=template&id=319f68d5&");
+/* harmony import */ var _ImageUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ImageUpload.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/ImageUpload.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ImageUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ImageUpload_vue_vue_type_template_id_319f68d5___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ImageUpload_vue_vue_type_template_id_319f68d5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/components/ImageUpload.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/ImageUpload.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/assets/js/components/ImageUpload.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ImageUpload.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/ImageUpload.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/ImageUpload.vue?vue&type=template&id=319f68d5&":
+/*!***************************************************************************************!*\
+  !*** ./resources/assets/js/components/ImageUpload.vue?vue&type=template&id=319f68d5& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUpload_vue_vue_type_template_id_319f68d5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ImageUpload.vue?vue&type=template&id=319f68d5& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/ImageUpload.vue?vue&type=template&id=319f68d5&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUpload_vue_vue_type_template_id_319f68d5___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUpload_vue_vue_type_template_id_319f68d5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/formInfo.vue":
+/*!*****************************************************!*\
+  !*** ./resources/assets/js/components/formInfo.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _formInfo_vue_vue_type_template_id_77f7efa9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./formInfo.vue?vue&type=template&id=77f7efa9& */ "./resources/assets/js/components/formInfo.vue?vue&type=template&id=77f7efa9&");
+/* harmony import */ var _formInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./formInfo.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/formInfo.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _formInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _formInfo_vue_vue_type_template_id_77f7efa9___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _formInfo_vue_vue_type_template_id_77f7efa9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/components/formInfo.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/formInfo.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/assets/js/components/formInfo.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_formInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./formInfo.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/formInfo.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_formInfo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/formInfo.vue?vue&type=template&id=77f7efa9&":
+/*!************************************************************************************!*\
+  !*** ./resources/assets/js/components/formInfo.vue?vue&type=template&id=77f7efa9& ***!
+  \************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_formInfo_vue_vue_type_template_id_77f7efa9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./formInfo.vue?vue&type=template&id=77f7efa9& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/formInfo.vue?vue&type=template&id=77f7efa9&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_formInfo_vue_vue_type_template_id_77f7efa9___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_formInfo_vue_vue_type_template_id_77f7efa9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/user/form.vue":
+/*!*************************************************!*\
+  !*** ./resources/assets/js/views/user/form.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _form_vue_vue_type_template_id_fadbbf36___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./form.vue?vue&type=template&id=fadbbf36& */ "./resources/assets/js/views/user/form.vue?vue&type=template&id=fadbbf36&");
+/* harmony import */ var _form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./form.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/user/form.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _form_vue_vue_type_template_id_fadbbf36___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _form_vue_vue_type_template_id_fadbbf36___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/views/user/form.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/user/form.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/assets/js/views/user/form.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./form.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/user/form.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/user/form.vue?vue&type=template&id=fadbbf36&":
+/*!********************************************************************************!*\
+  !*** ./resources/assets/js/views/user/form.vue?vue&type=template&id=fadbbf36& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_fadbbf36___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./form.vue?vue&type=template&id=fadbbf36& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/user/form.vue?vue&type=template&id=fadbbf36&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_fadbbf36___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_fadbbf36___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ })
+
+}]);

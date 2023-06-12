@@ -1,135 +1,80 @@
 <template>
   <div>
     <!-- main panel -->
-    <data-viewer
-      :title="title"
-      :columnData="columnData"
-      :itemData="itemData"
-      :query="query"
-      :itemDataStat="itemDataStat"
-      :excelDownloadUrl="excelDownloadUrl"
-      :isNoButtonRow="isNoButtonRow"
-      :dataview="dataview"
-      @fetch="fetch"
-    >
+    <data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat"
+      :excelDownloadUrl="excelDownloadUrl" :isNoButtonRow="isNoButtonRow" :dataview="dataview" @fetch="fetch">
       <!-- button desktop -->
       <template slot="button-desktop">
         <!-- diklat bkcu button -->
-        <template
-          v-if="
-            $route.params.tipe == 'diklat_bkcu' ||
-            $route.params.tipe == 'diklat_bkcu_internal'
-          "
-        >
+        <template v-if="$route.params.tipe == 'diklat_bkcu' ||
+          $route.params.tipe == 'diklat_bkcu_internal'
+          ">
           <!-- tambah -->
-          <router-link
-            :to="{
-              name: kelas + 'Create',
-              params: { tipe: $route.params.tipe },
-            }"
-            class="btn btn-light mb-1"
-            v-if="currentUser.can && currentUser.can['create_diklat_bkcu']"
-          >
+          <router-link :to="{
+            name: kelas + 'Create',
+            params: { tipe: $route.params.tipe },
+          }" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['create_diklat_bkcu']">
             <i class="icon-plus3"></i> Tambah
           </router-link>
 
           <!-- ubah-->
-          <button
-            @click.prevent="ubahData(selectedItem.id)"
-            class="btn btn-light mb-1"
-            v-if="currentUser.can && currentUser.can['update_diklat_bkcu']"
-            :disabled="!selectedItem.id"
-          >
+          <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light mb-1"
+            v-if="currentUser.can && currentUser.can['update_diklat_bkcu']" :disabled="!selectedItem.id">
             <i class="icon-pencil5"></i> Ubah
           </button>
 
           <!-- status -->
-          <button
-            @click.prevent="modalConfirmOpen('status')"
-            class="btn btn-light mb-1"
-            v-if="currentUser.can && currentUser.can['update_diklat_bkcu']"
-            :disabled="!selectedItem.id"
-          >
+          <button @click.prevent="modalConfirmOpen('status')" class="btn btn-light mb-1"
+            v-if="currentUser.can && currentUser.can['update_diklat_bkcu']" :disabled="!selectedItem.id">
             <i class="icon-calendar5"></i> Status
           </button>
 
           <!-- hapus -->
-          <button
-            @click.prevent="modalConfirmOpen('hapus')"
-            class="btn btn-light mb-1"
-            v-if="currentUser.can && currentUser.can['destroy_diklat_bkcu']"
-            :disabled="!selectedItem.id"
-          >
+          <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light mb-1"
+            v-if="currentUser.can && currentUser.can['destroy_diklat_bkcu']" :disabled="!selectedItem.id">
             <i class="icon-bin2"></i> Hapus
           </button>
 
           <!-- detail-->
-          <button
-            @click.prevent="detail(selectedItem.id)"
-            class="btn btn-light mb-1"
-            v-if="currentUser.can && currentUser.can['index_diklat_bkcu']"
-            :disabled="!selectedItem.id"
-          >
+          <button @click.prevent="detail(selectedItem.id)" class="btn btn-light mb-1"
+            v-if="currentUser.can && currentUser.can['index_diklat_bkcu']" :disabled="!selectedItem.id">
             <i class="icon-stack2"></i> Detail / Daftar
           </button>
         </template>
 
         <!-- pertemuan bkcu button -->
-        <template
-          v-else-if="
-            $route.params.tipe == 'pertemuan_bkcu' ||
-            $route.params.tipe == 'pertemuan_bkcu_internal'
-          "
-        >
+        <template v-else-if="$route.params.tipe == 'pertemuan_bkcu' ||
+          $route.params.tipe == 'pertemuan_bkcu_internal'
+          ">
           <!-- tambah -->
-          <router-link
-            :to="{
-              name: kelas + 'Create',
-              params: { tipe: $route.params.tipe },
-            }"
-            class="btn btn-light mb-1"
-            v-if="currentUser.can && currentUser.can['create_pertemuan_bkcu']"
-          >
+          <router-link :to="{
+            name: kelas + 'Create',
+            params: { tipe: $route.params.tipe },
+          }" class="btn btn-light mb-1" v-if="currentUser.can && currentUser.can['create_pertemuan_bkcu']">
             <i class="icon-plus3"></i> Tambah
           </router-link>
 
           <!-- ubah-->
-          <button
-            @click.prevent="ubahData(selectedItem.id)"
-            class="btn btn-light mb-1"
-            v-if="currentUser.can && currentUser.can['update_pertemuan_bkcu']"
-            :disabled="!selectedItem.id"
-          >
+          <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light mb-1"
+            v-if="currentUser.can && currentUser.can['update_pertemuan_bkcu']" :disabled="!selectedItem.id">
             <i class="icon-pencil5"></i> Ubah
           </button>
 
           <!-- status -->
-          <button
-            @click.prevent="modalConfirmOpen('status')"
-            class="btn btn-light mb-1"
-            v-if="currentUser.can && currentUser.can['update_pertemuan_bkcu']"
-            :disabled="!selectedItem.id"
-          >
+          <button @click.prevent="modalConfirmOpen('status')" class="btn btn-light mb-1"
+            v-if="currentUser.can && currentUser.can['update_pertemuan_bkcu']" :disabled="!selectedItem.id">
             <i class="icon-calendar5"></i> Status
           </button>
 
           <!-- hapus -->
-          <button
-            @click.prevent="modalConfirmOpen('hapus')"
-            class="btn btn-light mb-1"
-            v-if="currentUser.can && currentUser.can['destroy_pertemuan_bkcu']"
-            :disabled="!selectedItem.id"
-          >
+          <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light mb-1"
+            v-if="currentUser.can && currentUser.can['destroy_pertemuan_bkcu']" :disabled="!selectedItem.id">
             <i class="icon-bin2"></i> Hapus
           </button>
 
           <!-- detail-->
-          <button
-            @click.prevent="detail(selectedItem.id)"
-            class="btn btn-light mb-1"
-            v-if="currentUser.can && currentUser.can['index_pertemuan_bkcu']"
-            :disabled="!selectedItem.id"
-          >
+          <button @click.prevent="detail(selectedItem.id)" class="btn btn-light mb-1"
+            v-if="currentUser.can && currentUser.can['index_pertemuan_bkcu']" :disabled="!selectedItem.id">
             <i class="icon-stack2"></i> Detail / Daftar
           </button>
         </template>
@@ -138,121 +83,75 @@
       <!-- button mobile -->
       <template slot="button-mobile">
         <!-- diklat bkcu button -->
-        <template
-          v-if="
-            $route.params.tipe == 'diklat_bkcu' ||
-            $route.params.tipe == 'diklat_bkcu_internal'
-          "
-        >
+        <template v-if="$route.params.tipe == 'diklat_bkcu' ||
+          $route.params.tipe == 'diklat_bkcu_internal'
+          ">
           <!-- tambah -->
-          <router-link
-            :to="{
-              name: kelas + 'Create',
-              params: { tipe: $route.params.tipe },
-            }"
-            class="btn btn-light btn-block mb-1"
-            v-if="currentUser.can && currentUser.can['create_diklat_bkcu']"
-          >
+          <router-link :to="{
+            name: kelas + 'Create',
+            params: { tipe: $route.params.tipe },
+          }" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['create_diklat_bkcu']">
             <i class="icon-plus3"></i> Tambah
           </router-link>
 
           <!-- ubah-->
-          <button
-            @click.prevent="ubahData(selectedItem.id)"
-            class="btn btn-light btn-block mb-1"
-            v-if="currentUser.can && currentUser.can['update_diklat_bkcu']"
-            :disabled="!selectedItem.id"
-          >
+          <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-block mb-1"
+            v-if="currentUser.can && currentUser.can['update_diklat_bkcu']" :disabled="!selectedItem.id">
             <i class="icon-pencil5"></i> Ubah
           </button>
 
           <!-- status -->
-          <button
-            @click.prevent="modalConfirmOpen('status')"
-            class="btn btn-light btn-block mb-1"
-            v-if="currentUser.can && currentUser.can['update_diklat_bkcu']"
-            :disabled="!selectedItem.id"
-          >
+          <button @click.prevent="modalConfirmOpen('status')" class="btn btn-light btn-block mb-1"
+            v-if="currentUser.can && currentUser.can['update_diklat_bkcu']" :disabled="!selectedItem.id">
             <i class="icon-calendar5"></i> Status
           </button>
 
           <!-- hapus -->
-          <button
-            @click.prevent="modalConfirmOpen('hapus')"
-            class="btn btn-light btn-block mb-1"
-            v-if="currentUser.can && currentUser.can['destroy_diklat_bkcu']"
-            :disabled="!selectedItem.id"
-          >
+          <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-block mb-1"
+            v-if="currentUser.can && currentUser.can['destroy_diklat_bkcu']" :disabled="!selectedItem.id">
             <i class="icon-bin2"></i> Hapus
           </button>
 
           <!-- detail -->
-          <button
-            @click.prevent="detail(selectedItem.id)"
-            class="btn btn-light btn-block mb-1"
-            v-if="currentUser.can && currentUser.can['index_diklat_bkcu']"
-            :disabled="!selectedItem.id"
-          >
+          <button @click.prevent="detail(selectedItem.id)" class="btn btn-light btn-block mb-1"
+            v-if="currentUser.can && currentUser.can['index_diklat_bkcu']" :disabled="!selectedItem.id">
             <i class="icon-stack2"></i> Detail / Daftar
           </button>
         </template>
 
         <!-- pertemuan bkcu button -->
-        <template
-          v-else-if="
-            $route.params.tipe == 'pertemuan_bkcu' ||
-            $route.params.tipe == 'pertemuan_bkcu_internal'
-          "
-        >
+        <template v-else-if="$route.params.tipe == 'pertemuan_bkcu' ||
+          $route.params.tipe == 'pertemuan_bkcu_internal'
+          ">
           <!-- tambah -->
-          <router-link
-            :to="{
-              name: kelas + 'Create',
-              params: { tipe: $route.params.tipe },
-            }"
-            class="btn btn-light btn-block mb-1"
-            v-if="currentUser.can && currentUser.can['create_pertemuan_bkcu']"
-          >
+          <router-link :to="{
+            name: kelas + 'Create',
+            params: { tipe: $route.params.tipe },
+          }" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['create_pertemuan_bkcu']">
             <i class="icon-plus3"></i> Tambah
           </router-link>
 
           <!-- ubah-->
-          <button
-            @click.prevent="ubahData(selectedItem.id)"
-            class="btn btn-light btn-block mb-1"
-            v-if="currentUser.can && currentUser.can['update_pertemuan_bkcu']"
-            :disabled="!selectedItem.id"
-          >
+          <button @click.prevent="ubahData(selectedItem.id)" class="btn btn-light btn-block mb-1"
+            v-if="currentUser.can && currentUser.can['update_pertemuan_bkcu']" :disabled="!selectedItem.id">
             <i class="icon-pencil5"></i> Ubah
           </button>
 
           <!-- status -->
-          <button
-            @click.prevent="modalConfirmOpen('status')"
-            class="btn btn-light btn-block mb-1"
-            v-if="currentUser.can && currentUser.can['update_pertemuan_bkcu']"
-            :disabled="!selectedItem.id"
-          >
+          <button @click.prevent="modalConfirmOpen('status')" class="btn btn-light btn-block mb-1"
+            v-if="currentUser.can && currentUser.can['update_pertemuan_bkcu']" :disabled="!selectedItem.id">
             <i class="icon-calendar5"></i> Status
           </button>
 
           <!-- hapus -->
-          <button
-            @click.prevent="modalConfirmOpen('hapus')"
-            class="btn btn-light btn-block mb-1"
-            v-if="currentUser.can && currentUser.can['destroy_pertemuan_bkcu']"
-            :disabled="!selectedItem.id"
-          >
+          <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-block mb-1"
+            v-if="currentUser.can && currentUser.can['destroy_pertemuan_bkcu']" :disabled="!selectedItem.id">
             <i class="icon-bin2"></i> Hapus
           </button>
 
           <!-- detail -->
-          <button
-            @click.prevent="detail(selectedItem.id)"
-            class="btn btn-light btn-block mb-1"
-            v-if="currentUser.can && currentUser.can['index_pertemuan_bkcu']"
-            :disabled="!selectedItem.id"
-          >
+          <button @click.prevent="detail(selectedItem.id)" class="btn btn-light btn-block mb-1"
+            v-if="currentUser.can && currentUser.can['index_pertemuan_bkcu']" :disabled="!selectedItem.id">
             <i class="icon-stack2"></i> Detail / Daftar
           </button>
         </template>
@@ -260,11 +159,8 @@
 
       <!-- item desktop -->
       <template slot="item-desktop" slot-scope="props">
-        <tr
-          :class="{ 'bg-info': selectedItem.id === props.item.id }"
-          class="text-nowrap"
-          @click="selectedRow(props.item)"
-        >
+        <tr :class="{ 'bg-info': selectedItem.id === props.item.id }" class="text-nowrap"
+          @click="selectedRow(props.item)">
           <td>
             {{
               props.index +
@@ -274,68 +170,37 @@
             }}
           </td>
           <td v-if="!columnData[1].hide">
-            <span
-              v-html="$options.filters.statusDiklat(props.item.status)"
-              @click.prevent="
-                modalKeteranganBatalOpen(props.item.keteranganBatal)
-              "
-              v-if="props.item.status == '6'"
-              style="cursor: pointer"
-            ></span>
-            <span
-              v-html="$options.filters.statusDiklat(props.item.status)"
-              v-else
-            ></span>
+            <span v-html="$options.filters.statusDiklat(props.item.status)" @click.prevent="
+              modalKeteranganBatalOpen(props.item.keteranganBatal)
+              " v-if="props.item.status == '6'" style="cursor: pointer"></span>
+            <span v-html="$options.filters.statusDiklat(props.item.status)" v-else></span>
           </td>
           <td v-if="!columnData[2].hide">
-            <check-value
-              :value="props.item.kode_diklat"
-              v-if="props.item.kode_diklat"
-            ></check-value>
-            <check-value
-              :value="props.item.kode.kode"
-              v-else-if="props.item.kode"
-            ></check-value>
+            <check-value :value="props.item.kode_diklat" v-if="props.item.kode_diklat"></check-value>
+            <check-value :value="props.item.kode.kode" v-else-if="props.item.kode"></check-value>
             <span v-else>-</span>
           </td>
           <td v-if="!columnData[3].hide">
             <check-value :value="props.item.name"></check-value>
           </td>
           <td v-if="!columnData[4].hide && !columnData[4].disable">
-            <check-value
-              :value="props.item.provinces.name"
-              v-if="props.item.provinces"
-            ></check-value>
+            <check-value :value="props.item.provinces.name" v-if="props.item.provinces"></check-value>
             <span v-else>-</span>
           </td>
           <td v-if="!columnData[5].hide && !columnData[5].disable">
-            <check-value
-              :value="props.item.regencies.name"
-              v-if="props.item.regencies"
-            ></check-value>
+            <check-value :value="props.item.regencies.name" v-if="props.item.regencies"></check-value>
             <span v-else>-</span>
           </td>
           <td v-if="!columnData[6].hide && !columnData[6].disable">
-            <check-value
-              :value="props.item.tempat.name"
-              v-if="props.item.tempat"
-            ></check-value>
-            <span v-else-if="props.item.tipe_tempat == 'ONLINE'"
-              >DILAKSANAKAN ONLINE</span
-            >
+            <check-value :value="props.item.tempat.name" v-if="props.item.tempat"></check-value>
+            <span v-else-if="props.item.tipe_tempat == 'ONLINE'">DILAKSANAKAN ONLINE</span>
             <span v-else>Belum ditentukan tempat</span>
           </td>
           <td v-if="!columnData[7].hide">
             <check-value :value="props.item.periode"></check-value>
           </td>
-          <td
-            v-if="!columnData[8].hide"
-            v-html="$options.filters.date(props.item.mulai)"
-          ></td>
-          <td
-            v-if="!columnData[9].hide"
-            v-html="$options.filters.date(props.item.selesai)"
-          ></td>
+          <td v-if="!columnData[8].hide" v-html="$options.filters.date(props.item.mulai)"></td>
+          <td v-if="!columnData[9].hide" v-html="$options.filters.date(props.item.selesai)"></td>
           <td v-if="!columnData[10].hide">
             <check-value :value="props.item.peserta_max"></check-value>
           </td>
@@ -344,24 +209,15 @@
           </td>
           <td v-if="!columnData[12].hide" class="text-warp">
             <span v-if="props.item.sasaran">
-              <label
-                v-for="(sasaran, index) in props.item.sasaran"
-                :key="index"
-                class="badge badge-primary ml-1"
-              >
+              <label v-for="(sasaran, index) in props.item.sasaran" :key="index" class="badge badge-primary ml-1">
                 {{ sasaran.name }}
               </label>
             </span>
           </td>
-          <td
-            v-if="!columnData[13].hide"
-            v-html="$options.filters.dateTime(props.item.created_at)"
-          ></td>
+          <td v-if="!columnData[13].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
           <td v-if="!columnData[14].hide">
-            <span
-              v-if="props.item.created_at !== props.item.updated_at"
-              v-html="$options.filters.dateTime(props.item.updated_at)"
-            ></span>
+            <span v-if="props.item.created_at !== props.item.updated_at"
+              v-html="$options.filters.dateTime(props.item.updated_at)"></span>
             <span v-else>-</span>
           </td>
         </tr>
@@ -370,44 +226,27 @@
       <!-- item mobile -->
       <template slot="item-mobile" slot-scope="props">
         <div class="col-lg-4 col-md-6">
-          <div
-            class="card cursor-pointer"
-            @click.prevent="detail(props.item.id)"
-          >
+          <div class="card cursor-pointer" @click.prevent="detail(props.item.id)">
             <div class="card-header bg-light header-elements-inline">
               <h6 class="card-title">
                 <check-value :value="props.item.kode_diklat"></check-value>
               </h6>
               <div class="header-elements">
-                <span
-                  v-html="$options.filters.statusDiklat(props.item.status)"
-                ></span>
+                <span v-html="$options.filters.statusDiklat(props.item.status)"></span>
               </div>
             </div>
             <div class="card-body">
-              <template
-                v-if="
-                  props.item.tipe == 'diklat_bkcu' ||
-                  props.item.tipe == 'diklat_bkcu_internal'
-                "
-              >
-                <img
-                  :src="'/images/diklat/' + props.item.gambar + '.jpg'"
-                  class="img-fluid wmin-sm"
-                  v-if="props.item.gambar"
-                />
+              <template v-if="props.item.tipe == 'diklat_bkcu' ||
+                props.item.tipe == 'diklat_bkcu_internal'
+                ">
+                <img :src="'/images/diklat/' + props.item.gambar + '.jpg'" class="img-fluid wmin-sm"
+                  v-if="props.item.gambar" />
               </template>
-              <template
-                v-else-if="
-                  props.item.tipe == 'pertemuan_bkcu' ||
-                  props.item.tipe == 'pertemuan_bkcu_internal'
-                "
-              >
-                <img
-                  :src="'/images/pertemuan/' + props.item.gambar + '.jpg'"
-                  class="img-fluid wmin-sm"
-                  v-if="props.item.gambar"
-                />
+              <template v-else-if="props.item.tipe == 'pertemuan_bkcu' ||
+                props.item.tipe == 'pertemuan_bkcu_internal'
+                ">
+                <img :src="'/images/pertemuan/' + props.item.gambar + '.jpg'" class="img-fluid wmin-sm"
+                  v-if="props.item.gambar" />
               </template>
               <hr v-if="props.item.gambar" />
               <h5 class="text-primary">{{ props.item.name }}</h5>
@@ -433,10 +272,8 @@
                     </li>
                     <li>
                       Durasi:
-                      <span class="text-muted"
-                        ><check-value :value="props.item.durasi"></check-value>
-                        jam</span
-                      >
+                      <span class="text-muted"><check-value :value="props.item.durasi"></check-value>
+                        jam</span>
                     </li>
                   </ul>
                 </div>
@@ -444,52 +281,29 @@
                   <ul class="list list-unstyled mb-1">
                     <li>
                       Tempat:
-                      <check-value
-                        :value="props.item.tempat.name"
-                        v-if="props.item.tempat"
-                        class="text-muted"
-                      ></check-value>
-                      <span
-                        class="text-muted"
-                        v-else-if="props.item.tipe_tempat == 'ONLINE'"
-                        >DILAKSANAKAN ONLINE</span
-                      >
-                      <span class="text-muted" v-else
-                        >Belum ditentukan tempat</span
-                      >
+                      <check-value :value="props.item.tempat.name" v-if="props.item.tempat"
+                        class="text-muted"></check-value>
+                      <span class="text-muted" v-else-if="props.item.tipe_tempat == 'ONLINE'">DILAKSANAKAN ONLINE</span>
+                      <span class="text-muted" v-else>Belum ditentukan tempat</span>
                     </li>
                     <li>
                       Kabupaten/Kota:
-                      <check-value
-                        :value="props.item.regencies.name"
-                        v-if="props.item.regencies"
-                        class="text-muted"
-                      ></check-value
-                      ><span class="text-muted" v-else>-</span>
+                      <check-value :value="props.item.regencies.name" v-if="props.item.regencies"
+                        class="text-muted"></check-value><span class="text-muted" v-else>-</span>
                     </li>
                     <li>
                       Provinsi:
-                      <check-value
-                        :value="props.item.provinces.name"
-                        v-if="props.item.provinces"
-                        class="text-muted"
-                      ></check-value
-                      ><span class="text-muted" v-else>-</span>
+                      <check-value :value="props.item.provinces.name" v-if="props.item.provinces"
+                        class="text-muted"></check-value><span class="text-muted" v-else>-</span>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
 
-            <div
-              class="card-footer d-sm-flex justify-content-sm-between align-items-sm-center"
-            >
+            <div class="card-footer d-sm-flex justify-content-sm-between align-items-sm-center">
               <span v-if="props.item.sasaran">
-                <label
-                  v-for="(sasaran, index) in props.item.sasaran"
-                  :key="index"
-                  class="badge badge-primary ml-1"
-                >
+                <label v-for="(sasaran, index) in props.item.sasaran" :key="index" class="badge badge-primary ml-1">
                   {{ sasaran.name }}
                 </label>
               </span>
@@ -500,19 +314,9 @@
     </data-viewer>
 
     <!-- modal -->
-    <app-modal
-      :show="modalShow"
-      :state="modalState"
-      :title="modalTitle"
-      :button="modalButton"
-      :content="modalContent"
-      :color="modalColor"
-      @tutup="modalTutup"
-      @confirmOk="modalConfirmOk"
-      @successOk="modalTutup"
-      @failOk="modalTutup"
-      @backgroundClick="modalTutup"
-    >
+    <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :button="modalButton" :content="modalContent"
+      :color="modalColor" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup"
+      @backgroundClick="modalTutup">
       <!-- title -->
       <template slot="modal-title">
         {{ modalTitle }}
@@ -520,13 +324,8 @@
 
       <!-- status -->
       <template slot="modal-body1">
-        <form-status
-          :kelas="kelas"
-          :id="selectedItem.id"
-          :status="selectedItem.status"
-          :keteranganBatal="selectedItem.keteranganBatal"
-          @tutup="modalTutup"
-        ></form-status>
+        <form-status :kelas="kelas" :id="selectedItem.id" :status="selectedItem.status"
+          :keteranganBatal="selectedItem.keteranganBatal" @tutup="modalTutup"></form-status>
       </template>
 
       <!-- keteranganBatal -->
@@ -550,10 +349,7 @@
 
         <!-- tombol mobile-->
         <div class="d-block d-md-none">
-          <button
-            class="btn btn-light btn-block pb-2"
-            @click.prevent="modalTutup"
-          >
+          <button class="btn btn-light btn-block pb-2" @click.prevent="modalTutup">
             <i class="icon-cross"></i> Tutup
           </button>
         </div>

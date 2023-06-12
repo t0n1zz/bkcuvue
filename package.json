@@ -32,18 +32,19 @@
         "babel-plugin-transform-runtime": "^6.23.0",
         "babel-polyfill": "^6.26.0",
         "babel-runtime-regenerator": "^7.8.4",
+        "bootstrap-vue": "^2.23.1",
         "echarts": "^4.5.0",
-        "file-saver": "^2.0.2",
+        "file-saver": "^2.0.5",
         "hooper": "^0.3.4",
         "imagemin": "^5.0.0",
         "laravel-echo": "^1.8.1",
         "laravel-vue-pagination": "^2.3.1",
-        "moment": "^2.24.0",
+        "moment": "^2.29.4",
         "node-sass": "^6.0.1",
         "pusher-js": "^7.0.0",
         "qrcode.vue": "^1.7.0",
         "v-tooltip": "^2.0.2",
-        "vee-validate": "^2.2.15",
+        "vee-validate": "^4.9.6",
         "vue-ckeditor5": "^0.3.1",
         "vue-cleave-component": "^2.1.3",
         "vue-context-menu": "^2.0.6",
@@ -58,6 +59,7 @@
         "vue-truncate-collapsed": "^1.9.0",
         "vue2-datepicker": "^3.7.0",
         "vue2-filters": "^0.3.0",
-        "vuex": "^3.1.2"
+        "vuex": "^3.1.2",
+        "xlsx": "^0.18.5"
     }
 }

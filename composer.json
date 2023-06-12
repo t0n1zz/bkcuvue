@@ -19,6 +19,7 @@
         "laravel/tinker": "~1.0",
         "lcobucci/jwt": "3.3.1",
         "maatwebsite/excel": "^3.1",
+        "php-ds/php-ds": "^1.4",
         "predis/predis": "^1.1",
         "pusher/pusher-php-server": "^4.1",
         "spatie/laravel-activitylog": "^2.5",

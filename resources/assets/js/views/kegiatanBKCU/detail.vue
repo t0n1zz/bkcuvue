@@ -147,6 +147,17 @@
 				</div>
 			</div>
 		</div>
+		<!-- modal -->
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :size="modalSize"
+			:color="modalColor" @batal="modalTutup" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup"
+			@failOk="modalTutup" @backgroundClick="modalBackgroundClick">
+
+			<!-- title -->
+			<template slot="modal-title">
+				{{ modalTitle }}
+			</template>
+
+		</app-modal>
 
 	</div>
 </template>
@@ -189,7 +200,7 @@ export default {
 		detailPesertaDaftar,
 		detailPesertaHadir,
 		detailRekom,
-		detailStatistik,
+		detailStatistik
 	},
 	data() {
 		return {
@@ -240,12 +251,19 @@ export default {
 			state: '',
 			kode: '',
 			submited: false,
+			modalShow: false,
+			modalState: '',
+			modalTitle: '',
+			modalColor: '',
+			modalContent: '',
+			modalSize: '',
+			state: '',
 		}
 	},
-
 	created() {
 		this.fetch();
 	},
+
 	watch: {
 		itemStat(value) {
 			if (value === "success") {
@@ -256,7 +274,6 @@ export default {
 		},
 		updateStat(value) {
 			if (value === "success") {
-
 			}
 		},
 		checkPanitiaDataStat(value) {
@@ -268,12 +285,14 @@ export default {
 				}
 			}
 		},
+
 		checkPesertaDataStat(value) {
 			if (value == 'success') {
 				if (this.checkPesertaData) {
 					this.tipeUser = 'peserta';
 				}
 			}
+
 		},
 	},
 	methods: {
@@ -315,7 +334,20 @@ export default {
 		},
 		momentYear() {
 			return moment().year();
-		}
+		},
+
+		modalTutup() {
+			this.modalShow = false;
+		},
+		modalConfirmOk() {
+			this.modalShow = false;
+		},
+		modalBackgroundClick() {
+			if (this.modalState === 'normal1') {
+				// do nothing
+			}
+		},
+
 	},
 	computed: {
 		...mapGetters('auth', {
@@ -326,6 +358,8 @@ export default {
 			itemStat: 'dataStat',
 			checkPesertaData: 'data2',
 			checkPesertaDataStat: 'dataStat2',
+			checkPesertaDataFilledForm: 'data5',
+			checkPesertaDataStatFilledForm: 'dataStat5',
 			checkPanitiaData: 'data3',
 			checkPanitiaDataStat: 'dataStat3',
 			itemDataPesertaTerdaftarCU: 'dataS6',

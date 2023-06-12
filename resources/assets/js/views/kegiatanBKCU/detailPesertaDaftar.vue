@@ -297,7 +297,6 @@
 				<form-nilai :selected="selectedItem" @tutup="modalTutup" @modalTutup="modalTutup"
 					v-if="state == 'tambahNilai'"></form-nilai>
 			</template>
-
 		</app-modal>
 	</div>
 </template>
@@ -615,6 +614,7 @@ export default {
 		}
 	},
 	watch: {
+
 		itemStat(value) {
 			if (value == 'success') {
 				this.fetchPesertaTerdaftar(this.queryPesertaTerdaftar);
@@ -689,7 +689,8 @@ export default {
 		},
 		downloadSuratTugas(filename) {
 			axios.get('/api/download_folder/' + filename + '/suratTugas', {
-				responseType: 'blob'})
+				responseType: 'blob'
+			})
 				.then(response => {
 					FileSaver.saveAs(response.data, filename)
 				});
@@ -728,7 +729,6 @@ export default {
 				if (this.countPeserta >= this.item.peserta_max) {
 					this.modalState = 'content-tutup';
 					this.modalColor = '';
-
 					this.modalTitle = 'Diklat sudah penuh';
 					this.modalContent = 'Maaf anda tidak bisa mendaftarkan peserta lagi, karena kuota peserta pada diklat ini sudah terpenuhi.';
 				}
@@ -759,7 +759,6 @@ export default {
 		},
 		modalConfirmOk() {
 			this.modalShow = false;
-
 			if (this.state == 'hapusPeserta') {
 				this.$store.dispatch(this.kelas + '/destroyPeserta', this.selectedItem.id);
 			}

@@ -9,6 +9,7 @@ use Image;
 use App\Nilai;
 use App\Kegiatan;
 use Response;
+use \Ds\Set;
 use App\Support\Helper;
 use App\KegiatanPanitia;
 use App\KegiatanPeserta;
@@ -21,6 +22,8 @@ use App\KegiatanPertanyaan;
 use App\KodeKegiatan;
 use App\Sertifikat;
 use App\SertifikatGenerate;
+use App\EvaluasiForm;
+use App\EvaluasiFormNilai;
 use Illuminate\Http\Request;
 use App\Support\NotificationHelper;
 use Illuminate\Support\Facades\Storage;
@@ -40,6 +43,15 @@ class KegiatanBKCUController extends Controller
 	public function index($kegiatan_tipe)
 	{
 		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->advancedFilter();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+	public function indexFormEvaluasi($id)
+	{
+		$table_data = EvaluasiForm::select('id', 'name', 'tipe')->where('kegiatan_id', $id)->where('deleted_at', null)->get();
 
 		return response()
 			->json([
@@ -365,6 +377,34 @@ class KegiatanBKCUController extends Controller
 			]);
 	}
 
+	public function indexEvaluasiNilai($id)
+	{
+		$table_data = EvaluasiForm::join('evaluasi_form_nilai as n', 'evaluasi_form.id', '=', 'n.evaluasi_form_id')
+			->where('evaluasi_form.kegiatan_id', $id)
+			->select('evaluasi_form.name', 'evaluasi_form.tipe', DB::raw('COUNT(n.nilai) AS nilai_count'), DB::raw('ROUND(AVG(n.nilai), 2) AS average'), DB::raw('COUNT(n.saran) AS saran_count'))
+			->groupBy('evaluasi_form.name', 'evaluasi_form.tipe')
+			->get();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function indexAllEvaluasiNilai($id)
+	{
+		$table_data = DB::table('evaluasi_form as f')
+			->join('evaluasi_form_nilai as n', 'f.id', '=', 'n.evaluasi_form_id')
+			->select('f.name', 'f.tipe', 'n.nilai', 'n.saran')
+			->where('f.kegiatan_id', $id)
+			->get();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
 	public function indexPesertaCountCu($id)
 	{
 		$table_data = DB::table('kegiatan_peserta')
@@ -562,6 +602,15 @@ class KegiatanBKCUController extends Controller
 				'model' => $table_data
 			]);
 	}
+	public function getFormEvaluasi()
+	{
+		$table_data = DB::select('select f.id, f.name, f.tipe, f.kegiatan_id, k.name AS "kegiatan_name" FROM evaluasi_form f INNER JOIN kegiatan k ON f.kegiatan_id = k.id WHERE f.deleted_at IS null');
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
 
 	public function getPeriode($kegiatan_tipe)
 	{
@@ -650,6 +699,25 @@ class KegiatanBKCUController extends Controller
 			$kelas->panitia_dalam()->sync($panitiaArray);
 		}
 
+		if ($request->evaluasi_id == '0') {
+			foreach ($request->pertanyaan as $pertanyaan) {
+				EvaluasiForm::create([
+					'kegiatan_id' => $kelas->id,
+					'name' => $pertanyaan['name'],
+					'tipe' => $pertanyaan['tipe']
+				]);
+			}
+		} else if ($request->evaluasi_id != $kelas->id) {
+			$dataForm = EvaluasiForm::select('name', 'tipe')->where('kegiatan_id', $request->evaluasi_id)->get();
+			foreach ($dataForm as $data) {
+				EvaluasiForm::create([
+					'kegiatan_id' => $kelas->id,
+					'name' => $data['name'],
+					'tipe' => $data['tipe']
+				]);
+			}
+		}
+
 		return response()
 			->json([
 				'saved' => true,
@@ -665,18 +733,18 @@ class KegiatanBKCUController extends Controller
 		$asal = $request->asal;
 		$name = $request->name_sertifikat;
 
-		$formatedName="";
+		$formatedName = "";
 
 		// check peserta count
 		$semuaPesertaTerdaftar = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu', 'aktivis.pendidikan_tertinggi')->where('kegiatan_id', $id)->count();
 
 		// upload file to storage
-		if($request->surat_tugas){
+		if ($request->surat_tugas) {
 			$file = $request->surat_tugas;
-			
+
 			$fileExtension = $file->getClientOriginalExtension();
-			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
-			$file->move($this->suratTugas,$formatedName);
+			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '', $name), 10, '') . '_' . uniqid() . '.' . $fileExtension;
+			$file->move($this->suratTugas, $formatedName);
 		}
 
 		// check peserta
@@ -946,11 +1014,43 @@ class KegiatanBKCUController extends Controller
 			]);
 	}
 
+	public function storeFormEvaluasiNilai(Request $request)
+	{
+		$requestData = $request->all();
+		foreach ($requestData as $item) {
+			if ($item['tipe'] === 'pilihan') {
+				// Store pilihan values
+				$nilai = new EvaluasiFormNilai();
+				$nilai->evaluasi_form_id = $item['id'];
+				$nilai->nilai = $item['value'];
+				$nilai->save();
+			} elseif ($item['tipe'] === 'saran') {
+				// Store saran values
+				$saran = new EvaluasiFormNilai();
+				$saran->evaluasi_form_id = $item['id'];
+				$saran->saran = $item['value'];
+				$saran->save();
+			}
+		}
+		return response()
+			->json([
+				'saved' => true,
+				'message' => 'Evaluasi Berhasil Ditambah, Terimakasih sudah mengisi evaluasi kegiatan ini.'
+			]);
+	}
+
+	public function getNameKegiatan($id)
+	{
+		$table_data = Kegiatan::select('name')->where('id', $id)->first();
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
 	public function edit($id)
 	{
 		$kelas = Kegiatan::with('tempat', 'sasaran', 'panitia_dalam.pekerjaan_aktif.cu', 'panitia_luar', 'panitia_luar_lembaga', 'kode')->findOrFail($id);
 		$kelas2 = Sertifikat::where('id', $kelas->id_sertifikat)->get();
-
 		return response()
 			->json([
 				'form' => $kelas,
@@ -1007,6 +1107,33 @@ class KegiatanBKCUController extends Controller
 			'name' => $name,
 			'kode_diklat' => $kode_diklat
 		]);
+
+		if ($request->evaluasi_id == '0') {
+			$cekForm = EvaluasiForm::select('kegiatan_id')->where('kegiatan_id', $id)->where('deleted_at', 'is', 'null')->get();
+			if ($cekForm) {
+				EvaluasiForm::where('kegiatan_id', $id)->delete();
+			}
+			foreach ($request->pertanyaan as $pertanyaan) {
+				EvaluasiForm::create([
+					'kegiatan_id' => $id,
+					'name' => $pertanyaan['name'],
+					'tipe' => $pertanyaan['tipe']
+				]);
+			}
+		} else if ($request->evaluasi_id != $id) {
+			$cekForm = EvaluasiForm::select('kegiatan_id')->where('kegiatan_id', $id)->where('deleted_at', 'is', 'null')->get();
+			if ($cekForm) {
+				EvaluasiForm::where('kegiatan_id', $id)->delete();
+			}
+			$dataForm = EvaluasiForm::select('name', 'tipe')->where('kegiatan_id', $request->evaluasi_id)->get();
+			foreach ($dataForm as $data) {
+				EvaluasiForm::create([
+					'kegiatan_id' => $id,
+					'name' => $data['name'],
+					'tipe' => $data['tipe']
+				]);
+			}
+		}
 
 		$sasaran_ar = array();
 		foreach ($request->sasaran as $sasaran) {
@@ -1067,7 +1194,7 @@ class KegiatanBKCUController extends Controller
 					if (!$checkPeserta) {
 						$lastNomor++;
 						SertifikatGenerate::create([
-							'kegiatan_peserta_id' => $peserta->indexDiikuti,
+							'kegiatan_peserta_id' => $peserta->id,
 							'id_kegiatan' => $id,
 							'nomor' => $lastNomor,
 							'periode' => $periode->first()->periode,
@@ -1347,7 +1474,7 @@ class KegiatanBKCUController extends Controller
 		$kelas = KegiatanPeserta::findOrFail($id);
 		$name = $kelas->name;
 
-		if(!empty($kelas->surat_tugas)){
+		if (!empty($kelas->surat_tugas)) {
 			File::delete($this->suratTugas . $kelas->surat_tugas);
 		}
 
