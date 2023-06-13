@@ -151,7 +151,6 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     },
     modalTutup: function modalTutup() {
       this.modalShow = false;
-      // this.$store.dispatch(this.kelas + '/resetUpdateStat');
     },
     modalConfirmOk: function modalConfirmOk() {
       if (this.modalTitle == 'ABSEN PULANG?') {
@@ -160,15 +159,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         this.$store.dispatch('presensi/storeSelesaiIzin', this.currentUser.id);
       }
     },
-    modalBackgroundClick: function modalBackgroundClick() {
-      // if (this.modalState === 'success') {
-      //     this.modalTutup;
-      // } else if (this.modalState === 'loading') {
-      //     // do nothing
-      // } else {
-      //     this.modalShow = false
-      // }
-    },
+    modalBackgroundClick: function modalBackgroundClick() {},
     showPosition: function showPosition(position) {
       this.lat = position.coords.latitude;
       this.lon = position.coords.longitude;

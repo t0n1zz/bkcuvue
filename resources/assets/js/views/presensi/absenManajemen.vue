@@ -176,7 +176,6 @@ export default {
 
         modalTutup () {
             this.modalShow = false;
-            // this.$store.dispatch(this.kelas + '/resetUpdateStat');
         },
 
         modalConfirmOk () {
@@ -187,13 +186,7 @@ export default {
             }
         },
         modalBackgroundClick () {
-            // if (this.modalState === 'success') {
-            //     this.modalTutup;
-            // } else if (this.modalState === 'loading') {
-            //     // do nothing
-            // } else {
-            //     this.modalShow = false
-            // }
+    
         },
 
         showPosition: function (position) {
@@ -232,7 +225,6 @@ export default {
             statAbsen: 'status',
             form: 'data',
             konfirmasi : 'confirm_pulang'
-            
         })
     }
 }

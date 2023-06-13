@@ -30,7 +30,7 @@
             <button class="btn btn-warning" @click.prevent="batal">
                 <i class="icon-x"></i>Batal</button>
 
-            <button type="submit" value="submit" class="btn btn-primary" @click.prevent="storeKuliah" :disabled="(!aktiv && !editData) || !form.alasan">
+            <button type="submit" value="submit" class="btn btn-primary" @click.prevent="storeKuliah" :disabled="(!aktiv && !editData && kelas!='pribadi') || !form.alasan">
                 <i class="icon-floppy-disk"></i>Simpan</button>
         </div>
     </div>

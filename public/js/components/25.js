@@ -473,7 +473,7 @@ var render = function render() {
     attrs: {
       type: "submit",
       value: "submit",
-      disabled: !_vm.aktiv && !_vm.editData || !_vm.form.alasan
+      disabled: !_vm.aktiv && !_vm.editData && _vm.kelas != "pribadi" || !_vm.form.alasan
     },
     on: {
       click: function click($event) {

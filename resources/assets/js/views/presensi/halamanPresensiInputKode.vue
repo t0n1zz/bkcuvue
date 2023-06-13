@@ -116,6 +116,7 @@ export default {
             this.modalShow = true;
             this.modalState = value;
             this.modalColor = '';
+            
             let mess = this.pesan;
             if (value === "success") {
                 this.modalTitle = mess;

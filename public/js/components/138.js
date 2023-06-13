@@ -40,7 +40,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   },
   props: ['title', 'kelas'],
   data: function data() {
-    return _defineProperty({
+    var _ref;
+    return _ref = {
       selectedItem: [],
       query: {
         order_column: "tanggal",
@@ -173,7 +174,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       jenis: '',
       alasan: '',
       today: ''
-    }, "tabName", 'keterlambatan');
+    }, _defineProperty(_ref, "tabName", 'keterlambatan'), _defineProperty(_ref, "flag", false), _ref;
   },
   created: function created() {
     this.fetch(this.query);
@@ -915,7 +916,10 @@ var render = function render() {
     slot: "modal-body4"
   }, [_c("div", [_c("izin", {
     attrs: {
-      tipe: _vm.tabName
+      tipe: _vm.tabName,
+      kelas: "pribadi",
+      editData: _vm.selectedItem,
+      editFlag: _vm.flag
     },
     on: {
       tutup: _vm.modalTutup

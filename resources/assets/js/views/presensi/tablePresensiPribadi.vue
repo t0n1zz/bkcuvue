@@ -210,7 +210,8 @@
 
 			<template slot="modal-body4">
 				<div>
-					<izin @tutup="modalTutup" :tipe="tabName"></izin>
+					<izin @tutup="modalTutup" :tipe="tabName" :kelas="'pribadi'" :editData="selectedItem" :editFlag="flag">
+						</izin>
 				</div>
 			</template>
 		</app-modal>
@@ -406,7 +407,8 @@ export default {
 			jenis: '',
 			alasan: '',
 			today: '',
-			tabName: 'keterlambatan'
+			tabName: 'keterlambatan',
+			flag: false,
 		}
 	},
 	created () {

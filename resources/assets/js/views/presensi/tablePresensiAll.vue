@@ -662,8 +662,6 @@ export default {
 				this.columnData[10].hide = false
 				this.columnData[11].hide = false
 				this.columnData[12].hide = false
-			} else if (value == 'alpha') {
-
 			}
 			this.tabName = value
 			this.$store.dispatch('presensi/indexPresensi', [this.query, this.tahun, this.bulan, this.tabName, 'semua']);

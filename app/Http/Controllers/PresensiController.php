@@ -468,6 +468,8 @@ class PresensiController extends Controller
                         ]);
                         $message = 'Presensi Masuk Berhasil Diisi';
                     }
+                } else {
+                    $message = 'Kode QR Sudah Tidak Berlaku atau Salah';
                 }
             } elseif ($check->first() && !$check->first()->jam_pulang && $qr) {
                 $now = new \DateTime();
@@ -479,7 +481,9 @@ class PresensiController extends Controller
                         //pulang cepat
                         $confirm = true;
                         $confirm = 'pulang awal';
-                        $message = 'Anda Pulang Lebih Awal dari Jam Yang telah Ditentukan';
+                        if ($request->id_qr != null) {
+                            $message = 'Anda Pulang Lebih Awal dari Jam Yang telah Ditentukan';
+                        }
                     } elseif ($jam_sekarang >= $jam_pulang) {
                         //pulang normal
                         $confirm = 'pulang';
@@ -526,7 +530,7 @@ class PresensiController extends Controller
         }
 
 
-        if($request->jenis == 'kegiatan'){
+        if ($request->jenis == 'kegiatan') {
             $aktivis = Aktivis::findOrFail($request->id_aktivis);
             Presensi::create([
                 'id_user' => $request->id_user,
@@ -537,13 +541,13 @@ class PresensiController extends Controller
                 'status_jarak' => 'NOT OK',
                 'tanggal' => $request->tanggal_mulai,
                 'kegiatan_name' => $request->alasan,
-                'kode'=>0,
-                'lat'=>0,
-                'lon'=>0,
-                'name'=> $aktivis->name,
+                'kode' => 0,
+                'lat' => 0,
+                'lon' => 0,
+                'name' => $aktivis->name,
                 'jam_masuk' => Carbon::now()->toTimeString(),
             ]);
-        }else{
+        } else {
             PresensiIzin::create([
                 'id_user' => $request->id_user,
                 'id_cu' => $request->id_cu,
@@ -650,7 +654,7 @@ class PresensiController extends Controller
                 'lama' => $lama,
                 'tanggal' => $tgl
             ]);
-            $message = 'Presensi Pulang Berhasil Diisi';
+            $message = 'Presensi Pulang Berhasil Diisi dan Anda Pulang Lebih Cepat dari Jam Seharusnya';
         } elseif ($tipe == 'TERLAMBAT') {
             $keterlambatan = PresensiKeterlambatan::where('id_user', $request->id_user)->where('tanggal', Carbon::today()->toDateString());
             $keterlambatan->update($request->except('lama', 'tanggal', 'id_absen', 'id_user'));
@@ -820,6 +824,6 @@ class PresensiController extends Controller
     public function downloadLaporan(Request $request)
     {
 
-        return Excel::download(new Export($request->tipe),'Laporan.xlsx');
+        return Excel::download(new Export($request->tipe), 'Laporan.xlsx');
     }
 }
