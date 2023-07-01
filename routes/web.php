@@ -65,6 +65,21 @@ Route::group(['middleware' => 'throttle:60,10'], function () {
 		Route::get('dokumen',array('as' => 'dokumen','uses' => 'PublicCuController@dokumen'));
 		Route::get('download/{filename}',array('as' => 'file','uses' => 'PublicCuController@download_file'));
 
+		//usercu
+		Route::get('/login',array( 'as' => 'login.cu','uses' => 'UserCuController@index'))->middleware("guest");
+		Route::post('/login',array( 'as' => 'login.cu.submit','uses' => 'UserCuController@login'));
+		Route::get('/editpass',array( 'as' => 'pass.edit','uses' => 'UserCuController@passEditForm'));
+		Route::post('/editpass',array( 'as' => 'pass.edit.submit','uses' => 'UserCuController@changePass'));
+		Route::get('/logout',array( 'as' => 'logout.cu','uses' => 'UserCuController@logout'));
+		Route::get('/userdashboard',array( 'as' => 'dashboard.cu','uses' => 'UserCuController@userDashBoard'))->middleware("auth:userscu");
+		// Route::get('/kalenderkegiatan',array('as'=>'kalendar.kegiatan','uses'=>'UserCuController@kalenderKegiatan'))->middleware("auth:userscu");
+		// Route::get('/getKegiatan',array('as' => 'getKegiatan.cu','uses'=> 'UserCuController@getKegiatan'));
+		Route::get('/simulasipinjaman',array('as' => 'simulasiPinjaman','uses'=> 'UserCuController@indexSimulasiPinjaman'));
+		Route::get('/mutasirekening',array('as' => 'mutasiRekening.cu','uses'=> 'UserCuController@mutasiRekening'))->middleware("auth:userscu");
+		Route::get('/getRekening',array('as' => 'getRekening.cu','uses'=> 'UserCuController@getRekening'));
+		Route::post('/storePenghasilan',array( 'as' => 'penghasilan.submit','uses' => 'UserCuController@storePenghasilan'))->middleware("auth:userscu");
+		Route::get('/storePenghasilan', array('as' => 'penghasilan', 'uses' => 'UserCuController@storePenghasilan'))->middleware("auth:userscu");
+
 	};
 
 	Route::group(array('domain' => '{cu}.bkcuvue.test'), $appSubRoutes);

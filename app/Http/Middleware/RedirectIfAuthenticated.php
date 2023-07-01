@@ -21,6 +21,10 @@ class RedirectIfAuthenticated
             return redirect('/');
         }
 
+        if (Auth::guard('userscu')->check()) {
+            return redirect('userdashboard');
+        }
+
         return $next($request);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Auth\AuthenticationException;
 
 class Handler extends ExceptionHandler
 {
@@ -54,5 +55,10 @@ class Handler extends ExceptionHandler
         // } else {
         //     return response()->view('errors.404',[], 500);
         // }
+    }
+
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        return redirect('/login');
     }
 }

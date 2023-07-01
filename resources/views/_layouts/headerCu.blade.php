@@ -78,7 +78,25 @@
           <li class="{{ Request::is('/dokumen') ? 'current' : '' }}"><a href="{{ route('dokumen', $subdomain) }}"><div>Dokumen</div></a>
           </li>
 
+
+          @if(auth()->guard('userscu')->check())
+          {{-- <li class="{{ Request::is('/userdashboard') ? 'current' : '' }}"><a href="{{ route('dashboard.cu', $subdomain) }}"><div>Dashboard</div></a>
+          </li> --}}
+          <li class="{{ Request::is('/artikel*') ? 'current' : '' }}"><a href="#"><div>User</div></a>
+            <ul>
+              <li class="{{ Request::is('/userdashboard') ? 'current' : '' }}"><a href="{{ route('dashboard.cu', $subdomain) }}"><div>Dashboard</div></a></li>
+              <li class="{{ Request::is('/mutasirekening') ? 'current' : '' }}"><a href="{{ route('mutasiRekening.cu', $subdomain) }}"><div>Mutasi Rekening</div></a></li>
+              <li class="{{ Request::is('/simulasipinjaman') ? 'current' : '' }}"><a href="{{ route('simulasiPinjaman', $subdomain) }}"><div>Simulasi Pinjaman</div></a></li>
+              <li class="{{ Request::is('/logout') ? 'current' : '' }}"><a href="{{ route('logout.cu', $subdomain) }}"><div>Logout</div></a></li>
+            </ul>
+          </li>
+          @endif
+
+           @if(!auth()->guard('userscu')->check())
+          <li class="{{ Request::is('/logins') ? 'current' : '' }}"><a href="{{ route('login.cu', $subdomain) }}"><div>Login</div></a></li>
+          @endif
         </ul>
+        
 
         <!-- Top Search
         ============================================= -->

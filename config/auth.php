@@ -45,6 +45,11 @@ return [
             'driver' => 'jwt',
             'provider' => 'users',
         ],
+
+        'userscu' => [
+            'driver' => 'session',
+            'provider' => 'userscu',
+        ],
     ],
 
     /*
@@ -68,6 +73,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+
+        'userscu' => [
+            'driver' => 'eloquent',
+            'model' => App\UserCU::class,
         ],
 
         // 'users' => [
