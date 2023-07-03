@@ -177,8 +177,9 @@ class UserCuController extends Controller
         // $captcha_success = json_decode($verify);
         // if ($captcha_success->success == false) {
         // } else if ($captcha_success->success == true) {
-        $no_ba = $request->no_ba;
+        $no_ba = ltrim($request->no_ba,'0');
         $user = UserCU::with(['anggota_cu', 'anggota_cu_cu'])->where('username', $no_ba)->get()->first();
+        // dd($user);
         if (strpos($no_ba, '.')) {
             $no_ba = str_replace('.', '', $no_ba);
         }
@@ -197,11 +198,11 @@ class UserCuController extends Controller
                             $new_user->id_cu = $user_ba->cu_id;
                             $new_user->anggota_cu_cu_id = $user_ba->id;
                             $new_user->anggota_cu_id = $user_ba->anggota_cu_id;
-                            $new_user->username = $request->no_ba;
+                            $new_user->username = $no_ba;
                             $new_user->password = bcrypt($request->password);
                             $new_user->name = AnggotaCu::where('id', $user_ba->anggota_cu_id)->pluck('name')->first();
                             $new_user->save();
-                            if (Auth::guard('userscu')->attempt(['username' => $request->no_ba, 'password' => $request->password])) {
+                            if (Auth::guard('userscu')->attempt(['username' => $no_ba, 'password' => $request->password])) {
                                 return response()->json([
                                     'message' => 'editpass',
                                     'type' => 'auth'
@@ -235,7 +236,7 @@ class UserCuController extends Controller
                 ]);
             }
         } else {
-            if (Auth::guard('userscu')->attempt(['username' => $request->no_ba, 'password' => $request->password])) {
+            if (Auth::guard('userscu')->attempt(['username' => $no_ba, 'password' => $request->password])) {
                 return response()->json([
                     'url' => url('/userdashboard'),
                     'type' => 'auth',

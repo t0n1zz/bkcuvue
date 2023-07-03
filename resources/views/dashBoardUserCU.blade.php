@@ -34,7 +34,7 @@
                 </div>
                 <div class="profile-info col-md-9">
                     <div class="panel2">
-                        <h1 style="text-align: center">PROFIL</h1>
+                        <h1>PROFIL</h1>
                         <div class="panel-body bio-graph-info">
                             <div class="row justify-content-md-center">
                                 <div class="bio-row">
@@ -45,38 +45,50 @@
                                 </div>
                                 <div class="bio-row">
                                     <div class="col-md-12"><span class="span">Tgl.Lahir</span></div>
-                                    <div class="col-md-12"><p>
-                                        {{ date('d-m-Y', strtotime(Auth::user()->anggota_cu->tanggal_lahir)) }} </p></div>
+                                    <div class="col-md-12">
+                                        <p>
+                                            {{ date('d-m-Y', strtotime(Auth::user()->anggota_cu->tanggal_lahir)) }} </p>
+                                    </div>
                                 </div>
                                 <div class="bio-row">
                                     <div class="col-md-12"><span class="span">No.BA </span></div>
-                                    <div class="col-md-12"><p> {{ Auth::user()->anggota_cu_cu->no_ba }}</p></div>
+                                    <div class="col-md-12">
+                                        <p> {{ Auth::user()->anggota_cu_cu->no_ba }}</p>
+                                    </div>
                                 </div>
                                 <div class="bio-row">
                                     <div class="col-md-12"><span class="span">Tgl. Jadi Anggota</span></div>
-                                    <div class="col-md-12"><p>
-                                        {{ date('d-m-Y', strtotime(Auth::user()->anggota_cu_cu->tanggal_masuk)) }}</p></div>
+                                    <div class="col-md-12">
+                                        <p>
+                                            {{ date('d-m-Y', strtotime(Auth::user()->anggota_cu_cu->tanggal_masuk)) }}</p>
+                                    </div>
                                 </div>
                                 <div class="bio-row">
                                     <div class="col-md-12"><span class="span">Pekerjaan </span></div>
-                                    <div class="col-md-12"><p> {{ Auth::user()->anggota_cu->pekerjaan }}</p></div>
-                                    
+                                    <div class="col-md-12">
+                                        <p> {{ Auth::user()->anggota_cu->pekerjaan }}</p>
+                                    </div>
+
                                 </div>
                                 <div class="bio-row">
                                     <div class="col-md-12"><span class="span">No. HP </span></div>
-                                    <div class="col-md-12"><p> {{ str_replace("'", '', Auth::user()->anggota_cu->hp) }}</p></div>
+                                    <div class="col-md-12">
+                                        <p> {{ str_replace("'", '', Auth::user()->anggota_cu->hp) }}</p>
+                                    </div>
                                 </div>
                                 <div class="bio-row">
                                     <div class="col-md-12"><span class="span">Email </span></div>
-                                    <div class="col-md-12"><p>
-                                        @if (Auth::user()->anggota_cu->email)
-                                            {{ Auth::user()->anggota_cu->email }}
-                                        @else
-                                            Belum Ada
-                                        @endif
-                                    </p></div> 
+                                    <div class="col-md-12">
+                                        <p>
+                                            @if (Auth::user()->anggota_cu->email)
+                                                {{ Auth::user()->anggota_cu->email }}
+                                            @else
+                                                Belum Ada
+                                            @endif
+                                        </p>
+                                    </div>
                                 </div>
-                                
+
                                 <div class="bio-row">
 
                                 </div>
@@ -185,7 +197,8 @@
                         var parts = data[i]['tgl_input'].split("-");
                         var formattedDate = parts[2] + "-" + parts[1] + "-" + parts[0];
                         $('#tablePP tbody').append('<tr><td class="text-nowrap">' + formattedDate +
-                            '</td><td class="text-nowrap">' + formatToRp(data[i]['penghasilan']) + '</td><td class="text-nowrap">' + formatToRp(data[i]['pengeluaran']) + '</td></tr>');
+                            '</td><td class="text-nowrap">' + formatToRp(data[i]['penghasilan']) +
+                            '</td><td class="text-nowrap">' + formatToRp(data[i]['pengeluaran']) + '</td></tr>');
 
                     }
                 }

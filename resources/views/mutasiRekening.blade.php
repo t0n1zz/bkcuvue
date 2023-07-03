@@ -180,8 +180,8 @@
                 },
                 dataType: 'json',
                 success: function(response) {
-                    handleResponseSimpanan(response['dataSimpanan']['data'],response.linksSimpanan);
-                    handleResponsePinjaman(response['dataPinjaman']['data'],response.linksPinjaman)
+                    handleResponseSimpanan(response['dataSimpanan']['data'], response.linksSimpanan);
+                    handleResponsePinjaman(response['dataPinjaman']['data'], response.linksPinjaman)
                     $('#loadingModal').hide();
                     $(".modal-backdrop").hide();
                     $('body').removeClass('modal-open');
@@ -190,10 +190,11 @@
             });
         }
 
-         function getDataChangeTab(id,tipe) {
+        function getDataChangeTab(id, tipe) {
             $('#loadingModal').show();
             $(".modal-backdrop").show();
             $('#loadingModal').modal('show');
+            $('body').addClass('modal-open');
             $.ajax({
                 url: 'getRekening',
                 type: 'get',
@@ -203,10 +204,10 @@
                 },
                 dataType: 'json',
                 success: function(response) {
-                    if(tipe=='simpanan'){
-                        handleResponseSimpanan(response['dataSimpanan']['data'],response.linksSimpanan);
-                    }else{
-                        handleResponsePinjaman(response['dataPinjaman']['data'],response.linksPinjaman)
+                    if (tipe == 'simpanan') {
+                        handleResponseSimpanan(response['dataSimpanan']['data'], response.linksSimpanan);
+                    } else {
+                        handleResponsePinjaman(response['dataPinjaman']['data'], response.linksPinjaman)
                     }
                     $('#loadingModal').hide();
                     $(".modal-backdrop").hide();
@@ -216,7 +217,7 @@
             });
         }
 
-        function handleResponseSimpanan(response,page) {
+        function handleResponseSimpanan(response, page) {
             var dataSimpanan = response;
             var len = dataSimpanan.length;
             $('#tableSimpanan tbody').empty();
@@ -240,17 +241,17 @@
             $('.paginationSimpanan').html(page);
         }
 
-        function handleResponsePinjaman(response,page) {
+        function handleResponsePinjaman(response, page) {
             var dataPinjaman = response;
             var len = dataPinjaman.length;
             $('#tablePinjaman tbody').empty();
             for (var i = 0; i < len; i++) {
                 var saldo = 0;
-                if(i!=0){
-                    saldo = dataPinjaman[i]['saldo']*-1
+                if (i != 0) {
+                    saldo = dataPinjaman[i]['saldo'] * -1
                 }
                 if (dataPinjaman) {
-                     var parts = dataPinjaman[i]['tanggal'].split("-");
+                    var parts = dataPinjaman[i]['tanggal'].split("-");
                     var formattedDate = parts[2] + "-" + parts[1] + "-" + parts[0];
                     $('#tablePinjaman tbody').append('<tr><td class="text-nowrap">' + formattedDate +
                         '</td><td>' + 0 + '</td><td>' + addCommas(saldo) + '</td><td>' +
@@ -264,10 +265,12 @@
             getDataChangeTab(val, 'simpanan');
         }
 
-        function loadPage(url,tipe) {
+        function loadPage(url, tipe) {
             $('#loadingModal').show();
             $(".modal-backdrop").show();
             $('#loadingModal').modal('show');
+            $('body').addClass('modal-open');
+
             var activeTabIdSimpanan = 0;
             var activeTabIdPinjaman = 0;
             var id = 0;
@@ -281,9 +284,9 @@
             });
 
 
-            if(tipe=='simpanan'){
+            if (tipe == 'simpanan') {
                 id = activeTabIdSimpanan
-            }else{
+            } else {
                 id = activeTabIdPinjaman
             }
 
@@ -300,10 +303,10 @@
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
                 success: function(response) {
-                    if(tipe=='simpanan'){
-                        handleResponseSimpanan(response['dataSimpanan']['data'],response.linksSimpanan);
-                    }else{
-                        handleResponsePinjaman(response['dataPinjaman']['data'],response.linksPinjaman)
+                    if (tipe == 'simpanan') {
+                        handleResponseSimpanan(response['dataSimpanan']['data'], response.linksSimpanan);
+                    } else {
+                        handleResponsePinjaman(response['dataPinjaman']['data'], response.linksPinjaman)
                     }
                     $('.pagination').html(response.links);
                     $('#loadingModal').hide();
@@ -322,13 +325,13 @@
         $(document).on('click', '.paginationSimpanan a', function(event) {
             event.preventDefault();
             var url = $(this).attr('href');
-            loadPage(url,'simpanan');
+            loadPage(url, 'simpanan');
         });
 
-         $(document).on('click', '.paginationPinjaman a', function(event) {
-                event.preventDefault();
-                var url = $(this).attr('href');
-                loadPage(url,'pinjaman');
+        $(document).on('click', '.paginationPinjaman a', function(event) {
+            event.preventDefault();
+            var url = $(this).attr('href');
+            loadPage(url, 'pinjaman');
         });
 
         $(document).ready(function() {
@@ -371,15 +374,7 @@
             pointer-events: none
         }
 
-        .bd-example-modal-lg .modal-dialog {
-            display: table;
-            position: relative;
-            margin: 0 auto;
-            top: calc(50% - 24px);
-        }
-
-        .bd-example-modal-lg .modal-dialog .modal-content {
-            background-color: transparent;
-            border: none;
+        .modal-open {
+            pointer-events: none;
         }
     </style>
