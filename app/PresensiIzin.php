@@ -12,7 +12,7 @@ class PresensiIzin extends Model
     protected $table = 'presensi_izin';
 
     protected $fillable = [
-        'id_user', 'id_aktivis','id_cu', 'jenis', 'alasan', 'tanggal_mulai', 'tanggal_selesai', 'lama'
+        'id_user', 'id_aktivis', 'id_cu', 'jenis', 'alasan', 'tanggal_mulai', 'tanggal_selesai', 'lama', 'status'
     ];
 
     public static function initialize()

@@ -16,12 +16,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasRoles, Notifiable, Dataviewer, ExposePermissions, LogsActivity,AuthenticationLogable, SoftDeletes;
+    use HasRoles, Notifiable, Dataviewer, ExposePermissions, LogsActivity, AuthenticationLogable, SoftDeletes;
 
     protected $table = 'users';
     protected $guard_name = 'api';
-    protected static $logAttributes = ['id_pus','id_cu','id_aktivis','name', 'email', 'username','status','gambar'];
-    protected static $ignoreChangedAttributes = ['login','updated_at'];
+    protected static $logAttributes = ['id_pus', 'id_cu', 'id_aktivis', 'name', 'email', 'username', 'status', 'gambar'];
+    protected static $ignoreChangedAttributes = ['login', 'updated_at'];
     protected static $logOnlyDirty = true;
     protected $dates = ['deleted_at'];
 
@@ -41,21 +41,21 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     protected $fillable = [
-        'id_pus','id_cu','id_aktivis','name','email','username', 'password','gambar','status','login','isChangePassword'
+        'id_pus', 'id_cu', 'id_aktivis', 'name', 'email', 'username', 'password', 'gambar', 'status', 'login', 'isChangePassword'
     ];
 
     protected $allowedFilters = [
-        'id','id_cu','id_pus','id_aktivis','name','email','username','gambar','status','created_at','updated_at','login'
+        'id', 'id_cu', 'id_pus', 'id_aktivis', 'name', 'email', 'username', 'gambar', 'status', 'created_at', 'updated_at', 'login'
     ];
 
     protected $orderable = [
-        'id','id_cu','id_pus','id_aktivis','name','email','username','gambar','status','created_at','updated_at','login'
+        'id', 'id_cu', 'id_pus', 'id_aktivis', 'name', 'email', 'username', 'gambar', 'status', 'created_at', 'updated_at', 'login'
     ];
 
     public static function initialize()
     {
         return [
-            'id_aktivis' => '' ,'id_cu' => '', 'id_pus' => '1', 'name' => '','email' => '', 'username' => '', 'status' => '1', 'gambar' => ''
+            'id_aktivis' => '', 'id_cu' => '', 'id_pus' => '1', 'name' => '', 'email' => '', 'username' => '', 'status' => '1', 'gambar' => ''
         ];
     }
 
@@ -63,7 +63,7 @@ class User extends Authenticatable implements JWTSubject
         'password', 'remember_token',
     ];
 
-     // Rest omitted for brevity
+    // Rest omitted for brevity
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
@@ -85,12 +85,14 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    
-    public function getId(){
+
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getUsername(){
+    public function getUsername()
+    {
         return $this->username;
     }
 
@@ -99,19 +101,48 @@ class User extends Authenticatable implements JWTSubject
         return $this->id_cu;
     }
 
-    public function pus(){
-        return $this->belongsTo('App\Pus','id_pus','id')->select('id','name');
+    public function pus()
+    {
+        return $this->belongsTo('App\Pus', 'id_pus', 'id')->select('id', 'name');
     }
 
-    public function cu(){
-        return $this->belongsTo('App\Cu','id_cu','id')->select('id','name');
+    public function cu()
+    {
+        return $this->belongsTo('App\Cu', 'id_cu', 'id')->select('id', 'name');
     }
 
-    public function aktivis(){
-        return $this->belongsTo('App\Aktivis','id_aktivis','id')->select('id','name','gambar');
+    public function aktivis()
+    {
+        return $this->belongsTo('App\Aktivis', 'id_aktivis', 'id')->select('id', 'name', 'gambar');
     }
 
-    public function Role(){
-        return $this->belongsTo('Spatie\Permission\Models\Role','id_cu','id')->select('id','name');
+    public function Role()
+    {
+        return $this->belongsTo('Spatie\Permission\Models\Role', 'id_cu', 'id')->select('id', 'name');
+    }
+
+    public function masuk()
+    {
+        return $this->hasOne('App\Presensi', 'id_user', 'id')->select('id', 'id_user')->where('tanggal', Carbon::now()->toDateString());
+    }
+
+    public function kuliah()
+    {
+        return $this->hasOne('App\PresensiKuliah', 'id_user', 'id')->select('id', 'id_user')->where('tanggal', Carbon::now()->toDateString());
+    }
+
+    public function off()
+    {
+        return $this->hasOne('App\PresensiOffBergilir', 'id_user', 'id')->select('id', 'id_user')->where('tanggal', Carbon::now()->toDateString());
+    }
+
+    public function cuti()
+    {
+        return $this->hasOne('App\PresensiCuti', 'id_user', 'id')->select('id', 'id_user')->whereNull('status');
+    }
+
+    public function izin()
+    {
+        return $this->hasOne('App\PresensiIzin', 'id_user', 'id')->select('id', 'id_user')->whereNull('status');
     }
 }

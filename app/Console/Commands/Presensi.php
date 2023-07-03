@@ -40,10 +40,10 @@ class Presensi extends Command
      */
     public function handle()
     {
-        $users = User::with('masuk', 'kuliah', 'off','aktivis.pekerjaan_aktif')->where('id_cu', 0)->get();
-     
+        $users = User::with('masuk', 'kuliah', 'off', 'cuti', 'izin', 'aktivis.pekerjaan_aktif')->where('id_cu', 0)->get();
+
         foreach ($users as $user) {
-            if (!$user->masuk && !$user->kuliah && !$user->off) {
+            if (!$user->masuk && !$user->kuliah && !$user->off && !$user->cuti && !$user->izin) {
                 try {
                     if ($user->id_aktivis  && $user->aktivis->pekerjaan_aktif->selesai == null && ($user->aktivis->pekerjaan_aktif->tingkat == 5 || $user->aktivis->pekerjaan_aktif->tingkat == 6 || $user->aktivis->pekerjaan_aktif->tingkat == 7 || $user->aktivis->pekerjaan_aktif->tingkat == 8)) {
                         PresensiAlpa::create([
@@ -54,11 +54,8 @@ class Presensi extends Command
                         ]);
                     }
                 } catch (\Throwable $th) {
-                   
                 }
-                
-                }
-               
+            }
         }
     }
 }

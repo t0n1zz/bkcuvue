@@ -383,7 +383,7 @@ class PresensiController extends Controller
 
 
         $keluar_kantor = PresensiKeluarKantor::where('id_user', $request->id_user)->whereDate('created_at', Carbon::today())->whereNull('lama');
-        $sakit = PresensiIzin::where('id_user', $request->id_user)->whereNull('lama');
+        $sakit = PresensiIzin::where('id_user', $request->id_user)->whereNull('status');
 
         if ($keluar_kantor->first()) {
             $confirm = 'selesai izin';
@@ -420,6 +420,22 @@ class PresensiController extends Controller
                 }
                 $id_kegiatan = $qr->id_kegiatan;
                 if ($qr->kode_qr == $request->kode) {
+                    if ($sakit->first()) {
+                        $tgl = Carbon::today()->toDateString();
+                        $tgl_mulai = Carbon::parse($sakit->first()->tanggal_mulai);
+                        $lama = $tgl_mulai->diffInDays($tgl);
+                        if ($sakit->first()->jenis == 'sakit') {
+                            $sakit->update([
+                                'lama' => $lama,
+                                'tanggal_selesai' => $tgl,
+                                'status' => 'selesai'
+                            ]);
+                        } else {
+                            $sakit->update([
+                                'status' => 'selesai'
+                            ]);
+                        }
+                    }
                     //jika terlambat
                     if ($jam_sekarang > $jam_masuk) {
                         $id = \DB::table('presensi')->insertGetId([
@@ -448,15 +464,6 @@ class PresensiController extends Controller
                             'tanggal' => $tgl
                         ]);
 
-                        if ($sakit->first()) {
-                            $tgl = Carbon::today()->toDateString();
-                            $tgl_mulai = Carbon::parse($sakit->first()->tanggal_mulai);
-                            $lama = $tgl_mulai->diffInDays($tgl);
-                            $sakit->update([
-                                'lama' => $lama,
-                                'tanggal_selesai' => $tgl
-                            ]);
-                        }
                         $status = 'terlambat';
                         $message = 'Presensi Masuk Berhasil Diisi';
                     } else {
