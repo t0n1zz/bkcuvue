@@ -38,34 +38,45 @@
                         <div class="panel-body bio-graph-info">
                             <div class="row justify-content-md-center">
                                 <div class="bio-row">
-                                    <p><span>Nama </span> {{ Auth::user()->name }}</p>
+                                    <div class="col-md-12"><span class="span">Nama </span></div>
+                                    <div class="col-md-12">
+                                        <p> {{ Auth::user()->name }}</p>
+                                    </div>
                                 </div>
                                 <div class="bio-row">
-                                    <p><span>Tgl.Lahir </span>
-                                        {{ date('d-m-Y', strtotime(Auth::user()->anggota_cu->tanggal_lahir)) }} </p>
+                                    <div class="col-md-12"><span class="span">Tgl.Lahir</span></div>
+                                    <div class="col-md-12"><p>
+                                        {{ date('d-m-Y', strtotime(Auth::user()->anggota_cu->tanggal_lahir)) }} </p></div>
                                 </div>
                                 <div class="bio-row">
-                                    <p><span>No.BA </span> {{ Auth::user()->anggota_cu_cu->no_ba }}</p>
+                                    <div class="col-md-12"><span class="span">No.BA </span></div>
+                                    <div class="col-md-12"><p> {{ Auth::user()->anggota_cu_cu->no_ba }}</p></div>
                                 </div>
                                 <div class="bio-row">
-                                    <p><span>Tgl. Jadi Anggota</span>
-                                        {{ date('d-m-Y', strtotime(Auth::user()->anggota_cu_cu->tanggal_masuk)) }}</p>
+                                    <div class="col-md-12"><span class="span">Tgl. Jadi Anggota</span></div>
+                                    <div class="col-md-12"><p>
+                                        {{ date('d-m-Y', strtotime(Auth::user()->anggota_cu_cu->tanggal_masuk)) }}</p></div>
                                 </div>
                                 <div class="bio-row">
-                                    <p><span>Pekerjaan </span> {{ Auth::user()->anggota_cu->pekerjaan }}</p>
+                                    <div class="col-md-12"><span class="span">Pekerjaan </span></div>
+                                    <div class="col-md-12"><p> {{ Auth::user()->anggota_cu->pekerjaan }}</p></div>
+                                    
                                 </div>
                                 <div class="bio-row">
-                                    <p><span>Email </span>
+                                    <div class="col-md-12"><span class="span">No. HP </span></div>
+                                    <div class="col-md-12"><p> {{ str_replace("'", '', Auth::user()->anggota_cu->hp) }}</p></div>
+                                </div>
+                                <div class="bio-row">
+                                    <div class="col-md-12"><span class="span">Email </span></div>
+                                    <div class="col-md-12"><p>
                                         @if (Auth::user()->anggota_cu->email)
                                             {{ Auth::user()->anggota_cu->email }}
                                         @else
                                             Belum Ada
                                         @endif
-                                    </p>
+                                    </p></div> 
                                 </div>
-                                <div class="bio-row">
-                                    <p><span>No. HP </span> {{ str_replace("'", '', Auth::user()->anggota_cu->hp) }}</p>
-                                </div>
+                                
                                 <div class="bio-row">
 
                                 </div>
@@ -341,6 +352,10 @@
 
         .thead {
             color: #1ABC9C
+        }
+
+        .span {
+            font-weight: 800
         }
 
 

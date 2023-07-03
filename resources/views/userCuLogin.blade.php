@@ -8,7 +8,6 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 @stop
 @section('content')
 
@@ -58,9 +57,7 @@
             <div class="alert alert-danger" role="alert" id="alert">
               Password dan No. BA Harus Diisi
             </div>
-
-            	
-            <div id="recaptcha" class="g-recaptcha"  data-sitekey="6LddskEhAAAAACwHcAeV-DMlpRr6qVSb_kWiN0ou" data-size="invisible" data-callback="submit"></div>
+            
             <div class="col_full">
                 <button class="button button-3d nomargin" type="button" id="login" name="login">Login</button>
             </div>
@@ -72,7 +69,8 @@
 
 @section('js')
 <script type="text/javascript">
-function submit(token) {
+
+function submit() {
   $('#alert').hide();
   var no_ba = $('#no_ba').val();
   var password = $('#password').val();
@@ -91,12 +89,10 @@ function submit(token) {
                   "_token": "{{ csrf_token() }}",
                   "no_ba" : no_ba,
                   "password": password,
-                  "captcha": token
               },
 
       success: function(response){
                 if(response.type=='not auth'){
-                  grecaptcha.reset();
                   $('#modal-body').html(response.message);
                   $('#modal-title').html('Kesalahan');
                   $('#modalMessage').modal('show');
@@ -111,7 +107,7 @@ function submit(token) {
                 }
               },
       error: function(){
-        grecaptcha.reset();
+  
       }
               });
             }
@@ -121,8 +117,7 @@ function submit(token) {
     $('body').keypress(function(e){
       if (e.keyCode == 13)
       {
-        grecaptcha.execute();
-          return false;
+          submit()
       }
     });
         $('#modalTutup').click(function() {
@@ -130,8 +125,7 @@ function submit(token) {
         });
 
         $("#login").click(function(){
-          grecaptcha.execute();
-          return false;
+          submit()
         });
    });
 </script>
