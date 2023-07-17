@@ -145,4 +145,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasOne('App\PresensiIzin', 'id_user', 'id')->select('id', 'id_user')->whereNull('status');
     }
+
+    public function atasan()
+    {
+        return $this->hasOne('App\StrukturOrganisasi', 'id_user', 'id')->select('id', 'id_user', 'id_user_atasan');
+    }
 }

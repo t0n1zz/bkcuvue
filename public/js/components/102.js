@@ -92,18 +92,18 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/singleFileUpload.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/singleFileUpload.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/qrPresensi.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/qrPresensi.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var qrcode_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! qrcode.vue */ "./node_modules/qrcode.vue/dist/qrcode.vue.esm.js");
+/* harmony import */ var _helpers_pusherAuth_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/pusherAuth.js */ "./resources/assets/js/helpers/pusherAuth.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -112,85 +112,62 @@ function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _ty
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    title: {
-      type: String
-    }
+  components: {
+    QrcodeVue: qrcode_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
-      message: null,
-      files: [],
-      stat: '',
-      count: '',
-      progress: [],
-      progressBar: 0,
-      isLoading: false,
-      submited: false,
-      isClicked: false
+      qrValue: '',
+      kode: ''
     };
   },
-  methods: {
-    submit: function submit(event) {
-      var _this = this;
-      this.isLoading = true;
-      for (var i = 0; i < this.files.length; i++) {
-        var formData = new FormData();
-        formData.append('file', this.files[i]);
-        formData.append('id_cu', this.currentUser.id_cu);
-        formData.append('id_user', this.currentUser.id);
-        formData.append('file_name', this.title);
-        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/fileUpload/store', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          },
-          onUploadProgress: function (progressEvent) {
-            this.progressBar = parseInt(Math.round(progressEvent.loaded * 100 / progressEvent.total));
-          }.bind(this)
-        }).then(function (response) {
-          if (response.status == 200) {
-            _this.$store.commit('fileUpload/setDataS', response.data.model);
-          }
-          setTimeout(function () {
-            _this.$emit("LoadingStat", _this.isLoading);
-            _this.message = response.data.message;
-            _this.progressBar = 0;
-            _this.reset();
-            _this.files = [];
-          });
-        });
-      }
+  props: {
+    id_qr: {
+      "default": 0
     },
-    reset: function reset() {
-      this.$refs.file.value = '';
+    id_kegiatan: {
+      "default": 0
     },
-    click: function click() {
-      this.isClicked = true;
-      this.$emit('fileBatal', this.title);
-    },
-    upload: function upload(event) {
-      this.isClicked = false;
-      this.files = [];
-      this.message = null;
-      this.files.push(event.files[0]);
-      this.$emit('fileSelected', {
-        file: this.files,
-        name: this.title
-      });
+    id_user: {
+      "default": 0
     }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+  created: function created() {
+    this.$store.dispatch('presensi/indexQR', this.id_qr);
+  },
+  mounted: function mounted() {
+    var _this = this;
+    Object(_helpers_pusherAuth_js__WEBPACK_IMPORTED_MODULE_1__["PusherAuth"])();
+    window.Echo["private"]("presensi.channel." + this.currentUser.id).listen('PresensiEvent', function (e) {
+      _this.qrValue = ' https://puskopcuina.org/admins/presensiPage/' + e.kode + '/' + _this.id_qr;
+      _this.$emit('qrChanged', e.kode);
+    });
+  },
+  watch: {
+    qrStat: function qrStat(value) {
+      if (value == 'success') {
+        this.kode = this.qr.kode_qr;
+        this.qrValue = '  https://puskopcuina.org/admins/presensiPage/' + this.kode + '/' + this.id_qr;
+      }
+      this.$emit('qrChanged', this.kode);
+    }
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('auth', {
     currentUser: 'currentUser'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('presensi', {
+    qr: 'qr',
+    qrStat: 'qrStat'
   }))
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sistem/dataAnggotaUpload.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/sistem/dataAnggotaUpload.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/presensi/halamanPresensiQR.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/presensi/halamanPresensiQR.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -201,7 +178,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
 /* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
 /* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_singleFileUpload__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/singleFileUpload */ "./resources/assets/js/components/singleFileUpload.vue");
+/* harmony import */ var _components_qrPresensi_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/qrPresensi.vue */ "./resources/assets/js/components/qrPresensi.vue");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -218,212 +195,65 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     pageHeader: _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     appModal: _components_modal__WEBPACK_IMPORTED_MODULE_2__["default"],
     Cleave: vue_cleave_component__WEBPACK_IMPORTED_MODULE_3___default.a,
-    singleFileUpload: _components_singleFileUpload__WEBPACK_IMPORTED_MODULE_4__["default"]
+    qrPresensi: _components_qrPresensi_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
-      // tipe:'single',
-      // cekTipe:true,
+      error: '',
+      lat: '',
+      lon: '',
+      qrValue: '',
       isLoading: true,
-      selectedItem: null,
-      title: 'Import ESCETE',
-      titleDesc: 'Melakukan upload data CSV ESCETE',
-      titleIcon: 'icon-file-upload2',
+      title: '',
+      titleDesc: '',
+      titleIcon: '',
       kelas: 'testUpload',
-      loadingCount: [],
-      files: [],
-      fileCounter: 0,
+      level2Title: 'Upload Data Anggota',
       modalShow: false,
-      isDraft: false,
-      //flag sesuaikan dengan jumlah file yang  mau diupload
-      flagRekening: false,
-      flagAnggota: false,
-      flagProduk: false,
       modalState: '',
       modalTitle: '',
       modalColor: '',
       modalContent: '',
-      modalSize: ''
+      modalSize: '',
+      kode: '',
+      id_qr: '',
+      permission: false
     };
   },
-  watch: {
-    loadingCount: function loadingCount() {
-      if (this.loadingCount.length != 0) {
-        if (this.loadingCount.length == this.fileCounter) {
-          this.files = [];
-          this.loadingCount = [];
-          this.$store.dispatch('anggotaCuImportEscete/index', [this.currentUser.id_cu, this.currentUser.id]);
-          this.$store.dispatch('fileUpload/index', [this.currentUser.id_cu, this.currentUser.id]);
-        }
-      }
-    },
-    uploadStat: function uploadStat(value) {
-      this.modalShow = true;
-      this.modalState = value;
-      this.modalColor = '';
-      if (value == "success") {
-        this.$store.dispatch('anggotaCuImportEscete/index', [this.currentUser.id_cu]);
-        this.$store.dispatch('fileUpload/index', [this.currentUser.id_cu, this.currentUser.id]);
-        this.modalTitle = this.uploadResponse.message;
-      } else {
-        this.modalTitle = 'Oops terjadi kesalahan :(';
-        this.modalContent = this.uploadResponse;
-      }
-    },
-    updateStat: function updateStat(value) {
-      this.modalShow = true;
-      this.modalState = value;
-      this.modalColor = '';
-      if (value == "success") {
-        this.$store.dispatch('anggotaCuImportEscete/index', [this.currentUser.id_cu]);
-        this.$store.dispatch('fileUpload/index', [this.currentUser.id_cu, this.currentUser.id]);
-        this.modalTitle = this.updateResponse.message;
-      } else {
-        this.modalTitle = 'Oops terjadi kesalahan :(';
-        this.modalContent = this.updateResponse;
-      }
-    },
-    files: function files() {
-      if (this.files.length == 0) {
-        this.isLoading = true;
-      }
-    },
-    tipe: function tipe() {
-      if (this.tipe == 'single') {
-        this.cekTipe = true;
-      } else {
-        this.cekTipe = false;
-      }
-    }
-  },
+  watch: {},
   created: function created() {
-    this.$store.dispatch('anggotaCuImportEscete/index', [this.currentUser.id_cu, this.currentUser.id]);
-    this.$store.dispatch('fileUpload/index', [this.currentUser.id_cu, this.currentUser.id]);
+    this.id_qr = this.$route.params.id_qr;
   },
   methods: {
-    modalOpen: function modalOpen(state, isMobile, itemMobile) {
+    changeCode: function changeCode(value) {
+      this.kode = value;
+    },
+    modalOpen: function modalOpen(state) {
       this.modalShow = true;
-      this.state = state;
       if (isMobile) {
         this.selectedItem = itemMobile;
-      }
-      if (state == 'hapus') {
-        this.modalState = 'confirm-tutup';
-        this.modalColor = '';
-        this.modalTitle = 'Hapus file ' + this.selectedItem.file_name + '?';
-        this.modalButton = 'Iya, Hapus';
-      }
-      if (state == 'upload_draft') {
-        this.modalState = 'confirm-tutup';
-        this.modalColor = '';
-        this.modalTitle = 'Upload file ke draft?';
-        this.modalButton = 'Upload';
-      }
-      if (state == 'simpan_draft') {
-        this.modalState = 'confirm-tutup';
-        this.modalColor = '';
-        this.modalTitle = 'simpan draft?';
-        this.modalButton = 'Upload';
       }
     },
     modalConfirmOk: function modalConfirmOk() {
       this.modalShow = false;
-      if (this.state == 'hapus') {
-        this.$store.dispatch('fileUpload/destroy', this.selectedItem.id);
-      }
-      if (this.state == 'upload_draft') {
-        this.$store.dispatch('anggotaCuImportEscete/draft', [this.currentUser.id_cu, this.currentUser.id]);
-      }
-      if (this.state == 'simpan_draft') {
-        this.$store.dispatch('anggotaCuImportEscete/simpanDraft', this.currentUser.id_cu);
-      }
     },
     modalTutup: function modalTutup() {
-      // if(this.state == 'hapus'){
       this.modalShow = false;
-      // }
     },
     modalBackgroundClick: function modalBackgroundClick() {
-      if (this.modalState == 'success') {
+      if (this.modalState === 'success') {
         this.modalTutup;
-      } else if (this.modalState == 'loading') {
+      } else if (this.modalState === 'loading') {
         // do nothing
       } else {
         this.modalShow = false;
       }
-      this.isDisableTablePeserta = false;
-    },
-    submit: function submit() {
-      this.loadingCount = [];
-      this.isLoading = true;
-      console.log('ya');
-      if (this.flagProduk == true) {
-        this.$refs.formProduk.submit();
-      }
-      if (this.flagAnggota == true) {
-        this.$refs.formAnggota.submit();
-      }
-      if (this.flagRekening == true) {
-        this.$refs.formRekening.submit();
-      }
-    },
-    setLoadingStat: function setLoadingStat(value) {
-      this.loadingCount.push(value);
-    },
-    setFileCount: function setFileCount(value) {
-      this.isLoading = false;
-      //pengecekan if sesuaikan dengan jumlah file yang mau di upload
-      if (this.flagAnggota == false && value.name == 'DATA_ANGGOTA') {
-        this.flagAnggota = true;
-        this.fileCounter++;
-      } else if (this.flagRekening == false && value.name == 'DATA_REKENING') {
-        this.flagRekening = true;
-        this.fileCounter++;
-      } else if (this.flagProduk == false && value.name == 'DATA_PRODUK') {
-        this.flagProduk = true;
-        this.fileCounter++;
-      }
-      var file = {
-        'name': value.name,
-        'file': value.file
-      };
-      this.files.push(file);
-    },
-    remove: function remove(value) {
-      if (this.flagAnggota == true && value == 'DATA_ANGGOTA') {
-        this.flagAnggota = false;
-        this.fileCounter--;
-      } else if (this.flagRekening == true && value == 'DATA_REKENING') {
-        this.flagRekening = false;
-        this.fileCounter--;
-      } else if (this.flagProduk == true && value == 'DATA_PRODUK') {
-        this.flagProduk = false;
-        this.fileCounter--;
-      }
-      var i = this.files.map(function (item) {
-        return item.name;
-      }).indexOf(value);
-      this.files.splice(i, 1);
-    },
-    setSelectedItem: function setSelectedItem(file) {
-      this.selectedItem = file;
-    },
-    SimpanDraft: function SimpanDraft() {
-      // console.log(this.currentUser.id_cu);
-    } //  onCuChange(e){
-    // 	console.log(e);
-    // }
+    }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
     currentUser: 'currentUser'
   })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('anggotaCuImportEscete', {
-    uploadResponse: 'update',
-    uploadStat: 'updateStat',
     Draft: 'isDraft'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('fileUpload', {
-    dataS: 'dataS',
-    updateResponse: 'update',
-    updateStat: 'updateStat'
   })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('cu', {
     modelCU: 'headerDataS',
     modelCUStat: 'headerDataStatS'
@@ -508,10 +338,10 @@ render._withStripped = true;
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/singleFileUpload.vue?vue&type=template&id=69b5b49c&":
-/*!********************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/singleFileUpload.vue?vue&type=template&id=69b5b49c& ***!
-  \********************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/qrPresensi.vue?vue&type=template&id=32294987&":
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/qrPresensi.vue?vue&type=template&id=32294987& ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -522,66 +352,15 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("form", {
+  return _c("div", [_vm.qrValue ? _c("qrcode-vue", {
+    staticClass: "mt-3 text",
     attrs: {
-      action: "javascript:void(0)",
-      enctype: "multipart/form-data",
-      method: "post"
+      value: _vm.qrValue,
+      size: "480",
+      renderAs: "svg",
+      level: "M"
     }
-  }, [_c("div", {
-    staticClass: "card"
-  }, [_c("div", {
-    staticClass: "card-header bg-white"
-  }, [_c("h5", {
-    staticClass: "card-title"
-  }, [_vm._v(_vm._s(this.title))])]), _vm._v(" "), _c("div", {
-    staticClass: "card-body"
-  }, [_vm.message ? _c("div", {
-    staticClass: "alert alert-success"
-  }, [_vm._v(_vm._s(_vm.message))]) : _vm._e(), _vm._v(" "), _c("input", {
-    ref: "file",
-    staticClass: "form-control",
-    attrs: {
-      type: "file",
-      accept: ".csv,.xlsx,.xls",
-      name: "file"
-    },
-    on: {
-      click: _vm.reset,
-      change: function change($event) {
-        return _vm.upload($event.target);
-      }
-    }
-  }), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", {
-    staticClass: "progress"
-  }, [_c("div", {
-    staticClass: "progress-bar",
-    style: {
-      width: _vm.progressBar + "%"
-    },
-    attrs: {
-      role: "progressbar",
-      "aria-valuenow": _vm.progressBar,
-      "aria-valuemin": "0",
-      "aria-valuemax": "100"
-    }
-  }, [_vm._v(_vm._s(_vm.progressBar) + "%")])]), _vm._v(" "), _c("input", {
-    staticClass: "btn btn-danger btn-block btn-sm",
-    staticStyle: {
-      "margin-top": "5px"
-    },
-    attrs: {
-      disabled: _vm.files.length <= 0 || _vm.isClicked,
-      type: "button",
-      value: "BATAL"
-    },
-    on: {
-      click: [_vm.click, function ($event) {
-        $event.preventDefault();
-        return _vm.reset.apply(null, arguments);
-      }]
-    }
-  })])])]);
+  }) : _vm._e()], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -589,10 +368,10 @@ render._withStripped = true;
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sistem/dataAnggotaUpload.vue?vue&type=template&id=7136fd49&":
-/*!***********************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/sistem/dataAnggotaUpload.vue?vue&type=template&id=7136fd49& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/presensi/halamanPresensiQR.vue?vue&type=template&id=fabe60a2&":
+/*!*************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/presensi/halamanPresensiQR.vue?vue&type=template&id=fabe60a2& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -603,156 +382,42 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("page-header", {
+  return _c("div", [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "d-flex justify-content-center"
+  }, [_c("qr-presensi", {
     attrs: {
-      title: _vm.title,
-      titleDesc: _vm.titleDesc,
-      titleIcon: _vm.titleIcon
-    }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "page-content pt-0"
-  }, [_c("div", {
-    staticClass: "content-wrapper"
-  }, [_c("div", {
-    staticClass: "content"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-sm-12"
-  }, [_c("singleFileUpload", {
-    ref: "formAnggota",
-    attrs: {
-      title: "DATA_ANGGOTA"
+      id_qr: this.id_qr
     },
     on: {
-      LoadingStat: _vm.setLoadingStat,
-      fileSelected: _vm.setFileCount,
-      fileBatal: function fileBatal($event) {
-        return _vm.remove("DATA_ANGGOTA");
-      }
-    }
-  }), _vm._v(" "), _c("singleFileUpload", {
-    ref: "formRekening",
-    attrs: {
-      title: "DATA_REKENING"
-    },
-    on: {
-      LoadingStat: _vm.setLoadingStat,
-      fileSelected: _vm.setFileCount,
-      fileBatal: function fileBatal($event) {
-        return _vm.remove("DATA_REKENING");
-      }
-    }
-  }), _vm._v(" "), _c("singleFileUpload", {
-    ref: "formProduk",
-    attrs: {
-      title: "DATA_PRODUK"
-    },
-    on: {
-      LoadingStat: _vm.setLoadingStat,
-      fileSelected: _vm.setFileCount,
-      fileBatal: function fileBatal($event) {
-        return _vm.remove("DATA_PRODUK");
+      qrChanged: function qrChanged($event) {
+        _vm.kode = $event;
       }
     }
   })], 1), _vm._v(" "), _c("div", {
-    staticClass: "col-sm-12"
-  }, [_c("div", {
-    staticClass: "card card-body"
-  }, [_c("input", {
-    staticClass: "btn btn-primary",
-    attrs: {
-      disabled: _vm.isLoading,
-      type: "button",
-      value: "Upload"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.submit.apply(null, arguments);
-      }
+    staticStyle: {
+      "margin-top": "20px"
     }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-sm-12"
-  }, [_c("div", {
-    staticClass: "card"
-  }, [_vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "card-body"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_vm._l(_vm.dataS, function (file, index) {
-    return _c("div", {
-      key: index,
-      staticClass: "col-md-4"
-    }, [_c("div", {
-      staticClass: "card"
-    }, [_c("div", {
-      staticClass: "card-body"
-    }, [_c("h5", {
-      staticClass: "card-title"
-    }, [_vm._v(_vm._s(file.tipe))]), _vm._v(" "), _c("h5", {
-      staticClass: "card-title"
-    }, [_vm._v(_vm._s(file.file_name))]), _vm._v(" "), _c("input", {
-      staticClass: "btn btn-danger",
-      attrs: {
-        type: "button",
-        value: "HAPUS"
-      },
-      on: {
-        click: [function ($event) {
-          $event.preventDefault();
-          return _vm.setSelectedItem(file);
-        }, function ($event) {
-          $event.preventDefault();
-          return _vm.modalOpen("hapus");
-        }]
-      }
-    })])])]);
-  }), _vm._v(" "), _vm.dataS.length <= 0 ? _c("div", {
-    staticClass: "col-sm-12"
-  }, [_vm._v("File upload tidak ditemukan")]) : _vm._e()], 2)])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-sm-12"
-  }, [_c("div", {
-    staticClass: "card card-body"
-  }, [_vm.currentUser.id_cu != 0 ? _c("input", {
-    staticClass: "btn btn-warning mb-2",
-    attrs: {
-      disabled: _vm.dataS.length <= 0,
-      type: "button",
-      value: "Upload Ke Draft"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.modalOpen("upload_draft");
-      }
+  }, [_c("h2", {
+    staticClass: "text-center",
+    staticStyle: {
+      "font-weight": "300"
     }
-  }) : _vm._e(), _vm._v(" "), _vm.currentUser.id_cu == 0 ? _c("input", {
-    staticClass: "btn btn-warning mb-2",
-    attrs: {
-      type: "button",
-      value: "Upload Ke Draft"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.modalOpen("upload_draft");
-      }
+  }, [_vm._v("JIKA PERANGKAT ANDA TIDAK MENDUKUNG PEMINDAIAN QR KUNJUNGI LINK BERIKUT")]), _vm._v(" "), _c("h2", {
+    staticClass: "text-center",
+    staticStyle: {
+      "font-weight": "300"
     }
-  }) : _vm._e(), _vm._v(" "), _c("input", {
-    staticClass: "btn btn-success mb-2",
-    attrs: {
-      disabled: !_vm.Draft,
-      type: "button",
-      value: "Simpan Draft"
-    },
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.modalOpen("simpan_draft");
-      }
+  }, [_vm._v("puskopcuina.org/admins/presensiInputKode ATAU AKSES MENU Organisasi->Presensi->Isi Presensi Dengan Kode")]), _vm._v(" "), _c("h2", {
+    staticClass: "text-center",
+    staticStyle: {
+      "font-weight": "300"
     }
-  })])])])])])]), _vm._v(" "), _c("app-modal", {
+  }, [_vm._v("DAN MASUKKAN KODE BERIKUT")]), _vm._v(" "), _c("h1", {
+    staticClass: "text-center",
+    staticStyle: {
+      "font-weight": "700"
+    }
+  }, [_vm._v(_vm._s(_vm.kode))])]), _vm._v(" "), _c("app-modal", {
     attrs: {
       show: _vm.modalShow,
       state: _vm.modalState,
@@ -769,18 +434,19 @@ var render = function render() {
       failOk: _vm.modalTutup,
       backgroundClick: _vm.modalBackgroundClick
     }
-  }, [_c("template", {
-    slot: "modal-title"
-  }, [_vm._v("\n\t\t\t\t" + _vm._s(_vm.modalTitle) + "\n\t\t\t")])], 2)], 1);
+  })], 1);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "card-header bg-white"
-  }, [_c("h5", {
-    staticClass: "card-title"
-  }, [_vm._v("List File")])]);
+    staticClass: "d-flex justify-content-center"
+  }, [_c("h1", {
+    staticClass: "text-center",
+    staticStyle: {
+      "font-weight": "700"
+    }
+  }, [_vm._v("PRESENSI")])]);
 }];
 render._withStripped = true;
 
@@ -856,17 +522,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/singleFileUpload.vue":
-/*!*************************************************************!*\
-  !*** ./resources/assets/js/components/singleFileUpload.vue ***!
-  \*************************************************************/
+/***/ "./resources/assets/js/components/qrPresensi.vue":
+/*!*******************************************************!*\
+  !*** ./resources/assets/js/components/qrPresensi.vue ***!
+  \*******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _singleFileUpload_vue_vue_type_template_id_69b5b49c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./singleFileUpload.vue?vue&type=template&id=69b5b49c& */ "./resources/assets/js/components/singleFileUpload.vue?vue&type=template&id=69b5b49c&");
-/* harmony import */ var _singleFileUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./singleFileUpload.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/singleFileUpload.vue?vue&type=script&lang=js&");
+/* harmony import */ var _qrPresensi_vue_vue_type_template_id_32294987___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./qrPresensi.vue?vue&type=template&id=32294987& */ "./resources/assets/js/components/qrPresensi.vue?vue&type=template&id=32294987&");
+/* harmony import */ var _qrPresensi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./qrPresensi.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/qrPresensi.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -876,9 +542,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _singleFileUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _singleFileUpload_vue_vue_type_template_id_69b5b49c___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _singleFileUpload_vue_vue_type_template_id_69b5b49c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _qrPresensi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _qrPresensi_vue_vue_type_template_id_32294987___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _qrPresensi_vue_vue_type_template_id_32294987___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -888,54 +554,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/components/singleFileUpload.vue"
+component.options.__file = "resources/assets/js/components/qrPresensi.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/singleFileUpload.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************!*\
-  !*** ./resources/assets/js/components/singleFileUpload.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************/
+/***/ "./resources/assets/js/components/qrPresensi.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/assets/js/components/qrPresensi.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_singleFileUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./singleFileUpload.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/singleFileUpload.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_singleFileUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_qrPresensi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./qrPresensi.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/qrPresensi.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_qrPresensi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/singleFileUpload.vue?vue&type=template&id=69b5b49c&":
-/*!********************************************************************************************!*\
-  !*** ./resources/assets/js/components/singleFileUpload.vue?vue&type=template&id=69b5b49c& ***!
-  \********************************************************************************************/
+/***/ "./resources/assets/js/components/qrPresensi.vue?vue&type=template&id=32294987&":
+/*!**************************************************************************************!*\
+  !*** ./resources/assets/js/components/qrPresensi.vue?vue&type=template&id=32294987& ***!
+  \**************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_singleFileUpload_vue_vue_type_template_id_69b5b49c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../node_modules/vue-loader/lib??vue-loader-options!./singleFileUpload.vue?vue&type=template&id=69b5b49c& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/singleFileUpload.vue?vue&type=template&id=69b5b49c&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_singleFileUpload_vue_vue_type_template_id_69b5b49c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_qrPresensi_vue_vue_type_template_id_32294987___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../node_modules/vue-loader/lib??vue-loader-options!./qrPresensi.vue?vue&type=template&id=32294987& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/qrPresensi.vue?vue&type=template&id=32294987&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_qrPresensi_vue_vue_type_template_id_32294987___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_singleFileUpload_vue_vue_type_template_id_69b5b49c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_qrPresensi_vue_vue_type_template_id_32294987___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/sistem/dataAnggotaUpload.vue":
-/*!****************************************************************!*\
-  !*** ./resources/assets/js/views/sistem/dataAnggotaUpload.vue ***!
-  \****************************************************************/
+/***/ "./resources/assets/js/views/presensi/halamanPresensiQR.vue":
+/*!******************************************************************!*\
+  !*** ./resources/assets/js/views/presensi/halamanPresensiQR.vue ***!
+  \******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _dataAnggotaUpload_vue_vue_type_template_id_7136fd49___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dataAnggotaUpload.vue?vue&type=template&id=7136fd49& */ "./resources/assets/js/views/sistem/dataAnggotaUpload.vue?vue&type=template&id=7136fd49&");
-/* harmony import */ var _dataAnggotaUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dataAnggotaUpload.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/sistem/dataAnggotaUpload.vue?vue&type=script&lang=js&");
+/* harmony import */ var _halamanPresensiQR_vue_vue_type_template_id_fabe60a2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./halamanPresensiQR.vue?vue&type=template&id=fabe60a2& */ "./resources/assets/js/views/presensi/halamanPresensiQR.vue?vue&type=template&id=fabe60a2&");
+/* harmony import */ var _halamanPresensiQR_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./halamanPresensiQR.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/presensi/halamanPresensiQR.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -945,9 +611,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _dataAnggotaUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _dataAnggotaUpload_vue_vue_type_template_id_7136fd49___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _dataAnggotaUpload_vue_vue_type_template_id_7136fd49___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _halamanPresensiQR_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _halamanPresensiQR_vue_vue_type_template_id_fabe60a2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _halamanPresensiQR_vue_vue_type_template_id_fabe60a2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -957,38 +623,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/views/sistem/dataAnggotaUpload.vue"
+component.options.__file = "resources/assets/js/views/presensi/halamanPresensiQR.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/sistem/dataAnggotaUpload.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************!*\
-  !*** ./resources/assets/js/views/sistem/dataAnggotaUpload.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************/
+/***/ "./resources/assets/js/views/presensi/halamanPresensiQR.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/assets/js/views/presensi/halamanPresensiQR.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_dataAnggotaUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./dataAnggotaUpload.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sistem/dataAnggotaUpload.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_dataAnggotaUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_halamanPresensiQR_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./halamanPresensiQR.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/presensi/halamanPresensiQR.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_halamanPresensiQR_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/sistem/dataAnggotaUpload.vue?vue&type=template&id=7136fd49&":
-/*!***********************************************************************************************!*\
-  !*** ./resources/assets/js/views/sistem/dataAnggotaUpload.vue?vue&type=template&id=7136fd49& ***!
-  \***********************************************************************************************/
+/***/ "./resources/assets/js/views/presensi/halamanPresensiQR.vue?vue&type=template&id=fabe60a2&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/assets/js/views/presensi/halamanPresensiQR.vue?vue&type=template&id=fabe60a2& ***!
+  \*************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_dataAnggotaUpload_vue_vue_type_template_id_7136fd49___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../../node_modules/vue-loader/lib??vue-loader-options!./dataAnggotaUpload.vue?vue&type=template&id=7136fd49& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sistem/dataAnggotaUpload.vue?vue&type=template&id=7136fd49&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_dataAnggotaUpload_vue_vue_type_template_id_7136fd49___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_halamanPresensiQR_vue_vue_type_template_id_fabe60a2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../../node_modules/vue-loader/lib??vue-loader-options!./halamanPresensiQR.vue?vue&type=template&id=fabe60a2& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/presensi/halamanPresensiQR.vue?vue&type=template&id=fabe60a2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_halamanPresensiQR_vue_vue_type_template_id_fabe60a2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_dataAnggotaUpload_vue_vue_type_template_id_7136fd49___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_halamanPresensiQR_vue_vue_type_template_id_fabe60a2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

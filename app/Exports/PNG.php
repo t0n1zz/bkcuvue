@@ -4,6 +4,7 @@ namespace App\Exports;
 
 use App\Presensi;
 use App\PresensiAlpa;
+use App\PresensiCuti;
 use App\PresensiIzin;
 use App\PresensiKuliah;
 use App\PresensiOffBergilir;
@@ -158,7 +159,6 @@ class PNG implements FromArray, WithHeadings, WithCustomStartCell, WithEvents, W
     public function headings(): array
     {
 
-        // dd();
         return [];
     }
 
@@ -170,10 +170,12 @@ class PNG implements FromArray, WithHeadings, WithCustomStartCell, WithEvents, W
         $model = DB::select('select users.id,users.id_cu,users.id_aktivis,aktivis.name,aktivis.gambar,aktivis_pekerjaan.id_aktivis,aktivis_pekerjaan.tingkat,aktivis_pekerjaan.selesai, aktivis_pekerjaan.id_tempat,aktivis_pekerjaan.name as jabatan  from users
         inner join aktivis on aktivis.id = users.id_aktivis inner join aktivis_pekerjaan on aktivis_pekerjaan.id_aktivis = aktivis.id
         where users.id_cu = 0 and users.id_aktivis !=0 and users.status = 1 and aktivis_pekerjaan.selesai is null and aktivis_pekerjaan.id_tempat =1 and (aktivis_pekerjaan.tingkat = 5 or aktivis_pekerjaan.tingkat =6 or aktivis_pekerjaan.tingkat =7 or aktivis_pekerjaan.tingkat =8)  order by aktivis.name asc');
-        $masukKantorS = Presensi::with('seragam', 'keterlambatanP', 'keterlambatanK', 'keluarP', 'keluarK', 'pulangP', 'pulangK', 'aktivis.pekerjaan_aktif')->where('id_kegiatan', 0)->where('kegiatan_name','=',null)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user', 'id', 'id_aktivis')->get(); //b
-        $kegiatanS = Presensi::with('seragam')->where("id_kegiatan", "!=", 0)->orWhere('kegiatan_name','!=',null)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user')->get();
-        $izinS = PresensiIzin::where('jenis', 'izin')->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user')->get();
-        $sakitS = PresensiIzin::where('jenis', 'sakit')->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user')->get();
+        $masukKantorS = Presensi::with('seragam', 'keterlambatanP', 'keterlambatanK', 'keluarP', 'keluarK', 'pulangP', 'pulangK', 'aktivis.pekerjaan_aktif')->where('id_kegiatan', 0)->where('kegiatan_name', '=', null)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user', 'id', 'id_aktivis')->get(); //b
+        $kegiatanS = Presensi::with('seragam')->where("id_kegiatan", "!=", 0)->orWhere('kegiatan_name', '!=', null)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user')->get();
+        $izinS = PresensiIzin::where('jenis', 'izin')->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user', 'lama')->get();
+        $cutiTahunanS = PresensiCuti::where('jenis', 'CUTI TAHUNAN')->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user', 'lama')->get();
+        $cutiKhususS = PresensiCuti::where('jenis', 'CUTI KHUSUS')->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user', 'lama')->get();
+        $sakitS = PresensiIzin::where('jenis', 'sakit')->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user', 'lama')->get();
         $offS = PresensiOffBergilir::whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user')->get();
         $alpaS = PresensiAlpa::whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user')->get();
         $kuliahS = PresensiKuliah::whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user')->get();
@@ -206,8 +208,10 @@ class PNG implements FromArray, WithHeadings, WithCustomStartCell, WithEvents, W
             $off = 0;
             $izin = 0;
             $kantor = isset($masukKantorS->groupBy('id_user')[$aktivis->id]) ? count($masukKantorS->groupBy('id_user')[$aktivis->id]) : 0;
-            $izin = isset($izinS->groupBy('id_user')[$aktivis->id]) ? count($izinS->GroupBy('id_user')[$aktivis->id]) : 0;
-            $sakit = isset($sakitS->groupBy('id_user')[$aktivis->id]) ? count($sakitS->GroupBy('id_user')[$aktivis->id]) : 0;
+            $izin = 0;
+            $cutiKhusus = 0;
+            $cutiTahunan = 0;
+            $sakit = 0;
             $off = isset($offS->groupBy('id_user')[$aktivis->id]) ? count($offS->GroupBy('id_user')[$aktivis->id]) : 0;
             $alpa = isset($alpaS->groupBy('id_user')[$aktivis->id]) ? count($alpaS->GroupBy('id_user')[$aktivis->id]) : 0;
             $kuliah = isset($kuliahS->groupBy('id_user')[$aktivis->id]) ? count($kuliahS->GroupBy('id_user')[$aktivis->id]) : 0;
@@ -217,7 +221,31 @@ class PNG implements FromArray, WithHeadings, WithCustomStartCell, WithEvents, W
             }
 
 
-            if(isset($masukKantorS->groupBy('id_user')[$aktivis->id])){
+            if (isset($izinS->groupBy('id_user')[$aktivis->id])) {
+                foreach ($izinS->groupBy('id_user')[$aktivis->id] as $data) {
+                    $izin = $izin + $data->lama;
+                }
+            }
+
+            if (isset($sakitS->groupBy('id_user')[$aktivis->id])) {
+                foreach ($sakitS->groupBy('id_user')[$aktivis->id] as $data) {
+                    $sakit = $sakit + $data->lama;
+                }
+            }
+
+            if (isset($cutiTahunanS->groupBy('id_user')[$aktivis->id])) {
+                foreach ($cutiTahunanS->groupBy('id_user')[$aktivis->id] as $data) {
+                    $cutiTahunan = $cutiTahunan + $data->lama;
+                }
+            }
+
+            if (isset($cutiKhususS->groupBy('id_user')[$aktivis->id])) {
+                foreach ($cutiKhususS->groupBy('id_user')[$aktivis->id] as $data) {
+                    $cutiKhusus = $cutiKhusus + $data->lama;
+                }
+            }
+
+            if (isset($masukKantorS->groupBy('id_user')[$aktivis->id])) {
                 foreach ($masukKantorS->groupBy('id_user')[$aktivis->id] as $b) {
                     if ($b->keterlambatanK) {
                         $terlambatK = $terlambatK + $b->keterlambatanK->lama;
@@ -268,7 +296,7 @@ class PNG implements FromArray, WithHeadings, WithCustomStartCell, WithEvents, W
                     }
                 }
             }
-            
+
             $no++;
             $array3 = [];
             array_push($array3, $no); //no

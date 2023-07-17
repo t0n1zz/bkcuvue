@@ -23,6 +23,15 @@ export default {
     );
   },
 
+  indexCuti: function (p, id_cu, tahun, bulan) {
+    return axios.get(
+      "/api/presensi/indexCuti/" + id_cu + "/" + tahun + "/" + bulan,
+      {
+        params: p,
+      }
+    );
+  },
+
   indexQrAll: function (p, id_cu, id_user, status) {
     return axios.get(
       "/api/presensi/indexQrAll/" + id_cu + "/" + id_user + "/" + status,
@@ -40,6 +49,10 @@ export default {
     return axios.post("/api/presensi/updateQR/" + id, form);
   },
 
+  updateCuti: function (id, form) {
+    return axios.post("/api/presensi/updateCuti/" + id, form);
+  },
+
   storePelanggaranSeragam: function (form) {
     return axios.post("/api/presensi/storePelanggaranSeragam/", form);
   },
@@ -50,6 +63,10 @@ export default {
 
   updateAlasan: function (form, tipe) {
     return axios.post("/api/presensi/updateAlasan/" + tipe, form);
+  },
+
+  verifikasiCuti: function (form, id) {
+    return axios.post("/api/presensi/verifikasiCuti/" + id, form);
   },
 
   updateIzin: function (form, id) {
@@ -83,6 +100,10 @@ export default {
 
   storePresensiLain: function (tipe, form) {
     return axios.post("/api/presensi/storePresensiLain/" + tipe, form);
+  },
+
+  storeCuti: function (form) {
+    return axios.post("/api/presensi/storeCuti/", form);
   },
 
   uploadOffBergilir: function (tipe, form) {

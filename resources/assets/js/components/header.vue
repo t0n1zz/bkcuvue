@@ -1011,6 +1011,9 @@
 											<router-link :to="{ name: 'indexPresensiAll', params: { tahun: new Date().getFullYear(), bulan: new Date().getMonth() + 1 } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['personalia_akses']">
 												Data Presensi Seluruh Manajemen
 											</router-link>
+											<router-link :to="{ name: 'indexCuti' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_verifikasi']">
+														Daftar Pengajuan Cuti
+												</router-link>
 										</div>
 									</div>
 
@@ -1122,6 +1125,10 @@
 								</div>
 
 							</div>
+
+							<router-link :to="{ name: 'indexStruktur' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['index_cu']">
+									<i class="icon-people"></i> Struktur Organisasi
+								</router-link>
 
 						</div>
 					</li>

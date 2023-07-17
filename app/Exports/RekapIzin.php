@@ -17,11 +17,11 @@ use \Maatwebsite\Excel\Sheet;
 class RekapIzin implements FromArray, WithHeadings, WithCustomStartCell, WithEvents, WithTitle
 {
 
-    protected $id;
+    protected $periode;
 
-    function __construct($id)
+    function __construct($periode)
     {
-        $this->id = $id;
+        $this->periode = $periode;
     }
 
     public function startCell(): string
@@ -98,7 +98,7 @@ class RekapIzin implements FromArray, WithHeadings, WithCustomStartCell, WithEve
 
     public function array(): array
     {
-        $date = \Carbon\Carbon::parse('2023' . "-" . '01' . "-01");
+        $date = \Carbon\Carbon::parse($this->periode . "-" . '01' . "-01");
         $model = DB::select('select users.id,users.id_cu,users.id_aktivis,aktivis.name,aktivis.gambar,aktivis_pekerjaan.id_aktivis,aktivis_pekerjaan.tingkat,aktivis_pekerjaan.selesai, aktivis_pekerjaan.id_tempat,aktivis_pekerjaan.name as jabatan  from users
         inner join aktivis on aktivis.id = users.id_aktivis inner join aktivis_pekerjaan on aktivis_pekerjaan.id_aktivis = aktivis.id
         where users.id_cu = 0 and users.id_aktivis !=0 and users.status = 1 and aktivis_pekerjaan.selesai is null and aktivis_pekerjaan.id_tempat =1 and (aktivis_pekerjaan.tingkat = 5 or aktivis_pekerjaan.tingkat =6 or aktivis_pekerjaan.tingkat =7 or aktivis_pekerjaan.tingkat =8)  order by aktivis.name asc');
@@ -106,7 +106,7 @@ class RekapIzin implements FromArray, WithHeadings, WithCustomStartCell, WithEve
         $izinGroupBy = $izinS->groupBy('id_user');
         $arrayComplete = [];
         $no = 0;
-
+        // dd($izinS);
         foreach ($model as $aktivis) {
             $name =  $aktivis->name;
             $jan = 0;
@@ -124,32 +124,165 @@ class RekapIzin implements FromArray, WithHeadings, WithCustomStartCell, WithEve
 
 
             if(isset($izinGroupBy[$aktivis->id])){
+                
                 foreach ($izinGroupBy[$aktivis->id] as $mas) {
+                    $month = Carbon::parse($mas->tanggal_mulai)->format('m');
+                    $year = Carbon::parse($mas->tanggal_mulai)->format('Y');
+                    $month2 = Carbon::parse($mas->tanggal_selesai)->format('m');
 
-                    if (substr($mas->tanggal_mulai, 5, 2) == "01") {
-                        $jan++;
-                    } elseif (substr($mas->tanggal_mulai, 5, 2) == "02") {
-                        $feb++;
-                    } elseif (substr($mas->tanggal_mulai, 5, 2) == "03") {
-                        $mar++;
-                    } elseif (substr($mas->tanggal_mulai, 5, 2) == "04") {
-                        $apr++;
-                    } elseif (substr($mas->tanggal_mulai, 5, 2) == "05") {
-                        $mei++;
-                    } elseif (substr($mas->tanggal_mulai, 5, 2) == "06") {
-                        $jun++;
-                    } elseif (substr($mas->tanggal_mulai, 5, 2) == "07") {
-                        $jul++;
-                    } elseif (substr($mas->tanggal_mulai, 5, 2) == "08") {
-                        $ags++;
-                    } elseif (substr($mas->tanggal_mulai, 5, 2) == "09") {
-                        $sep++;
-                    } elseif (substr($mas->tanggal_mulai, 5, 2) == "10") {
-                        $okt++;
-                    } elseif (substr($mas->tanggal_mulai, 5, 2) == "11") {
-                        $nov++;
-                    } elseif (substr($mas->tanggal_mulai, 5, 2) == "12") {
-                        $des++;
+                    if ($month != $month2) {
+
+                            $lastDayOfMonth = Carbon::createFromDate($year, $month)->endOfMonth();
+                            $startDate = Carbon::parse($mas->tanggal_mulai);
+
+                            for (
+                                $date = $startDate;
+                                $date->lte($lastDayOfMonth);
+                                $date->addDay()
+                            ) {
+                                if (!$date->isSunday()) {
+                                if (substr($mas->tanggal_mulai, 5, 2) == "01") {
+                                    $jan++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "02") {
+                                    $feb++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "03") {
+                                    $mar++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "04") {
+                                    $apr++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "05") {
+                                    $mei++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "06") {
+                                    $jun++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "07") {
+                                    $jul++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "08") {
+                                    $ags++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "09") {
+                                    $sep++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "10") {
+                                    $okt++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "11") {
+                                    $nov++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "12") {
+                                    $des++;
+                                }
+                                }
+                            }
+
+                            $firstDayOfMonth = Carbon::createFromDate($year, $month2)->startOfMonth();
+                            $endDate = Carbon::parse($mas->tanggal_selesai);
+
+                            for ($date = $firstDayOfMonth; $date->lte($endDate); $date->addDay()) {
+                                if (!$date->isSunday()) {
+                                if (substr($mas->tanggal_selesai, 5, 2) == "01") {
+                                    $jan++;
+                                } elseif (substr($mas->tanggal_selesai, 5, 2) == "02") {
+                                    $feb++;
+                                } elseif (substr($mas->tanggal_selesai, 5, 2) == "03") {
+                                    $mar++;
+                                } elseif (substr($mas->tanggal_selesai, 5, 2) == "04") {
+                                    $apr++;
+                                } elseif (substr($mas->tanggal_selesai, 5, 2) == "05") {
+                                    $mei++;
+                                } elseif (substr($mas->tanggal_selesai, 5, 2) == "06") {
+                                    $jun++;
+                                } elseif (substr($mas->tanggal_selesai, 5, 2) == "07") {
+                                    $jul++;
+                                } elseif (substr($mas->tanggal_selesai, 5, 2) == "08") {
+                                    $ags++;
+                                } elseif (substr($mas->tanggal_selesai, 5, 2) == "09") {
+                                    $sep++;
+                                } elseif (substr($mas->tanggal_selesai, 5, 2) == "10") {
+                                    $okt++;
+                                } elseif (substr($mas->tanggal_selesai, 5, 2) == "11") {
+                                    $nov++;
+                                } elseif (substr($mas->tanggal_selesai, 5, 2) == "12") {
+                                    $des++;
+                                }
+                                }
+                            }
+
+                        if (substr($mas->tanggal_selesai, 5, 2) == "01") {
+                            $jan--;
+                        } elseif (substr($mas->tanggal_selesai, 5, 2) == "02") {
+                            $feb--;
+                        } elseif (substr($mas->tanggal_selesai, 5, 2) == "03") {
+                            $mar--;
+                        } elseif (substr($mas->tanggal_selesai, 5, 2) == "04") {
+                            $apr--;
+                        } elseif (substr($mas->tanggal_selesai, 5, 2) == "05") {
+                            $mei--;
+                        } elseif (substr($mas->tanggal_selesai, 5, 2) == "06") {
+                            $jun--;
+                        } elseif (substr($mas->tanggal_selesai, 5, 2) == "07") {
+                            $jul--;
+                        } elseif (substr($mas->tanggal_selesai, 5, 2) == "08") {
+                            $ags--;
+                        } elseif (substr($mas->tanggal_selesai, 5, 2) == "09") {
+                            $sep--;
+                        } elseif (substr($mas->tanggal_selesai, 5, 2) == "10") {
+                            $okt--;
+                        } elseif (substr($mas->tanggal_selesai, 5, 2) == "11") {
+                            $nov--;
+                        } elseif (substr($mas->tanggal_selesai, 5, 2) == "12") {
+                            $des--;
+                        }
+                    }else{
+                        for ($date = Carbon::parse($mas->tanggal_mulai); $date->lte(Carbon::parse($mas->tanggal_selesai)); $date->addDay()) {
+                            if (!$date->isSunday()) {
+                                if (substr($mas->tanggal_mulai, 5, 2) == "01") {
+                                    $jan++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "02") {
+                                    $feb++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "03") {
+                                    $mar++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "04") {
+                                    $apr++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "05") {
+                                    $mei++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "06") {
+                                    $jun++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "07") {
+                                    $jul++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "08") {
+                                    $ags++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "09") {
+                                    $sep++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "10") {
+                                    $okt++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "11") {
+                                    $nov++;
+                                } elseif (substr($mas->tanggal_mulai, 5, 2) == "12") {
+                                    $des++;
+                                }
+                            }
+                        }
+                        
+                        if (substr($mas->tanggal_mulai, 5, 2) == "01") {
+                            $jan--;
+                        } elseif (substr($mas->tanggal_mulai, 5, 2) == "02") {
+                            $feb--;
+                        } elseif (substr($mas->tanggal_mulai, 5, 2) == "03") {
+                            $mar--;
+                        } elseif (substr($mas->tanggal_mulai, 5, 2) == "04") {
+                            $apr--;
+                        } elseif (substr($mas->tanggal_mulai, 5, 2) == "05") {
+                            $mei--;
+                        } elseif (substr($mas->tanggal_mulai, 5, 2) == "06") {
+                            $jun--;
+                        } elseif (substr($mas->tanggal_mulai, 5, 2) == "07") {
+                            $jul--;
+                        } elseif (substr($mas->tanggal_mulai, 5, 2) == "08") {
+                            $ags--;
+                        } elseif (substr($mas->tanggal_mulai, 5, 2) == "09") {
+                            $sep--;
+                        } elseif (substr($mas->tanggal_mulai, 5, 2) == "10") {
+                            $okt--;
+                        } elseif (substr($mas->tanggal_mulai, 5, 2) == "11") {
+                            $nov--;
+                        } elseif (substr($mas->tanggal_mulai, 5, 2) == "12") {
+                            $des--;
+                        }
                     }
                 }
             }
@@ -181,6 +314,7 @@ class RekapIzin implements FromArray, WithHeadings, WithCustomStartCell, WithEve
 
         return $arrayComplete;
     }
+
 
     public function title(): string
     {

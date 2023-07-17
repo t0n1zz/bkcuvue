@@ -58,6 +58,7 @@ import { errorLog } from "./modules/errorLog";
 import { anggotaCuImportEscete } from "./modules/anggotaCuImportEscete";
 import { fileUpload } from "./modules/fileUpload";
 import { presensi } from "./modules/presensi";
+import { struktur } from "./modules/struktur";
 
 Vue.use(Vuex);
 
@@ -120,5 +121,6 @@ export default new Vuex.Store({
     anggotaCuImportEscete,
     fileUpload,
     presensi,
+    struktur
   },
 });

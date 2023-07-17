@@ -46,10 +46,10 @@
 							@click.prevent="changeTab('sakit')">
 							SAKIT
 						</a></li>
-					<!-- <li class="nav-item"><a href="#" class="nav-link" :class="{ 'active': tabName == 'cuti' }"
+					<li class="nav-item"><a href="#" class="nav-link" :class="{ 'active': tabName == 'cuti' }"
 							@click.prevent="changeTab('cuti')">
 							CUTI
-						</a></li> -->
+						</a></li>
 					<li class="nav-item"><a href="#" class="nav-link" :class="{ 'active': tabName == 'seragam' }"
 							@click.prevent="changeTab('seragam')">
 							SERAGAM KERJA
@@ -101,8 +101,8 @@
 					<i class="icon-pencil5"></i>Ubah
 				</button>
 
-				<button @click="modalOpen()" class="btn btn-light mb-1" v-if="tabName == 'cuti'">
-					<i class="icon-plus3"></i>Ajukan Cuti
+				<button @click="modalOpen('cutiEdit')" class="btn btn-light mb-1" v-if="tabName == 'cuti'">
+					<i class="icon-pencil5"></i>Ubah
 				</button>
 				<button @click="modalOpen('kuliah')" class="btn btn-light mb-1" v-if="tabName == 'kuliah'">
 					<i class="icon-plus3"></i>Tambah Aktivis Kuliah
@@ -197,14 +197,28 @@
 						<check-value :value="'-'"></check-value>
 					</td>
 					<td v-if="!columnData[12].hide">
-						<check-value :value="props.item.lama"></check-value>
-					</td>
-					<td v-if="!columnData[13].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[14].hide">
-						<span v-if="props.item.created_at !== props.item.updated_at"
-							v-html="$options.filters.dateTime(props.item.updated_at)"></span>
-						<span v-else>-</span>
-					</td>
+						<check-value :value="props.item.lama"></check-value></td>
+					<td v-if="!columnData[13].hide">
+								<check-value :value="props.item.alasan_penolakan"></check-value>
+							</td>
+							<td v-if="!columnData[14].hide && !props.item.tanggal_acc1">
+								<check-value :value="'Menunggu Persetujuan Personalia'"></check-value>
+							</td>
+							<td v-else-if="!columnData[14].hide && !props.item.tanggal_acc2 && props.item.tanggal_acc1">
+									<check-value :value="'Menunggu Persetujuan Atasan'"></check-value>
+							</td>
+							<td v-else-if="!columnData[14].hide && props.item.tanggal_acc2 && props.item.tanggal_acc1 && !props.item.alasan_penolakan">
+								<check-value :value="'Cuti Disetujui'"></check-value>
+							</td>
+							<td v-else-if="!columnData[14].hide && props.item.tanggal_acc2 && props.item.tanggal_acc1 && props.item.alasan_penolakan">
+									<check-value :value="'Cuti Ditolak'"></check-value>
+							</td>
+						<td v-if="!columnData[15].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+						<td v-if="!columnData[16].hide">
+							<span v-if="props.item.created_at !== props.item.updated_at"
+								v-html="$options.filters.dateTime(props.item.updated_at)"></span>
+							<span v-else>-</span>
+						</td>
 				</tr>
 			</template>
 
@@ -249,12 +263,20 @@
 				</div>
 				<div v-else>
 					<div class="text-center col-md-12">
+						<h5>Pilih Periode :</h5>
+								<div class="text-center" style="margin-bottom: 20px;">
+									<select class="form-control" data-width="100%" v-model="tahun">
+										<option value="2023">2023</option>
+									</select>
+								</div>
 						<button class="btn btn-primary btn-block" @click.prevent="downloadLaporan(1)">
 							<i class=""></i>Konsolidasi Bulanan</button><br>
-
 						<button :disabled="alasan == ''" type="submit" value="submit" class="btn btn-primary btn-block"
 							@click.prevent="downloadLaporan(2)" >
 							Form Kehadiran Kerja Manajemen Konsolidasi</button>
+						<button type="submit" value="submit" class="btn btn-warning btn-block"
+								@click.prevent="modalTutup" >
+								Batal</button>
 					</div>
 				</div>
 			</template>
@@ -264,9 +286,12 @@
 				</div>
 			</template>
 			<template slot="modal-body3">
-				<div>
+				<div v-if="tabName!='cuti'">
 					<form-pelanggaran-seragam :user="selectedItem" :tipe="tipe"
 						@tutup="modalTutup"></form-pelanggaran-seragam>
+				</div>
+				<div v-else>
+					<Cuti @tutup="modalTutup" :dataCuti="selectedItem" :tipe="'cutiEdit'" :page="'semua'"></Cuti>
 				</div>
 			</template>
 			<template slot="modal-body4">
@@ -296,6 +321,7 @@ import Izin from './formIzin.vue';
 import uploadExcel from './uploadExcel.vue';
 import formPelanggaranSeragam from './formPelanggaranSeragam.vue';
 import FileSaver from 'file-saver';
+import Cuti from './formCuti.vue';
 
 
 export default {
@@ -309,7 +335,8 @@ export default {
 		formPelanggaranSeragam,
 		uploadExcel,
 		Izin,
-		FileSaver
+		FileSaver,
+		Cuti
 	},
 	props: ['title', 'kelas'],
 	data () {
@@ -396,6 +423,7 @@ export default {
 					filterDefault: true,
 				},
 
+
 				{
 					title: 'Jam Masuk',
 					name: 'jam_masuk',
@@ -445,6 +473,24 @@ export default {
 				},
 
 				{
+					title: 'Alasan Penolakan',
+					name: 'alasan_penolakan',
+					sort: false,
+					hide: true,
+					tipe: "string",
+					filterDefault: true,
+				},
+
+				{
+					title: 'Status Persetujuan',
+					name: 'status_persetujuan',
+					sort: false,
+					hide: true,
+					tipe: "string",
+					filterDefault: true,
+				},
+
+				{
 					title: 'Tgl. / Waktu Buat',
 					name: 'created_at',
 					tipe: 'datetime',
@@ -461,9 +507,6 @@ export default {
 					hide: false,
 					filter: true,
 				},
-
-
-
 			],
 			state: '',
 			modalShow: false,
@@ -482,7 +525,8 @@ export default {
 			tabName: 'keterlambatan',
 			tipe: '',
 			flag: false,
-			laporan: false
+			laporan: false,
+			tahun:'2023',
 		}
 	},
 	created () {
@@ -541,7 +585,7 @@ export default {
 		downloadLaporan (tipe) {
 			this.modalShow = true;
 			this.modalState = 'loading';
-			axios.post('/api/downloadLaporanPresensi', { tipe: tipe }, {
+			axios.post('/api/downloadLaporanPresensi', { tipe: tipe , periode: this.tahun}, {
 				responseType: 'blob'
 			}).then((response) => {
 				let name = ''
@@ -584,6 +628,8 @@ export default {
 				this.columnData[10].hide = true
 				this.columnData[11].hide = true
 				this.columnData[12].hide = true
+				this.columnData[13].hide = true
+				this.columnData[14].hide = true
 			} else if (value == 'pulangawal') {
 				this.query2()
 				this.columnData[1].hide = false
@@ -597,6 +643,8 @@ export default {
 				this.columnData[10].hide = true
 				this.columnData[11].hide = true
 				this.columnData[12].hide = true
+				this.columnData[13].hide = true
+				this.columnData[14].hide = true
 			} else if (value == 'kegiatan') {
 				this.query2()
 				this.columnData[1].hide = false
@@ -610,6 +658,8 @@ export default {
 				this.columnData[10].hide = true
 				this.columnData[11].hide = true
 				this.columnData[12].hide = true
+				this.columnData[13].hide = true
+				this.columnData[14].hide = true
 			} else if (value == 'masukkantor') {
 				this.query2()
 				this.columnData[1].hide = false
@@ -623,6 +673,8 @@ export default {
 				this.columnData[10].hide = true
 				this.columnData[11].hide = true
 				this.columnData[12].hide = true
+				this.columnData[13].hide = true
+				this.columnData[14].hide = true
 			} else if (value == 'kuliah' || value == 'off' || value == 'alpha') {
 				this.query2()
 				this.columnData[1].hide = false
@@ -636,6 +688,8 @@ export default {
 				this.columnData[10].hide = true
 				this.columnData[11].hide = true
 				this.columnData[12].hide = true
+				this.columnData[13].hide = true
+				this.columnData[14].hide = true
 			} else if (value == 'seragam') {
 				this.query2()
 				this.columnData[1].hide = false
@@ -649,6 +703,8 @@ export default {
 				this.columnData[10].hide = true
 				this.columnData[11].hide = true
 				this.columnData[12].hide = true
+				this.columnData[13].hide = true
+				this.columnData[14].hide = true
 			} else if (value == 'izin' || value == 'sakit') {
 				this.query1()
 				this.columnData[1].hide = true
@@ -662,6 +718,23 @@ export default {
 				this.columnData[10].hide = false
 				this.columnData[11].hide = false
 				this.columnData[12].hide = false
+				this.columnData[13].hide = true
+				this.columnData[14].hide = true
+			} else if (value == 'cuti') {
+				this.query2()
+				this.columnData[1].hide = false
+				this.columnData[3].hide = true
+				this.columnData[4].hide = true
+				this.columnData[5].hide = true
+				this.columnData[6].hide = false
+				this.columnData[7].hide = true
+				this.columnData[8].hide = true
+				this.columnData[9].hide = true
+				this.columnData[10].hide = false
+				this.columnData[11].hide = false
+				this.columnData[12].hide = false
+				this.columnData[13].hide = false
+				this.columnData[14].hide = false
 			}
 			this.tabName = value
 			this.$store.dispatch('presensi/indexPresensi', [this.query, this.tahun, this.bulan, this.tabName, 'semua']);
@@ -778,6 +851,16 @@ export default {
 					this.modalTitle = 'Izin/Sakit';
 				}
 
+				this.modalSize = 'modal-md';
+				this.formModalMode = 'create';
+			} else if (state == 'cutiEdit') {
+				this.mode = state
+				this.modalShow = true;
+				this.modalSize = '';
+				this.isDisableTable = true;
+				this.modalState = 'normal3';
+				this.modalColor = 'bg-primary';
+				this.modalTitle = 'Cuti';
 				this.modalSize = 'modal-md';
 				this.formModalMode = 'create';
 			}

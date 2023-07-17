@@ -10,6 +10,7 @@ use App\Jobs\SendNotification;
 use App\Kegiatan;
 use App\Presensi;
 use App\PresensiAlpa;
+use App\PresensiCuti;
 use App\PresensiIzin;
 use App\PresensiKeluarKantor;
 use App\PresensiKeterlambatan;
@@ -18,6 +19,8 @@ use App\PresensiOffBergilir;
 use App\PresensiPelanggaranSeragam;
 use App\PresensiPulangAwal;
 use App\QrPresensi;
+use App\StrukturOrganisasi;
+use App\User;
 use Illuminate\Http\Request;
 use Auth;
 use Carbon\Carbon;
@@ -42,6 +45,19 @@ class PresensiController extends Controller
         $model = DB::select('select users.id,users.id_cu,users.id_aktivis,aktivis.name,aktivis.gambar,aktivis_pekerjaan.id_aktivis,aktivis_pekerjaan.tingkat,aktivis_pekerjaan.selesai, aktivis_pekerjaan.id_tempat  from users
         inner join aktivis on aktivis.id = users.id_aktivis inner join aktivis_pekerjaan on aktivis_pekerjaan.id_aktivis = aktivis.id
         where users.id_cu = 0 and users.id_aktivis !=0 and users.status = 1 and aktivis_pekerjaan.selesai is null and aktivis_pekerjaan.id_tempat =1 and (aktivis_pekerjaan.tingkat = 5 or aktivis_pekerjaan.tingkat =6 or aktivis_pekerjaan.tingkat =7 or aktivis_pekerjaan.tingkat =8)  order by aktivis.name asc');
+        return response()->json([
+            'model' => $model,
+        ]);
+    }
+
+    public function indexVerifikasi($id_cu, $tahun, $tanggal)
+    {
+        if (Auth::user()->hasPermissionTo('verifikasi_personalia')) {
+            $model = PresensiCuti::with('aktivis')->where('id_cu', $id_cu)->whereNull('tanggal_acc1')->advancedFilter();
+        } else {
+            $model = PresensiCuti::with('aktivis')->where('id_cu', $id_cu)->where('id_acc2', Auth::user()->id)->where('tanggal_acc1', '!=', null)->whereNull('tanggal_acc2')->advancedFilter();
+        }
+
         return response()->json([
             'model' => $model,
         ]);
@@ -134,6 +150,9 @@ class PresensiController extends Controller
                 } elseif ($tipe == 'sakit') {
                     $model = PresensiIzin::with('aktivis')->where('jenis', 'sakit')->where('id_user', Auth::user()->id)->where('created_at', '>=', $start)
                         ->where('created_at', '<=', $end)->advancedFilter();
+                } elseif ($tipe == 'cuti') {
+                    $model = PresensiCuti::with('aktivis')->where('id_user', Auth::user()->id)->where('created_at', '>=', $start)
+                        ->where('created_at', '<=', $end)->advancedFilter();
                 }
             } else {
                 $date = \Carbon\Carbon::parse($year . "-" . "01" . "-01"); // universal truth month's first day is 1
@@ -162,6 +181,8 @@ class PresensiController extends Controller
                     $model = PresensiIzin::with('aktivis')->where('jenis', 'izin')->where('id_user', Auth::user()->id)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->advancedFilter();
                 } elseif ($tipe == 'sakit') {
                     $model = PresensiIzin::with('aktivis')->where('jenis', 'sakit')->where('id_user', Auth::user()->id)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->advancedFilter();
+                } elseif ($tipe == 'cuti') {
+                    $model = PresensiCuti::with('aktivis')->where('id_user', Auth::user()->id)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->advancedFilter();
                 }
             }
         } else {
@@ -203,6 +224,9 @@ class PresensiController extends Controller
                 } elseif ($tipe == 'sakit') {
                     $model = PresensiIzin::with('aktivis')->has('aktivis')->where('jenis', 'sakit')->where('id_cu', Auth::user()->id_cu)->where('created_at', '>=', $start)
                         ->where('created_at', '<=', $end)->advancedFilter();
+                } elseif ($tipe == 'cuti') {
+                    $model = PresensiCuti::with('aktivis')->has('aktivis')->where('id_cu', Auth::user()->id_cu)->where('created_at', '>=', $start)
+                        ->where('created_at', '<=', $end)->advancedFilter();
                 }
             } else {
                 $date = \Carbon\Carbon::parse($year . "-" . "01" . "-01"); // universal truth month's first day is 1
@@ -230,6 +254,8 @@ class PresensiController extends Controller
                     $model = PresensiIzin::with('aktivis')->where('jenis', 'izin')->where('id_cu', Auth::user()->id_cu)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->advancedFilter();
                 } elseif ($tipe == 'sakit') {
                     $model = PresensiIzin::with('aktivis')->where('jenis', 'sakit')->where('id_cu', Auth::user()->id_cu)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->advancedFilter();
+                } elseif ($tipe == 'cuti') {
+                    $model = PresensiCuti::with('aktivis')->where('id_cu', Auth::user()->id_cu)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->advancedFilter();
                 }
             }
         }
@@ -253,6 +279,48 @@ class PresensiController extends Controller
         return response()
             ->json([
                 'pesan' => 'ok',
+            ]);
+    }
+
+    public function verifikasiCuti(Request $request, $id)
+    {
+        $cuti = PresensiCuti::with('aktivis')->findOrFail($id);
+        $message = '';
+        if (Auth::user()->hasPermissionTo('verifikasi_personalia') && $cuti->tgl_acc1 == null) {
+            if ($request->status_verif == 'tolak') {
+                $cuti->update([
+                    'tanggal_acc1' => Carbon::now()->toDateString(),
+                    'status_acc1' => 'ditolak',
+                    'alasan_penolakan' => $request->alasan
+                ]);
+                $message = 'Pengajuan Cuti Atas Nama ' . $cuti->aktivis->name . 'ditolak';
+            } else {
+                $cuti->update([
+                    'tanggal_acc1' => Carbon::now()->toDateString(),
+                    'status_acc1' => 'disetujui'
+                ]);
+            }
+            $message = 'Pengajuan Cuti Atas Nama ' . $cuti->aktivis->name . 'disetujui';
+        } else {
+            if ($request->status_verif == 'tolak') {
+                $cuti->update([
+                    'tanggal_acc2' => Carbon::now()->toDateString(),
+                    'status_acc2' => 'ditolak',
+                    'alasan_penolakan' => $request->alasan
+                ]);
+                $message = 'Pengajuan Cuti Atas Nama ' . $cuti->aktivis->name . 'ditolak';
+            } else {
+                $cuti->update([
+                    'tanggal_acc2' => Carbon::now()->toDateString(),
+                    'status_acc2' => 'disetujui'
+                ]);
+                $message = 'Pengajuan Cuti Atas Nama ' . $cuti->aktivis->name . 'disetujui';
+            }
+        }
+
+        return response()
+            ->json([
+                'message' => $message,
             ]);
     }
 
@@ -423,7 +491,14 @@ class PresensiController extends Controller
                     if ($sakit->first()) {
                         $tgl = Carbon::today()->toDateString();
                         $tgl_mulai = Carbon::parse($sakit->first()->tanggal_mulai);
-                        $lama = $tgl_mulai->diffInDays($tgl);
+                        $lama = 0;
+                        for ($date = $tgl_mulai; $date->lte($tgl); $date->addDay()) {
+                            if (!$date->isSunday()) {
+                                $lama++;
+                            }
+                        }
+                        $lama--;
+
                         if ($sakit->first()->jenis == 'sakit') {
                             $sakit->update([
                                 'lama' => $lama,
@@ -530,12 +605,10 @@ class PresensiController extends Controller
     function storeIzin(Request $request)
     {
         $lama = null;
+        $message = '';
         $tgl_mulai = Carbon::parse($request->tanggal_mulai);
         $tgl_selesai = Carbon::parse($request->tanggal_selesai);
-        if ($request->jenis == 'izin') {
-            $lama = $tgl_mulai->diffInDays($tgl_selesai);
-        }
-
+        $cek = PresensiIzin::where('id_user', $request->id_user)->whereNull('status')->first();
 
         if ($request->jenis == 'kegiatan') {
             $aktivis = Aktivis::findOrFail($request->id_aktivis);
@@ -554,20 +627,35 @@ class PresensiController extends Controller
                 'name' => $aktivis->name,
                 'jam_masuk' => Carbon::now()->toTimeString(),
             ]);
+            $message = 'Data Kegiatan Berhasil Disimpan';
         } else {
-            PresensiIzin::create([
-                'id_user' => $request->id_user,
-                'id_cu' => $request->id_cu,
-                'id_aktivis' => $request->id_aktivis,
-                'jenis' => $request->jenis,
-                'tanggal_mulai' => $request->tanggal_mulai,
-                'tanggal_selesai' => $request->tanggal_selesai,
-                'alasan' => $request->alasan,
-                'lama' => $lama,
-            ]);
+            if (!$cek) {
+                $lama = 0;
+                for ($date = $tgl_mulai; $date->lte($tgl_selesai); $date->addDay()) {
+                    if (!$date->isSunday()) {
+                        $lama++;
+                    }
+                }
+                $lama--;
+                PresensiIzin::create([
+                    'id_user' => $request->id_user,
+                    'id_cu' => $request->id_cu,
+                    'id_aktivis' => $request->id_aktivis,
+                    'jenis' => $request->jenis,
+                    'tanggal_mulai' => $request->tanggal_mulai,
+                    'tanggal_selesai' => $request->tanggal_selesai,
+                    'alasan' => $request->alasan,
+                    'lama' => $lama,
+                ]);
+                if ($request->jenis == 'izin') {
+                    $message = 'Data Izin Berhasil Disimpan';
+                } else {
+                    $message = 'Data Sakit Berhasil Disimpan';
+                }
+            } else {
+                $message = 'Masih ada Data Izin/Sakit yang Belum Selesai';
+            }
         }
-
-        $message = 'Berhasil Disimpan';
 
         return response()->json([
             'message' => $message,
@@ -611,7 +699,6 @@ class PresensiController extends Controller
 
     function selesaiIzin($id_user)
     {
-        // $qr = QrAbsen::where('id_cu', $request->id_cu)->where('kode_qr', $request->kode)->first();
         $now = new \DateTime();
         $lama = 0;
         $jam_sekarang = $now->format('Y-m-d H:i');
@@ -626,6 +713,48 @@ class PresensiController extends Controller
             'lama' => $lama
         ]);
         $message = 'Anda Sudah Kembali Ke Kantor Terima Kasih';
+        return response()->json([
+            'message' => $message,
+        ]);
+    }
+
+    function storeCuti(Request $request)
+    {
+        $personalia = User::permission('verifikasi_personalia')->where('id_cu', $request->id_cu)->first()->id;
+        $atasan = StrukturOrganisasi::where('id_user', $request->id_user)->first()->id_user_atasan;
+        $cek = PresensiCuti::where('id_user', $request->id_user)->whereNull('status')->whereNull('alasan_penolakan')->first();
+        $message = '';
+
+        $endDate = Carbon::parse($request->tanggal_selesai);
+        $startDate = Carbon::parse($request->tanggal_mulai);
+        $cutiDays = 0;
+        for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
+            if (!$date->isSunday()) {
+                $cutiDays++;
+            }
+        }
+        $cutiDays--;
+
+        if (!$cek) {
+            PresensiCuti::create([
+                'tanggal_mulai' => $request->tanggal_mulai,
+                'tanggal_selesai' => $request->tanggal_selesai,
+                'id_user' => $request->id_user,
+                'alasan' => $request->alasan,
+                'id_cu' => $request->id_cu,
+                'id_aktivis' => $request->id_aktivis,
+                'id_acc1' => $personalia,
+                'id_acc2' => $atasan,
+                'tanggal' => Carbon::now()->toDateString(),
+                'lama' => $cutiDays,
+                'jenis' => $request->jenis
+            ]);
+
+            $message = 'Cuti Berhasil Diajukan';
+        } else {
+            $message = 'Masih Ada Data Cuti Yang Statusnya Belum Selesai';
+        }
+
         return response()->json([
             'message' => $message,
         ]);
@@ -695,6 +824,9 @@ class PresensiController extends Controller
     public function uploadExcelOffBergilir(Request $request)
     {
         (new OffBergilirImport)->queue($request->file)->chain([new SendNotification(Auth::user()->id, 'NotifUpload', 'Data Berhasil Diupload')]);
+        return response()->json([
+            'message' => 'Data Berhasil Diupload',
+        ]);
     }
 
     /**
@@ -738,6 +870,30 @@ class PresensiController extends Controller
         ]);
     }
 
+    public function updateCuti(Request $request, $id)
+    {
+        $endDate = Carbon::parse($request->tanggal_selesai);
+        $startDate = Carbon::parse($request->tanggal_mulai);
+        $cutiDays = 0;
+        for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
+            if (!$date->isSunday()) {
+                $cutiDays++;
+            }
+        }
+        $cutiDays--;
+        PresensiCuti::where('id', $id)->update([
+            'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_selesai' => $request->tanggal_selesai,
+            'realisasi' => $request->realisasi,
+            'alasan' => $request->alasan,
+            'lama' => $cutiDays,
+            'jenis' => $request->jenis
+        ]);
+        return response()->json([
+            'message' => 'Berhasil diUpdate',
+        ]);
+    }
+
     public function updateAlasan(Request $request, $tipe)
     {
         if ($tipe == 'keterlambatan') {
@@ -764,12 +920,15 @@ class PresensiController extends Controller
 
     public function updateIzin(Request $request, $id)
     {
-        $lama = null;
         $tgl_mulai = Carbon::parse($request->tanggal_mulai);
         $tgl_selesai = Carbon::parse($request->tanggal_selesai);
-        if ($request->jenis == 'izin') {
-            $lama = $tgl_mulai->diffInDays($tgl_selesai);
+        $lama = 0;
+        for ($date = $tgl_mulai; $date->lte($tgl_selesai); $date->addDay()) {
+            if (!$date->isSunday()) {
+                $lama++;
+            }
         }
+        $lama--;
 
         PresensiIzin::where('id', $id)->update([
             'alasan' => $request->alasan,
@@ -830,7 +989,6 @@ class PresensiController extends Controller
 
     public function downloadLaporan(Request $request)
     {
-
-        return Excel::download(new Export($request->tipe), 'Laporan.xlsx');
+        return Excel::download(new Export($request->tipe, $request->periode), 'Laporan.xlsx');
     }
 }

@@ -8,6 +8,10 @@
             <button class="btn btn-primary" style="width: 100%;margin-top: 20px;" @click.prevent="kirim('PULANG AWAL')">
                 Pulang Awal</button>
         </div>
+        <div class="text-center">
+                <button class="btn btn-warning" style="width: 100%;margin-top: 20px;" @click.prevent="batal">
+                    Batal</button>
+        </div>
     </div>
 </template>
 
@@ -16,6 +20,9 @@ export default {
     methods: {
         kirim (value) { 
              this.$emit("kirim", value)
+        },
+        batal () {
+            this.$emit('tutup');
         }
     }
 }

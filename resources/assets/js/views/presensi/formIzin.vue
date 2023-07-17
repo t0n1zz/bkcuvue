@@ -87,6 +87,8 @@ export default {
         } else { 
             this.editData = ''
             this.form.alasan = ''
+            this.form.tanggal_mulai = ''
+            this.form.tanggal_selesai = ''
         }
     },
     methods: {

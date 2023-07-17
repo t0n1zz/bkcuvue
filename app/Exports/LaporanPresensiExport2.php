@@ -5,12 +5,14 @@ namespace App\Exports;
 
 use App\Presensi;
 use App\PresensiAlpa;
+use App\PresensiCuti;
 use App\PresensiIzin;
 use App\PresensiKeluarKantor;
 use App\PresensiKeterlambatan;
 use App\PresensiKuliah;
 use App\PresensiOffBergilir;
 use App\PresensiPulangAwal;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -143,32 +145,39 @@ class LaporanPresensiExport2 implements FromArray, WithHeadings, WithCustomStart
 
     public function array(): array
     {
-
-        $date = \Carbon\Carbon::parse($this->tahun . "-".$this->bulan . "-01");
+        $date = \Carbon\Carbon::parse($this->tahun . "-" . $this->bulan . "-01");
         $model = DB::select('select users.id,users.id_cu,users.id_aktivis,aktivis.name,aktivis.gambar,aktivis_pekerjaan.id_aktivis,aktivis_pekerjaan.tingkat,aktivis_pekerjaan.selesai, aktivis_pekerjaan.id_tempat,aktivis_pekerjaan.name as jabatan  from users
         inner join aktivis on aktivis.id = users.id_aktivis inner join aktivis_pekerjaan on aktivis_pekerjaan.id_aktivis = aktivis.id
         where users.id_cu = 0 and users.id_aktivis !=0 and users.status = 1 and aktivis_pekerjaan.selesai is null and aktivis_pekerjaan.id_tempat =1 and (aktivis_pekerjaan.tingkat = 5 or aktivis_pekerjaan.tingkat =6 or aktivis_pekerjaan.tingkat =7 or aktivis_pekerjaan.tingkat =8)  order by aktivis.name asc');
         $start = $date->startOfMonth()->format('Y-m-d H:i:s');
         $end = $date->endOfMonth()->format('Y-m-d H:i:s');
         $keterlambatanS = PresensiKeterlambatan::with('aktivis')->where('created_at', '>=', $start)->where('created_at', '<=', $end)->select('id_user', 'lama')->get();
-        $masukKantorS = Presensi::with('aktivis.pekerjaan_aktif')->where('id_kegiatan', 0)->where('kegiatan_name', '=', null)->where('created_at', '>=', $start)->where('created_at', '<=', $end)->select('id_user','id','id_aktivis','name')->get();
+        $masukKantorS = Presensi::with('aktivis.pekerjaan_aktif')->where('id_kegiatan', 0)->where('kegiatan_name', '=', null)->where('created_at', '>=', $start)->where('created_at', '<=', $end)->select('id_user', 'id', 'id_aktivis', 'name')->get();
         $kegiatanS = Presensi::where("id_kegiatan", "!=", 0)->where('created_at', '>=', $start)->where('created_at', '<=', $end)->select('id_user')->get();
         $kegiatanS2 = Presensi::where("kegiatan_name", "!=", null)->where('created_at', '>=', $start)->where('created_at', '<=', $end)->select('id_user')->get();
-        $izinS = PresensiIzin::where('jenis', 'izin')->where('created_at', '>=', $start)->where('created_at', '<=', $end)->select('id_user')->get();
-        $sakitS = PresensiIzin::where('jenis', 'sakit')->where('created_at', '>=', $start)->where('created_at', '<=', $end)->select('id_user')->get();
+        $izinS = PresensiIzin::where('jenis', 'izin')->where('tanggal_mulai', '>=', $start)->where('tanggal_mulai', '<=', $end)->select('id_user', 'tanggal_mulai', 'tanggal_selesai')->get();
+        $izinSLastMonth = PresensiIzin::where('jenis', 'izin')->where('tanggal_selesai', '>=', $start)->where('tanggal_selesai', '<=', $end)->select('id_user', 'tanggal_mulai', 'tanggal_selesai')->get();
+        $sakitS = PresensiIzin::where('jenis', 'sakit')->where('tanggal_mulai', '>=', $start)->where('tanggal_mulai', '<=', $end)->select('id_user', 'tanggal_mulai', 'tanggal_selesai')->get();
+        $sakitSLastMonth = PresensiIzin::where('jenis', 'sakit')->where('tanggal_selesai', '>=', $start)->where('tanggal_selesai', '<=', $end)->select('id_user', 'tanggal_mulai', 'tanggal_selesai')->get();
+        $cutiS = PresensiCuti::where('realisasi','!=',null)->where('tanggal_mulai', '>=', $start)->where('tanggal_mulai', '<=', $end)->select('id_user', 'tanggal_mulai', 'tanggal_selesai')->get();
+        $cutiSLastMonth = PresensiCuti::where('realisasi', '!=', null)->where('tanggal_selesai', '>=', $start)->where('tanggal_selesai', '<=', $end)->select('id_user', 'tanggal_mulai', 'tanggal_selesai')->get();
         $offS = PresensiOffBergilir::where('created_at', '>=', $start)->where('created_at', '<=', $end)->select('id_user')->get();
         $alpaS = PresensiAlpa::where('created_at', '>=', $start)->where('created_at', '<=', $end)->select('id_user')->get();
         $kuliahS = PresensiKuliah::where('created_at', '>=', $start)->where('created_at', '<=', $end)->select('id_user')->get();
         $keluarS = PresensiKeluarKantor::where('created_at', '>=', $start)->where('created_at', '<=', $end)->select('id_user', 'lama')->get();
         $pulangAwalS = PresensiPulangAwal::where('created_at', '>=', $start)->where('created_at', '<=', $end)->select('id_user', 'lama')->get();
-        $seragamS = Presensi::with('seragamKerja')->where('id_kegiatan', 0)->where('kegiatan_name','=',null)->where('created_at', '>=', $start)->where('created_at', '<=', $end)->select('id_user', 'id')->get();
-        
+        $seragamS = Presensi::with('seragamKerja')->where('id_kegiatan', 0)->where('kegiatan_name', '=', null)->where('created_at', '>=', $start)->where('created_at', '<=', $end)->select('id_user', 'id')->get();
+
         $masukKantorGroupBy = $masukKantorS->groupBy('id_user');
         $keterlambatanGroupBy = $keterlambatanS->groupBy('id_user');
         $kegiatanGroupBy = $kegiatanS->groupBy('id_user');
         $kegiatan2GroupBy = $kegiatanS2->groupBy('id_user');
         $izinGroupBy = $izinS->groupBy('id_user');
+        $izinLastMonthGroupBy = $izinSLastMonth->groupBy('id_user');
         $sakitGroupBy = $sakitS->groupBy('id_user');
+        $sakitLastMonthGroupBy = $sakitSLastMonth->groupBy('id_user');
+        $cutiGroupBy = $cutiS->groupBy('id_user');
+        $cutiLastMonthGroupBy = $cutiSLastMonth->groupBy('id_user');
         $offGroupBy = $offS->groupBy('id_user');
         $alpaGroupBy = $alpaS->groupBy('id_user');
         $keluarGroupBy = $keluarS->groupBy('id_user');
@@ -178,77 +187,263 @@ class LaporanPresensiExport2 implements FromArray, WithHeadings, WithCustomStart
         $no = 1;
         $arrayComplete = [];
         foreach ($model as $aktivis) {
-                $jabatan = $aktivis->jabatan;
-                $name = $aktivis->name;
-                $sumLambat = 0;
-                $sumKeluar = 0;
-                $sumPulangAwal = 0;
-                $sumSeragam=0;
-                $seragam = 0;
-                $kantor = isset($masukKantorGroupBy[$aktivis->id]) ? count($masukKantorGroupBy[$aktivis->id]) : 0;
-                $lambat = 0;
-                $kegiatan = isset($kegiatanGroupBy[$aktivis->id]) ? count($kegiatanGroupBy[$aktivis->id]) : 0;
-                $kegiatan2 = isset($kegiatan2GroupBy[$aktivis->id]) ? count($kegiatan2GroupBy[$aktivis->id]) : 0;
-                $izin = isset($izinGroupBy[$aktivis->id]) ? count($izinGroupBy[$aktivis->id]) : 0;
-                $sakit = isset($sakitGroupBy[$aktivis->id]) ? count($sakitGroupBy[$aktivis->id]) : 0;
-                $off = isset($offGroupBy[$aktivis->id])? count($offGroupBy[$aktivis->id]) : 0;
-                $alpa = isset($alpaGroupBy[$aktivis->id]) ? count($alpaGroupBy[$aktivis->id]) : 0;
-                $keluar = isset($keluarGroupBy[$aktivis->id])? count($keluarGroupBy[$aktivis->id]) : 0;
-                $pulangAwal = isset($pulangAwalGroupBy[$aktivis->id]) ? count($pulangAwalGroupBy[$aktivis->id]) : 0;
-                $kuliah = isset($kuliahGroupBy[$aktivis->id]) ? count($kuliahGroupBy[$aktivis->id]) :0;
-                $seragam = isset($seragamGroupBy[$aktivis->id]) ? $seragamGroupBy[$aktivis->id] : 0;
+            $jabatan = $aktivis->jabatan;
+            $name = $aktivis->name;
+            $sumLambat = 0;
+            $sumKeluar = 0;
+            $sumPulangAwal = 0;
+            $sumSeragam = 0;
+            $seragam = 0;
+            $kantor = isset($masukKantorGroupBy[$aktivis->id]) ? count($masukKantorGroupBy[$aktivis->id]) : 0;
+            $lambat = 0;
+            $kegiatan = isset($kegiatanGroupBy[$aktivis->id]) ? count($kegiatanGroupBy[$aktivis->id]) : 0;
+            $kegiatan2 = isset($kegiatan2GroupBy[$aktivis->id]) ? count($kegiatan2GroupBy[$aktivis->id]) : 0;
+            $off = isset($offGroupBy[$aktivis->id]) ? count($offGroupBy[$aktivis->id]) : 0;
+            $alpa = isset($alpaGroupBy[$aktivis->id]) ? count($alpaGroupBy[$aktivis->id]) : 0;
+            $keluar = isset($keluarGroupBy[$aktivis->id]) ? count($keluarGroupBy[$aktivis->id]) : 0;
+            $pulangAwal = isset($pulangAwalGroupBy[$aktivis->id]) ? count($pulangAwalGroupBy[$aktivis->id]) : 0;
+            $kuliah = isset($kuliahGroupBy[$aktivis->id]) ? count($kuliahGroupBy[$aktivis->id]) : 0;
+            $seragam = isset($seragamGroupBy[$aktivis->id]) ? $seragamGroupBy[$aktivis->id] : 0;
 
-               
 
-                if(isset($keterlambatanGroupBy[$aktivis->id])){
-                    $lambat= count($keterlambatanGroupBy[$aktivis->id]);
-                }
+            if (isset($keterlambatanGroupBy[$aktivis->id])) {
+                $lambat = count($keterlambatanGroupBy[$aktivis->id]);
+            }
 
-               
-                if ($lambat != 0) {
-                    foreach ($keterlambatanGroupBy[$aktivis->id] as $late) {
-                        $sumLambat = $sumLambat + $late->lama;
+            $izinDays = 0;
+            $sakitDays = 0;
+            $cutiDays=0;
+            if (isset($izinGroupBy[$aktivis->id])) {
+                $i = 0;
+                foreach ($izinGroupBy[$aktivis->id] as $izin) {
+                    $month = Carbon::parse($izinGroupBy[$aktivis->id][$i]["tanggal_mulai"])->format('m');
+                    $year = Carbon::parse($izinGroupBy[$aktivis->id][$i]["tanggal_mulai"])->format('Y');
+                    $month2 = Carbon::parse($izinGroupBy[$aktivis->id][$i]['tanggal_selesai'])->format('m');
+
+                    if ($month != $month2) {
+                        if ($this->bulan == $month) {
+                            $lastDayOfMonth = Carbon::createFromDate($year, $month)->endOfMonth();
+                            $startDate = Carbon::parse($izinGroupBy[$aktivis->id][$i]["tanggal_mulai"]);
+
+                            for (
+                                $date = $startDate;
+                                $date->lte($lastDayOfMonth);
+                                $date->addDay()
+                            ) {
+                                if (!$date->isSunday()) {
+                                    $izinDays++;
+                                }
+                            }
+                        } elseif ($this->bulan == $month2) {
+                            $firstDayOfMonth = Carbon::createFromDate($year, $month2)->startOfMonth();
+                            $endDate = Carbon::parse($izinGroupBy[$aktivis->id][$i]["tanggal_selesai"]);
+
+                            for ($date = $firstDayOfMonth; $date->lte($endDate); $date->addDay()) {
+                                if (!$date->isSunday()) {
+                                    $izinDays++;
+                                }
+                            }
+                        }
+                    } else {
+                        for ($date = Carbon::parse($izinGroupBy[$aktivis->id][$i]["tanggal_mulai"]); $date->lte(Carbon::parse($izinGroupBy[$aktivis->id][$i]["tanggal_selesai"])); $date->addDay()) {
+                            if (!$date->isSunday()) {
+                                $izinDays++;
+                            }
+                        }
                     }
+                    $i++;
                 }
+            }
 
-                if ($seragam) {
-                    $sumSeragam = count($seragam->where('seragamKerja', '!=', null));
-                }
+            if (isset($izinLastMonthGroupBy[$aktivis->id])) {
+                $i = 0;
+                foreach ($izinLastMonthGroupBy[$aktivis->id] as $izin) {
+                    $month = Carbon::parse($izinLastMonthGroupBy[$aktivis->id][$i]["tanggal_mulai"])->format('m');
+                    $year = Carbon::parse($izinLastMonthGroupBy[$aktivis->id][$i]["tanggal_mulai"])->format('Y');
+                    $month2 = Carbon::parse($izinLastMonthGroupBy[$aktivis->id][$i]['tanggal_selesai'])->format('m');
+                    if ($this->bulan == $month2&& $this->bulan != $month) {
+                        $firstDayOfMonth = Carbon::createFromDate($year, $month2)->startOfMonth();
+                        $endDate = Carbon::parse($izinLastMonthGroupBy[$aktivis->id][$i]["tanggal_selesai"]);
 
-                if ($keluar != 0) {
-                    foreach ($keluarGroupBy[$aktivis->id] as $out) {
-                        $sumKeluar = $sumKeluar + $out->lama;
+                        for ($date = $firstDayOfMonth; $date->lte($endDate); $date->addDay()) {
+                            if (!$date->isSunday()) {
+                                $izinDays++;
+                            }
+                        }
                     }
+                    $i++;
                 }
+                $izinDays--;
+            }
 
-                if ($pulangAwal != 0) {
-                    foreach ($pulangAwalGroupBy[$aktivis->id] as $pulang) {
-                        $sumPulangAwal = $sumPulangAwal + $pulang->lama;
+            if (isset($sakitGroupBy[$aktivis->id])) {
+                $i = 0;
+                foreach ($sakitGroupBy[$aktivis->id] as $izin) {
+                    $month = Carbon::parse($sakitGroupBy[$aktivis->id][$i]["tanggal_mulai"])->format('m');
+                    $year = Carbon::parse($sakitGroupBy[$aktivis->id][$i]["tanggal_mulai"])->format('Y');
+                    $month2 = Carbon::parse($sakitGroupBy[$aktivis->id][$i]['tanggal_selesai'])->format('m');
+
+                    if ($month != $month2) {
+                        if ($this->bulan == $month) {
+                            $lastDayOfMonth = Carbon::createFromDate($year, $month)->endOfMonth();
+                            $startDate = Carbon::parse($sakitGroupBy[$aktivis->id][$i]["tanggal_mulai"]);
+
+                            for (
+                                $date = $startDate;
+                                $date->lte($lastDayOfMonth);
+                                $date->addDay()
+                            ) {
+                                if (!$date->isSunday()) {
+                                    $sakitDays++;
+                                }
+                            }
+                        } elseif ($this->bulan == $month2) {
+                            $firstDayOfMonth = Carbon::createFromDate($year, $month2)->startOfMonth();
+                            $endDate = Carbon::parse($sakitGroupBy[$aktivis->id][$i]["tanggal_selesai"]);
+
+                            for ($date = $firstDayOfMonth; $date->lte($endDate); $date->addDay()) {
+                                if (!$date->isSunday()) {
+                                    $sakitDays++;
+                                }
+                            }
+                        }
+                    } else {
+                        for ($date = Carbon::parse($sakitGroupBy[$aktivis->id][$i]["tanggal_mulai"]); $date->lte(Carbon::parse($sakitGroupBy[$aktivis->id][$i]["tanggal_selesai"])); $date->addDay()) {
+                            if (!$date->isSunday()) {
+                                $sakitDays++;
+                            }
+                        }
                     }
+                    $i++;
                 }
+            }
 
-                $array3 = [];
-                array_push($array3, $no); //jabatan
-                array_push($array3, $name);//name
-                array_push($array3, $jabatan); //jabatan
-                array_push($array3, $kantor); //kantor
-                array_push($array3, 0); //wfh
-                array_push($array3, $kegiatan+$kegiatan2); //kegiatan
-                array_push($array3, $izin); //izin
-                array_push($array3, $sakit); //sakit
-                array_push($array3, 0); //cuti
-                array_push($array3, $off); //off
-                array_push($array3, $kuliah); //kuliah
-                array_push($array3, $alpa); //alpa
-                array_push($array3, $sumLambat); //lambat
-                array_push($array3, $sumKeluar); //keluar
-                array_push($array3, $sumPulangAwal); //pulang awal
-                array_push($array3, 0); //waktu pengurang
-                array_push($array3, $sumSeragam); //tidak pakai seragam
-                array_push($array3, ''); //keterangan
-                array_push($arrayComplete, $array3);
-                $no++;
-      
+            if (isset($sakitLastMonthGroupBy[$aktivis->id])) {
+                $i = 0;
+                foreach ($sakitLastMonthGroupBy[$aktivis->id] as $izin) {
+                    $month = Carbon::parse($sakitLastMonthGroupBy[$aktivis->id][$i]["tanggal_mulai"])->format('m');
+                    $year = Carbon::parse($sakitLastMonthGroupBy[$aktivis->id][$i]["tanggal_mulai"])->format('Y');
+                    $month2 = Carbon::parse($sakitLastMonthGroupBy[$aktivis->id][$i]['tanggal_selesai'])->format('m');
+                    if ($this->bulan == $month2 && $this->bulan != $month) {
+                        $firstDayOfMonth = Carbon::createFromDate($year, $month2)->startOfMonth();
+                        $endDate = Carbon::parse($sakitLastMonthGroupBy[$aktivis->id][$i]["tanggal_selesai"]);
+                        for ($date = $firstDayOfMonth; $date->lte($endDate); $date->addDay()) {
+                            if (!$date->isSunday()) {
+                                $sakitDays++;
+                            }
+                        }
+                    }
+                    $i++;
+                }
+                $sakitDays--;
+            }
+
+            if (isset($cutiGroupBy[$aktivis->id])) {
+                $i = 0;
+                foreach ($cutiGroupBy[$aktivis->id] as $izin) {
+                    $month = Carbon::parse($cutiGroupBy[$aktivis->id][$i]["tanggal_mulai"])->format('m');
+                    $year = Carbon::parse($cutiGroupBy[$aktivis->id][$i]["tanggal_mulai"])->format('Y');
+                    $month2 = Carbon::parse($cutiGroupBy[$aktivis->id][$i]['tanggal_selesai'])->format('m');
+
+                    if ($month != $month2) {
+                        if ($this->bulan == $month) {
+                            $lastDayOfMonth = Carbon::createFromDate($year, $month)->endOfMonth();
+                            $startDate = Carbon::parse($cutiGroupBy[$aktivis->id][$i]["tanggal_mulai"]);
+
+                            for (
+                                $date = $startDate;
+                                $date->lte($lastDayOfMonth);
+                                $date->addDay()
+                            ) {
+                                if (!$date->isSunday()) {
+                                    $cutiDays++;
+                                }
+                            }
+                        } elseif ($this->bulan == $month2) {
+                            $firstDayOfMonth = Carbon::createFromDate($year, $month2)->startOfMonth();
+                            $endDate = Carbon::parse($cutiGroupBy[$aktivis->id][$i]["tanggal_selesai"]);
+
+                            for ($date = $firstDayOfMonth; $date->lte($endDate); $date->addDay()) {
+                                if (!$date->isSunday()) {
+                                    $cutiDays++;
+                                }
+                            }
+                        }
+                    } else {
+                        for ($date = Carbon::parse($cutiGroupBy[$aktivis->id][$i]["tanggal_mulai"]); $date->lte(Carbon::parse($cutiGroupBy[$aktivis->id][$i]["tanggal_selesai"])); $date->addDay()) {
+                            if (!$date->isSunday()) {
+                                $cutiDays++;
+                            }
+                        }
+                        // $cutiDays--;
+                    }
+                    $i++;
+                }
+            }
+
+            if (isset($cutiLastMonthGroupBy[$aktivis->id])) {
+                $i = 0;
+                foreach ($cutiLastMonthGroupBy[$aktivis->id] as $izin) {
+                    $month = Carbon::parse($cutiLastMonthGroupBy[$aktivis->id][$i]["tanggal_mulai"])->format('m');
+                    $year = Carbon::parse($cutiLastMonthGroupBy[$aktivis->id][$i]["tanggal_mulai"])->format('Y');
+                    $month2 = Carbon::parse($cutiLastMonthGroupBy[$aktivis->id][$i]['tanggal_selesai'])->format('m');
+                    if ($this->bulan == $month2 && $this->bulan != $month) {
+                        $firstDayOfMonth = Carbon::createFromDate($year, $month2)->startOfMonth();
+                        $endDate = Carbon::parse($cutiLastMonthGroupBy[$aktivis->id][$i]["tanggal_selesai"]);
+                        for ($date = $firstDayOfMonth; $date->lte($endDate); $date->addDay()) {
+                            if (!$date->isSunday()) {
+                                $cutiDays++;
+                            }
+                        }
+                    }
+                    $i++;
+                }
+                $cutiDays--;
+            }
+
+            if ($lambat != 0) {
+                foreach ($keterlambatanGroupBy[$aktivis->id] as $late) {
+                    $sumLambat = $sumLambat + $late->lama;
+                }
+            }
+
+            if ($seragam) {
+                $sumSeragam = count($seragam->where('seragamKerja', '!=', null));
+            }
+
+            if ($keluar != 0) {
+                foreach ($keluarGroupBy[$aktivis->id] as $out) {
+                    $sumKeluar = $sumKeluar + $out->lama;
+                }
+            }
+
+            if ($pulangAwal != 0) {
+                foreach ($pulangAwalGroupBy[$aktivis->id] as $pulang) {
+                    $sumPulangAwal = $sumPulangAwal + $pulang->lama;
+                }
+            }
+
+            $array3 = [];
+            array_push($array3, $no); //jabatan
+            array_push($array3, $name); //name
+            array_push($array3, $jabatan); //jabatan
+            array_push($array3, $kantor); //kantor
+            array_push($array3, 0); //wfh
+            array_push($array3, $kegiatan + $kegiatan2); //kegiatan
+            array_push($array3, $izinDays); //izin
+            array_push($array3, $sakitDays); //sakit
+            array_push($array3, $cutiDays); //cuti
+            array_push($array3, $off); //off
+            array_push($array3, $kuliah); //kuliah
+            array_push($array3, $alpa); //alpa
+            array_push($array3, $sumLambat); //lambat
+            array_push($array3, $sumKeluar); //keluar
+            array_push($array3, $sumPulangAwal); //pulang awal
+            array_push($array3, 0); //waktu pengurang
+            array_push($array3, $sumSeragam); //tidak pakai seragam
+            array_push($array3, ''); //keterangan
+            array_push($arrayComplete, $array3);
+            $no++;
         }
 
         return $arrayComplete;

@@ -17,11 +17,11 @@ use \Maatwebsite\Excel\Sheet;
 class RekapPulangAwal implements FromArray, WithHeadings, WithCustomStartCell, WithEvents, WithTitle
 {
 
-    protected $id;
+    protected $periode;
 
-    function __construct($id)
+    function __construct($periode)
     {
-        $this->id = $id;
+        $this->periode = $periode;
     }
 
     public function startCell(): string
@@ -149,7 +149,7 @@ class RekapPulangAwal implements FromArray, WithHeadings, WithCustomStartCell, W
     public function array(): array
     {
 
-        $date = \Carbon\Carbon::parse('2023' . "-" . '01' . "-01");
+        $date = \Carbon\Carbon::parse($this->periode. "-" . '01' . "-01");
         $model = DB::select('select users.id,users.id_cu,users.id_aktivis,aktivis.name,aktivis.gambar,aktivis_pekerjaan.id_aktivis,aktivis_pekerjaan.tingkat,aktivis_pekerjaan.selesai, aktivis_pekerjaan.id_tempat,aktivis_pekerjaan.name as jabatan  from users
         inner join aktivis on aktivis.id = users.id_aktivis inner join aktivis_pekerjaan on aktivis_pekerjaan.id_aktivis = aktivis.id
         where users.id_cu = 0 and users.id_aktivis !=0 and users.status = 1 and aktivis_pekerjaan.selesai is null and aktivis_pekerjaan.id_tempat =1 and (aktivis_pekerjaan.tingkat = 5 or aktivis_pekerjaan.tingkat =6 or aktivis_pekerjaan.tingkat =7 or aktivis_pekerjaan.tingkat =8)  order by aktivis.name asc');

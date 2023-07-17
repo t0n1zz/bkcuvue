@@ -1,15 +1,40 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[35],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/presensi/formQR.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/wajibBadge.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/presensi/formQR.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/wajibBadge.vue?vue&type=script&lang=js& ***!
   \****************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    message: {
+      "default": ''
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/coa/form.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/coa/form.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_message_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/message.vue */ "./resources/assets/js/components/message.vue");
+/* harmony import */ var _components_wajibBadge_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/wajibBadge.vue */ "./resources/assets/js/components/wajibBadge.vue");
+/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
+/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -17,133 +42,141 @@ function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key i
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
+
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['formState', 'selected'],
+  components: {
+    message: _components_message_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    wajibBadge: _components_wajibBadge_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    Cleave: vue_cleave_component__WEBPACK_IMPORTED_MODULE_4___default.a
+  },
   data: function data() {
     return {
-      value: 'KANTOR',
-      options: ['Kegiatan', 'Masuk Kantor'],
-      tp_id: '',
-      valueJenis: 'TETAP',
-      tipe_cu: 0,
-      jam_masuk: '00',
-      menit_masuk: '00',
-      jam_pulang: '00',
-      menit_pulang: '00',
-      jenis: '',
-      jam: ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'],
-      menit: ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59', '60']
+      kelas: 'coa',
+      kode: '',
+      form: {
+        id_induk: '',
+        kode: '',
+        name: '',
+        tipe: '',
+        level: '',
+        keterangan: ''
+      },
+      formData: {},
+      modelIndukSelect: {},
+      cleaveOption: {
+        number30: {
+          numeral: true,
+          numeralIntegerScale: 30,
+          numeralDecimalScale: 0,
+          stripLeadingZeroes: false,
+          delimiter: ''
+        }
+      },
+      message: {
+        show: false,
+        content: ''
+      },
+      submited: false
     };
   },
-  props: {
-    qr: [],
-    mode: ''
-  },
   created: function created() {
-    if (this.currentUser.id_cu != 0) {
-      this.fetchTp(this.currentUser.id_cu);
-    }
-    this.$store.dispatch('presensi/createFormQR');
-    if (this.mode == 'edit') {
-      if (this.qr) {
-        if (this.qr.id_cu == 0) {
-          this.tipe_cu = 0;
-        } else {
-          this.tipe_cu = 1;
-        }
-        this.jam_masuk = this.qr.jam_masuk.slice(0, 2);
-        this.menit_masuk = this.qr.jam_masuk.slice(3, 5);
-        this.jam_pulang = this.qr.jam_pulang.slice(0, 2);
-        this.menit_pulang = this.qr.jam_pulang.slice(3, 5);
-        this.jenis = this.qr.jenis;
-      }
-    }
+    this.$store.dispatch(this.kelas + '/get');
   },
-  watch: {},
+  watch: {
+    modelIndukStat: function modelIndukStat(value) {
+      if (value == 'success') {
+        if (this.formState == 'edit') {
+          this.form = this.selected;
+          // this.kode = this.form.kode;
+          this.filterInduk();
+        }
+      }
+    } // kode(val){
+    // this.form.kode = val;
+    // this.filterInduk();
+    // }
+  },
   methods: {
+    save: function save() {
+      var _this = this;
+      this.$validator.validateAll('form').then(function (result) {
+        if (result) {
+          if (_this.formState == 'edit') {
+            _this.$store.dispatch(_this.kelas + '/update', [_this.selected.id, _this.form]);
+          } else {
+            _this.$store.dispatch(_this.kelas + '/store', _this.form);
+          }
+          _this.submited = false;
+        } else {
+          _this.submited = true;
+        }
+      });
+    },
+    filterInduk: function filterInduk() {
+      var kode = this.form.kode;
+      // var arrayInduk = _.filter(this.modelInduk, function(obj){
+      // 	return obj.kode.indexOf(kode) !== -1;
+      // });
+      var arrayInduk = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.filter(this.modelInduk, {
+        kode: kode.slice(0, -1)
+      });
+      this.modelIndukSelect = arrayInduk.length > 0 ? arrayInduk[0] : {};
+      this.form.id_induk = arrayInduk.length > 0 ? arrayInduk[0].id : 0;
+    },
     tutup: function tutup() {
       this.$emit('tutup');
-    },
-    check: function check() {
-      if (this.value == 'DIKLAT' || this.value == 'PERTEMUAN') {
-        this.$store.dispatch('presensi/getKegiatan', [this.cu_id, this.value]);
-      }
-    },
-    changeCu: function changeCu(id) {
-      var cu;
-      if (id != 0) {
-        cu = _.find(this.modelCU, function (o) {
-          return o.id == id;
-        });
-      }
-      this.fetchTp(cu.id);
-    },
-    changeTp: function changeTp(id) {
-      var tp;
-      if (id != 0) {
-        this.id_cu = this.currentUser.id_cu;
-        tp = _.find(this.modelTp, function (o) {
-          return o.id == id;
-        });
-      }
-    },
-    fetchTp: function fetchTp(value) {
-      this.$store.dispatch('tp/getCu', value);
-    },
-    storeQR: function storeQR() {
-      var _this = this;
-      var wktmasuk = this.jam_masuk.concat(':', this.menit_masuk);
-      var wktpulang = this.jam_pulang.concat(':', this.menit_pulang);
-      var a = this.kegiatan.find(function (item) {
-        return item.id === _this.form.id_kegiatan;
-      });
-      if (this.value == 'KANTOR') {
-        this.form.id_kegiatan = 0;
-        this.form.kegiatan_name = 'Kantor';
-      } else {
-        this.form.kegiatan_name = a.name;
-      }
-      if (this.currentUser.id_cu != 0) {
-        this.form.id_cu = this.currentUser.id_cu;
-      }
-      if (this.tipe_cu == 0) {
-        this.form.id_cu = 0;
-      }
-      this.form.jam_masuk = wktmasuk;
-      this.form.jam_pulang = wktpulang;
-      this.form.jenis = this.jenis;
-      this.form.status = 'tidak aktif';
-      this.form.kode_qr = Date.now();
-      if (this.mode == 'create') {
-        this.$store.dispatch('presensi/storeQR', this.form);
-      } else {
-        this.$store.dispatch('presensi/updateQR', [this.qr.id, this.form]);
-      }
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('auth', {
     currentUser: 'currentUser'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('cu', {
-    modelCU: 'headerDataS',
-    modelCUStat: 'headerDataStatS',
-    updateMessage: 'update',
-    updateStat: 'updateStat'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('tp', {
-    modelTp: 'dataS',
-    modelTpStat: 'dataStatS'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('presensi', {
-    kegiatan: 'list_kegiatan',
-    form: 'qrForm',
-    pesan: 'message',
-    qrstat: 'QRStat'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('coa', {
+    modelInduk: 'dataS2',
+    modelIndukStat: 'dataStatS2'
   }))
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/presensi/formQR.vue?vue&type=template&id=552f16a2&":
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/wajibBadge.vue?vue&type=template&id=2f7dfb81&":
 /*!**************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/presensi/formQR.vue?vue&type=template&id=552f16a2& ***!
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/wajibBadge.vue?vue&type=template&id=2f7dfb81& ***!
   \**************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _vm._m(0);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticStyle: {
+      display: "inline-block"
+    }
+  }, [_c("span", {
+    staticClass: "badge bg-danger-400 align-self-center ml-auto"
+  }, [_vm._v("Wajib diisi")])]);
+}];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/coa/form.vue?vue&type=template&id=f0804a5e&":
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/coa/form.vue?vue&type=template&id=f0804a5e& ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -156,444 +189,172 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", [_c("form", {
     attrs: {
-      "data-vv-scope": "formAbsen"
+      "data-vv-scope": "form",
+      autocomplete: "off"
     },
     on: {
       submit: function submit($event) {
         $event.preventDefault();
-        return _vm.storeQR();
+        return _vm.save.apply(null, arguments);
       }
     }
+  }, [_vm.errors.any("form") && _vm.submited ? _c("message", {
+    attrs: {
+      title: "Oops, terjadi kesalahan",
+      errorItem: _vm.errors.items
+    }
+  }) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "row"
   }, [_c("div", {
+    staticClass: "col-md-12"
+  }, [Object.keys(_vm.modelIndukSelect).length > 0 ? _c("div", {
+    staticClass: "card"
+  }, [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "card-body"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-sm-6"
+  }, [_c("ul", {
+    staticClass: "list list-unstyled mb-1"
+  }, [_c("li", [_c("b", [_vm._v("No. Akun:")]), _vm._v(" " + _vm._s(this.modelIndukSelect.kode))]), _vm._v(" "), _c("li", [_c("b", [_vm._v("Nama:")]), _vm._v(" " + _vm._s(this.modelIndukSelect.name))])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-sm-6"
+  }, [_c("ul", {
+    staticClass: "list list-unstyled mb-1"
+  }, [_c("li", [_c("b", [_vm._v("Tipe:")]), _vm._v(" " + _vm._s(this.modelIndukSelect.tipe))]), _vm._v(" "), _c("li", [_c("b", [_vm._v("Level:")]), _vm._v(" " + _vm._s(this.modelIndukSelect.level))])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-sm-12"
+  }, [_c("b", [_vm._v("Keterangan:")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("span", {
+    domProps: {
+      innerHTML: _vm._s(_vm.modelIndukSelect.keterangan)
+    }
+  })])])])]) : _c("div", {
+    staticClass: "card card-body"
+  }, [_vm._v("\n\t\t\t\t\tTidak ada induk\n\t\t\t\t")])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("div", {
+    staticClass: "form-group",
+    "class": {
+      "has-error": _vm.errors.has("form.kode")
+    }
+  }, [_c("h5", {
+    "class": {
+      "text-danger": _vm.errors.has("form.kode")
+    }
+  }, [_vm.errors.has("form.kode") ? _c("i", {
+    staticClass: "icon-cross2"
+  }) : _vm._e(), _vm._v("\n\t\t\t\t\t\tNo. Akun: "), _c("wajib-badge")], 1), _vm._v(" "), _c("cleave", {
+    directives: [{
+      name: "validate",
+      rawName: "v-validate",
+      value: "required",
+      expression: "'required'"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      name: "kode",
+      options: _vm.cleaveOption.number30,
+      placeholder: "Silahkan masukkan no akun",
+      "data-vv-as": "No. Akun"
+    },
+    nativeOn: {
+      blur: function blur($event) {
+        return _vm.filterInduk.apply(null, arguments);
+      }
+    },
+    model: {
+      value: _vm.form.kode,
+      callback: function callback($$v) {
+        _vm.$set(_vm.form, "kode", $$v);
+      },
+      expression: "form.kode"
+    }
+  }), _vm._v(" "), _vm.errors.has("form.kode") ? _c("small", {
+    staticClass: "text-muted text-danger"
+  }, [_c("i", {
+    staticClass: "icon-arrow-small-right"
+  }), _vm._v(" " + _vm._s(_vm.errors.first("form.kode")) + "\n\t\t\t\t\t")]) : _c("small", {
+    staticClass: "text-muted"
+  }, [_vm._v(" \n\t\t\t\t\t")])], 1)]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("div", {
+    staticClass: "form-group",
+    "class": {
+      "has-error": _vm.errors.has("form.name")
+    }
+  }, [_c("h5", {
+    "class": {
+      "text-danger": _vm.errors.has("form.name")
+    }
+  }, [_vm.errors.has("form.name") ? _c("i", {
+    staticClass: "icon-cross2"
+  }) : _vm._e(), _vm._v("\n\t\t\t\t\t\tNama: "), _c("wajib-badge")], 1), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "validate",
+      rawName: "v-validate",
+      value: "required",
+      expression: "'required'"
+    }, {
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.name,
+      expression: "form.name"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      name: "name",
+      placeholder: "Silahkan masukkan nama CoA",
+      "data-vv-as": "Nama"
+    },
+    domProps: {
+      value: _vm.form.name
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "name", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors.has("form.name") ? _c("small", {
+    staticClass: "text-muted text-danger"
+  }, [_c("i", {
+    staticClass: "icon-arrow-small-right"
+  }), _vm._v(" " + _vm._s(_vm.errors.first("form.name")) + "\n\t\t\t\t\t")]) : _c("small", {
+    staticClass: "text-muted"
+  }, [_vm._v(" ")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "form-group"
-  }, [_vm.currentUser.id_cu === 0 && _vm.mode == "create" ? _c("div", [_c("div", {
-    staticClass: "form-group d-none d-md-block"
-  }, [_c("h5", [_vm._v("\n    \t\t\t\t\t\tCU:\n    \t\t\t\t\t")]), _vm._v(" "), _c("select", {
+  }, [_c("h5", [_vm._v("\n\t\t\t\t\t\tKeterangan:\n\t\t\t\t\t")]), _vm._v(" "), _c("textarea", {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.tipe_cu,
-      expression: "tipe_cu"
-    }, {
-      name: "validate",
-      rawName: "v-validate",
-      value: "required",
-      expression: "'required'"
+      value: _vm.form.keterangan,
+      expression: "form.keterangan"
     }],
     staticClass: "form-control",
     attrs: {
-      name: "tipe_cu",
-      "data-width": "100%",
-      "data-vv-as": "CU",
-      disabled: _vm.modelCU.length === 0
+      rows: "5",
+      type: "text",
+      name: "keterangan",
+      placeholder: "Silahkan masukkan keterangan"
+    },
+    domProps: {
+      value: _vm.form.keterangan
     },
     on: {
-      change: [function ($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.tipe_cu = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
-      }, function ($event) {
-        return _vm.changeCu($event.target.value);
-      }]
-    }
-  }, [_c("option", {
-    attrs: {
-      value: "0"
-    }
-  }, [_vm._v("PUSKOPCUINA")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "1"
-    }
-  }, [_vm._v("CU PRIMER")])])]), _vm._v(" "), _vm.tipe_cu == 1 ? _c("div", {
-    staticClass: "form-group d-none d-md-block"
-  }, [_c("h5", [_vm._v("\n\t\t\t\t\t\tCU:\n\t\t\t\t\t")]), _vm._v(" "), _c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.id_cu,
-      expression: "form.id_cu"
-    }, {
-      name: "validate",
-      rawName: "v-validate",
-      value: "required",
-      expression: "'required'"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      name: "cu_id",
-      "data-width": "100%",
-      "data-vv-as": "CU",
-      disabled: _vm.modelCU.length === 0
-    },
-    on: {
-      change: [function ($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.$set(_vm.form, "id_cu", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-      }, function ($event) {
-        return _vm.changeCu($event.target.value);
-      }]
-    }
-  }, [_c("option", {
-    attrs: {
-      disabled: "",
-      value: "0"
-    }
-  }, [_vm.modelCUStat === "loading" ? _c("span", [_vm._v("Mohon tunggu...")]) : _c("span", [_vm._v("Silahkan pilih CU")])]), _vm._v(" "), _vm._l(_vm.modelCU, function (cu, index) {
-    return _c("option", {
-      key: index,
-      domProps: {
-        value: cu.id
-      }
-    }, [_vm._v(_vm._s(cu.name))]);
-  })], 2)]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm.mode == "edit" ? _c("div", [_c("h5", [_vm._v("\n        \t\t   KEGIATAN: " + _vm._s(this.qr.kegiatan_name.toUpperCase()) + "\n        \t\t")])]) : _vm._e(), _vm._v(" "), _vm.tipe_cu == 1 ? _c("div", {
-    staticClass: "form-group d-none d-md-block"
-  }, [_c("h6", [_vm._v("\n\t\t\t\t\t\tTP/KP:\n\t\t\t\t\t")]), _vm._v(" "), _c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.id_tp,
-      expression: "form.id_tp"
-    }, {
-      name: "validate",
-      rawName: "v-validate",
-      value: "required",
-      expression: "'required'"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      name: "id_tp",
-      "data-width": "100%",
-      "data-vv-as": "TP/KP"
-    },
-    on: {
-      change: [function ($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.$set(_vm.form, "id_tp", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-      }, function ($event) {
-        return _vm.changeTp($event.target.value);
-      }]
-    }
-  }, [_vm._m(0), _vm._v(" "), _vm._l(_vm.modelTp, function (tp, index) {
-    return _c("option", {
-      key: index,
-      domProps: {
-        value: tp.id
-      }
-    }, [_vm._v(_vm._s(tp.name))]);
-  })], 2)]) : _vm._e(), _vm._v(" "), _vm.mode == "create" ? _c("div", [_c("h5", [_vm._v("Jenis :")]), _vm._v(" "), _c("div", {
-    staticClass: "text-center d-none d-md-block"
-  }, [_c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.value,
-      expression: "value"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "data-width": "100%"
-    },
-    on: {
-      change: [function ($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.value = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
-      }, function ($event) {
-        return _vm.check();
-      }]
-    }
-  }, [_c("option", {
-    attrs: {
-      disabled: "true",
-      value: ""
-    }
-  }, [_vm._v("PILIH JENIS ABSEN")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "KANTOR"
-    }
-  }, [_vm._v("KANTOR")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "DIKLAT"
-    }
-  }, [_vm._v("DIKLAT")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "PERTEMUAN"
-    }
-  }, [_vm._v("PERTEMUAN")])])])]) : _vm._e(), _vm._v(" "), _vm.value == "DIKLAT" ? _c("div", [_c("h5", [_vm._v("Diklat :")]), _vm._v(" "), _c("div", {
-    staticClass: "text-center d-none d-md-block"
-  }, [_c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.id_kegiatan,
-      expression: "form.id_kegiatan"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "data-width": "100%"
-    },
-    on: {
-      change: function change($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.$set(_vm.form, "id_kegiatan", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "keterangan", $event.target.value);
       }
     }
-  }, [_c("option", {
-    attrs: {
-      disabled: "true",
-      value: ""
-    }
-  }, [_vm._v("PILIH DIKLAT")]), _vm._v(" "), _vm._l(_vm.kegiatan, function (kegiatan, index) {
-    return _c("option", {
-      key: index,
-      domProps: {
-        value: kegiatan.id
-      }
-    }, [_vm._v(_vm._s(kegiatan.name))]);
-  })], 2)])]) : _vm._e(), _vm._v(" "), _vm.value == "PERTEMUAN" ? _c("div", [_c("h5", [_vm._v("PETEMUAN :")]), _vm._v(" "), _c("div", {
-    staticClass: "text-center d-none d-md-block"
-  }, [_c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.id_kegiatan,
-      expression: "form.id_kegiatan"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "data-width": "100%"
-    },
-    on: {
-      change: [function ($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.$set(_vm.form, "id_kegiatan", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-      }, function ($event) {
-        return _vm.getName();
-      }]
-    }
-  }, [_c("option", {
-    attrs: {
-      disabled: "true",
-      value: ""
-    }
-  }, [_vm._v("PILIH PERTEMUAN")]), _vm._v(" "), _vm._l(_vm.kegiatan, function (kegiatan, index) {
-    return _c("option", {
-      key: index,
-      domProps: {
-        value: kegiatan.id
-      }
-    }, [_vm._v(_vm._s(kegiatan.name))]);
-  })], 2)])]) : _vm._e(), _vm._v(" "), _c("div", [_c("h5", [_vm._v("JAM MASUK :")]), _vm._v(" "), _c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-3"
-  }, [_c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.jam_masuk,
-      expression: "jam_masuk"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "data-width": "100%"
-    },
-    on: {
-      change: function change($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.jam_masuk = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
-      }
-    }
-  }, _vm._l(_vm.jam, function (jam, index) {
-    return _c("option", {
-      key: index,
-      domProps: {
-        value: jam
-      }
-    }, [_vm._v(_vm._s(jam))]);
-  }), 0)]), _vm._v(" "), _c("span", {
-    staticStyle: {
-      "font-weight": "bold"
-    }
-  }, [_vm._v(":")]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-3"
-  }, [_c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.menit_masuk,
-      expression: "menit_masuk"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "data-width": "100%"
-    },
-    on: {
-      change: function change($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.menit_masuk = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
-      }
-    }
-  }, _vm._l(_vm.menit, function (menit, index) {
-    return _c("option", {
-      key: index,
-      domProps: {
-        value: menit
-      }
-    }, [_vm._v(_vm._s(menit))]);
-  }), 0)])])]), _vm._v(" "), _c("div", [_c("h5", [_vm._v("JAM PULANG :")]), _vm._v(" "), _c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-3"
-  }, [_c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.jam_pulang,
-      expression: "jam_pulang"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "data-width": "100%"
-    },
-    on: {
-      change: function change($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.jam_pulang = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
-      }
-    }
-  }, _vm._l(_vm.jam, function (jam, index) {
-    return _c("option", {
-      key: index,
-      domProps: {
-        value: jam
-      }
-    }, [_vm._v(_vm._s(jam))]);
-  }), 0)]), _vm._v(" "), _c("span", {
-    staticStyle: {
-      "font-weight": "bold"
-    }
-  }, [_vm._v(":")]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-3"
-  }, [_c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.menit_pulang,
-      expression: "menit_pulang"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "data-width": "100%"
-    },
-    on: {
-      change: function change($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.menit_pulang = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
-      }
-    }
-  }, _vm._l(_vm.menit, function (menit, index) {
-    return _c("option", {
-      key: index,
-      domProps: {
-        value: menit
-      }
-    }, [_vm._v(_vm._s(menit))]);
-  }), 0)])])]), _vm._v(" "), _c("div", [_c("h5", [_vm._v("Jenis QR :")]), _vm._v(" "), _c("div", {
-    staticClass: "text-center d-none d-md-block"
-  }, [_c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.jenis,
-      expression: "jenis"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "data-width": "100%"
-    },
-    on: {
-      change: function change($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.jenis = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
-      }
-    }
-  }, [_c("option", {
-    attrs: {
-      disabled: "true",
-      value: ""
-    }
-  }, [_vm._v("PILIH JENIS QR")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "TETAP"
-    }
-  }, [_vm._v("TETAP")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "BERUBAH PERHARI"
-    }
-  }, [_vm._v("BERUBAH PERHARI")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "BERUBAH SETELAH SCAN"
-    }
-  }, [_vm._v("BERUBAH SETELAH SCAN")])])])])]), _vm._v(" "), _c("div", {
+  })])])]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", {
     staticClass: "text-center d-none d-md-block"
   }, [_c("button", {
     staticClass: "btn btn-light",
+    attrs: {
+      type: "button"
+    },
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -602,17 +363,31 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "icon-cross"
-  }), _vm._v("Tutup")]), _vm._v(" "), _vm._m(1)])])])]);
+  }), _vm._v(" Tutup")]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c("div", {
+    staticClass: "d-block d-md-none"
+  }, [_vm._m(2), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-light btn-block pb-2",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.tutup.apply(null, arguments);
+      }
+    }
+  }, [_c("i", {
+    staticClass: "icon-cross"
+  }), _vm._v(" Tutup")])])], 1)]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("option", {
-    attrs: {
-      disabled: "",
-      value: ""
-    }
-  }, [_c("span", [_vm._v("Silahkan pilih TP/KP")])]);
+  return _c("div", {
+    staticClass: "card-header bg-white"
+  }, [_c("h6", {
+    staticClass: "card-title"
+  }, [_vm._v("\n\t\t\t\t\t\t\tInduk\n\t\t\t\t\t\t")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -623,25 +398,36 @@ var staticRenderFns = [function () {
     }
   }, [_c("i", {
     staticClass: "icon-floppy-disk"
-  }), _vm._v("Simpan")]);
+  }), _vm._v(" Simpan")]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("button", {
+    staticClass: "btn btn-primary btn-block pb-2",
+    attrs: {
+      type: "submit"
+    }
+  }, [_c("i", {
+    staticClass: "icon-floppy-disk"
+  }), _vm._v(" Simpan")]);
 }];
 render._withStripped = true;
 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/presensi/formQR.vue":
+/***/ "./resources/assets/js/components/wajibBadge.vue":
 /*!*******************************************************!*\
-  !*** ./resources/assets/js/views/presensi/formQR.vue ***!
+  !*** ./resources/assets/js/components/wajibBadge.vue ***!
   \*******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _formQR_vue_vue_type_template_id_552f16a2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./formQR.vue?vue&type=template&id=552f16a2& */ "./resources/assets/js/views/presensi/formQR.vue?vue&type=template&id=552f16a2&");
-/* harmony import */ var _formQR_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./formQR.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/presensi/formQR.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _wajibBadge_vue_vue_type_template_id_2f7dfb81___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./wajibBadge.vue?vue&type=template&id=2f7dfb81& */ "./resources/assets/js/components/wajibBadge.vue?vue&type=template&id=2f7dfb81&");
+/* harmony import */ var _wajibBadge_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./wajibBadge.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/wajibBadge.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -650,9 +436,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _formQR_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _formQR_vue_vue_type_template_id_552f16a2___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _formQR_vue_vue_type_template_id_552f16a2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _wajibBadge_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _wajibBadge_vue_vue_type_template_id_2f7dfb81___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _wajibBadge_vue_vue_type_template_id_2f7dfb81___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -662,38 +448,107 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/views/presensi/formQR.vue"
+component.options.__file = "resources/assets/js/components/wajibBadge.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/presensi/formQR.vue?vue&type=script&lang=js&":
+/***/ "./resources/assets/js/components/wajibBadge.vue?vue&type=script&lang=js&":
 /*!********************************************************************************!*\
-  !*** ./resources/assets/js/views/presensi/formQR.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/assets/js/components/wajibBadge.vue?vue&type=script&lang=js& ***!
   \********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_formQR_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./formQR.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/presensi/formQR.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_formQR_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_wajibBadge_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./wajibBadge.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/wajibBadge.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_wajibBadge_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/presensi/formQR.vue?vue&type=template&id=552f16a2&":
+/***/ "./resources/assets/js/components/wajibBadge.vue?vue&type=template&id=2f7dfb81&":
 /*!**************************************************************************************!*\
-  !*** ./resources/assets/js/views/presensi/formQR.vue?vue&type=template&id=552f16a2& ***!
+  !*** ./resources/assets/js/components/wajibBadge.vue?vue&type=template&id=2f7dfb81& ***!
   \**************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_formQR_vue_vue_type_template_id_552f16a2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../../node_modules/vue-loader/lib??vue-loader-options!./formQR.vue?vue&type=template&id=552f16a2& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/presensi/formQR.vue?vue&type=template&id=552f16a2&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_formQR_vue_vue_type_template_id_552f16a2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_wajibBadge_vue_vue_type_template_id_2f7dfb81___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../node_modules/vue-loader/lib??vue-loader-options!./wajibBadge.vue?vue&type=template&id=2f7dfb81& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/wajibBadge.vue?vue&type=template&id=2f7dfb81&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_wajibBadge_vue_vue_type_template_id_2f7dfb81___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_formQR_vue_vue_type_template_id_552f16a2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_wajibBadge_vue_vue_type_template_id_2f7dfb81___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/coa/form.vue":
+/*!************************************************!*\
+  !*** ./resources/assets/js/views/coa/form.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _form_vue_vue_type_template_id_f0804a5e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./form.vue?vue&type=template&id=f0804a5e& */ "./resources/assets/js/views/coa/form.vue?vue&type=template&id=f0804a5e&");
+/* harmony import */ var _form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./form.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/coa/form.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _form_vue_vue_type_template_id_f0804a5e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _form_vue_vue_type_template_id_f0804a5e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/views/coa/form.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/coa/form.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/assets/js/views/coa/form.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./form.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/coa/form.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/coa/form.vue?vue&type=template&id=f0804a5e&":
+/*!*******************************************************************************!*\
+  !*** ./resources/assets/js/views/coa/form.vue?vue&type=template&id=f0804a5e& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_f0804a5e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../../node_modules/vue-loader/lib??vue-loader-options!./form.vue?vue&type=template&id=f0804a5e& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/coa/form.vue?vue&type=template&id=f0804a5e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_f0804a5e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_f0804a5e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

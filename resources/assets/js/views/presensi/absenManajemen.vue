@@ -32,7 +32,7 @@
     			<form-alasan :title="judul" :id_qr="this.$route.params.id_qr" @tutup="modalTutup" @kembali="kembali"></form-alasan>
     		</template>
             <template slot="modal-body2">
-                <pop-up-pilihan @kirim="keperluan"></pop-up-pilihan>
+                <pop-up-pilihan @tutup="modalTutup" @kirim="keperluan"></pop-up-pilihan>
             </template>
     	</app-modal>
     </div>

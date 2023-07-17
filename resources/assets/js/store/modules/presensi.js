@@ -26,6 +26,8 @@ export const presensi = {
     terlambatStat: "",
     userS: [],
     updateMessage: "",
+    cutiMessage: "",
+    cutiStat: "",
     formSeragam: {
       id_user: "",
       id_absen: 0,
@@ -111,6 +113,19 @@ export const presensi = {
         });
     },
 
+    indexCuti({ commit }, [p, id_cu, tahun, bulan]) {
+      commit("setTerlambatStat", "loading");
+      PRESENSIAPI.indexCuti(p, id_cu, tahun, bulan)
+        .then(function (response) {
+          commit("setDataS", response.data.model);
+          commit("setDataStatS", "success");
+        })
+        .catch((error) => {
+          commit("setDataS", error.response);
+          commit("setDataStatS", "fail");
+        });
+    },
+
     getUsers({ commit }, id_cu) {
       commit("setDataStatS", "loading");
       PRESENSIAPI.getUsers(id_cu)
@@ -175,6 +190,19 @@ export const presensi = {
         });
     },
 
+    updateCuti({ commit }, [id, form]) {
+      commit("setUpdateStat", "loading");
+      PRESENSIAPI.updateCuti(id, form)
+        .then(function (response) {
+          commit("setUpdateMessage", response.data.message);
+          commit("setUpdateStat", "success");
+        })
+        .catch((error) => {
+          commit("seUpdateStat", error.response);
+          commit("setUpdateStat", "fail");
+        });
+    },
+
     storePelanggaranSeragam({ commit }, form) {
       commit("setUpdateStat", "loading");
       PRESENSIAPI.storePelanggaranSeragam(form)
@@ -192,7 +220,7 @@ export const presensi = {
       commit("setUpdateStat", "loading");
       PRESENSIAPI.storeIzin(form)
         .then(function (response) {
-          commit("setAbsenMessage", response.data.message);
+          commit("setUpdateMessage", response.data.message);
           commit("setUpdateStat", "success");
         })
         .catch((error) => {
@@ -204,6 +232,19 @@ export const presensi = {
     updateAlasan({ commit }, [form, tipe]) {
       commit("setUpdateStat", "loading");
       PRESENSIAPI.updateAlasan(form, tipe)
+        .then(function (response) {
+          commit("setUpdateMessage", response.data.message);
+          commit("setUpdateStat", "success");
+        })
+        .catch((error) => {
+          commit("setUpdateStat", error.response);
+          commit("setUpdateStat", "fail");
+        });
+    },
+
+    verifikasiCuti({ commit }, [form, id]) {
+      commit("setUpdateStat", "loading");
+      PRESENSIAPI.verifikasiCuti(form, id)
         .then(function (response) {
           commit("setUpdateMessage", response.data.message);
           commit("setUpdateStat", "success");
@@ -265,21 +306,39 @@ export const presensi = {
         });
     },
 
-    uploadOffBergilir({ commit, dispatch, state }, [tipe, form]) {
-      commit("setAbsenStat", "loading");
-      PRESENSIAPI.uploadOffBergilir(tipe, form)
+    storeCuti({ commit }, form) {
+      commit("setUpdateStat", "loading");
+      PRESENSIAPI.storeCuti(form)
         .then(function (response) {
           if (response) {
             //  commit("setStatus", response.data.status);
-            commit("setAbsenMessage", response.data.message);
-            commit("setAbsenStat", "success");
+            commit("setUpdateMessage", response.data.message);
+            commit("setUpdateStat", "success");
           } else {
-            commit("setAbsenStat", "fail");
+            commit("setUpdateStat", "fail");
           }
         })
         .catch((error) => {
           commit("setUpdate", error.response);
           commit("setAbsenStat", "fail");
+        });
+    },
+
+    uploadOffBergilir({ commit, dispatch, state }, [tipe, form]) {
+      commit("setUpdateStat", "loading");
+      PRESENSIAPI.uploadOffBergilir(tipe, form)
+        .then(function (response) {
+          if (response) {
+            //  commit("setStatus", response.data.status);
+            commit("setUpdateMessage", response.data.message);
+            commit("setUpdateStat", "success");
+          } else {
+            commit("setUpdateStat", "fail");
+          }
+        })
+        .catch((error) => {
+          commit("setUpdate", error.response);
+          commit("setUpdateStat", "fail");
         });
     },
 
@@ -384,6 +443,7 @@ export const presensi = {
         .then(function (response) {
           if (response.data.deleted) {
             commit("setUpdate", response.data);
+            commit("setUpdateMessage", response.data.message);
             commit("setUpdateStat", "success");
           } else {
             commit("setUpdateStat", "fail");

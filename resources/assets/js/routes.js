@@ -128,6 +128,9 @@ const presensi_input_kode = () =>
 const presensi_pribadi = () =>
   import("./views/presensi/tablePresensiPribadi.vue");
 const presensi_all = () => import("./views/presensi/tablePresensiAll.vue");
+const form_struktur = () => import("./views/strukturOrganisasi/form.vue");
+const index_struktur = () => import("./views/strukturOrganisasi/index.vue");
+const index_cuti = () => import("./views/presensi/cutiVerifikasi.vue");
 
 const routes = [
   // login
@@ -1484,6 +1487,35 @@ const routes = [
     components: { default: presensi_all, header: header, footer: footer },
     meta: { requiresAuth: true },
   },
+
+  {
+    path: "/indexCuti",
+    name: "indexCuti",
+    components: { default: index_cuti, header: header, footer: footer },
+    meta: { requiresAuth: true },
+  },
+
+  {
+    path: "/struktur/create",
+    name: "strukturCreate",
+    components: { default: form_struktur, header: header, footer: footer },
+    meta: { requiresAuth: true },
+  },
+
+  {
+    path: "/struktur/edit/:id",
+    name: "strukturEdit",
+    components: { default: form_struktur, header: header, footer: footer },
+    meta: { requiresAuth: true },
+  },
+
+  {
+    path: "/struktur",
+    name: "indexStruktur",
+    components: { default: index_struktur, header: header, footer: footer },
+    meta: { requiresAuth: true },
+  },
+
 ];
 
 export default routes;

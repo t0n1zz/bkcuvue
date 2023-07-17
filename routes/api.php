@@ -1138,15 +1138,19 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::get('/presensi/indexQrAll/{id_cu}/{id_user}/{status}', 'PresensiController@indexQrAll');
         Route::get('/presensi/getKegiatan/{id_cu}/{tipe}', 'PresensiController@indexKegiatan');
         Route::get('/presensi/indexPresensi/{tahun}/{bulan}/{tipe}/{lingkup}', 'PresensiController@indexPresensiManajemen');
+        Route::get('/presensi/indexCuti/{id_cu}/{tahun}/{bulan}', 'PresensiController@indexVerifikasi');
         Route::get('/presensi/getUsers/{id_cu}', 'PresensiController@indexUser');
         Route::post('/presensi/storeQR', 'PresensiController@storeQR');
         Route::post('/presensi/updateQR/{id}', 'PresensiController@updateQR');
+        Route::post('/presensi/updateCuti/{id}', 'PresensiController@updateCuti');
+        Route::post('/presensi/verifikasiCuti/{id}', 'PresensiController@verifikasiCuti');
         Route::post('/presensi/storePelanggaranSeragam', 'PresensiController@storePelanggaranSeragam');
         Route::post('/presensi/storeIzin','PresensiController@storeIzin');
         Route::post('/presensi/updateAlasan/{tipe}', 'PresensiController@updateAlasan');
         Route::post('/presensi/updateIzin/{id}', 'PresensiController@updateIzin');
         Route::post('/presensi/storePresensi/{lat}/{lon}', 'PresensiController@storePresensi');
         Route::post('/presensi/storePresensiLain/{tipe}', 'PresensiController@storePresensiLain');
+        Route::post('/presensi/storeCuti', 'PresensiController@storeCuti');
         Route::post('/presensi/uploadOffBergilir/{tipe}', 'PresensiController@uploadExcelOffBergilir');
         Route::get('/presensi/createFormTerlambat', 'PresensiController@createFormTerlambat');
         Route::get('/presensi/createFormQR', 'PresensiController@createFormQR');
@@ -1155,5 +1159,10 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::post('/presensi/storeKuliah/{id_cu}/{id_aktivis}/{id_user}/{tanggal}/{tipe}', 'PresensiController@storeKuliah');
         Route::delete('/presensi/{id}/{tipe}', 'PresensiController@destroy');
         Route::post('/downloadLaporanPresensi', 'PresensiController@downloadLaporan');
+
+        //struktur organisasi
+        Route::get('/struktur/indexAktivis/{id_cu}', 'StrukturOrganisasiController@index');
+        Route::post('/struktur/store/{id_cu}', 'StrukturOrganisasiController@store');
+        Route::get('/struktur/index/{id_cu}', 'StrukturOrganisasiController@indexStruktur');
     });
 });

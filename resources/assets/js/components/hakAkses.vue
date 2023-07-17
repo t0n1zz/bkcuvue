@@ -1568,7 +1568,23 @@
 						tipe: 'all',
 						value: false,
 						group: 'User'
-					}
+						},
+					{
+						name: "Verifikasi Personalia",
+						key: "verifikasi_personalia",
+						icon: "icon-key",
+						tipe: "all",
+						value: false,
+						group: "User",
+					},
+					{
+						name: "Lihat Verifikasi",
+						key: "index_verifikasi",
+						icon: "icon-key",
+						tipe: "all",
+						value: false,
+						group: "User",
+					},
 					]
 				},
 					{
