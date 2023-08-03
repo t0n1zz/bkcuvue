@@ -1,11 +1,7 @@
 <template>
   <div>
     <!-- Page header -->
-    <page-header
-      :title="title"
-      :titleDesc="titleDesc"
-      :titleIcon="titleIcon"
-    ></page-header>
+    <page-header :title="title" :titleDesc="titleDesc" :titleIcon="titleIcon"></page-header>
 
     <!-- page container -->
     <div class="page-content pt-0">
@@ -13,215 +9,126 @@
         <br class="content" />
 
         <!-- message -->
-        <message
-          v-if="itemDataStat === 'fail'"
-          :title="'Oops terjadi kesalahan:'"
-          :errorData="itemData"
-        >
+        <message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
         </message>
 
         <!-- select data -->
-        <select-data
-          :kelas="kelas"
-          v-if="
-            $route.meta.mode != 'jalan' &&
-            $route.meta.mode != 'diikuti' &&
-            this.$route.meta.mode != 'buka'
-          "
-        ></select-data>
+        <select-data :kelas="kelas" v-if="$route.meta.mode != 'jalan' &&
+          $route.meta.mode != 'diikuti' &&
+          this.$route.meta.mode != 'buka'
+          "></select-data>
 
         <!-- table data -->
-        <table-data
-          v-if="
-            $route.meta.mode == 'jalan' ||
-            $route.meta.mode == 'diikuti' ||
-            this.$route.meta.mode == 'buka'
-          "
-          :title="title"
-          :kelas="kelas"
-          :itemData="itemData"
-          :itemDataStat="itemDataStat"
-        >
+        <table-data v-if="$route.meta.mode == 'jalan' ||
+          $route.meta.mode == 'diikuti' ||
+          this.$route.meta.mode == 'buka'
+          " :title="title" :kelas="kelas" :itemData="itemData" :itemDataStat="itemDataStat">
         </table-data>
 
-				<!-- navbar -->
-        <div
-          class="nav-tabs-responsive"
-          v-if="
-            this.$route.meta.mode != 'jalan' &&
-            this.$route.meta.mode != 'diikuti' &&
-            this.$route.meta.mode != 'buka'
-          "
-        >
+        <!-- navbar -->
+        <div class="nav-tabs-responsive" v-if="this.$route.meta.mode != 'jalan' &&
+          this.$route.meta.mode != 'diikuti' &&
+          this.$route.meta.mode != 'buka'
+          ">
           <ul class="nav nav-tabs nav-tabs-solid bg-light">
             <li class="nav-item">
-              <a
-                href="#"
-                class="nav-link"
-                :class="{ active: tabName == 'indexDibuka' }"
-                @click.prevent="changeTab('indexDibuka')"
-                ><i class="icon-user-plus mr-2"></i> Pendaftaran Buka</a
-              >
+              <a href="#" class="nav-link" :class="{ active: tabName == 'indexDibuka' }"
+                @click.prevent="changeTab('indexDibuka')"><i class="icon-user-plus mr-2"></i> Pendaftaran Buka</a>
             </li>
             <li class="nav-item">
-              <a
-                href="#"
-                class="nav-link"
-                :class="{ active: tabName == 'indexDitutup' }"
-                @click.prevent="changeTab('indexDitutup')"
-                ><i class="icon-user-minus mr-2"></i> Pendaftaran Tutup</a
-              >
+              <a href="#" class="nav-link" :class="{ active: tabName == 'indexDitutup' }"
+                @click.prevent="changeTab('indexDitutup')"><i class="icon-user-minus mr-2"></i> Pendaftaran Tutup</a>
             </li>
             <li class="nav-item">
-              <a
-                href="#"
-                class="nav-link"
-                :class="{ active: tabName == 'indexBerjalan' }"
-                @click.prevent="changeTab('indexBerjalan')"
-                ><i class="icon-feed mr-2"></i> Berjalan</a
-              >
+              <a href="#" class="nav-link" :class="{ active: tabName == 'indexBerjalan' }"
+                @click.prevent="changeTab('indexBerjalan')"><i class="icon-feed mr-2"></i> Berjalan</a>
             </li>
             <li class="nav-item">
-              <a
-                href="#"
-                class="nav-link"
-                :class="{ active: tabName == 'indexTerlaksana' }"
-                @click.prevent="changeTab('indexTerlaksana')"
-                ><i class="icon-checkbox-checked mr-2"></i> Terlaksana</a
-              >
+              <a href="#" class="nav-link" :class="{ active: tabName == 'indexTerlaksana' }"
+                @click.prevent="changeTab('indexTerlaksana')"><i class="icon-checkbox-checked mr-2"></i> Terlaksana</a>
             </li>
             <li class="nav-item">
-              <a
-                href="#"
-                class="nav-link"
-                :class="{ active: tabName == 'indexMenunggu' }"
-                @click.prevent="changeTab('indexMenunggu')"
-                ><i class="icon-new mr-2"></i> Menunggu</a
-              >
+              <a href="#" class="nav-link" :class="{ active: tabName == 'indexMenunggu' }"
+                @click.prevent="changeTab('indexMenunggu')"><i class="icon-new mr-2"></i> Menunggu</a>
             </li>
             <li class="nav-item">
-              <a
-                href="#"
-                class="nav-link"
-                :class="{ active: tabName == 'indexBatal' }"
-                @click.prevent="changeTab('indexBatal')"
-                ><i class="icon-cancel-square mr-2"></i> Batal</a
-              >
+              <a href="#" class="nav-link" :class="{ active: tabName == 'indexBatal' }"
+                @click.prevent="changeTab('indexBatal')"><i class="icon-cancel-square mr-2"></i> Batal</a>
             </li>
-						<li class="nav-item">
-              <a
-                href="#"
-                class="nav-link"
-                :class="{ active: tabName == 'indexSemua' }"
-                @click.prevent="changeTab('indexSemua')"
-                ><i class="icon-list2 mr-2"></i> Semua</a
-              >
+            <li class="nav-item">
+              <a href="#" class="nav-link" :class="{ active: tabName == 'indexSemua' }"
+                @click.prevent="changeTab('indexSemua')"><i class="icon-list2 mr-2"></i> Semua</a>
             </li>
           </ul>
         </div>
 
         <br />
-				<!-- buka -->
+        <!-- buka -->
         <transition enter-active-class="animated fadeIn" mode="out-in">
           <div v-show="tabName == 'indexDibuka'">
             <!-- table data -->
-            <table-data
-              :title="title"
-              :kelas="kelas"
-              :status="'indexDibuka'"
-              :itemData="itemDataDibuka"
-              :itemDataStat="itemDataDibukaStat"
-            >
+            <table-data :title="title" :kelas="kelas" :status="'indexDibuka'" :itemData="itemDataDibuka"
+              :itemDataStat="itemDataDibukaStat">
             </table-data>
           </div>
         </transition>
 
-				<!-- tutup -->
+        <!-- tutup -->
         <transition enter-active-class="animated fadeIn" mode="out-in">
           <div v-show="tabName == 'indexDitutup'" v-if="isIndexDitutup">
             <!-- table data -->
-            <table-data
-              :title="title"
-              :kelas="kelas"
-              :status="'indexDitutup'"
-              :itemData="itemDataDitutup"
-              :itemDataStat="itemDataDitutupStat"
-            >
+            <table-data :title="title" :kelas="kelas" :status="'indexDitutup'" :itemData="itemDataDitutup"
+              :itemDataStat="itemDataDitutupStat">
             </table-data>
           </div>
         </transition>
 
-				<!-- berjalan -->
+        <!-- berjalan -->
         <transition enter-active-class="animated fadeIn" mode="out-in">
           <div v-show="tabName == 'indexBerjalan'" v-if="isIndexBerjalan">
             <!-- table data -->
-            <table-data
-              :title="title"
-              :kelas="kelas"
-              :status="'indexBerjalan'"
-              :itemData="itemDataBerjalan"
-              :itemDataStat="itemDataBerjalanStat"
-            >
+            <table-data :title="title" :kelas="kelas" :status="'indexBerjalan'" :itemData="itemDataBerjalan"
+              :itemDataStat="itemDataBerjalanStat">
             </table-data>
           </div>
         </transition>
 
-				<!-- terlaksana -->
+        <!-- terlaksana -->
         <transition enter-active-class="animated fadeIn" mode="out-in">
           <div v-show="tabName == 'indexTerlaksana'" v-if="isIndexTerlaksana">
             <!-- table data -->
-            <table-data
-              :title="title"
-              :kelas="kelas"
-              :status="'indexTerlaksana'"
-              :itemData="itemDataTerlaksana"
-              :itemDataStat="itemDataTerlaksanaStat"
-            >
+            <table-data :title="title" :kelas="kelas" :status="'indexTerlaksana'" :itemData="itemDataTerlaksana"
+              :itemDataStat="itemDataTerlaksanaStat">
             </table-data>
           </div>
         </transition>
 
-				<!-- menunggu -->
+        <!-- menunggu -->
         <transition enter-active-class="animated fadeIn" mode="out-in">
           <div v-show="tabName == 'indexMenunggu'" v-if="isIndexMenunggu">
             <!-- table data -->
-            <table-data
-              :title="title"
-              :kelas="kelas"
-              :status="'indexMenunggu'"
-              :itemData="itemDataMenunggu"
-              :itemDataStat="itemDataMenungguStat"
-            >
+            <table-data :title="title" :kelas="kelas" :status="'indexMenunggu'" :itemData="itemDataMenunggu"
+              :itemDataStat="itemDataMenungguStat">
             </table-data>
           </div>
         </transition>
 
-				<!-- batal -->
+        <!-- batal -->
         <transition enter-active-class="animated fadeIn" mode="out-in">
           <div v-show="tabName == 'indexBatal'" v-if="isIndexBatal">
             <!-- table data -->
-            <table-data
-              :title="title"
-              :kelas="kelas"
-              :status="'indexBatal'"
-              :itemData="itemDataBatal"
-              :itemDataStat="itemDataBatalStat"
-            >
+            <table-data :title="title" :kelas="kelas" :status="'indexBatal'" :itemData="itemDataBatal"
+              :itemDataStat="itemDataBatalStat">
             </table-data>
           </div>
         </transition>
 
-				<!-- semua -->
-				<transition enter-active-class="animated fadeIn" mode="out-in">
+        <!-- semua -->
+        <transition enter-active-class="animated fadeIn" mode="out-in">
           <div v-show="tabName == 'indexSemua'" v-if="isIndexSemua">
             <!-- table data -->
-            <table-data
-              :title="title"
-              :kelas="kelas"
-              :status="'indexSemua'"
-              :itemData="itemData"
-              :itemDataStat="itemDataStat"
-            >
+            <table-data :title="title" :kelas="kelas" :status="'indexSemua'" :itemData="itemData"
+              :itemDataStat="itemDataStat">
             </table-data>
           </div>
         </transition>
@@ -256,13 +163,15 @@ export default {
       isIndexTerlaksana: false,
       isIndexMenunggu: false,
       isIndexBatal: false,
-			isIndexSemua: false,
+      isIndexSemua: false,
+
     };
   },
 
   created() {
     this.fetch();
   },
+
   watch: {
     // check route changes
     $route(to, from) {
@@ -309,6 +218,7 @@ export default {
         this.titleIcon = "icon-feed";
       }
     },
+
     changeTab(value) {
       this.tabName = value;
       if (value == "indexDitutup" && !this.isIndexDitutup) {

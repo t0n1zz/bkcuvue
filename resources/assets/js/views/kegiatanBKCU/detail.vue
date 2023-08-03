@@ -242,7 +242,6 @@ export default {
 			submited: false,
 		}
 	},
-
 	created() {
 		this.fetch();
 	},

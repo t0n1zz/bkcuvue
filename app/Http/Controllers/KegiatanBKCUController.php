@@ -18,6 +18,7 @@ use App\KegiatanTugas;
 use App\KegiatanTugasJawaban;
 use App\KegiatanKeputusan;
 use App\KegiatanPertanyaan;
+use App\KegiatanSasaranCu;
 use App\KodeKegiatan;
 use App\Sertifikat;
 use App\SertifikatGenerate;
@@ -39,7 +40,7 @@ class KegiatanBKCUController extends Controller
 
 	public function index($kegiatan_tipe)
 	{
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->advancedFilter();
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'sasaranCu', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->advancedFilter();
 
 		return response()
 			->json([
@@ -49,7 +50,7 @@ class KegiatanBKCUController extends Controller
 
 	public function indexPeriode($kegiatan_tipe, $periode)
 	{
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->advancedFilter();
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'sasaranCu', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->advancedFilter();
 
 		return response()
 			->json([
@@ -59,10 +60,62 @@ class KegiatanBKCUController extends Controller
 
 	public function indexPisah($kegiatan_tipe, $periode, $status)
 	{
+		$id_cu = \Auth::user()->id_cu;
 		if ($periode !== 'semua') {
-			$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('periode', $periode)->where('status', $status)->advancedFilter();
+			if ($id_cu != 0) {
+				$table_data =
+					Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')
+					->withCount('hasPeserta')
+					->where(function ($query) use ($kegiatan_tipe, $periode, $status) {
+						$query->whereNull('isSasaran_cu')
+							->where('periode', $periode)
+							->where('status', $status)
+							->where('tipe', $kegiatan_tipe);
+					})->orWhere(function ($query) use ($status, $kegiatan_tipe, $periode) {
+						$query->where('isSasaran_cu', 0)
+							->where('status', $status)
+							->where('periode', $periode)
+							->where('tipe', $kegiatan_tipe);;
+					})
+					->orWhere(function ($query) use ($kegiatan_tipe, $id_cu, $periode, $status) {
+						$query->where('isSasaran_cu', 1)
+							->where('periode', $periode)
+							->where('status', $status)
+							->where('tipe', $kegiatan_tipe)
+							->whereHas('sasaranCu', function ($query) use ($id_cu) {
+								$query->where('cu_id', $id_cu);
+							});
+					})
+					->advancedFilter();
+			} else {
+				$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('status', $status)->where('periode', $periode)->advancedFilter();
+			}
 		} else {
-			$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('status', $status)->advancedFilter();
+			if ($id_cu != 0) {
+				$table_data =
+					Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')
+					->withCount('hasPeserta')
+					->where(function ($query) use ($kegiatan_tipe, $status) {
+						$query->whereNull('isSasaran_cu')
+							->where('status', $status)
+							->where('tipe', $kegiatan_tipe);
+					})->orWhere(function ($query) use ($status, $kegiatan_tipe) {
+						$query->where('isSasaran_cu', 0)
+							->where('status', $status)
+							->where('tipe', $kegiatan_tipe);;
+					})
+					->orWhere(function ($query) use ($kegiatan_tipe, $id_cu, $status) {
+						$query->where('isSasaran_cu', 1)
+							->where('status', $status)
+							->where('tipe', $kegiatan_tipe)
+							->whereHas('sasaranCu', function ($query) use ($id_cu) {
+								$query->where('cu_id', $id_cu);
+							});
+					})
+					->advancedFilter();
+			} else {
+				$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies', 'Provinces', 'kode')->withCount('hasPeserta')->where('tipe', $kegiatan_tipe)->where('status', $status)->advancedFilter();
+			}
 		}
 		return response()
 			->json([
@@ -75,7 +128,7 @@ class KegiatanBKCUController extends Controller
 		$periode = Kegiatan::distinct('periode')->orderBy('periode', 'desc')->pluck('periode')->first();
 		$now = \Carbon\Carbon::now()->format('Y-m-d');
 
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('periode', $periode)->whereIn('status', [1, 2])->orderBy('created_at', 'desc')->take(6)->get();
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'sasaranCu', 'Regencies')->whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('periode', $periode)->whereIn('status', [1, 2])->orderBy('created_at', 'desc')->take(6)->get();
 
 		$countMulai = Kegiatan::whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('periode', $periode)->whereIn('status', [1, 2])->where('mulai', '>', $now)->orderBy('mulai', 'asc')->count();
 
@@ -92,13 +145,14 @@ class KegiatanBKCUController extends Controller
 			]);
 	}
 
-	public function indexMulai()
+	public function indexMulai($id_cu, $user_id)
 	{
+
 		$periode = Kegiatan::distinct('periode')->orderBy('periode', 'desc')->pluck('periode')->first();
 
 		$now = \Carbon\Carbon::now()->format('Y-m-d');
 
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('periode', $periode)->whereIn('status', [1, 2])->where('mulai', '>', $now)->orderBy('mulai', 'asc')->take(6)->get();
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'sasaranCu', 'Regencies')->whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('periode', $periode)->whereIn('status', [1, 2])->where('mulai', '>', $now)->orderBy('mulai', 'asc')->take(6)->get();
 
 		return response()
 			->json([
@@ -108,9 +162,10 @@ class KegiatanBKCUController extends Controller
 
 	public function indexBuka()
 	{
+
 		$periode = Kegiatan::distinct('periode')->orderBy('periode', 'desc')->pluck('periode')->first();
 
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('periode', $periode)->where('status', 2)->take(6)->get();
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'sasaranCu', 'Regencies')->whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('periode', $periode)->where('status', 2)->take(6)->get();
 
 		return response()
 			->json([
@@ -123,9 +178,9 @@ class KegiatanBKCUController extends Controller
 		$id_cu = \Auth::user()->id_cu;
 
 		if ($id_cu == 0) {
-			$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->where('status', 4)->advancedFilter();
+			$table_data = Kegiatan::with('tempat', 'sasaran', 'sasaranCu', 'Regencies')->where('status', 4)->advancedFilter();
 		} else {
-			$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('status', 4)->advancedFilter();
+			$table_data = Kegiatan::with('tempat', 'sasaran', 'sasaranCu', 'Regencies')->whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('status', 4)->advancedFilter();
 		}
 
 		return response()
@@ -138,7 +193,7 @@ class KegiatanBKCUController extends Controller
 	{
 		$aktivis_id = \Auth::user()->id_aktivis;
 
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->whereHas('hasPeserta', function ($query) use ($aktivis_id) {
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'sasaranCu', 'Regencies')->whereHas('hasPeserta', function ($query) use ($aktivis_id) {
 			$query->where('aktivis_id', $aktivis_id);
 		})->advancedFilter();
 
@@ -630,7 +685,15 @@ class KegiatanBKCUController extends Controller
 
 		$kelas->sasaran()->sync($sasaran_ar);
 
-		// $kelas->sasaran()->sync(array_flatten($request->sasaran));
+		if ($request->sasaranCu) {
+			// sasaranCu
+			$sasaran_cuAr = array();
+			foreach ($request->sasaranCu as $sasaran_cu) {
+				array_push($sasaran_cuAr, implode('', $sasaran_cu));
+			}
+
+			$kelas->sasaranCu()->sync($sasaran_cuAr);
+		}
 
 		if ($request->panitia) {
 			$panitiaArray = array();
@@ -665,18 +728,18 @@ class KegiatanBKCUController extends Controller
 		$asal = $request->asal;
 		$name = $request->name_sertifikat;
 
-		$formatedName="";
+		$formatedName = "";
 
 		// check peserta count
 		$semuaPesertaTerdaftar = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu', 'aktivis.pendidikan_tertinggi')->where('kegiatan_id', $id)->count();
 
 		// upload file to storage
-		if($request->surat_tugas){
+		if ($request->surat_tugas) {
 			$file = $request->surat_tugas;
-			
+
 			$fileExtension = $file->getClientOriginalExtension();
-			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
-			$file->move($this->suratTugas,$formatedName);
+			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '', $name), 10, '') . '_' . uniqid() . '.' . $fileExtension;
+			$file->move($this->suratTugas, $formatedName);
 		}
 
 		// check peserta
@@ -948,9 +1011,8 @@ class KegiatanBKCUController extends Controller
 
 	public function edit($id)
 	{
-		$kelas = Kegiatan::with('tempat', 'sasaran', 'panitia_dalam.pekerjaan_aktif.cu', 'panitia_luar', 'panitia_luar_lembaga', 'kode')->findOrFail($id);
+		$kelas = Kegiatan::with('tempat', 'sasaran', 'sasaranCu', 'panitia_dalam.pekerjaan_aktif.cu', 'panitia_luar', 'panitia_luar_lembaga', 'kode')->findOrFail($id);
 		$kelas2 = Sertifikat::where('id', $kelas->id_sertifikat)->get();
-
 		return response()
 			->json([
 				'form' => $kelas,
@@ -1012,8 +1074,16 @@ class KegiatanBKCUController extends Controller
 		foreach ($request->sasaran as $sasaran) {
 			array_push($sasaran_ar, implode('', $sasaran));
 		}
-
 		$kelas->sasaran()->sync($sasaran_ar);
+
+		if ($request->sasaranCu) {
+			// sasaranCu
+			$sasaran_cuAr = array();
+			foreach ($request->sasaranCu as $sasaran_cu) {
+				array_push($sasaran_cuAr, implode('', $sasaran_cu));
+			}
+			$kelas->sasaranCu()->sync($sasaran_cuAr);
+		}
 
 		if ($request->panitia) {
 			$panitiaArray = array();
@@ -1331,6 +1401,7 @@ class KegiatanBKCUController extends Controller
 		}
 
 		$kelas->sasaran()->sync([]);
+		$kelas->sasaranCu()->sync([]);
 		$kelas->panitia_dalam()->sync([]);
 
 		$kelas->delete();
@@ -1347,7 +1418,7 @@ class KegiatanBKCUController extends Controller
 		$kelas = KegiatanPeserta::findOrFail($id);
 		$name = $kelas->name;
 
-		if(!empty($kelas->surat_tugas)){
+		if (!empty($kelas->surat_tugas)) {
 			File::delete($this->suratTugas . $kelas->surat_tugas);
 		}
 
