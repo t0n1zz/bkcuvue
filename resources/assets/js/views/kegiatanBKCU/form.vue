@@ -1090,7 +1090,9 @@ export default {
 			} else if (!isChecked && this.sasaranCu.includes(id)) {
 				const index = this.sasaranCu.indexOf(id);
 				this.sasaranCu.splice(index, 1);
-			} else if (this.sasaranCu.length != this.modelCu.length) {
+			}
+
+			if (this.sasaranCu.length != this.modelCu.length) {
 				this.formAllCu = false;
 			} else if (this.sasaranCu.length == this.modelCu.length) {
 				this.formAllCu = true;
