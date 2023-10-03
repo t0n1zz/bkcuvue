@@ -18,7 +18,6 @@
 			<div class="col-md-2">
 				<button type="button" class="btn btn-light btn-block" @click.prevent="close()" :disabled="image_temp === ''"><i class="icon-cross"></i> Batal</button>
 			</div>
-			
 		</div>
 		
 	</div>

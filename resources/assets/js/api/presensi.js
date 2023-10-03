@@ -135,4 +135,8 @@ export default {
   destroy: function (id, tipe) {
     return axios.delete("/api/presensi/" + id + "/" + tipe);
   },
+
+  edit: function (tipe,id) {
+    return axios.get("/api/presensi/edit/"+ tipe+ '/' + id);
+  },
 };

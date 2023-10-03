@@ -23,7 +23,7 @@ class PresensiKeterlambatan extends Model
     }
 
     protected $allowedFilters = [
-        'tanggal'
+        'tanggal','aktivis.name'
     ];
 
     protected $orderable = [

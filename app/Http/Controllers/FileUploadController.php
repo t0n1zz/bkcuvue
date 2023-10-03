@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\FileUpload;
+use App\Jobs\SendNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -61,9 +62,7 @@ class FileUploadController extends Controller
                 'model'=> $table_data
             ], 200);
         }
-        return response()->json([
-            'message' => "Gagal DiUpload"
-        ], 500);
+        
     }
 
     /**

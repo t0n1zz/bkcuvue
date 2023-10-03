@@ -83,6 +83,33 @@ export default {
             }
         },
 
+        submit2 (event) {
+            this.isLoading = true
+            for (let i = 0; i < this.files.length; i++) {
+                let formData = new FormData();
+                formData.append('file', this.files[0]);
+                axios.post('/api/hariLiburUpload', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    },
+                    onUploadProgress: function (progressEvent) {
+                        this.progressBar = parseInt(Math.round((progressEvent.loaded * 100) / progressEvent.total))
+                    }.bind(this)
+                }).then((response) => {
+                    if (response.status == 200) {
+                        this.$store.commit('fileUpload/setDataS', response.data.model);
+                    }
+                    setTimeout(() => {
+                        this.$emit("LoadingStat", this.isLoading)
+                        this.message = response.data.message
+                        this.progressBar = 0
+                        this.reset()
+                        this.files = []
+                    })
+                })
+            }
+        },
+
         reset() {
                 this.$refs.file.value = '';
             },

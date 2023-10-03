@@ -40,5 +40,6 @@ class UpdateQR extends Command
     {
         $time = \Carbon\Carbon::now()->toArray();
         QrPresensi::where('jenis', 'BERUBAH PERHARI')->update(['kode_qr' => $time['timestamp']]);
+        QrPresensi::where('status','aktif')->update(['status'=>'tidak aktif']);
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Exports;
 
+use App\HariLibur;
 use App\PresensiIzin;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -105,6 +105,7 @@ class RekapIzin implements FromArray, WithHeadings, WithCustomStartCell, WithEve
         $izinS = PresensiIzin::with('aktivis')->where('jenis', 'izin')->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user', 'id_aktivis', 'tanggal_mulai', 'tanggal_selesai')->get();
         $izinGroupBy = $izinS->groupBy('id_user');
         $arrayComplete = [];
+        $libur = HariLibur::pluck('tanggal')->toArray();
         $no = 0;
         // dd($izinS);
         foreach ($model as $aktivis) {
@@ -140,7 +141,7 @@ class RekapIzin implements FromArray, WithHeadings, WithCustomStartCell, WithEve
                                 $date->lte($lastDayOfMonth);
                                 $date->addDay()
                             ) {
-                                if (!$date->isSunday()) {
+                                if (!$date->isSunday() && !in_array($date->toDateString(), $libur)) {
                                 if (substr($mas->tanggal_mulai, 5, 2) == "01") {
                                     $jan++;
                                 } elseif (substr($mas->tanggal_mulai, 5, 2) == "02") {
@@ -173,7 +174,7 @@ class RekapIzin implements FromArray, WithHeadings, WithCustomStartCell, WithEve
                             $endDate = Carbon::parse($mas->tanggal_selesai);
 
                             for ($date = $firstDayOfMonth; $date->lte($endDate); $date->addDay()) {
-                                if (!$date->isSunday()) {
+                                if (!$date->isSunday() && !in_array($date->toDateString(), $libur)) {
                                 if (substr($mas->tanggal_selesai, 5, 2) == "01") {
                                     $jan++;
                                 } elseif (substr($mas->tanggal_selesai, 5, 2) == "02") {
@@ -229,7 +230,7 @@ class RekapIzin implements FromArray, WithHeadings, WithCustomStartCell, WithEve
                         }
                     }else{
                         for ($date = Carbon::parse($mas->tanggal_mulai); $date->lte(Carbon::parse($mas->tanggal_selesai)); $date->addDay()) {
-                            if (!$date->isSunday()) {
+                            if (!$date->isSunday()&& !in_array($date->toDateString(), $libur)) {
                                 if (substr($mas->tanggal_mulai, 5, 2) == "01") {
                                     $jan++;
                                 } elseif (substr($mas->tanggal_mulai, 5, 2) == "02") {

@@ -37,30 +37,24 @@
 			<template slot="button-mobile">
 
 				<!-- tambah -->
-				<router-link :to="{ name: kelas + 'Create' }" class="btn btn-light btn-block mb-1"
-					v-if="currentUser.can && currentUser.can['create_' + kelas] && currentUser.id_cu == 0">
-					<i class="icon-plus3"></i> Tambah
-				</router-link>
+					<button @click="modalOpen()" class="btn btn-light btn-block mb-1"
+						v-if="currentUser.can && currentUser.can['create_qr']">
+						<i class="icon-plus3"></i> Tambah
+					</button>
 
+					<!-- detail-->
+					<button @click.prevent="ubahStatus()" class="btn btn-light  btn-block btn-icon mb-1"
+						v-if="currentUser.can && currentUser.can['update_qr']"
+						:disabled="!selectedItem.id || selectedItem.status == 'tidak aktif'">
+						<i class="icon-x mr-2"></i> Non-Aktifkan
+					</button>
 
-				<!-- ubah-->
-				<button @click.prevent="goTo(selectedItem.id, 'edit')" class="btn btn-light btn-block mb-1"
-					v-if="currentUser.can && currentUser.can['update_' + kelas] && currentUser.id_cu == 0"
-					:disabled="!selectedItem.id">
-					<i class="icon-pencil5"></i> Ubah
-				</button>
-
-				<!-- detail-->
-				<button @click.prevent="goTo(selectedItem.id, 'detail')" class="btn btn-light btn-icon btn-block mb-1"
-					v-if="currentUser.can && currentUser.can['update_' + kelas]" :disabled="!selectedItem.id">
-					<i class="icon-stack2"></i> Detail
-				</button>
-
-				<!-- hapus -->
-				<button @click.prevent="tampilkan()" class="btn btn-light btn-block mb-1"
-					v-if="currentUser.can && currentUser.can['destroy_' + kelas] && currentUser.id_cu == 0">
-					<i class="icon-bin2"></i> Hapus
-				</button>
+					<!-- hapus -->
+					<button @click.prevent="tampilkan()" class="btn btn-light  btn-block  mb-1"
+						:disabled="!selectedItem.id || selectedItem.status == 'tidak aktif'"
+						v-if="currentUser.can && currentUser.can['index_qr']">
+						<i class="icon-bin2"></i> Tampilkan
+					</button>
 
 			</template>
 

@@ -1,7 +1,9 @@
 <template>
     <div class="col-md-12">
         <h5>Pilih File :</h5>
-        <input type="file" class="form-control" accept=".csv,.xlsx,.xls" ref="file" name="file" @change="upload($event.target)"/>
+        <input type="file" class="form-control" accept=".csv,.xlsx,.xls" ref="file" name="file"
+            @change="upload($event.target)" />
+            <a href="#" @click="download">Download Template Upload Data Off Bergilir</a><br>
         <div class="text-center" style="margin-top: 10px;">
             <button class="btn btn-warning" @click.prevent="batal">
                 <i class="icon-x"></i>Batal</button>
@@ -18,6 +20,7 @@ import message from "../../components/message.vue";
 import selectData from "../../components/selectCuTp.vue";
 import datePicker from '../../components/datePicker.vue';
 import { toMulipartedForm } from '../../helpers/form';
+import FileSaver from 'file-saver';
 
 
 export default {
@@ -26,6 +29,7 @@ export default {
         message,
         selectData,
         datePicker,
+        FileSaver
     },
     data () {
         return {
@@ -38,10 +42,10 @@ export default {
 
         storeFile () {
             const formData = toMulipartedForm(this.form, this.$route.meta.mode);
-            this.$store.dispatch('presensi/uploadOffBergilir', ['off',formData]);
+            this.$store.dispatch('presensi/uploadOffBergilir', ['off', formData]);
         },
 
-        batal () { 
+        batal () {
             this.$emit('tutup');
         },
 
@@ -49,6 +53,16 @@ export default {
             this.form.file = null
             this.form.file = event.files[0]
         },
+
+        download () {
+            axios.post('/api/downloadTemplate', { id_cu: this.currentUser.id_cu }, {
+                responseType: 'blob'
+            }).then((response) => {
+                FileSaver.saveAs(response.data,'Template Upload Data Off Bergilir.xlsx')
+                this.modalState = 'success';
+                this.modalTitle = 'Berhasil Di Download'
+            })
+        }
     },
 
     computed: {

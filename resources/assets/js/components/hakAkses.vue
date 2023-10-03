@@ -1533,7 +1533,7 @@
 						name: 'Lihat QR',
 						key: 'index_qr',
 						icon: 'icon-eye',
-						tipe: 'all',
+						tipe: 'bkcu',
 						value: false,
 						group: 'User'
 					},
@@ -1541,7 +1541,7 @@
 						name: 'Tambah QR',
 						key: 'create_qr',
 						icon: 'icon-plus3',
-						tipe: 'all',
+						tipe: 'bkcu',
 						value: false,
 						group: 'User'
 					},
@@ -1549,7 +1549,23 @@
 						name: 'Ubah QR',
 						key: 'update_qr',
 						icon: 'icon-pencil',
-						tipe: 'all',
+						tipe: 'bkcu',
+						value: false,
+						group: 'User'
+						},
+					{
+						name: 'Tambah Struktur',
+						key: 'create_struktur',
+						icon: 'icon-plus3',
+						tipe: 'bkcu',
+						value: false,
+						group: 'User'
+					},
+					{
+						name: 'Ubah Struktur',
+						key: 'update_struktur',
+						icon: 'icon-pencil',
+						tipe: 'bkcu',
 						value: false,
 						group: 'User'
 					},
@@ -1557,36 +1573,53 @@
 						name: 'Hapus QR',
 						key: 'destroy_qr',
 						icon: 'icon-bin2',
-						tipe: 'all',
+						tipe: 'bkcu',
+						value: false,
+						group: 'User'
+						},
+					{
+						name: 'Akses Personalia',
+						key: 'personalia_akses',
+						icon: 'icon-key',
+						tipe: 'bkcu',
 						value: false,
 						group: 'User'
 						},
 					{
 						name: 'Personalia',
-						key: 'personalia_akses',
+						key: 'is_personalia',
 						icon: 'icon-key',
-						tipe: 'all',
+						tipe: 'bkcu',
 						value: false,
 						group: 'User'
-						},
-					{
-						name: "Verifikasi Personalia",
-						key: "verifikasi_personalia",
-						icon: "icon-key",
-						tipe: "all",
-						value: false,
-						group: "User",
 					},
 					{
-						name: "Lihat Verifikasi",
-						key: "index_verifikasi",
-						icon: "icon-key",
-						tipe: "all",
+						name: "Lihat Tunjangan",
+						key: "index_tunjangan",
+						icon: 'icon-eye',
+						tipe: "bkcu",
+						value: false,
+						group: "User",
+						},
+					{
+						name: "Lihat presensi",
+						key: "index_presensi",
+						icon: 'icon-eye',
+						tipe: "bkcu",
+						value: false,
+						group: "User",
+						},
+					{
+						name: "Lihat Struktur",
+						key: "index_struktur",
+						icon: 'icon-eye',
+						tipe: "bkcu",
 						value: false,
 						group: "User",
 					},
 					]
-				},
+					},
+				
 					{
 						name: 'Saran',
 						keterangan: 'Melihat saran yang diberikan user untuk SIMO',

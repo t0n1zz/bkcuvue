@@ -26,7 +26,7 @@ class Presensi extends Model
     }
 
     protected $allowedFilters = [
-        'tanggal','name'
+        'tanggal','aktivis.name'
     ];
 
     protected $orderable = [
@@ -97,4 +97,10 @@ class Presensi extends Model
     {
         return $this->hasMany('App\PresensiKeluarKantor', 'id_absen', 'id')->select('id_absen', 'jenis', 'lama');
     }
+
+    public function qr()
+    {
+        return $this->hasOne('App\QrPresensi', 'id', 'id_qr')->select('id','jam_pulang');
+    }
+
 }

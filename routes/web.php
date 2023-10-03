@@ -25,7 +25,8 @@ Route::group(['middleware' => 'throttle:60,10'], function () {
 		Route::get('/artikel/cari',array( 'as' => 'artikel.cari','uses' => 'PublicController@artikelCari'));
 		Route::get('/artikel/lihat/{slug}',array( 'as' => 'artikel.lihat','uses' => 'PublicController@artikelLihat'));
 		Route::get('/artikel/kategori/{slug}',array( 'as' => 'artikel.kategori','uses' => 'PublicController@artikelKategori'));
-			Route::get('/artikel/penulis/{slug}',array( 'as' => 'artikel.penulis','uses' => 'PublicController@artikelPenulis'));
+		Route::get('/artikel/penulis/{slug}',array( 'as' => 'artikel.penulis','uses' => 'PublicController@artikelPenulis'));
+		Route::get('/downloadpdf', array('as' => 'pdf', 'uses' => 'PresensiController@downloadFormPengajuan'));
 			
 		// cu
 		Route::get('/cu',array( 'as' => 'cu','uses' => 'PublicController@cu'));

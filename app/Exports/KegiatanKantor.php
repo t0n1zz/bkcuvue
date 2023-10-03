@@ -4,7 +4,6 @@ namespace App\Exports;
 
 use App\Presensi;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -105,7 +104,7 @@ class KegiatanKantor implements FromArray, WithHeadings, WithCustomStartCell, Wi
         $model = DB::select('select users.id,users.id_cu,users.id_aktivis,aktivis.name,aktivis.gambar,aktivis_pekerjaan.id_aktivis,aktivis_pekerjaan.tingkat,aktivis_pekerjaan.selesai, aktivis_pekerjaan.id_tempat,aktivis_pekerjaan.name as jabatan  from users
         inner join aktivis on aktivis.id = users.id_aktivis inner join aktivis_pekerjaan on aktivis_pekerjaan.id_aktivis = aktivis.id
         where users.id_cu = 0 and users.id_aktivis !=0 and users.status = 1 and aktivis_pekerjaan.selesai is null and aktivis_pekerjaan.id_tempat =1 and (aktivis_pekerjaan.tingkat = 5 or aktivis_pekerjaan.tingkat =6 or aktivis_pekerjaan.tingkat =7 or aktivis_pekerjaan.tingkat =8)  order by aktivis.name asc');
-        $kegiatanKantorS = Presensi::with('aktivis')->where('id_kegiatan', '!=' ,0)->OrWhere('kegiatan_name','!=',null)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user', 'id', 'id_aktivis','tanggal')->get();
+        $kegiatanKantorS = Presensi::with('aktivis')->where('id_kegiatan', '!=' ,0)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->OrWhere('kegiatan_name','!=',null)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user', 'id', 'id_aktivis','tanggal')->get();
         $kegiatanKantorGroupBy = $kegiatanKantorS->groupBy('id_user');
         $arrayComplete = [];
         $no =0;

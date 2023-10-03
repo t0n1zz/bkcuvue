@@ -92,9 +92,7 @@ class Hadir implements FromArray, WithHeadings, WithCustomStartCell, WithEvents,
 
     public function headings(): array
     {
-        return [
-          
-        ];
+        return [];
     }
 
     public function array(): array
@@ -103,11 +101,11 @@ class Hadir implements FromArray, WithHeadings, WithCustomStartCell, WithEvents,
         $model = DB::select('select users.id,users.id_cu,users.id_aktivis,aktivis.name,aktivis.gambar,aktivis_pekerjaan.id_aktivis,aktivis_pekerjaan.tingkat,aktivis_pekerjaan.selesai, aktivis_pekerjaan.id_tempat,aktivis_pekerjaan.name as jabatan  from users
         inner join aktivis on aktivis.id = users.id_aktivis inner join aktivis_pekerjaan on aktivis_pekerjaan.id_aktivis = aktivis.id
         where users.id_cu = 0 and users.id_aktivis !=0 and users.status = 1 and aktivis_pekerjaan.selesai is null and aktivis_pekerjaan.id_tempat =1 and (aktivis_pekerjaan.tingkat = 5 or aktivis_pekerjaan.tingkat =6 or aktivis_pekerjaan.tingkat =7 or aktivis_pekerjaan.tingkat =8)  order by aktivis.name asc');
-        $masukKantorS = Presensi::with('aktivis')->where('id_kegiatan', 0)->where('kegiatan_name','=',null)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user', 'id', 'id_aktivis','tanggal')->get();
+        $masukKantorS = Presensi::with('aktivis')->where('id_kegiatan', 0)->where('kegiatan_name', '=', null)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user', 'id', 'id_aktivis', 'tanggal')->get();
         $masukKantorGroupBy = $masukKantorS->groupBy('id_user');
         $arrayComplete = [];
-        $no =0;
-        foreach($model as $aktivis){
+        $no = 0;
+        foreach ($model as $aktivis) {
             $name = $aktivis->name;
             $jan = 0;
             $feb = 0;
@@ -122,7 +120,7 @@ class Hadir implements FromArray, WithHeadings, WithCustomStartCell, WithEvents,
             $nov = 0;
             $des = 0;
 
-            if(isset($masukKantorGroupBy[$aktivis->id])){
+            if (isset($masukKantorGroupBy[$aktivis->id])) {
                 foreach ($masukKantorGroupBy[$aktivis->id]  as $mas) {
                     if (substr($mas->tanggal, 5, 2) == "01") {
                         $jan++;
@@ -151,14 +149,14 @@ class Hadir implements FromArray, WithHeadings, WithCustomStartCell, WithEvents,
                     }
                 }
             }
-            
+
             $arrayNew = [];
 
             $no++;
-            $jlh = $jan + $feb + $mar + $apr + $mei + $jun+
-                    $jul + $ags + $sep + $okt + $nov + $des;
+            $jlh = $jan + $feb + $mar + $apr + $mei + $jun +
+                $jul + $ags + $sep + $okt + $nov + $des;
 
-            array_push($arrayNew,$no);
+            array_push($arrayNew, $no);
             array_push($arrayNew, $name);
             array_push($arrayNew, $jan);
             array_push($arrayNew, $feb);

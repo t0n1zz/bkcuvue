@@ -1,352 +1,313 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[154],{
 
-/***/ "./node_modules/html-truncate/lib/truncate.js":
-/*!****************************************************!*\
-  !*** ./node_modules/html-truncate/lib/truncate.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/**
- * Truncate HTML string and keep tag safe.
- *
- * @method truncate
- * @param {String} string string needs to be truncated
- * @param {Number} maxLength length of truncated string
- * @param {Object} options (optional)
- * @param {Boolean} [options.keepImageTag] flag to specify if keep image tag, false by default
- * @param {Boolean} [options.truncateLastWord] truncates last word, true by default
- * @param {Number} [options.slop] tolerance when options.truncateLastWord is false before we give up and just truncate at the maxLength position, 10 by default (but not greater than maxLength)
- * @param {Boolean|String} [options.ellipsis] omission symbol for truncated string, '...' by default
- * @return {String} truncated string
- */
-function truncate(string, maxLength, options) {
-    var EMPTY_OBJECT = {},
-        EMPTY_STRING = '',
-        DEFAULT_TRUNCATE_SYMBOL = '...',
-        DEFAULT_SLOP = 10 > maxLength ? maxLength : 10,
-        EXCLUDE_TAGS = ['img', 'br'],   // non-closed tags
-        items = [],                     // stack for saving tags
-        total = 0,                      // record how many characters we traced so far
-        content = EMPTY_STRING,         // truncated text storage
-        KEY_VALUE_REGEX = '([\\w|-]+\\s*(=\\s*"[^"]*")?\\s*)*',
-        IS_CLOSE_REGEX = '\\s*\\/?\\s*',
-        CLOSE_REGEX = '\\s*\\/\\s*',
-        SELF_CLOSE_REGEX = new RegExp('<\\/?\\w+\\s*' + KEY_VALUE_REGEX + CLOSE_REGEX + '>'),
-        HTML_TAG_REGEX = new RegExp('<\\/?\\w+\\s*' + KEY_VALUE_REGEX + IS_CLOSE_REGEX + '>'),
-        URL_REGEX = /(((ftp|https?):\/\/)[\-\w@:%_\+.~#?,&\/\/=]+)|((mailto:)?[_.\w\-]+@([\w][\w\-]+\.)+[a-zA-Z]{2,3})/g, // Simple regexp
-        IMAGE_TAG_REGEX = new RegExp('<img\\s*' + KEY_VALUE_REGEX + IS_CLOSE_REGEX + '>'),
-        WORD_BREAK_REGEX = new RegExp('\\W+', 'g'),
-        matches = true,
-        result,
-        index,
-        tail,
-        tag,
-        selfClose;
-
-    /**
-     * Remove image tag
-     *
-     * @private
-     * @method _removeImageTag
-     * @param {String} string not-yet-processed string
-     * @return {String} string without image tags
-     */
-    function _removeImageTag(string) {
-        var match = IMAGE_TAG_REGEX.exec(string),
-            index,
-            len;
-
-        if (!match) {
-            return string;
-        }
-
-        index = match.index;
-        len = match[0].length;
-
-        return string.substring(0, index) + string.substring(index + len);
-    }
-
-    /**
-     * Dump all close tags and append to truncated content while reaching upperbound
-     *
-     * @private
-     * @method _dumpCloseTag
-     * @param {String[]} tags a list of tags which should be closed
-     * @return {String} well-formatted html
-     */
-    function _dumpCloseTag(tags) {
-        var html = '';
-
-        tags.reverse().forEach(function (tag, index) {
-            // dump non-excluded tags only
-            if (-1 === EXCLUDE_TAGS.indexOf(tag)) {
-                html += '</' + tag + '>';
-            }
-        });
-
-        return html;
-    }
-
-    /**
-     * Process tag string to get pure tag name
-     *
-     * @private
-     * @method _getTag
-     * @param {String} string original html
-     * @return {String} tag name
-     */
-    function _getTag(string) {
-        var tail = string.indexOf(' ');
-
-        // TODO:
-        // we have to figure out how to handle non-well-formatted HTML case
-        if (-1 === tail) {
-            tail = string.indexOf('>');
-            if (-1 === tail) {
-                throw new Error('HTML tag is not well-formed : ' + string);
-            }
-        }
-
-        return string.substring(1, tail);
-    }
-
-
-    /**
-     * Get the end position for String#substring()
-     *
-     * If options.truncateLastWord is FALSE, we try to the end position up to
-     * options.slop characters to avoid breaking in the middle of a word.
-     *
-     * @private
-     * @method _getEndPosition
-     * @param {String} string original html
-     * @param {Number} tailPos (optional) provided to avoid extending the slop into trailing HTML tag
-     * @return {Number} maxLength
-     */
-    function _getEndPosition (string, tailPos) {
-        var defaultPos = maxLength - total,
-            position = defaultPos,
-            isShort = defaultPos < options.slop,
-            slopPos = isShort ? defaultPos : options.slop - 1,
-            substr,
-            startSlice = isShort ? 0 : defaultPos - options.slop,
-            endSlice = tailPos || (defaultPos + options.slop),
-            result;
-
-        if (!options.truncateLastWord) {
-
-            substr = string.slice(startSlice, endSlice);
-
-            if (tailPos && substr.length <= tailPos) {
-                position = substr.length;
-            }
-            else {
-                while ((result = WORD_BREAK_REGEX.exec(substr)) !== null) {
-                    // a natural break position before the hard break position
-                    if (result.index < slopPos) {
-                        position = defaultPos - (slopPos - result.index);
-                        // keep seeking closer to the hard break position
-                        // unless a natural break is at position 0
-                        if (result.index === 0 && defaultPos <= 1) break;
-                    }
-                    // a natural break position exactly at the hard break position
-                    else if (result.index === slopPos) {
-                        position = defaultPos;
-                        break; // seek no more
-                    }
-                    // a natural break position after the hard break position
-                    else {
-                        position = defaultPos + (result.index - slopPos);
-                        break;  // seek no more
-                    }
-                }
-            }
-            if (string.charAt(position - 1).match(/\s$/)) position--;
-        }
-        return position;
-    }
-
-    options = options || EMPTY_OBJECT;
-    options.ellipsis = (undefined !== options.ellipsis) ? options.ellipsis : DEFAULT_TRUNCATE_SYMBOL;
-    options.truncateLastWord = (undefined !== options.truncateLastWord) ? options.truncateLastWord : true;
-    options.slop = (undefined !== options.slop) ? options.slop : DEFAULT_SLOP;
-
-    while (matches) {
-        matches = HTML_TAG_REGEX.exec(string);
-
-        if (!matches) {
-            if (total >= maxLength) { break; }
-
-            matches = URL_REGEX.exec(string);
-            if (!matches || matches.index >= maxLength) {
-                content += string.substring(0, _getEndPosition(string));
-                break;
-            }
-
-            while (matches) {
-                result = matches[0];
-                index = matches.index;
-                content += string.substring(0, (index + result.length) - total);
-                string = string.substring(index + result.length);
-                matches = URL_REGEX.exec(string);
-            }
-            break;
-        }
-
-        result = matches[0];
-        index = matches.index;
-
-        if (total + index > maxLength) {
-            // exceed given `maxLength`, dump everything to clear stack
-            content += string.substring(0, _getEndPosition(string, index));
-            break;
-        } else {
-            total += index;
-            content += string.substring(0, index);
-        }
-
-        if ('/' === result[1]) {
-            // move out open tag
-            items.pop();
-            selfClose=null;
-        } else {
-            selfClose = SELF_CLOSE_REGEX.exec(result);
-            if (!selfClose) {
-                tag = _getTag(result);
-
-                items.push(tag);
-            }
-        }
-
-        if (selfClose) {
-            content += selfClose[0];
-        } else {
-            content += result;
-        }
-        string = string.substring(index + result.length);
-    }
-
-    if (string.length > maxLength - total && options.ellipsis) {
-        content += options.ellipsis;
-    }
-    content += _dumpCloseTag(items);
-
-    if (!options.keepImageTag) {
-        content = _removeImageTag(content);
-    }
-
-    return content;
-}
-
-module.exports = truncate;
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-truncate-collapsed/dist/vue-truncate-collapsed.es.js":
-/*!*******************************************************************************!*\
-  !*** ./node_modules/vue-truncate-collapsed/dist/vue-truncate-collapsed.es.js ***!
-  \*******************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/jalinanLaporan/penyebab.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/jalinanLaporan/penyebab.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/*!
- * vue-truncate-collapsed v1.9.0
- * (c) 2018-present João Vitor Cavalcante
- * Released under the MIT License.
- */
-(function () {
-  if (typeof document !== 'undefined') {
-    var head = document.head || document.getElementsByTagName('head')[0],
-        style = document.createElement('style'),
-        css = " a[data-v-11b2e33f] { cursor: pointer; } ";style.type = 'text/css';if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }head.appendChild(style);
-  }
-})();
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/pageHeader.vue */ "./resources/assets/js/components/pageHeader.vue");
+/* harmony import */ var _components_message_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/message.vue */ "./resources/assets/js/components/message.vue");
+/* harmony import */ var _selectKelompok_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./selectKelompok.vue */ "./resources/assets/js/views/jalinanLaporan/selectKelompok.vue");
+/* harmony import */ var _jalinanKlaim_table_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../jalinanKlaim/table.vue */ "./resources/assets/js/views/jalinanKlaim/table.vue");
+/* harmony import */ var _tableKelompok__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./tableKelompok */ "./resources/assets/js/views/jalinanLaporan/tableKelompok.vue");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
-var h2p = __webpack_require__(/*! html-truncate */ "./node_modules/html-truncate/lib/truncate.js");
 
-var truncate = { render: function () {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', [!_vm.show && _vm.type !== 'html' ? _c('div', [_c('span', { class: _vm.textClass }, [_vm._v(" " + _vm._s(_vm.truncate(_vm.text)) + " ")]), _vm._v(" "), _vm.text.length >= _vm.length ? _c('a', { class: _vm.actionClass, on: { "click": function ($event) {
-          _vm.toggle();
-        } } }, [_vm._v(_vm._s(_vm.clamp))]) : _vm._e()]) : !_vm.show && _vm.type === 'html' ? _c('div', [_c('span', { class: _vm.textClass, domProps: { "innerHTML": _vm._s(_vm.truncate(_vm.text)) } }), _vm._v(" "), _vm.text.length >= _vm.length ? _c('a', { class: _vm.actionClass, on: { "click": function ($event) {
-          _vm.toggle();
-        } } }, [_vm._v(_vm._s(_vm.clamp))]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm.show && _vm.type !== 'html' ? _c('div', [_c('span', [_vm._v(_vm._s(_vm.text))]), _vm._v(" "), _vm.text.length >= _vm.length ? _c('a', { class: _vm.actionClass, on: { "click": function ($event) {
-          _vm.toggle();
-        } } }, [_vm._v(_vm._s(_vm.less))]) : _vm._e()]) : _vm.show && _vm.type === 'html' ? _c('div', [_vm.text.length >= _vm.length ? _c('div', { domProps: { "innerHTML": _vm._s(_vm.text) } }) : _vm._e(), _vm._v(" "), _vm.text.length >= _vm.length ? _c('a', { class: _vm.actionClass, on: { "click": function ($event) {
-          _vm.toggle();
-        } } }, [_vm._v(_vm._s(_vm.less))]) : _c('p', [_vm._v(" " + _vm._s(_vm.h2p(_vm.text)) + " ")])]) : _vm._e()]);
-  }, staticRenderFns: [], _scopeId: 'data-v-11b2e33f',
-  name: 'Truncate',
 
-  props: {
-    collapsedTextClass: {
-      type: String,
-      default: ''
-    },
-    text: {
-      type: String,
-      required: true
-    },
-    clamp: {
-      type: String,
-      default: 'Read More'
-    },
-    length: {
-      type: Number,
-      default: 100
-    },
-    less: {
-      type: String,
-      default: 'Show Less'
-    },
-    type: {
-      type: String,
-      default: 'text'
-    },
-    actionClass: {
-      type: String,
-      default: ''
-    }
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    pageHeader: _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    message: _components_message_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    selectData: _selectKelompok_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    tableData: _jalinanKlaim_table_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    tableKelompok: _tableKelompok__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
     return {
-      show: false,
-      counter: this.length
+      title: 'Laporan Bantuan Solidaritas Jalinan',
+      titleDesc: 'Mengelola Bantuan Solidaritas Jalinan Berdasarkan Penyebab',
+      titleIcon: 'icon-archive',
+      kelas: 'jalinanKlaim',
+      isShowDetail: false,
+      url: 'indexLaporanPenyebab',
+      status: ''
     };
   },
-  computed: {
-    textClass: function textClass() {
-      return this.text.length > this.length && this.collapsedTextClass ? this.collapsedTextClass : '';
+  created: function created() {
+    this.checkUser('laporan_jalinan_klaim');
+    // this.status = this.$route.params.status;s
+  },
+
+  watch: {
+    '$route': function $route(to, from) {
+      // check current page meta
+      this.status = this.$route.params.status;
     }
   },
   methods: {
-    truncate: function truncate(string) {
-      if (string) {
-        if (this.type === 'html') { return h2p(string, this.length, { ellipsis: '' }); }
-
-        return string.toString().substring(0, this.length);
+    fetch: function fetch(awal, akhir, cu, status, kategori) {
+      this.$router.push({
+        name: 'jalinanLaporanKlaimPenyebabTanggal',
+        params: {
+          awal: awal,
+          akhir: akhir,
+          status: status,
+          cu: cu,
+          jenis: 'penyebab',
+          kategori: kategori
+        }
+      });
+    },
+    cari: function cari(awal, akhir, cu, status) {
+      this.fetch(awal, akhir, cu, status, 'semua');
+      this.isShowDetail = false;
+    },
+    checkUser: function checkUser(permission) {
+      if (this.currentUser) {
+        if (!this.currentUser.can || !this.currentUser.can[permission]) {
+          this.$router.push('/notFound');
+        }
       }
-
-      return '';
     },
-    toggle: function toggle() {
-      this.show = !this.show;
+    bukaData: function bukaData(value) {
+      this.fetch(this.$route.params.awal, this.$route.params.akhir, this.$route.params.cu, this.$route.params.status, value);
+      this.isShowDetail = true;
     },
-
-    h2p: function h2p$1(text) {
-      return h2p(text);
+    showDetail: function showDetail() {
+      this.isShowDetail = !this.isShowDetail;
     }
-  }
-};
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+    currentUser: 'currentUser'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('jalinanKlaim', {
+    itemData: 'dataS',
+    itemDataStat: 'dataStatS',
+    itemDataKlaim1: 'dataS1',
+    itemDataStatKlaim1: 'dataStatS1',
+    itemDataKlaim2: 'dataS2',
+    itemDataStatKlaim2: 'dataStatS2',
+    itemDataKlaim3: 'dataS3',
+    itemDataStatKlaim3: 'dataStatS3',
+    itemDataKlaim4: 'dataS4',
+    itemDataStatKlaim4: 'dataStatS4',
+    itemDataKlaim5: 'dataS5',
+    itemDataStatKlaim5: 'dataStatS5',
+    itemDataKlaim6: 'dataS6',
+    itemDataStatKlaim6: 'dataStatS6',
+    itemDataKlaim7: 'dataS7',
+    itemDataStatKlaim7: 'dataStatS7'
+  }))
+});
 
-/* harmony default export */ __webpack_exports__["default"] = (truncate);
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/jalinanLaporan/penyebab.vue?vue&type=template&id=f127a6f4&":
+/*!**********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/jalinanLaporan/penyebab.vue?vue&type=template&id=f127a6f4& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", [_c("page-header", {
+    attrs: {
+      title: _vm.title,
+      titleDesc: _vm.titleDesc,
+      titleIcon: _vm.titleIcon
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "page-container"
+  }, [_c("div", {
+    staticClass: "page-content"
+  }, [_c("div", {
+    staticClass: "content-wrapper"
+  }, [_c("div", {
+    staticClass: "content"
+  }, [_vm.itemDataStat === "fail" ? _c("message", {
+    attrs: {
+      title: "Oops terjadi kesalahan:",
+      errorData: _vm.itemData
+    }
+  }) : _vm._e(), _vm._v(" "), _c("select-data", {
+    attrs: {
+      isCu: false
+    },
+    on: {
+      cari: _vm.cari
+    }
+  }), _vm._v(" "), _vm.$route.meta.mode == "laporan" ? _c("div", [_c("table-kelompok", {
+    attrs: {
+      title: "Bantuan Solidaritas Per Penyebab",
+      itemData: _vm.itemData,
+      itemDataStat: _vm.itemDataStat,
+      url: _vm.url,
+      isCu: false
+    },
+    on: {
+      bukaData: _vm.bukaData,
+      lihatSemua: _vm.bukaData
+    }
+  }), _vm._v(" "), _c("hr"), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-light btn-block",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.showDetail.apply(null, arguments);
+      }
+    }
+  }, [!_vm.isShowDetail ? _c("span", [_c("i", {
+    staticClass: "icon-eye"
+  }), _vm._v(" Buka semua data bantuan solidaritas Jalinan")]) : _c("span", [_c("i", {
+    staticClass: "icon-eye-blocked"
+  }), _vm._v(" Tutup data bantuan solidaritas Jalinan")])]), _vm._v(" "), _c("hr"), _vm._v(" "), _vm.isShowDetail ? _c("div", [_vm.status == "1" ? _c("table-data", {
+    attrs: {
+      title: "Bantuan Solidaritas Jalinan Menunggu",
+      kelas: _vm.kelas,
+      itemData: _vm.itemDataKlaim1,
+      itemDataStat: _vm.itemDataStatKlaim1,
+      status: "1",
+      isSimple: true
+    }
+  }) : _vm._e(), _vm._v(" "), _vm.status == "2" ? _c("table-data", {
+    attrs: {
+      title: "Bantuan Solidaritas Jalinan Dokumen Tidak Lengkap",
+      kelas: _vm.kelas,
+      itemData: _vm.itemDataKlaim2,
+      itemDataStat: _vm.itemDataStatKlaim2,
+      status: "2",
+      isSimple: true
+    }
+  }) : _vm._e(), _vm._v(" "), _vm.status == "3" ? _c("table-data", {
+    attrs: {
+      title: "Bantuan Solidaritas Jalinan Ditolak",
+      kelas: _vm.kelas,
+      itemData: _vm.itemDataKlaim3,
+      itemDataStat: _vm.itemDataStatKlaim3,
+      status: "3",
+      isSimple: true
+    }
+  }) : _vm._e(), _vm._v(" "), _vm.status == "4" ? _c("table-data", {
+    attrs: {
+      title: "Bantuan Solidaritas Jalinan Disetujui",
+      kelas: _vm.kelas,
+      itemData: _vm.itemDataKlaim4,
+      itemDataStat: _vm.itemDataStatKlaim4,
+      status: "4",
+      isSimple: true
+    }
+  }) : _vm._e(), _vm._v(" "), _vm.status == "5" ? _c("table-data", {
+    attrs: {
+      title: "Bantuan Solidaritas Jalinan Dicairkan",
+      kelas: _vm.kelas,
+      itemData: _vm.itemDataKlaim5,
+      itemDataStat: _vm.itemDataStatKlaim5,
+      status: "5",
+      isSimple: true
+    }
+  }) : _vm._e(), _vm._v(" "), _vm.status == "6" ? _c("table-data", {
+    attrs: {
+      title: "Bantuan Solidaritas Jalinan Selesai",
+      kelas: _vm.kelas,
+      itemData: _vm.itemDataKlaim6,
+      itemDataStat: _vm.itemDataStatKlaim6,
+      status: "6",
+      isSimple: true
+    }
+  }) : _vm._e()], 1) : _vm._e()], 1) : _vm._e()], 1)])])])], 1);
+};
+var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/jalinanLaporan/penyebab.vue":
+/*!***************************************************************!*\
+  !*** ./resources/assets/js/views/jalinanLaporan/penyebab.vue ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _penyebab_vue_vue_type_template_id_f127a6f4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./penyebab.vue?vue&type=template&id=f127a6f4& */ "./resources/assets/js/views/jalinanLaporan/penyebab.vue?vue&type=template&id=f127a6f4&");
+/* harmony import */ var _penyebab_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./penyebab.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/jalinanLaporan/penyebab.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _penyebab_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _penyebab_vue_vue_type_template_id_f127a6f4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _penyebab_vue_vue_type_template_id_f127a6f4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/views/jalinanLaporan/penyebab.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/jalinanLaporan/penyebab.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/assets/js/views/jalinanLaporan/penyebab.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_penyebab_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./penyebab.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/jalinanLaporan/penyebab.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_penyebab_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/jalinanLaporan/penyebab.vue?vue&type=template&id=f127a6f4&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/assets/js/views/jalinanLaporan/penyebab.vue?vue&type=template&id=f127a6f4& ***!
+  \**********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_penyebab_vue_vue_type_template_id_f127a6f4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../../node_modules/vue-loader/lib??vue-loader-options!./penyebab.vue?vue&type=template&id=f127a6f4& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/jalinanLaporan/penyebab.vue?vue&type=template&id=f127a6f4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_penyebab_vue_vue_type_template_id_f127a6f4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_penyebab_vue_vue_type_template_id_f127a6f4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
 
 
 /***/ })

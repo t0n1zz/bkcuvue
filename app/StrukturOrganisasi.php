@@ -20,10 +20,11 @@ class StrukturOrganisasi extends Model
 
     public function aktivis_atasan()
     {
-        return $this->belongsTo('App\Aktivis', 'id_aktivis_atasan', 'id')->select('id', 'name');
+        return $this->belongsTo('App\Aktivis', 'id_aktivis_atasan', 'id')->select('id', 'name', 'nim_cu', 'gambar_ttd');
     }
 
-    public function bidang(){
-        return $this->belongsTo('App\Bidang', 'id_bidang', 'id')->select('id', 'name','level');
+    public function bidang()
+    {
+        return $this->belongsTo('App\Bidang', 'id_bidang', 'id')->select('id', 'name', 'level');
     }
 }

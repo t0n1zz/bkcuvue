@@ -1144,8 +1144,9 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::post('/presensi/updateQR/{id}', 'PresensiController@updateQR');
         Route::post('/presensi/updateCuti/{id}', 'PresensiController@updateCuti');
         Route::post('/presensi/verifikasiCuti/{id}', 'PresensiController@verifikasiCuti');
+        Route::get('/presensi/edit/{tipe}/{id}', 'PresensiController@edit');
         Route::post('/presensi/storePelanggaranSeragam', 'PresensiController@storePelanggaranSeragam');
-        Route::post('/presensi/storeIzin','PresensiController@storeIzin');
+        Route::post('/presensi/storeIzin', 'PresensiController@storeIzin');
         Route::post('/presensi/updateAlasan/{tipe}', 'PresensiController@updateAlasan');
         Route::post('/presensi/updateIzin/{id}', 'PresensiController@updateIzin');
         Route::post('/presensi/storePresensi/{lat}/{lon}', 'PresensiController@storePresensi');
@@ -1159,10 +1160,32 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::post('/presensi/storeKuliah/{id_cu}/{id_aktivis}/{id_user}/{tanggal}/{tipe}', 'PresensiController@storeKuliah');
         Route::delete('/presensi/{id}/{tipe}', 'PresensiController@destroy');
         Route::post('/downloadLaporanPresensi', 'PresensiController@downloadLaporan');
+        Route::post('/downloadTemplate', 'PresensiController@downloadTemplate');
+        Route::post('/downloadSkCuti', 'PresensiController@downloadSkCuti');
+        Route::post('/downloadSuratPengajuanCuti', 'PresensiController@downloadSuratPengajuanCuti');
 
         //struktur organisasi
         Route::get('/struktur/indexAktivis/{id_cu}', 'StrukturOrganisasiController@index');
         Route::post('/struktur/store/{id_cu}', 'StrukturOrganisasiController@store');
         Route::get('/struktur/index/{id_cu}', 'StrukturOrganisasiController@indexStruktur');
+
+        // tunjangan
+        Route::post('/tunjangan/store', 'TunjanganController@store');
+        Route::get('/tunjangan/edit/{id}', 'TunjanganController@edit');
+        Route::get('/tunjangan/detail/{id}', 'TunjanganController@show');
+        Route::get('/tunjangan/create', 'TunjanganController@create');
+        Route::post('/tunjangan/update/{id}', 'TunjanganController@update');
+        Route::get('/tunjangan/index/{id_cu}/{jenis}', 'TunjanganController@index');
+        Route::delete('/tunjangan/{id}', 'TunjanganController@destroy');
+        Route::post('/downloadSkTunjangan', 'TunjanganController@downloadSK');
+        Route::post('/downloadSuratPengajuanTunjangan', 'TunjanganController@downloadFormPengajuan');
+        Route::post('/tunjangan/verifikasiTunjangan/{id_user}/{id}', 'TunjanganController@verifikasiTunjangan');
+
+        //libur
+        Route::post('/hariLibur/store', 'HariLiburController@store');
+        Route::get('/hariLibur/index', 'HariLiburController@index');
+        Route::post('/hariLiburUpload', 'HariLiburController@upload');
+        Route::post('/hariLibur/update/{id}', 'HariLiburController@update');
+        Route::delete('/hariLibur/{id}', 'HariLiburController@destroy');
     });
 });

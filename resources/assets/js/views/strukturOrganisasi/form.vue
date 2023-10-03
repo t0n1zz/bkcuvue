@@ -18,7 +18,7 @@
       class="division-card"
     >
       <div class="division-header">
-        <h4>BIDANG {{ division.divisi.name }}</h4>
+        <h4>{{ division.divisi.name }}</h4>
         <button @click="removeDivision(divisionIndex)" class="close-button">
           &times;
         </button>
@@ -108,11 +108,17 @@
     </ul>
 
     <button
-      @click="saveOrganization"
-      class="btn btn-primary full-width-button center-button"
-    >
-      <i class="fas fa-save"></i> Simpan
-    </button>
+        @click="saveOrganization"
+        class="btn btn-primary full-width-button center-button"
+      >
+        <i class="fas fa-save"></i> Simpan
+      </button>
+    <button
+        @click="back"
+        class="btn btn-light full-width-button center-button" style="margin-top: 5px;"
+      >
+        <i class="fas fa-back"></i> Kembali
+      </button>
 
     <app-modal
       :show="modalShow"
@@ -223,12 +229,13 @@ export default {
       this.divisions[divisionIndex].staff.push({ staf: "" });
     },
     removeStaff (divisionIndex, staffIndex) {
-      this.deleted.push({
-        id_user_atasan: this.divisions[divisionIndex].manager.id,
-        id_bidang: this.divisions[divisionIndex].divisi.id,
-        id_user: this.divisions[divisionIndex].staff[staffIndex].staf.id
-      })
-
+      if (this.divisions[divisionIndex].staff[staffIndex].staf.id) { 
+        this.deleted.push({
+          id_user_atasan: this.divisions[divisionIndex].manager.id,
+          id_bidang: this.divisions[divisionIndex].divisi.id,
+          id_user: this.divisions[divisionIndex].staff[staffIndex].staf.id
+        })
+      }
       this.divisions[divisionIndex].staff.splice(staffIndex, 1);
     },
 
@@ -280,8 +287,12 @@ export default {
       this.modalShow = false;
     },
 
+    back () {
+      this.$router.go(-1);
+    },
+
     modalConfirmOk() {
-        this.$router.push('/struktur');
+        this.$router.push('/struktur/' + this.currentUser.id_cu);
     },
   },
 

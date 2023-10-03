@@ -20,7 +20,9 @@ class OffBergilirImport implements ToModel, WithHeadingRow, WithBatchInserts, Wi
         $id_user = $row['id_user'];
         $id_cu = $row['id_cu'];
         $id_aktivis = $row['id_aktivis'];
-        PresensiOffBergilir::create(['tanggal' => $tgl, 'id_user' => $id_user, 'id_cu' => $id_cu, 'id_aktivis' => $id_aktivis]);
+        if ($row['status'] == 1) {
+            PresensiOffBergilir::create(['tanggal' => $tgl, 'id_user' => $id_user, 'id_cu' => $id_cu, 'id_aktivis' => $id_aktivis]);
+        }
     }
 
 

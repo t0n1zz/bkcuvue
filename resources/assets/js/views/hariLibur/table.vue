@@ -1,0 +1,298 @@
+<template>
+	<div>
+
+
+		<!-- main panel -->
+		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query"
+			:itemDataStat="itemDataStat" @fetch="fetch" :isNoKolom="true" :isNoExcel="true">
+
+			<!-- button desktop -->
+
+			<template slot="button-desktop">
+
+				<!-- tambah -->
+				<button @click="modalOpen('create')" class="btn btn-light mb-1"
+					v-if="currentUser.can && currentUser.can['create_qr']">
+					<i class="icon-plus3"></i> Tambah
+				</button>
+
+				<!-- hapus -->
+					<button @click.prevent="modalOpen('edit')" class="btn btn-light mb-1"
+						:disabled="!selectedItem.id || selectedItem.status == 'tidak aktif'"
+						v-if="currentUser.can">
+						<i class="icon-pencil3"></i> Ubah
+					</button>
+
+				<!-- hapus -->
+				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light mb-1"
+					:disabled="!selectedItem.id || selectedItem.status == 'tidak aktif'"
+					v-if="currentUser.can">
+					<i class="icon-bin2"></i> Hapus
+				</button>
+			</template>
+
+
+
+			<!-- button mobile -->
+			<template slot="button-mobile">
+
+				<!-- tambah -->
+					<button @click="modalOpen()" class="btn btn-light btn-block mb-1"
+						v-if="currentUser.can && currentUser.can['create_qr']">
+						<i class="icon-plus3"></i> Tambah
+					</button>
+
+					<!-- detail-->
+					<button @click.prevent="ubahStatus()" class="btn btn-light  btn-block btn-icon mb-1"
+						v-if="currentUser.can && currentUser.can['update_qr']"
+						:disabled="!selectedItem.id || selectedItem.status == 'tidak aktif'">
+						<i class="icon-x mr-2"></i> Non-Aktifkan
+					</button>
+
+					<!-- hapus -->
+					<button @click.prevent="tampilkan()" class="btn btn-light  btn-block  mb-1"
+						:disabled="!selectedItem.id || selectedItem.status == 'tidak aktif'"
+						v-if="currentUser.can && currentUser.can['index_qr']">
+						<i class="icon-bin2"></i> Tampilkan
+					</button>
+
+			</template>
+
+			<!-- item desktop -->
+			<template slot="item-desktop" slot-scope="props">
+				<tr :class="{ 'bg-info': selectedItem.id == props.item.id }" @click="selectedRow(props.item)"
+					class="text-nowrap">
+					<td v-if="!columnData[0].hide">
+						{{ props.index + 1 + (+itemData.current_page - 1) * +itemData.per_page + '.' }}
+					</td>
+					<td v-if="!columnData[1].hide">
+						<check-value :value="props.item.tanggal"></check-value>
+					</td>
+					<td v-if="!columnData[2].hide">
+						<check-value :value="props.item.name"></check-value>
+					</td>
+					<td v-if="!columnData[3].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[4].hide">
+						<span v-if="props.item.created_at !== props.item.updated_at"
+							v-html="$options.filters.dateTime(props.item.updated_at)"></span>
+						<span v-else>-</span>
+					</td>
+				</tr>
+			</template>
+
+		</data-viewer>
+
+		<!-- modal -->
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :size="modalSize"
+			:color="modalColor" @batal="modalTutup" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup"
+			@failOk="modalTutup" @backgroundClick="modalBackgroundClick">
+			<template slot="modal-title">
+					{{ modalTitle}}
+				</template>
+				<template slot="modal-body1">
+					<form-libur @tutup="modalTutup" :data="selectedItem" :mode="mode"></form-libur>
+				</template>
+		</app-modal>
+
+
+
+	</div>
+</template>
+
+<script>
+import { mapGetters } from 'vuex';
+import DataViewer from '../../components/dataviewer2.vue';
+import appModal from '../../components/modal';
+import checkValue from '../../components/checkValue.vue';
+import formLibur from "./formLibur.vue";
+
+export default {
+	components: {
+		DataViewer,
+		appModal,
+		checkValue,
+		formLibur
+	},
+	props: ['title', 'kelas'],
+	data () {
+		return {
+			selectedItem: [],
+			query: {
+				order_column: "tanggal",
+				order_direction: "asc",
+				filter_match: "and",
+				limit: 10,
+				page: 1,
+			},
+			tabName: 'info',
+			columnData: [
+				{
+					title: 'No.',
+					name: 'No.',
+				},
+
+				{
+					title: 'Tanggal',
+					name: 'tanggal',
+					sort: true,
+					hide: false,
+					tipe: 'string',
+					filter: true,
+					filterDefault: true,
+				},
+				{
+					title: 'Nama',
+					name: 'name',
+					sort: false,
+					hide: false,
+					tipe: "string",
+					filter: true,
+				},
+
+				{
+					title: 'Tgl. / Waktu Buat',
+					name: 'created_at',
+					tipe: 'datetime',
+					sort: true,
+					hide: false,
+					filter: true,
+				},
+
+				{
+					title: 'Tgl. / Waktu Ubah',
+					name: 'updated_at',
+					tipe: 'datetime',
+					sort: true,
+					hide: false,
+					filter: true,
+				}
+			],
+			state: '',
+			modalShow: false,
+			modalState: '',
+			modalTitle: '',
+			modalContent: '',
+			modalButton: '',
+			// kelas: 'absen',
+			modalSize: '',
+			modalColor: '',
+			mode:'create'
+		}
+	},
+	created () {
+		this.fetch(this.query);
+	},
+
+	watch: {
+		// check route changes
+		'$route' (to, from) {
+			this.fetch(this.query);
+		},
+		// when updating data
+		updateStat (value) {
+			this.modalState = value;
+			this.modalButton = 'Ok';
+			this.selectedItem = [];
+
+			if (value == "success") {
+				this.modalTitle = this.UpdateMessage;
+				this.modalContent = this.UpdateMessage;
+				this.fetch();
+			} else if (value == "fail") {
+				this.modalContent = this.updateMessage;
+			} else {
+				this.modalContent = '';
+			}
+		},
+	},
+
+	methods: {
+		fetch (params) {
+			this.$store.dispatch('hariLibur/index', params);
+		},
+
+		selectedRow (item) {
+			this.selectedItem = item;
+		},
+
+		ubahStatus () {
+			this.$store.dispatch('presensi/aktifQR', [this.selectedItem.id, this.currentUser.id, 'tidak aktif']);
+		},
+
+		goTo (id, tipe) {
+			if (tipe == 'edit') {
+				this.$router.push({ name: this.kelas + 'Edit', params: { id: id } });
+			} else {
+				this.$router.push({ name: this.kelas + 'Detail', params: { id: id } });
+			}
+		},
+
+		tampilkan () {
+			this.$router.push({ name: 'presensi', params: { id_qr: this.selectedItem.id } });
+		},
+
+		modalConfirmOpen (state, isMobile, itemMobile) {
+			this.modalShow = true;
+			this.modalState = 'confirm-tutup';
+			this.state = state;
+
+			if (isMobile) {
+				this.selectedItem = itemMobile;
+			}
+
+			if (state == 'hapus') {
+				this.modalTitle = 'Hapus Hari' +' ' + this.selectedItem.name + ' ?';
+				this.modalButton = 'Iya, Hapus';
+			}
+		},
+
+		modalOpen (mode) {
+			this.mode = mode
+			this.modalShow = true;
+			this.modalSize = '';
+			this.isDisableTable = true;
+			this.modalState = 'normal1';
+			this.modalColor = 'bg-primary';
+			if (mode == 'create') {
+				this.modalTitle = 'Tambah Hari Libur';
+			} else { 
+				this.modalTitle = 'Edit Hari Libur';
+			}
+			this.modalSize = 'modal-md';
+			this.formModalMode = 'create';
+		},
+
+		modalTutup () {
+			this.modalShow = false;
+			// this.$store.dispatch(this.kelas + '/resetUpdateStat');
+		},
+
+		modalConfirmOk () {
+			if (this.state == 'hapus') {
+				this.$store.dispatch('hariLibur/destroy', this.selectedItem.id);
+			}
+		},
+		modalBackgroundClick () {
+			// if (this.modalState === 'success') {
+			// 	this.modalTutup;
+			// } else if (this.modalState === 'loading') {
+			// 	// do nothing
+			// } else {
+			// 	this.modalShow = false
+			// }
+		},
+	},
+
+	computed: {
+		...mapGetters('auth', {
+			currentUser: 'currentUser'
+		}),
+		...mapGetters('hariLibur', {
+			itemData: 'dataS',
+			itemDataStat: 'dataStatS',
+			updateMessage: 'update',
+			updateStat: 'updateStat',
+		}),
+	}
+}
+</script>

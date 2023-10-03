@@ -204,8 +204,12 @@ class UserController extends Controller
 		'update_qr',
 		'destroy_qr',
 		'personalia_akses',
-		'index_verifikasi',
-		'verifikasi_personalia'
+		'is_personalia',
+		'index_tunjangan',
+		'index_presensi',
+		'index_struktur',
+		'create_struktur',
+		'update_struktur'
 
 		// 'index_coa',
 		// 'create_coa',

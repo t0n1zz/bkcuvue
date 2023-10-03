@@ -8,13 +8,6 @@
             <div class="content-wrapper">
                 <div class="content">
 
-                    <!-- message -->
-                    <message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
-                    </message>
-
-                    <!-- select data -->
-                    <!-- <select-data :kelas="kelas" :path="selectCuPath" :isPus="false"></select-data> -->
-
                     <!-- table data -->
                      <template>
             					<div class="card">

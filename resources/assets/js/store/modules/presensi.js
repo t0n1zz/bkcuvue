@@ -177,6 +177,21 @@ export const presensi = {
         });
     },
 
+    edit({ commit },[tipe,id]) {
+      commit("setDataStat", "loading");
+
+      PRESENSIAPI
+        .edit(tipe,id)
+        .then(function (response) {
+          commit("setQRForm", response.data.form);
+          commit("setDataStat", "success");
+        })
+        .catch((error) => {
+          commit("setData", error.response);
+          commit("setDataStat", "fail");
+        });
+    },
+
     updateQR({ commit }, [id, form]) {
       commit("setQrStat", "loading");
       PRESENSIAPI.updateQR(id, form)

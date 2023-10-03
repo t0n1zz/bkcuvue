@@ -1,698 +1,25 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[160],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/countWidget.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/countWidget.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['title', 'icon', 'color', 'count']
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/jalinanKlaim/form.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/jalinanKlaim/form.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/presensi/cutiVerifikasi.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/presensi/cutiVerifikasi.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/pageHeader.vue */ "./resources/assets/js/components/pageHeader.vue");
-/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
-/* harmony import */ var _components_message_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/message.vue */ "./resources/assets/js/components/message.vue");
-/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
-/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
-/* harmony import */ var _components_infoIcon_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/infoIcon.vue */ "./resources/assets/js/components/infoIcon.vue");
-/* harmony import */ var _components_wajibBadge_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/wajibBadge.vue */ "./resources/assets/js/components/wajibBadge.vue");
-/* harmony import */ var _components_countWidget_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/countWidget.vue */ "./resources/assets/js/components/countWidget.vue");
-/* harmony import */ var _components_formButton_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/formButton.vue */ "./resources/assets/js/components/formButton.vue");
-/* harmony import */ var _components_formInfo_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/formInfo.vue */ "./resources/assets/js/components/formInfo.vue");
-/* harmony import */ var _anggotaCu_cariData__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../anggotaCu/cariData */ "./resources/assets/js/views/anggotaCu/cariData.vue");
-/* harmony import */ var _components_identitas_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../components/identitas.vue */ "./resources/assets/js/components/identitas.vue");
-/* harmony import */ var _components_datatable_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../components/datatable.vue */ "./resources/assets/js/components/datatable.vue");
-/* harmony import */ var _components_ImageUpload_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../components/ImageUpload.vue */ "./resources/assets/js/components/ImageUpload.vue");
-/* harmony import */ var _helpers_form__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../helpers/form */ "./resources/assets/js/helpers/form.js");
-/* harmony import */ var _components_datePicker_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../components/datePicker.vue */ "./resources/assets/js/components/datePicker.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* harmony import */ var _components_dataviewer2_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/dataviewer2.vue */ "./resources/assets/js/components/dataviewer2.vue");
+/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
+/* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
+/* harmony import */ var _formQR_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./formQR.vue */ "./resources/assets/js/views/presensi/formQR.vue");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
@@ -700,3587 +27,686 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    pageHeader: _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    appModal: _components_modal__WEBPACK_IMPORTED_MODULE_3__["default"],
-    message: _components_message_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    Cleave: vue_cleave_component__WEBPACK_IMPORTED_MODULE_5___default.a,
-    checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
-    infoIcon: _components_infoIcon_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
-    wajibBadge: _components_wajibBadge_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
-    countWidget: _components_countWidget_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
-    formButton: _components_formButton_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
-    formInfo: _components_formInfo_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
-    cariData: _anggotaCu_cariData__WEBPACK_IMPORTED_MODULE_12__["default"],
-    identitas: _components_identitas_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
-    dataTable: _components_datatable_vue__WEBPACK_IMPORTED_MODULE_14__["default"],
-    appImageUpload: _components_ImageUpload_vue__WEBPACK_IMPORTED_MODULE_15__["default"],
-    DatePicker: _components_datePicker_vue__WEBPACK_IMPORTED_MODULE_17__["default"]
+    DataViewer: _components_dataviewer2_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    appModal: _components_modal__WEBPACK_IMPORTED_MODULE_2__["default"],
+    checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    formAbsen: _formQR_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
+  props: ['title', 'kelas'],
   data: function data() {
     return {
-      title: 'Tambah Bantuan Solidaritas Jalinan',
-      titleDesc: 'Menambah bantuan solidaritas Jalinan',
-      titleIcon: 'icon-plus3',
-      level2Title: 'Klaim Jalinan',
-      kelas: 'jalinanKlaim',
-      isEdit: false,
-      nik: '',
-      statusNIK: 'tidak',
-      anggota_cu_cu_id: '',
-      cu_id: '',
-      tipe: '',
-      tabName: 'ktp',
-      cleaveOption: {
-        date: {
-          date: true,
-          datePattern: ['Y', 'm', 'd'],
-          delimiter: '-'
-        },
-        number16: {
-          numeral: true,
-          numeralIntegerScale: 16,
-          numeralDecimalScale: 0,
-          stripLeadingZeroes: false,
-          delimiter: ''
-        },
-        number12: {
-          numeral: true,
-          numeralIntegerScale: 12,
-          numeralDecimalScale: 0,
-          stripLeadingZeroes: false,
-          delimiter: ''
-        },
-        number3: {
-          numeral: true,
-          numeralIntegerScale: 3,
-          numeralDecimalScale: 0,
-          stripLeadingZeroes: false
-        },
-        numeric: {
-          numeral: true,
-          numeralThousandsGroupStyle: 'thousand',
-          numeralDecimalScale: 2,
-          numeralDecimalMark: ',',
-          delimiter: '.'
-        }
+      selectedItem: [],
+      query: {
+        order_column: "tanggal",
+        order_direction: "desc",
+        filter_match: "and",
+        limit: 10,
+        page: 1
       },
-      selectedItem: {},
       columnData: [{
-        title: 'No.'
+        title: 'No.',
+        name: 'No.'
       }, {
-        title: 'No. Rek'
+        title: 'Nama',
+        name: 'aktivis.name',
+        sort: true,
+        hide: false,
+        tipe: 'string',
+        filter: true,
+        filterDefault: true
       }, {
-        title: 'Nama'
+        title: 'Tanggal Pengajuan',
+        name: 'tanggal',
+        sort: true,
+        hide: false,
+        tipe: 'string',
+        filter: true,
+        filterDefault: true
       }, {
-        title: 'Jenis'
+        title: 'Jenis',
+        name: 'jenis',
+        sort: true,
+        hide: false,
+        tipe: 'string',
+        filter: true,
+        filterDefault: true
       }, {
-        title: 'Saldo Awal'
+        title: 'Alasan',
+        name: 'alasan',
+        sort: false,
+        hide: false,
+        tipe: "string",
+        filterDefault: true
       }, {
-        title: 'Lama Pinjaman (Bulan)'
+        title: 'Tanggal Mulai',
+        name: 'tanggal_mulai',
+        sort: true,
+        hide: false,
+        tipe: 'string',
+        filter: true,
+        filterDefault: true
       }, {
-        title: 'Lama Sisa Pinjaman (Bulan)'
+        title: 'Tanggal Selesai',
+        name: 'tanggal_selesai',
+        sort: true,
+        hide: false,
+        tipe: 'string',
+        filter: true,
+        filterDefault: true
       }, {
-        title: 'Tgl. Buat'
+        title: 'Lama (Hari)',
+        name: 'lama',
+        sort: true,
+        hide: false,
+        tipe: 'string',
+        filter: true,
+        filterDefault: true
       }, {
-        title: 'Usia Saat Membuka'
+        title: 'Verifikasi Personalia',
+        name: 'tanggal_acc1',
+        sort: true,
+        hide: false,
+        tipe: 'string',
+        filter: true,
+        filterDefault: true
+      }, {
+        title: 'Tgl. / Waktu Buat',
+        name: 'created_at',
+        tipe: 'datetime',
+        sort: true,
+        hide: false,
+        filter: true
+      }, {
+        title: 'Tgl. / Waktu Ubah',
+        name: 'updated_at',
+        tipe: 'datetime',
+        sort: true,
+        hide: false,
+        filter: true
       }],
-      selectedItemCu: '',
-      itemDataCu: [],
-      itemDataProduk: [],
-      itemDataCuStat: 'success',
+      form: {
+        status_verif: '',
+        alasan: ''
+      },
+      state: '',
       modalShow: false,
       modalState: '',
       modalTitle: '',
-      modalColor: '',
       modalContent: '',
-      submited: false
+      modalButton: '',
+      modalSize: '',
+      modalColor: '',
+      tahun: '',
+      bulan: '',
+      jenis: '',
+      alasan: '',
+      today: '',
+      tabName: 'keterlambatan'
     };
   },
   created: function created() {
-    if (this.currentUser.id_cu == 0) {
-      if (this.modelCuStat != 'success') {
-        this.$store.dispatch('cu/getHeader');
-      }
-    }
-
-    this.fetch();
+    this.fetch(this.query);
+    this.checkUser('index_verifikasi', this.$route.params.cu);
   },
   watch: {
     // check route changes
     '$route': function $route(to, from) {
-      this.fetch();
+      this.fetch(this.query);
     },
-    itemDataStat: function itemDataStat(value) {
-      if (value == "success") {
-        this.itemDataCu = [];
-        this.itemDataProduk = []; // cu
-
-        if (this.itemData) {
-          if (this.itemData.anggota_cu_cu) {
-            var valData;
-
-            var _iterator = _createForOfIteratorHelper(this.itemData.anggota_cu_cu),
-                _step;
-
-            try {
-              for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                valData = _step.value;
-                this.itemDataCu.push(valData);
-              }
-            } catch (err) {
-              _iterator.e(err);
-            } finally {
-              _iterator.f();
-            }
-          } // get form
-
-
-          this.fetchForm();
-        }
-      }
-    },
-    formStat: function formStat(value) {
-      if (value == 'success') {
-        if (this.$route.meta.mode == 'koreksi') {
-          if (this.form.status_klaim == 5 || this.form.status_klaim == 6) {
-            this.form.id_koreksi = this.form.id;
-            this.form.status_klaim = 7;
-            this.form.id = '';
-          } else {
-            this.form.status_klaim = 1;
-          }
-        }
-      }
-    },
+    // when updating data
     updateStat: function updateStat(value) {
-      this.modalShow = true;
+      this.selectedItem = [];
       this.modalState = value;
-      this.modalColor = '';
-
-      if (value === "success") {
-        this.modalTitle = this.updateResponse.message;
+      this.modalButton = 'Ok';
+      if (value == "success") {
+        this.modalTitle = this.updateMessage;
+        this.modalContent = '';
+        this.fetch();
+      } else if (value == "fail") {
+        this.modalContent = this.updateMessage;
       } else {
-        this.modalTitle = 'Oops terjadi kesalahan :(';
-        this.modalContent = this.updateResponse;
+        this.modalContent = '';
       }
     }
   },
   methods: {
-    fetch: function fetch() {
-      this.resetData();
-
-      if (this.$route.meta.mode == 'edit') {
-        this.title = 'Ubah Bantuan Solidaritas Jalinan';
-        this.titleDesc = 'Mengubah bantuan solidaritas Jalinan';
-        this.titleIcon = 'icon-pencil5';
-        this.cariData(this.$route.params.nik);
-      } else if (this.$route.meta.mode == 'koreksi') {
-        this.title = 'Koreksi Bantuan Solidaritas Jalinan';
-        this.titleDesc = 'Mengoreksi bantuan solidaritas Jalinan';
-        this.titleIcon = 'icon-pencil5';
-        this.cariData(this.$route.params.nik);
-      } else {
-        this.title = 'Tambah Bantuan Solidaritas Jalinan';
-        this.titleDesc = 'Menambah Bantuan Solidaritas Jalinan';
-        this.titleIcon = 'icon-plus3';
-        this.isEdit = false;
-
-        if (this.$route.meta.mode == 'createNIK') {
-          this.cariData(this.$route.params.nik);
-          this.isEdit = true;
-        } else if (this.$route.meta.mode == 'createId') {
-          this.cariDataId(this.$route.params.id);
-          this.isEdit = true;
+    checkUser: function checkUser(permission, id_cu) {
+      if (this.currentUser) {
+        if (!this.currentUser.can || !this.currentUser.can[permission]) {
+          this.$router.push('/notFound');
+        }
+        if (!id_cu || this.currentUser.id_cu) {
+          if (this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu) {
+            this.$router.push('/notFound');
+          }
         }
       }
     },
-    fetchForm: function fetchForm() {
-      if (this.$route.meta.mode == 'edit' || this.$route.meta.mode == 'koreksi') {
-        this.$store.dispatch(this.kelas + '/edit', [this.$route.params.nik, this.$route.params.cu, this.$route.params.tipe]);
-        this.isEdit = true;
-        this.anggota_cu_cu_id = this.$route.params.cu;
-        this.tipe = this.$route.params.tipe;
-      }
-    },
-    cariData: function cariData(nik) {
-      this.nik = nik;
-      this.$store.dispatch(this.kelas + '/cariData', nik);
-    },
-    cariDataId: function cariDataId(id) {
-      this.$store.dispatch(this.kelas + '/cariDataId', id);
-    },
-    changeStatusNIK: function changeStatusNIK(value) {
-      this.nik == '';
-      this.statusNIK = value;
-      this.$store.dispatch(this.kelas + '/resetData');
-    },
-    nikNew: function nikNew(value) {
-      this.nik = value;
-      this.$store.dispatch(this.kelas + '/cariData', value);
+    fetch: function fetch(p) {
+      this.tahun = this.$route.params.tahun;
+      this.bulan = this.$route.params.bulan;
+      this.$store.dispatch('presensi/indexCuti', [p, this.currentUser.id_cu, this.tahun, this.bulan]);
     },
     selectedRow: function selectedRow(item) {
       this.selectedItem = item;
     },
-    changeTab: function changeTab(value) {
-      this.tabName = value;
+    query1: function query1() {
+      this.query = {
+        order_column: "tanggal_mulai",
+        order_direction: "desc",
+        filter_match: "and",
+        limit: 10,
+        page: 1
+      };
     },
-    changeTipe: function changeTipe(value) {
-      if (value == 'cacat') {
-        this.form.tunas_diajukan = 0;
-      }
-
-      this.$store.dispatch(this.kelas + '/resetForm');
+    modalConfirmOpen: function modalConfirmOpen(state) {
+      this.form.status_verif = state;
+      this.modalShow = true;
+      this.modalState = 'confirm-tutup';
+      this.state = state;
+      this.modalTitle = 'Setujui Cuti?';
     },
-    changeCU: function changeCU(value) {
-      this.$store.dispatch('anggotaCu/resetDataProduk');
-      this.$store.dispatch(this.kelas + '/resetForm');
-    },
-    cekData: function cekData() {
-      var _nik = '';
-
-      if (this.$route.meta.mode === 'edit') {
-        _nik = this.$route.params.nik;
-      } else if (this.$route.meta.mode === 'createId') {
-        _nik = this.itemData.nik;
-      } else {
-        _nik = this.nik;
-      }
-
-      var _cu = '';
-      _cu = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.find(this.itemDataCu, {
-        'id': parseInt(this.anggota_cu_cu_id, 10)
-      });
-      this.cu_id = _cu.cu_id;
-      this.$store.dispatch(this.kelas + '/edit', [_nik, _cu.id, this.tipe]);
-      this.$store.dispatch('anggotaCu/indexProduk', [this.itemData.id, _cu.cu_id]); // this.$store.dispatch(this.kelas + '/getKlaimLama',[_nik,_cu.id]);
-    },
-    resetData: function resetData() {
-      this.itemDataCu = [];
-      this.itemDataProduk = [];
-      this.$store.commit(this.kelas + '/setData2', {});
-      this.$store.commit(this.kelas + '/setDataStat2', '');
-      this.$store.dispatch('anggotaCu/resetDataProduk');
-      this.$store.dispatch(this.kelas + '/resetForm');
-    },
-    classCu: function classCu() {
-      if (this.currentUser.id_cu == 0) {
-        return 'col-8';
-      } else {
-        return 'col-12';
+    modalOpen: function modalOpen(state) {
+      this.form.status_verif = state;
+      if (state == 'tolak') {
+        this.modalTitle = 'Penolakan Cuti';
+        this.alasan = this.selectedItem.alasan;
+        this.jenis = this.selectedItem.jenis;
+        this.modalShow = true;
+        this.modalSize = '';
+        this.isDisableTable = true;
+        this.modalState = 'normal1';
+        this.modalColor = 'bg-primary';
+        this.modalSize = 'modal-md';
+        this.formModalMode = 'create';
       }
     },
-    save: function save() {
-      var _this = this;
-
-      this.form.anggota_cu_id = this.itemData.id;
-      this.form.anggota_cu_cu_id = this.anggota_cu_cu_id;
-      this.form.tipe = this.tipe;
-      this.form.cu_id = this.cu_id;
-
-      if (this.tipe == 'CACAT') {
-        this.form.tunas_diajukan = 0;
-      }
-
-      var formData = Object(_helpers_form__WEBPACK_IMPORTED_MODULE_16__["toMulipartedForm"])(this.form, this.$route.meta.mode);
-      this.$validator.validateAll('form').then(function (result) {
-        if (result) {
-          if (_this.form.id) {
-            _this.$store.dispatch(_this.kelas + '/update', [_this.form.id, formData]);
-          } else {
-            _this.$store.dispatch(_this.kelas + '/store', formData);
-          }
-
-          _this.submited = false;
-        } else {
-          window.scrollTo(0, 0);
-          _this.submited = true;
-        }
-      });
-    },
-    back: function back() {
-      if (this.currentUser.id_cu == 0) {
-        this.$router.push({
-          name: this.kelas + 'Cu',
-          params: {
-            cu: 'semua',
-            tp: 'semua'
-          }
-        });
-      } else {
-        this.$router.push({
-          name: this.kelas + 'Cu',
-          params: {
-            cu: this.currentUser.id_cu,
-            tp: 'semua'
-          }
-        });
-      }
-    },
-    modalOpen: function modalOpen(state, isMobile, itemMobile) {},
-    modalConfirmOk: function modalConfirmOk() {},
     modalTutup: function modalTutup() {
-      if (this.updateStat === 'success') {
-        this.back();
-      }
-
       this.modalShow = false;
+    },
+    modalConfirmOk: function modalConfirmOk() {
+      this.verifikasi();
     },
     modalBackgroundClick: function modalBackgroundClick() {
       if (this.modalState === 'success') {
         this.modalTutup;
-      } else if (this.modalState === 'loading') {// do nothing
+      } else if (this.modalState === 'loading') {
+        // do nothing
       } else {
         this.modalShow = false;
       }
+    },
+    verifikasi: function verifikasi() {
+      this.$store.dispatch('presensi/verifikasiCuti', [this.form, this.selectedItem.id]);
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
     currentUser: 'currentUser'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('jalinanKlaim', {
-    itemData: 'data2',
-    itemDataStat: 'dataStat2',
-    message: 'message',
-    messageStat: 'messageStat',
-    form: 'data',
-    formStat: 'dataStat',
-    rules: 'rules',
-    options: 'options',
-    updateResponse: 'update',
-    updateStat: 'updateStat'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('anggotaCu', {
-    dataProduk: 'dataProduk',
-    dataProdukStat: 'dataProdukStat'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('cu', {
-    modelCu: 'headerDataS',
-    modelCuStat: 'headerDataStatS'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('provinces', {
-    modelProvinces: 'dataS',
-    modelProvincesStat: 'dataStatS'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('regencies', {
-    modelRegencies: 'dataS',
-    modelRegenciesStat: 'dataStatS'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('districts', {
-    modelDistricts: 'dataS',
-    modelDistrictsStat: 'dataStatS'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('villages', {
-    modelVillages: 'dataS',
-    modelVillagesStat: 'dataStatS'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('presensi', {
+    itemData: 'dataS',
+    itemDataStat: 'dataStatS',
+    updateMessage: 'updateMessage',
+    updateStat: 'updateStat',
+    pesan: 'message'
   }))
 });
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/countWidget.vue?vue&type=template&id=b9608b28&":
-/*!*********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/countWidget.vue?vue&type=template&id=b9608b28& ***!
-  \*********************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "card card-body has-bg-image", class: _vm.color },
-    [
-      _c("div", { staticClass: "media" }, [
-        _c("div", { staticClass: "media-body" }, [
-          _vm.count
-            ? _c("h3", { staticClass: "mb-0" }, [_vm._v(_vm._s(_vm.count))])
-            : _vm._e(),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-uppercase font-size-xs" }, [
-            _vm._v(_vm._s(_vm.title))
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "ml-3 align-self-center" }, [
-          _c("i", { staticClass: "icon-3x opacity-75", class: _vm.icon })
-        ])
-      ])
-    ]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/jalinanKlaim/form.vue?vue&type=template&id=a5ee5ada&":
-/*!**********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/jalinanKlaim/form.vue?vue&type=template&id=a5ee5ada& ***!
-  \**********************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("page-header", {
-        attrs: {
-          title: _vm.title,
-          titleDesc: _vm.titleDesc,
-          titleIcon: _vm.titleIcon,
-          level: 2,
-          level2Title: _vm.level2Title,
-          level2Route: _vm.kelas
-        },
-        on: {
-          level2Back: function($event) {
-            return _vm.back()
-          }
-        }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "page-content pt-0" }, [
-        _c("div", { staticClass: "content-wrapper" }, [
-          _c(
-            "div",
-            { staticClass: "content" },
-            [
-              _vm.errors.any("form") && _vm.submited
-                ? _c("message", {
-                    attrs: {
-                      title: "Oops, terjadi kesalahan",
-                      errorItem: _vm.errors.items
-                    }
-                  })
-                : _vm._e(),
-              _vm._v(" "),
-              !_vm.isEdit
-                ? _c("cari-data", {
-                    attrs: { itemDataStat: _vm.itemDataStat, isBack: true },
-                    on: {
-                      cariData: _vm.cariData,
-                      changeStatusNIK: _vm.changeStatusNIK,
-                      nikNew: _vm.nikNew,
-                      resetData: _vm.resetData,
-                      back: _vm.back
-                    }
-                  })
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.itemDataStat == "fail"
-                ? _c(
-                    "div",
-                    {
-                      staticClass:
-                        "alert bg-danger text-white alert-styled-left "
-                    },
-                    [
-                      _vm.currentUser.can["create_anggota_cu"]
-                        ? _c("span", { staticClass: "font-weight-semibold" }, [
-                            _vm._v(
-                              "No. KTP anggota CU tidak terdaftar di SIMO, silahkan menambahkan terlebih dahulu data anggota dengan menekan tombol tambah anggota CU dibawah.\n\t\t\t\t\t"
-                            )
-                          ])
-                        : _c("span", [
-                            _vm._v(
-                              "\n\t\t\t\t\t\tNo. KTP anggota CU tidak terdaftar di SIMO, silahkan meminta user yang memiliki akses untuk menambah anggota CU untuk menambahkan terlebih dahulu data anggota atau meminta akses untuk menambah anggota CU kepada user lain yang bisa mengelola data user.\n\t\t\t\t\t"
-                            )
-                          ])
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.itemDataStat == "fail" &&
-              _vm.currentUser.can["create_anggota_cu"]
-                ? _c(
-                    "router-link",
-                    {
-                      staticClass: "btn btn-light btn-lg btn-block",
-                      attrs: {
-                        type: "button",
-                        to: {
-                          name: "anggotaCuCreateJalinan",
-                          params: { nik: _vm.nik, statusNIK: _vm.statusNIK }
-                        }
-                      }
-                    },
-                    [
-                      _c("i", { staticClass: "icon-plus22" }),
-                      _vm._v(" Tambah Anggota CU\n\t\t\t\t")
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.itemDataStat == "success" && _vm.itemData
-                ? _c("div", [
-                    _c("div", { staticClass: "card" }, [
-                      _vm._m(0),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "card-body" },
-                        [
-                          _c("identitas", { attrs: { itemData: _vm.itemData } })
-                        ],
-                        1
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "form",
-                      {
-                        attrs: { "data-vv-scope": "form" },
-                        on: {
-                          submit: function($event) {
-                            $event.preventDefault()
-                            return _vm.save($event)
-                          }
-                        }
-                      },
-                      [
-                        _c("div", { staticClass: "card card-body" }, [
-                          _c("div", { staticClass: "row" }, [
-                            _c("div", { staticClass: "col-md-5 mb-2" }, [
-                              _c("div", { staticClass: "input-group" }, [
-                                _vm._m(1),
-                                _vm._v(" "),
-                                _c(
-                                  "select",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.anggota_cu_cu_id,
-                                        expression: "anggota_cu_cu_id"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    attrs: {
-                                      name: "anggota_cu_cu_id",
-                                      "data-width": "100%",
-                                      disabled:
-                                        _vm.itemData.anggota_cu_cu.length ==
-                                          0 || _vm.$route.meta.mode == "edit"
-                                    },
-                                    on: {
-                                      change: [
-                                        function($event) {
-                                          var $$selectedVal = Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function(o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function(o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                          _vm.anggota_cu_cu_id = $event.target
-                                            .multiple
-                                            ? $$selectedVal
-                                            : $$selectedVal[0]
-                                        },
-                                        function($event) {
-                                          return _vm.changeCU(
-                                            $event.target.value
-                                          )
-                                        }
-                                      ]
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "option",
-                                      { attrs: { disabled: "", value: "" } },
-                                      [
-                                        _vm.itemData === "loading"
-                                          ? _c("span", [
-                                              _vm._v("Mohon tunggu...")
-                                            ])
-                                          : _c("span", [
-                                              _vm._v(
-                                                "Silahkan pilih keanggotaan CU"
-                                              )
-                                            ])
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _vm._l(_vm.itemData.anggota_cu_cu, function(
-                                      anggota_cu_cu,
-                                      index
-                                    ) {
-                                      return _c(
-                                        "option",
-                                        {
-                                          key: index,
-                                          domProps: { value: anggota_cu_cu.id }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "CU " +
-                                              _vm._s(anggota_cu_cu.cu.name) +
-                                              " " +
-                                              _vm._s(
-                                                anggota_cu_cu.tp
-                                                  ? " | " +
-                                                      anggota_cu_cu.tp.name
-                                                  : ""
-                                              ) +
-                                              " | No. BA: " +
-                                              _vm._s(anggota_cu_cu.no_ba) +
-                                              " | Tanggal Jadi Anggota: "
-                                          ),
-                                          anggota_cu_cu.tanggal_masuk
-                                            ? _c("span", {
-                                                domProps: {
-                                                  innerHTML: _vm._s(
-                                                    _vm.$options.filters.date(
-                                                      anggota_cu_cu.tanggal_masuk
-                                                    )
-                                                  )
-                                                }
-                                              })
-                                            : _vm._e()
-                                        ]
-                                      )
-                                    })
-                                  ],
-                                  2
-                                )
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-5 mb-2" }, [
-                              _c("div", { staticClass: "input-group" }, [
-                                _vm._m(2),
-                                _vm._v(" "),
-                                _c(
-                                  "select",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.tipe,
-                                        expression: "tipe"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    attrs: { name: "tipe" },
-                                    on: {
-                                      change: [
-                                        function($event) {
-                                          var $$selectedVal = Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function(o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function(o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                          _vm.tipe = $event.target.multiple
-                                            ? $$selectedVal
-                                            : $$selectedVal[0]
-                                        },
-                                        function($event) {
-                                          return _vm.changeTipe(
-                                            $event.target.value
-                                          )
-                                        }
-                                      ]
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "option",
-                                      { attrs: { disabled: "", value: "" } },
-                                      [_vm._v("Silahkan pilih tipe")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "option",
-                                      { attrs: { value: "CACAT" } },
-                                      [_vm._v("Cacat")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "option",
-                                      { attrs: { value: "MENINGGAL" } },
-                                      [_vm._v("Meninggal")]
-                                    )
-                                  ]
-                                )
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-2" }, [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-light btn-block",
-                                  attrs: { type: "button" },
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      return _vm.cekData()
-                                    }
-                                  }
-                                },
-                                [_vm._v("Cek Data")]
-                              )
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _vm.formStat == ""
-                          ? _c(
-                              "div",
-                              { staticClass: "card card-body" },
-                              [
-                                _c("form-button", {
-                                  attrs: {
-                                    isSingleButton: true,
-                                    cancelState: "methods"
-                                  },
-                                  on: { cancelClick: _vm.back }
-                                })
-                              ],
-                              1
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        (_vm.$route.meta.mode == "create" ||
-                          _vm.$route.meta.mode == "createNIK") &&
-                        _vm.formStat == "success" &&
-                        _vm.form.id
-                          ? _c("div", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "alert bg-warning text-white alert-styled-left"
-                                },
-                                [
-                                  _c(
-                                    "span",
-                                    { staticClass: "font-weight-semibold" },
-                                    [
-                                      _vm._v(
-                                        "Anggota ini sudah mengajukan Bantuan Solidaritas Jalinan  "
-                                      ),
-                                      _c("b", [
-                                        _vm._v(
-                                          "pada tanggal " +
-                                            _vm._s(
-                                              _vm.$options.filters.date(
-                                                _vm.form.created_at
-                                              )
-                                            )
-                                        )
-                                      ]),
-                                      _vm._v(" dengan "),
-                                      _c("b", [
-                                        _vm._v(
-                                          "status " +
-                                            _vm._s(
-                                              _vm.$options.filters.statusJalinan(
-                                                _vm.form.status_klaim
-                                              )
-                                            )
-                                        )
-                                      ]),
-                                      _vm._v(
-                                        ", mohon periksa kembali.\n\t\t\t\t\t\t\t\t"
-                                      )
-                                    ]
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "card card-body" },
-                                [
-                                  _c("form-button", {
-                                    attrs: {
-                                      isSingleButton: true,
-                                      cancelState: "methods"
-                                    },
-                                    on: { cancelClick: _vm.back }
-                                  })
-                                ],
-                                1
-                              )
-                            ])
-                          : _c("div", [
-                              _vm.formStat == "success"
-                                ? _c(
-                                    "div",
-                                    [
-                                      _vm.dataProdukStat == "success"
-                                        ? _c(
-                                            "div",
-                                            { staticClass: "card" },
-                                            [
-                                              _vm._m(3),
-                                              _vm._v(" "),
-                                              _c("data-table", {
-                                                attrs: {
-                                                  items: _vm.dataProduk,
-                                                  columnData: _vm.columnData,
-                                                  itemDataStat:
-                                                    _vm.dataProdukStat
-                                                },
-                                                scopedSlots: _vm._u(
-                                                  [
-                                                    {
-                                                      key: "item-desktop",
-                                                      fn: function(props) {
-                                                        return [
-                                                          props.item
-                                                            ? _c(
-                                                                "tr",
-                                                                {
-                                                                  staticClass:
-                                                                    "text-nowrap",
-                                                                  class: {
-                                                                    "bg-info":
-                                                                      _vm
-                                                                        .selectedItem
-                                                                        .id ===
-                                                                      props.item
-                                                                        .id
-                                                                  },
-                                                                  on: {
-                                                                    click: function(
-                                                                      $event
-                                                                    ) {
-                                                                      return _vm.selectedRow(
-                                                                        props.item
-                                                                      )
-                                                                    }
-                                                                  }
-                                                                },
-                                                                [
-                                                                  _c("td", [
-                                                                    _vm._v(
-                                                                      _vm._s(
-                                                                        props.index +
-                                                                          1
-                                                                      )
-                                                                    )
-                                                                  ]),
-                                                                  _vm._v(" "),
-                                                                  _c(
-                                                                    "td",
-                                                                    [
-                                                                      _c(
-                                                                        "check-value",
-                                                                        {
-                                                                          attrs: {
-                                                                            value:
-                                                                              props
-                                                                                .item
-                                                                                .no_rek
-                                                                          }
-                                                                        }
-                                                                      )
-                                                                    ],
-                                                                    1
-                                                                  ),
-                                                                  _vm._v(" "),
-                                                                  _c(
-                                                                    "td",
-                                                                    [
-                                                                      props.item
-                                                                        .produk_cu
-                                                                        ? _c(
-                                                                            "check-value",
-                                                                            {
-                                                                              attrs: {
-                                                                                value:
-                                                                                  props
-                                                                                    .item
-                                                                                    .produk_cu
-                                                                                    .name
-                                                                              }
-                                                                            }
-                                                                          )
-                                                                        : _c(
-                                                                            "span",
-                                                                            [
-                                                                              _vm._v(
-                                                                                "-"
-                                                                              )
-                                                                            ]
-                                                                          )
-                                                                    ],
-                                                                    1
-                                                                  ),
-                                                                  _vm._v(" "),
-                                                                  _c(
-                                                                    "td",
-                                                                    [
-                                                                      props.item
-                                                                        .produk_cu
-                                                                        ? _c(
-                                                                            "check-value",
-                                                                            {
-                                                                              attrs: {
-                                                                                value:
-                                                                                  props
-                                                                                    .item
-                                                                                    .produk_cu
-                                                                                    .tipe
-                                                                              }
-                                                                            }
-                                                                          )
-                                                                        : _c(
-                                                                            "span",
-                                                                            [
-                                                                              _vm._v(
-                                                                                "-"
-                                                                              )
-                                                                            ]
-                                                                          )
-                                                                    ],
-                                                                    1
-                                                                  ),
-                                                                  _vm._v(" "),
-                                                                  _c(
-                                                                    "td",
-                                                                    [
-                                                                      _c(
-                                                                        "check-value",
-                                                                        {
-                                                                          attrs: {
-                                                                            value:
-                                                                              props
-                                                                                .item
-                                                                                .saldo,
-                                                                            valueType:
-                                                                              "currency"
-                                                                          }
-                                                                        }
-                                                                      )
-                                                                    ],
-                                                                    1
-                                                                  ),
-                                                                  _vm._v(" "),
-                                                                  _c(
-                                                                    "td",
-                                                                    [
-                                                                      _c(
-                                                                        "check-value",
-                                                                        {
-                                                                          attrs: {
-                                                                            value:
-                                                                              props
-                                                                                .item
-                                                                                .lama_pinjaman
-                                                                          }
-                                                                        }
-                                                                      )
-                                                                    ],
-                                                                    1
-                                                                  ),
-                                                                  _vm._v(" "),
-                                                                  _c(
-                                                                    "td",
-                                                                    [
-                                                                      _c(
-                                                                        "check-value",
-                                                                        {
-                                                                          attrs: {
-                                                                            value:
-                                                                              props
-                                                                                .item
-                                                                                .lama_sisa_pinjaman
-                                                                          }
-                                                                        }
-                                                                      )
-                                                                    ],
-                                                                    1
-                                                                  ),
-                                                                  _vm._v(" "),
-                                                                  _c("td", [
-                                                                    props.item
-                                                                      .tanggal
-                                                                      ? _c(
-                                                                          "span",
-                                                                          {
-                                                                            domProps: {
-                                                                              innerHTML: _vm._s(
-                                                                                _vm.$options.filters.date(
-                                                                                  props
-                                                                                    .item
-                                                                                    .tanggal
-                                                                                )
-                                                                              )
-                                                                            }
-                                                                          }
-                                                                        )
-                                                                      : _c(
-                                                                          "span",
-                                                                          [
-                                                                            _vm._v(
-                                                                              "-"
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                  ]),
-                                                                  _vm._v(" "),
-                                                                  _c("td", [
-                                                                    props.item
-                                                                      .tanggal
-                                                                      ? _c(
-                                                                          "span",
-                                                                          {
-                                                                            domProps: {
-                                                                              innerHTML: _vm._s(
-                                                                                _vm.$options.filters.ageDiff(
-                                                                                  props
-                                                                                    .item
-                                                                                    .tanggal,
-                                                                                  _vm
-                                                                                    .itemData
-                                                                                    .tanggal_lahir
-                                                                                )
-                                                                              )
-                                                                            }
-                                                                          }
-                                                                        )
-                                                                      : _c(
-                                                                          "span",
-                                                                          [
-                                                                            _vm._v(
-                                                                              "-"
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                  ])
-                                                                ]
-                                                              )
-                                                            : _vm._e()
-                                                        ]
-                                                      }
-                                                    }
-                                                  ],
-                                                  null,
-                                                  false,
-                                                  2413839719
-                                                )
-                                              })
-                                            ],
-                                            1
-                                          )
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "card" }, [
-                                        _vm._m(4),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          { staticClass: "card-body" },
-                                          [
-                                            _c("div", { staticClass: "row" }, [
-                                              _c(
-                                                "div",
-                                                { staticClass: "col-md-3" },
-                                                [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass: "form-group",
-                                                      class: {
-                                                        "has-error": _vm.errors.has(
-                                                          "form.kategori_penyakit"
-                                                        )
-                                                      }
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "h6",
-                                                        {
-                                                          class: {
-                                                            "text-danger": _vm.errors.has(
-                                                              "form.kategori_penyakit"
-                                                            )
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm.errors.has(
-                                                            "form.kategori_penyakit"
-                                                          )
-                                                            ? _c("i", {
-                                                                staticClass:
-                                                                  "icon-cross2"
-                                                              })
-                                                            : _vm._e(),
-                                                          _vm._v(
-                                                            "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tKategori Penyakit/Penyebab: "
-                                                          ),
-                                                          _c("wajib-badge")
-                                                        ],
-                                                        1
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "select",
-                                                        {
-                                                          directives: [
-                                                            {
-                                                              name: "model",
-                                                              rawName:
-                                                                "v-model",
-                                                              value:
-                                                                _vm.form
-                                                                  .kategori_penyakit,
-                                                              expression:
-                                                                "form.kategori_penyakit"
-                                                            },
-                                                            {
-                                                              name: "validate",
-                                                              rawName:
-                                                                "v-validate",
-                                                              value: "required",
-                                                              expression:
-                                                                "'required'"
-                                                            }
-                                                          ],
-                                                          staticClass:
-                                                            "form-control",
-                                                          attrs: {
-                                                            name:
-                                                              "kategori_penyakit",
-                                                            "data-width":
-                                                              "100%",
-                                                            "data-vv-as":
-                                                              "Kategori penyakit"
-                                                          },
-                                                          on: {
-                                                            change: function(
-                                                              $event
-                                                            ) {
-                                                              var $$selectedVal = Array.prototype.filter
-                                                                .call(
-                                                                  $event.target
-                                                                    .options,
-                                                                  function(o) {
-                                                                    return o.selected
-                                                                  }
-                                                                )
-                                                                .map(function(
-                                                                  o
-                                                                ) {
-                                                                  var val =
-                                                                    "_value" in
-                                                                    o
-                                                                      ? o._value
-                                                                      : o.value
-                                                                  return val
-                                                                })
-                                                              _vm.$set(
-                                                                _vm.form,
-                                                                "kategori_penyakit",
-                                                                $event.target
-                                                                  .multiple
-                                                                  ? $$selectedVal
-                                                                  : $$selectedVal[0]
-                                                              )
-                                                            }
-                                                          }
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "option",
-                                                            {
-                                                              attrs: {
-                                                                disabled: "",
-                                                                value: ""
-                                                              }
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                "Silahkan pilih kategori penyakit"
-                                                              )
-                                                            ]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "option",
-                                                            {
-                                                              attrs: {
-                                                                value: "asma"
-                                                              }
-                                                            },
-                                                            [_vm._v("Asma")]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "option",
-                                                            {
-                                                              attrs: {
-                                                                value:
-                                                                  "demam berdarah"
-                                                              }
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                "Demam Berdarah"
-                                                              )
-                                                            ]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "option",
-                                                            {
-                                                              attrs: {
-                                                                value:
-                                                                  "diabetes melitus"
-                                                              }
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                "Diabetes Melitus"
-                                                              )
-                                                            ]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "option",
-                                                            {
-                                                              attrs: {
-                                                                value: "diare"
-                                                              }
-                                                            },
-                                                            [_vm._v("Diare")]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "option",
-                                                            {
-                                                              attrs: {
-                                                                value: "ginjal"
-                                                              }
-                                                            },
-                                                            [_vm._v("Ginjal")]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "option",
-                                                            {
-                                                              attrs: {
-                                                                value:
-                                                                  "hepatitis"
-                                                              }
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                "Hepatitis"
-                                                              )
-                                                            ]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "option",
-                                                            {
-                                                              attrs: {
-                                                                value:
-                                                                  "hipertensi"
-                                                              }
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                "Hipertensi"
-                                                              )
-                                                            ]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "option",
-                                                            {
-                                                              attrs: {
-                                                                value: "jantung"
-                                                              }
-                                                            },
-                                                            [_vm._v("Jantung")]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "option",
-                                                            {
-                                                              attrs: {
-                                                                value: "kanker"
-                                                              }
-                                                            },
-                                                            [_vm._v("Kanker")]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "option",
-                                                            {
-                                                              attrs: {
-                                                                value: "liver"
-                                                              }
-                                                            },
-                                                            [_vm._v("Liver")]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "option",
-                                                            {
-                                                              attrs: {
-                                                                value: "maag"
-                                                              }
-                                                            },
-                                                            [_vm._v("Maag")]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "option",
-                                                            {
-                                                              attrs: {
-                                                                value:
-                                                                  "paru-paru"
-                                                              }
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                "Paru-paru"
-                                                              )
-                                                            ]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "option",
-                                                            {
-                                                              attrs: {
-                                                                value: "stroke"
-                                                              }
-                                                            },
-                                                            [_vm._v("Stroke")]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "option",
-                                                            {
-                                                              attrs: {
-                                                                value: "tbc"
-                                                              }
-                                                            },
-                                                            [_vm._v("TBC")]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "option",
-                                                            {
-                                                              attrs: {
-                                                                value: "tumor"
-                                                              }
-                                                            },
-                                                            [_vm._v("Tumor")]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "option",
-                                                            {
-                                                              attrs: {
-                                                                value: "malaria"
-                                                              }
-                                                            },
-                                                            [_vm._v("Malaria")]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "option",
-                                                            {
-                                                              attrs: {
-                                                                value:
-                                                                  "kecelakaan"
-                                                              }
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                "Kecelakaan"
-                                                              )
-                                                            ]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "option",
-                                                            {
-                                                              attrs: {
-                                                                value:
-                                                                  "komplikasi"
-                                                              }
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                "Komplikasi"
-                                                              )
-                                                            ]
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "option",
-                                                            {
-                                                              attrs: {
-                                                                value:
-                                                                  "lain-lain"
-                                                              }
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                "Lain-lain"
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _vm.errors.has(
-                                                        "form.kategori_penyakit"
-                                                      )
-                                                        ? _c(
-                                                            "small",
-                                                            {
-                                                              staticClass:
-                                                                "text-muted text-danger"
-                                                            },
-                                                            [
-                                                              _c("i", {
-                                                                staticClass:
-                                                                  "icon-arrow-small-right"
-                                                              }),
-                                                              _vm._v(
-                                                                " " +
-                                                                  _vm._s(
-                                                                    _vm.errors.first(
-                                                                      "form.kategori_penyakit"
-                                                                    )
-                                                                  ) +
-                                                                  "\n\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                              )
-                                                            ]
-                                                          )
-                                                        : _c(
-                                                            "small",
-                                                            {
-                                                              staticClass:
-                                                                "text-muted"
-                                                            },
-                                                            [_vm._v(" ")]
-                                                          )
-                                                    ]
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                { staticClass: "col-md-3" },
-                                                [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass: "form-group",
-                                                      class: {
-                                                        "has-error": _vm.errors.has(
-                                                          "form.tanggal_mati"
-                                                        )
-                                                      }
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "h6",
-                                                        {
-                                                          class: {
-                                                            "text-danger": _vm.errors.has(
-                                                              "form.tanggal_mati"
-                                                            )
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm.errors.has(
-                                                            "form.tanggal_mati"
-                                                          )
-                                                            ? _c("i", {
-                                                                staticClass:
-                                                                  "icon-cross2"
-                                                              })
-                                                            : _vm._e(),
-                                                          _vm._v(
-                                                            "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tTgl. Cacat/Meninggal: "
-                                                          ),
-                                                          _c("wajib-badge")
-                                                        ],
-                                                        1
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c("date-picker", {
-                                                        attrs: {
-                                                          defaultDate:
-                                                            _vm.form
-                                                              .tanggal_mati
-                                                        },
-                                                        on: {
-                                                          dateSelected: function(
-                                                            $event
-                                                          ) {
-                                                            _vm.form.tanggal_mati = $event
-                                                          }
-                                                        }
-                                                      }),
-                                                      _vm._v(" "),
-                                                      _c("input", {
-                                                        directives: [
-                                                          {
-                                                            name: "model",
-                                                            rawName: "v-model",
-                                                            value:
-                                                              _vm.form
-                                                                .tanggal_mati,
-                                                            expression:
-                                                              "form.tanggal_mati"
-                                                          },
-                                                          {
-                                                            name: "show",
-                                                            rawName: "v-show",
-                                                            value: false,
-                                                            expression: "false"
-                                                          },
-                                                          {
-                                                            name: "validate",
-                                                            rawName:
-                                                              "v-validate",
-                                                            value: "required",
-                                                            expression:
-                                                              "'required'"
-                                                          }
-                                                        ],
-                                                        attrs: {
-                                                          "data-vv-as":
-                                                            "Tgl. cacat/meninggal"
-                                                        },
-                                                        domProps: {
-                                                          value:
-                                                            _vm.form
-                                                              .tanggal_mati
-                                                        },
-                                                        on: {
-                                                          input: function(
-                                                            $event
-                                                          ) {
-                                                            if (
-                                                              $event.target
-                                                                .composing
-                                                            ) {
-                                                              return
-                                                            }
-                                                            _vm.$set(
-                                                              _vm.form,
-                                                              "tanggal_mati",
-                                                              $event.target
-                                                                .value
-                                                            )
-                                                          }
-                                                        }
-                                                      }),
-                                                      _vm._v(" "),
-                                                      _vm.errors.has(
-                                                        "form.tanggal_mati"
-                                                      )
-                                                        ? _c(
-                                                            "small",
-                                                            {
-                                                              staticClass:
-                                                                "text-muted text-danger"
-                                                            },
-                                                            [
-                                                              _c("i", {
-                                                                staticClass:
-                                                                  "icon-arrow-small-right"
-                                                              }),
-                                                              _vm._v(
-                                                                " " +
-                                                                  _vm._s(
-                                                                    _vm.errors.first(
-                                                                      "form.tanggal_mati"
-                                                                    )
-                                                                  ) +
-                                                                  "\n\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                              )
-                                                            ]
-                                                          )
-                                                        : _c(
-                                                            "small",
-                                                            {
-                                                              staticClass:
-                                                                "text-muted"
-                                                            },
-                                                            [_vm._v(" ")]
-                                                          )
-                                                    ],
-                                                    1
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                { staticClass: "col-md-3" },
-                                                [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass: "form-group"
-                                                    },
-                                                    [
-                                                      _c("h6", [
-                                                        _vm._v(
-                                                          "Keterangan Cacat/Meninggal:"
-                                                        )
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c("input", {
-                                                        directives: [
-                                                          {
-                                                            name: "model",
-                                                            rawName: "v-model",
-                                                            value:
-                                                              _vm.form
-                                                                .keterangan_mati,
-                                                            expression:
-                                                              "form.keterangan_mati"
-                                                          }
-                                                        ],
-                                                        staticClass:
-                                                          "form-control",
-                                                        attrs: {
-                                                          type: "text",
-                                                          name:
-                                                            "keterangan_mati",
-                                                          placeholder:
-                                                            "Silahkan masukkan keterangan cacat/meninggal"
-                                                        },
-                                                        domProps: {
-                                                          value:
-                                                            _vm.form
-                                                              .keterangan_mati
-                                                        },
-                                                        on: {
-                                                          input: function(
-                                                            $event
-                                                          ) {
-                                                            if (
-                                                              $event.target
-                                                                .composing
-                                                            ) {
-                                                              return
-                                                            }
-                                                            _vm.$set(
-                                                              _vm.form,
-                                                              "keterangan_mati",
-                                                              $event.target
-                                                                .value
-                                                            )
-                                                          }
-                                                        }
-                                                      })
-                                                    ]
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                { staticClass: "col-md-3" },
-                                                [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass: "form-group"
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "h6",
-                                                        {
-                                                          class: {
-                                                            "text-danger": _vm.errors.has(
-                                                              "form.tanggal_mati"
-                                                            )
-                                                          }
-                                                        },
-                                                        [
-                                                          _vm.errors.has(
-                                                            "form.tanggal_mati"
-                                                          )
-                                                            ? _c("i", {
-                                                                staticClass:
-                                                                  "icon-cross2"
-                                                              })
-                                                            : _vm._e(),
-                                                          _vm._v(
-                                                            "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tKeterangan Lain:\n\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c("input", {
-                                                        directives: [
-                                                          {
-                                                            name: "model",
-                                                            rawName: "v-model",
-                                                            value:
-                                                              _vm.form
-                                                                .keterangan,
-                                                            expression:
-                                                              "form.keterangan"
-                                                          }
-                                                        ],
-                                                        staticClass:
-                                                          "form-control",
-                                                        attrs: {
-                                                          type: "text",
-                                                          name: "keterangan",
-                                                          placeholder:
-                                                            "Silahkan masukkan keterangan lain"
-                                                        },
-                                                        domProps: {
-                                                          value:
-                                                            _vm.form.keterangan
-                                                        },
-                                                        on: {
-                                                          input: function(
-                                                            $event
-                                                          ) {
-                                                            if (
-                                                              $event.target
-                                                                .composing
-                                                            ) {
-                                                              return
-                                                            }
-                                                            _vm.$set(
-                                                              _vm.form,
-                                                              "keterangan",
-                                                              $event.target
-                                                                .value
-                                                            )
-                                                          }
-                                                        }
-                                                      })
-                                                    ]
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _vm.formStat == "success" &&
-                                              _vm.tipe != "CACAT"
-                                                ? _c(
-                                                    "div",
-                                                    { staticClass: "col-md-6" },
-                                                    [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "form-group",
-                                                          class: {
-                                                            "has-error": _vm.errors.has(
-                                                              "form.tunas_diajukan"
-                                                            )
-                                                          }
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "h5",
-                                                            [
-                                                              _vm._v(
-                                                                "Nilai pengajuan bantuan solidaritas TUNAS "
-                                                              ),
-                                                              _c("wajib-badge")
-                                                            ],
-                                                            1
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c("cleave", {
-                                                            directives: [
-                                                              {
-                                                                name:
-                                                                  "validate",
-                                                                rawName:
-                                                                  "v-validate",
-                                                                value:
-                                                                  "required",
-                                                                expression:
-                                                                  "'required'"
-                                                              }
-                                                            ],
-                                                            staticClass:
-                                                              "form-control",
-                                                            attrs: {
-                                                              name:
-                                                                "tunas_diajukan",
-                                                              options:
-                                                                _vm.cleaveOption
-                                                                  .numeric,
-                                                              placeholder:
-                                                                "Silahkan masukkan jumlah nilai pengajuan bantuan solidaritas TUNAS",
-                                                              "data-vv-as":
-                                                                "Nilai pengajuan bantuan solidaritas TUNAS"
-                                                            },
-                                                            model: {
-                                                              value:
-                                                                _vm.form
-                                                                  .tunas_diajukan,
-                                                              callback: function(
-                                                                $$v
-                                                              ) {
-                                                                _vm.$set(
-                                                                  _vm.form,
-                                                                  "tunas_diajukan",
-                                                                  $$v
-                                                                )
-                                                              },
-                                                              expression:
-                                                                "form.tunas_diajukan"
-                                                            }
-                                                          }),
-                                                          _vm._v(" "),
-                                                          _vm.errors.has(
-                                                            "form.tunas_diajukan"
-                                                          )
-                                                            ? _c(
-                                                                "small",
-                                                                {
-                                                                  staticClass:
-                                                                    "text-muted text-danger"
-                                                                },
-                                                                [
-                                                                  _c("i", {
-                                                                    staticClass:
-                                                                      "icon-arrow-small-right"
-                                                                  }),
-                                                                  _vm._v(
-                                                                    " " +
-                                                                      _vm._s(
-                                                                        _vm.errors.first(
-                                                                          "form.tunas_diajukan"
-                                                                        )
-                                                                      ) +
-                                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                                  )
-                                                                ]
-                                                              )
-                                                            : _c(
-                                                                "small",
-                                                                {
-                                                                  staticClass:
-                                                                    "text-muted"
-                                                                },
-                                                                [_vm._v(" ")]
-                                                              )
-                                                        ],
-                                                        1
-                                                      )
-                                                    ]
-                                                  )
-                                                : _vm._e(),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                { staticClass: "col-md-6" },
-                                                [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass: "form-group",
-                                                      class: {
-                                                        "has-error": _vm.errors.has(
-                                                          "form.lintang_diajukan"
-                                                        )
-                                                      }
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "h5",
-                                                        [
-                                                          _vm._v(
-                                                            "Nilai pengajuan bantuan solidaritas LINTANG "
-                                                          ),
-                                                          _c("wajib-badge")
-                                                        ],
-                                                        1
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c("cleave", {
-                                                        directives: [
-                                                          {
-                                                            name: "validate",
-                                                            rawName:
-                                                              "v-validate",
-                                                            value: "required",
-                                                            expression:
-                                                              "'required'"
-                                                          }
-                                                        ],
-                                                        staticClass:
-                                                          "form-control",
-                                                        attrs: {
-                                                          name:
-                                                            "lintang_diajukan",
-                                                          options:
-                                                            _vm.cleaveOption
-                                                              .numeric,
-                                                          placeholder:
-                                                            "Silahkan masukkan jumlah nilai pengajuan bantuan solidaritas LINTANG",
-                                                          "data-vv-as":
-                                                            "Nilai pengajuan bantuan solidaritas LINTANG"
-                                                        },
-                                                        model: {
-                                                          value:
-                                                            _vm.form
-                                                              .lintang_diajukan,
-                                                          callback: function(
-                                                            $$v
-                                                          ) {
-                                                            _vm.$set(
-                                                              _vm.form,
-                                                              "lintang_diajukan",
-                                                              $$v
-                                                            )
-                                                          },
-                                                          expression:
-                                                            "form.lintang_diajukan"
-                                                        }
-                                                      }),
-                                                      _vm._v(" "),
-                                                      _vm.errors.has(
-                                                        "form.lintang_diajukan"
-                                                      )
-                                                        ? _c(
-                                                            "small",
-                                                            {
-                                                              staticClass:
-                                                                "text-muted text-danger"
-                                                            },
-                                                            [
-                                                              _c("i", {
-                                                                staticClass:
-                                                                  "icon-arrow-small-right"
-                                                              }),
-                                                              _vm._v(
-                                                                " " +
-                                                                  _vm._s(
-                                                                    _vm.errors.first(
-                                                                      "form.lintang_diajukan"
-                                                                    )
-                                                                  ) +
-                                                                  "\n\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                              )
-                                                            ]
-                                                          )
-                                                        : _c(
-                                                            "small",
-                                                            {
-                                                              staticClass:
-                                                                "text-muted"
-                                                            },
-                                                            [_vm._v(" ")]
-                                                          )
-                                                    ],
-                                                    1
-                                                  )
-                                                ]
-                                              )
-                                            ])
-                                          ]
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "card" }, [
-                                        _vm._m(5),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          { staticClass: "card-body" },
-                                          [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "nav-tabs-responsive mb-3"
-                                              },
-                                              [
-                                                _c(
-                                                  "ul",
-                                                  {
-                                                    staticClass:
-                                                      "nav nav-tabs nav-tabs-solid  bg-light"
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "li",
-                                                      {
-                                                        staticClass: "nav-item"
-                                                      },
-                                                      [
-                                                        _c(
-                                                          "a",
-                                                          {
-                                                            staticClass:
-                                                              "nav-link",
-                                                            class: {
-                                                              active:
-                                                                _vm.tabName ==
-                                                                "ktp"
-                                                            },
-                                                            attrs: {
-                                                              href: "#"
-                                                            },
-                                                            on: {
-                                                              click: function(
-                                                                $event
-                                                              ) {
-                                                                $event.preventDefault()
-                                                                return _vm.changeTab(
-                                                                  "ktp"
-                                                                )
-                                                              }
-                                                            }
-                                                          },
-                                                          [
-                                                            _c("i", {
-                                                              staticClass:
-                                                                "icon-vcard mr-2"
-                                                            }),
-                                                            _vm._v(
-                                                              " Identitas diri (Kartu tanda penduduk (KTP) atau Surat Keterangan Kependudukan) "
-                                                            )
-                                                          ]
-                                                        )
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _vm.tipe == "MENINGGAL"
-                                                      ? _c(
-                                                          "li",
-                                                          {
-                                                            staticClass:
-                                                              "nav-item"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "a",
-                                                              {
-                                                                staticClass:
-                                                                  "nav-link",
-                                                                class: {
-                                                                  active:
-                                                                    _vm.tabName ==
-                                                                    "meninggal"
-                                                                },
-                                                                attrs: {
-                                                                  href: "#"
-                                                                },
-                                                                on: {
-                                                                  click: function(
-                                                                    $event
-                                                                  ) {
-                                                                    $event.preventDefault()
-                                                                    return _vm.changeTab(
-                                                                      "meninggal"
-                                                                    )
-                                                                  }
-                                                                }
-                                                              },
-                                                              [
-                                                                _c("i", {
-                                                                  staticClass:
-                                                                    "icon-person mr-2"
-                                                                }),
-                                                                _vm._v(
-                                                                  " Keterangan meninggal dunia"
-                                                                )
-                                                              ]
-                                                            )
-                                                          ]
-                                                        )
-                                                      : _vm._e(),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "li",
-                                                      {
-                                                        staticClass: "nav-item"
-                                                      },
-                                                      [
-                                                        _c(
-                                                          "a",
-                                                          {
-                                                            staticClass:
-                                                              "nav-link",
-                                                            class: {
-                                                              active:
-                                                                _vm.tabName ==
-                                                                "spma"
-                                                            },
-                                                            attrs: {
-                                                              href: "#"
-                                                            },
-                                                            on: {
-                                                              click: function(
-                                                                $event
-                                                              ) {
-                                                                $event.preventDefault()
-                                                                return _vm.changeTab(
-                                                                  "spma"
-                                                                )
-                                                              }
-                                                            }
-                                                          },
-                                                          [
-                                                            _c("i", {
-                                                              staticClass:
-                                                                "icon-magazine mr-2"
-                                                            }),
-                                                            _vm._v(
-                                                              " Surat Permohonan Menjadi Anggota "
-                                                            )
-                                                          ]
-                                                        )
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _vm.tipe == "MENINGGAL"
-                                                      ? _c(
-                                                          "li",
-                                                          {
-                                                            staticClass:
-                                                              "nav-item"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "a",
-                                                              {
-                                                                staticClass:
-                                                                  "nav-link",
-                                                                class: {
-                                                                  active:
-                                                                    _vm.tabName ==
-                                                                    "bukusimpanan"
-                                                                },
-                                                                attrs: {
-                                                                  href: "#"
-                                                                },
-                                                                on: {
-                                                                  click: function(
-                                                                    $event
-                                                                  ) {
-                                                                    $event.preventDefault()
-                                                                    return _vm.changeTab(
-                                                                      "bukusimpanan"
-                                                                    )
-                                                                  }
-                                                                }
-                                                              },
-                                                              [
-                                                                _c("i", {
-                                                                  staticClass:
-                                                                    "icon-credit-card mr-2"
-                                                                }),
-                                                                _vm._v(
-                                                                  " Buku Simpanan "
-                                                                )
-                                                              ]
-                                                            )
-                                                          ]
-                                                        )
-                                                      : _vm._e(),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "li",
-                                                      {
-                                                        staticClass: "nav-item"
-                                                      },
-                                                      [
-                                                        _c(
-                                                          "a",
-                                                          {
-                                                            staticClass:
-                                                              "nav-link",
-                                                            class: {
-                                                              active:
-                                                                _vm.tabName ==
-                                                                "bukupinjaman"
-                                                            },
-                                                            attrs: {
-                                                              href: "#"
-                                                            },
-                                                            on: {
-                                                              click: function(
-                                                                $event
-                                                              ) {
-                                                                $event.preventDefault()
-                                                                return _vm.changeTab(
-                                                                  "bukupinjaman"
-                                                                )
-                                                              }
-                                                            }
-                                                          },
-                                                          [
-                                                            _c("i", {
-                                                              staticClass:
-                                                                "icon-credit-card2 mr-2"
-                                                            }),
-                                                            _vm._v(
-                                                              " Buku Pinjaman "
-                                                            )
-                                                          ]
-                                                        )
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "li",
-                                                      {
-                                                        staticClass: "nav-item"
-                                                      },
-                                                      [
-                                                        _c(
-                                                          "a",
-                                                          {
-                                                            staticClass:
-                                                              "nav-link",
-                                                            class: {
-                                                              active:
-                                                                _vm.tabName ==
-                                                                "pinjaman"
-                                                            },
-                                                            attrs: {
-                                                              href: "#"
-                                                            },
-                                                            on: {
-                                                              click: function(
-                                                                $event
-                                                              ) {
-                                                                $event.preventDefault()
-                                                                return _vm.changeTab(
-                                                                  "pinjaman"
-                                                                )
-                                                              }
-                                                            }
-                                                          },
-                                                          [
-                                                            _c("i", {
-                                                              staticClass:
-                                                                "icon-clipboard3 mr-2"
-                                                            }),
-                                                            _vm._v(
-                                                              " Permohonan dan perjanjian pinjaman"
-                                                            )
-                                                          ]
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "transition",
-                                              {
-                                                attrs: {
-                                                  "enter-active-class":
-                                                    "animated fadeIn",
-                                                  mode: "out-in"
-                                                }
-                                              },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    directives: [
-                                                      {
-                                                        name: "show",
-                                                        rawName: "v-show",
-                                                        value:
-                                                          _vm.tabName ==
-                                                          "meninggal",
-                                                        expression:
-                                                          "tabName == 'meninggal'"
-                                                      }
-                                                    ]
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "form-group"
-                                                      },
-                                                      [
-                                                        _c("h5", [
-                                                          _vm._v(
-                                                            "Keterangan meninggal dunia:"
-                                                          )
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("app-image-upload", {
-                                                          attrs: {
-                                                            image_loc:
-                                                              "/images/jalinan/",
-                                                            image_temp:
-                                                              _vm.form
-                                                                .dokumen_meninggal
-                                                          },
-                                                          model: {
-                                                            value:
-                                                              _vm.form
-                                                                .dokumen_meninggal,
-                                                            callback: function(
-                                                              $$v
-                                                            ) {
-                                                              _vm.$set(
-                                                                _vm.form,
-                                                                "dokumen_meninggal",
-                                                                $$v
-                                                              )
-                                                            },
-                                                            expression:
-                                                              "form.dokumen_meninggal"
-                                                          }
-                                                        })
-                                                      ],
-                                                      1
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "transition",
-                                              {
-                                                attrs: {
-                                                  "enter-active-class":
-                                                    "animated fadeIn",
-                                                  mode: "out-in"
-                                                }
-                                              },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    directives: [
-                                                      {
-                                                        name: "show",
-                                                        rawName: "v-show",
-                                                        value:
-                                                          _vm.tabName == "ktp",
-                                                        expression:
-                                                          "tabName == 'ktp'"
-                                                      }
-                                                    ]
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      {
-                                                        staticClass:
-                                                          "form-group"
-                                                      },
-                                                      [
-                                                        _c("h5", [
-                                                          _vm._v(
-                                                            "Identitas diri (Kartu tanda penduduk (KTP) atau Surat Keterangan Kependudukan) :"
-                                                          )
-                                                        ]),
-                                                        _vm._v(" "),
-                                                        _c("app-image-upload", {
-                                                          attrs: {
-                                                            image_loc:
-                                                              "/images/jalinan/",
-                                                            image_temp:
-                                                              _vm.form
-                                                                .dokumen_ktp
-                                                          },
-                                                          model: {
-                                                            value:
-                                                              _vm.form
-                                                                .dokumen_ktp,
-                                                            callback: function(
-                                                              $$v
-                                                            ) {
-                                                              _vm.$set(
-                                                                _vm.form,
-                                                                "dokumen_ktp",
-                                                                $$v
-                                                              )
-                                                            },
-                                                            expression:
-                                                              "form.dokumen_ktp"
-                                                          }
-                                                        })
-                                                      ],
-                                                      1
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "transition",
-                                              {
-                                                attrs: {
-                                                  "enter-active-class":
-                                                    "animated fadeIn",
-                                                  mode: "out-in"
-                                                }
-                                              },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    directives: [
-                                                      {
-                                                        name: "show",
-                                                        rawName: "v-show",
-                                                        value:
-                                                          _vm.tabName == "spma",
-                                                        expression:
-                                                          "tabName == 'spma'"
-                                                      }
-                                                    ]
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      { staticClass: "row" },
-                                                      [
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass: "col-6"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "div",
-                                                              {
-                                                                staticClass:
-                                                                  "form-group"
-                                                              },
-                                                              [
-                                                                _c("h5", [
-                                                                  _vm._v(
-                                                                    "Surat Permohonan Menjadi Anggota 1:"
-                                                                  )
-                                                                ]),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "app-image-upload",
-                                                                  {
-                                                                    attrs: {
-                                                                      image_loc:
-                                                                        "/images/jalinan/",
-                                                                      image_temp:
-                                                                        _vm.form
-                                                                          .spma_1
-                                                                    },
-                                                                    model: {
-                                                                      value:
-                                                                        _vm.form
-                                                                          .spma_1,
-                                                                      callback: function(
-                                                                        $$v
-                                                                      ) {
-                                                                        _vm.$set(
-                                                                          _vm.form,
-                                                                          "spma_1",
-                                                                          $$v
-                                                                        )
-                                                                      },
-                                                                      expression:
-                                                                        "form.spma_1"
-                                                                    }
-                                                                  }
-                                                                )
-                                                              ],
-                                                              1
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass: "col-6"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "div",
-                                                              {
-                                                                staticClass:
-                                                                  "form-group"
-                                                              },
-                                                              [
-                                                                _c("h5", [
-                                                                  _vm._v(
-                                                                    "Surat Permohonan Menjadi Anggota 2:"
-                                                                  )
-                                                                ]),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "app-image-upload",
-                                                                  {
-                                                                    attrs: {
-                                                                      image_loc:
-                                                                        "/images/jalinan/",
-                                                                      image_temp:
-                                                                        _vm.form
-                                                                          .spma_2
-                                                                    },
-                                                                    model: {
-                                                                      value:
-                                                                        _vm.form
-                                                                          .spma_2,
-                                                                      callback: function(
-                                                                        $$v
-                                                                      ) {
-                                                                        _vm.$set(
-                                                                          _vm.form,
-                                                                          "spma_2",
-                                                                          $$v
-                                                                        )
-                                                                      },
-                                                                      expression:
-                                                                        "form.spma_2"
-                                                                    }
-                                                                  }
-                                                                )
-                                                              ],
-                                                              1
-                                                            )
-                                                          ]
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "transition",
-                                              {
-                                                attrs: {
-                                                  "enter-active-class":
-                                                    "animated fadeIn",
-                                                  mode: "out-in"
-                                                }
-                                              },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    directives: [
-                                                      {
-                                                        name: "show",
-                                                        rawName: "v-show",
-                                                        value:
-                                                          _vm.tabName ==
-                                                          "bukusimpanan",
-                                                        expression:
-                                                          "tabName == 'bukusimpanan'"
-                                                      }
-                                                    ]
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      { staticClass: "row" },
-                                                      [
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass: "col-6"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "div",
-                                                              {
-                                                                staticClass:
-                                                                  "form-group"
-                                                              },
-                                                              [
-                                                                _c("h5", [
-                                                                  _vm._v(
-                                                                    "Buku Simpanan 1:"
-                                                                  )
-                                                                ]),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "app-image-upload",
-                                                                  {
-                                                                    attrs: {
-                                                                      image_loc:
-                                                                        "/images/jalinan/",
-                                                                      image_temp:
-                                                                        _vm.form
-                                                                          .buku_simpanan_1
-                                                                    },
-                                                                    model: {
-                                                                      value:
-                                                                        _vm.form
-                                                                          .buku_simpanan_1,
-                                                                      callback: function(
-                                                                        $$v
-                                                                      ) {
-                                                                        _vm.$set(
-                                                                          _vm.form,
-                                                                          "buku_simpanan_1",
-                                                                          $$v
-                                                                        )
-                                                                      },
-                                                                      expression:
-                                                                        "form.buku_simpanan_1"
-                                                                    }
-                                                                  }
-                                                                )
-                                                              ],
-                                                              1
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass: "col-6"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "div",
-                                                              {
-                                                                staticClass:
-                                                                  "form-group"
-                                                              },
-                                                              [
-                                                                _c("h5", [
-                                                                  _vm._v(
-                                                                    "Buku Simpanan 2:"
-                                                                  )
-                                                                ]),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "app-image-upload",
-                                                                  {
-                                                                    attrs: {
-                                                                      image_loc:
-                                                                        "/images/jalinan/",
-                                                                      image_temp:
-                                                                        _vm.form
-                                                                          .buku_simpanan_2
-                                                                    },
-                                                                    model: {
-                                                                      value:
-                                                                        _vm.form
-                                                                          .buku_simpanan_2,
-                                                                      callback: function(
-                                                                        $$v
-                                                                      ) {
-                                                                        _vm.$set(
-                                                                          _vm.form,
-                                                                          "buku_simpanan_2",
-                                                                          $$v
-                                                                        )
-                                                                      },
-                                                                      expression:
-                                                                        "form.buku_simpanan_2"
-                                                                    }
-                                                                  }
-                                                                )
-                                                              ],
-                                                              1
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass: "col-6"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "div",
-                                                              {
-                                                                staticClass:
-                                                                  "form-group"
-                                                              },
-                                                              [
-                                                                _c("h5", [
-                                                                  _vm._v(
-                                                                    "Buku Simpanan 3:"
-                                                                  )
-                                                                ]),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "app-image-upload",
-                                                                  {
-                                                                    attrs: {
-                                                                      image_loc:
-                                                                        "/images/jalinan/",
-                                                                      image_temp:
-                                                                        _vm.form
-                                                                          .buku_simpanan_3
-                                                                    },
-                                                                    model: {
-                                                                      value:
-                                                                        _vm.form
-                                                                          .buku_simpanan_3,
-                                                                      callback: function(
-                                                                        $$v
-                                                                      ) {
-                                                                        _vm.$set(
-                                                                          _vm.form,
-                                                                          "buku_simpanan_3",
-                                                                          $$v
-                                                                        )
-                                                                      },
-                                                                      expression:
-                                                                        "form.buku_simpanan_3"
-                                                                    }
-                                                                  }
-                                                                )
-                                                              ],
-                                                              1
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass: "col-6"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "div",
-                                                              {
-                                                                staticClass:
-                                                                  "form-group"
-                                                              },
-                                                              [
-                                                                _c("h5", [
-                                                                  _vm._v(
-                                                                    "Buku Simpanan 4:"
-                                                                  )
-                                                                ]),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "app-image-upload",
-                                                                  {
-                                                                    attrs: {
-                                                                      image_loc:
-                                                                        "/images/jalinan/",
-                                                                      image_temp:
-                                                                        _vm.form
-                                                                          .buku_simpanan_4
-                                                                    },
-                                                                    model: {
-                                                                      value:
-                                                                        _vm.form
-                                                                          .buku_simpanan_4,
-                                                                      callback: function(
-                                                                        $$v
-                                                                      ) {
-                                                                        _vm.$set(
-                                                                          _vm.form,
-                                                                          "buku_simpanan_4",
-                                                                          $$v
-                                                                        )
-                                                                      },
-                                                                      expression:
-                                                                        "form.buku_simpanan_4"
-                                                                    }
-                                                                  }
-                                                                )
-                                                              ],
-                                                              1
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass: "col-6"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "div",
-                                                              {
-                                                                staticClass:
-                                                                  "form-group"
-                                                              },
-                                                              [
-                                                                _c("h5", [
-                                                                  _vm._v(
-                                                                    "Buku Simpanan 5:"
-                                                                  )
-                                                                ]),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "app-image-upload",
-                                                                  {
-                                                                    attrs: {
-                                                                      image_loc:
-                                                                        "/images/jalinan/",
-                                                                      image_temp:
-                                                                        _vm.form
-                                                                          .buku_simpanan_5
-                                                                    },
-                                                                    model: {
-                                                                      value:
-                                                                        _vm.form
-                                                                          .buku_simpanan_5,
-                                                                      callback: function(
-                                                                        $$v
-                                                                      ) {
-                                                                        _vm.$set(
-                                                                          _vm.form,
-                                                                          "buku_simpanan_5",
-                                                                          $$v
-                                                                        )
-                                                                      },
-                                                                      expression:
-                                                                        "form.buku_simpanan_5"
-                                                                    }
-                                                                  }
-                                                                )
-                                                              ],
-                                                              1
-                                                            )
-                                                          ]
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "transition",
-                                              {
-                                                attrs: {
-                                                  "enter-active-class":
-                                                    "animated fadeIn",
-                                                  mode: "out-in"
-                                                }
-                                              },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    directives: [
-                                                      {
-                                                        name: "show",
-                                                        rawName: "v-show",
-                                                        value:
-                                                          _vm.tabName ==
-                                                          "bukupinjaman",
-                                                        expression:
-                                                          "tabName == 'bukupinjaman'"
-                                                      }
-                                                    ]
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      { staticClass: "row" },
-                                                      [
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass: "col-6"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "div",
-                                                              {
-                                                                staticClass:
-                                                                  "form-group"
-                                                              },
-                                                              [
-                                                                _c("h5", [
-                                                                  _vm._v(
-                                                                    "Buku Pinjaman 1:"
-                                                                  )
-                                                                ]),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "app-image-upload",
-                                                                  {
-                                                                    attrs: {
-                                                                      image_loc:
-                                                                        "/images/jalinan/",
-                                                                      image_temp:
-                                                                        _vm.form
-                                                                          .buku_pinjaman_1
-                                                                    },
-                                                                    model: {
-                                                                      value:
-                                                                        _vm.form
-                                                                          .buku_pinjaman_1,
-                                                                      callback: function(
-                                                                        $$v
-                                                                      ) {
-                                                                        _vm.$set(
-                                                                          _vm.form,
-                                                                          "buku_pinjaman_1",
-                                                                          $$v
-                                                                        )
-                                                                      },
-                                                                      expression:
-                                                                        "form.buku_pinjaman_1"
-                                                                    }
-                                                                  }
-                                                                )
-                                                              ],
-                                                              1
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass: "col-6"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "div",
-                                                              {
-                                                                staticClass:
-                                                                  "form-group"
-                                                              },
-                                                              [
-                                                                _c("h5", [
-                                                                  _vm._v(
-                                                                    "Buku Pinjaman 2:"
-                                                                  )
-                                                                ]),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "app-image-upload",
-                                                                  {
-                                                                    attrs: {
-                                                                      image_loc:
-                                                                        "/images/jalinan/",
-                                                                      image_temp:
-                                                                        _vm.form
-                                                                          .buku_pinjaman_2
-                                                                    },
-                                                                    model: {
-                                                                      value:
-                                                                        _vm.form
-                                                                          .buku_pinjaman_2,
-                                                                      callback: function(
-                                                                        $$v
-                                                                      ) {
-                                                                        _vm.$set(
-                                                                          _vm.form,
-                                                                          "buku_pinjaman_2",
-                                                                          $$v
-                                                                        )
-                                                                      },
-                                                                      expression:
-                                                                        "form.buku_pinjaman_2"
-                                                                    }
-                                                                  }
-                                                                )
-                                                              ],
-                                                              1
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass: "col-6"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "div",
-                                                              {
-                                                                staticClass:
-                                                                  "form-group"
-                                                              },
-                                                              [
-                                                                _c("h5", [
-                                                                  _vm._v(
-                                                                    "Buku Pinjaman 3:"
-                                                                  )
-                                                                ]),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "app-image-upload",
-                                                                  {
-                                                                    attrs: {
-                                                                      image_loc:
-                                                                        "/images/jalinan/",
-                                                                      image_temp:
-                                                                        _vm.form
-                                                                          .buku_pinjaman_3
-                                                                    },
-                                                                    model: {
-                                                                      value:
-                                                                        _vm.form
-                                                                          .buku_pinjaman_3,
-                                                                      callback: function(
-                                                                        $$v
-                                                                      ) {
-                                                                        _vm.$set(
-                                                                          _vm.form,
-                                                                          "buku_pinjaman_3",
-                                                                          $$v
-                                                                        )
-                                                                      },
-                                                                      expression:
-                                                                        "form.buku_pinjaman_3"
-                                                                    }
-                                                                  }
-                                                                )
-                                                              ],
-                                                              1
-                                                            )
-                                                          ]
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "transition",
-                                              {
-                                                attrs: {
-                                                  "enter-active-class":
-                                                    "animated fadeIn",
-                                                  mode: "out-in"
-                                                }
-                                              },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    directives: [
-                                                      {
-                                                        name: "show",
-                                                        rawName: "v-show",
-                                                        value:
-                                                          _vm.tabName ==
-                                                          "pinjaman",
-                                                        expression:
-                                                          "tabName == 'pinjaman'"
-                                                      }
-                                                    ]
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "div",
-                                                      { staticClass: "row" },
-                                                      [
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass: "col-6"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "div",
-                                                              {
-                                                                staticClass:
-                                                                  "form-group"
-                                                              },
-                                                              [
-                                                                _c("h5", [
-                                                                  _vm._v(
-                                                                    "Dokumen Pinjaman 1:"
-                                                                  )
-                                                                ]),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "app-image-upload",
-                                                                  {
-                                                                    attrs: {
-                                                                      image_loc:
-                                                                        "/images/jalinan/",
-                                                                      image_temp:
-                                                                        _vm.form
-                                                                          .dokumen_pinjaman_1
-                                                                    },
-                                                                    model: {
-                                                                      value:
-                                                                        _vm.form
-                                                                          .dokumen_pinjaman_1,
-                                                                      callback: function(
-                                                                        $$v
-                                                                      ) {
-                                                                        _vm.$set(
-                                                                          _vm.form,
-                                                                          "dokumen_pinjaman_1",
-                                                                          $$v
-                                                                        )
-                                                                      },
-                                                                      expression:
-                                                                        "form.dokumen_pinjaman_1"
-                                                                    }
-                                                                  }
-                                                                )
-                                                              ],
-                                                              1
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass: "col-6"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "div",
-                                                              {
-                                                                staticClass:
-                                                                  "form-group"
-                                                              },
-                                                              [
-                                                                _c("h5", [
-                                                                  _vm._v(
-                                                                    "Dokumen Pinjaman 2:"
-                                                                  )
-                                                                ]),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "app-image-upload",
-                                                                  {
-                                                                    attrs: {
-                                                                      image_loc:
-                                                                        "/images/jalinan/",
-                                                                      image_temp:
-                                                                        _vm.form
-                                                                          .dokumen_pinjaman_2
-                                                                    },
-                                                                    model: {
-                                                                      value:
-                                                                        _vm.form
-                                                                          .dokumen_pinjaman_2,
-                                                                      callback: function(
-                                                                        $$v
-                                                                      ) {
-                                                                        _vm.$set(
-                                                                          _vm.form,
-                                                                          "dokumen_pinjaman_2",
-                                                                          $$v
-                                                                        )
-                                                                      },
-                                                                      expression:
-                                                                        "form.dokumen_pinjaman_2"
-                                                                    }
-                                                                  }
-                                                                )
-                                                              ],
-                                                              1
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass: "col-6"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "div",
-                                                              {
-                                                                staticClass:
-                                                                  "form-group"
-                                                              },
-                                                              [
-                                                                _c("h5", [
-                                                                  _vm._v(
-                                                                    "Dokumen Pinjaman 3:"
-                                                                  )
-                                                                ]),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "app-image-upload",
-                                                                  {
-                                                                    attrs: {
-                                                                      image_loc:
-                                                                        "/images/jalinan/",
-                                                                      image_temp:
-                                                                        _vm.form
-                                                                          .dokumen_pinjaman_3
-                                                                    },
-                                                                    model: {
-                                                                      value:
-                                                                        _vm.form
-                                                                          .dokumen_pinjaman_3,
-                                                                      callback: function(
-                                                                        $$v
-                                                                      ) {
-                                                                        _vm.$set(
-                                                                          _vm.form,
-                                                                          "dokumen_pinjaman_3",
-                                                                          $$v
-                                                                        )
-                                                                      },
-                                                                      expression:
-                                                                        "form.dokumen_pinjaman_3"
-                                                                    }
-                                                                  }
-                                                                )
-                                                              ],
-                                                              1
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass: "col-6"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "div",
-                                                              {
-                                                                staticClass:
-                                                                  "form-group"
-                                                              },
-                                                              [
-                                                                _c("h5", [
-                                                                  _vm._v(
-                                                                    "Dokumen Pinjaman 4:"
-                                                                  )
-                                                                ]),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "app-image-upload",
-                                                                  {
-                                                                    attrs: {
-                                                                      image_loc:
-                                                                        "/images/jalinan/",
-                                                                      image_temp:
-                                                                        _vm.form
-                                                                          .dokumen_pinjaman_4
-                                                                    },
-                                                                    model: {
-                                                                      value:
-                                                                        _vm.form
-                                                                          .dokumen_pinjaman_4,
-                                                                      callback: function(
-                                                                        $$v
-                                                                      ) {
-                                                                        _vm.$set(
-                                                                          _vm.form,
-                                                                          "dokumen_pinjaman_4",
-                                                                          $$v
-                                                                        )
-                                                                      },
-                                                                      expression:
-                                                                        "form.dokumen_pinjaman_4"
-                                                                    }
-                                                                  }
-                                                                )
-                                                              ],
-                                                              1
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass: "col-6"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "div",
-                                                              {
-                                                                staticClass:
-                                                                  "form-group"
-                                                              },
-                                                              [
-                                                                _c("h5", [
-                                                                  _vm._v(
-                                                                    "Dokumen Pinjaman 5:"
-                                                                  )
-                                                                ]),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "app-image-upload",
-                                                                  {
-                                                                    attrs: {
-                                                                      image_loc:
-                                                                        "/images/jalinan/",
-                                                                      image_temp:
-                                                                        _vm.form
-                                                                          .dokumen_pinjaman_5
-                                                                    },
-                                                                    model: {
-                                                                      value:
-                                                                        _vm.form
-                                                                          .dokumen_pinjaman_5,
-                                                                      callback: function(
-                                                                        $$v
-                                                                      ) {
-                                                                        _vm.$set(
-                                                                          _vm.form,
-                                                                          "dokumen_pinjaman_5",
-                                                                          $$v
-                                                                        )
-                                                                      },
-                                                                      expression:
-                                                                        "form.dokumen_pinjaman_5"
-                                                                    }
-                                                                  }
-                                                                )
-                                                              ],
-                                                              1
-                                                            )
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass: "col-6"
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "div",
-                                                              {
-                                                                staticClass:
-                                                                  "form-group"
-                                                              },
-                                                              [
-                                                                _c("h5", [
-                                                                  _vm._v(
-                                                                    "Dokumen Pinjaman 6:"
-                                                                  )
-                                                                ]),
-                                                                _vm._v(" "),
-                                                                _c(
-                                                                  "app-image-upload",
-                                                                  {
-                                                                    attrs: {
-                                                                      image_loc:
-                                                                        "/images/jalinan/",
-                                                                      image_temp:
-                                                                        _vm.form
-                                                                          .dokumen_pinjaman_6
-                                                                    },
-                                                                    model: {
-                                                                      value:
-                                                                        _vm.form
-                                                                          .dokumen_pinjaman_6,
-                                                                      callback: function(
-                                                                        $$v
-                                                                      ) {
-                                                                        _vm.$set(
-                                                                          _vm.form,
-                                                                          "dokumen_pinjaman_6",
-                                                                          $$v
-                                                                        )
-                                                                      },
-                                                                      expression:
-                                                                        "form.dokumen_pinjaman_6"
-                                                                    }
-                                                                  }
-                                                                )
-                                                              ],
-                                                              1
-                                                            )
-                                                          ]
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            )
-                                          ],
-                                          1
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("form-info"),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "card card-body" },
-                                        [
-                                          _c("form-button", {
-                                            attrs: {
-                                              cancelState: "methods",
-                                              formValidation: "form"
-                                            },
-                                            on: { cancelClick: _vm.back }
-                                          })
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
-                                : _vm._e()
-                            ])
-                      ]
-                    )
-                  ])
-                : _vm._e()
-            ],
-            1
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "app-modal",
-        {
-          attrs: {
-            show: _vm.modalShow,
-            state: _vm.modalState,
-            title: _vm.modalTitle,
-            content: _vm.modalContent,
-            color: _vm.modalColor
-          },
-          on: {
-            batal: _vm.modalTutup,
-            confirmOk: _vm.modalConfirmOk,
-            tutup: _vm.modalTutup,
-            successOk: _vm.modalTutup,
-            failOk: _vm.modalTutup,
-            backgroundClick: _vm.modalBackgroundClick
-          }
-        },
-        [
-          _c("template", { slot: "modal-title" }, [
-            _vm._v("\n\t\t\t" + _vm._s(_vm.modalTitle) + "\n\t\t")
-          ]),
-          _vm._v(" "),
-          _c("template", { slot: "modal-body1" }),
-          _vm._v(" "),
-          _c("template", { slot: "modal-body2" })
-        ],
-        2
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header bg-white" }, [
-      _c("h5", { staticClass: "card-title" }, [_vm._v("Identitas")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "input-group-prepend" }, [
-      _c("span", { staticClass: "input-group-text" }, [
-        _vm._v("Keanggotaan CU")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "input-group-prepend" }, [
-      _c("span", { staticClass: "input-group-text" }, [_vm._v("Tipe")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header bg-white" }, [
-      _c("h5", { staticClass: "card-title" }, [_vm._v("Daftar Produk")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header bg-white" }, [
-      _c("h5", { staticClass: "card-title" }, [_vm._v("Form Bantuan Solidaritas ")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header bg-white" }, [
-      _c("h5", { staticClass: "card-title" }, [_vm._v("Dokumen")])
-    ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/components/countWidget.vue":
-/*!********************************************************!*\
-  !*** ./resources/assets/js/components/countWidget.vue ***!
-  \********************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/presensi/formQR.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/presensi/formQR.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _countWidget_vue_vue_type_template_id_b9608b28___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./countWidget.vue?vue&type=template&id=b9608b28& */ "./resources/assets/js/components/countWidget.vue?vue&type=template&id=b9608b28&");
-/* harmony import */ var _countWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./countWidget.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/countWidget.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      value: 'KANTOR',
+      options: ['Kegiatan', 'Masuk Kantor'],
+      tp_id: '',
+      valueJenis: 'TETAP',
+      tipe_cu: 0,
+      jam_masuk: '00',
+      isChecked: false,
+      menit_masuk: '00',
+      jam_pulang: '00',
+      menit_pulang: '00',
+      jenis: '',
+      jam: ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'],
+      menit: ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59', '60']
+    };
+  },
+  props: {
+    qr: [],
+    mode: ''
+  },
+  created: function created() {
+    if (this.currentUser.id_cu != 0) {
+      this.fetchTp(this.currentUser.id_cu);
+    }
+    if (this.mode == 'edit') {
+      this.$store.dispatch('presensi/edit', ['qr', this.qr]);
+      if (this.qr) {
+        if (this.qr.id_cu == 0) {
+          this.tipe_cu = 0;
+        } else {
+          this.tipe_cu = 1;
+        }
+      }
+    } else {
+      this.$store.dispatch('presensi/createFormQR');
+    }
+  },
+  watch: {
+    dataStat: function dataStat(value) {
+      if (value == 'success') {
+        if (this.form.jam_pulang != null) {
+          if (this.form.id_kegiatan != 0) {
+            this.value = '';
+          }
+          this.isChecked = true;
+          this.jam_pulang = this.form.jam_pulang.slice(0, 2);
+          this.menit_pulang = this.form.jam_pulang.slice(3, 5);
+        } else {
+          this.form.isPulang = false;
+        }
+        this.jam_masuk = this.form.jam_masuk.slice(0, 2);
+        this.menit_masuk = this.form.jam_masuk.slice(3, 5);
+        this.tipe_cu = this.form.id_cu;
+      }
+    }
+  },
+  methods: {
+    handle: function handle() {
+      this.isChecked;
+    },
+    tutup: function tutup() {
+      this.$emit('tutup');
+    },
+    check: function check() {
+      if (this.value == 'DIKLAT' || this.value == 'PERTEMUAN') {
+        this.$store.dispatch('presensi/getKegiatan', [this.cu_id, this.value]);
+      }
+    },
+    changeCu: function changeCu(id) {
+      var cu;
+      if (id != 0) {
+        cu = _.find(this.modelCU, function (o) {
+          return o.id == id;
+        });
+      }
+      this.fetchTp(cu.id);
+    },
+    changeTp: function changeTp(id) {
+      var tp;
+      if (id != 0) {
+        this.id_cu = this.currentUser.id_cu;
+        tp = _.find(this.modelTp, function (o) {
+          return o.id == id;
+        });
+      }
+    },
+    fetchTp: function fetchTp(value) {
+      this.$store.dispatch('tp/getCu', value);
+    },
+    storeQR: function storeQR() {
+      var _this = this;
+      var wktmasuk = this.jam_masuk.concat(':', this.menit_masuk);
+      var wktpulang = this.jam_pulang.concat(':', this.menit_pulang);
+      var a = this.kegiatan.find(function (item) {
+        return item.id === _this.form.id_kegiatan;
+      });
+      if (this.value == 'KANTOR') {
+        this.form.id_kegiatan = 0;
+        this.form.kegiatan_name = 'Kantor';
+      } else {
+        this.form.kegiatan_name = a.name;
+      }
+      if (this.currentUser.id_cu != 0) {
+        this.form.id_cu = this.currentUser.id_cu;
+      }
+      this.form.isPulang = this.isChecked;
+      if (this.tipe_cu == 0) {
+        this.form.id_cu = 0;
+      }
+      this.form.jam_masuk = wktmasuk;
+      this.form.jam_pulang = wktpulang;
+      this.form.jenis = this.jenis;
+      this.form.status = 'tidak aktif';
+      this.form.kode_qr = Date.now();
+      if (this.mode == 'create') {
+        this.$store.dispatch('presensi/storeQR', this.form);
+      } else {
+        this.$store.dispatch('presensi/updateQR', [this.qr.id, this.form]);
+      }
+    }
+  },
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+    currentUser: 'currentUser'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('cu', {
+    modelCU: 'headerDataS',
+    modelCUStat: 'headerDataStatS',
+    updateMessage: 'update',
+    updateStat: 'updateStat'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('tp', {
+    modelTp: 'dataS',
+    modelTpStat: 'dataStatS'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('presensi', {
+    kegiatan: 'list_kegiatan',
+    form: 'qrForm',
+    dataStat: 'dataStat',
+    pesan: 'message',
+    qrstat: 'QRStat'
+  }))
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/presensi/cutiVerifikasi.vue?vue&type=template&id=36de3019&":
+/*!**********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/presensi/cutiVerifikasi.vue?vue&type=template&id=36de3019& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", [_c("data-viewer", {
+    attrs: {
+      title: _vm.title,
+      columnData: _vm.columnData,
+      itemData: _vm.itemData,
+      query: _vm.query,
+      itemDataStat: _vm.itemDataStat,
+      isNoKolom: true,
+      isNoExcel: true
+    },
+    on: {
+      fetch: _vm.fetch
+    },
+    scopedSlots: _vm._u([{
+      key: "item-desktop",
+      fn: function fn(props) {
+        return [_c("tr", {
+          staticClass: "text-nowrap",
+          "class": {
+            "bg-info": _vm.selectedItem.id == props.item.id
+          },
+          on: {
+            click: function click($event) {
+              return _vm.selectedRow(props.item);
+            }
+          }
+        }, [!_vm.columnData[0].hide ? _c("td", [_vm._v("\n\t\t\t\t\t" + _vm._s(props.index + 1 + (+_vm.itemData.current_page - 1) * +_vm.itemData.per_page + ".") + "\n\t\t\t\t")]) : _vm._e(), _vm._v(" "), !_vm.columnData[1].hide ? _c("td", [_c("check-value", {
+          attrs: {
+            value: props.item.aktivis.name
+          }
+        })], 1) : _vm._e(), _vm._v(" "), !_vm.columnData[2].hide ? _c("td", [_c("check-value", {
+          attrs: {
+            value: _vm.$options.filters.date(props.item.tanggal)
+          }
+        })], 1) : _vm._e(), _vm._v(" "), !_vm.columnData[3].hide ? _c("td", [_c("check-value", {
+          attrs: {
+            value: props.item.jenis
+          }
+        })], 1) : _vm._e(), _vm._v(" "), !_vm.columnData[4].hide ? _c("td", [_c("check-value", {
+          attrs: {
+            value: props.item.alasan
+          }
+        })], 1) : _vm._e(), _vm._v(" "), !_vm.columnData[5].hide ? _c("td", [_c("check-value", {
+          attrs: {
+            value: _vm.$options.filters.date(props.item.tanggal_mulai)
+          }
+        })], 1) : _vm._e(), _vm._v(" "), !_vm.columnData[6].hide ? _c("td", [_c("check-value", {
+          attrs: {
+            value: _vm.$options.filters.date(props.item.tanggal_selesai)
+          }
+        })], 1) : _vm._e(), _vm._v(" "), !_vm.columnData[7].hide ? _c("td", [_c("check-value", {
+          attrs: {
+            value: props.item.lama
+          }
+        })], 1) : _vm._e(), _vm._v(" "), !_vm.columnData[8].hide && !props.item.tanggal_acc1 ? _c("td", [_c("check-value", {
+          attrs: {
+            value: "-"
+          }
+        })], 1) : _c("td", [_c("check-value", {
+          attrs: {
+            value: props.item.tanggal_acc1
+          }
+        })], 1), _vm._v(" "), !_vm.columnData[9].hide ? _c("td", {
+          domProps: {
+            innerHTML: _vm._s(_vm.$options.filters.dateTime(props.item.created_at))
+          }
+        }) : _vm._e(), _vm._v(" "), !_vm.columnData[10].hide ? _c("td", [props.item.created_at !== props.item.updated_at ? _c("span", {
+          domProps: {
+            innerHTML: _vm._s(_vm.$options.filters.dateTime(props.item.updated_at))
+          }
+        }) : _c("span", [_vm._v("-")])]) : _vm._e()])];
+      }
+    }])
+  }, [_c("template", {
+    slot: "button-desktop"
+  }, [_c("button", {
+    staticClass: "btn btn-light mb-1",
+    attrs: {
+      disabled: _vm.selectedItem == ""
+    },
+    on: {
+      click: function click($event) {
+        return _vm.modalConfirmOpen("setujui");
+      }
+    }
+  }, [_c("i", {
+    staticClass: "icon-check"
+  }), _vm._v("Setujui\n\t\t\t")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-light mb-1",
+    attrs: {
+      disabled: _vm.selectedItem == ""
+    },
+    on: {
+      click: function click($event) {
+        return _vm.modalOpen("tolak");
+      }
+    }
+  }, [_c("i", {
+    staticClass: "icon-x"
+  }), _vm._v("Tolak\n\t\t\t")])]), _vm._v(" "), _c("template", {
+    slot: "button-mobile"
+  }, [_c("button", {
+    staticClass: "btn btn-light btn-block mb-1",
+    attrs: {
+      disabled: _vm.selectedItem == ""
+    },
+    on: {
+      click: function click($event) {
+        return _vm.modalConfirmOpen("setujui");
+      }
+    }
+  }, [_c("i", {
+    staticClass: "icon-check"
+  }), _vm._v("Setujui\n\t\t\t")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-light btn-block mb-1",
+    attrs: {
+      disabled: _vm.selectedItem == ""
+    },
+    on: {
+      click: function click($event) {
+        return _vm.modalOpen("tolak");
+      }
+    }
+  }, [_c("i", {
+    staticClass: "icon-x"
+  }), _vm._v("Tolak\n\t\t\t")])])], 2), _vm._v(" "), _c("app-modal", {
+    attrs: {
+      show: _vm.modalShow,
+      state: _vm.modalState,
+      title: _vm.modalTitle,
+      content: _vm.modalContent,
+      size: _vm.modalSize,
+      color: _vm.modalColor
+    },
+    on: {
+      batal: _vm.modalTutup,
+      tutup: _vm.modalTutup,
+      confirmOk: _vm.modalConfirmOk,
+      successOk: _vm.modalTutup,
+      failOk: _vm.modalTutup,
+      backgroundClick: _vm.modalBackgroundClick
+    }
+  }, [_c("template", {
+    slot: "modal-title"
+  }, [_vm._v("\n\t\t\t" + _vm._s(_vm.modalTitle) + "\n\t\t")]), _vm._v(" "), _c("template", {
+    slot: "modal-body1"
+  }, [_c("div", [_c("h5", [_vm._v("Alasan Penolakan :")]), _vm._v(" "), _c("div", {}, [_c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.alasan,
+      expression: "form.alasan"
+    }],
+    attrs: {
+      name: "",
+      rows: "10"
+    },
+    domProps: {
+      value: _vm.form.alasan
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "alasan", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "text-center"
+  }, [_c("button", {
+    staticClass: "btn btn-warning",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.modalTutup.apply(null, arguments);
+      }
+    }
+  }, [_c("i", {}), _vm._v("Batal")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      disabled: _vm.form.alasan == "",
+      type: "submit",
+      value: "submit"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.verifikasi();
+      }
+    }
+  }, [_c("i", {
+    staticClass: "icon-floppy-disk"
+  }), _vm._v("Simpan")])])])])], 2)], 1);
+};
+var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/presensi/formQR.vue?vue&type=template&id=552f16a2&":
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/presensi/formQR.vue?vue&type=template&id=552f16a2& ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function render() {};
+var staticRenderFns = [];
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/presensi/cutiVerifikasi.vue?vue&type=style&index=0&id=36de3019&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/presensi/cutiVerifikasi.vue?vue&type=style&index=0&id=36de3019&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\ntextarea {\r\n\theight: 100%;\r\n\twidth: 100%;\r\n\t/* Safari/Chrome, other WebKit */\r\n\t/* Firefox, other Gecko */\r\n\tbox-sizing: border-box;\r\n\t/* Opera/IE 8+ */\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/presensi/cutiVerifikasi.vue?vue&type=style&index=0&id=36de3019&lang=css&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/presensi/cutiVerifikasi.vue?vue&type=style&index=0&id=36de3019&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./cutiVerifikasi.vue?vue&type=style&index=0&id=36de3019&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/presensi/cutiVerifikasi.vue?vue&type=style&index=0&id=36de3019&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/presensi/cutiVerifikasi.vue":
+/*!***************************************************************!*\
+  !*** ./resources/assets/js/views/presensi/cutiVerifikasi.vue ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _cutiVerifikasi_vue_vue_type_template_id_36de3019___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cutiVerifikasi.vue?vue&type=template&id=36de3019& */ "./resources/assets/js/views/presensi/cutiVerifikasi.vue?vue&type=template&id=36de3019&");
+/* harmony import */ var _cutiVerifikasi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cutiVerifikasi.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/presensi/cutiVerifikasi.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _cutiVerifikasi_vue_vue_type_style_index_0_id_36de3019_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./cutiVerifikasi.vue?vue&type=style&index=0&id=36de3019&lang=css& */ "./resources/assets/js/views/presensi/cutiVerifikasi.vue?vue&type=style&index=0&id=36de3019&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -4288,10 +714,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _countWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _countWidget_vue_vue_type_template_id_b9608b28___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _countWidget_vue_vue_type_template_id_b9608b28___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _cutiVerifikasi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _cutiVerifikasi_vue_vue_type_template_id_36de3019___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _cutiVerifikasi_vue_vue_type_template_id_36de3019___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -4301,54 +727,70 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/components/countWidget.vue"
+component.options.__file = "resources/assets/js/views/presensi/cutiVerifikasi.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/countWidget.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************!*\
-  !*** ./resources/assets/js/components/countWidget.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************/
+/***/ "./resources/assets/js/views/presensi/cutiVerifikasi.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/assets/js/views/presensi/cutiVerifikasi.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_countWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./countWidget.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/countWidget.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_countWidget_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_cutiVerifikasi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./cutiVerifikasi.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/presensi/cutiVerifikasi.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_cutiVerifikasi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/countWidget.vue?vue&type=template&id=b9608b28&":
-/*!***************************************************************************************!*\
-  !*** ./resources/assets/js/components/countWidget.vue?vue&type=template&id=b9608b28& ***!
-  \***************************************************************************************/
+/***/ "./resources/assets/js/views/presensi/cutiVerifikasi.vue?vue&type=style&index=0&id=36de3019&lang=css&":
+/*!************************************************************************************************************!*\
+  !*** ./resources/assets/js/views/presensi/cutiVerifikasi.vue?vue&type=style&index=0&id=36de3019&lang=css& ***!
+  \************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_cutiVerifikasi_vue_vue_type_style_index_0_id_36de3019_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./cutiVerifikasi.vue?vue&type=style&index=0&id=36de3019&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/presensi/cutiVerifikasi.vue?vue&type=style&index=0&id=36de3019&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_cutiVerifikasi_vue_vue_type_style_index_0_id_36de3019_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_cutiVerifikasi_vue_vue_type_style_index_0_id_36de3019_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_cutiVerifikasi_vue_vue_type_style_index_0_id_36de3019_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_cutiVerifikasi_vue_vue_type_style_index_0_id_36de3019_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/presensi/cutiVerifikasi.vue?vue&type=template&id=36de3019&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/assets/js/views/presensi/cutiVerifikasi.vue?vue&type=template&id=36de3019& ***!
+  \**********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_countWidget_vue_vue_type_template_id_b9608b28___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./countWidget.vue?vue&type=template&id=b9608b28& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/countWidget.vue?vue&type=template&id=b9608b28&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_countWidget_vue_vue_type_template_id_b9608b28___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_cutiVerifikasi_vue_vue_type_template_id_36de3019___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../../node_modules/vue-loader/lib??vue-loader-options!./cutiVerifikasi.vue?vue&type=template&id=36de3019& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/presensi/cutiVerifikasi.vue?vue&type=template&id=36de3019&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_cutiVerifikasi_vue_vue_type_template_id_36de3019___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_countWidget_vue_vue_type_template_id_b9608b28___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_cutiVerifikasi_vue_vue_type_template_id_36de3019___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/jalinanKlaim/form.vue":
-/*!*********************************************************!*\
-  !*** ./resources/assets/js/views/jalinanKlaim/form.vue ***!
-  \*********************************************************/
+/***/ "./resources/assets/js/views/presensi/formQR.vue":
+/*!*******************************************************!*\
+  !*** ./resources/assets/js/views/presensi/formQR.vue ***!
+  \*******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _form_vue_vue_type_template_id_a5ee5ada___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./form.vue?vue&type=template&id=a5ee5ada& */ "./resources/assets/js/views/jalinanKlaim/form.vue?vue&type=template&id=a5ee5ada&");
-/* harmony import */ var _form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./form.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/jalinanKlaim/form.vue?vue&type=script&lang=js&");
+/* harmony import */ var _formQR_vue_vue_type_template_id_552f16a2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./formQR.vue?vue&type=template&id=552f16a2& */ "./resources/assets/js/views/presensi/formQR.vue?vue&type=template&id=552f16a2&");
+/* harmony import */ var _formQR_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./formQR.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/presensi/formQR.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -4358,9 +800,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _form_vue_vue_type_template_id_a5ee5ada___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _form_vue_vue_type_template_id_a5ee5ada___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _formQR_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _formQR_vue_vue_type_template_id_552f16a2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _formQR_vue_vue_type_template_id_552f16a2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -4370,38 +812,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/views/jalinanKlaim/form.vue"
+component.options.__file = "resources/assets/js/views/presensi/formQR.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/jalinanKlaim/form.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************!*\
-  !*** ./resources/assets/js/views/jalinanKlaim/form.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************/
+/***/ "./resources/assets/js/views/presensi/formQR.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/assets/js/views/presensi/formQR.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./form.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/jalinanKlaim/form.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_formQR_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./formQR.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/presensi/formQR.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_formQR_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/jalinanKlaim/form.vue?vue&type=template&id=a5ee5ada&":
-/*!****************************************************************************************!*\
-  !*** ./resources/assets/js/views/jalinanKlaim/form.vue?vue&type=template&id=a5ee5ada& ***!
-  \****************************************************************************************/
+/***/ "./resources/assets/js/views/presensi/formQR.vue?vue&type=template&id=552f16a2&":
+/*!**************************************************************************************!*\
+  !*** ./resources/assets/js/views/presensi/formQR.vue?vue&type=template&id=552f16a2& ***!
+  \**************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_a5ee5ada___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./form.vue?vue&type=template&id=a5ee5ada& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/jalinanKlaim/form.vue?vue&type=template&id=a5ee5ada&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_a5ee5ada___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_formQR_vue_vue_type_template_id_552f16a2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ref--6!../../../../../node_modules/vue-loader/lib??vue-loader-options!./formQR.vue?vue&type=template&id=552f16a2& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/presensi/formQR.vue?vue&type=template&id=552f16a2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_formQR_vue_vue_type_template_id_552f16a2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_a5ee5ada___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ref_6_node_modules_vue_loader_lib_index_js_vue_loader_options_formQR_vue_vue_type_template_id_552f16a2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -26,6 +26,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       valueJenis: 'TETAP',
       tipe_cu: 0,
       jam_masuk: '00',
+      isChecked: false,
       menit_masuk: '00',
       jam_pulang: '00',
       menit_pulang: '00',
@@ -42,24 +43,42 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     if (this.currentUser.id_cu != 0) {
       this.fetchTp(this.currentUser.id_cu);
     }
-    this.$store.dispatch('presensi/createFormQR');
     if (this.mode == 'edit') {
+      this.$store.dispatch('presensi/edit', ['qr', this.qr]);
       if (this.qr) {
         if (this.qr.id_cu == 0) {
           this.tipe_cu = 0;
         } else {
           this.tipe_cu = 1;
         }
-        this.jam_masuk = this.qr.jam_masuk.slice(0, 2);
-        this.menit_masuk = this.qr.jam_masuk.slice(3, 5);
-        this.jam_pulang = this.qr.jam_pulang.slice(0, 2);
-        this.menit_pulang = this.qr.jam_pulang.slice(3, 5);
-        this.jenis = this.qr.jenis;
+      }
+    } else {
+      this.$store.dispatch('presensi/createFormQR');
+    }
+  },
+  watch: {
+    dataStat: function dataStat(value) {
+      if (value == 'success') {
+        if (this.form.id_kegiatan != 0) {
+          this.value = '';
+        }
+        if (this.form.jam_pulang != null) {
+          this.isChecked = true;
+          this.jam_pulang = this.form.jam_pulang.slice(0, 2);
+          this.menit_pulang = this.form.jam_pulang.slice(3, 5);
+        } else {
+          this.form.isPulang = false;
+        }
+        this.jam_masuk = this.form.jam_masuk.slice(0, 2);
+        this.menit_masuk = this.form.jam_masuk.slice(3, 5);
+        this.tipe_cu = this.form.id_cu;
       }
     }
   },
-  watch: {},
   methods: {
+    handle: function handle() {
+      this.isChecked;
+    },
     tutup: function tutup() {
       this.$emit('tutup');
     },
@@ -100,7 +119,9 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         this.form.id_kegiatan = 0;
         this.form.kegiatan_name = 'Kantor';
       } else {
-        this.form.kegiatan_name = a.name;
+        if (this.mode == 'edit') {} else {
+          this.form.kegiatan_name = a.name;
+        }
       }
       if (this.currentUser.id_cu != 0) {
         this.form.id_cu = this.currentUser.id_cu;
@@ -110,13 +131,16 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       }
       this.form.jam_masuk = wktmasuk;
       this.form.jam_pulang = wktpulang;
-      this.form.jenis = this.jenis;
       this.form.status = 'tidak aktif';
       this.form.kode_qr = Date.now();
+      if (!this.isChecked) {
+        this.form.jam_pulang = null;
+      }
       if (this.mode == 'create') {
+        this.form.isPulang = this.isChecked;
         this.$store.dispatch('presensi/storeQR', this.form);
       } else {
-        this.$store.dispatch('presensi/updateQR', [this.qr.id, this.form]);
+        this.$store.dispatch('presensi/updateQR', [this.form.id, this.form]);
       }
     }
   },
@@ -133,6 +157,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('presensi', {
     kegiatan: 'list_kegiatan',
     form: 'qrForm',
+    dataStat: 'dataStat',
     pesan: 'message',
     qrstat: 'QRStat'
   }))
@@ -169,8 +194,8 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_vm.currentUser.id_cu === 0 && _vm.mode == "create" ? _c("div", [_c("div", {
-    staticClass: "form-group d-none d-md-block"
-  }, [_c("h5", [_vm._v("\n    \t\t\t\t\t\tCU:\n    \t\t\t\t\t")]), _vm._v(" "), _c("select", {
+    staticClass: "form-group"
+  }, [_c("h5", [_vm._v("\n                            CU:\n                        ")]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -211,8 +236,8 @@ var render = function render() {
       value: "1"
     }
   }, [_vm._v("CU PRIMER")])])]), _vm._v(" "), _vm.tipe_cu == 1 ? _c("div", {
-    staticClass: "form-group d-none d-md-block"
-  }, [_c("h5", [_vm._v("\n\t\t\t\t\t\tCU:\n\t\t\t\t\t")]), _vm._v(" "), _c("select", {
+    staticClass: "form-group"
+  }, [_c("h5", [_vm._v("\n                            CU:\n                        ")]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -256,9 +281,9 @@ var render = function render() {
         value: cu.id
       }
     }, [_vm._v(_vm._s(cu.name))]);
-  })], 2)]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm.mode == "edit" ? _c("div", [_c("h5", [_vm._v("\n        \t\t   KEGIATAN: " + _vm._s(this.qr.kegiatan_name.toUpperCase()) + "\n        \t\t")])]) : _vm._e(), _vm._v(" "), _vm.tipe_cu == 1 ? _c("div", {
-    staticClass: "form-group d-none d-md-block"
-  }, [_c("h6", [_vm._v("\n\t\t\t\t\t\tTP/KP:\n\t\t\t\t\t")]), _vm._v(" "), _c("select", {
+  })], 2)]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm.mode == "edit" ? _c("div", [_c("h5", [_vm._v("\n                        KEGIATAN: " + _vm._s(this.form.kegiatan_name.toUpperCase()) + "\n                    ")])]) : _vm._e(), _vm._v(" "), _vm.tipe_cu == 1 ? _c("div", {
+    staticClass: "form-group"
+  }, [_c("h6", [_vm._v("\n                        TP/KP:\n                    ")]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -297,7 +322,7 @@ var render = function render() {
       }
     }, [_vm._v(_vm._s(tp.name))]);
   })], 2)]) : _vm._e(), _vm._v(" "), _vm.mode == "create" ? _c("div", [_c("h5", [_vm._v("Jenis :")]), _vm._v(" "), _c("div", {
-    staticClass: "text-center d-none d-md-block"
+    staticClass: "text-center"
   }, [_c("select", {
     directives: [{
       name: "model",
@@ -340,7 +365,7 @@ var render = function render() {
       value: "PERTEMUAN"
     }
   }, [_vm._v("PERTEMUAN")])])])]) : _vm._e(), _vm._v(" "), _vm.value == "DIKLAT" ? _c("div", [_c("h5", [_vm._v("Diklat :")]), _vm._v(" "), _c("div", {
-    staticClass: "text-center d-none d-md-block"
+    staticClass: "text-center"
   }, [_c("select", {
     directives: [{
       name: "model",
@@ -374,9 +399,9 @@ var render = function render() {
       domProps: {
         value: kegiatan.id
       }
-    }, [_vm._v(_vm._s(kegiatan.name))]);
+    }, [_vm._v(_vm._s(kegiatan.name) + " || " + _vm._s(_vm.$options.filters.date(kegiatan.mulai)))]);
   })], 2)])]) : _vm._e(), _vm._v(" "), _vm.value == "PERTEMUAN" ? _c("div", [_c("h5", [_vm._v("PETEMUAN :")]), _vm._v(" "), _c("div", {
-    staticClass: "text-center d-none d-md-block"
+    staticClass: "text-center"
   }, [_c("select", {
     directives: [{
       name: "model",
@@ -446,11 +471,7 @@ var render = function render() {
         value: jam
       }
     }, [_vm._v(_vm._s(jam))]);
-  }), 0)]), _vm._v(" "), _c("span", {
-    staticStyle: {
-      "font-weight": "bold"
-    }
-  }, [_vm._v(":")]), _vm._v(" "), _c("div", {
+  }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "col-md-3"
   }, [_c("select", {
     directives: [{
@@ -481,7 +502,42 @@ var render = function render() {
         value: menit
       }
     }, [_vm._v(_vm._s(menit))]);
-  }), 0)])])]), _vm._v(" "), _c("div", [_c("h5", [_vm._v("JAM PULANG :")]), _vm._v(" "), _c("div", {
+  }), 0)])])]), _vm._v(" "), _vm.value != "KANTOR" || _vm.mode == "edit" && _vm.value != "KANTOR" ? _c("div", {
+    staticStyle: {
+      "margin-top": "10px"
+    }
+  }, [_c("label", [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.isChecked,
+      expression: "isChecked"
+    }],
+    attrs: {
+      type: "checkbox"
+    },
+    domProps: {
+      checked: Array.isArray(_vm.isChecked) ? _vm._i(_vm.isChecked, null) > -1 : _vm.isChecked
+    },
+    on: {
+      change: [function ($event) {
+        var $$a = _vm.isChecked,
+          $$el = $event.target,
+          $$c = $$el.checked ? true : false;
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.isChecked = $$a.concat([$$v]));
+          } else {
+            $$i > -1 && (_vm.isChecked = $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+          }
+        } else {
+          _vm.isChecked = $$c;
+        }
+      }, _vm.handle]
+    }
+  }), _vm._v("\n                        Gunakan Presensi Pulang?\n                    ")])]) : _vm._e(), _vm._v(" "), _vm.isChecked ? _c("div", [_c("h5", [_vm._v("JAM PULANG :")]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-md-3"
@@ -514,11 +570,7 @@ var render = function render() {
         value: jam
       }
     }, [_vm._v(_vm._s(jam))]);
-  }), 0)]), _vm._v(" "), _c("span", {
-    staticStyle: {
-      "font-weight": "bold"
-    }
-  }, [_vm._v(":")]), _vm._v(" "), _c("div", {
+  }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "col-md-3"
   }, [_c("select", {
     directives: [{
@@ -549,14 +601,14 @@ var render = function render() {
         value: menit
       }
     }, [_vm._v(_vm._s(menit))]);
-  }), 0)])])]), _vm._v(" "), _c("div", [_c("h5", [_vm._v("Jenis QR :")]), _vm._v(" "), _c("div", {
-    staticClass: "text-center d-none d-md-block"
+  }), 0)])])]) : _vm._e(), _vm._v(" "), _c("div", [_c("h5", [_vm._v("Jenis QR :")]), _vm._v(" "), _c("div", {
+    staticClass: "text-center"
   }, [_c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.jenis,
-      expression: "jenis"
+      value: _vm.form.jenis,
+      expression: "form.jenis"
     }],
     staticClass: "form-control",
     attrs: {
@@ -570,7 +622,7 @@ var render = function render() {
           var val = "_value" in o ? o._value : o.value;
           return val;
         });
-        _vm.jenis = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
+        _vm.$set(_vm.form, "jenis", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
   }, [_c("option", {
@@ -591,7 +643,7 @@ var render = function render() {
       value: "BERUBAH SETELAH SCAN"
     }
   }, [_vm._v("BERUBAH SETELAH SCAN")])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "text-center d-none d-md-block"
+    staticClass: "text-center"
   }, [_c("button", {
     staticClass: "btn btn-light",
     on: {

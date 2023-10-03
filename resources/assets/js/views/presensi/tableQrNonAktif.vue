@@ -34,6 +34,34 @@
 
 			</template>
 
+			<!-- button mobile -->
+				<template slot="button-mobile">
+
+					<!-- tambah -->
+					<button @click="modalOpen('create')" class="btn btn-light btn-block mb-1"
+						v-if="currentUser.can && currentUser.can['create_qr']">
+						<i class="icon-plus3"></i> Tambah
+					</button>
+
+					<button v-if="currentUser.can && currentUser.can['update_qr']" @click.prevent="modalOpen('edit')" class="btn btn-light btn-block mb-1" :disabled="!selectedItem.id">
+						<i class="icon-pencil5"></i> Ubah
+					</button>
+
+					<!-- ubah-->
+					<button @click.prevent="ubahStatus()" class="btn btn-light btn-block mb-1"
+						v-if="currentUser.can && currentUser.can['index_qr']"
+						:disabled="!selectedItem.id || selectedItem.status == 'aktif'">
+						<i class="icon-check mr-2"></i> Aktifkan
+					</button>
+
+					<!-- detail-->
+					<button @click.prevent="modalConfirmOpen('hapus')"  class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_qr']"
+						:disabled="!selectedItem.id">
+						<i class="icon-bin2"></i> Hapus
+					</button>
+
+				</template>
+
 			<!-- item desktop -->
 			<template slot="item-desktop" slot-scope="props">
 				<tr :class="{ 'bg-info': selectedItem.id == props.item.id }" @click="selectedRow(props.item)"
@@ -75,7 +103,7 @@
 				{{ modalTitle }}
 			</template>
 			<template slot="modal-body1">
-				<form-absen :qr="selectedItem" :mode="mod" @tutup="modalTutup"></form-absen>
+				<form-absen :qr="selectedItem.id" :mode="mod" @tutup="modalTutup"></form-absen>
 			</template>
 		</app-modal>
 

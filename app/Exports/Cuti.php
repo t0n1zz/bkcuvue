@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\HariLibur;
 use App\PresensiCuti;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -109,7 +110,7 @@ class Cuti implements FromArray, WithHeadings, WithCustomStartCell, WithEvents, 
         $model = DB::select('select users.id,users.id_cu,users.id_aktivis,aktivis.name,aktivis.gambar,aktivis_pekerjaan.id_aktivis,aktivis_pekerjaan.tingkat,aktivis_pekerjaan.selesai, aktivis_pekerjaan.id_tempat,aktivis_pekerjaan.name as jabatan  from users
         inner join aktivis on aktivis.id = users.id_aktivis inner join aktivis_pekerjaan on aktivis_pekerjaan.id_aktivis = aktivis.id
         where users.id_cu = 0 and users.id_aktivis !=0 and users.status = 1 and aktivis_pekerjaan.selesai is null and aktivis_pekerjaan.id_tempat =1 and (aktivis_pekerjaan.tingkat = 5 or aktivis_pekerjaan.tingkat =6 or aktivis_pekerjaan.tingkat =7 or aktivis_pekerjaan.tingkat =8)  order by aktivis.name asc');
-        $cutiS = PresensiCuti::with('aktivis')->where('realisasi','!=',null)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->get();
+        $cutiS = PresensiCuti::with('aktivis')->where('realisasi_mulai', '!=', null)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->get();
         $cutiGroupBy = $cutiS->groupBy('id_user');
         $arrayComplete = [];
         $no = 1;
@@ -136,7 +137,7 @@ class Cuti implements FromArray, WithHeadings, WithCustomStartCell, WithEvents, 
                         array_push($arrayNew, Carbon::parse($data->tanggal_mulai)->format('d-m-Y'));
                         array_push($arrayNew, Carbon::parse($data->tanggal_selesai)->format('d-m-Y'));
                         array_push($arrayNew, $data->lama);
-                        array_push($arrayNew, Carbon::parse($data->realisasi)->format('d-m-Y'));
+                        array_push($arrayNew, Carbon::parse($data->realisasi_mulai)->format('d-m-Y'));
                         array_push($arrayNew, $data->alasan);
                         array_push($arrayNew, Carbon::parse($data->tanggal)->format('d-m-Y'));
                         array_push($arrayNew, Carbon::parse($data->tanggal_acc2)->format('d-m-Y'));
@@ -144,9 +145,8 @@ class Cuti implements FromArray, WithHeadings, WithCustomStartCell, WithEvents, 
                     }
 
                     $count++;
-                    
                 }
-            }else{
+            } else {
                 $arrayNew = [];
                 array_push($arrayNew, $no);
                 array_push($arrayNew, $name);

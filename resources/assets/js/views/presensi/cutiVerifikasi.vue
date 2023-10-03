@@ -21,9 +21,11 @@
 
 			<!-- button mobile -->
 			<template slot="button-mobile">
-				<button :disabled="today != selectedItem.tanggal" @click="modalOpen('terlambat')" class="btn btn-light mb-1"
-					v-if="tabName == 'keterlambatan'">
-					<i class="icon-plus3"></i>Isi Alasan Terlambat
+				<button :disabled="selectedItem == ''" @click="modalConfirmOpen('setujui')" class="btn btn-light btn-block mb-1">
+					<i class="icon-check"></i>Setujui
+				</button>
+				<button :disabled="selectedItem == ''" @click="modalOpen('tolak')" class="btn btn-light btn-block mb-1">
+					<i class="icon-x"></i>Tolak
 				</button>
 
 			</template>
@@ -257,7 +259,7 @@ export default {
 	},
 	created () {
 		this.fetch(this.query);
-		this.checkUser('index_verifikasi', this.$route.params.cu);
+		this.checkUser('personalia_akses', this.$route.params.cu);
 	},
 
 	watch: {

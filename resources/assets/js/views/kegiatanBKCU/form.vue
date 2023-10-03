@@ -1141,6 +1141,7 @@
 				this.modalSize = '';
 				this.modalButton = 'Ok';
 			},
+			
 			modalConfirmOk() {
 				this.modalShow = false;
 

@@ -1009,6 +1009,7 @@
         }
         this.showAllColumn(index);
       },
+      
       unGroupRow() {
         if (this.group.show) {
           this.group.show = false;

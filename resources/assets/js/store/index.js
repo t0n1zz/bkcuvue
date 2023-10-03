@@ -59,6 +59,8 @@ import { anggotaCuImportEscete } from "./modules/anggotaCuImportEscete";
 import { fileUpload } from "./modules/fileUpload";
 import { presensi } from "./modules/presensi";
 import { struktur } from "./modules/struktur";
+import { tunjangan } from "./modules/tunjanganKeluarga";
+import { hariLibur } from "./modules/hariLibur";
 
 Vue.use(Vuex);
 
@@ -121,6 +123,8 @@ export default new Vuex.Store({
     anggotaCuImportEscete,
     fileUpload,
     presensi,
-    struktur
+    struktur,
+    tunjangan,
+    hariLibur
   },
 });

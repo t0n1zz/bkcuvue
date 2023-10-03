@@ -23,7 +23,7 @@ class PresensiPulangAwal extends Model
     }
 
     protected $allowedFilters = [
-        'tanggal'
+        'tanggal','aktivis.name'
     ];
 
     protected $orderable = [

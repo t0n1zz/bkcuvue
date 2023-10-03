@@ -173,8 +173,8 @@ class PNG implements FromArray, WithHeadings, WithCustomStartCell, WithEvents, W
         $masukKantorS = Presensi::with('seragam', 'keterlambatanP', 'keterlambatanK', 'keluarP', 'keluarK', 'pulangP', 'pulangK', 'aktivis.pekerjaan_aktif')->where('id_kegiatan', 0)->where('kegiatan_name', '=', null)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user', 'id', 'id_aktivis')->get(); //b
         $kegiatanS = Presensi::with('seragam')->where("id_kegiatan", "!=", 0)->orWhere('kegiatan_name', '!=', null)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user')->get();
         $izinS = PresensiIzin::where('jenis', 'izin')->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user', 'lama')->get();
-        $cutiTahunanS = PresensiCuti::where('jenis', 'CUTI TAHUNAN')->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user', 'lama')->get();
-        $cutiKhususS = PresensiCuti::where('jenis', 'CUTI KHUSUS')->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user', 'lama')->get();
+        $cutiTahunanS = PresensiCuti::where('jenis', 'CUTI TAHUNAN')->where('realisasi_mulai', '!=', null)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user', 'lama')->get();
+        $cutiKhususS = PresensiCuti::where('jenis', 'CUTI KHUSUS')->where('realisasi_mulai', '!=', null)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user', 'lama')->get();
         $sakitS = PresensiIzin::where('jenis', 'sakit')->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user', 'lama')->get();
         $offS = PresensiOffBergilir::whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user')->get();
         $alpaS = PresensiAlpa::whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->select('id_user')->get();

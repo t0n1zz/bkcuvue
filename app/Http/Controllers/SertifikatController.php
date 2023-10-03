@@ -112,7 +112,6 @@ class SertifikatController extends Controller
     if (!empty($request->gambar_depan)) {
       $fileName2 = Helper::image_processing($imagepath, $this->width, $this->height, $request->gambar_belakang, $kelas->gambar_belakang, $name);
     } else {
-
       $fileName2 = '';
     }
 

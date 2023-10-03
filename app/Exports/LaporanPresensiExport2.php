@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-
+use App\HariLibur;
 use App\Presensi;
 use App\PresensiAlpa;
 use App\PresensiCuti;
@@ -41,7 +41,6 @@ class LaporanPresensiExport2 implements FromArray, WithHeadings, WithCustomStart
 
     public function registerEvents(): array
     {
-
         return [
             AfterSheet::class => function (AfterSheet $event) {
                 /** @var Sheet $sheet */
@@ -159,14 +158,15 @@ class LaporanPresensiExport2 implements FromArray, WithHeadings, WithCustomStart
         $izinSLastMonth = PresensiIzin::where('jenis', 'izin')->where('tanggal_selesai', '>=', $start)->where('tanggal_selesai', '<=', $end)->select('id_user', 'tanggal_mulai', 'tanggal_selesai')->get();
         $sakitS = PresensiIzin::where('jenis', 'sakit')->where('tanggal_mulai', '>=', $start)->where('tanggal_mulai', '<=', $end)->select('id_user', 'tanggal_mulai', 'tanggal_selesai')->get();
         $sakitSLastMonth = PresensiIzin::where('jenis', 'sakit')->where('tanggal_selesai', '>=', $start)->where('tanggal_selesai', '<=', $end)->select('id_user', 'tanggal_mulai', 'tanggal_selesai')->get();
-        $cutiS = PresensiCuti::where('realisasi','!=',null)->where('tanggal_mulai', '>=', $start)->where('tanggal_mulai', '<=', $end)->select('id_user', 'tanggal_mulai', 'tanggal_selesai')->get();
-        $cutiSLastMonth = PresensiCuti::where('realisasi', '!=', null)->where('tanggal_selesai', '>=', $start)->where('tanggal_selesai', '<=', $end)->select('id_user', 'tanggal_mulai', 'tanggal_selesai')->get();
+        $cutiS = PresensiCuti::where('realisasi_mulai','!=',null)->where('tanggal_mulai', '>=', $start)->where('tanggal_mulai', '<=', $end)->select('id_user', 'tanggal_mulai', 'tanggal_selesai')->get();
+        $cutiSLastMonth = PresensiCuti::where('realisasi_mulai', '!=', null)->where('tanggal_selesai', '>=', $start)->where('tanggal_selesai', '<=', $end)->select('id_user', 'tanggal_mulai', 'tanggal_selesai')->get();
         $offS = PresensiOffBergilir::where('created_at', '>=', $start)->where('created_at', '<=', $end)->select('id_user')->get();
         $alpaS = PresensiAlpa::where('created_at', '>=', $start)->where('created_at', '<=', $end)->select('id_user')->get();
         $kuliahS = PresensiKuliah::where('created_at', '>=', $start)->where('created_at', '<=', $end)->select('id_user')->get();
         $keluarS = PresensiKeluarKantor::where('created_at', '>=', $start)->where('created_at', '<=', $end)->select('id_user', 'lama')->get();
         $pulangAwalS = PresensiPulangAwal::where('created_at', '>=', $start)->where('created_at', '<=', $end)->select('id_user', 'lama')->get();
         $seragamS = Presensi::with('seragamKerja')->where('id_kegiatan', 0)->where('kegiatan_name', '=', null)->where('created_at', '>=', $start)->where('created_at', '<=', $end)->select('id_user', 'id')->get();
+        $libur = HariLibur::pluck('tanggal')->toArray();
 
         $masukKantorGroupBy = $masukKantorS->groupBy('id_user');
         $keterlambatanGroupBy = $keterlambatanS->groupBy('id_user');
@@ -205,7 +205,6 @@ class LaporanPresensiExport2 implements FromArray, WithHeadings, WithCustomStart
             $kuliah = isset($kuliahGroupBy[$aktivis->id]) ? count($kuliahGroupBy[$aktivis->id]) : 0;
             $seragam = isset($seragamGroupBy[$aktivis->id]) ? $seragamGroupBy[$aktivis->id] : 0;
 
-
             if (isset($keterlambatanGroupBy[$aktivis->id])) {
                 $lambat = count($keterlambatanGroupBy[$aktivis->id]);
             }
@@ -230,7 +229,7 @@ class LaporanPresensiExport2 implements FromArray, WithHeadings, WithCustomStart
                                 $date->lte($lastDayOfMonth);
                                 $date->addDay()
                             ) {
-                                if (!$date->isSunday()) {
+                                if (!$date->isSunday()&& !in_array($date->toDateString(), $libur)) {
                                     $izinDays++;
                                 }
                             }
@@ -239,14 +238,14 @@ class LaporanPresensiExport2 implements FromArray, WithHeadings, WithCustomStart
                             $endDate = Carbon::parse($izinGroupBy[$aktivis->id][$i]["tanggal_selesai"]);
 
                             for ($date = $firstDayOfMonth; $date->lte($endDate); $date->addDay()) {
-                                if (!$date->isSunday()) {
+                                if (!$date->isSunday() && !in_array($date->toDateString(), $libur)) {
                                     $izinDays++;
                                 }
                             }
                         }
                     } else {
                         for ($date = Carbon::parse($izinGroupBy[$aktivis->id][$i]["tanggal_mulai"]); $date->lte(Carbon::parse($izinGroupBy[$aktivis->id][$i]["tanggal_selesai"])); $date->addDay()) {
-                            if (!$date->isSunday()) {
+                            if (!$date->isSunday() && !in_array($date->toDateString(), $libur)) {
                                 $izinDays++;
                             }
                         }
@@ -266,7 +265,7 @@ class LaporanPresensiExport2 implements FromArray, WithHeadings, WithCustomStart
                         $endDate = Carbon::parse($izinLastMonthGroupBy[$aktivis->id][$i]["tanggal_selesai"]);
 
                         for ($date = $firstDayOfMonth; $date->lte($endDate); $date->addDay()) {
-                            if (!$date->isSunday()) {
+                            if (!$date->isSunday()&& !in_array($date->toDateString(), $libur)) {
                                 $izinDays++;
                             }
                         }
@@ -293,7 +292,7 @@ class LaporanPresensiExport2 implements FromArray, WithHeadings, WithCustomStart
                                 $date->lte($lastDayOfMonth);
                                 $date->addDay()
                             ) {
-                                if (!$date->isSunday()) {
+                                if (!$date->isSunday()&& !in_array($date->toDateString(), $libur)) {
                                     $sakitDays++;
                                 }
                             }
@@ -302,14 +301,14 @@ class LaporanPresensiExport2 implements FromArray, WithHeadings, WithCustomStart
                             $endDate = Carbon::parse($sakitGroupBy[$aktivis->id][$i]["tanggal_selesai"]);
 
                             for ($date = $firstDayOfMonth; $date->lte($endDate); $date->addDay()) {
-                                if (!$date->isSunday()) {
+                                if (!$date->isSunday()&& !in_array($date->toDateString(), $libur)) {
                                     $sakitDays++;
                                 }
                             }
                         }
                     } else {
                         for ($date = Carbon::parse($sakitGroupBy[$aktivis->id][$i]["tanggal_mulai"]); $date->lte(Carbon::parse($sakitGroupBy[$aktivis->id][$i]["tanggal_selesai"])); $date->addDay()) {
-                            if (!$date->isSunday()) {
+                            if (!$date->isSunday()&& !in_array($date->toDateString(), $libur)) {
                                 $sakitDays++;
                             }
                         }
@@ -328,7 +327,7 @@ class LaporanPresensiExport2 implements FromArray, WithHeadings, WithCustomStart
                         $firstDayOfMonth = Carbon::createFromDate($year, $month2)->startOfMonth();
                         $endDate = Carbon::parse($sakitLastMonthGroupBy[$aktivis->id][$i]["tanggal_selesai"]);
                         for ($date = $firstDayOfMonth; $date->lte($endDate); $date->addDay()) {
-                            if (!$date->isSunday()) {
+                            if (!$date->isSunday()&& !in_array($date->toDateString(), $libur)) {
                                 $sakitDays++;
                             }
                         }
@@ -355,7 +354,7 @@ class LaporanPresensiExport2 implements FromArray, WithHeadings, WithCustomStart
                                 $date->lte($lastDayOfMonth);
                                 $date->addDay()
                             ) {
-                                if (!$date->isSunday()) {
+                                if (!$date->isSunday()&& !in_array($date->toDateString(), $libur)) {
                                     $cutiDays++;
                                 }
                             }
@@ -364,14 +363,14 @@ class LaporanPresensiExport2 implements FromArray, WithHeadings, WithCustomStart
                             $endDate = Carbon::parse($cutiGroupBy[$aktivis->id][$i]["tanggal_selesai"]);
 
                             for ($date = $firstDayOfMonth; $date->lte($endDate); $date->addDay()) {
-                                if (!$date->isSunday()) {
+                                if (!$date->isSunday()&& !in_array($date->toDateString(), $libur)) {
                                     $cutiDays++;
                                 }
                             }
                         }
                     } else {
                         for ($date = Carbon::parse($cutiGroupBy[$aktivis->id][$i]["tanggal_mulai"]); $date->lte(Carbon::parse($cutiGroupBy[$aktivis->id][$i]["tanggal_selesai"])); $date->addDay()) {
-                            if (!$date->isSunday()) {
+                            if (!$date->isSunday()&& !in_array($date->toDateString(), $libur)) {
                                 $cutiDays++;
                             }
                         }
@@ -391,7 +390,7 @@ class LaporanPresensiExport2 implements FromArray, WithHeadings, WithCustomStart
                         $firstDayOfMonth = Carbon::createFromDate($year, $month2)->startOfMonth();
                         $endDate = Carbon::parse($cutiLastMonthGroupBy[$aktivis->id][$i]["tanggal_selesai"]);
                         for ($date = $firstDayOfMonth; $date->lte($endDate); $date->addDay()) {
-                            if (!$date->isSunday()) {
+                            if (!$date->isSunday()&& !in_array($date->toDateString(), $libur)) {
                                 $cutiDays++;
                             }
                         }

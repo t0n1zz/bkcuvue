@@ -27,7 +27,7 @@ class PresensiIzin extends Model
         'alasan' => 'required'
     ];
     protected $allowedFilters = [
-        'tanggal_mulai'
+        'tanggal_mulai','aktivis.name'
     ];
 
     protected $orderable = [

@@ -5,7 +5,7 @@
 		<Select :kelas="'semua'"></Select>
 		<div class="card">
 			<div class="nav-tabs-responsive">
-				<ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
+				<ul class="nav nav-tabs nav-tabs-solid bg-light">
 					<li class="nav-item"><a href="#" class="nav-link" :class="{ 'active': tabName == 'keterlambatan' }"
 							@click.prevent="changeTab('keterlambatan')">
 							KETERLAMBATAN
@@ -67,49 +67,52 @@
 				<!-- tambah -->
 				<button :disabled="today != selectedItem.tanggal" @click="modalOpen('terlambat')" class="btn btn-light mb-1"
 					v-if="tabName == 'keterlambatan'">
-					<i class="icon-plus3"></i>Isi Alasan Terlambat
+					<i class="icon-pencil5"></i>Ubah
 				</button>
 
 				<!-- tambah -->
 				<button :disabled="selectedItem == '' || today != selectedItem.tanggal" @click="modalOpen('pulangawal')"
 					class="btn btn-light mb-1" v-if="tabName == 'pulangawal'"><i class="icon-pencil5"></i>
-					Ubah Alasan
+					Ubah
 				</button>
 
 				<button :disabled="selectedItem == '' || today != selectedItem.tanggal" @click="modalOpen('keluarkantor')"
 					class="btn btn-light mb-1" v-if="tabName == 'keluarjamkantor'"><i class="icon-pencil5"></i>
-					Ubah Alasan
+					Ubah
 				</button>
 
 				<button @click="modalOpen('izin')" class="btn btn-light mb-1" v-if="tabName == 'izin'">
-					<i class="icon-plus3"></i>Tambah Izin
+					<i class="icon-plus3"></i>Tambah
 				</button>
 
 				<button @click="modalOpen('kegiatan')" class="btn btn-light mb-1" v-if="tabName == 'kegiatan'">
-					<i class="icon-plus3"></i>Tambah Kegiatan
+					<i class="icon-plus3"></i>Tambah
 				</button>
 
 				<button @click="modalOpen('sakit')" class="btn btn-light mb-1" v-if="tabName == 'sakit'">
-					<i class="icon-plus3"></i>Tambah Izin Sakit
+					<i class="icon-plus3"></i>Tambah
 				</button>
 
-				<button :disabled="selectedItem==''" @click="modalOpen('izinEdit')" class="btn btn-light mb-1" v-if="tabName == 'izin'">
+				<button :disabled="selectedItem == ''" @click="modalOpen('izinEdit')" class="btn btn-light mb-1"
+					v-if="tabName == 'izin'">
 					<i class="icon-pencil5"></i>Ubah
 				</button>
 
-				<button :disabled="selectedItem==''" @click="modalOpen('sakitEdit')" class="btn btn-light mb-1" v-if="tabName == 'sakit'">
+				<button :disabled="selectedItem == ''" @click="modalOpen('sakitEdit')" class="btn btn-light mb-1"
+					v-if="tabName == 'sakit'">
 					<i class="icon-pencil5"></i>Ubah
 				</button>
 
-				<button @click="modalOpen('cutiEdit')" class="btn btn-light mb-1" v-if="tabName == 'cuti'">
+				<button :disabled="selectedItem == ''" @click="modalOpen('cutiEdit')" class="btn btn-light mb-1"
+					v-if="tabName == 'cuti'">
 					<i class="icon-pencil5"></i>Ubah
 				</button>
 				<button @click="modalOpen('kuliah')" class="btn btn-light mb-1" v-if="tabName == 'kuliah'">
-					<i class="icon-plus3"></i>Tambah Aktivis Kuliah
+					<i class="icon-plus3"></i>Tambah
 				</button>
 
 				<button @click="modalOpen('seragam')" class="btn btn-light mb-1" v-if="tabName == 'seragam'">
-					<i class="icon-plus3"></i>Tambah Pelanggaran Atribut
+					<i class="icon-plus3"></i>Tambah
 				</button>
 
 				<button :disabled="selectedItem == ''" @click="modalOpen('seragamEdit')" class="btn btn-light mb-1"
@@ -119,7 +122,7 @@
 				</button>
 
 				<button @click="modalOpen('off2')" class="btn btn-light mb-1" v-if="tabName == 'off'">
-					<i class="icon-plus3"></i>Tambah Aktivis Off
+					<i class="icon-plus3"></i>Tambah
 				</button>
 
 				<button :disabled="selectedItem == ''" @click="modalConfirmOpen('hapus')" class="btn btn-light mb-1"
@@ -128,7 +131,7 @@
 				</button>
 
 				<button @click="modalOpen('off')" class="btn btn-light mb-1" v-if="tabName == 'off'">
-					<i class="icon-upload"></i>Upload Data Off
+					<i class="icon-upload"></i>Upload
 				</button>
 				<button @click="modalOpen('laporan')" class="btn btn-light mb-1">
 					<i class="icon-download"></i>Download Laporan
@@ -138,10 +141,76 @@
 			<!-- button mobile -->
 			<template slot="button-mobile">
 				<!-- tambah -->
-				<router-link :to="{ name: kelas + 'Create' }" class="btn btn-light btn-block mb-1"
-					v-if="currentUser.can && currentUser.can['create_' + kelas] && currentUser.id_cu == 0">
-					Isi Alasan terlambat
-				</router-link>
+				<button :disabled="today != selectedItem.tanggal" @click="modalOpen('terlambat')"
+					class="btn btn-light btn-block mb-1" v-if="tabName == 'keterlambatan'">
+					<i class="icon-pencil5"></i>Ubah
+				</button>
+
+				<!-- tambah -->
+				<button :disabled="selectedItem == '' || today != selectedItem.tanggal" @click="modalOpen('pulangawal')"
+					class="btn btn-light btn-block mb-1" v-if="tabName == 'pulangawal'"><i class="icon-pencil5"></i>
+					Ubah Alasan
+				</button>
+
+				<button :disabled="selectedItem == '' || today != selectedItem.tanggal" @click="modalOpen('keluarkantor')"
+					class="btn btn-light btn-block mb-1" v-if="tabName == 'keluarjamkantor'"><i class="icon-pencil5"></i>
+					Ubah
+				</button>
+
+				<button @click="modalOpen('izin')" class="btn btn-light btn-block mb-1" v-if="tabName == 'izin'">
+					<i class="icon-plus3"></i>Tambah
+				</button>
+
+				<button @click="modalOpen('kegiatan')" class="btn btn-light btn-block mb-1" v-if="tabName == 'kegiatan'">
+					<i class="icon-plus3"></i>Tambah
+				</button>
+
+				<button @click="modalOpen('sakit')" class="btn btn-light btn-block mb-1" v-if="tabName == 'sakit'">
+					<i class="icon-plus3"></i>Tambah
+				</button>
+
+				<button :disabled="selectedItem == ''" @click="modalOpen('izinEdit')" class="btn btn-light btn-block mb-1"
+					v-if="tabName == 'izin'">
+					<i class="icon-pencil5"></i>Ubah
+				</button>
+
+				<button :disabled="selectedItem == ''" @click="modalOpen('sakitEdit')" class="btn btn-light btn-block mb-1"
+					v-if="tabName == 'sakit'">
+					<i class="icon-pencil5"></i>Ubah
+				</button>
+
+				<button @click="modalOpen('cutiEdit')" class="btn btn-light btn-block mb-1" v-if="tabName == 'cuti'">
+					<i class="icon-pencil5"></i>Ubah
+				</button>
+				<button @click="modalOpen('kuliah')" class="btn btn-light btn-block mb-1" v-if="tabName == 'kuliah'">
+					<i class="icon-plus3"></i>Tambah
+				</button>
+
+				<button @click="modalOpen('seragam')" class="btn btn-light btn-block mb-1" v-if="tabName == 'seragam'">
+					<i class="icon-plus3"></i>Tambah
+				</button>
+
+				<button :disabled="selectedItem == ''" @click="modalOpen('seragamEdit')"
+					class="btn btn-light btn-block mb-1" v-if="tabName == 'seragam'">
+					<i class="icon-pencil5"></i>
+					Ubah
+				</button>
+
+				<button @click="modalOpen('off2')" class="btn btn-light btn-block mb-1" v-if="tabName == 'off'">
+					<i class="icon-plus3"></i>Tambah
+				</button>
+
+				<button :disabled="selectedItem == ''" @click="modalConfirmOpen('hapus')"
+					class="btn btn-light btn-block mb-1" v-if="tabName != 'masukkantor'">
+					<i class="icon-bin2"></i>Hapus
+				</button>
+
+				<button @click="modalOpen('off')" class="btn btn-light btn-block mb-1" v-if="tabName == 'off'">
+					<i class="icon-upload"></i>Upload Data
+				</button>
+				<button @click="modalOpen('laporan')" class="btn btn-light btn-block mb-1">
+					<i class="icon-download"></i>Download Laporan
+				</button>
 			</template>
 
 			<!-- item desktop -->
@@ -197,28 +266,31 @@
 						<check-value :value="'-'"></check-value>
 					</td>
 					<td v-if="!columnData[12].hide">
-						<check-value :value="props.item.lama"></check-value></td>
+						<check-value :value="props.item.lama"></check-value>
+					</td>
 					<td v-if="!columnData[13].hide">
-								<check-value :value="props.item.alasan_penolakan"></check-value>
-							</td>
-							<td v-if="!columnData[14].hide && !props.item.tanggal_acc1">
-								<check-value :value="'Menunggu Persetujuan Personalia'"></check-value>
-							</td>
-							<td v-else-if="!columnData[14].hide && !props.item.tanggal_acc2 && props.item.tanggal_acc1">
-									<check-value :value="'Menunggu Persetujuan Atasan'"></check-value>
-							</td>
-							<td v-else-if="!columnData[14].hide && props.item.tanggal_acc2 && props.item.tanggal_acc1 && !props.item.alasan_penolakan">
-								<check-value :value="'Cuti Disetujui'"></check-value>
-							</td>
-							<td v-else-if="!columnData[14].hide && props.item.tanggal_acc2 && props.item.tanggal_acc1 && props.item.alasan_penolakan">
-									<check-value :value="'Cuti Ditolak'"></check-value>
-							</td>
-						<td v-if="!columnData[15].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-						<td v-if="!columnData[16].hide">
-							<span v-if="props.item.created_at !== props.item.updated_at"
-								v-html="$options.filters.dateTime(props.item.updated_at)"></span>
-							<span v-else>-</span>
-						</td>
+						<check-value :value="props.item.alasan_penolakan"></check-value>
+					</td>
+					<td v-if="!columnData[14].hide && !props.item.tanggal_acc1">
+						<check-value :value="'Menunggu Persetujuan Atasan'"></check-value>
+					</td>
+					<td v-else-if="!columnData[14].hide && !props.item.tanggal_acc2 && props.item.tanggal_acc1">
+						<check-value :value="'Menunggu Persetujuan Personalia'"></check-value>
+					</td>
+					<td
+						v-else-if="!columnData[14].hide && props.item.tanggal_acc2 && props.item.tanggal_acc1 && !props.item.alasan_penolakan">
+						<check-value :value="'Cuti Disetujui'"></check-value>
+					</td>
+					<td
+						v-else-if="!columnData[14].hide && props.item.tanggal_acc2 && props.item.tanggal_acc1 && props.item.alasan_penolakan">
+						<check-value :value="'Cuti Ditolak'"></check-value>
+					</td>
+					<td v-if="!columnData[15].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[16].hide">
+						<span v-if="props.item.created_at !== props.item.updated_at"
+							v-html="$options.filters.dateTime(props.item.updated_at)"></span>
+						<span v-else>-</span>
+					</td>
 				</tr>
 			</template>
 
@@ -264,19 +336,18 @@
 				<div v-else>
 					<div class="text-center col-md-12">
 						<h5>Pilih Periode :</h5>
-								<div class="text-center" style="margin-bottom: 20px;">
-									<select class="form-control" data-width="100%" v-model="tahun">
-										<option value="2023">2023</option>
-									</select>
-								</div>
+						<div class="text-center" style="margin-bottom: 20px;">
+							<select class="form-control" data-width="100%" v-model="tahun">
+								<option value="2023">2023</option>
+							</select>
+						</div>
 						<button class="btn btn-primary btn-block" @click.prevent="downloadLaporan(1)">
 							<i class=""></i>Konsolidasi Bulanan</button><br>
 						<button :disabled="alasan == ''" type="submit" value="submit" class="btn btn-primary btn-block"
-							@click.prevent="downloadLaporan(2)" >
+							@click.prevent="downloadLaporan(2)">
 							Form Kehadiran Kerja Manajemen Konsolidasi</button>
-						<button type="submit" value="submit" class="btn btn-warning btn-block"
-								@click.prevent="modalTutup" >
-								Batal</button>
+						<button type="submit" value="submit" class="btn btn-warning btn-block" @click.prevent="modalTutup">
+							Batal</button>
 					</div>
 				</div>
 			</template>
@@ -286,7 +357,7 @@
 				</div>
 			</template>
 			<template slot="modal-body3">
-				<div v-if="tabName!='cuti'">
+				<div v-if="tabName != 'cuti'">
 					<form-pelanggaran-seragam :user="selectedItem" :tipe="tipe"
 						@tutup="modalTutup"></form-pelanggaran-seragam>
 				</div>
@@ -364,7 +435,6 @@ export default {
 					hide: false,
 					tipe: 'string',
 					filter: true,
-					filterDefault: true,
 				},
 
 				{
@@ -383,7 +453,6 @@ export default {
 					sort: false,
 					hide: true,
 					tipe: "string",
-					filterDefault: true,
 				},
 
 				{
@@ -392,8 +461,6 @@ export default {
 					sort: true,
 					hide: true,
 					tipe: 'string',
-					filter: true,
-					filterDefault: true,
 				},
 
 				{
@@ -402,8 +469,6 @@ export default {
 					sort: true,
 					hide: false,
 					tipe: 'string',
-					filter: true,
-					filterDefault: true,
 				},
 				{
 					title: 'Alasan',
@@ -411,7 +476,6 @@ export default {
 					sort: false,
 					hide: false,
 					tipe: "string",
-					filterDefault: true,
 				},
 
 				{
@@ -420,7 +484,6 @@ export default {
 					sort: false,
 					hide: false,
 					tipe: "string",
-					filterDefault: true,
 				},
 
 
@@ -430,7 +493,6 @@ export default {
 					sort: false,
 					hide: true,
 					tipe: "string",
-					filterDefault: true,
 				},
 
 				{
@@ -439,17 +501,15 @@ export default {
 					sort: false,
 					hide: true,
 					tipe: "string",
-					filterDefault: true,
 				},
 
 				{
 					title: 'Tanggal Mulai',
 					name: 'tanggal_mulai',
 					sort: true,
+					filter: true,
 					hide: true,
 					tipe: 'string',
-					filter: true,
-					filterDefault: true,
 				},
 
 				{
@@ -457,9 +517,8 @@ export default {
 					name: 'tanggal_selesai',
 					sort: true,
 					hide: true,
+					filter:true,
 					tipe: 'string',
-					filter: true,
-					filterDefault: true,
 				},
 
 				{
@@ -468,8 +527,6 @@ export default {
 					sort: true,
 					hide: true,
 					tipe: 'string',
-					filter: true,
-					filterDefault: true,
 				},
 
 				{
@@ -478,7 +535,6 @@ export default {
 					sort: false,
 					hide: true,
 					tipe: "string",
-					filterDefault: true,
 				},
 
 				{
@@ -487,7 +543,6 @@ export default {
 					sort: false,
 					hide: true,
 					tipe: "string",
-					filterDefault: true,
 				},
 
 				{
@@ -496,7 +551,6 @@ export default {
 					tipe: 'datetime',
 					sort: true,
 					hide: false,
-					filter: true,
 				},
 
 				{
@@ -505,7 +559,6 @@ export default {
 					tipe: 'datetime',
 					sort: true,
 					hide: false,
-					filter: true,
 				},
 			],
 			state: '',
@@ -526,7 +579,7 @@ export default {
 			tipe: '',
 			flag: false,
 			laporan: false,
-			tahun:'2023',
+			tahun: '2023',
 		}
 	},
 	created () {
@@ -540,6 +593,7 @@ export default {
 		this.today = yyyy + '-' + mm + '-' + dd
 
 		this.$store.dispatch('presensi/getUsers', this.currentUser.id_cu);
+
 	},
 
 	watch: {
@@ -585,7 +639,7 @@ export default {
 		downloadLaporan (tipe) {
 			this.modalShow = true;
 			this.modalState = 'loading';
-			axios.post('/api/downloadLaporanPresensi', { tipe: tipe , periode: this.tahun}, {
+			axios.post('/api/downloadLaporanPresensi', { tipe: tipe, periode: this.tahun }, {
 				responseType: 'blob'
 			}).then((response) => {
 				let name = ''
@@ -930,4 +984,5 @@ textarea {
 	/* Firefox, other Gecko */
 	box-sizing: border-box;
 	/* Opera/IE 8+ */
-}</style>
+}
+</style>

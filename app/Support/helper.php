@@ -120,6 +120,52 @@ class Helper{
 		return $formatedName;
 	}
 
+	public static function image_processing_no_thumb_png($imagepath, $thumb_width, $thumb_height, $request, $kelas, $name)
+	{
+		$path = public_path($imagepath);
+		$formatedName = '';
+
+		if ($kelas != '' && $request == "no_image") { // no image
+			File::delete($path . $kelas . '.png');
+		} else {
+
+			// no image change
+			if ($kelas == $request) {
+				return $request;
+			}
+
+			// delete old image
+			if ($kelas != '' && $request != '') {
+				File::delete($path . $kelas . '.png');
+			}
+
+			if ($request != 'no_image') {
+				$imageData = $request;
+				list($width, $height) = getimagesize($imageData);
+
+				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '', $name), 20, '') . '_' . uniqid();
+
+				$fileName =  $formatedName . '.png';
+
+				//image
+				if ($width > 1920) {
+					Image::make($imageData->getRealPath())->resize(
+						1920,
+						null,
+						function ($constraint) {
+							$constraint->aspectRatio();
+						}
+					)
+						->save($path . $fileName);
+				} else {
+					Image::make($imageData->getRealPath())->save($path . $fileName);
+				}
+			}
+		}
+
+		return $formatedName;
+	}
+
 	public static function dom_processing($request, $path)
 	{
 		$dom = new \DomDocument();

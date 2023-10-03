@@ -15,6 +15,9 @@
 						<option disabled value="">Silahkan pilih periode</option>
 						<option disabled value="">----------------</option>
 						<option value="2023">2023</option>
+						<option value="2024">2024</option>
+						<option value="2025">2025</option>
+						<option value="2026">2026</option>
 						<!-- <option v-for="(data, index) in modelData" :value="data" :key="index">{{data}}</option> -->
 					</select>
 
@@ -43,19 +46,26 @@
 		<div class="card d-block d-md-none d-print-none">
 			<div class="card-body">
 
-				<!-- periode -->
-				<div class="input-group">
-					<div class="input-group-prepend">
-						<span class="input-group-text">Pilih Data</span>
-					</div>
-					<select class="form-control" name="periode" v-model="periode" data-width="100%"
-						@change="changePeriode($event.target.value)" :disabled="modelDataStat === 'loading'">
-						<option disabled value="">Silahkan pilih periode</option>
-						<option value="semua">Semua</option>
-						<option disabled value="">----------------</option>
-						<option v-for="(data, index) in modelData" :key="index" :value="data">{{ data }}</option>
-					</select>
-				</div>
+				<div class="input-group-prepend">
+							<span class="input-group-text">Pilih Periode</span>
+						</div>
+						<select class="form-control" name="periode" v-model="periode" data-width="100%"
+							:disabled="modelDataStat === 'loading'" @change="fetch">
+							<option disabled value="">Silahkan pilih periode</option>
+							<option disabled value="">----------------</option>
+							<option value="2023">2023</option>
+							<!-- <option v-for="(data, index) in modelData" :value="data" :key="index">{{data}}</option> -->
+						</select>
+
+						<div class="input-group-prepend">
+							<span class="input-group-text">Pilih Bulan</span>
+						</div>
+						<select class="form-control" name="periode" v-model="bulann" data-width="100%"
+							:disabled="modelDataStat === 'loading'" @change="fetch">
+							<option disabled value="">Silahkan pilih bulan</option>
+							<option value="semua">Semua</option>
+							<option v-for="(bulan, index) in bulan" :value="index + 1" :key="index">{{ bulan }}</option>
+						</select>
 
 				<!-- reload  -->
 				<div class="pt-2">
@@ -78,7 +88,6 @@ export default {
 	data () {
 		return {
 			periode: '',
-
 			bulan: [
 				'Januari',
 				'Februari',

@@ -4,8 +4,10 @@
             <h5>Jenis Cuti :</h5>
             <select class="form-control" v-model="form.jenis" data-width="100%" @change="addAktivis">
                 <option disabled="true" value="">PILIH JENIS CUTI</option>
-                <option value="CUTI TAHUNAN">CUTI TAHUNAN</option>
-                <option value="CUTI KHUSUS">CUTI KHUSUS</option>
+                <option value="Cuti Tahunan">Cuti Tahunan</option>
+                <option value="Cuti Menikah">Cuti Menikah</option>
+                <option value="Cuti Melahirkan">Cuti Melahirkan</option>
+                <option value="Cuti Karena Alasan Penting">Cuti Karena Alasan Penting</option>
             </select>
         </div>
         <div style="margin-top: 10px;">
@@ -23,9 +25,9 @@
              <input type="number" name="lama" id="lama" v-model="form.lama">
         </div> -->
 
-        <div v-if="currentUser.can['verifikasi_personalia'] && page !='pribadi'" style="margin-top: 10px;">
-                <h5>Tanggal Realisasi:</h5>
-                <date-picker @dateSelected="form.realisasi = $event" :defaultDate="form.realisasi"></date-picker>
+        <div v-if="currentUser.can['verifikasi_personalia'] && page != 'pribadi'" style="margin-top: 10px;">
+            <h5>Tanggal Realisasi Mulai:</h5>
+            <date-picker @dateSelected="form.realisasi_mulai = $event" :defaultDate="form.realisasi_mulai"></date-picker>
         </div>
 
         <h5>Alasan :</h5>
@@ -35,6 +37,10 @@
         <div v-if="flagCheck">
             <div style="color: red;">Cuti Minimal diajukan 30 Hari Sebelum Tanggal Mulai Cuti</div>
         </div>
+        <div v-if="flagCheck2">
+            <div style="color: red;">Tanggal Masuk Harus Lebih Besar Dari Tanggal Mulai</div>
+        </div>
+
 
 
         <div class="text-center" style="margin-top: 10px;">
@@ -74,8 +80,8 @@ export default {
                 tanggal_mulai: '',
                 tanggal_selesai: '',
                 alasan: '',
-                realisasi:'',
-                lama: 0
+                realisasi_mulai: '',
+                lama: 0,
             },
             tabName: 'aktif',
             kuliah: [],
@@ -85,25 +91,42 @@ export default {
             tanggal2: '',
             atribut: [],
             flagCheck: false,
+            flagCheck2: false,
+            created_at: '',
+            isSaturday : false
         }
     },
 
-    props: ['dataCuti','tipe','page'],
+    props: ['dataCuti', 'tipe', 'page'],
 
     created () {
-        if (this.dataCuti != '' && this.tipe=='cutiEdit') { 
+        if (this.dataCuti != '' && this.tipe == 'cutiEdit') {
             this.form.jenis = this.dataCuti.jenis
             this.form.tanggal_mulai = this.dataCuti.tanggal_mulai
             this.form.tanggal_selesai = this.dataCuti.tanggal_selesai
             this.form.alasan = this.dataCuti.alasan
+            this.created_at = new Date(this.dataCuti.created_at);
+            this.form.realisasi_mulai = this.dataCuti.realisasi_mulai;
         }
     },
+
     methods: {
         addAktivis () {
             this.flag = true
         },
 
         storeKuliah () {
+
+            const now = new Date();
+
+            // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+            const dayOfWeek = now.getDay();
+
+            // Check if today is Saturday (dayOfWeek is 6)
+            if (dayOfWeek === 6) {
+                this.isSaturday = true;
+            }
+
             this.form.id_cu = this.currentUser.id_cu
             this.form.id_aktivis = this.currentUser.id_aktivis
             this.form.id_user = this.currentUser.id
@@ -111,7 +134,11 @@ export default {
             const start = new Date(this.form.tanggal_mulai);
             const end = new Date(this.form.tanggal_selesai);
             const timeDifference = end.getTime() - start.getTime();
-            const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+            const cekUpdate = '';
+            if (this.dataCuti.id && this.tipe== 'cutiEdit') { 
+                cekUpdate = new Date(this.form.tanggal_mulai).getTime() - this.created_at.getTime()
+            }
+            const daysDifCekUpdate = Math.ceil(cekUpdate / (1000 * 3600 * 24))
 
             const today = new Date();
             const currentDate = today.toISOString().split('T')[0];
@@ -119,24 +146,25 @@ export default {
             const timeDifferenceCheck = start.getTime() - newToday.getTime();
             const daysDifferenceCheck = Math.ceil(timeDifferenceCheck / (1000 * 3600 * 24));
 
-            if (daysDifferenceCheck < 30) {
+            if ((daysDifferenceCheck < 30 && this.tipe != 'cutiEdit') || (daysDifCekUpdate <30 && this.dataCuti!='')) {
                 this.flagCheck = true
             } else {
                 this.flagCheck = false
             }
 
-            // if (!this.edit
-            if (!this.flagCheck) {
-                if (this.tipe == 'cuti') {
-                    this.$store.dispatch('presensi/storeCuti', this.form);
-                } else { 
-                    this.$store.dispatch('presensi/updateCuti', [this.dataCuti.id,this.form]);
-                }
+            if (this.form.tanggal_selesai < this.form.tanggal_mulai) {
+                this.flagCheck2 = true
+            } else {
+                this.flagCheck2 = false
             }
 
-            // } else {
-            //     this.$store.dispatch('presensi/updateIzin', [this.form, this.editData.id]);
-            // }
+            if ((!this.flagCheck && !this.flagCheck2) || (this.tipe == 'cutiEdit' && !this.flagCheck && !this.flagCheck2)) {
+                if (this.tipe == 'cuti') {
+                    this.$store.dispatch('presensi/storeCuti', this.form);
+                } else {
+                    this.$store.dispatch('presensi/updateCuti', [this.dataCuti.id, this.form]);
+                }
+            }
         },
 
         batal () {

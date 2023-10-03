@@ -15,7 +15,7 @@
     <div v-for="(division, index) in bidang" :key="index" class="division-card">
       <div class="division-header">
         <h4 v-if="division.level==0">{{ division.divisi.name}}</h4>
-        <h4 v-else>BIDANG {{ division.divisi.name }}</h4>
+        <h4 v-else>{{ division.divisi.name }}</h4>
       </div>
 
       <div class="division-content">
@@ -38,15 +38,15 @@
     <ul class="organization-preview"></ul>
 
     <button
-      v-if="bidang != ''"
-      @click="$router.push('struktur/edit/'+ currentUser.id_cu)"
+      v-if="bidang != '' && currentUser.can['update_struktur']"
+      @click="$router.push('edit/'+ currentUser.id_cu)"
       class="btn btn-primary full-width-button center-button"
     >
       <i class="fas fa-pencil"></i> Edit
     </button>
 
     <button
-      v-else
+      v-else-if="currentUser.can['create_struktur']"
       @click="$router.push('struktur/create')"
       class="btn btn-primary full-width-button center-button"
     >

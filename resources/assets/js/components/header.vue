@@ -724,7 +724,7 @@
 					</li>
 
 					<!-- organisasi -->
-					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_cu'] || currentUser.can['create_tp'] || currentUser.can['create_aktivis'] || currentUser.can['create_produk_cu'] || currentUser.can['create_mitra_orang'] ||  currentUser.can['create_mitra_lembaga'] || currentUser.can['create_pemilihan'] || currentUser.can['create_surat'] || currentUser.can['index_cu'] || currentUser.can['index_tp'] || currentUser.can['index_aktivis'] || currentUser.can['index_produk_cu'] || currentUser.can['index_mitra_orang'] || currentUser.can['index_pemilihan'] || currentUser.can['index_surat']">
+					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_cu'] || currentUser.can['create_tp'] || currentUser.can['create_aktivis'] || currentUser.can['create_produk_cu'] || currentUser.can['create_mitra_orang'] ||  currentUser.can['create_mitra_lembaga'] || currentUser.can['create_pemilihan'] || currentUser.can['create_surat'] || currentUser.can['index_cu'] || currentUser.can['index_tp'] || currentUser.can['index_aktivis'] || currentUser.can['index_produk_cu'] || currentUser.can['index_mitra_orang'] || currentUser.can['index_pemilihan'] || currentUser.can['index_surat'] || currentUser.can['index_tunjangan'] || currentUser.can['index_struktur'] || currentUser.can['index_presensi']">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-library2 mr-2"></i>
 							Organisasi
@@ -993,7 +993,7 @@
 						
 							<!-- presensi -->
 									<!-- if bkcu account -->
-									<div v-if="currentUser.id_cu==0" class="dropdown-submenu" :class="{ 'show': dropdownMenu2 == 'presensi' }">
+									<div v-if="currentUser.id_cu==0 && currentUser.can['index_presensi']" class="dropdown-submenu" :class="{ 'show': dropdownMenu2 == 'presensi' }">
 										<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('presensi')">
 											<i class="icon-person"></i> Presensi
 										</a>
@@ -1011,9 +1011,9 @@
 											<router-link :to="{ name: 'indexPresensiAll', params: { tahun: new Date().getFullYear(), bulan: new Date().getMonth() + 1 } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['personalia_akses']">
 												Data Presensi Seluruh Manajemen
 											</router-link>
-											<router-link :to="{ name: 'indexCuti' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_verifikasi']">
+											<router-link :to="{ name: 'indexCuti' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['personalia_akses'] ">
 														Daftar Pengajuan Cuti
-												</router-link>
+											</router-link>
 										</div>
 									</div>
 
@@ -1126,9 +1126,13 @@
 
 							</div>
 
-							<router-link :to="{ name: 'indexStruktur' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['index_cu']">
+							<router-link :to="{ name: 'indexStruktur' , params: { id_cu: this.currentUser.id_cu}  }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0 && currentUser.can['index_struktur']">
 									<i class="icon-people"></i> Struktur Organisasi
-								</router-link>
+							</router-link>
+
+							<router-link :to="{ name: 'tunjanganIndex', params: { id_cu: this.currentUser.id_cu, jenis: 'semua' } }" active-class="active" class="dropdown-item" exact v-if="currentUser.id_cu == 0 && currentUser.can['index_tunjangan']">
+										<i class="icon-users"></i> Tunjangan Keluarga
+							</router-link>
 
 						</div>
 					</li>
@@ -1374,6 +1378,10 @@
 								<i class="icon-file-upload2"></i> Import ESCETE
 							</router-link>
 
+							<router-link :to="{ name: 'uploadLibur' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0  && currentUser.can['personalia_akses']">
+									<i class="icon-file-upload2"></i> Import Hari Libur
+							</router-link>
+
 						</div>
 
 					</li>
@@ -1427,8 +1435,6 @@
 	import formLogin from './loginForm';
 	import versionAlert from './versionAlert';
 	import { PusherAuth } from '../helpers/pusherAuth.js';
-	import Echo from 'laravel-echo';
-	import Pusher from "pusher-js";
 	 
 	export default {
 		components: {

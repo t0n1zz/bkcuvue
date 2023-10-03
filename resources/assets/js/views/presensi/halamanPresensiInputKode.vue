@@ -7,7 +7,7 @@
         <div class="page-content pt-0">
             <div class="content-wrapper">
                 <div class="content">
-                    <div v-if="permission==false">
+                    <div v-if="permission == false">
                         <h1 style="font-weight: 700;">TIDAK DAPAT MEMBACA LOKASI</h1>
                         <ul>
                             <li>Lakukan Reload/Refresh Halaman</li>
@@ -17,48 +17,34 @@
                         </ul>
                     </div>
                     <div v-else>
-                        <!-- <input type="text" class="input-lg" width="100%" placeholder="Masukkan Kode Absen"> -->
-                    <cleave 
-                    name="kode"
-                    v-model="kode" 
-                    :options="cleaveOption.number16"
-                    class="form-control" 
-                    placeholder="Silahkan masukkan kode absen"></cleave>
-                    <div class="d-none d-sm-block">
-                        <button class="btn btn-primary" @click.prevent="storeAbsen()"> Absen</button>
+                        <div class="full-page-input">
+                            <input type="text" v-model="kode" placeholder="Silahkan Masukkan Kode Presensi"/>
+                        </div>
+                        <button :disabled="kode == ''" class="btn btn-primary" @click.prevent="storeAbsen()" style="margin-top:10"> Isi
+                            Presensi</button>
+                        <!-- </div> -->
                     </div>
-                    </div>
-                    <div class="text-center" style="font-weight: bolder; font-size: 50px;"> 
+                    <div class="text-center" style="font-weight: bolder; font-size: 50px;">
                         {{ pesan }}
                     </div>
                 </div>
             </div>
         </div>
-    	<!-- <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :size="modalSize" :color="modalColor"
-    			 @batal="modalTutup" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup"
-    			 @backgroundClick="modalBackgroundClick">
-    		<template slot="modal-title">
-    			{{ modalTitle }}
-    		</template>
-    		<template slot="modal-body1">
-    			<form-terlambat :title="judul" :id_qr="this.$route.params.id_qr" @tutup="modalTutup"></form-terlambat>
-    		</template>
-    	</app-modal> -->
-        <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :size="modalSize" :color="modalColor"
-        			 @batal="modalTutup" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup"
-        			 @backgroundClick="modalBackgroundClick">
-        		<template slot="modal-title">
-        			{{ modalTitle }}
-        		</template>
-        		<template slot="modal-body1">
-        			<form-alasan :title="judul" :id_qr="this.$route.params.id_qr" @tutup="modalTutup" @kembali="kembali"></form-alasan>
-        		</template>
-                <template slot="modal-body2">
-                    <pop-up-pilihan @tutup="modalTutup" @kirim="keperluan"></pop-up-pilihan>
-                </template>
+        <app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :size="modalSize"
+            :color="modalColor" @batal="modalTutup" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup"
+            @failOk="modalTutup" @backgroundClick="modalBackgroundClick">
+            <template slot="modal-title">
+                {{ modalTitle }}
+            </template>
+            <template slot="modal-body1">
+                <form-alasan :title="judul" :id_qr="this.$route.params.id_qr" @tutup="modalTutup"
+                    @kembali="kembali"></form-alasan>
+            </template>
+            <template slot="modal-body2">
+                <pop-up-pilihan @tutup="modalTutup" @kirim="keperluan"></pop-up-pilihan>
+            </template>
         </app-modal>
     </div>
-    
 </template>
 
 <script>
@@ -67,7 +53,6 @@ import pageHeader from "../../components/pageHeader.vue";
 import message from "../../components/message.vue";
 import appModal from '../../components/modal';
 import formAlasan from './formAlasan.vue';
-import Cleave from 'vue-cleave-component';
 import popUpPilihan from './popUpPilihan.vue';
 
 export default {
@@ -76,7 +61,6 @@ export default {
         message,
         appModal,
         formAlasan,
-        Cleave,
         popUpPilihan
     },
     data () {
@@ -95,16 +79,7 @@ export default {
             modalSize: '',
             titleDesc: 'abcd',
             kode: '',
-            judul:'',
-            cleaveOption: {
-                number16: {
-                    numeral: true,
-                    numeralIntegerScale: 16,
-                    numeralDecimalScale: 0,
-                    stripLeadingZeroes: false,
-                    delimiter: ''
-                }
-            }
+            judul: '',
         }
     },
     created () {
@@ -116,7 +91,7 @@ export default {
             this.modalShow = true;
             this.modalState = value;
             this.modalColor = '';
-            
+
             let mess = this.pesan;
             if (value === "success") {
                 this.modalTitle = mess;
@@ -126,8 +101,8 @@ export default {
             }
         },
 
-        statAbsen (value) { 
-            if (value == 'terlambat') { 
+        statAbsen (value) {
+            if (value == 'terlambat') {
                 this.judul = 'TERLAMBAT'
                 this.modalShow = true;
                 this.modalSize = '';
@@ -157,7 +132,7 @@ export default {
         }
     },
     methods: {
-         keperluan (value) {
+        keperluan (value) {
             this.judul = value
             this.modalShow = true;
             this.modalSize = '';
@@ -240,8 +215,8 @@ export default {
                 this.form.id_aktivis = this.currentUser.aktivis.id
                 this.form.id_cu = this.currentUser.id_cu
 
-                
-            } else { 
+
+            } else {
                 this.permission = false
             }
         },
@@ -262,8 +237,26 @@ export default {
             absenStat: 'absenStat',
             statAbsen: 'status',
             form: 'data',
-            konfirmasi : 'confirm_pulang'
+            konfirmasi: 'confirm_pulang'
         })
     }
 }
 </script>
+
+<style scoped>
+.full-page-input {
+    width: 100%;
+    /* height: 100vh; */
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+input[type="text"] {
+    width: 100%;
+    /* Adjust the width as needed */
+    padding: 10px;
+
+    /* Adjust the font size as needed */
+}
+</style>

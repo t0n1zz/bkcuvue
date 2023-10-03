@@ -5,7 +5,7 @@
 		<Select :kelas="'pribadi'"></Select>
 		<div class="card">
 			<div class="nav-tabs-responsive">
-				<ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
+				<ul class="nav nav-tabs nav-tabs-solid bg-light">
 					<li class="nav-item"><a href="#" class="nav-link" :class="{ 'active': tabName == 'keterlambatan' }"
 							@click.prevent="changeTab('keterlambatan')">
 							KETERLAMBATAN
@@ -67,60 +67,77 @@
 				<!-- tambah -->
 				<button :disabled="today != selectedItem.tanggal" @click="modalOpen('terlambat')" class="btn btn-light mb-1"
 					v-if="currentUser.can && tabName == 'keterlambatan'">
-					Isi/Ubah Alasan Terlambat
+					<i class="icon-pencil5"></i>Ubah
 				</button>
 
 				<!-- tambah -->
 				<button :disabled="today != selectedItem.tanggal || !selectedItem" @click="modalOpen('pulangawal')"
 					class="btn btn-light mb-1" v-if="tabName == 'pulangawal'">
-					Ubah Alasan
+					<i class="icon-pencil5"></i>Ubah
 				</button>
 
 				<button @click="modalOpen('izin')" class="btn btn-light mb-1" v-if="tabName == 'izin'">
-					Tambah Izin
+					<i class="icon-plus3"></i>Tambah
 				</button>
 
 				<button @click="modalOpen('cuti')" class="btn btn-light mb-1" v-if="tabName == 'cuti'">
-					Ajukan Cuti
+					<i class="icon-plus3"></i>Tambah
 				</button>
 
-				<button :disabled="selectedItem.tanggal_acc1 || selectedItem==''" @click="modalOpen('cutiEdit')" class="btn btn-light mb-1" v-if="tabName == 'cuti'">
-					Ubah
+				<button :disabled="selectedItem.tanggal_acc1 || selectedItem == ''" @click="modalOpen('cutiEdit')"
+					class="btn btn-light mb-1" v-if="tabName == 'cuti'">
+					<i class="icon-pencil5"></i>Ubah
 				</button>
 
 				<button @click="modalOpen('sakit')" class="btn btn-light mb-1" v-if="tabName == 'sakit'">
-					Tambah
+					<i class="icon-plus3"></i>Tambah
+				</button>
+				<button :disabled="!selectedItem.id || selectedItem.status_acc2 !='disetujui'" @click="downloadSKCuti" class="btn btn-light mb-1" v-if="tabName == 'cuti'">
+					<i class="icon-download"></i>Download SK Cuti
+				</button>
+
+				<button :disabled="!selectedItem.id " @click="downloadSuratPengajuanCuti" class="btn btn-light mb-1" v-if="tabName == 'cuti'">
+					<i class="icon-download"></i>Download Surat Pengajuan Cuti
 				</button>
 			</template>
 
 			<!-- button mobile -->
 			<template slot="button-mobile">
 				<!-- tambah -->
-				<button :disabled="today != selectedItem.tanggal" @click="modalOpen('terlambat')" class="btn btn-light mb-1"
-					v-if="currentUser.can && currentUser.can['create_absen'] && tabName == 'keterlambatan'">
-					Isi/Ubah Alasan Terlambat
+				<button :disabled="today != selectedItem.tanggal" @click="modalOpen('terlambat')"
+					class="btn btn-light btn-block mb-1" v-if="currentUser.can && tabName == 'keterlambatan'">
+					<i class="icon-pencil5"></i>Ubah
 				</button>
 
 				<!-- tambah -->
 				<button :disabled="today != selectedItem.tanggal || !selectedItem" @click="modalOpen('pulangawal')"
-					class="btn btn-light mb-1" v-if="tabName == 'pulangawal'">
-					Ubah Alasan
+					class="btn btn-light btn-block mb-1" v-if="tabName == 'pulangawal'">
+					<i class="icon-pencil5"></i>Ubah
 				</button>
 
-				<button @click="modalOpen('izin')" class="btn btn-light mb-1" v-if="tabName == 'izin'">
-					Tambah Izin
+				<button @click="modalOpen('izin')" class="btn btn-light btn-block mb-1" v-if="tabName == 'izin'">
+					<i class="icon-plus5"></i>Tambah
 				</button>
 
-				<button @click="modalOpen('cuti')" class="btn btn-light mb-1" v-if="tabName == 'cuti'">
-					Ajukan Cuti
+				<button @click="modalOpen('cuti')" class="btn btn-light btn-block mb-1" v-if="tabName == 'cuti'">
+					<i class="icon-plus5"></i>Tambah
 				</button>
 
-				<button @click="modalOpen('cutiEdit')" class="btn btn-light mb-1" v-if="tabName == 'cuti'">
-					Ubah
+				<button @click="downloadSKCuti" class="btn btn-light btn-block mb-1" v-if="tabName == 'cuti'" :disabled="!selectedItem.id || selectedItem.status_acc2 != 'disetujui'">
+					<i class="icon-plus5"></i>Download SK Cuti
 				</button>
 
-				<button @click="modalOpen('sakit')" class="btn btn-light mb-1" v-if="tabName == 'sakit'">
-					Tambah
+				<button @click="downloadSuratPengajuanCuti" class="btn btn-light btn-block mb-1" v-if="tabName == 'cuti'" :disabled="!selectedItem.id">
+					<i class="icon-plus5"></i>Download Surat Pengajuan Cuti
+				</button>
+
+				<button :disabled="selectedItem.tanggal_acc1 || selectedItem == ''" @click="modalOpen('cutiEdit')"
+					class="btn btn-light btn-block mb-1" v-if="tabName == 'cuti'">
+					<i class="icon-pencil5"></i>Ubah
+				</button>
+
+				<button @click="modalOpen('sakit')" class="btn btn-light btn-block mb-1" v-if="tabName == 'sakit'">
+					<i class="icon-plus5"></i>Tambah
 				</button>
 			</template>
 
@@ -170,8 +187,11 @@
 					<td v-if="!columnData[10].hide">
 						<check-value :value="$options.filters.date(props.item.tanggal_mulai)"></check-value>
 					</td>
-					<td v-if="!columnData[11].hide">
+					<td v-if="!columnData[11].hide && props.item.tanggal_selesai">
 						<check-value :value="$options.filters.date(props.item.tanggal_selesai)"></check-value>
+					</td>
+					<td v-if="!columnData[11].hide && !props.item.tanggal_selesai">
+						<check-value :value="'-'"></check-value>
 					</td>
 					<td v-if="!columnData[12].hide">
 						<check-value :value="props.item.lama"></check-value>
@@ -262,8 +282,6 @@
 				</div>
 			</template>
 		</app-modal>
-
-
 	</div>
 </template>
 
@@ -276,6 +294,7 @@ import Select from './select.vue';
 import Kuliah from './formKuliah.vue';
 import Izin from './formIzin.vue';
 import Cuti from './formCuti.vue';
+import FileSaver from 'file-saver';
 
 
 export default {
@@ -286,7 +305,8 @@ export default {
 		Select,
 		Kuliah,
 		Izin,
-		Cuti
+		Cuti,
+		FileSaver
 	},
 	props: ['title', 'kelas'],
 	data () {
@@ -314,7 +334,6 @@ export default {
 					hide: false,
 					tipe: 'string',
 					filter: true,
-					filterDefault: true,
 				},
 
 				{
@@ -324,7 +343,7 @@ export default {
 					hide: false,
 					tipe: 'string',
 					filter: true,
-					filterDefault: true,
+					filterDefault: true
 				},
 
 				{
@@ -333,7 +352,6 @@ export default {
 					sort: false,
 					hide: true,
 					tipe: "string",
-					filterDefault: true,
 				},
 
 				{
@@ -343,7 +361,6 @@ export default {
 					hide: true,
 					tipe: 'string',
 					filter: true,
-					filterDefault: true,
 				},
 
 				{
@@ -353,7 +370,6 @@ export default {
 					hide: false,
 					tipe: 'string',
 					filter: true,
-					filterDefault: true,
 				},
 				{
 					title: 'Alasan',
@@ -361,7 +377,6 @@ export default {
 					sort: false,
 					hide: false,
 					tipe: "string",
-					filterDefault: true,
 				},
 
 				{
@@ -370,7 +385,6 @@ export default {
 					sort: false,
 					hide: false,
 					tipe: "string",
-					filterDefault: true,
 				},
 
 				{
@@ -379,7 +393,6 @@ export default {
 					sort: false,
 					hide: true,
 					tipe: "string",
-					filterDefault: true,
 				},
 
 				{
@@ -388,7 +401,6 @@ export default {
 					sort: false,
 					hide: true,
 					tipe: "string",
-					filterDefault: true,
 				},
 
 				{
@@ -398,7 +410,6 @@ export default {
 					hide: true,
 					tipe: 'string',
 					filter: true,
-					filterDefault: true,
 				},
 
 				{
@@ -408,7 +419,6 @@ export default {
 					hide: true,
 					tipe: 'string',
 					filter: true,
-					filterDefault: true,
 				},
 
 				{
@@ -417,8 +427,6 @@ export default {
 					sort: true,
 					hide: true,
 					tipe: 'string',
-					filter: true,
-					filterDefault: true,
 				},
 
 				{
@@ -427,7 +435,6 @@ export default {
 					sort: false,
 					hide: true,
 					tipe: "string",
-					filterDefault: true,
 				},
 
 				{
@@ -436,7 +443,6 @@ export default {
 					sort: false,
 					hide: true,
 					tipe: "string",
-					filterDefault: true,
 				},
 
 				{
@@ -445,7 +451,6 @@ export default {
 					tipe: 'datetime',
 					sort: true,
 					hide: false,
-					filter: true,
 				},
 
 				{
@@ -454,10 +459,7 @@ export default {
 					tipe: 'datetime',
 					sort: true,
 					hide: false,
-					filter: true,
 				},
-
-
 
 			],
 			state: '',
@@ -476,9 +478,10 @@ export default {
 			today: '',
 			tabName: 'keterlambatan',
 			flag: false,
-			mode:''
+			mode: ''
 		}
 	},
+
 	created () {
 		this.fetch(this.query);
 		var today = new Date();
@@ -489,6 +492,7 @@ export default {
 		this.today = yyyy + '-' + mm + '-' + dd
 
 		this.$store.dispatch('presensi/getUsers', this.currentUser.id_cu);
+		
 	},
 
 	watch: {
@@ -513,8 +517,6 @@ export default {
 				this.modalContent = '';
 			}
 		},
-
-
 
 		qrstat (value) {
 			this.modalState = value;
@@ -800,6 +802,30 @@ export default {
 				this.modalShow = false
 			}
 		},
+
+		downloadSKCuti () {
+			this.modalState = 'loading'
+			this.modalShow = true
+			axios.post('/api/downloadSkCuti', { id: this.selectedItem.id }, {
+				responseType: 'blob'
+			}).then((response) => {
+				FileSaver.saveAs(response.data, 'SKCUTI.pdf')
+				this.modalState = 'success';
+				this.modalTitle = 'Berhasil Di Download'
+			})
+		},
+
+		downloadSuratPengajuanCuti () {
+			this.modalState = 'loading'
+			this.modalShow = true
+			axios.post('/api/downloadSuratPengajuanCuti', { id: this.selectedItem.id }, {
+				responseType: 'blob'
+			}).then((response) => {
+				FileSaver.saveAs(response.data, 'Surat Pengajuan Cuti.pdf')
+				this.modalState = 'success';
+				this.modalTitle = 'Berhasil Di Download'
+			})
+		}
 	},
 
 	computed: {
@@ -809,6 +835,7 @@ export default {
 
 		...mapGetters('presensi', {
 			itemData: 'terlambatS',
+			data:'data',
 			itemDataStat: 'terlambatStat',
 			updateMessage: 'updateMessage',
 			updateStat: 'updateStat',

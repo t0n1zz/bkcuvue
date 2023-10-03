@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Aktivis;
+use App\Bidang;
+use App\Dokumen;
 use App\Events\PresensiEvent;
 use App\Exports\Export;
+use App\Exports\TemplateOff;
+use App\HariLibur;
 use App\Imports\OffBergilirImport;
 use App\Jobs\SendNotification;
 use App\Kegiatan;
@@ -20,12 +24,17 @@ use App\PresensiPelanggaranSeragam;
 use App\PresensiPulangAwal;
 use App\QrPresensi;
 use App\StrukturOrganisasi;
+use App\Surat;
+use App\SuratKode;
+use App\SuratKodeTemp;
+use App\Tunjangan;
 use App\User;
 use Illuminate\Http\Request;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class PresensiController extends Controller
 {
@@ -41,7 +50,6 @@ class PresensiController extends Controller
 
     public function indexUser($id_cu)
     {
-
         $model = DB::select('select users.id,users.id_cu,users.id_aktivis,aktivis.name,aktivis.gambar,aktivis_pekerjaan.id_aktivis,aktivis_pekerjaan.tingkat,aktivis_pekerjaan.selesai, aktivis_pekerjaan.id_tempat  from users
         inner join aktivis on aktivis.id = users.id_aktivis inner join aktivis_pekerjaan on aktivis_pekerjaan.id_aktivis = aktivis.id
         where users.id_cu = 0 and users.id_aktivis !=0 and users.status = 1 and aktivis_pekerjaan.selesai is null and aktivis_pekerjaan.id_tempat =1 and (aktivis_pekerjaan.tingkat = 5 or aktivis_pekerjaan.tingkat =6 or aktivis_pekerjaan.tingkat =7 or aktivis_pekerjaan.tingkat =8)  order by aktivis.name asc');
@@ -52,10 +60,10 @@ class PresensiController extends Controller
 
     public function indexVerifikasi($id_cu, $tahun, $tanggal)
     {
-        if (Auth::user()->hasPermissionTo('verifikasi_personalia')) {
-            $model = PresensiCuti::with('aktivis')->where('id_cu', $id_cu)->whereNull('tanggal_acc1')->advancedFilter();
-        } else {
+        if (Auth::user()->hasPermissionTo('is_personalia')) {
             $model = PresensiCuti::with('aktivis')->where('id_cu', $id_cu)->where('id_acc2', Auth::user()->id)->where('tanggal_acc1', '!=', null)->whereNull('tanggal_acc2')->advancedFilter();
+        } else {
+            $model = PresensiCuti::with('aktivis')->where('id_cu', $id_cu)->whereNull('tanggal_acc1')->advancedFilter();
         }
 
         return response()->json([
@@ -71,7 +79,7 @@ class PresensiController extends Controller
         } else if ($tipe == 'PERTEMUAN') {
             $cek = 'pertemuan_bkcu';
         }
-        $kegiatan =  Kegiatan::where('tipe', $cek)->where('status', 1)->orWhere('status', 2)->orWhere('status', 3)->select('id', 'name')->get();
+        $kegiatan =  Kegiatan::where('tipe', $cek)->where('status', 1)->orWhere('status', 2)->orWhere('status', 3)->select('id', 'name', 'mulai')->get();
 
         return response()->json([
             'model' => $kegiatan,
@@ -108,8 +116,6 @@ class PresensiController extends Controller
         $year = $tahun;
         $month = $bulan;
         $model = '';
-
-
         if ($lingkup == 'pribadi') {
 
             if ($bulan != 'semua') {
@@ -127,7 +133,8 @@ class PresensiController extends Controller
                     $model = Presensi::with('aktivis')->where('id_user', Auth::user()->id)->where('id_kegiatan', 0)->where("kegiatan_name", "=", null)->where('created_at', '>=', $start)
                         ->where('created_at', '<=', $end)->advancedFilter();
                 } elseif ($tipe == 'kegiatan') {
-                    $model = Presensi::with('kegiatan', 'aktivis')->where("id_kegiatan", "!=", 0)->orWhere("kegiatan_name", "!=", null)->where('id_user', Auth::user()->id)->where('created_at', '>=', $start)
+                    $model = Presensi::with('kegiatan', 'aktivis')->where('id_user', Auth::user()->id)->where("id_kegiatan", "!=", 0)->where('created_at', '>=', $start)
+                        ->where('created_at', '<=', $end)->orWhere("kegiatan_name", "!=", null)->where('id_user', Auth::user()->id)->where('created_at', '>=', $start)
                         ->where('created_at', '<=', $end)->advancedFilter();
                 } elseif ($tipe == 'alpha') {
                     $model = PresensiAlpa::with('aktivis')->where('id_user', Auth::user()->id)->where('created_at', '>=', $start)
@@ -158,7 +165,7 @@ class PresensiController extends Controller
                 $date = \Carbon\Carbon::parse($year . "-" . "01" . "-01"); // universal truth month's first day is 1
                 $start = $date->startOfMonth()->format('Y-m-d H:i:s'); // 2000-02-01 00:00:00
                 $end = $date->endOfMonth()->format('Y-m-d H:i:s'); // 2000-02-29 23:59:59
-                $model =  PresensiKeterlambatan::whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->advancedFilter();
+
                 if ($tipe == 'keterlambatan') {
                     $model =  PresensiKeterlambatan::with('aktivis')->where('id_user', Auth::user()->id)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->advancedFilter();
                 } elseif ($tipe == 'pulangawal') {
@@ -166,7 +173,7 @@ class PresensiController extends Controller
                 } elseif ($tipe == 'masukkantor') {
                     $model =  Presensi::with('aktivis')->where('id_user', Auth::user()->id)->where('id_kegiatan', 0)->where("kegiatan_name", "=", null)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->advancedFilter();
                 } elseif ($tipe == 'kegiatan') {
-                    $model =  Presensi::with('kegiatan', 'aktivis')->where("id_kegiatan", "!=", 0)->orWhere("kegiatan_name", "!=", null)->where('id_user', Auth::user()->id)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->advancedFilter();
+                    $model =  Presensi::with('kegiatan', 'aktivis')->where('id_user', Auth::user()->id)->where("id_kegiatan", "!=", 0)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->orWhere("kegiatan_name", "!=", null)->where('id_user', Auth::user()->id)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->advancedFilter();
                 } elseif ($tipe == 'alpha') {
                     $model = PresensiAlpa::with('aktivis')->where('id_user', Auth::user()->id)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->advancedFilter();
                 } elseif ($tipe == 'kuliah') {
@@ -201,7 +208,8 @@ class PresensiController extends Controller
                     $model = Presensi::with('aktivis')->where('id_cu', Auth::user()->id_cu)->where('id_kegiatan', 0)->where("kegiatan_name", "=", null)->where('created_at', '>=', $start)
                         ->where('created_at', '<=', $end)->advancedFilter();
                 } elseif ($tipe == 'kegiatan') {
-                    $model = Presensi::with('kegiatan', 'aktivis')->where('id_cu', Auth::user()->id_cu)->where("id_kegiatan", "!=", 0)->orWhere("kegiatan_name", "!=", null)->where('created_at', '>=', $start)
+                    $model = Presensi::with('kegiatan', 'aktivis')->where('id_cu', Auth::user()->id_cu)->where("id_kegiatan", "!=", 0)->where('created_at', '>=', $start)
+                        ->where('created_at', '<=', $end)->orWhere("kegiatan_name", "!=", null)->where('created_at', '>=', $start)
                         ->where('created_at', '<=', $end)->advancedFilter();
                 } elseif ($tipe == 'alpha') {
                     $model = PresensiAlpa::with('aktivis')->where('id_cu', Auth::user()->id_cu)->where('created_at', '>=', $start)
@@ -239,7 +247,7 @@ class PresensiController extends Controller
                 } elseif ($tipe == 'masukkantor') {
                     $model =  Presensi::with('aktivis')->where('id_cu', Auth::user()->id_cu)->where('id_kegiatan', 0)->where("kegiatan_name", "=", null)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->advancedFilter();
                 } elseif ($tipe == 'kegiatan') {
-                    $model =  Presensi::with('kegiatan', 'aktivis')->where('id_cu', Auth::user()->id_cu)->where("id_kegiatan", "!=", 0)->orWhere("kegiatan_name", "!=", null)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->advancedFilter();
+                    $model =  Presensi::with('kegiatan', 'aktivis')->where('id_cu', Auth::user()->id_cu)->where("id_kegiatan", "!=", 0)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->orWhere("kegiatan_name", "!=", null)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->advancedFilter();
                 } elseif ($tipe == 'alpha') {
                     $model = PresensiAlpa::with('aktivis')->where('id_cu', Auth::user()->id_cu)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->advancedFilter();
                 } elseif ($tipe == 'kuliah') {
@@ -259,7 +267,6 @@ class PresensiController extends Controller
                 }
             }
         }
-
         return response()->json([
             'model' => $model
         ]);
@@ -286,22 +293,7 @@ class PresensiController extends Controller
     {
         $cuti = PresensiCuti::with('aktivis')->findOrFail($id);
         $message = '';
-        if (Auth::user()->hasPermissionTo('verifikasi_personalia') && $cuti->tgl_acc1 == null) {
-            if ($request->status_verif == 'tolak') {
-                $cuti->update([
-                    'tanggal_acc1' => Carbon::now()->toDateString(),
-                    'status_acc1' => 'ditolak',
-                    'alasan_penolakan' => $request->alasan
-                ]);
-                $message = 'Pengajuan Cuti Atas Nama ' . $cuti->aktivis->name . 'ditolak';
-            } else {
-                $cuti->update([
-                    'tanggal_acc1' => Carbon::now()->toDateString(),
-                    'status_acc1' => 'disetujui'
-                ]);
-            }
-            $message = 'Pengajuan Cuti Atas Nama ' . $cuti->aktivis->name . 'disetujui';
-        } else {
+        if (Auth::user()->hasPermissionTo('is_personalia') && $cuti->tgl_acc2 == null) {
             if ($request->status_verif == 'tolak') {
                 $cuti->update([
                     'tanggal_acc2' => Carbon::now()->toDateString(),
@@ -313,6 +305,137 @@ class PresensiController extends Controller
                 $cuti->update([
                     'tanggal_acc2' => Carbon::now()->toDateString(),
                     'status_acc2' => 'disetujui'
+                ]);
+                $message = 'Pengajuan Cuti Atas Nama ' . $cuti->aktivis->name . 'disetujui';
+
+
+                //generate sk
+                $bulan = '';
+                $id_kode_temp = '';
+                $dateMonth = Carbon::now();
+                $month = $dateMonth->month;
+                $tahun = $dateMonth->year;
+                switch ($month) {
+                    case 1:
+                        $bulan = 'I';
+                        break;
+                    case 2:
+                        $bulan = 'II';
+                        break;
+                    case 3:
+                        $bulan = 'III';
+                        break;
+                    case 4:
+                        $bulan = 'IV';
+                        break;
+                    case 5:
+                        $bulan = 'V';
+                        break;
+                    case 6:
+                        $bulan = 'VI';
+                        break;
+                    case 7:
+                        $bulan = 'VII';
+                        break;
+                    case 8:
+                        $bulan = 'VIII';
+                        break;
+                    case 9:
+                        $bulan = 'IX';
+                        break;
+                    case 10:
+                        $bulan = 'X';
+                        break;
+                    case 11:
+                        $bulan = 'XI';
+                        break;
+                    case 12:
+                        $bulan = 'XII';
+                        break;
+                }
+
+                $nomor = 0;
+                $no_user_aktif = SuratKodeTemp::where('id_surat_kode', 15)->where('id_user', $cuti->id_acc2)->where('id_surat', null)->first();
+                $no_user_nonaktif = SuratKodeTemp::onlyTrashed()->where('id_surat_kode', 15)->where('id', $cuti->id_acc2)->first();
+                $no_user_lain_nonaktif = SuratKodeTemp::onlyTrashed()->where('id_surat_kode', 15)->where('id_surat', null)->orderBy('kode', 'asc')->first();
+
+                if ($no_user_aktif) {
+                    $nomor = $no_user_aktif->kode;
+                    $id_kode_temp = $no_user_aktif->id;
+                } elseif ($no_user_nonaktif) {
+                    $no_surat = SuratKodeTemp::onlyTrashed()->where('id', $no_user_nonaktif->id);
+                    $no_surat->restore();
+                    $nomor = $no_surat->kode;
+                    $id_kode_temp = $no_surat->id;
+                } elseif ($no_user_lain_nonaktif) {
+                    $no_surat = SuratKodeTemp::onlyTrashed()->where('id', $no_user_lain_nonaktif->id);
+                    $no_surat->restore();
+                    SuratKodeTemp::where('id', $no_user_lain_nonaktif->id)->update([
+                        'id_user' => $cuti->id_user,
+                    ]);
+                    $nomor = $no_surat->kode;
+                    $id_kode_temp = $no_surat->id;
+                } else {
+                    $item = SuratKodeTemp::select(DB::raw('MAX(CAST(kode AS UNSIGNED)) as max_value'))->first();
+                    $nomor = $item->max_value + 1;
+                    $kode_temp = SuratKodeTemp::create([
+                        'id_user' => $cuti->id_acc2,
+                        'id_surat_kode' => 15,
+                        'kode' => $nomor,
+                        'periode' => $tahun
+                    ]);
+                    $id_kode_temp = $kode_temp->id;
+                    SuratKode::where('id', 15)->update([
+                        'kode' => $nomor
+                    ]);
+                }
+
+                $no_lengkap = $nomor . '/PKCU/GM/' . $bulan . '/' . $tahun;
+
+                $dokumen = Dokumen::create([
+                    'id_cu' => $cuti->id_cu,
+                    'id_dokumen_kategori' => 7,
+                    'name' => 'SKCUTI_' . $cuti->aktivis->name,
+                    'status' => 'INTERNAL',
+                    'format' => 'upload',
+                    'tipe' => 'pdf',
+                    'keterangan' => 'Cuti ' . $cuti->aktivis->name
+                ]);
+
+                $surat = Surat::create([
+                    'id_surat_kode' => 15,
+                    'id_surat_kategori' => 22,
+                    'id_dokumen' => $dokumen->id,
+                    'id_cu' => 0,
+                    'name' => $no_lengkap,
+                    'format' => 'upload',
+                    'perihal' => 'Cuti ' . $cuti->aktivis->name,
+                    'hal' => 'Cuti ' . $cuti->aktivis->name,
+                    'tujuan' => $cuti->aktivis->pekerjaan_aktif->name,
+                    'tipe' => 'SURAT KELUAR',
+                    'periode' => $tahun
+                ]);
+
+                SuratKodeTemp::where('id', $id_kode_temp)->update([
+                    'id_surat' => $surat->id
+                ]);
+
+                PresensiCuti::where('id', $cuti->id)->update([
+                    'id_skcuti' => $surat->id
+                ]);
+            }
+        } else {
+            if ($request->status_verif == 'tolak') {
+                $cuti->update([
+                    'tanggal_acc1' => Carbon::now()->toDateString(),
+                    'status_acc1' => 'ditolak',
+                    'alasan_penolakan' => $request->alasan
+                ]);
+                $message = 'Pengajuan Cuti Atas Nama ' . $cuti->aktivis->name . 'ditolak';
+            } else {
+                $cuti->update([
+                    'tanggal_acc1' => Carbon::now()->toDateString(),
+                    'status_acc1' => 'disetujui'
                 ]);
                 $message = 'Pengajuan Cuti Atas Nama ' . $cuti->aktivis->name . 'disetujui';
             }
@@ -375,10 +498,21 @@ class PresensiController extends Controller
 
     public function storeQR(Request $request)
     {
+
         $check = QrPresensi::where('id_cu', $request->id_cu)->where('id_kegiatan', $request->id_kegiatan)->first();
         $pesan = '';
+        $length = 4; // Specify the desired length of the random string
+        $randomString = rand(1000, 9999);
         if (!$check) {
-            QrPresensi::create($request->toArray());
+            if ($request->isPulang) {
+                QrPresensi::create($request->except('kode_qr') + [
+                    'kode_qr' => $request->id_kegiatan . '-' . $request->id_cu . '-' . $randomString
+                ]);
+            } else {
+                QrPresensi::create($request->except('kode_qr', 'jam_pulang') + [
+                    'kode_qr' => $request->id_kegiatan . '-' . $request->id_cu . '-' . $randomString
+                ]);
+            }
             $pesan = 'QR untuk Kegiatan Ini Berhasil Dibuat';
         } else {
             $pesan = 'Kegiatan Ini Sudah Memiliki QR';
@@ -430,164 +564,210 @@ class PresensiController extends Controller
     {
         $qr = "";
         if ($request->id_qr == null) {
-            $qr = QrPresensi::where('id_cu', $request->id_cu)->where('kode_qr', $request->kode)->first();
+            $qr = QrPresensi::where('id_cu', $request->id_cu)->where('kode_qr', $request->kode)->where('status', 'aktif')->first();
         } else {
-            $qr = QrPresensi::where('id', $request->id_qr)->first();
+            $qr = QrPresensi::where('id', $request->id_qr)->where('status', 'aktif')->first();
         }
 
         if ($qr) {
             if ($qr->jenis == 'BERUBAH SETELAH SCAN') {
+                $randomString = rand(1000, 9999);
                 $time = \Carbon\Carbon::now()->toArray();
                 QrPresensi::where('id', $qr->id)->update([
-                    'kode_qr' => $time['timestamp']
+                    'kode_qr' => $qr->id_kegiatan . '-' . $qr->id_cu . '-' . $randomString
                 ]);
-                event(new PresensiEvent($time['timestamp'], $qr->id_user, $request->id_cu));
+                event(new PresensiEvent($qr->id_kegiatan . '-' . $qr->id_cu . '-' . $randomString, $qr->id_user, $request->id_cu));
             }
         }
+
+
 
         $confirm = '';
         $message = '';
         $status = 'ok';
 
-
+        $dateNow = Carbon::now()->format('Y-m-d');
         $keluar_kantor = PresensiKeluarKantor::where('id_user', $request->id_user)->whereDate('created_at', Carbon::today())->whereNull('lama');
         $sakit = PresensiIzin::where('id_user', $request->id_user)->whereNull('status');
-
-        if ($keluar_kantor->first()) {
-            $confirm = 'selesai izin';
-        } else {
-            $check = Presensi::where('id_user', $request->id_user)->whereDate('created_at', Carbon::today());
+        $cuti = PresensiCuti::where('id_user', $request->id_user)->where('tanggal_selesai', $dateNow)->first();
 
 
-            //cek apakah kode sama dengan di Database
-            if (!$check->first() && $qr) {
-                $R = 6371; // km
-                $lat1 = -0.0391619;
-                $lon1 = 109.3489672;
-                $dLat = $this->toRad($lat2 - $lat1);
-                $dLon = $this->toRad($lon2 - $lon1);
-                $lat1 = $this->toRad($lat1);
-                $lat2 = $this->toRad($lat2);
+        if ($qr) {
+            $R = 6371; // km
+            $lat1 = -0.0391619;
+            $lon1 = 109.3489672;
+            $dLat = $this->toRad($lat2 - $lat1);
+            $dLon = $this->toRad($lon2 - $lon1);
+            $lat1 = $this->toRad($lat1);
+            $lat2 = $this->toRad($lat2);
 
-                $now = new \DateTime();
-                $jam_sekarang = $now->format('Y-m-d H:i');
-                $jam_masuk = $now->format('Y-m-d ' . $qr->jam_masuk);
-                $jam_pulang = $now->format('Y-m-d ' . $qr->jam_pulang);
-                $masuk = Carbon::now()->toTimeString();
-                $lama = Carbon::parse($jam_masuk)->diffInMinutes(Carbon::parse($jam_sekarang));
-                $tgl = Carbon::today()->toDateString();
-                $a = sin($dLat / 2) * sin($dLat / 2) + sin($dLon / 2) * sin($dLon / 2) * cos($lat1) * cos($lat2);
-                $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
-                $d = $R * $c;
+            $now = new \DateTime();
+            $jam_sekarang = $now->format('Y-m-d H:i');
+            $jam_masuk = $now->format('Y-m-d ' . $qr->jam_masuk);
+            $jam_pulang = $now->format('Y-m-d ' . $qr->jam_pulang);
+            $masuk = Carbon::now()->toTimeString();
+            $lama = Carbon::parse($jam_masuk)->diffInMinutes(Carbon::parse($jam_sekarang));
+            $tgl = Carbon::today()->toDateString();
+            $a = sin($dLat / 2) * sin($dLat / 2) + sin($dLon / 2) * sin($dLon / 2) * cos($lat1) * cos($lat2);
+            $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+            $d = $R * $c;
 
-                $status_jarak = '';
-                if ($d > 1) {
-                    $status_jarak = 'NOT OK';
-                } else {
-                    $status_jarak = 'OK';
+            $status_jarak = '';
+            if ($d > 1) {
+                $status_jarak = 'NOT OK';
+            } else {
+                $status_jarak = 'OK';
+            }
+            if ($qr->id_kegiatan == 0) {
+                if ($cuti) {
+                    $cuti->update([
+                        'status' => 'selesai'
+                    ]);
                 }
-                $id_kegiatan = $qr->id_kegiatan;
-                if ($qr->kode_qr == $request->kode) {
-                    if ($sakit->first()) {
-                        $tgl = Carbon::today()->toDateString();
-                        $tgl_mulai = Carbon::parse($sakit->first()->tanggal_mulai);
-                        $lama = 0;
-                        for ($date = $tgl_mulai; $date->lte($tgl); $date->addDay()) {
-                            if (!$date->isSunday()) {
-                                $lama++;
+
+                if ($keluar_kantor->first()) {
+                    $confirm = 'selesai izin';
+                } else {
+                    $check = Presensi::where('id_user', $request->id_user)->whereDate('created_at', Carbon::today());
+
+                    //cek apakah kode sama dengan di Database
+                    if (!$check->first() && $qr) {
+                        $id_kegiatan = $qr->id_kegiatan;
+                        if ($qr->kode_qr == $request->kode) {
+                            if ($sakit->first()) {
+                                $tgl = Carbon::today()->toDateString();
+                                $tgl_mulai = Carbon::parse($sakit->first()->tanggal_mulai);
+                                $lamaHari = 0;
+
+                                for ($date = $tgl_mulai; $date->lte($tgl); $date->addDay()) {
+                                    $libur = HariLibur::pluck('tanggal')->toArray();
+                                    if (!$date->isSunday()) {
+                                        $lamaHari++;
+                                    }
+
+                                    if (in_array($date->toDateString(), $libur)) {
+                                        $lamaHari--;
+                                    }
+                                }
+
+                                if ($tgl_mulai->toDateString() != $tgl) {
+                                    $lamaHari--;
+                                }
+
+                                if ($sakit->first()->jenis == 'sakit') {
+                                    $sakit->update([
+                                        'lama' => $lamaHari,
+                                        'tanggal_selesai' => $tgl,
+                                        'status' => 'selesai'
+                                    ]);
+                                } else {
+                                    $sakit->update([
+                                        'status' => 'selesai'
+                                    ]);
+                                }
                             }
-                        }
-                        $lama--;
+                            //jika terlambat
+                            if ($jam_sekarang > $jam_masuk) {
+                                $id = \DB::table('presensi')->insertGetId([
+                                    'id_cu' => $request->id_cu,
+                                    'id_user' => $request->id_user,
+                                    'id_aktivis' => $request->id_aktivis,
+                                    'id_qr' => $qr->id,
+                                    'kode' => $request->kode,
+                                    'tanggal' => $tgl,
+                                    'name' => $request->name,
+                                    'jam_masuk' => $masuk,
+                                    'lat' => $lat2,
+                                    'lon' => $lon2,
+                                    'id_kegiatan' => $id_kegiatan,
+                                    'status_jarak' => $status_jarak,
+                                    'created_at' => Carbon::now(),
+                                    'updated_at' => Carbon::now()
+                                ]);
 
-                        if ($sakit->first()->jenis == 'sakit') {
-                            $sakit->update([
-                                'lama' => $lama,
-                                'tanggal_selesai' => $tgl,
-                                'status' => 'selesai'
-                            ]);
+                                PresensiKeterlambatan::create([
+                                    'id_absen' => $id,
+                                    'id_user' => $request->id_user,
+                                    'id_aktivis' => $request->id_aktivis,
+                                    'id_cu' => $request->id_cu,
+                                    'lama' => $lama,
+                                    'tanggal' => $tgl
+                                ]);
+
+                                $status = 'terlambat';
+                                $message = 'Presensi Masuk Berhasil Diisi';
+                            } else {
+                                Presensi::create($request->except('tanggal', 'jam_masuk', 'jam_pulang', 'status_jarak', 'id_qr') + [
+                                    'tanggal' => $tgl,
+                                    'jam_masuk' => $masuk,
+                                    'status_jarak' => $status_jarak,
+                                    'id_qr' => $qr->id
+                                ]);
+                                $message = 'Presensi Masuk Berhasil Diisi';
+                            }
                         } else {
-                            $sakit->update([
-                                'status' => 'selesai'
-                            ]);
+                            $message = 'Kode QR Sudah Tidak Berlaku atau Salah';
+                        }
+                    } elseif ($check->first() && !$check->first()->jam_pulang && $qr) {
+                        $now = new \DateTime();
+                        $jam_sekarang = $now->format('Y-m-d H:i');
+                        $jam_masuk = $now->format('Y-m-d ' . $qr->jam_masuk);
+                        $jam_pulang = $now->format('Y-m-d ' . $qr->jam_pulang);
+                        if ($qr->kode_qr == $request->kode) {
+                            if ($jam_sekarang < $jam_pulang) {
+                                //pulang cepat
+                                $confirm = true;
+                                $confirm = 'pulang awal';
+                                if ($request->id_qr != null) {
+                                    $message = 'Anda Pulang Lebih Awal dari Jam Yang telah Ditentukan';
+                                }
+                            } elseif ($jam_sekarang >= $jam_pulang) {
+                                //pulang normal
+                                $confirm = 'pulang';
+                                $jam_pulang = Carbon::now()->toTimeString();
+                                $check->update(['jam_pulang' => $jam_pulang]);
+                                $message = 'Presensi Pulang Berhasil Diisi';
+                            } else {
+                                $message = 'Anda Sudah Mengisi Presensi Pulang';
+                            }
+                        } else {
+                            //kode QR Tidak Sesuai Dengan Database
+                            $message = 'Kode QR Sudah Tidak Berlaku atau Salah';
+                        }
+                    } else {
+
+                        if (!$qr) {
+                            $message = 'Kode QR Sudah Tidak Berlaku/Salah/Belum Aktif';
+                        } else {
+                            $message = 'Anda Sudah Mengisi Presensi Pulang';
                         }
                     }
-                    //jika terlambat
-                    if ($jam_sekarang > $jam_masuk) {
-                        $id = \DB::table('presensi')->insertGetId([
-                            'id_cu' => $request->id_cu,
-                            'id_user' => $request->id_user,
-                            'id_aktivis' => $request->id_aktivis,
-                            'id_qr' => $qr->id,
-                            'kode' => $request->kode,
-                            'tanggal' => $tgl,
-                            'name' => $request->name,
-                            'jam_masuk' => $masuk,
-                            'lat' => $lat2,
-                            'lon' => $lon2,
-                            'id_kegiatan' => $id_kegiatan,
-                            'status_jarak' => $status_jarak,
-                            'created_at' => Carbon::now(),
-                            'updated_at' => Carbon::now()
-                        ]);
-
-                        PresensiKeterlambatan::create([
-                            'id_absen' => $id,
-                            'id_user' => $request->id_user,
-                            'id_aktivis' => $request->id_aktivis,
-                            'id_cu' => $request->id_cu,
-                            'lama' => $lama,
-                            'tanggal' => $tgl
-                        ]);
-
-                        $status = 'terlambat';
-                        $message = 'Presensi Masuk Berhasil Diisi';
-                    } else {
-                        Presensi::create($request->except('tanggal', 'jam_masuk', 'jam_pulang', 'status_jarak', 'id_qr') + [
-                            'tanggal' => $tgl,
-                            'jam_masuk' => $masuk,
-                            'status_jarak' => $status_jarak,
-                            'id_qr' => $qr->id
-                        ]);
-                        $message = 'Presensi Masuk Berhasil Diisi';
-                    }
-                } else {
-                    $message = 'Kode QR Sudah Tidak Berlaku atau Salah';
-                }
-            } elseif ($check->first() && !$check->first()->jam_pulang && $qr) {
-                $now = new \DateTime();
-                $jam_sekarang = $now->format('Y-m-d H:i');
-                $jam_masuk = $now->format('Y-m-d ' . $qr->jam_masuk);
-                $jam_pulang = $now->format('Y-m-d ' . $qr->jam_pulang);
-                if ($qr->kode_qr == $request->kode) {
-                    if ($jam_sekarang < $jam_pulang) {
-                        //pulang cepat
-                        $confirm = true;
-                        $confirm = 'pulang awal';
-                        if ($request->id_qr != null) {
-                            $message = 'Anda Pulang Lebih Awal dari Jam Yang telah Ditentukan';
-                        }
-                    } elseif ($jam_sekarang >= $jam_pulang) {
-                        //pulang normal
-                        $confirm = 'pulang';
-                        $jam_pulang = Carbon::now()->toTimeString();
-                        $check->update(['jam_pulang' => $jam_pulang]);
-                        $message = 'Presensi Pulang Berhasil Diisi';
-                    } else {
-                        $message = 'Anda Sudah Mengisi Presensi Pulang';
-                    }
-                } else {
-                    //kode QR Tidak Sesuai Dengan Database
-                    $message = 'Kode QR Sudah Tidak Berlaku atau Salah';
                 }
             } else {
-
-                if (!$qr) {
-                    $message = 'Kode QR Sudah Tidak Berlaku atau Salah';
-                } else {
-                    $message = 'Anda Sudah Mengisi Presensi Pulang';
+                //presensi kegiatan
+                $check = Presensi::where('id_user', $request->id_user)->whereDate('tanggal', Carbon::today());
+                if (!$check->first()) {
+                    Presensi::create($request->except('tanggal', 'jam_masuk', 'jam_pulang', 'status_jarak', 'id_qr') + [
+                        'tanggal' => Carbon::today()->toDateString(),
+                        'jam_masuk' => Carbon::now()->toTimeString(),
+                        'status_jarak' => $status_jarak,
+                        'id_qr' => $qr->id,
+                        'id_kegiatan' => $qr->id_kegiatan,
+                        'kegiatan_name' => $qr->kegiatan_name
+                    ]);
+                    $message = 'Presensi Berhasil Diisi';
+                } elseif ($qr->jam_pulang) {
+                    if (!$check->first()->jam_pulang) {
+                        $jam_pulang = Carbon::now()->toTimeString();
+                        $check->update(['jam_pulang' => $jam_pulang]);
+                        $message = 'Presensi Berhasil Diisi';
+                    }
                 }
             }
+        } else {
+            $message = 'Kode QR Sudah Tidak Berlaku/Salah/Belum Aktif';
         }
+
 
         return response()->json([
             'message' => $message,
@@ -637,6 +817,9 @@ class PresensiController extends Controller
                     }
                 }
                 $lama--;
+                if ($request->jenis == 'sakit') {
+                    $lama = 0;
+                }
                 PresensiIzin::create([
                     'id_user' => $request->id_user,
                     'id_cu' => $request->id_cu,
@@ -691,7 +874,6 @@ class PresensiController extends Controller
             }
         }
 
-
         return response()->json([
             'message' => $message,
         ]);
@@ -720,9 +902,13 @@ class PresensiController extends Controller
 
     function storeCuti(Request $request)
     {
-        $personalia = User::permission('verifikasi_personalia')->where('id_cu', $request->id_cu)->first()->id;
+        $personalia = User::permission('is_personalia')->where('id_cu', $request->id_cu)->first()->id;
+        $libur = HariLibur::pluck('tanggal')->toArray();
         $atasan = StrukturOrganisasi::where('id_user', $request->id_user)->first()->id_user_atasan;
         $cek = PresensiCuti::where('id_user', $request->id_user)->whereNull('status')->whereNull('alasan_penolakan')->first();
+        $date = \Carbon\Carbon::parse(Carbon::now()->format('Y') . "-" . "01" . "-01");
+        $model = PresensiCuti::with('aktivis')->where('id_user', $request->id_user)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->where('status_acc1', 'disetujui')->where('status_acc2', 'disetujui')->sum('lama');
+        $sisaCuti = 12 - $model;
         $message = '';
 
         $endDate = Carbon::parse($request->tanggal_selesai);
@@ -732,28 +918,39 @@ class PresensiController extends Controller
             if (!$date->isSunday()) {
                 $cutiDays++;
             }
+
+            if (in_array($date->toDateString(), $libur)) {
+                $cutiDays--;
+            }
         }
+
+
         $cutiDays--;
 
-        if (!$cek) {
-            PresensiCuti::create([
-                'tanggal_mulai' => $request->tanggal_mulai,
-                'tanggal_selesai' => $request->tanggal_selesai,
-                'id_user' => $request->id_user,
-                'alasan' => $request->alasan,
-                'id_cu' => $request->id_cu,
-                'id_aktivis' => $request->id_aktivis,
-                'id_acc1' => $personalia,
-                'id_acc2' => $atasan,
-                'tanggal' => Carbon::now()->toDateString(),
-                'lama' => $cutiDays,
-                'jenis' => $request->jenis
-            ]);
+        if ($sisaCuti >= $cutiDays) {
+            if (!$cek) {
+                PresensiCuti::create([
+                    'tanggal_mulai' => $request->tanggal_mulai,
+                    'tanggal_selesai' => $request->tanggal_selesai,
+                    'id_user' => $request->id_user,
+                    'alasan' => $request->alasan,
+                    'id_cu' => $request->id_cu,
+                    'id_aktivis' => $request->id_aktivis,
+                    'id_acc1' => $atasan,
+                    'id_acc2' => $personalia,
+                    'tanggal' => Carbon::now()->toDateString(),
+                    'lama' => $cutiDays,
+                    'jenis' => $request->jenis
+                ]);
 
-            $message = 'Cuti Berhasil Diajukan';
+                $message = 'Cuti Berhasil Diajukan';
+            } else {
+                $message = 'Masih Ada Data Cuti Yang Statusnya Belum Selesai';
+            }
         } else {
-            $message = 'Masih Ada Data Cuti Yang Statusnya Belum Selesai';
+            $message = 'Sisa cuti anda hanya ' . $sisaCuti . " hari dan anda mengajukan " . $cutiDays . " hari";
         }
+
 
         return response()->json([
             'message' => $message,
@@ -762,7 +959,6 @@ class PresensiController extends Controller
 
     function storePresensiLain($tipe, Request $request)
     {
-
         $tgl = Carbon::today()->toDateString();
         $message = '';
         if ($tipe == 'PULANG AWAL') {
@@ -846,9 +1042,18 @@ class PresensiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($tipe, $id)
     {
-        //
+        $model = '';
+        if ($tipe == 'qr') {
+            $model = QrPresensi::findOrFail($id);
+        }
+
+        return response()
+            ->json([
+                'form' => $model,
+                'option' => []
+            ]);
     }
 
     /**
@@ -860,6 +1065,7 @@ class PresensiController extends Controller
      */
     public function updateQR(Request $request, $id)
     {
+        
         QrPresensi::where('id', $id)->update([
             'jam_masuk' => $request->jam_masuk,
             'jam_pulang' => $request->jam_pulang,
@@ -869,6 +1075,7 @@ class PresensiController extends Controller
             'message' => 'Berhasil diUpdate',
         ]);
     }
+
 
     public function updateCuti(Request $request, $id)
     {
@@ -884,7 +1091,7 @@ class PresensiController extends Controller
         PresensiCuti::where('id', $id)->update([
             'tanggal_mulai' => $request->tanggal_mulai,
             'tanggal_selesai' => $request->tanggal_selesai,
-            'realisasi' => $request->realisasi,
+            'realisasi_mulai' => $request->realisasi_mulai,
             'alasan' => $request->alasan,
             'lama' => $cutiDays,
             'jenis' => $request->jenis
@@ -978,6 +1185,9 @@ class PresensiController extends Controller
         } elseif ($tipe == 'qr') {
             $data = QrPresensi::find($id);
             $data->delete();
+        } elseif ($tipe == 'cuti') {
+            $data = PresensiCuti::find($id);
+            $data->delete();
         }
 
         return response()
@@ -990,5 +1200,86 @@ class PresensiController extends Controller
     public function downloadLaporan(Request $request)
     {
         return Excel::download(new Export($request->tipe, $request->periode), 'Laporan.xlsx');
+    }
+
+    public function downloadTemplate(Request $request)
+    {
+        return Excel::download(new TemplateOff($request->id_cu), 'Template Upload Data Off Bergilir.xlsx');
+    }
+
+    public function downloadSuratPengajuanCuti(Request $request)
+    {
+
+        $date = \Carbon\Carbon::parse(Carbon::now()->format('Y') . "-" . "01" . "-01");
+        $data = PresensiCuti::with('aktivis.pekerjaan_aktif')->where('id', $request->id)->first();
+        $cek_atasan = StrukturOrganisasi::where('id_user_atasan', $data->id_user)->first();
+        $bidang_name = '';
+        $is_manager = false;
+        $data2 = User::with('atasan.aktivis_atasan', 'atasan.bidang')->where('id', $data->id_user)->first();
+
+        if (6 <= $data->aktivis->pekerjaan_aktif->tingkat && $data->aktivis->pekerjaan_aktif->tingkat < 7) {
+            if ($cek_atasan->id) {
+                $bidang_name = Bidang::where('id', $cek_atasan->id_bidang)->first()->name;
+            } else {
+                $bidang_name = 'Perangkat GM';
+            }
+            $is_manager = true;
+        } else {
+            $bidang_name = $data2->atasan->bidang->name;
+        }
+
+        $model = PresensiCuti::with('aktivis')->where('id_user', $data->id_user)->whereYear('created_at', '=', Carbon::parse($date)->format('Y'))->where('status_acc1', 'disetujui')->where('status_acc2', 'disetujui')->sum('lama');
+        $sisaCuti = 12 - $model;
+        setlocale(LC_TIME, 'id');
+
+        $now = Carbon::now()->formatLocalized('%e %B %Y');
+        $mulai = Carbon::parse($data->tanggal_mulai)->formatLocalized('%e %B %Y');
+        $selesai = Carbon::parse($data->tanggal_selesai)->subDay(1)->formatLocalized('%e %B %Y');
+        $tgl_pengajuan = Carbon::parse($data->tanggal)->subDay(1)->formatLocalized('%e %B %Y');
+        $tgl_acc2 = Carbon::parse($data->tanggal_acc2)->subDay(1)->formatLocalized('%e %B %Y');
+        $masuk = Carbon::parse($data->tanggal_selesai)->formatLocalized('%e %B %Y');
+        $now = Carbon::now()->formatLocalized('%e %B %Y');
+        $personalia = User::with('aktivis2')->where('id', $data->id_acc2)->first();
+        $ttd_pengaju = 'images/ttd/' . $data->aktivis->gambar_ttd . '.png';
+        $ttd_atasan = 'images/ttd/' . $data2->atasan->aktivis_atasan->gambar_ttd . '.png';
+        $ttd_personalia = 'images/ttd/' . $personalia->aktivis2->gambar_ttd . '.png';
+        // Generate the PDF
+        $pdf = PDF::loadView('formPengajuanCuti', compact('now', 'mulai', 'selesai', 'masuk', 'data', 'data2', 'personalia', 'sisaCuti', 'now', 'ttd_pengaju', 'ttd_atasan', 'ttd_personalia', 'tgl_acc2', 'tgl_pengajuan', 'bidang_name', 'is_manager'));
+        $pdf->setPaper('a4', 'portrait');
+        // Save, download, or show the PDF
+        return $pdf->download('.pdf');
+    }
+
+    public function downloadSKCuti(Request $request)
+    {
+        $date = \Carbon\Carbon::parse(Carbon::now()->format('Y') . "-" . "01" . "-01");
+        $data = PresensiCuti::with('aktivis.pekerjaan_aktif', 'skcuti')->where('id', $request->id)->first();
+        $no_lengkap = $data->skcuti->name;
+        setlocale(LC_TIME, 'id');
+        $data2 = User::with('atasan.aktivis_atasan', 'atasan.bidang')->where('id', $data->id_user)->first();
+        $cek_atasan = StrukturOrganisasi::where('id_user_atasan', $data->id_user)->first();
+        $bidang_name = '';
+        $is_manager = false;
+        if (6 <= $data->aktivis->pekerjaan_aktif->tingkat && $data->aktivis->pekerjaan_aktif->tingkat < 7) {
+            if ($cek_atasan->id) {
+                $bidang_name = Bidang::where('id', $cek_atasan->id_bidang)->first()->name;
+            } else {
+                $bidang_name = 'Perangkat GM';
+            }
+            $is_manager = true;
+        } else {
+            $bidang_name = $data2->atasan->bidang->name;
+        }
+        $now = Carbon::now()->formatLocalized('%e %B %Y');
+        $mulai = Carbon::parse($data->tanggal_mulai)->formatLocalized('%e %B %Y');
+        $selesai = Carbon::parse($data->tanggal_selesai)->subDay(1)->formatLocalized('%e %B %Y');
+        $tgl_acc2 = Carbon::parse($data->tanggal_acc2)->subDay(1)->formatLocalized('%e %B %Y');
+        $masuk = Carbon::parse($data->tanggal_selesai)->formatLocalized('%e %B %Y');
+        $now = Carbon::now()->formatLocalized('%e %B %Y');
+        // Generate the PDF
+        $pdf = PDF::loadView('sKCuti', compact('mulai', 'selesai', 'masuk', 'data', 'data2', 'tgl_acc2', 'no_lengkap', 'bidang_name', 'is_manager'));
+        $pdf->setPaper('a4', 'portrait');
+        // Save, download, or show the PDF
+        return $pdf->download('.pdf');
     }
 }
