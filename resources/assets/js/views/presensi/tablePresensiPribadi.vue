@@ -204,10 +204,10 @@
 						<check-value :value="props.item.alasan_penolakan"></check-value>
 					</td>
 					<td v-if="!columnData[14].hide && !props.item.tanggal_acc1">
-						<check-value :value="'Menunggu Persetujuan Personalia'"></check-value>
+						<check-value :value="'Menunggu Persetujuan Atasan'"></check-value>
 					</td>
 					<td v-else-if="!columnData[14].hide && !props.item.tanggal_acc2 && props.item.tanggal_acc1">
-						<check-value :value="'Menunggu Persetujuan Atasan'"></check-value>
+						<check-value :value="'Menunggu Persetujuan Personalia'"></check-value>
 					</td>
 					<td
 						v-else-if="!columnData[14].hide && props.item.tanggal_acc2 && props.item.tanggal_acc1 && !props.item.alasan_penolakan">
