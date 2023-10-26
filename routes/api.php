@@ -1153,8 +1153,7 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::post('/presensi/storePresensiLain/{tipe}', 'PresensiController@storePresensiLain');
         Route::post('/presensi/storeCuti', 'PresensiController@storeCuti');
         Route::post('/presensi/uploadOffBergilir/{tipe}', 'PresensiController@uploadExcelOffBergilir');
-        Route::get('/presensi/createFormTerlambat', 'PresensiController@createFormTerlambat');
-        Route::get('/presensi/createFormQR', 'PresensiController@createFormQR');
+        Route::get('/presensi/create/{tipe}', 'PresensiController@create');
         Route::post('/presensi/aktifQR/{id}/{id_user}/{status}', 'PresensiController@aktifQR');
         Route::post('/presensi/storeSelesaiIzin/{id_user}', 'PresensiController@selesaiIzin');
         Route::post('/presensi/storeKuliah/{id_cu}/{id_aktivis}/{id_user}/{tanggal}/{tipe}', 'PresensiController@storeKuliah');

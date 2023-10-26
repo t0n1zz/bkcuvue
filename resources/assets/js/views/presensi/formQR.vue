@@ -9,7 +9,7 @@
 
                             <!-- title -->
                             <h5>
-                                CU:
+                                CU: 
                             </h5>
 
                             <!-- select -->
@@ -223,7 +223,7 @@ export default {
                 }
             }
         } else { 
-            this.$store.dispatch('presensi/createFormQR');
+            this.$store.dispatch('presensi/create', 'qr');
         }
     },
 
@@ -344,7 +344,7 @@ export default {
 
         ...mapGetters('presensi', {
             kegiatan: 'list_kegiatan',
-            form: 'qrForm',
+            form: 'form',
             dataStat:'dataStat',
             pesan: 'message',
             qrstat: 'QRStat'

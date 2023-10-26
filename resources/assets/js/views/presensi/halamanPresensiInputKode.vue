@@ -236,7 +236,7 @@ export default {
             pesan: 'message',
             absenStat: 'absenStat',
             statAbsen: 'status',
-            form: 'data',
+            form: 'form',
             konfirmasi: 'confirm_pulang'
         })
     }

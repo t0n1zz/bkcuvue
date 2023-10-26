@@ -452,38 +452,30 @@ class PresensiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
 
-    public function createFormTerlambat()
+
+    public function create($tipe)
     {
-        //
+        $form = '';
+        if ($tipe == 'qr') {
+            $form = QrPresensi::initialize();
+        } elseif ($tipe == 'cuti') {
+            $form = PresensiCuti::initialize();
+        } elseif ($tipe == 'terlambat') {
+            $form = PresensiKeterlambatan::initialize();
+        } elseif ($tipe == 'seragam') {
+            $form = PresensiPelanggaranSeragam::initialize();
+        } elseif ($tipe == 'izin' || $tipe == 'sakit' || $tipe == 'kegiatan') {
+            $form = PresensiIzin::initialize();
+        } elseif ('kantor') {
+            $form = Presensi::initialize();
+        }
         return response()
             ->json([
-                'form' => PresensiKeterlambatan::initialize(),
+                'form' => $form,
             ]);
     }
 
-    public function createAbsen()
-    {
-        //
-        return response()
-            ->json([
-                'form' => Presensi::initialize(),
-            ]);
-    }
-
-
-    public function createFormQR()
-    {
-        //
-        return response()
-            ->json([
-                'form' => QrPresensi::initialize(),
-            ]);
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -525,6 +517,7 @@ class PresensiController extends Controller
 
     public function storePelanggaranSeragam(Request $request)
     {
+
         $kelas = null;
         $message = '';
         if ($request->id_absen == 0) {
@@ -1047,6 +1040,14 @@ class PresensiController extends Controller
         $model = '';
         if ($tipe == 'qr') {
             $model = QrPresensi::findOrFail($id);
+        } elseif ($tipe == 'cuti') {
+            $model = PresensiCuti::findOrFail($id);
+        } elseif ($tipe == 'terlambat') {
+            $model = PresensiKeterlambatan::findOrFail($id);
+        } elseif ($tipe == 'seragam') {
+            $model = Presensi::with('seragam', 'aktivis', 'seragamKerja')->where('id', $id)->first();
+        } elseif ($tipe == 'izin' || $tipe == 'sakit') {
+            $model = PresensiIzin::with('aktivis')->where('id', $id)->first();
         }
 
         return response()
@@ -1065,7 +1066,7 @@ class PresensiController extends Controller
      */
     public function updateQR(Request $request, $id)
     {
-        
+
         QrPresensi::where('id', $id)->update([
             'jam_masuk' => $request->jam_masuk,
             'jam_pulang' => $request->jam_pulang,

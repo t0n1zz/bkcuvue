@@ -8,7 +8,7 @@
                         :key="index">{{ user.name }}</option>
                 </select>
             </div>
-        <h1 v-if="editFlag">{{ editData.aktivis.name }}</h1>
+        <h1 v-if="editFlag">{{ form.aktivis.name }}</h1>
         <div style="margin-top: 10px;">
             <h5 v-if="tipe == 'kegiatan'">Tanggal</h5>
             <h5 v-else>Tanggal Mulai:</h5>
@@ -30,7 +30,7 @@
             <button class="btn btn-warning" @click.prevent="batal">
                 <i class="icon-x"></i>Batal</button>
 
-            <button type="submit" value="submit" class="btn btn-primary" @click.prevent="storeKuliah" :disabled="(!aktiv && !editData && kelas!='pribadi') || !form.alasan">
+            <button type="submit" value="submit" class="btn btn-primary" @click.prevent="storeKuliah" :disabled="(!aktiv && !form && kelas!='pribadi') || !form.alasan">
                 <i class="icon-floppy-disk"></i>Simpan</button>
         </div>
     </div>
@@ -81,14 +81,16 @@ export default {
 
     created () {
         if (this.editFlag) {
-            this.form.tanggal_mulai = this.editData.tanggal_mulai
-            this.form.tanggal_selesai = this.editData.tanggal_selesai
-            this.form.alasan = this.editData.alasan
+            this.$store.dispatch('presensi/edit', [this.tipe, this.editData]);
+            // this.form.tanggal_mulai = this.editData.tanggal_mulai
+            // this.form.tanggal_selesai = this.editData.tanggal_selesai
+            // this.form.alasan = this.editData.alasan
         } else { 
-            this.editData = ''
-            this.form.alasan = ''
-            this.form.tanggal_mulai = ''
-            this.form.tanggal_selesai = ''
+        this.$store.dispatch('presensi/create', this.tipe);
+            // this.editData = ''
+            // this.form.alasan = ''
+            // this.form.tanggal_mulai = ''
+            // this.form.tanggal_selesai = ''
         }
     },
     methods: {
@@ -111,7 +113,7 @@ export default {
             if (!this.editFlag) {
                 this.$store.dispatch('presensi/storeIzin', this.form);
             } else { 
-                this.$store.dispatch('presensi/updateIzin', [this.form, this.editData.id]);
+                this.$store.dispatch('presensi/updateIzin', [this.form, this.editData]);
             }
         },
 
@@ -127,7 +129,7 @@ export default {
         ...mapGetters('presensi', {
             itemData: 'userS',
             itemDataStat: 'dataStatS',
-            form: 'formIzin'
+            form: 'form'
         })
     }
 }

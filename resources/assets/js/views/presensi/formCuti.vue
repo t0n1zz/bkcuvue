@@ -60,7 +60,6 @@ import pageHeader from "../../components/pageHeader.vue";
 import message from "../../components/message.vue";
 import selectData from "../../components/selectCuTp.vue";
 import datePicker from '../../components/datePicker.vue';
-import moment from 'moment';
 
 
 export default {
@@ -72,17 +71,6 @@ export default {
     },
     data () {
         return {
-            form: {
-                id_user: '',
-                id_cu: '',
-                id_aktivis: '',
-                jenis: '',
-                tanggal_mulai: '',
-                tanggal_selesai: '',
-                alasan: '',
-                realisasi_mulai: '',
-                lama: 0,
-            },
             tabName: 'aktif',
             kuliah: [],
             aktiv: '',
@@ -101,12 +89,9 @@ export default {
 
     created () {
         if (this.dataCuti != '' && this.tipe == 'cutiEdit') {
-            this.form.jenis = this.dataCuti.jenis
-            this.form.tanggal_mulai = this.dataCuti.tanggal_mulai
-            this.form.tanggal_selesai = this.dataCuti.tanggal_selesai
-            this.form.alasan = this.dataCuti.alasan
-            this.created_at = new Date(this.dataCuti.created_at);
-            this.form.realisasi_mulai = this.dataCuti.realisasi_mulai;
+            this.$store.dispatch('presensi/edit', ['cuti', this.dataCuti]);
+        } else { 
+            this.$store.dispatch('presensi/create','cuti');
         }
     },
 
@@ -134,9 +119,9 @@ export default {
             const start = new Date(this.form.tanggal_mulai);
             const end = new Date(this.form.tanggal_selesai);
             const timeDifference = end.getTime() - start.getTime();
-            const cekUpdate = '';
-            if (this.dataCuti.id && this.tipe== 'cutiEdit') { 
-                cekUpdate = new Date(this.form.tanggal_mulai).getTime() - this.created_at.getTime()
+            let cekUpdate = '';
+            if (this.form.id && this.tipe== 'cutiEdit') { 
+                cekUpdate = new Date(this.form.tanggal_mulai).getTime() - new Date(this.form.created_at).getTime()
             }
             const daysDifCekUpdate = Math.ceil(cekUpdate / (1000 * 3600 * 24))
 
@@ -162,7 +147,7 @@ export default {
                 if (this.tipe == 'cuti') {
                     this.$store.dispatch('presensi/storeCuti', this.form);
                 } else {
-                    this.$store.dispatch('presensi/updateCuti', [this.dataCuti.id, this.form]);
+                    this.$store.dispatch('presensi/updateCuti', [this.dataCuti, this.form]);
                 }
             }
         },
@@ -179,6 +164,7 @@ export default {
         ...mapGetters('presensi', {
             itemData: 'userS',
             itemDataStat: 'dataStatS',
+            form : 'form'
         })
     }
 }

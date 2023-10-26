@@ -120,8 +120,8 @@ export default {
     );
   },
 
-  createFormTerlambat: function () {
-    return axios.get("/api/presensi/createFormTerlambat");
+  create: function (tipe) {
+    return axios.get("/api/presensi/create/" + tipe);
   },
 
   createFormQR: function () {

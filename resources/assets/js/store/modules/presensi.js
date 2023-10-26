@@ -16,7 +16,7 @@ export const presensi = {
     absenStat: "",
     message: "",
     status: "",
-    terlambat: {},
+    form: {},
     confirm_pulang: "",
     list_kegiatan: [],
     listKegiatanStat: "",
@@ -28,32 +28,8 @@ export const presensi = {
     updateMessage: "",
     cutiMessage: "",
     cutiStat: "",
-    formSeragam: {
-      id_user: "",
-      id_absen: 0,
-      id_aktivis: "",
-      id_cu: "",
-      id_seragam_kerja: "",
-      seragam: [],
-      seragamName: "",
-    },
-    formUpdateAlasan: {
-      id: "",
-      alasan: "",
-      jenis: "",
-    },
     formFile: {
       file: null,
-    },
-    formIzin: {
-      id_cu: "",
-      id_aktivis: "",
-      id_user: "",
-      jenis: "",
-      alasan: "",
-      tanggal_mulai: "",
-      tanggal_selesai: "",
-      lama: "",
     },
   },
 
@@ -70,7 +46,7 @@ export const presensi = {
     absenStat: (state) => state.absenStat,
     message: (state) => state.message,
     status: (state) => state.status,
-    terlambat: (state) => state.terlambat,
+    form: (state) => state.form,
     confirm_pulang: (state) => state.confirm_pulang,
     list_kegiatan: (state) => state.list_kegiatan,
     listKegiatanStat: (state) => state.listKegiatanStat,
@@ -80,10 +56,7 @@ export const presensi = {
     terlambatStat: (state) => state.terlambatStat,
     userS: (state) => state.userS,
     updateMessage: (state) => state.updateMessage,
-    formSeragam: (state) => state.formSeragam,
     formFile: (state) => state.formFile,
-    formUpdateAlasan: (state) => state.formUpdateAlasan,
-    formIzin: (state) => state.formIzin,
   },
 
   actions: {
@@ -395,12 +368,12 @@ export const presensi = {
         });
     },
 
-    createFormTerlambat({ commit }) {
+    create({ commit }, tipe) {
       commit("setDataStat", "loading");
 
-      PRESENSIAPI.createFormTerlambat()
+      PRESENSIAPI.create(tipe)
         .then(function (response) {
-          commit("setTerlambat", response.data.form);
+          commit("setForm", response.data.form);
           commit("setDataStat", "success");
         })
         .catch((error) => {
@@ -506,8 +479,8 @@ export const presensi = {
     setStatus(state, status) {
       state.status = status;
     },
-    setTerlambat(state, terlambat) {
-      state.terlambat = terlambat;
+    setForm(state, form) {
+      state.form = form;
     },
 
     setTerlambatS(state, terlambatS) {
@@ -531,7 +504,7 @@ export const presensi = {
     },
 
     setQRForm(state, qrForm) {
-      state.qrForm = qrForm;
+      state.form = qrForm;
     },
 
     setQRMessage(state, pesan) {

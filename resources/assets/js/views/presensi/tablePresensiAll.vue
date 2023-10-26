@@ -358,11 +358,11 @@
 			</template>
 			<template slot="modal-body3">
 				<div v-if="tabName != 'cuti'">
-					<form-pelanggaran-seragam :user="selectedItem" :tipe="tipe"
+					<form-pelanggaran-seragam :id="selectedItem.id" :tipe="tipe"
 						@tutup="modalTutup"></form-pelanggaran-seragam>
 				</div>
 				<div v-else>
-					<Cuti @tutup="modalTutup" :dataCuti="selectedItem" :tipe="'cutiEdit'" :page="'semua'"></Cuti>
+					<Cuti @tutup="modalTutup" :dataCuti="selectedItem.id" :tipe="'cutiEdit'" :page="'semua'"></Cuti>
 				</div>
 			</template>
 			<template slot="modal-body4">
@@ -370,7 +370,7 @@
 					<upload-excel @tutup="modalTutup"></upload-excel>
 				</div>
 				<div v-else-if="tabName == 'izin' || tabName == 'sakit' || tabName == 'kegiatan'">
-					<izin @tutup="modalTutup" :tipe="tabName" :kelas="'semua'" :editData="selectedItem" :editFlag="flag">
+					<izin @tutup="modalTutup" :tipe="tabName" :kelas="'semua'" :editData="selectedItem.id" :editFlag="flag">
 					</izin>
 				</div>
 			</template>
