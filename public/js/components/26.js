@@ -237,18 +237,10 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   created: function created() {
     if (this.editFlag) {
       this.$store.dispatch('presensi/edit', [this.tipe, this.editData]);
-      // this.form.tanggal_mulai = this.editData.tanggal_mulai
-      // this.form.tanggal_selesai = this.editData.tanggal_selesai
-      // this.form.alasan = this.editData.alasan
     } else {
       this.$store.dispatch('presensi/create', this.tipe);
-      // this.editData = ''
-      // this.form.alasan = ''
-      // this.form.tanggal_mulai = ''
-      // this.form.tanggal_selesai = ''
     }
   },
-
   methods: {
     addAktivis: function addAktivis() {
       this.flag = true;

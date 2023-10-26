@@ -1147,7 +1147,7 @@ var render = function render() {
     slot: "modal-body3"
   }, [_c("div", [_c("Cuti", {
     attrs: {
-      dataCuti: _vm.selectedItem,
+      dataCuti: _vm.selectedItem.id,
       tipe: _vm.mode,
       page: "pribadi"
     },
@@ -1160,7 +1160,7 @@ var render = function render() {
     attrs: {
       tipe: _vm.tabName,
       kelas: "pribadi",
-      editData: _vm.selectedItem,
+      editData: _vm.selectedItem.id,
       editFlag: _vm.flag
     },
     on: {

@@ -92,11 +92,13 @@
 				<button @click="modalOpen('sakit')" class="btn btn-light mb-1" v-if="tabName == 'sakit'">
 					<i class="icon-plus3"></i>Tambah
 				</button>
-				<button :disabled="!selectedItem.id || selectedItem.status_acc2 !='disetujui'" @click="downloadSKCuti" class="btn btn-light mb-1" v-if="tabName == 'cuti'">
+				<button :disabled="!selectedItem.id || selectedItem.status_acc2 != 'disetujui'" @click="downloadSKCuti"
+					class="btn btn-light mb-1" v-if="tabName == 'cuti'">
 					<i class="icon-download"></i>Download SK Cuti
 				</button>
 
-				<button :disabled="!selectedItem.id " @click="downloadSuratPengajuanCuti" class="btn btn-light mb-1" v-if="tabName == 'cuti'">
+				<button :disabled="!selectedItem.id" @click="downloadSuratPengajuanCuti" class="btn btn-light mb-1"
+					v-if="tabName == 'cuti'">
 					<i class="icon-download"></i>Download Surat Pengajuan Cuti
 				</button>
 			</template>
@@ -123,11 +125,13 @@
 					<i class="icon-plus5"></i>Tambah
 				</button>
 
-				<button @click="downloadSKCuti" class="btn btn-light btn-block mb-1" v-if="tabName == 'cuti'" :disabled="!selectedItem.id || selectedItem.status_acc2 != 'disetujui'">
+				<button @click="downloadSKCuti" class="btn btn-light btn-block mb-1" v-if="tabName == 'cuti'"
+					:disabled="!selectedItem.id || selectedItem.status_acc2 != 'disetujui'">
 					<i class="icon-plus5"></i>Download SK Cuti
 				</button>
 
-				<button @click="downloadSuratPengajuanCuti" class="btn btn-light btn-block mb-1" v-if="tabName == 'cuti'" :disabled="!selectedItem.id">
+				<button @click="downloadSuratPengajuanCuti" class="btn btn-light btn-block mb-1" v-if="tabName == 'cuti'"
+					:disabled="!selectedItem.id">
 					<i class="icon-plus5"></i>Download Surat Pengajuan Cuti
 				</button>
 
@@ -272,12 +276,13 @@
 			</template>
 			<template slot="modal-body3">
 				<div>
-					<Cuti @tutup="modalTutup" :dataCuti="selectedItem" :tipe="mode" :page="'pribadi'"></Cuti>
+					<Cuti @tutup="modalTutup" :dataCuti="selectedItem.id" :tipe="mode" :page="'pribadi'"></Cuti>
 				</div>
 			</template>
 			<template slot="modal-body4">
 				<div>
-					<izin @tutup="modalTutup" :tipe="tabName" :kelas="'pribadi'" :editData="selectedItem" :editFlag="flag">
+					<izin @tutup="modalTutup" :tipe="tabName" :kelas="'pribadi'" :editData="selectedItem.id"
+						:editFlag="flag">
 					</izin>
 				</div>
 			</template>
@@ -492,7 +497,7 @@ export default {
 		this.today = yyyy + '-' + mm + '-' + dd
 
 		this.$store.dispatch('presensi/getUsers', this.currentUser.id_cu);
-		
+
 	},
 
 	watch: {
@@ -835,7 +840,7 @@ export default {
 
 		...mapGetters('presensi', {
 			itemData: 'terlambatS',
-			data:'data',
+			data: 'data',
 			itemDataStat: 'terlambatStat',
 			updateMessage: 'updateMessage',
 			updateStat: 'updateStat',
@@ -858,5 +863,4 @@ textarea {
 	/* Firefox, other Gecko */
 	box-sizing: border-box;
 	/* Opera/IE 8+ */
-}
-</style>
+}</style>
