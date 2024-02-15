@@ -4,7 +4,6 @@
     <header></header>
     <div id="hal1">
         <div id="kode" class="text-right">FM-PSL-05, Rev00/02.01.2019</div>
-        <h6 class="text-center">PERMOHONAN PENGAJUAN CUTI MANAJEMEN</h6>
         <table border="1">
             <tr>
                 <td>Nama</td>
@@ -175,7 +174,7 @@
     }
 
     #hal1 {
-        margin: 40px
+        margin: 60px
     }
 
     .ttdPersonalia {
@@ -217,7 +216,7 @@
 
     #rightmost-div {
         position: absolute;
-        top: 65%;
+        top: 69%;
         /* Adjust the vertical position as needed */
         right: 20px;
         /* Adjust the horizontal position as needed */

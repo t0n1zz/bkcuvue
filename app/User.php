@@ -113,7 +113,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function aktivis()
     {
-        return $this->belongsTo('App\Aktivis', 'id_aktivis', 'id')->select('id', 'name', 'gambar','gambar_ttd');
+        return $this->belongsTo('App\Aktivis', 'id_aktivis', 'id')->select('id', 'name', 'gambar', 'gambar_ttd');
     }
 
     public function Role()
@@ -123,7 +123,12 @@ class User extends Authenticatable implements JWTSubject
 
     public function masuk()
     {
-        return $this->hasOne('App\Presensi', 'id_user', 'id')->select('id', 'id_user','id_qr','jam_pulang')->where('tanggal', Carbon::now()->toDateString());
+        return $this->hasOne('App\Presensi', 'id_user', 'id')->select('id', 'id_user', 'id_qr', 'jam_pulang')->where('tanggal', Carbon::now()->toDateString());
+    }
+
+    public function pengaturan_surat()
+    {
+        return $this->hasOne('App\Pengaturan', 'id_cu', 'id_cu')->select('id', 'id_cu', 'mkg', 'cuti', 'tunjangan')->where('periode', Carbon::now()->year);
     }
 
     public function kuliah()
@@ -153,7 +158,6 @@ class User extends Authenticatable implements JWTSubject
 
     public function aktivis2()
     {
-        return $this->belongsTo('App\Aktivis', 'id_aktivis', 'id')->select('id', 'name', 'nim_cu','gambar_ttd');
+        return $this->belongsTo('App\Aktivis', 'id_aktivis', 'id')->select('id', 'name', 'nim_cu', 'gambar_ttd');
     }
-
 }

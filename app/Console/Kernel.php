@@ -32,6 +32,9 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('alpa:create')
             ->dailyAt('18:00');
+
+        $schedule->command('mkg:start')
+        ->dailyAt('01:00');
     }
 
     /**

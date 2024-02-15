@@ -339,6 +339,7 @@
 						<div class="text-center" style="margin-bottom: 20px;">
 							<select class="form-control" data-width="100%" v-model="tahun">
 								<option value="2023">2023</option>
+								<option value="2024">2024</option>
 							</select>
 						</div>
 						<button class="btn btn-primary btn-block" @click.prevent="downloadLaporan(1)">
@@ -517,7 +518,7 @@ export default {
 					name: 'tanggal_selesai',
 					sort: true,
 					hide: true,
-					filter:true,
+					filter: true,
 					tipe: 'string',
 				},
 

@@ -61,6 +61,8 @@ import { presensi } from "./modules/presensi";
 import { struktur } from "./modules/struktur";
 import { tunjangan } from "./modules/tunjanganKeluarga";
 import { hariLibur } from "./modules/hariLibur";
+import { mkg } from "./modules/mkg";
+import { pengaturan } from "./modules/pengaturan";
 
 Vue.use(Vuex);
 
@@ -125,6 +127,8 @@ export default new Vuex.Store({
     presensi,
     struktur,
     tunjangan,
-    hariLibur
+    hariLibur,
+    mkg,
+    pengaturan
   },
 });

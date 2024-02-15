@@ -17,24 +17,28 @@
         <div>Dengan hormat, <br> Yang bertanda tangan di bawah ini:</div>
         <table>
             <tr>
-                <td>Nama Lengkap</td>
-                <td colspan="2">: {{ $data->aktivis->name }}</td>
+                <td style="vertical-align: top">Nama Lengkap</td>
+                <td style="vertical-align: top">:</td>
+                <td colspan="2">{{ $data->aktivis->name }}</td>
             </tr>
             <tr>
-                <td>Jabatan</td>
-                <td colspan="2"> : {{ $data->aktivis->pekerjaan_aktif->name }}</td>
+                <td style="vertical-align: top">Jabatan</td>
+                <td style="vertical-align: top">:</td>
+                <td colspan="2">{{ $data->aktivis->pekerjaan_aktif->name }}</td>
             </tr>
             <tr>
-                <td>Bidang</td>
+                <td style="vertical-align: top">Bidang</td>
+                <td style="vertical-align: top">:</td>
                 @if ($is_manager)
-                    <td colspan="2"> : {{ $bidang_name }}</td>
+                    <td colspan="2">{{ $bidang_name }}</td>
                 @else
-                    <td colspan="2"> : {{ $data2->atasan->bidang->name }}</td>
+                    <td colspan="2">{{ $data2->atasan->bidang->name }}</td>
                 @endif
             </tr>
             <tr>
-                <td>Atasan</td>
-                <td colspan="2"> : {{ $data2->atasan->aktivis_atasan->name }}</td>
+                <td style="vertical-align: top">Atasan</td>
+                <td style="vertical-align: top">:</td>
+                <td colspan="2">{{ $data2->atasan->aktivis_atasan->name }}</td>
             </tr>
         </table><br>
         <p class="text-justify">
@@ -47,16 +51,19 @@
         </p>
         <table>
             <tr>
-                <td>Nama Lengkap</td>
-                <td colspan="2"> : {{ $data->name }}</td>
+                <td style="vertical-align: top">Nama Lengkap</td>
+                <td style="vertical-align: top">:</td>
+                <td colspan="2">{{ $data->name }}</td>
             </tr>
             <tr>
-                <td>Tempat & Tgl. Lahir</td>
-                <td colspan="2"> : {{ $data->tempat_lahir }}, {{ $tgl_lahir }}</td>
+                <td style="vertical-align: top">Tempat & Tgl. Lahir</td>
+                <td style="vertical-align: top">:</td>
+                <td colspan="2">{{ $data->tempat_lahir }}, {{ $tgl_lahir }}</td>
             </tr>
             <tr>
-                <td>Alamat</td>
-                <td colspan="2">: {{ $data->alamat }}</td>
+                <td style="vertical-align: top">Alamat</td>
+                <td style="vertical-align: top">:</td>
+                <td colspan="2">{{ $data->alamat }}</td>
             </tr>
         </table><br>
         <div>
@@ -83,7 +90,7 @@
     body {
         margin: 0;
         padding: 0;
-        font-size: 12pt;
+        font-size: 12px;
     }
 
     #table-ttd div {
@@ -91,11 +98,12 @@
     }
 
     #kode {
-        font-size: 10pt
+        font-size: 10px
     }
 
     #hal1 {
-        margin: 40px
+        margin: 60px;
+        margin-top: 10px
     }
 
     .ttdPersonalia {

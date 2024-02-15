@@ -1,174 +1,201 @@
 export default {
-  
-  index: function( p, tingkat, status ){
-    return axios.get('/api/aktivis/index/' + tingkat + '/' + status ,{params: p});
+  index: function (p, tingkat, status) {
+    return axios.get("/api/aktivis/index/" + tingkat + "/" + status, {
+      params: p,
+    });
   },
 
-  indexTingkat: function( p ){
-    return axios.post('/api/aktivis/indexTingkat/' ,{params: p});
+  indexTingkat: function (p) {
+    return axios.post("/api/aktivis/indexTingkat/", { params: p });
   },
 
-  indexLembaga: function( p ){
-    return axios.get('/api/aktivis/indexLembaga' ,{params: p});
+  indexLembaga: function (p) {
+    return axios.get("/api/aktivis/indexLembaga", { params: p });
   },
 
-  indexCu: function( p, id, tingkat, status ){
-    return axios.get('/api/aktivis/indexCu/' + id + '/' + tingkat + '/' + status, {params: p});
+  indexLembaga: function (p) {
+    return axios.get("/api/aktivis/indexLembaga", { params: p });
   },
 
-  indexTingkatArr: function( p, kegiatan_id, tingkat ){
-    return axios.get('/api/aktivis/indexTingkatArr/' + kegiatan_id + '/' + tingkat, {params: p});
+  indexCu: function (p, id, tingkat, status) {
+    return axios.get(
+      "/api/aktivis/indexCu/" + id + "/" + tingkat + "/" + status,
+      { params: p }
+    );
   },
 
-  indexCuTingkatArr: function( p, kegiatan_id, id, tingkat ){
-    return axios.get('/api/aktivis/indexCuTingkatArr/' + kegiatan_id + '/' + id + '/' + tingkat, {params: p});
+  indexTingkatArr: function (p, kegiatan_id, tingkat) {
+    return axios.get(
+      "/api/aktivis/indexTingkatArr/" + kegiatan_id + "/" + tingkat,
+      { params: p }
+    );
   },
 
-  indexPekerjaan: function( id ){
-    return axios.get('/api/aktivis/indexPekerjaan/' + id);
+  indexCuTingkatArr: function (p, kegiatan_id, id, tingkat) {
+    return axios.get(
+      "/api/aktivis/indexCuTingkatArr/" +
+        kegiatan_id +
+        "/" +
+        id +
+        "/" +
+        tingkat,
+      { params: p }
+    );
   },
 
-  indexPendidikan: function( id ){
-    return axios.get('/api/aktivis/indexPendidikan/' + id);
+  indexPekerjaan: function (id) {
+    return axios.get("/api/aktivis/indexPekerjaan/" + id);
   },
 
-  indexOrganisasi: function( id ){
-    return axios.get('/api/aktivis/indexOrganisasi/' + id);
+  indexMkg: function (id) {
+    return axios.get("/api/aktivis/indexMkg/" + id);
   },
 
-  indexDiklat: function( id ){
-    return axios.get('/api/aktivis/indexDiklat/' + id);
+  indexPendidikan: function (id) {
+    return axios.get("/api/aktivis/indexPendidikan/" + id);
   },
 
-  indexPertemuan: function( id ){
-    return axios.get('/api/aktivis/indexPertemuan/' + id);
+  indexOrganisasi: function (id) {
+    return axios.get("/api/aktivis/indexOrganisasi/" + id);
   },
 
-  indexKeluarga: function( id ){
-    return axios.get('/api/aktivis/indexKeluarga/' + id);
+  indexDiklat: function (id) {
+    return axios.get("/api/aktivis/indexDiklat/" + id);
   },
 
-  indexAnggotaCu: function( id ){
-    return axios.get('/api/aktivis/indexAnggotaCu/' + id);
+  indexPertemuan: function (id) {
+    return axios.get("/api/aktivis/indexPertemuan/" + id);
   },
 
-  indexKeterangan: function( id ){
-    return axios.get('/api/aktivis/indexKeterangan/' + id);
+  indexKeluarga: function (id) {
+    return axios.get("/api/aktivis/indexKeluarga/" + id);
   },
 
-  get: function( id ){
-    return axios.get('/api/aktivis/get/' + id);
+  indexAnggotaCu: function (id) {
+    return axios.get("/api/aktivis/indexAnggotaCu/" + id);
   },
 
-  create: function(){
-    return axios.get('/api/aktivis/create');
+  indexKeterangan: function (id) {
+    return axios.get("/api/aktivis/indexKeterangan/" + id);
   },
 
-  createPekerjaan: function(){
-    return axios.get('/api/aktivis/createPekerjaan');
+  get: function (id) {
+    return axios.get("/api/aktivis/get/" + id);
   },
 
-  createPendidikan: function(){
-    return axios.get('/api/aktivis/createPendidikan');
+  create: function () {
+    return axios.get("/api/aktivis/create");
   },
 
-  createOrganisasi: function(){
-    return axios.get('/api/aktivis/createOrganisasi');
+  createPekerjaan: function () {
+    return axios.get("/api/aktivis/createPekerjaan");
   },
 
-  createDiklat: function(){
-    return axios.get('/api/aktivis/createDiklat');
+  createPendidikan: function () {
+    return axios.get("/api/aktivis/createPendidikan");
   },
 
-  createKeluarga: function(){
-    return axios.get('/api/aktivis/createKeluarga');
+  createOrganisasi: function () {
+    return axios.get("/api/aktivis/createOrganisasi");
   },
 
-  createAnggotaCu: function(){
-    return axios.get('/api/aktivis/createAnggotaCu');
+  createDiklat: function () {
+    return axios.get("/api/aktivis/createDiklat");
   },
 
-  store: function ( form ){
-    return axios.post('/api/aktivis/store', form);
+  createKeluarga: function () {
+    return axios.get("/api/aktivis/createKeluarga");
   },
 
-  savePekerjaan: function ( id, form ){
-    return axios.post('/api/aktivis/savePekerjaan/' + id, form);
+  createAnggotaCu: function () {
+    return axios.get("/api/aktivis/createAnggotaCu");
   },
 
-  savePendidikan: function ( id, form ){
-    return axios.post('/api/aktivis/savePendidikan/' + id, form);
+  store: function (form) {
+    return axios.post("/api/aktivis/store", form);
   },
 
-  saveOrganisasi: function ( id, form ){
-    return axios.post('/api/aktivis/saveOrganisasi/' + id, form);
+  savePekerjaan: function (id, form) {
+    return axios.post("/api/aktivis/savePekerjaan/" + id, form);
   },
 
-  saveDiklat: function ( id, form ){
-    return axios.post('/api/aktivis/saveDiklat/' + id, form);
+  savePendidikan: function (id, form) {
+    return axios.post("/api/aktivis/savePendidikan/" + id, form);
   },
 
-  saveKeluarga: function ( id, form ){
-    return axios.post('/api/aktivis/saveKeluarga/' + id, form);
+  saveMkg: function (id, form) {
+    return axios.post("/api/aktivis/saveMkg/" + id, form);
   },
 
-  saveAnggotaCu: function ( id, form ){
-    return axios.post('/api/aktivis/saveAnggotaCu/' + id, form);
+  saveOrganisasi: function (id, form) {
+    return axios.post("/api/aktivis/saveOrganisasi/" + id, form);
   },
 
-  saveKeterangan: function ( id, form ){
-    return axios.post('/api/aktivis/saveKeterangan/' + id, form);
-  },
-  
-  edit: function( id ){
-    return axios.get('/api/aktivis/edit/' + id);
+  saveDiklat: function (id, form) {
+    return axios.post("/api/aktivis/saveDiklat/" + id, form);
   },
 
-  update: function ( id, form ){
-    return axios.post('/api/aktivis/update/' + id, form);
+  saveKeluarga: function (id, form) {
+    return axios.post("/api/aktivis/saveKeluarga/" + id, form);
   },
 
-  destroy: function( id ){
-    return axios.delete('/api/aktivis/' + id);
+  saveAnggotaCu: function (id, form) {
+    return axios.post("/api/aktivis/saveAnggotaCu/" + id, form);
   },
 
-  destroyPekerjaan: function( id ){
-    return axios.delete('/api/aktivis/pekerjaan/' + id);
+  saveKeterangan: function (id, form) {
+    return axios.post("/api/aktivis/saveKeterangan/" + id, form);
   },
 
-  destroyPendidikan: function( id ){
-    return axios.delete('/api/aktivis/pendidikan/' + id);
+  edit: function (id) {
+    return axios.get("/api/aktivis/edit/" + id);
   },
 
-  destroyOrganisasi: function( id ){
-    return axios.delete('/api/aktivis/organisasi/' + id);
-  },
-  
-  destroyDiklat: function( id ){
-    return axios.delete('/api/aktivis/diklat/' + id);
+  update: function (id, form) {
+    return axios.post("/api/aktivis/update/" + id, form);
   },
 
-  destroyKeluarga: function( id ){
-    return axios.delete('/api/aktivis/keluarga/' + id);
+  destroy: function (id) {
+    return axios.delete("/api/aktivis/" + id);
   },
 
-  destroyAnggotaCu: function( id ){
-    return axios.delete('/api/aktivis/anggotaCu/' + id);
+  destroyPekerjaan: function (id) {
+    return axios.delete("/api/aktivis/pekerjaan/" + id);
   },
 
-  destroyKeterangan: function( id ){
-    return axios.delete('/api/aktivis/keterangan/' + id);
+  destroyPendidikan: function (id) {
+    return axios.delete("/api/aktivis/pendidikan/" + id);
   },
 
-  count: function(){
-    return axios.get('/api/aktivis/count');
+  destroyOrganisasi: function (id) {
+    return axios.delete("/api/aktivis/organisasi/" + id);
   },
 
-  history: function(){
-    return axios.get('/api/aktivis/history');
+  destroyDiklat: function (id) {
+    return axios.delete("/api/aktivis/diklat/" + id);
   },
 
-  cariData: function( nik ){
-    return axios.get('/api/aktivis/cariData/' + nik);
+  destroyKeluarga: function (id) {
+    return axios.delete("/api/aktivis/keluarga/" + id);
   },
-}
+
+  destroyAnggotaCu: function (id) {
+    return axios.delete("/api/aktivis/anggotaCu/" + id);
+  },
+
+  destroyKeterangan: function (id) {
+    return axios.delete("/api/aktivis/keterangan/" + id);
+  },
+
+  count: function () {
+    return axios.get("/api/aktivis/count");
+  },
+
+  history: function () {
+    return axios.get("/api/aktivis/history");
+  },
+
+  cariData: function (nik) {
+    return axios.get("/api/aktivis/cariData/" + nik);
+  },
+};

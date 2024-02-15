@@ -405,6 +405,7 @@ export default {
         } else {
             this.$store.dispatch('tunjangan/create', this.currentUser.id_cu)
         }
+        
         this.$store.dispatch('provinces/get');
     },
 
@@ -485,9 +486,6 @@ export default {
         },
 
         save () {
-
-
-
             this.form.id_user = this.currentUser.id
             this.form.id_aktivis = this.currentUser.id_aktivis
             this.form.id_cu = this.currentUser.id_cu

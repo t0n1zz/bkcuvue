@@ -125,6 +125,9 @@ const form_tunjangan = () => import("./views/tunjangan/form.vue");
 const index_tunjangan = () => import("./views/tunjangan/index.vue");
 const detail_tunjangan = () => import("./views/tunjangan/detail.vue");
 const upload_libur = () => import("./views/hariLibur/dataLiburUpload.vue");
+const index_mkg = () => import("./views/mkg/index.vue");
+const setting = () => import("./views/sistem/settingSurat.vue");
+const notSurat = () => import("./views/notSurat.vue");
 
 const routes = [
   // login
@@ -1539,9 +1542,30 @@ const routes = [
   },
 
   {
+    path: "/mkg/:id_cu",
+    name: "mkg",
+    components: { default: index_mkg, header: header, footer: footer },
+    meta: { requiresAuth: true },
+  },
+
+  {
     path: "/uploadLibur",
     name: "uploadLibur",
     components: { default: upload_libur, header: header, footer: footer },
+    meta: { requiresAuth: true },
+  },
+
+  {
+    path: "/pengaturan/:id_cu",
+    name: "pengaturan",
+    components: { default: setting, header: header, footer: footer },
+    meta: { requiresAuth: true },
+  },
+  // not found
+  {
+    path: "/notSurat",
+    name: "notSurat",
+    components: { default: notSurat, header: header, footer: footer },
     meta: { requiresAuth: true },
   },
 ];

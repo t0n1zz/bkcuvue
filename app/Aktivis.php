@@ -108,4 +108,16 @@ class Aktivis extends BaseEloquent {
     {
         return $this->belongsTo('App\Region\Villages','id_villages','id')->select('id','name');
     }
+
+    public function atasanByAktivis()
+    {
+        return $this->hasOne('App\StrukturOrganisasi', 'id_aktivis', 'id')->select('id', 'id_aktivis', 'id_user_atasan', 'id_bidang', 'id_aktivis_atasan');
+    }
+
+    public function mkg()
+    {
+        return $this->hasOne('App\MkgSekarang', 'id_aktivis', 'id')->select('id','id_aktivis');
+    }
+
+    
 }

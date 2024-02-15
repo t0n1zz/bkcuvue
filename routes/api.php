@@ -349,6 +349,7 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::get('/aktivis/edit/{id}', 'AktivisController@edit');
         Route::post('/aktivis/update/{id}', 'AktivisController@update');
         Route::get('/aktivis/indexPekerjaan/{id}', 'AktivisController@indexPekerjaan');
+        Route::get('/aktivis/indexMkg/{id}', 'AktivisController@indexMkg');
         Route::get('/aktivis/indexPendidikan/{id}', 'AktivisController@indexPendidikan');
         Route::get('/aktivis/indexAnggotaCu/{id}', 'AktivisController@indexAnggotaCu');
         Route::get('/aktivis/indexKeluarga/{id}', 'AktivisController@indexKeluarga');
@@ -364,6 +365,7 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::get('/aktivis/createAnggotaCu', 'AktivisController@createAnggotaCu');
         Route::post('/aktivis/savePekerjaan/{id}', 'AktivisController@savePekerjaan');
         Route::post('/aktivis/savePendidikan/{id}', 'AktivisController@savePendidikan');
+        Route::post('/aktivis/saveMkg/{id}', 'AktivisController@saveMkg');
         Route::post('/aktivis/saveOrganisasi/{id}', 'AktivisController@saveOrganisasi');
         Route::post('/aktivis/saveDiklat/{id}', 'AktivisController@saveDiklat');
         Route::post('/aktivis/saveKeluarga/{id}', 'AktivisController@saveKeluarga');
@@ -1133,7 +1135,7 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::post('/anggotaCuImportEscete/draft/{id_cu}/{id_user}', 'AnggotaCuEsceteController@uploadDraft');
         Route::post('/anggotaCuImportEscete/simpandraft/{id_cu}', 'AnggotaCuEsceteController@store');
 
-        //absen
+        //presensi
         Route::get('/presensi/indexQR/{id_qr}', 'PresensiController@indexQR');
         Route::get('/presensi/indexQrAll/{id_cu}/{id_user}/{status}', 'PresensiController@indexQrAll');
         Route::get('/presensi/getKegiatan/{id_cu}/{tipe}', 'PresensiController@indexKegiatan');
@@ -1186,5 +1188,23 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::post('/hariLiburUpload', 'HariLiburController@upload');
         Route::post('/hariLibur/update/{id}', 'HariLiburController@update');
         Route::delete('/hariLibur/{id}', 'HariLiburController@destroy');
+
+        //mkg
+        Route::post('/mkg/store/{id_aktivis}', 'MkgController@store');
+        Route::get('/mkg/getAktivis/{id_cu}', 'MkgController@indexAktivis');
+        Route::get('/mkg/index/{id_cu}/{tipe}', 'MkgController@index');
+        Route::post('/mkgUpload', 'MkgController@upload');
+        Route::post('/mkg/update/{id}', 'MkgController@update');
+        Route::delete('/mkg/{id}', 'MkgController@destroy');
+        Route::post('/mkg/verifikasiMkg/{id_user}/{id}', 'MkgController@verifikasi');
+        Route::post('/mkg/sk', 'MkgController@downloadSK');
+        Route::post('/mkg/suratPengajuan', 'MkgController@downloadSuratPengajuan');
+
+
+         //mkg
+        Route::post('/pengaturan/store/{id_aktivis}', 'PengaturanController@store');
+        Route::get('/pengaturan/getKategori/{id_cu}', 'PengaturanController@indexKategori');
+        Route::get('/pengaturan/index/{id_cu}', 'PengaturanController@index');
+        Route::post('/pengaturan/update/{id}', 'PengaturanController@update');
     });
 });

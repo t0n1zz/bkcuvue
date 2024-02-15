@@ -16,6 +16,9 @@ use App\AktivisOrganisasi;
 use App\AktivisPendidikan;
 use App\AktivisKeterangan;
 use App\KegiatanPeserta;
+use App\MkgPengajuan;
+use App\MkgSekarang;
+use App\User;
 use Illuminate\Http\Request;
 use Venturecraft\Revisionable\Revision;
 
@@ -410,6 +413,17 @@ class AktivisController extends Controller
 			->json([
 				'model' => $table_data,
 			]);
+	}
+
+	public function indexMkg($id)
+	{
+		$table_data = MkgSekarang::where('id_aktivis', $id)->first();
+		$table_data2 = MkgPengajuan::where('id_aktivis',$id)->whereNull('approvaL_stat')->first();
+		return response()
+		->json([
+			'model' => $table_data,
+			'model2'=> $table_data2,
+		]);
 	}
 
 	public function indexPendidikan($id)
@@ -875,6 +889,7 @@ class AktivisController extends Controller
 			$kelas->id_aktivis = $request->id_aktivis;
 		}
 
+
 		$kelas->name = $request->pendidikan['name'];
 		$kelas->tingkat = $request->pendidikan['tingkat'];
 		$kelas->tempat = $request->pendidikan['tempat'];
@@ -884,6 +899,41 @@ class AktivisController extends Controller
 		$kelas->save();
 
 		Aktivis::flushCache();
+
+		$mkg = MkgSekarang::where('id_aktivis', $kelas->id_aktivis)->first();
+		$curr_pend = $mkg->pendidikan_tertinggi;
+		if ($mkg) {
+			$pendidikans = AktivisPendidikan::where('id_aktivis', $kelas->id_aktivis)->select('tingkat')->get();
+
+			$tertinggi = 0;
+			$pendidikan_tertinggi = '';
+			$mkg_pengurang = 0;
+			foreach ($pendidikans as $pend) {
+				$now = $this->pendidikan($pend->tingkat);
+				if ($now > $tertinggi) {
+					$tertinggi = $now;
+					$pendidikan_tertinggi = $pend->tingkat;
+				}
+			}
+
+			if($request->pendidikan['tingkat'] == 'S1' || $request->pendidikan['tingkat'] == 'D3'|| $request->pendidikan['tingkat'] == 'D2'|| $request->pendidikan['tingkat'] == 'D1' ){
+				if($pendidikan_tertinggi == 'S1'|| $request->pendidikan['tingkat'] == 'D3' || $request->pendidikan['tingkat'] == 'D2' || $request->pendidikan['tingkat'] == 'D1'){
+					if($curr_pend == 'D3' || $curr_pend == 'D2' || $curr_pend == 'D1'){
+						$mkg_pengurang = 3;
+					}elseif($curr_pend=='SMA/SMK'){
+						$mkg_pengurang = 1;
+					}
+				}
+			}
+
+			MkgSekarang::where('id',$mkg->id)->update([
+				'pendidikan_tertinggi'=> $pendidikan_tertinggi,
+				'mkg_pengurang'=>$mkg_pengurang,
+			]);
+		}
+
+		
+		
 
 		if (array_key_exists('id', $request->pendidikan)) {
 			return response()
@@ -898,6 +948,49 @@ class AktivisController extends Controller
 					'message' => 'Pendidikan berhasil ditambah'
 				]);
 		}
+	}
+
+	public function saveMkg(Request $request, $id)
+	{
+		$user = null;
+		if(\Auth::user()->id_cu == 0){
+			$user = User::where('id_aktivis', $request->mkg['id_aktivis'])->first();
+		}
+
+		$model = MkgPengajuan::where('id_aktivis',$request->mkg['id_aktivis'])->whereNull('approval_stat');
+		$kelas = null;
+		
+		if(!$model->first()){
+			$kelas = new MkgPengajuan();
+		}else{
+			$kelas = $model->first();
+		}
+
+		if (!empty($id)) {
+			$kelas->id_aktivis = $id;
+			$kelas->id_cu =$request->mkg['id_cu'];
+		} else {
+			$kelas->id_aktivis = $request->id_aktivis;
+			$kelas->id_cu = $request->mkg['id_cu'];
+		}
+		if(\Auth::user()->id_cu = 0){
+			$kelas->id_user = $user->id;
+		}
+		$kelas->gr_b = $request->mkg['gr_b'];
+		$kelas->gr_d = $request->mkg['gr_d'];
+		$kelas->mkg = $request->mkg['mkg'];
+		$kelas->pendidikan_tertinggi = $request->mkg['pendidikan_tertinggi'];
+
+
+		$kelas->save();
+
+		Aktivis::flushCache();
+
+			return response()
+				->json([
+					'saved' => true,
+					'message' => 'Perubahan Berhasil Diajukan'
+				]);
 	}
 
 	public function saveOrganisasi(Request $request, $id)
@@ -1207,6 +1300,41 @@ class AktivisController extends Controller
 				]);
 		} else {
 			return $this->create();
+		}
+	}
+
+	public function pendidikan($value){
+		switch ($value) {
+			case 'SD':
+				return 1;
+				break;
+			case 'SMP':
+				return 2;
+				break;
+			case 'SMA/SMK':
+				return 3;
+				break;
+			case 'D1':
+				return 4;
+				break;
+			case 'D2':
+				return 5;
+				break;
+			case 'D3':
+				return 6;
+				break;
+			case 'D4':
+				return 7;
+				break;
+			case 'S1':
+				return 8;
+				break;
+			case 'S2':
+				return 9;
+				break;
+			case 'S3':
+				return 10;
+				break;
 		}
 	}
 }

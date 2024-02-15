@@ -46,4 +46,9 @@ class SuratKode extends Model {
     {
         return $this->hasMany('App\Surat','id_surat_kode','id');
     }
+
+    public function haskategori()
+    {
+        return $this->hasMany('App\SuratKategori', 'id_surat_kode', 'id');
+    }
 }

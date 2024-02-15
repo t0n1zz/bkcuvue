@@ -18,50 +18,58 @@
         <table>
             <tr>
                 <td>Nama Lengkap</td>
-                <td colspan="2">: {{ $data->aktivis->name }}</td>
+                <td>: </td>
+                <td colspan="2">{{ $data->aktivis->name }}</td>
             </tr>
             <tr>
                 <td>Jabatan</td>
-                <td colspan="2"> : {{ $data->aktivis->pekerjaan_aktif->name }}</td>
+                <td>: </td>
+                <td colspan="2">{{ $data->aktivis->pekerjaan_aktif->name }}</td>
             </tr>
             <tr>
                 <td>Bidang</td>
+                <td>: </td>
                 @if ($is_manager)
-                    <td colspan="2"> : {{ $bidang_name }}</td>
+                    <td colspan="2">{{ $bidang_name }}</td>
                 @else
-                    <td colspan="2"> : {{ $data2->atasan->bidang->name }}</td>
+                    <td colspan="2">{{ $data2->atasan->bidang->name }}</td>
                 @endif
             </tr>
             <tr>
                 <td>Atasan</td>
-                <td colspan="2"> : {{ $data2->atasan->aktivis_atasan->name }}</td>
+                <td>: </td>
+                <td colspan="2">{{ $data2->atasan->aktivis_atasan->name }}</td>
             </tr>
         </table><br>
-        <p class="text-justify">
+        <div class="text-justify">
             Istri saya telah melahirkan seorang anak di {{ $data->tempat_lahir }} pada tanggal {{ $tgl_lahir }}.
             Sehubungan dengan itu, bermaksud mengajukan permohonan Tunjangan anak dengan keterangan sebagai berikut :
-        </p>
+        </div>
         <table>
             <tr>
                 <td>Nama Lengkap</td>
-                <td colspan="2"> : {{$data->name}}</td>
+                <td>: </td>
+                <td colspan="2">{{$data->name}}</td>
             </tr>
             <tr>
                 <td>Tempat & Tgl. Lahir</td>
-                <td colspan="2"> : {{$data->tempat_lahir}}, {{$tgl_lahir}}</td>
+                <td>: </td>
+                <td colspan="2">{{$data->tempat_lahir}}, {{$tgl_lahir}}</td>
             </tr>
             <tr>
                 <td>Alamat</td>
-                <td colspan="2">: {{$data->alamat}}</td>
+                <td>: </td>
+                <td colspan="2">{{$data->alamat}}</td>
             </tr>
-        </table><br>
+        </table>
+        <br>
         <div>
             Sebagai bahan pertimbangan, bersama ini terlampir : <br>
             1. Akta Kelahiran <br>
             2. Surat Keterangan Kelahiran
         </div><br>
-        <p class="text-justify">Demikian permohonan tunjangan anak ini saya sampaikan atas perhatian dan kerjasamanya
-            diucapkan terima kasih.</p><br>
+        <div class="text-justify">Demikian permohonan tunjangan anak ini saya sampaikan atas perhatian dan kerjasamanya
+            diucapkan terima kasih.</div><br>
         <div>Yang Mengajukan</div>
         <img class="ttdPersonalia" src="{{ asset($ttd_pengaju) }}" alt="">
         <div>{{ $data->aktivis->name }} <br> NIM. {{ $data->aktivis->nim_cu }}</div></div>
@@ -76,7 +84,7 @@
     body {
         margin: 0;
         padding: 0;
-        font-size: 12pt;
+        font-size: 12px;
     }
 
     #table-ttd div {
@@ -84,11 +92,13 @@
     }
 
     #kode {
-        font-size: 10pt
+        font-size: 10px
     }
 
     #hal1 {
-        margin: 40px
+        margin: 60px;
+        margin-top: 10px
+
     }
 
     .ttdPersonalia {

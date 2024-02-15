@@ -143,8 +143,10 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       var newToday = new Date(currentDate);
       var timeDifferenceCheck = start.getTime() - newToday.getTime();
       var daysDifferenceCheck = Math.ceil(timeDifferenceCheck / (1000 * 3600 * 24));
-      if (daysDifferenceCheck < 30 && this.tipe != 'cutiEdit' || daysDifCekUpdate < 30 && this.dataCuti != '') {
+      console.log(this.dataCuti);
+      if (daysDifferenceCheck < 30 && this.tipe != 'cutiEdit' || daysDifCekUpdate < 30 && this.dataCuti) {
         this.flagCheck = true;
+        console.log('a');
       } else {
         this.flagCheck = false;
       }

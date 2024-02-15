@@ -55,7 +55,7 @@ export default {
   },
 
   created() {
-    // this.fetch();
+    this.fetch();
   },
   watch: {
     // check route changes
@@ -65,14 +65,17 @@ export default {
   },
   methods: {
     fetch () { 
-
+      if (this.currentUser) {
+        if (this.currentUser.pengaturan_surat.tunjangan == null || this.currentUser.pengaturan_surat.tunjangan == '') { 
+          this.$router.push('/notSurat');
+        }
+      }
     }
 
   },
   computed: {
-    ...mapGetters("kegiatanBKCU", {
-      itemData: "dataS",
-      itemDataStat: "dataStatS",
+    ...mapGetters("auth", {
+      currentUser: "currentUser",
     }),
   },
 };

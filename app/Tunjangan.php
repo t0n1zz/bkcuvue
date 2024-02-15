@@ -12,7 +12,7 @@ class Tunjangan extends Model
 
     protected $fillable = [
         'id_cu', 'id_aktivis', 'id_user', 'jenis', 'name', 'alamat', 'tempat_lahir', 'tempat_menikah','tanggal_lahir', 'tanggal_menikah', 'id_provinces', 'id_regencies', 'id_districts', 'id_villages',
-        'ktp', 'akta', 'surat','nik','status'
+        'ktp', 'akta', 'surat','nik','status','id_verifikator','tgl_acc'
     ];
 
     protected $allowedFilters = [
@@ -64,5 +64,9 @@ class Tunjangan extends Model
     public function Villages()
     {
         return $this->belongsTo('App\Region\Villages', 'id_villages', 'id')->select('id', 'name');
+    }
+    public function skTunjangan()
+    {
+        return $this->hasOne('App\Surat', 'id', 'id_sk')->select('id', 'name');
     }
 }

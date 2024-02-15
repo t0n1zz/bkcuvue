@@ -423,7 +423,6 @@ export default {
       itemDataStat:'dataStatS',
       updateMessage: "update",
       updateStat: "updateStat",
-  
     }),
   },
 };

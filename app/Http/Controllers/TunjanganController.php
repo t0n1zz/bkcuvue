@@ -6,6 +6,7 @@ use App\Aktivis;
 use App\Bidang;
 use App\Dokumen;
 use App\HariLibur;
+use App\Pengaturan;
 use App\StrukturOrganisasi;
 use App\Support\Helper;
 use App\Surat;
@@ -31,9 +32,9 @@ class TunjanganController extends Controller
     public function index($id_cu)
     {
         $model = '';
-        if(Auth::user()->hasPermissionTo('personalia_akses')){
+        if (Auth::user()->hasPermissionTo('personalia_akses')) {
             $model = Tunjangan::with('aktivis')->where('id_cu', $id_cu)->advancedFilter();
-        }else{
+        } else {
             $model = Tunjangan::with('aktivis')->where('id_cu', $id_cu)->where('id_user', \Auth::user()->id)->advancedFilter();
         }
 
@@ -42,7 +43,7 @@ class TunjanganController extends Controller
         ]);
     }
 
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -274,9 +275,9 @@ class TunjanganController extends Controller
         $ttd_pengaju = 'images/ttd/' . $data->aktivis->gambar_ttd . '.png';
         // Generate the PDF
         if ($data->jenis == 'Anak') {
-            $pdf = PDF::loadView('formTunjanganAnak', compact('data', 'data2', 'now', 'tgl_lahir','is_manager','bidang_name','ttd_pengaju'));
+            $pdf = PDF::loadView('formTunjanganAnak', compact('data', 'data2', 'now', 'tgl_lahir', 'is_manager', 'bidang_name', 'ttd_pengaju'));
         } else {
-            $pdf = PDF::loadView('formTunjangan', compact('data', 'data2', 'now', 'tgl_lahir','tgl_menikah', 'is_manager','bidang_name','ttd_pengaju'));
+            $pdf = PDF::loadView('formTunjangan', compact('data', 'data2', 'now', 'tgl_lahir', 'tgl_menikah', 'is_manager', 'bidang_name', 'ttd_pengaju'));
         }
         $pdf->setPaper('a4', 'portrait');
         // Save, download, or show the PDF
@@ -285,12 +286,15 @@ class TunjanganController extends Controller
 
     public function downloadSK(Request $request)
     {
-        $data = Tunjangan::with('aktivis', 'provinces', 'regencies', 'districts', 'villages')->findOrFail($request->id);
+        $data = Tunjangan::with('aktivis', 'provinces', 'regencies', 'districts', 'villages', 'skTunjangan')->findOrFail($request->id);
+        $no_lengkap = $data->skTunjangan->name;
         $anak_ke = 0;
-        $tunjangan_anak = Tunjangan::where('id_user', 472)->where('jenis', 'Anak')->count();
+        $tunjangan_anak = Tunjangan::where('id_user', $data->id_user)->where('jenis', 'Anak')->count();
+        setlocale(LC_TIME, 'id');
+        $tgl_acc = Carbon::parse($data->tanggal_acc)->formatLocalized('%e %B %Y');
 
         if ($tunjangan_anak == 3) {
-            $items = Tunjangan::where('id_user', 472)->where('jenis', 'Anak')->get();
+            $items = Tunjangan::where('id_user', $data->id_user)->where('jenis', 'Anak')->get();
             if ($items->sortBy('created_at')->first()->id == $data->id) {
                 $anak_ke = 1;
             } elseif ($items->sortByDesc('created_at')->first()->id == $data->id) {
@@ -310,7 +314,7 @@ class TunjanganController extends Controller
 
 
         // Generate the PDF
-        $pdf = PDF::loadView('skTunjangan', compact('data', 'data2', 'now', 'tgl_lahir', 'tgl_menikah', 'anak_ke'));
+        $pdf = PDF::loadView('skTunjangan', compact('data', 'data2', 'now', 'tgl_lahir', 'tgl_menikah', 'anak_ke', 'no_lengkap', 'tgl_acc'));
         $pdf->setPaper('a4', 'portrait');
         // Save, download, or show the PDF
         return $pdf->download('.pdf');
@@ -318,132 +322,154 @@ class TunjanganController extends Controller
 
     public function verifikasiTunjangan($id_user, $id)
     {
+
         $tunjangan = Tunjangan::with('aktivis')->findOrFail($id);
         $message = '';
-        $tunjangan->update([
-            'id_verifikator' => $id_user,
-            'status' => 'disetujui'
-        ]);
-        $message = 'Pengajuan Tunjangan Atas Nama ' . $tunjangan->name . 'disetujui';
 
-        //generate sk
-        // $bulan = '';
-        // $id_kode_temp = '';
-        // $dateMonth = Carbon::now();
-        // $month = $dateMonth->month;
-        // $tahun = $dateMonth->year;
-        // switch ($month) {
-        //     case 1:
-        //         $bulan = 'I';
-        //         break;
-        //     case 2:
-        //         $bulan = 'II';
-        //         break;
-        //     case 3:
-        //         $bulan = 'III';
-        //         break;
-        //     case 4:
-        //         $bulan = 'IV';
-        //         break;
-        //     case 5:
-        //         $bulan = 'V';
-        //         break;
-        //     case 6:
-        //         $bulan = 'VI';
-        //         break;
-        //     case 7:
-        //         $bulan = 'VII';
-        //         break;
-        //     case 8:
-        //         $bulan = 'VIII';
-        //         break;
-        //     case 9:
-        //         $bulan = 'IX';
-        //         break;
-        //     case 10:
-        //         $bulan = 'X';
-        //         break;
-        //     case 11:
-        //         $bulan = 'XI';
-        //         break;
-        //     case 12:
-        //         $bulan = 'XII';
-        //         break;
-        // }
-
-        // $nomor = 0;
-        // $no_user_aktif = SuratKodeTemp::where('id_surat_kode', 15)->where('id_user', $id_user)->where('id_surat', null)->first();
-        // $no_user_nonaktif = SuratKodeTemp::onlyTrashed()->where('id_surat_kode', 15)->where('id', $id_user)->first();
-        // $no_user_lain_nonaktif = SuratKodeTemp::onlyTrashed()->where('id_surat_kode', 15)->where('id_surat', null)->orderBy('kode', 'asc')->first();
-
-        // if ($no_user_aktif) {
-        //     $nomor = $no_user_aktif->kode;
-        //     $id_kode_temp = $no_user_aktif->id;
-        // } elseif ($no_user_nonaktif) {
-        //     $no_surat = SuratKodeTemp::onlyTrashed()->where('id', $no_user_nonaktif->id);
-        //     $no_surat->restore();
-        //     $nomor = $no_surat->kode;
-        //     $id_kode_temp = $no_surat->id;
-        // } elseif ($no_user_lain_nonaktif) {
-        //     $no_surat = SuratKodeTemp::onlyTrashed()->where('id', $no_user_lain_nonaktif->id);
-        //     $no_surat->restore();
-        //     SuratKodeTemp::where('id', $no_user_lain_nonaktif->id)->update([
-        //         'id_user' => $id_user,
-        //     ]);
-        //     $nomor = $no_surat->kode;
-        //     $id_kode_temp = $no_surat->id;
-        // } else {
-        //     $item = SuratKodeTemp::select(\DB::raw('MAX(CAST(kode AS UNSIGNED)) as max_value'))->first();
-        //     $nomor = $item->max_value + 1;
-        //     $kode_temp = SuratKodeTemp::create([
-        //         'id_user' => $id_user,
-        //         'id_surat_kode' => 15,
-        //         'kode' => $nomor,
-        //         'periode' => $tahun
-        //     ]);
-        //     $id_kode_temp = $kode_temp->id;
-        //     SuratKode::where('id', 15)->update([
-        //         'kode' => $nomor
-        //     ]);
-        // }
-
-        // $no_lengkap = $nomor . '/PKCU/GM/' . $bulan . '/' . $tahun;
-
-        // $dokumen = Dokumen::create([
-        //     'id_cu' => $tunjangan->id_cu,
-        //     'id_dokumen_kategori' => 7,
-        //     'name' => 'SKTUNJANGAN_' . $tunjangan->name,
-        //     'status' => 'INTERNAL',
-        //     'format' => 'upload',
-        //     'tipe' => 'pdf',
-        //     'keterangan' => 'Tunjangan ' . $tunjangan->jenis . ' ' . $tunjangan->aktivis->name
-        // ]);
-
-        // $surat = Surat::create([
-        //     'id_surat_kode' => 15,
-        //     'id_surat_kategori' => 22,
-        //     'id_dokumen' => $dokumen->id,
-        //     'id_cu' => 0,
-        //     'name' => $no_lengkap,
-        //     'format' => 'upload',
-        //     'perihal' => 'Tunjangan ' . $tunjangan->jenis . ' ' . $tunjangan->aktivis->name,
-        //     'hal' => 'Tunjangan ' . $tunjangan->jenis . ' ' . $tunjangan->aktivis->name,
-        //     'tujuan' => $tunjangan->aktivis->name,
-        //     'tipe' => 'SURAT KELUAR',
-        //     'periode' => $tahun
-        // ]);
-
-        // SuratKodeTemp::where('id', $id_kode_temp)->update([
-        //     'id_surat' => $surat->id
-        // ]);
-
-        // Tunjangan::where('id', $tunjangan->id)->update([
-        //     'id_sk' => $surat->id
-        // ]);
-
-        return response()
-            ->json([
-                'message' => $message,
+        \DB::beginTransaction();
+        try {
+            //code...
+            $tunjangan->update([
+                'id_verifikator' => $id_user,
+                'status' => 'disetujui',
+                'tgl_acc' => Carbon::now()->toDateString()
             ]);
+            $message = 'Pengajuan Tunjangan Atas Nama ' . $tunjangan->name . 'disetujui';
+
+            // generate sk
+            $bulan = '';
+            $id_kode_temp = '';
+            $dateMonth = Carbon::now();
+            $month = $dateMonth->month;
+            $tahun = $dateMonth->year;
+            switch ($month) {
+                case 1:
+                    $bulan = 'I';
+                    break;
+                case 2:
+                    $bulan = 'II';
+                    break;
+                case 3:
+                    $bulan = 'III';
+                    break;
+                case 4:
+                    $bulan = 'IV';
+                    break;
+                case 5:
+                    $bulan = 'V';
+                    break;
+                case 6:
+                    $bulan = 'VI';
+                    break;
+                case 7:
+                    $bulan = 'VII';
+                    break;
+                case 8:
+                    $bulan = 'VIII';
+                    break;
+                case 9:
+                    $bulan = 'IX';
+                    break;
+                case 10:
+                    $bulan = 'X';
+                    break;
+                case 11:
+                    $bulan = 'XI';
+                    break;
+                case 12:
+                    $bulan = 'XII';
+                    break;
+            }
+
+            $nomor = 0;
+            $suratS = Pengaturan::with('suratTunjangan')->where('periode', Carbon::now()->year)->where('id_cu', Auth::user()->id_cu)->select('tunjangan')->first();
+            $no_user_aktif = SuratKodeTemp::where('id_surat_kode', $suratS->suratTunjangan->id_surat_kode)->where('id_user', $id_user)->where('id_surat', null)->first();
+            $no_user_nonaktif = SuratKodeTemp::onlyTrashed()->where('id_surat_kode', $suratS->suratTunjangan->id_surat_kode)->where('id', $id_user)->first();
+            $no_user_lain_nonaktif = SuratKodeTemp::onlyTrashed()->where('id_surat_kode', $suratS->suratTunjangan->id_surat_kode)->where('id_surat', null)->orderBy('kode', 'asc')->first();
+
+            if ($no_user_aktif) {
+                $nomor = $no_user_aktif->kode;
+                $id_kode_temp = $no_user_aktif->id;
+            } elseif ($no_user_nonaktif) {
+                $no_surat = SuratKodeTemp::onlyTrashed()->where('id', $no_user_nonaktif->id);
+                $no_surat->restore();
+                $nomor = $no_surat->kode;
+                $id_kode_temp = $no_surat->id;
+            } elseif ($no_user_lain_nonaktif) {
+                $no_surat = SuratKodeTemp::onlyTrashed()->where('id', $no_user_lain_nonaktif->id);
+                $no_surat->restore();
+                SuratKodeTemp::where('id', $no_user_lain_nonaktif->id)->update([
+                    'id_user' => $id_user,
+                ]);
+                $nomor = $no_surat->kode;
+                $id_kode_temp = $no_surat->id;
+            } else {
+                $item = SuratKodeTemp::select(\DB::raw('MAX(CAST(kode AS UNSIGNED)) as max_value'))->first();
+                $nomor = $item->max_value + 1;
+                $kode_temp = SuratKodeTemp::create([
+                    'id_user' => $id_user,
+                    'id_surat_kode' => $suratS->suratTunjangan->id_surat_kode,
+                    'kode' => $nomor,
+                    'periode' => $tahun
+                ]);
+                $id_kode_temp = $kode_temp->id;
+                SuratKode::where('id', $suratS->suratTunjangan->id_surat_kode)->update([
+                    'kode' => $nomor
+                ]);
+            }
+
+            $suratKode = SuratKode::where('id', $suratS->suratTunjangan->id_surat_kode)->first();
+            if ($nomor >= $suratKode->kode) {
+                SuratKode::where('id', $suratS->suratTunjangan->id_surat_kode)->update([
+                    'kode' => $nomor
+                ]);
+            }
+
+            $no_lengkap = $nomor . '/' . $suratS->suratTunjangan->name . '/' . $bulan . '/' . $tahun;
+
+            $dokumen = Dokumen::create([
+                'id_cu' => $tunjangan->id_cu,
+                'id_dokumen_kategori' => null,
+                'name' => 'SKTUNJANGAN_' . $tunjangan->name,
+                'status' => 'INTERNAL',
+                'format' => 'upload',
+                'tipe' => 'pdf',
+                'keterangan' => 'Tunjangan ' . $tunjangan->jenis . ' ' . $tunjangan->aktivis->name
+            ]);
+
+            $surat = Surat::create([
+                'id_surat_kode' => $suratS->suratTunjangan->id_surat_kode,
+                'id_surat_kategori' => $suratS->tunjangan,
+                'id_dokumen' => $dokumen->id,
+                'id_cu' => $tunjangan->id_cu,
+                'name' => $no_lengkap,
+                'format' => 'upload',
+                'perihal' => 'Tunjangan ' . $tunjangan->jenis . ' ' . $tunjangan->aktivis->name,
+                'hal' => 'Tunjangan ' . $tunjangan->jenis . ' ' . $tunjangan->aktivis->name,
+                'tujuan' => $tunjangan->aktivis->name,
+                'tipe' => 'SURAT KELUAR',
+                'periode' => $tahun
+            ]);
+
+            SuratKodeTemp::where('id', $id_kode_temp)->update([
+                'id_surat' => $surat->id
+            ]);
+
+            Tunjangan::where('id', $tunjangan->id)->update([
+                'id_sk' => $surat->id
+            ]);
+
+            \DB::commit();
+
+            return response()
+                ->json([
+                    'message' => $message,
+                ]);
+
+        } catch (\Throwable $th) {
+            \DB::rollback();
+            // Handle the exception (e.g., log it, show an error message, etc.)
+            return response()->json(['error' => $th->getMessage()], 500);
+        }
     }
 }

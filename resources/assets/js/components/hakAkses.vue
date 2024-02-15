@@ -1528,7 +1528,7 @@
 					keterangan: 'Mengelola data presensi pada SIMO',
 					icon: 'icon-person',
 					secondRow: true,
-					tipe: 'bkcu',
+					tipe: 'all',
 					permission: [{
 						name: 'Lihat QR',
 						key: 'index_qr',
@@ -1581,7 +1581,7 @@
 						name: 'Akses Personalia',
 						key: 'personalia_akses',
 						icon: 'icon-key',
-						tipe: 'bkcu',
+						tipe: 'all',
 						value: false,
 						group: 'User'
 						},
@@ -1589,7 +1589,7 @@
 						name: 'Personalia',
 						key: 'is_personalia',
 						icon: 'icon-key',
-						tipe: 'bkcu',
+						tipe: 'all',
 						value: false,
 						group: 'User'
 					},

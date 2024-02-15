@@ -113,20 +113,19 @@ class StrukturOrganisasiController extends Controller
                         'id_cu' => $id_cu
                     ]);
                 } else {
-                    if($cek->first()){
+                    if ($cek->first()) {
                         $cek->update([
                             'id_bidang' => $division['divisi']['id'],
                             'id_user_atasan' => $division['manager']['id'],
                             'id_aktivis_atasan' => $division['manager']['id_aktivis'],
                         ]);
-                    }else{
+                    } else {
                         $cek2->update([
                             'id_bidang' => $division['divisi']['id'],
                             'id_user_atasan' => $division['manager']['id'],
                             'id_aktivis_atasan' => $division['manager']['id_aktivis'],
                         ]);
                     }
-                    
                 }
             }
         }

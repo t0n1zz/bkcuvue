@@ -12,6 +12,7 @@ use App\HariLibur;
 use App\Imports\OffBergilirImport;
 use App\Jobs\SendNotification;
 use App\Kegiatan;
+use App\Pengaturan;
 use App\Presensi;
 use App\PresensiAlpa;
 use App\PresensiCuti;
@@ -302,127 +303,145 @@ class PresensiController extends Controller
                 ]);
                 $message = 'Pengajuan Cuti Atas Nama ' . $cuti->aktivis->name . 'ditolak';
             } else {
-                $cuti->update([
-                    'tanggal_acc2' => Carbon::now()->toDateString(),
-                    'status_acc2' => 'disetujui'
-                ]);
-                $message = 'Pengajuan Cuti Atas Nama ' . $cuti->aktivis->name . 'disetujui';
-
-
-                //generate sk
-                $bulan = '';
-                $id_kode_temp = '';
-                $dateMonth = Carbon::now();
-                $month = $dateMonth->month;
-                $tahun = $dateMonth->year;
-                switch ($month) {
-                    case 1:
-                        $bulan = 'I';
-                        break;
-                    case 2:
-                        $bulan = 'II';
-                        break;
-                    case 3:
-                        $bulan = 'III';
-                        break;
-                    case 4:
-                        $bulan = 'IV';
-                        break;
-                    case 5:
-                        $bulan = 'V';
-                        break;
-                    case 6:
-                        $bulan = 'VI';
-                        break;
-                    case 7:
-                        $bulan = 'VII';
-                        break;
-                    case 8:
-                        $bulan = 'VIII';
-                        break;
-                    case 9:
-                        $bulan = 'IX';
-                        break;
-                    case 10:
-                        $bulan = 'X';
-                        break;
-                    case 11:
-                        $bulan = 'XI';
-                        break;
-                    case 12:
-                        $bulan = 'XII';
-                        break;
-                }
-
-                $nomor = 0;
-                $no_user_aktif = SuratKodeTemp::where('id_surat_kode', 15)->where('id_user', $cuti->id_acc2)->where('id_surat', null)->first();
-                $no_user_nonaktif = SuratKodeTemp::onlyTrashed()->where('id_surat_kode', 15)->where('id', $cuti->id_acc2)->first();
-                $no_user_lain_nonaktif = SuratKodeTemp::onlyTrashed()->where('id_surat_kode', 15)->where('id_surat', null)->orderBy('kode', 'asc')->first();
-
-                if ($no_user_aktif) {
-                    $nomor = $no_user_aktif->kode;
-                    $id_kode_temp = $no_user_aktif->id;
-                } elseif ($no_user_nonaktif) {
-                    $no_surat = SuratKodeTemp::onlyTrashed()->where('id', $no_user_nonaktif->id);
-                    $no_surat->restore();
-                    $nomor = $no_surat->kode;
-                    $id_kode_temp = $no_surat->id;
-                } elseif ($no_user_lain_nonaktif) {
-                    $no_surat = SuratKodeTemp::onlyTrashed()->where('id', $no_user_lain_nonaktif->id);
-                    $no_surat->restore();
-                    SuratKodeTemp::where('id', $no_user_lain_nonaktif->id)->update([
-                        'id_user' => $cuti->id_user,
+                DB::beginTransaction();
+                try {
+                    $cuti->update([
+                        'tanggal_acc2' => Carbon::now()->toDateString(),
+                        'status_acc2' => 'disetujui'
                     ]);
-                    $nomor = $no_surat->kode;
-                    $id_kode_temp = $no_surat->id;
-                } else {
-                    $item = SuratKodeTemp::select(DB::raw('MAX(CAST(kode AS UNSIGNED)) as max_value'))->first();
-                    $nomor = $item->max_value + 1;
-                    $kode_temp = SuratKodeTemp::create([
-                        'id_user' => $cuti->id_acc2,
-                        'id_surat_kode' => 15,
-                        'kode' => $nomor,
+                    $message = 'Pengajuan Cuti Atas Nama ' . $cuti->aktivis->name . 'disetujui';
+
+
+                    //generate sk
+                    $bulan = '';
+                    $id_kode_temp = '';
+                    $dateMonth = Carbon::now();
+                    $month = $dateMonth->month;
+                    $tahun = $dateMonth->year;
+                    switch ($month) {
+                        case 1:
+                            $bulan = 'I';
+                            break;
+                        case 2:
+                            $bulan = 'II';
+                            break;
+                        case 3:
+                            $bulan = 'III';
+                            break;
+                        case 4:
+                            $bulan = 'IV';
+                            break;
+                        case 5:
+                            $bulan = 'V';
+                            break;
+                        case 6:
+                            $bulan = 'VI';
+                            break;
+                        case 7:
+                            $bulan = 'VII';
+                            break;
+                        case 8:
+                            $bulan = 'VIII';
+                            break;
+                        case 9:
+                            $bulan = 'IX';
+                            break;
+                        case 10:
+                            $bulan = 'X';
+                            break;
+                        case 11:
+                            $bulan = 'XI';
+                            break;
+                        case 12:
+                            $bulan = 'XII';
+                            break;
+                    }
+
+                    $nomor = 0;
+                    $suratS = Pengaturan::with('suratCuti')->where('periode', Carbon::now()->year)->where('id_cu', Auth::user()->id_cu)->select('cuti')->first();
+                    //cek if user punya nomor surat aktif
+                    $no_user_aktif = SuratKodeTemp::where('id_surat_kode', $suratS->suratCuti->id_surat_kode)->where('id_user', $cuti->id_acc2)->where('id_surat', null)->first();
+                    //cek if user punya nomor surat yang sudah expired 
+                    $no_user_nonaktif = SuratKodeTemp::onlyTrashed()->where('id_surat_kode', $suratS->suratCuti->id_surat_kode)->where('id', $cuti->id_acc2)->first();
+                    //cek if ada nomor surat lain yang sudah expired
+                    $no_user_lain_nonaktif = SuratKodeTemp::onlyTrashed()->where('id_surat_kode', $suratS->suratCuti->id_surat_kode)->where('id_surat', null)->orderBy('kode', 'asc')->first();
+
+                    if ($no_user_aktif) {
+                        $nomor = $no_user_aktif->kode;
+                        $id_kode_temp = $no_user_aktif->id;
+                    } elseif ($no_user_nonaktif) {
+                        $no_surat = SuratKodeTemp::onlyTrashed()->where('id', $no_user_nonaktif->id);
+                        $no_surat->restore();
+                        $nomor = $no_surat->kode;
+                        $id_kode_temp = $no_surat->id;
+                    } elseif ($no_user_lain_nonaktif) {
+                        $no_surat = SuratKodeTemp::onlyTrashed()->where('id', $no_user_lain_nonaktif->id);
+                        $no_surat->restore();
+                        SuratKodeTemp::where('id', $no_user_lain_nonaktif->id)->update([
+                            'id_user' => $cuti->id_acc2,
+                        ]);
+
+                        $nomor = $no_surat->kode;
+                        $id_kode_temp = $no_surat->id;
+                    } else {
+                        $item = SuratKodeTemp::select(DB::raw('MAX(CAST(kode AS UNSIGNED)) as max_value'))->first();
+                        $nomor = $item->max_value + 1;
+                        $kode_temp = SuratKodeTemp::create([
+                            'id_user' => $cuti->id_acc2,
+                            'id_surat_kode' => $suratS->suratCuti->id_surat_kode,
+                            'kode' => $nomor,
+                            'periode' => $tahun
+                        ]);
+
+                        $id_kode_temp = $kode_temp->id;
+                    }
+
+                    $suratKode = SuratKode::where('id', $suratS->suratCuti->id_surat_kode)->first();
+                    if ($nomor >= $suratKode->kode) {
+                        SuratKode::where('id', $suratS->suratCuti->id_surat_kode)->update([
+                            'kode' => $nomor
+                        ]);
+                    }
+
+                    $no_lengkap = $nomor . '/' . $suratS->suratCuti->name . '/' . $bulan . '/' . $tahun;
+
+                    $dokumen = Dokumen::create([
+                        'id_cu' => $cuti->id_cu,
+                        'id_dokumen_kategori' => null,
+                        'name' => 'SKCUTI_' . $cuti->aktivis->name,
+                        'status' => 'INTERNAL',
+                        'format' => 'upload',
+                        'tipe' => 'pdf',
+                        'keterangan' => 'Cuti ' . $cuti->aktivis->name
+                    ]);
+
+                    $surat = Surat::create([
+                        'id_surat_kode' => $suratS->suratCuti->id_surat_kode,
+                        'id_surat_kategori' => $suratS->cuti,
+                        'id_dokumen' => $dokumen->id,
+                        'id_cu' => $cuti->id_cu,
+                        'name' => $no_lengkap,
+                        'format' => 'upload',
+                        'perihal' => 'Cuti ' . $cuti->aktivis->name,
+                        'hal' => 'Cuti ' . $cuti->aktivis->name,
+                        'tujuan' => $cuti->aktivis->pekerjaan_aktif->name,
+                        'tipe' => 'SURAT KELUAR',
                         'periode' => $tahun
                     ]);
-                    $id_kode_temp = $kode_temp->id;
-                    SuratKode::where('id', 15)->update([
-                        'kode' => $nomor
+
+                    SuratKodeTemp::where('id', $id_kode_temp)->update([
+                        'id_surat' => $surat->id
                     ]);
+
+                    PresensiCuti::where('id', $cuti->id)->update([
+                        'id_skcuti' => $surat->id
+                    ]);
+                    DB::commit();
+                } catch (\Throwable $th) {
+                    \DB::rollback();
+                    // Handle the exception (e.g., log it, show an error message, etc.)
+                    $message = ['error' => $th->getMessage()];
                 }
-
-                $no_lengkap = $nomor . '/PKCU/GM/' . $bulan . '/' . $tahun;
-
-                $dokumen = Dokumen::create([
-                    'id_cu' => $cuti->id_cu,
-                    'id_dokumen_kategori' => 7,
-                    'name' => 'SKCUTI_' . $cuti->aktivis->name,
-                    'status' => 'INTERNAL',
-                    'format' => 'upload',
-                    'tipe' => 'pdf',
-                    'keterangan' => 'Cuti ' . $cuti->aktivis->name
-                ]);
-
-                $surat = Surat::create([
-                    'id_surat_kode' => 15,
-                    'id_surat_kategori' => 22,
-                    'id_dokumen' => $dokumen->id,
-                    'id_cu' => 0,
-                    'name' => $no_lengkap,
-                    'format' => 'upload',
-                    'perihal' => 'Cuti ' . $cuti->aktivis->name,
-                    'hal' => 'Cuti ' . $cuti->aktivis->name,
-                    'tujuan' => $cuti->aktivis->pekerjaan_aktif->name,
-                    'tipe' => 'SURAT KELUAR',
-                    'periode' => $tahun
-                ]);
-
-                SuratKodeTemp::where('id', $id_kode_temp)->update([
-                    'id_surat' => $surat->id
-                ]);
-
-                PresensiCuti::where('id', $cuti->id)->update([
-                    'id_skcuti' => $surat->id
-                ]);
             }
         } else {
             if ($request->status_verif == 'tolak') {
@@ -1274,7 +1293,7 @@ class PresensiController extends Controller
         $now = Carbon::now()->formatLocalized('%e %B %Y');
         $mulai = Carbon::parse($data->tanggal_mulai)->formatLocalized('%e %B %Y');
         $selesai = Carbon::parse($data->tanggal_selesai)->subDay(1)->formatLocalized('%e %B %Y');
-        $tgl_acc2 = Carbon::parse($data->tanggal_acc2)->subDay(1)->formatLocalized('%e %B %Y');
+        $tgl_acc2 = Carbon::parse($data->tanggal_acc2)->formatLocalized('%e %B %Y');
         $masuk = Carbon::parse($data->tanggal_selesai)->formatLocalized('%e %B %Y');
         $now = Carbon::now()->formatLocalized('%e %B %Y');
         // Generate the PDF
