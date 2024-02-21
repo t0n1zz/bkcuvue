@@ -609,6 +609,7 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
 
         // monitoring
         Route::get('/monitoring/history', 'MonitoringController@history');
+        Route::post('monitoring/laporan', 'MonitoringController@downloadLaporan');
         Route::group(['middleware' => ['permission:index_monitoring']], function () {
             Route::get('/monitoring', 'MonitoringController@index');
             Route::get('/monitoring/indexCu/{cu}/{tp}', 'MonitoringController@indexCu');
