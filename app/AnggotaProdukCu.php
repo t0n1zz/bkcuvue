@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use illuminate\Database\Eloquent\Model;
@@ -6,7 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Support\Dataviewer;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class AnggotaProdukCu extends BaseEloquent {
+class AnggotaProdukCu extends BaseEloquent
+{
 
     use Dataviewer, LogsActivity, SoftDeletes;
     use \Awobaz\Compoships\Compoships;
@@ -24,37 +26,38 @@ class AnggotaProdukCu extends BaseEloquent {
     ];
 
     protected $fillable = [
-        'no_rek','anggota_cu_id','anggota_cu_cu_id','produk_cu_id','saldo','tanggal','tanggal_target','lama_pinjaman','lama_sisa_pinjaman','tujuan','pengurang','dpd','kolekbi','tanggal_bayar_akhir'
+        'no_rek', 'anggota_cu_id', 'anggota_cu_cu_id', 'produk_cu_id', 'saldo', 'tanggal', 'tanggal_target', 'lama_pinjaman', 'lama_sisa_pinjaman', 'tujuan', 'pengurang', 'dpd', 'kolekbi', 'tanggal_bayar_akhir'
     ];
 
     protected $filter = [
-        'no_rek','anggota_cu_id','anggota_cu_cu_id','produk_cu_id','saldo','tanggal','tanggal_target','lama_pinjaman','lama_sisa_pinjaman','tujuan','created_at','updated_at','pengurang','dpd'
+        'no_rek', 'anggota_cu_id', 'anggota_cu_cu_id', 'produk_cu_id', 'saldo', 'tanggal', 'tanggal_target', 'lama_pinjaman', 'lama_sisa_pinjaman', 'tujuan', 'created_at', 'updated_at', 'pengurang', 'dpd'
     ];
 
     public static function initialize()
     {
         return [
-            'no_rek' => '','anggota_cu_id' => '','anggota_cu_cu_id' => '','produk_cu_id' => '','saldo' => '','name' => '','no_ba' => '','lama_pinjaman' => '','lama_sisa_pinjaman' => '','tanggal_target' => '','tujuan' => '','pengurang' => '','dpd' => ''
+            'no_rek' => '', 'anggota_cu_id' => '', 'anggota_cu_cu_id' => '', 'produk_cu_id' => '', 'saldo' => '', 'name' => '', 'no_ba' => '', 'lama_pinjaman' => '', 'lama_sisa_pinjaman' => '', 'tanggal_target' => '', 'tujuan' => '', 'pengurang' => '', 'dpd' => ''
         ];
     }
 
     public function anggota_cu()
     {
-        return $this->belongsTo('App\anggotaCu','anggota_cu_id','id');
+        return $this->belongsTo('App\anggotaCu', 'anggota_cu_id', 'id');
     }
 
     public function anggota_cu_cu()
     {
-        return $this->belongsTo('App\anggotaCuCu','anggota_cu_cu_id','id');
+        return $this->belongsTo('App\anggotaCuCu', 'anggota_cu_cu_id', 'id');
     }
 
     public function produk_cu()
     {
-        return $this->belongsTo('App\ProdukCu','produk_cu_id','id')->select('id','name','id_cu','tipe');
+        return $this->belongsTo('App\ProdukCu', 'produk_cu_id', 'id')->select('id', 'name', 'id_cu', 'tipe');
     }
 
-    public function transaksi(){
-        return $this->hasMany('App\AnggotaProdukCuTransaksi','anggota_produk_cu_id','id');
+    public function transaksi()
+    {
+        return $this->hasMany('App\AnggotaProdukCuTransaksi', 'anggota_produk_cu_id', 'id');
     }
 
     public function usia($tanggal_lahir)
@@ -72,4 +75,8 @@ class AnggotaProdukCu extends BaseEloquent {
         return \Carbon\Carbon::parse($this->tanggal)->diff(\Carbon\Carbon::parse($tanggal_masuk))->format('%d');
     }
 
+    public function draft_produk()
+    {
+        return $this->hasOne('App\AnggotaProdukCuDraft', ['no_rek', 'produk_cu_id'], ['no_rek', 'produk_cu_id'])->select('no_rek', 'produk_cu_id');
+    }
 }

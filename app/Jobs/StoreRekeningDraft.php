@@ -2,9 +2,7 @@
 
 namespace App\Jobs;
 
-use App\AnggotaCuCu;
 use App\AnggotaProdukCu;
-use App\AnggotaProdukCuTransaksi;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -13,101 +11,111 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class StoreRekeningDraft implements ShouldQueue
 {
-    public $timeout = 0;
+  private $chunk;
+  use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    private $chunk;
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+  /**
+   * Create a new job instance.
+   *
+   * @return void
+   */
+  public function __construct($chunk)
+  {
+    $this->chunk = $chunk;
+  }
 
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct($chunk)
-    {
-        $this->chunk = $chunk;
-    }
+  /**
+   * Execute the job.
+   *
+   * @return void
+   */
+  public function handle()
+  {
+    $transaksi = [];
+    $produk = [];
+    $deleted = [];
+    \DB::beginTransaction();
+    foreach ($this->chunk as $value) {
+      try {
+        if ($value['anggota_produk_cu']) {
+          $selisih_saldo = $value['saldo'] - $value['anggota_produk_cu']['saldo'];
+          $data1 = [
+            'id' => $value['anggota_produk_cu']['id'],
+            'produk_cu_id' => $value['produk_cu_id'],
+            'saldo' => $value['saldo'],
+            'no_rek' => $value['no_rek'],
+            'tanggal' => $value['tanggal_buka'],
+            'tanggal_target' => $value['tanggal_target'],
+            'lama_pinjaman' => $value['lama_pinjaman'],
+            'lama_sisa_pinjaman' => $value['lama_sisa_pinjaman'],
+            'tujuan' => $value['tujuan'],
+            'dpd' => $value['dpd'],
+            'kolekbi' => $value['kolekbi'],
+            'tanggal_bayar_terakhir' => null
+          ];
 
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
-    public function handle()
-    {
-		$chunk = $this->chunk;
-        foreach ($chunk as $item) {
-        
-        // \DB::beginTransaction(); 
-        $anggotaProdukCu=null;
-        try {
-        $anggotaCuCu = AnggotaCuCu::where('cu_id',$item['id_cu'])->where('no_ba',$item['no_ba'])->select('id','anggota_cu_id')->get()->first();
-        if($anggotaCuCu){
-            $anggotaProdukCu = AnggotaProdukCu::where('anggota_cu_cu_id',$anggotaCuCu->id)->where('no_rek', $item['no_rek'])->where('produk_cu_id', $item['produk_cu_id'])->select('id','saldo')->get()->first();
-        }
-        
-        if($anggotaProdukCu && $anggotaCuCu){
-            $selisih_saldo = $item['saldo'] - $anggotaProdukCu->saldo;
-            $anggotaProdukCu->update([
-                'produk_cu_id' => $item['produk_cu_id'],
-                'saldo' => $item['saldo'],
-                'no_rek' => $item['no_rek'],
-                'tanggal' => $item['tanggal_buka'],
-                'tanggal_target' => $item['tanggal_target'],
-                'lama_pinjaman' => $item['lama_pinjaman'],
-                'lama_sisa_pinjaman'=>$item['lama_sisa_pinjaman'],
-                'tujuan' => $item['tujuan'],
-                'dpd'=>$item['dpd'],
-                'kolekbi'=>$item['kolekbi'],
-                'tanggal_bayar_terakhir'=>$item['tanggal_bayar_terakhir']
-            ]);	
-    
-            AnggotaProdukCuTransaksi::create([
-                'anggota_produk_cu_id' => $anggotaProdukCu->id,
-                'saldo' => $selisih_saldo,
-                'saldo_akhir'=> $item['saldo'],
-                'tanggal' => $item['tanggal_transaksi'],
-                'lama_sisa_pinjaman' => $item['lama_sisa_pinjaman'],
+          $produk[] = $data1;
+
+          $data = [
+            'anggota_produk_cu_id' => $value['anggota_produk_cu']['id'],
+            'saldo' => $selisih_saldo,
+            'saldo_akhir' => $value['saldo'],
+            'tanggal' => $value['tanggal_transaksi'],
+            'lama_sisa_pinjaman' => $value['lama_sisa_pinjaman'],
+            'created_at' =>  \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now(),
+          ];
+
+          $transaksi[] = $data;
+
+          \DB::table('anggota_produk_cu_draft')->where('id', $value['id'])->delete();
+        } else {
+          if (!$value['anggota_produk_cu'] && $value['anggota_cu_produk']) {
+
+            $kelas = \DB::table('anggota_produk_cu')->insertGetId([
+              'anggota_cu_id' => $value['anggota_cu_produk']['anggota_cu_id'],
+              'anggota_cu_cu_id' => $value['anggota_cu_produk']['id'],
+              'produk_cu_id' => $value['produk_cu_id'],
+              'saldo' => $value['saldo'],
+              'no_rek' => $value['no_rek'],
+              'tanggal' => $value['tanggal_buka'],
+              'tanggal_target' => $value['tanggal_target'],
+              'lama_pinjaman' => $value['lama_pinjaman'],
+              'lama_sisa_pinjaman' => $value['lama_sisa_pinjaman'],
+              'tujuan' => $value['tujuan'],
+              'dpd' => $value['dpd'],
+              'kolekbi' => $value['kolekbi'],
+              'tanggal_bayar_terakhir' => null,
+              'created_at' =>  \Carbon\Carbon::now(),
+              'updated_at' => \Carbon\Carbon::now(),
             ]);
 
-            \DB::table('anggota_produk_cu_draft')->where('id',$item['id'])->delete();
-        }else{
-            if ($anggotaCuCu && !$anggotaProdukCu) {
-                    $kelas = AnggotaProdukCu::create([
-                        'anggota_cu_id' => $anggotaCuCu->anggota_cu_id,
-                        'anggota_cu_cu_id' => $anggotaCuCu->id,
-                        'produk_cu_id' => $item['produk_cu_id'],
-                        'saldo' => $item['saldo'],
-                        'no_rek' => $item['no_rek'],
-                        'tanggal' => $item['tanggal_buka'],
-                        'tanggal_target' => $item['tanggal_target'],
-                        'lama_pinjaman' => $item['lama_pinjaman'],
-                        'lama_sisa_pinjaman'=>$item['lama_sisa_pinjaman'],
-                        'tujuan' => $item['tujuan'],
-                        'dpd'=>$item['dpd'],
-                        'kolekbi'=>$item['kolekbi'],
-                        'tanggal_bayar_terakhir'=>$item['tanggal_bayar_terakhir']
-                    ]);
-            
-                    AnggotaProdukCuTransaksi::create([
-                        'anggota_produk_cu_id' => $kelas->id,
-                        'saldo' => 0,
-                        'saldo_akhir'=> $item['saldo'],
-                        'tanggal' => $item['tanggal_transaksi'],
-                        'lama_sisa_pinjaman' => $item['lama_sisa_pinjaman'],
-                    ]);	
-
-                    \DB::table('anggota_produk_cu_draft')->where('id',$item['id'])->delete();
+            $data = [
+              'anggota_produk_cu_id' => $kelas,
+              'saldo' => 0,
+              'saldo_akhir' => $value['saldo'],
+              'tanggal' => $value['tanggal_transaksi'],
+              'lama_sisa_pinjaman' => $value['lama_sisa_pinjaman'],
+              'created_at' =>  \Carbon\Carbon::now(),
+              'updated_at' => \Carbon\Carbon::now(),
+            ];
+            $transaksi[] = $data;
+            if ($kelas) {
+              \DB::table('anggota_produk_cu_draft')->where('id', $value['id'])->delete();
             }
+          }
         }
-
-        // \DB::commit();
-        } catch (\Throwable $th) {
-            print $th;
-            // \DB::rollBack();
-			abort(500, $th->getMessage());
-        }
-        
-        }
+        \DB::commit();
+      } catch (\Throwable $th) {
+        \DB::rollback();
+      }
     }
+    try {
+      \DB::table('anggota_produk_cu_transaksi')->insert($transaksi);
+      $anggotaProdukCU = new AnggotaProdukCu;
+      \Batch::update($anggotaProdukCU, $produk, 'id');
+    } catch (\Throwable $th) {
+      //throw $th;
+    }
+  }
 }
