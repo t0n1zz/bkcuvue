@@ -5,12 +5,13 @@ use Auth;
 use illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Support\Dataviewer;
+use App\Traits\Loggable;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class AnggotaCu extends Model {
 
     use \Venturecraft\Revisionable\RevisionableTrait;
-    use Dataviewer, LogsActivity, SoftDeletes;
+    use Dataviewer, LogsActivity, SoftDeletes,Loggable;
     use \Awobaz\Compoships\Compoships;
 
     protected $table = 'anggota_cu';

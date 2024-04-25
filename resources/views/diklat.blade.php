@@ -79,7 +79,7 @@
               </span>
             </div>
             <div class="card-body">
-              {{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->keterangan),200) }}
+              {{ Illuminate\Support\Str::limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->keterangan),200) }}
 
               <hr/>
 

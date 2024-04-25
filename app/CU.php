@@ -3,6 +3,7 @@ namespace App;
 
 use illuminate\Database\Eloquent\Model;
 use App\Support\Dataviewer;
+use App\Traits\Loggable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -10,7 +11,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 class Cu extends Model {
     
     use \Venturecraft\Revisionable\RevisionableTrait;
-    use Dataviewer, LogsActivity, SoftDeletes, Sluggable;
+    use Dataviewer, LogsActivity, SoftDeletes, Sluggable,Loggable;
 
     protected $table = 'cu';
     protected static $logFillable = true;
@@ -26,7 +27,7 @@ class Cu extends Model {
         'name' => 'required|between:3,50'
     ];
 
-    public function sluggable()
+    public function sluggable():array
     {
         return [
             'slug' => [

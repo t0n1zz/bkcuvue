@@ -24,6 +24,7 @@ use App\SertifikatGenerate;
 use Illuminate\Http\Request;
 use App\Support\NotificationHelper;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class KegiatanBKCUController extends Controller
 {
@@ -675,7 +676,7 @@ class KegiatanBKCUController extends Controller
 			$file = $request->surat_tugas;
 			
 			$fileExtension = $file->getClientOriginalExtension();
-			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
+			$formatedName = Str::limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
 			$file->move($this->suratTugas,$formatedName);
 		}
 
@@ -769,7 +770,7 @@ class KegiatanBKCUController extends Controller
 			if ($fileExtension != 'pdf') {
 				$formatedName = Helper::image_processing($materipath, $this->width, $this->height, $file, '', $name);
 			} else {
-				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '', $name), 10, '') . '_' . uniqid() . $fileExtension;
+				$formatedName = Str::limit(preg_replace('/[^A-Za-z0-9\-]/', '', $name), 10, '') . '_' . uniqid() . $fileExtension;
 				$file->move($materipath, $formatedName);
 			}
 		}
@@ -896,7 +897,7 @@ class KegiatanBKCUController extends Controller
 			}
 
 			$filename = $file->getClientOriginalName();
-			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '', $name), 10, '') . '_' . uniqid() . '.' . $fileExtension;
+			$formatedName = Str::limit(preg_replace('/[^A-Za-z0-9\-]/', '', $name), 10, '') . '_' . uniqid() . '.' . $fileExtension;
 			$file->move($materipath, $formatedName);
 		}
 
@@ -930,7 +931,7 @@ class KegiatanBKCUController extends Controller
 
 			$fileExtension = $file->getClientOriginalExtension();
 			$filename = $file->getClientOriginalName();
-			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '', $name), 10, '') . '_' . uniqid() . '.' . $fileExtension;
+			$formatedName = Str::limit(preg_replace('/[^A-Za-z0-9\-]/', '', $name), 10, '') . '_' . uniqid() . '.' . $fileExtension;
 			$file->move($materipath, $formatedName);
 		}
 

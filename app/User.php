@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use App\Support\Dataviewer;
 use App\Support\ExposePermissions;
-
+use App\Traits\Loggable;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Yadahan\AuthenticationLog\AuthenticationLogable;
@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasRoles, Notifiable, Dataviewer, ExposePermissions, LogsActivity,AuthenticationLogable, SoftDeletes;
+    use HasRoles, Notifiable, Dataviewer, ExposePermissions, LogsActivity,AuthenticationLogable, SoftDeletes, Loggable;
 
     protected $table = 'users';
     protected $guard_name = 'api';

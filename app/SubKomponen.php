@@ -4,11 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Support\FilterPaginateOrder;
+use App\Traits\Loggable;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class SubKomponen extends Model
 {
-    use FilterPaginateOrder, LogsActivity;
+    use FilterPaginateOrder, LogsActivity,Loggable;
 
     protected $table = 'evaluasi_sub_komponent';
 

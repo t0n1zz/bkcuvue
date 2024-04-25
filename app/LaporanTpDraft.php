@@ -2,12 +2,13 @@
 
 namespace App;
 
+use App\Traits\Loggable;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class LaporanTpDraft extends Model
 {
-    use LogsActivity;
+    use LogsActivity, Loggable;
     
     protected $table = 'laporan_tp_draft';
     protected $guarded = ['id'];

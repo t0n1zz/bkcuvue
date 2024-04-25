@@ -4,13 +4,14 @@ namespace App;
 
 use illuminate\Database\Eloquent\Model;
 use App\Support\Dataviewer;
+use App\Traits\Loggable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SertifikatGenerate extends Model
 {
   //
-  use Dataviewer, LogsActivity, SoftDeletes;
+  use Dataviewer, LogsActivity, SoftDeletes,Loggable;
   protected $table = 'sertifikat_generate';
   protected static $logFillable = true;
 

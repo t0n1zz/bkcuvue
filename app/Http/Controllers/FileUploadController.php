@@ -6,6 +6,7 @@ use App\FileUpload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class FileUploadController extends Controller
 {
@@ -41,7 +42,7 @@ class FileUploadController extends Controller
      */
     public function store(Request $request)
     {
-        $random = str_random(10);
+        $random = Str::random(10);
         $file = $request->file('file');
         $temp_name = $file->getClientOriginalName();
         $fileext = $file->getClientOriginalExtension();

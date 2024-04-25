@@ -4,11 +4,12 @@ namespace App;
 use illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Support\Dataviewer;
+use App\Traits\Loggable;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class AktivisAnggotaCu extends BaseEloquent {
 
-    use Dataviewer, LogsActivity, SoftDeletes;
+    use Dataviewer, LogsActivity, SoftDeletes,Loggable;
 
     protected $table = 'aktivis_anggota_cu';
     protected $dates = ['deleted_at'];

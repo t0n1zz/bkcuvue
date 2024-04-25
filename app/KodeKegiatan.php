@@ -4,11 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Support\Dataviewer;
+use App\Traits\Loggable;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class KodeKegiatan extends Model
 {
-    use Dataviewer, LogsActivity;
+    use Dataviewer, LogsActivity,Loggable;
     protected $table = 'kegiatan_kode';
     protected static $logFillable = true;
 

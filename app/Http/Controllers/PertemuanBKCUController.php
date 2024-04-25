@@ -16,6 +16,7 @@ use App\KegiatanPilihPivot;
 use Illuminate\Http\Request;
 use App\Support\NotificationHelper;
 use Auth;
+use Illuminate\Support\Str;
 
 class PertemuanBKCUController extends Controller{
 
@@ -424,7 +425,7 @@ class PertemuanBKCUController extends Controller{
 			$formatedName = Helper::image_processing($this->materipath,$this->width,$this->height,$file,'',$name);
 		}else{
 			$filename = $file->getClientOriginalName();
-			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.'.$tipe;
+			$formatedName = Str::limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.'.$tipe;
 			$file->move($this->materipath,$formatedName);
 		}
 

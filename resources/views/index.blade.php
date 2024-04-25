@@ -73,7 +73,7 @@
             @endif
           </ul>
           <div class="entry-content">
-            <p>{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->content),200) }}</p>
+            <p>{{ Illuminate\Support\Str::limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->content),200) }}</p>
           </div>
         </div>
         @break

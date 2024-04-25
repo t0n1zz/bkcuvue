@@ -12,7 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\Importable;
-
+use Illuminate\Support\Str;
 class AnggotaCuDraftImportEscete implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading,ShouldQueue
 {
     use Importable;
@@ -94,7 +94,7 @@ class AnggotaCuDraftImportEscete implements ToModel, WithHeadingRow, WithBatchIn
             }
 
 
-            if($ktp != '' && !starts_with($ktp, '0') && !preg_match("/[a-z]/i", $ktp) && strlen($ktp)==16){
+            if($ktp != '' && !Str::startsWith($ktp, '0') && !preg_match("/[a-z]/i", $ktp) && strlen($ktp)==16){
                 $anggotaCuDraft = AnggotaCuDraft::where('nik',$ktp)->select('id','nik','name')->first();
                 if ($anggotaCuDraft && $anggotaCuDraft->name != $nama) {
                     $ktp = '123456';

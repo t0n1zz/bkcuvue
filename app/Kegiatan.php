@@ -3,13 +3,14 @@ namespace App;
 
 use illuminate\Database\Eloquent\Model;
 use App\Support\Dataviewer;
+use App\Traits\Loggable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 class Kegiatan extends Model {
     
-    use Dataviewer, LogsActivity, Sluggable,  SoftDeletes;
+    use Dataviewer, LogsActivity, Sluggable,  SoftDeletes,Loggable;
 
     protected $table = 'kegiatan';
     protected static $logFillable = true;
@@ -20,7 +21,7 @@ class Kegiatan extends Model {
         // 'name' => 'required'
     ];
 
-    public function sluggable()
+    public function sluggable():array
     {
         return [
             'slug' => [

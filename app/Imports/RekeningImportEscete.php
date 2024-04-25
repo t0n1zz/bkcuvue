@@ -13,6 +13,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Illuminate\Support\Str;
 
 class RekeningImportEscete implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading,ShouldQueue
 {
@@ -24,7 +25,7 @@ class RekeningImportEscete implements ToModel, WithHeadingRow, WithBatchInserts,
 
         $no_cif = array_key_exists('no_cif',$row) ? $row['no_cif'] : '';
 
-        if(!starts_with($no_cif, '0')){
+        if(!Str::startsWith($no_cif, '0')){
             try {
                 $ba_cu = substr($row['no_cu'],-3);
                 if ($row['no_cu']=='32001') {

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 use App\User;
+use Carbon\Carbon;
 use Response;
 
 class Authcontroller extends Controller
@@ -22,7 +23,7 @@ class Authcontroller extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+       
     }
 
     /**
@@ -45,7 +46,7 @@ class Authcontroller extends Controller
             return response()->json(['error' => 'Maaf akun anda tidak aktif'], 401);
         }
 
-        $admin->login = Date::now();
+        $admin->login = Carbon::now();
         $admin->update();
 
         return $this->respondWithToken($token);

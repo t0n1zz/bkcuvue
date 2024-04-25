@@ -5,11 +5,12 @@ namespace App;
 use illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use App\Support\Dataviewer;
+use App\Traits\Loggable;
 
 class KegiatanPeserta extends Model
 {
 
-    use LogsActivity, Dataviewer;
+    use LogsActivity, Dataviewer,Loggable;
 
     protected $table = 'kegiatan_peserta';
     protected static $logFillable = true;

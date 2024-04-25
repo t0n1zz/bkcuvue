@@ -2,11 +2,12 @@
 namespace App\Support;
 
 use File;
-use Image;
+use Intervention\Image\ImageManagerStatic as Image;
 use Validator;
 use App\LaporanTp;
 use App\LaporanCu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class Helper{
 
@@ -49,7 +50,7 @@ class Helper{
 				$imageData = $request;
 				list($width, $height) = getimagesize($imageData);
 	
-				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),20,'') . '_' .uniqid();
+				$formatedName = Str::limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),20,'') . '_' .uniqid();
 				
 				$fileName =  $formatedName. '.jpg';
 				$fileName2 =  $formatedName. 'n.jpg';
@@ -100,7 +101,7 @@ class Helper{
 				$imageData = $request;
 				list($width, $height) = getimagesize($imageData);
 	
-				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),20,'') . '_' .uniqid();
+				$formatedName = Str::limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),20,'') . '_' .uniqid();
 				
 				$fileName =  $formatedName. '.jpg';
 	

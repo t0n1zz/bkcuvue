@@ -3,11 +3,12 @@ namespace App\Region;
 
 use illuminate\Database\Eloquent\Model;
 use App\Support\FilterPaginateOrder;
+use App\Traits\Loggable;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Provinces extends Model {
     
-    use FilterPaginateOrder, LogsActivity;
+    use FilterPaginateOrder, LogsActivity, Loggable;
 
     protected $table = 'provinces';
 

@@ -30,10 +30,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('log', function ($app) {
-            $log = new Logger('log');
-            $log->pushHandler(new DatabaseHandler());
-            return $log;
-        });
+        // $this->app->bind('log', function ($app) {
+        //     $log = new Logger('log');
+        //     $log->pushHandler(new DatabaseHandler());
+        //     return $log;
+        // });
     }
 }

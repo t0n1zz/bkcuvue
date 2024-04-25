@@ -13,6 +13,7 @@ use Spatie\Permission\Models\Role;
 use App\Support\Helper;
 use Illuminate\Notifications\DatabaseNotification;
 use Spatie\Activitylog\Models\Activity;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -536,7 +537,7 @@ class UserController extends Controller
 		$imageData = $request->gambar;
 		list($width, $height) = getimagesize($imageData);
 
-		$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$request->name),10,'') . '_' .uniqid();
+		$formatedName = Str::limit(preg_replace('/[^A-Za-z0-9\-]/', '',$request->name),10,'') . '_' .uniqid();
 		$fileName =  $formatedName. '.jpg';
 		$fileName2 =  $formatedName. 'n.jpg';
 

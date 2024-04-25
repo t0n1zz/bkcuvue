@@ -7,6 +7,7 @@ use App\SuratMasuk;
 use App\Dokumen;
 use App\DokumenKategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class SuratMasukController extends Controller{
 
@@ -74,7 +75,7 @@ class SuratMasukController extends Controller{
 				
 				$fileExtension = $file->getClientOriginalExtension();
 				$filename = $file->getClientOriginalName();
-				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
+				$formatedName = Str::limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
 				$file->move($this->filepath,$formatedName);
 			}
 

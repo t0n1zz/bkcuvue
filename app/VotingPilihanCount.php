@@ -1,12 +1,13 @@
 <?php
 namespace App;
 
+use App\Traits\Loggable;
 use illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class VotingPilihanCount extends Model {
 
-    use LogsActivity;
+    use LogsActivity, Loggable;
 
     protected $table = 'voting_pilihan_count';
     protected static $logFillable = true;

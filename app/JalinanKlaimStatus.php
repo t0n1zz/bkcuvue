@@ -4,11 +4,12 @@ namespace App;
 use DB;
 use illuminate\Database\Eloquent\Model;
 use App\Support\Dataviewer;
+use App\Traits\Loggable;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class JalinanKlaimStatus extends Model {
     
-    use Dataviewer, LogsActivity;
+    use Dataviewer, LogsActivity,Loggable;
 
     protected $table = 'jalinan_klaim_status';
 

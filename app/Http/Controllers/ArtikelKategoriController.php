@@ -10,7 +10,7 @@ class ArtikelKategoriController extends Controller{
 
 	public function index()
 	{
-			DB::statement(DB::raw('set @cnt:=0'));
+			DB::statement('set @cnt:=0');
 
     	$table_data = ArtikelKategori::with('Cu')->withCount('hasArtikel')->advancedFilter();
 

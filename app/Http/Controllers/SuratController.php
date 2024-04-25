@@ -15,6 +15,7 @@ use Image;
 use Auth;
 use Illuminate\Support\Carbon;
 use PDO;
+use Illuminate\Support\Str;
 
 class SuratController extends Controller{
 
@@ -233,7 +234,7 @@ class SuratController extends Controller{
 				$file = $request->content;
 				
 				$fileExtension = $file->getClientOriginalExtension();
-				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
+				$formatedName = Str::limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
 				$file->move($this->filepath,$formatedName);
 			}
 
@@ -336,7 +337,7 @@ class SuratController extends Controller{
 				File::delete($this->filepath . $kelasDokumen->filename);
 
 				$fileExtension = $file->getClientOriginalExtension();
-				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
+				$formatedName = Str::limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
 				$file->move($this->filepath,$formatedName);
 			}
 		}else{

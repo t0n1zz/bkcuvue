@@ -10,70 +10,71 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware' => 'throttle:60,10'], function () {
-	
-	// BKCU
-	$appRoutes = function() {
-		// home
-		Route::get('/',array( 'as' => 'home','uses' => 'PublicController@index'));
+use App\Http\Controllers\PublicController;
+use App\Http\Controllers\PublicCuController;
+use Illuminate\Support\Facades\Route;
 
-		// tentang kami
-		Route::get('/profile',array( 'as' => 'profile','uses' => 'PublicController@profile'));
+Route::middleware('throttle:60,10')->group(function () {
+    // BKCU
+    $appRoutes = function () {
+        // home
+        Route::get('/', [PublicController::class, 'index'])->name('home');
 
-		// artikel
-		Route::get('/artikel',array( 'as' => 'artikel','uses' => 'PublicController@artikel'));
-		Route::get('/artikel/cari',array( 'as' => 'artikel.cari','uses' => 'PublicController@artikelCari'));
-		Route::get('/artikel/lihat/{slug}',array( 'as' => 'artikel.lihat','uses' => 'PublicController@artikelLihat'));
-		Route::get('/artikel/kategori/{slug}',array( 'as' => 'artikel.kategori','uses' => 'PublicController@artikelKategori'));
-			Route::get('/artikel/penulis/{slug}',array( 'as' => 'artikel.penulis','uses' => 'PublicController@artikelPenulis'));
-			
-		// cu
-		Route::get('/cu',array( 'as' => 'cu','uses' => 'PublicController@cu'));
+        // tentang kami
+        Route::get('/profile', [PublicController::class, 'profile'])->name('profile');
 
-		// kegiatan
-		Route::get('/kegiatan/diklat/{periode}',array( 'as' => 'diklat','uses' => 'PublicController@diklat'));
-		Route::get('/kegiatan/diklat/lihat/{slug}',array( 'as' => 'diklat.lihat','uses' => 'PublicController@diklatLihat'));
-		
-		// dokumen
-		Route::get('dokumens',array('as' => 'dokumens','uses' => 'PublicController@dokumen'));
-		Route::get('downloads/{filename}',array('as' => 'files','uses' => 'PublicController@download_file'));
+        // artikel
+        Route::get('/artikel', [PublicController::class, 'artikel'])->name('artikel');
+        Route::get('/artikel/cari', [PublicController::class, 'artikelCari'])->name('artikel.cari');
+        Route::get('/artikel/lihat/{slug}', [PublicController::class, 'artikelLihat'])->name('artikel.lihat');
+        Route::get('/artikel/kategori/{slug}', [PublicController::class, 'artikelKategori'])->name('artikel.kategori');
+        Route::get('/artikel/penulis/{slug}', [PublicController::class, 'artikelPenulis'])->name('artikel.penulis');
 
-		// panduan
-		Route::get('panduan',array( 'as' => 'panduan','uses' => 'PublicController@panduan'));
-	};
+        // cu
+        Route::get('/cu', [PublicController::class, 'cu'])->name('cu');
 
-	Route::group(array('domain' => 'bkcuvue.test'), $appRoutes);
+        // kegiatan
+        Route::get('/kegiatan/diklat/{periode}', [PublicController::class, 'diklat'])->name('diklat');
+        Route::get('/kegiatan/diklat/lihat/{slug}', [PublicController::class, 'diklatLihat'])->name('diklat.lihat');
 
-	// cu
-	$appSubRoutes = function() {
-		// home
-		Route::get('/',array( 'as' => 'home.cu','uses' => 'PublicCuController@index'));
+        // dokumen
+        Route::get('dokumens', [PublicController::class, 'dokumen'])->name('dokumens');
+        Route::get('downloads/{filename}', [PublicController::class, 'download_file'])->name('files');
 
-		// artikel
-		Route::get('/artikel',array( 'as' => 'artikel.cu','uses' => 'PublicCuController@artikel'));
-		Route::get('/artikel/cari',array( 'as' => 'artikel.cari.cu','uses' => 'PublicCuController@artikelCari'));
-		Route::get('/artikel/lihat/{slug}',array( 'as' => 'artikel.lihat.cu','uses' => 'PublicCuController@artikelLihat'));
-		Route::get('/artikel/kategori/{slug}',array( 'as' => 'artikel.kategori.cu','uses' => 'PublicCuController@artikelKategori'));
-		Route::get('/artikel/penulis/{slug}',array( 'as' => 'artikel.penulis.cu','uses' => 'PublicCuController@artikelPenulis'));
-		// tp
-		Route::get('/tp',array( 'as' => 'tp','uses' => 'PublicCuController@tp'));
+        // panduan
+        Route::get('panduan', [PublicController::class, 'panduan'])->name('panduan');
+    };
 
-		// produk
-		Route::get('/produk',array( 'as' => 'produk','uses' => 'PublicCuController@produk'));
+    Route::domain('bkcuvue.test')->group($appRoutes);
 
-		// dokumen
-		Route::get('dokumen',array('as' => 'dokumen','uses' => 'PublicCuController@dokumen'));
-		Route::get('download/{filename}',array('as' => 'file','uses' => 'PublicCuController@download_file'));
+    // cu
+    $appSubRoutes = function () {
+        // home
+        Route::get('/', [PublicCuController::class, 'index'])->name('home.cu');
 
-	};
+        // artikel
+        Route::get('/artikel', [PublicCuController::class, 'artikel'])->name('artikel.cu');
+        Route::get('/artikel/cari', [PublicCuController::class, 'artikelCari'])->name('artikel.cari.cu');
+        Route::get('/artikel/lihat/{slug}', [PublicCuController::class, 'artikelLihat'])->name('artikel.lihat.cu');
+        Route::get('/artikel/kategori/{slug}', [PublicCuController::class, 'artikelKategori'])->name('artikel.kategori.cu');
+        Route::get('/artikel/penulis/{slug}', [PublicCuController::class, 'artikelPenulis'])->name('artikel.penulis.cu');
+        
+        // tp
+        Route::get('/tp', [PublicCuController::class, 'tp'])->name('tp');
 
-	Route::group(array('domain' => '{cu}.bkcuvue.test'), $appSubRoutes);
+        // produk
+        Route::get('/produk', [PublicCuController::class, 'produk'])->name('produk');
 
-	// admins
-	Route::get('/admins/{vue?}','PublicController@admins')->where('vue', '^(?!.*api).*$[\/\w\.-]*');
-	
+        // dokumen
+        Route::get('dokumen', [PublicCuController::class, 'dokumen'])->name('dokumen');
+        Route::get('download/{filename}', [PublicCuController::class, 'download_file'])->name('file');
+    };
 
-	// test route
-	Route::get('/testroute','PublicController@testroute');
+    Route::domain('{cu}.bkcuvue.test')->group($appSubRoutes);
 
+    // admins
+    Route::get('/admins/{vue?}', [PublicController::class, 'admins'])->where('vue', '^(?!.*api).*$[\/\w\.-]*');
+
+    // test route
+    Route::get('/testroute', [PublicController::class, 'testroute']);
 });

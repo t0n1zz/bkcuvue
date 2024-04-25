@@ -4,11 +4,12 @@ namespace App;
 use illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Support\Dataviewer;
+use App\Traits\Loggable;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class AsetTetapLokasi extends BaseEloquent {
     
-    use Dataviewer, LogsActivity, SoftDeletes;
+    use Dataviewer, LogsActivity, SoftDeletes,Loggable;
 
     protected $table = 'aset_tetap_lokasi';
     protected $dates = ['deleted_at'];

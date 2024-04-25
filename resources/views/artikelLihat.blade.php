@@ -22,7 +22,7 @@
       @else
       <li class="breadcrumb-item">-</li>
       @endif
-      <li class="breadcrumb-item active" aria-current="page">{{ str_limit($artikel->name, 100) }}</li>
+      <li class="breadcrumb-item active" aria-current="page">{{ Illuminate\Support\Str::limit($artikel->name, 100) }}</li>
     </ol>
   </div>
 
@@ -143,7 +143,7 @@
                   <ul class="entry-meta clearfix">
                     <li><i class="icon-calendar3"></i>{{ $item->created_at->diffForHumans() }}</li>
                   </ul>
-                  <div class="entry-content">{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->content),100) }}</div>
+                  <div class="entry-content">{{ Illuminate\Support\Str::limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->content),100) }}</div>
                 </div>
               </div>
               @endforeach

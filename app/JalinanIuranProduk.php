@@ -3,12 +3,13 @@ namespace App;
 
 use illuminate\Database\Eloquent\Model;
 use App\Support\Dataviewer;
+use App\Traits\Loggable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class JalinanIuranProduk extends Model {
     
-    use Dataviewer, LogsActivity,  SoftDeletes;
+    use Dataviewer, LogsActivity,  SoftDeletes,Loggable;
 
     protected $table = 'jalinan_iuran_produk';
     protected static $logFillable = true;

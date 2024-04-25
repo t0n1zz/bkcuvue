@@ -1,1 +1,1156 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[22],{DE7x:function(t,a,e){"use strict";var s=e("LvDl"),i=e.n(s),r=e("JlGJ"),n=e.n(r),l=e("8MVx"),o={components:{echarts:n.a,appModal:l.a},props:["titleText","title","kelas","query","dataShownTitle1","dataShownName1","axisLabelKey","itemData","itemDataStat","columnData"],data:function(){return{pages:[],sortState:"",sortAscTitle:"",sortDescTitle:"",dataShown:[],bar:{title:{text:"",subtext:""},tooltip:{trigger:"axis",axisPointer:{type:"shadow"}},grid:{left:"0%",containLabel:!0},xAxis:{type:"category",data:[],axisLabel:{rotate:90}},yAxis:{type:"value",data:[]},series:[]},modalShow:!1,modalState:"",modalTitle:"",modalButton:"",modalMobileOptionState:""}},created:function(){this.dataShown.push({title:this.dataShownTitle1,name:this.dataShownName1}),this.addSeries()},watch:{itemDataStat:function(t){"success"==t&&(this.emptyGraph(),this.setGraph(),this.calculatePagination(),this.checkEntriPage(this.query.limit))}},methods:{setGraph:function(){this.bar.title.text=this.titleText,this.bar.title.subtext="Menampilkan "+this.itemData.from+" - "+this.itemData.to+" entri dari "+this.itemData.total+" entri",this.bar.xAxis.data=i.a.map(this.itemData.data,this.axisLabelKey);for(var t=0,a=this.dataShown.length;t<a;t++)this.bar.series[t].data=i.a.map(this.itemData.data,this.dataShown[t].name)},emptyGraph:function(){this.bar.title.text="",this.bar.title.subtext="",this.bar.yAxis.data=[];for(var t=0,a=this.dataShown.length;t<a;t++)this.bar.series[t].data=[]},addColumn:function(){this.dataShown.push({title:this.dataShown[0].title,name:this.dataShown[0].name}),this.addSeries();var t=this.dataShown.length;this.bar.series[t-1].data=i.a.map(this.itemData.data,this.dataShown[0].name)},addSeries:function(){var t={name:i.a.find(this.columnData,{name:this.dataShown[0].name}).title,data:[],type:"bar"};this.bar.series.push(t)},removeColumn:function(t){this.dataShown.splice(t,1),this.bar.series.splice(t,1)},changeColumn:function(t,a){var e=i.a.find(this.columnData,{name:t});this.bar.series[a].name=e.title,this.bar.series[a].data=i.a.map(this.itemData.data,t),this.dataShown[a].title=e.title,this.dataShown[a].name=t,this.query.order_column=t,this.applyChange()},checkClass:function(){return{"col-sm-12":1==this.dataShown.length,"col-sm-6":2==this.dataShown.length,"col-sm-4":this.dataShown.length>2}},updateLimit:function(){this.query.page=1,this.applyChange(),this.checkEntriPage(this.query.limit)},checkEntriPage:function(t){this.bar.xAxis.axisLabel.rotate=t>=11&&t<=25?30:t>25?90:0},applyChange:function(){this.fetch()},fetch:function(){this.$emit("fetch")},updateOrderDirection:function(){"desc"===this.query.order_direction?this.query.order_direction="asc":this.query.order_direction="desc",this.applyChange()},updateOrderColumn:function(t){var a=t.target.value;this.query.order_column=a,this.applyChange()},calculatePagination:function(){var t,a=0,e=0,s=0;for(s=4+(e=this.query.page<3?1:this.query.page-1),e-=e-(t=e-(s=this.itemData.last_page<s?this.itemData.last_page:s)+4)>0?t:0,this.pages.length=0,a=e;a<=s;a++)this.pages.push(a)},prevPage:function(){this.itemData.prev_page_url&&(this.query.page=Number(this.query.page)-1,this.applyChange())},goToPage:function(t){this.query.page!=t&&(this.query.page=t,this.applyChange())},nextPage:function(){this.itemData.next_page_url&&(this.query.page=Number(this.query.page)+1,this.applyChange())}}},c=(e("i1K1"),e("KHd+")),u=Object(c.a)(o,(function(){var t=this,a=t.$createElement,e=t._self._c||a;return e("div",[e("div",{staticClass:"card"},[e("div",{staticClass:"card-body"},[e("div",{staticClass:"echart-container"},[e("echarts",{staticClass:"echarts",attrs:{options:t.bar,"auto-resize":""}})],1),t._v(" "),e("hr"),t._v(" "),e("div",{staticClass:"row d-print-none"},[e("div",{staticClass:"col-md-4 pb-2"},[e("div",{staticClass:"input-group"},[t._m(0),t._v(" "),e("select",{directives:[{name:"model",rawName:"v-model",value:t.query.limit,expression:"query.limit"}],staticClass:"form-control",on:{change:[function(a){var e=Array.prototype.filter.call(a.target.options,(function(t){return t.selected})).map((function(t){return"_value"in t?t._value:t.value}));t.$set(t.query,"limit",a.target.multiple?e:e[0])},t.updateLimit]}},[e("option",[t._v("10")]),t._v(" "),e("option",[t._v("15")]),t._v(" "),e("option",[t._v("25")]),t._v(" "),e("option",[t._v("50")])])])]),t._v(" "),e("div",{staticClass:"col-md-4 pb-2"},[e("div",{staticClass:"input-group"},[t._m(1),t._v(" "),e("select",{staticClass:"form-control",on:{input:t.updateOrderColumn}},t._l(t.dataShown,(function(a){return e("option",{domProps:{value:a.name,selected:a&&a.name==t.query.order_column,innerHTML:t._s(a.title)}})})),0)])]),t._v(" "),e("div",{staticClass:"col-md-2 pb-2"},[e("button",{staticClass:"btn bg-orange-300 btn-block",on:{click:t.updateOrderDirection}},["asc"===t.query.order_direction?e("i",{staticClass:"icon-arrow-up7"}):e("i",{staticClass:"icon-arrow-down7"})])]),t._v(" "),e("div",{staticClass:"col-md-2 pb-2"},[e("button",{staticClass:"btn btn-light btn-icon btn-block",attrs:{type:"button",disabled:"loading"===t.itemDataStat},on:{click:function(a){return a.preventDefault(),t.addColumn()}}},[e("i",{staticClass:"icon-database-add"}),t._v(" Tambah Data\n\t\t\t\t\t")])]),t._v(" "),t._l(t.dataShown,(function(a,s){return e("div",{staticClass:"col-md-6 pb-2",class:t.checkClass()},[e("div",{staticClass:"input-group"},[t._m(2,!0),t._v(" "),e("select",{directives:[{name:"model",rawName:"v-model",value:t.dataShown[s].name,expression:"dataShown[index].name"}],staticClass:"form-control",attrs:{"data-width":"100%",disabled:"loading"===t.itemDataStat},on:{change:[function(a){var e=Array.prototype.filter.call(a.target.options,(function(t){return t.selected})).map((function(t){return"_value"in t?t._value:t.value}));t.$set(t.dataShown[s],"name",a.target.multiple?e:e[0])},function(a){return t.changeColumn(a.target.value,s)}]}},[e("option",{attrs:{disabled:"",value:""}},[t._v("Silahkan pilih data")]),t._v(" "),t._t("default"),t._v(" "),t._l(t.columnData,(function(a){return a.isChart?e("option",{domProps:{value:a.name,innerHTML:t._s(a.title)}}):t._e()}))],2),t._v(" "),t.dataShown.length>1?e("div",{staticClass:"input-group-append"},[e("button",{staticClass:"btn btn-light",attrs:{disabled:"loading"===t.itemDataStat},on:{click:function(a){return t.removeColumn(s)}}},[e("i",{staticClass:"icon-database-remove"})])]):t._e()])])})),t._v(" "),e("div",{staticClass:"col-md-12 pb-2 text-left d-none d-md-block"},["success"===t.itemDataStat?e("div",{staticClass:"btn-group"},[e("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.prev_page_url},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.goToPage(1)}}},[e("i",{staticClass:"icon-backward2"})]),t._v(" "),e("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.prev_page_url},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.prevPage.apply(null,arguments)}}},[e("i",{staticClass:"icon-arrow-left5"})]),t._v(" "),t._l(t.pages,(function(a){return e("button",{staticClass:"btn",class:{"btn-primary":t.query.page==a,"btn-light":t.query.page!=a},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.goToPage(a)}}},[t._v("\n\t\t\t\t\t\t\t\t"+t._s(a)+"\n\t\t\t\t\t\t")])})),t._v(" "),e("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.next_page_url},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.nextPage.apply(null,arguments)}}},[e("i",{staticClass:"icon-arrow-right5"})]),t._v(" "),e("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.next_page_url},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.goToPage(t.itemData.last_page)}}},[e("i",{staticClass:"icon-forward3"})])],2):e("div",{staticClass:"btn-group"},[t._m(3),t._v(" "),t._m(4),t._v(" "),t._m(5),t._v(" "),t._m(6),t._v(" "),t._m(7)])]),t._v(" "),e("div",{staticClass:"col-md-12 pb-2 text-center d-block d-sm-none"},["success"===t.itemDataStat?e("div",{staticClass:"btn-group"},t._l(t.pages,(function(a){return e("button",{staticClass:"btn",class:{"btn-primary":t.query.page==a,"btn-light":t.query.page!=a},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.goToPage(a)}}},[t._v("\n\t\t\t\t\t\t\t\t"+t._s(a)+"\n\t\t\t\t\t\t")])})),0):t._e(),t._v(" "),e("br"),t._v(" "),"success"===t.itemDataStat?e("div",{staticClass:"btn-group pt-2"},[e("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.prev_page_url},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.goToPage(1)}}},[e("i",{staticClass:"icon-backward2"})]),t._v(" "),e("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.prev_page_url},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.prevPage.apply(null,arguments)}}},[e("i",{staticClass:"icon-arrow-left5"})]),t._v(" "),e("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.next_page_url},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.nextPage.apply(null,arguments)}}},[e("i",{staticClass:"icon-arrow-right5"})]),t._v(" "),e("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.next_page_url},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.goToPage(t.itemData.last_page)}}},[e("i",{staticClass:"icon-forward3"})])]):e("div",{staticClass:"btn-group"},[t._m(8),t._v(" "),t._m(9),t._v(" "),t._m(10),t._v(" "),t._m(11),t._v(" "),t._m(12)])])],2)])])])}),[function(){var t=this.$createElement,a=this._self._c||t;return a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[this._v("Entri")])])},function(){var t=this.$createElement,a=this._self._c||t;return a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[this._v("Urutkan")])])},function(){var t=this.$createElement,a=this._self._c||t;return a("div",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[this._v("Pilih Data")])])},function(){var t=this.$createElement,a=this._self._c||t;return a("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[a("i",{staticClass:"icon-backward2"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[a("i",{staticClass:"icon-arrow-left5"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[a("i",{staticClass:"icon-spinner2 spinner"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[a("i",{staticClass:"icon-arrow-right5"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[a("i",{staticClass:"icon-forward3"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[a("i",{staticClass:"icon-backward2"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[a("i",{staticClass:"icon-arrow-left5"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[a("i",{staticClass:"icon-spinner2 spinner"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[a("i",{staticClass:"icon-arrow-right5"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[a("i",{staticClass:"icon-forward3"})])}],!1,null,"f2dba46a",null);a.a=u.exports},Eo2Q:function(t,a,e){(t.exports=e("I1BE")(!1)).push([t.i,".echart-container[data-v-f2dba46a]{overflow-x:scroll;overflow-y:visible;max-width:100%;position:relative;width:100%}.echarts[data-v-f2dba46a]{width:100vw;height:70vh}.btn-group.special[data-v-f2dba46a]{display:flex}.special .btn[data-v-f2dba46a]{flex:1}",""])},IIuh:function(t,a,e){"use strict";var s=e("dsI9"),i=e("iRdl"),r=e("L2JU"),n=e("LvDl"),l=e.n(n),o=e("JlGJ"),c=e.n(o),u=e("8MVx"),d={components:{echarts:c.a,appModal:u.a},props:["titleText","title","dataShownTitle1","dataShownName1","axisLabelKey","itemData","itemDataStat","columnData"],data:function(){return{pages:[],sortState:"",sortAscTitle:"",sortDescTitle:"",dataShown:[],line:{title:{text:"",subtext:""},tooltip:{trigger:"axis",axisPointer:{type:"shadow"}},grid:{left:"0%",containLabel:!0},xAxis:{type:"category",data:[],axisLabel:{rotate:90}},yAxis:{type:"value",data:[]},series:[]},modalShow:!1,modalState:"",modalTitle:"",modalButton:"",modalMobileOptionState:""}},created:function(){this.dataShown.push({title:this.dataShownTitle1,name:this.dataShownName1}),this.addSeries()},watch:{itemDataStat:function(t){"success"==t&&(this.emptyGraph(),this.setGraph())}},methods:{setGraph:function(){this.line.title.text=this.titleText,this.line.xAxis.data=l.a.map(this.itemData,this.axisLabelKey);for(var t=0,a=this.dataShown.length;t<a;t++)this.line.series[t].data=l.a.map(this.itemData,this.dataShown[t].name)},addSeries:function(){var t=l.a.find(this.columnData,{name:this.dataShown[0].name}),a={name:t.title,data:[],type:"line",smooth:!0,stack:t.title};this.line.series.push(a)},emptyGraph:function(){this.line.title.text="",this.line.title.subtext="",this.line.yAxis.data=[];for(var t=0,a=this.dataShown.length;t<a;t++)this.line.series[t].data=[]},changeColumn:function(t,a){var e=l.a.find(this.columnData,{name:t});this.line.series[a].name=e.title,this.line.series[a].data=l.a.map(this.itemData,t),this.dataShown[a].title=e.title,this.dataShown[a].name=t}}},p=(e("ev7E"),e("KHd+"));function h(t,a){var e=Object.keys(t);if(Object.getOwnPropertySymbols){var s=Object.getOwnPropertySymbols(t);a&&(s=s.filter((function(a){return Object.getOwnPropertyDescriptor(t,a).enumerable}))),e.push.apply(e,s)}return e}function m(t){for(var a=1;a<arguments.length;a++){var e=null!=arguments[a]?arguments[a]:{};a%2?h(Object(e),!0).forEach((function(a){v(t,a,e[a])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(e)):h(Object(e)).forEach((function(a){Object.defineProperty(t,a,Object.getOwnPropertyDescriptor(e,a))}))}return t}function v(t,a,e){return a in t?Object.defineProperty(t,a,{value:e,enumerable:!0,configurable:!0,writable:!0}):t[a]=e,t}var f={components:{lineChart:Object(p.a)(d,(function(){var t=this,a=t.$createElement,e=t._self._c||a;return e("div",[e("div",{staticClass:"card "},[e("div",{staticClass:"card-body"},[e("div",{staticClass:"echart-container"},[e("echarts",{staticClass:"echarts",attrs:{options:t.line,"auto-resize":""}})],1),t._v(" "),e("hr"),t._v(" "),e("div",{staticClass:"row d-print-none"},[e("div",{staticClass:"col-md-12"},[e("div",{staticClass:"row"},t._l(t.dataShown,(function(a,s){return e("div",{staticClass:"col-md-12 pb-2"},[e("div",{staticClass:"input-group"},[t._m(0,!0),t._v(" "),e("select",{directives:[{name:"model",rawName:"v-model",value:t.dataShown[s].name,expression:"dataShown[index].name"}],staticClass:"form-control",attrs:{"data-width":"100%"},on:{change:[function(a){var e=Array.prototype.filter.call(a.target.options,(function(t){return t.selected})).map((function(t){return"_value"in t?t._value:t.value}));t.$set(t.dataShown[s],"name",a.target.multiple?e:e[0])},function(a){return t.changeColumn(a.target.value,s)}]}},[e("option",{attrs:{disabled:"",value:""}},[t._v("Silahkan pilih data")]),t._v(" "),t._t("default"),t._v(" "),t._l(t.columnData,(function(a){return a.isChart?e("option",{domProps:{value:a.name,innerHTML:t._s(a.title)}}):t._e()}))],2)])])})),0)])])])])])}),[function(){var t=this.$createElement,a=this._self._c||t;return a("div",{staticClass:"input-group-append"},[a("span",{staticClass:"input-group-text"},[this._v("Pilih Data")])])}],!1,null,"8f66c5e4",null).exports},props:["title","kelas","columnData"],data:function(){return{pages:[],titleText:"Grafik Statistik Gerakan",dataShownTitle1:"Aset",dataShownName1:"aset",axisLabelKey:"periode"}},created:function(){this.fetch()},watch:{$route:function(t,a){this.fetch()}},methods:{fetch:function(){this.$store.dispatch(this.kelas+"/index")}},computed:m(m({},Object(r.b)("laporanGerakan",{itemData:"dataS",itemDataStat:"dataStatS"})),{},{sortedItemData:function(){return _.sortBy(this.itemData.data,["periode"])}})},b=Object(p.a)(f,(function(){var t=this,a=t.$createElement,e=t._self._c||a;return e("div",[e("line-chart",{attrs:{titleText:t.titleText,title:t.title,dataShownTitle1:t.dataShownTitle1,dataShownName1:t.dataShownName1,axisLabelKey:t.axisLabelKey,itemData:t.sortedItemData,itemDataStat:t.itemDataStat,columnData:t.columnData}})],1)}),[],!1,null,null,null).exports,g={props:["id_cu","columnData","columnDataPearls"],components:{infografisCu:s.a,infografisPearls:i.a,infografisGerakan:b},data:function(){return{tabGrafikName:"grafikCu",isGrafikPearls:!1,isGrafikGerakan:!1}},created:function(){0==this.id_cu&&this.changeGrafikTab("grafikGerakan")},methods:{changeGrafikTab:function(t){this.tabGrafikName=t,"grafikGerakan"!=t||this.isGrafikGerakan||(this.isGrafikGerakan=!0),"grafikPearls"!=t||this.isGrafikPearls||(this.isGrafikPearls=!0)}}},C=Object(p.a)(g,(function(){var t=this,a=t.$createElement,e=t._self._c||a;return e("div",[e("div",{staticClass:"nav-tabs-responsive mb-3"},[e("ul",{staticClass:"nav nav-tabs nav-tabs-solid bg-teal-400"},[e("li",{staticClass:"nav-item"},[0!=t.id_cu?e("a",{staticClass:"nav-link",class:{active:"grafikCu"==t.tabGrafikName},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.changeGrafikTab("grafikCu")}}},[e("i",{staticClass:"icon-stats-dots mr-2"}),t._v(" Grafik Perkembangan CU")]):t._e()]),t._v(" "),e("li",{staticClass:"nav-item"},[0!=t.id_cu?e("a",{staticClass:"nav-link",class:{active:"grafikPearls"==t.tabGrafikName},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.changeGrafikTab("grafikPearls")}}},[e("i",{staticClass:"icon-stats-dots mr-2"}),t._v(" Grafik Perkembangan P.E.A.R.L.S. CU")]):t._e()]),t._v(" "),e("li",{staticClass:"nav-item"},[0==t.id_cu?e("a",{staticClass:"nav-link",class:{active:"grafikGerakan"==t.tabGrafikName},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.changeGrafikTab("grafikGerakan")}}},[e("i",{staticClass:"icon-stats-dots mr-2"}),t._v(" Grafik Statistik Gerakan")]):t._e()])])]),t._v(" "),e("transition",{attrs:{"enter-active-class":"animated fadeIn",mode:"out-in"}},[0!=t.id_cu?e("div",{directives:[{name:"show",rawName:"v-show",value:"grafikCu"==t.tabGrafikName,expression:"tabGrafikName == 'grafikCu'"}]},[e("infografis-cu",{attrs:{title:"Laporan Perkembangan CU",kelas:"laporanCu",columnData:t.columnData}})],1):t._e()]),t._v(" "),e("transition",{attrs:{"enter-active-class":"animated fadeIn",mode:"out-in"}},[t.isGrafikPearls&&0!=t.id_cu?e("div",{directives:[{name:"show",rawName:"v-show",value:"grafikPearls"==t.tabGrafikName,expression:"tabGrafikName == 'grafikPearls'"}]},[e("infografis-pearls",{attrs:{title:"Laporan Perkembangan P.E.A.R.L.S. CU",kelas:"laporanCu",columnData:t.columnDataPearls}})],1):t._e()]),t._v(" "),e("transition",{attrs:{"enter-active-class":"animated fadeIn",mode:"out-in"}},[t.isGrafikGerakan&&0==t.id_cu?e("div",{directives:[{name:"show",rawName:"v-show",value:"grafikGerakan"==t.tabGrafikName,expression:"tabGrafikName == 'grafikGerakan'"}]},[e("infografis-gerakan",{attrs:{title:"Laporan Perkembangan Gerakan",kelas:"laporanGerakan",columnData:t.columnData}})],1):t._e()])],1)}),[],!1,null,null,null);a.a=C.exports},Iab2:function(t,a,e){(function(e){var s,i,r;i=[],void 0===(r="function"==typeof(s=function(){"use strict";function a(t,a,e){var s=new XMLHttpRequest;s.open("GET",t),s.responseType="blob",s.onload=function(){l(s.response,a,e)},s.onerror=function(){console.error("could not download file")},s.send()}function s(t){var a=new XMLHttpRequest;a.open("HEAD",t,!1);try{a.send()}catch(t){}return 200<=a.status&&299>=a.status}function i(t){try{t.dispatchEvent(new MouseEvent("click"))}catch(e){var a=document.createEvent("MouseEvents");a.initMouseEvent("click",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),t.dispatchEvent(a)}}var r="object"==typeof window&&window.window===window?window:"object"==typeof self&&self.self===self?self:"object"==typeof e&&e.global===e?e:void 0,n=r.navigator&&/Macintosh/.test(navigator.userAgent)&&/AppleWebKit/.test(navigator.userAgent)&&!/Safari/.test(navigator.userAgent),l=r.saveAs||("object"!=typeof window||window!==r?function(){}:"download"in HTMLAnchorElement.prototype&&!n?function(t,e,n){var l=r.URL||r.webkitURL,o=document.createElement("a");e=e||t.name||"download",o.download=e,o.rel="noopener","string"==typeof t?(o.href=t,o.origin===location.origin?i(o):s(o.href)?a(t,e,n):i(o,o.target="_blank")):(o.href=l.createObjectURL(t),setTimeout((function(){l.revokeObjectURL(o.href)}),4e4),setTimeout((function(){i(o)}),0))}:"msSaveOrOpenBlob"in navigator?function(t,e,r){if(e=e||t.name||"download","string"!=typeof t)navigator.msSaveOrOpenBlob(function(t,a){return void 0===a?a={autoBom:!1}:"object"!=typeof a&&(console.warn("Deprecated: Expected third argument to be a object"),a={autoBom:!a}),a.autoBom&&/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(t.type)?new Blob(["\ufeff",t],{type:t.type}):t}(t,r),e);else if(s(t))a(t,e,r);else{var n=document.createElement("a");n.href=t,n.target="_blank",setTimeout((function(){i(n)}))}}:function(t,e,s,i){if((i=i||open("","_blank"))&&(i.document.title=i.document.body.innerText="downloading..."),"string"==typeof t)return a(t,e,s);var l="application/octet-stream"===t.type,o=/constructor/i.test(r.HTMLElement)||r.safari,c=/CriOS\/[\d]+/.test(navigator.userAgent);if((c||l&&o||n)&&"undefined"!=typeof FileReader){var u=new FileReader;u.onloadend=function(){var t=u.result;t=c?t:t.replace(/^data:[^;]*;/,"data:attachment/file;"),i?i.location.href=t:location=t,i=null},u.readAsDataURL(t)}else{var d=r.URL||r.webkitURL,p=d.createObjectURL(t);i?i.location=p:location.href=p,i=null,setTimeout((function(){d.revokeObjectURL(p)}),4e4)}});r.saveAs=l.saveAs=l,t.exports=l})?s.apply(a,i):s)||(t.exports=r)}).call(this,e("yLpj"))},"N++B":function(t,a,e){"use strict";var s=e("L2JU"),i=e("Ocez"),r=e("NUDQ");function n(t,a){var e=Object.keys(t);if(Object.getOwnPropertySymbols){var s=Object.getOwnPropertySymbols(t);a&&(s=s.filter((function(a){return Object.getOwnPropertyDescriptor(t,a).enumerable}))),e.push.apply(e,s)}return e}function l(t,a,e){return a in t?Object.defineProperty(t,a,{value:e,enumerable:!0,configurable:!0,writable:!0}):t[a]=e,t}var o={components:{checkValue:i.a,itemPearls:r.a},props:["id_cu","columnData","columnDataPearls"],data:function(){return{tabTitle:"CU",tabTabelName:"tabelCu",isTabelPearls:!1,isTabelGerakan:!1,itemData:[],itemDataStat:"",itemPearlsData:[],itemPearlsDataStat:"",isFirstLoad:!1,isFirstPearlsLoad:!1}},created:function(){this.removeColumn(),0==this.id_cu&&(this.tabTitle="Gerakan")},watch:{grafikDataStat:function(t){"success"===t&&(this.isFirstLoad||(this.itemData=this.grafikData,this.itemDataStat=this.grafikDataStat,this.isFirstLoad=!0))},grafikPearlsDataStat:function(t){"success"===t&&(this.isFirstPearlsLoad||(this.itemPearlsData=this.grafikPearlsData,this.itemPearlsDataStat=this.grafikPearlsDataStat,this.isFirstPearlsLoad=!0))}},methods:{removeColumn:function(){var t;for(t=0;t<this.columnData.length;t++)[1,2,3,4,5,6,32,33,46,47,48,49].includes(t)?this.columnData[t].disable=!0:this.columnData[t].disable=!1;for(t=0;t<this.columnDataPearls.length;t++)[1,2,3,4,5,6,7,23,24,25,26].includes(t)?this.columnDataPearls[t].disable=!0:this.columnDataPearls[t].disable=!1},changeTabelTab:function(t){if(this.tabTabelName=t,"tabelPearls"==t&&!this.isTabelPearls&&(this.isTabelPearls=!0,"success"!=this.itemPearlsDataStat)){this.$store.dispatch("laporanCu/grafikPearlsCu",[{order_column:"p1",order_direction:"desc",filter_match:"and",limit:50,page:1},this.id_cu])}}},computed:function(t){for(var a=1;a<arguments.length;a++){var e=null!=arguments[a]?arguments[a]:{};a%2?n(Object(e),!0).forEach((function(a){l(t,a,e[a])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(e)):n(Object(e)).forEach((function(a){Object.defineProperty(t,a,Object.getOwnPropertyDescriptor(e,a))}))}return t}({},Object(s.b)("laporanCu",{grafikData:"grafik",grafikDataStat:"grafikStat",grafikPearlsData:"grafikPearls",grafikPearlsDataStat:"grafikPearlsStat"}))},c=e("KHd+"),u=Object(c.a)(o,(function(){var t=this,a=t.$createElement,e=t._self._c||a;return e("div",{staticClass:"card"},[e("div",{staticClass:"card-header bg-grey-400 header-elements-inline"},[t._m(0),t._v(" "),e("div",{staticClass:"header-elements"},["success"==t.itemDataStat&&0!=t.id_cu?e("span",[e("i",{staticClass:"badge badge-mark border-warning"}),t._v(" "+t._s(t._f("dateMonth")(t.itemData.data[t.itemData.total-1].periode)))]):t._e(),t._v(" "),"success"==t.itemDataStat&&0==t.id_cu?e("span",[e("i",{staticClass:"badge badge-mark border-warning"}),t._v(" "+t._s(t._f("dateMonth")(t.itemData[0].periode)))]):t._e()])]),t._v(" "),t.itemData&&0==t.id_cu?e("div",{staticClass:"card-body pb-0"},[e("div",{staticClass:"row text-center"},[e("div",{staticClass:"col-6"},["success"==t.itemDataStat?e("div",{staticClass:"mb-3"},[e("h5",{staticClass:"font-weight-semibold mb-0"},[e("check-value",{attrs:{value:t.itemData[0].cu}})],1),t._v(" "),e("span",{staticClass:"text-muted font-size-sm"},[t._v("Total CU")])]):"loading"==t.itemDataStat?e("div",{staticClass:"mb-3"},[t._m(1),t._v(" "),e("span",{staticClass:"text-muted font-size-sm"},[t._v("Total CU")])]):t._e()]),t._v(" "),e("div",{staticClass:"col-6"},["success"==t.itemDataStat?e("div",{staticClass:"mb-3"},[e("h5",{staticClass:"font-weight-semibold mb-0"},[e("check-value",{attrs:{value:t.itemData[0].cu_sesuai.cu}})],1),t._v(" "),e("span",{staticClass:"text-muted font-size-sm"},[t._v("CU Sesuai Periode")])]):"loading"==t.itemDataStat?e("div",{staticClass:"mb-3"},[t._m(2),t._v(" "),e("span",{staticClass:"text-muted font-size-sm"},[t._v("Total CU")])]):t._e()]),t._v(" "),e("div",{staticClass:"col-6"},["success"==t.itemDataStat?e("div",{staticClass:"mb-3"},[e("h5",{staticClass:"font-weight-semibold mb-0"},[e("check-value",{attrs:{value:t.itemData[0].rasio_beredar,valueType:"percentage"}})],1),t._v(" "),e("span",{staticClass:"text-muted font-size-sm"},[t._v("Rasio Piutang Beredar")])]):"loading"==t.itemDataStat?e("div",{staticClass:"mb-3"},[t._m(3),t._v(" "),e("span",{staticClass:"text-muted font-size-sm"},[t._v("Rasio Piutang Beredar")])]):t._e()]),t._v(" "),e("div",{staticClass:"col-6"},["success"==t.itemDataStat?e("div",{staticClass:"mb-3"},[e("h5",{staticClass:"font-weight-semibold mb-0"},[e("check-value",{attrs:{value:t.itemData[0].rasio_lalai,valueType:"percentage"}})],1),t._v(" "),e("span",{staticClass:"text-muted font-size-sm"},[t._v("Rasio Piutang Lalai")])]):"loading"==t.itemDataStat?e("div",{staticClass:"mb-3"},[t._m(4),t._v(" "),e("span",{staticClass:"text-muted font-size-sm"},[t._v("Rasio Piutang Lalai")])]):t._e()])])]):t._e(),t._v(" "),t.itemData.data&&0!=t.id_cu?e("div",{staticClass:"card-body pb-0"},[e("div",{staticClass:"row text-center"},[e("div",{staticClass:"col-6"},["success"==t.itemDataStat?e("div",{staticClass:"mb-3"},[e("h5",{staticClass:"font-weight-semibold mb-0"},[e("check-value",{attrs:{value:t.itemData.data[t.itemData.total-1].rasio_beredar,valueType:"percentage"}})],1),t._v(" "),e("span",{staticClass:"text-muted font-size-sm"},[t._v("Rasio Piutang Beredar")])]):"loading"==t.itemDataStat?e("div",{staticClass:"mb-3"},[t._m(5),t._v(" "),e("span",{staticClass:"text-muted font-size-sm"},[t._v("Rasio Piutang Beredar")])]):t._e()]),t._v(" "),e("div",{staticClass:"col-6"},["success"==t.itemDataStat?e("div",{staticClass:"mb-3"},[e("h5",{staticClass:"font-weight-semibold mb-0"},[e("check-value",{attrs:{value:t.itemData.data[t.itemData.total-1].rasio_lalai,valueType:"percentage"}})],1),t._v(" "),e("span",{staticClass:"text-muted font-size-sm"},[t._v("Rasio Piutang Lalai")])]):"loading"==t.itemDataStat?e("div",{staticClass:"mb-3"},[t._m(6),t._v(" "),e("span",{staticClass:"text-muted font-size-sm"},[t._v("Rasio Piutang Lalai")])]):t._e()])])]):t._e(),t._v(" "),e("ul",{staticClass:"nav nav-tabs nav-tabs-solid nav-justified bg-grey-400 border-x-0 border-bottom-0 border-top-grey-300 mb-0"},[e("li",{staticClass:"nav-item"},[e("a",{staticClass:"nav-link",class:{active:"tabelCu"==t.tabTabelName},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.changeTabelTab("tabelCu")}}},[t._v(t._s(t.tabTitle))])]),t._v(" "),e("li",{staticClass:"nav-item"},[0!=t.id_cu?e("a",{staticClass:"nav-link",class:{active:"tabelPearls"==t.tabTabelName},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.changeTabelTab("tabelPearls")}}},[t._v("P.E.A.R.L.S. CU")]):t._e()])]),t._v(" "),e("transition",{attrs:{"enter-active-class":"animated fadeIn",mode:"out-in"}},[e("div",{directives:[{name:"show",rawName:"v-show",value:"tabelCu"==t.tabTabelName,expression:"tabTabelName == 'tabelCu'"}],staticClass:"table-responsive table-scrollable"},[e("table",{staticClass:"table text-nowrap"},[e("thead",[e("tr",[e("th",[t._v("Nama Akun")]),t._v(" "),e("th",[t._v("Nilai")])])]),t._v(" "),e("tbody",t._l(t.columnData,(function(a){return a.tipe&&!a.disable?e("tr",[e("td",{staticClass:"font-weight-semibold"},[t._v(t._s(a.title))]),t._v(" "),"success"==t.itemDataStat&&0!=t.id_cu?e("td",["rasio_beredar"!=a.name&&"rasio_lalai"!=a.name?e("check-value",{attrs:{value:t.itemData.data[t.itemData.total-1][a.name],valueType:"currency"}}):t._e()],1):t._e(),t._v(" "),"success"==t.itemDataStat&&0==t.id_cu?e("td",["rasio_beredar"!=a.name&&"rasio_lalai"!=a.name?e("check-value",{attrs:{value:t.itemData[0][a.name],valueType:"currency"}}):t._e()],1):t._e()]):t._e()})),0)])])]),t._v(" "),e("transition",{attrs:{"enter-active-class":"animated fadeIn",mode:"out-in"}},[e("div",{directives:[{name:"show",rawName:"v-show",value:"tabelPearls"==t.tabTabelName,expression:"tabTabelName == 'tabelPearls'"}],staticClass:"table-responsive table-scrollable"},[e("table",{staticClass:"table text-nowrap"},[e("thead",[e("tr",[e("th",[t._v("Nama Akun")]),t._v(" "),e("th",[t._v("Nilai")])])]),t._v(" "),e("tbody",t._l(t.columnDataPearls,(function(a){return a.tipe&&!a.disable?e("tr",[e("td",{staticClass:"font-weight-semibold",domProps:{innerHTML:t._s(a.title)}}),t._v(" "),"success"==t.itemPearlsDataStat?e("td",[e("item-pearls",{attrs:{type:a.name,props:t.itemPearlsData.data[0]}})],1):t._e()]):t._e()})),0)])])])],1)}),[function(){var t=this.$createElement,a=this._self._c||t;return a("h6",{staticClass:"card-title"},[a("i"),a("i",{staticClass:"icon-table2 mr-2"}),this._v(" Tabel Perkembangan")])},function(){var t=this.$createElement,a=this._self._c||t;return a("h5",{staticClass:"font-weight-semibold mb-0"},[a("i",{staticClass:"icon-spinner2 spinner"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("h5",{staticClass:"font-weight-semibold mb-0"},[a("i",{staticClass:"icon-spinner2 spinner"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("h5",{staticClass:"font-weight-semibold mb-0"},[a("i",{staticClass:"icon-spinner2 spinner"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("h5",{staticClass:"font-weight-semibold mb-0"},[a("i",{staticClass:"icon-spinner2 spinner"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("h5",{staticClass:"font-weight-semibold mb-0"},[a("i",{staticClass:"icon-spinner2 spinner"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("h5",{staticClass:"font-weight-semibold mb-0"},[a("i",{staticClass:"icon-spinner2 spinner"})])}],!1,null,null,null);a.a=u.exports},NUDQ:function(t,a,e){"use strict";var s={components:{checkValue:e("Ocez").a},props:["type","props"],data:function(){return{}}},i=e("KHd+"),r=Object(i.a)(s,(function(){var t=this,a=t.$createElement,e=t._self._c||a;return e("div",["p1"==t.type?e("div",{staticClass:"d-flex align-items-center"},[e("div",{staticClass:"mr-3"},[e("button",{staticClass:"btn rounded-round btn-icon btn-xs",class:{"btn-primary":t.props.p1>=1,"btn-danger":t.props.p1<1},attrs:{type:"button"}},[t._v("\n\t\t\t\tP1\n\t\t\t")])]),t._v(" "),e("div",[e("a",{staticClass:"text-default font-weight-semibold letter-icon-title"},[e("check-value",{attrs:{value:t.props.p1,valueType:"percentage"}})],1),t._v(" "),e("div",{staticClass:"font-size-sm"},[t.props.p1>=1?e("span",[t._v("IDEAL")]):e("span",[t._v("TIDAK IDEAL")])])])]):"p2"==t.type?e("div",{staticClass:"d-flex align-items-center"},[e("div",{staticClass:"mr-3"},[e("button",{staticClass:"btn rounded-round btn-icon btn-xs",class:{"btn-primary":t.props.p2>.35,"btn-danger":t.props.p2<=.35},attrs:{type:"button"}},[e("span",{staticClass:"letter-icon"},[t._v("P2")])])]),t._v(" "),e("div",[e("a",{staticClass:"text-default font-weight-semibold letter-icon-title"},[e("check-value",{attrs:{value:t.props.p2,valueType:"percentage"}})],1),t._v(" "),e("div",{staticClass:"font-size-sm"},[t.props.p2>.35?e("span",[t._v("IDEAL")]):e("span",[t._v("TIDAK IDEAL")])])])]):"e1"==t.type?e("div",{staticClass:"d-flex align-items-center"},[e("div",{staticClass:"mr-3"},[e("button",{staticClass:"btn rounded-round btn-icon btn-xs",class:{"btn-primary":t.props.e1>=.7&&t.props.e1<=.8,"btn-danger":t.props.e1<.7||t.props.e1>.8},attrs:{type:"button"}},[e("span",{staticClass:"letter-icon"},[t._v("E1")])])]),t._v(" "),e("div",[e("a",{staticClass:"text-default font-weight-semibold letter-icon-title"},[e("check-value",{attrs:{value:t.props.e1,valueType:"percentage"}})],1),t._v(" "),e("div",{staticClass:"font-size-sm"},[t.props.e1>=.7&&t.props.e1<=.8?e("span",[t._v("IDEAL")]):e("span",[t._v("TIDAK IDEAL")])])])]):"e5"==t.type?e("div",{staticClass:"d-flex align-items-center"},[e("div",{staticClass:"mr-3"},[e("button",{staticClass:"btn rounded-round btn-icon btn-xs",class:{"btn-primary":t.props.e5>=.7&&t.props.e5<=.8,"btn-danger":t.props.e5<.7||t.props.e5>.8},attrs:{type:"button"}},[e("span",{staticClass:"letter-icon"},[t._v("E5")])])]),t._v(" "),e("div",[e("a",{staticClass:"text-default font-weight-semibold letter-icon-title"},[e("check-value",{attrs:{value:t.props.e5,valueType:"percentage"}})],1),t._v(" "),e("div",{staticClass:"font-size-sm"},[t.props.e5>=.7&&t.props.e5<=.8?e("span",[t._v("IDEAL")]):e("span",[t._v("TIDAK IDEAL")])])])]):"e6"==t.type?e("div",{staticClass:"d-flex align-items-center"},[e("div",{staticClass:"mr-3"},[e("button",{staticClass:"btn rounded-round btn-icon btn-xs",class:{"btn-primary":t.props.e6<=.05,"btn-danger":t.props.e6>.05},attrs:{type:"button"}},[e("span",{staticClass:"letter-icon"},[t._v("E6")])])]),t._v(" "),e("div",[e("a",{staticClass:"text-default font-weight-semibold letter-icon-title"},[e("check-value",{attrs:{value:t.props.e6,valueType:"percentage"}})],1),t._v(" "),e("div",{staticClass:"font-size-sm"},[t.props.e6<=.05?e("span",[t._v("IDEAL")]):e("span",[t._v("TIDAK IDEAL")])])])]):"e7"==t.type?e("div",{staticClass:"d-flex align-items-center"},[e("div",{staticClass:"mr-3"},[e("button",{staticClass:"btn rounded-round btn-icon btn-xs",class:{"btn-primary":t.props.e7>=.1&&t.props.e7<=.2,"btn-danger":t.props.e7<.1||t.props.e7>.2},attrs:{type:"button"}},[e("span",{staticClass:"letter-icon"},[t._v("E7")])])]),t._v(" "),e("div",[e("a",{staticClass:"text-default font-weight-semibold letter-icon-title"},[e("check-value",{attrs:{value:t.props.e7,valueType:"percentage"}})],1),t._v(" "),e("div",{staticClass:"font-size-sm"},[t.props.e7>=.1&&t.props.e7<=.2?e("span",[t._v("IDEAL")]):e("span",[t._v("TIDAK IDEAL")])])])]):"e9"==t.type?e("div",{staticClass:"d-flex align-items-center"},[e("div",{staticClass:"mr-3"},[e("button",{staticClass:"btn rounded-round btn-icon btn-xs",class:{"btn-primary":t.props.e9>=.1,"btn-danger":t.props.e9<.1},attrs:{type:"button"}},[e("span",{staticClass:"letter-icon"},[t._v("E9")])])]),t._v(" "),e("div",[e("a",{staticClass:"text-default font-weight-semibold letter-icon-title"},[e("check-value",{attrs:{value:t.props.e9,valueType:"percentage"}})],1),t._v(" "),e("div",{staticClass:"font-size-sm"},[t.props.e9>=.1?e("span",[t._v("IDEAL")]):e("span",[t._v("TIDAK IDEAL")])])])]):"a1"==t.type?e("div",{staticClass:"d-flex align-items-center"},[e("div",{staticClass:"mr-3"},[e("button",{staticClass:"btn rounded-round btn-icon btn-xs",class:{"btn-primary":t.props.a1<=.05,"btn-danger":t.props.a1>.05},attrs:{type:"button"}},[e("span",{staticClass:"letter-icon"},[t._v("A1")])])]),t._v(" "),e("div",[e("a",{staticClass:"text-default font-weight-semibold letter-icon-title"},[e("check-value",{attrs:{value:t.props.a1,valueType:"percentage"}})],1),t._v(" "),e("div",{staticClass:"font-size-sm"},[t.props.a1<=.05?e("span",[t._v("IDEAL")]):e("span",[t._v("TIDAK IDEAL")])])])]):"a2"==t.type?e("div",{staticClass:"d-flex align-items-center"},[e("div",{staticClass:"mr-3"},[e("button",{staticClass:"btn rounded-round btn-icon btn-xs",class:{"btn-primary":t.props.a2<.05,"btn-danger":t.props.a2>=.05},attrs:{type:"button"}},[e("span",{staticClass:"letter-icon"},[t._v("A2")])])]),t._v(" "),e("div",[e("a",{staticClass:"text-default font-weight-semibold letter-icon-title"},[e("check-value",{attrs:{value:t.props.a2,valueType:"percentage"}})],1),t._v(" "),e("div",{staticClass:"font-size-sm"},[t.props.a2<.05?e("span",[t._v("IDEAL")]):e("span",[t._v("TIDAK IDEAL")])])])]):"r7"==t.type?e("div",{staticClass:"d-flex align-items-center"},[0!=t.props.simpanan_saham_des&&0!=t.props.simpanan_saham_lalu?e("div",{staticClass:"d-flex align-items-center"},[e("div",{staticClass:"mr-3"},[e("button",{staticClass:"btn rounded-round btn-icon btn-xs",class:{"btn-primary":t.props.r7_1==t.props.harga_pasar,"btn-danger":t.props.r7_1!=t.props.harga_pasar},attrs:{type:"button"}},[e("span",{staticClass:"letter-icon"},[t._v("R7")])])]),t._v(" "),e("div",{staticClass:"media-body pr-10"},[e("a",{staticClass:"text-default font-weight-semibold letter-icon-title"},[e("check-value",{attrs:{value:t.props.r7_1,valueType:"percentage"}})],1),t._v(" "),e("div",{staticClass:"font-size-sm"},[t.props.r7_1==t.props.harga_pasar?e("span",[t._v("IDEAL")]):e("span",[t._v("TIDAK IDEAL")])])]),t._v(" "),e("div",{staticClass:"mr-3"},[e("button",{staticClass:"btn rounded-round btn-icon btn-xs",class:{"btn-primary":t.props.r7_2==t.props.harga_pasar,"btn-danger":t.props.r7_2!=t.props.harga_pasar},attrs:{type:"button"}},[e("span",{staticClass:"letter-icon"},[t._v("R7")])])]),t._v(" "),e("div",[e("a",{staticClass:"text-default font-weight-semibold letter-icon-title"},[e("check-value",{attrs:{value:t.props.r7_2,valueType:"percentage"}})],1),t._v(" "),e("div",{staticClass:"font-size-sm"},[t.props.r7_2==t.props.harga_pasar?e("span",[t._v("IDEAL")]):e("span",[t._v("TIDAK IDEAL")])])])]):e("div",{staticClass:"d-flex align-items-center"},[e("div",{staticClass:"mr-3"},[e("button",{staticClass:"btn rounded-round btn-icon btn-xs",class:{"btn-primary":t.props.r7_1==t.props.harga_pasar,"btn-danger":t.props.r7_1!=t.props.harga_pasar},attrs:{type:"button"}},[e("span",{staticClass:"letter-icon"},[t._v("R7")])])]),t._v(" "),e("div",[e("a",{staticClass:"text-default font-weight-semibold letter-icon-title"},[e("check-value",{attrs:{value:t.props.r7_1,valueType:"percentage"}})],1),t._v(" "),e("div",{staticClass:"font-size-sm"},[t.props.r7_1==t.props.harga_pasar?e("span",[t._v("IDEAL")]):e("span",[t._v("TIDAK IDEAL")])])])])]):"r9"==t.type?e("div",{staticClass:"d-flex align-items-center"},[e("div",{staticClass:"mr-3"},[e("button",{staticClass:"btn rounded-round btn-icon btn-xs",class:{"btn-primary":t.props.r9<=.05,"btn-danger":t.props.r9>.05},attrs:{type:"button"}},[e("span",{staticClass:"letter-icon"},[t._v("R9")])])]),t._v(" "),e("div",[e("a",{staticClass:"text-default font-weight-semibold letter-icon-title"},[e("check-value",{attrs:{value:t.props.r9,valueType:"percentage"}})],1),t._v(" "),e("div",{staticClass:"font-size-sm"},[t.props.r9<=.05?e("span",[t._v("IDEAL")]):e("span",[t._v("TIDAK IDEAL")])])])]):"l1"==t.type?e("div",{staticClass:"d-flex align-items-center"},[e("div",{staticClass:"mr-3"},[e("button",{staticClass:"btn rounded-round btn-icon btn-xs",class:{"btn-primary":t.props.l1>=.15&&t.props.l1<=.2,"btn-danger":t.props.l1<.15||t.props.l1>.2},attrs:{type:"button"}},[e("span",{staticClass:"letter-icon"},[t._v("L1")])])]),t._v(" "),e("div",[e("a",{staticClass:"text-default font-weight-semibold letter-icon-title"},[e("check-value",{attrs:{value:t.props.l1,valueType:"percentage"}})],1),t._v(" "),e("div",{staticClass:"font-size-sm"},[t.props.l1>=.15&&t.props.l1<=.2?e("span",[t._v("IDEAL")]):e("span",[t._v("TIDAK IDEAL")])])])]):"l2"==t.type?e("div",{staticClass:"d-flex align-items-center"},[e("div",{staticClass:"mr-3"},[e("button",{staticClass:"btn rounded-round btn-icon btn-xs",class:{"btn-primary":t.props.l2>=.15&&t.props.l2<=.2,"btn-danger":t.props.l2<.15||t.props.l2>.2},attrs:{type:"button"}},[e("span",{staticClass:"letter-icon"},[t._v("L2")])])]),t._v(" "),e("div",[e("a",{staticClass:"text-default font-weight-semibold letter-icon-title"},[e("check-value",{attrs:{value:t.props.l2,valueType:"percentage"}})],1),t._v(" "),e("div",{staticClass:"font-size-sm"},[t.props.l2>=.15&&t.props.l2<=.2?e("span",[t._v("IDEAL")]):e("span",[t._v("TIDAK IDEAL")])])])]):"s10"==t.type?e("div",{staticClass:"d-flex align-items-center"},[t.props&&t.props.s10?e("div",{staticClass:"mr-3"},[e("button",{staticClass:"btn rounded-round btn-icon btn-xs",class:{"btn-primary":t.props.s10>.12,"btn-danger":t.props.s10<=.12},attrs:{type:"button"}},[e("span",{staticClass:"letter-icon"},[t._v("S10")])])]):t._e(),t._v(" "),t.props&&t.props.s10?e("div",[e("a",{staticClass:"text-default font-weight-semibold letter-icon-title"},[e("check-value",{attrs:{value:t.props.s10,valueType:"percentage"}})],1),t._v(" "),e("div",{staticClass:"font-size-sm"},[t.props.s10>.12?e("span",[t._v("IDEAL")]):e("span",[t._v("TIDAK IDEAL")])])]):t._e()]):"s11"==t.type?e("div",{staticClass:"d-flex align-items-center"},[t.props&&t.props.s11?e("div",{staticClass:"mr-3"},[e("button",{staticClass:"btn rounded-round btn-icon btn-xs",class:{"btn-primary":t.props.s11>.1+t.props.laju_inflasi,"btn-danger":t.props.s11<=.1+t.props.laju_inflasi},attrs:{type:"button"}},[e("span",{staticClass:"letter-icon"},[t._v("S11")])])]):t._e(),t._v(" "),t.props&&t.props.s11?e("div",[e("a",{staticClass:"text-default font-weight-semibold letter-icon-title"},[e("check-value",{attrs:{value:t.props.s11,valueType:"percentage"}})],1),t._v(" "),e("div",{staticClass:"font-size-sm"},[t.props.s11>.1+t.props.laju_inflasi?e("span",[t._v("IDEAL")]):e("span",[t._v("TIDAK IDEAL")])])]):t._e()]):t._e()])}),[],!1,null,null,null);a.a=r.exports},T7Ja:function(t,a,e){var s=e("Eo2Q");"string"==typeof s&&(s=[[t.i,s,""]]);var i={hmr:!0,transform:void 0,insertInto:void 0};e("aET+")(s,i);s.locals&&(t.exports=s.locals)},"Vp+c":function(t,a,e){var s=e("hsdG");"string"==typeof s&&(s=[[t.i,s,""]]);var i={hmr:!0,transform:void 0,insertInto:void 0};e("aET+")(s,i);s.locals&&(t.exports=s.locals)},"aN+N":function(t,a,e){"use strict";e.r(a);var s=e("L2JU"),i=e("Ll3F"),r=e("xuR2"),n=e("s20v"),l=e("8MVx"),o=e("Ocez");function c(t,a){var e=Object.keys(t);if(Object.getOwnPropertySymbols){var s=Object.getOwnPropertySymbols(t);a&&(s=s.filter((function(a){return Object.getOwnPropertyDescriptor(t,a).enumerable}))),e.push.apply(e,s)}return e}function u(t){for(var a=1;a<arguments.length;a++){var e=null!=arguments[a]?arguments[a]:{};a%2?c(Object(e),!0).forEach((function(a){d(t,a,e[a])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(e)):c(Object(e)).forEach((function(a){Object.defineProperty(t,a,Object.getOwnPropertyDescriptor(e,a))}))}return t}function d(t,a,e){return a in t?Object.defineProperty(t,a,{value:e,enumerable:!0,configurable:!0,writable:!0}):t[a]=e,t}var p={components:{DataViewer:n.a,appModal:l.a,checkValue:o.a},props:["title","kelas","columnData"],data:function(){return{selectedItem:[],query:{order_column:"periode",order_direction:"desc",filter_match:"and",limit:10,page:1},excelDownloadUrl:"",state:"",modalShow:!1,modalState:"",modalTitle:"",modalButton:""}},created:function(){this.fetch(this.query)},watch:{$route:function(t,a){this.fetch(this.query)},updateStat:function(t){this.modalState=t,this.modalButton="Ok","success"===t?(this.modalTitle=this.updateMessage.message,this.modalContent="",this.fetch(this.query)):this.modalContent="fail"===t?this.updateMessage:""}},methods:{fetch:function(t){this.$store.dispatch(this.kelas+"/index",t),this.excelDownloadUrl=this.kelas},resetParams:function(){this.params.search_column="periode",this.params.search_query_1="",this.extSearchColumn="periode",this.extSearchQuery1=""},selectedRow:function(t){this.selectedItem=t},ubahData:function(t,a){this.$router.push({name:this.kelas+"Edit",params:{id:t}})},modalConfirmOpen:function(t,a,e){this.modalShow=!0,this.modalState="confirm-tutup",this.state=t,a&&(this.selectedItem=e),"hapus"==t&&(this.modalTitle="Hapus "+this.title+" "+this.selectedItem.name+" ?",this.modalButton="Iya, Hapus")},modalTutup:function(){this.modalShow=!1,this.$store.dispatch(this.kelas+"/resetUpdateStat")},modalConfirmOk:function(){"hapus"==this.state&&this.$store.dispatch(this.kelas+"/destroy",this.selectedItem.id)}},computed:u(u({},Object(s.b)("auth",{currentUser:"currentUser"})),Object(s.b)("laporanGerakan",{itemData:"dataS",itemDataStat:"dataStatS",updateMessage:"update",updateStat:"updateStat"}))},h=e("KHd+"),m=Object(h.a)(p,(function(){var t=this,a=t.$createElement,e=t._self._c||a;return e("div",[e("data-viewer",{attrs:{title:t.title,columnData:t.columnData,itemData:t.itemData,query:t.query,itemDataStat:t.itemDataStat,excelDownloadUrl:t.excelDownloadUrl,isUploadExcel:!1},on:{fetch:t.fetch},scopedSlots:t._u([{key:"item-desktop",fn:function(a){return[e("tr",{staticClass:"text-nowrap",class:{"bg-info":t.selectedItem.id===a.item.id},on:{click:function(e){return t.selectedRow(a.item)}}},[t.columnData[0].hide?t._e():e("td",[t._v("\n\t\t\t\t\t\t"+t._s(a.index+1+(+t.itemData.current_page-1)*+t.itemData.per_page+".")+"\n\t\t\t\t\t")]),t._v(" "),t.columnData[1].hide?t._e():e("td",[t._v("\n\t\t\t\t\t\t"+t._s(t._f("dateMonth")(a.item.periode))+"\n\t\t\t\t\t")]),t._v(" "),t.columnData[2].hide?t._e():e("td",[e("check-value",{attrs:{value:a.item.lk,valueType:"currency"}})],1),t._v(" "),t.columnData[3].hide?t._e():e("td",[e("check-value",{attrs:{value:a.item.pr,valueType:"currency"}})],1),t._v(" "),t.columnData[4].hide?t._e():e("td",[e("check-value",{attrs:{value:a.item.total_anggota,valueType:"currency"}})],1),t._v(" "),t.columnData[5].hide?t._e():e("td",[e("check-value",{attrs:{value:a.item.aset,valueType:"currency"}})],1),t._v(" "),t.columnData[6].hide?t._e():e("td",[e("check-value",{attrs:{value:a.item.shu,valueType:"currency"}})],1),t._v(" "),t.columnData[7].hide?t._e():e("td",[e("check-value",{attrs:{value:a.item.piutang_anggota,valueType:"currency"}})],1),t._v(" "),t.columnData[8].hide?t._e():e("td",[e("check-value",{attrs:{value:a.item.piutang_lalai,valueType:"currency"}})],1),t._v(" "),t.columnData[9].hide?t._e():e("td",[e("check-value",{attrs:{value:a.item.simpanan_anggota,valueType:"currency"}})],1),t._v(" "),t.columnData[10].hide?t._e():e("td",[e("check-value",{attrs:{value:a.item.dcu,valueType:"currency"}})],1),t._v(" "),t.columnData[11].hide?t._e():e("td",[e("check-value",{attrs:{value:a.item.dcr,valueType:"currency"}})],1),t._v(" "),t.columnData[12].hide?t._e():e("td",[e("check-value",{attrs:{value:a.item.aset_lancar,valueType:"currency"}})],1),t._v(" "),t.columnData[13].hide?t._e():e("td",{domProps:{innerHTML:t._s(t.$options.filters.dateTime(a.item.created_at))}}),t._v(" "),t.columnData[14].hide?t._e():e("td",[a.item.created_at!==a.item.updated_at?e("span",{domProps:{innerHTML:t._s(t.$options.filters.dateTime(a.item.updated_at))}}):e("span",[t._v("-")])])])]}}])},[e("template",{slot:"button-desktop"},[t.currentUser.can&&t.currentUser.can.create_laporan_cu&&0==t.currentUser.id_cu?e("router-link",{staticClass:"btn btn-light mb-1",attrs:{to:{name:t.kelas+"Create"}}},[e("i",{staticClass:"icon-plus3"}),t._v(" Tambah\n\t\t\t\t")]):t._e(),t._v(" "),t.currentUser.can&&t.currentUser.can.update_laporan_cu&&0==t.currentUser.id_cu?e("button",{staticClass:"btn btn-light mb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(a){return a.preventDefault(),t.ubahData(t.selectedItem.id)}}},[e("i",{staticClass:"icon-pencil5"}),t._v(" Ubah\n\t\t\t\t")]):t._e(),t._v(" "),t.currentUser.can&&t.currentUser.can.destroy_laporan_cu&&0==t.currentUser.id_cu?e("button",{staticClass:"btn btn-light mb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(a){return a.preventDefault(),t.modalConfirmOpen("hapus")}}},[e("i",{staticClass:"icon-bin2"}),t._v(" Hapus\n\t\t\t\t")]):t._e()],1),t._v(" "),e("template",{slot:"button-mobile"},[t.currentUser.can&&t.currentUser.can.create_laporan_cu&&0==t.currentUser.id_cu?e("router-link",{staticClass:"btn btn-light btn-block mb-1",attrs:{to:{name:t.kelas+"Create"}}},[e("i",{staticClass:"icon-plus3"}),t._v(" Tambah\n\t\t\t\t")]):t._e(),t._v(" "),t.currentUser.can&&t.currentUser.can.update_laporan_cu&&0==t.currentUser.id_cu?e("button",{staticClass:"btn btn-light btn-block mb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(a){return a.preventDefault(),t.ubahData(t.selectedItem.id)}}},[e("i",{staticClass:"icon-pencil5"}),t._v(" Ubah\n\t\t\t\t")]):t._e(),t._v(" "),t.currentUser.can&&t.currentUser.can.destroy_laporan_cu&&0==t.currentUser.id_cu?e("button",{staticClass:"btn btn-light btn-block mb-1",attrs:{disabled:!t.selectedItem.id},on:{click:function(a){return a.preventDefault(),t.modalConfirmOpen("hapus")}}},[e("i",{staticClass:"icon-bin2"}),t._v(" Hapus\n\t\t\t\t")]):t._e()],1)],2),t._v(" "),e("app-modal",{attrs:{show:t.modalShow,state:t.modalState,title:t.modalTitle,button:t.modalButton},on:{tutup:t.modalTutup,confirmOk:t.modalConfirmOk,successOk:t.modalTutup,failOk:t.modalTutup,backgroundClick:t.modalTutup}})],1)}),[],!1,null,null,null).exports,v=e("IIuh"),f=e("N++B");function b(t,a){var e=Object.keys(t);if(Object.getOwnPropertySymbols){var s=Object.getOwnPropertySymbols(t);a&&(s=s.filter((function(a){return Object.getOwnPropertyDescriptor(t,a).enumerable}))),e.push.apply(e,s)}return e}function _(t){for(var a=1;a<arguments.length;a++){var e=null!=arguments[a]?arguments[a]:{};a%2?b(Object(e),!0).forEach((function(a){g(t,a,e[a])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(e)):b(Object(e)).forEach((function(a){Object.defineProperty(t,a,Object.getOwnPropertyDescriptor(e,a))}))}return t}function g(t,a,e){return a in t?Object.defineProperty(t,a,{value:e,enumerable:!0,configurable:!0,writable:!0}):t[a]=e,t}var C={components:{pageHeader:i.a,message:r.a,tableData:m,grafikLaporanCuWidget:v.a,tableLaporanCuWidget:f.a},data:function(){return{title:"Laporan Statistik Gerakan",kelas:"laporanGerakan",titleDesc:"Mengelola data statistik gerakan",titleIcon:"icon-stats-bars",columnData:[{title:"No.",name:"No.",tipe:"string",sort:!1,hide:!1,disable:!1,isChart:!1},{title:"Periode",name:"periode",tipe:"datetime",sort:!0,hide:!1,disable:!1,filter:!0,filterDefault:!0,isChart:!1},{title:"Laki-laki",name:"lk",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0,isChart:!0,isChartSelect:!1},{title:"Perempuan",name:"pr",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0,isChart:!0,isChartSelect:!1},{title:"Total Anggota",name:"total_anggota",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0,isChart:!0,isChartSelect:!1},{title:"Aset",name:"aset",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0,isChart:!0,isChartSelect:!1},{title:"SHU",name:"shu",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0,isChart:!0,isChartSelect:!1},{title:"Piutang Anggota",name:"piutang_anggota",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0,isChart:!0,isChartSelect:!1},{title:"Piutang Lalai",name:"piutang_lalai",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0,isChart:!0,isChartSelect:!1},{title:"Simpanan Anggota",name:"simpanan_anggota",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0,isChart:!0,isChartSelect:!1},{title:"DCU",name:"dcu",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0,isChart:!0,isChartSelect:!1},{title:"DCR",name:"dcr",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0,isChart:!0,isChartSelect:!1},{title:"Aset Lancar",name:"aset_lancar",tipe:"numeric",sort:!0,hide:!1,disable:!1,filter:!0,isChart:!0,isChartSelect:!1},{title:"Tgl. Buat",name:"created_at",tipe:"datetime",sort:!0,hide:!1,disable:!1,filter:!0,isChart:!1},{title:"Tgl. Ubah",name:"updated_at",tipe:"datetime",sort:!0,hide:!1,disable:!1,filter:!0,isChart:!1}],columnDataPearls:[]}},methods:{},computed:_(_({},Object(s.b)("auth",{currentUser:"currentUser"})),Object(s.b)("laporanGerakan",{itemData:"dataS",itemDataStat:"dataStatS"}))},y=Object(h.a)(C,(function(){var t=this,a=t.$createElement,e=t._self._c||a;return e("div",[e("page-header",{attrs:{title:t.title,titleDesc:t.titleDesc,titleIcon:t.titleIcon}}),t._v(" "),e("div",{staticClass:"page-content pt-0"},[e("div",{staticClass:"content-wrapper"},[e("div",{staticClass:"content"},["fail"===t.itemDataStat?e("message",{attrs:{title:"Oops terjadi kesalahan:",errorData:t.itemData}}):t._e(),t._v(" "),e("div",{staticClass:"row"},[e("div",{staticClass:"col-lg-12"},[e("grafik-laporan-cu-widget",{attrs:{id_cu:"0",columnData:t.columnData,columnDataPearls:t.columnDataPearls}})],1)]),t._v(" "),e("table-data",{attrs:{title:t.title,kelas:t.kelas,columnData:t.columnData}})],1)])])],1)}),[],!1,null,null,null);a.default=y.exports},dlci:function(t,a,e){"use strict";var s=e("LvDl"),i=e.n(s),r=e("JlGJ"),n=e.n(r),l=e("8MVx"),o={components:{echarts:n.a,appModal:l.a},props:["titleText","title","kelas","query","dataShownTitle1","dataShownName1","axisLabelKey","itemData","itemDataStat","columnData"],data:function(){return{pages:[],sortState:"",sortAscTitle:"",sortDescTitle:"",dataShown:[],line:{title:{text:"",subtext:""},tooltip:{trigger:"axis",axisPointer:{type:"shadow"}},grid:{left:"0%",containLabel:!0},xAxis:{type:"category",data:[],axisLabel:{rotate:90}},yAxis:{type:"value",data:[]},series:[]},modalShow:!1,modalState:"",modalTitle:"",modalButton:"",modalMobileOptionState:""}},created:function(){this.dataShown.push({title:this.dataShownTitle1,name:this.dataShownName1}),this.addSeries()},watch:{itemDataStat:function(t){"success"==t&&(this.emptyGraph(),this.setGraph(),this.calculatePagination(),this.checkEntriPage(this.query.limit))}},methods:{setGraph:function(){this.line.title.text=this.titleText,this.line.title.subtext="Menampilkan "+this.itemData.from+" - "+this.itemData.to+" entri dari "+this.itemData.total+" entri",this.line.xAxis.data=i.a.map(this.itemData.data,this.axisLabelKey);for(var t=0,a=this.dataShown.length;t<a;t++)this.line.series[t].data=i.a.map(this.itemData.data,this.dataShown[t].name)},emptyGraph:function(){this.line.title.text="",this.line.title.subtext="",this.line.yAxis.data=[];for(var t=0,a=this.dataShown.length;t<a;t++)this.line.series[t].data=[]},addColumn:function(){this.dataShown.push({title:this.dataShown[0].title,name:this.dataShown[0].name}),this.addSeries();var t=this.dataShown.length;this.line.series[t-1].data=i.a.map(this.itemData.data,this.dataShown[0].name)},addSeries:function(){var t=i.a.find(this.columnData,{name:this.dataShown[0].name}),a={name:t.title,data:[],type:"line",smooth:!0,stack:t.title};this.line.series.push(a)},removeColumn:function(t){this.dataShown.splice(t,1),this.line.series.splice(t,1)},changeColumn:function(t,a){var e=i.a.find(this.columnData,{name:t});this.line.series[a].name=e.title,this.line.series[a].data=i.a.map(this.itemData.data,t),this.dataShown[a].title=e.title,this.dataShown[a].name=t},checkClass:function(){return{"col-sm-12":1==this.dataShown.length,"col-sm-6":2==this.dataShown.length,"col-sm-4":this.dataShown.length>2}},updateLimit:function(){this.query.page=1,this.applyChange()},checkEntriPage:function(t){this.line.xAxis.axisLabel.rotate=t>=11&&t<=25?30:t>25?90:0},calculatePagination:function(){var t,a=0,e=0,s=0;for(s=4+(e=this.query.page<3?1:this.query.page-1),e-=e-(t=e-(s=this.itemData.last_page<s?this.itemData.last_page:s)+4)>0?t:0,this.pages.length=0,a=e;a<=s;a++)this.pages.push(a)},prevPage:function(){this.itemData.prev_page_url&&(this.query.page=Number(this.query.page)-1,this.applyChange())},goToPage:function(t){this.query.page!=t&&(this.query.page=t,this.applyChange())},nextPage:function(){this.itemData.next_page_url&&(this.query.page=Number(this.query.page)+1,this.applyChange())},applyChange:function(){this.fetch()},fetch:function(){this.$emit("fetch")}}},c=(e("vJ68"),e("KHd+")),u=Object(c.a)(o,(function(){var t=this,a=t.$createElement,e=t._self._c||a;return e("div",[e("div",{staticClass:"card "},[e("div",{staticClass:"card-body"},[e("div",{staticClass:"echart-container"},[e("echarts",{staticClass:"echarts",attrs:{options:t.line,"auto-resize":""}})],1),t._v(" "),e("hr"),t._v(" "),e("div",{staticClass:"row d-print-none"},[e("div",{staticClass:"col-md-12"},[e("div",{staticClass:"row"},[e("div",{staticClass:"col-md-4 pb-2"},[e("div",{staticClass:"input-group"},[t._m(0),t._v(" "),e("select",{directives:[{name:"model",rawName:"v-model",value:t.query.limit,expression:"query.limit"}],staticClass:"form-control",on:{change:[function(a){var e=Array.prototype.filter.call(a.target.options,(function(t){return t.selected})).map((function(t){return"_value"in t?t._value:t.value}));t.$set(t.query,"limit",a.target.multiple?e:e[0])},t.updateLimit]}},[e("option",[t._v("10")]),t._v(" "),e("option",[t._v("15")]),t._v(" "),e("option",[t._v("25")]),t._v(" "),e("option",[t._v("50")])])])]),t._v(" "),t._l(t.dataShown,(function(a,s){return e("div",{staticClass:"col-md-8 pb-2",class:t.checkClass()},[e("div",{staticClass:"input-group"},[t._m(1,!0),t._v(" "),e("select",{directives:[{name:"model",rawName:"v-model",value:t.dataShown[s].name,expression:"dataShown[index].name"}],staticClass:"form-control",attrs:{"data-width":"100%",disabled:"loading"===t.itemDataStat},on:{change:[function(a){var e=Array.prototype.filter.call(a.target.options,(function(t){return t.selected})).map((function(t){return"_value"in t?t._value:t.value}));t.$set(t.dataShown[s],"name",a.target.multiple?e:e[0])},function(a){return t.changeColumn(a.target.value,s)}]}},[e("option",{attrs:{disabled:"",value:""}},[t._v("Silahkan pilih data")]),t._v(" "),t._t("default"),t._v(" "),t._l(t.columnData,(function(a){return a.isChart?e("option",{domProps:{value:a.name,innerHTML:t._s(a.title)}}):t._e()}))],2),t._v(" "),t.dataShown.length>1?e("div",{staticClass:"input-group-prepend"},[e("button",{directives:[{name:"tooltip",rawName:"v-tooltip:top",value:"Hapus data ",expression:"'Hapus data '",arg:"top"}],staticClass:"btn btn-light",attrs:{disabled:"loading"===t.itemDataStat},on:{click:function(a){return t.removeColumn(s)}}},[e("i",{staticClass:"icon-database-remove"})])]):t._e()])])})),t._v(" "),e("div",{staticClass:"col-md-12 pb-2 text-left d-none d-md-block"},["success"===t.itemDataStat?e("div",{staticClass:"btn-group"},[e("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.prev_page_url},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.goToPage(1)}}},[e("i",{staticClass:"icon-backward2"})]),t._v(" "),e("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.prev_page_url},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.prevPage.apply(null,arguments)}}},[e("i",{staticClass:"icon-arrow-left5"})]),t._v(" "),t._l(t.pages,(function(a){return e("button",{staticClass:"btn",class:{"btn-primary":t.query.page==a,"btn-light":t.query.page!=a},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.goToPage(a)}}},[t._v("\n                    "+t._s(a)+"\n                ")])})),t._v(" "),e("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.next_page_url},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.nextPage.apply(null,arguments)}}},[e("i",{staticClass:"icon-arrow-right5"})]),t._v(" "),e("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.next_page_url},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.goToPage(t.itemData.last_page)}}},[e("i",{staticClass:"icon-forward3"})])],2):e("div",{staticClass:"btn-group"},[t._m(2),t._v(" "),t._m(3),t._v(" "),t._m(4),t._v(" "),t._m(5),t._v(" "),t._m(6)])]),t._v(" "),e("div",{staticClass:"col-md-12 pb-2 text-center d-block d-sm-none"},["success"===t.itemDataStat?e("div",{staticClass:"btn-group"},t._l(t.pages,(function(a){return e("button",{staticClass:"btn",class:{"btn-primary":t.query.page==a,"btn-light":t.query.page!=a},attrs:{href:"#"},on:{click:function(e){return e.preventDefault(),t.goToPage(a)}}},[t._v("\n                    "+t._s(a)+"\n                ")])})),0):t._e(),t._v(" "),e("br"),t._v(" "),"success"===t.itemDataStat?e("div",{staticClass:"btn-group pt-2"},[e("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.prev_page_url},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.goToPage(1)}}},[e("i",{staticClass:"icon-backward2"})]),t._v(" "),e("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.prev_page_url},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.prevPage.apply(null,arguments)}}},[e("i",{staticClass:"icon-arrow-left5"})]),t._v(" "),e("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.next_page_url},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.nextPage.apply(null,arguments)}}},[e("i",{staticClass:"icon-arrow-right5"})]),t._v(" "),e("button",{staticClass:"btn btn-light",class:{disabled:!t.itemData.next_page_url},attrs:{href:"#"},on:{click:function(a){return a.preventDefault(),t.goToPage(t.itemData.last_page)}}},[e("i",{staticClass:"icon-forward3"})])]):e("div",{staticClass:"btn-group"},[t._m(7),t._v(" "),t._m(8),t._v(" "),t._m(9),t._v(" "),t._m(10),t._v(" "),t._m(11)])])],2)])])])])])}),[function(){var t=this.$createElement,a=this._self._c||t;return a("span",{staticClass:"input-group-prepend"},[a("span",{staticClass:"input-group-text"},[this._v("Entri")])])},function(){var t=this.$createElement,a=this._self._c||t;return a("div",{staticClass:"input-group-append"},[a("span",{staticClass:"input-group-text"},[this._v("Pilih Data")])])},function(){var t=this.$createElement,a=this._self._c||t;return a("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[a("i",{staticClass:"icon-backward2"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[a("i",{staticClass:"icon-arrow-left5"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[a("i",{staticClass:"icon-spinner2 spinner"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[a("i",{staticClass:"icon-arrow-right5"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[a("i",{staticClass:"icon-forward3"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[a("i",{staticClass:"icon-backward2"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[a("i",{staticClass:"icon-arrow-left5"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[a("i",{staticClass:"icon-spinner2 spinner"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[a("i",{staticClass:"icon-arrow-right5"})])},function(){var t=this.$createElement,a=this._self._c||t;return a("button",{staticClass:"btn btn-light disabled",attrs:{href:"#"}},[a("i",{staticClass:"icon-forward3"})])}],!1,null,"08a37e85",null);a.a=u.exports},dsI9:function(t,a,e){"use strict";var s=e("XuX8"),i=e.n(s),r=e("L2JU"),n=e("DE7x"),l=e("dlci");function o(t,a){var e=Object.keys(t);if(Object.getOwnPropertySymbols){var s=Object.getOwnPropertySymbols(t);a&&(s=s.filter((function(a){return Object.getOwnPropertyDescriptor(t,a).enumerable}))),e.push.apply(e,s)}return e}function c(t){for(var a=1;a<arguments.length;a++){var e=null!=arguments[a]?arguments[a]:{};a%2?o(Object(e),!0).forEach((function(a){u(t,a,e[a])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(e)):o(Object(e)).forEach((function(a){Object.defineProperty(t,a,Object.getOwnPropertyDescriptor(e,a))}))}return t}function u(t,a,e){return a in t?Object.defineProperty(t,a,{value:e,enumerable:!0,configurable:!0,writable:!0}):t[a]=e,t}var d={components:{barChart:n.a,lineChart:l.a},props:["title","kelas","columnData"],data:function(){return{pages:[],titleText:"",dataShownTitle1:"Aset",dataShownName1:"aset",axisLabelKey:"cu_name",isFirstLoad:!0,cuName:"",periode:"",query:{order_column:"aset",order_direction:"desc",filter_match:"and",limit:50,page:1}}},created:function(){this.fetch()},watch:{$route:function(t,a){this.fetch()},itemDataStat:function(t){"success"==t&&("periode"==this.$route.meta.mode?this.titleText="Grafik Laporan Semua CU Periode "+this.formatPeriode(this.$route.params.periode):"cu"==this.$route.meta.mode?"konsolidasi"==this.$route.params.tp?this.titleText="Grafik Laporan konsolidasi CU "+this.itemData.data[0].cu.name:this.titleText="Grafik Laporan "+this.itemData.data[0].tp.name:"cuPeriode"==this.$route.meta.mode?this.titleText="Grafik Laporan Semua TP Periode"+this.formatPeriode(this.$route.params.periode):"detail"==this.$route.meta.mode?this.titleText="Grafik Laporan konsolidasi CU "+this.itemData.data[0].cu.name:"detailTp"==this.$route.meta.mode?this.titleText="Grafik Laporan "+this.itemData.data[0].tp.name:"dashboard"==this.$route.name?this.titleText="Grafik Laporan Perkembangan CU":(this.periode=_.orderBy(this.itemData.data,["periode"],["desc"]),this.titleText="Grafik Laporan Semua CU Periode "+this.formatPeriode(this.periode[0].periode)))}},methods:{fetch:function(){"periode"==this.$route.meta.mode?(this.$store.dispatch(this.kelas+"/grafikPeriode",[this.query,this.$route.params.periode]),this.axisLabelKey="cu_name",this.titleText="Grafik "+this.title+" periode "+this.formatPeriode(this.selectData)):"cu"==this.$route.meta.mode?("konsolidasi"==this.$route.params.tp?(this.$store.dispatch(this.kelas+"/grafikCu",[this.query,this.$route.params.cu]),this.query.order_column="periode",this.query.order_direction="asc"):this.$store.dispatch(this.kelas+"/grafikTp",[this.query,this.$route.params.tp]),this.axisLabelKey="periode"):"cuPeriode"==this.$route.meta.mode?(this.$store.dispatch(this.kelas+"/grafikTpPeriode",[this.query,this.$route.params.cu,this.$route.params.periode]),this.axisLabelKey="tp_name"):"detail"==this.$route.meta.mode?(this.$store.dispatch(this.kelas+"/grafikCu",[this.query,this.detailData.id_cu]),this.axisLabelKey="periode",this.query.order_column="periode",this.query.order_direction="asc"):"detailTp"==this.$route.meta.mode?(this.$store.dispatch(this.kelas+"/grafikTp",[this.query,this.detailData.id_tp]),this.axisLabelKey="periode",this.query.order_column="periode",this.query.order_direction="asc"):"dashboard"==this.$route.name?(this.$store.dispatch(this.kelas+"/grafikCu",[this.query,this.currentUser.id_cu]),this.query.order_column="periode",this.query.order_direction="asc",this.axisLabelKey="periode"):(this.$store.dispatch(this.kelas+"/grafikPeriode",[this.query,this.$route.params.periode]),this.axisLabelKey="cu_name","success"==this.itemDataStat&&(this.periode=_.orderBy(this.itemData.data,["periode"],["desc"]),this.titleText="Grafik "+this.title+" periode "+this.formatPeriode(this.periode[0].periode)))},checkPage:function(){this.itemData.total>=11&&this.itemData.total<=25?this.query.limit=25:this.itemData.total>25?this.query.limit=50:this.query.limit=10},formatPeriode:function(t){return i.a.filter("dateMonth")(t)}},computed:c(c({},Object(r.b)("auth",{currentUser:"currentUser"})),Object(r.b)("laporanCu",{detailData:"data",detailDataStat:"dataStat",itemData:"grafik",itemDataStat:"grafikStat"}))},p=e("KHd+"),h=Object(p.a)(d,(function(){var t=this,a=t.$createElement,e=t._self._c||a;return e("div",["cu"==this.$route.meta.mode||"detail"==this.$route.meta.mode||"detailTp"==this.$route.meta.mode||"dashboard"==this.$route.name?e("line-chart",{attrs:{titleText:t.titleText,title:t.title,kelas:t.kelas,query:t.query,dataShownTitle1:t.dataShownTitle1,dataShownName1:t.dataShownName1,axisLabelKey:t.axisLabelKey,itemData:t.itemData,itemDataStat:t.itemDataStat,columnData:t.columnData},on:{fetch:function(a){return t.fetch()}}}):(this.$route.meta.mode,e("bar-chart",{attrs:{titleText:t.titleText,title:t.title,kelas:t.kelas,query:t.query,dataShownTitle1:t.dataShownTitle1,dataShownName1:t.dataShownName1,axisLabelKey:t.axisLabelKey,itemData:t.itemData,itemDataStat:t.itemDataStat,columnData:t.columnData},on:{fetch:function(a){return t.fetch()}}}))],1)}),[],!1,null,null,null);a.a=h.exports},ev7E:function(t,a,e){"use strict";e("Vp+c")},hsdG:function(t,a,e){(t.exports=e("I1BE")(!1)).push([t.i,".echart-container[data-v-8f66c5e4]{overflow-x:scroll;overflow-y:visible;max-width:100%;position:relative;width:100%}.echarts[data-v-8f66c5e4]{width:100vw;height:70vh}.btn-group.special[data-v-8f66c5e4]{display:flex}.special .btn[data-v-8f66c5e4]{flex:1}",""])},i1K1:function(t,a,e){"use strict";e("T7Ja")},iRdl:function(t,a,e){"use strict";var s=e("XuX8"),i=e.n(s),r=e("L2JU"),n=e("DE7x"),l=e("dlci");function o(t,a){var e=Object.keys(t);if(Object.getOwnPropertySymbols){var s=Object.getOwnPropertySymbols(t);a&&(s=s.filter((function(a){return Object.getOwnPropertyDescriptor(t,a).enumerable}))),e.push.apply(e,s)}return e}function c(t){for(var a=1;a<arguments.length;a++){var e=null!=arguments[a]?arguments[a]:{};a%2?o(Object(e),!0).forEach((function(a){u(t,a,e[a])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(e)):o(Object(e)).forEach((function(a){Object.defineProperty(t,a,Object.getOwnPropertyDescriptor(e,a))}))}return t}function u(t,a,e){return a in t?Object.defineProperty(t,a,{value:e,enumerable:!0,configurable:!0,writable:!0}):t[a]=e,t}var d={components:{barChart:n.a,lineChart:l.a},props:["title","kelas","columnData"],data:function(){return{pages:[],titleText:"",dataShownTitle1:"P1",dataShownName1:"p1",axisLabelKey:"cu_name",isFirstLoad:!0,cuName:"",query:{order_column:"p1",order_direction:"desc",filter_match:"and",limit:50,page:1}}},created:function(){this.fetch()},watch:{$route:function(t,a){this.fetch()},itemDataStat:function(t){"success"==t&&("periode"==this.$route.meta.mode?this.titleText="Grafik Laporan Pearls Semua CU Periode "+this.formatPeriode(this.$route.params.periode):"cu"==this.$route.meta.mode?"konsolidasi"==this.$route.params.tp?this.titleText="Grafik Laporan Pearls konsolidasi CU "+this.itemData.data[0].cu.name:this.titleText="Grafik Laporan Pearls"+this.itemData.data[0].tp.name:"cuPeriode"==this.$route.meta.mode?this.titleText="Grafik Laporan Pearls Semua TP Periode"+this.formatPeriode(this.$route.params.periode):"detail"==this.$route.meta.mode?this.titleText="Grafik Laporan Pearls CU "+this.itemData.data[0].cu.name:"detailTp"==this.$route.meta.mode?this.titleText="Grafik Laporan Pearls "+this.itemData.data[0].tp.name:"dashboard"==this.$route.name?this.titleText="Grafik Laporan Perkembangan CU":this.titleText="Grafik Laporan Pearls Semua CU Periode "+this.formatPeriode(this.$route.params.periode))}},methods:{fetch:function(){"periode"==this.$route.meta.mode?(this.$store.dispatch(this.kelas+"/grafikPearlsPeriode",[this.query,this.$route.params.periode]),this.axisLabelKey="cu_name",this.titleText="Grafik Pearls "+this.title+" periode "+this.formatPeriode(this.selectData)):"cu"==this.$route.meta.mode?"konsolidasi"==this.$route.params.tp?(this.$store.dispatch(this.kelas+"/grafikPearlsCu",[this.query,this.$route.params.cu]),this.axisLabelKey="periode"):(this.$store.dispatch(this.kelas+"/grafikPearlsTp",[this.query,this.$route.params.tp]),this.axisLabelKey="periode"):"cuPeriode"==this.$route.meta.mode?(this.$store.dispatch(this.kelas+"/grafikPearlsTpPeriode",[this.query,this.$route.params.cu,this.$route.params.periode]),this.axisLabelKey="tp_name"):"detail"==this.$route.meta.mode?(this.$store.dispatch(this.kelas+"/grafikPearlsCu",[this.query,this.detailData.id_cu]),this.axisLabelKey="periode",this.query.order_column="periode",this.query.order_direction="asc"):"detailTp"==this.$route.meta.mode?(this.$store.dispatch(this.kelas+"/grafikPearlsTp",[this.query,this.detailData.id_tp]),this.axisLabelKey="periode",this.query.order_column="periode",this.query.order_direction="asc"):"dashboard"==this.$route.name?(this.$store.dispatch(this.kelas+"/grafikPearlsCu",[this.query,this.currentUser.id_cu]),this.axisLabelKey="periode"):(this.$store.dispatch(this.kelas+"/grafikPearlsPeriode",[this.query,this.$route.params.periode]),this.axisLabelKey="cu_name",this.titleText="Grafik Pearls"+this.title+" periode "+this.formatPeriode(this.selectData))},checkPage:function(){this.itemData.total>=11&&this.itemData.total<=25?this.query.limit=25:this.itemData.total>25?this.query.limit=50:this.query.limit=10},formatPeriode:function(t){return i.a.filter("dateMonth")(t)}},computed:c(c({},Object(r.b)("auth",{currentUser:"currentUser"})),Object(r.b)("laporanCu",{detailData:"pearls",detailDataStat:"pearlsStat",itemData:"grafikPearls",itemDataStat:"grafikPearlsStat"}))},p=e("KHd+"),h=Object(p.a)(d,(function(){var t=this,a=t.$createElement,e=t._self._c||a;return e("div",["cu"==this.$route.meta.mode||"detail"==this.$route.meta.mode||"detailTp"==this.$route.meta.mode||"dashboard"==this.$route.name?e("line-chart",{attrs:{titleText:t.titleText,title:t.title,kelas:t.kelas,query:t.query,dataShownTitle1:t.dataShownTitle1,dataShownName1:t.dataShownName1,axisLabelKey:t.axisLabelKey,itemData:t.itemData,itemDataStat:t.itemDataStat,columnData:t.columnData},on:{fetch:function(a){return t.fetch()}}}):(this.$route.meta.mode,e("bar-chart",{attrs:{titleText:t.titleText,title:t.title,kelas:t.kelas,query:t.query,dataShownTitle1:t.dataShownTitle1,dataShownName1:t.dataShownName1,axisLabelKey:t.axisLabelKey,itemData:t.itemData,itemDataStat:t.itemDataStat,columnData:t.columnData},on:{fetch:function(a){return t.fetch()}}}))],1)}),[],!1,null,null,null);a.a=h.exports},jTfn:function(t,a,e){var s=e("zVWy");"string"==typeof s&&(s=[[t.i,s,""]]);var i={hmr:!0,transform:void 0,insertInto:void 0};e("aET+")(s,i);s.locals&&(t.exports=s.locals)},vJ68:function(t,a,e){"use strict";e("jTfn")},zVWy:function(t,a,e){(t.exports=e("I1BE")(!1)).push([t.i,".echart-container[data-v-08a37e85]{overflow-x:scroll;overflow-y:visible;max-width:100%;position:relative;width:100%}.echarts[data-v-08a37e85]{width:100vw;height:70vh}.btn-group.special[data-v-08a37e85]{display:flex}.special .btn[data-v-08a37e85]{flex:1}",""])}}]);
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[22],{
+
+/***/ "./node_modules/file-saver/dist/FileSaver.min.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/file-saver/dist/FileSaver.min.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(a,b){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (b),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else {}})(this,function(){"use strict";function b(a,b){return"undefined"==typeof b?b={autoBom:!1}:"object"!=typeof b&&(console.warn("Deprecated: Expected third argument to be a object"),b={autoBom:!b}),b.autoBom&&/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(a.type)?new Blob(["\uFEFF",a],{type:a.type}):a}function c(a,b,c){var d=new XMLHttpRequest;d.open("GET",a),d.responseType="blob",d.onload=function(){g(d.response,b,c)},d.onerror=function(){console.error("could not download file")},d.send()}function d(a){var b=new XMLHttpRequest;b.open("HEAD",a,!1);try{b.send()}catch(a){}return 200<=b.status&&299>=b.status}function e(a){try{a.dispatchEvent(new MouseEvent("click"))}catch(c){var b=document.createEvent("MouseEvents");b.initMouseEvent("click",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),a.dispatchEvent(b)}}var f="object"==typeof window&&window.window===window?window:"object"==typeof self&&self.self===self?self:"object"==typeof global&&global.global===global?global:void 0,a=f.navigator&&/Macintosh/.test(navigator.userAgent)&&/AppleWebKit/.test(navigator.userAgent)&&!/Safari/.test(navigator.userAgent),g=f.saveAs||("object"!=typeof window||window!==f?function(){}:"download"in HTMLAnchorElement.prototype&&!a?function(b,g,h){var i=f.URL||f.webkitURL,j=document.createElement("a");g=g||b.name||"download",j.download=g,j.rel="noopener","string"==typeof b?(j.href=b,j.origin===location.origin?e(j):d(j.href)?c(b,g,h):e(j,j.target="_blank")):(j.href=i.createObjectURL(b),setTimeout(function(){i.revokeObjectURL(j.href)},4E4),setTimeout(function(){e(j)},0))}:"msSaveOrOpenBlob"in navigator?function(f,g,h){if(g=g||f.name||"download","string"!=typeof f)navigator.msSaveOrOpenBlob(b(f,h),g);else if(d(f))c(f,g,h);else{var i=document.createElement("a");i.href=f,i.target="_blank",setTimeout(function(){e(i)})}}:function(b,d,e,g){if(g=g||open("","_blank"),g&&(g.document.title=g.document.body.innerText="downloading..."),"string"==typeof b)return c(b,d,e);var h="application/octet-stream"===b.type,i=/constructor/i.test(f.HTMLElement)||f.safari,j=/CriOS\/[\d]+/.test(navigator.userAgent);if((j||h&&i||a)&&"undefined"!=typeof FileReader){var k=new FileReader;k.onloadend=function(){var a=k.result;a=j?a:a.replace(/^data:[^;]*;/,"data:attachment/file;"),g?g.location.href=a:location=a,g=null},k.readAsDataURL(b)}else{var l=f.URL||f.webkitURL,m=l.createObjectURL(b);g?g.location=m:location.href=m,g=null,setTimeout(function(){l.revokeObjectURL(m)},4E4)}});f.saveAs=g.saveAs=g, true&&(module.exports=g)});
+
+//# sourceMappingURL=FileSaver.min.js.map
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/qrcode.vue/dist/qrcode.vue.esm.js":
+/*!********************************************************!*\
+  !*** ./node_modules/qrcode.vue/dist/qrcode.vue.esm.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/*!
+ * qrcode.vue v1.7.0
+ * A Vue component to generate QRCode.
+ * © 2017-2019 @scopewu(https://github.com/scopewu)
+ * MIT License.
+ */
+var mode = {
+  MODE_NUMBER: 1 << 0,
+  MODE_ALPHA_NUM: 1 << 1,
+  MODE_8BIT_BYTE: 1 << 2,
+  MODE_KANJI: 1 << 3
+};
+
+function QR8bitByte(data) {
+  this.mode = mode.MODE_8BIT_BYTE;
+  this.data = data;
+}
+
+QR8bitByte.prototype = {
+  getLength: function (buffer) {
+    return this.data.length;
+  },
+  write: function (buffer) {
+    for (var i = 0; i < this.data.length; i++) {
+      // not JIS ...
+      buffer.put(this.data.charCodeAt(i), 8);
+    }
+  }
+};
+var _8BitByte = QR8bitByte;
+
+var ErrorCorrectLevel = {
+  L: 1,
+  M: 0,
+  Q: 3,
+  H: 2
+};
+
+function QRRSBlock(totalCount, dataCount) {
+  this.totalCount = totalCount;
+  this.dataCount = dataCount;
+}
+
+QRRSBlock.RS_BLOCK_TABLE = [// L
+// M
+// Q
+// H
+// 1
+[1, 26, 19], [1, 26, 16], [1, 26, 13], [1, 26, 9], // 2
+[1, 44, 34], [1, 44, 28], [1, 44, 22], [1, 44, 16], // 3
+[1, 70, 55], [1, 70, 44], [2, 35, 17], [2, 35, 13], // 4		
+[1, 100, 80], [2, 50, 32], [2, 50, 24], [4, 25, 9], // 5
+[1, 134, 108], [2, 67, 43], [2, 33, 15, 2, 34, 16], [2, 33, 11, 2, 34, 12], // 6
+[2, 86, 68], [4, 43, 27], [4, 43, 19], [4, 43, 15], // 7		
+[2, 98, 78], [4, 49, 31], [2, 32, 14, 4, 33, 15], [4, 39, 13, 1, 40, 14], // 8
+[2, 121, 97], [2, 60, 38, 2, 61, 39], [4, 40, 18, 2, 41, 19], [4, 40, 14, 2, 41, 15], // 9
+[2, 146, 116], [3, 58, 36, 2, 59, 37], [4, 36, 16, 4, 37, 17], [4, 36, 12, 4, 37, 13], // 10		
+[2, 86, 68, 2, 87, 69], [4, 69, 43, 1, 70, 44], [6, 43, 19, 2, 44, 20], [6, 43, 15, 2, 44, 16], // 11
+[4, 101, 81], [1, 80, 50, 4, 81, 51], [4, 50, 22, 4, 51, 23], [3, 36, 12, 8, 37, 13], // 12
+[2, 116, 92, 2, 117, 93], [6, 58, 36, 2, 59, 37], [4, 46, 20, 6, 47, 21], [7, 42, 14, 4, 43, 15], // 13
+[4, 133, 107], [8, 59, 37, 1, 60, 38], [8, 44, 20, 4, 45, 21], [12, 33, 11, 4, 34, 12], // 14
+[3, 145, 115, 1, 146, 116], [4, 64, 40, 5, 65, 41], [11, 36, 16, 5, 37, 17], [11, 36, 12, 5, 37, 13], // 15
+[5, 109, 87, 1, 110, 88], [5, 65, 41, 5, 66, 42], [5, 54, 24, 7, 55, 25], [11, 36, 12], // 16
+[5, 122, 98, 1, 123, 99], [7, 73, 45, 3, 74, 46], [15, 43, 19, 2, 44, 20], [3, 45, 15, 13, 46, 16], // 17
+[1, 135, 107, 5, 136, 108], [10, 74, 46, 1, 75, 47], [1, 50, 22, 15, 51, 23], [2, 42, 14, 17, 43, 15], // 18
+[5, 150, 120, 1, 151, 121], [9, 69, 43, 4, 70, 44], [17, 50, 22, 1, 51, 23], [2, 42, 14, 19, 43, 15], // 19
+[3, 141, 113, 4, 142, 114], [3, 70, 44, 11, 71, 45], [17, 47, 21, 4, 48, 22], [9, 39, 13, 16, 40, 14], // 20
+[3, 135, 107, 5, 136, 108], [3, 67, 41, 13, 68, 42], [15, 54, 24, 5, 55, 25], [15, 43, 15, 10, 44, 16], // 21
+[4, 144, 116, 4, 145, 117], [17, 68, 42], [17, 50, 22, 6, 51, 23], [19, 46, 16, 6, 47, 17], // 22
+[2, 139, 111, 7, 140, 112], [17, 74, 46], [7, 54, 24, 16, 55, 25], [34, 37, 13], // 23
+[4, 151, 121, 5, 152, 122], [4, 75, 47, 14, 76, 48], [11, 54, 24, 14, 55, 25], [16, 45, 15, 14, 46, 16], // 24
+[6, 147, 117, 4, 148, 118], [6, 73, 45, 14, 74, 46], [11, 54, 24, 16, 55, 25], [30, 46, 16, 2, 47, 17], // 25
+[8, 132, 106, 4, 133, 107], [8, 75, 47, 13, 76, 48], [7, 54, 24, 22, 55, 25], [22, 45, 15, 13, 46, 16], // 26
+[10, 142, 114, 2, 143, 115], [19, 74, 46, 4, 75, 47], [28, 50, 22, 6, 51, 23], [33, 46, 16, 4, 47, 17], // 27
+[8, 152, 122, 4, 153, 123], [22, 73, 45, 3, 74, 46], [8, 53, 23, 26, 54, 24], [12, 45, 15, 28, 46, 16], // 28
+[3, 147, 117, 10, 148, 118], [3, 73, 45, 23, 74, 46], [4, 54, 24, 31, 55, 25], [11, 45, 15, 31, 46, 16], // 29
+[7, 146, 116, 7, 147, 117], [21, 73, 45, 7, 74, 46], [1, 53, 23, 37, 54, 24], [19, 45, 15, 26, 46, 16], // 30
+[5, 145, 115, 10, 146, 116], [19, 75, 47, 10, 76, 48], [15, 54, 24, 25, 55, 25], [23, 45, 15, 25, 46, 16], // 31
+[13, 145, 115, 3, 146, 116], [2, 74, 46, 29, 75, 47], [42, 54, 24, 1, 55, 25], [23, 45, 15, 28, 46, 16], // 32
+[17, 145, 115], [10, 74, 46, 23, 75, 47], [10, 54, 24, 35, 55, 25], [19, 45, 15, 35, 46, 16], // 33
+[17, 145, 115, 1, 146, 116], [14, 74, 46, 21, 75, 47], [29, 54, 24, 19, 55, 25], [11, 45, 15, 46, 46, 16], // 34
+[13, 145, 115, 6, 146, 116], [14, 74, 46, 23, 75, 47], [44, 54, 24, 7, 55, 25], [59, 46, 16, 1, 47, 17], // 35
+[12, 151, 121, 7, 152, 122], [12, 75, 47, 26, 76, 48], [39, 54, 24, 14, 55, 25], [22, 45, 15, 41, 46, 16], // 36
+[6, 151, 121, 14, 152, 122], [6, 75, 47, 34, 76, 48], [46, 54, 24, 10, 55, 25], [2, 45, 15, 64, 46, 16], // 37
+[17, 152, 122, 4, 153, 123], [29, 74, 46, 14, 75, 47], [49, 54, 24, 10, 55, 25], [24, 45, 15, 46, 46, 16], // 38
+[4, 152, 122, 18, 153, 123], [13, 74, 46, 32, 75, 47], [48, 54, 24, 14, 55, 25], [42, 45, 15, 32, 46, 16], // 39
+[20, 147, 117, 4, 148, 118], [40, 75, 47, 7, 76, 48], [43, 54, 24, 22, 55, 25], [10, 45, 15, 67, 46, 16], // 40
+[19, 148, 118, 6, 149, 119], [18, 75, 47, 31, 76, 48], [34, 54, 24, 34, 55, 25], [20, 45, 15, 61, 46, 16]];
+
+QRRSBlock.getRSBlocks = function (typeNumber, errorCorrectLevel) {
+  var rsBlock = QRRSBlock.getRsBlockTable(typeNumber, errorCorrectLevel);
+
+  if (rsBlock == undefined) {
+    throw new Error("bad rs block @ typeNumber:" + typeNumber + "/errorCorrectLevel:" + errorCorrectLevel);
+  }
+
+  var length = rsBlock.length / 3;
+  var list = new Array();
+
+  for (var i = 0; i < length; i++) {
+    var count = rsBlock[i * 3 + 0];
+    var totalCount = rsBlock[i * 3 + 1];
+    var dataCount = rsBlock[i * 3 + 2];
+
+    for (var j = 0; j < count; j++) {
+      list.push(new QRRSBlock(totalCount, dataCount));
+    }
+  }
+
+  return list;
+};
+
+QRRSBlock.getRsBlockTable = function (typeNumber, errorCorrectLevel) {
+  switch (errorCorrectLevel) {
+    case ErrorCorrectLevel.L:
+      return QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 0];
+
+    case ErrorCorrectLevel.M:
+      return QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 1];
+
+    case ErrorCorrectLevel.Q:
+      return QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 2];
+
+    case ErrorCorrectLevel.H:
+      return QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 3];
+
+    default:
+      return undefined;
+  }
+};
+
+var RSBlock = QRRSBlock;
+
+function QRBitBuffer() {
+  this.buffer = new Array();
+  this.length = 0;
+}
+
+QRBitBuffer.prototype = {
+  get: function (index) {
+    var bufIndex = Math.floor(index / 8);
+    return (this.buffer[bufIndex] >>> 7 - index % 8 & 1) == 1;
+  },
+  put: function (num, length) {
+    for (var i = 0; i < length; i++) {
+      this.putBit((num >>> length - i - 1 & 1) == 1);
+    }
+  },
+  getLengthInBits: function () {
+    return this.length;
+  },
+  putBit: function (bit) {
+    var bufIndex = Math.floor(this.length / 8);
+
+    if (this.buffer.length <= bufIndex) {
+      this.buffer.push(0);
+    }
+
+    if (bit) {
+      this.buffer[bufIndex] |= 0x80 >>> this.length % 8;
+    }
+
+    this.length++;
+  }
+};
+var BitBuffer = QRBitBuffer;
+
+var QRMath = {
+  glog: function (n) {
+    if (n < 1) {
+      throw new Error("glog(" + n + ")");
+    }
+
+    return QRMath.LOG_TABLE[n];
+  },
+  gexp: function (n) {
+    while (n < 0) {
+      n += 255;
+    }
+
+    while (n >= 256) {
+      n -= 255;
+    }
+
+    return QRMath.EXP_TABLE[n];
+  },
+  EXP_TABLE: new Array(256),
+  LOG_TABLE: new Array(256)
+};
+
+for (var i = 0; i < 8; i++) {
+  QRMath.EXP_TABLE[i] = 1 << i;
+}
+
+for (var i = 8; i < 256; i++) {
+  QRMath.EXP_TABLE[i] = QRMath.EXP_TABLE[i - 4] ^ QRMath.EXP_TABLE[i - 5] ^ QRMath.EXP_TABLE[i - 6] ^ QRMath.EXP_TABLE[i - 8];
+}
+
+for (var i = 0; i < 255; i++) {
+  QRMath.LOG_TABLE[QRMath.EXP_TABLE[i]] = i;
+}
+
+var math = QRMath;
+
+function QRPolynomial(num, shift) {
+  if (num.length == undefined) {
+    throw new Error(num.length + "/" + shift);
+  }
+
+  var offset = 0;
+
+  while (offset < num.length && num[offset] == 0) {
+    offset++;
+  }
+
+  this.num = new Array(num.length - offset + shift);
+
+  for (var i = 0; i < num.length - offset; i++) {
+    this.num[i] = num[i + offset];
+  }
+}
+
+QRPolynomial.prototype = {
+  get: function (index) {
+    return this.num[index];
+  },
+  getLength: function () {
+    return this.num.length;
+  },
+  multiply: function (e) {
+    var num = new Array(this.getLength() + e.getLength() - 1);
+
+    for (var i = 0; i < this.getLength(); i++) {
+      for (var j = 0; j < e.getLength(); j++) {
+        num[i + j] ^= math.gexp(math.glog(this.get(i)) + math.glog(e.get(j)));
+      }
+    }
+
+    return new QRPolynomial(num, 0);
+  },
+  mod: function (e) {
+    if (this.getLength() - e.getLength() < 0) {
+      return this;
+    }
+
+    var ratio = math.glog(this.get(0)) - math.glog(e.get(0));
+    var num = new Array(this.getLength());
+
+    for (var i = 0; i < this.getLength(); i++) {
+      num[i] = this.get(i);
+    }
+
+    for (var i = 0; i < e.getLength(); i++) {
+      num[i] ^= math.gexp(math.glog(e.get(i)) + ratio);
+    } // recursive call
+
+
+    return new QRPolynomial(num, 0).mod(e);
+  }
+};
+var Polynomial = QRPolynomial;
+
+var QRMaskPattern = {
+  PATTERN000: 0,
+  PATTERN001: 1,
+  PATTERN010: 2,
+  PATTERN011: 3,
+  PATTERN100: 4,
+  PATTERN101: 5,
+  PATTERN110: 6,
+  PATTERN111: 7
+};
+var QRUtil = {
+  PATTERN_POSITION_TABLE: [[], [6, 18], [6, 22], [6, 26], [6, 30], [6, 34], [6, 22, 38], [6, 24, 42], [6, 26, 46], [6, 28, 50], [6, 30, 54], [6, 32, 58], [6, 34, 62], [6, 26, 46, 66], [6, 26, 48, 70], [6, 26, 50, 74], [6, 30, 54, 78], [6, 30, 56, 82], [6, 30, 58, 86], [6, 34, 62, 90], [6, 28, 50, 72, 94], [6, 26, 50, 74, 98], [6, 30, 54, 78, 102], [6, 28, 54, 80, 106], [6, 32, 58, 84, 110], [6, 30, 58, 86, 114], [6, 34, 62, 90, 118], [6, 26, 50, 74, 98, 122], [6, 30, 54, 78, 102, 126], [6, 26, 52, 78, 104, 130], [6, 30, 56, 82, 108, 134], [6, 34, 60, 86, 112, 138], [6, 30, 58, 86, 114, 142], [6, 34, 62, 90, 118, 146], [6, 30, 54, 78, 102, 126, 150], [6, 24, 50, 76, 102, 128, 154], [6, 28, 54, 80, 106, 132, 158], [6, 32, 58, 84, 110, 136, 162], [6, 26, 54, 82, 110, 138, 166], [6, 30, 58, 86, 114, 142, 170]],
+  G15: 1 << 10 | 1 << 8 | 1 << 5 | 1 << 4 | 1 << 2 | 1 << 1 | 1 << 0,
+  G18: 1 << 12 | 1 << 11 | 1 << 10 | 1 << 9 | 1 << 8 | 1 << 5 | 1 << 2 | 1 << 0,
+  G15_MASK: 1 << 14 | 1 << 12 | 1 << 10 | 1 << 4 | 1 << 1,
+  getBCHTypeInfo: function (data) {
+    var d = data << 10;
+
+    while (QRUtil.getBCHDigit(d) - QRUtil.getBCHDigit(QRUtil.G15) >= 0) {
+      d ^= QRUtil.G15 << QRUtil.getBCHDigit(d) - QRUtil.getBCHDigit(QRUtil.G15);
+    }
+
+    return (data << 10 | d) ^ QRUtil.G15_MASK;
+  },
+  getBCHTypeNumber: function (data) {
+    var d = data << 12;
+
+    while (QRUtil.getBCHDigit(d) - QRUtil.getBCHDigit(QRUtil.G18) >= 0) {
+      d ^= QRUtil.G18 << QRUtil.getBCHDigit(d) - QRUtil.getBCHDigit(QRUtil.G18);
+    }
+
+    return data << 12 | d;
+  },
+  getBCHDigit: function (data) {
+    var digit = 0;
+
+    while (data != 0) {
+      digit++;
+      data >>>= 1;
+    }
+
+    return digit;
+  },
+  getPatternPosition: function (typeNumber) {
+    return QRUtil.PATTERN_POSITION_TABLE[typeNumber - 1];
+  },
+  getMask: function (maskPattern, i, j) {
+    switch (maskPattern) {
+      case QRMaskPattern.PATTERN000:
+        return (i + j) % 2 == 0;
+
+      case QRMaskPattern.PATTERN001:
+        return i % 2 == 0;
+
+      case QRMaskPattern.PATTERN010:
+        return j % 3 == 0;
+
+      case QRMaskPattern.PATTERN011:
+        return (i + j) % 3 == 0;
+
+      case QRMaskPattern.PATTERN100:
+        return (Math.floor(i / 2) + Math.floor(j / 3)) % 2 == 0;
+
+      case QRMaskPattern.PATTERN101:
+        return i * j % 2 + i * j % 3 == 0;
+
+      case QRMaskPattern.PATTERN110:
+        return (i * j % 2 + i * j % 3) % 2 == 0;
+
+      case QRMaskPattern.PATTERN111:
+        return (i * j % 3 + (i + j) % 2) % 2 == 0;
+
+      default:
+        throw new Error("bad maskPattern:" + maskPattern);
+    }
+  },
+  getErrorCorrectPolynomial: function (errorCorrectLength) {
+    var a = new Polynomial([1], 0);
+
+    for (var i = 0; i < errorCorrectLength; i++) {
+      a = a.multiply(new Polynomial([1, math.gexp(i)], 0));
+    }
+
+    return a;
+  },
+  getLengthInBits: function (mode$1, type) {
+    if (1 <= type && type < 10) {
+      // 1 - 9
+      switch (mode$1) {
+        case mode.MODE_NUMBER:
+          return 10;
+
+        case mode.MODE_ALPHA_NUM:
+          return 9;
+
+        case mode.MODE_8BIT_BYTE:
+          return 8;
+
+        case mode.MODE_KANJI:
+          return 8;
+
+        default:
+          throw new Error("mode:" + mode$1);
+      }
+    } else if (type < 27) {
+      // 10 - 26
+      switch (mode$1) {
+        case mode.MODE_NUMBER:
+          return 12;
+
+        case mode.MODE_ALPHA_NUM:
+          return 11;
+
+        case mode.MODE_8BIT_BYTE:
+          return 16;
+
+        case mode.MODE_KANJI:
+          return 10;
+
+        default:
+          throw new Error("mode:" + mode$1);
+      }
+    } else if (type < 41) {
+      // 27 - 40
+      switch (mode$1) {
+        case mode.MODE_NUMBER:
+          return 14;
+
+        case mode.MODE_ALPHA_NUM:
+          return 13;
+
+        case mode.MODE_8BIT_BYTE:
+          return 16;
+
+        case mode.MODE_KANJI:
+          return 12;
+
+        default:
+          throw new Error("mode:" + mode$1);
+      }
+    } else {
+      throw new Error("type:" + type);
+    }
+  },
+  getLostPoint: function (qrCode) {
+    var moduleCount = qrCode.getModuleCount();
+    var lostPoint = 0; // LEVEL1
+
+    for (var row = 0; row < moduleCount; row++) {
+      for (var col = 0; col < moduleCount; col++) {
+        var sameCount = 0;
+        var dark = qrCode.isDark(row, col);
+
+        for (var r = -1; r <= 1; r++) {
+          if (row + r < 0 || moduleCount <= row + r) {
+            continue;
+          }
+
+          for (var c = -1; c <= 1; c++) {
+            if (col + c < 0 || moduleCount <= col + c) {
+              continue;
+            }
+
+            if (r == 0 && c == 0) {
+              continue;
+            }
+
+            if (dark == qrCode.isDark(row + r, col + c)) {
+              sameCount++;
+            }
+          }
+        }
+
+        if (sameCount > 5) {
+          lostPoint += 3 + sameCount - 5;
+        }
+      }
+    } // LEVEL2
+
+
+    for (var row = 0; row < moduleCount - 1; row++) {
+      for (var col = 0; col < moduleCount - 1; col++) {
+        var count = 0;
+        if (qrCode.isDark(row, col)) count++;
+        if (qrCode.isDark(row + 1, col)) count++;
+        if (qrCode.isDark(row, col + 1)) count++;
+        if (qrCode.isDark(row + 1, col + 1)) count++;
+
+        if (count == 0 || count == 4) {
+          lostPoint += 3;
+        }
+      }
+    } // LEVEL3
+
+
+    for (var row = 0; row < moduleCount; row++) {
+      for (var col = 0; col < moduleCount - 6; col++) {
+        if (qrCode.isDark(row, col) && !qrCode.isDark(row, col + 1) && qrCode.isDark(row, col + 2) && qrCode.isDark(row, col + 3) && qrCode.isDark(row, col + 4) && !qrCode.isDark(row, col + 5) && qrCode.isDark(row, col + 6)) {
+          lostPoint += 40;
+        }
+      }
+    }
+
+    for (var col = 0; col < moduleCount; col++) {
+      for (var row = 0; row < moduleCount - 6; row++) {
+        if (qrCode.isDark(row, col) && !qrCode.isDark(row + 1, col) && qrCode.isDark(row + 2, col) && qrCode.isDark(row + 3, col) && qrCode.isDark(row + 4, col) && !qrCode.isDark(row + 5, col) && qrCode.isDark(row + 6, col)) {
+          lostPoint += 40;
+        }
+      }
+    } // LEVEL4
+
+
+    var darkCount = 0;
+
+    for (var col = 0; col < moduleCount; col++) {
+      for (var row = 0; row < moduleCount; row++) {
+        if (qrCode.isDark(row, col)) {
+          darkCount++;
+        }
+      }
+    }
+
+    var ratio = Math.abs(100 * darkCount / moduleCount / moduleCount - 50) / 5;
+    lostPoint += ratio * 10;
+    return lostPoint;
+  }
+};
+var util = QRUtil;
+
+function QRCode(typeNumber, errorCorrectLevel) {
+  this.typeNumber = typeNumber;
+  this.errorCorrectLevel = errorCorrectLevel;
+  this.modules = null;
+  this.moduleCount = 0;
+  this.dataCache = null;
+  this.dataList = [];
+} // for client side minification
+
+
+var proto = QRCode.prototype;
+
+proto.addData = function (data) {
+  var newData = new _8BitByte(data);
+  this.dataList.push(newData);
+  this.dataCache = null;
+};
+
+proto.isDark = function (row, col) {
+  if (row < 0 || this.moduleCount <= row || col < 0 || this.moduleCount <= col) {
+    throw new Error(row + "," + col);
+  }
+
+  return this.modules[row][col];
+};
+
+proto.getModuleCount = function () {
+  return this.moduleCount;
+};
+
+proto.make = function () {
+  // Calculate automatically typeNumber if provided is < 1
+  if (this.typeNumber < 1) {
+    var typeNumber = 1;
+
+    for (typeNumber = 1; typeNumber < 40; typeNumber++) {
+      var rsBlocks = RSBlock.getRSBlocks(typeNumber, this.errorCorrectLevel);
+      var buffer = new BitBuffer();
+      var totalDataCount = 0;
+
+      for (var i = 0; i < rsBlocks.length; i++) {
+        totalDataCount += rsBlocks[i].dataCount;
+      }
+
+      for (var i = 0; i < this.dataList.length; i++) {
+        var data = this.dataList[i];
+        buffer.put(data.mode, 4);
+        buffer.put(data.getLength(), util.getLengthInBits(data.mode, typeNumber));
+        data.write(buffer);
+      }
+
+      if (buffer.getLengthInBits() <= totalDataCount * 8) break;
+    }
+
+    this.typeNumber = typeNumber;
+  }
+
+  this.makeImpl(false, this.getBestMaskPattern());
+};
+
+proto.makeImpl = function (test, maskPattern) {
+  this.moduleCount = this.typeNumber * 4 + 17;
+  this.modules = new Array(this.moduleCount);
+
+  for (var row = 0; row < this.moduleCount; row++) {
+    this.modules[row] = new Array(this.moduleCount);
+
+    for (var col = 0; col < this.moduleCount; col++) {
+      this.modules[row][col] = null; //(col + row) % 3;
+    }
+  }
+
+  this.setupPositionProbePattern(0, 0);
+  this.setupPositionProbePattern(this.moduleCount - 7, 0);
+  this.setupPositionProbePattern(0, this.moduleCount - 7);
+  this.setupPositionAdjustPattern();
+  this.setupTimingPattern();
+  this.setupTypeInfo(test, maskPattern);
+
+  if (this.typeNumber >= 7) {
+    this.setupTypeNumber(test);
+  }
+
+  if (this.dataCache == null) {
+    this.dataCache = QRCode.createData(this.typeNumber, this.errorCorrectLevel, this.dataList);
+  }
+
+  this.mapData(this.dataCache, maskPattern);
+};
+
+proto.setupPositionProbePattern = function (row, col) {
+  for (var r = -1; r <= 7; r++) {
+    if (row + r <= -1 || this.moduleCount <= row + r) continue;
+
+    for (var c = -1; c <= 7; c++) {
+      if (col + c <= -1 || this.moduleCount <= col + c) continue;
+
+      if (0 <= r && r <= 6 && (c == 0 || c == 6) || 0 <= c && c <= 6 && (r == 0 || r == 6) || 2 <= r && r <= 4 && 2 <= c && c <= 4) {
+        this.modules[row + r][col + c] = true;
+      } else {
+        this.modules[row + r][col + c] = false;
+      }
+    }
+  }
+};
+
+proto.getBestMaskPattern = function () {
+  var minLostPoint = 0;
+  var pattern = 0;
+
+  for (var i = 0; i < 8; i++) {
+    this.makeImpl(true, i);
+    var lostPoint = util.getLostPoint(this);
+
+    if (i == 0 || minLostPoint > lostPoint) {
+      minLostPoint = lostPoint;
+      pattern = i;
+    }
+  }
+
+  return pattern;
+};
+
+proto.createMovieClip = function (target_mc, instance_name, depth) {
+  var qr_mc = target_mc.createEmptyMovieClip(instance_name, depth);
+  var cs = 1;
+  this.make();
+
+  for (var row = 0; row < this.modules.length; row++) {
+    var y = row * cs;
+
+    for (var col = 0; col < this.modules[row].length; col++) {
+      var x = col * cs;
+      var dark = this.modules[row][col];
+
+      if (dark) {
+        qr_mc.beginFill(0, 100);
+        qr_mc.moveTo(x, y);
+        qr_mc.lineTo(x + cs, y);
+        qr_mc.lineTo(x + cs, y + cs);
+        qr_mc.lineTo(x, y + cs);
+        qr_mc.endFill();
+      }
+    }
+  }
+
+  return qr_mc;
+};
+
+proto.setupTimingPattern = function () {
+  for (var r = 8; r < this.moduleCount - 8; r++) {
+    if (this.modules[r][6] != null) {
+      continue;
+    }
+
+    this.modules[r][6] = r % 2 == 0;
+  }
+
+  for (var c = 8; c < this.moduleCount - 8; c++) {
+    if (this.modules[6][c] != null) {
+      continue;
+    }
+
+    this.modules[6][c] = c % 2 == 0;
+  }
+};
+
+proto.setupPositionAdjustPattern = function () {
+  var pos = util.getPatternPosition(this.typeNumber);
+
+  for (var i = 0; i < pos.length; i++) {
+    for (var j = 0; j < pos.length; j++) {
+      var row = pos[i];
+      var col = pos[j];
+
+      if (this.modules[row][col] != null) {
+        continue;
+      }
+
+      for (var r = -2; r <= 2; r++) {
+        for (var c = -2; c <= 2; c++) {
+          if (r == -2 || r == 2 || c == -2 || c == 2 || r == 0 && c == 0) {
+            this.modules[row + r][col + c] = true;
+          } else {
+            this.modules[row + r][col + c] = false;
+          }
+        }
+      }
+    }
+  }
+};
+
+proto.setupTypeNumber = function (test) {
+  var bits = util.getBCHTypeNumber(this.typeNumber);
+
+  for (var i = 0; i < 18; i++) {
+    var mod = !test && (bits >> i & 1) == 1;
+    this.modules[Math.floor(i / 3)][i % 3 + this.moduleCount - 8 - 3] = mod;
+  }
+
+  for (var i = 0; i < 18; i++) {
+    var mod = !test && (bits >> i & 1) == 1;
+    this.modules[i % 3 + this.moduleCount - 8 - 3][Math.floor(i / 3)] = mod;
+  }
+};
+
+proto.setupTypeInfo = function (test, maskPattern) {
+  var data = this.errorCorrectLevel << 3 | maskPattern;
+  var bits = util.getBCHTypeInfo(data); // vertical		
+
+  for (var i = 0; i < 15; i++) {
+    var mod = !test && (bits >> i & 1) == 1;
+
+    if (i < 6) {
+      this.modules[i][8] = mod;
+    } else if (i < 8) {
+      this.modules[i + 1][8] = mod;
+    } else {
+      this.modules[this.moduleCount - 15 + i][8] = mod;
+    }
+  } // horizontal
+
+
+  for (var i = 0; i < 15; i++) {
+    var mod = !test && (bits >> i & 1) == 1;
+
+    if (i < 8) {
+      this.modules[8][this.moduleCount - i - 1] = mod;
+    } else if (i < 9) {
+      this.modules[8][15 - i - 1 + 1] = mod;
+    } else {
+      this.modules[8][15 - i - 1] = mod;
+    }
+  } // fixed module
+
+
+  this.modules[this.moduleCount - 8][8] = !test;
+};
+
+proto.mapData = function (data, maskPattern) {
+  var inc = -1;
+  var row = this.moduleCount - 1;
+  var bitIndex = 7;
+  var byteIndex = 0;
+
+  for (var col = this.moduleCount - 1; col > 0; col -= 2) {
+    if (col == 6) col--;
+
+    while (true) {
+      for (var c = 0; c < 2; c++) {
+        if (this.modules[row][col - c] == null) {
+          var dark = false;
+
+          if (byteIndex < data.length) {
+            dark = (data[byteIndex] >>> bitIndex & 1) == 1;
+          }
+
+          var mask = util.getMask(maskPattern, row, col - c);
+
+          if (mask) {
+            dark = !dark;
+          }
+
+          this.modules[row][col - c] = dark;
+          bitIndex--;
+
+          if (bitIndex == -1) {
+            byteIndex++;
+            bitIndex = 7;
+          }
+        }
+      }
+
+      row += inc;
+
+      if (row < 0 || this.moduleCount <= row) {
+        row -= inc;
+        inc = -inc;
+        break;
+      }
+    }
+  }
+};
+
+QRCode.PAD0 = 0xEC;
+QRCode.PAD1 = 0x11;
+
+QRCode.createData = function (typeNumber, errorCorrectLevel, dataList) {
+  var rsBlocks = RSBlock.getRSBlocks(typeNumber, errorCorrectLevel);
+  var buffer = new BitBuffer();
+
+  for (var i = 0; i < dataList.length; i++) {
+    var data = dataList[i];
+    buffer.put(data.mode, 4);
+    buffer.put(data.getLength(), util.getLengthInBits(data.mode, typeNumber));
+    data.write(buffer);
+  } // calc num max data.
+
+
+  var totalDataCount = 0;
+
+  for (var i = 0; i < rsBlocks.length; i++) {
+    totalDataCount += rsBlocks[i].dataCount;
+  }
+
+  if (buffer.getLengthInBits() > totalDataCount * 8) {
+    throw new Error("code length overflow. (" + buffer.getLengthInBits() + ">" + totalDataCount * 8 + ")");
+  } // end code
+
+
+  if (buffer.getLengthInBits() + 4 <= totalDataCount * 8) {
+    buffer.put(0, 4);
+  } // padding
+
+
+  while (buffer.getLengthInBits() % 8 != 0) {
+    buffer.putBit(false);
+  } // padding
+
+
+  while (true) {
+    if (buffer.getLengthInBits() >= totalDataCount * 8) {
+      break;
+    }
+
+    buffer.put(QRCode.PAD0, 8);
+
+    if (buffer.getLengthInBits() >= totalDataCount * 8) {
+      break;
+    }
+
+    buffer.put(QRCode.PAD1, 8);
+  }
+
+  return QRCode.createBytes(buffer, rsBlocks);
+};
+
+QRCode.createBytes = function (buffer, rsBlocks) {
+  var offset = 0;
+  var maxDcCount = 0;
+  var maxEcCount = 0;
+  var dcdata = new Array(rsBlocks.length);
+  var ecdata = new Array(rsBlocks.length);
+
+  for (var r = 0; r < rsBlocks.length; r++) {
+    var dcCount = rsBlocks[r].dataCount;
+    var ecCount = rsBlocks[r].totalCount - dcCount;
+    maxDcCount = Math.max(maxDcCount, dcCount);
+    maxEcCount = Math.max(maxEcCount, ecCount);
+    dcdata[r] = new Array(dcCount);
+
+    for (var i = 0; i < dcdata[r].length; i++) {
+      dcdata[r][i] = 0xff & buffer.buffer[i + offset];
+    }
+
+    offset += dcCount;
+    var rsPoly = util.getErrorCorrectPolynomial(ecCount);
+    var rawPoly = new Polynomial(dcdata[r], rsPoly.getLength() - 1);
+    var modPoly = rawPoly.mod(rsPoly);
+    ecdata[r] = new Array(rsPoly.getLength() - 1);
+
+    for (var i = 0; i < ecdata[r].length; i++) {
+      var modIndex = i + modPoly.getLength() - ecdata[r].length;
+      ecdata[r][i] = modIndex >= 0 ? modPoly.get(modIndex) : 0;
+    }
+  }
+
+  var totalCodeCount = 0;
+
+  for (var i = 0; i < rsBlocks.length; i++) {
+    totalCodeCount += rsBlocks[i].totalCount;
+  }
+
+  var data = new Array(totalCodeCount);
+  var index = 0;
+
+  for (var i = 0; i < maxDcCount; i++) {
+    for (var r = 0; r < rsBlocks.length; r++) {
+      if (i < dcdata[r].length) {
+        data[index++] = dcdata[r][i];
+      }
+    }
+  }
+
+  for (var i = 0; i < maxEcCount; i++) {
+    for (var r = 0; r < rsBlocks.length; r++) {
+      if (i < ecdata[r].length) {
+        data[index++] = ecdata[r][i];
+      }
+    }
+  }
+
+  return data;
+};
+
+var QRCode_1 = QRCode;
+
+/**
+ * Encode UTF16 to UTF8.
+ * See: http://jonisalonen.com/2012/from-utf-16-to-utf-8-in-javascript/
+ * @param str {string}
+ * @returns {string}
+ */
+
+function toUTF8String(str) {
+  var utf8Str = '';
+
+  for (var i = 0; i < str.length; i++) {
+    var charCode = str.charCodeAt(i);
+
+    if (charCode < 0x0080) {
+      utf8Str += String.fromCharCode(charCode);
+    } else if (charCode < 0x0800) {
+      utf8Str += String.fromCharCode(0xc0 | charCode >> 6);
+      utf8Str += String.fromCharCode(0x80 | charCode & 0x3f);
+    } else if (charCode < 0xd800 || charCode >= 0xe000) {
+      utf8Str += String.fromCharCode(0xe0 | charCode >> 12);
+      utf8Str += String.fromCharCode(0x80 | charCode >> 6 & 0x3f);
+      utf8Str += String.fromCharCode(0x80 | charCode & 0x3f);
+    } else {
+      // surrogate pair
+      i++; // UTF-16 encodes 0x10000-0x10FFFF by
+      // subtracting 0x10000 and splitting the
+      // 20 bits of 0x0-0xFFFFF into two halves
+
+      charCode = 0x10000 + ((charCode & 0x3ff) << 10 | str.charCodeAt(i) & 0x3ff);
+      utf8Str += String.fromCharCode(0xf0 | charCode >> 18);
+      utf8Str += String.fromCharCode(0x80 | charCode >> 12 & 0x3f);
+      utf8Str += String.fromCharCode(0x80 | charCode >> 6 & 0x3f);
+      utf8Str += String.fromCharCode(0x80 | charCode & 0x3f);
+    }
+  }
+
+  return utf8Str;
+}
+
+function generatePath(modules) {
+  var margin = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  var ops = [];
+  modules.forEach(function (row, y) {
+    var start = null;
+    row.forEach(function (cell, x) {
+      if (!cell && start !== null) {
+        // M0 0h7v1H0z injects the space with the move and drops the comma,
+        // saving a char per operation
+        ops.push("M".concat(start + margin, " ").concat(y + margin, "h").concat(x - start, "v1H").concat(start + margin, "z"));
+        start = null;
+        return;
+      } // end of row, clean up or skip
+
+
+      if (x === row.length - 1) {
+        if (!cell) {
+          // We would have closed the op above already so this can only mean
+          // 2+ light modules in a row.
+          return;
+        }
+
+        if (start === null) {
+          // Just a single dark module.
+          ops.push("M".concat(x + margin, ",").concat(y + margin, " h1v1H").concat(x + margin, "z"));
+        } else {
+          // Otherwise finish the current line.
+          ops.push("M".concat(start + margin, ",").concat(y + margin, " h").concat(x + 1 - start, "v1H").concat(start + margin, "z"));
+        }
+
+        return;
+      }
+
+      if (cell && start === null) {
+        start = x;
+      }
+    });
+  });
+  return ops.join('');
+} // @vue/component
+
+
+var QrcodeVue = {
+  props: {
+    value: {
+      type: String,
+      required: true,
+      default: ''
+    },
+    className: {
+      type: String,
+      default: ''
+    },
+    size: {
+      type: [Number, String],
+      default: 100,
+      validator: function validator(s) {
+        return isNaN(Number(s)) !== true;
+      }
+    },
+    level: {
+      type: String,
+      default: 'L',
+      validator: function validator(l) {
+        return ['L', 'Q', 'M', 'H'].indexOf(l) > -1;
+      }
+    },
+    background: {
+      type: String,
+      default: '#fff'
+    },
+    foreground: {
+      type: String,
+      default: '#000'
+    },
+    renderAs: {
+      type: String,
+      required: false,
+      default: 'canvas',
+      validator: function validator(as) {
+        return ['canvas', 'svg'].indexOf(as) > -1;
+      }
+    }
+  },
+  data: function data() {
+    return {
+      numCells: 0,
+      fgPath: ''
+    };
+  },
+  updated: function updated() {
+    this.render();
+  },
+  mounted: function mounted() {
+    this.render();
+  },
+  methods: {
+    render: function render() {
+      var value = this.value,
+          size = this.size,
+          level = this.level,
+          background = this.background,
+          foreground = this.foreground,
+          renderAs = this.renderAs;
+
+      var _size = size >>> 0; // size to number
+      // We'll use type===-1 to force QRCode to automatically pick the best type
+
+
+      var qrCode = new QRCode_1(-1, ErrorCorrectLevel[level]);
+      qrCode.addData(toUTF8String(value));
+      qrCode.make();
+      var cells = qrCode.modules;
+      var tileW = _size / cells.length;
+      var tileH = _size / cells.length;
+      var scale = window.devicePixelRatio || 1;
+
+      if (renderAs === 'svg') {
+        this.numCells = cells.length; // Drawing strategy: instead of a rect per module, we're going to create a
+        // single path for the dark modules and layer that on top of a light rect,
+        // for a total of 2 DOM nodes. We pay a bit more in string concat but that's
+        // way faster than DOM ops.
+        // For level 1, 441 nodes -> 2
+        // For level 40, 31329 -> 2
+
+        this.fgPath = generatePath(cells);
+      } else {
+        var canvas = this.$refs['qrcode-vue'];
+        var ctx = canvas.getContext('2d');
+        canvas.height = canvas.width = _size * scale;
+        ctx.scale(scale, scale);
+        cells.forEach(function (row, rdx) {
+          row.forEach(function (cell, cdx) {
+            ctx.fillStyle = cell ? foreground : background;
+            var w = Math.ceil((cdx + 1) * tileW) - Math.floor(cdx * tileW);
+            var h = Math.ceil((rdx + 1) * tileH) - Math.floor(rdx * tileH);
+            ctx.fillRect(Math.round(cdx * tileW), Math.round(rdx * tileH), w, h);
+          });
+        });
+      }
+    }
+  },
+  render: function render(createElement) {
+    var className = this.className,
+        value = this.value,
+        level = this.level,
+        background = this.background,
+        foreground = this.foreground,
+        size = this.size,
+        renderAs = this.renderAs,
+        numCells = this.numCells,
+        fgPath = this.fgPath;
+    return createElement('div', {
+      class: this.class || className,
+      attrs: {
+        value: value,
+        level: level,
+        background: background,
+        foreground: foreground
+      }
+    }, [renderAs === 'svg' ? createElement('svg', {
+      attrs: {
+        height: size,
+        width: size,
+        shapeRendering: 'crispEdges',
+        viewBox: "0 0 ".concat(numCells, " ").concat(numCells)
+      },
+      style: {
+        width: size + 'px',
+        height: size + 'px'
+      }
+    }, [createElement('path', {
+      attrs: {
+        fill: background,
+        d: "M0,0 h".concat(numCells, "v").concat(numCells, "H0z")
+      }
+    }), createElement('path', {
+      attrs: {
+        fill: foreground,
+        d: fgPath
+      }
+    })]) : createElement('canvas', {
+      attrs: {
+        height: size,
+        width: size
+      },
+      style: {
+        width: size + 'px',
+        height: size + 'px'
+      },
+      ref: 'qrcode-vue'
+    }, [])]);
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (QrcodeVue);
+
+
+/***/ })
+
+}]);

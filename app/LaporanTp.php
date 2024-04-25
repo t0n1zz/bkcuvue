@@ -2,6 +2,7 @@
 namespace App;
 
 use App\Support\Dataviewer;
+use App\Traits\Loggable;
 use illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class LaporanTp extends BaseEloquent {
 
     use \Venturecraft\Revisionable\RevisionableTrait;
-    use Dataviewer, LogsActivity, SoftDeletes;
+    use Dataviewer, LogsActivity, SoftDeletes, Loggable;
 
     protected $table = 'laporan_tp';
     protected $dates = ['deleted_at'];

@@ -5,11 +5,12 @@ use DB;
 use illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Support\Dataviewer;
+use App\Traits\Loggable;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class AssesmentAccessP2 extends BaseEloquent {
     
-    use Dataviewer, LogsActivity, SoftDeletes;
+    use Dataviewer, LogsActivity, SoftDeletes,Loggable;
 
     protected $table = 'assesment_access_p2';
     protected $dates = ['deleted_at'];

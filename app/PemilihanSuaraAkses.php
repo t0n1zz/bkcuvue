@@ -4,11 +4,12 @@ namespace App;
 use illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use App\Support\Dataviewer;
+use App\Traits\Loggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PemilihanSuaraAkses extends Model {
 
-    use LogsActivity, Dataviewer, SoftDeletes;
+    use LogsActivity, Dataviewer, SoftDeletes,Loggable;
 
     protected $table = 'pemilihan_suara_akses';
     protected static $logFillable = true;

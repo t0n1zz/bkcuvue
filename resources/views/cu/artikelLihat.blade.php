@@ -143,7 +143,7 @@
                   <ul class="entry-meta clearfix">
                     <li><i class="icon-calendar3"></i>{{ $item->created_at->diffForHumans() }}</li>
                   </ul>
-                  <div class="entry-content">{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->content),100) }}</div>
+                  <div class="entry-content">{{ Illuminate\Support\Str::limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->content),100) }}</div>
                 </div>
               </div>
               @endforeach

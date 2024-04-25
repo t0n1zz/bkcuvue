@@ -4,11 +4,12 @@ namespace App;
 use illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use App\Support\Dataviewer;
+use App\Traits\Loggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PemilihanCalon extends Model {
 
-    use LogsActivity, Dataviewer, SoftDeletes;
+    use LogsActivity, Dataviewer, SoftDeletes,Loggable;
 
     protected $table = 'pemilihan_calon';
     protected static $logFillable = true;

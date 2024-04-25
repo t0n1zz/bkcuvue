@@ -3,13 +3,14 @@ namespace App;
 
 use illuminate\Database\Eloquent\Model;
 use App\Support\Dataviewer;
+use App\Traits\Loggable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tp extends BaseEloquent {
     
     use \Venturecraft\Revisionable\RevisionableTrait;
-    use Dataviewer, LogsActivity, SoftDeletes;
+    use Dataviewer, LogsActivity, SoftDeletes, Loggable;
 
     protected $table = 'tp';
     protected static $logFillable = true;

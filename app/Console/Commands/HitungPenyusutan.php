@@ -40,7 +40,6 @@ class HitungPenyusutan extends Command
         $now = new DateTime();
         $c = count($data);
         $dateNow = $now->format('d');
-        dd(substr($data[1]->tanggal, 8, 2));
 
         for ($i = 0; $i < $c; $i++) {
             if ($data[$i]->pokok_penyusutan && $data[$i]->bulan_penyusutan) {

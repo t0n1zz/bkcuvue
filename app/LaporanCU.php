@@ -4,12 +4,13 @@ namespace App;
 use illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Support\Dataviewer;
+use App\Traits\Loggable;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class LaporanCu extends BaseEloquent {
 
     use \Venturecraft\Revisionable\RevisionableTrait;
-    use Dataviewer, LogsActivity, SoftDeletes;
+    use Dataviewer, LogsActivity, SoftDeletes,Loggable;
 
     protected $table = 'laporan_cu';
     protected $dates = ['deleted_at'];

@@ -12,6 +12,7 @@ use App\ArtikelKategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use SEO;
+use Illuminate\Support\Str;
 
 class PublicCuController extends Controller
 {
@@ -217,7 +218,7 @@ class PublicCuController extends Controller
 
          // seo
          SEO::setTitle($artikel->name . ' - CU ' . $cu->name);
-         SEO::setDescription(str_limit(strip_tags($artikel->content),200));
+         SEO::setDescription(Str::limit(strip_tags($artikel->content),200));
          SEO::opengraph()->setUrl(url()->full());
          if($artikel->gambar){
             SEO::opengraph()->addImage(route('home') . '/images/artikel/' . $artikel->gambar. '.jpg');

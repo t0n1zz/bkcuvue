@@ -38,8 +38,8 @@
     <p>
       Kami merupakan <strong>Credit Union</strong> yang memberikan pelayanan di wilayah <strong>{{ $cu->provinces ? ucfirst($cu->provinces->name) : ""}}</strong>
       @if(!empty($cu->ultah))
-          @php $datejoin = new Date($cu->ultah) @endphp
-          {{ 'sejak '.$datejoin->format('Y') }}
+          @php $datejoin = \Carbon\Carbon::parse($cu->ultah)->format('Y') @endphp
+          {{ 'sejak '.$datejoin }}
       @endif
       @if(!empty($cu->has_tp_count))
           {{'dan saat ini telah memiliki '.$cu->has_tp_count. ' tempat pelayanan/kantor pelayanan'}}<br/>
@@ -131,7 +131,7 @@
           @endif
         </ul>
         <div class="entry-content">
-          <p>{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->content),200) }}</p>
+          <p>{{ Illuminate\Support\Str::limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->content),200) }}</p>
         </div>
       </div>
       @break

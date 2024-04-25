@@ -1,12 +1,13 @@
 <?php
 namespace App;
 
+use App\Traits\Loggable;
 use illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class KegiatanMateriNilai extends Model {
     
-    use LogsActivity;
+    use LogsActivity,Loggable;
 
     protected $table = 'kegiatan_materi_nilai';
 

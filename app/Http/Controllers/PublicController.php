@@ -12,6 +12,7 @@ use App\Download;
 use App\Dokumen;
 use App\Aktivis;
 use App\ArtikelPenulis;
+use Illuminate\Support\Str;
 use App\ArtikelKategori;
 use App\Region\Provinces;
 use Illuminate\Http\Request;
@@ -149,7 +150,7 @@ class PublicController extends Controller
 
          // seo
          SEO::setTitle($artikel->name. ' - PUSKOPCUINA');
-         SEO::setDescription(str_limit(strip_tags($artikel->content),200));
+         SEO::setDescription(Str::limit(strip_tags($artikel->content),200));
          SEO::opengraph()->setUrl(url()->full());
          SEO::opengraph()->addProperty('type', 'articles');
 
@@ -207,7 +208,7 @@ class PublicController extends Controller
 
          // seo
          SEO::setTitle($diklat->name. ' - PUSKOPCUINA');
-         SEO::setDescription(str_limit(strip_tags($diklat->keterangan),200));
+         SEO::setDescription(Str::limit(strip_tags($diklat->keterangan),200));
          SEO::opengraph()->setUrl(url()->full());
          SEO::opengraph()->addProperty('type', 'articles');
 

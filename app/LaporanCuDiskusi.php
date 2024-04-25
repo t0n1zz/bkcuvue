@@ -1,12 +1,13 @@
 <?php
 namespace App;
 
+use App\Traits\Loggable;
 use illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class LaporanCuDiskusi extends BaseEloquent {
     
-    use LogsActivity;
+    use LogsActivity,Loggable;
 
     protected $table = 'laporan_cu_diskusi';
     protected static $logFillable = true;

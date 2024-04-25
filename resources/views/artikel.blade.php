@@ -83,7 +83,7 @@
             @endif
           </ul>
           <div class="entry-content">
-            <p>{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->content),200) }}</p>
+            <p>{{ Illuminate\Support\Str::limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->content),200) }}</p>
             <a href="{{ route('artikel.lihat',$item->slug) }}"class="more-link">Selengkapnya</a>
           </div>
         </div>

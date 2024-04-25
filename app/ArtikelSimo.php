@@ -3,12 +3,13 @@ namespace App;
 
 use illuminate\Database\Eloquent\Model;
 use App\Support\Dataviewer;
+use App\Traits\Loggable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 class ArtikelSimo extends Model {
 
-    use Dataviewer, LogsActivity, Sluggable;
+    use Dataviewer, LogsActivity, Sluggable,Loggable;
 
     protected $table = 'artikel_simo';
 
@@ -20,7 +21,7 @@ class ArtikelSimo extends Model {
         'ringkasan' => 'required'
     ];
 
-    public function sluggable()
+    public function sluggable():array
     {
         return [
             'slug' => [

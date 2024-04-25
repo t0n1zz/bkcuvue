@@ -7,6 +7,7 @@ use App\Support\Helper;
 use Illuminate\Http\Request;
 use File;
 use Image;
+use Illuminate\Support\Str;
 
 class DokumenController extends Controller{
 
@@ -103,7 +104,7 @@ class DokumenController extends Controller{
 			
 			$fileExtension = $file->getClientOriginalExtension();
 			$filename = $file->getClientOriginalName();
-			$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
+			$formatedName = Str::limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
 			$file->move($this->filepath,$formatedName);
 		}
 
@@ -166,7 +167,7 @@ class DokumenController extends Controller{
 				File::delete($this->filepath . $kelas->filename);
 
 				$fileExtension = $file->getClientOriginalExtension();
-				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
+				$formatedName = Str::limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
 				$file->move($this->filepath,$formatedName);
 			}
 		}else{
