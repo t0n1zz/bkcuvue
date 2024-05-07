@@ -17,22 +17,22 @@ class SuratMasuk extends Model {
     
     public static $rules = [
         'id_cu' => 'required',
-        'name' => 'required',
+        'perihal' => 'required',
     ];
 
-    protected $fillable = ['id_cu','id_dokumen','name','perihal','hal','periode'];
+    protected $fillable = ['id_cu','id_dokumen','name','pengirim','perihal','hal','terima_melalui','tgl_terima','tujuan','keterangan','periode'];
 
     protected $allowedFilters = [
-        'id','id_cu','id_dokumen','name','perihal','hal','periode','created_at','updated_at',
+        'id','id_cu','id_dokumen','name','perihal','hal','periode','created_at','updated_at','keterangan','terima_melalui'
     ];
 
     protected $orderable = [
-        'id','id_cu','id_dokumen','name','perihal','hal','periode','created_at','updated_at'
+        'id','id_cu','id_dokumen','name','perihal','hal','periode','created_at','updated_at','keterangan','terima_melalui'
     ];
     
     public static function initialize(){
         return [
-            'id_cu' => '','id_dokumen' => '','name' => '','perihal' => '','hal' => '','periode' => ''
+            'id_cu' => '','id_dokumen' => '','name' => '','pengirim' => '','perihal' => '','hal' => '','terima_melalui' => '','tgl_terima' => '','tujuan' => '','periode' => ''
         ];
     }
 

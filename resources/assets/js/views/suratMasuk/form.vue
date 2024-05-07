@@ -27,14 +27,34 @@
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.name')}">
 												<i class="icon-cross2" v-if="errors.has('form.name')"></i>
-												Kode: <wajib-badge></wajib-badge></h5>
+												Kode:</h5>
 
 											<!-- text -->
-											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan kode" v-validate="'required'" data-vv-as="Kode" v-model="form.name">
+											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan kode"  data-vv-as="Kode" v-model="form.name">
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.name')">
 												<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- pengirim -->
+									<div class="col-md-12">
+										<div class="form-group" :class="{'has-error' : errors.has('form.pengirim')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.pengirim')}">
+												<i class="icon-cross2" v-if="errors.has('form.pengirim')"></i>
+												Pengirim: <wajib-badge></wajib-badge></h5>
+
+											<!-- text -->
+											<input type="text" name="pengirim" class="form-control" v-validate="'required'" placeholder="Silahkan masukkan pengirim" data-vv-as="pengirim" v-model="form.pengirim">
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.pengirim')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.pengirim') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
@@ -70,7 +90,7 @@
 												Perihal: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
-											<input type="text" name="perihal" class="form-control" placeholder="Silahkan masukkan perihal" data-vv-as="perihal" v-model="form.perihal">
+											<input type="text" name="perihal" class="form-control" v-validate="'required'" placeholder="Silahkan masukkan perihal" data-vv-as="perihal" v-model="form.perihal">
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.perihal')">
@@ -79,6 +99,89 @@
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
 									</div>
+
+
+									<!-- terima_melalui -->
+									<div class="col-md-12">
+										<div class="form-group" :class="{'has-error' : errors.has('form.terima_melalui')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.terima_melalui')}">
+												<i class="icon-cross2" v-if="errors.has('form.terima_melalui')"></i>
+												Terima Melalui:</h5>
+
+											<!-- text -->
+											<input type="text" name="terima_melalui" class="form-control" placeholder="Silahkan masukkan terima melalui" data-vv-as="terima_melalui" v-model="form.terima_melalui">
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.terima_melalui')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.terima_melalui') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+
+									<!-- tgl terima -->
+									<div class="col-md-6">
+										<div class="form-group" :class="{'has-error' : errors.has('form.tgl_terima')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.tgl_terima')}">
+												<i class="icon-cross2" v-if="errors.has('form.tgl_terima')"></i>
+												Tanggal Terima: <wajib-badge></wajib-badge></h5>
+											<date-picker @dateSelected="form.tgl_terima = $event" :defaultDate="form.tgl_terima" data-vv-as="tgl_terima" v-model="form.tgl_terima"></date-picker>
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.tgl_terima')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.tgl terima') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+
+									<!-- tujuan -->
+									<div class="col-md-12">
+										<div class="form-group" :class="{'has-error' : errors.has('form.tujuan')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.tujuan')}">
+												<i class="icon-cross2" v-if="errors.has('form.tujuan')"></i>
+												Tujuan: <wajib-badge></wajib-badge></h5>
+
+											<!-- text -->
+											<input type="text" name="tujuan" class="form-control" v-validate="'required'" placeholder="Silahkan masukkan tujuan" data-vv-as="tujuan" v-model="form.tujuan">
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.tujuan')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.tujuan') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+
+									<!-- keterangan -->
+									<div class="col-md-12">
+										<div class="form-group" :class="{'has-error' : errors.has('form.keterangan')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.keterangan')}">
+												<i class="icon-cross2" v-if="errors.has('form.keterngan')"></i>
+												Keterangan: <wajib-badge></wajib-badge></h5>
+
+											<!-- text -->
+											<input type="text" name="keterangan" class="form-control" v-validate="'required'" placeholder="Silahkan masukkan keterangan" data-vv-as="keterangan" v-model="form.keterangan">
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.keterangan')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.keterangan') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+								
 
 									<!-- periode -->
 									<div class="col-md-12">
@@ -198,6 +301,7 @@
 	import wajibBadge from "../../components/wajibBadge.vue";
 	import Cleave from 'vue-cleave-component';
 	import infoIcon from "../../components/infoIcon.vue";
+	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		components: {
@@ -210,6 +314,7 @@
 			wajibBadge,
 			Cleave,
 			infoIcon,
+			DatePicker
 		},
 		data() {
 			return {
@@ -260,6 +365,7 @@
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
 		},
+
 		created(){
 			if(this.currentUser.id_cu == 0){
 				if(this.modelCuStat != 'success'){
@@ -341,7 +447,8 @@
 				});
 			},
 			back(){
-				this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
+				const date = new Date();
+				this.$router.push({name: 'suratMasukCu', params:{cu: this.currentUser.id_cu, periode: date.getFullYear()}});
 			},
 			modalTutup() {
  				if(this.updateStat === 'success'){
