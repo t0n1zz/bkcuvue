@@ -22,24 +22,24 @@ class Surat extends Model {
     ];
 
     protected $fillable = [
-        'id_cu','id_surat_kode','id_surat_kategori','id_surat_kode_temp','id_dokumen','name','format','tipe','hal','perihal','tujuan','periode','created_at','updated_at','deleted_at'
+        'id_cu','id_surat_kode','id_surat_kategori','id_surat_kode_temp','id_dokumen','name','format','tipe','hal','keterangan','tujuan','periode','created_at','updated_at','deleted_at'
     ];
 
     protected $allowedFilters = [
-        'id','id_cu','id_surat_kode','id_surat_kategori','id_surat_kode_temp','id_dokumen','name','hal','perihal','periode','created_at','updated_at','deleted_at',
+        'id','id_cu','id_surat_kode','id_surat_kategori','id_surat_kode_temp','id_dokumen','name','hal','keterangan','periode','created_at','updated_at','deleted_at',
 
         'cu.name',
     ];
 
     protected $orderable = [
-        'id','id_cu','id_surat_kode','id_surat_kategori','id_surat_kode_temp','id_dokumen','name','hal','perihal','periode','created_at','updated_at','deleted_at',
+        'id','id_cu','id_surat_kode','id_surat_kategori','id_surat_kode_temp','id_dokumen','name','hal','keterangan','periode','created_at','updated_at','deleted_at',
 
         'cu.name',
     ];
     
     public static function initialize(){
         return [
-            'id_cu' => '','id_surat_kategori' =>'','id_dokumen' =>'', 'name' => '','hal' => '', 'perihal' => '',  'id_surat_kode' => '','periode' => '',
+            'id_cu' => '','id_surat_kategori' =>'','id_dokumen' =>'', 'name' => '','hal' => '', 'keterangan' => '',  'id_surat_kode' => '','periode' => '',
         ];
     }
 

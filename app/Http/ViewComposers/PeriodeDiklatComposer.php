@@ -9,7 +9,7 @@ class PeriodeDiklatComposer
 {
     public function compose(View $view)
     {
-        $periodeDiklatList = Kegiatan::distinct('periode')->orderBy('periode','desc')->pluck('periode');
+        $periodeDiklatList = Kegiatan::distinct('periode')->orderBy('periode','desc')->pluck('periode')->chunk(5);
 
         $view->with('periodeDiklatList', $periodeDiklatList);
     }

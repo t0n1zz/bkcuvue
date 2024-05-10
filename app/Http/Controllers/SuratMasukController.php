@@ -98,7 +98,7 @@ class SuratMasukController extends Controller{
 				'format' => $format,
 				'tipe' => $fileExtension,
 				'status' => 'INTERNAL',
-				'keterangan' => $request->perihal
+				'keterangan' => $request->keterangan
 			]);
 
 			$kelas = SuratMasuk::create($request->except('id_dokumen') + [

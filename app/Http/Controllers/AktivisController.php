@@ -679,7 +679,9 @@ class AktivisController extends Controller{
 		$validationCertificate  = Validator::make($request->all(), $rules); 
 
 		$name = $request->name;
-
+		
+		// return response()->json($request->all());
+			
 		$kelas = Aktivis::findOrFail($id);
 
 		// processing single image upload
@@ -694,19 +696,19 @@ class AktivisController extends Controller{
 
 		if(!empty($request->ayah)){
 			$ayah_id = array_key_exists('id', $request->ayah) ? $request->ayah['id'] : null;
-			$ayah_name = array_key_exists('name', $request->ayah) ? $request->ayah['name'] : null;
+			$ayah_name = array_key_exists('name', $request->ayah) ? $request->keluarga['ayah'] : null;
 			$this->saveKeluarga($ayah_id,$id,'Ayah', $ayah_name);
 		}
 
 		if(!empty($request->ibu)){
 			$ibu_id = array_key_exists('id', $request->ibu) ? $request->ibu['id'] : null;
-			$ibu_name = array_key_exists('name', $request->ibu) ? $request->ibu['name'] : null;
+			$ibu_name = array_key_exists('name', $request->ibu) ? $request->keluarga['ibu'] : null;
 			$this->saveKeluarga($ibu_id,$id,'Ibu', $ibu_name);
 		}
 
 		if(!empty($request->pasangan)){
 			$pasangan_id = array_key_exists('id', $request->pasangan) ? $request->pasangan['id'] : null;
-			$pasangan_name = array_key_exists('name', $request->pasangan) ? $request->pasangan['name'] : null;
+			$pasangan_name = array_key_exists('name', $request->pasangan) ? $request->keluarga['pasangan'] : null;
 			$this->saveKeluarga($pasangan_id,$id,'Pasangan', $pasangan_name);
 		}
 

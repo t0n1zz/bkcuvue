@@ -81,7 +81,7 @@
 						<check-value :value="props.item.hal"></check-value>
 					</td>
 					<td v-if="!columnData[3].hide">
-						<check-value :value="props.item.perihal"></check-value>
+						<check-value :value="props.item.keterangan"></check-value>
 					</td>
 					<td v-if="!columnData[4].hide">
 						<check-value :value="props.item.tujuan"></check-value>
@@ -159,7 +159,7 @@
 						filterDefault: true
 					},
 					{
-						title: 'Hal',
+						title: 'Judul Surat',
 						name: 'hal',
 						tipe: 'string',
 						sort: true,
@@ -168,8 +168,8 @@
 						filter: true,
 					},
 					{
-						title: 'Perihal',
-						name: 'perihal',
+						title: 'Keterangan',
+						name: 'keterangan',
 						tipe: 'string',
 						sort: true,
 						hide: false,

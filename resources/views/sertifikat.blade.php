@@ -35,7 +35,8 @@
 		</table>
 		<div class="telah" style="font-size: 120px;margin-left: 815px; font-family: Edwardian Script ITC">Telah Mengikuti dan Menyelesaikan</div>
 		<p class="isi"><span><b>{{$kegiatan}}</b></span> bagi Credit Union yang diselenggarakan
-			<span>{{$tempat}}</span> pada tanggal <span>{{$tgl}}.</span>
+			<span>{{$tempat}}</span> pada tanggal <span>{{$tgl}}</span>@if(!$listMateri->first()). @endif @if($listMateri->first())dengan materi seperti yang tertera di balik sertifikat ini.
+			@endif
 		</p>
 		<br>
 	</div>

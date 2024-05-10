@@ -21,36 +21,31 @@
 								<div class="row">
 
 									<!-- name -->
-									<div class="col-md-12">
-										<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
+									<div class="col-md-6">
+										<div class="form-group">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.name')}">
-												<i class="icon-cross2" v-if="errors.has('form.name')"></i>
-												Kode: <wajib-badge></wajib-badge></h5>
+											<h5>Kode:</h5>
 
 											<!-- text -->
-											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan kode" v-validate="'required'" data-vv-as="Kode" v-model="form.name">
+											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan kode" data-vv-as="Kode" v-model="form.name">
 
 											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.name')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
+											<small class="text-muted">&nbsp;</small>
 										</div>
 									</div>
 
 									<!-- hal -->
-									<div class="col-md-12">
+									<div class="col-md-6">
 										<div class="form-group" :class="{'has-error' : errors.has('form.hal')}">
 
 											<!-- title -->
 											<h5 :class="{ 'text-danger' : errors.has('form.hal')}">
 												<i class="icon-cross2" v-if="errors.has('form.hal')"></i>
-												Hal: <wajib-badge></wajib-badge></h5>
+												Judul Surat: <wajib-badge></wajib-badge></h5>
 
 											<!-- text -->
-											<input type="text" name="hal" class="form-control" placeholder="Silahkan masukkan hal" data-vv-as="hal" v-model="form.hal">
+											<input type="text" name="hal" class="form-control" placeholder="Silahkan masukkan judul surat"  v-validate="'required'" data-vv-as="judul surat" v-model="form.hal">
 
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.hal')">
@@ -60,28 +55,8 @@
 										</div>
 									</div>
 
-									<!-- perihal -->
-									<div class="col-md-12">
-										<div class="form-group" :class="{'has-error' : errors.has('form.perihal')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.perihal')}">
-												<i class="icon-cross2" v-if="errors.has('form.perihal')"></i>
-												Perihal: <wajib-badge></wajib-badge></h5>
-
-											<!-- text -->
-											<input type="text" name="perihal" class="form-control" placeholder="Silahkan masukkan perihal" data-vv-as="perihal" v-model="form.perihal">
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.perihal')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.perihal') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
 									<!-- periode -->
-									<div class="col-md-12">
+									<div class="col-md-6">
 										<div class="form-group" :class="{'has-error' : errors.has('form.periode')}">
 
 											<!-- title -->
@@ -106,6 +81,86 @@
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
 									</div>
+
+									<!-- keterangan -->
+									<div class="col-md-6">
+										<div class="form-group">
+
+											<!-- title -->
+											<h5>Keterangan:</h5>
+
+											<!-- text -->
+											<input type="text" name="perihal" class="form-control" placeholder="Silahkan masukkan keterangan" data-vv-as="keterangan" v-model="form.keterangan">
+
+											<!-- error message -->
+											<small class="text-muted">&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- pengirim -->
+									<div class="col-md-6">
+										<div class="form-group">
+
+											<!-- title -->
+											<h5>Pengirim:</h5>
+
+											<!-- text -->
+											<input type="text" name="pengirim" class="form-control" placeholder="Silahkan masukkan pengirim" data-vv-as="pengirim" v-model="form.pengirim">
+											
+											<!-- error message -->
+											<small class="text-muted">&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- diterima melalui -->
+									<div class="col-md-6">
+										<div class="form-group">
+
+											<!-- title -->
+											<h5>Diterima Melalui:</h5>
+
+											<!-- text -->
+											<input type="text" name="terima_melalui" class="form-control" placeholder="Silahkan masukkan diterima melalui" data-vv-as="diterima melalui" v-model="form.terima_melalui">
+
+											<!-- error message -->
+											<small class="text-muted">&nbsp;</small>
+
+										</div>
+									</div>
+
+									<!-- tanggal terima -->
+									<div class="col-md-6">
+										<div class="form-group">
+
+											<!-- title -->
+											<h5>Tgl. Terima:</h5>
+
+											<!-- input -->
+											<date-picker @dateSelected="form.tanggal_terima = $event" :defaultDate="form.tanggal_terima"></date-picker>
+
+											<!-- error message -->
+											<small class="text-muted">&nbsp;</small>
+
+										</div>
+									</div>
+
+									<!-- tujuan -->
+									<div class="col-md-6">
+										<div class="form-group">
+
+											<!-- title -->
+											<h5>Tujuan:</h5>
+
+											<!-- text -->
+											<input type="text" name="tujuan" class="form-control" placeholder="Silahkan masukkan tujuan" data-vv-as="tujuan" v-model="form.tujuan">
+
+											<!-- error message -->
+											<small class="text-muted">&nbsp;</small>
+
+										</div>
+									</div>
+
+									
 
 									<!-- format -->
 									<div class="col-md-12" v-if="$route.meta.mode != 'edit'">
@@ -198,6 +253,7 @@
 	import wajibBadge from "../../components/wajibBadge.vue";
 	import Cleave from 'vue-cleave-component';
 	import infoIcon from "../../components/infoIcon.vue";
+	import DatePicker from "../../components/datePicker.vue";
 
 	export default {
 		components: {
@@ -210,6 +266,7 @@
 			wajibBadge,
 			Cleave,
 			infoIcon,
+			DatePicker
 		},
 		data() {
 			return {

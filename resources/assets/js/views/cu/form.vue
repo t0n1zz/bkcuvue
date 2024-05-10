@@ -212,7 +212,7 @@
 									</div>
 
 									<!-- aplikasi -->
-									<div class="col-md-4">t
+									<div class="col-md-4">
 										<div class="form-group" :class="{'has-error' : errors.has('form.app')}">
 
 											<!-- title -->
@@ -526,6 +526,94 @@
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.website')">
 												<i class="icon-arrow-small-right"></i> {{ errors.first('form.website') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+									
+									<!-- facebook -->
+									<div class="col-md-6">
+										<div class="form-group" :class="{'has-error' : errors.has('form.facebook')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.facebook')}">
+												<i class="icon-cross2" v-if="errors.has('form.facebook')"></i>
+												Facebook: <br/>
+												<small class="text-muted">copy linknya contoh: https://www.facebook.com/puskopcuina</small>
+											</h5>
+
+											<!-- text -->
+											<input type="text" name="facebook" class="form-control" placeholder="Silahkan masukkan link facebook" v-model="form.facebook" v-validate="'url'" data-vv-as="Facebook" >
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.facebook')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.facebook') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- instagram -->
+									<div class="col-md-6">
+										<div class="form-group" :class="{'has-error' : errors.has('form.instagram')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.instagram')}">
+												<i class="icon-cross2" v-if="errors.has('form.instagram')"></i>
+												Instagram: <br/>
+												<small class="text-muted">copy linknya contoh: https://www.instagram.com/puskopcuina/</small>
+											</h5>
+
+											<!-- text -->
+											<input type="text" name="instagram" class="form-control" placeholder="Silahkan masukkan link instagram" v-model="form.instagram" v-validate="'url'" data-vv-as="Instagram" >
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.instagram')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.instagram') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- youtube -->
+									<div class="col-md-6">
+										<div class="form-group" :class="{'has-error' : errors.has('form.youtube')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.youtube')}">
+												<i class="icon-cross2" v-if="errors.has('form.youtube')"></i>
+												Youtube: <br/>
+												<small class="text-muted">copy linknya contoh: https://www.youtube.com/@PuskopcuinaOfficial</small>
+											</h5>
+
+											<!-- text -->
+											<input type="text" name="youtube" class="form-control" placeholder="Silahkan masukkan link youtube" v-model="form.youtube" v-validate="'url'" data-vv-as="Youtube" >
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.youtube')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.youtube') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- tiktok -->
+									<div class="col-md-6">
+										<div class="form-group" :class="{'has-error' : errors.has('form.tiktok')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.tiktok')}">
+												<i class="icon-cross2" v-if="errors.has('form.tiktok')"></i>
+												Tiktok: <br/>
+												<small class="text-muted">copy linknya contoh: https://www.tiktok.com/@PuskopcuinaOfficial</small>
+											</h5>
+
+											<!-- text -->
+											<input type="text" name="tiktok" class="form-control" placeholder="Silahkan masukkan link tiktok" v-model="form.tiktok" v-validate="'url'" data-vv-as="Youtube" >
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.tiktok')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.tiktok') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>

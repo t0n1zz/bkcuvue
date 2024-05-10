@@ -1,1 +1,1586 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{"0V0g":function(e,t,n){e.exports=function(e){"use strict";e=e&&e.hasOwnProperty("default")?e.default:e;var t,n={formatLocale:(t=function(e,t){return e(t={exports:{}},t.exports),t.exports}((function(e,t){Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var n={months:["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"],monthsShort:["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agt","Sep","Okt","Nov","Des"],weekdays:["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"],weekdaysShort:["Min","Sen","Sel","Rab","Kam","Jum","Sab"],weekdaysMin:["Mg","Sn","Sl","Rb","Km","Jm","Sb"],firstDayOfWeek:1,firstWeekContainsDate:7};t.default=n,e.exports=t.default})),t&&t.__esModule&&Object.prototype.hasOwnProperty.call(t,"default")?t.default:t),yearFormat:"YYYY",monthFormat:"MMM",monthBeforeYear:!0};return e.locale("id",n),n}(n("7EX9"))},"7EX9":function(e,t,n){"use strict";function r(e){return e instanceof Date||"[object Date]"===Object.prototype.toString.call(e)}function i(e){return r(e)?new Date(e.getTime()):null==e?new Date(NaN):new Date(e)}function a(e){return r(e)&&!isNaN(e.getTime())}function o(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:0;if(!(t>=0&&t<=6))throw new RangeError("weekStartsOn must be between 0 and 6");var n=i(e),r=n.getDay(),a=(r+7-t)%7;return n.setDate(n.getDate()-a),n.setHours(0,0,0,0),n}function s(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},n=t.firstDayOfWeek,r=void 0===n?0:n,a=t.firstWeekContainsDate,s=void 0===a?1:a;if(!(s>=1&&s<=7))throw new RangeError("firstWeekContainsDate must be between 1 and 7");for(var l=i(e),u=l.getFullYear(),c=new Date(0),d=u+1;d>=u-1&&(c.setFullYear(d,0,s),c.setHours(0,0,0,0),c=o(c,r),!(l.getTime()>=c.getTime()));d--);return c}function l(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},n=t.firstDayOfWeek,r=void 0===n?0:n,a=t.firstWeekContainsDate,l=void 0===a?1:a,u=i(e),c=o(u,r),d=s(u,{firstDayOfWeek:r,firstWeekContainsDate:l}),h=c.getTime()-d.getTime();return Math.round(h/6048e5)+1}n.r(t);var u={months:["January","February","March","April","May","June","July","August","September","October","November","December"],monthsShort:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],weekdays:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],weekdaysShort:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],weekdaysMin:["Su","Mo","Tu","We","Th","Fr","Sa"],firstDayOfWeek:0,firstWeekContainsDate:1},c=/\[([^\]]+)]|YYYY|YY?|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|m{1,2}|s{1,2}|Z{1,2}|S{1,3}|w{1,2}|x|X|a|A/g;function d(e){for(var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:2,n="".concat(Math.abs(e)),r=e<0?"-":"";n.length<t;)n="0".concat(n);return r+n}function h(e){return 15*Math.round(e.getTimezoneOffset()/15)}function f(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"",n=e>0?"-":"+",r=Math.abs(e),i=Math.floor(r/60),a=r%60;return n+d(i,2)+t+d(a,2)}var p=function(e,t,n){var r=e<12?"AM":"PM";return n?r.toLocaleLowerCase():r},m={Y:function(e){var t=e.getFullYear();return t<=9999?"".concat(t):"+".concat(t)},YY:function(e){return d(e.getFullYear(),4).substr(2)},YYYY:function(e){return d(e.getFullYear(),4)},M:function(e){return e.getMonth()+1},MM:function(e){return d(e.getMonth()+1,2)},MMM:function(e,t){return t.monthsShort[e.getMonth()]},MMMM:function(e,t){return t.months[e.getMonth()]},D:function(e){return e.getDate()},DD:function(e){return d(e.getDate(),2)},H:function(e){return e.getHours()},HH:function(e){return d(e.getHours(),2)},h:function(e){var t=e.getHours();return 0===t?12:t>12?t%12:t},hh:function(){var e=m.h.apply(m,arguments);return d(e,2)},m:function(e){return e.getMinutes()},mm:function(e){return d(e.getMinutes(),2)},s:function(e){return e.getSeconds()},ss:function(e){return d(e.getSeconds(),2)},S:function(e){return Math.floor(e.getMilliseconds()/100)},SS:function(e){return d(Math.floor(e.getMilliseconds()/10),2)},SSS:function(e){return d(e.getMilliseconds(),3)},d:function(e){return e.getDay()},dd:function(e,t){return t.weekdaysMin[e.getDay()]},ddd:function(e,t){return t.weekdaysShort[e.getDay()]},dddd:function(e,t){return t.weekdays[e.getDay()]},A:function(e,t){return(t.meridiem||p)(e.getHours(),e.getMinutes(),!1)},a:function(e,t){return(t.meridiem||p)(e.getHours(),e.getMinutes(),!0)},Z:function(e){return f(h(e),":")},ZZ:function(e){return f(h(e))},X:function(e){return Math.floor(e.getTime()/1e3)},x:function(e){return e.getTime()},w:function(e,t){return l(e,{firstDayOfWeek:t.firstDayOfWeek,firstWeekContainsDate:t.firstWeekContainsDate})},ww:function(e,t){return d(m.w(e,t),2)}};function v(e,t){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},r=t?String(t):"YYYY-MM-DDTHH:mm:ss.SSSZ",o=i(e);if(!a(o))return"Invalid Date";var s=n.locale||u;return r.replace(c,(function(e,t){return t||("function"==typeof m[e]?"".concat(m[e](o,s)):e)}))}function g(e){return function(e){if(Array.isArray(e)){for(var t=0,n=new Array(e.length);t<e.length;t++)n[t]=e[t];return n}}(e)||function(e){if(Symbol.iterator in Object(e)||"[object Arguments]"===Object.prototype.toString.call(e))return Array.from(e)}(e)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance")}()}function b(e,t){var n=Object.keys(e);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(e);t&&(r=r.filter((function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable}))),n.push.apply(n,r)}return n}function y(e){for(var t=1;t<arguments.length;t++){var n=null!=arguments[t]?arguments[t]:{};t%2?b(n,!0).forEach((function(t){w(e,t,n[t])})):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(n)):b(n).forEach((function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(n,t))}))}return e}function x(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){if(!(Symbol.iterator in Object(e))&&"[object Arguments]"!==Object.prototype.toString.call(e))return;var n=[],r=!0,i=!1,a=void 0;try{for(var o,s=e[Symbol.iterator]();!(r=(o=s.next()).done)&&(n.push(o.value),!t||n.length!==t);r=!0);}catch(e){i=!0,a=e}finally{try{r||null==s.return||s.return()}finally{if(i)throw a}}return n}(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance")}()}function w(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}var D=/(\[[^\[]*\])|(MM?M?M?|Do|DD?|ddd?d?|w[o|w]?|YYYY|YY|a|A|hh?|HH?|mm?|ss?|S{1,3}|x|X|ZZ?|.)/g,C=/\d/,k=/\d\d/,S=/\d\d?/,M=/[+-]?\d+/,T={},V=function(e,t,n){var r,i=Array.isArray(e)?e:[e];r="string"==typeof n?function(e){var t=parseInt(e,10);return w({},n,t)}:n,i.forEach((function(e){T[e]=[t,r]}))},O=function(e){return e.replace(/[|\\{}()[\]^$+*?.]/g,"\\$&")},Y=function(e){return function(t){var n=t[e];if(!Array.isArray(n))throw new Error("Locale[".concat(e,"] need an array"));return new RegExp(n.map(O).join("|"))}},_=function(e,t){return function(n,r){var i=r[e];if(!Array.isArray(i))throw new Error("Locale[".concat(e,"] need an array"));var a=i.indexOf(n);if(a<0)throw new Error("Invalid Word");return w({},t,a)}};function P(e,t){if(void 0!==e&&void 0!==t)if(t){if(e<12)return e+12}else if(12===e)return 0;return e}function $(e){for(var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:new Date,n=[0,0,1,0,0,0,0],r=[t.getFullYear(),t.getMonth(),t.getDate(),t.getHours(),t.getMinutes(),t.getSeconds(),t.getMilliseconds()],i=!0,a=0;a<7;a++)void 0===e[a]?n[a]=i?r[a]:n[a]:(n[a]=e[a],i=!1);return n}function A(e,t,n,r,i,a,o){var s;return e<100&&e>=0?(s=new Date(e+400,t,n,r,i,a,o),isFinite(s.getFullYear())&&s.setFullYear(e)):s=new Date(e,t,n,r,i,a,o),s}function F(){for(var e,t=arguments.length,n=new Array(t),r=0;r<t;r++)n[r]=arguments[r];var i=n[0];return i<100&&i>=0?(n[0]+=400,e=new Date(Date.UTC.apply(Date,n)),isFinite(e.getUTCFullYear())&&e.setUTCFullYear(i)):e=new Date(Date.UTC.apply(Date,n)),e}function I(e,t,n){var r=t.match(D);if(!r)throw new Error;for(var i=r.length,a={},o=0;o<i;o+=1){var s=r[o],l=T[s];if(l){var u="function"==typeof l[0]?l[0](n):l[0],c=l[1],d=(u.exec(e)||[])[0];a=y({},a,{},c(d,n)),e=e.replace(d,"")}else{var h=s.replace(/^\[|\]$/g,"");if(0!==e.indexOf(h))throw new Error("not match");e=e.substr(h.length)}}return a}function j(e){return(j="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function H(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function E(){return(E=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e}).apply(this,arguments)}function N(e,t){var n=Object.keys(e);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(e);t&&(r=r.filter((function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable}))),n.push.apply(n,r)}return n}function L(e){for(var t=1;t<arguments.length;t++){var n=null!=arguments[t]?arguments[t]:{};t%2?N(Object(n),!0).forEach((function(t){H(e,t,n[t])})):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(n)):N(Object(n)).forEach((function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(n,t))}))}return e}function W(e,t){if(null==e)return{};var n,r,i=function(e,t){if(null==e)return{};var n,r,i={},a=Object.keys(e);for(r=0;r<a.length;r++)n=a[r],t.indexOf(n)>=0||(i[n]=e[n]);return i}(e,t);if(Object.getOwnPropertySymbols){var a=Object.getOwnPropertySymbols(e);for(r=0;r<a.length;r++)n=a[r],t.indexOf(n)>=0||Object.prototype.propertyIsEnumerable.call(e,n)&&(i[n]=e[n])}return i}function z(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){if("undefined"==typeof Symbol||!(Symbol.iterator in Object(e)))return;var n=[],r=!0,i=!1,a=void 0;try{for(var o,s=e[Symbol.iterator]();!(r=(o=s.next()).done)&&(n.push(o.value),!t||n.length!==t);r=!0);}catch(e){i=!0,a=e}finally{try{r||null==s.return||s.return()}finally{if(i)throw a}}return n}(e,t)||function(e,t){if(!e)return;if("string"==typeof e)return R(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);"Object"===n&&e.constructor&&(n=e.constructor.name);if("Map"===n||"Set"===n)return Array.from(n);if("Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))return R(e,t)}(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function R(e,t){(null==t||t>e.length)&&(t=e.length);for(var n=0,r=new Array(t);n<t;n++)r[n]=e[n];return r}function B(){return(B=Object.assign||function(e){for(var t,n=1;n<arguments.length;n++)for(var r in t=arguments[n])Object.prototype.hasOwnProperty.call(t,r)&&(e[r]=t[r]);return e}).apply(this,arguments)}V("Y",M,"year"),V("YY",k,(function(e){var t=(new Date).getFullYear(),n=Math.floor(t/100),r=parseInt(e,10);return w({},"year",r=100*(r>68?n-1:n)+r)})),V("YYYY",/\d{4}/,"year"),V("M",S,(function(e){return w({},"month",parseInt(e,10)-1)})),V("MM",k,(function(e){return w({},"month",parseInt(e,10)-1)})),V("MMM",Y("monthsShort"),_("monthsShort","month")),V("MMMM",Y("months"),_("months","month")),V("D",S,"day"),V("DD",k,"day"),V(["H","h"],S,"hour"),V(["HH","hh"],k,"hour"),V("m",S,"minute"),V("mm",k,"minute"),V("s",S,"second"),V("ss",k,"second"),V("S",C,(function(e){return w({},"millisecond",100*parseInt(e,10))})),V("SS",k,(function(e){return w({},"millisecond",10*parseInt(e,10))})),V("SSS",/\d{3}/,"millisecond"),V(["A","a"],(function(e){return e.meridiemParse||/[ap]\.?m?\.?/i}),(function(e,t){return{isPM:"function"==typeof t.isPM?t.isPM(e):function(e){return"p"==="".concat(e).toLowerCase().charAt(0)}(e)}})),V(["Z","ZZ"],/[+-]\d\d:?\d\d/,(function(e){return{offset:(t=e,n=x(t.match(/([+-]|\d\d)/g)||["-","0","0"],3),r=n[0],i=n[1],a=n[2],o=60*parseInt(i,10)+parseInt(a,10),0===o?0:"+"===r?-o:+o)};var t,n,r,i,a,o})),V("x",M,(function(e){return{date:new Date(parseInt(e,10))}})),V("X",/[+-]?\d+(\.\d{1,3})?/,(function(e){return{date:new Date(1e3*parseFloat(e))}})),V("d",C,"weekday"),V("dd",Y("weekdaysMin"),_("weekdaysMin","weekday")),V("ddd",Y("weekdaysShort"),_("weekdaysShort","weekday")),V("dddd",Y("weekdays"),_("weekdays","weekday")),V("w",S,"week"),V("ww",k,"week");var J=["attrs","props","domProps"],U=["class","style","directives"],Z=["on","nativeOn"],X=function(e,t){return function(){e&&e.apply(this,arguments),t&&t.apply(this,arguments)}},K=function(e){return e.reduce((function(e,t){for(var n in t)if(e[n])if(-1!==J.indexOf(n))e[n]=B({},e[n],t[n]);else if(-1!==U.indexOf(n)){var r=e[n]instanceof Array?e[n]:[e[n]],i=t[n]instanceof Array?t[n]:[t[n]];e[n]=r.concat(i)}else if(-1!==Z.indexOf(n))for(var a in t[n])if(e[n][a]){var o=e[n][a]instanceof Array?e[n][a]:[e[n][a]],s=t[n][a]instanceof Array?t[n][a]:[t[n][a]];e[n][a]=o.concat(s)}else e[n][a]=t[n][a];else if("hook"==n)for(var l in t[n])e[n][l]=e[n][l]?X(e[n][l],t[n][l]):t[n][l];else e[n]=t[n];else e[n]=t[n];return e}),{})};function q(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:0,n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:1,r=arguments.length>3&&void 0!==arguments[3]?arguments[3]:0,i=arguments.length>4&&void 0!==arguments[4]?arguments[4]:0,a=arguments.length>5&&void 0!==arguments[5]?arguments[5]:0,o=arguments.length>6&&void 0!==arguments[6]?arguments[6]:0,s=new Date(e,t,n,r,i,a,o);return e<100&&e>=0&&s.setFullYear(e),s}function G(e){return e instanceof Date&&!isNaN(e)}function Q(e){return Array.isArray(e)&&2===e.length&&e.every(G)&&e[0]<=e[1]}function ee(e){var t=new Date(e);if(G(t))return t;for(var n=arguments.length,r=new Array(n>1?n-1:0),i=1;i<n;i++)r[i-1]=arguments[i];return r.length?ee.apply(void 0,r):new Date}function te(e){var t=new Date(e);return t.setMonth(0,1),t.setHours(0,0,0,0),t}function ne(e){var t=new Date(e);return t.setDate(1),t.setHours(0,0,0,0),t}function re(e){var t=new Date(e);return t.setHours(0,0,0,0),t}function ie(e,t){var n=new Date(e),r="function"==typeof t?t(n.getMonth()):Number(t),i=q(n.getFullYear(),r+1,0).getDate(),a=n.getDate();return n.setMonth(r,Math.min(a,i)),n}function ae(e,t){var n=new Date(e),r="function"==typeof t?t(n.getFullYear()):t;return n.setFullYear(r),n}function oe(e,t){var n=new Date(e),r=new Date(t);return n.setHours(r.getHours(),r.getMinutes(),r.getSeconds()),n}function se(e,t){if(!Array.isArray(e))return[];var n=[],r=e.length,i=0;for(t=t||r;i<r;)n.push(e.slice(i,i+=t));return n}function le(e){return"[object Object]"===Object.prototype.toString.call(e)}function ue(e,t){if(!le(e))return{};Array.isArray(t)||(t=[t]);var n={};return t.forEach((function(t){t in e&&(n[t]=e[t])})),n}var ce,de=function(e,t){return e(t={exports:{}},t.exports),t.exports}((function(e,t){Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var n={months:["January","February","March","April","May","June","July","August","September","October","November","December"],monthsShort:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],weekdays:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],weekdaysShort:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],weekdaysMin:["Su","Mo","Tu","We","Th","Fr","Sa"],firstDayOfWeek:0,firstWeekContainsDate:1};t.default=n,e.exports=t.default})),he={formatLocale:(ce=de)&&ce.__esModule&&Object.prototype.hasOwnProperty.call(ce,"default")?ce.default:ce,yearFormat:"YYYY",monthFormat:"MMM",monthBeforeYear:!0},fe="en",pe={};function me(e,t,n){if("string"!=typeof e)return pe[fe];var r=fe;return pe[e]&&(r=e),t&&(pe[e]=t,r=e),n||(fe=r),pe[e]||pe[fe]}function ve(e){return me(e,null,!0)}function ge(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:document.body;if(!e||e===t)return null;var n=function(e,t){return getComputedStyle(e,null).getPropertyValue(t)},r=/(auto|scroll)/,i=r.test(n(e,"overflow")+n(e,"overflow-y")+n(e,"overflow-x"));return i?e:ge(e.parentNode,t)}function be(e,t,n,r,i,a,o,s,l,u){"boolean"!=typeof o&&(l=s,s=o,o=!1);var c,d="function"==typeof n?n.options:n;if(e&&e.render&&(d.render=e.render,d.staticRenderFns=e.staticRenderFns,d._compiled=!0,i&&(d.functional=!0)),r&&(d._scopeId=r),a?(c=function(e){(e=e||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(e=__VUE_SSR_CONTEXT__),t&&t.call(this,l(e)),e&&e._registeredComponents&&e._registeredComponents.add(a)},d._ssrRegister=c):t&&(c=o?function(e){t.call(this,u(e,this.$root.$options.shadowRoot))}:function(e){t.call(this,s(e))}),c)if(d.functional){var h=d.render;d.render=function(e,t){return c.call(t),h(e,t)}}else{var f=d.beforeCreate;d.beforeCreate=f?[].concat(f,c):[c]}return n}pe[fe]=he;var ye,xe=be({render:function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("transition",{attrs:{name:e.prefixClass+"-zoom-in-down"}},[e.visible?n("div",{class:e.prefixClass+"-datepicker-main "+e.prefixClass+"-datepicker-popup",style:{top:e.top,left:e.left,position:"absolute"}},[e._t("default")],2):e._e()])},staticRenderFns:[]},void 0,{name:"Popup",inject:{prefixClass:{default:"mx"}},props:{visible:{type:Boolean,default:!1},appendToBody:{type:Boolean,default:!0}},data:function(){return{top:"",left:""}},watch:{visible:{immediate:!0,handler:function(e){var t=this;this.$nextTick((function(){e&&t.displayPopup()}))}}},mounted:function(){var e=this;this.appendToBody&&document.body.appendChild(this.$el),this._clickoutEvent="ontouchend"in document?"touchstart":"mousedown",document.addEventListener(this._clickoutEvent,this.handleClickOutside);var t,n,r=this.$parent.$el;this._displayPopup=(t=function(){return e.displayPopup()},n=!1,function(){for(var e=this,r=arguments.length,i=new Array(r),a=0;a<r;a++)i[a]=arguments[a];n||(n=!0,requestAnimationFrame((function(){n=!1,t.apply(e,i)})))}),this._scrollParent=ge(r)||window,this._scrollParent.addEventListener("scroll",this._displayPopup),window.addEventListener("resize",this._displayPopup)},beforeDestroy:function(){this.appendToBody&&this.$el.parentNode&&this.$el.parentNode.removeChild(this.$el),document.removeEventListener(this._clickoutEvent,this.handleClickOutside),this._scrollParent.removeEventListener("scroll",this._displayPopup),window.removeEventListener("resize",this._displayPopup)},methods:{handleClickOutside:function(e){if(this.visible){var t=e.target,n=this.$el;n&&!n.contains(t)&&this.$emit("clickoutside",e)}},displayPopup:function(){if(this.visible){var e=this.$el,t=this.$parent.$el,n=this.appendToBody;this._popupRect||(this._popupRect=function(e){var t=e.style.display,n=e.style.visibility;e.style.display="block",e.style.visibility="hidden";var r=window.getComputedStyle(e),i=e.offsetWidth+parseInt(r.marginLeft,10)+parseInt(r.marginRight,10),a=e.offsetHeight+parseInt(r.marginTop,10)+parseInt(r.marginBottom,10);return e.style.display=t,e.style.visibility=n,{width:i,height:a}}(e));var r=this._popupRect,i=function(e,t,n,r){var i=0,a=0,o=0,s=0,l=e.getBoundingClientRect(),u=document.documentElement.clientWidth,c=document.documentElement.clientHeight;return r&&(o=window.pageXOffset+l.left,s=window.pageYOffset+l.top),i=u-l.left<t&&l.right<t?o-l.left+1:l.left+l.width/2<=u/2?o:o+l.width-t,a=l.top<=n&&c-l.bottom<=n?s+c-l.top-n:l.top+l.height/2<=c/2?s+l.height:s-n,{left:"".concat(i,"px"),top:"".concat(a,"px")}}(t,r.width,r.height,n),a=i.left,o=i.top;this.left=a,this.top=o}}}},void 0,!1,void 0,!1,void 0,void 0,void 0),we=be({render:function(){var e=this.$createElement,t=this._self._c||e;return t("svg",{attrs:{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 1024 1024",width:"1em",height:"1em"}},[t("path",{attrs:{d:"M940.218182 107.054545h-209.454546V46.545455h-65.163636v60.50909H363.054545V46.545455H297.890909v60.50909H83.781818c-18.618182 0-32.581818 13.963636-32.581818 32.581819v805.236363c0 18.618182 13.963636 32.581818 32.581818 32.581818h861.090909c18.618182 0 32.581818-13.963636 32.581818-32.581818V139.636364c-4.654545-18.618182-18.618182-32.581818-37.236363-32.581819zM297.890909 172.218182V232.727273h65.163636V172.218182h307.2V232.727273h65.163637V172.218182h176.872727v204.8H116.363636V172.218182h181.527273zM116.363636 912.290909V442.181818h795.927273v470.109091H116.363636z"}})])},staticRenderFns:[]},void 0,{},void 0,!1,void 0,!1,void 0,void 0,void 0),De=be({render:function(){var e=this.$createElement,t=this._self._c||e;return t("svg",{attrs:{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 24 24",width:"1em",height:"1em"}},[t("path",{attrs:{d:"M0 0h24v24H0z",fill:"none"}}),this._v(" "),t("path",{attrs:{d:"M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"}}),this._v(" "),t("path",{attrs:{d:"M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"}})])},staticRenderFns:[]},void 0,{},void 0,!1,void 0,!1,void 0,void 0,void 0),Ce=be({render:function(){var e=this.$createElement,t=this._self._c||e;return t("svg",{attrs:{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 1024 1024",width:"1em",height:"1em"}},[t("path",{attrs:{d:"M810.005333 274.005333l-237.994667 237.994667 237.994667 237.994667-60.010667 60.010667-237.994667-237.994667-237.994667 237.994667-60.010667-60.010667 237.994667-237.994667-237.994667-237.994667 60.010667-60.010667 237.994667 237.994667 237.994667-237.994667z"}})])},staticRenderFns:[]},void 0,{},void 0,!1,void 0,!1,void 0,void 0,void 0),ke=be({render:function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("button",e._g({class:e.prefixClass+"-btn "+e.prefixClass+"-btn-text "+e.prefixClass+"-btn-icon-"+e.type,attrs:{type:"button"}},e.$listeners),[n("i",{class:e.prefixClass+"-icon-"+e.type})])},staticRenderFns:[]},void 0,{props:{type:String},inject:{prefixClass:{default:"mx"}}},void 0,!1,void 0,!1,void 0,void 0,void 0),Se=be({render:function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{class:e.prefixClass+"-calendar "+e.prefixClass+"-calendar-panel-date"},[n("div",{class:e.prefixClass+"-calendar-header"},[n("icon-button",{attrs:{type:"double-left"},on:{click:e.handleIconDoubleLeftClick}}),e._v(" "),n("icon-button",{attrs:{type:"left"},on:{click:e.handleIconLeftClick}}),e._v(" "),n("icon-button",{attrs:{type:"double-right"},on:{click:e.handleIconDoubleRightClick}}),e._v(" "),n("icon-button",{attrs:{type:"right"},on:{click:e.handleIconRightClick}}),e._v(" "),n("span",{class:e.prefixClass+"-calendar-header-label"},e._l(e.yearMonth,(function(t){return n("button",{key:t.panel,class:e.prefixClass+"-btn "+e.prefixClass+"-btn-text "+e.prefixClass+"-btn-current-"+t.panel,attrs:{type:"button"},on:{click:function(n){return e.handlePanelChange(t.panel)}}},[e._v("\n        "+e._s(t.label)+"\n      ")])})),0)],1),e._v(" "),n("div",{class:e.prefixClass+"-calendar-content"},[n("table",{class:e.prefixClass+"-table "+e.prefixClass+"-table-date"},[n("thead",[n("tr",[e.showWeekNumber?n("th",{class:e.prefixClass+"-week-number-header"}):e._e(),e._v(" "),e._l(e.days,(function(t){return n("th",{key:t},[e._v(e._s(t))])}))],2)]),e._v(" "),n("tbody",{on:{click:e.handleCellClick}},e._l(e.dates,(function(t,r){return n("tr",{key:r,class:[e.prefixClass+"-date-row",e.getRowClasses(t)]},[e.showWeekNumber?n("td",{class:e.prefixClass+"-week-number",attrs:{"data-row-col":r+",0"}},[e._v("\n            "+e._s(e.getWeekNumber(t[0]))+"\n          ")]):e._e(),e._v(" "),e._l(t,(function(t,i){return n("td",{key:i,staticClass:"cell",class:e.getCellClasses(t),attrs:{"data-row-col":r+","+i,title:e.getCellTitle(t)},on:{mouseenter:function(n){return e.handleMouseEnter(t)},mouseleave:function(n){return e.handleMouseLeave(t)}}},[n("div",[e._v(e._s(t.getDate()))])])}))],2)})),0)])])])},staticRenderFns:[]},void 0,{name:"TableDate",components:{IconButton:ke},inject:{getLocale:{default:function(){return ve}},getWeek:{default:function(){return l}},prefixClass:{default:"mx"},onDateMouseEnter:{default:void 0},onDateMouseLeave:{default:void 0}},props:{calendar:{type:Date,default:function(){return new Date}},showWeekNumber:{type:Boolean,default:!1},titleFormat:{type:String,default:"YYYY-MM-DD"},getRowClasses:{type:Function,default:function(){return[]}},getCellClasses:{type:Function,default:function(){return[]}}},computed:{firstDayOfWeek:function(){return this.getLocale().formatLocale.firstDayOfWeek||0},yearMonth:function(){var e=this.getLocale(),t=e.yearFormat,n=e.monthBeforeYear,r=e.monthFormat,i=void 0===r?"MMM":r,a={panel:"year",label:this.formatDate(this.calendar,t)},o={panel:"month",label:this.formatDate(this.calendar,i)};return n?[o,a]:[a,o]},days:function(){var e=this.getLocale(),t=e.days||e.formatLocale.weekdaysMin;return t.concat(t).slice(this.firstDayOfWeek,this.firstDayOfWeek+7)},dates:function(){var e=this.calendar.getFullYear(),t=this.calendar.getMonth();return se(function(e){for(var t=e.firstDayOfWeek,n=e.year,r=e.month,i=[],a=q(n,r,0),o=a.getDate(),s=o-(a.getDay()+7-t)%7,l=s;l<=o;l++)i.push(q(n,r,l-o));a.setMonth(r+1,0);for(var u=a.getDate(),c=1;c<=u;c++)i.push(q(n,r,c));for(var d=42-(o-s+1)-u,h=1;h<=d;h++)i.push(q(n,r,u+h));return i}({firstDayOfWeek:this.firstDayOfWeek,year:e,month:t}),7)}},methods:{handleIconLeftClick:function(){this.$emit("changecalendar",ie(this.calendar,(function(e){return e-1})),"last-month")},handleIconRightClick:function(){this.$emit("changecalendar",ie(this.calendar,(function(e){return e+1})),"next-month")},handleIconDoubleLeftClick:function(){this.$emit("changecalendar",ae(this.calendar,(function(e){return e-1})),"last-year")},handleIconDoubleRightClick:function(){this.$emit("changecalendar",ae(this.calendar,(function(e){return e+1})),"next-year")},handlePanelChange:function(e){this.$emit("changepanel",e)},handleMouseEnter:function(e){"function"==typeof this.onDateMouseEnter&&this.onDateMouseEnter(e)},handleMouseLeave:function(e){"function"==typeof this.onDateMouseLeave&&this.onDateMouseLeave(e)},handleCellClick:function(e){var t=e.target;"DIV"===t.tagName.toUpperCase()&&(t=t.parentNode);var n=t.getAttribute("data-row-col");if(n){var r=z(n.split(",").map((function(e){return parseInt(e,10)})),2),i=r[0],a=r[1],o=this.dates[i][a];this.$emit("select",new Date(o))}},formatDate:function(e,t){return v(e,t,{locale:this.getLocale().formatLocale})},getCellTitle:function(e){var t=this.titleFormat;return this.formatDate(e,t)},getWeekNumber:function(e){return this.getWeek(e,this.getLocale().formatLocale)}}},void 0,!1,void 0,!1,void 0,void 0,void 0),Me=be({render:function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{class:e.prefixClass+"-calendar "+e.prefixClass+"-calendar-panel-month"},[n("div",{class:e.prefixClass+"-calendar-header"},[n("icon-button",{attrs:{type:"double-left"},on:{click:e.handleIconDoubleLeftClick}}),e._v(" "),n("icon-button",{attrs:{type:"double-right"},on:{click:e.handleIconDoubleRightClick}}),e._v(" "),n("span",{class:e.prefixClass+"-calendar-header-label"},[n("button",{class:e.prefixClass+"-btn "+e.prefixClass+"-btn-text",attrs:{type:"button"},on:{click:e.handlePanelChange}},[e._v("\n        "+e._s(e.calendarYear)+"\n      ")])])],1),e._v(" "),n("div",{class:e.prefixClass+"-calendar-content"},[n("table",{class:e.prefixClass+"-table "+e.prefixClass+"-table-month",on:{click:e.handleClick}},e._l(e.months,(function(t,r){return n("tr",{key:r},e._l(t,(function(t,r){return n("td",{key:r,staticClass:"cell",class:e.getCellClasses(t.month),attrs:{"data-month":t.month}},[n("div",[e._v(e._s(t.text))])])})),0)})),0)])])},staticRenderFns:[]},void 0,{name:"TableMonth",components:{IconButton:ke},inject:{getLocale:{default:function(){return ve}},prefixClass:{default:"mx"}},props:{calendar:{type:Date,default:function(){return new Date}},getCellClasses:{type:Function,default:function(){return[]}}},computed:{calendarYear:function(){return this.calendar.getFullYear()},months:function(){var e=this.getLocale(),t=(e.months||e.formatLocale.monthsShort).map((function(e,t){return{text:e,month:t}}));return se(t,3)}},methods:{handleIconDoubleLeftClick:function(){this.$emit("changecalendar",ae(this.calendar,(function(e){return e-1})),"last-year")},handleIconDoubleRightClick:function(){this.$emit("changecalendar",ae(this.calendar,(function(e){return e+1})),"next-year")},handlePanelChange:function(){this.$emit("changepanel","year")},handleClick:function(e){var t=e.target;"DIV"===t.tagName.toUpperCase()&&(t=t.parentNode);var n=t.getAttribute("data-month");n&&this.$emit("select",parseInt(n,10))}}},void 0,!1,void 0,!1,void 0,void 0,void 0),Te=be({render:function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{class:e.prefixClass+"-calendar "+e.prefixClass+"-calendar-panel-year"},[n("div",{class:e.prefixClass+"-calendar-header"},[n("icon-button",{attrs:{type:"double-left"},on:{click:e.handleIconDoubleLeftClick}}),e._v(" "),n("icon-button",{attrs:{type:"double-right"},on:{click:e.handleIconDoubleRightClick}}),e._v(" "),n("span",{class:e.prefixClass+"-calendar-header-label"},[n("span",[e._v(e._s(e.firstYear))]),e._v(" "),n("span",{class:e.prefixClass+"-calendar-decade-separator"}),e._v(" "),n("span",[e._v(e._s(e.lastYear))])])],1),e._v(" "),n("div",{class:e.prefixClass+"-calendar-content"},[n("table",{class:e.prefixClass+"-table "+e.prefixClass+"-table-year",on:{click:e.handleClick}},e._l(e.years,(function(t,r){return n("tr",{key:r},e._l(t,(function(t,r){return n("td",{key:r,staticClass:"cell",class:e.getCellClasses(t),attrs:{"data-year":t}},[n("div",[e._v(e._s(t))])])})),0)})),0)])])},staticRenderFns:[]},void 0,{name:"TableYear",components:{IconButton:ke},inject:{prefixClass:{default:"mx"}},props:{calendar:{type:Date,default:function(){return new Date}},getCellClasses:{type:Function,default:function(){return[]}},getYearPanel:{type:Function}},computed:{years:function(){var e=new Date(this.calendar);return"function"==typeof this.getYearPanel?this.getYearPanel(e):this.getYears(e)},firstYear:function(){return this.years[0][0]},lastYear:function(){var e=function(e){return e[e.length-1]};return e(e(this.years))}},methods:{getYears:function(e){for(var t=10*Math.floor(e.getFullYear()/10),n=[],r=0;r<10;r++)n.push(t+r);return se(n,2)},handleIconDoubleLeftClick:function(){this.$emit("changecalendar",ae(this.calendar,(function(e){return e-10})),"last-decade")},handleIconDoubleRightClick:function(){this.$emit("changecalendar",ae(this.calendar,(function(e){return e+10})),"next-decade")},handleClick:function(e){var t=e.target;"DIV"===t.tagName.toUpperCase()&&(t=t.parentNode);var n=t.getAttribute("data-year");n&&this.$emit("select",parseInt(n,10))}}},void 0,!1,void 0,!1,void 0,void 0,void 0),Ve={name:"CalendarPanel",inject:{prefixClass:{default:"mx"},dispatchDatePicker:{default:function(){return function(){}}}},props:{value:{},defaultValue:{default:function(){var e=new Date;return e.setHours(0,0,0,0),e}},defaultPanel:{type:String},disabledDate:{type:Function,default:function(){return!1}},type:{type:String,default:"date"},getClasses:{type:Function,default:function(){return[]}},showWeekNumber:{type:Boolean,default:void 0},getYearPanel:{type:Function},titleFormat:{type:String,default:"YYYY-MM-DD"},calendar:Date,partialUpdate:{type:Boolean,default:!1}},data:function(){var e=["date","month","year"],t=Math.max(e.indexOf(this.type),e.indexOf(this.defaultPanel));return{panel:-1!==t?e[t]:"date",innerCalendar:new Date}},computed:{innerValue:function(){var e=Array.isArray(this.value)?this.value:[this.value],t={year:te,month:ne,date:re},n=t[this.type]||t.date;return e.filter(G).map((function(e){return n(e)}))},calendarYear:function(){return this.innerCalendar.getFullYear()},calendarMonth:function(){return this.innerCalendar.getMonth()}},watch:{value:{immediate:!0,handler:"initCalendar"},calendar:{handler:"initCalendar"},defaultValue:{handler:"initCalendar"}},methods:{initCalendar:function(){var e=this.calendar;if(!G(e)){var t=this.innerValue.length;e=ee(t>0?this.innerValue[t-1]:this.defaultValue)}this.innerCalendar=ne(e)},isDisabled:function(e){return this.disabledDate(new Date(e),this.innerValue)},emitDate:function(e,t){this.isDisabled(e)||(this.$emit("select",e,t,this.innerValue),this.dispatchDatePicker("pick",e,t))},handleCalendarChange:function(e,t){var n=new Date(this.innerCalendar);this.innerCalendar=e,this.$emit("update:calendar",e),this.dispatchDatePicker("calendar-change",e,n,t)},handelPanelChange:function(e){var t=this.panel;this.panel=e,this.dispatchDatePicker("panel-change",e,t)},handleSelectYear:function(e){if("year"===this.type){var t=this.getYearCellDate(e);this.emitDate(t,"year")}else if(this.handleCalendarChange(q(e,this.calendarMonth),"year"),this.handelPanelChange("month"),this.partialUpdate&&1===this.innerValue.length){var n=new Date(this.innerValue[0]);n.setFullYear(e),this.emitDate(n,"year")}},handleSelectMonth:function(e){if("month"===this.type){var t=this.getMonthCellDate(e);this.emitDate(t,"month")}else if(this.handleCalendarChange(q(this.calendarYear,e),"month"),this.handelPanelChange("date"),this.partialUpdate&&1===this.innerValue.length){var n=new Date(this.innerValue[0]);n.setFullYear(this.calendarYear),this.emitDate(ie(n,e),"month")}},handleSelectDate:function(e){this.emitDate(e,"week"===this.type?"week":"date")},getMonthCellDate:function(e){return q(this.calendarYear,e)},getYearCellDate:function(e){return q(e,0)},getDateClasses:function(e){var t=e.getMonth()!==this.calendarMonth,n=[];e.getTime()===(new Date).setHours(0,0,0,0)&&n.push("today"),t&&n.push("not-current-month");var r=this.getStateClass(e);return"active"===r&&t||n.push(r),n.concat(this.getClasses(e,this.innerValue,n.join(" ")))},getMonthClasses:function(e){if("month"!==this.type)return this.calendarMonth===e?"active":"";var t=[],n=this.getMonthCellDate(e);return t.push(this.getStateClass(n)),t.concat(this.getClasses(n,this.innerValue,t.join(" ")))},getYearClasses:function(e){if("year"!==this.type)return this.calendarYear===e?"active":"";var t=[],n=this.getYearCellDate(e);return t.push(this.getStateClass(n)),t.concat(this.getClasses(n,this.innerValue,t.join(" ")))},getStateClass:function(e){return this.isDisabled(e)?"disabled":this.innerValue.some((function(t){return t.getTime()===e.getTime()}))?"active":""},getWeekState:function(e){if("week"!==this.type)return"";var t=e[0].getTime(),n=e[6].getTime();return this.innerValue.some((function(e){var r=e.getTime();return r>=t&&r<=n}))?"".concat(this.prefixClass,"-active-week"):""}},render:function(){var e=arguments[0],t=this.panel,n=this.innerCalendar;return"year"===t?e(Te,{attrs:{calendar:n,getCellClasses:this.getYearClasses,getYearPanel:this.getYearPanel},on:{select:this.handleSelectYear,changecalendar:this.handleCalendarChange}}):"month"===t?e(Me,{attrs:{calendar:n,getCellClasses:this.getMonthClasses},on:{select:this.handleSelectMonth,changepanel:this.handelPanelChange,changecalendar:this.handleCalendarChange}}):e(Se,{class:H({},"".concat(this.prefixClass,"-calendar-week-mode"),"week"===this.type),attrs:{calendar:n,getCellClasses:this.getDateClasses,getRowClasses:this.getWeekState,titleFormat:this.titleFormat,showWeekNumber:"boolean"==typeof this.showWeekNumber?this.showWeekNumber:"week"===this.type},on:{select:this.handleSelectDate,changepanel:this.handelPanelChange,changecalendar:this.handleCalendarChange}})}},Oe={name:"CalendarRange",components:{CalendarPanel:Ve},provide:function(){return{onDateMouseEnter:this.onDateMouseEnter,onDateMouseLeave:this.onDateMouseLeave}},inject:{prefixClass:{default:"mx"}},props:L({},Ve.props),data:function(){return{innerValue:[],calendars:[],hoveredValue:null}},computed:{calendarMinDiff:function(){var e={date:1,month:12,year:120};return e[this.type]||e.date},calendarMaxDiff:function(){return 1/0},defaultValues:function(){return Array.isArray(this.defaultValue)?this.defaultValue:[this.defaultValue,this.defaultValue]}},watch:{value:{immediate:!0,handler:function(){var e=this;this.innerValue=Q(this.value)?this.value:[new Date(NaN),new Date(NaN)];var t=this.innerValue.map((function(t,n){return ne(ee(t,e.defaultValues[n]))}));this.updateCalendars(t)}}},methods:{handleSelect:function(e,t){var n=z(this.innerValue,2),r=n[0],i=n[1];G(r)&&!G(i)?(r.getTime()>e.getTime()?this.innerValue=[e,r]:this.innerValue=[r,e],this.emitDate(this.innerValue,t)):this.innerValue=[e,new Date(NaN)]},onDateMouseEnter:function(e){this.hoveredValue=e},onDateMouseLeave:function(){this.hoveredValue=null},emitDate:function(e,t){this.$emit("select",e,t)},updateStartCalendar:function(e){this.updateCalendars([e,this.calendars[1]],1)},updateEndCalendar:function(e){this.updateCalendars([this.calendars[0],e],0)},updateCalendars:function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:1,n=this.getCalendarGap(e);if(n){var r=new Date(e[t]);r.setMonth(r.getMonth()+(0===t?-n:n)),e[t]=r}this.calendars=e},getCalendarGap:function(e){var t=z(e,2),n=t[0],r=t[1],i=12*(r.getFullYear()-n.getFullYear())+(r.getMonth()-n.getMonth()),a=this.calendarMinDiff,o=this.calendarMaxDiff;return i<a?a-i:i>o?o-i:0},getRangeClasses:function(e,t,n){var r=[].concat(this.getClasses(e,t,n));if(/disabled|active/.test(n))return r;var i=function(e,t){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:function(e){return e.getTime()},r=n(e),i=t.map(n),a=z(i,2),o=a[0],s=a[1];if(o>s){var l=[s,o];o=l[0],s=l[1]}return r>o&&r<s};return 2===t.length&&i(e,t)?r.concat("in-range"):1===t.length&&this.hoveredValue&&i(e,[t[0],this.hoveredValue])?r.concat("hover-in-range"):r}},render:function(){var e=this,t=arguments[0],n=this.calendars.map((function(n,r){var i=L({},e.$props,{calendar:n,value:e.innerValue,defaultValue:e.defaultValues[r],getClasses:e.getRangeClasses,partialUpdate:!1}),a={select:e.handleSelect,"update:calendar":0===r?e.updateStartCalendar:e.updateEndCalendar};return t("calendar-panel",{props:L({},i),on:L({},a)})})),r=this.prefixClass;return t("div",{class:"".concat(r,"-range-wrapper")},[n])}};var Ye=be({render:function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{class:e.prefixClass+"-scrollbar",style:{position:"relative",overflow:"hidden"}},[n("div",{ref:"wrap",class:e.prefixClass+"-scrollbar-wrap",style:{marginRight:"-"+e.scrollbarWidth+"px"},on:{scroll:e.handleScroll}},[e._t("default")],2),e._v(" "),n("div",{class:e.prefixClass+"-scrollbar-track"},[n("div",{ref:"thumb",class:e.prefixClass+"-scrollbar-thumb",style:{height:e.thumbHeight,top:e.thumbTop},on:{mousedown:e.handleDragstart}})])])},staticRenderFns:[]},void 0,{inject:{prefixClass:{default:"mx"}},data:function(){return{scrollbarWidth:0,thumbTop:"",thumbHeight:""}},created:function(){this.scrollbarWidth=function(){if("undefined"==typeof window)return 0;if(void 0!==ye)return ye;var e=document.createElement("div");e.style.visibility="hidden",e.style.overflow="scroll",e.style.width="100px",e.style.position="absolute",e.style.top="-9999px",document.body.appendChild(e);var t=document.createElement("div");return t.style.width="100%",e.appendChild(t),ye=e.offsetWidth-t.offsetWidth,e.parentNode.removeChild(e),ye}(),document.addEventListener("mouseup",this.handleDragend)},beforeDestroy:function(){document.addEventListener("mouseup",this.handleDragend)},mounted:function(){this.$nextTick(this.getThumbSize)},methods:{getThumbSize:function(){var e=this.$refs.wrap;if(e){var t=100*e.clientHeight/e.scrollHeight;this.thumbHeight=t<100?"".concat(t,"%"):""}},handleScroll:function(e){var t=e.currentTarget,n=t.scrollHeight,r=t.scrollTop;this.thumbTop="".concat(100*r/n,"%")},handleDragstart:function(e){e.stopImmediatePropagation(),this._draggable=!0;var t=this.$refs.thumb.offsetTop;this._prevY=e.clientY-t,document.addEventListener("mousemove",this.handleDraging)},handleDraging:function(e){if(this._draggable){var t=e.clientY,n=this.$refs.wrap,r=n.scrollHeight,i=n.clientHeight,a=(t-this._prevY)*r/i;n.scrollTop=a}},handleDragend:function(){this._draggable&&(this._draggable=!1,document.removeEventListener("mousemove",this.handleDraging))}}},void 0,!1,void 0,!1,void 0,void 0,void 0),_e=function(e){return(e=parseInt(e,10))<10?"0".concat(e):"".concat(e)},Pe=function(e,t,n){if(Array.isArray(n))return n.filter((function(t){return t>=0&&t<e}));t<=0&&(t=1);for(var r=[],i=0;i<e;i+=t)r.push(i);return r},$e=function e(t,n){var r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:0;if(r<=0)requestAnimationFrame((function(){t.scrollTop=n}));else{var i=n-t.scrollTop,a=i/r*10;requestAnimationFrame((function(){var i=t.scrollTop+a;i>=n?t.scrollTop=n:(t.scrollTop=i,e(t,n,r-10))}))}},Ae=be({render:function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{class:e.prefixClass+"-time-columns"},e._l(e.columns,(function(t,r){return n("scrollbar-vertical",{key:r,class:e.prefixClass+"-time-column"},[n("ul",{class:e.prefixClass+"-time-list",attrs:{"data-type":t.type,"data-index":r},on:{click:e.handleSelect}},e._l(t.list,(function(r,i){return n("li",{key:r.value,class:[e.prefixClass+"-time-item",e.getClasses(r.value,t.type)],attrs:{"data-index":i}},[e._v("\n        "+e._s(r.text)+"\n      ")])})),0)])})),1)},staticRenderFns:[]},void 0,{name:"ListColumns",components:{ScrollbarVertical:Ye},inject:{prefixClass:{default:"mx"}},props:{date:Date,scrollDuration:{type:Number,default:100},getClasses:{type:Function,default:function(){return[]}},hourOptions:Array,minuteOptions:Array,secondOptions:Array,showHour:{type:Boolean,default:!0},showMinute:{type:Boolean,default:!0},showSecond:{type:Boolean,default:!0},hourStep:{type:Number,default:1},minuteStep:{type:Number,default:1},secondStep:{type:Number,default:1},use12h:{type:Boolean,default:!1}},computed:{columns:function(){var e=[];return this.showHour&&e.push({type:"hour",list:this.getHoursList()}),this.showMinute&&e.push({type:"minute",list:this.getMinutesList()}),this.showSecond&&e.push({type:"second",list:this.getSecondsList()}),this.use12h&&e.push({type:"ampm",list:this.getAMPMList()}),e.filter((function(e){return e.list.length>0}))}},watch:{date:{handler:function(){var e=this;this.$nextTick((function(){e.scrollToSelected(e.scrollDuration)}))}}},mounted:function(){this.scrollToSelected(0)},methods:{getHoursList:function(){var e=this;return Pe(this.use12h?12:24,this.hourStep,this.hourOptions).map((function(t){var n=new Date(e.date),r=_e(t);return e.use12h&&(0===t&&(r="12"),n.getHours()>=12&&(t+=12)),{value:n.setHours(t),text:r}}))},getMinutesList:function(){var e=this;return Pe(60,this.minuteStep,this.minuteOptions).map((function(t){return{value:new Date(e.date).setMinutes(t),text:_e(t)}}))},getSecondsList:function(){var e=this;return Pe(60,this.secondStep,this.secondOptions).map((function(t){return{value:new Date(e.date).setSeconds(t),text:_e(t)}}))},getAMPMList:function(){var e=this;return["AM","PM"].map((function(t,n){var r=new Date(e.date);return{text:t,value:r.setHours(r.getHours()%12+12*n)}}))},scrollToSelected:function(e){for(var t=this.$el.querySelectorAll(".active"),n=0;n<t.length;n++){var r=t[n],i=ge(r,this.$el);if(i){var a=r.offsetTop;$e(i,a,e)}}},handleSelect:function(e){var t=e.target,n=e.currentTarget;if("LI"===t.tagName.toUpperCase()){var r=n.getAttribute("data-type"),i=parseInt(n.getAttribute("data-index"),10),a=parseInt(t.getAttribute("data-index"),10),o=this.columns[i].list[a].value;this.$emit("select",o,r)}}}},void 0,!1,void 0,!1,void 0,void 0,void 0);function Fe(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"",t=e.split(":");if(t.length>=2){var n=parseInt(t[0],10),r=parseInt(t[1],10);return{hours:n,minutes:r}}return null}var Ie=be({render:function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("scrollbar-vertical",e._l(e.list,(function(t){return n("div",{key:t.value,class:[e.prefixClass+"-time-option",e.getClasses(t.value)],on:{click:function(n){return e.handleSelect(t.value)}}},[e._v("\n    "+e._s(t.text)+"\n  ")])})),0)},staticRenderFns:[]},void 0,{name:"ListOptions",components:{ScrollbarVertical:Ye},inject:{getLocale:{default:function(){return ve}},prefixClass:{default:"mx"}},props:{date:Date,options:{type:[Object,Function],default:function(){return[]}},format:{type:String,default:"HH:mm:ss"},getClasses:{type:Function,default:function(){return[]}}},computed:{list:function(){var e=[],t=this.options;if("function"==typeof t)return t()||[];var n=Fe(t.start),r=Fe(t.end),i=Fe(t.step),a=t.format||this.format;if(n&&r&&i)for(var o=n.minutes+60*n.hours,s=r.minutes+60*r.hours,l=i.minutes+60*i.hours,u=Math.floor((s-o)/l),c=0;c<=u;c++){var d=o+c*l,h=Math.floor(d/60),f=d%60,p=new Date(this.date).setHours(h,f,0);e.push({value:p,text:this.formatDate(p,a)})}return e}},mounted:function(){this.scrollToSelected()},methods:{formatDate:function(e,t){return v(e,t,{locale:this.getLocale().formatLocale})},scrollToSelected:function(){var e=this.$el.querySelector(".active");if(e){var t=ge(e,this.$el);if(t)!function(e,t){e&&(e.scrollTop=t)}(t,e.offsetTop)}},handleSelect:function(e){this.$emit("select",e,"time")}}},void 0,!1,void 0,!1,void 0,void 0,void 0),je=be({render:function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{class:e.prefixClass+"-time"},[e.showTimeHeader?n("div",{class:e.prefixClass+"-time-header"},[n("button",{class:e.prefixClass+"-btn "+e.prefixClass+"-btn-text "+e.prefixClass+"-time-header-title",attrs:{type:"button"},on:{click:e.handleClickTitle}},[e._v("\n      "+e._s(e.title)+"\n    ")])]):e._e(),e._v(" "),n("div",{class:e.prefixClass+"-time-content"},[e.timePickerOptions?n("list-options",{attrs:{date:e.innerValue,"get-classes":e.getClasses,options:e.timePickerOptions,format:e.innerForamt},on:{select:e.handleSelect}}):n("list-columns",e._b({attrs:{date:e.innerValue,"get-classes":e.getClasses,"hour-options":e.hourOptions,"minute-options":e.minuteOptions,"second-options":e.secondOptions,"hour-step":e.hourStep,"minute-step":e.minuteStep,"second-step":e.secondStep,"scroll-duration":e.scrollDuration},on:{select:e.handleSelect}},"list-columns",e.ShowHourMinuteSecondAMPM,!1))],1)])},staticRenderFns:[]},void 0,{name:"TimePanel",components:{ListColumns:Ae,ListOptions:Ie},inject:{getLocale:{default:function(){return ve}},prefixClass:{default:"mx"}},props:{value:{},defaultValue:{default:function(){var e=new Date;return e.setHours(0,0,0,0),e}},format:{default:"HH:mm:ss"},timeTitleFormat:{type:String,default:"YYYY-MM-DD"},showTimeHeader:{type:Boolean,default:!1},disabledTime:{type:Function,default:function(){return!1}},timePickerOptions:{type:[Object,Function],default:function(){return null}},hourOptions:Array,minuteOptions:Array,secondOptions:Array,hourStep:{type:Number,default:1},minuteStep:{type:Number,default:1},secondStep:{type:Number,default:1},showHour:{type:Boolean,default:void 0},showMinute:{type:Boolean,default:void 0},showSecond:{type:Boolean,default:void 0},use12h:{type:Boolean,default:void 0},scrollDuration:{type:Number,default:100}},data:function(){return{innerValue:ee(this.value,this.defaultValue)}},computed:{title:function(){var e=this.timeTitleFormat,t=new Date(this.innerValue);return this.formatDate(t,e)},innerForamt:function(){return"string"==typeof this.format?this.format:"HH:mm:ss"},ShowHourMinuteSecondAMPM:function(){var e=this,t=this.innerForamt,n={showHour:/[HhKk]/.test(t),showMinute:/m/.test(t),showSecond:/s/.test(t),use12h:/a/i.test(t)},r={};return Object.keys(n).forEach((function(t){r[t]="boolean"==typeof e[t]?e[t]:n[t]})),r}},watch:{value:{immediate:!0,handler:function(){this.innerValue=ee(this.value,this.defaultValue)}}},methods:{formatDate:function(e,t){return v(e,t,{locale:this.getLocale().formatLocale})},isDisabledTime:function(e){return this.disabledTime(new Date(e))},isDisabledHour:function(e){var t=new Date(e);return this.isDisabledTime(t)&&this.isDisabledTime(t.setMinutes(0,0,0))&&this.isDisabledTime(t.setMinutes(59,59,999))},isDisabledMinute:function(e){var t=new Date(e);return this.isDisabledTime(t)&&this.isDisabledTime(t.setSeconds(0,0))&&this.isDisabledTime(t.setSeconds(59,999))},isDisabledAMPM:function(e){var t=new Date(e),n=t.getHours()<12?0:12,r=n+11;return this.isDisabledTime(t)&&this.isDisabledTime(t.setHours(n,0,0,0))&&this.isDisabledTime(t.setHours(r,59,59,999))},isDisabled:function(e,t){return"hour"===t?this.isDisabledHour(e):"minute"===t?this.isDisabledMinute(e):"ampm"===t?this.isDisabledAMPM(e):this.isDisabledTime(e)},handleSelect:function(e,t){var n=new Date(e);this.isDisabled(e,t)||(this.innerValue=n,this.isDisabledTime(n)||this.$emit("select",n,t))},handleClickTitle:function(){this.$emit("clicktitle")},getClasses:function(e,t){var n=new Date(e);return this.isDisabled(e,t)?"disabled":n.getTime()===this.innerValue.getTime()?"active":""}}},void 0,!1,void 0,!1,void 0,void 0,void 0),He={name:"TimeRange",inject:{prefixClass:{default:"mx"}},props:L({},je.props),data:function(){return{startValue:new Date(NaN),endValue:new Date(NaN)}},watch:{value:{immediate:!0,handler:function(){if(Q(this.value)){var e=z(this.value,2),t=e[0],n=e[1];this.startValue=t,this.endValue=n}else this.startValue=new Date(NaN),this.endValue=new Date(NaN)}}},methods:{emitChange:function(e,t){var n=[this.startValue,this.endValue];this.$emit("select",n,"time"===e?"time-range":e,t)},handleSelectStart:function(e,t){this.startValue=e,this.endValue.getTime()>=e.getTime()||(this.endValue=e),this.emitChange(t,0)},handleSelectEnd:function(e,t){this.endValue=e,this.startValue.getTime()<=e.getTime()||(this.startValue=e),this.emitChange(t,1)},disabledStartTime:function(e){return this.disabledTime(e,0)},disabledEndTime:function(e){return e.getTime()<this.startValue.getTime()||this.disabledTime(e,1)}},render:function(){var e=arguments[0],t=Array.isArray(this.defaultValue)?this.defaultValue:[this.defaultValue,this.defaultValue],n=this.prefixClass;return e("div",{class:"".concat(n,"-range-wrapper")},[e(je,{props:L({},L({},this.$props,{value:this.startValue,defaultValue:t[0],disabledTime:this.disabledStartTime})),on:L({},L({},this.$listeners,{select:this.handleSelectStart}))}),e(je,{props:L({},L({},this.$props,{value:this.endValue,defaultValue:t[1],disabledTime:this.disabledEndTime})),on:L({},L({},this.$listeners,{select:this.handleSelectEnd}))})])}},Ee={name:"DatetimePanel",inject:{prefixClass:{default:"mx"}},emits:["select","update:show-time-panel"],props:L({},Ve.props,{},je.props,{showTimePanel:{type:Boolean,default:void 0}}),data:function(){return{defaultTimeVisible:!1,currentValue:this.value}},computed:{timeVisible:function(){return"boolean"==typeof this.showTimePanel?this.showTimePanel:this.defaultTimeVisible}},watch:{value:function(e){this.currentValue=e}},methods:{closeTimePanel:function(){this.defaultTimeVisible=!1,this.$emit("update:show-time-panel",!1)},openTimePanel:function(){this.defaultTimeVisible=!0,this.$emit("update:show-time-panel",!0)},emitDate:function(e,t){this.$emit("select",e,t)},handleSelect:function(e,t){"date"===t&&this.openTimePanel();var n=oe(e,ee(this.value,this.defaultValue));this.disabledTime(new Date(n))&&(n=oe(e,this.defaultValue),this.disabledTime(new Date(n)))?this.currentValue=n:this.emitDate(n,t)}},render:function(){var e=arguments[0],t={props:L({},ue(this.$props,Object.keys(Ve.props)),{type:"date",value:this.currentValue}),on:{select:this.handleSelect}},n={props:L({},ue(this.$props,Object.keys(je.props)),{showTimeHeader:!0,value:this.currentValue}),on:{select:this.emitDate,clicktitle:this.closeTimePanel}},r=this.prefixClass;return e("div",[e(Ve,K([{},t])),this.timeVisible&&e(je,K([{class:"".concat(r,"-calendar-time")},n]))])}},Ne={name:"DatetimeRange",inject:{prefixClass:{default:"mx"}},emits:["select","update:show-time-panel"],props:L({},Oe.props,{},He.props,{showTimePanel:{type:Boolean,default:void 0}}),data:function(){return{defaultTimeVisible:!1,currentValue:this.value}},computed:{timeVisible:function(){return"boolean"==typeof this.showTimePanel?this.showTimePanel:this.defaultTimeVisible}},watch:{value:function(e){this.currentValue=e}},methods:{closeTimePanel:function(){this.defaultTimeVisible=!1,this.$emit("update:show-time-panel",!1)},openTimePanel:function(){this.defaultTimeVisible=!0,this.$emit("update:show-time-panel",!0)},emitDate:function(e,t){this.$emit("select",e,t)},handleSelect:function(e,t){var n=this;"date"===t&&this.openTimePanel();var r=Array.isArray(this.defaultValue)?this.defaultValue:[this.defaultValue,this.defaultValue],i=e.map((function(e,t){return oe(e,Q(n.value)?n.value[t]:r[t])}));i[1].getTime()<i[0].getTime()&&(i=[i[0],i[0]]),i.some(this.disabledTime)&&(i=e.map((function(e,t){return oe(e,r[t])}))).some(this.disabledTime)?this.currentValue=i:this.emitDate(i,t)}},render:function(){var e=arguments[0],t={props:L({},ue(this.$props,Object.keys(Oe.props)),{type:"date",value:this.currentValue}),on:{select:this.handleSelect}},n={props:L({},ue(this.$props,Object.keys(He.props)),{value:this.currentValue,showTimeHeader:!0}),on:{select:this.emitDate,clicktitle:this.closeTimePanel}},r=this.prefixClass;return e("div",[e(Oe,K([{},t])),this.timeVisible&&e(He,K([{class:"".concat(r,"-calendar-time")},n]))])}},Le={default:Ve,time:je,datetime:Ee},We={default:Oe,time:He,datetime:Ne},ze={name:"DatePicker",provide:function(){var e=this;return{getLocale:function(){return e.locale},getWeek:this.getWeek,prefixClass:this.prefixClass,dispatchDatePicker:this.$emit.bind(this)}},props:L({},Ee.props,{value:{},valueType:{type:String,default:"date"},type:{type:String,default:"date"},format:{type:String},formatter:{type:Object},range:{type:Boolean,default:!1},multiple:{type:Boolean,default:!1},rangeSeparator:{type:String},lang:{type:[String,Object]},placeholder:{type:String,default:""},editable:{type:Boolean,default:!0},disabled:{type:Boolean,default:!1},clearable:{type:Boolean,default:!0},prefixClass:{type:String,default:"mx"},inputClass:{},inputAttr:{type:Object,default:function(){return{}}},appendToBody:{type:Boolean,default:!0},open:{type:Boolean,default:void 0},popupClass:{},popupStyle:{type:Object,default:function(){return{}}},inline:{type:Boolean,default:!1},confirm:{type:Boolean,default:!1},confirmText:{type:String,default:"OK"},renderInputText:{type:Function},shortcuts:{type:Array,validator:function(e){return Array.isArray(e)&&e.every((function(e){return le(e)&&"string"==typeof e.text&&"function"==typeof e.onClick}))},default:function(){return[]}}}),data:function(){return{currentValue:null,userInput:null,defaultOpen:!1}},computed:{popupVisible:function(){return!this.disabled&&("boolean"==typeof this.open?this.open:this.defaultOpen)},innerRangeSeparator:function(){return this.rangeSeparator||(this.multiple?",":" ~ ")},innerFormat:function(){var e={date:"YYYY-MM-DD",datetime:"YYYY-MM-DD HH:mm:ss",year:"YYYY",month:"YYYY-MM",time:"HH:mm:ss",week:"w"};return this.format||e[this.type]||e.date},innerValue:function(){var e=this.value;return this.validMultipleType?(e=Array.isArray(e)?e:[]).map(this.value2date):this.range?(e=Array.isArray(e)?e.slice(0,2):[null,null]).map(this.value2date):this.value2date(e)},text:function(){var e=this;return null!==this.userInput?this.userInput:"function"==typeof this.renderInputText?this.renderInputText(this.innerValue):this.isValidValue(this.innerValue)?Array.isArray(this.innerValue)?this.innerValue.map((function(t){return e.formatDate(t)})).join(this.innerRangeSeparator):this.formatDate(this.innerValue):""},showClearIcon:function(){return!this.disabled&&this.clearable&&this.text},locale:function(){return le(this.lang)?function e(t,n){if(!le(t))return{};var r=t;return le(n)&&Object.keys(n).forEach((function(i){var a=n[i];le(a)&&le(t[i])&&(a=e(t[i],a)),r=L({},r,H({},i,a))})),r}(ve(),this.lang):ve(this.lang)},validMultipleType:function(){return this.multiple&&!this.range&&-1!==["date","month","year"].indexOf(this.type)}},watch:{innerValue:{immediate:!0,handler:function(e){this.currentValue=e}},popupVisible:{handler:function(e){e&&(this.currentValue=this.innerValue)}}},created:function(){"object"===j(this.format)&&console.warn("[vue2-datepicker]: The prop `format` don't support Object any more. You can use the new prop `formatter` to replace it")},methods:{handleClickOutSide:function(e){var t=e.target;this.$el.contains(t)||this.closePopup()},getFormatter:function(e){return le(this.formatter)&&this.formatter[e]||le(this.format)&&this.format[e]},getWeek:function(e,t){return"function"==typeof this.getFormatter("getWeek")?this.getFormatter("getWeek")(e,t):l(e,t)},parseDate:function(e,t){if(t=t||this.innerFormat,"function"==typeof this.getFormatter("parse"))return this.getFormatter("parse")(e,t);var n=new Date;return function(e,t){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{};try{var r=n.locale,i=void 0===r?u:r,a=n.backupDate,o=void 0===a?new Date:a,l=I(e,t,i),c=l.year,d=l.month,h=l.day,f=l.hour,p=l.minute,m=l.second,v=l.millisecond,b=l.isPM,y=l.date,x=l.offset,w=l.weekday,D=l.week;if(y)return y;var C,k=[c,d,h,f,p,m,v];if(k[3]=P(k[3],b),void 0!==D&&void 0===d&&void 0===h){var S=s(void 0===c?o:new Date(c,3),{firstDayOfWeek:i.firstDayOfWeek,firstWeekContainsDate:i.firstWeekContainsDate});return new Date(S.getTime()+7*(D-1)*24*3600*1e3)}var M=$(k,o);return void 0!==x?(M[6]+=60*x*1e3,C=F.apply(void 0,g(M))):C=A.apply(void 0,g(M)),void 0!==w&&C.getDay()!==w?new Date(NaN):C}catch(e){return new Date(NaN)}}(e,t,{locale:this.locale.formatLocale,backupDate:n})},formatDate:function(e,t){return t=t||this.innerFormat,"function"==typeof this.getFormatter("stringify")?this.getFormatter("stringify")(e,t):v(e,t,{locale:this.locale.formatLocale})},value2date:function(e){switch(this.valueType){case"date":return e instanceof Date?new Date(e.getTime()):new Date(NaN);case"timestamp":return"number"==typeof e?new Date(e):new Date(NaN);case"format":return"string"==typeof e?this.parseDate(e):new Date(NaN);default:return"string"==typeof e?this.parseDate(e,this.valueType):new Date(NaN)}},date2value:function(e){if(!G(e))return null;switch(this.valueType){case"date":return e;case"timestamp":return e.getTime();case"format":return this.formatDate(e);default:return this.formatDate(e,this.valueType)}},emitValue:function(e,t){var n=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];this.userInput=null;var r=Array.isArray(e)?e.map(this.date2value):this.date2value(e);return this.$emit("input",r),this.$emit("change",r,t),n&&this.closePopup(),r},isValidValue:function(e){return this.validMultipleType?(t=e,Array.isArray(t)&&t.every(G)):this.range?Q(e):G(e);var t},isValidValueAndNotDisabled:function(e){if(!this.isValidValue(e))return!1;var t="function"==typeof this.disabledDate?this.disabledDate:function(){return!1},n="function"==typeof this.disabledTime?this.disabledTime:function(){return!1};return Array.isArray(e)||(e=[e]),e.every((function(e){return!t(e)&&!n(e)}))},handleMultipleDates:function(e,t){if(this.validMultipleType&&t){var n=t.filter((function(t){return t.getTime()!==e.getTime()}));return n.length===t.length&&n.push(e),n}return e},handleSelectDate:function(e,t,n){e=this.handleMultipleDates(e,n),this.confirm?this.currentValue=e:this.emitValue(e,t,!this.validMultipleType&&(t===this.type||"time"===t))},clear:function(){this.emitValue(this.range?[null,null]:null),this.$emit("clear")},handleClear:function(e){e.stopPropagation(),this.clear()},handleConfirmDate:function(){var e=this.emitValue(this.currentValue);this.$emit("confirm",e)},handleSelectShortcut:function(e){var t=e.currentTarget.getAttribute("data-index"),n=this.shortcuts[parseInt(t,10)];if(le(n)&&"function"==typeof n.onClick){var r=n.onClick(this);r&&this.emitValue(r)}},openPopup:function(e){this.popupVisible||this.disabled||(this.defaultOpen=!0,this.$emit("open",e),this.$emit("update:open",!0))},closePopup:function(){this.popupVisible&&(this.defaultOpen=!1,this.$emit("close"),this.$emit("update:open",!1))},blur:function(){this.$refs.input&&this.$refs.input.blur()},focus:function(){this.$refs.input&&this.$refs.input.focus()},handleInputChange:function(){var e=this;if(this.editable&&null!==this.userInput){var t=this.userInput.trim();if(this.userInput=null,""!==t){var n;if(this.validMultipleType)n=t.split(this.innerRangeSeparator).map((function(t){return e.parseDate(t.trim())}));else if(this.range){var r=t.split(this.innerRangeSeparator);2!==r.length&&(r=t.split(this.innerRangeSeparator.trim())),n=r.map((function(t){return e.parseDate(t.trim())}))}else n=this.parseDate(t);this.isValidValueAndNotDisabled(n)?(this.emitValue(n),this.blur()):this.$emit("input-error",t)}else this.clear()}},handleInputInput:function(e){this.userInput="string"==typeof e?e:e.target.value},handleInputKeydown:function(e){var t=e.keyCode;9===t?this.closePopup():13===t&&this.handleInputChange()},handleInputBlur:function(e){this.$emit("blur",e)},handleInputFocus:function(e){this.openPopup(e),this.$emit("focus",e)},hasSlot:function(e){return!(!this.$slots[e]&&!this.$scopedSlots[e])},renderSlot:function(e,t,n){var r=this.$scopedSlots[e];return r?r(n)||t:this.$slots[e]||t},renderInput:function(){var e=this.$createElement,t=this.prefixClass,n=L({name:"date",type:"text",autocomplete:"off",value:this.text,class:this.inputClass||"".concat(this.prefixClass,"-input"),readonly:!this.editable,disabled:this.disabled,placeholder:this.placeholder},this.inputAttr),r=n.value,i=n.class,a=W(n,["value","class"]),o={keydown:this.handleInputKeydown,focus:this.handleInputFocus,blur:this.handleInputBlur,input:this.handleInputInput,change:this.handleInputChange},s=this.renderSlot("input",e("input",{domProps:{value:r},class:i,attrs:L({},a),on:L({},o),ref:"input"}),{props:n,events:o}),l="time"===this.type?e(De):e(we);return e("div",{class:"".concat(t,"-input-wrapper"),on:{mousedown:this.openPopup,touchstart:this.openPopup}},[s,this.showClearIcon?e("i",{class:"".concat(t,"-icon-clear"),on:{mousedown:this.handleClear,touchstart:this.handleClear}},[this.renderSlot("icon-clear",e(Ce))]):null,e("i",{class:"".concat(t,"-icon-calendar")},[this.renderSlot("icon-calendar",l)])])},renderContent:function(){var e=this.$createElement,t=this.range?We:Le,n=t[this.type]||t.default,r=L({},ue(this.$props,Object.keys(n.props)),{value:this.currentValue}),i=L({},ue(this.$listeners,n.emits||[]),{select:this.handleSelectDate}),a=e(n,K([{},{props:r,on:i,ref:"picker"}]));return e("div",{class:"".concat(this.prefixClass,"-datepicker-body")},[this.renderSlot("content",a,{value:this.currentValue,emit:this.handleSelectDate})])},renderSidebar:function(){var e=this,t=this.$createElement,n=this.prefixClass;return t("div",{class:"".concat(n,"-datepicker-sidebar")},[this.renderSlot("sidebar",null,{value:this.currentValue,emit:this.handleSelectDate}),this.shortcuts.map((function(r,i){return t("button",{key:i,attrs:{"data-index":i,type:"button"},class:"".concat(n,"-btn ").concat(n,"-btn-text ").concat(n,"-btn-shortcut"),on:{click:e.handleSelectShortcut}},[r.text])}))])},renderHeader:function(){return(0,this.$createElement)("div",{class:"".concat(this.prefixClass,"-datepicker-header")},[this.renderSlot("header",null,{value:this.currentValue,emit:this.handleSelectDate})])},renderFooter:function(){var e=this.$createElement,t=this.prefixClass;return e("div",{class:"".concat(t,"-datepicker-footer")},[this.renderSlot("footer",null,{value:this.currentValue,emit:this.handleSelectDate}),this.confirm?e("button",{attrs:{type:"button"},class:"".concat(t,"-btn ").concat(t,"-datepicker-btn-confirm"),on:{click:this.handleConfirmDate}},[this.confirmText]):null])}},render:function(){var e,t=arguments[0],n=this.prefixClass,r=this.inline,i=this.disabled,a=this.hasSlot("sidebar")||this.shortcuts.length?this.renderSidebar():null,o=t("div",{class:"".concat(n,"-datepicker-content")},[this.hasSlot("header")?this.renderHeader():null,this.renderContent(),this.hasSlot("footer")||this.confirm?this.renderFooter():null]);return t("div",{class:(e={},H(e,"".concat(n,"-datepicker"),!0),H(e,"".concat(n,"-datepicker-range"),this.range),H(e,"".concat(n,"-datepicker-inline"),r),H(e,"disabled",i),e)},[r?null:this.renderInput(),r?t("div",{class:"".concat(n,"-datepicker-main")},[a,o]):t(xe,{ref:"popup",class:this.popupClass,style:this.popupStyle,attrs:{visible:this.popupVisible,appendToBody:this.appendToBody},on:{clickoutside:this.handleClickOutSide}},[a,o])])}};ze.locale=me,ze.install=function(e){e.component(ze.name,ze)},"undefined"!=typeof window&&window.Vue&&ze.install(window.Vue),E(ze,{CalendarPanel:Ve,CalendarRange:Oe,TimePanel:je,TimeRange:He,DatetimePanel:Ee,DatetimeRange:Ne});t.default=ze},LtCY:function(e,t,n){(e.exports=n("I1BE")(!1)).push([e.i,'.mx-icon-double-left:after,.mx-icon-double-left:before,.mx-icon-double-right:after,.mx-icon-double-right:before,.mx-icon-left:before,.mx-icon-right:before{content:"";position:relative;top:-1px;display:inline-block;width:10px;height:10px;vertical-align:middle;border-color:currentcolor;border-style:solid;border-width:2px 0 0 2px;border-radius:1px;-webkit-box-sizing:border-box;box-sizing:border-box;-webkit-transform-origin:center;transform-origin:center;-webkit-transform:rotate(-45deg) scale(.7);transform:rotate(-45deg) scale(.7)}.mx-icon-double-left:after{left:-4px}.mx-icon-double-right:before{left:4px}.mx-icon-double-right:after,.mx-icon-double-right:before,.mx-icon-right:before{-webkit-transform:rotate(135deg) scale(.7);transform:rotate(135deg) scale(.7)}.mx-btn{-webkit-box-sizing:border-box;box-sizing:border-box;line-height:1;font-size:14px;font-weight:500;padding:7px 15px;margin:0;cursor:pointer;background-color:transparent;outline:none;border:1px solid rgba(0,0,0,.1);border-radius:4px;color:#73879c;white-space:nowrap}.mx-btn:hover{border-color:#1284e7;color:#1284e7}.mx-btn-text{border:0;padding:0 4px;text-align:left;line-height:inherit}.mx-scrollbar{height:100%}.mx-scrollbar:hover .mx-scrollbar-track{opacity:1}.mx-scrollbar-wrap{height:100%;overflow-x:hidden;overflow-y:auto}.mx-scrollbar-track{position:absolute;top:2px;right:2px;bottom:2px;width:6px;z-index:1;border-radius:4px;opacity:0;-webkit-transition:opacity .24s ease-out;transition:opacity .24s ease-out}.mx-scrollbar-track .mx-scrollbar-thumb{position:absolute;width:100%;height:0;cursor:pointer;border-radius:inherit;background-color:rgba(144,147,153,.3);-webkit-transition:background-color .3s;transition:background-color .3s}.mx-zoom-in-down-enter-active,.mx-zoom-in-down-leave-active{opacity:1;-webkit-transform:scaleY(1);transform:scaleY(1);-webkit-transition:opacity .3s cubic-bezier(.23,1,.32,1),-webkit-transform .3s cubic-bezier(.23,1,.32,1);transition:opacity .3s cubic-bezier(.23,1,.32,1),-webkit-transform .3s cubic-bezier(.23,1,.32,1);transition:transform .3s cubic-bezier(.23,1,.32,1),opacity .3s cubic-bezier(.23,1,.32,1);transition:transform .3s cubic-bezier(.23,1,.32,1),opacity .3s cubic-bezier(.23,1,.32,1),-webkit-transform .3s cubic-bezier(.23,1,.32,1);-webkit-transform-origin:center top;transform-origin:center top}.mx-zoom-in-down-enter,.mx-zoom-in-down-enter-from,.mx-zoom-in-down-leave-to{opacity:0;-webkit-transform:scaleY(0);transform:scaleY(0)}.mx-datepicker{position:relative;display:inline-block;width:210px}.mx-datepicker svg{width:1em;height:1em;vertical-align:-.15em;fill:currentColor;overflow:hidden}.mx-datepicker-range{width:320px}.mx-datepicker-inline{width:auto}.mx-input-wrapper{position:relative}.mx-input-wrapper .mx-icon-clear{display:none}.mx-input-wrapper:hover .mx-icon-clear{display:block}.mx-input-wrapper:hover .mx-icon-clear+.mx-icon-calendar{display:none}.mx-input{display:inline-block;-webkit-box-sizing:border-box;box-sizing:border-box;width:100%;height:34px;padding:6px 30px 6px 10px;font-size:14px;line-height:1.4;color:#555;background-color:#fff;border:1px solid #ccc;border-radius:4px;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);box-shadow:inset 0 1px 1px rgba(0,0,0,.075)}.mx-input:focus,.mx-input:hover{border-color:#409aff}.mx-input.disabled,.mx-input:disabled{color:#ccc;background-color:#f3f3f3;border-color:#ccc;cursor:not-allowed}.mx-input:focus{outline:none}.mx-input::-ms-clear{display:none}.mx-icon-calendar,.mx-icon-clear{position:absolute;top:50%;right:8px;-webkit-transform:translateY(-50%);transform:translateY(-50%);font-size:16px;line-height:1;color:rgba(0,0,0,.5);vertical-align:middle}.mx-icon-clear{cursor:pointer}.mx-icon-clear:hover{color:rgba(0,0,0,.8)}.mx-datepicker-main{font:14px/1.5 Helvetica Neue,Helvetica,Arial,Microsoft Yahei,sans-serif;color:#73879c;background-color:#fff;border:1px solid #e8e8e8}.mx-datepicker-popup{position:absolute;margin-top:1px;margin-bottom:1px;-webkit-box-shadow:0 6px 12px rgba(0,0,0,.175);box-shadow:0 6px 12px rgba(0,0,0,.175);z-index:2001}.mx-datepicker-sidebar{float:left;-webkit-box-sizing:border-box;box-sizing:border-box;width:100px;padding:6px;overflow:auto}.mx-datepicker-sidebar+.mx-datepicker-content{margin-left:100px;border-left:1px solid #e8e8e8}.mx-datepicker-body{position:relative;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.mx-btn-shortcut{display:block;padding:0 6px;line-height:24px}.mx-range-wrapper{display:-webkit-box;display:-ms-flexbox;display:flex}@media(max-width:750px){.mx-range-wrapper{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}}.mx-datepicker-header{padding:6px 8px;border-bottom:1px solid #e8e8e8}.mx-datepicker-footer{padding:6px 8px;text-align:right;border-top:1px solid #e8e8e8}.mx-calendar{-webkit-box-sizing:border-box;box-sizing:border-box;width:248px;padding:6px 12px}.mx-calendar+.mx-calendar{border-left:1px solid #e8e8e8}.mx-calendar-header,.mx-time-header{-webkit-box-sizing:border-box;box-sizing:border-box;height:34px;line-height:34px;text-align:center;overflow:hidden}.mx-btn-icon-double-left,.mx-btn-icon-left{float:left}.mx-btn-icon-double-right,.mx-btn-icon-right{float:right}.mx-calendar-header-label{font-size:14px}.mx-calendar-decade-separator{margin:0 2px}.mx-calendar-decade-separator:after{content:"~"}.mx-calendar-content{position:relative;height:224px;-webkit-box-sizing:border-box;box-sizing:border-box}.mx-calendar-content .cell{cursor:pointer}.mx-calendar-content .cell:hover{color:#73879c;background-color:#f3f9fe}.mx-calendar-content .cell.active{color:#fff;background-color:#1284e7}.mx-calendar-content .cell.hover-in-range,.mx-calendar-content .cell.in-range{color:#73879c;background-color:#dbedfb}.mx-calendar-content .cell.disabled{cursor:not-allowed;color:#ccc;background-color:#f3f3f3}.mx-calendar-week-mode .mx-date-row{cursor:pointer}.mx-calendar-week-mode .mx-date-row:hover{background-color:#f3f9fe}.mx-calendar-week-mode .mx-date-row.mx-active-week{background-color:#dbedfb}.mx-calendar-week-mode .mx-date-row .cell.active,.mx-calendar-week-mode .mx-date-row .cell:hover{color:inherit;background-color:transparent}.mx-week-number{opacity:.5}.mx-table{table-layout:fixed;border-collapse:separate;border-spacing:0;width:100%;height:100%;-webkit-box-sizing:border-box;box-sizing:border-box;text-align:center}.mx-table th{font-weight:500}.mx-table td,.mx-table th{padding:0;vertical-align:middle}.mx-table-date td,.mx-table-date th{height:32px;font-size:12px}.mx-table-date .today{color:#2a90e9}.mx-table-date .cell.not-current-month{color:#ccc;background:none}.mx-time{-webkit-box-flex:1;-ms-flex:1;flex:1;width:224px;background:#fff}.mx-time+.mx-time{border-left:1px solid #e8e8e8}.mx-calendar-time{position:absolute;top:0;left:0;width:100%;height:100%}.mx-time-header{border-bottom:1px solid #e8e8e8}.mx-time-content{height:224px;-webkit-box-sizing:border-box;box-sizing:border-box;overflow:hidden}.mx-time-columns{display:-webkit-box;display:-ms-flexbox;display:flex;width:100%;height:100%;overflow:hidden}.mx-time-column{-webkit-box-flex:1;-ms-flex:1;flex:1;position:relative;border-left:1px solid #e8e8e8;text-align:center}.mx-time-column:first-child{border-left:0}.mx-time-column .mx-time-list{margin:0;padding:0;list-style:none}.mx-time-column .mx-time-list:after{content:"";display:block;height:192px}.mx-time-column .mx-time-item{cursor:pointer;font-size:12px;height:32px;line-height:32px}.mx-time-column .mx-time-item:hover{color:#73879c;background-color:#f3f9fe}.mx-time-column .mx-time-item.active{color:#1284e7;background-color:transparent;font-weight:700}.mx-time-column .mx-time-item.disabled{cursor:not-allowed;color:#ccc;background-color:#f3f3f3}.mx-time-option{cursor:pointer;padding:8px 10px;font-size:14px;line-height:20px}.mx-time-option:hover{color:#73879c;background-color:#f3f9fe}.mx-time-option.active{color:#1284e7;background-color:transparent;font-weight:700}.mx-time-option.disabled{cursor:not-allowed;color:#ccc;background-color:#f3f3f3}',""])},"QRy/":function(e,t,n){var r=n("LtCY");"string"==typeof r&&(r=[[e.i,r,""]]);var i={hmr:!0,transform:void 0,insertInto:void 0};n("aET+")(r,i);r.locals&&(e.exports=r.locals)}}]);
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[4],{
+
+/***/ "./node_modules/cleave.js/dist/cleave-esm.js":
+/*!***************************************************!*\
+  !*** ./node_modules/cleave.js/dist/cleave-esm.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(global) {var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
+var NumeralFormatter = function (numeralDecimalMark,
+                                 numeralIntegerScale,
+                                 numeralDecimalScale,
+                                 numeralThousandsGroupStyle,
+                                 numeralPositiveOnly,
+                                 stripLeadingZeroes,
+                                 prefix,
+                                 signBeforePrefix,
+                                 tailPrefix,
+                                 delimiter) {
+    var owner = this;
+
+    owner.numeralDecimalMark = numeralDecimalMark || '.';
+    owner.numeralIntegerScale = numeralIntegerScale > 0 ? numeralIntegerScale : 0;
+    owner.numeralDecimalScale = numeralDecimalScale >= 0 ? numeralDecimalScale : 2;
+    owner.numeralThousandsGroupStyle = numeralThousandsGroupStyle || NumeralFormatter.groupStyle.thousand;
+    owner.numeralPositiveOnly = !!numeralPositiveOnly;
+    owner.stripLeadingZeroes = stripLeadingZeroes !== false;
+    owner.prefix = (prefix || prefix === '') ? prefix : '';
+    owner.signBeforePrefix = !!signBeforePrefix;
+    owner.tailPrefix = !!tailPrefix;
+    owner.delimiter = (delimiter || delimiter === '') ? delimiter : ',';
+    owner.delimiterRE = delimiter ? new RegExp('\\' + delimiter, 'g') : '';
+};
+
+NumeralFormatter.groupStyle = {
+    thousand: 'thousand',
+    lakh:     'lakh',
+    wan:      'wan',
+    none:     'none'    
+};
+
+NumeralFormatter.prototype = {
+    getRawValue: function (value) {
+        return value.replace(this.delimiterRE, '').replace(this.numeralDecimalMark, '.');
+    },
+
+    format: function (value) {
+        var owner = this, parts, partSign, partSignAndPrefix, partInteger, partDecimal = '';
+
+        // strip alphabet letters
+        value = value.replace(/[A-Za-z]/g, '')
+            // replace the first decimal mark with reserved placeholder
+            .replace(owner.numeralDecimalMark, 'M')
+
+            // strip non numeric letters except minus and "M"
+            // this is to ensure prefix has been stripped
+            .replace(/[^\dM-]/g, '')
+
+            // replace the leading minus with reserved placeholder
+            .replace(/^\-/, 'N')
+
+            // strip the other minus sign (if present)
+            .replace(/\-/g, '')
+
+            // replace the minus sign (if present)
+            .replace('N', owner.numeralPositiveOnly ? '' : '-')
+
+            // replace decimal mark
+            .replace('M', owner.numeralDecimalMark);
+
+        // strip any leading zeros
+        if (owner.stripLeadingZeroes) {
+            value = value.replace(/^(-)?0+(?=\d)/, '$1');
+        }
+
+        partSign = value.slice(0, 1) === '-' ? '-' : '';
+        if (typeof owner.prefix != 'undefined') {
+            if (owner.signBeforePrefix) {
+                partSignAndPrefix = partSign + owner.prefix;
+            } else {
+                partSignAndPrefix = owner.prefix + partSign;
+            }
+        } else {
+            partSignAndPrefix = partSign;
+        }
+        
+        partInteger = value;
+
+        if (value.indexOf(owner.numeralDecimalMark) >= 0) {
+            parts = value.split(owner.numeralDecimalMark);
+            partInteger = parts[0];
+            partDecimal = owner.numeralDecimalMark + parts[1].slice(0, owner.numeralDecimalScale);
+        }
+
+        if(partSign === '-') {
+            partInteger = partInteger.slice(1);
+        }
+
+        if (owner.numeralIntegerScale > 0) {
+          partInteger = partInteger.slice(0, owner.numeralIntegerScale);
+        }
+
+        switch (owner.numeralThousandsGroupStyle) {
+        case NumeralFormatter.groupStyle.lakh:
+            partInteger = partInteger.replace(/(\d)(?=(\d\d)+\d$)/g, '$1' + owner.delimiter);
+
+            break;
+
+        case NumeralFormatter.groupStyle.wan:
+            partInteger = partInteger.replace(/(\d)(?=(\d{4})+$)/g, '$1' + owner.delimiter);
+
+            break;
+
+        case NumeralFormatter.groupStyle.thousand:
+            partInteger = partInteger.replace(/(\d)(?=(\d{3})+$)/g, '$1' + owner.delimiter);
+
+            break;
+        }
+
+        if (owner.tailPrefix) {
+            return partSign + partInteger.toString() + (owner.numeralDecimalScale > 0 ? partDecimal.toString() : '') + owner.prefix;
+        }
+
+        return partSignAndPrefix + partInteger.toString() + (owner.numeralDecimalScale > 0 ? partDecimal.toString() : '');
+    }
+};
+
+var NumeralFormatter_1 = NumeralFormatter;
+
+var DateFormatter = function (datePattern, dateMin, dateMax) {
+    var owner = this;
+
+    owner.date = [];
+    owner.blocks = [];
+    owner.datePattern = datePattern;
+    owner.dateMin = dateMin
+      .split('-')
+      .reverse()
+      .map(function(x) {
+        return parseInt(x, 10);
+      });
+    if (owner.dateMin.length === 2) owner.dateMin.unshift(0);
+
+    owner.dateMax = dateMax
+      .split('-')
+      .reverse()
+      .map(function(x) {
+        return parseInt(x, 10);
+      });
+    if (owner.dateMax.length === 2) owner.dateMax.unshift(0);
+    
+    owner.initBlocks();
+};
+
+DateFormatter.prototype = {
+    initBlocks: function () {
+        var owner = this;
+        owner.datePattern.forEach(function (value) {
+            if (value === 'Y') {
+                owner.blocks.push(4);
+            } else {
+                owner.blocks.push(2);
+            }
+        });
+    },
+
+    getISOFormatDate: function () {
+        var owner = this,
+            date = owner.date;
+
+        return date[2] ? (
+            date[2] + '-' + owner.addLeadingZero(date[1]) + '-' + owner.addLeadingZero(date[0])
+        ) : '';
+    },
+
+    getBlocks: function () {
+        return this.blocks;
+    },
+
+    getValidatedDate: function (value) {
+        var owner = this, result = '';
+
+        value = value.replace(/[^\d]/g, '');
+
+        owner.blocks.forEach(function (length, index) {
+            if (value.length > 0) {
+                var sub = value.slice(0, length),
+                    sub0 = sub.slice(0, 1),
+                    rest = value.slice(length);
+
+                switch (owner.datePattern[index]) {
+                case 'd':
+                    if (sub === '00') {
+                        sub = '01';
+                    } else if (parseInt(sub0, 10) > 3) {
+                        sub = '0' + sub0;
+                    } else if (parseInt(sub, 10) > 31) {
+                        sub = '31';
+                    }
+
+                    break;
+
+                case 'm':
+                    if (sub === '00') {
+                        sub = '01';
+                    } else if (parseInt(sub0, 10) > 1) {
+                        sub = '0' + sub0;
+                    } else if (parseInt(sub, 10) > 12) {
+                        sub = '12';
+                    }
+
+                    break;
+                }
+
+                result += sub;
+
+                // update remaining string
+                value = rest;
+            }
+        });
+
+        return this.getFixedDateString(result);
+    },
+
+    getFixedDateString: function (value) {
+        var owner = this, datePattern = owner.datePattern, date = [],
+            dayIndex = 0, monthIndex = 0, yearIndex = 0,
+            dayStartIndex = 0, monthStartIndex = 0, yearStartIndex = 0,
+            day, month, year, fullYearDone = false;
+
+        // mm-dd || dd-mm
+        if (value.length === 4 && datePattern[0].toLowerCase() !== 'y' && datePattern[1].toLowerCase() !== 'y') {
+            dayStartIndex = datePattern[0] === 'd' ? 0 : 2;
+            monthStartIndex = 2 - dayStartIndex;
+            day = parseInt(value.slice(dayStartIndex, dayStartIndex + 2), 10);
+            month = parseInt(value.slice(monthStartIndex, monthStartIndex + 2), 10);
+
+            date = this.getFixedDate(day, month, 0);
+        }
+
+        // yyyy-mm-dd || yyyy-dd-mm || mm-dd-yyyy || dd-mm-yyyy || dd-yyyy-mm || mm-yyyy-dd
+        if (value.length === 8) {
+            datePattern.forEach(function (type, index) {
+                switch (type) {
+                case 'd':
+                    dayIndex = index;
+                    break;
+                case 'm':
+                    monthIndex = index;
+                    break;
+                default:
+                    yearIndex = index;
+                    break;
+                }
+            });
+
+            yearStartIndex = yearIndex * 2;
+            dayStartIndex = (dayIndex <= yearIndex) ? dayIndex * 2 : (dayIndex * 2 + 2);
+            monthStartIndex = (monthIndex <= yearIndex) ? monthIndex * 2 : (monthIndex * 2 + 2);
+
+            day = parseInt(value.slice(dayStartIndex, dayStartIndex + 2), 10);
+            month = parseInt(value.slice(monthStartIndex, monthStartIndex + 2), 10);
+            year = parseInt(value.slice(yearStartIndex, yearStartIndex + 4), 10);
+
+            fullYearDone = value.slice(yearStartIndex, yearStartIndex + 4).length === 4;
+
+            date = this.getFixedDate(day, month, year);
+        }
+
+        // mm-yy || yy-mm
+        if (value.length === 4 && (datePattern[0] === 'y' || datePattern[1] === 'y')) {
+            monthStartIndex = datePattern[0] === 'm' ? 0 : 2;
+            yearStartIndex = 2 - monthStartIndex;
+            month = parseInt(value.slice(monthStartIndex, monthStartIndex + 2), 10);
+            year = parseInt(value.slice(yearStartIndex, yearStartIndex + 2), 10);
+
+            fullYearDone = value.slice(yearStartIndex, yearStartIndex + 2).length === 2;
+
+            date = [0, month, year];
+        }
+
+        // mm-yyyy || yyyy-mm
+        if (value.length === 6 && (datePattern[0] === 'Y' || datePattern[1] === 'Y')) {
+            monthStartIndex = datePattern[0] === 'm' ? 0 : 4;
+            yearStartIndex = 2 - 0.5 * monthStartIndex;
+            month = parseInt(value.slice(monthStartIndex, monthStartIndex + 2), 10);
+            year = parseInt(value.slice(yearStartIndex, yearStartIndex + 4), 10);
+
+            fullYearDone = value.slice(yearStartIndex, yearStartIndex + 4).length === 4;
+
+            date = [0, month, year];
+        }
+
+        date = owner.getRangeFixedDate(date);
+        owner.date = date;
+
+        var result = date.length === 0 ? value : datePattern.reduce(function (previous, current) {
+            switch (current) {
+            case 'd':
+                return previous + (date[0] === 0 ? '' : owner.addLeadingZero(date[0]));
+            case 'm':
+                return previous + (date[1] === 0 ? '' : owner.addLeadingZero(date[1]));
+            case 'y':
+                return previous + (fullYearDone ? owner.addLeadingZeroForYear(date[2], false) : '');
+            case 'Y':
+                return previous + (fullYearDone ? owner.addLeadingZeroForYear(date[2], true) : '');
+            }
+        }, '');
+
+        return result;
+    },
+
+    getRangeFixedDate: function (date) {
+        var owner = this,
+            datePattern = owner.datePattern,
+            dateMin = owner.dateMin || [],
+            dateMax = owner.dateMax || [];
+
+        if (!date.length || (dateMin.length < 3 && dateMax.length < 3)) return date;
+
+        if (
+          datePattern.find(function(x) {
+            return x.toLowerCase() === 'y';
+          }) &&
+          date[2] === 0
+        ) return date;
+
+        if (dateMax.length && (dateMax[2] < date[2] || (
+          dateMax[2] === date[2] && (dateMax[1] < date[1] || (
+            dateMax[1] === date[1] && dateMax[0] < date[0]
+          ))
+        ))) return dateMax;
+
+        if (dateMin.length && (dateMin[2] > date[2] || (
+          dateMin[2] === date[2] && (dateMin[1] > date[1] || (
+            dateMin[1] === date[1] && dateMin[0] > date[0]
+          ))
+        ))) return dateMin;
+
+        return date;
+    },
+
+    getFixedDate: function (day, month, year) {
+        day = Math.min(day, 31);
+        month = Math.min(month, 12);
+        year = parseInt((year || 0), 10);
+
+        if ((month < 7 && month % 2 === 0) || (month > 8 && month % 2 === 1)) {
+            day = Math.min(day, month === 2 ? (this.isLeapYear(year) ? 29 : 28) : 30);
+        }
+
+        return [day, month, year];
+    },
+
+    isLeapYear: function (year) {
+        return ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0);
+    },
+
+    addLeadingZero: function (number) {
+        return (number < 10 ? '0' : '') + number;
+    },
+
+    addLeadingZeroForYear: function (number, fullYearMode) {
+        if (fullYearMode) {
+            return (number < 10 ? '000' : (number < 100 ? '00' : (number < 1000 ? '0' : ''))) + number;
+        }
+
+        return (number < 10 ? '0' : '') + number;
+    }
+};
+
+var DateFormatter_1 = DateFormatter;
+
+var TimeFormatter = function (timePattern, timeFormat) {
+    var owner = this;
+
+    owner.time = [];
+    owner.blocks = [];
+    owner.timePattern = timePattern;
+    owner.timeFormat = timeFormat;
+    owner.initBlocks();
+};
+
+TimeFormatter.prototype = {
+    initBlocks: function () {
+        var owner = this;
+        owner.timePattern.forEach(function () {
+            owner.blocks.push(2);
+        });
+    },
+
+    getISOFormatTime: function () {
+        var owner = this,
+            time = owner.time;
+
+        return time[2] ? (
+            owner.addLeadingZero(time[0]) + ':' + owner.addLeadingZero(time[1]) + ':' + owner.addLeadingZero(time[2])
+        ) : '';
+    },
+
+    getBlocks: function () {
+        return this.blocks;
+    },
+
+    getTimeFormatOptions: function () {
+        var owner = this;
+        if (String(owner.timeFormat) === '12') {
+            return {
+                maxHourFirstDigit: 1,
+                maxHours: 12,
+                maxMinutesFirstDigit: 5,
+                maxMinutes: 60
+            };
+        }
+
+        return {
+            maxHourFirstDigit: 2,
+            maxHours: 23,
+            maxMinutesFirstDigit: 5,
+            maxMinutes: 60
+        };
+    },
+
+    getValidatedTime: function (value) {
+        var owner = this, result = '';
+
+        value = value.replace(/[^\d]/g, '');
+
+        var timeFormatOptions = owner.getTimeFormatOptions();
+
+        owner.blocks.forEach(function (length, index) {
+            if (value.length > 0) {
+                var sub = value.slice(0, length),
+                    sub0 = sub.slice(0, 1),
+                    rest = value.slice(length);
+
+                switch (owner.timePattern[index]) {
+
+                case 'h':
+                    if (parseInt(sub0, 10) > timeFormatOptions.maxHourFirstDigit) {
+                        sub = '0' + sub0;
+                    } else if (parseInt(sub, 10) > timeFormatOptions.maxHours) {
+                        sub = timeFormatOptions.maxHours + '';
+                    }
+
+                    break;
+
+                case 'm':
+                case 's':
+                    if (parseInt(sub0, 10) > timeFormatOptions.maxMinutesFirstDigit) {
+                        sub = '0' + sub0;
+                    } else if (parseInt(sub, 10) > timeFormatOptions.maxMinutes) {
+                        sub = timeFormatOptions.maxMinutes + '';
+                    }
+                    break;
+                }
+
+                result += sub;
+
+                // update remaining string
+                value = rest;
+            }
+        });
+
+        return this.getFixedTimeString(result);
+    },
+
+    getFixedTimeString: function (value) {
+        var owner = this, timePattern = owner.timePattern, time = [],
+            secondIndex = 0, minuteIndex = 0, hourIndex = 0,
+            secondStartIndex = 0, minuteStartIndex = 0, hourStartIndex = 0,
+            second, minute, hour;
+
+        if (value.length === 6) {
+            timePattern.forEach(function (type, index) {
+                switch (type) {
+                case 's':
+                    secondIndex = index * 2;
+                    break;
+                case 'm':
+                    minuteIndex = index * 2;
+                    break;
+                case 'h':
+                    hourIndex = index * 2;
+                    break;
+                }
+            });
+
+            hourStartIndex = hourIndex;
+            minuteStartIndex = minuteIndex;
+            secondStartIndex = secondIndex;
+
+            second = parseInt(value.slice(secondStartIndex, secondStartIndex + 2), 10);
+            minute = parseInt(value.slice(minuteStartIndex, minuteStartIndex + 2), 10);
+            hour = parseInt(value.slice(hourStartIndex, hourStartIndex + 2), 10);
+
+            time = this.getFixedTime(hour, minute, second);
+        }
+
+        if (value.length === 4 && owner.timePattern.indexOf('s') < 0) {
+            timePattern.forEach(function (type, index) {
+                switch (type) {
+                case 'm':
+                    minuteIndex = index * 2;
+                    break;
+                case 'h':
+                    hourIndex = index * 2;
+                    break;
+                }
+            });
+
+            hourStartIndex = hourIndex;
+            minuteStartIndex = minuteIndex;
+
+            second = 0;
+            minute = parseInt(value.slice(minuteStartIndex, minuteStartIndex + 2), 10);
+            hour = parseInt(value.slice(hourStartIndex, hourStartIndex + 2), 10);
+
+            time = this.getFixedTime(hour, minute, second);
+        }
+
+        owner.time = time;
+
+        return time.length === 0 ? value : timePattern.reduce(function (previous, current) {
+            switch (current) {
+            case 's':
+                return previous + owner.addLeadingZero(time[2]);
+            case 'm':
+                return previous + owner.addLeadingZero(time[1]);
+            case 'h':
+                return previous + owner.addLeadingZero(time[0]);
+            }
+        }, '');
+    },
+
+    getFixedTime: function (hour, minute, second) {
+        second = Math.min(parseInt(second || 0, 10), 60);
+        minute = Math.min(minute, 60);
+        hour = Math.min(hour, 60);
+
+        return [hour, minute, second];
+    },
+
+    addLeadingZero: function (number) {
+        return (number < 10 ? '0' : '') + number;
+    }
+};
+
+var TimeFormatter_1 = TimeFormatter;
+
+var PhoneFormatter = function (formatter, delimiter) {
+    var owner = this;
+
+    owner.delimiter = (delimiter || delimiter === '') ? delimiter : ' ';
+    owner.delimiterRE = delimiter ? new RegExp('\\' + delimiter, 'g') : '';
+
+    owner.formatter = formatter;
+};
+
+PhoneFormatter.prototype = {
+    setFormatter: function (formatter) {
+        this.formatter = formatter;
+    },
+
+    format: function (phoneNumber) {
+        var owner = this;
+
+        owner.formatter.clear();
+
+        // only keep number and +
+        phoneNumber = phoneNumber.replace(/[^\d+]/g, '');
+
+        // strip non-leading +
+        phoneNumber = phoneNumber.replace(/^\+/, 'B').replace(/\+/g, '').replace('B', '+');
+
+        // strip delimiter
+        phoneNumber = phoneNumber.replace(owner.delimiterRE, '');
+
+        var result = '', current, validated = false;
+
+        for (var i = 0, iMax = phoneNumber.length; i < iMax; i++) {
+            current = owner.formatter.inputDigit(phoneNumber.charAt(i));
+
+            // has ()- or space inside
+            if (/[\s()-]/g.test(current)) {
+                result = current;
+
+                validated = true;
+            } else {
+                if (!validated) {
+                    result = current;
+                }
+                // else: over length input
+                // it turns to invalid number again
+            }
+        }
+
+        // strip ()
+        // e.g. US: 7161234567 returns (716) 123-4567
+        result = result.replace(/[()]/g, '');
+        // replace library delimiter with user customized delimiter
+        result = result.replace(/[\s-]/g, owner.delimiter);
+
+        return result;
+    }
+};
+
+var PhoneFormatter_1 = PhoneFormatter;
+
+var CreditCardDetector = {
+    blocks: {
+        uatp:          [4, 5, 6],
+        amex:          [4, 6, 5],
+        diners:        [4, 6, 4],
+        discover:      [4, 4, 4, 4],
+        mastercard:    [4, 4, 4, 4],
+        dankort:       [4, 4, 4, 4],
+        instapayment:  [4, 4, 4, 4],
+        jcb15:         [4, 6, 5],
+        jcb:           [4, 4, 4, 4],
+        maestro:       [4, 4, 4, 4],
+        visa:          [4, 4, 4, 4],
+        mir:           [4, 4, 4, 4],
+        unionPay:      [4, 4, 4, 4],
+        general:       [4, 4, 4, 4]
+    },
+
+    re: {
+        // starts with 1; 15 digits, not starts with 1800 (jcb card)
+        uatp: /^(?!1800)1\d{0,14}/,
+
+        // starts with 34/37; 15 digits
+        amex: /^3[47]\d{0,13}/,
+
+        // starts with 6011/65/644-649; 16 digits
+        discover: /^(?:6011|65\d{0,2}|64[4-9]\d?)\d{0,12}/,
+
+        // starts with 300-305/309 or 36/38/39; 14 digits
+        diners: /^3(?:0([0-5]|9)|[689]\d?)\d{0,11}/,
+
+        // starts with 51-55/2221–2720; 16 digits
+        mastercard: /^(5[1-5]\d{0,2}|22[2-9]\d{0,1}|2[3-7]\d{0,2})\d{0,12}/,
+
+        // starts with 5019/4175/4571; 16 digits
+        dankort: /^(5019|4175|4571)\d{0,12}/,
+
+        // starts with 637-639; 16 digits
+        instapayment: /^63[7-9]\d{0,13}/,
+
+        // starts with 2131/1800; 15 digits
+        jcb15: /^(?:2131|1800)\d{0,11}/,
+
+        // starts with 2131/1800/35; 16 digits
+        jcb: /^(?:35\d{0,2})\d{0,12}/,
+
+        // starts with 50/56-58/6304/67; 16 digits
+        maestro: /^(?:5[0678]\d{0,2}|6304|67\d{0,2})\d{0,12}/,
+
+        // starts with 22; 16 digits
+        mir: /^220[0-4]\d{0,12}/,
+
+        // starts with 4; 16 digits
+        visa: /^4\d{0,15}/,
+
+        // starts with 62/81; 16 digits
+        unionPay: /^(62|81)\d{0,14}/
+    },
+
+    getStrictBlocks: function (block) {
+      var total = block.reduce(function (prev, current) {
+        return prev + current;
+      }, 0);
+
+      return block.concat(19 - total);
+    },
+
+    getInfo: function (value, strictMode) {
+        var blocks = CreditCardDetector.blocks,
+            re = CreditCardDetector.re;
+
+        // Some credit card can have up to 19 digits number.
+        // Set strictMode to true will remove the 16 max-length restrain,
+        // however, I never found any website validate card number like
+        // this, hence probably you don't want to enable this option.
+        strictMode = !!strictMode;
+
+        for (var key in re) {
+            if (re[key].test(value)) {
+                var matchedBlocks = blocks[key];
+                return {
+                    type: key,
+                    blocks: strictMode ? this.getStrictBlocks(matchedBlocks) : matchedBlocks
+                };
+            }
+        }
+
+        return {
+            type: 'unknown',
+            blocks: strictMode ? this.getStrictBlocks(blocks.general) : blocks.general
+        };
+    }
+};
+
+var CreditCardDetector_1 = CreditCardDetector;
+
+var Util = {
+    noop: function () {
+    },
+
+    strip: function (value, re) {
+        return value.replace(re, '');
+    },
+
+    getPostDelimiter: function (value, delimiter, delimiters) {
+        // single delimiter
+        if (delimiters.length === 0) {
+            return value.slice(-delimiter.length) === delimiter ? delimiter : '';
+        }
+
+        // multiple delimiters
+        var matchedDelimiter = '';
+        delimiters.forEach(function (current) {
+            if (value.slice(-current.length) === current) {
+                matchedDelimiter = current;
+            }
+        });
+
+        return matchedDelimiter;
+    },
+
+    getDelimiterREByDelimiter: function (delimiter) {
+        return new RegExp(delimiter.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1'), 'g');
+    },
+
+    getNextCursorPosition: function (prevPos, oldValue, newValue, delimiter, delimiters) {
+      // If cursor was at the end of value, just place it back.
+      // Because new value could contain additional chars.
+      if (oldValue.length === prevPos) {
+          return newValue.length;
+      }
+
+      return prevPos + this.getPositionOffset(prevPos, oldValue, newValue, delimiter ,delimiters);
+    },
+
+    getPositionOffset: function (prevPos, oldValue, newValue, delimiter, delimiters) {
+        var oldRawValue, newRawValue, lengthOffset;
+
+        oldRawValue = this.stripDelimiters(oldValue.slice(0, prevPos), delimiter, delimiters);
+        newRawValue = this.stripDelimiters(newValue.slice(0, prevPos), delimiter, delimiters);
+        lengthOffset = oldRawValue.length - newRawValue.length;
+
+        return (lengthOffset !== 0) ? (lengthOffset / Math.abs(lengthOffset)) : 0;
+    },
+
+    stripDelimiters: function (value, delimiter, delimiters) {
+        var owner = this;
+
+        // single delimiter
+        if (delimiters.length === 0) {
+            var delimiterRE = delimiter ? owner.getDelimiterREByDelimiter(delimiter) : '';
+
+            return value.replace(delimiterRE, '');
+        }
+
+        // multiple delimiters
+        delimiters.forEach(function (current) {
+            current.split('').forEach(function (letter) {
+                value = value.replace(owner.getDelimiterREByDelimiter(letter), '');
+            });
+        });
+
+        return value;
+    },
+
+    headStr: function (str, length) {
+        return str.slice(0, length);
+    },
+
+    getMaxLength: function (blocks) {
+        return blocks.reduce(function (previous, current) {
+            return previous + current;
+        }, 0);
+    },
+
+    // strip prefix
+    // Before type  |   After type    |     Return value
+    // PEFIX-...    |   PEFIX-...     |     ''
+    // PREFIX-123   |   PEFIX-123     |     123
+    // PREFIX-123   |   PREFIX-23     |     23
+    // PREFIX-123   |   PREFIX-1234   |     1234
+    getPrefixStrippedValue: function (value, prefix, prefixLength, prevResult, delimiter, delimiters, noImmediatePrefix, tailPrefix, signBeforePrefix) {
+        // No prefix
+        if (prefixLength === 0) {
+          return value;
+        }
+
+        // Value is prefix
+        if (value === prefix && value !== '') {
+          return '';
+        }
+
+        if (signBeforePrefix && (value.slice(0, 1) == '-')) {
+            var prev = (prevResult.slice(0, 1) == '-') ? prevResult.slice(1) : prevResult;
+            return '-' + this.getPrefixStrippedValue(value.slice(1), prefix, prefixLength, prev, delimiter, delimiters, noImmediatePrefix, tailPrefix, signBeforePrefix);
+        }
+
+        // Pre result prefix string does not match pre-defined prefix
+        if (prevResult.slice(0, prefixLength) !== prefix && !tailPrefix) {
+            // Check if the first time user entered something
+            if (noImmediatePrefix && !prevResult && value) return value;
+            return '';
+        } else if (prevResult.slice(-prefixLength) !== prefix && tailPrefix) {
+            // Check if the first time user entered something
+            if (noImmediatePrefix && !prevResult && value) return value;
+            return '';
+        }
+
+        var prevValue = this.stripDelimiters(prevResult, delimiter, delimiters);
+
+        // New value has issue, someone typed in between prefix letters
+        // Revert to pre value
+        if (value.slice(0, prefixLength) !== prefix && !tailPrefix) {
+            return prevValue.slice(prefixLength);
+        } else if (value.slice(-prefixLength) !== prefix && tailPrefix) {
+            return prevValue.slice(0, -prefixLength - 1);
+        }
+
+        // No issue, strip prefix for new value
+        return tailPrefix ? value.slice(0, -prefixLength) : value.slice(prefixLength);
+    },
+
+    getFirstDiffIndex: function (prev, current) {
+        var index = 0;
+
+        while (prev.charAt(index) === current.charAt(index)) {
+            if (prev.charAt(index++) === '') {
+                return -1;
+            }
+        }
+
+        return index;
+    },
+
+    getFormattedValue: function (value, blocks, blocksLength, delimiter, delimiters, delimiterLazyShow) {
+        var result = '',
+            multipleDelimiters = delimiters.length > 0,
+            currentDelimiter = '';
+
+        // no options, normal input
+        if (blocksLength === 0) {
+            return value;
+        }
+
+        blocks.forEach(function (length, index) {
+            if (value.length > 0) {
+                var sub = value.slice(0, length),
+                    rest = value.slice(length);
+
+                if (multipleDelimiters) {
+                    currentDelimiter = delimiters[delimiterLazyShow ? (index - 1) : index] || currentDelimiter;
+                } else {
+                    currentDelimiter = delimiter;
+                }
+
+                if (delimiterLazyShow) {
+                    if (index > 0) {
+                        result += currentDelimiter;
+                    }
+
+                    result += sub;
+                } else {
+                    result += sub;
+
+                    if (sub.length === length && index < blocksLength - 1) {
+                        result += currentDelimiter;
+                    }
+                }
+
+                // update remaining string
+                value = rest;
+            }
+        });
+
+        return result;
+    },
+
+    // move cursor to the end
+    // the first time user focuses on an input with prefix
+    fixPrefixCursor: function (el, prefix, delimiter, delimiters) {
+        if (!el) {
+            return;
+        }
+
+        var val = el.value,
+            appendix = delimiter || (delimiters[0] || ' ');
+
+        if (!el.setSelectionRange || !prefix || (prefix.length + appendix.length) <= val.length) {
+            return;
+        }
+
+        var len = val.length * 2;
+
+        // set timeout to avoid blink
+        setTimeout(function () {
+            el.setSelectionRange(len, len);
+        }, 1);
+    },
+
+    // Check if input field is fully selected
+    checkFullSelection: function(value) {
+      try {
+        var selection = window.getSelection() || document.getSelection() || {};
+        return selection.toString().length === value.length;
+      } catch (ex) {
+        // Ignore
+      }
+
+      return false;
+    },
+
+    setSelection: function (element, position, doc) {
+        if (element !== this.getActiveElement(doc)) {
+            return;
+        }
+
+        // cursor is already in the end
+        if (element && element.value.length <= position) {
+          return;
+        }
+
+        if (element.createTextRange) {
+            var range = element.createTextRange();
+
+            range.move('character', position);
+            range.select();
+        } else {
+            try {
+                element.setSelectionRange(position, position);
+            } catch (e) {
+                // eslint-disable-next-line
+                console.warn('The input element type does not support selection');
+            }
+        }
+    },
+
+    getActiveElement: function(parent) {
+        var activeElement = parent.activeElement;
+        if (activeElement && activeElement.shadowRoot) {
+            return this.getActiveElement(activeElement.shadowRoot);
+        }
+        return activeElement;
+    },
+
+    isAndroid: function () {
+        return navigator && /android/i.test(navigator.userAgent);
+    },
+
+    // On Android chrome, the keyup and keydown events
+    // always return key code 229 as a composition that
+    // buffers the user’s keystrokes
+    // see https://github.com/nosir/cleave.js/issues/147
+    isAndroidBackspaceKeydown: function (lastInputValue, currentInputValue) {
+        if (!this.isAndroid() || !lastInputValue || !currentInputValue) {
+            return false;
+        }
+
+        return currentInputValue === lastInputValue.slice(0, -1);
+    }
+};
+
+var Util_1 = Util;
+
+/**
+ * Props Assignment
+ *
+ * Separate this, so react module can share the usage
+ */
+var DefaultProperties = {
+    // Maybe change to object-assign
+    // for now just keep it as simple
+    assign: function (target, opts) {
+        target = target || {};
+        opts = opts || {};
+
+        // credit card
+        target.creditCard = !!opts.creditCard;
+        target.creditCardStrictMode = !!opts.creditCardStrictMode;
+        target.creditCardType = '';
+        target.onCreditCardTypeChanged = opts.onCreditCardTypeChanged || (function () {});
+
+        // phone
+        target.phone = !!opts.phone;
+        target.phoneRegionCode = opts.phoneRegionCode || 'AU';
+        target.phoneFormatter = {};
+
+        // time
+        target.time = !!opts.time;
+        target.timePattern = opts.timePattern || ['h', 'm', 's'];
+        target.timeFormat = opts.timeFormat || '24';
+        target.timeFormatter = {};
+
+        // date
+        target.date = !!opts.date;
+        target.datePattern = opts.datePattern || ['d', 'm', 'Y'];
+        target.dateMin = opts.dateMin || '';
+        target.dateMax = opts.dateMax || '';
+        target.dateFormatter = {};
+
+        // numeral
+        target.numeral = !!opts.numeral;
+        target.numeralIntegerScale = opts.numeralIntegerScale > 0 ? opts.numeralIntegerScale : 0;
+        target.numeralDecimalScale = opts.numeralDecimalScale >= 0 ? opts.numeralDecimalScale : 2;
+        target.numeralDecimalMark = opts.numeralDecimalMark || '.';
+        target.numeralThousandsGroupStyle = opts.numeralThousandsGroupStyle || 'thousand';
+        target.numeralPositiveOnly = !!opts.numeralPositiveOnly;
+        target.stripLeadingZeroes = opts.stripLeadingZeroes !== false;
+        target.signBeforePrefix = !!opts.signBeforePrefix;
+        target.tailPrefix = !!opts.tailPrefix;
+
+        // others
+        target.swapHiddenInput = !!opts.swapHiddenInput;
+        
+        target.numericOnly = target.creditCard || target.date || !!opts.numericOnly;
+
+        target.uppercase = !!opts.uppercase;
+        target.lowercase = !!opts.lowercase;
+
+        target.prefix = (target.creditCard || target.date) ? '' : (opts.prefix || '');
+        target.noImmediatePrefix = !!opts.noImmediatePrefix;
+        target.prefixLength = target.prefix.length;
+        target.rawValueTrimPrefix = !!opts.rawValueTrimPrefix;
+        target.copyDelimiter = !!opts.copyDelimiter;
+
+        target.initValue = (opts.initValue !== undefined && opts.initValue !== null) ? opts.initValue.toString() : '';
+
+        target.delimiter =
+            (opts.delimiter || opts.delimiter === '') ? opts.delimiter :
+                (opts.date ? '/' :
+                    (opts.time ? ':' :
+                        (opts.numeral ? ',' :
+                            (opts.phone ? ' ' :
+                                ' '))));
+        target.delimiterLength = target.delimiter.length;
+        target.delimiterLazyShow = !!opts.delimiterLazyShow;
+        target.delimiters = opts.delimiters || [];
+
+        target.blocks = opts.blocks || [];
+        target.blocksLength = target.blocks.length;
+
+        target.root = (typeof commonjsGlobal === 'object' && commonjsGlobal) ? commonjsGlobal : window;
+        target.document = opts.document || target.root.document;
+
+        target.maxLength = 0;
+
+        target.backspace = false;
+        target.result = '';
+
+        target.onValueChanged = opts.onValueChanged || (function () {});
+
+        return target;
+    }
+};
+
+var DefaultProperties_1 = DefaultProperties;
+
+/**
+ * Construct a new Cleave instance by passing the configuration object
+ *
+ * @param {String | HTMLElement} element
+ * @param {Object} opts
+ */
+var Cleave = function (element, opts) {
+    var owner = this;
+    var hasMultipleElements = false;
+
+    if (typeof element === 'string') {
+        owner.element = document.querySelector(element);
+        hasMultipleElements = document.querySelectorAll(element).length > 1;
+    } else {
+      if (typeof element.length !== 'undefined' && element.length > 0) {
+        owner.element = element[0];
+        hasMultipleElements = element.length > 1;
+      } else {
+        owner.element = element;
+      }
+    }
+
+    if (!owner.element) {
+        throw new Error('[cleave.js] Please check the element');
+    }
+
+    if (hasMultipleElements) {
+      try {
+        // eslint-disable-next-line
+        console.warn('[cleave.js] Multiple input fields matched, cleave.js will only take the first one.');
+      } catch (e) {
+        // Old IE
+      }
+    }
+
+    opts.initValue = owner.element.value;
+
+    owner.properties = Cleave.DefaultProperties.assign({}, opts);
+
+    owner.init();
+};
+
+Cleave.prototype = {
+    init: function () {
+        var owner = this, pps = owner.properties;
+
+        // no need to use this lib
+        if (!pps.numeral && !pps.phone && !pps.creditCard && !pps.time && !pps.date && (pps.blocksLength === 0 && !pps.prefix)) {
+            owner.onInput(pps.initValue);
+
+            return;
+        }
+
+        pps.maxLength = Cleave.Util.getMaxLength(pps.blocks);
+
+        owner.isAndroid = Cleave.Util.isAndroid();
+        owner.lastInputValue = '';
+        owner.isBackward = '';
+
+        owner.onChangeListener = owner.onChange.bind(owner);
+        owner.onKeyDownListener = owner.onKeyDown.bind(owner);
+        owner.onFocusListener = owner.onFocus.bind(owner);
+        owner.onCutListener = owner.onCut.bind(owner);
+        owner.onCopyListener = owner.onCopy.bind(owner);
+
+        owner.initSwapHiddenInput();
+
+        owner.element.addEventListener('input', owner.onChangeListener);
+        owner.element.addEventListener('keydown', owner.onKeyDownListener);
+        owner.element.addEventListener('focus', owner.onFocusListener);
+        owner.element.addEventListener('cut', owner.onCutListener);
+        owner.element.addEventListener('copy', owner.onCopyListener);
+
+
+        owner.initPhoneFormatter();
+        owner.initDateFormatter();
+        owner.initTimeFormatter();
+        owner.initNumeralFormatter();
+
+        // avoid touch input field if value is null
+        // otherwise Firefox will add red box-shadow for <input required />
+        if (pps.initValue || (pps.prefix && !pps.noImmediatePrefix)) {
+            owner.onInput(pps.initValue);
+        }
+    },
+
+    initSwapHiddenInput: function () {
+        var owner = this, pps = owner.properties;
+        if (!pps.swapHiddenInput) return;
+
+        var inputFormatter = owner.element.cloneNode(true);
+        owner.element.parentNode.insertBefore(inputFormatter, owner.element);
+
+        owner.elementSwapHidden = owner.element;
+        owner.elementSwapHidden.type = 'hidden';
+
+        owner.element = inputFormatter;
+        owner.element.id = '';
+    },
+
+    initNumeralFormatter: function () {
+        var owner = this, pps = owner.properties;
+
+        if (!pps.numeral) {
+            return;
+        }
+
+        pps.numeralFormatter = new Cleave.NumeralFormatter(
+            pps.numeralDecimalMark,
+            pps.numeralIntegerScale,
+            pps.numeralDecimalScale,
+            pps.numeralThousandsGroupStyle,
+            pps.numeralPositiveOnly,
+            pps.stripLeadingZeroes,
+            pps.prefix,
+            pps.signBeforePrefix,
+            pps.tailPrefix,
+            pps.delimiter
+        );
+    },
+
+    initTimeFormatter: function() {
+        var owner = this, pps = owner.properties;
+
+        if (!pps.time) {
+            return;
+        }
+
+        pps.timeFormatter = new Cleave.TimeFormatter(pps.timePattern, pps.timeFormat);
+        pps.blocks = pps.timeFormatter.getBlocks();
+        pps.blocksLength = pps.blocks.length;
+        pps.maxLength = Cleave.Util.getMaxLength(pps.blocks);
+    },
+
+    initDateFormatter: function () {
+        var owner = this, pps = owner.properties;
+
+        if (!pps.date) {
+            return;
+        }
+
+        pps.dateFormatter = new Cleave.DateFormatter(pps.datePattern, pps.dateMin, pps.dateMax);
+        pps.blocks = pps.dateFormatter.getBlocks();
+        pps.blocksLength = pps.blocks.length;
+        pps.maxLength = Cleave.Util.getMaxLength(pps.blocks);
+    },
+
+    initPhoneFormatter: function () {
+        var owner = this, pps = owner.properties;
+
+        if (!pps.phone) {
+            return;
+        }
+
+        // Cleave.AsYouTypeFormatter should be provided by
+        // external google closure lib
+        try {
+            pps.phoneFormatter = new Cleave.PhoneFormatter(
+                new pps.root.Cleave.AsYouTypeFormatter(pps.phoneRegionCode),
+                pps.delimiter
+            );
+        } catch (ex) {
+            throw new Error('[cleave.js] Please include phone-type-formatter.{country}.js lib');
+        }
+    },
+
+    onKeyDown: function (event) {
+        var owner = this,
+            charCode = event.which || event.keyCode;
+
+        owner.lastInputValue = owner.element.value;
+        owner.isBackward = charCode === 8;
+    },
+
+    onChange: function (event) {
+        var owner = this, pps = owner.properties,
+            Util = Cleave.Util;
+
+        owner.isBackward = owner.isBackward || event.inputType === 'deleteContentBackward';
+
+        var postDelimiter = Util.getPostDelimiter(owner.lastInputValue, pps.delimiter, pps.delimiters);
+
+        if (owner.isBackward && postDelimiter) {
+            pps.postDelimiterBackspace = postDelimiter;
+        } else {
+            pps.postDelimiterBackspace = false;
+        }
+
+        this.onInput(this.element.value);
+    },
+
+    onFocus: function () {
+        var owner = this,
+            pps = owner.properties;
+        owner.lastInputValue = owner.element.value;
+
+        if (pps.prefix && pps.noImmediatePrefix && !owner.element.value) {
+            this.onInput(pps.prefix);
+        }
+
+        Cleave.Util.fixPrefixCursor(owner.element, pps.prefix, pps.delimiter, pps.delimiters);
+    },
+
+    onCut: function (e) {
+        if (!Cleave.Util.checkFullSelection(this.element.value)) return;
+        this.copyClipboardData(e);
+        this.onInput('');
+    },
+
+    onCopy: function (e) {
+        if (!Cleave.Util.checkFullSelection(this.element.value)) return;
+        this.copyClipboardData(e);
+    },
+
+    copyClipboardData: function (e) {
+        var owner = this,
+            pps = owner.properties,
+            Util = Cleave.Util,
+            inputValue = owner.element.value,
+            textToCopy = '';
+
+        if (!pps.copyDelimiter) {
+            textToCopy = Util.stripDelimiters(inputValue, pps.delimiter, pps.delimiters);
+        } else {
+            textToCopy = inputValue;
+        }
+
+        try {
+            if (e.clipboardData) {
+                e.clipboardData.setData('Text', textToCopy);
+            } else {
+                window.clipboardData.setData('Text', textToCopy);
+            }
+
+            e.preventDefault();
+        } catch (ex) {
+            //  empty
+        }
+    },
+
+    onInput: function (value) {
+        var owner = this, pps = owner.properties,
+            Util = Cleave.Util;
+
+        // case 1: delete one more character "4"
+        // 1234*| -> hit backspace -> 123|
+        // case 2: last character is not delimiter which is:
+        // 12|34* -> hit backspace -> 1|34*
+        // note: no need to apply this for numeral mode
+        var postDelimiterAfter = Util.getPostDelimiter(value, pps.delimiter, pps.delimiters);
+        if (!pps.numeral && pps.postDelimiterBackspace && !postDelimiterAfter) {
+            value = Util.headStr(value, value.length - pps.postDelimiterBackspace.length);
+        }
+
+        // phone formatter
+        if (pps.phone) {
+            if (pps.prefix && (!pps.noImmediatePrefix || value.length)) {
+                pps.result = pps.prefix + pps.phoneFormatter.format(value).slice(pps.prefix.length);
+            } else {
+                pps.result = pps.phoneFormatter.format(value);
+            }
+            owner.updateValueState();
+
+            return;
+        }
+
+        // numeral formatter
+        if (pps.numeral) {
+            // Do not show prefix when noImmediatePrefix is specified
+            // This mostly because we need to show user the native input placeholder
+            if (pps.prefix && pps.noImmediatePrefix && value.length === 0) {
+                pps.result = '';
+            } else {
+                pps.result = pps.numeralFormatter.format(value);
+            }
+            owner.updateValueState();
+
+            return;
+        }
+
+        // date
+        if (pps.date) {
+            value = pps.dateFormatter.getValidatedDate(value);
+        }
+
+        // time
+        if (pps.time) {
+            value = pps.timeFormatter.getValidatedTime(value);
+        }
+
+        // strip delimiters
+        value = Util.stripDelimiters(value, pps.delimiter, pps.delimiters);
+
+        // strip prefix
+        value = Util.getPrefixStrippedValue(value, pps.prefix, pps.prefixLength, pps.result, pps.delimiter, pps.delimiters, pps.noImmediatePrefix, pps.tailPrefix, pps.signBeforePrefix);
+
+        // strip non-numeric characters
+        value = pps.numericOnly ? Util.strip(value, /[^\d]/g) : value;
+
+        // convert case
+        value = pps.uppercase ? value.toUpperCase() : value;
+        value = pps.lowercase ? value.toLowerCase() : value;
+
+        // prevent from showing prefix when no immediate option enabled with empty input value
+        if (pps.prefix) {
+            if (pps.tailPrefix) {
+                value = value + pps.prefix;
+            } else {
+                value = pps.prefix + value;
+            }
+
+
+            // no blocks specified, no need to do formatting
+            if (pps.blocksLength === 0) {
+                pps.result = value;
+                owner.updateValueState();
+
+                return;
+            }
+        }
+
+        // update credit card props
+        if (pps.creditCard) {
+            owner.updateCreditCardPropsByValue(value);
+        }
+
+        // strip over length characters
+        value = Util.headStr(value, pps.maxLength);
+
+        // apply blocks
+        pps.result = Util.getFormattedValue(
+            value,
+            pps.blocks, pps.blocksLength,
+            pps.delimiter, pps.delimiters, pps.delimiterLazyShow
+        );
+
+        owner.updateValueState();
+    },
+
+    updateCreditCardPropsByValue: function (value) {
+        var owner = this, pps = owner.properties,
+            Util = Cleave.Util,
+            creditCardInfo;
+
+        // At least one of the first 4 characters has changed
+        if (Util.headStr(pps.result, 4) === Util.headStr(value, 4)) {
+            return;
+        }
+
+        creditCardInfo = Cleave.CreditCardDetector.getInfo(value, pps.creditCardStrictMode);
+
+        pps.blocks = creditCardInfo.blocks;
+        pps.blocksLength = pps.blocks.length;
+        pps.maxLength = Util.getMaxLength(pps.blocks);
+
+        // credit card type changed
+        if (pps.creditCardType !== creditCardInfo.type) {
+            pps.creditCardType = creditCardInfo.type;
+
+            pps.onCreditCardTypeChanged.call(owner, pps.creditCardType);
+        }
+    },
+
+    updateValueState: function () {
+        var owner = this,
+            Util = Cleave.Util,
+            pps = owner.properties;
+
+        if (!owner.element) {
+            return;
+        }
+
+        var endPos = owner.element.selectionEnd;
+        var oldValue = owner.element.value;
+        var newValue = pps.result;
+
+        endPos = Util.getNextCursorPosition(endPos, oldValue, newValue, pps.delimiter, pps.delimiters);
+
+        // fix Android browser type="text" input field
+        // cursor not jumping issue
+        if (owner.isAndroid) {
+            window.setTimeout(function () {
+                owner.element.value = newValue;
+                Util.setSelection(owner.element, endPos, pps.document, false);
+                owner.callOnValueChanged();
+            }, 1);
+
+            return;
+        }
+
+        owner.element.value = newValue;
+        if (pps.swapHiddenInput) owner.elementSwapHidden.value = owner.getRawValue();
+
+        Util.setSelection(owner.element, endPos, pps.document, false);
+        owner.callOnValueChanged();
+    },
+
+    callOnValueChanged: function () {
+        var owner = this,
+            pps = owner.properties;
+
+        pps.onValueChanged.call(owner, {
+            target: {
+                name: owner.element.name,
+                value: pps.result,
+                rawValue: owner.getRawValue()
+            }
+        });
+    },
+
+    setPhoneRegionCode: function (phoneRegionCode) {
+        var owner = this, pps = owner.properties;
+
+        pps.phoneRegionCode = phoneRegionCode;
+        owner.initPhoneFormatter();
+        owner.onChange();
+    },
+
+    setRawValue: function (value) {
+        var owner = this, pps = owner.properties;
+
+        value = value !== undefined && value !== null ? value.toString() : '';
+
+        if (pps.numeral) {
+            value = value.replace('.', pps.numeralDecimalMark);
+        }
+
+        pps.postDelimiterBackspace = false;
+
+        owner.element.value = value;
+        owner.onInput(value);
+    },
+
+    getRawValue: function () {
+        var owner = this,
+            pps = owner.properties,
+            Util = Cleave.Util,
+            rawValue = owner.element.value;
+
+        if (pps.rawValueTrimPrefix) {
+            rawValue = Util.getPrefixStrippedValue(rawValue, pps.prefix, pps.prefixLength, pps.result, pps.delimiter, pps.delimiters, pps.noImmediatePrefix, pps.tailPrefix, pps.signBeforePrefix);
+        }
+
+        if (pps.numeral) {
+            rawValue = pps.numeralFormatter.getRawValue(rawValue);
+        } else {
+            rawValue = Util.stripDelimiters(rawValue, pps.delimiter, pps.delimiters);
+        }
+
+        return rawValue;
+    },
+
+    getISOFormatDate: function () {
+        var owner = this,
+            pps = owner.properties;
+
+        return pps.date ? pps.dateFormatter.getISOFormatDate() : '';
+    },
+
+    getISOFormatTime: function () {
+        var owner = this,
+            pps = owner.properties;
+
+        return pps.time ? pps.timeFormatter.getISOFormatTime() : '';
+    },
+
+    getFormattedValue: function () {
+        return this.element.value;
+    },
+
+    destroy: function () {
+        var owner = this;
+
+        owner.element.removeEventListener('input', owner.onChangeListener);
+        owner.element.removeEventListener('keydown', owner.onKeyDownListener);
+        owner.element.removeEventListener('focus', owner.onFocusListener);
+        owner.element.removeEventListener('cut', owner.onCutListener);
+        owner.element.removeEventListener('copy', owner.onCopyListener);
+    },
+
+    toString: function () {
+        return '[Cleave Object]';
+    }
+};
+
+Cleave.NumeralFormatter = NumeralFormatter_1;
+Cleave.DateFormatter = DateFormatter_1;
+Cleave.TimeFormatter = TimeFormatter_1;
+Cleave.PhoneFormatter = PhoneFormatter_1;
+Cleave.CreditCardDetector = CreditCardDetector_1;
+Cleave.Util = Util_1;
+Cleave.DefaultProperties = DefaultProperties_1;
+
+// for angular directive
+((typeof commonjsGlobal === 'object' && commonjsGlobal) ? commonjsGlobal : window)['Cleave'] = Cleave;
+
+// CommonJS
+var Cleave_1 = Cleave;
+
+/* harmony default export */ __webpack_exports__["default"] = (Cleave_1);
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/vue-cleave-component/dist/vue-cleave.min.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(e,t){ true?module.exports=t(__webpack_require__(/*! cleave.js */ "./node_modules/cleave.js/dist/cleave-esm.js")):undefined}("undefined"!=typeof self?self:this,function(e){return function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}return n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=1)}([function(t,n){t.exports=e},function(e,t,n){"use strict";n.r(t);var r=n(0),o=n.n(r);function u(){return(u=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e}).apply(this,arguments)}var a={name:"cleave",render:function(e){return e("input",{attrs:{type:"text",value:this.value},on:{blur:this.onBlur}})},props:{value:{default:null,required:!0,validator:function(e){return null===e||"string"==typeof e||e instanceof String||"number"==typeof e}},options:{type:Object,default:function(){return{}}},raw:{type:Boolean,default:!0}},data:function(){return{cleave:null,onValueChangedFn:null}},mounted:function(){this.cleave||(this.cleave=new o.a(this.$el,this.getOptions(this.options)))},methods:{getOptions:function(e){return this.onValueChangedFn=e.onValueChanged,u({},e,{onValueChanged:this.onValueChanged})},onValueChanged:function(e){var t=this.raw?e.target.rawValue:e.target.value;this.$emit("input",t),"function"==typeof this.onValueChangedFn&&this.onValueChangedFn.call(this,e)},onBlur:function(e){this.$emit("blur",this.value)}},watch:{options:{deep:!0,handler:function(e){this.cleave.destroy(),this.cleave=new o.a(this.$el,this.getOptions(e)),this.cleave.setRawValue(this.value)}},value:function(e){this.cleave&&(this.raw&&e===this.cleave.getRawValue()||(this.raw||e!==this.$el.value)&&this.cleave.setRawValue(e))}},beforeDestroy:function(){this.cleave&&(this.cleave.destroy(),this.cleave=null,this.onValueChangedFn=null)}};n.d(t,"plugin",function(){return i}),n.d(t,"component",function(){return a});var i=function(e,t){var n="cleave";"string"==typeof t&&(n=t),e.component(n,a)};a.install=i;t.default=a}]).default});
+
+/***/ })
+
+}]);

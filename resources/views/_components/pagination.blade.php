@@ -1,5 +1,5 @@
 @if ($paginator->hasPages())
-<ul class="pagination nobottommargin" role="navigation">
+<ul class="pagination pagination-rounded pagination-inside-transparent pagination-button justify-content-center" role="navigation">
     {{-- Previous Page Link --}}
     @if ($paginator->onFirstPage())
       <li class="page-item disabled">

@@ -10,91 +10,200 @@
 @include('_components.pengumumanBKCU')
 
 <!-- page title -->
-<section id="page-title">
+<section class="page-title page-title-mini">
+  <div class="container">
+    <div class="page-title-row">
 
-  <div class="container clearfix">
-    <h1>{{ $title }}</h1>
-    <span>{{ $subtitle }}</span>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Artikel</li>
-      <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
-    </ol>
+      <div class="page-title-content">
+        <h1>{{ $subtitle }}</h1>
+      </div>
+
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+          <li class="breadcrumb-item">Artikel</li>
+          <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
+        </ol>
+      </nav>
+
+    </div>
   </div>
-
 </section>
 
 <!-- content -->
 <section id="content">
+  <div class="content-wrap pt-5" style="overflow: visible;">
+    @php
+      $imagepath = 'images/artikel/';
+    @endphp
 
-  <div class="content-wrap">
-
-    <div class="container clearfix">
-
-      @if($tipe == 'penulis')
-      @php $imagepathPenulis = 'images/penulis/' @endphp
-      <div class="card">
-        <div class="card-header"><strong>Ditulis oleh <a href="#">{{ $penulis->name }}</a></strong></div>
-        <div class="card-body">
-          <div class="author-image">
-            @if(!empty($item->gambar) && is_file($imagepathPenulis.$item->gambar.".jpg"))
-              <img src="{{ asset($imagepathPenulis . $item->gambar . '.jpg') }}" alt="" class="rounded-circle">
-            @else
-              <img src="{{ asset('images/no_image_man.jpg') }}" alt="" class="rounded-circle">
-            @endif
+    <!-- if artikel penulis -->
+    @if($tipe == 'penulis')
+      @php    
+        $imagepathPenulis = 'images/penulis/';
+        if(!empty($penulis->gambar) && is_file($imagepathPenulis.$penulis->gambar.".jpg")){
+          $gambar = $imagepathPenulis . $penulis->gambar . '.jpg';
+        }else{
+          $gambar = 'images/no_image_man.jpg';
+        }
+      @endphp
+      <div class="container">
+        <div class="card border-default mb-6">
+          <div class="card-body p-4">
+            <div class="row">
+              <div class="col-auto">
+                <img src="{{ asset($gambar) }}" alt="Author Image" class="rounded-circle square square-md">
+              </div>
+              <div class="col">
+                <div class="d-flex align-items-start mb-2">
+                  <div>
+                    <h5 class="text-medium fw-semibold mb-0"><a href="#" class="text-dark">{{ $penulis->name }}</a></h5>
+                  </div>
+                </div>
+                <p class="mb-3 text-muted">{{ $penulis->deskripsi }}</p>
+              </div>
+            </div>
           </div>
-          {{ $penulis->deskripsi }}
         </div>
       </div>
+    @endif
 
-      <div class="line"></div>
+    <!-- artikel utama -->
+    @if($tipe != 'cari')
+      @if($artikelsUtama->count() > 1)
+        <div class="container">
+          <div class="fancy-title title-border">
+            <h3>Artikel Utama {{ $title != 'Semua Kategori' ? $title : '' }}</h3>
+          </div>
+          <div class="row border-between">
+            <div class="col-lg-7 mb-5">
+              @foreach ($artikelsUtama as $artikel)
+              @php
+                if(!empty($artikel->gambar) && is_file($imagepath.$artikel->gambar.".jpg")){
+                  $gambar = $imagepath . $artikel->gambar . '.jpg';
+                }else{
+                  $gambar = 'images/image-article.jpg';
+                }
+              @endphp
+                <article class="entry border-bottom-0 mb-0">
+                  <div class="entry-image">
+                    <a href="{{ route('artikel.lihat',$artikel->slug) }}"><img src="{{ asset($gambar) }}" alt="Image 3"></a>
+                  </div>
+                  <div class="entry-title">
+                    <div class="entry-meta no-separator mb-1 mt-0">
+                      <ul>
+                        <li><a class="text-uppercase fw-medium" href="{{ route('artikel.kategori',$artikel->kategori->slug) }}">{{$artikel->kategori ?$artikel->kategori->name : '' }}</a></li>
+                      </ul>
+                    </div>
+                    <h3><a href="{{ route('artikel.lihat',$artikel->slug) }}" class="stretched-link color-underline"><span>{{ $artikel->name }}</span></a></h3>
+                  </div>
+                  <div class="entry-meta">
+                    <ul>
+                      <li><a href="#"><i class="bi-clock"></i> {{ $artikel->created_at->format(' j M Y') }}</a></li>
+                    </ul>
+                  </div>
+                  <div class="entry-content">
+                    <p>{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $artikel->content),200) }}</p>
+                  </div>
+                </article>
+              @break
+              @endforeach
+            </div>
+
+            <div class="col-lg-5">
+              <div class="row posts-md col-mb-30">
+              @php $i = 1 @endphp
+              @foreach ($artikelsUtama as $artikel)
+              @php $i++ @endphp
+              @php
+                if(!empty($artikel->gambar) && is_file($imagepath.$artikel->gambar.".jpg")){
+                  $gambar = $imagepath . $artikel->gambar . '.jpg';
+                }else{
+                  $gambar = 'images/image-article.jpg';
+                }
+              @endphp
+              @if($i != 1)
+                <article class="entry col-12">
+                  <div class="grid-inner row gutter-20">
+                    <div class="col-md-4">
+                      <a class="entry-image" href="{{ route('artikel.lihat',$artikel->slug) }}"><img src="{{ asset($gambar) }}" alt="Image"></a>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="entry-title title-xs">
+                        <div class="entry-meta no-separator mb-1 mt-0">
+                          <ul>
+                            <li><a class="text-uppercase fw-medium" href="{{ route('artikel.kategori',$artikel->kategori->slug) }}">{{$artikel->kategori ?$artikel->kategori->name : '' }}</a></li>
+                          </ul>
+                        </div>
+                        <h3><a href="{{ route('artikel.lihat',$artikel->slug) }}" class="stretched-link color-underline">{{ $artikel->name }}</a></h3>
+                      </div>
+                      <div class="entry-meta no-separator">
+                        <ul>
+                          <li><a href="#"><i class="bi-clock"></i> {{ $artikel->created_at->format(' j M Y') }}</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              @endif
+              @endforeach
+              </div>
+            </div>
+          </div>
+        </div>  
       @endif
+    @endif
 
-      <!-- Posts -->
-      <div id="posts" class="post-grid grid-container clearfix" data-layout="fitRows">
-        @php $imagepath = 'images/artikel/' @endphp
-        @foreach($artikels as $item)
-        <div class="entry clearfix">
-          <div class="entry-image">
-            @if(!empty($item->gambar) && is_file($imagepath.$item->gambar.".jpg"))
-              <a href="{{ asset($imagepath . $item->gambar . '.jpg') }}" data-lightbox="image"><img class="image_fade" src="{{ asset($imagepath . $item->gambar . 'n.jpg') }}" alt="{{ $item->name }}"></a>
-            @else
-              <a href="{{ asset('images/image-article.jpg') }}" data-lightbox="image"><img class="image_fade" src="{{ asset('images/image-articlen.jpg') }}" alt="{{ $item->name }}"></a>
-            @endif
-          </div>
-          <div class="entry-title">
-            <h2><a href="{{ route('artikel.lihat',$item->slug) }}">{{ $item->name }}</a></h2>
-          </div>
-          <ul class="entry-meta clearfix">
-            <li><i class="icon-calendar3"></i> {{ $item->created_at->diffForHumans() }}</li>
-            @if($tipe != 'kategori')
-              @if($item->kategori)
-                <li><a href="{{ route('artikel.kategori',$item->kategori->slug) }}"><i class="icon-line-grid"></i>{{ $item->kategori->name }}</a></li>
-              @else 
-                <li><i class="icon-line-grid"></i>{{"-"}}</li> 
-              @endif
-            @endif
-            @if($tipe != 'penulis')
-              @if($item->penulis)
-                <li><a href="{{ route('artikel.penulis',$item->penulis->slug) }}"><i class="icon-user"></i>{{ $item->penulis->name }}</a></li>
-              @else 
-                <li><i class="icon-user"></i>{{"-"}}</li> 
-              @endif
-            @endif
-          </ul>
-          <div class="entry-content">
-            <p>{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->content),200) }}</p>
-            <a href="{{ route('artikel.lihat',$item->slug) }}"class="more-link">Selengkapnya</a>
+    <!-- all artikel -->
+    @if($artikels->count() > 1)
+      <div class="container">       
+        <div class="row col-mb-50">
+          <div class="col-12">
+            <div class="fancy-title title-border">
+              <h3>Semua Artikel {{ $title != 'Semua Kategori' ? $title : '' }}</h3>
+            </div>
+            <div class="row posts-md col-mb-30">
+              @foreach($artikels as $artikel)
+              @php
+                if(!empty($artikel->gambar) && is_file($imagepath.$artikel->gambar.".jpg")){
+                  $gambar = $imagepath . $artikel->gambar . '.jpg';
+                }else{
+                  $gambar = 'images/image-article.jpg';
+                }
+              @endphp
+                <div class="entry col-sm-6 col-lg-3">
+                  <div class="grid-inner">
+                    <div class="entry-image">
+                      <a href="{{ route('artikel.lihat',$artikel->slug) }}"><img src="{{ asset($gambar) }}" alt="Image"></a>
+                    </div>
+                    <div class="entry-title title-xs text-transform-none">
+                      <div class="entry-meta no-separator mb-1 mt-0">
+                          <ul>
+                            <li><a class="text-uppercase fw-medium" href="{{ route('artikel.kategori',$artikel->kategori->slug) }}">{{$artikel->kategori ?$artikel->kategori->name : '' }}</a></li>
+                          </ul>
+                        </div>
+                      <h3><a href="{{ route('artikel.lihat',$artikel->slug) }}">{{ $artikel->name }}</a></h3>
+                    </div>
+                    <div class="entry-meta no-separator">
+                      <ul>
+                        <li><a href="#"><i class="bi-clock"></i> {{ $artikel->created_at->format(' j M Y') }}</a></li>
+                      </ul>
+                    </div>
+                    <div class="entry-content">
+                      <p>{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $artikel->content),200) }}</p>
+                    </div>
+                  </div>
+                </div>
+              @endforeach
+            </div>
           </div>
         </div>
-        @endforeach
+
+        <!-- Pagination -->
+        {{ $artikels->links('_components.pagination') }}
 
       </div>
-
-      <!-- Pagination -->
-      {{ $artikels->links('_components.pagination') }}
-
-    </div>
+    @endif
 
   </div>
 
@@ -103,5 +212,22 @@
 @stop
 
 @section('js')
-
+<script>
+  jQuery(window).on( 'pluginCarouselReady', function(){
+    jQuery('#oc-news').owlCarousel({
+      items: 1,
+      margin: 20,
+      dots: false,
+      nav: true,
+      navText: ['<i class="uil uil-angle-left-b"></i>','<i class="uil uil-angle-right-b"></i>'],
+      responsive:{
+        0:{ items: 1,dots: true, },
+        576:{ items: 1,dots: true },
+        768:{ items: 2,dots:true },
+        992:{ items: 2 },
+        1200:{ items: 3 }
+      }
+    });
+  });
+</script>
 @stop

@@ -309,7 +309,7 @@ class SertifikatController extends Controller
         break;
     }
 
-    $nomor = $nomorData['nomor'] . '/' . $sertifikat->kode_sertifikat . '/' . $selesai2 . '/' . $selesai->format('Y');
+    $nomor = ($nomorData !== null) ? $nomorData['nomor'] . '/' . $sertifikat->kode_sertifikat . '/' . $selesai2 . '/' . $selesai->format('Y') : '';
 
     $hari = \Carbon\Carbon::parse($date_mulai)->diffInDays(\Carbon\Carbon::parse($date_selesai), false);
 

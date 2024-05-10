@@ -9,7 +9,7 @@ class CuComposer
 {
     public function compose(View $view)
     {
-        $cuList = Cu::orderBy('name')->select('slug','name')->get()->chunk(11);
+        $cuList = Cu::orderBy('name')->select('slug','name')->get()->chunk(10);
 
         $view->with('cuList', $cuList);
     }

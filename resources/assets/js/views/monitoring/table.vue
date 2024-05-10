@@ -29,6 +29,12 @@
 					<i class="icon-bin2"></i> Hapus
 				</button>
 
+				<button @click.prevent="downloadLaporan" class="btn btn-light mb-1"
+					v-if="currentUser.can && currentUser.id_cu == 0 && $route.params.cu !='semua'" 
+					:disabled="!itemData">
+					<i class="icon-book"></i> Laporan
+				</button>
+
 			</template>
 
 			<!-- button mobile -->
@@ -53,6 +59,12 @@
 				<!-- hapus -->
 				<button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-block mb-1" v-if="currentUser.can && currentUser.can['destroy_' + kelas] && currentUser.id_cu == 0" :disabled="!selectedItem.id">
 					<i class="icon-bin2"></i> Hapus
+				</button>
+
+				<button @click.prevent="downloadLaporan" class="btn btn-light btn-block mb-1"
+					v-if="currentUser.can && currentUser.id_cu == 0 && $route.params.cu !='semua'" 
+					:disabled="!selectedItem.id">
+					<i class="icon-book"></i> Laporan
 				</button>
 
 			</template>
@@ -134,12 +146,14 @@
 	import DataViewer from '../../components/dataviewer2.vue';
 	import appModal from '../../components/modal';
 	import checkValue from '../../components/checkValue.vue';
+	import FileSaver from 'file-saver';
 
 	export default {
 		components: {
 			DataViewer,
 			appModal,
-			checkValue
+			checkValue,
+			FileSaver
 		},
 		props:['title','kelas'],
 		data() {
@@ -367,7 +381,19 @@
 				} else if (this.state == "updateUtamakan") {
 					this.$store.dispatch(this.kelas + '/updateUtamakan', this.selectedItem.id);
 				}
-			}
+			},
+			downloadLaporan() {
+				this.modalState = 'loading'
+				this.modalShow = true
+				axios.post('/api/'+this.kelas+'/laporan', { id_cu: this.$route.params.cu, id_tp:this.$route.params.tp}, {
+					responseType: 'blob'
+				}).then((response) => {
+					FileSaver.saveAs(response.data, 'Monitoring.xlsx')
+					this.modalState = 'success';
+					this.modalTitle = 'Berhasil Di Download'
+					this.modalButton = 'Ok';
+				})
+			},
 		},
 		computed:{
 			...mapGetters('auth',{

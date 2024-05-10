@@ -22,6 +22,9 @@ class DokumenController extends Controller{
 			'(SELECT name FROM cu WHERE dokumen.id_cu = cu.id) as cu_name,
 			(SELECT name FROM dokumen_kategori WHERE dokumen.id_dokumen_kategori = dokumen_kategori.id) as kategori_name'
 		))
+		->whereHas('kategori', function($q){
+			$q->where('name','!=','surat');
+		})
 		->advancedFilter();
 
 		return response()
@@ -37,6 +40,9 @@ class DokumenController extends Controller{
 			'(SELECT name FROM cu WHERE dokumen.id_cu = cu.id) as cu_name,
 			(SELECT name FROM dokumen_kategori WHERE dokumen.id_dokumen_kategori = dokumen_kategori.id) as kategori_name'
 		))
+		->whereHas('kategori', function($q){
+			$q->where('name','!=','surat');
+		})
 		->where('id_cu',$cu)
 		->advancedFilter();
 

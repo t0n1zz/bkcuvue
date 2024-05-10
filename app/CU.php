@@ -47,17 +47,17 @@ class Cu extends Model {
     
     protected $fillable = [
       'id_villages','id_districts','id_regencies','id_provinces','no_ba','name','name_legal','gambar','badan_hukum','npwp','nik','situ','siusp','izin_operasional','alamat','pos','telp','hp','website','email','app','misi','visi','nilai','slogan','sejarah','deskripsi','ultah',
-      'bergabung','created_at','updated_at','deleted_at','escete','logo'
+      'bergabung','created_at','updated_at','deleted_at','escete','logo','facebook','instagram','youtube','tiktok'
     ];
 
     protected $allowedFilters = [
-        'id','no_ba','name','name_legal','badan_hukum','npwp','nik','situ','siusp','izin_operasional','alamat','pos','telp','hp','website','email','app','deskripsi','ultah','bergabung','created_at','updated_at','escete','logo',
+        'id','no_ba','name','name_legal','badan_hukum','npwp','nik','situ','siusp','izin_operasional','alamat','pos','telp','hp','website','email','app','deskripsi','ultah','bergabung','created_at','updated_at','escete','logo','facebook','instagram','youtube','tiktok',
         
         'villages.name', 'districts.name', 'regencies.name', 'provinces.name','has_tp_cu_count'
     ];
 
     protected $orderable = [
-        'id','no_ba','name','name_legal','badan_hukum','npwp','nik','situ','siusp','izin_operasional','alamat','pos','telp','hp','website','email','app','deskripsi','ultah','bergabung','created_at','updated_at','escete','logo',
+        'id','no_ba','name','name_legal','badan_hukum','npwp','nik','situ','siusp','izin_operasional','alamat','pos','telp','hp','website','email','app','deskripsi','ultah','bergabung','created_at','updated_at','escete','logo','facebook','instagram','youtube','tiktok',
 
         'villages.name', 'districts.name', 'regencies.name', 'provinces.name','has_tp_cu_count'
     ];
@@ -65,7 +65,7 @@ class Cu extends Model {
     public static function initialize(){
         return [
             'id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '', 'no_ba' => '', 'name' => '','name_legal' => '', 'gambar' => '',
-            'badan_hukum' => '','npwp' => '','nik' => '','situ' => '','siusp' => '','izin_operasional' => '', 'alamat' => '', 'pos' => '', 'telp' => '', 'hp' => '', 'website' => '', 'email' => '', 'app' => '', 'ultah' => '', 'bergabung' => '', 'logo' => '',
+            'badan_hukum' => '','npwp' => '','nik' => '','situ' => '','siusp' => '','izin_operasional' => '', 'alamat' => '', 'pos' => '', 'telp' => '', 'hp' => '', 'website' => '', 'email' => '', 'app' => '', 'ultah' => '', 'bergabung' => '', 'logo' => '','facebook' => '','instagram' => '','youtube' => '','tiktok' => ''
         ];
     }
         

@@ -11,6 +11,8 @@ const errorLog = () => import("./views/errorLog/index.vue");
 const activityLog = () => import("./views/user/indexAktivitas.vue");
 const pengumuman = () => import("./views/pengumuman/index.vue");
 const notFound = () => import("./views/notFound.vue");
+const media = () => import("./views/media/index.vue");
+const media_form = () => import("./views/media/form.vue");
 const artikel = () => import("./views/artikel/index.vue");
 const artikel_form = () => import("./views/artikel/form.vue");
 const artikelPenulis = () => import("./views/artikelPenulis/index.vue");
@@ -222,6 +224,34 @@ const routes = [
     name: "notFound",
     components: { default: notFound, header: header, footer: footer },
     meta: { requiresAuth: true },
+  },
+
+  // media
+  {
+    path: "/media/cu/:cu",
+    name: "mediaCu",
+    components: { default: media, header: header, footer: footer },
+    meta: { requiresAuth: true, mode: "cu" },
+  },
+  {
+    path: "/media/create",
+    name: "mediaCreate",
+    components: {
+      default: media_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/media/edit/:id",
+    name: "mediaEdit",
+    components: {
+      default: media_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true, mode: "edit" },
   },
 
   // artikel

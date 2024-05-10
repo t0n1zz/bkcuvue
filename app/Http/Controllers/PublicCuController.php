@@ -31,9 +31,11 @@ class PublicCuController extends Controller
             abort(404);
         }
 
-        // $artikelsUtama = Artikel::with('kategori')->where('id_cu',$cu->id)->where('terbitkan',1)->where('utamakan',1)->orderBy('created_at','desc')->take(6)->get();
+        $artikelsUtama = Artikel::with('kategori')->where('id_cu',$cu->id)->where('terbitkan',1)->where('utamakan',1)->orderBy('created_at','desc')->take(6)->get();
 
-        $artikelsNew = Artikel::with('kategori','penulis')->where('id_cu',$cu->id)->where('terbitkan',1)->orderBy('created_at','desc')->take(7)->get();
+        $artikelsUtamaIds = $artikelsUtama->pluck('id')->toArray();
+
+        $artikelsNew = Artikel::with('kategori','penulis')->whereNotIn('id', $artikelsUtamaIds)->where('id_cu',$cu->id)->where('terbitkan',1)->orderBy('created_at','desc')->take(7)->get();
 
         // if($artikelsUtama->isEmpty()){
         //     $artikelsUtama = $artikelsNew;
@@ -47,7 +49,7 @@ class PublicCuController extends Controller
         SEO::setDescription(strip_tags($cu->deskripsi));
         SEO::opengraph()->setUrl(url()->full());
 
-        return view('cu.index', compact('cu','artikelsNew','kategories'));
+        return view('cu.index', compact('cu','artikelsUtama','artikelsNew','kategories'));
     }
 
     public function tp()
@@ -110,14 +112,18 @@ class PublicCuController extends Controller
         $subtitle = 'Menampilkan semua artikel';
         $tipe = 'semua';
 
-        $artikels = Artikel::with('kategori','penulis')->where('id_cu',$cu->id)->where('terbitkan',1)->orderBy('created_at','desc')->paginate(8);
+        $artikelsUtama = Artikel::with('kategori')->where('id_cu',$cu->id)->where('terbitkan',1)->where('utamakan',1)->orderBy('created_at','desc')->take(5)->get();
+
+        $artikelsUtamaIds = $artikelsUtama->pluck('id')->toArray();
+
+        $artikels = Artikel::with('kategori','penulis')->whereNotIn('id', $artikelsUtamaIds)->where('id_cu',$cu->id)->where('terbitkan',1)->orderBy('created_at','desc')->paginate(8);
 
          // seo
          SEO::setTitle($title . ' - CU ' . $cu->name);
          SEO::setDescription($subtitle);
          SEO::opengraph()->setUrl(url()->full());
 
-        return view('cu.artikel', compact('title','subtitle','tipe','artikels'));
+        return view('cu.artikel', compact('title','subtitle','tipe','artikels','artikelsUtama'));
     }
 
     public function artikelKategori($cu, $slug)
@@ -211,10 +217,6 @@ class PublicCuController extends Controller
         $idList = $artikelsTerkait->pluck('id');
         $artikelsTerkait = $artikelsTerkait->chunk(2);
 
-        $artikelsBKCUNew = Artikel::where('id_cu',0)->whereNotIn('id',$idList)->orderBy('created_at','desc')->take(5)->get();
-
-        $artikelsCUNew = Artikel::where('id_cu',$cu->id)->whereNotIn('id',$idList)->orderBy('created_at','desc')->take(5)->get();
-
          // seo
          SEO::setTitle($artikel->name . ' - CU ' . $cu->name);
          SEO::setDescription(str_limit(strip_tags($artikel->content),200));
@@ -223,7 +225,7 @@ class PublicCuController extends Controller
             SEO::opengraph()->addImage(route('home') . '/images/artikel/' . $artikel->gambar. '.jpg');
          }
 
-        return view('cu.artikelLihat', compact('artikel','artikelsTerkait','artikelsBKCUNew','artikelsCUNew'));
+        return view('cu.artikelLihat', compact('artikel','artikelsTerkait'));
     }
 
     public function artikelCari()
@@ -236,14 +238,15 @@ class PublicCuController extends Controller
             abort(404);
         }
 
-        $title = 'Artikel ' .request('cari');
-        $subtitle = 'Menampilkan artikel ' . request('cari');
+        $cari = request('q');
+        $title = 'Artikel ' .$cari;
+        $subtitle = 'Menampilkan artikel ' . $cari;
         $tipe = 'semua';
 
-        $artikels = Artikel::with('kategori','penulis')->where('id_cu',$cu->id)->where('terbitkan',1)->where('name', 'like', '%' .request('cari'). '%')->orderBy('created_at','desc');
+        $artikels = Artikel::with('kategori','penulis')->where('id_cu',$cu->id)->where('terbitkan',1)->where('name', 'like', '%' .$cari. '%')->orderBy('created_at','desc');
 
 		$queries['cari_column'] = 'name';
-        $queries['cari'] = request('cari');
+        $queries['cari'] = $cari;
         
         $artikels = $artikels->paginate(8)->appends($queries);
 

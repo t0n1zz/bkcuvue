@@ -80,13 +80,24 @@
 						<check-value :value="props.item.hal"></check-value>
 					</td>
 					<td v-if="!columnData[3].hide">
-						<check-value :value="props.item.perihal"></check-value>
+						<check-value :value="props.item.keterangan"></check-value>
 					</td>
 					<td v-if="!columnData[4].hide">
 						<check-value :value="props.item.periode"></check-value>
 					</td>
-					<td v-if="!columnData[5].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[5].hide">
+						<check-value :value="props.item.tujuan"></check-value>
+					</td>
 					<td v-if="!columnData[6].hide">
+						<check-value :value="props.item.pengirim"></check-value>
+					</td>
+					<td v-if="!columnData[7].hide">
+						<check-value :value="props.item.terima_melalui"></check-value>
+					</td>
+					<td v-if="!columnData[8].hide" v-html="$options.filters.date(props.item.tanggal_lahir)">
+					</td>
+					<td v-if="!columnData[9].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[10].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -147,7 +158,7 @@
 						filterDefault: true
 					},
 					{
-						title: 'Hal',
+						title: 'Judul Surat',
 						name: 'hal',
 						tipe: 'string',
 						sort: true,
@@ -156,8 +167,8 @@
 						filter: true,
 					},
 					{
-						title: 'Perihal',
-						name: 'perihal',
+						title: 'Keterangan',
+						name: 'keterangan',
 						tipe: 'string',
 						sort: true,
 						hide: false,
@@ -168,6 +179,42 @@
 						title: 'Periode',
 						name: 'periode',
 						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Tujuan',
+						name: 'tujuan',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Pengirim',
+						name: 'pengirim',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Terima Melalui',
+						name: 'terima_melalui',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Tgl. Terima',
+						name: 'tanggal_terima',
+						tipe: 'date',
 						sort: true,
 						hide: false,
 						disable: false,

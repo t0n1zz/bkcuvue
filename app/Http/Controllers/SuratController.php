@@ -257,7 +257,7 @@ class SuratController extends Controller{
 				'format' => $format,
 				'tipe' => $fileExtension,
 				'status' => 'INTERNAL',
-				'keterangan' => $request->perihal
+				'keterangan' => $request->keterangan
 			]);
 
 			// $request['id_surat_kode'] = $suratKodeTempKosong->id;

@@ -134,7 +134,7 @@
 													Kode: <wajib-badge></wajib-badge></h5>
 
 												<!-- text -->
-												<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan kode" data-vv-as="name" v-model="form.name">
+												<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan kode" data-vv-as="name" v-model="form.name" readonly>
 
 												<!-- error message -->
 												<small class="text-muted text-danger" v-if="errors.has('form.name')">
@@ -151,10 +151,10 @@
 												<!-- title -->
 												<h5 :class="{ 'text-danger' : errors.has('form.hal')}">
 													<i class="icon-cross2" v-if="errors.has('form.hal')"></i>
-													Hal:</h5>
+													Judul Surat:</h5>
 
 												<!-- text -->
-												<input type="text" name="hal" class="form-control" placeholder="Silahkan masukkan hal" data-vv-as="hal" v-model="form.hal">
+												<input type="text" name="hal" class="form-control" placeholder="Silahkan masukkan judul surat" data-vv-as="Judul Surat" v-model="form.hal">
 
 												<!-- error message -->
 												<small class="text-muted text-danger" v-if="errors.has('form.hal')">
@@ -164,23 +164,18 @@
 											</div>
 										</div>
 
-										<!-- perihal -->
+										<!-- keterangan -->
 										<div class="col-md-6">
-											<div class="form-group" :class="{'has-error' : errors.has('form.perihal')}">
+											<div class="form-group">
 
 												<!-- title -->
-												<h5 :class="{ 'text-danger' : errors.has('form.perihal')}">
-													<i class="icon-cross2" v-if="errors.has('form.perihal')"></i>
-													Perihal:</h5>
+												<h5>Keterangan:</h5>
 
 												<!-- text -->
-												<input type="text" name="perihal" class="form-control" placeholder="Silahkan masukkan perihal" data-vv-as="perihal" v-model="form.perihal">
+												<input type="text" name="keterangan" class="form-control" placeholder="Silahkan masukkan keterangan" data-vv-as="keterangan" v-model="form.keterangan">
 
 												<!-- error message -->
-												<small class="text-muted text-danger" v-if="errors.has('form.perihal')">
-													<i class="icon-arrow-small-right"></i> {{ errors.first('form.perihal') }}
-												</small>
-												<small class="text-muted" v-else>&nbsp;</small>
+												<small class="text-muted">&nbsp;</small>
 											</div>
 										</div>
 

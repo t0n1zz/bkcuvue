@@ -67,6 +67,25 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
             Route::delete('/user/{id}', 'UserController@destroy');
         });
 
+        //media
+        Route::get('/media/count', 'MediaController@count');
+        Route::get('/media/history', 'MediaController@history');
+        Route::group(['middleware' => ['permission:index_media']], function () {
+            Route::get('/media', 'MediaController@index');
+            Route::get('/media/indexCu/{id}', 'MediaController@indexCu');
+        });
+        Route::group(['middleware' => ['permission:create_media']], function () {
+            Route::get('/media/create', 'MediaController@create');
+            Route::post('/media/store', 'MediaController@store');
+        });
+        Route::group(['middleware' => ['permission:update_media']], function () {
+            Route::get('/media/edit/{id}', 'MediaController@edit');
+            Route::post('/media/update/{id}', 'MediaController@update');
+        });
+        Route::group(['middleware' => ['permission:destroy_media']], function () {
+            Route::delete('/media/{id}', 'MediaController@destroy');
+        });
+
         //artikel
         Route::get('/artikel/count', 'ArtikelController@count');
         Route::get('/artikel/history', 'ArtikelController@history');
@@ -609,6 +628,7 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
 
         // monitoring
         Route::get('/monitoring/history', 'MonitoringController@history');
+        Route::post('monitoring/laporan', 'MonitoringController@downloadLaporan');
         Route::group(['middleware' => ['permission:index_monitoring']], function () {
             Route::get('/monitoring', 'MonitoringController@index');
             Route::get('/monitoring/indexCu/{cu}/{tp}', 'MonitoringController@indexCu');

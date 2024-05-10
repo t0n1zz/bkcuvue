@@ -1062,12 +1062,12 @@ class KegiatanBKCUController extends Controller
 				}
 
 				foreach ($kegiatanPeserta as $peserta) {
-					$checkPeserta = SertifikatGenerate::where('kegiatan_peserta_id', $peserta->aktivis_id)->where('id_kegiatan', $id)->first();
+					$checkPeserta = SertifikatGenerate::where('kegiatan_peserta_id', $peserta->id)->where('id_kegiatan', $id)->first();
 
 					if (!$checkPeserta) {
 						$lastNomor++;
 						SertifikatGenerate::create([
-							'kegiatan_peserta_id' => $peserta->indexDiikuti,
+							'kegiatan_peserta_id' => $peserta->id,
 							'id_kegiatan' => $id,
 							'nomor' => $lastNomor,
 							'periode' => $periode->first()->periode,
@@ -1569,6 +1569,16 @@ class KegiatanBKCUController extends Controller
 	}
 
 	public function countPeserta($id)
+	{
+		$table_data = KegiatanPeserta::where('kegiatan_id', $id)->count();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function countPesertaCU($id)
 	{
 		$table_data = KegiatanPeserta::where('kegiatan_id', $id)->count();
 

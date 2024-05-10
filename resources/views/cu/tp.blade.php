@@ -12,61 +12,74 @@
 @php $subdomain = Route::input('cu') @endphp 
 
 <!-- Page Title -->
-<section id="page-title">
+<section class="page-title page-title-mini">
+  <div class="container">
+    <div class="page-title-row">
 
-  <div class="container clearfix">
-    <h1>{{ $title }}</h1>
-    <span>{{ $subtitle }}</span>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{{ route('home.cu', $subdomain) }}">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Tempat/Kantor Pelayanan</li>
-    </ol>
+      <div class="page-title-content">
+        <h1>{{ $subtitle }}</h1>
+      </div>
+
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{ route('home.cu', $subdomain) }}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
+        </ol>
+      </nav>
+
+    </div>
   </div>
-
-</section><!-- #page-title end -->
+</section>
 
 <!-- content -->
 <section id="content">
-
   <div class="content-wrap">
-
-    <div class="container clearfix">
+    <div class="container">
 
       <!-- Posts -->
-      <div id="posts" class="post-grid grid-container grid-3 clearfix" data-layout="fitRows">
+      <div id="portfolio" class="portfolio row grid-container gutter-30" data-layout="fitRows">
         @php $imagepath = 'images/tp/' @endphp
         @foreach($tps as $item)
-        <div class="entry clearfix">
-          <div class="entry-image">
-            @if(!empty($item->gambar) && is_file($imagepath.$item->gambar.".jpg"))
-              <a href="{{ asset($imagepath . $item->gambar . '.jpg') }}" data-lightbox="image"><img class="image_fade" src="{{ asset($imagepath . $item->gambar . 'n.jpg') }}" alt="{{ $item->name }}"></a>
-            @else
-              <a href="{{ asset('images/image-cu.jpg') }}" data-lightbox="image"><img class="image_fade" src="{{ asset('images/image-cu.jpg') }}" alt="{{ $item->name }}"></a>
-            @endif
-          </div>
-          <div class="entry-title">
-            <h2>{{ $item->name }}</h2>
-          </div>
-          <div class="entry-content">
-            <ul class="iconlist iconlist-color">
-              @if(!empty($item->alamat))
-                <li><i class="icon-caret-right"></i> Alamat: {{ $item->alamat }}</li>
-              @endif  
-              @if(!empty($item->telp))
-                <li><i class="icon-caret-right"></i> No. Telp: {{ $item->telp }}</li>
-              @endif  
-              @if(!empty($item->hp))
-                <li><i class="icon-caret-right"></i> No. Hp: {{ $item->hp }}</li>
-              @endif   
-              @if(!empty($item->pos))
-                <li><i class="icon-caret-right"></i> Kode Pos: {{ $item->pos }}</li>
-              @endif  
-              @if(!empty($item->email))
-                <li><i class="icon-caret-right"></i> Email: {{ $item->email }}</li>
-              @endif  
-            </ul>
-          </div>
-        </div>
+          <article class="entry event col-12 mb-0">
+            <div class="grid-inner bg-white row g-0 p-3 border-0 rounded-5 shadow-sm h-shadow all-ts h-translate-y-sm">
+            
+              <div class="col-md-4 mb-md-0">
+                <a href="#" class="entry-image mb-0 h-100">
+                  @if(!empty($item->gambar) && is_file($imagepath.$item->gambar.".jpg"))
+                    <img class="rounded-2 h-100 object-cover" src="{{ asset($imagepath . $item->gambar . '.jpg') }}" alt="{{ $item->name }}">
+                  @else
+                    <img class="rounded-2 h-100 object-cover" src="{{ asset('images/image-cu.jpg') }}" alt="{{ $item->name }}">
+                  @endif
+                </a>
+              </div>
+
+              <div class="col-md-8 p-4">
+                <div class="entry-title nott">
+                  <h3>{{ $item->name }} </h3>
+                </div>
+                <div class="entry-content my-3">
+                  <ul class="iconlist iconlist-color">
+                    @if(!empty($item->alamat))
+                      <li><i class="bi-caret-right"></i> Alamat: {{ $item->alamat }}</li>
+                    @endif  
+                    @if(!empty($item->telp))
+                      <li><i class="bi-caret-right"></i> No. Telp: {{ $item->telp }}</li>
+                    @endif  
+                    @if(!empty($item->hp))
+                      <li><i class="bi-caret-right"></i> No. Hp: {{ $item->hp }}</li>
+                    @endif   
+                    @if(!empty($item->pos))
+                      <li><i class="bi-caret-right"></i> Kode Pos: {{ $item->pos }}</li>
+                    @endif  
+                    @if(!empty($item->email))
+                      <li><i class="bi-caret-right"></i> Email: {{ $item->email }}</li>
+                    @endif  
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </article>
         @endforeach
 
       </div>
@@ -75,9 +88,7 @@
       {{ $tps->links('_components.pagination') }}
 
     </div>
-
   </div>
-
 </section>
 
 @stop

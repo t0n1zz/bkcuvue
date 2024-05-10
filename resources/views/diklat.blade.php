@@ -9,113 +9,129 @@
 <!-- pengumuman -->
 @include('_components.pengumumanBKCU')
 
-<!-- page title -->
-<section id="page-title">
+<!-- Page Title -->
+<section class="page-title page-title-mini">
+  <div class="container">
+    <div class="page-title-row">
 
-  <div class="container clearfix">
-    <h1>{{ $title }}</h1>
-    <span>{{ $subtitle }}</span>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Kegiatan</li>
-      <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
-    </ol>
+      <div class="page-title-content">
+        <h1>{{ $subtitle }}</h1>
+      </div>
+
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Kegiatan</li>
+          <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
+        </ol>
+      </nav>
+
+    </div>
   </div>
-
 </section>
 
 <!-- content -->
+
 <section id="content">
-
   <div class="content-wrap">
+    <div class="container">
+      
+      <div class="grid-filter-wrap">
 
-    <div class="container clearfix">
+        <ul class="grid-filter" data-container="#portfolio">
+          <li class="activeFilter"><a href="#" data-filter="*">Semua Bulan</a></li>
+          <li><a href="#" data-filter=".2">Pendaftaran Buka</a></li>
+          <li><a href="#" data-filter=".4">Kegiatan Berjalan</a></li>
+          <li><a href="#" data-filter=".5">Kegiatan Terlaksana</a></li>
+          <li><a href="#" data-filter=".01">Januari</a></li>
+          <li><a href="#" data-filter=".02">Februari</a></li>
+          <li><a href="#" data-filter=".03">Maret</a></li>
+          <li><a href="#" data-filter=".04">April</a></li>
+          <li><a href="#" data-filter=".05">Mei</a></li>
+          <li><a href="#" data-filter=".06">Juni</a></li>
+          <li><a href="#" data-filter=".07">Juli</a></li>
+          <li><a href="#" data-filter=".08">Agustus</a></li>
+          <li><a href="#" data-filter=".09">September</a></li>
+          <li><a href="#" data-filter=".10">Oktober</a></li>
+          <li><a href="#" data-filter=".11">November</a></li>
+          <li><a href="#" data-filter=".12">Desember</a></li>
+        </ul> 
+      </div>  
 
-      <ul id="portfolio-filter" class="portfolio-filter clearfix" data-container="#portfolio">
-        <li class="activeFilter"><a href="#" data-filter="*">Semua</a></li>
-        <li><a href="#" data-filter=".01">Januari</a></li>
-        <li><a href="#" data-filter=".02">Februari</a></li>
-        <li><a href="#" data-filter=".03">Maret</a></li>
-        <li><a href="#" data-filter=".04">April</a></li>
-        <li><a href="#" data-filter=".05">Mei</a></li>
-        <li><a href="#" data-filter=".06">Juni</a></li>
-        <li><a href="#" data-filter=".07">Juli</a></li>
-        <li><a href="#" data-filter=".08">Agustus</a></li>
-        <li><a href="#" data-filter=".09">September</a></li>
-        <li><a href="#" data-filter=".10">Oktober</a></li>
-        <li><a href="#" data-filter=".11">November</a></li>
-        <li><a href="#" data-filter=".12">Desember</a></li>
-      </ul> 
-
-      <div class="clear"></div>
-
-      <div id="portfolio" class="portfolio grid-container portfolio-2 clearfix">
+      <div id="portfolio" class="portfolio row grid-container gutter-30" data-layout="fitRows">
         @foreach($kegiatans as $item)
-        <div class="portfolio-item nopadding {{ date('m', strtotime($item->mulai)) }} {{ date('m', strtotime($item->selesai)) }}">
-          <div class="card" style="margin:5px;">
-            <div class="card-header inline-block ">
-              <h3 class="card-title">
-                @if($item->slug)
-                <a href="{{ route('diklat.lihat',$item->slug) }}" style="color:black">
-                  {{ $item->name }}
+          <article class="entry event col-12 mb-0 {{ date('m', strtotime($item->mulai)) }} {{ date('m', strtotime($item->selesai)) }} {{ $item->status }}">
+            <div class="grid-inner bg-white row g-0 p-3 border-0 rounded-5 shadow-sm h-shadow all-ts h-translate-y-sm">
+            
+              <div class="col-md-4 mb-md-0">
+                <a href="#" class="entry-image mb-0 h-100">
+                  @php $imagepath = 'images/diklat/' @endphp
+                  @if(!empty($item->gambar) && is_file($imagepath.$item->gambar.".jpg"))
+                    <img class="rounded-2 h-100 object-cover" src="{{ asset($imagepath . $item->gambar . '.jpg') }}" alt="{{ $item->name }}">
+                  @else
+                    <img class="rounded-2 h-100 object-cover" src="{{ asset('images/image-article.jpg') }}" alt="{{ $item->name }}">
+                  @endif
+                  <div class="bg-overlay">
+                    <div class="bg-overlay-content justify-content-start align-items-start">
+                      @if($item->status == 1)
+                        <div class="badge bg-info">MENUNGGU</div>
+                      @elseif($item->status == 2)  
+                        <div class="badge bg-warning">PENDAFTARAN BUKA</div>
+                      @elseif($item->status == 3)  
+                        <div class="badge bg-secondary">PENDAFTARAN TUTUP</div>
+                      @elseif($item->status == 4)  
+                        <div class="badge bg-success"> BERJALAN</div>
+                      @elseif($item->status == 5)  
+                        <div class="badge bg-primary"> TERLAKSANA</div>  
+                      @endif
+                      <div class="badge bg-light text-dark"></div>
+                    </div>
+                  </div>
                 </a>
-                @else
-                  {{ $item->name }}
+              </div>
+
+              <div class="col-md-8 p-4">
+                <div class="entry-meta no-separator mb-1 mt-0">
+                  <ul>
+                    <li><span class="text-uppercase fw-medium">#{{ $item->kode_diklat }}</span></li>
+                    <li><span class="text-uppercase fw-medium">{{ date('l, jS F Y', strtotime($item->mulai)) }}</span></li>
+                  </ul>
+                </div>
+
+                <div class="entry-title nott">
+                  <h3> 
+                    @if($item->slug)
+                    <a href="{{ route('diklat.lihat',$item->slug) }}" style="color:black">
+                      {{ $item->name }}
+                    </a>
+                    @else
+                      {{ $item->name }}
+                    @endif
+                  </h3>
+                </div>
+                <div class="entry-content my-3">
+                  <p class="mb-0">{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->keterangan),200) }}</p>
+                </div>
+
+                <div class="entry-meta no-separator">
+                  <ul>
+                    <li><i class="uil uil-map-marker"></i> {{ $item->tempat ? $item->tempat->name : 'Belum ditentukan tempat' }}</li>
+                    <li><i class="uil bi-person"></i> {{ $item->peserta_max }}</li>
+                  </ul>
+                </div>
+
+                <hr/>
+                
+                @if($item->sasaran)
+                <div class="tagcloud clearfix">
+                  @foreach($item->sasaran as $sasaran)
+                    <a href="#">{{ $sasaran->name }}</a>
+                  @endforeach
+                </div>
                 @endif
-							</h3>
-							<span class="text-muted">
-                Kode: {{ $item->kode_diklat }} / Durasi: {{ $item->durasi }} jam / Status: 
-                @if($item->status == 1)
-                  <span class="badge badge-info">MENUNGGU</span>
-                @elseif($item->status == 2)  
-                  <span class="badge badge-warning">PENDAFTARAN BUKA</span>
-                @elseif($item->status == 3)  
-                  <span class="badge badge-secondary">PENDAFTARAN TUTUP</span>
-                @elseif($item->status == 4)  
-                  <span class="badge badge-success"> BERJALAN</span>
-                @elseif($item->status == 5)  
-                  <span class="badge badge-primary"> TERLAKSANA</span>  
-                @endif  
-              </span>
+              </div>
             </div>
-            <div class="card-body">
-              {{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $item->keterangan),200) }}
-
-              <hr/>
-
-              <div class="row" style="padding-left: 1em">
-                <div class="col-md-6">
-                  <ul class="list">
-                    <li>Mulai: <span class="text-muted">{{ date('d-m-Y', strtotime($item->mulai)) }}</span></li>
-                    <li>Selesai: <span class="text-muted">{{ date('d-m-Y', strtotime($item->selesai)) }}</span></li>
-                    <li>Peserta Maksimal: <span class="text-muted">{{ $item->peserta_max }}</span></li>
-                    <li>Peserta Maksimal Per-CU: <span class="text-muted">{{ $item->peserta_max_cu }}</span></li>
-                  </ul>
-                </div>
-                <div class="col-md-6">
-                  <ul class="list">
-                    <li>Tempat: <span class="text-muted">{{ $item->tempat ? $item->tempat->name : 'Belum ditentukan tempat' }}</span></li>
-                    <li>Kabupaten/Kota: <span class="text-muted">{{ $item->regencies ? $item->regencies->name : '-' }}</span></li>
-                    <li>Provinsi: <span class="text-muted">{{ $item->provinces ? $item->provinces->name : '-' }}</span></li>
-                  </ul>
-                </div>
-              </div>
-
-              <hr/>
-              
-              @if($item->sasaran)
-              <div style="margin-bottom: .5rem">
-                <b>Sasaran Peserta</b>
-              </div>
-              <div class="tagcloud clearfix">
-                @foreach($item->sasaran as $sasaran)
-                  <a href="#">{{ $sasaran->name }}</a>
-                @endforeach
-              </div>
-              @endif
-            </div>
-          </div>
-        </div>
+          </article>
         @endforeach
       </div>
 

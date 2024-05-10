@@ -9,6 +9,8 @@ use App\MonitoringRekom;
 use App\MonitoringPencapaian;
 use App\Support\NotificationHelper;
 use Illuminate\Http\Request;
+use App\Exports\Monitoring as ExportMonitoring;
+use Maatwebsite\Excel\Facades\Excel;
 use Venturecraft\Revisionable\Revision;
 
 class MonitoringController extends Controller{
@@ -235,5 +237,9 @@ class MonitoringController extends Controller{
 			->json([
 				'model' => $history
 			]);
+	}
+
+	public function downloadLaporan(Request $request){
+		return Excel::download(new ExportMonitoring($request->id_cu,$request->id_tp), 'Laporan.xlsx');
 	}
 }

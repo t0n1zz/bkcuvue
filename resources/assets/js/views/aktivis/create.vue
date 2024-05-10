@@ -880,6 +880,7 @@
 				if(this.form.keluarga){	
 					var valData;
 					var keluarga = {};
+					this.formAnak = [];
 					for(valData of this.form.keluarga){
 						if(valData.tipe == 'Ayah'){
 							this.form.ayah = valData;
@@ -894,7 +895,6 @@
 							keluarga.pasangan = valData.name;
 						}
 						if(valData.tipe == 'Anak'){
-							this.formAnak = [];
 							this.formAnak.push(valData);
 						}
 					}
