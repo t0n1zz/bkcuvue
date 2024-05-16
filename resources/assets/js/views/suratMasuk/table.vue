@@ -213,7 +213,7 @@ export default {
 				{
 					title: "Tanggal Terima",
 					name: "tgl_terima",
-					tipe: "date",
+					tipe: "datetime",
 					sort: true,
 					hide: false,
 					disable: false,
