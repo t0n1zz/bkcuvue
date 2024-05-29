@@ -15,12 +15,14 @@ use \Maatwebsite\Excel\Sheet;
 class Monitoring implements FromArray, WithHeadings, WithCustomStartCell, WithEvents, WithTitle
 {
 
-    protected $id_cu,$id_tp;
+    protected $id_cu,$id_tp,$tgl_mulai, $tgl_akhir;
 
-    function __construct($id_cu, $id_tp)
+    function __construct($id_cu, $id_tp,$tgl_mulai,$tgl_akhir)
     {
         $this->id_cu = $id_cu;
         $this->id_tp = $id_tp;
+        $this->tgl_mulai = $tgl_mulai;
+        $this->tgl_akhir = $tgl_akhir;
     }
 
     public function startCell(): string
@@ -150,10 +152,12 @@ class Monitoring implements FromArray, WithHeadings, WithCustomStartCell, WithEv
         try {
             //code...
             $model = null;
+            $start = Carbon::createFromFormat('Y-m-d', $this->tgl_mulai);
+            $end = Carbon::createFromFormat('Y-m-d', $this->tgl_akhir);
             if($this->id_tp !='semua'){
-                $model = AppMonitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom', 'monitoring_pencapaian','monitoring_rekom_ok')->where('id_cu', $this->id_cu)->where('id_tp',$this->id_tp)->get()->toArray();
+                $model = AppMonitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom', 'monitoring_pencapaian','monitoring_rekom_ok')->where('id_cu', $this->id_cu)->where('id_tp',$this->id_tp)->whereBetween('tanggal', [$start, $end])->get()->toArray();
             }else{
-                $model = AppMonitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom', 'monitoring_pencapaian','monitoring_rekom_ok')->where('id_cu', $this->id_cu)->get()->toArray();
+                $model = AppMonitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom', 'monitoring_pencapaian','monitoring_rekom_ok')->where('id_cu', $this->id_cu)->whereBetween('tanggal', [$start, $end])->get()->toArray();
             }
         
             // dd($model[0]['monitoring_pencapaian']);
@@ -167,20 +171,22 @@ class Monitoring implements FromArray, WithHeadings, WithCustomStartCell, WithEv
                 $arrayKendala = [];
                 $arrayTindak = [];
 
+
                 foreach ($monitoring['monitoring_rekom'] as $rekom) {
                     array_push($arrayRekom, $rekom['rekomendasi']);
                 }
-
+                $no = 1;
                 foreach ($monitoring['monitoring_pencapaian'] as $pencapaian) {
+                    array_push($arrayPencapaian, $no.'.'. $pencapaian['pencapaian']);
 
-                    array_push($arrayPencapaian, $pencapaian['pencapaian']);
                     if(isset($pencapaian['kendala'])){
-                        array_push($arrayKendala,$pencapaian['kendala']);
+                        array_push($arrayKendala, $no.'.'. $pencapaian['kendala']);
                     }
 
                     if(isset($pencapaian['tindak'])){
-                        array_push($arrayTindak,$pencapaian['tindak']);
+                        array_push($arrayTindak, $no.'.'. $pencapaian['tindak']);
                     }
+                    $no++;
 
                 }
     
