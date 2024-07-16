@@ -40,7 +40,71 @@ class MonitoringController extends Controller
 				->havingRaw("monitoring_pencapaian_count = 0")
 				->havingRaw("monitoring_rekom_ok_count < monitoring_rekom_count")->get();
 		}
+		
+		if($status != 'semua'){
+			$table_data = $this->filter($status,$request,$table_data);
+		}
 
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function indexCu(Request $request,$cu, $tp, $status)
+	{
+		if ($tp != 'semua') {
+			if($status == 'semua'){
+				$table_data = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu')->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->where('id_cu', $cu)->where('id_tp', $tp)->advancedFilter();
+			} elseif ($status == 'selesai') {
+				$table_data = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')
+					->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->where('id_cu', $cu)->where('id_tp', $tp)
+					->havingRaw("monitoring_rekom_ok_count = monitoring_rekom_count")->get();
+			} elseif($status == 'keputusan'){
+				$table_data = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')
+					->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->where('id_cu', $cu)->where('id_tp', $tp)
+					->havingRaw("monitoring_pencapaian_count > 0")
+					->havingRaw("monitoring_rekom_ok_count < monitoring_rekom_count")->get();
+			} elseif($status == 'tidak_keputusan'){
+				$table_data = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')
+					->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->where('id_cu', $cu)->where('id_tp', $tp)
+					->havingRaw("monitoring_pencapaian_count = 0")
+					->havingRaw("monitoring_rekom_ok_count < monitoring_rekom_count")->get();
+			}
+			
+		} else {
+			if ($status == 'semua') {
+				$table_data = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->where('id_cu', $cu)->advancedFilter();
+			} elseif ($status == 'selesai') {
+				$table_data = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')
+					->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->where('id_cu', $cu)
+					->havingRaw("monitoring_rekom_ok_count = monitoring_rekom_count")->get();
+			} elseif($status == 'keputusan'){
+				$table_data = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')
+					->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->where('id_cu', $cu)
+					->havingRaw("monitoring_pencapaian_count > 0")
+					->havingRaw("monitoring_rekom_ok_count < monitoring_rekom_count")->get();
+			} elseif($status == 'tidak_keputusan'){
+				$table_data = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')
+					->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->where('id_cu', $cu)
+					->havingRaw("monitoring_pencapaian_count = 0")
+					->havingRaw("monitoring_rekom_ok_count < monitoring_rekom_count")->get();
+			}
+		}
+
+		if($status !='semua'){
+			$table_data = $this->filter($status,$request,$table_data);
+		}
+		
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+
+	public function filter($status,$request,$table_data){
 		if ($status != 'semua') {
 			$order_column = $request->order_column;
 			$order_direction = $request->order_direction;
@@ -65,75 +129,10 @@ class MonitoringController extends Controller
 
 			$currentPageResults = $table_data->slice(($currentPage - 1) * $perPage, $perPage)->values();
 
-			$table_data = new LengthAwarePaginator($currentPageResults, $table_data->count(), $perPage, $currentPage, [
+			return $table_data = new LengthAwarePaginator($currentPageResults, $table_data->count(), $perPage, $currentPage, [
 				'path' => LengthAwarePaginator::resolveCurrentPath()
 			]);
 		}
-		
-
-		return response()
-			->json([
-				'model' => $table_data
-			]);
-	}
-
-	public function indexCu(Request $request,$cu, $tp, $status)
-	{
-		if ($tp != 'semua') {
-			$table_data = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu')->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->where('id_cu', $cu)->where('id_tp', $tp)->advancedFilter();
-		} else {
-			if ($status == 'semua') {
-				$table_data = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->where('id_cu', $cu)->advancedFilter();
-			} elseif ($status == 'selesai') {
-				$table_data = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')
-					->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->where('id_cu', $cu)
-					->havingRaw("monitoring_rekom_ok_count = monitoring_rekom_count")->get();
-			} elseif($status == 'keputusan'){
-				$table_data = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')
-					->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->where('id_cu', $cu)
-					->havingRaw("monitoring_pencapaian_count > 0")
-					->havingRaw("monitoring_rekom_ok_count < monitoring_rekom_count")->get();
-			} elseif($status == 'tidak_keputusan'){
-				$table_data = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')
-					->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->where('id_cu', $cu)
-					->havingRaw("monitoring_pencapaian_count = 0")
-					->havingRaw("monitoring_rekom_ok_count < monitoring_rekom_count")->get();
-			}
-
-			if ($status != 'semua') {
-				$order_column = $request->order_column;
-				$order_direction = $request->order_direction;
-				$limit = $request->limit;
-				$currentPage = LengthAwarePaginator::resolveCurrentPage();
-				$perPage = $limit;
-				
-				if($request->f){
-					$column = $request->f[0]['column'];
-					$searchValue = $request->f[0]['query_1'];
-					$filteredData = $table_data->filter(function ($item) use ($column, $searchValue) {
-						return Str::contains(strtolower($item[$column]), strtolower($searchValue));
-					});
-					$table_data = $filteredData;
-				}
-
-				if($order_direction == 'desc'){
-					$table_data = $table_data->sortByDesc($order_column);
-				}else{
-					$table_data = $table_data->sortBy($order_column);
-				}
-
-				$currentPageResults = $table_data->slice(($currentPage - 1) * $perPage, $perPage)->values();
-
-				$table_data = new LengthAwarePaginator($currentPageResults, $table_data->count(), $perPage, $currentPage, [
-					'path' => LengthAwarePaginator::resolveCurrentPath()
-				]);
-			}
-		}
-
-		return response()
-			->json([
-				'model' => $table_data
-			]);
 	}
 
 	public function get($id)
