@@ -9,6 +9,7 @@ use Validator;
 use Illuminate\Http\Request;
 use App\User;
 use App\Cu;
+use App\Monitoring;
 use App\Tp;
 use App\Notifications\Notif;
 use App\Notifications\Laporan;

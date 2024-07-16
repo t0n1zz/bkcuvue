@@ -630,8 +630,8 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::get('/monitoring/history', 'MonitoringController@history');
         Route::post('monitoring/laporan', 'MonitoringController@downloadLaporan');
         Route::group(['middleware' => ['permission:index_monitoring']], function () {
-            Route::get('/monitoring', 'MonitoringController@index');
-            Route::get('/monitoring/indexCu/{cu}/{tp}', 'MonitoringController@indexCu');
+            Route::get('/monitoring/{status}', 'MonitoringController@index');
+            Route::get('/monitoring/indexCu/{cu}/{tp}/{status}', 'MonitoringController@indexCu');
             Route::get('/monitoring/get/{id}', 'MonitoringController@get');
             Route::get('/monitoring/count', 'MonitoringController@count');
         });

@@ -55,6 +55,64 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -73,7 +131,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       kelas: 'monitoring',
       titleDesc: 'Mengelola data monitoring',
       titleIcon: 'icon-collaboration',
-      selectCuPath: 'monitoringCu'
+      selectCuPath: 'monitoringCu',
+      tabName: "indexSemua",
+      data: '',
+      stat: ''
     };
   },
   created: function created() {
@@ -92,13 +153,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         }
       }
+    },
+    fetch: function fetch() {},
+    changeTab: function changeTab(value) {
+      this.tabName = value; // this.data = this.itemData
+      // this.stat = this.itemDataStat
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
     currentUser: 'currentUser'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('artikel', {
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('monitoring', {
     itemData: 'dataS',
-    itemDataStat: 'dataStatS'
+    itemDataStat: 'dataStatS',
+    itemDataSelesai: 'dataSSelesai',
+    itemDataSelesaiStat: 'dataSelsaiStatS',
+    itemDataKeputusan: 'dataSKeputusan',
+    itemDataKeputusanStat: 'dataKeputusanStatS',
+    itemDataTidakKeputusan: 'dataSTidakKeputusan',
+    itemDataTidakKeputusanStat: 'dataTidakKeputusanStatS'
   }))
 });
 
@@ -268,6 +340,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -280,7 +372,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     FileSaver: file_saver__WEBPACK_IMPORTED_MODULE_4___default.a
   },
-  props: ['title', 'kelas'],
+  props: ['title', 'kelas', 'tab', 'itemData', 'itemDataStat'],
   data: function data() {
     return {
       selectedItem: [],
@@ -440,13 +532,48 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     fetch: function fetch(params) {
       if (this.$route.params.cu == 'semua') {
-        this.disableColumnCu(false);
-        this.$store.dispatch(this.kelas + '/index', params);
-        this.excelDownloadUrl = this.kelas;
+        if (this.tab == 'indexSemua') {
+          this.disableColumnCu(false);
+          this.$store.dispatch(this.kelas + '/index', [params, 'semua']);
+          this.excelDownloadUrl = this.kelas;
+        } else {
+          this.fetchByStatusSemua(params);
+        }
       } else {
+        if (this.tab == 'indexSemua') {
+          this.disableColumnCu(true);
+          this.$store.dispatch(this.kelas + '/indexCu', [params, this.$route.params.cu, this.$route.params.tp, 'semua']);
+          this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu + '/' + this.$route.params.tp + '/semua';
+        } else {
+          this.fetchByStatus(params);
+        }
+      }
+    },
+    fetchByStatusSemua: function fetchByStatusSemua(params) {
+      if (this.tab == 'indexSelesai') {
+        this.disableColumnCu(false);
+        this.$store.dispatch(this.kelas + '/index', [params, 'selesai']);
+      } else if (this.tab == 'indexKeputusan') {
+        this.disableColumnCu(false);
+        this.$store.dispatch(this.kelas + '/index', [params, 'keputusan']);
+      } else if (this.tab == 'indexTidakKeputusan') {
+        this.disableColumnCu(false);
+        this.$store.dispatch(this.kelas + '/index', [params, 'tidak_keputusan']);
+      }
+    },
+    fetchByStatus: function fetchByStatus(params) {
+      if (this.tab == 'indexSelesai') {
         this.disableColumnCu(true);
-        this.$store.dispatch(this.kelas + '/indexCu', [params, this.$route.params.cu, this.$route.params.tp]);
-        this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu + '/' + this.$route.params.tp;
+        this.$store.dispatch(this.kelas + '/indexCu', [params, this.$route.params.cu, this.$route.params.tp, 'selesai']);
+        this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu + '/' + this.$route.params.tp + '/selesai';
+      } else if (this.tab == 'indexKeputusan') {
+        this.disableColumnCu(true);
+        this.$store.dispatch(this.kelas + '/indexCu', [params, this.$route.params.cu, this.$route.params.tp, 'keputusan']);
+        this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu + '/' + this.$route.params.tp + '/keputusan';
+      } else if (this.tab == 'indexTidakKeputusan') {
+        this.disableColumnCu(true);
+        this.$store.dispatch(this.kelas + '/indexCu', [params, this.$route.params.cu, this.$route.params.tp, 'tidak_keputusan']);
+        this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu + '/' + this.$route.params.tp + '/tidak_keputusan';
       }
     },
     disableColumnCu: function disableColumnCu(status) {
@@ -520,8 +647,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
     currentUser: 'currentUser'
   })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('monitoring', {
-    itemData: 'dataS',
-    itemDataStat: 'dataStatS',
+    // itemData: 'dataS',
+    // itemDataStat: 'dataStatS',
     updateMessage: 'update',
     updateStat: 'updateStat'
   }))
@@ -578,6 +705,108 @@ var render = function () {
             "div",
             { staticClass: "content" },
             [
+              _c("div", { staticClass: "nav-tabs-responsive" }, [
+                _c(
+                  "ul",
+                  { staticClass: "nav nav-tabs nav-tabs-solid bg-light" },
+                  [
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          class: { active: _vm.tabName == "indexSemua" },
+                          attrs: { href: "#" },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.changeTab("indexSemua")
+                            },
+                          },
+                        },
+                        [
+                          _c("i", { staticClass: "icon-list mr-2" }),
+                          _vm._v("\n\t\t\t\t\t\t\t\tSemua"),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          class: { active: _vm.tabName == "indexSelesai" },
+                          attrs: { href: "#" },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.changeTab("indexSelesai")
+                            },
+                          },
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "icon-checkbox-checked mr-2",
+                          }),
+                          _vm._v("\n\t\t\t\t\t\t\t\tSelesai"),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          class: { active: _vm.tabName == "indexKeputusan" },
+                          attrs: { href: "#" },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.changeTab("indexKeputusan")
+                            },
+                          },
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "icon-checkbox-unchecked mr-2",
+                          }),
+                          _vm._v(
+                            " Belum\n\t\t\t\t\t\t\t\tSelesai, Ada Keputusan"
+                          ),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "nav-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          class: {
+                            active: _vm.tabName == "indexTidakKeputusan",
+                          },
+                          attrs: { href: "#" },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.changeTab("indexTidakKeputusan")
+                            },
+                          },
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "icon-checkbox-unchecked mr-2",
+                          }),
+                          _vm._v(" Belum Selesai, Tidak Ada Keputusan"),
+                        ]
+                      ),
+                    ]),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
               _vm.itemDataStat === "fail"
                 ? _c("message", {
                     attrs: {
@@ -595,9 +824,121 @@ var render = function () {
                 },
               }),
               _vm._v(" "),
-              _c("table-data", {
-                attrs: { title: _vm.title, kelas: _vm.kelas },
-              }),
+              _c(
+                "transition",
+                {
+                  attrs: {
+                    "enter-active-class": "animated fadeIn",
+                    mode: "out-in",
+                  },
+                },
+                [
+                  _vm.tabName == "indexSemua"
+                    ? _c(
+                        "div",
+                        [
+                          _c("table-data", {
+                            attrs: {
+                              title: _vm.title,
+                              kelas: _vm.kelas,
+                              tab: "indexSemua",
+                              itemData: _vm.itemData,
+                              itemDataStat: _vm.itemDataStat,
+                            },
+                          }),
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "transition",
+                {
+                  attrs: {
+                    "enter-active-class": "animated fadeIn",
+                    mode: "out-in",
+                  },
+                },
+                [
+                  _vm.tabName == "indexSelesai"
+                    ? _c(
+                        "div",
+                        [
+                          _c("table-data", {
+                            attrs: {
+                              title: _vm.title,
+                              kelas: _vm.kelas,
+                              tab: "indexSelesai",
+                              itemData: _vm.itemData,
+                              itemDataStat: _vm.itemDataStat,
+                            },
+                          }),
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "transition",
+                {
+                  attrs: {
+                    "enter-active-class": "animated fadeIn",
+                    mode: "out-in",
+                  },
+                },
+                [
+                  _vm.tabName == "indexKeputusan"
+                    ? _c(
+                        "div",
+                        [
+                          _c("table-data", {
+                            attrs: {
+                              title: _vm.title,
+                              kelas: _vm.kelas,
+                              tab: "indexKeputusan",
+                              itemData: _vm.itemData,
+                              itemDataStat: _vm.itemDataStat,
+                            },
+                          }),
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "transition",
+                {
+                  attrs: {
+                    "enter-active-class": "animated fadeIn",
+                    mode: "out-in",
+                  },
+                },
+                [
+                  _vm.tabName == "indexTidakKeputusan"
+                    ? _c(
+                        "div",
+                        [
+                          _c("table-data", {
+                            attrs: {
+                              title: _vm.title,
+                              kelas: _vm.kelas,
+                              tab: "indexTidakKeputusan",
+                              itemData: _vm.itemData,
+                              itemDataStat: _vm.itemDataStat,
+                            },
+                          }),
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                ]
+              ),
             ],
             1
           ),
@@ -713,7 +1054,7 @@ var render = function () {
                                                 100
                                             ) + "%"
                                           ) +
-                                          "\n\t\t\t\t\t\t\t\t          \n\t\t\t\t\t\t\t"
+                                          "\n\t\t\t\t\t\t\t\t         \n\t\t\t\t\t\t\t"
                                       ),
                                     ]
                                   ),

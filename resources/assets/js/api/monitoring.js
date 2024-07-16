@@ -1,11 +1,11 @@
 export default {
   
-  index: function( p ){
-    return axios.get('/api/monitoring' , {params: p});
+  index: function( p,status ){
+    return axios.get('/api/monitoring/'+ status , {params: p});
   },
 
-  indexCu: function( p, cu, tp ){
-    return axios.get('/api/monitoring/indexCu/' + cu + '/' + tp, {params: p});
+  indexCu: function( p, cu, tp, status ){
+    return axios.get('/api/monitoring/indexCu/' + cu + '/' + tp + '/' + status,{params: p});
   },
 
   create: function(){

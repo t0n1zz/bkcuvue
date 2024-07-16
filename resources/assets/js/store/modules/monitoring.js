@@ -45,10 +45,10 @@ export const monitoring = {
 
   actions: {
     //load collection with params
-    index( { commit }, p ){
+    index( { commit }, [p,status ]){
       commit('setDataStatS', 'loading');
       
-      MonitoringAPI.index( p )
+      MonitoringAPI.index( p,status )
         .then( function( response ){
           commit('setDataS', response.data.model );
           commit('setDataStatS', 'success');
@@ -60,10 +60,10 @@ export const monitoring = {
     },
 
     // load by cu
-    indexCu( { commit }, [p, cu, tp] ){
+    indexCu( { commit }, [p, cu, tp, status] ){
       commit('setDataStatS', 'loading');
       
-      MonitoringAPI.indexCu( p, cu, tp )
+      MonitoringAPI.indexCu( p, cu, tp, status )
         .then( function( response ){
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
