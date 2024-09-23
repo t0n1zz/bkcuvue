@@ -629,11 +629,14 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         // monitoring
         Route::get('/monitoring/history', 'MonitoringController@history');
         Route::post('monitoring/laporan', 'MonitoringController@downloadLaporan');
+        Route::get('/monitoring/getPeriode/{cu}', 'MonitoringController@getPeriode');
         Route::group(['middleware' => ['permission:index_monitoring']], function () {
             Route::get('/monitoring', 'MonitoringController@index');
             Route::get('/monitoring/indexCu/{cu}/{tp}', 'MonitoringController@indexCu');
             Route::get('/monitoring/get/{id}', 'MonitoringController@get');
             Route::get('/monitoring/count', 'MonitoringController@count');
+            Route::get('/monitoring/indexKonsolidasi/{tahun}/{bulan}', 'MonitoringController@indexKonsolidasi');
+
         });
         Route::group(['middleware' => ['permission:create_monitoring']], function () {
             Route::get('/monitoring/create', 'MonitoringController@create');

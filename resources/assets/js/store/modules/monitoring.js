@@ -9,6 +9,7 @@ export const monitoring = {
     data2: {}, //single data
     dataS: [], //collection
     dataS2: [], //collection
+    dataSKonsolidasi: [],
     periode: {},
     dataDeletedS: [], //collection
     count: {},
@@ -16,6 +17,7 @@ export const monitoring = {
     dataStat2: '',
     dataStatS: '',
     dataStatS2: '',
+    dataStatSKonsolidasi: '',
     periodeStat: '',
     dataDeletedStatS: '',
     countStat: '',
@@ -23,17 +25,20 @@ export const monitoring = {
     updateStat: '',
     rules: [], //laravel rules
     options: [], //laravel options
+    summary:[]
   },
 
   // getters
   getters: {
     data: state => state.data,
     dataS: state => state.dataS,
+    dataSKonsolidasi: state => state.dataSKonsolidasi,
     periode: state => state.periode,
     dataDeletedS: state => state.dataDeletedS,
     count: state => state.count,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
+    dataStatSKonsolidasi: state => state.dataStatSKonsolidasi,
     periodeStat: state => state.periodeStat,
     dataDeletedStatS: state => state.dataDeletedStatS,
     countStat: state => state.countStat,
@@ -41,6 +46,7 @@ export const monitoring = {
     updateStat: state => state.updateStat,
     rules: state => state.rules,
     options: state => state.options,
+    summary: state => state.summary,
   },
 
   actions: {
@@ -56,6 +62,20 @@ export const monitoring = {
         .catch( error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
+        });
+    },
+
+    indexKonsolidasi( { commit }, [p, tahun, bulan]){
+      commit('setDataStatS', 'loading');
+      MonitoringAPI.indexKonsolidasi( p,tahun,bulan )
+        .then( function( response ){
+          commit('setDataSKonsolidasi', response.data.model );
+          commit('setSummary', response.data.summary);
+          commit('setDataStatSKonsolidasi', 'success');
+        })
+        .catch( error => {
+          commit('setDataSKonsolidasi', error.response);
+          commit('setDataStatSKonsolidasi', 'fail');
         });
     },
 
@@ -256,7 +276,21 @@ export const monitoring = {
     resetPeriode( {commit} ){
       commit('setPeriode', {});
       commit('setPeriodeStat', '');
-    }
+    },
+
+    getPeriode( { commit }, tipe ){
+      commit('setPeriodeStat', 'loading');
+      
+      MonitoringAPI.getPeriode( tipe )
+        .then( function( response ){
+          commit('setPeriode', response.data.model );
+          commit('setPeriodeStat', 'success');
+        })
+        .catch( error => {
+          commit('setPeriode', error.response);
+          commit('setPeriodeStat', 'fail');
+        });
+    },
   },
 
   // mutations
@@ -266,6 +300,9 @@ export const monitoring = {
     },
     setDataS ( state, data ){
       state.dataS = data;
+    },
+    setDataSKonsolidasi ( state, data ){
+      state.dataSKonsolidasi = data;
     },
     setPeriode ( state, data ){
       state.periode = data;
@@ -281,6 +318,9 @@ export const monitoring = {
     },
     setDataStatS( state, status ){
       state.dataStatS = status;
+    },
+    setDataStatSKonsolidasi( state, status ){
+      state.dataStatSKonsolidasi = status;
     },
     setPeriodeStat( state, status ){
       state.periodeStat = status;
@@ -302,6 +342,9 @@ export const monitoring = {
     },
     setOptions( state, options ){
       state.options = options;
+    },
+    setSummary( state, summary ){
+      state.summary = summary;
     }
   }
 }

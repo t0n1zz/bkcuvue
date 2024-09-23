@@ -1254,6 +1254,10 @@
 								<i class="icon-notebook"></i> CoA
 							</router-link>
 
+							<router-link :to="{ name: 'monitoringKonsolidasi', params:{tahun:new Date().getFullYear() , bulan: new Date().getMonth() + 1 } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_monitoring'] && currentUser.id_cu == '0'">
+								<i class="icon-stats-bars"></i> Laporan Konsolidasi Monitoring
+							</router-link>
+
 						</div>
 					</li>
 

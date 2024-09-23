@@ -4,6 +4,10 @@ export default {
     return axios.get('/api/monitoring' , {params: p});
   },
 
+  indexKonsolidasi: function(p,tahun,bulan){
+    return axios.get('/api/monitoring/indexKonsolidasi/' + tahun +'/'+ bulan, {params: p});
+  },
+
   indexCu: function( p, cu, tp ){
     return axios.get('/api/monitoring/indexCu/' + cu + '/' + tp, {params: p});
   },
@@ -43,4 +47,9 @@ export default {
   history: function(){
     return axios.get('/api/monitoring/history');
   },
+
+  getPeriode: function (tipe) {
+    return axios.get("/api/monitoring/getPeriode/" + tipe);
+  },
+
 }

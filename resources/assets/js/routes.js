@@ -100,6 +100,7 @@ const assesmentAccess_form = () => import("./views/assesmentAccess/form.vue");
 const monitoring = () => import("./views/monitoring/index.vue");
 const monitoring_form = () => import("./views/monitoring/form.vue");
 const monitoring_detail = () => import("./views/monitoring/detail.vue");
+const monitoring_konsolidasi = () => import("./views/monitoring/indexKonsolidasi.vue");
 const pemilihan = () => import("./views/pemilihan/index.vue");
 const pemilihan_form = () => import("./views/pemilihan/form.vue");
 const pemilihan_detail = () => import("./views/pemilihan/detail.vue");
@@ -1451,6 +1452,14 @@ const routes = [
     components: { default: dataAnggotaUpload, header: header, footer: footer },
     meta: { requiresAuth: true },
   },
+
+  {
+    path: "/monitoring/indexKonsolidasi/:tahun/:bulan",
+    name: "monitoringKonsolidasi",
+    components: { default: monitoring_konsolidasi, header: header, footer: footer },
+    meta: { requiresAuth: true },
+  },
+
 ];
 
 export default routes;

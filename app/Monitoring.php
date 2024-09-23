@@ -79,4 +79,24 @@ class Monitoring extends BaseEloquent {
     {
         return $this->hasMany('App\MonitoringPencapaian','id_monitoring','id');
     }
+
+    public function monitoring_rekom_last_year()
+    {
+        return $this->hasMany('App\MonitoringRekom','id_monitoring','id')->select('id','id_monitoring');
+    }
+
+    public function monitoring_rekom_ok_last_year()
+    {
+        return $this->hasMany('App\MonitoringRekom','id_monitoring','id')->select('id','id_monitoring','status')->where('status',1);
+    }
+
+    public function monitoring_rekom_last_month()
+    {
+        return $this->hasMany('App\MonitoringRekom', 'id_monitoring', 'id')->select('id','id_monitoring');
+    }
+
+    public function monitoring_rekom_ok_last_month()
+    {
+        return $this->hasMany('App\MonitoringRekom', 'id_monitoring', 'id')->select('id','id_monitoring','status')->where('status',1);
+    }
 }

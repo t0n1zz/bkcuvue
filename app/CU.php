@@ -194,6 +194,11 @@ class Cu extends Model {
         return $this->hasMany('App\AktivisPekerjaan','id_tempat','id')->select('id_aktivis','tipe','id_tempat','tingkat','selesai')->where('tipe',1)->where('status',3);
     }
     
+    public function hasMonitoring()
+    {
+        return $this->hasMany('App\Monitoring','id_cu','id')->select('id','id_cu');
+    }
+    
     public function Provinces()
     {
         return $this->belongsTo('App\Region\Provinces','id_provinces','id')->select('id','name');
