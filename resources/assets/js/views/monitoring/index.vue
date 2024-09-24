@@ -81,9 +81,14 @@
 							<table-data :title="title" :kelas="kelas" :tab="'indexTidakKeputusan'" :itemData="itemData"
 								:itemDataStat="itemDataStat">
 							</table-data>
+							
 						</div>
 					</transition>
-
+					<konsolidasi-cu :presentaseTercapai="total.sum_persen_tercapai"
+								:presentaseTidakTercapai="total.sum_persen_tidak_tercapai"
+								:kategoriPencapaian="total.kategori" :jumlahTercapai="total.sum_tercapai"
+								:jumlahTidakTercapai="total.sum_tidak_tercapai" :jumlahRekomendasi="total.sum_rekom">
+							</konsolidasi-cu>
 				</div>
 			</div>
 		</div>
@@ -97,6 +102,7 @@ import pageHeader from "../../components/pageHeader.vue";
 import message from "../../components/message.vue";
 import selectData from "../../components/selectCuTp.vue";
 import tableData from "./table.vue";
+import konsolidasiCu from "./konsolidasiCU";
 
 export default {
 	components: {
@@ -104,6 +110,7 @@ export default {
 		message,
 		selectData,
 		tableData,
+		konsolidasiCu,
 	},
 	data() {
 		return {
@@ -158,6 +165,7 @@ export default {
 			itemDataKeputusanStat: 'dataKeputusanStatS',
 			itemDataTidakKeputusan: 'dataSTidakKeputusan',
 			itemDataTidakKeputusanStat: 'dataTidakKeputusanStatS',
+			total: 'summary'
 		})
 	}
 }

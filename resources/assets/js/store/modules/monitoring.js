@@ -23,6 +23,7 @@ export const monitoring = {
     updateStat: '',
     rules: [], //laravel rules
     options: [], //laravel options
+    summary:[]
   },
 
   // getters
@@ -41,6 +42,7 @@ export const monitoring = {
     updateStat: state => state.updateStat,
     rules: state => state.rules,
     options: state => state.options,
+    summary: state => state.summary,
   },
 
   actions: {
@@ -66,6 +68,7 @@ export const monitoring = {
       MonitoringAPI.indexCu( p, cu, tp, status )
         .then( function( response ){
           commit('setDataS', response.data.model);
+          commit('setSummary', response.data.summary);
           commit('setDataStatS', 'success');
         })
         .catch( error => {
@@ -302,6 +305,9 @@ export const monitoring = {
     },
     setOptions( state, options ){
       state.options = options;
+    },
+    setSummary( state, summary ){
+      state.summary = summary;
     }
   }
 }

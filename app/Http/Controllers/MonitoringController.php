@@ -95,11 +95,42 @@ class MonitoringController extends Controller
 		if($status !='semua'){
 			$table_data = $this->filter($status,$request,$table_data);
 		}
+
+		$sum_tercapai= 0;
+		$sum_rekom = 0;
+		$data_sum = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->where('id_cu', $cu)->advancedFilter();
+		$data_sum->each(function ($monitoring) use(&$sum_tercapai, &$sum_rekom) {
+			$sum_rekom = $sum_rekom + $monitoring->monitoring_rekom_count;
+			$sum_tercapai = $sum_tercapai + $monitoring->monitoring_rekom_ok_count;
+		});
+		$sum_tidak_tercapai = $sum_rekom - $sum_tercapai;
+		
+		$summary = [];
+		$sum_persen_tercapai = $sum_rekom != 0 && $sum_tercapai != 0 ?  round(($sum_tercapai / $sum_rekom) * 100, 2) : 0;
+		$sum_persen_tidak_tercapai = $sum_rekom != 0 && $sum_tidak_tercapai != 0 ?  round(($sum_tidak_tercapai / $sum_rekom) * 100, 2) : 0;
+		$summary['sum_tercapai'] = $sum_tercapai;
+		$summary['sum_tidak_tercapai'] = $sum_tidak_tercapai;
+		$summary['sum_persen_tercapai'] = $sum_persen_tercapai;
+		$summary['sum_persen_tidak_tercapai'] = $sum_persen_tidak_tercapai;
+		$summary['sum_rekom'] = $sum_rekom;
+		
+		if ($sum_persen_tercapai  >= 0 && $sum_persen_tercapai <= 20.99) {
+			$summary['kategori'] = 'Sangat Tidak Tercapai';
+		} elseif ($sum_persen_tercapai  >= 21 && $sum_persen_tercapai <= 40.99) {
+			$summary['kategori'] = 'Tidak Tercapai';
+		} elseif ($sum_persen_tercapai  >= 41 && $sum_persen_tercapai  <= 60.99) {
+			$summary['kategori'] = 'Cukup Tercapai';
+		} elseif ($sum_persen_tercapai >= 61 && $sum_persen_tercapai  <= 80.99) {
+			$summary['kategori'] = 'Tercapai';
+		} elseif ($sum_persen_tercapai  >= 81 && $sum_persen_tercapai  <= 100) {
+			$summary['kategori'] = 'Sangat Tercapai';
+		}
 		
 
 		return response()
 			->json([
-				'model' => $table_data
+				'model' => $table_data,
+				'summary'=> $summary
 			]);
 	}
 

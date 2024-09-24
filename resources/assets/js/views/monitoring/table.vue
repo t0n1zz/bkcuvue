@@ -290,7 +290,7 @@ export default {
 				},
 
 				{
-					title: 'Tgl. Monitoring',
+					title: 'Tgl. Audit',
 					name: 'tanggal',
 					tipe: 'date',
 					sort: true,
