@@ -240,6 +240,6 @@ class MonitoringController extends Controller{
 	}
 
 	public function downloadLaporan(Request $request){
-		return Excel::download(new ExportMonitoring($request->id_cu,$request->id_tp,$request->tgl_mulai, $request->tgl_akhir), 'Laporan.xlsx');
+		return Excel::download(new ExportMonitoring($request->id_cu,$request->id_tp,$request->tgl_mulai, $request->tgl_akhir,$request->params, $request->semua), 'Laporan.xlsx');
 	}
 }

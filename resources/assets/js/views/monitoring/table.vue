@@ -160,7 +160,7 @@
 			</template>
 			<template slot="modal-body1">
 				<div>
-					<tgl :id_cu="this.$route.params.cu" :id_tp="this.$route.params.tp" @tutup="modalTutup" @stat="setLaporanStat" @loading="setLoading"></tgl>
+					<tgl :id_cu="this.$route.params.cu" :id_tp="this.$route.params.tp" @tutup="modalTutup" @stat="setLaporanStat" @loading="setLoading" :params="query"></tgl>
 				</div>
 			</template>
 		</app-modal>
@@ -420,16 +420,6 @@ export default {
 			this.modalSize = 'modal-md';
 			this.formModalMode = 'create';
 			this.modalTitle = 'Pilih Tanggal Laporan';
-			// this.modalState = 'loading'
-			// this.modalShow = true
-			// axios.post('/api/'+this.kelas+'/laporan', { id_cu: this.$route.params.cu, id_tp:this.$route.params.tp}, {
-			// 	responseType: 'blob'
-			// }).then((response) => {
-			// 	FileSaver.saveAs(response.data, 'Monitoring.xlsx')
-			// 	this.modalState = 'success';
-			// 	this.modalTitle = 'Berhasil Di Download'
-			// 	this.modalButton = 'Ok';
-			// })
 		},
 
 		setLaporanStat(){

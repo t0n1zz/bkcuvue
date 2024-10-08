@@ -15,14 +15,17 @@ use \Maatwebsite\Excel\Sheet;
 class Monitoring implements FromArray, WithHeadings, WithCustomStartCell, WithEvents, WithTitle
 {
 
-    protected $id_cu,$id_tp,$tgl_mulai, $tgl_akhir;
+    protected $id_cu,$id_tp,$tgl_mulai, $tgl_akhir, $order_column, $order_direction,$semua;
 
-    function __construct($id_cu, $id_tp,$tgl_mulai,$tgl_akhir)
+    function __construct($id_cu, $id_tp,$tgl_mulai,$tgl_akhir,$params,$semua)
     {
+        $this->semua = $semua;
         $this->id_cu = $id_cu;
         $this->id_tp = $id_tp;
         $this->tgl_mulai = $tgl_mulai;
         $this->tgl_akhir = $tgl_akhir;
+        $this->order_column = $params['order_column'];
+        $this->order_direction = $params['order_direction'];
     }
 
     public function startCell(): string
@@ -155,12 +158,19 @@ class Monitoring implements FromArray, WithHeadings, WithCustomStartCell, WithEv
             $start = Carbon::createFromFormat('Y-m-d', $this->tgl_mulai);
             $end = Carbon::createFromFormat('Y-m-d', $this->tgl_akhir);
             if($this->id_tp !='semua'){
-                $model = AppMonitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom', 'monitoring_pencapaian','monitoring_rekom_ok')->where('id_cu', $this->id_cu)->where('id_tp',$this->id_tp)->whereBetween('tanggal', [$start, $end])->get()->toArray();
+                if($this->semua == true){
+                    $model = AppMonitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom', 'monitoring_pencapaian','monitoring_rekom_ok')->where('id_cu', $this->id_cu)->where('id_tp',$this->id_tp)->orderBy($this->order_column, $this->order_direction)->orderBy('created_at', 'asc')->get()->toArray();
+                }else{
+                    $model = AppMonitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom', 'monitoring_pencapaian','monitoring_rekom_ok')->where('id_cu', $this->id_cu)->where('id_tp',$this->id_tp)->whereBetween('tanggal', [$start, $end])->orderBy($this->order_column, $this->order_direction)->orderBy('created_at', 'asc')->get()->toArray();
+                }
             }else{
-                $model = AppMonitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom', 'monitoring_pencapaian','monitoring_rekom_ok')->where('id_cu', $this->id_cu)->whereBetween('tanggal', [$start, $end])->get()->toArray();
+                if($this->semua == true){
+                    $model = AppMonitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom', 'monitoring_pencapaian','monitoring_rekom_ok')->where('id_cu', $this->id_cu)->orderBy($this->order_column, $this->order_direction)->orderBy('created_at', 'asc')->get()->toArray();
+                }else{
+                    $model = AppMonitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom', 'monitoring_pencapaian','monitoring_rekom_ok')->where('id_cu', $this->id_cu)->whereBetween('tanggal', [$start, $end])->orderBy($this->order_column, $this->order_direction)->orderBy('created_at', 'asc')->get()->toArray();
+                }
             }
         
-            // dd($model[0]['monitoring_pencapaian']);
             $arrayComplete = [];
             foreach ($model as $monitoring) {
 

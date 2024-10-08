@@ -108,6 +108,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -126,10 +131,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       tanggal_mulai: '',
-      tanggal_akhir: ''
+      tanggal_akhir: '',
+      semua: false
     };
   },
-  props: ['id_cu', 'id_tp'],
+  props: ['id_cu', 'id_tp', 'params'],
   created: function created() {},
   methods: {
     downloadLaporan: function downloadLaporan() {
@@ -140,7 +146,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         id_cu: this.id_cu,
         id_tp: this.id_tp,
         tgl_mulai: this.tanggal_mulai,
-        tgl_akhir: this.tanggal_akhir
+        tgl_akhir: this.tanggal_akhir,
+        params: this.params,
+        semua: this.semua
       }, {
         responseType: 'blob'
       }).then(function (response) {
@@ -701,16 +709,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.modalColor = 'bg-primary';
       this.modalSize = 'modal-md';
       this.formModalMode = 'create';
-      this.modalTitle = 'Pilih Tanggal Laporan'; // this.modalState = 'loading'
-      // this.modalShow = true
-      // axios.post('/api/'+this.kelas+'/laporan', { id_cu: this.$route.params.cu, id_tp:this.$route.params.tp}, {
-      // 	responseType: 'blob'
-      // }).then((response) => {
-      // 	FileSaver.saveAs(response.data, 'Monitoring.xlsx')
-      // 	this.modalState = 'success';
-      // 	this.modalTitle = 'Berhasil Di Download'
-      // 	this.modalButton = 'Ok';
-      // })
+      this.modalTitle = 'Pilih Tanggal Laporan';
     },
     setLaporanStat: function setLaporanStat() {
       this.modalState = 'success';
@@ -764,7 +763,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\ntextarea {\n    height: 100%;\n    width: 100%;\n    /* Safari/Chrome, other WebKit */\n    /* Firefox, other Gecko */\n    box-sizing: border-box;\n    /* Opera/IE 8+ */\n}\n", ""]);
+exports.push([module.i, "\ntextarea {\r\n    height: 100%;\r\n    width: 100%;\r\n    /* Safari/Chrome, other WebKit */\r\n    /* Firefox, other Gecko */\r\n    box-sizing: border-box;\r\n    /* Opera/IE 8+ */\n}\r\n", ""]);
 
 // exports
 
@@ -939,6 +938,45 @@ var render = function () {
       ],
       1
     ),
+    _vm._v(" "),
+    _c("div", { staticStyle: { "margin-top": "10px" } }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.semua,
+            expression: "semua",
+          },
+        ],
+        attrs: { type: "checkbox" },
+        domProps: {
+          checked: Array.isArray(_vm.semua)
+            ? _vm._i(_vm.semua, null) > -1
+            : _vm.semua,
+        },
+        on: {
+          change: function ($event) {
+            var $$a = _vm.semua,
+              $$el = $event.target,
+              $$c = $$el.checked ? true : false
+            if (Array.isArray($$a)) {
+              var $$v = null,
+                $$i = _vm._i($$a, $$v)
+              if ($$el.checked) {
+                $$i < 0 && (_vm.semua = $$a.concat([$$v]))
+              } else {
+                $$i > -1 &&
+                  (_vm.semua = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+              }
+            } else {
+              _vm.semua = $$c
+            }
+          },
+        },
+      }),
+      _vm._v(" Semua\n    "),
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -1603,6 +1641,7 @@ var render = function () {
                   attrs: {
                     id_cu: this.$route.params.cu,
                     id_tp: this.$route.params.tp,
+                    params: _vm.query,
                   },
                   on: {
                     tutup: _vm.modalTutup,

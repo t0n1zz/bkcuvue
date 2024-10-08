@@ -1,12 +1,16 @@
 <template>
     <div class="col-md-12 allign-center">
-        <div  style="margin-top: 10px;">
+        <div style="margin-top: 10px;">
             <h5>Tanggal Mulai:</h5>
             <date-picker @dateSelected="tanggal_mulai = $event" :defaultDate="tanggal_mulai"></date-picker>
         </div>
-        <div  style="margin-top: 10px;">
+        <div style="margin-top: 10px;">
             <h5>Tanggal Akhir:</h5>
             <date-picker @dateSelected="tanggal_akhir = $event" :defaultDate="tanggal_akhir"></date-picker>
+        </div>
+
+        <div style="margin-top: 10px;">
+            <input type="checkbox" v-model="semua"> Semua
         </div>
         <div class="text-center" style="margin-top: 10px;">
             <button class="btn btn-warning" @click.prevent="batal">
@@ -14,6 +18,7 @@
             <button type="submit" value="submit" class="btn btn-primary" @click.prevent="downloadLaporan">
                 <i class="icon-floppy-disk"></i>Download</button>
         </div>
+
     </div>
 </template>
 
@@ -39,22 +44,24 @@ export default {
         return {
             tanggal_mulai: '',
             tanggal_akhir: '',
+            semua: false
         }
     },
-    props: ['id_cu','id_tp'],
+    props: ['id_cu', 'id_tp', 'params'],
 
     created() {
 
     },
     methods: {
         downloadLaporan() {
-			// this.$emit('loading');
-			axios.post('/api/monitoring/laporan', { id_cu: this.id_cu, id_tp:this.id_tp, tgl_mulai:this.tanggal_mulai, tgl_akhir:this.tanggal_akhir}, {
-				responseType: 'blob'
-			}).then((response) => {
+            // this.$emit('loading');
+            axios.post('/api/monitoring/laporan', { id_cu: this.id_cu, id_tp: this.id_tp, tgl_mulai: this.tanggal_mulai, tgl_akhir: this.tanggal_akhir, params: this.params, semua: this.semua }, {
+                responseType: 'blob'
+            }).then((response) => {
                 this.$emit('stat');
-				FileSaver.saveAs(response.data, 'Monitoring.xlsx')
-			})},
+                FileSaver.saveAs(response.data, 'Monitoring.xlsx')
+            })
+        },
 
         batal() {
             this.$emit('tutup');
@@ -65,12 +72,12 @@ export default {
         ...mapGetters('auth', {
             currentUser: 'currentUser'
         }),
-        ...mapGetters('monitoring',{
-				itemData: 'dataS',
-				itemDataStat: 'dataStatS',
-				updateMessage: 'update',
-				updateStat: 'updateStat'
-			}),
+        ...mapGetters('monitoring', {
+            itemData: 'dataS',
+            itemDataStat: 'dataStatS',
+            updateMessage: 'update',
+            updateStat: 'updateStat'
+        }),
     }
 }
 </script>
