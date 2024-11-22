@@ -40,8 +40,11 @@ class SisaPenyusutan extends Command
     {
         $sPenyusutan = AsetTetap::whereNull('sisa_penyusutan')->select('id', 'pokok_penyusutan')->get();
         $c = count($sPenyusutan);
+        dd($sPenyusutan);
         for ($i = 0; $i < $c; $i++) {
             AsetTetap::where("id", $sPenyusutan[$i]->id)->update(["sisa_penyusutan" => $sPenyusutan[$i]->pokok_penyusutan]);
+            
         }
+        $this->info("Sisa penyusutan updated successfully for {$c} records.");
     }
 }

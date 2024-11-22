@@ -75,13 +75,13 @@ class KegiatanBKCUController extends Controller
 		$periode = Kegiatan::distinct('periode')->orderBy('periode', 'desc')->pluck('periode')->first();
 		$now = \Carbon\Carbon::now()->format('Y-m-d');
 
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('periode', $periode)->whereIn('status', [1, 2])->orderBy('created_at', 'desc')->take(6)->get();
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->whereIn('tipe', ['diklat_bkcu','diklat_bkcu_intenal', 'pertemuan_bkcu'])->where('periode', $periode)->whereIn('status', [1, 2])->orderBy('created_at', 'desc')->take(6)->get();
 
-		$countMulai = Kegiatan::whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('periode', $periode)->whereIn('status', [1, 2])->where('mulai', '>', $now)->orderBy('mulai', 'asc')->count();
+		$countMulai = Kegiatan::whereIn('tipe', ['diklat_bkcu', 'diklat_bkcu_intenal', 'pertemuan_bkcu'])->where('periode', $periode)->whereIn('status', [1, 2])->where('mulai', '>', $now)->orderBy('mulai', 'asc')->count();
 
-		$countBuka = Kegiatan::whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('periode', $periode)->where('status', 2)->count();
+		$countBuka = Kegiatan::whereIn('tipe', ['diklat_bkcu', 'diklat_bkcu_intenal', 'pertemuan_bkcu'])->where('periode', $periode)->where('status', 2)->count();
 
-		$countJalan = Kegiatan::whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('status', 4)->count();
+		$countJalan = Kegiatan::whereIn('tipe', ['diklat_bkcu', 'diklat_bkcu_intenal', 'pertemuan_bkcu'])->where('status', 4)->count();
 
 		return response()
 			->json([
@@ -98,7 +98,7 @@ class KegiatanBKCUController extends Controller
 
 		$now = \Carbon\Carbon::now()->format('Y-m-d');
 
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('periode', $periode)->whereIn('status', [1, 2])->where('mulai', '>', $now)->orderBy('mulai', 'asc')->take(6)->get();
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->whereIn('tipe', ['diklat_bkcu','diklat_bkcu_intenal', 'pertemuan_bkcu'])->where('periode', $periode)->whereIn('status', [1, 2])->where('mulai', '>', $now)->orderBy('mulai', 'asc')->take(6)->get();
 
 		return response()
 			->json([
@@ -110,7 +110,7 @@ class KegiatanBKCUController extends Controller
 	{
 		$periode = Kegiatan::distinct('periode')->orderBy('periode', 'desc')->pluck('periode')->first();
 
-		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('periode', $periode)->where('status', 2)->take(6)->get();
+		$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->whereIn('tipe', ['diklat_bkcu','diklat_bkcu_intenal', 'pertemuan_bkcu'])->where('periode', $periode)->where('status', 2)->take(6)->get();
 
 		return response()
 			->json([
@@ -125,7 +125,7 @@ class KegiatanBKCUController extends Controller
 		if ($id_cu == 0) {
 			$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->where('status', 4)->advancedFilter();
 		} else {
-			$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('status', 4)->advancedFilter();
+			$table_data = Kegiatan::with('tempat', 'sasaran', 'Regencies')->whereIn('tipe', ['diklat_bkcu','diklat_bkcu_intenal', 'pertemuan_bkcu'])->where('status', 4)->advancedFilter();
 		}
 
 		return response()
@@ -409,6 +409,7 @@ class KegiatanBKCUController extends Controller
 			->where('aktivis_pekerjaan.status', 1)
 			->where('kegiatan_id', $id)
 			->whereNotNull('tanggal_hadir')
+			
 			->groupBy('aktivis_pekerjaan.id_tempat')
 			->get();
 
@@ -594,7 +595,7 @@ class KegiatanBKCUController extends Controller
 	{
 		$this->validate($request, Kegiatan::$rules);
 
-		if ($kegiatan_tipe == 'diklat_bkcu') {
+		if ($kegiatan_tipe == 'diklat_bkcu'|| $kegiatan_tipe == 'diklat_bkcu_intenal') {
 			$kodeKegiatan = KodeKegiatan::where('id', $request->id_kode)->first();
 			$name = $kodeKegiatan->name;
 			$kode_diklat = $kodeKegiatan->kode;
@@ -605,7 +606,7 @@ class KegiatanBKCUController extends Controller
 
 		// processing single image upload
 		if (!empty($request->gambar)) {
-			if ($kegiatan_tipe == 'diklat_bkcu') {
+			if ($kegiatan_tipe == 'diklat_bkcu'|| $kegiatan_tipe == 'diklat_bkcu_intenal') {
 				$imagepath = $this->imagepathDiklat;
 			} else {
 				$imagepath = $this->imagepathPertemuan;
@@ -759,7 +760,7 @@ class KegiatanBKCUController extends Controller
 
 		if ($format == 'upload') {
 			$file = $request->content;
-			if ($kegiatan_tipe == 'diklat_bkcu') {
+			if ($kegiatan_tipe == 'diklat_bkcu' || $kegiatan_tipe == 'diklat_bkcu_internal' ) {
 				$materipath = $this->materipathDiklat;
 			} else {
 				$materipath = $this->materipathPertemuan;
@@ -889,7 +890,7 @@ class KegiatanBKCUController extends Controller
 
 		if ($format == 'upload') {
 			$file = $request->filename;
-			if ($kegiatan_tipe == 'diklat_bkcu') {
+			if ($kegiatan_tipe == 'diklat_bkcu' || $kegiatan_tipe == 'diklat_bkcu_internal') {
 				$materipath = $this->materipathDiklat;
 			} else {
 				$materipath = $this->materipathPertemuan;
@@ -922,7 +923,7 @@ class KegiatanBKCUController extends Controller
 
 		if ($format == 'upload') {
 			$file = $request->filename;
-			if ($kegiatan_tipe == 'diklat_bkcu') {
+			if ($kegiatan_tipe == 'diklat_bkcu' ||$kegiatan_tipe == 'diklat_bkcu_internal') {
 				$materipath = $this->materipathDiklat;
 			} else {
 				$materipath = $this->materipathPertemuan;
@@ -976,7 +977,7 @@ class KegiatanBKCUController extends Controller
 		// $this->validate($request, Kegiatan::$rules);
 		$kelas = Kegiatan::findOrFail($id);
 
-		if ($kelas->tipe == 'diklat_bkcu') {
+		if ($kelas->tipe == 'diklat_bkcu'|| $kelas->tipe == 'diklat_bkcu_internal') {
 			$kodeKegiatan = KodeKegiatan::where('id', $request->id_kode)->first();
 			if ($kodeKegiatan) {
 				$name = $kodeKegiatan->name;
@@ -1321,7 +1322,7 @@ class KegiatanBKCUController extends Controller
 		$name = $kelas->name;
 
 		if (!empty($kelas->gambar)) {
-			if ($kelas->tipe == 'diklat_bkcu') {
+			if ($kelas->tipe == 'diklat_bkcu' || $kelas->tipe == 'diklat_bkcu_internal' ) {
 				$imagepath = $this->imagepathDiklat;
 			} else {
 				$imagepath = $this->imagepathPertemuan;
@@ -1368,7 +1369,7 @@ class KegiatanBKCUController extends Controller
 
 		$kelas->delete();
 
-		if ($kegiatan_tipe == 'diklat_bkcu') {
+		if ($kegiatan_tipe == 'diklat_bkcu' || $kegiatan_tipe == 'diklat_bkcu_internal') {
 			$materipath = $this->materipathDiklat;
 		} else {
 			$materipath = $this->materipathPertemuan;
@@ -1473,7 +1474,7 @@ class KegiatanBKCUController extends Controller
 
 		$kelas->delete();
 
-		if ($kegiatan_tipe == 'diklat_bkcu') {
+		if ($kegiatan_tipe == 'diklat_bkcu' || $kegiatan_tipe == 'diklat_bkcu_internal') {
 			$materipath = $this->materipathDiklat;
 		} else {
 			$materipath = $this->materipathPertemuan;
@@ -1491,7 +1492,7 @@ class KegiatanBKCUController extends Controller
 
 			$kelasJ->delete();
 
-			if ($kegiatan_tipe == 'diklat_bkcu') {
+			if ($kegiatan_tipe == 'diklat_bkcu' || $kegiatan_tipe == 'diklat_bkcu_internal') {
 				$materipath = $this->materipathDiklat;
 			} else {
 				$materipath = $this->materipathPertemuan;
@@ -1517,7 +1518,7 @@ class KegiatanBKCUController extends Controller
 
 		$kelas->delete();
 
-		if ($kegiatan_tipe == 'diklat_bkcu') {
+		if ($kegiatan_tipe == 'diklat_bkcu' || $kegiatan_tipe == 'diklat_bkcu_internal') {
 			$materipath = $this->materipathDiklat;
 		} else {
 			$materipath = $this->materipathPertemuan;
@@ -1547,9 +1548,13 @@ class KegiatanBKCUController extends Controller
 
 		if ($id_cu != 0) {
 			if ($request->keteranganBatal != '') {
-				if ($kegiatan_tipe == 'diklat_bkcu') {
+				if ($kegiatan_tipe == 'diklat_bkcu' || $kegiatan_tipe == 'diklat_bkcu_intenal') {
 					NotificationHelper::diklat_bkcu($id_cu, $kegiatan_id, 'membatalkan pendaftaran peserta dengan alasan ' . $request->keteranganBatal);
-				} else {
+				}
+				// else if ($kegiatan_tipe == 'diklat_bkcu_intenal') {
+				// 	NotificationHelper::diklat_bkcu_internal($id_cu, $kegiatan_id, 'membatalkan pendaftaran peserta dengan alasan ' . $request->keteranganBatal);
+				// }
+				 else {
 					NotificationHelper::pertemuan_bkcu($id_cu, $kegiatan_id, 'membatalkan pendaftaran peserta dengan alasan ' . $request->keteranganBatal);
 				}
 			} else {
@@ -1629,7 +1634,7 @@ class KegiatanBKCUController extends Controller
 		if ($id_cu == 0) {
 			$table_data = Kegiatan::where('status', 4)->count();
 		} else {
-			$table_data = Kegiatan::whereIn('tipe', ['diklat_bkcu', 'pertemuan_bkcu'])->where('status', 4)->count();
+			$table_data = Kegiatan::whereIn('tipe', ['diklat_bkcu','diklat_bkcu_internal', 'pertemuan_bkcu'])->where('status', 4)->count();
 		}
 
 		return response()

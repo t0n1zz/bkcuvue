@@ -70,6 +70,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     truncate: vue_truncate_collapsed__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -190,6 +191,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['columnData', 'itemDataStat', 'items'],
   components: {},
@@ -224,6 +226,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -287,6 +290,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     message: {
@@ -321,337 +325,335 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
 /* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_12__);
 /* harmony import */ var _components_datePicker_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../components/datePicker.vue */ "./resources/assets/js/components/datePicker.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) { n[e] = r[e]; } return n; }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -724,7 +726,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         this.$store.dispatch('cu/getHeader');
       }
     }
-
     this.$store.dispatch('aktivis/resetDataS2');
     this.$store.dispatch('aktivis/get2', 0);
   },
@@ -747,7 +748,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.modalShow = true;
       this.modalState = value;
       this.modalColor = '';
-
       if (value === "success") {
         this.modalTitle = this.updateResponse.message;
       } else {
@@ -763,7 +763,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           this.$store.dispatch('cu/getHeader');
         }
       }
-
       if (this.$route.meta.mode == 'edit') {
         this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
         this.title = 'Ubah Temuan';
@@ -779,11 +778,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     fetchRekom: function fetchRekom() {
       this.itemDataRekom = [];
       var valData;
-
       if (this.form.monitoring_rekom) {
         var _iterator = _createForOfIteratorHelper(this.form.monitoring_rekom),
-            _step;
-
+          _step;
         try {
           for (_iterator.s(); !(_step = _iterator.n()).done;) {
             valData = _step.value;
@@ -801,7 +798,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (!this.currentUser.can || !this.currentUser.can[permission]) {
           this.$router.push('/notFound');
         }
-
         if (!id_cu || this.currentUser.id_cu) {
           if (this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu) {
             this.$router.push('/notFound');
@@ -811,7 +807,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     save: function save() {
       var _this = this;
-
       this.form.rekomendasi = this.itemDataRekom;
       this.$validator.validateAll('form').then(function (result) {
         if (result) {
@@ -820,7 +815,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           } else {
             _this.$store.dispatch(_this.kelas + '/store', _this.form);
           }
-
           _this.submited = false;
         } else {
           window.scrollTo(0, 0);
@@ -860,7 +854,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       _.remove(this.itemDataRekom, {
         index: value.index
       });
-
       this.itemDataRekom.push(value);
       this.modalTutup();
     },
@@ -871,7 +864,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     modalOpen: function modalOpen(state, isMobile, itemMobile) {
       this.modalShow = true;
       this.state = state;
-
       if (state == 'hapusRekom') {
         this.modalState = 'confirm-tutup';
         this.modalColor = '';
@@ -896,7 +888,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     modalConfirmOk: function modalConfirmOk() {
       this.modalShow = false;
-
       if (this.state == 'hapusRekom') {
         _.remove(this.itemDataRekom, {
           index: this.selectedItemRekom.index
@@ -908,13 +899,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         this.back();
         this.$store.dispatch(this.kelas + '/resetUpdateStat');
       }
-
       this.modalShow = false;
     },
     modalBackgroundClick: function modalBackgroundClick() {
       if (this.modalState === 'success') {
         this.modalTutup;
-      } else if (this.modalState === 'loading') {// do nothing
+      } else if (this.modalState === 'loading') {
+        // do nothing
       } else {
         this.modalShow = false;
       }
@@ -960,63 +951,64 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
 /* harmony import */ var _components_message_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/message.vue */ "./resources/assets/js/components/message.vue");
 /* harmony import */ var _components_wajibBadge_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/wajibBadge.vue */ "./resources/assets/js/components/wajibBadge.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -1053,11 +1045,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     save: function save() {
       var _this = this;
-
       if (!this.formDataRekom.status) {
         this.formDataRekom.status = 0;
       }
-
       this.$validator.validateAll('formDataRekom').then(function (result) {
         if (result) {
           if (_this.mode == 'edit') {
@@ -1096,7 +1086,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.mx-datepicker-popup {\n    z-index: 99999;\n}\n", ""]);
+exports.push([module.i, "\n.mx-datepicker-popup {\r\n    z-index: 99999;\n}\r\n", ""]);
 
 // exports
 
@@ -1115,7 +1105,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".document-editor[data-v-2876dcc8] {\n  border: 1px solid var(--ck-color-base-border);\n  border-radius: var(--ck-border-radius);\n\n  /* Set vertical boundaries for the document editor. */\n  max-height: 700px;\n\n  /* This element is a flex container for easier rendering. */\n  display: flex;\n  flex-flow: column nowrap;\n}\n.document-editor__toolbar[data-v-2876dcc8] {\n  /* Make sure the toolbar container is always above the editable. */\n  z-index: 1;\n\n  /* Create the illusion of the toolbar floating over the editable. */\n  box-shadow: 0 0 5px hsla( 0,0%,0%,.2 );\n\n  /* Use the CKEditor CSS variables to keep the UI consistent. */\n  border-bottom: 1px solid var(--ck-color-toolbar-border);\n}\n\n/* Adjust the look of the toolbar inside the container. */\n.document-editor__toolbar .ck-toolbar[data-v-2876dcc8] {\n  border: 0;\n  border-radius: 0;\n}\n\n/* Make the editable container look like the inside of a native word processor application. */\n.document-editor__editable-container[data-v-2876dcc8] {\n  padding: calc( 2 * var(--ck-spacing-large) );\n  background: var(--ck-color-base-foreground);\n\n  /* Make it possible to scroll the \"page\" of the edited content. */\n  overflow-y: scroll;\n}\n.document-editor__editable-container .ck-editor__editable[data-v-2876dcc8] {\n  /* Set the dimensions of the \"page\". */\n  width: 98%;\n  /* min-height: 21cm; */\n\n  /* Keep the \"page\" off the boundaries of the container. */\n  padding: 1cm 2cm 2cm;\n\n  border: 1px hsl( 0,0%,82.7% ) solid;\n  border-radius: var(--ck-border-radius);\n  background: white;\n\n  /* The \"page\" should cast a slight shadow (3D illusion). */\n  box-shadow: 0 0 5px hsla( 0,0%,0%,.1 );\n\n  /* Center the \"page\". */\n  margin: 0 auto;\n}\n\n/* Set the default font for the \"page\" of the content. */\n.document-editor .ck-content[data-v-2876dcc8],\n.document-editor .ck-heading-dropdown .ck-list .ck-button__label[data-v-2876dcc8] {\n  font: 16px/1.6 \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n}\n\n/* Adjust the headings dropdown to host some larger heading styles. */\n.document-editor .ck-heading-dropdown .ck-list .ck-button__label[data-v-2876dcc8] {\n  line-height: calc( 1.7 * var(--ck-line-height-base) * var(--ck-font-size-base) );\n  min-width: 6em;\n}\n\n/* Scale down all heading previews because they are way too big to be presented in the UI.\nPreserve the relative scale, though. */\n.document-editor .ck-heading-dropdown .ck-list .ck-button:not(.ck-heading_paragraph) .ck-button__label[data-v-2876dcc8] {\n  transform: scale(0.8);\n  transform-origin: left;\n}\n\n/* Set the styles for \"Heading 1\". */\n.document-editor .ck-content h2[data-v-2876dcc8],\n.document-editor .ck-heading-dropdown .ck-heading_heading1 .ck-button__label[data-v-2876dcc8] {\n  font-size: 2.18em;\n  font-weight: normal;\n}\n.document-editor .ck-content h2[data-v-2876dcc8] {\n  line-height: 1.37em;\n  padding-top: .342em;\n  margin-bottom: .142em;\n}\n\n/* Set the styles for \"Heading 2\". */\n.document-editor .ck-content h3[data-v-2876dcc8],\n.document-editor .ck-heading-dropdown .ck-heading_heading2 .ck-button__label[data-v-2876dcc8] {\n  font-size: 1.75em;\n  font-weight: normal;\n  color: hsl( 203, 100%, 50% );\n}\n.document-editor .ck-heading-dropdown .ck-heading_heading2.ck-on .ck-button__label[data-v-2876dcc8] {\n  color: var(--ck-color-list-button-on-text);\n}\n\n/* Set the styles for \"Heading 2\". */\n.document-editor .ck-content h3[data-v-2876dcc8] {\n  line-height: 1.86em;\n  padding-top: .171em;\n  margin-bottom: .357em;\n}\n\n/* Set the styles for \"Heading 3\". */\n.document-editor .ck-content h4[data-v-2876dcc8],\n.document-editor .ck-heading-dropdown .ck-heading_heading3 .ck-button__label[data-v-2876dcc8] {\n  font-size: 1.31em;\n  font-weight: bold;\n}\n.document-editor .ck-content h4[data-v-2876dcc8] {\n  line-height: 1.24em;\n  padding-top: .286em;\n  margin-bottom: .952em;\n}\n\n/* Set the styles for \"Paragraph\". */\n.document-editor .ck-content p[data-v-2876dcc8] {\n  font-size: 1em;\n  line-height: 1.63em;\n  padding-top: .5em;\n  margin-bottom: 1.13em;\n}\n\n/* Make the block quoted text serif with some additional spacing. */\n.document-editor .ck-content blockquote[data-v-2876dcc8] {\n  font-family: Georgia, serif;\n  margin-left: calc( 2 * var(--ck-spacing-large) );\n  margin-right: calc( 2 * var(--ck-spacing-large) );\n}\n", ""]);
+exports.push([module.i, ".document-editor[data-v-2876dcc8] {\r\n  border: 1px solid var(--ck-color-base-border);\r\n  border-radius: var(--ck-border-radius);\r\n\r\n  /* Set vertical boundaries for the document editor. */\r\n  max-height: 700px;\r\n\r\n  /* This element is a flex container for easier rendering. */\r\n  display: flex;\r\n  flex-flow: column nowrap;\n}\n.document-editor__toolbar[data-v-2876dcc8] {\r\n  /* Make sure the toolbar container is always above the editable. */\r\n  z-index: 1;\r\n\r\n  /* Create the illusion of the toolbar floating over the editable. */\r\n  box-shadow: 0 0 5px hsla( 0,0%,0%,.2 );\r\n\r\n  /* Use the CKEditor CSS variables to keep the UI consistent. */\r\n  border-bottom: 1px solid var(--ck-color-toolbar-border);\n}\r\n\r\n/* Adjust the look of the toolbar inside the container. */\n.document-editor__toolbar .ck-toolbar[data-v-2876dcc8] {\r\n  border: 0;\r\n  border-radius: 0;\n}\r\n\r\n/* Make the editable container look like the inside of a native word processor application. */\n.document-editor__editable-container[data-v-2876dcc8] {\r\n  padding: calc( 2 * var(--ck-spacing-large) );\r\n  background: var(--ck-color-base-foreground);\r\n\r\n  /* Make it possible to scroll the \"page\" of the edited content. */\r\n  overflow-y: scroll;\n}\n.document-editor__editable-container .ck-editor__editable[data-v-2876dcc8] {\r\n  /* Set the dimensions of the \"page\". */\r\n  width: 98%;\r\n  /* min-height: 21cm; */\r\n\r\n  /* Keep the \"page\" off the boundaries of the container. */\r\n  padding: 1cm 2cm 2cm;\r\n\r\n  border: 1px hsl( 0,0%,82.7% ) solid;\r\n  border-radius: var(--ck-border-radius);\r\n  background: white;\r\n\r\n  /* The \"page\" should cast a slight shadow (3D illusion). */\r\n  box-shadow: 0 0 5px hsla( 0,0%,0%,.1 );\r\n\r\n  /* Center the \"page\". */\r\n  margin: 0 auto;\n}\r\n\r\n/* Set the default font for the \"page\" of the content. */\n.document-editor .ck-content[data-v-2876dcc8],\r\n.document-editor .ck-heading-dropdown .ck-list .ck-button__label[data-v-2876dcc8] {\r\n  font: 16px/1.6 \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n}\r\n\r\n/* Adjust the headings dropdown to host some larger heading styles. */\n.document-editor .ck-heading-dropdown .ck-list .ck-button__label[data-v-2876dcc8] {\r\n  line-height: calc( 1.7 * var(--ck-line-height-base) * var(--ck-font-size-base) );\r\n  min-width: 6em;\n}\r\n\r\n/* Scale down all heading previews because they are way too big to be presented in the UI.\r\nPreserve the relative scale, though. */\n.document-editor .ck-heading-dropdown .ck-list .ck-button:not(.ck-heading_paragraph) .ck-button__label[data-v-2876dcc8] {\r\n  transform: scale(0.8);\r\n  transform-origin: left;\n}\r\n\r\n/* Set the styles for \"Heading 1\". */\n.document-editor .ck-content h2[data-v-2876dcc8],\r\n.document-editor .ck-heading-dropdown .ck-heading_heading1 .ck-button__label[data-v-2876dcc8] {\r\n  font-size: 2.18em;\r\n  font-weight: normal;\n}\n.document-editor .ck-content h2[data-v-2876dcc8] {\r\n  line-height: 1.37em;\r\n  padding-top: .342em;\r\n  margin-bottom: .142em;\n}\r\n\r\n/* Set the styles for \"Heading 2\". */\n.document-editor .ck-content h3[data-v-2876dcc8],\r\n.document-editor .ck-heading-dropdown .ck-heading_heading2 .ck-button__label[data-v-2876dcc8] {\r\n  font-size: 1.75em;\r\n  font-weight: normal;\r\n  color: hsl( 203, 100%, 50% );\n}\n.document-editor .ck-heading-dropdown .ck-heading_heading2.ck-on .ck-button__label[data-v-2876dcc8] {\r\n  color: var(--ck-color-list-button-on-text);\n}\r\n\r\n/* Set the styles for \"Heading 2\". */\n.document-editor .ck-content h3[data-v-2876dcc8] {\r\n  line-height: 1.86em;\r\n  padding-top: .171em;\r\n  margin-bottom: .357em;\n}\r\n\r\n/* Set the styles for \"Heading 3\". */\n.document-editor .ck-content h4[data-v-2876dcc8],\r\n.document-editor .ck-heading-dropdown .ck-heading_heading3 .ck-button__label[data-v-2876dcc8] {\r\n  font-size: 1.31em;\r\n  font-weight: bold;\n}\n.document-editor .ck-content h4[data-v-2876dcc8] {\r\n  line-height: 1.24em;\r\n  padding-top: .286em;\r\n  margin-bottom: .952em;\n}\r\n\r\n/* Set the styles for \"Paragraph\". */\n.document-editor .ck-content p[data-v-2876dcc8] {\r\n  font-size: 1em;\r\n  line-height: 1.63em;\r\n  padding-top: .5em;\r\n  margin-bottom: 1.13em;\n}\r\n\r\n/* Make the block quoted text serif with some additional spacing. */\n.document-editor .ck-content blockquote[data-v-2876dcc8] {\r\n  font-family: Georgia, serif;\r\n  margin-left: calc( 2 * var(--ck-spacing-large) );\r\n  margin-right: calc( 2 * var(--ck-spacing-large) );\n}\r\n", ""]);
 
 // exports
 

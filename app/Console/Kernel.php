@@ -12,7 +12,7 @@ class Kernel extends ConsoleKernel
      *
      * @var array
      */
-    protected $commands = [Commands\HitungPenyusutan::class,];
+    protected $commands = [Commands\HitungPenyusutan::class,Commands\RemoveArtikelImage::class];
 
     /**
      * Define the application's command schedule.
@@ -26,7 +26,11 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('hitung:penyusutan')
             ->dailyAt('01:00');
-    }
+
+        $schedule->command('remove:artikelimage')->weekly();
+}
+    
+
 
     /**
      * Register the commands for the application.

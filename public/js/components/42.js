@@ -70,6 +70,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     truncate: vue_truncate_collapsed__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -136,49 +137,50 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -274,126 +276,127 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _revisi_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./revisi.vue */ "./resources/assets/js/views/laporanCu/revisi.vue");
 /* harmony import */ var _infografis_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./infografis.vue */ "./resources/assets/js/views/laporanCu/infografis.vue");
 /* harmony import */ var _infografisPearls_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./infografisPearls.vue */ "./resources/assets/js/views/laporanCu/infografisPearls.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -435,15 +438,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     changeTab: function changeTab(value) {
       this.tabName = value;
-
       if (value == 'analisisPearls' && !this.isPearls) {
         this.isPearls = true;
       }
-
       if (value == 'diskusi' && !this.isDiskusi) {
         this.isDiskusi = true;
       }
-
       if (value == 'revisi' && !this.isRevisi) {
         this.isRevisi = true;
       }
@@ -518,1031 +518,1032 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
 /* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
 /* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_5__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -1607,9 +1608,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     grafikDataStat: function grafikDataStat(value) {
       if (value == 'success') {
         var periodeNow = this.itemData.periode;
-
         var itemDataSorted = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.orderBy(this.grafikData.data, ['periode'], ['desc']);
-
         this.itemDataBefore = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.find(itemDataSorted, function (o) {
           return o.periode < periodeNow;
         });
@@ -1619,7 +1618,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     updateStat: function updateStat(value) {
       this.modalState = value;
       this.modalButton = 'Ok';
-
       if (value === "success") {
         this.modalTitle = this.updateMessage.message;
         this.modalContent = '';
@@ -1642,7 +1640,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     save: function save() {
       this.form = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.chain(this.modalDetail.form).keyBy('key').mapValues('value').value();
       this.form.periode = this.modalDetail.periode;
-
       if (this.itemData.id_tp) {
         this.form.id_tp = this.modalDetail.id_tp;
         this.form.no_tp = this.modalDetailpr.no_tp;
@@ -1670,18 +1667,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.modalDetail.itemDataBefore = itemDataBefore;
       this.modalDetail.isUbah = false;
       this.modalDetail.isOpposite = isOpposite;
-
       if (type != 'currency') {
         this.modalDetail.isPercent = true;
       } else {
         this.modalDetail.isPercent = false;
-      } // analisis view
+      }
 
-
+      // analisis view
       var selisih = itemData - itemDataBefore;
       var keterangan = '';
       var selisihView = this.formatCurrency(Math.abs(selisih));
-
       if (selisih > 0) {
         keterangan = " mengalami peningkatan sebanyak " + selisihView;
       } else if (selisih < 0) {
@@ -1689,19 +1684,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       } else {
         keterangan = " tidak mengalami perubahan ";
       }
-
       var formatedPeriodeBefore = '';
-
       if (periodeBefore != '') {
         formatedPeriodeBefore = " dari periode " + this.formatPeriode(periodeBefore);
       }
+      this.modalDetail.analisis1 = "Akun " + title + " sejumlah " + this.formatCurrency(itemData) + ' periode ' + this.formatPeriode(periode) + keterangan + formatedPeriodeBefore;
 
-      this.modalDetail.analisis1 = "Akun " + title + " sejumlah " + this.formatCurrency(itemData) + ' periode ' + this.formatPeriode(periode) + keterangan + formatedPeriodeBefore; // table view
+      // table view
+      this.modalDetail.grafikData = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.orderBy(lodash__WEBPACK_IMPORTED_MODULE_1___default.a.map(grafikData, lodash__WEBPACK_IMPORTED_MODULE_1___default.a.partialRight(lodash__WEBPACK_IMPORTED_MODULE_1___default.a.pick, ['periode', key])), ['periode'], ['desc']);
 
-      this.modalDetail.grafikData = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.orderBy(lodash__WEBPACK_IMPORTED_MODULE_1___default.a.map(grafikData, lodash__WEBPACK_IMPORTED_MODULE_1___default.a.partialRight(lodash__WEBPACK_IMPORTED_MODULE_1___default.a.pick, ['periode', key])), ['periode'], ['desc']); // ubah view
-
+      // ubah view
       this.modalDetail.id = this.itemData.id;
-
       if (this.itemData.id_tp) {
         this.modalDetail.id_tp = this.itemData.id_tp;
         this.modalDetail.no_tp = this.itemData.no_tp;
@@ -1712,11 +1705,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         } else {
           this.modalDetail.canUbah = true;
         }
-
         this.modalDetail.id_cu = this.itemData.id_cu;
         this.modalDetail.no_ba = this.itemData.cu.no_ba;
       }
-
       this.modalDetail.periode = periode;
       this.modalDetail.form = form;
     },
@@ -1785,528 +1776,529 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
 /* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
 /* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_5__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2368,9 +2360,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     grafikDataStat: function grafikDataStat(value) {
       if (value == 'success') {
         var periodeNow = this.itemData.periode;
-
         var itemDataSorted = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.orderBy(this.grafikData.data, ['periode'], ['desc']);
-
         this.itemDataBefore = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.find(itemDataSorted, function (o) {
           return o.periode < periodeNow;
         });
@@ -2380,7 +2370,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     updateStat: function updateStat(value) {
       this.modalState = value;
       this.modalButton = 'Ok';
-
       if (value === "success") {
         this.modalTitle = this.updateMessage.message;
         this.modalContent = '';
@@ -2394,7 +2383,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     updateTpStat: function updateTpStat(value) {
       this.modalState = value;
       this.modalButton = "Ok";
-
       if (value === "success") {
         this.modalTitle = this.updateTpMessage.message;
         this.modalContent = "";
@@ -2417,7 +2405,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     save: function save() {
       this.form = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.chain(this.modalDetail.form).keyBy('key').mapValues('value').value();
       this.form.periode = this.modalDetail.periode;
-
       if (this.itemData.id_tp) {
         this.form.id_tp = this.modalDetail.id_tp;
         this.form.no_tp = this.modalDetailpr.no_tp;
@@ -2437,7 +2424,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.modalState = 'normal1';
       this.modalKatex.id = itemData.id;
       this.modalKatex.periode = itemData.periode;
-
       if (itemData.id_tp) {
         this.modalKatex.id_cu = itemData.tp.id_cu;
         this.modalKatex.no_ba = itemData.tp.cu.no_ba;
@@ -2451,9 +2437,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.no_ba = itemData.no_ba;
         this.modalKatex.section = 'CU ' + itemData.cu.name + ' periode ' + this.formatPeriode(itemData.periode);
       }
-
-      this.modalKatex.id_cu = itemData.id_cu; // p1	
-
+      this.modalKatex.id_cu = itemData.id_cu;
+      // p1	
       if (type == 'p1') {
         this.modalTitle = 'P1 - Provisi pinjaman lalai di atas 12 bulan';
         this.modalKatex.form.push({
@@ -2475,7 +2460,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: '',
           content: katex2Content1
-        }); // p2
+        });
+
+        // p2
       } else if (type == 'p2') {
         this.modalTitle = 'P2 -  Provisi pinjaman lalai 1 - 12 bulan';
         this.modalKatex.form.push({
@@ -2492,16 +2479,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.piutang_lalai_1bulan
         });
         this.modalKatex.indikator = '35% provisi tersedia untuk pinjaman lalai 1 – 12 bulan dan setiap triwulan dilakukan charge off dari waktu ke waktu';
-
         var _katex1Content = '\\text{P2} = \\dfrac{\\text{Saldo Cadangan Resiko setelah P1}[\\text{' + this.modalKatex.form[0].title + '} - \\text{' + this.modalKatex.form[1].title + '}]}{\\text{' + this.modalKatex.form[2].title + '}} \\times \\text{100} \\% = \\text{Di Atas 35} \\% (\\text{IDEAL})';
-
         var _katex2Content = '\\text{P2} = \\dfrac{' + this.formatCurrency(this.modalKatex.form[0].value) + ' - \\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}}{\\text{' + this.formatCurrency(this.modalKatex.form[2].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.p2) + ' \\% (\\text{' + (itemData.p2 >= 0.35 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
         this.modalKatex.katex1.push({
           title: '',
           content: _katex1Content
         });
-
         if (itemData.p1 >= 1) {
           this.modalKatex.katex2.push({
             title: '',
@@ -2512,11 +2495,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             title: 'Karena tidak ada saldo cadangan resiko setelah P1, maka P2 (TIDAK IDEAL)',
             content: _katex2Content
           });
-        } // e1
+        }
 
+        // e1
       } else if (type == 'e1') {
         this.modalTitle = 'E1 - Piutang bersih / total aset';
-
         if (itemData.p1 >= 1 && itemData.p2 > 0.35) {
           this.modalKatex.form.push({
             title: 'Piutang Beredar',
@@ -2550,13 +2533,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             value: itemData.aset
           });
         }
-
         this.modalKatex.indikator = 'Rasio Piutang Bersih adalah 70% – 80% dari total aset dan portofolio pinjaman beragam dengan setidaknya 5 macam produk pinjaman yang berbeda';
         var _katex1Content2 = '\\text{E1} = \\dfrac{\\text{Piutang Beredar} - ((\\text{100} \\% \\times \\text{Piutang Lalai Di Atas 12 Bulan}) + (\\text{35} \\% \\times \\text{Piutang Lalai 1 - 12 Bulan}))}{\\text{Aset}} \\times \\text{100} \\% = \\text{70} \\% \\text{ Sampai } \\text{80} \\% (\\text{IDEAL})';
         var katex1Content2 = '\\text{E1} = \\dfrac{\\text{Piutang Beredar} - \\text{Cadangan Resiko}}{\\text{Aset}} \\times \\text{100} \\% = \\text{70} \\% \\text{ Sampai } \\text{80} \\% (\\text{IDEAL})';
         var _katex2Content2 = '';
         var katex2Title1 = '';
-
         if (itemData.p1 >= 1 && itemData.p2 > 0.35) {
           katex2Title1 = 'Dikarenakan P1 dan P2 (IDEAL), maka rumus yang digunakan adalah rumus 1';
           _katex2Content2 = '\\text{E1} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '} - ((\\text{100} \\% \\times \\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}) + (\\text{35} \\% \\times \\text{' + this.formatCurrency(this.modalKatex.form[2].value) + '}))}{\\text{' + this.formatCurrency(this.modalKatex.form[3].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.e1) + ' \\% (\\text{' + (itemData.e1 >= 0.7 && itemData.e1 <= 0.8 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
@@ -2564,7 +2545,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           katex2Title1 = 'Dikarenakan P1 dan P2 (TIDAK IDEAL), maka rumus yang digunakan adalah rumus 2';
           _katex2Content2 = '\\text{E1} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '} - \\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}}{\\text{' + this.formatCurrency(this.modalKatex.form[2].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.e1) + ' \\% (\\text{' + (itemData.e1 >= 0.7 && itemData.e1 <= 0.8 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
         }
-
         this.modalKatex.katex1.push({
           title: 'Rumus 1 - apabila P1 dan P2 (IDEAL)',
           content: _katex1Content2
@@ -2575,7 +2555,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: katex2Title1,
           content: _katex2Content2
-        }); // e5
+        });
+
+        // e5
       } else if (type == 'e5') {
         this.modalTitle = 'E5 - Simpanan non saham / total aset';
         this.modalKatex.form.push({
@@ -2592,11 +2574,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.aset
         });
         this.modalKatex.indikator = 'Rasio 70% – 80% dari total aset dan memiliki beragam jenis simpanan minimal 5 jenis produk simpanan yang berbeda.';
-
         var _katex1Content3 = '\\text{E5} = \\dfrac{\\text{' + this.modalKatex.form[0].title + '} + \\text{' + this.modalKatex.form[1].title + '}}{\\text{' + this.modalKatex.form[2].title + '}} \\times \\text{100} \\% = \\text{70} \\% \\text{ Sampai } \\text{80} \\%(\\text{IDEAL})';
-
         var _katex2Content3 = '\\text{E5} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '} + \\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}}{\\text{' + this.formatCurrency(this.modalKatex.form[2].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.e5) + ' \\% (\\text{' + (itemData.e5 >= 0.7 && itemData.e5 <= 0.8 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
         this.modalKatex.katex1.push({
           title: '',
           content: _katex1Content3
@@ -2604,7 +2583,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: '',
           content: _katex2Content3
-        }); // e6
+        });
+
+        // e6
       } else if (type == 'e6') {
         this.modalTitle = 'E6 - Pinjaman kepada pihak luar terhadap total aset';
         this.modalKatex.form.push({
@@ -2617,11 +2598,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.aset
         });
         this.modalKatex.indikator = 'Jumlah pinjaman kepada pihak eksternal 1% – 5% dari total aset.';
-
         var _katex1Content4 = '\\text{E6} = \\dfrac{\\text{' + this.modalKatex.form[0].title + '}}{\\text{' + this.modalKatex.form[1].title + '}} \\times \\text{100} \\% = \\text{Kurang Dari Sama Dengan 5} \\% (\\text{IDEAL})';
-
         var _katex2Content4 = '\\text{E6} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '}}{\\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.e6) + ' \\% ( \\text{' + (itemData.e6 <= 0.05 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
         this.modalKatex.katex1.push({
           title: '',
           content: _katex1Content4
@@ -2629,7 +2607,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: '',
           content: _katex2Content4
-        }); // e7
+        });
+
+        // e7
       } else if (type == "e7") {
         this.modalTitle = "E7 - Persentase total aset yang didanai dari simpanan saham";
         this.modalKatex.form.push({
@@ -2642,11 +2622,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.aset
         });
         this.modalKatex.indikator = "10-20% total aset yang didanai dari simpanan saham";
-
         var _katex1Content5 = "\\text{E7} = \\dfrac{\\text{" + this.modalKatex.form[0].title + "}}{\\text{" + this.modalKatex.form[1].title + "}} \\times \\text{100} \\% = \\text{10} \\% \\text{ Sampai } \\text{20} \\%(\\text{IDEAL})";
-
         var _katex2Content5 = "\\text{E7} = \\dfrac{" + this.formatCurrency(this.modalKatex.form[0].value) + "}{\\text{" + this.formatCurrency(this.modalKatex.form[1].value) + "}} \\times \\text{100} \\% = " + this.formatPercentage(itemData.e7) + " \\% (\\text{" + (itemData.e7 >= 0.1 && itemData.e7 <= 0.2 ? "IDEAL" : "TIDAK IDEAL") + "})";
-
         this.modalKatex.katex1.push({
           title: "",
           content: _katex1Content5
@@ -2654,7 +2631,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: "",
           content: _katex2Content5
-        }); // e9
+        });
+
+        // e9
       } else if (type == 'e9') {
         this.modalTitle = 'E9 - Modal lembaga bersih';
         this.modalKatex.form.push({
@@ -2695,11 +2674,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.aset
         });
         this.modalKatex.indikator = 'Modal lembaga bersih sebesar 10% dari total aset.';
-
         var _katex1Content6 = '\\text{E9} = \\dfrac{(\\text{' + this.modalKatex.form[0].title + '} + \\text{' + this.modalKatex.form[1].title + '} + \\text{' + this.modalKatex.form[2].title + '} + \\text{' + this.modalKatex.form[3].title + '} + \\text{' + this.modalKatex.form[4].title + '}) - ((\\text{100} \\% \\times \\text{' + this.modalKatex.form[5].title + '}) + (\\text{35} \\% \\times \\text{' + this.modalKatex.form[6].title + '}) + \\text{' + this.modalKatex.form[7].title + '})}{\\text{' + this.modalKatex.form[8].title + '}} \\times \\text{100} \\% = \\text{Lebih Dari Sama Dengan 10} \\% (\\text{IDEAL})';
-
         var _katex2Content6 = '\\text{E9} = \\dfrac{(\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '} + \\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '} + \\text{' + this.formatCurrency(this.modalKatex.form[2].value) + '} + \\text{' + this.formatCurrency(this.modalKatex.form[3].value) + '} + \\text{' + this.formatCurrency(this.modalKatex.form[4].value) + '}) - ((\\text{100} \\% \\times \\text{' + this.formatCurrency(this.modalKatex.form[5].value) + '}) + (\\text{35} \\% \\times \\text{' + this.formatCurrency(this.modalKatex.form[6].value) + '}) + \\text{' + this.formatCurrency(this.modalKatex.form[7].value) + '})}{\\text{' + this.formatCurrency(this.modalKatex.form[8].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.e9) + ' \\% ( \\text{' + (itemData.e9 >= 0.1 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
         this.modalKatex.katex1.push({
           title: '',
           content: _katex1Content6
@@ -2707,7 +2683,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: '',
           content: _katex2Content6
-        }); // a1
+        });
+
+        // a1
       } else if (type == 'a1') {
         this.modalTitle = 'A1 - Total pinjaman lalai / total pinjaman beredar';
         this.modalKatex.form.push({
@@ -2724,11 +2702,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.piutang_beredar
         });
         this.modalKatex.indikator = 'Total pinjaman lalai &le; 5% dari total pinjaman beredar.';
-
         var _katex1Content7 = '\\text{A1} = \\dfrac{\\text{Total Pinjaman Lalai}[\\text{' + this.modalKatex.form[0].title + '} + \\text{' + this.modalKatex.form[1].title + '}]}{\\text{' + this.modalKatex.form[2].title + '}} \\times \\text{100} \\% = \\text{Kurang Dari Sama Dengan 5} \\% (\\text{IDEAL})';
-
         var _katex2Content7 = '\\text{A1} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '} + \\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}}{\\text{' + this.formatCurrency(this.modalKatex.form[2].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.a1) + ' \\% ( \\text{' + (itemData.a1 <= 0.05 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
         this.modalKatex.katex1.push({
           title: '',
           content: _katex1Content7
@@ -2736,7 +2711,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: '',
           content: _katex2Content7
-        }); // a2	
+        });
+
+        // a2	
       } else if (type == 'a2') {
         this.modalTitle = 'A2 - Aset yang tidak menghasilkan / total aset';
         this.modalKatex.form.push({
@@ -2749,11 +2726,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.aset
         });
         this.modalKatex.indikator = 'Aset tidak menghasilkan 5% dari total aset.';
-
         var _katex1Content8 = '\\text{A2} = \\dfrac{\\text{' + this.modalKatex.form[0].title + '}}{\\text{' + this.modalKatex.form[1].title + '}} \\times \\text{100} \\% = \\text{Kurang Dari Sama Dengan 5} \\% (\\text{IDEAL})';
-
         var _katex2Content8 = '\\text{A2} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '}}{\\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.a2) + ' \\% ( \\text{' + (itemData.a2 <= 0.05 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
         this.modalKatex.katex1.push({
           title: '',
           content: _katex1Content8
@@ -2761,7 +2735,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: '',
           content: _katex2Content8
-        }); // r7
+        });
+
+        // r7
       } else if (type == 'r7') {
         this.modalTitle = 'R7 - BJS saham terhadap rata-rata aset';
         this.modalKatex.form.push({
@@ -2786,12 +2762,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.harga_pasar
         });
         this.modalKatex.indikator = 'Dividen saham dibayar 1% lebih tinggi daripada suku bunga pasar';
-
         if (itemData.simpanan_saham_des != 0) {
           var _katex1Content9 = '\\text{R7} = \\dfrac{\\text{' + this.modalKatex.form[0].title + '}}{\\text{Simpanan Saham Rata-rata}(\\frac{\\text{' + this.modalKatex.form[1].title + '} + \\text{' + this.modalKatex.form[2].title + '}}{\\text{Jumlah Bulan Berjalan}} \\times \\text{12})} \\times \\text{100} \\% = \\text{Harga Pasar} \\% (\\text{IDEAL})';
-
           var _katex2Content9 = '\\text{R7} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '}}{(\\frac{\\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '} + \\text{' + this.formatCurrency(this.modalKatex.form[2].value) + '}}{\\text{' + this.formatPeriodeMonth(itemData.periode) + '}} \\times \\text{12})} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.r7_1) + ' \\% ( \\text{' + (itemData.r7_1 == itemData.harga_pasar ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
           this.modalKatex.katex1.push({
             title: 'Jika simpanan saham bersumber dari saldo bulan desember tahun lalu',
             content: _katex1Content9
@@ -2801,10 +2774,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             content: _katex2Content9
           });
         }
-
         if (itemData.simpanan_saham_lalu != 0) {
           var _katex1Content10 = '\\text{R7} = \\dfrac{\\text{' + this.modalKatex.form[0].title + '}}{\\text{Simpanan Saham Rata-rata}(\\frac{\\text{' + this.modalKatex.form[3].title + '} + \\text{' + this.modalKatex.form[2].title + '}}{\\text{2}})} \\times \\text{100} \\% = \\text{Harga Pasar} \\% (\\text{IDEAL})';
-
           var katex2Content2 = '\\text{R7} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '}}{(\\frac{\\text{' + this.formatCurrency(this.modalKatex.form[3].value) + '} + \\text{' + this.formatCurrency(this.modalKatex.form[2].value) + '}}{\\text{2}})} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.r7_2) + ' \\% ( \\text{' + (itemData.r7_2 == itemData.harga_pasar ? 'IDEAL' : 'TIDAK IDEAL') + '})';
           this.modalKatex.katex1.push({
             title: 'Jika simpanan saham bersumber dari saldo tahun lalu bulan ' + this.formatPeriodeMonth(itemData.periode),
@@ -2814,8 +2785,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             title: '',
             content: katex2Content2
           });
-        } //r9	
+        }
 
+        //r9	
       } else if (type == 'r9') {
         this.modalTitle = 'R9 - biaya operasional terhadap rata-rata aset';
         this.modalKatex.form.push({
@@ -2836,11 +2808,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.aset_lalu
         });
         this.modalKatex.indikator = 'Beban operasional terhadap rata-rata aset sebesar 5%.';
-
         var _katex1Content11 = '\\text{R9} = \\dfrac{\\text{Beban Operasional}(\\text{' + this.modalKatex.form[0].title + '} - \\text{' + this.modalKatex.form[1].title + '})}{\\text{Rata-rata Aset}(\\frac{\\text{' + this.modalKatex.form[2].title + '} + \\text{' + this.modalKatex.form[3].title + '}}{\\text{2}})} \\times \\text{100} \\% <= \\text{5} \\% (\\text{IDEAL})';
-
         var _katex2Content10 = '\\text{R9} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '} - \\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}}{\\frac{\\text{' + this.formatCurrency(this.modalKatex.form[2].value) + '} + \\text{' + this.formatCurrency(this.modalKatex.form[3].value) + '}}{\\text{2}}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.e6) + ' \\% ( \\text{' + (itemData.r9 <= 0.05 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
         this.modalKatex.katex1.push({
           title: '',
           content: _katex1Content11
@@ -2848,7 +2817,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: '',
           content: _katex2Content10
-        }); //l1
+        });
+
+        //l1
       } else if (type == 'l1') {
         this.modalTitle = 'L1 - (investasi likuid + aset-aset likuid - hutang jangka pendek < 30 Hari) / simpanan non saham';
         this.modalKatex.form.push({
@@ -2869,11 +2840,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.tot_nonsaham
         });
         this.modalKatex.indikator = 'Likuiditas sebesar 15% dari total simpanan non saham tetapi tidak melampaui 20% dari total aset.';
-
         var _katex1Content12 = '\\text{L1} = \\dfrac{(\\text{' + this.modalKatex.form[0].title + '} + \\text{' + this.modalKatex.form[1].title + '}) - \\text{' + this.modalKatex.form[2].title + '}}{\\text{' + this.modalKatex.form[3].title + '}} \\times \\text{100} \\% = \\text{15} \\% \\text{ Sampai } \\text{20} \\% (\\text{IDEAL})';
-
         var _katex2Content11 = '\\text{L1} = \\dfrac{(\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '} + \\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}) - \\text{' + this.formatCurrency(this.modalKatex.form[2].value) + '}}{\\text{' + this.formatCurrency(this.modalKatex.form[3].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.l1) + ' \\% (\\text{' + (itemData.l1 >= 0.15 && itemData.l1 <= 0.2 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
         this.modalKatex.katex1.push({
           title: '',
           content: _katex1Content12
@@ -2881,7 +2849,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: '',
           content: _katex2Content11
-        }); // l2
+        });
+
+        // l2
       } else if (type == "l2") {
         this.modalTitle = "L2 - Likuiditas untuk memenuhi permintaan penarikan setelah membayar semua kewajiban < 30 hari";
         this.modalKatex.form.push({
@@ -2902,11 +2872,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.aset
         });
         this.modalKatex.indikator = "Likuiditas sebesar 15% dari total simpanan non saham tetapi tidak melampaui 20% dari total aset.";
-
         var _katex1Content13 = "\\text{L1} = \\dfrac{(\\text{" + this.modalKatex.form[0].title + "} + \\text{" + this.modalKatex.form[1].title + "}) - \\text{" + this.modalKatex.form[2].title + "}}{\\text{" + this.modalKatex.form[3].title + "}} \\times \\text{100} \\% = \\text{15} \\% \\text{ Sampai } \\text{20} \\% (\\text{IDEAL})";
-
         var _katex2Content12 = "\\text{L1} = \\dfrac{(\\text{" + this.formatCurrency(this.modalKatex.form[0].value) + "} + \\text{" + this.formatCurrency(this.modalKatex.form[1].value) + "}) - \\text{" + this.formatCurrency(this.modalKatex.form[2].value) + "}}{\\text{" + this.formatCurrency(this.modalKatex.form[3].value) + "}} \\times \\text{100} \\% = " + this.formatPercentage(itemData.l1) + " \\% (\\text{" + (itemData.l1 >= 0.15 && itemData.l1 <= 0.2 ? "IDEAL" : "TIDAK IDEAL") + "})";
-
         this.modalKatex.katex1.push({
           title: "",
           content: _katex1Content13
@@ -2914,7 +2881,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: "",
           content: _katex2Content12
-        }); //s10	
+        });
+
+        //s10	
       } else if (type == 's10') {
         this.modalTitle = 'S10 - Pertumbuhan anggota';
         this.modalKatex.form.push({
@@ -2944,11 +2913,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.total_anggota_lalu
         });
         this.modalKatex.indikator = 'Pertumbuhan anggota di atas 12% per tahun.';
-
         var _katex1Content14 = '\\text{s10} = \\dfrac{\\text{' + this.modalKatex.form[4].title + '} - \\text{' + this.modalKatex.form[5].title + '}}{\\text{' + this.modalKatex.form[5].title + '}} \\times \\text{100} \\% = \\text{Di Atas 12} \\% (\\text{IDEAL})';
-
         var _katex2Content13 = '\\text{s10} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[4].value) + '}} - \\text{' + this.formatCurrency(this.modalKatex.form[5].value) + '}{\\text{' + this.formatCurrency(this.modalKatex.form[5].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.s10) + ' \\% ( \\text{' + (itemData.s10 > 0.12 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
         this.modalKatex.katex1.push({
           title: '',
           content: _katex1Content14
@@ -2956,7 +2922,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: '',
           content: _katex2Content13
-        }); //s11
+        });
+
+        //s11
       } else if (type == 's11') {
         this.modalTitle = 'S11 - Pertumbuhan aset';
         this.modalKatex.form.push({
@@ -2969,11 +2937,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.aset_lalu
         });
         this.modalKatex.indikator = 'Pertumbuhan aset 10% di atas laju inflasi.';
-
         var _katex1Content15 = '\\text{s11} = \\dfrac{\\text{' + this.modalKatex.form[0].title + '} - \\text{' + this.modalKatex.form[1].title + '}}{\\text{' + this.modalKatex.form[1].title + '}} \\times \\text{100} \\% = \\text{10} \\% \\text{ Di Atas Laju Inflasi} (\\text{IDEAL})';
-
         var _katex2Content14 = '\\text{S11} = \\dfrac{\\text{' + this.formatCurrency(this.modalKatex.form[0].value) + '}} - \\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}{\\text{' + this.formatCurrency(this.modalKatex.form[1].value) + '}} \\times \\text{100} \\% = ' + this.formatPercentage(itemData.s11) + ' \\% ( \\text{' + (itemData.s11 > itemData.laju_inflasi + 0.1 ? 'IDEAL' : 'TIDAK IDEAL') + '})';
-
         this.modalKatex.katex1.push({
           title: '',
           content: _katex1Content15
@@ -3060,123 +3025,124 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
 /* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
 /* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_5__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3255,7 +3221,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     updateStat: function updateStat(value) {
       this.modalState = value;
       this.modalButton = 'Ok';
-
       if (value === "success") {
         this.modalTitle = this.updateMessage.message;
         this.modalContent = '';
@@ -3282,7 +3247,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.form.id_laporan = this.$route.params.id;
         this.form.id_user = this.currentUser.id;
         this.form.periode = this.modelLaporan.periode;
-
         if (this.$route.meta.mode == 'detail') {
           this.form.id_cu = this.modelLaporan.id_cu;
           this.form.id_tp = '';
@@ -3292,11 +3256,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           this.form.id_tp = this.modelLaporan.tp.id;
           this.$store.dispatch(this.kelas + '/storeTp', this.form);
         }
-
         this.modalShow = true;
       } else if (type == 'edit') {
         this.formEdit.periode = this.modelLaporan.periode;
-
         if (this.$route.meta.mode == 'detail') {
           this.formEdit.id_cu = this.modelLaporan.id_cu;
           this.formEdit.id_tp = '';
@@ -3307,7 +3269,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           this.$store.dispatch(this.kelas + '/updateTp', [this.formEdit.id, this.formEdit]);
         }
       }
-
       this.modalSize = '';
       this.modalColor = '';
     },
@@ -3406,95 +3367,96 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
 /* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3563,7 +3525,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     updateStat: function updateStat(value) {
       this.modalState = value;
       this.modalButton = 'Ok';
-
       if (value === "success") {
         this.modalTitle = this.updateMessage.message;
         this.modalContent = '';
@@ -3590,7 +3551,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.form.id_laporan = this.$route.params.id;
         this.form.id_user = this.currentUser.id;
         this.form.periode = this.modelLaporan.periode;
-
         if (this.$route.meta.mode == 'detail') {
           this.form.id_cu = this.modelLaporan.id_cu;
           this.form.id_tp = '';
@@ -3600,11 +3560,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           this.form.id_tp = this.modelLaporan.tp.id;
           this.$store.dispatch(this.kelas + '/storeTp', this.form);
         }
-
         this.modalShow = true;
       } else if (type == 'edit') {
         this.formEdit.periode = this.modelLaporan.periode;
-
         if (this.$route.meta.mode == 'detail') {
           this.formEdit.id_cu = this.modelLaporan.id_cu;
           this.formEdit.id_tp = '';
@@ -3615,7 +3573,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           this.$store.dispatch(this.kelas + '/updateTp', [this.formEdit.id, this.formEdit]);
         }
       }
-
       this.modalSize = '';
       this.modalColor = '';
     },
@@ -3714,108 +3671,109 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3837,7 +3795,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         if (this.currentUser.id_cu == 0) {
           this.fetchCU();
         }
-
         this.periode = this.itemData.periode;
         this.changePeriode(this.periode);
       }
@@ -3851,7 +3808,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             this.idCu = this.itemData.tp.id_cu;
           }
         }
-
         this.changeCu(this.idCu);
       }
     },
@@ -4012,6 +3968,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -4049,7 +4006,6 @@ __webpack_require__.r(__webpack_exports__);
     modalTutup: function modalTutup() {},
     checkClass: function checkClass() {
       var className = '';
-
       if (this.isOpposite) {
         if (this.totalData > 0) {
           className = 'bg-danger';
@@ -4067,7 +4023,6 @@ __webpack_require__.r(__webpack_exports__);
           className = 'bg-orange-300';
         }
       }
-
       return className;
     }
   },
@@ -11257,7 +11212,7 @@ var render = function () {
                   _vm._v(
                     " " +
                       _vm._s(_vm._f("percentage")(Math.abs(_vm.totalData), 2)) +
-                      "\t\t\t\t\n\t\t\t\t"
+                      "\t\t\t\t\r\n\t\t\t\t"
                   ),
                 ])
               : _c("span", { staticClass: "opacity-75" }, [
@@ -11274,7 +11229,7 @@ var render = function () {
                           thousandsSeparator: ".",
                         })
                       ) +
-                      "\t\t\t\t\n\t\t\t\t"
+                      "\t\t\t\t\r\n\t\t\t\t"
                   ),
                 ]),
           ]),
@@ -11301,11 +11256,11 @@ var render = function () {
                   ? _c("span", [_vm._v("-")])
                   : _vm._e(),
                 _vm._v(
-                  "\n\t\t\t\t" +
+                  "\r\n\t\t\t\t" +
                     _vm._s(
                       _vm._f("percentage")(Math.abs(_vm.percentageData), 2)
                     ) +
-                    "\n\t\t\t"
+                    "\r\n\t\t\t"
                 ),
               ])
             : _vm._e(),
@@ -11512,8 +11467,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toMulipartedForm", function() { return toMulipartedForm; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "objectToFormData", function() { return objectToFormData; });
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function toMulipartedForm(form, mode) {
   if (mode === 'edit' && typeof form.image === 'string') {
     var temp = JSON.parse(JSON.stringify(form));
@@ -11526,7 +11480,6 @@ function toMulipartedForm(form, mode) {
 function objectToFormData(obj, form, namespace) {
   var fd = form || new FormData();
   var formKey;
-
   for (var property in obj) {
     if (obj.hasOwnProperty(property)) {
       if (namespace) {
@@ -11534,7 +11487,6 @@ function objectToFormData(obj, form, namespace) {
       } else {
         formKey = property;
       }
-
       if (obj[property] instanceof Array) {
         for (var i = 0; i < obj[property].length; i++) {
           objectToFormData(obj[property][i], fd, "".concat(property, "[").concat(i, "]"));
@@ -11546,7 +11498,6 @@ function objectToFormData(obj, form, namespace) {
       }
     }
   }
-
   return fd;
 }
 

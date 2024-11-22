@@ -10,49 +10,50 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -141,44 +142,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -203,9 +205,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     submit: function submit(event) {
       var _this = this;
-
       this.isLoading = true;
-
       for (var i = 0; i < this.files.length; i++) {
         var formData = new FormData();
         formData.append('file', this.files[i]);
@@ -223,15 +223,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           if (response.status == 200) {
             _this.$store.commit('fileUpload/setDataS', response.data.model);
           }
-
           setTimeout(function () {
             _this.$emit("LoadingStat", _this.isLoading);
-
             _this.message = response.data.message;
             _this.progressBar = 0;
-
             _this.reset();
-
             _this.files = [];
           });
         });
@@ -277,109 +273,110 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
 /* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _components_singleFileUpload__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/singleFileUpload */ "./resources/assets/js/components/singleFileUpload.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -433,7 +430,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.modalShow = true;
       this.modalState = value;
       this.modalColor = '';
-
       if (value == "success") {
         this.$store.dispatch('anggotaCuImportEscete/index', [this.currentUser.id_cu]);
         this.$store.dispatch('fileUpload/index', [this.currentUser.id_cu, this.currentUser.id]);
@@ -447,7 +443,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.modalShow = true;
       this.modalState = value;
       this.modalColor = '';
-
       if (value == "success") {
         this.$store.dispatch('anggotaCuImportEscete/index', [this.currentUser.id_cu]);
         this.$store.dispatch('fileUpload/index', [this.currentUser.id_cu, this.currentUser.id]);
@@ -478,25 +473,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     modalOpen: function modalOpen(state, isMobile, itemMobile) {
       this.modalShow = true;
       this.state = state;
-
       if (isMobile) {
         this.selectedItem = itemMobile;
       }
-
       if (state == 'hapus') {
         this.modalState = 'confirm-tutup';
         this.modalColor = '';
         this.modalTitle = 'Hapus file ' + this.selectedItem.file_name + '?';
         this.modalButton = 'Iya, Hapus';
       }
-
       if (state == 'upload_draft') {
         this.modalState = 'confirm-tutup';
         this.modalColor = '';
         this.modalTitle = 'Upload file ke draft?';
         this.modalButton = 'Upload';
       }
-
       if (state == 'simpan_draft') {
         this.modalState = 'confirm-tutup';
         this.modalColor = '';
@@ -506,46 +497,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     modalConfirmOk: function modalConfirmOk() {
       this.modalShow = false;
-
       if (this.state == 'hapus') {
         this.$store.dispatch('fileUpload/destroy', this.selectedItem.id);
       }
-
       if (this.state == 'upload_draft') {
         this.$store.dispatch('anggotaCuImportEscete/draft', [this.currentUser.id_cu, this.currentUser.id]);
       }
-
       if (this.state == 'simpan_draft') {
         this.$store.dispatch('anggotaCuImportEscete/simpanDraft', this.currentUser.id_cu);
       }
     },
     modalTutup: function modalTutup() {
       // if(this.state == 'hapus'){
-      this.modalShow = false; // }
+      this.modalShow = false;
+      // }
     },
     modalBackgroundClick: function modalBackgroundClick() {
       if (this.modalState == 'success') {
         this.modalTutup;
-      } else if (this.modalState == 'loading') {// do nothing
+      } else if (this.modalState == 'loading') {
+        // do nothing
       } else {
         this.modalShow = false;
       }
-
       this.isDisableTablePeserta = false;
     },
     submit: function submit() {
       this.loadingCount = [];
       this.isLoading = true;
       console.log('ya');
-
       if (this.flagProduk == true) {
         this.$refs.formProduk.submit();
       }
-
       if (this.flagAnggota == true) {
         this.$refs.formAnggota.submit();
       }
-
       if (this.flagRekening == true) {
         this.$refs.formRekening.submit();
       }
@@ -554,8 +540,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.loadingCount.push(value);
     },
     setFileCount: function setFileCount(value) {
-      this.isLoading = false; //pengecekan if sesuaikan dengan jumlah file yang mau di upload
-
+      this.isLoading = false;
+      //pengecekan if sesuaikan dengan jumlah file yang mau di upload
       if (this.flagAnggota == false && value.name == 'DATA_ANGGOTA') {
         this.flagAnggota = true;
         this.fileCounter++;
@@ -566,7 +552,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.flagProduk = true;
         this.fileCounter++;
       }
-
       var file = {
         'name': value.name,
         'file': value.file
@@ -584,7 +569,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.flagProduk = false;
         this.fileCounter--;
       }
-
       var i = this.files.map(function (item) {
         return item.name;
       }).indexOf(value);
@@ -593,11 +577,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     setSelectedItem: function setSelectedItem(file) {
       this.selectedItem = file;
     },
-    SimpanDraft: function SimpanDraft() {// console.log(this.currentUser.id_cu);
+    SimpanDraft: function SimpanDraft() {
+      // console.log(this.currentUser.id_cu);
     } //  onCuChange(e){
     // 	console.log(e);
     // }
-
   },
   computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
     currentUser: 'currentUser'
@@ -917,7 +901,7 @@ var render = function () {
               _c("div", { staticClass: "col-sm-12" }, [
                 _c("div", { staticClass: "card card-body" }, [
                   _c("input", {
-                    staticClass: "btn btn-primary ",
+                    staticClass: "btn btn-primary",
                     attrs: {
                       disabled: _vm.isLoading,
                       type: "button",
@@ -958,7 +942,7 @@ var render = function () {
                                   ]),
                                   _vm._v(" "),
                                   _c("input", {
-                                    staticClass: "btn btn-danger ",
+                                    staticClass: "btn btn-danger",
                                     attrs: { type: "button", value: "HAPUS" },
                                     on: {
                                       click: [

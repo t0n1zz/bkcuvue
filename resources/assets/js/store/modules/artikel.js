@@ -33,41 +33,41 @@ export const artikel = {
 
   actions: {
     //load collection with params
-    index( { commit }, p ){
+    index({ commit }, p) {
       commit('setDataStatS', 'loading');
-      
-      
-      ArtikelAPI.index( p )
-        .then( function( response ){
-          commit('setDataS', response.data.model );
+
+
+      ArtikelAPI.index(p)
+        .then(function (response) {
+          commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
         })
-        .catch( error => {
+        .catch(error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
         });
     },
 
     // load by cu
-    indexCu( { commit }, [p, id] ){
+    indexCu({ commit }, [p, id]) {
       commit('setDataStatS', 'loading');
-      
-      ArtikelAPI.indexCu( p, id )
-        .then( function( response ){
+
+      ArtikelAPI.indexCu(p, id)
+        .then(function (response) {
           commit('setDataS', response.data.model);
           commit('setDataStatS', 'success');
         })
-        .catch( error => {
+        .catch(error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
         });
     },
 
-    create( {commit} ){
+    create({ commit }) {
       commit('setDataStat', 'loading');
-      
+
       ArtikelAPI.create()
-        .then( function( response ){
+        .then(function (response) {
           commit('setData', response.data.form);
           commit('setRules', response.data.rules);
           commit('setOptions', response.data.options)
@@ -82,31 +82,31 @@ export const artikel = {
     },
 
     //store data
-    store( {commit, state, dispatch}, form ){
+    store({ commit, state, dispatch }, form) {
       commit('setUpdateStat', 'loading');
 
-      ArtikelAPI.store( form )
-        .then( function( response ){
-          if(response.data.saved){
+      ArtikelAPI.store(form)
+        .then(function (response) {
+          if (response.data.saved) {
             commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
-          }else{
+          } else {
             commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          commit('setUpdate', error.response);   
+          commit('setUpdate', error.response);
           commit('setUpdateStat', 'fail');
         });
     },
 
 
     // edit page
-    edit( {commit}, id ){
+    edit({ commit }, id) {
       commit('setDataStat', 'loading');
-      
-      ArtikelAPI.edit( id )
-        .then( function( response ){
+
+      ArtikelAPI.edit(id)
+        .then(function (response) {
           commit('setData', response.data.form);
           commit('setRules', response.data.rules);
           commit('setOptions', response.data.options)
@@ -121,138 +121,138 @@ export const artikel = {
     },
 
     // update data
-    update( {commit, state, dispatch}, [id, form] ){
+    update({ commit, state, dispatch }, [id, form]) {
       commit('setUpdateStat', 'loading');
 
-      ArtikelAPI.update( id, form )
-        .then( function( response ){
-          if(response.data.saved){
+      ArtikelAPI.update(id, form)
+        .then(function (response) {
+          if (response.data.saved) {
             commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
-          }else{
+          } else {
             commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          commit('setUpdate', error.response);   
+          commit('setUpdate', error.response);
           commit('setUpdateStat', 'fail');
         });
     },
 
-    updateTerbitkan( {commit, state, dispatch}, id ){
+    updateTerbitkan({ commit, state, dispatch }, id) {
       commit('setUpdateStat', 'loading');
 
-      ArtikelAPI.updateTerbitkan( id )
-        .then( function( response ){
-          if(response.data.saved){
+      ArtikelAPI.updateTerbitkan(id)
+        .then(function (response) {
+          if (response.data.saved) {
             commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
-          }else{
+          } else {
             commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          commit('setUpdate', error.response);   
+          commit('setUpdate', error.response);
           commit('setUpdateStat', 'fail');
         });
     },
 
-    updateUtamakan( {commit, state, dispatch}, id ){
+    updateUtamakan({ commit, state, dispatch }, id) {
       commit('setUpdateStat', 'loading');
 
-      ArtikelAPI.updateUtamakan( id )
-        .then( function( response ){
-          if(response.data.saved){
+      ArtikelAPI.updateUtamakan(id)
+        .then(function (response) {
+          if (response.data.saved) {
             commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
-          }else{
+          } else {
             commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          commit('setUpdate', error.response);   
+          commit('setUpdate', error.response);
           commit('setUpdateStat', 'fail');
         });
     },
 
     // destroy data
-    destroy( {commit, state, dispatch}, id ){
+    destroy({ commit, state, dispatch }, id) {
       commit('setUpdateStat', 'loading');
 
-      ArtikelAPI.destroy( id )
-        .then( function( response ){
-          if(response.data.deleted){
+      ArtikelAPI.destroy(id)
+        .then(function (response) {
+          if (response.data.deleted) {
             commit('setUpdate', response.data);
             commit('setUpdateStat', 'success');
-          }else{
+          } else {
             commit('setUpdateStat', 'fail');
           }
         })
         .catch(error => {
-          commit('setUpdate', error.response);         
+          commit('setUpdate', error.response);
           commit('setUpdateStat', 'fail');
         });
     },
 
-    count( { commit } ){
+    count({ commit }) {
       commit('setCountStat', 'loading');
-      
+
       ArtikelAPI.count()
-        .then( function( response ){
+        .then(function (response) {
           commit('setCount', response.data.model);
           commit('setCountStat', 'success');
         })
-        .catch( error => {
+        .catch(error => {
           commit('setCount', error.response);
           commit('setCountStat', 'fail');
         });
     },
 
     // reset
-    resetUpdateStat( {commit} ){
+    resetUpdateStat({ commit }) {
       commit('setUpdateStat', '');
     },
-    resetData( {commit} ){
+    resetData({ commit }) {
       commit('setData', '');
       commit('setDataStat', '');
     },
-    resetDataS( {commit} ){
+    resetDataS({ commit }) {
       commit('setDataS', '');
       commit('setDataStatS', '');
     },
-    
+
   },
 
   // mutations
   mutations: {
-    setData ( state, data ){
+    setData(state, data) {
       state.data = data;
     },
-    setDataS ( state, data ){
+    setDataS(state, data) {
       state.dataS = data;
     },
-    setCount ( state, data ){
+    setCount(state, data) {
       state.count = data;
     },
-    setDataStat( state, status ){
+    setDataStat(state, status) {
       state.dataStat = status;
     },
-    setDataStatS( state, status ){
+    setDataStatS(state, status) {
       state.dataStatS = status;
     },
-    setCountStat( state, status ){
+    setCountStat(state, status) {
       state.countStat = status;
     },
-    setUpdate ( state, data ){
+    setUpdate(state, data) {
       state.update = data;
     },
-    setUpdateStat( state,status ){
+    setUpdateStat(state, status) {
       state.updateStat = status;
     },
-    setRules( state, rules ){
+    setRules(state, rules) {
       state.rules = rules;
     },
-    setOptions( state, options ){
+    setOptions(state, options) {
       state.options = options;
     }
   }

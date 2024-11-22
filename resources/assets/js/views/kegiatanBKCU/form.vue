@@ -872,7 +872,7 @@
 		},
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
-		},
+	},
 		watch: {
 			formStat(value){
 				if(value === "success"){
@@ -1016,6 +1016,9 @@
 			},
 			changeKodeKegiatan(event){
 				this.form.id_kode = event;
+				let selectedItem = this.itemKodeKegiatan.find(item => item.id === Number(this.form.id_kode));
+				this.form.name = selectedItem.name;
+				this.form.kode_diklat = selectedItem.kode;
 			},
 			changeProvinces(id){
 				this.$store.dispatch('regencies/getProvinces', id);

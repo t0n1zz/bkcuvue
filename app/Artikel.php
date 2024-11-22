@@ -34,14 +34,14 @@ class Artikel extends BaseEloquent {
     }
     
     protected $fillable = [
-        'id_cu','id_artikel_kategori','id_artikel_penulis','name','content','terbitkan','gambar','gambar_thumb','utamakan'
+        'id_cu','id_artikel_kategori','id_artikel_penulis','name','content','terbitkan','gambar','gambar_thumb','utamakan','checked'
     ];
 
     protected $allowedFilters = [
         'id','id_cu','id_artikel_kategori','id_artikel_penulis','name','content','terbitkan','gambar','utamakan','created_at','updated_at',
         
         'kategori.name','penulis.name','cu.name'
-    ];
+        ];
 
     protected $orderable = [
         'id','id_cu','id_artikel_kategori','id_artikel_penulis','name','content','terbitkan','gambar','utamakan','created_at','updated_at',
@@ -52,7 +52,7 @@ class Artikel extends BaseEloquent {
     public static function initialize()
     {
         return [
-            'id_cu' => '' , 'id_artikel_kategori' => '','id_artikel_penulis' => '', 'name' => '', 'content' => '', 'terbitkan' => '', 'utamakan' => '', 'gambar' => ''
+            'id_cu' => '' , 'id_artikel_kategori' => '','id_artikel_penulis' => '', 'name' => '', 'content' => '', 'terbitkan' => '', 'utamakan' => '', 'gambar' => '', 'checked' => ''
         ];
     }
 

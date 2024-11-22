@@ -93,6 +93,7 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
             Route::get('/artikel', 'ArtikelController@index');
             Route::get('/artikel/indexCu/{id}', 'ArtikelController@indexCu');
             Route::post('/artikel/upload', 'ArtikelController@upload');
+            Route::post('/artikel/deleteImage', 'ArtikelController@deleteImage');
         });
         Route::group(['middleware' => ['permission:create_artikel']], function () {
             Route::get('/artikel/create', 'ArtikelController@create');

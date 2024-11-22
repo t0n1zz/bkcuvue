@@ -22,6 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     id: {
@@ -36,7 +37,6 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     btnClick: function btnClick() {
       var _this = this;
-
       if (this.clicked) {
         setTimeout(function () {
           return _this.clicked = false;
@@ -67,90 +67,91 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tablePearls_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./tablePearls.vue */ "./resources/assets/js/views/laporanCu/tablePearls.vue");
 /* harmony import */ var _infografis_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./infografis.vue */ "./resources/assets/js/views/laporanCu/infografis.vue");
 /* harmony import */ var _infografisPearls_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./infografisPearls.vue */ "./resources/assets/js/views/laporanCu/infografisPearls.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -200,7 +201,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         if (!this.currentUser.can || !this.currentUser.can[permission]) {
           this.$router.push('/notFound');
         }
-
         if (!id_cu || this.currentUser.id_cu) {
           if (this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu) {
             this.$router.push('/notFound');
@@ -230,15 +230,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     changeTab: function changeTab(value) {
       this.tabName = value;
-
       if (value == 'tablePearls' && !this.isTablePearls) {
         this.isTablePearls = true;
       }
-
       if (value == 'infografis' && !this.isInfografis) {
         this.isInfografis = true;
       }
-
       if (value == 'infografisPearls' && !this.isInfografisPearls) {
         this.isInfografisPearls = true;
       }
@@ -266,136 +263,137 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['kelas', 'path'],
@@ -456,7 +454,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         } else {
           this.periodeTp = this.modelPeriodeTp[0].periode;
         }
-
         this.changeTpPeriode(this.periodeTp);
       }
     }
@@ -526,7 +523,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       } else {
         this.fetchPeriode();
       }
-
       this.idTp = '';
     },
     changeTp: function changeTp(value) {
@@ -561,7 +557,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     classTp: function classTp() {
       var className = '';
-
       if (this.currentUser.id_cu == 0) {
         className = 'col-sm-5';
       } else {
@@ -571,7 +566,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           className = 'col-sm-12';
         }
       }
-
       return className;
     }
   },
@@ -614,306 +608,307 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
 /* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
 /* harmony import */ var _components_collapseButton_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/collapseButton.vue */ "./resources/assets/js/components/collapseButton.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -990,7 +985,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     updateStat: function updateStat(value) {
       this.modalState = value;
       this.modalButton = "Ok";
-
       if (value === "success") {
         this.modalTitle = this.updateMessage.message;
         this.modalContent = "";
@@ -1004,7 +998,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     updateStatTp: function updateStatTp(value) {
       this.modalState = value;
       this.modalButton = "Ok";
-
       if (value === "success") {
         this.modalTitle = this.updateMessageTp.message;
         this.modalContent = "";
@@ -1020,9 +1013,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     fetch: function fetch(params) {
       var i;
       this.checkProfile();
-
       if (this.$route.meta.mode == "periode") {
         // laporan cu with periode
+
         for (i = 0; i < this.columnData.length; i++) {
           if ([2].includes(i)) {
             this.columnData[i].disable = true;
@@ -1030,7 +1023,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             this.columnData[i].disable = false;
           }
         }
-
         this.$store.dispatch(this.kelas + "/indexPeriode", [params, this.$route.params.periode]);
         this.excelDownloadUrl = this.kelas + '/indexPeriode/' + this.$route.params.periode;
         this.periode = this.$route.params.periode;
@@ -1042,14 +1034,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             this.columnData[i].disable = false;
           }
         }
-
         if (this.$route.params.tp == "konsolidasi") {
           //laporan cu konsolidasi per cu
+
           this.$store.dispatch(this.kelas + "/indexCu", [params, this.$route.params.cu]);
           this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu;
           this.periode = '';
         } else {
           // laporan tp/kp per tp
+
           for (i = 0; i < this.columnData.length; i++) {
             if ([1, 2, 3, 4, 6].includes(i)) {
               this.columnData[i].disable = true;
@@ -1057,13 +1050,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               this.columnData[i].disable = false;
             }
           }
-
           this.$store.dispatch(this.kelas + "/indexTp", [params, this.$route.params.tp]);
           this.excelDownloadUrl = 'laporanTp' + '/indexTp/' + this.$route.params.tp;
           this.periode = '';
         }
       } else if (this.$route.meta.mode == "cuPeriode") {
         // laporan tp/kp semua tp
+
         for (i = 0; i < this.columnData.length; i++) {
           if ([1, 3, 4, 6].includes(i)) {
             this.columnData[i].disable = true;
@@ -1071,12 +1064,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             this.columnData[i].disable = false;
           }
         }
-
         this.$store.dispatch(this.kelas + "/indexTpPeriode", [params, this.$route.params.cu, this.$route.params.periode]);
         this.excelDownloadUrl = 'laporanTp' + '/indexCu/' + this.$route.params.cu + '/' + this.$route.params.periode;
         this.periode = this.$route.params.periode;
       } else {
         // laporan cu default
+
         for (i = 0; i < this.columnData.length; i++) {
           if ([2].includes(i)) {
             this.columnData[i].disable = true;
@@ -1084,15 +1077,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             this.columnData[i].disable = false;
           }
         }
-
-        this.$store.dispatch(this.kelas + "/index", params); // this.$store.dispatch(this.kelas + "/indexTotal");
-
+        this.$store.dispatch(this.kelas + "/index", params);
+        // this.$store.dispatch(this.kelas + "/indexTotal");
         this.excelDownloadUrl = this.kelas;
       }
     },
     fetchLaporanCuDraft: function fetchLaporanCuDraft() {
       var _this = this;
-
       if (this.currentUser.can['upload_laporan_cu']) {
         axios.get('/api/laporanCuDraft/count').then(function (response) {
           _this.laporanCuDraftCount = response.data.model;
@@ -1105,7 +1096,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     fetchLaporanTpDraft: function fetchLaporanTpDraft() {
       var _this2 = this;
-
       if (this.currentUser.can['upload_laporan_tp']) {
         axios.get('/api/laporanTpDraft/count').then(function (response) {
           _this2.laporanTpDraftCount = response.data.model;
@@ -1133,7 +1123,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             name: "notFound"
           });
         }
-
         this.excelUploads[0].url = 'laporanCu/uploadExcel';
         this.excelUploads[0].format_url = 'formatLaporanCu.xlsx';
         this.excelUploads[1].url = 'laporanTp/uploadExcel';
@@ -1144,13 +1133,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.excelUploads[1].url = 'laporanTp/uploadExcelAll';
         this.excelUploads[1].format_url = 'formatLaporanTpSemua.xlsx';
       }
-
       if (this.currentUser.can['upload_laporan_cu']) {
         this.excelUploads[0].enabled = true;
       } else {
         this.excelUploads[0].enabled = false;
       }
-
       if (this.currentUser.can['upload_laporan_tp']) {
         this.excelUploads[1].enabled = true;
       } else {
@@ -1208,7 +1195,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     columnGroup: function columnGroup(value) {
       var i;
-
       if (value == 'anggota') {
         for (i = 0; i < this.columnData.length; i++) {
           if ([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 48, 49].includes(i)) {
@@ -1252,11 +1238,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.modalColor = "";
       this.modalState = "confirm-tutup";
       this.state = state;
-
       if (isMobile) {
         this.selectedItem = itemMobile;
       }
-
       if (state == "hapus") {
         this.modalTitle = "Hapus " + this.title + " ?";
         this.modalButton = "Iya, Hapus";
@@ -1329,171 +1313,172 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_collapseButton_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/collapseButton.vue */ "./resources/assets/js/components/collapseButton.vue");
 /* harmony import */ var _formKatex_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./formKatex.vue */ "./resources/assets/js/views/laporanCu/formKatex.vue");
 /* harmony import */ var _itemPearls_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./itemPearls.vue */ "./resources/assets/js/views/laporanCu/itemPearls.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -1556,7 +1541,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     updateStat: function updateStat(value) {
       this.modalState = value;
       this.modalButton = "Ok";
-
       if (value === "success") {
         this.modalTitle = this.updateMessage.message;
         this.modalContent = "";
@@ -1570,7 +1554,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     updateTpStat: function updateTpStat(value) {
       this.modalState = value;
       this.modalButton = "Ok";
-
       if (value === "success") {
         this.modalTitle = this.updateTpMessage.message;
         this.modalContent = "";
@@ -1592,7 +1575,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.columnData[24].disable = false;
       this.columnData[25].disable = false;
       this.columnData[26].disable = false;
-
       if (this.$route.meta.mode == "periode") {
         this.columnData[1].disable = false;
         this.columnData[3].disable = false;
@@ -1600,12 +1582,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.columnData[5].disable = false;
         this.columnData[6].disable = false;
         this.columnData[2].disable = true;
-        this.$store.dispatch(this.kelas + "/indexPearlsPeriode", [params, this.$route.params.periode]); // default route
+        this.$store.dispatch(this.kelas + "/indexPearlsPeriode", [params, this.$route.params.periode]);
+
+        // default route
       } else if (this.$route.meta.mode == "cu") {
         this.columnData[1].disable = true;
         this.columnData[3].disable = true;
         this.columnData[4].disable = true;
-
         if (this.$route.params.tp == "konsolidasi") {
           this.columnData[2].disable = false;
           this.columnData[5].disable = false;
@@ -1674,7 +1657,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.modalState = "normal1";
       this.modalKatex.id = itemData.id;
       this.modalKatex.periode = itemData.periode;
-
       if (itemData.id_tp) {
         this.modalKatex.id_cu = itemData.tp.id_cu;
         this.modalKatex.no_ba = itemData.tp.cu.no_ba;
@@ -1686,15 +1668,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.no_tp = '';
         this.modalKatex.id_cu = itemData.id_cu;
         this.modalKatex.no_ba = itemData.no_ba;
-
         if (itemData.cu) {
           this.modalKatex.section = 'CU ' + itemData.cu.name + ' periode ' + this.formatPeriode(itemData.periode);
         } else {
           this.modalKatex.section = 'CU ' + itemData.cu_name + ' periode ' + this.formatPeriode(itemData.periode);
         }
-      } // p1
+      }
 
-
+      // p1
       if (type == "p1") {
         this.modalTitle = "P1 - Provisi pinjaman lalai di atas 12 bulan";
         this.modalKatex.form.push({
@@ -1716,7 +1697,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: "",
           content: katex2Content1
-        }); // p2
+        });
+
+        // p2
       } else if (type == "p2") {
         this.modalTitle = "P2 -  Provisi pinjaman lalai 1 - 12 bulan";
         this.modalKatex.form.push({
@@ -1733,16 +1716,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.piutang_lalai_1bulan
         });
         this.modalKatex.indikator = "35% provisi tersedia untuk pinjaman lalai 1 – 12 bulan dan setiap triwulan dilakukan charge off dari waktu ke waktu";
-
         var _katex1Content = "\\text{P2} = \\dfrac{\\text{Saldo Cadangan Resiko setelah P1}[\\text{" + this.modalKatex.form[0].title + "} - \\text{" + this.modalKatex.form[1].title + "}]}{\\text{" + this.modalKatex.form[2].title + "}} \\times \\text{100} \\% = \\text{Di Atas 35} \\% (\\text{IDEAL})";
-
         var _katex2Content = "\\text{P2} = \\dfrac{" + this.formatCurrency(this.modalKatex.form[0].value) + " - \\text{" + this.formatCurrency(this.modalKatex.form[1].value) + "}}{\\text{" + this.formatCurrency(this.modalKatex.form[2].value) + "}} \\times \\text{100} \\% = " + this.formatPercentage(itemData.p2) + " \\% (\\text{" + (itemData.p2 >= 0.35 ? "IDEAL" : "TIDAK IDEAL") + "})";
-
         this.modalKatex.katex1.push({
           title: "",
           content: _katex1Content
         });
-
         if (itemData.p1 >= 1) {
           this.modalKatex.katex2.push({
             title: "",
@@ -1753,11 +1732,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             title: "Karena tidak ada saldo cadangan resiko setelah P1, maka P2 (TIDAK IDEAL)",
             content: _katex2Content
           });
-        } // e1
+        }
 
+        // e1
       } else if (type == "e1") {
         this.modalTitle = "E1 - Piutang bersih / total aset";
-
         if (itemData.p1 >= 1 && itemData.p2 > 0.35) {
           this.modalKatex.form.push({
             title: "Piutang Beredar",
@@ -1791,13 +1770,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             value: itemData.aset
           });
         }
-
         this.modalKatex.indikator = "Rasio Piutang Bersih adalah 70% – 80% dari total aset dan portofolio pinjaman beragam dengan setidaknya 5 macam produk pinjaman yang berbeda";
         var _katex1Content2 = "\\text{E1} = \\dfrac{\\text{Piutang Beredar} - ((\\text{100} \\% \\times \\text{Piutang Lalai Di Atas 12 Bulan}) + (\\text{35} \\% \\times \\text{Piutang Lalai 1 - 12 Bulan}))}{\\text{Aset}} \\times \\text{100} \\% = \\text{70} \\% \\text{ Sampai } \\text{80} \\% (\\text{IDEAL})";
         var katex1Content2 = "\\text{E1} = \\dfrac{\\text{Piutang Beredar} - \\text{Cadangan Resiko}}{\\text{Aset}} \\times \\text{100} \\% = \\text{70} \\% \\text{ Sampai } \\text{80} \\% (\\text{IDEAL})";
         var _katex2Content2 = "";
         var katex2Title1 = "";
-
         if (itemData.p1 >= 1 && itemData.p2 > 0.35) {
           katex2Title1 = "Dikarenakan P1 dan P2 (IDEAL), maka rumus yang digunakan adalah rumus 1";
           _katex2Content2 = "\\text{E1} = \\dfrac{\\text{" + this.formatCurrency(this.modalKatex.form[0].value) + "} - ((\\text{100} \\% \\times \\text{" + this.formatCurrency(this.modalKatex.form[1].value) + "}) + (\\text{35} \\% \\times \\text{" + this.formatCurrency(this.modalKatex.form[2].value) + "}))}{\\text{" + this.formatCurrency(this.modalKatex.form[3].value) + "}} \\times \\text{100} \\% = " + this.formatPercentage(itemData.e1) + " \\% (\\text{" + (itemData.e1 >= 0.7 && itemData.e1 <= 0.8 ? "IDEAL" : "TIDAK IDEAL") + "})";
@@ -1805,7 +1782,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           katex2Title1 = "Dikarenakan P1 dan P2 (TIDAK IDEAL), maka rumus yang digunakan adalah rumus 2";
           _katex2Content2 = "\\text{E1} = \\dfrac{\\text{" + this.formatCurrency(this.modalKatex.form[0].value) + "} - \\text{" + this.formatCurrency(this.modalKatex.form[1].value) + "}}{\\text{" + this.formatCurrency(this.modalKatex.form[2].value) + "}} \\times \\text{100} \\% = " + this.formatPercentage(itemData.e1) + " \\% (\\text{" + (itemData.e1 >= 0.7 && itemData.e1 <= 0.8 ? "IDEAL" : "TIDAK IDEAL") + "})";
         }
-
         this.modalKatex.katex1.push({
           title: "Rumus 1 - apabila P1 dan P2 (IDEAL)",
           content: _katex1Content2
@@ -1816,7 +1792,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: katex2Title1,
           content: _katex2Content2
-        }); // e5
+        });
+
+        // e5
       } else if (type == "e5") {
         this.modalTitle = "E5 - Simpanan non saham / total aset";
         this.modalKatex.form.push({
@@ -1833,11 +1811,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.aset
         });
         this.modalKatex.indikator = "Rasio 70% – 80% dari total aset dan memiliki beragam jenis simpanan minimal 5 jenis produk simpanan yang berbeda.";
-
         var _katex1Content3 = "\\text{E5} = \\dfrac{\\text{" + this.modalKatex.form[0].title + "} + \\text{" + this.modalKatex.form[1].title + "}}{\\text{" + this.modalKatex.form[2].title + "}} \\times \\text{100} \\% = \\text{70} \\% \\text{ Sampai } \\text{80} \\%(\\text{IDEAL})";
-
         var _katex2Content3 = "\\text{E5} = \\dfrac{\\text{" + this.formatCurrency(this.modalKatex.form[0].value) + "} + \\text{" + this.formatCurrency(this.modalKatex.form[1].value) + "}}{\\text{" + this.formatCurrency(this.modalKatex.form[2].value) + "}} \\times \\text{100} \\% = " + this.formatPercentage(itemData.e5) + " \\% (\\text{" + (itemData.e5 >= 0.7 && itemData.e5 <= 0.8 ? "IDEAL" : "TIDAK IDEAL") + "})";
-
         this.modalKatex.katex1.push({
           title: "",
           content: _katex1Content3
@@ -1845,7 +1820,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: "",
           content: _katex2Content3
-        }); // e6
+        });
+
+        // e6
       } else if (type == "e6") {
         this.modalTitle = "E6 - Pinjaman kepada pihak luar terhadap total aset";
         this.modalKatex.form.push({
@@ -1858,11 +1835,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.aset
         });
         this.modalKatex.indikator = "Jumlah pinjaman kepada pihak eksternal 1% – 5% dari total aset.";
-
         var _katex1Content4 = "\\text{E6} = \\dfrac{\\text{" + this.modalKatex.form[0].title + "}}{\\text{" + this.modalKatex.form[1].title + "}} \\times \\text{100} \\% = \\text{Kurang Dari Sama Dengan 5} \\% (\\text{IDEAL})";
-
         var _katex2Content4 = "\\text{E6} = \\dfrac{\\text{" + this.formatCurrency(this.modalKatex.form[0].value) + "}}{\\text{" + this.formatCurrency(this.modalKatex.form[1].value) + "}} \\times \\text{100} \\% = " + this.formatPercentage(itemData.e6) + " \\% ( \\text{" + (itemData.e6 <= 0.05 ? "IDEAL" : "TIDAK IDEAL") + "})";
-
         this.modalKatex.katex1.push({
           title: "",
           content: _katex1Content4
@@ -1870,7 +1844,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: "",
           content: _katex2Content4
-        }); // e7
+        });
+
+        // e7
       } else if (type == "e7") {
         this.modalTitle = "E7 - Persentase total aset yang didanai dari simpanan saham";
         this.modalKatex.form.push({
@@ -1883,11 +1859,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.aset
         });
         this.modalKatex.indikator = "10-20% total aset yang didanai dari simpanan saham";
-
         var _katex1Content5 = "\\text{E7} = \\dfrac{\\text{" + this.modalKatex.form[0].title + "}}{\\text{" + this.modalKatex.form[1].title + "}} \\times \\text{100} \\% = \\text{10} \\% \\text{ Sampai } \\text{20} \\%(\\text{IDEAL})";
-
         var _katex2Content5 = "\\text{E7} = \\dfrac{" + this.formatCurrency(this.modalKatex.form[0].value) + "}{\\text{" + this.formatCurrency(this.modalKatex.form[1].value) + "}} \\times \\text{100} \\% = " + this.formatPercentage(itemData.e7) + " \\% (\\text{" + (itemData.e7 >= 0.1 && itemData.e7 <= 0.2 ? "IDEAL" : "TIDAK IDEAL") + "})";
-
         this.modalKatex.katex1.push({
           title: "",
           content: _katex1Content5
@@ -1895,7 +1868,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: "",
           content: _katex2Content5
-        }); // e9
+        });
+
+        // e9
       } else if (type == "e9") {
         this.modalTitle = "E9 - Modal lembaga bersih";
         this.modalKatex.form.push({
@@ -1936,11 +1911,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.aset
         });
         this.modalKatex.indikator = "Modal lembaga bersih sebesar 10% dari total aset.";
-
         var _katex1Content6 = "\\text{E9} = \\dfrac{(\\text{" + this.modalKatex.form[0].title + "} + \\text{" + this.modalKatex.form[1].title + "} + \\text{" + this.modalKatex.form[2].title + "} + \\text{" + this.modalKatex.form[3].title + "} + \\text{" + this.modalKatex.form[4].title + "}) - ((\\text{100} \\% \\times \\text{" + this.modalKatex.form[5].title + "}) + (\\text{35} \\% \\times \\text{" + this.modalKatex.form[6].title + "}) + \\text{" + this.modalKatex.form[7].title + "})}{\\text{" + this.modalKatex.form[8].title + "}} \\times \\text{100} \\% = \\text{Lebih Dari Sama Dengan 10} \\% (\\text{IDEAL})";
-
         var _katex2Content6 = "\\text{E9} = \\dfrac{(\\text{" + this.formatCurrency(this.modalKatex.form[0].value) + "} + \\text{" + this.formatCurrency(this.modalKatex.form[1].value) + "} + \\text{" + this.formatCurrency(this.modalKatex.form[2].value) + "} + \\text{" + this.formatCurrency(this.modalKatex.form[3].value) + "} + \\text{" + this.formatCurrency(this.modalKatex.form[4].value) + "}) - ((\\text{100} \\% \\times \\text{" + this.formatCurrency(this.modalKatex.form[5].value) + "}) + (\\text{35} \\% \\times \\text{" + this.formatCurrency(this.modalKatex.form[6].value) + "}) + \\text{" + this.formatCurrency(this.modalKatex.form[7].value) + "})}{\\text{" + this.formatCurrency(this.modalKatex.form[8].value) + "}} \\times \\text{100} \\% = " + this.formatPercentage(itemData.e9) + " \\% ( \\text{" + (itemData.e9 >= 0.1 ? "IDEAL" : "TIDAK IDEAL") + "})";
-
         this.modalKatex.katex1.push({
           title: "",
           content: _katex1Content6
@@ -1948,7 +1920,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: "",
           content: _katex2Content6
-        }); // a1
+        });
+
+        // a1
       } else if (type == "a1") {
         this.modalTitle = "A1 - Total pinjaman lalai / total pinjaman beredar";
         this.modalKatex.form.push({
@@ -1965,11 +1939,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.piutang_beredar
         });
         this.modalKatex.indikator = "Total pinjaman lalai &le; 5% dari total pinjaman beredar.";
-
         var _katex1Content7 = "\\text{A1} = \\dfrac{\\text{Total Pinjaman Lalai}[\\text{" + this.modalKatex.form[0].title + "} + \\text{" + this.modalKatex.form[1].title + "}]}{\\text{" + this.modalKatex.form[2].title + "}} \\times \\text{100} \\% = \\text{Kurang Dari Sama Dengan 5} \\% (\\text{IDEAL})";
-
         var _katex2Content7 = "\\text{A1} = \\dfrac{\\text{" + this.formatCurrency(this.modalKatex.form[0].value) + "} + \\text{" + this.formatCurrency(this.modalKatex.form[1].value) + "}}{\\text{" + this.formatCurrency(this.modalKatex.form[2].value) + "}} \\times \\text{100} \\% = " + this.formatPercentage(itemData.a1) + " \\% ( \\text{" + (itemData.a1 <= 0.05 ? "IDEAL" : "TIDAK IDEAL") + "})";
-
         this.modalKatex.katex1.push({
           title: "",
           content: _katex1Content7
@@ -1977,7 +1948,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: "",
           content: _katex2Content7
-        }); // a2
+        });
+
+        // a2
       } else if (type == "a2") {
         this.modalTitle = "A2 - Aset yang tidak menghasilkan / total aset";
         this.modalKatex.form.push({
@@ -1990,11 +1963,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.aset
         });
         this.modalKatex.indikator = "Aset tidak menghasilkan 5% dari total aset.";
-
         var _katex1Content8 = "\\text{A2} = \\dfrac{\\text{" + this.modalKatex.form[0].title + "}}{\\text{" + this.modalKatex.form[1].title + "}} \\times \\text{100} \\% = \\text{Kurang Dari Sama Dengan 5} \\% (\\text{IDEAL})";
-
         var _katex2Content8 = "\\text{A2} = \\dfrac{\\text{" + this.formatCurrency(this.modalKatex.form[0].value) + "}}{\\text{" + this.formatCurrency(this.modalKatex.form[1].value) + "}} \\times \\text{100} \\% = " + this.formatPercentage(itemData.a2) + " \\% ( \\text{" + (itemData.a2 <= 0.05 ? "IDEAL" : "TIDAK IDEAL") + "})";
-
         this.modalKatex.katex1.push({
           title: "",
           content: _katex1Content8
@@ -2002,7 +1972,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: "",
           content: _katex2Content8
-        }); // r7
+        });
+
+        // r7
       } else if (type == "r7") {
         this.modalTitle = "R7 - BJS saham terhadap rata-rata aset";
         this.modalKatex.form.push({
@@ -2027,12 +1999,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.harga_pasar
         });
         this.modalKatex.indikator = "Dividen saham dibayar 1% lebih tinggi daripada suku bunga pasar";
-
         if (itemData.simpanan_saham_des != 0) {
           var _katex1Content9 = "\\text{R7} = \\dfrac{\\text{" + this.modalKatex.form[0].title + "}}{\\text{Simpanan Saham Rata-rata}(\\frac{\\text{" + this.modalKatex.form[1].title + "} + \\text{" + this.modalKatex.form[2].title + "}}{\\text{Jumlah Bulan Berjalan}} \\times \\text{12})} \\times \\text{100} \\% = \\text{Harga Pasar} \\% (\\text{IDEAL})";
-
           var _katex2Content9 = "\\text{R7} = \\dfrac{\\text{" + this.formatCurrency(this.modalKatex.form[0].value) + "}}{(\\frac{\\text{" + this.formatCurrency(this.modalKatex.form[1].value) + "} + \\text{" + this.formatCurrency(this.modalKatex.form[2].value) + "}}{\\text{" + this.formatPeriodeMonth(itemData.periode) + "}} \\times \\text{12})} \\times \\text{100} \\% = " + this.formatPercentage(itemData.r7_1) + " \\% ( \\text{" + (itemData.r7_1 == itemData.harga_pasar ? "IDEAL" : "TIDAK IDEAL") + "})";
-
           this.modalKatex.katex1.push({
             title: "Jika simpanan saham bersumber dari saldo bulan desember tahun lalu",
             content: _katex1Content9
@@ -2042,10 +2011,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             content: _katex2Content9
           });
         }
-
         if (itemData.simpanan_saham_lalu != 0) {
           var _katex1Content10 = "\\text{R7} = \\dfrac{\\text{" + this.modalKatex.form[0].title + "}}{\\text{Simpanan Saham Rata-rata}(\\frac{\\text{" + this.modalKatex.form[3].title + "} + \\text{" + this.modalKatex.form[2].title + "}}{\\text{2}})} \\times \\text{100} \\% = \\text{Harga Pasar} \\% (\\text{IDEAL})";
-
           var katex2Content2 = "\\text{R7} = \\dfrac{\\text{" + this.formatCurrency(this.modalKatex.form[0].value) + "}}{(\\frac{\\text{" + this.formatCurrency(this.modalKatex.form[3].value) + "} + \\text{" + this.formatCurrency(this.modalKatex.form[2].value) + "}}{\\text{2}})} \\times \\text{100} \\% = " + this.formatPercentage(itemData.r7_2) + " \\% ( \\text{" + (itemData.r7_2 == itemData.harga_pasar ? "IDEAL" : "TIDAK IDEAL") + "})";
           this.modalKatex.katex1.push({
             title: "Jika simpanan saham bersumber dari saldo tahun lalu bulan " + this.formatPeriodeMonth(itemData.periode),
@@ -2055,8 +2022,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             title: "",
             content: katex2Content2
           });
-        } //r9
+        }
 
+        //r9
       } else if (type == "r9") {
         this.modalTitle = "R9 - Biaya operasional terhadap rata-rata aset";
         this.modalKatex.form.push({
@@ -2077,11 +2045,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.aset_lalu
         });
         this.modalKatex.indikator = "Beban operasional terhadap rata-rata aset sebesar 5%.";
-
         var _katex1Content11 = "\\text{R9} = \\dfrac{\\text{Beban Operasional}(\\text{" + this.modalKatex.form[0].title + "} - \\text{" + this.modalKatex.form[1].title + "})}{\\text{Rata-rata Aset}(\\frac{\\text{" + this.modalKatex.form[2].title + "} + \\text{" + this.modalKatex.form[3].title + "}}{\\text{2}})} \\times \\text{100} \\% <= \\text{5} \\% (\\text{IDEAL})";
-
         var _katex2Content10 = "\\text{R9} = \\dfrac{\\text{" + this.formatCurrency(this.modalKatex.form[0].value) + "} - \\text{" + this.formatCurrency(this.modalKatex.form[1].value) + "}}{\\frac{\\text{" + this.formatCurrency(this.modalKatex.form[2].value) + "} + \\text{" + this.formatCurrency(this.modalKatex.form[3].value) + "}}{\\text{2}}} \\times \\text{100} \\% = " + this.formatPercentage(itemData.r9) + " \\% ( \\text{" + (itemData.r9 <= 0.05 ? "IDEAL" : "TIDAK IDEAL") + "})";
-
         this.modalKatex.katex1.push({
           title: "",
           content: _katex1Content11
@@ -2089,7 +2054,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: "",
           content: _katex2Content10
-        }); //l1
+        });
+
+        //l1
       } else if (type == "l1") {
         this.modalTitle = "L1 - (investasi likuid + aset-aset likuid - hutang jangka pendek < 30 hari) / simpanan non saham";
         this.modalKatex.form.push({
@@ -2110,11 +2077,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.tot_nonsaham
         });
         this.modalKatex.indikator = "Likuiditas sebesar 15% dari total simpanan non saham tetapi tidak melampaui 20% dari total aset.";
-
         var _katex1Content12 = "\\text{L1} = \\dfrac{(\\text{" + this.modalKatex.form[0].title + "} + \\text{" + this.modalKatex.form[1].title + "}) - \\text{" + this.modalKatex.form[2].title + "}}{\\text{" + this.modalKatex.form[3].title + "}} \\times \\text{100} \\% = \\text{15} \\% \\text{ Sampai } \\text{20} \\% (\\text{IDEAL})";
-
         var _katex2Content11 = "\\text{L1} = \\dfrac{(\\text{" + this.formatCurrency(this.modalKatex.form[0].value) + "} + \\text{" + this.formatCurrency(this.modalKatex.form[1].value) + "}) - \\text{" + this.formatCurrency(this.modalKatex.form[2].value) + "}}{\\text{" + this.formatCurrency(this.modalKatex.form[3].value) + "}} \\times \\text{100} \\% = " + this.formatPercentage(itemData.l1) + " \\% (\\text{" + (itemData.l1 >= 0.15 && itemData.l1 <= 0.2 ? "IDEAL" : "TIDAK IDEAL") + "})";
-
         this.modalKatex.katex1.push({
           title: "",
           content: _katex1Content12
@@ -2122,7 +2086,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: "",
           content: _katex2Content11
-        }); //l2
+        });
+
+        //l2
       } else if (type == "l2") {
         this.modalTitle = "L2 - Likuiditas untuk memenuhi permintaan penarikan setelah membayar semua kewajiban < 30 hari";
         this.modalKatex.form.push({
@@ -2143,11 +2109,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.aset
         });
         this.modalKatex.indikator = "Likuiditas sebesar 15% dari total simpanan non saham tetapi tidak melampaui 20% dari total aset.";
-
         var _katex1Content13 = "\\text{L1} = \\dfrac{(\\text{" + this.modalKatex.form[0].title + "} + \\text{" + this.modalKatex.form[1].title + "}) - \\text{" + this.modalKatex.form[2].title + "}}{\\text{" + this.modalKatex.form[3].title + "}} \\times \\text{100} \\% = \\text{15} \\% \\text{ Sampai } \\text{20} \\% (\\text{IDEAL})";
-
         var _katex2Content12 = "\\text{L1} = \\dfrac{(\\text{" + this.formatCurrency(this.modalKatex.form[0].value) + "} + \\text{" + this.formatCurrency(this.modalKatex.form[1].value) + "}) - \\text{" + this.formatCurrency(this.modalKatex.form[2].value) + "}}{\\text{" + this.formatCurrency(this.modalKatex.form[3].value) + "}} \\times \\text{100} \\% = " + this.formatPercentage(itemData.l1) + " \\% (\\text{" + (itemData.l1 >= 0.15 && itemData.l1 <= 0.2 ? "IDEAL" : "TIDAK IDEAL") + "})";
-
         this.modalKatex.katex1.push({
           title: "",
           content: _katex1Content13
@@ -2155,7 +2118,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: "",
           content: _katex2Content12
-        }); //s10
+        });
+
+        //s10
       } else if (type == "s10") {
         this.modalTitle = "S10 - Pertumbuhan anggota";
         this.modalKatex.form.push({
@@ -2185,11 +2150,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.total_anggota_lalu
         });
         this.modalKatex.indikator = "Pertumbuhan anggota di atas 12% per tahun.";
-
         var _katex1Content14 = "\\text{s10} = \\dfrac{\\text{" + this.modalKatex.form[4].title + "} - \\text{" + this.modalKatex.form[5].title + "}}{\\text{" + this.modalKatex.form[5].title + "}} \\times \\text{100} \\% = \\text{Di Atas 12} \\% (\\text{IDEAL})";
-
         var _katex2Content13 = "\\text{s10} = \\dfrac{\\text{" + this.formatCurrency(this.modalKatex.form[4].value) + "} - \\text{" + this.formatCurrency(this.modalKatex.form[5].value) + "}}{\\text{" + this.formatCurrency(this.modalKatex.form[5].value) + "}} \\times \\text{100} \\% = " + this.formatPercentage(itemData.s10) + " \\% ( \\text{" + (itemData.s10 > 0.12 ? "IDEAL" : "TIDAK IDEAL") + "})";
-
         this.modalKatex.katex1.push({
           title: "",
           content: _katex1Content14
@@ -2197,7 +2159,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalKatex.katex2.push({
           title: "",
           content: _katex2Content13
-        }); //s11
+        });
+
+        //s11
       } else if (type == "s11") {
         this.modalTitle = "S11 - Pertumbuhan aset";
         this.modalKatex.form.push({
@@ -2210,11 +2174,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: itemData.aset_lalu
         });
         this.modalKatex.indikator = "Pertumbuhan aset 10% di atas laju inflasi.";
-
         var _katex1Content15 = "\\text{s11} = \\dfrac{\\text{" + this.modalKatex.form[0].title + "} - \\text{" + this.modalKatex.form[1].title + "}}{\\text{" + this.modalKatex.form[1].title + "}} \\times \\text{100} \\% = \\text{10} \\% \\text{ Di Atas Laju Inflasi} (\\text{IDEAL})";
-
         var _katex2Content14 = "\\text{S11} = \\dfrac{\\text{" + this.formatCurrency(this.modalKatex.form[0].value) + "} - \\text{" + this.formatCurrency(this.modalKatex.form[1].value) + "}}{\\text{" + this.formatCurrency(this.modalKatex.form[1].value) + "}} \\times \\text{100} \\% = " + this.formatPercentage(itemData.s11) + " \\% ( \\text{" + (itemData.s11 > itemData.laju_inflasi + 0.1 ? "IDEAL" : "TIDAK IDEAL") + "})";
-
         this.modalKatex.katex1.push({
           title: "",
           content: _katex1Content15
@@ -2235,11 +2196,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.modalShow = true;
       this.modalState = "confirm-tutup";
       this.source = source;
-
       if (isMobile) {
         this.selectedItem = itemMobile;
       }
-
       if (source == "hapus") {
         this.modalTitle = "Hapus " + this.title + " " + this.selectedItem.name + " ?";
         this.modalButton = "Iya, Hapus";
@@ -2249,14 +2208,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.modalSize = "";
       this.modalShow = false;
       this.modalKatexReset(); //reset modal katex
-
       this.$store.dispatch(this.kelas + "/resetUpdateStat");
     },
     modalConfirmOk: function modalConfirmOk() {
       if (this.source == "hapus") {
         this.$store.dispatch(this.kelas + "/destroy", this.selectedItem.id);
       }
-
       this.modalSize = "";
     },
     formatPeriode: function formatPeriode(value) {
@@ -4387,7 +4344,7 @@ var render = function () {
               _vm._l(_vm.listLaporanTpData, function (index, laporanTp) {
                 return _c(
                   "div",
-                  { key: index, staticClass: "col-md-6  pt-1 pb-1" },
+                  { key: index, staticClass: "col-md-6 pt-1 pb-1" },
                   [
                     _c(
                       "a",

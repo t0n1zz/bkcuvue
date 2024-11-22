@@ -320,33 +320,31 @@
 				id_cu: '',
 				utama: '',
 				UploadAdapter: function (loader) {
-          this.loader = loader
-          this.upload = () => {
-            const body = new FormData();
-						const user = getLocalUser();
-						let token = user.token;
+				this.loader = loader
+				this.upload = () => {
+					const body = new FormData();
+					const user = getLocalUser();
+					let token = user.token;
 
-						body.append('gambar', this.loader.file);
-	
-            return fetch(url_config.api_url + 'artikel/upload', {
-							headers: {"Authorization": 'Bearer ' + token},
-              body: body,
-              method: 'POST'
-            })
-						.then(response => response.json())
-              .then(downloadUrl => {
-                return {
-									default: downloadUrl
-								}
-              })
-              .catch(error => {
-                console.log(error);
-              });
-          }
-          this.abort = () => {
-            console.log('Abort upload.')
-          }
-        },
+					body.append('gambar', this.loader.file);
+					return axios.post('/api/artikel/upload', body, {
+						headers: {
+							"Authorization": 'Bearer ' + token,
+							'Content-Type': 'multipart/form-data'
+						}
+					})
+						.then((response) => {
+							return {
+								default: response.data
+							}
+						}).catch(error => {
+							console.log(error);
+						});
+				}
+				this.abort = () => {
+					console.log('Abort upload.')
+				}
+			},
 				modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -359,7 +357,7 @@
 		},
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
-		},
+	},
 		created(){
 			if(this.currentUser.id_cu === 0){
 				if(this.modelCuStat != 'success'){
@@ -368,7 +366,7 @@
 			}
 			if(this.$route.meta.mode !== 'edit' && this.form.id_cu === undefined){
 				this.form.id_cu = this.currentUser.id_cu;
-				this.changeCU(this.currentUser.id_cu);f
+				this.changeCU(this.currentUser.id_cu);
 			}
 		},
 		watch: {
@@ -456,12 +454,13 @@
 				}
 			},
 			save() {
+				this.form.checked = 0;
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
-						if(this.$route.meta.mode === 'edit'){
+						if (this.$route.meta.mode === 'edit') {
 							this.$store.dispatch(this.kelas + '/update', [this.$route.params.id, formData]);
-						}else{
+						} else {
 							this.$store.dispatch(this.kelas + '/store', formData);
 						}
 						this.submited = false;

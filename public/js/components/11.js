@@ -221,6 +221,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     echarts: vue_echarts__WEBPACK_IMPORTED_MODULE_1___default.a,
@@ -274,8 +275,9 @@ __webpack_require__.r(__webpack_exports__);
     this.dataShown.push({
       title: this.dataShownTitle1,
       name: this.dataShownName1
-    }); // default series
+    });
 
+    // default series
     this.addSeries();
   },
   watch: {
@@ -283,8 +285,9 @@ __webpack_require__.r(__webpack_exports__);
       if (value == 'success') {
         this.emptyGraph();
         this.setGraph();
-        this.calculatePagination(); // default entri data
+        this.calculatePagination();
 
+        // default entri data
         this.checkEntriPage(this.query.limit);
       }
     }
@@ -294,10 +297,12 @@ __webpack_require__.r(__webpack_exports__);
     setGraph: function setGraph() {
       // title
       this.bar.title.text = this.titleText;
-      this.bar.title.subtext = 'Menampilkan ' + this.itemData.from + ' - ' + this.itemData.to + ' entri dari ' + this.itemData.total + ' entri'; // yAxis
+      this.bar.title.subtext = 'Menampilkan ' + this.itemData.from + ' - ' + this.itemData.to + ' entri dari ' + this.itemData.total + ' entri';
 
-      this.bar.xAxis.data = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.map(this.itemData.data, this.axisLabelKey); // series
+      // yAxis
+      this.bar.xAxis.data = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.map(this.itemData.data, this.axisLabelKey);
 
+      // series
       for (var i = 0, len = this.dataShown.length; i < len; i++) {
         this.bar.series[i].data = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.map(this.itemData.data, this.dataShown[i].name);
       }
@@ -307,7 +312,6 @@ __webpack_require__.r(__webpack_exports__);
       this.bar.title.text = '';
       this.bar.title.subtext = '';
       this.bar.yAxis.data = [];
-
       for (var i = 0, len = this.dataShown.length; i < len; i++) {
         this.bar.series[i].data = [];
       }
@@ -326,7 +330,6 @@ __webpack_require__.r(__webpack_exports__);
       var data = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.find(this.columnData, {
         'name': this.dataShown[0].name
       });
-
       var series = {
         name: data.title,
         data: [],
@@ -342,7 +345,6 @@ __webpack_require__.r(__webpack_exports__);
       var data = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.find(this.columnData, {
         'name': value
       });
-
       this.bar.series[index].name = data.title;
       this.bar.series[index].data = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.map(this.itemData.data, value);
       this.dataShown[index].title = data.title;
@@ -385,7 +387,6 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.query.order_direction = 'desc';
       }
-
       this.applyChange();
     },
     updateOrderColumn: function updateOrderColumn(e) {
@@ -405,7 +406,6 @@ __webpack_require__.r(__webpack_exports__);
       diffPage = startPage - endPage + 4;
       startPage -= startPage - diffPage > 0 ? diffPage : 0;
       this.pages.length = 0;
-
       for (i = startPage; i <= endPage; i++) {
         this.pages.push(i);
       }
@@ -604,6 +604,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     echarts: vue_echarts__WEBPACK_IMPORTED_MODULE_2___default.a,
@@ -657,8 +658,9 @@ __webpack_require__.r(__webpack_exports__);
     this.dataShown.push({
       title: this.dataShownTitle1,
       name: this.dataShownName1
-    }); // default series
+    });
 
+    // default series
     this.addSeries();
   },
   watch: {
@@ -666,8 +668,9 @@ __webpack_require__.r(__webpack_exports__);
       if (value == "success") {
         this.emptyGraph();
         this.setGraph();
-        this.calculatePagination(); // default entri data
+        this.calculatePagination();
 
+        // default entri data
         this.checkEntriPage(this.query.limit);
       }
     }
@@ -677,10 +680,12 @@ __webpack_require__.r(__webpack_exports__);
     setGraph: function setGraph() {
       // title
       this.line.title.text = this.titleText;
-      this.line.title.subtext = "Menampilkan " + this.itemData.from + " - " + this.itemData.to + " entri dari " + this.itemData.total + " entri"; // yAxis
+      this.line.title.subtext = "Menampilkan " + this.itemData.from + " - " + this.itemData.to + " entri dari " + this.itemData.total + " entri";
 
-      this.line.xAxis.data = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.map(this.itemData.data, this.axisLabelKey); // series
+      // yAxis
+      this.line.xAxis.data = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.map(this.itemData.data, this.axisLabelKey);
 
+      // series
       for (var i = 0, len = this.dataShown.length; i < len; i++) {
         this.line.series[i].data = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.map(this.itemData.data, this.dataShown[i].name);
       }
@@ -690,7 +695,6 @@ __webpack_require__.r(__webpack_exports__);
       this.line.title.text = "";
       this.line.title.subtext = "";
       this.line.yAxis.data = [];
-
       for (var i = 0, len = this.dataShown.length; i < len; i++) {
         this.line.series[i].data = [];
       }
@@ -709,7 +713,6 @@ __webpack_require__.r(__webpack_exports__);
       var data = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.find(this.columnData, {
         'name': this.dataShown[0].name
       });
-
       var series = {
         name: data.title,
         data: [],
@@ -727,7 +730,6 @@ __webpack_require__.r(__webpack_exports__);
       var data = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.find(this.columnData, {
         'name': value
       });
-
       this.line.series[index].name = data.title;
       this.line.series[index].data = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.map(this.itemData.data, value);
       this.dataShown[index].title = data.title;
@@ -765,7 +767,6 @@ __webpack_require__.r(__webpack_exports__);
       diffPage = startPage - endPage + 4;
       startPage -= startPage - diffPage > 0 ? diffPage : 0;
       this.pages.length = 0;
-
       for (i = startPage; i <= endPage; i++) {
         this.pages.push(i);
       }
@@ -813,61 +814,62 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _components_barChart_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/barChart.vue */ "./resources/assets/js/components/barChart.vue");
 /* harmony import */ var _components_lineChart_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/lineChart.vue */ "./resources/assets/js/components/lineChart.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -945,7 +947,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         } else {
           this.$store.dispatch(this.kelas + '/grafikTp', [this.query, this.$route.params.tp]);
         }
-
         this.axisLabelKey = 'periode';
       } else if (this.$route.meta.mode == 'cuPeriode') {
         this.$store.dispatch(this.kelas + '/grafikTpPeriode', [this.query, this.$route.params.cu, this.$route.params.periode]);
@@ -968,7 +969,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       } else {
         this.$store.dispatch(this.kelas + '/grafikPeriode', [this.query, this.$route.params.periode]);
         this.axisLabelKey = 'cu_name';
-
         if (this.itemDataStat == 'success') {
           this.periode = _.orderBy(this.itemData.data, ['periode'], ['desc']);
           this.titleText = 'Grafik ' + this.title + ' periode ' + this.formatPeriode(this.periode[0].periode);
@@ -1015,67 +1015,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _components_barChart_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/barChart.vue */ "./resources/assets/js/components/barChart.vue");
 /* harmony import */ var _components_lineChart_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/lineChart.vue */ "./resources/assets/js/components/lineChart.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -1234,7 +1235,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.echart-container[data-v-11876b43] {\n  overflow-x: scroll;\n  overflow-y: visible;\n  max-width: 100%;\n  position: relative;\n  width: 100%;\n}\n.echarts[data-v-11876b43] {\n  width: 100vw;\n  height: 70vh;\n}\n.btn-group.special[data-v-11876b43] {\n  display: flex;\n}\n.special .btn[data-v-11876b43] {\n  flex: 1;\n}\n", ""]);
+exports.push([module.i, "\n.echart-container[data-v-11876b43] {\r\n  overflow-x: scroll;\r\n  overflow-y: visible;\r\n  max-width: 100%;\r\n  position: relative;\r\n  width: 100%;\n}\n.echarts[data-v-11876b43] {\r\n  width: 100vw;\r\n  height: 70vh;\n}\n.btn-group.special[data-v-11876b43] {\r\n  display: flex;\n}\n.special .btn[data-v-11876b43] {\r\n  flex: 1;\n}\r\n", ""]);
 
 // exports
 
@@ -1446,7 +1447,7 @@ var render = function () {
                 },
                 [
                   _c("i", { staticClass: "icon-database-add" }),
-                  _vm._v(" Tambah Data\n\t\t\t\t\t"),
+                  _vm._v(" Tambah Data\r\n\t\t\t\t\t"),
                 ]
               ),
             ]),
@@ -1608,9 +1609,9 @@ var render = function () {
                             },
                             [
                               _vm._v(
-                                "\n\t\t\t\t\t\t\t\t" +
+                                "\r\n\t\t\t\t\t\t\t\t" +
                                   _vm._s(n) +
-                                  "\n\t\t\t\t\t\t"
+                                  "\r\n\t\t\t\t\t\t"
                               ),
                             ]
                           )
@@ -1691,9 +1692,9 @@ var render = function () {
                           },
                           [
                             _vm._v(
-                              "\n\t\t\t\t\t\t\t\t" +
+                              "\r\n\t\t\t\t\t\t\t\t" +
                                 _vm._s(n) +
-                                "\n\t\t\t\t\t\t"
+                                "\r\n\t\t\t\t\t\t"
                             ),
                           ]
                         )
@@ -1938,7 +1939,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "card " }, [
+    _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-body" }, [
         _c(
           "div",
@@ -2189,9 +2190,9 @@ var render = function () {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                    " +
+                                    "\r\n                    " +
                                       _vm._s(n) +
-                                      "\n                "
+                                      "\r\n                "
                                   ),
                                 ]
                               )
@@ -2278,9 +2279,9 @@ var render = function () {
                               },
                               [
                                 _vm._v(
-                                  "\n                    " +
+                                  "\r\n                    " +
                                     _vm._s(n) +
-                                    "\n                "
+                                    "\r\n                "
                                 ),
                               ]
                             )

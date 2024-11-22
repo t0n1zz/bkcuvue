@@ -107,34 +107,86 @@ class ArtikelController extends Controller{
 	}
 
 	public function update(Request $request, $id)
-	{
-		$this->validate($request,Artikel::$rules);
+{
+    $this->validate($request, Artikel::$rules);
 
-		$name = $request->name;
+    $name = $request->name;
+    $kelas = Artikel::findOrFail($id);
 
-		$kelas = Artikel::findOrFail($id);
+    // Get the old content with embedded images
+    $oldContent = $kelas->content;
 
-		// processing single image upload
-		if(!empty($request->gambar))
-			$fileName = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->gambar,$kelas->gambar, $name);
-		else
-			$fileName = '';
+    // Get the new content from the request
+    $newContent = $request->content;
 
-		// processing summernote content	
-		// if(!empty($request->content))	
-		// 	$content = Helper::dom_processing($request,public_path($this->imagepath));
-		// else
-		// 	$content = '';
-		$kelas->update($request->except('gambar') + [
-			'gambar' => $fileName
-		]);
+	
+    // Extract image paths from the old and new content
+    $oldImages = $this->extractImagePaths($oldContent);
+    $newImages = $this->extractImagePaths($newContent);
 
-		return response()
-			->json([
-				'saved' => true,
-				'message' => $this->message. ' ' .$name. ' berhasil diubah'
-			]);
-	}
+    // Find images that are in the old content but not in the new content
+    $imagesToDelete = array_diff($oldImages, $newImages);
+
+    // Delete old images that are no longer in the updated content
+    foreach ($imagesToDelete as $image) {
+        $this->deleteImageFile($image);
+    }
+
+    if (!empty($request->gambar)) {
+        $fileName = Helper::image_processing($this->imagepath, $this->width, $this->height, $request->gambar, $kelas->gambar, $name);
+    } else {
+        $fileName = $kelas->gambar;
+    }
+    // Update the article with the new data and image filename
+    $kelas->update($request->except('gambar') + [
+        'gambar' => $fileName,
+        'content' => $newContent, // Make sure to save the updated content
+    ]);
+
+    return response()->json([
+        'saved' => true,
+        'message' => $this->message . ' ' . $name . ' berhasil diubah'
+    ]);
+}
+
+/**
+ * Extract image paths from content.
+ */
+protected function extractImagePaths($content)
+{
+    $imagePaths = [];
+
+    // Use regex to extract all image src paths from the content
+    preg_match_all('/<img[^>]+src="([^">]+)"/', $content, $matches);
+
+    if (isset($matches[1])) {
+        $imagePaths = $matches[1];
+    }
+
+    return $imagePaths;
+}
+
+/**
+ * Delete the image file and the one ending with 'n.jpg' from the server.
+ */
+protected function deleteImageFile($imagePath)
+{
+    // Remove the leading slash (/) from the path if necessary
+    $imagePath = ltrim($imagePath, '/');
+
+    // Ensure the file exists before attempting to delete it
+    if (File::exists($imagePath)) {
+        // Delete the original image file
+        File::delete($imagePath);
+
+        // Also delete the corresponding 'n.jpg' image
+        $nImagePath = preg_replace('/\.jpg$/', 'n.jpg', $imagePath);
+        if (File::exists($nImagePath)) {
+            File::delete($nImagePath);
+        }
+    }
+}
+
 
 	public function updateTerbitkan($id)
 	{
@@ -179,23 +231,31 @@ class ArtikelController extends Controller{
 	}
 
 	public function destroy($id)
-	{
-		$kelas = Artikel::findOrFail($id);
-		$name = $kelas->name;
+{
+    $kelas = Artikel::findOrFail($id);
+    $name = $kelas->name;
 
-		if(!empty($kelas->gambar)){
-			File::delete($this->imagepath . $kelas->gambar . '.jpg');
-			File::delete($this->imagepath . $kelas->gambar . 'n.jpg');
-		}
+    // Extract image paths from the article's content
+    $imagesToDelete = $this->extractImagePaths($kelas->content);
 
-		$kelas->delete();
+    // Delete the images in the content
+    foreach ($imagesToDelete as $image) {
+        $this->deleteImageFile($image);
+    }
 
-		return response()
-			->json([
-				'deleted' => true,
-				'message' => $this->message. ' ' .$name. 'berhasil dihapus'
-			]);
-	}
+    if (!empty($kelas->gambar)) {
+        File::delete($this->imagepath . $kelas->gambar . '.jpg');
+        File::delete($this->imagepath . $kelas->gambar . 'n.jpg');
+    }
+
+    $kelas->delete();
+
+    return response()->json([
+        'deleted' => true,
+        'message' => $this->message . ' ' . $name . ' berhasil dihapus'
+    ]);
+}
+
 
 	public function upload(Request $request)
 	{
@@ -205,7 +265,23 @@ class ArtikelController extends Controller{
 			$fileName = '';
 
 		return response()->json('/' . $this->imagepath . $fileName . '.jpg');
+		
 	}
+	public function deleteImage(Request $request)
+{
+    $url = $request->input('url');
+    // Extract filename from URL, delete from storage
+    $path = parse_url($url, PHP_URL_PATH);
+    $fullPath = public_path($path);
+
+    if (File::exists($fullPath)) {
+        File::delete($fullPath);
+        return response()->json(['deleted' => true, 'message' => 'Image deleted successfully.']);
+    } else {
+        return response()->json(['deleted' => false, 'message' => 'Image not found.']);
+    }
+}
+
 
 	public function count()
 	{

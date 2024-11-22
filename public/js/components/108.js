@@ -34,6 +34,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -67,11 +68,10 @@ __webpack_require__.r(__webpack_exports__);
     createImage: function createImage(file) {
       var reader = new FileReader();
       var vm = this;
-
       reader.onload = function (e) {
-        vm.image = e.target.result; // this.$emit('input', vm.image)
+        vm.image = e.target.result;
+        // this.$emit('input', vm.image)
       };
-
       reader.readAsDataURL(file);
     },
     close: function close() {
@@ -104,177 +104,178 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_auth__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../helpers/auth */ "./resources/assets/js/helpers/auth.js");
 /* harmony import */ var _helpers_url_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../helpers/url.js */ "./resources/assets/js/helpers/url.js");
 /* harmony import */ var _components_wajibBadge_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/wajibBadge.vue */ "./resources/assets/js/components/wajibBadge.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -307,9 +308,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       utama: '',
       UploadAdapter: function UploadAdapter(loader) {
         var _this = this;
-
         this.loader = loader;
-
         this.upload = function () {
           var body = new FormData();
           var user = Object(_helpers_auth__WEBPACK_IMPORTED_MODULE_8__["getLocalUser"])();
@@ -331,7 +330,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             console.log(error);
           });
         };
-
         this.abort = function () {
           console.log('Abort upload.');
         };
@@ -357,7 +355,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.$store.dispatch('cu/getHeader');
       }
     }
-
     if (this.$route.meta.mode !== 'edit' && this.form.id_cu === undefined) {
       this.form.id_cu = this.currentUser.id_cu;
       this.changeCU(this.currentUser.id_cu);
@@ -368,7 +365,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.modalShow = true;
       this.modalState = value;
       this.modalColor = '';
-
       if (value === "success") {
         this.modalTitle = this.updateResponse.message;
       } else {
@@ -384,7 +380,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           this.$store.dispatch('cu/getHeader');
         }
       }
-
       if (this.$route.meta.mode === 'edit') {
         this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
         this.title = 'Ubah Artikel SIMO';
@@ -399,7 +394,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     save: function save() {
       var _this2 = this;
-
       var formData = Object(_helpers_form__WEBPACK_IMPORTED_MODULE_2__["toMulipartedForm"])(this.form, this.$route.meta.mode);
       this.$validator.validateAll('form').then(function (result) {
         if (result) {
@@ -408,7 +402,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           } else {
             _this2.$store.dispatch(_this2.kelas + '/store', formData);
           }
-
           _this2.submited = false;
         } else {
           window.scrollTo(0, 0);
@@ -425,7 +418,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.updateStat === 'success') {
         this.back();
       }
-
       this.modalShow = false;
       this.submitedKategori = false;
       this.submitedPenulis = false;
@@ -433,7 +425,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     modalBackgroundClick: function modalBackgroundClick() {
       if (this.modalState === 'success') {
         this.modalTutup;
-      } else if (this.modalState === 'loading') {// do nothing
+      } else if (this.modalState === 'loading') {
+        // do nothing
       } else {
         this.modalShow = false;
       }
@@ -468,7 +461,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".document-editor[data-v-28df5362] {\n  border: 1px solid var(--ck-color-base-border);\n  border-radius: var(--ck-border-radius);\n\n  /* Set vertical boundaries for the document editor. */\n  max-height: 700px;\n\n  /* This element is a flex container for easier rendering. */\n  display: flex;\n  flex-flow: column nowrap;\n}\n.document-editor__toolbar[data-v-28df5362] {\n  /* Make sure the toolbar container is always above the editable. */\n  z-index: 1;\n\n  /* Create the illusion of the toolbar floating over the editable. */\n  box-shadow: 0 0 5px hsla( 0,0%,0%,.2 );\n\n  /* Use the CKEditor CSS variables to keep the UI consistent. */\n  border-bottom: 1px solid var(--ck-color-toolbar-border);\n}\n\n/* Adjust the look of the toolbar inside the container. */\n.document-editor__toolbar .ck-toolbar[data-v-28df5362] {\n  border: 0;\n  border-radius: 0;\n}\n\n/* Make the editable container look like the inside of a native word processor application. */\n.document-editor__editable-container[data-v-28df5362] {\n  padding: calc( 2 * var(--ck-spacing-large) );\n  background: var(--ck-color-base-foreground);\n\n  /* Make it possible to scroll the \"page\" of the edited content. */\n  overflow-y: scroll;\n}\n.document-editor__editable-container .ck-editor__editable[data-v-28df5362] {\n  /* Set the dimensions of the \"page\". */\n  width: 98%;\n  /* min-height: 21cm; */\n\n  /* Keep the \"page\" off the boundaries of the container. */\n  padding: 1cm 2cm 2cm;\n\n  border: 1px hsl( 0,0%,82.7% ) solid;\n  border-radius: var(--ck-border-radius);\n  background: white;\n\n  /* The \"page\" should cast a slight shadow (3D illusion). */\n  box-shadow: 0 0 5px hsla( 0,0%,0%,.1 );\n\n  /* Center the \"page\". */\n  margin: 0 auto;\n}\n\n/* Set the default font for the \"page\" of the content. */\n.document-editor .ck-content[data-v-28df5362],\n.document-editor .ck-heading-dropdown .ck-list .ck-button__label[data-v-28df5362] {\n  font: 16px/1.6 \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n}\n\n/* Adjust the headings dropdown to host some larger heading styles. */\n.document-editor .ck-heading-dropdown .ck-list .ck-button__label[data-v-28df5362] {\n  line-height: calc( 1.7 * var(--ck-line-height-base) * var(--ck-font-size-base) );\n  min-width: 6em;\n}\n\n/* Scale down all heading previews because they are way too big to be presented in the UI.\nPreserve the relative scale, though. */\n.document-editor .ck-heading-dropdown .ck-list .ck-button:not(.ck-heading_paragraph) .ck-button__label[data-v-28df5362] {\n  transform: scale(0.8);\n  transform-origin: left;\n}\n\n/* Set the styles for \"Heading 1\". */\n.document-editor .ck-content h2[data-v-28df5362],\n.document-editor .ck-heading-dropdown .ck-heading_heading1 .ck-button__label[data-v-28df5362] {\n  font-size: 2.18em;\n  font-weight: normal;\n}\n.document-editor .ck-content h2[data-v-28df5362] {\n  line-height: 1.37em;\n  padding-top: .342em;\n  margin-bottom: .142em;\n}\n\n/* Set the styles for \"Heading 2\". */\n.document-editor .ck-content h3[data-v-28df5362],\n.document-editor .ck-heading-dropdown .ck-heading_heading2 .ck-button__label[data-v-28df5362] {\n  font-size: 1.75em;\n  font-weight: normal;\n  color: hsl( 203, 100%, 50% );\n}\n.document-editor .ck-heading-dropdown .ck-heading_heading2.ck-on .ck-button__label[data-v-28df5362] {\n  color: var(--ck-color-list-button-on-text);\n}\n\n/* Set the styles for \"Heading 2\". */\n.document-editor .ck-content h3[data-v-28df5362] {\n  line-height: 1.86em;\n  padding-top: .171em;\n  margin-bottom: .357em;\n}\n\n/* Set the styles for \"Heading 3\". */\n.document-editor .ck-content h4[data-v-28df5362],\n.document-editor .ck-heading-dropdown .ck-heading_heading3 .ck-button__label[data-v-28df5362] {\n  font-size: 1.31em;\n  font-weight: bold;\n}\n.document-editor .ck-content h4[data-v-28df5362] {\n  line-height: 1.24em;\n  padding-top: .286em;\n  margin-bottom: .952em;\n}\n\n/* Set the styles for \"Paragraph\". */\n.document-editor .ck-content p[data-v-28df5362] {\n  font-size: 1em;\n  line-height: 1.63em;\n  padding-top: .5em;\n  margin-bottom: 1.13em;\n}\n\n/* Make the block quoted text serif with some additional spacing. */\n.document-editor .ck-content blockquote[data-v-28df5362] {\n  font-family: Georgia, serif;\n  margin-left: calc( 2 * var(--ck-spacing-large) );\n  margin-right: calc( 2 * var(--ck-spacing-large) );\n}\n", ""]);
+exports.push([module.i, ".document-editor[data-v-28df5362] {\r\n  border: 1px solid var(--ck-color-base-border);\r\n  border-radius: var(--ck-border-radius);\r\n\r\n  /* Set vertical boundaries for the document editor. */\r\n  max-height: 700px;\r\n\r\n  /* This element is a flex container for easier rendering. */\r\n  display: flex;\r\n  flex-flow: column nowrap;\n}\n.document-editor__toolbar[data-v-28df5362] {\r\n  /* Make sure the toolbar container is always above the editable. */\r\n  z-index: 1;\r\n\r\n  /* Create the illusion of the toolbar floating over the editable. */\r\n  box-shadow: 0 0 5px hsla( 0,0%,0%,.2 );\r\n\r\n  /* Use the CKEditor CSS variables to keep the UI consistent. */\r\n  border-bottom: 1px solid var(--ck-color-toolbar-border);\n}\r\n\r\n/* Adjust the look of the toolbar inside the container. */\n.document-editor__toolbar .ck-toolbar[data-v-28df5362] {\r\n  border: 0;\r\n  border-radius: 0;\n}\r\n\r\n/* Make the editable container look like the inside of a native word processor application. */\n.document-editor__editable-container[data-v-28df5362] {\r\n  padding: calc( 2 * var(--ck-spacing-large) );\r\n  background: var(--ck-color-base-foreground);\r\n\r\n  /* Make it possible to scroll the \"page\" of the edited content. */\r\n  overflow-y: scroll;\n}\n.document-editor__editable-container .ck-editor__editable[data-v-28df5362] {\r\n  /* Set the dimensions of the \"page\". */\r\n  width: 98%;\r\n  /* min-height: 21cm; */\r\n\r\n  /* Keep the \"page\" off the boundaries of the container. */\r\n  padding: 1cm 2cm 2cm;\r\n\r\n  border: 1px hsl( 0,0%,82.7% ) solid;\r\n  border-radius: var(--ck-border-radius);\r\n  background: white;\r\n\r\n  /* The \"page\" should cast a slight shadow (3D illusion). */\r\n  box-shadow: 0 0 5px hsla( 0,0%,0%,.1 );\r\n\r\n  /* Center the \"page\". */\r\n  margin: 0 auto;\n}\r\n\r\n/* Set the default font for the \"page\" of the content. */\n.document-editor .ck-content[data-v-28df5362],\r\n.document-editor .ck-heading-dropdown .ck-list .ck-button__label[data-v-28df5362] {\r\n  font: 16px/1.6 \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n}\r\n\r\n/* Adjust the headings dropdown to host some larger heading styles. */\n.document-editor .ck-heading-dropdown .ck-list .ck-button__label[data-v-28df5362] {\r\n  line-height: calc( 1.7 * var(--ck-line-height-base) * var(--ck-font-size-base) );\r\n  min-width: 6em;\n}\r\n\r\n/* Scale down all heading previews because they are way too big to be presented in the UI.\r\nPreserve the relative scale, though. */\n.document-editor .ck-heading-dropdown .ck-list .ck-button:not(.ck-heading_paragraph) .ck-button__label[data-v-28df5362] {\r\n  transform: scale(0.8);\r\n  transform-origin: left;\n}\r\n\r\n/* Set the styles for \"Heading 1\". */\n.document-editor .ck-content h2[data-v-28df5362],\r\n.document-editor .ck-heading-dropdown .ck-heading_heading1 .ck-button__label[data-v-28df5362] {\r\n  font-size: 2.18em;\r\n  font-weight: normal;\n}\n.document-editor .ck-content h2[data-v-28df5362] {\r\n  line-height: 1.37em;\r\n  padding-top: .342em;\r\n  margin-bottom: .142em;\n}\r\n\r\n/* Set the styles for \"Heading 2\". */\n.document-editor .ck-content h3[data-v-28df5362],\r\n.document-editor .ck-heading-dropdown .ck-heading_heading2 .ck-button__label[data-v-28df5362] {\r\n  font-size: 1.75em;\r\n  font-weight: normal;\r\n  color: hsl( 203, 100%, 50% );\n}\n.document-editor .ck-heading-dropdown .ck-heading_heading2.ck-on .ck-button__label[data-v-28df5362] {\r\n  color: var(--ck-color-list-button-on-text);\n}\r\n\r\n/* Set the styles for \"Heading 2\". */\n.document-editor .ck-content h3[data-v-28df5362] {\r\n  line-height: 1.86em;\r\n  padding-top: .171em;\r\n  margin-bottom: .357em;\n}\r\n\r\n/* Set the styles for \"Heading 3\". */\n.document-editor .ck-content h4[data-v-28df5362],\r\n.document-editor .ck-heading-dropdown .ck-heading_heading3 .ck-button__label[data-v-28df5362] {\r\n  font-size: 1.31em;\r\n  font-weight: bold;\n}\n.document-editor .ck-content h4[data-v-28df5362] {\r\n  line-height: 1.24em;\r\n  padding-top: .286em;\r\n  margin-bottom: .952em;\n}\r\n\r\n/* Set the styles for \"Paragraph\". */\n.document-editor .ck-content p[data-v-28df5362] {\r\n  font-size: 1em;\r\n  line-height: 1.63em;\r\n  padding-top: .5em;\r\n  margin-bottom: 1.13em;\n}\r\n\r\n/* Make the block quoted text serif with some additional spacing. */\n.document-editor .ck-content blockquote[data-v-28df5362] {\r\n  font-family: Georgia, serif;\r\n  margin-left: calc( 2 * var(--ck-spacing-large) );\r\n  margin-right: calc( 2 * var(--ck-spacing-large) );\n}\r\n", ""]);
 
 // exports
 
@@ -1117,8 +1110,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toMulipartedForm", function() { return toMulipartedForm; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "objectToFormData", function() { return objectToFormData; });
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function toMulipartedForm(form, mode) {
   if (mode === 'edit' && typeof form.image === 'string') {
     var temp = JSON.parse(JSON.stringify(form));
@@ -1131,7 +1123,6 @@ function toMulipartedForm(form, mode) {
 function objectToFormData(obj, form, namespace) {
   var fd = form || new FormData();
   var formKey;
-
   for (var property in obj) {
     if (obj.hasOwnProperty(property)) {
       if (namespace) {
@@ -1139,7 +1130,6 @@ function objectToFormData(obj, form, namespace) {
       } else {
         formKey = property;
       }
-
       if (obj[property] instanceof Array) {
         for (var i = 0; i < obj[property].length; i++) {
           objectToFormData(obj[property][i], fd, "".concat(property, "[").concat(i, "]"));
@@ -1151,7 +1141,6 @@ function objectToFormData(obj, form, namespace) {
       }
     }
   }
-
   return fd;
 }
 
