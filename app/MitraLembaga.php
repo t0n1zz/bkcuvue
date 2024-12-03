@@ -67,4 +67,9 @@ class MitraLembaga extends BaseEloquent {
     {
         return $this->belongsTo('App\Region\Villages','id_villages','id')->select('id','name');
     }
+
+    public function Cu()
+    {
+        return $this->belongsTo('App\Cu','id_cu','id')->select('id','no_ba','name');
+    }
 }

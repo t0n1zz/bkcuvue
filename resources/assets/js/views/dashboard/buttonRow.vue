@@ -161,6 +161,26 @@
       <count-widget :title="'Monitoring'" :color="'bg-green-400'" :icon="'icon-collaboration'"></count-widget>
     </div>
 
+		<!-- KUBN -->
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_kubn']" @click.prevent="goTo(kubnWidgetRoute)">
+      <count-widget :title="'KUBN'" :color="'bg-info-400'" :icon="'icon-versions'"></count-widget>
+    </div>
+
+		<!-- Kombas -->
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_kubn']" @click.prevent="goTo(kombasWidgetRoute)">
+      <count-widget :title="'Komunitas'" :color="'bg-teal-400'" :icon="'icon-circles2'"></count-widget>
+    </div>
+
+		<!-- Enterpreneur -->
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_enterpreneur']" @click.prevent="goTo(enterpreneurWidgetRoute)">
+      <count-widget :title="'Enterpreneur'" :color="'bg-warning-400'" :icon="'icon-hat'"></count-widget>
+    </div>
+
+		<!-- Umkm -->
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_umkm']" @click.prevent="goTo(umkmWidgetRoute)">
+      <count-widget :title="'Umkm'" :color="'bg-green-400'" :icon="'icon-store2'"></count-widget>
+    </div>
+
     <!-- user -->
     <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_user']" @click.prevent="goTo(userWidgetRoute)">
       <count-widget :title="'User'" :color="'bg-primary-400'" :icon="'icon-users'"></count-widget>
@@ -210,6 +230,10 @@
 				suratKeluarWidgetRoute: {},
 				suratMasukWidgetRoute: {},
 				asetTetapWidgetRoute: {},
+				kubnWidgetRoute: {},
+				kombasWidgetRoute: {},
+				enterpreneurWidgetRoute: {},
+				umkmWidgetRoute: {},
 			}
 		},
 		created(){
@@ -228,8 +252,8 @@
 				this.saldoWidgetRoute = { name: 'saldo' };
 				this.aktivisWidgetRoute = { name: 'aktivisCu', params:{cu: this.currentUser.id_cu, tingkat:'semua'} };
 				this.laporanGerakanWidgetRoute = { name: 'laporanGerakan' };
-				this.mitraPerseoranganWidgetRoute = { name: 'mitraOrang' };
-				this.mitraLembagaWidgetRoute = { name: 'mitraLembaga' };
+				this.mitraPerseoranganWidgetRoute = { name: 'mitraOrangCu', params:{cu: this.currentUser.id_cu} };
+				this.mitraLembagaWidgetRoute = { name: 'mitraLembagaCu', params:{cu: this.currentUser.id_cu}  };
 				this.userWidgetRoute = { name: 'userCu', params:{cu: this.currentUser.id_cu} };
 				this.kegiatanBKCUJalanWidgetRoute = { name: 'kegiatanBKCUJalan' };
 				this.kegiatanBKCUDiikutiWidgetRoute = { name: 'kegiatanBKCUDiikuti' };
@@ -249,6 +273,10 @@
 					this.assesmentAccessWidgetRoute = { name: 'assesmentAccessCu', params:{cu: this.currentUser.id_cu} };
 					this.monitoringWidgetRoute = { name: 'monitoringCu', params:{cu: this.currentUser.id_cu, tp: 'semua'} };
 					this.dokumenWidgetRoute = { name: 'dokumenCu', params:{cu: this.currentUser.id_cu} };
+					this.kubnWidgetRoute = { name: 'kubnCu', params:{cu: this.currentUser.id_cu} };
+					this.kombasWidgetRoute = { name: 'kombasCu', params:{cu: this.currentUser.id_cu, tipe: 'semua'} };
+					this.enterpreneurWidgetRoute = { name: 'enterpreneurCu', params:{cu: this.currentUser.id_cu, tipe: 'semua'} };
+					this.umkmWidgetRoute = { name: 'umkmCu', params:{cu: this.currentUser.id_cu, tipe: 'semua'} };
 				}else{
 					this.tempatWidgetRoute = { name: 'tempat' };
 					this.anggotaCuWidgetRoute = { name: 'anggotaCuCu', params:{cu: 'semua', tp: 'semua'} };
@@ -263,6 +291,10 @@
 					this.monitoringWidgetRoute = { name: 'monitoringCu', params:{cu: 'semua', tp: 'semua'} };
 					this.dokumenWidgetRoute = { name: 'dokumenCu', params:{cu: 'semua'} };
 					this.asetTetapWidgetRoute = { name: 'asetTetap'};
+					this.kubnWidgetRoute = { name: 'kubnCu', params:{cu: 'semua'} };
+					this.kombasWidgetRoute = { name: 'kombasTipe', params:{tipe: 'semua'} };
+					this.enterpreneurWidgetRoute = { name: 'enterpreneurCu', params:{tipe: 'semua'} };
+					this.umkmWidgetRoute = { name: 'umkmCu', params:{tipe: 'semua'} };
 				}
 			},
 			goTo(route){

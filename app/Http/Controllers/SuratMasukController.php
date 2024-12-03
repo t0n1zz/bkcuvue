@@ -61,7 +61,7 @@ class SuratMasukController extends Controller{
 		try{
 			$this->validate($request,SuratMasuk::$rules);
 
-			$name = $request->name;
+			$hal = $request->hal;
 			$id_cu = Auth::user()->id_cu;
 			$request->id_cu = $id_cu;
 
@@ -74,7 +74,7 @@ class SuratMasukController extends Controller{
 				
 				$fileExtension = $file->getClientOriginalExtension();
 				$filename = $file->getClientOriginalName();
-				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$name),10,'') . '_' .uniqid(). '.' . $fileExtension;
+				$formatedName = str_limit(preg_replace('/[^A-Za-z0-9\-]/', '',$hal),10,'') . '_' .uniqid(). '.' . $fileExtension;
 				$file->move($this->filepath,$formatedName);
 			}
 
@@ -92,9 +92,11 @@ class SuratMasukController extends Controller{
 			$kelasDokumen = Dokumen::create([ 
 				'id_cu' => $id_cu,
 				'id_dokumen_kategori' => $dokumenKategori->id,
-				'name' => $request->hal,
+				'name' => $request->name,
+				'hal' => $request->hal,
 				'filename' => $formatedName,
 				'link' => $request->link,
+				'tanggal_terima' => $request->tanggal_terima,
 				'format' => $format,
 				'tipe' => $fileExtension,
 				'status' => 'INTERNAL',
@@ -110,7 +112,7 @@ class SuratMasukController extends Controller{
 			return response()
 				->json([
 					'saved' => true,
-					'message' => 'Surat masuk ' .$name. ' berhasil ditambah',
+					'message' => 'Surat masuk ' .$hal. ' berhasil ditambah',
 					'id' => $kelas->id
 				]);	
 		} catch (\Exception $e){
@@ -134,7 +136,7 @@ class SuratMasukController extends Controller{
 	{
 		$this->validate($request,SuratMasuk::$rules);
 
-		$name = $request->name;
+		$hal = $request->hal;
 
 		$kelas = SuratMasuk::findOrFail($id);
 
@@ -143,7 +145,7 @@ class SuratMasukController extends Controller{
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Surat masuk ' .$name. ' berhasil diubah',
+				'message' => 'Surat masuk ' .$hal. ' berhasil diubah',
 				'id' => $kelas->id
 			]);	
 	}
@@ -153,7 +155,7 @@ class SuratMasukController extends Controller{
 		\DB::beginTransaction(); 
 		try{
 			$kelas = SuratMasuk::findOrFail($id);
-			$name = $kelas->name;
+			$hal = $kelas->hal;
 
 			$kelasDokumen = Dokumen::findOrFail($kelas->id_dokumen);
 
@@ -169,7 +171,7 @@ class SuratMasukController extends Controller{
 			return response()
 				->json([
 					'deleted' => true,
-					'message' => 'Surat masuk ' .$name. 'berhasil dihapus'
+					'message' => 'Surat masuk ' .$hal. 'berhasil dihapus'
 				]);
 		} catch (\Exception $e){
 			\DB::rollBack();

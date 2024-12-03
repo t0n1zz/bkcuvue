@@ -75,6 +75,7 @@ const mitraOrang_form = () => import("./views/mitraOrang/form.vue");
 const mitraLembaga = () => import("./views/mitraLembaga/index.vue");
 const mitraLembaga_form = () => import("./views/mitraLembaga/form.vue");
 const anggotaCu = () => import("./views/anggotaCu/index.vue");
+const anggotaCu_informasi = () => import("./views/anggotaCu/informasi.vue");
 const anggotaCu_form = () => import("./views/anggotaCu/form.vue");
 const anggotaCu_produk = () => import("./views/anggotaCu/produk.vue");
 const anggotaCuDraft = () => import("./views/anggotaCuDraft/index.vue");
@@ -114,6 +115,25 @@ const jalinanIuran = () => import("./views/jalinanIuran/index.vue");
 const jalinanIuran_form = () => import("./views/jalinanIuran/form.vue");
 const jalinanIuran_detail = () => import("./views/jalinanIuran/detail.vue");
 const dataAnggotaUpload = () => import("./views/sistem/dataAnggotaUpload.vue");
+const kubn = () => import("./views/kubn/index.vue");
+const kubn_form = () => import("./views/kubn/form.vue");
+const kubn_detail = () => import("./views/kubn/detail.vue");
+const kubnUsaha = () => import("./views/kubnUsaha/index.vue");
+const kubnUsaha_form = () => import("./views/kubnUsaha/form.vue");
+const kombas = () => import("./views/kombas/index.vue");
+const kombas_form = () => import("./views/kombas/form.vue");
+const enterpreneur = () => import("./views/enterpreneur/index.vue");
+const enterpreneur_form = () => import("./views/enterpreneur/form.vue");
+const umkm = () => import("./views/umkm/index.vue");
+const umkm_form = () => import("./views/umkm/form.vue");
+const keahlian = () => import("./views/keahlian/index.vue");
+const keahlian_form = () => import("./views/keahlian/form.vue");
+const jenisDiklat = () => import("./views/jenisDiklat/index.vue");
+const jenisDiklat_form = () => import("./views/jenisDiklat/form.vue");
+const mentor = () => import("./views/mentor/index.vue");
+const mentor_form = () => import("./views/mentor/form.vue");
+const fasilitator = () => import("./views/fasilitator/index.vue");
+const fasilitator_form = () => import("./views/fasilitator/form.vue");
 
 const routes = [
   // login
@@ -823,6 +843,12 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
+    path: "/mitraOrang/cu/:cu",
+    name: "mitraOrangCu",
+    components: { default: mitraOrang, header: header, footer: footer },
+    meta: { requiresAuth: true, mode: "cu" },
+  },
+  {
     path: "/mitraOrang/create",
     name: "mitraOrangCreate",
     components: { default: mitraOrang_form, header: header, footer: footer },
@@ -843,6 +869,12 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
+    path: "/mitraLembaga/cu/:cu",
+    name: "mitraLembagaCu",
+    components: { default: mitraLembaga, header: header, footer: footer },
+    meta: { requiresAuth: true, mode: "cu" },
+  },
+  {
     path: "/mitraLembaga/create",
     name: "mitraLembagaCreate",
     components: { default: mitraLembaga_form, header: header, footer: footer },
@@ -856,6 +888,12 @@ const routes = [
   },
 
   // anggota cu
+  {
+    path: "/anggotaCu/informasi",
+    name: "anggotaCuInformasi",
+    components: { default: anggotaCu_informasi, header: header, footer: footer },
+    meta: { requiresAuth: true, mode: "cu" },
+  },
   {
     path: "/anggotaCu/cu/:cu/:tp",
     name: "anggotaCuCu",
@@ -1450,6 +1488,270 @@ const routes = [
     name: "dataAnggotaUpload",
     components: { default: dataAnggotaUpload, header: header, footer: footer },
     meta: { requiresAuth: true },
+  },
+
+  // kubn
+  {
+    path: "/kubn/cu/:cu",
+    name: "kubnCu",
+    components: { default: kubn, header: header, footer: footer },
+    meta: { requiresAuth: true, mode: "cu" },
+  },
+  {
+    path: "/kubn/create",
+    name: "kubnCreate",
+    components: {
+      default: kubn_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/kubn/edit/:id",
+    name: "kubnEdit",
+    components: {
+      default: kubn_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true, mode: "edit" },
+  },
+  {
+    path: "/kubn/detail/:id",
+    name: "kubnDetail",
+    components: {
+      default: kubn_detail,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true },
+  },
+  // usaha
+  {
+    path: "/kubnUsaha",
+    name: "kubnUsaha",
+    components: { default: kubnUsaha, header: header, footer: footer },
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/kubnUsaha/create",
+    name: "kubnUsahaCreate",
+    components: {
+      default: kubnUsaha_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/kubnUsaha/edit/:id",
+    name: "kubnUsahaEdit",
+    components: {
+      default: kubnUsaha_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true, mode: "edit" },
+  },
+   // keahlian
+   {
+    path: "/keahlian",
+    name: "keahlian",
+    components: { default: keahlian, header: header, footer: footer },
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/keahlian/create",
+    name: "keahlianCreate",
+    components: {
+      default: keahlian_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/keahlian/edit/:id",
+    name: "keahlianEdit",
+    components: {
+      default: keahlian_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true, mode: "edit" },
+  },
+ // jenisDiklat
+ {
+    path: "/jenisDiklat",
+    name: "jenisDiklat",
+    components: { default: jenisDiklat, header: header, footer: footer },
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/jenisDiklat/create",
+    name: "jenisDiklatCreate",
+    components: {
+      default: jenisDiklat_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/jenisDiklat/edit/:id",
+    name: "jenisDiklatEdit",
+    components: {
+      default: jenisDiklat_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true, mode: "edit" },
+  },
+  // kombas
+  {
+    path: "/kombas/tipe/:tipe",
+    name: "kombasTipe",
+    components: { default: kombas, header: header, footer: footer },
+    meta: { requiresAuth: true, mode: "tipe" },
+  },
+  {
+    path: "/kombas/:cu/:tipe",
+    name: "kombasCu",
+    components: { default: kombas, header: header, footer: footer },
+    meta: { requiresAuth: true, mode: "cu" },
+  },
+  {
+    path: "/kombas/create",
+    name: "kombasCreate",
+    components: {
+      default: kombas_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/kombas/edit/:id",
+    name: "kombasEdit",
+    components: {
+      default: kombas_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true, mode: "edit" },
+  },
+
+  // enterpreneur
+  {
+    path: "/enterpreneur/cu/:cu",
+    name: "enterpreneurCu",
+    components: { default: enterpreneur, header: header, footer: footer },
+    meta: { requiresAuth: true, mode: "cu" },
+  },
+  {
+    path: "/enterpreneur/create",
+    name: "enterpreneurCreate",
+    components: {
+      default: enterpreneur_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/enterpreneur/edit/:id",
+    name: "enterpreneurEdit",
+    components: {
+      default: enterpreneur_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true, mode: "edit" },
+  },
+
+  // umkm
+  {
+    path: "/umkm/cu/:cu",
+    name: "umkmCu",
+    components: { default: umkm, header: header, footer: footer },
+    meta: { requiresAuth: true, mode: "cu" },
+  },
+  {
+    path: "/umkm/create",
+    name: "umkmCreate",
+    components: {
+      default: umkm_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/umkm/edit/:id",
+    name: "umkmEdit",
+    components: {
+      default: umkm_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true, mode: "edit" },
+  },
+
+  // mentor
+  {
+    path: "/mentor/cu/:cu",
+    name: "mentorCu",
+    components: { default: mentor, header: header, footer: footer },
+    meta: { requiresAuth: true, mode: "cu" },
+  },
+  {
+    path: "/mentor/create",
+    name: "mentorCreate",
+    components: {
+      default: mentor_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/mentor/edit/:id",
+    name: "mentorEdit",
+    components: {
+      default: mentor_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true, mode: "edit" },
+  },
+
+  // fasilitator
+  {
+    path: "/fasilitator/cu/:cu",
+    name: "fasilitatorCu",
+    components: { default: fasilitator, header: header, footer: footer },
+    meta: { requiresAuth: true, mode: "cu" },
+  },
+  {
+    path: "/fasilitator/create",
+    name: "fasilitatorCreate",
+    components: {
+      default: fasilitator_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/fasilitator/edit/:id",
+    name: "fasilitatorEdit",
+    components: {
+      default: fasilitator_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true, mode: "edit" },
   },
 ];
 

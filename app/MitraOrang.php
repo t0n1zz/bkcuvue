@@ -16,7 +16,8 @@ class MitraOrang extends BaseEloquent {
     protected static $logOnlyDirty = true;
     
     public static $rules = [
-        'name' => 'required'
+        'name' => 'required',
+        'id_cu' => 'required'
     ];
 
     public static function boot()
@@ -25,23 +26,25 @@ class MitraOrang extends BaseEloquent {
     }
     
     protected $fillable = [
-        'nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','gambar','darah','tinggi','lembaga','pekerjaan_name','pendidikan_name','pekerjaan_tingkat','pendidikan_tingkat','kontak','gambar','id_villages','id_districts','id_regencies','id_provinces','bidang','npwp'
+        'nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','gambar','darah','tinggi','lembaga','pekerjaan_name','pendidikan_name','pekerjaan_tingkat','pendidikan_tingkat','kontak','gambar','id_villages','id_districts','id_regencies','id_provinces','bidang','npwp','id_cu'
     ];
 
     protected $allowedFilters = [
         'nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','pekerjaan_name','pendidikan_name','kontak','created_at','updated_at','bidang','pekerjaan_tingkat','pendidikan_tingkat',
         
-        'villages.name', 'districts.name', 'regencies.name', 'provinces.name'
+        'villages.name', 'districts.name', 'regencies.name', 'provinces.name', 'cu.name'
     ];
 
     protected $orderable = [
-        'nim','nim_cu','nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','pekerjaan_name','pendidikan_name','kontak','created_at','updated_at','bidang','pekerjaan_tingkat','pendidikan_tingkat'
+        'nim','nim_cu','nik','name','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','pekerjaan_name','pendidikan_name','kontak','created_at','updated_at','bidang','pekerjaan_tingkat','pendidikan_tingkat',
+
+        'villages.name', 'districts.name', 'regencies.name', 'provinces.name', 'cu.name'
     ];
 
     public static function initialize()
     {
         return [
-            'nik' => '','name' => '','tempat_lahir' => '','tanggal_lahir' => '','kelamin' => '','agama' => '','status' => '','alamat' => '','hp' => '','email' => '','darah' => '','tinggi' => '','kontak' => '','lembaga' => '','pekerjaan_name' => '','pendidikan_name' => '','pekerjaan_tingkat' => '','pendidikan_tingkat' => '','gambar'=> '','id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '', 'bidang' => ''
+            'nik' => '','name' => '','tempat_lahir' => '','tanggal_lahir' => '','kelamin' => '','agama' => '','status' => '','alamat' => '','hp' => '','email' => '','darah' => '','tinggi' => '','kontak' => '','lembaga' => '','pekerjaan_name' => '','pendidikan_name' => '','pekerjaan_tingkat' => '','pendidikan_tingkat' => '','gambar'=> '','id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '', 'bidang' => '', 'id_cu' => '',
         ];
     }
 
@@ -63,5 +66,10 @@ class MitraOrang extends BaseEloquent {
     public function Villages()
     {
         return $this->belongsTo('App\Region\Villages','id_villages','id')->select('id','name');
+    }
+
+    public function Cu()
+    {
+        return $this->belongsTo('App\Cu','id_cu','id')->select('id','no_ba','name');
     }
 }

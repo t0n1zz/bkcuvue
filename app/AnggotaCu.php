@@ -42,23 +42,23 @@ class AnggotaCu extends Model {
     );
     
     protected $fillable = [
-        'nik','name','ahli_waris','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','jabatan','penghasilan','pengeluaran','pendidikan','organisasi','kontak','id_villages','id_districts','id_regencies','id_provinces','gambar','npwp','tanggal_meninggal','tanggal_cacat','pekerjaan','suku','nama_ibu','kk','kontak_ahli_waris','rt','rw','status_jalinan','escete'
+        'nik','name','ahli_waris','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','jabatan','penghasilan','pengeluaran','pendidikan','organisasi','kontak','id_villages','id_districts','id_regencies','id_provinces','gambar','npwp','tanggal_meninggal','tanggal_cacat','pekerjaan','suku','nama_ibu','kk','kontak_ahli_waris','rt','rw','status_jalinan','escete','ttd','gambarKtp'
     ];
 
     protected $allowedFilters = [
-        'nik','name','ahli_waris','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','jabatan','penghasilan','pengeluaran','pendidikan','organisasi','kontak','created_at','updated_at','npwp','tanggal_meninggal','tanggal_cacat','pekerjaan','suku','nama_ibu','kk','kontak_ahli_waris','rt','rw','escete',
+        'nik','name','ahli_waris','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','jabatan','penghasilan','pengeluaran','pendidikan','organisasi','kontak','created_at','updated_at','npwp','tanggal_meninggal','tanggal_cacat','pekerjaan','suku','nama_ibu','kk','kontak_ahli_waris','rt','rw','escete','ttd','gambarKtp',
         
         'villages.name', 'districts.name', 'regencies.name', 'provinces.name','anggota_cu_cu.no_ba','anggota_cu_cu.tanggal_masuk'
     ];
 
     protected $orderable = [
-        'nik','name','ahli_waris','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','jabatan','penghasilan','pengeluaran','pendidikan','organisasi','kontak','created_at','updated_at','npwp','tanggal_meninggal','tanggal_cacat','pekerjaan','suku','nama_ibu','kk','kontak_ahli_waris','rt','rw','escete'
+        'nik','name','ahli_waris','tempat_lahir','tanggal_lahir','kelamin','agama','status','alamat','hp','email','darah','tinggi','lembaga','jabatan','penghasilan','pengeluaran','pendidikan','organisasi','kontak','created_at','updated_at','npwp','tanggal_meninggal','tanggal_cacat','pekerjaan','suku','nama_ibu','kk','kontak_ahli_waris','rt','rw','escete','ttd','gambarKtp'
     ];
 
     public static function initialize()
     {
         return [
-            'nik' => '','name' => '','ahli_waris' => '','tempat_lahir' => '','tanggal_lahir' => '','kelamin' => '','agama' => '','status' => '','alamat' => '','hp' => '','email' => '','darah' => '','tinggi' => '','kontak' => '','lembaga' => '','jabatan' => '','penghasilan' => '','pengeluaran' => '', 'pendidikan' => '','organisasi' => '','id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '','gambar'=> '','npwp' => '','tanggal_meninggal'=> '','tanggal_cacat'=> '','pekerjaan' => '','suku' => '','nama_ibu' => '','kk' => '','kontak_ahli_waris' => '','rt' => '','rw' => '','tanggal_masuk' => '','tp_id' => ''
+            'nik' => '','name' => '','ahli_waris' => '','tempat_lahir' => '','tanggal_lahir' => '','kelamin' => '','agama' => '','status' => '','alamat' => '','hp' => '','email' => '','darah' => '','tinggi' => '','kontak' => '','lembaga' => '','jabatan' => '','penghasilan' => '','pengeluaran' => '', 'pendidikan' => '','organisasi' => '','id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '','gambar'=> '','npwp' => '','tanggal_meninggal'=> '','tanggal_cacat'=> '','pekerjaan' => '','suku' => '','nama_ibu' => '','kk' => '','kontak_ahli_waris' => '','rt' => '','rw' => '','tanggal_masuk' => '','tp_id' => '','ttd' => '', 'gambarKtp' => ''
         ];
     }
 
@@ -118,12 +118,19 @@ class AnggotaCu extends Model {
         $id = Auth::user()->getIdCu();
 
         if($id == 0){
-            return $this->belongsToMany('App\ProdukCu','anggota_produk_cu')->select('produk_cu.id','anggota_produk_cu.id','id_cu','kode_produk','name','jalinan','tipe')->withPivot('id','no_rek','saldo','tanggal','lama_pinjaman')->orderBy('anggota_produk_cu.tanggal','desc')->withTimestamps();
+            return $this->belongsToMany('App\ProdukCu','anggota_produk_cu')->select('produk_cu.id','anggota_produk_cu.id','id_cu','kode_produk','name','jalinan','tipe')->withPivot('id','no_rek','tanggal','lama_pinjaman')->orderBy('anggota_produk_cu.tanggal','desc')->withTimestamps();
         }else{
-            return $this->belongsToMany('App\ProdukCu','anggota_produk_cu')->select('produk_cu.id','anggota_produk_cu.id','id_cu','kode_produk','name','jalinan','tipe')->where('id_cu',$id)->withPivot('id','no_rek','saldo','tanggal','lama_pinjaman')->orderBy('anggota_produk_cu.tanggal','desc')->withTimestamps();
+            return $this->belongsToMany('App\ProdukCu','anggota_produk_cu')->select('produk_cu.id','anggota_produk_cu.id','id_cu','kode_produk','name','jalinan','tipe')->where('id_cu',$id)->withPivot('id','no_rek','tanggal','lama_pinjaman')->orderBy('anggota_produk_cu.tanggal','desc')->withTimestamps();
         }
     }
     
+    public function anggota_cu_cu_informasi(){
+        return $this->hasMany('App\AnggotaCuCu','anggota_cu_id','id');
+    }
+
+    public function anggota_produk_cu_informasi(){
+        return $this->belongsToMany('App\ProdukCu','anggota_produk_cu')->select('produk_cu.id','anggota_produk_cu.id','id_cu','kode_produk','name','jalinan','tipe')->withPivot('id','no_rek','tanggal','kolekbi','dpd')->orderBy('anggota_produk_cu.tanggal','desc')->withTimestamps();
+    }
 
     public function status_jalinan()
     {

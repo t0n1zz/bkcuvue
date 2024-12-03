@@ -14,7 +14,6 @@ use Maatwebsite\Excel\Facades\Excel;
 use Venturecraft\Revisionable\Revision;
 
 class MonitoringController extends Controller{
-
 	protected $message = "Monitoring";
 
 	public function index()

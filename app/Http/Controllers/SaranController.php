@@ -12,14 +12,13 @@ class SaranController extends Controller{
 
 	public function index()
 	{
-			$table_data = Saran::with('user')->advancedFilter();
+			$table_data = Saran::with('user.cu','user.aktivis')->advancedFilter();
 
     	return response()
 			->json([
 				'model' => $table_data
 			]);
 	}
-
 
 	public function create()
 	{

@@ -12,9 +12,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/pageHeader.vue */ "./resources/assets/js/components/pageHeader.vue");
 /* harmony import */ var _riwayatContent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./riwayatContent.vue */ "./resources/assets/js/views/aktivis/riwayatContent.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -101,7 +101,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -115,8 +115,8 @@ var render = function() {
             title: _vm.title,
             titleDesc: _vm.titleDesc,
             titleIcon: _vm.titleIcon,
-            level: 3
-          }
+            level: 3,
+          },
         },
         [
           _c(
@@ -127,7 +127,7 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "breadcrumb-item",
-                  attrs: { to: { name: "dashboard" } }
+                  attrs: { to: { name: "dashboard" } },
                 },
                 [_c("i", { staticClass: "icon-home4" }), _vm._v(" Dashboard ")]
               ),
@@ -138,21 +138,21 @@ var render = function() {
                   staticClass: "breadcrumb-item",
                   attrs: { href: "#" },
                   on: {
-                    click: function($event) {
+                    click: function ($event) {
                       $event.preventDefault()
                       return _vm.back()
-                    }
-                  }
+                    },
+                  },
                 },
                 [_vm._v("Aktivis")]
               ),
               _vm._v(" "),
               _c("span", { staticClass: "breadcrumb-item active" }, [
-                _vm._v(_vm._s(_vm.title))
-              ])
+                _vm._v(_vm._s(_vm.title)),
+              ]),
             ],
             1
-          )
+          ),
         ],
         2
       ),
@@ -166,14 +166,14 @@ var render = function() {
               _c("riwayat-content", {
                 attrs: {
                   id_aktivis: _vm.$route.params.id,
-                  id_cu: _vm.$route.params.cu
-                }
-              })
+                  id_cu: _vm.$route.params.cu,
+                },
+              }),
             ],
             1
-          )
-        ])
-      ])
+          ),
+        ]),
+      ]),
     ],
     1
   )

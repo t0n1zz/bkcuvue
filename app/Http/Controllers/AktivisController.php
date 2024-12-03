@@ -1186,7 +1186,7 @@ class AktivisController extends Controller{
 	
 	public function cariData($nik)
 	{
-		$table_data = Aktivis::with('Villages','Districts','Regencies','Provinces','anggota_cu','keluarga')->where('nik',$nik)->first();
+		$table_data = Aktivis::withTrashed('Villages','Districts','Regencies','Provinces','anggota_cu','keluarga')->where('nik',$nik)->first();
 
 		if($table_data){
 			return response()

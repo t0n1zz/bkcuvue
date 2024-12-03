@@ -64,7 +64,7 @@ class AnggotaCuCu extends Model {
 
     public function cu()
     {
-        return $this->belongsTo('App\Cu','cu_id','id')->select('id','no_ba','name','id_villages','id_districts','id_regencies','id_provinces');
+        return $this->belongsTo('App\Cu','cu_id','id')->select('id','no_ba','name','id_villages','id_districts','id_regencies','id_provinces','escete');
     }
 
     public function tp()

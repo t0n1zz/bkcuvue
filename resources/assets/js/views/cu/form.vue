@@ -413,6 +413,34 @@
 										</div>
 									</div>
 
+									<!-- lat -->
+									<div class="col-md-4">
+										<div class="form-group">
+
+											<!-- title -->
+											<h5>Koordinat garis lintang (latitude):</h5>
+
+											<!-- text -->
+											<input type="text" name="lat" class="form-control" placeholder="Silahkan masukkan koordinat garis lintang" data-vv-as="Latitude" v-model="form.lat">
+
+											<small class="text-muted">&nbsp;</small>
+										</div>
+									</div>
+
+									<!-- lng -->
+									<div class="col-md-4">
+										<div class="form-group">
+
+											<!-- title -->
+											<h5>Koordinat garis bujur (longitude):</h5>
+
+											<!-- text -->
+											<input type="text" name="lng" class="form-control" placeholder="Silahkan masukkan koordinat garis bujur" data-vv-as="Longitude" v-model="form.lng">
+
+											<small class="text-muted">&nbsp;</small>
+										</div>
+									</div>
+
 								</div>
 							</div>
 						</div>

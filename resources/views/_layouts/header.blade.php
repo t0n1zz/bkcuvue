@@ -22,7 +22,7 @@
             <i class="bi-instagram"></i>
             <i class="bi-instagram"></i>
           </a>
-          <a href="https://www.youtube.com/@PuskopcuinaOfficial" target="_blank" class="social-icon rounded-circle bg-dark h-bg-youtube" style="--cnvs-socialicon-size:1.75rem;">
+          <a href="https://www.youtube.com/@PUSKOPCUINA" target="_blank" class="social-icon rounded-circle bg-dark h-bg-youtube" style="--cnvs-socialicon-size:1.75rem;">
             <i class="bi-youtube"></i>
             <i class="bi-youtube"></i>
           </a>

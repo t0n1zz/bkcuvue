@@ -57,6 +57,15 @@ import { saran } from './modules/saran';
 import { errorLog } from './modules/errorLog';
 import { anggotaCuImportEscete } from './modules/anggotaCuImportEscete';
 import { fileUpload } from './modules/fileUpload';
+import { kubn } from './modules/kubn';
+import { kubnUsaha } from './modules/kubnUsaha';
+import { kombas } from './modules/kombas';
+import { enterpreneur } from './modules/enterpreneur';
+import { keahlian } from './modules/keahlian';
+import { mentor } from './modules/mentor';
+import { fasilitator } from './modules/fasilitator';
+import { umkm } from './modules/umkm';
+import { jenisDiklat } from './modules/jenisDiklat';
 
 Vue.use(Vuex);
 
@@ -117,6 +126,15 @@ export default new Vuex.Store({
 		 saran,
 		 errorLog,
 		 anggotaCuImportEscete,
-		 fileUpload
+		 fileUpload,
+		 kubn,
+		 kubnUsaha,
+		 kombas,
+		 enterpreneur,
+		 keahlian,
+		 mentor,
+		 fasilitator,
+		 jenisDiklat,
+		 umkm,
 	 }
 });

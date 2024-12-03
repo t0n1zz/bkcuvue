@@ -68,10 +68,10 @@
                 <td class="font-weight-semibold">Peserta Max:</td>
                 <td class="text-right">{{item.peserta_max}} orang</td>
               </tr>
-              <tr>
+              <!-- <tr> 
                 <td class="font-weight-semibold">Peserta Max Per CU:</td>
                 <td class="text-right">{{item.peserta_max_cu}} orang</td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
         </div>
@@ -242,8 +242,18 @@
               <tr v-if="props.item">
                 <td>{{ props.index + 1 }}</td>
                 <td>
-                  <img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
-                  <img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+                  <template v-if="props.item.pivot.asal == 'dalam'">
+                    <img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+                    <img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+                  </template>
+                  <template v-else-if="props.item.pivot.asal == 'luar'">
+                    <img :src="'/images/mitra_orang/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+                    <img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+                  </template>
+                  <template v-else-if="props.item.pivot.asal == 'luar lembaga'">
+                    <img :src="'/images/mitra_lembaga/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+                    <img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+                  </template>
                 </td>
                 <td>
                   <check-value :value="props.item.name"></check-value>

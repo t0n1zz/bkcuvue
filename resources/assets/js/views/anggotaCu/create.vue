@@ -18,6 +18,11 @@
 				</div>
 			</div>
 
+			<div class="alert bg-warning text-white alert-styled-left"  v-if="isESCETE">
+				<span class="font-weight-semibold">Mohon maaf, karena data anggota CU ini sudah terintegrasi ke ESCETE maka anda hanya bisa mengubah beberapa bagian dari data saja yang tidak terhubung ke ESCETE.
+				</span>
+			</div>
+
 			<!-- identitas -->
 			<div class="card" v-if="mode != 'create_old'">
 				<div class="card-header bg-white">
@@ -38,6 +43,28 @@
 								<app-image-upload :image_loc="'/images/anggotaCu/'" :image_temp="form.gambar" v-model="form.gambar"></app-image-upload>
 							</div>
 						</div>  
+
+						<div class="col-md-12">
+							<div class="form-group">
+
+								<!-- title -->
+								<h6>Tanda Tangan:</h6>
+
+								<!-- imageupload -->
+								<app-image-upload :image_loc="'/images/anggotaCu/'" :image_temp="form.ttd" v-model="form.ttd"></app-image-upload>
+							</div>
+						</div>  
+
+						<div class="col-md-12">
+							<div class="form-group">
+
+								<!-- title -->
+								<h6>Foto KTP:</h6>
+
+								<!-- imageupload -->
+								<app-image-upload :image_loc="'/images/anggotaCu/'" :image_temp="form.gambarKtp" v-model="form.gambarKtp"></app-image-upload>
+							</div>
+						</div> 
 
 						<!-- nik -->
 						<div class="col-md-4">
@@ -107,7 +134,7 @@
 
 								<!-- text -->
 								<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama" v-validate="'required'"
-									data-vv-as="Nama" v-model="form.name">
+									data-vv-as="Nama" v-model="form.name" :disabled="isESCETE">
 
 								<!-- error message -->
 								<small class="text-muted text-danger" v-if="errors.has('form.name')">
@@ -128,7 +155,7 @@
 
 								<!-- text -->
 								<input type="text" name="ahli_waris" class="form-control" placeholder="Silahkan masukkan nama ahli waris" v-validate="'required'"
-									data-vv-as="Nama ahli waris" v-model="form.ahli_waris">
+									data-vv-as="Nama ahli waris" v-model="form.ahli_waris" :disabled="isESCETE">
 
 								<!-- error message -->
 								<small class="text-muted text-danger" v-if="errors.has('form.ahli_waris')">
@@ -146,7 +173,7 @@
 								<h6>Nama Ibu: </h6>
 
 								<!-- text -->
-								<input type="text" name="nama_ibu" class="form-control" placeholder="Silahkan masukkan nama ibu" v-model="form.nama_ibu">
+								<input type="text" name="nama_ibu" class="form-control" placeholder="Silahkan masukkan nama ibu" v-model="form.nama_ibu" :disabled="isESCETE">
 
 							</div>
 						</div>
@@ -162,7 +189,7 @@
 								</h6>
 
 								<!-- select -->
-								<select class="form-control" name="kelamin" v-model="form.kelamin" data-width="100%" v-validate="'required'"
+								<select class="form-control" name="kelamin" v-model="form.kelamin" data-width="100%" v-validate="'required'" :disabled="isESCETE"
 									data-vv-as="Gender">
 									<option disabled value="">Silahkan pilih gender</option>
 									<option value="LAKI-LAKI">Laki-laki</option>
@@ -187,8 +214,13 @@
 									Tgl. Lahir: <wajib-badge></wajib-badge></h6>
 
 								<!-- input -->
-								<date-picker @dateSelected="form.tanggal_lahir = $event" :defaultDate="form.tanggal_lahir"></date-picker>	
-								<input v-model="form.tanggal_lahir" v-show="false" v-validate="'required'" data-vv-as="Tanggal lahir"/>
+								 <template v-if="isESCETE">
+										<input v-model="form.tanggal_lahir" class="form-control" name="tanggal_lahir" v-validate="'required'" data-vv-as="Tanggal lahir" :disabled="isESCETE"/>
+								 </template>
+								 <template v-else>
+									 <date-picker @dateSelected="form.tanggal_lahir = $event" :defaultDate="form.tanggal_lahir"></date-picker>	
+									 <input v-model="form.tanggal_lahir" name="tanggal_lahir" v-show="false" v-validate="'required'" data-vv-as="Tanggal lahir"/>
+								 </template>
 
 								<!-- error message -->
 								<small class="text-muted text-danger" v-if="errors.has('form.tanggal_lahir')">
@@ -208,7 +240,7 @@
 									<i class="icon-cross2" v-if="errors.has('form.tempat_lahir')"></i>Tempat Lahir: <wajib-badge></wajib-badge></h6>
 
 								<!-- text -->
-								<input type="text" name="tempat_lahir" class="form-control" placeholder="Silahkan masukkan tempat lahir" v-model="form.tempat_lahir" v-validate="'required'" data-vv-as="Tempat Lahir">
+								<input type="text" name="tempat_lahir" class="form-control" placeholder="Silahkan masukkan tempat lahir" v-model="form.tempat_lahir" v-validate="'required'" data-vv-as="Tempat Lahir" :disabled="isESCETE">
 
 								<!-- error message -->
 								<small class="text-muted text-danger" v-if="errors.has('form.tempat_lahir')">
@@ -227,7 +259,7 @@
 								<h6>Suku: </h6>
 
 								<!-- select -->
-								<select class="form-control" name="suku" v-model="form.suku" data-width="100%" :disabled="modelSuku.length == 0">
+								<select class="form-control" name="suku" v-model="form.suku" data-width="100%" :disabled="modelSuku.length == 0 || isESCETE"> 
 									<option disabled value="">
 										<span v-if="modelSukuStat === 'loading'">Mohon tunggu...</span>
 										<span v-else>Silahkan pilih suku</span>
@@ -279,7 +311,7 @@
 								<h6>Agama:</h6>
 
 								<!-- select -->
-								<select class="form-control" name="agama" v-model="form.agama" data-width="100%">
+								<select class="form-control" name="agama" v-model="form.agama" data-width="100%" :disabled="isESCETE">
 									<option disabled value="">Silahkan pilih agama</option>
 									<option value="BUDDHA">Buddha</option>
 									<option value="HINDU">Hindu</option>
@@ -303,7 +335,7 @@
 								</h6>
 
 								<!-- select -->
-								<select class="form-control" name="status" v-model="form.status" data-width="100%">
+								<select class="form-control" name="status" v-model="form.status" data-width="100%" :disabled="isESCETE">
 									<option disabled value="">Silahkan pilih status pernikahan</option>
 									<option value="BELUM MENIKAH">Belum menikah</option>
 									<option value="MENIKAH">Menikah</option>
@@ -465,7 +497,7 @@
 								</h6>
 
 								<!-- select -->
-								<select class="form-control" name="id_provinces" v-model="form.id_provinces" data-width="100%" v-validate="'required'" data-vv-as="Provinsi" :disabled="modelProvinces.length == 0" @change="changeProvinces($event.target.value)">
+								<select class="form-control" name="id_provinces" v-model="form.id_provinces" data-width="100%" v-validate="'required'" data-vv-as="Provinsi" :disabled="modelProvinces.length == 0 || isESCETE" @change="changeProvinces($event.target.value)">
 									<option disabled value="">Silahkan pilih provinsi</option>
 									<option v-for="(provinces, index) in modelProvinces" :key="index" :value="provinces.id">{{provinces.name}}</option>
 								</select>
@@ -489,7 +521,7 @@
 								</h6>
 
 								<!-- select -->
-								<select class="form-control"  name="id_regencies" v-model="form.id_regencies" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
+								<select class="form-control"  name="id_regencies" v-model="form.id_regencies" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0 || isESCETE">
 									<option disabled value="">
 										<span v-if="modelRegenciesStat === 'loading'">Mohon tunggu...</span>
 										<span v-else>Silahkan pilih kabupaten</span>
@@ -516,7 +548,7 @@
 								</h6>
 
 								<!-- select -->
-								<select class="form-control"  name="id_districts" v-model="form.id_districts" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" :disabled="modelDistricts.length === 0" @change="changeDistricts($event.target.value)">
+								<select class="form-control"  name="id_districts" v-model="form.id_districts" data-width="100%" v-validate="'required'" data-vv-as="Kabupaten" :disabled="modelDistricts.length === 0 || isESCETE" @change="changeDistricts($event.target.value)">
 									<option disabled value="">
 										<span v-if="modelDistrictsStat === 'loading'">Mohon tunggu...</span>
 										<span v-else>Silahkan pilih kecamatan</span>
@@ -543,7 +575,7 @@
 								</h6>
 
 								<!-- select -->
-								<select class="form-control"  name="id_villages" v-model="form.id_villages" data-width="100%" v-validate="'required'" data-vv-as="Desa" :disabled="modelVillages.length === 0">
+								<select class="form-control"  name="id_villages" v-model="form.id_villages" data-width="100%" v-validate="'required'" data-vv-as="Desa" :disabled="modelVillages.length === 0 || isESCETE">
 									<option disabled value="">
 										<span v-if="modelVillagesStat === 'loading'">Mohon tunggu... mohon tunggu</span>
 										<span v-else>Silahkan pilih kelurahan</span>
@@ -568,10 +600,12 @@
 
 								<!-- text -->
 								<cleave 
+									name="rw"
 									v-model="form.rw" 
 									class="form-control" 
 									:options="cleaveOption.number3"
-									placeholder="Silahkan masukkan no rw"></cleave>
+									placeholder="Silahkan masukkan no rw"
+									:disabled="isESCETE"></cleave>
 
 								<!-- error message -->
 								<small class="text-muted">&nbsp;</small>	
@@ -587,6 +621,7 @@
 
 								<!-- text -->
 								<cleave 
+									name="rt"
 									v-model="form.rt" 
 									class="form-control" 
 									:options="cleaveOption.number3"
@@ -607,7 +642,7 @@
 									Alamat: <wajib-badge></wajib-badge></h6>
 
 								<!-- text -->
-								<input type="text" name="alamat" class="form-control" placeholder="Silahkan masukkan alamat" v-validate="'required|min:5'" data-vv-as="Alamat" v-model="form.alamat">
+								<input type="text" name="alamat" class="form-control" placeholder="Silahkan masukkan alamat" v-validate="'required|min:5'" data-vv-as="Alamat" v-model="form.alamat" :disabled="isESCETE">
 
 								<!-- error message -->
 								<small class="text-muted text-danger" v-if="errors.has('form.alamat')">
@@ -626,10 +661,12 @@
 
 								<!-- text -->
 								<cleave 
+									name="hp"
 									v-model="form.hp" 
 									class="form-control" 
 									:options="cleaveOption.number12"
-									placeholder="Silahkan masukkan no hp"></cleave>
+									placeholder="Silahkan masukkan no hp"
+									:disabled="isESCETE"></cleave>
 
 								<!-- error message -->
 								<small class="text-muted">&nbsp;</small>	
@@ -646,7 +683,7 @@
 									Email:</h6>
 
 								<!-- text -->
-								<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan alamat email" v-validate="'email'" data-vv-as="Email" v-model="form.email">
+								<input type="text" name="email" class="form-control" placeholder="Silahkan masukkan alamat email" v-validate="'email'" data-vv-as="Email" v-model="form.email" :disabled="isESCETE">
 
 								<!-- error message -->
 								<small class="text-muted text-danger" v-if="errors.has('form.email')">
@@ -664,7 +701,7 @@
 								<h6>Kontak Ahli Waris:</h6>
 
 								<!-- text -->
-								<input type="text" name="kontak" class="form-control" placeholder="Silahkan masukkan kontak ahli waris" v-model="form.kontak_ahli_waris">
+								<input type="text" name="kontak" class="form-control" placeholder="Silahkan masukkan kontak ahli waris" v-model="form.kontak_ahli_waris" :disabled="isESCETE">
 
 							</div>
 						</div>
@@ -677,7 +714,7 @@
 								<h6>Kontak Lainnya:</h6>
 
 								<!-- text -->
-								<input type="text" name="kontak" class="form-control" placeholder="Silahkan masukkan kontak lainnya" v-model="form.kontak">
+								<input type="text" name="kontak" class="form-control" placeholder="Silahkan masukkan kontak lainnya" v-model="form.kontak" :disabled="isESCETE">
 
 							</div>
 						</div>
@@ -738,7 +775,7 @@
 										</h6>
 
 										<!-- select -->
-										<select class="form-control" name="id_tp" v-model="form.tp_id" data-width="100%" v-validate="'required'" data-vv-as="TP/KP">
+										<select class="form-control" name="id_tp" v-model="form.tp_id" data-width="100%" v-validate="'required'" data-vv-as="TP/KP" :disabled="isESCETE">
 											<option disabled value="">Silahkan pilih TP/KP</option>
 											<option v-for="(tp, index) in modelTp" :key="index" :value="tp.id">{{tp.name}}</option>
 										</select>
@@ -767,7 +804,8 @@
 										class="form-control" 
 										:options="cleaveOption.number16"
 										placeholder="Silahkan masukkan no buku anggota"
-										v-validate="'required'" data-vv-as="No. Buku Anggota"></cleave>
+										v-validate="'required'" data-vv-as="No. Buku Anggota"
+										:disabled="isESCETE"></cleave>
 
 										<!-- error message -->
 										<small class="text-muted text-danger" v-if="errors.has('form.no_ba')">
@@ -788,8 +826,13 @@
 										Tgl. Jadi Anggota: <wajib-badge></wajib-badge></h6>
 
 										<!-- text -->
-										<date-picker @dateSelected="form.tanggal_masuk = $event" :defaultDate="form.tanggal_masuk"></date-picker>	
-										<input v-model="form.tanggal_masuk" v-show="false" v-validate="'required'" data-vv-as="Tgl. Jadi Anggota"/>
+										<template v-if="isESCETE">
+											<input v-model="form.tanggal_masuk" class="form-control" v-validate="'required'" data-vv-as="Tgl. Jadi Anggota" :disabled="isESCETE"/>
+										</template>
+										<template v-else>
+											<date-picker @dateSelected="form.tanggal_masuk = $event" :defaultDate="form.tanggal_masuk"></date-picker>	
+											<input v-model="form.tanggal_masuk" v-show="false" v-validate="'required'" data-vv-as="Tgl. Jadi Anggota"/>
+										</template>
 
 										<!-- error message -->
 										<small class="text-muted text-danger" v-if="errors.has('form.tanggal_masuk')">
@@ -809,7 +852,7 @@
 										Keterangan Jadi Anggota:</h6>
 
 										<!-- text -->
-										<input type="text" name="keterangan_masuk" class="form-control" placeholder="Silahkan masukkan keterangan masuk" v-model="form.keterangan_masuk">
+										<input type="text" name="keterangan_masuk" class="form-control" placeholder="Silahkan masukkan keterangan masuk" v-model="form.keterangan_masuk" :disabled="isESCETE">
 										
 
 									</div>
@@ -829,7 +872,7 @@
 				</div>
 				<div class="card-body pb-2">
 					<div class="row">
-
+<!-- 
 						<div class="col-md-12" v-if="form.status_jalinan != 1 && form.status_jalinan != 2">
 
 							<button class="btn btn-light mb-1" @click.prevent="modalOpen('tambahCu')">
@@ -845,7 +888,7 @@
 								<i class="icon-bin2"></i> Hapus
 							</button>
 
-						</div>
+						</div> -->
 
 					</div>		
 				</div>
@@ -1014,6 +1057,7 @@
 				modalColor: '',
 				modalContent: '',
 				submited: false,
+				isESCETE: false,
 			}
 		},
 		created() {
@@ -1042,6 +1086,9 @@
 				if(value == 'success'){
 					if(this.mode == 'edit' || this.mode == 'create_edit' || this.mode == 'create_jalinan_edit' || this.mode == 'edit_jalinan'){
 						this.fetchCu();
+						if(this.form.escete == 1){
+							this.isESCETE = true;
+						}
 					}else{
 						this.form.tp_id == '';
 					}

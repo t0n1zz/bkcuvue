@@ -35,7 +35,7 @@ class Tp extends BaseEloquent {
     );
     
     protected $fillable = [
-      'id_cu','id_villages','id_districts','id_regencies','id_provinces','no_tp','name','gambar','alamat','pos','telp','hp','email','deskripsi','ultah','created_at','updated_at','deleted_at'
+      'id_cu','id_villages','id_districts','id_regencies','id_provinces','no_tp','name','gambar','alamat','pos','telp','hp','email','deskripsi','ultah','created_at','updated_at','deleted_at','lat','lng'
     ];
 
     protected $allowedFilters = [
@@ -52,7 +52,7 @@ class Tp extends BaseEloquent {
 
     public static function initialize(){
         return [
-            'id_cu' => '0', 'id_villages' => '0', 'id_districts' => '0', 'id_regencies' => '0', 'id_provinces' => '0', 'no_tp' => '', 'name' => '', 'gambar' => '', 'alamat' => '', 'pos' => '', 'telp' => '', 'hp' => '', 'email' => '', 'deskripsi' => '', 'ultah' => '',
+            'id_cu' => '0', 'id_villages' => '0', 'id_districts' => '0', 'id_regencies' => '0', 'id_provinces' => '0', 'no_tp' => '', 'name' => '', 'gambar' => '', 'alamat' => '', 'pos' => '', 'telp' => '', 'hp' => '', 'email' => '', 'deskripsi' => '', 'ultah' => '','lat' => '','lng' => ''
         ];
     }
         

@@ -100,34 +100,6 @@
 				</div>
 			</div>
 
-			<!-- saldo -->
-			<div class="col-md-12">
-				<div class="form-group" :class="{'has-error' : errors.has('formSimpanan.saldo')}">
-
-					<!-- title -->
-					<h5 :class="{ 'text-danger' : errors.has('formSimpanan.saldo')}">
-						<i class="icon-cross2" v-if="errors.has('formSimpanan.saldo')"></i>
-						Saldo:
-					</h5>
-
-					<!-- text -->
-					<cleave 
-						name="saldo"
-						v-model="formSimpanan.saldo" 
-						class="form-control" 
-						:options="cleaveOption.numeric"
-						placeholder="Silahkan masukkan jumlah saldo"
-						v-validate="'required'" data-vv-as="Saldo" ></cleave>
-
-					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('formSimpanan.saldo')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('formSimpanan.saldo') }}
-					</small>
-					<small class="text-muted" v-else>&nbsp;
-					</small>
-				</div>
-			</div>
-
 			<!-- tanggal -->
 			<div class="col-md-12">
 				<div class="form-group" :class="{'has-error' : errors.has('formSimpanan.tanggal')}">
@@ -202,7 +174,6 @@
 				kelas: 'aktivis',
 				formSimpanan:{
 					anggota_id: '',
-					saldo: '',
 					cu: {
 						id: 0,
 						name: ''

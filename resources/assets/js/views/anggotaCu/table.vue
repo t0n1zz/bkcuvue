@@ -1,6 +1,11 @@
 <template>
   <div>
 
+    <div class="alert bg-warning text-white alert-styled-left"  v-if="form.escete == 1 && formStat == 'success'">
+      <span class="font-weight-semibold">Mohon maaf, karena data anggota CU ini sudah terintegrasi ke ESCETE maka anda hanya bisa mengubah beberapa bagian dari data saja yang tidak terhubung ke ESCETE.
+      </span>
+    </div>
+
     <!-- main panel -->
     <data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query" :itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl" :excelUploads="excelUploads"  @fetch="fetch">
 
@@ -42,22 +47,23 @@
             <span v-else>Batal Keluarkan Anggota</span>
           </button>
 
-          <!-- hapus -->
-          <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu'] && tipe == 'masih'"
-            :disabled="!selectedItem.id">
-            <i class="icon-bin2"></i> Hapus
-          </button>
+        </template>
 
-        </template>
-        <template v-else>
-          <button class="btn btn-light btn-icon mb-1" disabled>
-            Mohon maaf, karena data anggota CU ini sudah terintegrasi ke ESCETE maka semua proses pengolahan data kecuali Bantuan Solidaritas Jalinan mesti dilakukan di ESCETE dan akan di sinkronisasikan tiap akhir bulan
-          </button>
-        </template>
+        <!-- ubah identitas -->
+        <button @click.prevent="ubahData(selectedItem.id,'identitas')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['update_anggota_cu'] && tipe == 'masih'"
+          :disabled="!selectedItem.id">
+          <i class="icon-pencil5"></i> Ubah Identitas
+        </button>
 
         <!-- bantuan solidaritas jalinan -->
         <button @click.prevent="ubahData(selectedItem.id,'jalinan')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['create_jalinan_klaim'] && tipe == 'masih'" :disabled="!selectedItem.id">
           <i class="icon-accessibility2"></i> Ajukan Bantuan Solidaritas Jalinan
+        </button>
+
+        <!-- hapus -->
+        <button @click.prevent="modalConfirmOpen('hapus')" class="btn btn-light btn-icon mb-1" v-if="currentUser.can && currentUser.can['destroy_anggota_cu'] && tipe == 'masih'"
+          :disabled="!selectedItem.id || selectedItem.escete == 1">
+          <i class="icon-bin2"></i> Hapus
         </button>
 
         <!-- table draft -->
@@ -134,116 +140,133 @@
 						{{ props.index + 1 + (+itemData.current_page-1) * +itemData.per_page + '.'}}
 					</td>
           <td v-if="!columnData[1].hide">
-						<img :src="'/images/anggotaCu/' + props.item.gambar + 'n.jpg'" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+						<img :src="'/images/anggotaCu/' + props.item.gambar + 'n.jpg'" class="img-rounded img-fluid wmin-sm cursor-pointer" v-if="props.item.gambar" @click="modalImageOpen(props.item.gambar)">
 						<img :src="'/images/no_image_man.jpg'" class="img-rounded img-fluid wmin-sm" v-else>
 					</td>
-          <td v-if="!columnData[2].hide  && !columnData[2].disable">
+          <td v-if="!columnData[2].hide">
+						<img :src="'/images/anggotaCu/' + props.item.ttd + 'n.jpg'" class="img-rounded img-fluid wmin-sm cursor-pointer" v-if="props.item.ttd" @click="modalImageOpen(props.item.ttd)">
+						<img :src="'/images/no_image.jpg'" width="40" class="img-rounded img-fluid wmin-sm" v-else>
+					</td>
+          <td v-if="!columnData[3].hide">
+						<img :src="'/images/anggotaCu/' + props.item.gambarKtp + 'n.jpg'" class="img-rounded img-fluid wmin-sm cursor-pointer" v-if="props.item.gambarKtp" @click="modalImageOpen(props.item.gambarKtp)">
+						<img :src="'/images/no_image.jpg'" width="40" class="img-rounded img-fluid wmin-sm" v-else>
+					</td>
+          <td v-if="!columnData[4].hide  && !columnData[4].disable">
             <check-value :value="props.item.keterangan_keluar"></check-value>
           </td>
-          <td v-if="!columnData[3].hide">
-            <check-value :value="props.item.nik"></check-value>
-          </td>
-          <td v-if="!columnData[4].hide">
-            <check-value :value="props.item.npwp"></check-value>
-          </td>
           <td v-if="!columnData[5].hide">
-            <check-value :value="props.item.name"></check-value> 
+            <span v-if="props.item.escete == 1"><span class="badge bg-blue-400 align-self-center ml-auto" v-tooltip="'Data anggota berasal dari data ESCETE'">Terintegrasi</span></span>
+            <span v-else>
+              <span class="badge bg-brown-400 align-self-center ml-auto" v-tooltip="'Data anggota berasal dari input manual di simo'">Manual</span>
+            </span>
           </td>
           <td v-if="!columnData[6].hide">
+            <check-value :value="props.item.nik"></check-value>
+          </td>
+          <td v-if="!columnData[7].hide">
+            <check-value :value="props.item.npwp"></check-value>
+          </td>
+          <td v-if="!columnData[8].hide">
+            <check-value :value="props.item.kk"></check-value>
+          </td>
+          <td v-if="!columnData[9].hide">
+            <check-value :value="props.item.name"></check-value> 
+          </td>
+          <td v-if="!columnData[10].hide">
             <check-value :value="props.item.no_ba"></check-value>
 					</td>
-          <td v-if="!columnData[7].hide">
+          <td v-if="!columnData[11].hide">
             <label class="badge badge-warning ml-1" v-if="props.item.status_jalinan">
               <check-value :value="props.item.status_jalinan"></check-value>
             </label> 
             <span v-else>-</span>
 					</td>
-					<td v-if="!columnData[8].hide">
+					<td v-if="!columnData[12].hide">
 						<check-value :value="props.item.lembaga"></check-value>
 					</td>
-					<td v-if="!columnData[9].hide">
+					<td v-if="!columnData[13].hide">
 						<check-value :value="props.item.jabatan"></check-value>
 					</td>
-					<td v-if="!columnData[10].hide">
+					<td v-if="!columnData[14].hide">
 						<check-value :value="props.item.pekerjaan"></check-value>
 					</td>
-					<td v-if="!columnData[11].hide">
+					<td v-if="!columnData[15].hide">
 						<check-value :value="props.item.pendidikan"></check-value>
 					</td>
-					<td v-if="!columnData[12].hide">
+					<td v-if="!columnData[16].hide">
 						<check-value :value="props.item.penghasilan"></check-value>
 					</td>
-					<td v-if="!columnData[13].hide">
+					<td v-if="!columnData[17].hide">
 						<check-value :value="props.item.pengeluaran"></check-value>
 					</td>
-					<td v-if="!columnData[14].hide">
+					<td v-if="!columnData[18].hide">
 						<check-value :value="props.item.email"></check-value>
 					</td>
-					<td v-if="!columnData[15].hide">
+					<td v-if="!columnData[19].hide">
 						<check-value :value="props.item.hp"></check-value>
 					</td>
-					<td v-if="!columnData[16].hide">
+					<td v-if="!columnData[20].hide">
 						<check-value :value="props.item.kontak"></check-value>
 					</td>
-					<td v-if="!columnData[17].hide">
+					<td v-if="!columnData[21].hide">
 						<check-value :value="props.item.kelamin"></check-value>
 					</td>
-          <td v-if="!columnData[18].hide">
+          <td v-if="!columnData[22].hide">
 						<check-value :value="props.item.ahli_waris"></check-value>
 					</td>
-          <td v-if="!columnData[19].hide">
+          <td v-if="!columnData[23].hide">
 						<check-value :value="props.item.nama_ibu"></check-value>
 					</td>
-          <td v-if="!columnData[20].hide">
+          <td v-if="!columnData[24].hide">
 						<check-value :value="props.item.suku"></check-value>
 					</td>
-					<td v-if="!columnData[21].hide">
+					<td v-if="!columnData[25].hide">
 						<check-value :value="props.item.darah"></check-value>
 					</td>
-					<td v-if="!columnData[22].hide">
+					<td v-if="!columnData[26].hide">
 						<check-value :value="props.item.tinggi"></check-value>
 					</td>
-					<td v-if="!columnData[23].hide">
+					<td v-if="!columnData[27].hide">
 						<check-value :value="props.item.agama"></check-value>
 					</td>
-					<td v-if="!columnData[24].hide">
+					<td v-if="!columnData[28].hide">
 						<check-value :value="props.item.status"></check-value>
 					</td>
-					<td v-if="!columnData[25].hide" v-html="$options.filters.date(props.item.tanggal_lahir)">
+					<td v-if="!columnData[29].hide" v-html="$options.filters.date(props.item.tanggal_lahir)">
 					</td>
-					<td v-if="!columnData[26].hide">
+					<td v-if="!columnData[30].hide">
 						<check-value :value="props.item.tempat_lahir"></check-value>
 					</td>
-          <td v-if="!columnData[27].hide">
+          <td v-if="!columnData[31].hide">
             <span v-html="$options.filters.date(props.item.tanggal_masuk)"></span>
 					</td>
-					<td v-if="!columnData[28].hide">
+					<td v-if="!columnData[32].hide">
 						<check-value :value="props.item.provinces.name" v-if="props.item.provinces"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[29].hide">
+					<td v-if="!columnData[33].hide">
 						<check-value :value="props.item.regencies.name" v-if="props.item.regencies"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[30].hide">
+					<td v-if="!columnData[34].hide">
 						<check-value :value="props.item.districts.name" v-if="props.item.districts"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[31].hide">
+					<td v-if="!columnData[35].hide">
 						<check-value :value="props.item.villages.name" v-if="props.item.villages"></check-value>
 						<span v-else>-</span>	
 					</td>
-					<td v-if="!columnData[32].hide">
+					<td v-if="!columnData[36].hide">
 						<check-value :value="props.item.rw"></check-value>
 					</td>
-					<td v-if="!columnData[33].hide">
+					<td v-if="!columnData[37].hide">
 						<check-value :value="props.item.rt"></check-value>
 					</td>
-					<td v-if="!columnData[34].hide">
+					<td v-if="!columnData[38].hide">
 						<check-value :value="props.item.alamat"></check-value>
 					</td>
-					<td v-if="!columnData[35].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
-					<td v-if="!columnData[36].hide">
+					<td v-if="!columnData[39].hide" v-html="$options.filters.dateTime(props.item.created_at)" class="text-nowrap"></td>
+					<td v-if="!columnData[40].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -358,13 +381,28 @@
             name: 'No.',
           },
           {
-						title: 'Foto',
+						title: 'Foto Diri',
 						name: 'gambar',
+						hide: false,
+					},
+          {
+						title: 'Foto Ttd',
+						name: 'ttd',
+						hide: false,
+					},
+          {
+						title: 'Foto Ktp',
+						name: 'gambarKtp',
 						hide: false,
 					},
           {
 						title: 'Keterangan Keluar',
 						name: 'keterangan_keluar',
+						hide: false,
+					},
+          {
+						title: 'Jenis',
+						name: 'escete',
 						hide: false,
 					},
           {
@@ -379,6 +417,15 @@
           {
             title: 'NPWP',
             name: 'npwp',
+            tipe: 'string',
+            sort: true,
+            hide: false,
+            disable: false,
+            filter: true,
+          },
+          {
+            title: 'KK',
+            name: 'kk',
             tipe: 'string',
             sort: true,
             hide: false,
@@ -769,7 +816,7 @@
         this.fetchAnggotaCuDraft();
       },
       disableColumnCu(status){
-				this.columnData[2].disable = status;
+				this.columnData[4].disable = status;
 			},
       fetchCu(){
         this.$store.dispatch('cu/escete', this.$route.params.cu);
@@ -856,6 +903,12 @@
           this.modalTitle = 'Pindah TP untuk anggota atas nama: ' + this.selectedItem.name + ' ?';
           this.anggota_cu = value;
         }
+      },
+      modalImageOpen(item) {
+        this.modalShow = true;
+			  this.modalSize = '';
+			  this.modalState = 'image';
+        this.modalContent = '/images/anggotaCu/' + item + '.jpg';
       },
       modalConfirmOpen(state, isMobile, itemMobile) {
         this.modalShow = true;

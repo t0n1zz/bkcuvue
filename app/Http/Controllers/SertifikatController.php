@@ -231,45 +231,7 @@ class SertifikatController extends Controller
         $selesai2 = 'XII';
         break;
     }
-
-    switch ($mulai->format('F')) {
-      case 'January':
-        $mulai2 = 'Januari';
-        break;
-      case 'February':
-        $mulai2 = 'Februari';
-        break;
-      case 'March':
-        $mulai2 = 'Maret';
-        break;
-      case 'April':
-        $mulai2 = 'April';
-        break;
-      case 'May':
-        $mulai2 = 'Mei';
-        break;
-      case 'June':
-        $mulai2 = 'Juni';
-        break;
-      case 'July':
-        $mulai2 = 'Juli';
-        break;
-      case 'August':
-        $mulai2 = 'Agustus';
-        break;
-      case 'September':
-        $mulai2 = 'September';
-        break;
-      case 'October':
-        $selesai3 = 'Oktober';
-        break;
-      case 'November':
-        $mulai2 = 'November';
-        break;
-      case 'December':
-        $mulai2 = 'Desember';
-        break;
-    }
+    
     switch ($selesai->format('F')) {
       case 'January':
         $selesai3 = 'Januari';
@@ -308,17 +270,98 @@ class SertifikatController extends Controller
         $selesai3 = 'Desember';
         break;
     }
+    switch ($mulai->format('F')) {
+      case 'January':
+        $mulai2 = 'Januari';
+        break;
+      case 'February':
+        $mulai2 = 'Februari';
+        break;
+      case 'March':
+        $mulai2 = 'Maret';
+        break;
+      case 'April':
+        $mulai2 = 'April';
+        break;
+      case 'May':
+        $mulai2 = 'Mei';
+        break;
+      case 'June':
+        $mulai2 = 'Juni';
+        break;
+      case 'July':
+        $mulai2 = 'Juli';
+        break;
+      case 'August':
+        $mulai2 = 'Agustus';
+        break;
+      case 'September':
+        $mulai2 = 'September';
+        break;
+      case 'October':
+        $mulai2 = 'Oktober';
+        break;
+      case 'November':
+        $mulai2 = 'November';
+        break;
+      case 'December':
+        $mulai2 = 'Desember';
+        break;
+    }
+    switch ($mulai->format('m')) {
+      case '01':
+        $mulai2 = 'Januari';
+        break;
+      case '02':
+        $mulai2 = 'Februari';
+        break;
+      case '03':
+        $mulai2 = 'Maret';
+        break;
+      case '04':
+        $mulai2 = 'April';
+        break;
+      case '05':
+        $mulai2 = 'Mei';
+        break;
+      case '06':
+        $mulai2 = 'Juni';
+        break;
+      case '07':
+        $mulai2 = 'Juli';
+        break;
+      case '08':
+        $mulai2 = 'Agustus';
+        break;
+      case '09':
+        $mulai2 = 'September';
+        break;
+      case '10':
+        $mulai2 = 'Oktober';
+        break;
+      case '11':
+        $mulai2 = 'November';
+        break;
+      case '12':
+        $mulai2 = 'Desember';
+        break;
+    }
 
     $nomor = ($nomorData !== null) ? $nomorData['nomor'] . '/' . $sertifikat->kode_sertifikat . '/' . $selesai2 . '/' . $selesai->format('Y') : '';
 
     $hari = \Carbon\Carbon::parse($date_mulai)->diffInDays(\Carbon\Carbon::parse($date_selesai), false);
 
-    $hari = ($hari == 0 ? 1 : $hari);
+    $hari = ($hari == 0 ? 1 : $hari+1);
 
     $tahun = $kegiatanData->periode;
-
+    
     if ($hari > 1) {
-      $tgl = $mulai->format('d') . ' ' . $mulai2 . ' ' . $mulai->format('Y') . " s.d " . $selesai->format('d') . ' ' . $selesai3 . ' ' . $selesai->format('Y');
+      if($mulai2==$selesai3){
+        $tgl = $mulai->format('d') . " s.d " . $selesai->format('d') . ' ' . $selesai3 . ' ' . $selesai->format('Y');
+      }else{
+        $tgl = $mulai->format('d') . ' ' . $mulai2 . " s.d " . $selesai->format('d') . ' ' . $selesai3 . ' ' . $selesai->format('Y');
+      }
+      
     } else {
       $tgl = $mulai->format('d') . ' ' . $mulai2 . ' ' . $mulai->format('Y');
     }

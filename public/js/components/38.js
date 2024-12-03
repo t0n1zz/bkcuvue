@@ -1119,6 +1119,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1745,6 +1755,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -2046,18 +2057,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     fetchPesertaTerdaftar: function fetchPesertaTerdaftar(params) {
-      if (this.item.status == '2') {
-        if (this.currentUser.id_cu == 0) {
-          this.$store.dispatch(this.kelas + '/indexPeserta', [params, this.item.id]);
-          this.excelDownloadUrl = this.kelas + '/indexPeserta/' + this.item.id;
-        } else {
-          this.$store.dispatch(this.kelas + '/indexPesertaCu', [params, this.item.id, this.currentUser.id_cu]);
-          this.excelDownloadUrl = this.kelas + '/indexPesertaCu/' + +this.item.id + '/' + this.$route.params.cu;
-        }
-      } else {
+      // if (this.item.status == '2') {
+      if (this.currentUser.id_cu == 0) {
         this.$store.dispatch(this.kelas + '/indexPeserta', [params, this.item.id]);
         this.excelDownloadUrl = this.kelas + '/indexPeserta/' + this.item.id;
-      }
+      } else {
+        this.$store.dispatch(this.kelas + '/indexPesertaCu', [params, this.item.id, this.currentUser.id_cu]);
+        this.excelDownloadUrl = this.kelas + '/indexPesertaCu/' + +this.item.id + '/' + this.$route.params.cu;
+      } // } else {
+      // 	this.$store.dispatch(this.kelas + '/indexPeserta', [params, this.item.id]);
+      // 	this.excelDownloadUrl = this.kelas + '/indexPeserta/' + this.item.id;
+      // }
+
 
       if (this.item.tipe_tempat == 'ONLINE') {
         this.columnDataPesertaTerdaftar[4].disable = true;
@@ -2110,7 +2121,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     selectedRow: function selectedRow(item) {
       this.selectedItem = item;
     },
-    modalOpen: function modalOpen(state, isMobile, itemMobile) {
+    modalOpen: function modalOpen(state, item) {
       this.modalShow = true;
       this.modalSize = '';
       this.state = state;
@@ -2167,6 +2178,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.modalColor = 'bg-primary';
         this.modalTitle = 'Generate Sertifikat Berhasil';
         this.modalButton = 'Ok';
+      } else if (this.state == 'image') {
+        this.modalState = 'image';
+
+        if (item.aktivis) {
+          if (item.aktivis.gambar) {
+            this.modalContent = '/images/aktivis/' + item.aktivis.gambar + '.jpg';
+          } else {
+            this.modalContent = '/images/no_image_man.jpg';
+          }
+        } else if (item.mitra_orang) {
+          if (item.mitra_orang) {
+            this.modalContent = '/images/mitra_orang/' + item.mitra_orang.gambar + '.jpg';
+          } else {
+            this.modalContent = '/images/no_image_man.jpg';
+          }
+        } else {
+          this.modalContent = '/images/no_image_man.jpg';
+        }
       }
     },
     modalConfirmOk: function modalConfirmOk() {
@@ -6547,16 +6576,6 @@ var render = function () {
                       _vm._v(_vm._s(_vm.item.peserta_max) + " orang"),
                     ]),
                   ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _c("td", { staticClass: "font-weight-semibold" }, [
-                      _vm._v("Peserta Max Per CU:"),
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "text-right" }, [
-                      _vm._v(_vm._s(_vm.item.peserta_max_cu) + " orang"),
-                    ]),
-                  ]),
                 ]),
               ]
             ),
@@ -6991,28 +7010,83 @@ var render = function () {
                                 ? _c("tr", [
                                     _c("td", [_vm._v(_vm._s(props.index + 1))]),
                                     _vm._v(" "),
-                                    _c("td", [
-                                      props.item.gambar
-                                        ? _c("img", {
-                                            staticClass:
-                                              "img-rounded img-fluid wmin-sm",
-                                            attrs: {
-                                              src:
-                                                "/images/aktivis/" +
-                                                props.item.gambar +
-                                                "n.jpg",
-                                              width: "35px",
-                                            },
-                                          })
-                                        : _c("img", {
-                                            staticClass:
-                                              "img-rounded img-fluid wmin-sm",
-                                            attrs: {
-                                              src: "/images/no_image_man.jpg",
-                                              width: "35px",
-                                            },
-                                          }),
-                                    ]),
+                                    _c(
+                                      "td",
+                                      [
+                                        props.item.pivot.asal == "dalam"
+                                          ? [
+                                              props.item.gambar
+                                                ? _c("img", {
+                                                    staticClass:
+                                                      "img-rounded img-fluid wmin-sm",
+                                                    attrs: {
+                                                      src:
+                                                        "/images/aktivis/" +
+                                                        props.item.gambar +
+                                                        "n.jpg",
+                                                      width: "35px",
+                                                    },
+                                                  })
+                                                : _c("img", {
+                                                    staticClass:
+                                                      "img-rounded img-fluid wmin-sm",
+                                                    attrs: {
+                                                      src: "/images/no_image_man.jpg",
+                                                      width: "35px",
+                                                    },
+                                                  }),
+                                            ]
+                                          : props.item.pivot.asal == "luar"
+                                          ? [
+                                              props.item.gambar
+                                                ? _c("img", {
+                                                    staticClass:
+                                                      "img-rounded img-fluid wmin-sm",
+                                                    attrs: {
+                                                      src:
+                                                        "/images/mitra_orang/" +
+                                                        props.item.gambar +
+                                                        "n.jpg",
+                                                      width: "35px",
+                                                    },
+                                                  })
+                                                : _c("img", {
+                                                    staticClass:
+                                                      "img-rounded img-fluid wmin-sm",
+                                                    attrs: {
+                                                      src: "/images/no_image_man.jpg",
+                                                      width: "35px",
+                                                    },
+                                                  }),
+                                            ]
+                                          : props.item.pivot.asal ==
+                                            "luar lembaga"
+                                          ? [
+                                              props.item.gambar
+                                                ? _c("img", {
+                                                    staticClass:
+                                                      "img-rounded img-fluid wmin-sm",
+                                                    attrs: {
+                                                      src:
+                                                        "/images/mitra_lembaga/" +
+                                                        props.item.gambar +
+                                                        "n.jpg",
+                                                      width: "35px",
+                                                    },
+                                                  })
+                                                : _c("img", {
+                                                    staticClass:
+                                                      "img-rounded img-fluid wmin-sm",
+                                                    attrs: {
+                                                      src: "/images/no_image_man.jpg",
+                                                      width: "35px",
+                                                    },
+                                                  }),
+                                            ]
+                                          : _vm._e(),
+                                      ],
+                                      2
+                                    ),
                                     _vm._v(" "),
                                     _c(
                                       "td",
@@ -7163,7 +7237,7 @@ var render = function () {
                       ],
                       null,
                       false,
-                      1182592177
+                      2789702008
                     ),
                   }),
                 ],
@@ -7492,6 +7566,14 @@ var render = function () {
                           !_vm.columnDataPesertaTerdaftar[2].hide
                             ? _c(
                                 "td",
+                                {
+                                  staticClass: "cursor-pointer",
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.modalOpen("image", props.item)
+                                    },
+                                  },
+                                },
                                 [
                                   props.item.aktivis
                                     ? [

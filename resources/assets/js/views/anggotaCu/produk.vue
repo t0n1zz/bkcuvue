@@ -72,11 +72,6 @@
 										<i class="icon-pencil5"></i> Ubah
 									</button>
 
-									<button class="btn btn-light mb-1" @click.prevent="modalOpen('transaksi')"
-									:disabled="!selectedItem.id">
-										<i class="icon-file-text"></i> Transaksi
-									</button>
-
 									<button class="btn btn-light mb-1" @click="modalOpen('delete')" :disabled="!selectedItem.id">
 										<i class="icon-bin2"></i> Hapus
 									</button>
@@ -107,9 +102,6 @@
 									<td>
 										<check-value :value="props.item.produk_cu.tipe" v-if="props.item.produk_cu"></check-value>
 										<span v-else>-</span>
-									</td>
-									<td>
-										<check-value :value="props.item.saldo" valueType="currency"></check-value>
 									</td>
 									<td>
 										<check-value :value="props.item.lama_pinjaman"></check-value>
@@ -220,7 +212,6 @@
 					{ title: 'CU' },
 					{ title: 'Nama' },
 					{ title: 'Jenis' },
-					{ title: 'Saldo Awal' },
 					{ title: 'Lama Pinjaman (BLN)' },
 					{ title: 'Lama Sisa Pinjaman (BLN)' },
 					{ title: 'Tgl. Buat' },

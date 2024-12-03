@@ -35,10 +35,21 @@
 						<span v-else>-</span>
 					</td>
 					<td v-if="!columnData[2].hide">
+            <check-value :value="props.item.user.aktivis.name" v-if="props.item.user && props.item.user.aktivis"></check-value>
+            <span v-else>-</span>
+          </td>
+					<td v-if="!columnData[3].hide && !columnData[3].disable">
+            <span v-if="props.item.user && props.item.user.cu">{{props.item.user.cu.name}}</span>
+            <span v-else>PUSKOPCUINA</span>
+          </td>
+					<td v-if="!columnData[4].hide">
+						<check-value :value="props.item.bidang"></check-value>
+					</td>
+					<td v-if="!columnData[5].hide">
 						<check-value :value="props.item.content"></check-value>
 					</td>
-					<td v-if="!columnData[3].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
-					<td v-if="!columnData[4].hide">
+					<td v-if="!columnData[6].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
+					<td v-if="!columnData[7].hide">
 						<span v-if="props.item.created_at !== props.item.updated_at" v-html="$options.filters.dateTime(props.item.updated_at)"></span>
 						<span v-else>-</span>
 					</td>
@@ -94,7 +105,34 @@
 						filterDefault: true
 					},
 					{
-						title: 'content',
+						title: "Nama",
+						name: "user.aktivis.name",
+						tipe: "string",
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: false
+					},
+					{
+						title: "CU",
+						name: "user.cu.name",
+						tipe: "string",
+						sort: false,
+						hide: false,
+						disable: false,
+						filter: false
+					},
+					{
+						title: 'Bidang',
+						name: 'bidang',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+					},
+					{
+						title: 'Content',
 						name: 'content',
 						tipe: 'string',
 						sort: false,

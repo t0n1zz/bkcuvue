@@ -92,34 +92,6 @@
 				</div>
 			</div>
 
-			<!-- saldo -->
-			<div class="col-md-12"  v-if="tipeProduk != ''">
-				<div class="form-group" :class="{'has-error' : errors.has('formProduk.saldo')}">
-
-					<!-- title -->
-					<h5 :class="{ 'text-danger' : errors.has('formProduk.saldo')}">
-						<i class="icon-cross2" v-if="errors.has('formProduk.saldo')"></i>
-						Saldo:
-					</h5>
-
-					<!-- text -->
-					<cleave 
-						name="saldo"
-						v-model="formProduk.saldo" 
-						class="form-control" 
-						:options="cleaveOption.numeric"
-						placeholder="Silahkan masukkan jumlah saldo"
-						v-validate="'required'" data-vv-as="Saldo" ></cleave>
-
-					<!-- error message -->
-					<small class="text-muted text-danger" v-if="errors.has('formProduk.saldo')">
-						<i class="icon-arrow-small-right"></i> {{ errors.first('formProduk.saldo') }}
-					</small>
-					<small class="text-muted" v-else>&nbsp;
-					</small>
-				</div>
-			</div>
-
 			<!-- tanggal -->
 			<div class="col-md-12"  v-if="tipeProduk != ''">
 				<div class="form-group" :class="{'has-error' : errors.has('formProduk.tanggal')}">
@@ -219,6 +191,62 @@
 				</div>
 			</div>
 
+			<!-- dpd -->
+			<div class="col-md-12"  v-if="tipeProduk == 'pinjaman'">
+				<div class="form-group">
+
+					<!-- title -->
+					<h5>
+						Kolektibilitas:
+					</h5>
+
+					<!-- text -->
+					<select class="form-control" name="kolek" v-model="formProduk.kolekbi" data-width="100%">
+						<option disabled value="">Silahkan pilih tingkat kolektibilitas</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+
+					<!-- error message -->
+					<small class="text-muted text-danger" v-if="errors.has('formProduk.dpd')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('formProduk.dpd') }}
+					</small>
+					<small class="text-muted" v-else>&nbsp;
+					</small>
+				</div>
+			</div>
+
+			<!-- dpd -->
+			<div class="col-md-12"  v-if="tipeProduk == 'pinjaman'">
+				<div class="form-group">
+
+					<!-- title -->
+					<h5>
+						Day Past Due (DPD):
+						<br/><small class="text-muted"><i>ukuran keterlambatan pembayaran di luar tanggal jatuh tempo</i></small>
+					</h5>
+
+					<!-- text -->
+					<cleave 
+						name="dpd"
+						v-model="formProduk.dpd" 
+						class="form-control" 
+						:options="cleaveOption.number4"
+						placeholder="Silahkan masukkan jumlah dpd"
+						data-vv-as="Day Past Due" ></cleave>
+
+					<!-- error message -->
+					<small class="text-muted text-danger" v-if="errors.has('formProduk.dpd')">
+						<i class="icon-arrow-small-right"></i> {{ errors.first('formProduk.dpd') }}
+					</small>
+					<small class="text-muted" v-else>&nbsp;
+					</small>
+				</div>
+			</div>
+
 			<!-- tujuan -->
 			<div class="col-md-12" v-if="tipeProduk != ''">
 				<div class="form-group" >
@@ -294,7 +322,6 @@
 				tipeProduk: '',
 				formProduk:{
 					anggota_cu_cu_id: '',
-					saldo: '',
 					cu: {
 						id: 0,
 						name: ''

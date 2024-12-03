@@ -260,7 +260,7 @@
 						filter: true,
 					},
 					{
-						title: 'PIC BKCU',
+						title: 'PIC PUSKOPCUINA',
 						name: 'aktivis_bkcu.name',
 						tipe: 'string',
 						sort: false,

@@ -4,6 +4,10 @@ export default {
     return axios.get('/api/mitraOrang' , {params: p});
   },
 
+  indexCu: function( p, id ){
+    return axios.get('/api/mitraOrang/indexCu/' + id , {params: p});
+  },
+
   indexPeserta: function( p, kegiatan_id ){
     return axios.get('/api/mitraOrang/indexPeserta/' + kegiatan_id , {params: p});
   },

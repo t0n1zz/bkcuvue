@@ -205,8 +205,6 @@
 				
 					this.$store.dispatch(this.kelas + '/index', params);
 					this.excelDownloadUrl = this.kelas;
-				
-
 			},
 			selectedRow(item){
 				this.selectedItem = item;

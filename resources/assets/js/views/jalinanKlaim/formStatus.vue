@@ -127,13 +127,12 @@
               <br/><small class="text-muted" v-if="itemData.length > 0">Tekan kotak dibawah untuk melihat transaksi masing-masing produk</small>
             </h5>
             <div class="row" v-if="itemDataStat == 'success' && itemData.length > 0">
-              <div class="col-sm-6 col-xl-3 cursor-pointer" v-for="(item, index) in itemData" :key="index" @click.prevent="fetchProdukSaldo(item)">
+              <div class="col-sm-6 col-xl-3 cursor-pointer" v-for="(item, index) in itemData" :key="index">
                 <div class="card card-body has-bg-image" :class="{'bg-success-400': item.produk_cu.tipe == 'Simpanan Pokok' || item.produk_cu.tipe == 'Simpanan Wajib' || item.produk_cu.tipe == 'Simpanan Non Saham',
                 'bg-indigo-400': item.produk_cu.tipe == 'Pinjaman Kapitalisasi'|| item.produk_cu.tipe == 'Pinjaman Umum' || item.produk_cu.tipe == 'Pinjaman Produktif',
                 'bg-warning-400' : item.produk_cu.tipe == 'SIMPANAN' || 'PINJAMAN' || 'SIMPANAN BERJANGKA'}" v-if="item.produk_cu">
                   <div class="media mb-2">
                     <div class="media-body">
-                      <h6 class="font-weight-semibold mb-0"><check-value :value="item.saldo" valueType="currency"></check-value></h6>
                       <span class="opacity-75"><b>No. Rek:</b> {{ item.no_rek }}</span>
                       <br/>
                       <span class="opacity-75"><b>Usia Saat membuka:</b> 
@@ -174,154 +173,6 @@
             </div>
             <div class="card card-body" v-else>
               Belum terdapat produk pada anggota ini...
-            </div>
-
-            <!-- table transaksi -->
-            <div class="card" v-if="itemDataSaldoStat != ''">
-            <div class="card-header bg-white">
-                <h5 class="card-title">Tabel Transaksi {{ selectedProduk.produk_cu.name }} dengan no rek: {{ selectedProduk.no_rek  }}</h5>
-              </div>
-
-              <!-- table -->
-              <data-table :items="itemDataSaldo.data" :columnData="columnDataSaldo" :itemDataStat="itemDataSaldoStat">
-                <template slot="item-desktop" slot-scope="props">
-                  <tr :class="{ 'bg-info': selectedItem.id === props.item.id }" class="text-nowrap" @click="selectedRow(props.item)" v-if="props.item">
-                    <td>{{ props.index + 1 }}</td>
-                    <td>
-                      <check-value :value="props.item.saldo" valueType="currency"></check-value>
-                    </td>
-                    <td v-if="tipeProduk == 'pinjaman'">
-                      <check-value :value="props.item.lama_sisa_pinjaman"></check-value>
-                    </td>
-                    <td>
-                      <span v-if="props.item.tanggal" v-html="$options.filters.dateTime(props.item.created_at)"></span>
-                      <span v-else>-</span>
-                    </td>
-                  </tr>
-                </template>	
-              </data-table>
-
-              <!-- pagination -->
-              <div class="card-footer">
-                <div class="row pre-scrollable" v-if="itemDataSaldoStat != ''">
-
-                  <!-- entri info -->
-                  <div class="col-md-4 pt-2">
-                      <!-- total entri note success-->
-                      <!-- desktop -->
-                      <div v-if="itemDataSaldoStat === 'success'" class="d-none d-sm-block">Menampilkan {{itemDataSaldo.from}} -
-                        {{itemDataSaldo.to}} entri dari {{itemDataSaldo.total}} entri
-                      </div>
-
-                      <!-- mobile -->
-                      <div v-if="itemDataSaldoStat === 'success'" class="d-block d-sm-none text-center">Menampilkan {{itemDataSaldo.from}} -
-                        {{itemDataSaldo.to}} entri dari {{itemDataSaldo.total}} entri
-                      </div>
-
-                      <!-- total entri note loading -->
-                      <div v-else>Menampilkan
-                        <i class="icon-spinner2 spinner"></i> -
-                        <i class="icon-spinner2 spinner"></i> entri dari
-                        <i class="icon-spinner2 spinner"></i> entri
-                      </div>
-
-                  </div>
-
-                  <!-- pagination -->
-                  <!-- desktop -->
-                  <div class="col-md-8 pt-2 text-right d-none d-sm-block">
-                    <!-- pagination success-->
-                    <div class="btn-group" v-if="itemDataSaldoStat === 'success'">
-                      <button type="button" href="#" class="btn btn-light" :class="{'disabled' : !itemDataSaldo.prev_page_url}" @click.prevent="goToPageSaldo(1)">
-                          <i class="icon-backward2"></i>
-                      </button>
-                      <button type="button" href="#" class="btn btn-light" :class="{'disabled' : !itemDataSaldo.prev_page_url}" @click.prevent="prevPageSaldo">
-                          <i class="icon-arrow-left5"></i>
-                      </button>
-                      <button type="button" href="#" class="btn" v-for="(n, index) in pagesSaldo" :key="index" :class="{'btn-primary' : querySaldo.page == n, 'btn-light' : querySaldo.page != n}"  @click.prevent="goToPageSaldo(n)">
-                          {{n}}
-                      </button>
-                      <button type="button" href="#" class="btn btn-light" :class="{'disabled' : !itemDataSaldo.next_page_url}" @click.prevent="nextPageSaldo">
-                          <i class="icon-arrow-right5"></i>
-                      </button>
-                      <button type="button" href="#" class="btn btn-light" :class="{'disabled' : !itemDataSaldo.next_page_url}" @click.prevent="goToPageSaldo(itemDataSaldo.last_page)">
-                          <i class="icon-forward3"></i>
-                      </button>
-                    </div>
-                    
-                    <!-- pagination loading-->
-                    <div class="btn-group" v-else>
-                      <button href="#" class="btn btn-light disabled">
-                          <i class="icon-backward2"></i>
-                      </button>
-                      <button href="#" class="btn btn-light disabled">
-                          <i class="icon-arrow-left5"></i>
-                      </button>
-                      <button href="#" class="btn btn-light disabled">
-                          <i class="icon-spinner2 spinner"></i>
-                      </button>
-                      <button href="#" class="btn btn-light disabled">
-                          <i class="icon-arrow-right5"></i>
-                      </button>
-                      <button href="#" class="btn btn-light disabled">
-                          <i class="icon-forward3"></i>
-                      </button>
-                      
-                    </div>
-                  </div>
-
-                  <!-- mobile -->
-                  <div class="col-md-12 pt-2 text-center d-block d-sm-none">
-
-                    <!-- pagination success-->
-                    <div class="btn-group" v-if="itemDataSaldoStat === 'success'">
-                      <button type="button" href="#" class="btn" v-for="(n, index) in pagesSaldo" :key="index" :class="{'btn-primary' : querySaldo.page == n, 'btn-light' : querySaldo.page != n}"  @click.prevent="goToPageSaldo(n)">
-                          {{n}}
-                      </button>
-                    </div>
-
-                    <br/>
-
-                    <div class="btn-group pt-2" v-if="itemDataSaldoStat === 'success'">
-                      <button type="button" href="#" class="btn btn-light" :class="{'disabled' : !itemDataSaldo.prev_page_url}" @click.prevent="goToPageSaldo(1)">
-                          <i class="icon-backward2"></i>
-                      </button>
-                      <button type="button" href="#" class="btn btn-light" :class="{'disabled' : !itemDataSaldo.prev_page_url}" @click.prevent="prevPageSaldo">
-                          <i class="icon-arrow-left5"></i>
-                      </button>
-                      <button type="button" href="#" class="btn btn-light" :class="{'disabled' : !itemDataSaldo.next_page_url}" @click.prevent="nextPageSaldo">
-                          <i class="icon-arrow-right5"></i>
-                      </button>
-                      <button type="button" href="#" class="btn btn-light" :class="{'disabled' : !itemDataSaldo.next_page_url}" @click.prevent="goToPageSaldo(itemDataSaldo.last_page)">
-                          <i class="icon-forward3"></i>
-                      </button>
-                    </div>
-                    
-                    <!-- pagination loading-->
-                    <div class="btn-group" v-else>
-                      <button href="#" class="btn btn-light disabled">
-                          <i class="icon-backward2"></i>
-                      </button>
-                      <button href="#" class="btn btn-light disabled">
-                          <i class="icon-arrow-left5"></i>
-                      </button>
-                      <button href="#" class="btn btn-light disabled">
-                          <i class="icon-spinner2 spinner"></i>
-                      </button>
-                      <button href="#" class="btn btn-light disabled">
-                          <i class="icon-arrow-right5"></i>
-                      </button>
-                      <button href="#" class="btn btn-light disabled">
-                          <i class="icon-forward3"></i>
-                      </button>
-                      
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-
             </div>
 
           </div>
@@ -1103,11 +954,6 @@
       this.$store.dispatch(this.kelas + '/getKlaimLama',[this.selectedData.anggota_cu.nik.trim(),this.selectedData.anggota_cu_cu_id]);
 		},
 		watch: {
-      itemDataSaldoStat(value){
-        if(value == 'success'){
-          this.calculatePagination();
-        }
-      }
 		},
 		methods: {
       selectedRow(item) {
@@ -1149,61 +995,6 @@
         this.$store.dispatch('jalinanKlaim/getVerifikator',[
           this.selectedData.verifikasi_pengurus,this.selectedData.verifikasi_pengawas,this.selectedData.verifikasi_manajemen
         ]);
-      },
-      fetchProdukSaldo(value){
-        this.selectedProduk = value;
-        if(value.produk_cu.tipe == 'Simpanan Pokok' || value.produk_cu.tipe == 'Simpanan Wajib' || value.produk_cu.tipe == 'Simpanan Non Saham'){
-          this.tipeProduk = 'simpanan';
-          this.columnDataSaldo = [
-						{ title: 'No.' },
-						{ title: 'Nominal' },
-						{ title: 'Tgl. Transaksi' },
-					]
-        }else{
-          this.tipeProduk = 'pinjaman';
-          this.columnDataSaldo = [
-						{ title: 'No.' },
-						{ title: 'Nominal' },
-						{ title: 'Bulan Angsuran' },
-						{ title: 'Tgl. Transaksi' },
-					]
-        }
-        this.$store.dispatch('anggotaCu/indexProdukSaldo',[this.querySaldo, value.id]);
-      },
-      calculatePagination() {
-        var i = 0;
-        var startPage = 0;
-        var endPage = 0;
-        var diffPage = 0;
-
-        startPage = this.querySaldo.page < 3 ? 1 : this.querySaldo.page - 1;
-        endPage = 4 + startPage;
-        endPage = this.itemDataSaldo.last_page < endPage ? this.itemDataSaldo.last_page : endPage;
-        diffPage = startPage - endPage + 4;
-        startPage -= startPage - diffPage > 0 ? diffPage : 0;
-        this.pagesSaldo.length = 0;
-
-        for (i = startPage; i <= endPage; i++) {
-          this.pagesSaldo.push(i);
-        }
-      },
-      prevPageSaldo() {
-        if (this.itemDataSaldo.prev_page_url) {
-          this.querySaldo.page = Number(this.querySaldo.page) - 1;
-          this.fetchProdukSaldo(this.selectedProduk);
-        }
-      },
-      goToPageSaldo(value) {
-        if (this.querySaldo.page != value) {
-          this.querySaldo.page = value;
-          this.fetchProdukSaldo(this.selectedProduk);
-        }
-      },
-      nextPageSaldo() {
-        if (this.itemDataSaldo.next_page_url) {
-          this.querySaldo.page = Number(this.querySaldo.page) + 1;
-          this.fetchProdukSaldo(this.selectedProduk);
-        }
       },
       save(){
         if(this.formStatus != '1'){

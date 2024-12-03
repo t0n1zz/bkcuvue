@@ -398,7 +398,7 @@
 				});
 			},
 			back(){
-				this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
+				this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu,tipe: 'semua', periode: this.momentYear() }});
 			},
 			modalTutup() {
  				if(this.updateStat === 'success'){
@@ -406,8 +406,6 @@
 				}
 
 				this.modalShow = false;
-				this.submitedKategori = false;
-				this.submitedPenulis = false;
 			},
 			modalBackgroundClick(){
 				if(this.modalState === 'success'){
@@ -418,6 +416,9 @@
 					this.modalShow = false
 				}
 			},
+			momentYear(){
+				return moment().year();
+			}
 		},
 		computed: {
 			...mapGetters('auth',{

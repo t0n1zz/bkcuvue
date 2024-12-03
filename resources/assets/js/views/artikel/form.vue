@@ -43,31 +43,31 @@
 
 									<!-- CU -->
 								<div class="col-md-4" v-if="currentUser.id_cu === 0">
-										<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
+									<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
 
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.id_cu')}">
-												<i class="icon-cross2" v-if="errors.has('form.id_cu')"></i>
-												CU: <wajib-badge></wajib-badge>
-											</h5>
+										<!-- title -->
+										<h5 :class="{ 'text-danger' : errors.has('form.id_cu')}">
+											<i class="icon-cross2" v-if="errors.has('form.id_cu')"></i>
+											CU: <wajib-badge></wajib-badge>
+										</h5>
 
-											<!-- select -->
-											<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0" @change="changeCU($event.target.value)">
-												<option disabled value="">
-													<span v-if="modelCUStat === 'loading'">Mohon tunggu...</span>
-													<span v-else>Silahkan pilih CU</span>
-												</option>
-												<option value="0"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>PUSKOPCUINA</span></option>
-												<option v-for="(cu, index) in modelCU" :value="cu.id" :key="index">{{cu.name}}</option>
-											</select>
+										<!-- select -->
+										<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0" @change="changeCU($event.target.value)">
+											<option disabled value="">
+												<span v-if="modelCUStat === 'loading'">Mohon tunggu...</span>
+												<span v-else>Silahkan pilih CU</span>
+											</option>
+											<option value="0"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>PUSKOPCUINA</span></option>
+											<option v-for="(cu, index) in modelCU" :value="cu.id" :key="index">{{cu.name}}</option>
+										</select>
 
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
+										<!-- error message -->
+										<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
+											<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
+										</small>
+										<small class="text-muted" v-else>&nbsp;</small>
 									</div>
+								</div>
 
 									<!-- penulis -->
 									<div class="col-md-4">
@@ -368,7 +368,7 @@
 			}
 			if(this.$route.meta.mode !== 'edit' && this.form.id_cu === undefined){
 				this.form.id_cu = this.currentUser.id_cu;
-				this.changeCU(this.currentUser.id_cu);f
+				this.changeCU(this.currentUser.id_cu);
 			}
 		},
 		watch: {

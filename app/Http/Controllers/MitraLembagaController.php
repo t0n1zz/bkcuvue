@@ -18,12 +18,22 @@ class MitraLembagaController extends Controller{
 
 	public function index()
 	{
-		$table_data = MitraLembaga::with('Villages','Districts','Regencies','Provinces')->advancedFilter();
+		$table_data = MitraLembaga::with('Cu','Villages','Districts','Regencies','Provinces')->advancedFilter();
 
 		return response()
 		->json([
 			'model' => $table_data
 		]);
+	}
+
+	public function indexCu($id)
+	{
+		$table_data = MitraLembaga::with('Cu','Villages', 'Districts', 'Regencies', 'Provinces')->where('id_cu',$id)->advancedFilter();
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
 	}
 
 	public function create()
@@ -112,7 +122,14 @@ class MitraLembagaController extends Controller{
 
 	public function count()
 	{
-			$table_data = MitraLembaga::count();
+			$id = \Auth::user()->id_cu;
+
+			if($id == 0){
+					$table_data = MitraLembaga::count();
+			}else{
+					$table_data = MitraLembaga::where('id_cu',$id)->count();
+			}
+
 
 			return response()
 			->json([

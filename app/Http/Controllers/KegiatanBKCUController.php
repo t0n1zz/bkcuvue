@@ -668,7 +668,7 @@ class KegiatanBKCUController extends Controller
 		$formatedName="";
 
 		// check peserta count
-		$semuaPesertaTerdaftar = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu', 'aktivis.pendidikan_tertinggi')->where('kegiatan_id', $id)->count();
+		$semuaPesertaTerdaftar = KegiatanPeserta::with('aktivis.pekerjaan_aktif.cu', 'aktivis.pendidikan_tertinggi')->where('kegiatan_id', $id)->where('status','!=','7')->count();
 
 		// upload file to storage
 		if($request->surat_tugas){

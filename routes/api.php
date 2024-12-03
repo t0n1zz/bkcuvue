@@ -668,6 +668,7 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::get('/mitraOrang/history', 'MitraOrangController@history');
         Route::get('/mitraOrang', 'MitraOrangController@index');
         Route::get('/mitraOrang/indexPeserta/{kegiatan_id}', 'MitraOrangController@indexPeserta');
+        Route::get('/mitraOrang/indexCu/{id}', 'MitraOrangController@indexCu');
         Route::group(['middleware' => ['permission:index_mitra_orang']], function () {
             Route::get('/mitraOrang/count', 'MitraOrangController@count');
         });
@@ -687,6 +688,7 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         // mitra lembaga
         Route::get('/mitraLembaga/history', 'MitraLembagaController@history');
         Route::get('/mitraLembaga', 'MitraLembagaController@index');
+        Route::get('/mitraLembaga/indexCu/{id}', 'MitraLembagaController@indexCu');
         Route::group(['middleware' => ['permission:index_mitra_lembaga']], function () {
             Route::get('/mitraLembaga/count', 'MitraLembagaController@count');
         });
@@ -707,6 +709,7 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::get('/anggotaCu/systemNIK', 'AnggotaCuController@systemNIK');
         Route::get('/anggotaCu/history', 'AnggotaCuController@history');
         Route::get('/anggotaCu/count', 'AnggotaCuController@count');
+        Route::get('/anggotaCu/cariDataInformasi/{nik}', 'AnggotaCuController@cariDataInformasi');
         Route::get('/anggotaCu/cariDataKTP/{nik}', 'AnggotaCuController@cariDataKTP');
         Route::get('/anggotaCu/cariDataBA/{cu}/{noba}', 'AnggotaCuController@cariDataBA');
         Route::get('/anggotaCu/indexProduk/{id}/cu/{cu}', 'AnggotaProdukCuController@index');
@@ -822,6 +825,7 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::post('/jalinanIuran/store', 'JalinanIuranController@store');
         Route::post('/jalinanIuran/update/{id}', 'JalinanIuranController@update');
         Route::delete('/jalinanIuran/{id}', 'JalinanIuranController@destroy');
+        
         // Route::group(['middleware' => ['permission:index_jalinan_iuran']], function () {
         //     Route::get('/jalinanIuran', 'JalinanIuranController@index');
         //     Route::get('/jalinanIuran/indexCu/{id}', 'JalinanIuranController@indexCu');
@@ -1056,6 +1060,181 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         });
         Route::group(['middleware' => ['permission:destroy_voting']], function () {
             Route::delete('/voting/{id}', 'VotingController@destroy');
+        });
+
+        //kubn
+        Route::get('/kubn/history', 'KubnController@history');
+        Route::get('/kubn/indexAnggota/{id}', 'KubnController@indexAnggota');
+        Route::get('/kubn/indexDiklat/{id}', 'KubnController@indexDiklat');
+        Route::group(['middleware' => ['permission:index_kubn']], function () {
+            Route::get('/kubn', 'KubnController@index');
+            Route::get('/kubn/get', 'KubnController@get');
+            Route::get('/kubn/indexCu/{id}', 'KubnController@indexCu');
+            Route::get('/kubn/getCu/{id}', 'KubnController@getCu');
+        });
+        Route::group(['middleware' => ['permission:create_kubn']], function () {
+            Route::get('/kubn/create', 'KubnController@create');
+            Route::post('/kubn/store', 'KubnController@store');
+        });
+        Route::group(['middleware' => ['permission:update_kubn']], function () {
+            Route::get('/kubn/edit/{id}', 'KubnController@edit');
+            Route::post('/kubn/update/{id}', 'KubnController@update');
+        });
+        Route::group(['middleware' => ['permission:destroy_kubn']], function () {
+            Route::delete('/kubn/{id}', 'KubnController@destroy');
+        });
+
+        //Kubn Usaha
+        Route::get('/kubnUsaha/history', 'KubnUsahaController@history');
+        Route::group(['middleware' => ['permission:index_kubn']], function () {
+            Route::get('/kubnUsaha', 'KubnUsahaController@index');
+            Route::get('/kubnUsaha/get', 'KubnUsahaController@get');
+        });
+        Route::group(['middleware' => ['permission:create_kubn']], function () {
+            Route::get('/kubnUsaha/create', 'KubnUsahaController@create');
+            Route::post('/kubnUsaha/store', 'KubnUsahaController@store');
+        });
+        Route::group(['middleware' => ['permission:update_kubn']], function () {
+            Route::get('/kubnUsaha/edit/{id}', 'KubnUsahaController@edit');
+            Route::post('/kubnUsaha/update/{id}', 'KubnUsahaController@update');
+        });
+        Route::group(['middleware' => ['permission:destroy_kubn']], function () {
+            Route::delete('/kubnUsaha/{id}', 'KubnUsahaController@destroy');
+        });
+
+        //Kombas
+        Route::get('/kombas/history', 'KombasController@history');
+        Route::group(['middleware' => ['permission:index_kubn']], function () {
+            Route::get('/kombas/index/{tipe}', 'KombasController@index');
+            Route::get('/kombas/indexCu/{id}/{tipe}', 'KombasController@indexCu');
+            Route::get('/kombas/get', 'KombasController@get');
+        });
+        Route::group(['middleware' => ['permission:create_kubn']], function () {
+            Route::get('/kombas/create', 'KombasController@create');
+            Route::post('/kombas/store', 'KombasController@store');
+        });
+        Route::group(['middleware' => ['permission:update_kubn']], function () {
+            Route::get('/kombas/edit/{id}', 'KombasController@edit');
+            Route::post('/kombas/update/{id}', 'KombasController@update');
+        });
+        Route::group(['middleware' => ['permission:destroy_kubn']], function () {
+            Route::delete('/kombas/{id}', 'KombasController@destroy');
+        });
+
+        //enterpreneur
+        Route::get('/enterpreneur/history', 'EnterpreneurController@history');
+        Route::get('/enterpreneur/indexDiklat/{id}', 'EnterpreneurController@indexDiklat');
+        Route::group(['middleware' => ['permission:index_enterpreneur']], function () {
+            Route::get('/enterpreneur', 'EnterpreneurController@index');
+            Route::get('/enterpreneur/get', 'EnterpreneurController@get');
+            Route::get('/enterpreneur/indexCu/{id}', 'EnterpreneurController@indexCu');
+            Route::get('/enterpreneur/getCu/{id}', 'EnterpreneurController@getCu');
+        });
+        Route::group(['middleware' => ['permission:create_enterpreneur']], function () {
+            Route::get('/enterpreneur/create', 'EnterpreneurController@create');
+            Route::post('/enterpreneur/store', 'EnterpreneurController@store');
+        });
+        Route::group(['middleware' => ['permission:update_enterpreneur']], function () {
+            Route::get('/enterpreneur/edit/{id}', 'EnterpreneurController@edit');
+            Route::post('/enterpreneur/update/{id}', 'EnterpreneurController@update');
+        });
+        Route::group(['middleware' => ['permission:destroy_enterpreneur']], function () {
+            Route::delete('/enterpreneur/{id}', 'EnterpreneurController@destroy');
+        });
+
+        //umkm
+        Route::get('/umkm/history', 'UmkmController@history');
+        Route::get('/umkm/indexDiklat/{id}', 'UmkmController@indexDiklat');
+        Route::group(['middleware' => ['permission:index_umkm']], function () {
+            Route::get('/umkm', 'UmkmController@index');
+            Route::get('/umkm/get', 'UmkmController@get');
+            Route::get('/umkm/indexCu/{id}', 'UmkmController@indexCu');
+            Route::get('/umkm/getCu/{id}', 'UmkmController@getCu');
+        });
+        Route::group(['middleware' => ['permission:create_umkm']], function () {
+            Route::get('/umkm/create', 'UmkmController@create');
+            Route::post('/umkm/store', 'UmkmController@store');
+        });
+        Route::group(['middleware' => ['permission:update_umkm']], function () {
+            Route::get('/umkm/edit/{id}', 'UmkmController@edit');
+            Route::post('/umkm/update/{id}', 'UmkmController@update');
+        });
+        Route::group(['middleware' => ['permission:destroy_umkm']], function () {
+            Route::delete('/umkm/{id}', 'UmkmController@destroy');
+        });
+
+        //mentor
+        Route::get('/mentor/history', 'MentorController@history');
+        Route::get('/mentor/indexDiklat/{id}', 'MentorController@indexDiklat');
+        Route::group(['middleware' => ['permission:index_mentor']], function () {
+            Route::get('/mentor', 'MentorController@index');
+            Route::get('/mentor/get', 'MentorController@get');
+            Route::get('/mentor/indexCu/{id}', 'MentorController@indexCu');
+            Route::get('/mentor/getCu/{id}', 'MentorController@getCu');
+        });
+        Route::group(['middleware' => ['permission:create_mentor']], function () {
+            Route::get('/mentor/create', 'MentorController@create');
+            Route::post('/mentor/store', 'MentorController@store');
+        });
+        Route::group(['middleware' => ['permission:update_mentor']], function () {
+            Route::get('/mentor/edit/{id}', 'MentorController@edit');
+            Route::post('/mentor/update/{id}', 'MentorController@update');
+        });
+        Route::group(['middleware' => ['permission:destroy_mentor']], function () {
+            Route::delete('/mentor/{id}', 'MentorController@destroy');
+        });
+
+         //fasilitator
+         Route::get('/fasilitator/history', 'FasilitatorController@history');
+         Route::get('/fasilitator/indexDiklat/{id}', 'FasilitatorController@indexDiklat');
+         Route::group(['middleware' => ['permission:index_fasilitator']], function () {
+             Route::get('/fasilitator', 'FasilitatorController@index');
+             Route::get('/fasilitator/get', 'FasilitatorController@get');
+             Route::get('/fasilitator/indexCu/{id}', 'FasilitatorController@indexCu');
+             Route::get('/fasilitator/getCu/{id}', 'FasilitatorController@getCu');
+         });
+         Route::group(['middleware' => ['permission:create_fasilitator']], function () {
+             Route::get('/fasilitator/create', 'FasilitatorController@create');
+             Route::post('/fasilitator/store', 'FasilitatorController@store');
+         });
+         Route::group(['middleware' => ['permission:update_fasilitator']], function () {
+             Route::get('/fasilitator/edit/{id}', 'FasilitatorController@edit');
+             Route::post('/fasilitator/update/{id}', 'FasilitatorController@update');
+         });
+         Route::group(['middleware' => ['permission:destroy_fasilitator']], function () {
+             Route::delete('/fasilitator/{id}', 'FasilitatorController@destroy');
+         });
+
+         //Keahlian
+         Route::get('/keahlian/history', 'KeahlianController@history');
+         Route::get('/keahlian', 'KeahlianController@index');
+         Route::get('/keahlian/get', 'KeahlianController@get');
+         Route::group(['middleware' => ['permission:create_keahlian']], function () {
+             Route::get('/keahlian/create', 'KeahlianController@create');
+             Route::post('/keahlian/store', 'KeahlianController@store');
+         });
+         Route::group(['middleware' => ['permission:update_keahlian']], function () {
+             Route::get('/keahlian/edit/{id}', 'KeahlianController@edit');
+             Route::post('/keahlian/update/{id}', 'KeahlianController@update');
+         });
+         Route::group(['middleware' => ['permission:destroy_keahlian']], function () {
+             Route::delete('/keahlian/{id}', 'KeahlianController@destroy');
+         });
+
+        //Jenis Diklat
+        Route::get('/jenisDiklat/history', 'JenisDiklatController@history');
+        Route::get('/jenisDiklat', 'JenisDiklatController@index');
+        Route::get('/jenisDiklat/get', 'JenisDiklatController@get');
+        Route::group(['middleware' => ['permission:create_jenis_diklat']], function () {
+            Route::get('/jenisDiklat/create', 'JenisDiklatController@create');
+            Route::post('/jenisDiklat/store', 'JenisDiklatController@store');
+        });
+        Route::group(['middleware' => ['permission:update_jenis_diklat']], function () {
+            Route::get('/jenisDiklat/edit/{id}s', 'JenisDiklatController@edit');
+            Route::post('/jenisDiklat/update/{id}', 'JenisDiklatController@update');
+        });
+        Route::group(['middleware' => ['permission:destroy_jenis_diklat']], function () {
+            Route::delete('/jenisDiklat/{id}', 'JenisDiklatController@destroy');
         });
 
         // puskopdit

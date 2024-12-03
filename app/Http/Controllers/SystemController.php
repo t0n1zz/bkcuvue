@@ -9,8 +9,15 @@ use Response;
 use App\System;
 use App\Aktivis;
 use App\ProdukCu;
+use App\AnggotaCu;
 use App\MitraOrang;
 use App\MitraLembaga;
+use App\Kubn;
+use App\Kombas;
+use App\Umkm;
+use App\Enterpreneur;
+use App\Mentor;
+use App\Fasilitator;
 use Illuminate\Http\Request;
 
 class SystemController extends Controller
@@ -51,6 +58,12 @@ class SystemController extends Controller
     $countAktivis = 0;
     $countMitraOrang = 0;
     $countMitraLembaga = 0;
+    $countKubn = 0;
+    $countKombas = 0;
+    $countUmkm = 0;
+    $countEnterpreneur = 0;
+    $countMentor = 0;
+    $countFasilitator = 0;
 
     if($user->id_cu != 0){
       $id_cu = $user->id_cu;
@@ -60,6 +73,14 @@ class SystemController extends Controller
       $countAktivis = Aktivis::with('pekerjaan_aktif.cu')->whereHas('pekerjaan',function($query) use ($id_cu){
         $query->where('tipe',1)->where('id_tempat',$id_cu)->where('status',1);
       })->count();
+      $countMitraOrang = MitraOrang::where('id_cu',$id_cu)->count();
+      $countMitraLembaga = MitraLembaga::where('id_cu',$id_cu)->count();
+      $countKubn = Kubn::where('id_cu',$id_cu)->count();
+      $countUmkm = Umkm::where('id_cu',$id_cu)->count();
+      $countKombas = Kombas::where('id_cu',$id_cu)->count();
+      $countEnterpreneur = Enterpreneur::where('id_cu',$id_cu)->count();
+      $countMentor = Mentor::where('id_cu',$id_cu)->count();
+      $countFasilitator = Fasilitator::where('id_cu',$id_cu)->count();
     }else{
       $kelas = Cu::withCount('hasTp')->withCount('hasProduk')->get();
       foreach($kelas as $k){
@@ -72,7 +93,15 @@ class SystemController extends Controller
       $countCu = $kelas->count();
       $countMitraOrang = MitraOrang::count();
       $countMitraLembaga = MitraLembaga::count();
+      $countKubn = Kubn::count();
+      $countUmkm = Umkm::count();
+      $countKombas = Kombas::count();
+      $countEnterpreneur = Enterpreneur::count();
+      $countMentor = Mentor::count();
+      $countFasilitator = Fasilitator::count();
     }
+    
+   
 
     return response()
 			->json([
@@ -82,6 +111,12 @@ class SystemController extends Controller
 					'countAktivis' => $countAktivis,
 					'countMitraOrang' => $countMitraOrang,
 					'countMitraLembaga' => $countMitraLembaga,
+          'countKubn' => $countKubn,
+          'countKombas' => $countKombas,
+          'countUmkm' => $countUmkm,
+          'countEnterpreneur' => $countEnterpreneur,
+          'countMentor' => $countMentor,
+          'countFasilitator' => $countFasilitator,
 			]);
   }
   

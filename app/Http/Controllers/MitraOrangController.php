@@ -21,7 +21,7 @@ class MitraOrangController extends Controller
 
 	public function index()
 	{
-		$table_data = MitraOrang::with('Villages', 'Districts', 'Regencies', 'Provinces')->advancedFilter();
+		$table_data = MitraOrang::with('Cu','Villages', 'Districts', 'Regencies', 'Provinces')->advancedFilter();
 
 		$table_data = $this->formatQuery($table_data);
 
@@ -30,6 +30,19 @@ class MitraOrangController extends Controller
 				'model' => $table_data
 			]);
 	}
+
+	public function indexCu($id)
+	{
+		$table_data = MitraOrang::with('Cu','Villages', 'Districts', 'Regencies', 'Provinces')->where('id_cu',$id)->advancedFilter();
+
+		$table_data = $this->formatQuery($table_data);
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
 
 	public function indexPeserta($kegiatan_id)
 	{
@@ -74,6 +87,8 @@ class MitraOrangController extends Controller
 				$t->pekerjaan_tingkat = 'Supporting Unit';
 			} else if ($t->pekerjaan_tingkat == 13) {
 				$t->pekerjaan_tingkat = 'Vendor sMartCU';
+			} else if ($t->pekerjaan_tingkat == 14) {
+				$t->pekerjaan_tingkat = 'Magang';
 			}
 		}
 
@@ -166,7 +181,13 @@ class MitraOrangController extends Controller
 
 	public function count()
 	{
-		$table_data = MitraOrang::count();
+		$id = \Auth::user()->id_cu;
+
+		if($id == 0){
+				$table_data = MitraOrang::count();
+		}else{
+				$table_data = MitraOrang::where('id_cu',$id)->count();
+		}
 
 		return response()
 			->json([

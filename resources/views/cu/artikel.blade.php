@@ -70,93 +70,95 @@
     @endif
 
     <!-- artikel utama -->
-    @if($artikelsUtama->count() > 1)
-      <div class="container">
-        <div class="fancy-title title-border">
-          <h3>Artikel Utama {{ $title != 'Semua Kategori' ? $title : '' }}</h3>
-        </div>
-        <div class="row border-between">
-          <div class="col-lg-7 mb-5">
-            @foreach ($artikelsUtama as $artikel)
-            @php
-              if(!empty($artikel->gambar) && is_file($imagepath.$artikel->gambar.".jpg")){
-                $gambar = $imagepath . $artikel->gambar . '.jpg';
-              }else{
-                $gambar = 'images/image-article.jpg';
-              }
-            @endphp
-              <article class="entry border-bottom-0 mb-0">
-								<div class="entry-image">
-									<a href="{{ route('artikel.lihat.cu',['cu'=>$subdomain,'slug'=>$artikel->slug]) }}"><img src="{{ asset($gambar) }}" alt="Image 3"></a>
-								</div>
-								<div class="entry-title">
-                  <div class="entry-meta no-separator mb-1 mt-0">
-										<ul>
-											<li><a class="text-uppercase fw-medium" href="{{ route('artikel.kategori.cu',['cu'=>$subdomain,'slug'=>$artikel->kategori->slug]) }}">{{$artikel->kategori ?$artikel->kategori->name : '' }}</a></li>
-										</ul>
-									</div>
-									<h3><a href="{{ route('artikel.lihat.cu',['cu'=>$subdomain,'slug'=>$artikel->slug]) }}" class="stretched-link color-underline"><span>{{ $artikel->name }}</span></a></h3>
-								</div>
-								<div class="entry-meta">
-									<ul>
-										<li>{{ $artikel->created_at->format('j M Y') }}</li>
-									</ul>
-								</div>
-								<div class="entry-content">
-                  <p>{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $artikel->content),200) }}</p>
-								</div>
-							</article>
-            @break
-            @endforeach
+    @if(isset($artikelsUtama))
+      @if($artikelsUtama->count() > 0)
+        <div class="container">
+          <div class="fancy-title title-border">
+            <h3>Artikel Utama {{ $title != 'Semua Kategori' ? $title : '' }}</h3>
           </div>
-
-          <div class="col-lg-5">
-            <div class="row posts-md col-mb-30">
-            @php $i = 1 @endphp
-            @foreach ($artikelsUtama as $artikel)
-            @php $i++ @endphp
-            @php
-              if(!empty($artikel->gambar) && is_file($imagepath.$artikel->gambar.".jpg")){
-                $gambar = $imagepath . $artikel->gambar . '.jpg';
-              }else{
-                $gambar = 'images/image-article.jpg';
-              }
-            @endphp
-            @if($i != 1)
-              <article class="entry col-12">
-                <div class="grid-inner row gutter-20">
-                  <div class="col-md-4">
-                    <a class="entry-image" href="{{ route('artikel.lihat',$artikel->slug) }}"><img src="{{ asset($gambar) }}" alt="Image"></a>
+          <div class="row border-between">
+            <div class="col-lg-7 mb-5">
+              @foreach ($artikelsUtama as $artikel)
+              @php
+                if(!empty($artikel->gambar) && is_file($imagepath.$artikel->gambar.".jpg")){
+                  $gambar = $imagepath . $artikel->gambar . '.jpg';
+                }else{
+                  $gambar = 'images/image-article.jpg';
+                }
+              @endphp
+                <article class="entry border-bottom-0 mb-0">
+                  <div class="entry-image">
+                    <a href="{{ route('artikel.lihat.cu',['cu'=>$subdomain,'slug'=>$artikel->slug]) }}"><img src="{{ asset($gambar) }}" alt="Image 3"></a>
                   </div>
-                  <div class="col-md-8">
-                    <div class="entry-title title-xs">
-                      <div class="entry-meta no-separator mb-1 mt-0">
-                        <ul>
-                          <li><a class="text-uppercase fw-medium" href="{{ route('artikel.kategori.cu',['cu'=>$subdomain,'slug'=>$artikel->kategori->slug]) }}">{{$artikel->kategori ?$artikel->kategori->name : '' }}</a></li>
-                        </ul>
-                      </div>
-                      <h3><a href="{{ route('artikel.lihat.cu',['cu'=>$subdomain,'slug'=>$artikel->slug]) }}" class="stretched-link color-underline">{{ $artikel->name }}</a></h3>
-                    </div>
-                    <div class="entry-meta no-separator">
+                  <div class="entry-title">
+                    <div class="entry-meta no-separator mb-1 mt-0">
                       <ul>
-                        <li>{{ $artikel->created_at->format('j M Y') }}</li>
+                        <li><a class="text-uppercase fw-medium" href="{{ route('artikel.kategori.cu',['cu'=>$subdomain,'slug'=>$artikel->kategori->slug]) }}">{{$artikel->kategori ?$artikel->kategori->name : '' }}</a></li>
                       </ul>
                     </div>
+                    <h3><a href="{{ route('artikel.lihat.cu',['cu'=>$subdomain,'slug'=>$artikel->slug]) }}" class="stretched-link color-underline"><span>{{ $artikel->name }}</span></a></h3>
                   </div>
-                </div>
-              </article>
-            @endif
-            @endforeach
+                  <div class="entry-meta">
+                    <ul>
+                      <li>{{ $artikel->created_at->format('j M Y') }}</li>
+                    </ul>
+                  </div>
+                  <div class="entry-content">
+                    <p>{{ str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $artikel->content),200) }}</p>
+                  </div>
+                </article>
+              @break
+              @endforeach
+            </div>
+
+            <div class="col-lg-5">
+              <div class="row posts-md col-mb-30">
+              @php $i = 1 @endphp
+              @foreach ($artikelsUtama as $artikel)
+              @php $i++ @endphp
+              @php
+                if(!empty($artikel->gambar) && is_file($imagepath.$artikel->gambar.".jpg")){
+                  $gambar = $imagepath . $artikel->gambar . '.jpg';
+                }else{
+                  $gambar = 'images/image-article.jpg';
+                }
+              @endphp
+              @if($i != 1)
+                <article class="entry col-12">
+                  <div class="grid-inner row gutter-20">
+                    <div class="col-md-4">
+                      <a class="entry-image" href="{{ route('artikel.lihat',$artikel->slug) }}"><img src="{{ asset($gambar) }}" alt="Image"></a>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="entry-title title-xs">
+                        <div class="entry-meta no-separator mb-1 mt-0">
+                          <ul>
+                            <li><a class="text-uppercase fw-medium" href="{{ route('artikel.kategori.cu',['cu'=>$subdomain,'slug'=>$artikel->kategori->slug]) }}">{{$artikel->kategori ?$artikel->kategori->name : '' }}</a></li>
+                          </ul>
+                        </div>
+                        <h3><a href="{{ route('artikel.lihat.cu',['cu'=>$subdomain,'slug'=>$artikel->slug]) }}" class="stretched-link color-underline">{{ $artikel->name }}</a></h3>
+                      </div>
+                      <div class="entry-meta no-separator">
+                        <ul>
+                          <li>{{ $artikel->created_at->format('j M Y') }}</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              @endif
+              @endforeach
+              </div>
             </div>
           </div>
-        </div>
-      </div>  
-    @else
-      <div class="mb-5"></div>
+        </div>  
+      @else
+        <div class="mb-5"></div>
+      @endif
     @endif
 
     <!-- all artikel -->
-    @if($artikels->count() > 1)
+    @if($artikels->count() > 0)
       <div class="container">       
         <div class="row col-mb-50">
           <div class="col-12">
@@ -206,17 +208,19 @@
       </div>
     @endif
 
-    @if($artikelsUtama->count() < 1 && $artikels->count() < 1)
-      <div class="container">
-        <div class="promo promo-light p-4 p-md-5 mb-3">
-          <div class="row align-items-center">
-            <div class="col-12 col-lg">
-              <h3>Maaf, belum terdapat artikel</h3>
-              <span>Silahkan kembali ke <a href="{{ route('home.cu',$subdomain) }}">halaman utama</a></span>
-            </div> 
+    @if(isset($artikelsUtama))
+      @if($artikelsUtama->count() < 1 && $artikels->count() < 1)
+        <div class="container">
+          <div class="promo promo-light p-4 p-md-5 mb-3">
+            <div class="row align-items-center">
+              <div class="col-12 col-lg">
+                <h3>Maaf, belum terdapat artikel</h3>
+                <span>Silahkan kembali ke <a href="{{ route('home.cu',$subdomain) }}">halaman utama</a></span>
+              </div> 
+            </div>
           </div>
         </div>
-      </div>
+      @endif
     @endif
 
   </div>

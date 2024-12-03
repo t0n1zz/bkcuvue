@@ -167,7 +167,7 @@
                           @if($item->penulis)
                             <li><span>by</span> <a href="{{ route('artikel.penulis.cu',['cu'=>$subdomain,'slug'=>$item->penulis->slug]) }}">{{ $item->penulis->name }}</a></li>
                           @endif
-                          <li>{{ $item->created_at->format('j M Y')) }}</li>
+                          <li>{{ $item->created_at->format('j M Y') }}</li>
                         </ul>
                       </div>
                     </div>

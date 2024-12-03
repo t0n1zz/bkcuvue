@@ -391,7 +391,7 @@ class PublicController extends Controller
 
 	public function testroute()
 	{
-		abort(404);
+		// abort(404);
 
 		// $kelas = \App\JalinanIuran::with('anggota.anggota_cu','anggota.anggota_cu_cu')->findOrFail(1);
 		// $produks = \App\ProdukCu::where('id_cu',22)->where('jalinan',1)->get();
@@ -416,7 +416,7 @@ class PublicController extends Controller
 
 		// return response()->json($result);
 
-		// $this->permission();
+		$this->permission();
 	}
 
 	public function iuran()
@@ -1028,10 +1028,10 @@ class PublicController extends Controller
 	public function permission()
 	{
 		// create permission
-		\Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'index_surat_kategori']);
-		\Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'create_surat_kategori']);
-		\Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'update_surat_kategori']);
-		\Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'destroy_surat_kategori']);
+		\Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'informasi_anggota_cu']);
+		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'create_fasilitator']);
+		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'update_fasilitator']);
+		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'destroy_fasilitator']);
 
 		// give permission
 		// $users = App\User::where('id','!=',1)->where('id_cu',0)->get();

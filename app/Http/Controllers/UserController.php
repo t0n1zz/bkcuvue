@@ -64,6 +64,7 @@ class UserController extends Controller
 		'update_anggota_cu',
 		'destroy_anggota_cu',
 		'upload_anggota_cu',
+		'informasi_anggota_cu',
 
 		'index_saldo',
 		'create_saldo',
@@ -199,10 +200,45 @@ class UserController extends Controller
 		'upload_laporan_tp',
 		'diskusi_laporan_tp',
 
-		// 'index_coa',
-		// 'create_coa',
-		// 'update_coa',
-		// 'destroy_coa',
+		'index_kubn',
+		'create_kubn',
+		'update_kubn',
+		'destroy_kubn',
+
+		'index_kombas',
+		'create_kombas',
+		'update_kombas',
+		'destroy_kombas',
+
+		'index_enterpreneur',
+		'create_enterpreneur',
+		'update_enterpreneur',
+		'destroy_enterpreneur',
+
+		'index_umkm',
+		'create_umkm',
+		'update_umkm',
+		'destroy_umkm',
+
+		'index_mentor',
+		'create_mentor',
+		'update_mentor',
+		'destroy_mentor',
+
+		'index_fasilitator',
+		'create_fasilitator',
+		'update_fasilitator',
+		'destroy_fasilitator',
+
+		'index_keahlian',
+		'create_keahlian',
+		'update_keahlian',
+		'destroy_keahlian',
+
+		'index_jenis_diklat',
+		'create_jenis_diklat',
+		'update_jenis_diklat',
+		'destroy_jenis_diklat',
 	];
 
 	public function index()
@@ -394,7 +430,7 @@ class UserController extends Controller
 		return response()
 			->json([
 				'saved' => true,
-				'message' => 'Hak Akses User ' .$kelas->username. ' berhasil diubah. Apabila user tersebut saat ini sudah login ke SIMO, maka untuk melihat perubahannya user tersebut mesti logout dan login lagin.'
+				'message' => 'Hak Akses User ' .$kelas->username. ' berhasil diubah. Apabila user tersebut saat ini sudah login ke SIMO, maka untuk melihat perubahannya user tersebut mesti logout dan login lagi.'
 			]);
 	}
 

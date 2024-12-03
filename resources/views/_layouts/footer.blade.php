@@ -120,7 +120,7 @@
               <i class="fa-brands fa-instagram"></i>
             </a>
 
-            <a href="https://www.youtube.com/@PuskopcuinaOfficial" class="social-icon border-transparent si-small h-bg-youtube" target="_blank">
+            <a href="https://www.youtube.com/@PUSKOPCUINA" class="social-icon border-transparent si-small h-bg-youtube" target="_blank">
               <i class="fa-brands fa-youtube"></i>
               <i class="fa-brands fa-youtube"></i>
             </a>

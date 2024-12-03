@@ -351,9 +351,21 @@ class AnggotaCuController extends Controller{
 			else
 				$fileName = '';	
 
-			$kelas = AnggotaCu::create($request->except('nik','gambar','statusNIK') + [
+			if(!empty($request->ttd))
+				$fileNameTTD = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->ttd,'',$name . '_TTD');
+			else
+				$fileNameTTD = '';	
+
+			if(!empty($request->gambarKtp))
+				$fileNameKTP = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->gambarKtp,'',$name . '_KTP');
+			else
+				$fileNameKTP = '';	
+
+			$kelas = AnggotaCu::create($request->except('nik','gambar','ttd','gambarKtp','statusNIK') + [
 				'nik' => $nik,
-				'gambar' => $fileName
+				'gambar' => $fileName,
+				'ttd' => $fileNameTTD,
+				'gambarKtp' => $fileNameKTP,
 			]);
 			
 			$this->syncCu($request, $kelas);
@@ -444,9 +456,21 @@ class AnggotaCuController extends Controller{
 			else
 				$fileName = '';
 
+			if(!empty($request->ttd))
+				$fileNameTTD = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->ttd,$kelas->ttd,$name . '_TTD');
+			else
+				$fileNameTTD = '';
+
+			if(!empty($request->gambarKtp))
+				$fileNameKtp = Helper::image_processing($this->imagepath,$this->width,$this->height,$request->gambarKtp,$kelas->gambarKtp,$name . '_KTP');
+			else
+				$fileNameKtp = '';
+
 			// dd($request->all());
-			$kelas->update($request->except('gambar') + [
-				'gambar' => $fileName
+			$kelas->update($request->except('gambar','ttd','gambarKtp') + [
+				'gambar' => $fileName,
+				'ttd' => $fileNameTTD,
+				'gambarKtp' => $fileNameKtp,
 			]);	
 
 			$cuArray = $this->syncCu($request, $kelas);
@@ -808,7 +832,6 @@ class AnggotaCuController extends Controller{
 			foreach($produkcu as $produk){
 				$produkCuArray[$produk['produk_cu']['id']] = [
 					'produk_cu_id' => array_key_exists('produk_cu', $produk) ? $produk['produk_cu']['id'] : null,
-					'saldo' => array_key_exists('saldo', $produk) ? $produk['saldo'] : null,
 					'no_rek' => array_key_exists('no_rek', $produk) ? $produk['no_rek'] : null,
 					'tanggal' => array_key_exists('tanggal', $produk) ? $produk['tanggal'] : null,
 					'lama_pinjaman' => array_key_exists('lama_pinjaman', $produk) ? $produk['lama_pinjaman'] : null,
@@ -880,6 +903,25 @@ class AnggotaCuController extends Controller{
             'model' => $table_data
         ]); 
   }
+
+	public function cariDataInformasi($nik)
+	{
+		$table_data = AnggotaCu::with('anggota_cu_cu_informasi.cu','anggota_cu_cu_informasi.tp','anggota_produk_cu_informasi.cu','Villages','Districts','Regencies','Provinces')->where('nik',$nik)->first();
+		
+		if($table_data){
+			return response()
+			->json([
+				'model' => $table_data
+			]);
+		}else{
+			return response()
+			->json([
+					'form' => AnggotaCu::initialize(),
+					'rules' => AnggotaCu::$rules,
+					'option' => []
+			]);
+		}
+	}
 
 	public function cariDataKTP($nik)
 	{

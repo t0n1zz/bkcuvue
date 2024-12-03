@@ -19,7 +19,7 @@
 
 				<!-- penilaian-->
 				<button @click.prevent="goTo(selectedItem.id,'penilaian')" class="btn btn-light btn-icon mb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_assesment_access']" :disabled="!selectedItem.id">
-					<i class="icon-law"></i> Penilaian BKCU
+					<i class="icon-law"></i> Penilaian PUSKOPCUINA
 				</button>
 
 				<!-- lihat-->
@@ -49,7 +49,7 @@
 
 				<!-- penilaian-->
 				<button @click.prevent="goTo(selectedItem.id,'penilaian')" class="btn btn-light btn-icon btn-block mb-1" v-if="currentUser.id_cu == 0 && currentUser.can && currentUser.can['update_assesment_access']" :disabled="!selectedItem.id">
-					<i class="icon-law"></i> Penilaian BKCU
+					<i class="icon-law"></i> Penilaian PUSKOPCUINA
 				</button>
 
 				<!-- lihat-->

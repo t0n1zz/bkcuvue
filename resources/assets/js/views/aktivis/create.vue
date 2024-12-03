@@ -1028,8 +1028,6 @@
 				}
 
 				this.modalShow = false;
-				this.submitedKategori = false;
-				this.submitedPenulis = false;
 			},
 			modalBackgroundClick(){
 				if(this.modalState === 'success'){

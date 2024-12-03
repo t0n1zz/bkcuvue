@@ -26,12 +26,16 @@
 				<!-- button row -->
 				<button-row></button-row>
 
+				<count-organisasi-widget></count-organisasi-widget>
+
+				<kegiatan-bkcu-widget></kegiatan-bkcu-widget>
+
 			</div>
 
 			<div class="col-lg-8">
-				<kegiatan-bkcu-widget></kegiatan-bkcu-widget>
+				
 
-				<history-organisasi-widget v-if="currentUser.id_cu == 0"></history-organisasi-widget>
+				<!-- <history-organisasi-widget v-if="currentUser.id_cu == 0"></history-organisasi-widget> -->
 
 				<!-- <grafik-laporan-cu-widget v-if="currentUser.can && currentUser.can['index_laporan_cu']" :id_cu="currentUser.id_cu" :columnData="columnData" :columnDataPearls="columnDataPearls"></grafik-laporan-cu-widget> -->
 			</div>
@@ -39,7 +43,7 @@
 			<div class="col-lg-4">
 				<!-- <peserta-diklat-bkcu-widget v-if="currentUser.can && currentUser.can['index_diklat_bkcu']" ></peserta-diklat-bkcu-widget> -->
 
-				<count-organisasi-widget></count-organisasi-widget>
+				<!-- <count-organisasi-widget></count-organisasi-widget> -->
 
 				<!-- <table-laporan-cu-widget v-if="currentUser.can && currentUser.can['index_laporan_cu']"  :id_cu="currentUser.id_cu" :columnData="columnData" :columnDataPearls="columnDataPearls"></table-laporan-cu-widget> -->
 			</div>

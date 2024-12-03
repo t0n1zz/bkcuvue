@@ -10,14 +10,73 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+               <!-- Version 3.6 -->
+               <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#v36">Version 3.6<small class="text-muted"> / 20 November 2024</small></a> </h5>
+                </div>
+
+                <div id="v36" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini menambahkan dan peningkatan pendataan data pemberdayaan 
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan fitur pendataan Umkm pada menu pemberdayaan</li>
+                      <li>Penambahan fitur pendataan Fasilitator pada menu pemberdayaan</li>
+                      <li>Penambahan fitur pendataan Mentor pada menu pemberdayaan</li>
+                      <li>Penambahan fitur pendataan Mitra Perseorangan pada menu organisasi</li>
+                      <li>Penambahan fitur pendataan Mitra Lembaga pada menu organisasi</li>
+                      <li>Peningkatan fitur pendataan Kubn pada menu pemberdayaan</li>
+                      <li>Peningkatan fitur pendataan Kombas pada menu pemberdayaan</li>
+                      <li>Peningkatan fitur monitoring untuk laporan</li>
+                      <li>Perbaikan bug pada core engine</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.6 -->
+
+              <!-- Version 3.5 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v35">Version 3.5<small class="text-muted"> / 6 Juni 2024</small></a> </h5>
+                </div>
+
+                <div id="v35" class="collapse" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini mengubah tampilan website publik menjadi tampilan baru dengan teknologi frontend terbaru, kemudian penambahan fitur baru yaitu pendataan pemberdayaan dan peningkatan pada fitur saran
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Tampilan website publik puskopcuina.org baru</li>
+                      <li>Peningkatan frontend bootstrap ke versi 5</li>
+                      <li>Penggantian google analytics</li>
+                      <li>Penambahan fitur pendataan Kubn pada menu pemberdayaan</li>
+                      <li>Penambahan fitur pendataan Kombas pada menu pemberdayaan</li>
+                      <li>Penambahan fitur pendataan Usaha pada menu pemberdayaan yang mengacu pada kelompok produk di sMartCU</li>
+                      <li>Peningkatan pada fitur saran</li>
+                      <li>Peningkatan pelaporan ke excel untuk fitur monitoring</li>
+                      <li>Peningkatan inputan pencatatan untuk fitur surat masuk</li>
+                      <li>Perbaikan bug pada core engine</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.5 -->
+
               <!-- Version 3.4.6 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#v346">Version 3.4.6<small class="text-muted"> / 20 Agustus 2022</small></a> </h5>
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v346">Version 3.4.6<small class="text-muted"> / 20 Agustus 2022</small></a> </h5>
                 </div>
 
-                <div id="v346" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="v346" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi menambahkan fitur untuk kegiatan yaitu penambahan kolom rekomendasi, mendukung diklat dan pertemuan internal PUSKOPCUINA, mendaftarkan mitra perseorangan sebagai peserta kegiatan
                     <br/><br/>
@@ -37,7 +96,7 @@
                   </div>
                 </div>
               </div>
-              <!-- /version 3.4.5 -->
+              <!-- /version 3.4.6 -->
 
               <!-- Version 3.4.5 -->
               <div class="card">

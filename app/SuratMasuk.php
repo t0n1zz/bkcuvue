@@ -20,7 +20,7 @@ class SuratMasuk extends Model {
         'hal' => 'required',
     ];
 
-    protected $fillable = ['id_cu','id_dokumen','name','keterangan','hal','periode','pengirim','terima_melalui','tujuan'];
+    protected $fillable = ['id_cu','id_dokumen','name','keterangan','hal','periode','pengirim','terima_melalui','tujuan','tanggal_terima'];
 
     protected $allowedFilters = [
         'id','id_cu','id_dokumen','name','keterangan','hal','periode','pengirim','terima_melalui','tujuan','tanggal_terima','created_at','updated_at',

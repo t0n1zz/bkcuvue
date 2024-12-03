@@ -50,6 +50,7 @@
 				</template>
 
 			</template>
+			
 			<template slot="button-mobile" v-if="currentUser.id_cu == 0">
 				<button class="btn bg-warning-400 btn-block mb-1" @click.prevent="modalOpen('tambahPeserta')">
 					<i class="icon-people"></i> Daftar Peserta
@@ -172,7 +173,7 @@
 					<td>
 						<span v-html="$options.filters.statusPeserta(props.item.status)"></span>
 					</td>
-					<td v-if="!columnDataPesertaTerdaftar[2].hide">
+					<td v-if="!columnDataPesertaTerdaftar[2].hide" @click="modalOpen('image', props.item)" class="cursor-pointer">
 						<!-- if aktivis -->
 						<template v-if="props.item.aktivis">
 							<img :src="'/images/aktivis/' + props.item.aktivis.gambar + 'n.jpg'" width="35px"
@@ -636,7 +637,7 @@ export default {
 	},
 	methods: {
 		fetchPesertaTerdaftar(params) {
-			if (this.item.status == '2') {
+			// if (this.item.status == '2') {
 				if (this.currentUser.id_cu == 0) {
 					this.$store.dispatch(this.kelas + '/indexPeserta', [params, this.item.id]);
 					this.excelDownloadUrl = this.kelas + '/indexPeserta/' + this.item.id;
@@ -644,10 +645,10 @@ export default {
 					this.$store.dispatch(this.kelas + '/indexPesertaCu', [params, this.item.id, this.currentUser.id_cu]);
 					this.excelDownloadUrl = this.kelas + '/indexPesertaCu/' + + this.item.id + '/' + this.$route.params.cu;
 				}
-			} else {
-				this.$store.dispatch(this.kelas + '/indexPeserta', [params, this.item.id]);
-				this.excelDownloadUrl = this.kelas + '/indexPeserta/' + this.item.id;
-			}
+			// } else {
+			// 	this.$store.dispatch(this.kelas + '/indexPeserta', [params, this.item.id]);
+			// 	this.excelDownloadUrl = this.kelas + '/indexPeserta/' + this.item.id;
+			// }
 
 			if (this.item.tipe_tempat == 'ONLINE') {
 				this.columnDataPesertaTerdaftar[4].disable = true;
@@ -697,7 +698,7 @@ export default {
 		selectedRow(item) {
 			this.selectedItem = item;
 		},
-		modalOpen(state, isMobile, itemMobile) {
+		modalOpen(state, item) {
 			this.modalShow = true;
 			this.modalSize = '';
 			this.state = state;
@@ -755,6 +756,23 @@ export default {
 				this.modalColor = 'bg-primary';
 				this.modalTitle = 'Generate Sertifikat Berhasil';
 				this.modalButton = 'Ok';
+			} else if (this.state == 'image') {
+				this.modalState = 'image';
+				if(item.aktivis){
+					if(item.aktivis.gambar){
+						this.modalContent = '/images/aktivis/' + item.aktivis.gambar + '.jpg';
+					}else{
+						this.modalContent = '/images/no_image_man.jpg';
+					}
+				}else if(item.mitra_orang){
+					if(item.mitra_orang){
+						this.modalContent = '/images/mitra_orang/' + item.mitra_orang.gambar + '.jpg';
+					}else{
+						this.modalContent = '/images/no_image_man.jpg';
+					}
+				}else{
+					this.modalContent = '/images/no_image_man.jpg';
+				}
 			}
 		},
 		modalConfirmOk() {

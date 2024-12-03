@@ -15,6 +15,14 @@
 					<message v-if="itemDataStat === 'fail'" :title="'Oops terjadi kesalahan:'" :errorData="itemData">
 					</message>
 
+					<!-- select data -->
+					<select-cu 
+						:kelas="kelas"
+						:path="selectCuPath"
+						:isPus="true"
+						v-if="currentUser.id_cu == 0"></select-cu>
+
+
 					<!-- table data -->
 					<table-data 
 						:title="title" 
@@ -32,24 +40,45 @@
 	import pageHeader from "../../components/pageHeader.vue";
 	import tableData from "./table.vue";
 	import message from "../../components/message.vue";
+	import selectCu from "../../components/selectCu.vue";
 	
 	export default {
 		components: {
 			pageHeader,
 			tableData,
 			message,
+			selectCu,
 		},
 		data() {
 			return {
 				title: 'Lembaga Mitra',
 				kelas: 'mitraLembaga',
 				titleDesc: 'Mengelola data lembaga mitra',
-				titleIcon: 'icon-briefcase'
+				titleIcon: 'icon-briefcase',
+				selectCuPath: 'mitraLembagaCu',
 			}
 		},
-		methods:{
+		created(){
+			this.checkUser('index_mitra_lembaga',this.$route.params.cu);
+		},
+		methods: {
+			checkUser(permission,id_cu){
+				if(this.currentUser){
+					if(!this.currentUser.can || !this.currentUser.can[permission]){
+						this.$router.push('/notFound');
+					}
+					if(!id_cu || this.currentUser.id_cu){
+						if(this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu){
+							this.$router.push('/notFound');
+						}
+					}
+				}
+			}
 		},
 		computed: {
+			...mapGetters('auth',{
+				currentUser: 'currentUser'
+			}),
 			...mapGetters('mitraLembaga',{
 				itemData: 'dataS',
 				itemDataStat: 'dataStatS'

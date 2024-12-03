@@ -17,26 +17,26 @@ class Saran extends BaseEloquent
     ];
 
     protected $fillable = [
-        'id_user','name','content',
+        'id_user','name','bidang','content',
     ];
 
     protected $allowedFilters = [
-        'name','content','user.name','created_at','updated_at'
+        'name','content','bidang','user.name','created_at','updated_at'
     ];
 
     protected $orderable = [
-        'name','content','user.name','created_at','updated_at'
+        'name','content','bidang','user.name','created_at','updated_at'
     ];
 
     public static function initialize()
     {
         return [
-            'id_user' => '' ,'name' => '' ,'content' => '' ,
+            'id_user' => '' ,'name' => '' ,'content' => '' ,'bidang' => '' ,
         ];
     }
 
     public function user()
     {
-        return $this->belongsTo('App\User','id_user','id')->select('id','username');
+        return $this->belongsTo('App\User','id_user','id')->select('id','id_cu','id_aktivis','username');
     }
 }

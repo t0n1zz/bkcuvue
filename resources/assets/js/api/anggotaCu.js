@@ -120,6 +120,10 @@ export default {
     return axios.get('/api/anggotaCu/history');
   },
 
+  cariDataInformasi: function( nik ){
+    return axios.get('/api/anggotaCu/cariDataInformasi/' + nik);
+  },
+
   cariDataKTP: function( nik ){
     return axios.get('/api/anggotaCu/cariDataKTP/' + nik);
   },

@@ -55,6 +55,34 @@
 										</div>
 									</div>
 
+									<!-- CU -->
+									<div class="col-md-4" v-if="currentUser.id_cu === 0">
+										<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.id_cu')}">
+												<i class="icon-cross2" v-if="errors.has('form.id_cu')"></i>
+												CU: <wajib-badge></wajib-badge>
+											</h5>
+
+											<!-- select -->
+											<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
+												<option disabled value="">
+													<span v-if="modelCUStat === 'loading'">Mohon tunggu...</span>
+													<span v-else>Silahkan pilih CU</span>
+												</option>
+												<option value="0"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>PUSKOPCUINA</span></option>
+												<option v-for="(cu, index) in modelCU" :value="cu.id" :key="index">{{cu.name}}</option>
+											</select>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
 									<!-- bidang -->
 									<div class="col-md-4">
 										<div class="form-group" :class="{'has-error' : errors.has('form.bidang')}">
@@ -436,6 +464,7 @@
 	import formButton from "../../components/formButton.vue";
 	import formInfo from "../../components/formInfo.vue";
 	import Cleave from 'vue-cleave-component';
+	import wajibBadge from "../../components/wajibBadge.vue";
 
 	export default {
 		components: {
@@ -445,6 +474,7 @@
 			message,
 			formButton,
 			formInfo,
+			wajibBadge,
 			Cleave,
 		},
 		data() {
@@ -498,13 +528,15 @@
 		watch: {
 			formStat(value){
 				if(value === "success"){
-					if(this.$route.meta.mode == 'edit'|| this.$route.meta.mode == 'profile' ){
+					if(this.$route.meta.mode == 'edit'){
 						if(this.currentUser.id_cu !== 0 && this.currentUser.id_cu !== this.form.id){
 							this.$router.push({name: 'notFound'});
 						}
 						this.changeProvinces(this.form.id_provinces);
 						this.changeRegencies(this.form.id_regencies);
 						this.changeDistricts(this.form.id_districts);
+					}else{
+						this.form.id_cu = this.currentUser.id_cu;
 					}
 				}
 			},
@@ -554,7 +586,11 @@
 				});
 			},
 			back(){
-				this.$router.push({name: this.kelas});
+				if(this.currentUser.id_cu == 0){
+					this.$router.push({name: this.kelas + 'Cu', params:{cu:'semua'}});
+				}else{
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
+				}
 			},
 			changeProvinces(id){
 				this.$store.dispatch('regencies/getProvinces', id);
@@ -597,6 +633,10 @@
 				options: 'options',
 				updateResponse: 'update',
 				updateStat: 'updateStat'
+			}),
+			...mapGetters('cu',{
+				modelCU: 'headerDataS',
+				modelCUStat: 'headerDataStatS',
 			}),
 			...mapGetters('provinces',{
 				modelProvinces: 'dataS',

@@ -4,6 +4,10 @@ export default {
     return axios.get('/api/mitraLembaga' , {params: p});
   },
 
+  indexCu: function( p, id ){
+    return axios.get('/api/mitraLembaga/indexCu/' + id , {params: p});
+  },
+
   create: function(){
     return axios.get('/api/mitraLembaga/create');
   },

@@ -68,6 +68,34 @@
 										</div>
 									</div>
 
+									<!-- CU -->
+									<div class="col-md-4" v-if="currentUser.id_cu === 0">
+										<div class="form-group" :class="{'has-error' : errors.has('form.id_cu')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.id_cu')}">
+												<i class="icon-cross2" v-if="errors.has('form.id_cu')"></i>
+												CU: <wajib-badge></wajib-badge>
+											</h5>
+
+											<!-- select -->
+											<select class="form-control" name="id_cu" v-model="form.id_cu" data-width="100%" v-validate="'required'" data-vv-as="CU" :disabled="modelCU.length === 0">
+												<option disabled value="">
+													<span v-if="modelCUStat === 'loading'">Mohon tunggu...</span>
+													<span v-else>Silahkan pilih CU</span>
+												</option>
+												<option value="0"><span v-if="currentUser.pus">{{currentUser.pus.name}}</span> <span v-else>PUSKOPCUINA</span></option>
+												<option v-for="(cu, index) in modelCU" :value="cu.id" :key="index">{{cu.name}}</option>
+											</select>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.id_cu')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.id_cu') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
+
 									<!-- gender -->
 									<div class="col-md-4">
 										<div class="form-group" :class="{'has-error' : errors.has('form.kelamin')}">
@@ -217,12 +245,10 @@
 
 									<!-- npwp -->
 									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.npwp')}">
+										<div class="form-group">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.npwp')}">
-												<i class="icon-cross2" v-if="errors.has('form.npwp')"></i>
-												NPWP (nomor pokok wajib pajak):</h5>
+											<h5>NPWP (nomor pokok wajib pajak):</h5>
 
 											<!-- text -->
 											<input type="text" name="npwp" class="form-control" placeholder="Silahkan masukkan NPWP"  v-model="form.npwp">
@@ -245,10 +271,12 @@
 
 									<!-- jabatan -->
 									<div class="col-md-4">
-										<div class="form-group">
+										<div class="form-group" :class="{'has-error' : errors.has('form.pekerjaan_tingkat')}">
 
 											<!-- title -->
-											<h6>Tingkat Pekerjaan:</h6>
+											<h6 :class="{ 'text-danger' : errors.has('form.bidang')}">
+												<i class="icon-cross2" v-if="errors.has('form.bidang')"></i>
+												Tingkat Pekerjaan: <wajib-badge></wajib-badge></h6>
 
 											<!-- text -->
 											<select class="form-control" name="pekerjaan_tingkat" v-model="form.pekerjaan_tingkat" data-width="100%" v-validate="'required'" data-vv-as="Tingkat Pekerjaan">
@@ -268,6 +296,13 @@
 												<option value="13">Vendor sMartCU</option>
 												<option value="14">Magang</option>
 											</select>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.pekerjaan_tingkat')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.pekerjaan_tingkat') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+
 										</div>
 									</div>
 
@@ -285,10 +320,12 @@
 
 									<!-- pendidikan tingkat -->
 									<div class="col-md-4">
-										<div class="form-group">
+										<div class="form-group" :class="{'has-error' : errors.has('form.pendidikan_tingkat')}">
 
 											<!-- title -->
-											<h6>Tingkat Pendidikan:</h6>
+											<h6 :class="{ 'text-danger' : errors.has('form.pendidikan_tingkat')}">
+												<i class="icon-cross2" v-if="errors.has('form.pendidikan_tingkat')"></i>
+												Tingkat Pendidikan: <wajib-badge></wajib-badge></h6>
 
 											<!-- text -->
 											<select class="form-control" name="pendidikan_tingkat" v-model="form.pendidikan_tingkat" data-width="100%" v-validate="'required'" data-vv-as="Tingkat pendidikan">
@@ -306,6 +343,12 @@
 												<option value="S3">S3</option>
 												<option value="LAIN-LAIN">Lain-lain</option>
 											</select>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.pendidikan_tingkat')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.pendidikan_tingkat') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
 
 										</div>
 									</div>
@@ -329,7 +372,7 @@
 
 											<!-- title -->
 											<h6>
-												Provinsi: <wajib-badge></wajib-badge>
+												Provinsi:
 											</h6>
 
 											<!-- select -->
@@ -349,7 +392,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h6>Kabupaten: <wajib-badge></wajib-badge></h6>
+											<h6>Kabupaten:</h6>
 
 											<!-- select -->
 											<select class="form-control"  name="id_regencies" v-model="form.id_regencies" data-width="100%" @change="changeRegencies($event.target.value)" :disabled="modelRegencies.length === 0">
@@ -368,7 +411,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h6>Kecamatan: <wajib-badge></wajib-badge></h6>
+											<h6>Kecamatan:</h6>
 
 											<!-- select -->
 											<select class="form-control"  name="id_districts" v-model="form.id_districts" data-width="100%" :disabled="modelDistricts.length === 0" @change="changeDistricts($event.target.value)">
@@ -387,7 +430,7 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h6>Kelurahan: <wajib-badge></wajib-badge></h6>
+											<h6>Kelurahan:</h6>
 
 											<!-- select -->
 											<select class="form-control"  name="id_villages" v-model="form.id_villages" data-width="100%" v-validate="'required'" data-vv-as="Desa" :disabled="modelVillages.length === 0">
@@ -580,7 +623,14 @@
 		watch: {
 			formStat(value) {
 				if (value === "success") {
-					if (this.$route.meta.mode !== 'edit') {
+					if(this.$route.meta.mode == 'edit'){
+						if(this.currentUser.id_cu !== 0 && this.currentUser.id_cu !== this.form.id){
+							this.$router.push({name: 'notFound'});
+						}
+						this.changeProvinces(this.form.id_provinces);
+						this.changeRegencies(this.form.id_regencies);
+						this.changeDistricts(this.form.id_districts);
+					}else{
 						this.form.id_cu = this.currentUser.id_cu;
 					}
 				}
@@ -638,8 +688,12 @@
 			changeDistricts(id){
 				this.$store.dispatch('villages/getDistricts', id);
 			},
-			back() {
-				this.$router.push({name: this.kelas});
+			back(){
+				if(this.currentUser.id_cu == 0){
+					this.$router.push({name: this.kelas + 'Cu', params:{cu:'semua'}});
+				}else{
+					this.$router.push({name: this.kelas + 'Cu', params:{cu: this.currentUser.id_cu}});
+				}
 			},
 			modalTutup() {
 				if (this.updateStat === 'success') {
@@ -669,6 +723,10 @@
 				options: 'options',
 				updateResponse: 'update',
 				updateStat: 'updateStat'
+			}),
+			...mapGetters('cu',{
+				modelCU: 'headerDataS',
+				modelCUStat: 'headerDataStatS',
 			}),
 			...mapGetters('provinces',{
 				modelProvinces: 'dataS',

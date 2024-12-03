@@ -139,13 +139,16 @@
 														<span v-else>-</span>
 													</td>
 													<td>
-														<check-value :value="props.item.saldo" valueType="currency"></check-value>
-													</td>
-													<td>
 														<check-value :value="props.item.lama_pinjaman"></check-value>
 													</td>
 													<td>
 														<check-value :value="props.item.lama_sisa_pinjaman"></check-value>
+													</td>
+													<td>
+														<check-value :value="props.item.dpd"></check-value>
+													</td>
+													<td>
+														<check-value :value="props.item.kolekbi"></check-value>
 													</td>
 													<td>
 														<span v-if="props.item.tanggal" v-html="$options.filters.date(props.item.tanggal)"></span>
@@ -699,9 +702,10 @@
 					{ title: 'No. Rek' },
 					{ title: 'Nama' },
 					{ title: 'Jenis' },
-					{ title: 'Saldo Awal' },
 					{ title: 'Lama Pinjaman (Bulan)' },
 					{ title: 'Lama Sisa Pinjaman (Bulan)' },
+					{ title: 'DPD' },
+					{ title: 'Kolektibilitas' },
 					{ title: 'Tgl. Buat' },
 					{ title: 'Usia Saat Membuka' },
 				],

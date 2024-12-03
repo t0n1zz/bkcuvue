@@ -590,6 +590,14 @@
 								value: false,
 								group: 'Anggota CU'
 							},
+							{
+								name: 'Informasi',
+								key: 'informasi_anggota_cu',
+								icon: 'icon-folder-search',
+								tipe: 'bkcu approve',
+								value: false,
+								group: ''
+							},
 						]
 					},
 					{
@@ -1232,12 +1240,12 @@
 						keterangan: 'Mengelola data mitra perseorangan yang dimiliki lembaga',
 						icon: 'icon-briefcase',
 						secondRow: true,
-						tipe: 'bkcu',
+						tipe: 'all',
 						permission: [{
 								name: 'Lihat',
 								key: 'index_mitra_orang',
 								icon: 'icon-eye',
-								tipe: 'bkcu',
+								tipe: 'all',
 								value: false,
 								group: 'Mitra Perseorangan'
 							},
@@ -1245,7 +1253,7 @@
 								name: 'Tambah',
 								key: 'create_mitra_orang',
 								icon: 'icon-plus3',
-								tipe: 'bkcu',
+								tipe: 'all',
 								value: false,
 								group: 'Mitra Perseorangan'
 							},
@@ -1253,7 +1261,7 @@
 								name: 'Ubah',
 								key: 'update_mitra_orang',
 								icon: 'icon-pencil',
-								tipe: 'bkcu',
+								tipe: 'all',
 								value: false,
 								group: 'Mitra Perseorangan'
 							},
@@ -1261,7 +1269,7 @@
 								name: 'Hapus',
 								key: 'destroy_mitra_orang',
 								icon: 'icon-bin2',
-								tipe: 'bkcu',
+								tipe: 'all',
 								value: false,
 								group: 'Mitra Perseorangan'
 							}
@@ -1272,12 +1280,12 @@
 						keterangan: 'Mengelola data lembaga mitra yang dimiliki lembaga',
 						icon: 'icon-briefcase',
 						secondRow: true,
-						tipe: 'bkcu',
+						tipe: 'all',
 						permission: [{
 								name: 'Lihat',
 								key: 'index_mitra_lembaga',
 								icon: 'icon-eye',
-								tipe: 'bkcu',
+								tipe: 'all',
 								value: false,
 								group: 'Lembaga Mitra'
 							},
@@ -1285,7 +1293,7 @@
 								name: 'Tambah',
 								key: 'create_mitra_lembaga',
 								icon: 'icon-plus3',
-								tipe: 'bkcu',
+								tipe: 'all',
 								value: false,
 								group: 'Lembaga Mitra'
 							},
@@ -1293,7 +1301,7 @@
 								name: 'Ubah',
 								key: 'update_mitra_lembaga',
 								icon: 'icon-pencil',
-								tipe: 'bkcu',
+								tipe: 'all',
 								value: false,
 								group: 'Lembaga Mitra'
 							},
@@ -1301,7 +1309,7 @@
 								name: 'Hapus',
 								key: 'destroy_mitra_lembaga',
 								icon: 'icon-bin2',
-								tipe: 'bkcu',
+								tipe: 'all',
 								value: false,
 								group: 'Lembaga Mitra'
 							}
@@ -1456,6 +1464,326 @@
 								tipe: 'bkcu',
 								value: false,
 								group: 'CoA'
+							}
+						]
+					},
+					{
+						name: 'Kubn',
+						keterangan: 'Mengelola data kubn',
+						icon: 'icon-versions',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_kubn',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Kubn'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_kubn',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Kubn'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_kubn',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+								group: 'Kubn'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_kubn',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Kubn'
+							}
+						]
+					},
+					{
+						name: 'Komunitas',
+						keterangan: 'Mengelola data komunitas',
+						icon: 'icon-circles2',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_kombas',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Komunitas'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_kombas',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Komunitas'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_kombas',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+								group: 'Komunitas'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_kombas',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Komunitas'
+							}
+						]
+					},
+					{
+						name: 'Enterpreneur',
+						keterangan: 'Mengelola data enterpreneur',
+						icon: 'icon-hat',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_enterpreneur',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Enterpreneur'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_enterpreneur',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Enterpreneur'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_enterpreneur',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+								group: 'Enterpreneur'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_enterpreneur',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Enterpreneur'
+							}
+						]
+					},
+					{
+						name: 'Umkm',
+						keterangan: 'Mengelola data umkm',
+						icon: 'icon-store2',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_umkm',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Umkm'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_umkm',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Umkm'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_umkm',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+								group: 'Umkm'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_umkm',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Umkm'
+							}
+						]
+					},
+					{
+						name: 'Mentor',
+						keterangan: 'Mengelola data mentor',
+						icon: 'icon-brain',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_mentor',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Mentor'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_mentor',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Mentor'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_mentor',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+								group: 'Mentor'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_mentor',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Mentor'
+							}
+						]
+					},
+					{
+						name: 'Fasilitator',
+						keterangan: 'Mengelola data fasilitator',
+						icon: 'icon-unlink2',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_fasilitator',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Fasilitator'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_fasilitator',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Fasilitator'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_fasilitator',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+								group: 'Fasilitator'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_fasilitator',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Fasilitator'
+							}
+						]
+					},
+					{
+						name: 'Keahlian',
+						keterangan: 'Mengelola data keahlian',
+						icon: 'icon-reading',
+						secondRow: true,
+						tipe: 'bkcu',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_keahlian',
+								icon: 'icon-eye',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Keahlian'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_keahlian',
+								icon: 'icon-plus3',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Keahlian'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_keahlian',
+								icon: 'icon-pencil',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Keahlian'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_keahlian',
+								icon: 'icon-bin2',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Keahlian'
+							}
+						]
+					},
+					{
+						name: 'Jenis Diklat',
+						keterangan: 'Mengelola data jenis diklat',
+						icon: 'icon-book2',
+						secondRow: true,
+						tipe: 'bkcu',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_jenis_diklat',
+								icon: 'icon-eye',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Jenis Diklat'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_jenis_diklat',
+								icon: 'icon-plus3',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Jenis Diklat'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_jenis_diklat',
+								icon: 'icon-pencil',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Jenis Diklat'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_jenis_diklat',
+								icon: 'icon-bin2',
+								tipe: 'bkcu',
+								value: false,
+								group: 'Jenis Diklat'
 							}
 						]
 					},

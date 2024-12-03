@@ -24,17 +24,17 @@ class AnggotaProdukCu extends BaseEloquent {
     ];
 
     protected $fillable = [
-        'no_rek','anggota_cu_id','anggota_cu_cu_id','produk_cu_id','saldo','tanggal','tanggal_target','lama_pinjaman','lama_sisa_pinjaman','tujuan','pengurang','dpd','kolekbi','tanggal_bayar_akhir'
+        'no_rek','anggota_cu_id','anggota_cu_cu_id','produk_cu_id','tanggal','tanggal_target','lama_pinjaman','lama_sisa_pinjaman','tujuan','pengurang','dpd','kolekbi','tanggal_bayar_akhir'
     ];
 
     protected $filter = [
-        'no_rek','anggota_cu_id','anggota_cu_cu_id','produk_cu_id','saldo','tanggal','tanggal_target','lama_pinjaman','lama_sisa_pinjaman','tujuan','created_at','updated_at','pengurang','dpd'
+        'no_rek','anggota_cu_id','anggota_cu_cu_id','produk_cu_id','tanggal','tanggal_target','lama_pinjaman','lama_sisa_pinjaman','tujuan','created_at','updated_at','pengurang','dpd'
     ];
 
     public static function initialize()
     {
         return [
-            'no_rek' => '','anggota_cu_id' => '','anggota_cu_cu_id' => '','produk_cu_id' => '','saldo' => '','name' => '','no_ba' => '','lama_pinjaman' => '','lama_sisa_pinjaman' => '','tanggal_target' => '','tujuan' => '','pengurang' => '','dpd' => ''
+            'no_rek' => '','anggota_cu_id' => '','anggota_cu_cu_id' => '','produk_cu_id' => '','name' => '','no_ba' => '','lama_pinjaman' => '','lama_sisa_pinjaman' => '','tanggal_target' => '','tujuan' => '','pengurang' => '','dpd' => ''
         ];
     }
 

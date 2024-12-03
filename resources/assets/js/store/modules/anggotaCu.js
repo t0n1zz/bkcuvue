@@ -254,6 +254,27 @@ export const anggotaCu = {
         });
     },
 
+    cariDataInformasi( {commit}, nik ){
+      commit('setDataStat', 'loading');
+      
+      AnggotaCuAPI.cariDataInformasi( nik )
+        .then( function( response ){
+          if(response.data.model){
+            commit('setData', response.data.model);
+            commit('setDataStat', 'success');
+          }else{
+            commit('setData', response.data.form);
+            commit('setRules', response.data.rules);
+            commit('setOptions', response.data.options)
+            commit('setDataStat', 'fail');
+          }
+        })
+        .catch(error => {
+          commit('setData', error.response);
+          commit('setDataStat', 'fail');
+        });
+    },
+
     cariDataKTP( {commit}, nik ){
       commit('setDataStat', 'loading');
       

@@ -24,7 +24,7 @@
 				</button>
 
 				<!-- lihat -->
-				<button @click.prevent="downloadMateri(selectedItem.filename)" class="btn btn-light mb-1" :disabled="!selectedItem.id" v-if="selectedItem.dokumen && selectedItem.dokumen.format == 'upload'">
+				<button @click.prevent="downloadMateri(selectedItem.dokumen.filename)" class="btn btn-light mb-1" :disabled="!selectedItem.id" v-if="selectedItem.dokumen && selectedItem.dokumen.format == 'upload'">
 					<i class="icon-file-eye"></i> Lihat
 				</button>
 				<a type="button" class="btn btn-light mb-1" :href="selectedItem.dokumen.link" target="_blank" v-else-if="selectedItem.dokumen && selectedItem.dokumen.format == 'link'">
@@ -55,7 +55,7 @@
 				</button>
 
 				<!-- lihat -->
-				<button @click.prevent="downloadMateri(selectedItem.filename)" class="btn btn-light btn-block mb-1" :disabled="!selectedItem.id" v-if="selectedItem.dokumen && selectedItem.dokumen.format == 'upload'">
+				<button @click.prevent="downloadMateri(selectedItem.dokumen.filename)" class="btn btn-light btn-block mb-1" :disabled="!selectedItem.id" v-if="selectedItem.dokumen && selectedItem.dokumen.format == 'upload'">
 					<i class="icon-file-eye"></i> Lihat
 				</button>
 				<a type="button" class="btn btn-light btn-block mb-1" :href="selectedItem.dokumen.link" target="_blank" v-else-if="selectedItem.dokumen && selectedItem.dokumen.format == 'link'">
@@ -94,7 +94,9 @@
 					<td v-if="!columnData[7].hide">
 						<check-value :value="props.item.terima_melalui"></check-value>
 					</td>
-					<td v-if="!columnData[8].hide" v-html="$options.filters.date(props.item.tanggal_lahir)">
+					<td v-if="!columnData[8].hide">
+						<span v-if="props.item.tanggal_terima" v-html="$options.filters.date(props.item.tanggal_terima)"></span>
+						<span v-else>-</span>
 					</td>
 					<td v-if="!columnData[9].hide" v-html="$options.filters.dateTime(props.item.created_at)"></td>
 					<td v-if="!columnData[10].hide">
@@ -214,7 +216,7 @@
 					{
 						title: 'Tgl. Terima',
 						name: 'tanggal_terima',
-						tipe: 'date',
+						tipe: 'datetime',
 						sort: true,
 						hide: false,
 						disable: false,
@@ -304,7 +306,7 @@
 				}
 
 				if (state == 'hapus') {
-					this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.name + ' ?';
+					this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.hal + ' ?';
 					this.modalButton = 'Iya, Hapus';
 				}
 			},

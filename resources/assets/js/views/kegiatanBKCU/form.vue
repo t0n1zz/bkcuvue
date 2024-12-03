@@ -652,8 +652,18 @@
 									<tr :class="{ 'bg-info': selectedItemPanitia.index == props.index + 1}" class="text-nowrap" @click="selectedRow(props.item, props.index + 1, 'panitia')" v-if="props.item">
 										<td>{{ props.index + 1 }}</td>
 										<td>
-											<img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
-											<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+											<template v-if="props.item.asal == 'dalam'">
+												<img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+												<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+											</template>
+											<template v-else-if="props.item.asal == 'luar'">
+												<img :src="'/images/mitra_orang/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+												<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+											</template>
+											<template v-else-if="props.item.asal == 'luar lembaga'">
+												<img :src="'/images/mitra_lembaga/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+												<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+											</template>	
 										</td>
 										<td>{{ props.item.name }}</td>
 										<td>{{ props.item.lembaga }}</td>
