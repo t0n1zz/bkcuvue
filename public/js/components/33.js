@@ -1591,6 +1591,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           group: 'Jenis Diklat'
         }]
       }, {
+        name: 'Assesment CULEG',
+        keterangan: 'Mengelola data self assesment CULEG',
+        icon: 'icon-reading',
+        secondRow: true,
+        tipe: 'all',
+        permission: [{
+          name: 'Lihat',
+          key: 'index_assesment_culeg',
+          icon: 'icon-eye',
+          tipe: 'all',
+          value: false,
+          group: 'Assesment CULEG'
+        }, {
+          name: 'Tambah',
+          key: 'create_assesment_culeg',
+          icon: 'icon-plus3',
+          tipe: 'all',
+          value: false,
+          group: 'Assesment CULEG'
+        }, {
+          name: 'Ubah',
+          key: 'update_assesment_culeg',
+          icon: 'icon-pencil',
+          tipe: 'all',
+          value: false,
+          group: 'Assesment CULEG'
+        }, {
+          name: 'Hapus',
+          key: 'destroy_assesment_culeg',
+          icon: 'icon-bin2',
+          tipe: 'all',
+          value: false,
+          group: 'Assesment CULEG'
+        }]
+      }, {
         name: 'User',
         keterangan: 'Mengelola data user pada SIMO',
         icon: 'icon-users',
@@ -2101,7 +2136,7 @@ var render = function () {
                         [
                           _c("h6", { staticClass: "card-title" }, [
                             _c("i", { staticClass: "mr-1", class: akses.icon }),
-                            _vm._v(" " + _vm._s(akses.name) + "\n\t\t\t\t\t"),
+                            _vm._v(" " + _vm._s(akses.name) + "\r\n\t\t\t\t\t"),
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "header-elements" }, [
@@ -2281,7 +2316,7 @@ var render = function () {
                                                         _vm._s(
                                                           permission.name
                                                         ) +
-                                                        "\n\t\t\t\t\t\t\t\t\t"
+                                                        "\r\n\t\t\t\t\t\t\t\t\t"
                                                     ),
                                                   ]
                                                 ),
@@ -2378,7 +2413,7 @@ var render = function () {
                                                   _vm._v(
                                                     "   " +
                                                       _vm._s(permission.name) +
-                                                      "\n\t\t\t\t\t\t\t\t\t"
+                                                      "\r\n\t\t\t\t\t\t\t\t\t"
                                                   ),
                                                 ]),
                                               ]
@@ -2466,7 +2501,7 @@ var render = function () {
                                             _vm._v(
                                               "   " +
                                                 _vm._s(permission.name) +
-                                                "\n\t\t\t\t\t\t\t\t"
+                                                "\r\n\t\t\t\t\t\t\t\t"
                                             ),
                                           ]
                                         ),

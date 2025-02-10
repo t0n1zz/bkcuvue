@@ -239,6 +239,11 @@ class UserController extends Controller
 		'create_jenis_diklat',
 		'update_jenis_diklat',
 		'destroy_jenis_diklat',
+
+		'index_assesment_culeg',
+		'create_assesment_culeg',
+		'update_assesment_culeg',
+		'destroy_assesment_culeg',
 	];
 
 	public function index()

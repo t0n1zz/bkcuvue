@@ -134,6 +134,8 @@ const mentor = () => import("./views/mentor/index.vue");
 const mentor_form = () => import("./views/mentor/form.vue");
 const fasilitator = () => import("./views/fasilitator/index.vue");
 const fasilitator_form = () => import("./views/fasilitator/form.vue");
+const assesmentCuleg = () => import("./views/assesmentCuleg/index.vue");
+const assesmentCuleg_form = () => import("./views/assesmentCuleg/form.vue");
 
 const routes = [
   // login
@@ -1226,6 +1228,54 @@ const routes = [
     },
     meta: { requiresAuth: true, mode: "lihat" },
   },
+
+    // assesment culeg
+    {
+      path: "/assesmentCuleg/cu/:cu",
+      name: "assesmentCulegCu",
+      components: { default: assesmentCuleg, header: header, footer: footer },
+      meta: { requiresAuth: true, mode: "cu" },
+    },
+    {
+      path: "/assesmentCuleg/create",
+      name: "assesmentCulegCreate",
+      components: {
+        default: assesmentCuleg_form,
+        header: header,
+        footer: footer,
+      },
+      meta: { requiresAuth: true, mode: "create" },
+    },
+    {
+      path: "/assesmentCuleg/edit/:id",
+      name: "assesmentCulegEdit",
+      components: {
+        default: assesmentCuleg_form,
+        header: header,
+        footer: footer,
+      },
+      meta: { requiresAuth: true, mode: "edit" },
+    },
+    {
+      path: "/assesmentCuleg/penilaian/:id",
+      name: "assesmentCulegPenilaian",
+      components: {
+        default: assesmentCuleg_form,
+        header: header,
+        footer: footer,
+      },
+      meta: { requiresAuth: true, mode: "penilaianBkcu" },
+    },
+    {
+      path: "/assesmentCuleg/lihat/:id",
+      name: "assesmentCulegLihat",
+      components: {
+        default: assesmentCuleg_form,
+        header: header,
+        footer: footer,
+      },
+      meta: { requiresAuth: true, mode: "lihat" },
+    },
 
   // monitoring
   {

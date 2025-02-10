@@ -3569,7 +3569,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.mx-datepicker-popup {\n    z-index: 99999;\n}\n", ""]);
+exports.push([module.i, "\n.mx-datepicker-popup {\r\n    z-index: 99999;\n}\r\n", ""]);
 
 // exports
 
@@ -9231,7 +9231,7 @@ var render = function () {
                           ? _c("span", [_vm._v("Penolakan")])
                           : _vm._e(),
                         _vm._v(
-                          " \n                  Bantuan Solidaritas Jalinan"
+                          " \r\n                  Bantuan Solidaritas Jalinan"
                         ),
                       ]),
                     ]),
@@ -9287,25 +9287,25 @@ var render = function () {
                       _vm._v(" "),
                       _c("li", [
                         _vm._v(
-                          "\n                  " +
+                          "\r\n                  " +
                             _vm._s(
                               _vm._f("capitalize")(
                                 _vm.modelProvinces.name + ","
                               )
                             ) +
-                            " \n                  " +
+                            " \r\n                  " +
                             _vm._s(
                               _vm._f("capitalize")(
                                 _vm.modelRegencies.name + ","
                               )
                             ) +
-                            " \n                  " +
+                            " \r\n                  " +
                             _vm._s(
                               _vm._f("capitalize")(
                                 _vm.modelDistricts.name + ","
                               )
                             ) +
-                            "  \n                  " +
+                            "  \r\n                  " +
                             _vm._s(_vm._f("capitalize")(_vm.modelVillages.name))
                         ),
                       ]),
@@ -9628,26 +9628,26 @@ var render = function () {
                                     },
                                     [
                                       _vm._v(
-                                        "\n                        " +
+                                        "\r\n                        " +
                                           _vm._s(
                                             _vm.selectedItem.tunas_diajukan
                                               ? "TUNAS"
                                               : ""
                                           ) +
-                                          "\n                        " +
+                                          "\r\n                        " +
                                           _vm._s(
                                             _vm.selectedItem.tunas_diajukan &&
                                               _vm.selectedItem.lintang_diajukan
                                               ? " dan "
                                               : ""
                                           ) +
-                                          "\n                        " +
+                                          "\r\n                        " +
                                           _vm._s(
                                             _vm.selectedItem.lintang_diajukan
                                               ? "LINTANG"
                                               : ""
                                           ) +
-                                          "\n                      "
+                                          "\r\n                      "
                                       ),
                                     ]
                                   ),
@@ -9722,7 +9722,7 @@ var render = function () {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-6 text-right" }, [
-                    _vm._v("\n               \n            "),
+                    _vm._v("\r\n               \r\n            "),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-5 text-right" }, [

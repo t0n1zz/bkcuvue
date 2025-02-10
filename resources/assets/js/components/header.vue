@@ -1146,6 +1146,9 @@
 									<router-link :to="{ name:'monitoringCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_monitoring'] && currentUser.id_cu == 0">
 										Monitoring
 									</router-link>
+									<router-link :to="{ name:'assesmentCulegCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_assesment_access']">
+										Self Assesment CULEG
+									</router-link>
 								</div>
 							</div>		
 
@@ -1268,6 +1271,35 @@
 							<!-- coa -->
 							<router-link :to="{ name: 'coa'}" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_coa']">
 								<i class="icon-notebook"></i> CoA
+							</router-link>
+							
+							<!-- assesment culeg -->
+							<!-- if bkcu account -->
+							<div class="dropdown-submenu" v-if="currentUser.can['index_assesment_culeg'] && currentUser.id_cu == '0'" :class="{'show' : dropdownMenu2 == 'assesmentCuleg'}">
+								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('assesmentCuleg')">
+									<i class="icon-reading"></i> Self Assesment CULEG
+								</a>
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'assesmentCuleg'}">
+
+									<router-link :to="{ name: 'assesmentCulegCu',params: { cu: 'semua' } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_assesment_culeg'] && currentUser.id_cu == '0'">
+										 Semua CU
+									</router-link>
+
+									<!-- divider -->
+									<div class="dropdown-divider"></div> 
+
+									<template v-for="(cu, index) in modelCu">
+										<router-link :to="{ name: 'assesmentCulegCu',params: { cu: cu.id } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_assesment_culeg'] && currentUser.id_cu == '0' && cu" :key="index">
+											CU {{ cu.name }}
+										</router-link>
+									</template>
+
+								</div>
+							</div>
+
+							<!-- if cu account -->
+							<router-link :to="{ name: 'assesmentCulegCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_assesment_culeg'] && currentUser.id_cu != 0">
+								<i class="icon-reading"></i> Self Assesment CULEG
 							</router-link>
 
 						</div>

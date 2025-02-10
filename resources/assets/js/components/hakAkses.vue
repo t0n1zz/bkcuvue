@@ -1788,6 +1788,46 @@
 						]
 					},
 					{
+						name: 'Assesment CULEG',
+						keterangan: 'Mengelola data self assesment CULEG',
+						icon: 'icon-reading',
+						secondRow: true,
+						tipe: 'all',
+						permission: [{
+								name: 'Lihat',
+								key: 'index_assesment_culeg',
+								icon: 'icon-eye',
+								tipe: 'all',
+								value: false,
+								group: 'Assesment CULEG'
+							},
+							{
+								name: 'Tambah',
+								key: 'create_assesment_culeg',
+								icon: 'icon-plus3',
+								tipe: 'all',
+								value: false,
+								group: 'Assesment CULEG'
+							},
+							{
+								name: 'Ubah',
+								key: 'update_assesment_culeg',
+								icon: 'icon-pencil',
+								tipe: 'all',
+								value: false,
+								group: 'Assesment CULEG'
+							},
+							{
+								name: 'Hapus',
+								key: 'destroy_assesment_culeg',
+								icon: 'icon-bin2',
+								tipe: 'all',
+								value: false,
+								group: 'Assesment CULEG'
+							}
+						]
+					},
+					{
 						name: 'User',
 						keterangan: 'Mengelola data user pada SIMO',
 						icon: 'icon-users',

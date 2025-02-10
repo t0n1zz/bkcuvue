@@ -330,21 +330,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/draft.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/laporanCu/draft.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/kubn/detail.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/kubn/detail.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
-/* harmony import */ var _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/pageHeader.vue */ "./resources/assets/js/components/pageHeader.vue");
-/* harmony import */ var _components_message_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/message.vue */ "./resources/assets/js/components/message.vue");
-/* harmony import */ var _components_datatable_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/datatable.vue */ "./resources/assets/js/components/datatable.vue");
-/* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
+/* harmony import */ var _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/pageHeader.vue */ "./resources/assets/js/components/pageHeader.vue");
+/* harmony import */ var _components_message_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/message.vue */ "./resources/assets/js/components/message.vue");
+/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
+/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
+/* harmony import */ var _components_datatable_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/datatable.vue */ "./resources/assets/js/components/datatable.vue");
+/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -585,6 +587,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -593,213 +626,127 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    pageHeader: _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    appModal: _components_modal__WEBPACK_IMPORTED_MODULE_1__["default"],
-    message: _components_message_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    dataTable: _components_datatable_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+    pageHeader: _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    message: _components_message_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Cleave: vue_cleave_component__WEBPACK_IMPORTED_MODULE_3___default.a,
+    checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    dataTable: _components_datatable_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    appModal: _components_modal__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
   data: function data() {
     return {
-      title: 'Laporan CU [Draft]',
-      kelas: 'laporanCu',
-      titleDesc: 'Mengelola data laporan Cu dari file excel',
-      titleIcon: 'icon-stats-bars2',
-      selectedItem: [],
-      columnData: [{
+      title: 'Detail KUBn',
+      titleDesc: 'Detail informasi KUBn',
+      titleIcon: 'icon-users4',
+      kelas: 'kubn',
+      cleaveOption: {
+        numeric: {
+          numeral: true,
+          numeralThousandsGroupStyle: 'thousand',
+          numeralDecimalScale: 2,
+          numeralDecimalMark: ',',
+          delimiter: '.'
+        }
+      },
+      selectedItemAnggota: {},
+      selectedItemDiklat: {},
+      formAnggota: {},
+      formDiklat: {},
+      columnDataAnggota: [{
         title: 'No.'
       }, {
-        title: "CU"
+        title: 'Foto'
       }, {
-        title: 'No. BA'
+        title: 'No. Ba'
       }, {
-        title: 'Periode'
+        title: 'Nama'
       }, {
-        title: "Lelaki Biasa"
+        title: 'Gender'
       }, {
-        title: "Lelaki L.Biasa"
+        title: 'Jabatan'
       }, {
-        title: "Perempuan Biasa"
+        title: 'Tgl. Mulai'
       }, {
-        title: "Perempuan L.Biasa"
+        title: 'Tgl. Selesai'
       }, {
-        title: "Total Anggota"
-      }, {
-        title: "Total Anggota Lalu"
-      }, {
-        title: "Aset"
-      }, {
-        title: "Aset Lalu"
-      }, {
-        title: "Aset Masalah"
-      }, {
-        title: "Aset Tdk Menghasilkan"
-      }, {
-        title: "Aktiva Lancar"
-      }, {
-        title: "Simp. Saham"
-      }, {
-        title: "Simp. Saham Lalu"
-      }, {
-        title: "Simp. Saham Des"
-      }, {
-        title: "Simp. Nonsaham Unggulan"
-      }, {
-        title: "Simp. Nonsaham Harian"
-      }, {
-        title: "Hutang SPD"
-      }, {
-        title: "Hutang Tdk Berbiaya"
-      }, {
-        title: "Total Hutang Pihak Ke-3"
-      }, {
-        title: "Piutang Beredar"
-      }, {
-        title: "Piutang Bersih"
-      }, {
-        title: "Piutang Anggota"
-      }, {
-        title: "Piutang Lalai 1-12 Bulan"
-      }, {
-        title: "Piutang Lalai > 12 Bulan"
-      }, {
-        title: "Rasio Piutang Beredar"
-      }, {
-        title: "Rasio Piutang Lalai"
-      }, {
-        title: "DCR"
-      }, {
-        title: "DCU"
-      }, {
-        title: "Iuran Gedung"
-      }, {
-        title: "Donasi"
-      }, {
-        title: "BJS Saham"
-      }, {
-        title: "Beban Penyisihan DCR"
-      }, {
-        title: "Investasi Likuid"
-      }, {
-        title: "Total Pendapatan"
-      }, {
-        title: "Total Biaya"
-      }, {
-        title: "SHU"
-      }, {
-        title: "SHU Lalu"
-      }, {
-        title: "Rata-rata Aset"
-      }, {
-        title: "Laju Inflasi"
-      }, {
-        title: "Harga Pasar"
-      }, {
-        title: "Tgl. Buat"
-      }, {
-        title: "Tgl. Ubah"
+        title: 'Keterangan'
       }],
-      state: '',
+      columnDataDiklat: [{
+        title: 'No.'
+      }, {
+        title: 'Nama Diklat'
+      }, {
+        title: 'Tgl. Mulai'
+      }, {
+        title: 'Tgl. Selesai'
+      }, {
+        title: 'Fasilitator'
+      }, {
+        title: 'Tempat'
+      }, {
+        title: 'Keterangan'
+      }],
+      cancelTitle: 'Tutup',
+      cancelIcon: 'icon-cross',
+      cancelState: 'methods',
       modalShow: false,
       modalState: '',
       modalTitle: '',
+      modalColor: '',
       modalContent: '',
-      modalButton: ''
+      modalSize: 'modal-lg',
+      modalImageShow: false,
+      modalImageContent: '',
+      submited: false
     };
   },
-  created: function created() {
-    this.fetch();
-  },
-  watch: {
-    // when updating data
-    updateStat: function updateStat(value) {
-      this.modalState = value;
-      this.modalButton = 'Ok';
-
-      if (value == "success") {
-        this.modalTitle = this.updateMessage.message;
-        this.modalContent = '';
-        this.fetch();
-      } else if (value == "fail") {
-        this.modalContent = this.updateMessage;
-      } else {
-        this.modalContent = '';
-      }
-    }
+  beforeRouteEnter: function beforeRouteEnter(to, from, next) {
+    next(function (vm) {
+      return vm.fetch();
+    });
   },
   methods: {
     fetch: function fetch() {
-      this.$store.dispatch(this.kelas + "/indexCuDraft", this.currentUser.id);
+      this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
+      this.$store.dispatch(this.kelas + '/indexAnggota', this.$route.params.id);
+      this.$store.dispatch(this.kelas + '/indexDiklat', this.$route.params.id);
     },
-    selectedRow: function selectedRow(item) {
-      this.selectedItem = item;
+    selectedRowAnggota: function selectedRowAnggota(item) {
+      this.selectedItemAnggota = item;
     },
-    ubahData: function ubahData(id) {
-      this.$router.push({
-        name: this.kelas + "EditDraft",
-        params: {
-          id: id
-        }
-      });
+    selectedRowDiklat: function selectedRowDiklat(item) {
+      this.selectedItemDiklat = item;
     },
-    modalConfirmOpen: function modalConfirmOpen(state, isMobile, itemMobile) {
-      this.modalShow = true;
-      this.modalState = "confirm-tutup";
-      this.state = state;
-
-      if (isMobile) {
-        this.selectedItem = itemMobile;
-      }
-
-      if (state == "simpan") {
-        this.modalTitle = "Simpan " + this.title + " ini?";
-        this.modalButton = "Iya, Simpan";
-      } else if (state == "hapus") {
-        this.modalTitle = "Hapus " + this.title + " ini?";
-        this.modalButton = "Iya, Hapus";
-      } else if (state == "hapus_semua") {
-        this.modalTitle = "Hapus semua laporan draft ini?";
-        this.modalButton = "Iya, Hapus";
-      }
-    },
-    modalTutup: function modalTutup() {
-      this.modalShow = false;
-      this.$store.dispatch(this.kelas + "/resetUpdateStat");
-
-      if (!this.itemData.length > 0) {
-        if (this.currentUser.id_cu != 0) {
-          this.$router.push({
-            name: 'laporanCuCu',
-            params: {
-              cu: this.currentUser.id_cu,
-              tp: 'konsolidasi'
-            }
-          });
-        } else {
-          this.$router.push({
-            name: 'laporanCu'
-          });
-        }
-      }
-    },
-    modalConfirmOk: function modalConfirmOk() {
-      if (this.state == "simpan") {
-        this.$store.dispatch(this.kelas + "/storeDraft", this.selectedItem.id);
-      } else if (this.state == "hapus") {
-        this.$store.dispatch(this.kelas + "/destroyDraft", this.selectedItem.id);
-      } else if (this.state == "hapus_semua") {
-        this.$store.dispatch(this.kelas + "/destroyDraftAll");
-      } else if (this.state == "simpan_semua") {
-        this.$store.dispatch(this.kelas + "/storeDraftAll");
+    back: function back() {
+      if (this.currentUser.id_cu != 0) {
+        this.$router.push({
+          name: this.kelas + 'Cu',
+          params: {
+            cu: this.currentUser.id_cu
+          }
+        });
+      } else {
+        this.$router.push({
+          name: this.kelas + 'Cu',
+          params: {
+            cu: 'semua'
+          }
+        });
       }
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])("auth", {
-    currentUser: "currentUser"
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('laporanCu', {
-    itemData: 'dataS',
-    itemDataStat: 'dataStatS',
-    updateMessage: 'update',
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+    currentUser: 'currentUser'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('kubn', {
+    itemData: 'data',
+    itemDataStat: 'dataStat',
+    itemDataAnggota: 'dataS2',
+    itemDataStatAnggota: 'dataStatS2',
+    itemDataDiklat: 'dataS3',
+    itemDataStatDiklat: 'dataStatS3',
+    rules: 'rules',
+    options: 'options',
+    updateResponse: 'update',
     updateStat: 'updateStat'
   }))
 });
@@ -1170,10 +1117,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/draft.vue?vue&type=template&id=58edf628&":
-/*!********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/laporanCu/draft.vue?vue&type=template&id=58edf628& ***!
-  \********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/kubn/detail.vue?vue&type=template&id=f9c27a32&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/kubn/detail.vue?vue&type=template&id=f9c27a32& ***!
+  \****************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1188,16 +1135,57 @@ var render = function () {
   return _c(
     "div",
     [
-      _c("page-header", {
-        attrs: {
-          title: _vm.title,
-          titleDesc: _vm.titleDesc,
-          titleIcon: _vm.titleIcon,
+      _c(
+        "page-header",
+        {
+          attrs: {
+            title: _vm.title,
+            titleDesc: _vm.titleDesc,
+            titleIcon: _vm.titleIcon,
+            level: 3,
+          },
         },
-      }),
+        [
+          _c(
+            "template",
+            { slot: "breadcrumb" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "breadcrumb-item",
+                  attrs: { to: { name: "dashboard" } },
+                },
+                [_c("i", { staticClass: "icon-home4" }), _vm._v(" Dashboard ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "breadcrumb-item",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      return _vm.back()
+                    },
+                  },
+                },
+                [_vm._v("KUBN")]
+              ),
+              _vm._v(" "),
+              _c("span", { staticClass: "breadcrumb-item active" }, [
+                _vm._v(_vm._s(_vm.title)),
+              ]),
+            ],
+            1
+          ),
+        ],
+        2
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "page-content pt-0" }, [
-        _c("div", { staticClass: "content-wrapper" }, [
+        _c("div", { staticClass: "content-wrapper " }, [
           _c(
             "div",
             { staticClass: "content" },
@@ -1211,184 +1199,732 @@ var render = function () {
                   })
                 : _vm._e(),
               _vm._v(" "),
+              _c("div", { staticClass: "card" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("h5", [_vm._v("Foto:")]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "card" }, [
+                          _c("div", { staticClass: "card-body text-center" }, [
+                            _vm.itemData.gambar
+                              ? _c("img", {
+                                  staticClass: "img-fluid",
+                                  attrs: {
+                                    src:
+                                      "/images/kubn/" +
+                                      _vm.itemData.gambar +
+                                      ".jpg",
+                                  },
+                                })
+                              : _c("img", {
+                                  staticClass: "img-fluid",
+                                  attrs: { src: "/images/no_image.jpg" },
+                                }),
+                          ]),
+                        ]),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-8" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("h5", [_vm._v("Nama:")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.itemData.name,
+                                  expression: "itemData.name",
+                                },
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "name",
+                                readonly: "",
+                              },
+                              domProps: { value: _vm.itemData.name },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.itemData,
+                                    "name",
+                                    $event.target.value
+                                  )
+                                },
+                              },
+                            }),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("h5", [_vm._v("Usaha:")]),
+                            _vm._v(" "),
+                            _vm.itemData.usaha
+                              ? _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.itemData.usaha.name,
+                                      expression: "itemData.usaha.name",
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    name: "usaha",
+                                    readonly: "",
+                                  },
+                                  domProps: { value: _vm.itemData.usaha.name },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.itemData.usaha,
+                                        "name",
+                                        $event.target.value
+                                      )
+                                    },
+                                  },
+                                })
+                              : _c("input", {
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    name: "usaha",
+                                    readonly: "",
+                                  },
+                                }),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("h5", [_vm._v("CU:")]),
+                            _vm._v(" "),
+                            _vm.itemData.cu
+                              ? _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.itemData.cu.name,
+                                      expression: "itemData.cu.name",
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    name: "cu",
+                                    readonly: "",
+                                  },
+                                  domProps: { value: _vm.itemData.cu.name },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.itemData.cu,
+                                        "name",
+                                        $event.target.value
+                                      )
+                                    },
+                                  },
+                                })
+                              : _c("input", {
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    name: "cu",
+                                    readonly: "",
+                                  },
+                                }),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("h5", [_vm._v("TP:")]),
+                            _vm._v(" "),
+                            _vm.itemData.tp
+                              ? _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.itemData.tp.name,
+                                      expression: "itemData.tp.name",
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    name: "tp",
+                                    readonly: "",
+                                  },
+                                  domProps: { value: _vm.itemData.tp.name },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.itemData.tp,
+                                        "name",
+                                        $event.target.value
+                                      )
+                                    },
+                                  },
+                                })
+                              : _c("input", {
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    name: "tp",
+                                    readonly: "",
+                                  },
+                                }),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("h5", [_vm._v("Tanggal Berdiri:")]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.itemData.tanggal_berdiri,
+                                  expression: "itemData.tanggal_berdiri",
+                                },
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                name: "tanggal_berdiri",
+                                readonly: "",
+                              },
+                              domProps: { value: _vm.itemData.tanggal_berdiri },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.itemData,
+                                    "tanggal_berdiri",
+                                    $event.target.value
+                                  )
+                                },
+                              },
+                            }),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "div",
+                            { staticClass: "form-group" },
+                            [
+                              _c("h5", [_vm._v("Pinjaman:")]),
+                              _vm._v(" "),
+                              _c("cleave", {
+                                staticClass: "form-control",
+                                attrs: {
+                                  options: _vm.cleaveOption.numeric,
+                                  name: "Pinjaman",
+                                  placeholder:
+                                    "Silahkan masukkan jumlah pinjaman",
+                                  readonly: "",
+                                },
+                                model: {
+                                  value: _vm.itemData.jmlh_pinjaman,
+                                  callback: function ($$v) {
+                                    _vm.$set(_vm.itemData, "jmlh_pinjaman", $$v)
+                                  },
+                                  expression: "itemData.jmlh_pinjaman",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("h5", [_vm._v("Provinsi:")]),
+                            _vm._v(" "),
+                            _vm.itemData.provinces
+                              ? _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.itemData.provinces.name,
+                                      expression: "itemData.provinces.name",
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    name: "provinces",
+                                    readonly: "",
+                                  },
+                                  domProps: {
+                                    value: _vm.itemData.provinces.name,
+                                  },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.itemData.provinces,
+                                        "name",
+                                        $event.target.value
+                                      )
+                                    },
+                                  },
+                                })
+                              : _c("input", {
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    name: "provinces",
+                                    readonly: "",
+                                  },
+                                }),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("h5", [_vm._v("Kabupaten:")]),
+                            _vm._v(" "),
+                            _vm.itemData.regencies
+                              ? _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.itemData.regencies.name,
+                                      expression: "itemData.regencies.name",
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    name: "regencies",
+                                    readonly: "",
+                                  },
+                                  domProps: {
+                                    value: _vm.itemData.regencies.name,
+                                  },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.itemData.regencies,
+                                        "name",
+                                        $event.target.value
+                                      )
+                                    },
+                                  },
+                                })
+                              : _c("input", {
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    name: "regencies",
+                                    readonly: "",
+                                  },
+                                }),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("h5", [_vm._v("Kecamatan:")]),
+                            _vm._v(" "),
+                            _vm.itemData.districts
+                              ? _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.itemData.districts.name,
+                                      expression: "itemData.districts.name",
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    name: "districts",
+                                    readonly: "",
+                                  },
+                                  domProps: {
+                                    value: _vm.itemData.districts.name,
+                                  },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.itemData.districts,
+                                        "name",
+                                        $event.target.value
+                                      )
+                                    },
+                                  },
+                                })
+                              : _c("input", {
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    name: "districts",
+                                    readonly: "",
+                                  },
+                                }),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("h5", [_vm._v("Kelurahan:")]),
+                            _vm._v(" "),
+                            _vm.itemData.villages
+                              ? _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.itemData.villages.name,
+                                      expression: "itemData.villages.name",
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    name: "villages",
+                                    readonly: "",
+                                  },
+                                  domProps: {
+                                    value: _vm.itemData.villages.name,
+                                  },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.itemData.villages,
+                                        "name",
+                                        $event.target.value
+                                      )
+                                    },
+                                  },
+                                })
+                              : _c("input", {
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    name: "villages",
+                                    readonly: "",
+                                  },
+                                }),
+                          ]),
+                        ]),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("h5", [
+                          _vm._v(
+                            "\n\t\t\t\t\t\t\t\t\t\tKeterangan:\n\t\t\t\t\t\t\t\t\t"
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.itemData.keterangan,
+                              expression: "itemData.keterangan",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            rows: "5",
+                            type: "text",
+                            name: "keterangan",
+                            placeholder: "Silahkan masukkan keterangan",
+                            readonly: "",
+                          },
+                          domProps: { value: _vm.itemData.keterangan },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.itemData,
+                                "keterangan",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                      ]),
+                    ]),
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
               _c(
                 "div",
                 { staticClass: "card" },
                 [
-                  _c("div", { staticClass: "card-header d-print-none" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-body" }, [
                     _c("div", { staticClass: "row" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "col-md-8 col-lg-10 pb-2 d-none d-sm-block",
-                        },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-light mb-1",
-                              attrs: { disabled: !_vm.selectedItem.id },
-                              on: {
-                                click: function ($event) {
-                                  $event.preventDefault()
-                                  return _vm.modalConfirmOpen("simpan")
-                                },
-                              },
-                            },
-                            [
-                              _c("i", { staticClass: "icon-floppy-disk" }),
-                              _vm._v(
-                                " Simpan ke laporan statistik CU\n\t\t\t\t\t\t\t\t\t"
-                              ),
-                            ]
-                          ),
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("h5", [_vm._v("Tipe Anggota:")]),
                           _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-light mb-1",
-                              attrs: { disabled: !_vm.selectedItem.id },
-                              on: {
-                                click: function ($event) {
-                                  $event.preventDefault()
-                                  return _vm.ubahData(_vm.selectedItem.id)
-                                },
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.itemData.tipe_anggota,
+                                expression: "itemData.tipe_anggota",
+                              },
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              name: "tipe_anggota",
+                              readonly: "",
+                            },
+                            domProps: { value: _vm.itemData.tipe_anggota },
+                            on: {
+                              input: function ($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.itemData,
+                                  "tipe_anggota",
+                                  $event.target.value
+                                )
                               },
                             },
-                            [
-                              _c("i", { staticClass: "icon-pencil5" }),
-                              _vm._v(" Ubah\n\t\t\t\t\t\t\t\t\t"),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-light btn-icon mb-1",
-                              attrs: { disabled: !_vm.selectedItem.id },
-                              on: {
-                                click: function ($event) {
-                                  $event.preventDefault()
-                                  return _vm.modalConfirmOpen("hapus")
-                                },
-                              },
-                            },
-                            [
-                              _c("i", { staticClass: "icon-bin2" }),
-                              _vm._v(" Hapus\n\t\t\t\t\t\t\t\t\t"),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-light btn-icon mb-1",
-                              attrs: { disabled: _vm.itemData.length == 0 },
-                              on: {
-                                click: function ($event) {
-                                  $event.preventDefault()
-                                  return _vm.modalConfirmOpen("hapus_semua")
-                                },
-                              },
-                            },
-                            [
-                              _c("i", { staticClass: "icon-bin2" }),
-                              _vm._v(" Hapus Semua\n\t\t\t\t\t\t\t\t\t"),
-                            ]
-                          ),
-                        ]
-                      ),
+                          }),
+                        ]),
+                      ]),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-md-12 pb-2 d-block d-sm-none" },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-light btn-block",
-                              attrs: { disabled: !_vm.selectedItem.id },
-                              on: {
-                                click: function ($event) {
-                                  $event.preventDefault()
-                                  return _vm.modalConfirmOpen("simpan")
+                      _vm.itemData.tipe_anggota == "manual"
+                        ? _c("div", { staticClass: "col-md-12" }, [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("h5", [_vm._v("Jmlh. Anggota:")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.itemData.jmlh_anggota,
+                                    expression: "itemData.jmlh_anggota",
+                                  },
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "jmlh_anggota",
+                                  readonly: "",
                                 },
-                              },
-                            },
-                            [
-                              _c("i", { staticClass: "icon-floppy-disk" }),
-                              _vm._v(
-                                " Simpan ke laporan statistik CU\n\t\t\t\t\t\t\t\t\t"
-                              ),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-light btn-block",
-                              attrs: { disabled: !_vm.selectedItem.id },
-                              on: {
-                                click: function ($event) {
-                                  $event.preventDefault()
-                                  return _vm.ubahData(_vm.selectedItem.id)
+                                domProps: { value: _vm.itemData.jmlh_anggota },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.itemData,
+                                      "jmlh_anggota",
+                                      $event.target.value
+                                    )
+                                  },
                                 },
-                              },
-                            },
-                            [
-                              _c("i", { staticClass: "icon-pencil5" }),
-                              _vm._v(" Ubah\n\t\t\t\t\t\t\t\t\t"),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-light btn-icon btn-block mb-1",
-                              attrs: { disabled: !_vm.selectedItem.id },
-                              on: {
-                                click: function ($event) {
-                                  $event.preventDefault()
-                                  return _vm.modalConfirmOpen("hapus")
-                                },
-                              },
-                            },
-                            [
-                              _c("i", { staticClass: "icon-bin2" }),
-                              _vm._v(" Hapus\n\t\t\t\t\t\t\t\t\t"),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-light btn-icon btn-block mb-1",
-                              attrs: { disabled: _vm.itemData.length == 0 },
-                              on: {
-                                click: function ($event) {
-                                  $event.preventDefault()
-                                  return _vm.modalConfirmOpen("hapus_semua")
-                                },
-                              },
-                            },
-                            [
-                              _c("i", { staticClass: "icon-bin2" }),
-                              _vm._v(" Hapus Semua\n\t\t\t\t\t\t\t\t\t"),
-                            ]
-                          ),
-                        ]
-                      ),
+                              }),
+                            ]),
+                          ])
+                        : _vm._e(),
                     ]),
                   ]),
                   _vm._v(" "),
+                  _vm.itemData.tipe_anggota == "integrasi"
+                    ? _c("data-table", {
+                        attrs: {
+                          items: _vm.itemDataAnggota,
+                          columnData: _vm.columnDataAnggota,
+                          itemDataStat: _vm.itemDataStatAnggota,
+                        },
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "item-desktop",
+                              fn: function (props) {
+                                return [
+                                  props.item
+                                    ? _c(
+                                        "tr",
+                                        {
+                                          staticClass: "text-nowrap",
+                                          class: {
+                                            "bg-info":
+                                              _vm.selectedItemAnggota.id ==
+                                              props.item.id,
+                                          },
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.selectedRowAnggota(
+                                                props.item
+                                              )
+                                            },
+                                          },
+                                        },
+                                        [
+                                          _c("td", [
+                                            _vm._v(_vm._s(props.index + 1)),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            props.item.gambar
+                                              ? _c("img", {
+                                                  staticClass:
+                                                    "img-rounded img-fluid wmin-sm",
+                                                  attrs: {
+                                                    src:
+                                                      "/images/anggotaCu/" +
+                                                      props.item.gambar +
+                                                      "n.jpg",
+                                                    width: "35px",
+                                                  },
+                                                })
+                                              : _c("img", {
+                                                  staticClass:
+                                                    "img-rounded img-fluid wmin-sm",
+                                                  attrs: {
+                                                    src: "/images/no_image.jpg",
+                                                    width: "35px",
+                                                  },
+                                                }),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(
+                                              _vm._s(
+                                                props.item.anggota_cu
+                                                  ? props.item.anggota_cu.no_ba
+                                                  : "-"
+                                              )
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(
+                                              _vm._s(
+                                                props.item.anggota_cu
+                                                  ? props.item.anggota_cu.name
+                                                  : "-"
+                                              )
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(
+                                              _vm._s(
+                                                props.item.anggota_cu
+                                                  ? props.item.anggota_cu
+                                                      .kelamin
+                                                  : "-"
+                                              )
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(_vm._s(props.item.jabatan)),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(
+                                              _vm._s(props.item.tanggal_mulai)
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(
+                                              _vm._s(props.item.tanggal_selesai)
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("td", [
+                                            _vm._v(
+                                              _vm._s(props.item.deskripsi)
+                                            ),
+                                          ]),
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                ]
+                              },
+                            },
+                          ],
+                          null,
+                          false,
+                          248394353
+                        ),
+                      })
+                    : _vm._e(),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "card" },
+                [
+                  _vm._m(2),
+                  _vm._v(" "),
                   _c("data-table", {
                     attrs: {
-                      items: _vm.itemData,
-                      columnData: _vm.columnData,
-                      itemDataStat: _vm.itemDataStat,
+                      items: _vm.itemDataDiklat,
+                      columnData: _vm.columnDataDiklat,
+                      itemDataStat: _vm.itemDataStatDiklat,
                     },
                     scopedSlots: _vm._u([
                       {
@@ -1402,605 +1938,40 @@ var render = function () {
                                     staticClass: "text-nowrap",
                                     class: {
                                       "bg-info":
-                                        _vm.selectedItem.id === props.item.id,
+                                        _vm.selectedItemDiklat.id ==
+                                        props.item.id,
                                     },
                                     on: {
                                       click: function ($event) {
-                                        return _vm.selectedRow(props.item)
+                                        return _vm.selectedRowDiklat(props.item)
                                       },
                                     },
                                   },
                                   [
                                     _c("td", [_vm._v(_vm._s(props.index + 1))]),
                                     _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        props.item.cu
-                                          ? _c("check-value", {
-                                              attrs: {
-                                                value: props.item.cu.name,
-                                              },
-                                            })
-                                          : _c("span", [_vm._v("-")]),
-                                      ],
-                                      1
-                                    ),
+                                    _c("td", [_vm._v(_vm._s(props.item.name))]),
                                     _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: { value: props.item.no_ba },
-                                        }),
-                                      ],
-                                      1
-                                    ),
+                                    _c("td", [
+                                      _vm._v(_vm._s(props.item.tanggal_mulai)),
+                                    ]),
                                     _vm._v(" "),
                                     _c("td", [
                                       _vm._v(
-                                        _vm._s(
-                                          _vm._f("dateMonth")(
-                                            props.item.periode
-                                          )
-                                        )
+                                        _vm._s(props.item.tanggal_selesai)
                                       ),
                                     ]),
                                     _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.l_biasa,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.l_lbiasa,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.p_biasa,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.p_lbiasa,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.total_anggota,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value:
-                                              props.item.total_anggota_lalu,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.aset,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.aset_lalu,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.aset_masalah,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value:
-                                              props.item
-                                                .aset_tidak_menghasilkan,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.aktiva_lancar,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.simpanan_saham,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value:
-                                              props.item.simpanan_saham_lalu,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value:
-                                              props.item.simpanan_saham_des,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.nonsaham_unggulan,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.nonsaham_harian,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.hutang_spd,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value:
-                                              props.item
-                                                .hutang_tidak_berbiaya_30hari,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value:
-                                              props.item.total_hutang_pihak3,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.piutang_beredar,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.piutang_bersih,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.piutang_anggota,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value:
-                                              props.item.piutang_lalai_1bulan,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value:
-                                              props.item.piutang_lalai_12bulan,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.rasio_beredar,
-                                            valueType: "percentage",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.rasio_lalai,
-                                            valueType: "percentage",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.dcr,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.dcu,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.dana_gedung,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.donasi,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.bjs_saham,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value:
-                                              props.item.beban_penyisihan_dcr,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.investasi_likuid,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.total_pendapatan,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.total_biaya,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.shu,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.shu_lalu,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.rata_aset,
-                                            valueType: "currency",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.laju_inflasi,
-                                            valueType: "percentage",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      [
-                                        _c("check-value", {
-                                          attrs: {
-                                            value: props.item.harga_pasar,
-                                            valueType: "percentage",
-                                          },
-                                        }),
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c("td", {
-                                      domProps: {
-                                        innerHTML: _vm._s(
-                                          _vm.$options.filters.dateTime(
-                                            props.item.created_at
-                                          )
-                                        ),
-                                      },
-                                    }),
+                                    _c("td", [
+                                      _vm._v(_vm._s(props.item.fasilitator)),
+                                    ]),
                                     _vm._v(" "),
                                     _c("td", [
-                                      props.item.created_at !==
-                                      props.item.updated_at
-                                        ? _c("span", {
-                                            domProps: {
-                                              innerHTML: _vm._s(
-                                                _vm.$options.filters.dateTime(
-                                                  props.item.updated_at
-                                                )
-                                              ),
-                                            },
-                                          })
-                                        : _c("span", [_vm._v("-")]),
+                                      _vm._v(_vm._s(props.item.tempat)),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(props.item.keterangan)),
                                     ]),
                                   ]
                                 )
@@ -2018,28 +1989,36 @@ var render = function () {
           ),
         ]),
       ]),
-      _vm._v(" "),
-      _c("app-modal", {
-        attrs: {
-          show: _vm.modalShow,
-          state: _vm.modalState,
-          title: _vm.modalTitle,
-          button: _vm.modalButton,
-          content: _vm.modalContent,
-        },
-        on: {
-          tutup: _vm.modalTutup,
-          confirmOk: _vm.modalConfirmOk,
-          successOk: _vm.modalTutup,
-          failOk: _vm.modalTutup,
-          backgroundClick: _vm.modalTutup,
-        },
-      }),
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header bg-white" }, [
+      _c("h5", { staticClass: "card-title" }, [_vm._v("1. Informasi")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header bg-white" }, [
+      _c("h5", { staticClass: "card-title" }, [_vm._v("2. Anggota")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header bg-white" }, [
+      _c("h5", { staticClass: "card-title" }, [_vm._v("3. Diklat")]),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -2253,17 +2232,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/laporanCu/draft.vue":
-/*!*******************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/draft.vue ***!
-  \*******************************************************/
+/***/ "./resources/assets/js/views/kubn/detail.vue":
+/*!***************************************************!*\
+  !*** ./resources/assets/js/views/kubn/detail.vue ***!
+  \***************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _draft_vue_vue_type_template_id_58edf628___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./draft.vue?vue&type=template&id=58edf628& */ "./resources/assets/js/views/laporanCu/draft.vue?vue&type=template&id=58edf628&");
-/* harmony import */ var _draft_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./draft.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/laporanCu/draft.vue?vue&type=script&lang=js&");
+/* harmony import */ var _detail_vue_vue_type_template_id_f9c27a32___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./detail.vue?vue&type=template&id=f9c27a32& */ "./resources/assets/js/views/kubn/detail.vue?vue&type=template&id=f9c27a32&");
+/* harmony import */ var _detail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./detail.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/kubn/detail.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -2273,9 +2252,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _draft_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _draft_vue_vue_type_template_id_58edf628___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _draft_vue_vue_type_template_id_58edf628___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _detail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _detail_vue_vue_type_template_id_f9c27a32___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _detail_vue_vue_type_template_id_f9c27a32___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -2285,38 +2264,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/views/laporanCu/draft.vue"
+component.options.__file = "resources/assets/js/views/kubn/detail.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/laporanCu/draft.vue?vue&type=script&lang=js&":
-/*!********************************************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/draft.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************/
+/***/ "./resources/assets/js/views/kubn/detail.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/assets/js/views/kubn/detail.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_draft_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./draft.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/draft.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_draft_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./detail.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/kubn/detail.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/laporanCu/draft.vue?vue&type=template&id=58edf628&":
-/*!**************************************************************************************!*\
-  !*** ./resources/assets/js/views/laporanCu/draft.vue?vue&type=template&id=58edf628& ***!
-  \**************************************************************************************/
+/***/ "./resources/assets/js/views/kubn/detail.vue?vue&type=template&id=f9c27a32&":
+/*!**********************************************************************************!*\
+  !*** ./resources/assets/js/views/kubn/detail.vue?vue&type=template&id=f9c27a32& ***!
+  \**********************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_draft_vue_vue_type_template_id_58edf628___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./draft.vue?vue&type=template&id=58edf628& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/laporanCu/draft.vue?vue&type=template&id=58edf628&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_draft_vue_vue_type_template_id_58edf628___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_template_id_f9c27a32___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./detail.vue?vue&type=template&id=f9c27a32& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/kubn/detail.vue?vue&type=template&id=f9c27a32&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_template_id_f9c27a32___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_draft_vue_vue_type_template_id_58edf628___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_detail_vue_vue_type_template_id_f9c27a32___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

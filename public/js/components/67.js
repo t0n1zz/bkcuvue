@@ -292,10 +292,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/suratKode/form.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/suratKode/form.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/suratKategori/form.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/suratKategori/form.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -319,7 +319,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
 //
 //
 //
@@ -461,11 +460,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      title: 'Tambah Kode Surat',
-      titleDesc: 'Menambah kode surat keluar baru',
+      title: 'Tambah Kategori Surat',
+      titleDesc: 'Menambah kategori surat keluar baru',
       titleIcon: 'icon-plus3',
-      kelas: 'suratKode',
-      level2Title: 'Kode Surat',
+      kelas: 'suratKategori',
+      level2Title: 'Kategori Surat',
       modalShow: false,
       modalState: '',
       modalTitle: '',
@@ -546,14 +545,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     fetch: function fetch() {
       if (this.$route.meta.mode === 'edit') {
         this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
-        this.title = 'Ubah Kode Surat Keluar';
-        this.titleDesc = 'Mengubah kode surat keluar';
+        this.title = 'Ubah Kategori Surat Keluar';
+        this.titleDesc = 'Mengubah kategori surat keluar';
         this.titleIcon = 'icon-pencil5';
       } else {
-        this.title = 'Tambah Kode Surat Keluar';
-        this.titleDesc = 'Menambah kode surat keluar';
+        this.title = 'Tambah Kategori Surat Keluar';
+        this.titleDesc = 'Menambah kategori surat keluar';
         this.titleIcon = 'icon-plus3';
         this.$store.dispatch(this.kelas + '/create');
+        this.$store.dispatch('suratKode/get');
       }
     },
     checkUser: function checkUser(permission, id_cu) {
@@ -614,15 +614,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
     currentUser: 'currentUser'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('suratKode', {
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('suratKategori', {
     form: 'data',
     formStat: 'dataStat',
     rules: 'rules',
     options: 'options',
     updateResponse: 'update',
     updateStat: 'updateStat'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('suratKode', {
+    modelKode: 'dataS',
+    modelKodeStat: 'dataStatS'
   })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('cu', {
     modelCU: 'headerDataS',
     modelCUStat: 'headerDataStatS'
@@ -945,10 +948,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/suratKode/form.vue?vue&type=template&id=0c5bcf5e&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/suratKode/form.vue?vue&type=template&id=0c5bcf5e& ***!
-  \*******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/suratKategori/form.vue?vue&type=template&id=0c93017d&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/suratKategori/form.vue?vue&type=template&id=0c93017d& ***!
+  \***********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1013,6 +1016,162 @@ var render = function () {
                           _c(
                             "div",
                             {
+                              staticClass: "form-group mb-0",
+                              class: {
+                                "has-error":
+                                  _vm.errors.has("form.id_surat_kode"),
+                              },
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger":
+                                      _vm.errors.has("form.id_surat_kode"),
+                                  },
+                                },
+                                [
+                                  _vm.errors.has("form.id_surat_kode")
+                                    ? _c("i", { staticClass: "icon-cross2" })
+                                    : _vm._e(),
+                                  _vm._v(
+                                    "\n\t\t\t\t\t\t\t\t\t\t\tTipe Surat: "
+                                  ),
+                                  _c("wajib-badge"),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "input-group" }, [
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.id_surat_kode,
+                                        expression: "form.id_surat_kode",
+                                      },
+                                      {
+                                        name: "validate",
+                                        rawName: "v-validate",
+                                        value: "required",
+                                        expression: "'required'",
+                                      },
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      name: "id_surat_kode",
+                                      "data-width": "100%",
+                                      "data-vv-as": "Tipe",
+                                    },
+                                    on: {
+                                      change: [
+                                        function ($event) {
+                                          var $$selectedVal =
+                                            Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function (o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function (o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                          _vm.$set(
+                                            _vm.form,
+                                            "id_surat_kode",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        },
+                                        function ($event) {
+                                          return _vm.changeKode(
+                                            $event.target.value
+                                          )
+                                        },
+                                      ],
+                                    },
+                                  },
+                                  [
+                                    _c(
+                                      "option",
+                                      { attrs: { disabled: "", value: "" } },
+                                      [
+                                        _c("span", [
+                                          _vm.formStat === "loading"
+                                            ? _c("span", [
+                                                _vm._v("Mohon tunggu..."),
+                                              ])
+                                            : _c("span", [
+                                                _vm._v(
+                                                  "Silahkan pilih tipe surat"
+                                                ),
+                                              ]),
+                                        ]),
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.modelKode, function (kode) {
+                                      return kode
+                                        ? _c(
+                                            "option",
+                                            { domProps: { value: kode.id } },
+                                            [
+                                              _vm._v(
+                                                _vm._s(kode.name) +
+                                                  " / " +
+                                                  _vm._s(kode.periode) +
+                                                  " / No. " +
+                                                  _vm._s(kode.kode)
+                                              ),
+                                            ]
+                                          )
+                                        : _vm._e()
+                                    }),
+                                  ],
+                                  2
+                                ),
+                              ]),
+                              _vm._v(" "),
+                              _vm.errors.has("form.id_surat_kode")
+                                ? _c(
+                                    "small",
+                                    { staticClass: "text-muted text-danger" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-arrow-small-right",
+                                      }),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.errors.first(
+                                              "form.id_surat_kode"
+                                            )
+                                          ) +
+                                          "\n\t\t\t\t\t\t\t\t\t\t"
+                                      ),
+                                    ]
+                                  )
+                                : _c("small", { staticClass: "text-muted" }, [
+                                    _vm._v(" "),
+                                  ]),
+                            ]
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c(
+                            "div",
+                            {
                               staticClass: "form-group",
                               class: {
                                 "has-error": _vm.errors.has("form.name"),
@@ -1030,7 +1189,7 @@ var render = function () {
                                   _vm.errors.has("form.name")
                                     ? _c("i", { staticClass: "icon-cross2" })
                                     : _vm._e(),
-                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tNama: "),
+                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tKode: "),
                                   _c("wajib-badge"),
                                 ],
                                 1
@@ -1055,8 +1214,8 @@ var render = function () {
                                 attrs: {
                                   type: "text",
                                   name: "name",
-                                  placeholder: "Silahkan masukkan nama",
-                                  "data-vv-as": "Nama",
+                                  placeholder: "Silahkan masukkan kode",
+                                  "data-vv-as": "Kode",
                                 },
                                 domProps: { value: _vm.form.name },
                                 on: {
@@ -1098,176 +1257,45 @@ var render = function () {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-12" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "form-group",
-                              class: {
-                                "has-error": _vm.errors.has("form.kode"),
-                              },
-                            },
-                            [
-                              _c(
-                                "h5",
-                                {
-                                  class: {
-                                    "text-danger": _vm.errors.has("form.kode"),
-                                  },
-                                },
-                                [
-                                  _vm.errors.has("form.kode")
-                                    ? _c("i", { staticClass: "icon-cross2" })
-                                    : _vm._e(),
-                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tKode Awal: "),
-                                  _c("wajib-badge"),
-                                ],
-                                1
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("h5", [
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\t\t\t\t\tKeterangan:\n\t\t\t\t\t\t\t\t\t\t"
                               ),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "validate",
-                                    rawName: "v-validate",
-                                    value: "required",
-                                    expression: "'required'",
-                                  },
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form.kode,
-                                    expression: "form.kode",
-                                  },
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  name: "name",
-                                  placeholder: "Silahkan masukkan kode awal",
-                                  "data-vv-as": "Kode Awal",
-                                },
-                                domProps: { value: _vm.form.kode },
-                                on: {
-                                  input: function ($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.form,
-                                      "kode",
-                                      $event.target.value
-                                    )
-                                  },
-                                },
-                              }),
-                              _vm._v(" "),
-                              _vm.errors.has("form.kode")
-                                ? _c(
-                                    "small",
-                                    { staticClass: "text-muted text-danger" },
-                                    [
-                                      _c("i", {
-                                        staticClass: "icon-arrow-small-right",
-                                      }),
-                                      _vm._v(
-                                        " " +
-                                          _vm._s(
-                                            _vm.errors.first("form.kode")
-                                          ) +
-                                          "\n\t\t\t\t\t\t\t\t\t\t"
-                                      ),
-                                    ]
-                                  )
-                                : _c("small", { staticClass: "text-muted" }, [
-                                    _vm._v(" "),
-                                  ]),
-                            ]
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "form-group",
-                              class: {
-                                "has-error": _vm.errors.has("form.periode"),
-                              },
-                            },
-                            [
-                              _c(
-                                "h5",
+                            ]),
+                            _vm._v(" "),
+                            _c("textarea", {
+                              directives: [
                                 {
-                                  class: {
-                                    "text-danger":
-                                      _vm.errors.has("form.periode"),
-                                  },
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.deskripsi,
+                                  expression: "form.deskripsi",
                                 },
-                                [
-                                  _vm.errors.has("form.periode")
-                                    ? _c("i", { staticClass: "icon-cross2" })
-                                    : _vm._e(),
-                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tPeriode: "),
-                                  _c("wajib-badge"),
-                                  _vm._v(" "),
-                                  _c("info-icon", {
-                                    attrs: {
-                                      message: "Format: tahun. Contoh: 2019",
-                                    },
-                                  }),
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c("cleave", {
-                                directives: [
-                                  {
-                                    name: "validate",
-                                    rawName: "v-validate",
-                                    value: "required",
-                                    expression: "'required'",
-                                  },
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  name: "periode",
-                                  raw: false,
-                                  options: _vm.cleaveOption.year,
-                                  placeholder: "Silahkan masukkan periode",
-                                  "data-vv-as": "Periode",
-                                },
-                                model: {
-                                  value: _vm.form.periode,
-                                  callback: function ($$v) {
-                                    _vm.$set(_vm.form, "periode", $$v)
-                                  },
-                                  expression: "form.periode",
-                                },
-                              }),
-                              _vm._v(" "),
-                              _vm.errors.has("form.periode")
-                                ? _c(
-                                    "small",
-                                    { staticClass: "text-muted text-danger" },
-                                    [
-                                      _c("i", {
-                                        staticClass: "icon-arrow-small-right",
-                                      }),
-                                      _vm._v(
-                                        " " +
-                                          _vm._s(
-                                            _vm.errors.first("form.periode")
-                                          ) +
-                                          "\n\t\t\t\t\t\t\t\t\t\t"
-                                      ),
-                                    ]
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                rows: "5",
+                                type: "text",
+                                name: "deskripsi",
+                                placeholder:
+                                  "Silahkan masukkan keterangan kategori",
+                              },
+                              domProps: { value: _vm.form.deskripsi },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "deskripsi",
+                                    $event.target.value
                                   )
-                                : _c("small", { staticClass: "text-muted" }, [
-                                    _vm._v(" "),
-                                  ]),
-                            ],
-                            1
-                          ),
+                                },
+                              },
+                            }),
+                          ]),
                         ]),
                       ]),
                     ]),
@@ -1723,17 +1751,17 @@ function objectToFormData(obj, form, namespace) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/suratKode/form.vue":
-/*!******************************************************!*\
-  !*** ./resources/assets/js/views/suratKode/form.vue ***!
-  \******************************************************/
+/***/ "./resources/assets/js/views/suratKategori/form.vue":
+/*!**********************************************************!*\
+  !*** ./resources/assets/js/views/suratKategori/form.vue ***!
+  \**********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _form_vue_vue_type_template_id_0c5bcf5e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./form.vue?vue&type=template&id=0c5bcf5e& */ "./resources/assets/js/views/suratKode/form.vue?vue&type=template&id=0c5bcf5e&");
-/* harmony import */ var _form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./form.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/suratKode/form.vue?vue&type=script&lang=js&");
+/* harmony import */ var _form_vue_vue_type_template_id_0c93017d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./form.vue?vue&type=template&id=0c93017d& */ "./resources/assets/js/views/suratKategori/form.vue?vue&type=template&id=0c93017d&");
+/* harmony import */ var _form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./form.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/suratKategori/form.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -1744,8 +1772,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _form_vue_vue_type_template_id_0c5bcf5e___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _form_vue_vue_type_template_id_0c5bcf5e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _form_vue_vue_type_template_id_0c93017d___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _form_vue_vue_type_template_id_0c93017d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -1755,38 +1783,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/views/suratKode/form.vue"
+component.options.__file = "resources/assets/js/views/suratKategori/form.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/suratKode/form.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/assets/js/views/suratKode/form.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
+/***/ "./resources/assets/js/views/suratKategori/form.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/assets/js/views/suratKategori/form.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./form.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/suratKode/form.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./form.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/suratKategori/form.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/suratKode/form.vue?vue&type=template&id=0c5bcf5e&":
-/*!*************************************************************************************!*\
-  !*** ./resources/assets/js/views/suratKode/form.vue?vue&type=template&id=0c5bcf5e& ***!
-  \*************************************************************************************/
+/***/ "./resources/assets/js/views/suratKategori/form.vue?vue&type=template&id=0c93017d&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/assets/js/views/suratKategori/form.vue?vue&type=template&id=0c93017d& ***!
+  \*****************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_0c5bcf5e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./form.vue?vue&type=template&id=0c5bcf5e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/suratKode/form.vue?vue&type=template&id=0c5bcf5e&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_0c5bcf5e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_0c93017d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./form.vue?vue&type=template&id=0c93017d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/suratKategori/form.vue?vue&type=template&id=0c93017d&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_0c93017d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_0c5bcf5e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_0c93017d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

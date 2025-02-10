@@ -626,6 +626,31 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
             Route::delete('/assesmentAccess/{id}', 'AssesmentAccessController@destroy');
         });
 
+         // assesment Culeg
+         Route::get('/assesmentCuleg/history', 'AssesmentCulegController@history');
+         Route::get(
+             '/assesmentCuleg/cariData/{cu}/{periode}',
+             'AssesmentAccessController@cariData'
+         );
+         Route::get('/assesmentCuleg/edit/{id}', 'AssesmentCulegController@edit');
+         Route::get('/assesmentCuleg/editPenilaian/{id}', 'AssesmentCulegController@editPenilaian');
+         Route::group(['middleware' => ['permission:index_assesment_culeg']], function () {
+             Route::get('/assesmentCuleg', 'AssesmentCulegController@index');
+             Route::get('/assesmentCuleg/indexCu/{id}', 'AssesmentCulegController@indexCu');
+             Route::get('/assesmentCuleg/count', 'AssesmentCulegController@count');
+         });
+         Route::group(['middleware' => ['permission:create_assesment_culeg']], function () {
+             Route::get('/assesmentCuleg/create', 'AssesmentCulegController@create');
+             Route::post('/assesmentCuleg/store', 'AssesmentCulegController@store');
+         });
+         Route::group(['middleware' => ['permission:update_assesment_culeg']], function () {
+             Route::post('/assesmentCuleg/update/{id}', 'AssesmentCulegController@update');
+             Route::post('/assesmentCuleg/updateSingle/{id}/{perspektif}', 'AssesmentCulegController@updateSingle');
+         });
+         Route::group(['middleware' => ['permission:destroy_assesment_culeg']], function () {
+             Route::delete('/assesmentCuleg/{id}', 'AssesmentCulegController@destroy');
+         });
+
         // monitoring
         Route::get('/monitoring/history', 'MonitoringController@history');
         Route::post('monitoring/laporan', 'MonitoringController@downloadLaporan');
