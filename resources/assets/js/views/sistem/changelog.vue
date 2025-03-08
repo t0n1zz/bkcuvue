@@ -10,14 +10,40 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
-               <!-- Version 3.6 -->
-               <div class="card">
+              <!-- Version 3.7 -->
+              <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#v36">Version 3.6<small class="text-muted"> / 20 November 2024</small></a> </h5>
+                    <a data-toggle="collapse" class="text-default" href="#v37">Version 3.7<small class="text-muted"> / 8 Maret 2025</small></a> </h5>
                 </div>
 
-                <div id="v36" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="v37" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini menambahkan assesment culeg dan peningkatan pada monitoring 
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan fitur self assesment culeg</li>
+                      <li>Peningkatan fitur monitoring pada pengelompokkan status monitoring</li>
+                      <li>Peningkatan fitur monitoring pada laporan konsolidasi monitoring</li>
+                      <li>Peningkatan fitur kegiatan pada pengelompokkan kegiatan per CU</li>
+                      <li>Peningkatan fitur surat keluar pada filter surat keluar</li>
+                      <li>Perbaikan fitur notifikasi</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.6 -->
+
+              <!-- Version 3.6 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v36">Version 3.6<small class="text-muted"> / 20 November 2024</small></a> </h5>
+                </div>
+
+                <div id="v36" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini menambahkan dan peningkatan pendataan data pemberdayaan 
                     <br/><br/>

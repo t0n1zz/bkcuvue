@@ -16,6 +16,14 @@ export default {
     return axios.get('/api/anggotaCu/indexCu/' + cu + '/' + tp, {params: p});
   },
 
+  indexCuFasilitator: function( p, cu, tp ){
+    return axios.get('/api/anggotaCu/indexCuFasilitator/' + cu + '/' + tp, {params: p});
+  },
+
+  indexCuMentor: function( p, cu, tp ){
+    return axios.get('/api/anggotaCu/indexCuMentor/' + cu + '/' + tp, {params: p});
+  },
+
   indexCuKeluar: function( p, cu, tp ){
     return axios.get('/api/anggotaCu/indexCuKeluar/' + cu + '/' + tp, {params: p});
   },

@@ -118,6 +118,44 @@ export const anggotaCu = {
         });
     }, 
 
+    indexCuFasilitator( {commit}, [p, cu, tp] ){
+      commit('setDataStatS', 'loading');
+      
+      AnggotaCuAPI.indexCuFasilitator( p, cu, tp )
+        .then( function( response ){
+          if(response.data.model){
+            commit('setDataS', response.data.model );
+            commit('setDataStatS', 'success');
+          }else{
+            commit('setDataS', response );
+            commit('setDataStatS', 'fail');
+          }
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    }, 
+
+    indexCuMentor( {commit}, [p, cu, tp] ){
+      commit('setDataStatS', 'loading');
+      
+      AnggotaCuAPI.indexCuMentor( p, cu, tp )
+        .then( function( response ){
+          if(response.data.model){
+            commit('setDataS', response.data.model );
+            commit('setDataStatS', 'success');
+          }else{
+            commit('setDataS', response );
+            commit('setDataStatS', 'fail');
+          }
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    }, 
+
     indexCuKeluar( {commit}, [p, cu, tp] ){
       commit('setDataStatS2', 'loading');
       

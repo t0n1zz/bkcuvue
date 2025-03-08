@@ -6,6 +6,28 @@
 			<div class="card-body">
 
 				<div class="row">
+					<!-- periode -->
+					<div class="col-md-5">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Pilih Periode</span>
+							</div>
+							<select class="form-control" name="periode" v-model="periode" data-width="100%" :disabled="modelDataStat === 'loading'" @change="changePeriode($event.target.value)">
+								<option disabled value="">Silahkan pilih periode</option>
+								<option value="semua">Semua</option>
+								<option disabled value="">----------------</option>
+								<option v-for="(data, index) in modelData" :value="data" :key="index">{{data}}</option>
+							</select>
+
+							<!-- reload -->
+							<div class="input-group-append">
+								<button class="btn btn-light" @click="fetchData" :disabled="modelDataStat === 'loading'">
+									<i class="icon-sync" :class="{'spinner' : modelDataStat === 'loading'}"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+
 					<!-- tipe -->
 					<div class="col-md-5">
 						<!-- select -->
@@ -30,28 +52,6 @@
 
 					</div>
 
-					<!-- periode -->
-					<div class="col-md-5">
-						<div class="input-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text">Pilih Periode</span>
-							</div>
-							<select class="form-control" name="periode" v-model="periode" data-width="100%" :disabled="modelDataStat === 'loading'">
-								<option disabled value="">Silahkan pilih periode</option>
-								<option value="semua">Semua</option>
-								<option disabled value="">----------------</option>
-								<option v-for="(data, index) in modelData" :value="data" :key="index">{{data}}</option>
-							</select>
-
-							<!-- reload -->
-							<div class="input-group-append">
-								<button class="btn btn-light" @click="fetchData" :disabled="modelDataStat === 'loading'">
-									<i class="icon-sync" :class="{'spinner' : modelDataStat === 'loading'}"></i>
-								</button>
-							</div>
-						</div>
-					</div>
-
 					<!-- find data button -->
 					<div class="col-sm-2" v-if="this.currentUser.id_cu == 0">
 						<button type="button" class="btn btn-light btn-icon btn-block" @click.prevent="fetch()" v-if="modelDataStat != 'loading'">
@@ -69,6 +69,26 @@
 		<!-- mobile -->
 		<div class="card d-block d-md-none d-print-none">
 			<div class="card-body"> 
+
+				<!-- periode -->
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text">Pilih Data</span>
+					</div>
+					<select class="form-control" name="periode" v-model="periode" data-width="100%" :disabled="modelDataStat === 'loading'">
+						<option disabled value="">Silahkan pilih periode</option>
+						<option value="semua">Semua</option>
+						<option disabled value="">----------------</option>
+						<option v-for="(data, index) in modelData" :key="index" :value="data">{{data}}</option>
+					</select>
+				</div>
+
+				<!-- reload  -->
+				<div class="pt-2">
+					<button class="btn btn-light btn-lg btn-block" @click="fetchData" :disabled="modelDataStat === 'loading'">
+						<i class="icon-sync" :class="{'spinner' : modelDataStat === 'loading'}"></i> Reload
+					</button>
+				</div>
 
 				<!-- tipe -->
 				<div class="input-group">
@@ -90,25 +110,7 @@
 					</button>
 				</div>
 
-				<!-- periode -->
-				<div class="input-group">
-					<div class="input-group-prepend">
-						<span class="input-group-text">Pilih Data</span>
-					</div>
-					<select class="form-control" name="periode" v-model="periode" data-width="100%" :disabled="modelDataStat === 'loading'">
-						<option disabled value="">Silahkan pilih periode</option>
-						<option value="semua">Semua</option>
-						<option disabled value="">----------------</option>
-						<option v-for="(data, index) in modelData" :key="index" :value="data">{{data}}</option>
-					</select>
-				</div>
-
-				<!-- reload  -->
-				<div class="pt-2">
-					<button class="btn btn-light btn-lg btn-block" @click="fetchData" :disabled="modelDataStat === 'loading'">
-						<i class="icon-sync" :class="{'spinner' : modelDataStat === 'loading'}"></i> Reload
-					</button>
-				</div>
+				
 
 				<!-- find data button -->
 				<div class="pt-2">
@@ -138,7 +140,6 @@
 		},
 		created(){
 			this.fetchData();
-			this.fetchTipe();
 		},
 		watch: {
 			'$route' (to, from){
@@ -148,6 +149,7 @@
 			modelDataStat(value){
 				if(value === "success"){
 					this.periode = this.$route.params.periode;
+					this.changePeriode(this.periode);
 				}
 			},
     },
@@ -160,13 +162,16 @@
 					this.$store.dispatch(this.kelas + '/getPeriode', this.$route.params.cu);
 				}
 				this.periode = this.$route.params.periode;
-			},
-			fetchTipe(){
-				if(this.modelData.length == 0){
-					this.$store.dispatch('suratKode/get');
-				}
 				this.tipe = this.$route.params.tipe;
 			},
+			fetchTipe(periode){
+				this.$store.dispatch('suratKode/getTipe', periode);
+				this.tipe = this.$route.params.tipe;
+			},
+			changePeriode(periode){
+				this.fetchTipe(periode);
+				this.tipe = 'semua';
+			}
 		},
 		computed: {
 			...mapGetters('auth',{

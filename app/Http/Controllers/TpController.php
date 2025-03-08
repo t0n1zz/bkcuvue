@@ -132,8 +132,8 @@ class TpController extends Controller{
 		$name = $kelas->name;
 
 		if(!empty($kelas->gambar)){
-			File::delete($path . $kelas->gambar . '.jpg');
-			File::delete($path . $kelas->gambar . 'n.jpg');
+			File::delete($this->imagepath  . $kelas->gambar . '.jpg');
+			File::delete($this->imagepath  . $kelas->gambar . 'n.jpg');
 		}
 
 		$kelas->delete();

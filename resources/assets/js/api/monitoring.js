@@ -1,11 +1,15 @@
 export default {
   
-  index: function( p ){
-    return axios.get('/api/monitoring' , {params: p});
+  index: function( p,status ){
+    return axios.get('/api/monitoring/'+ status , {params: p});
   },
 
-  indexCu: function( p, cu, tp ){
-    return axios.get('/api/monitoring/indexCu/' + cu + '/' + tp, {params: p});
+  indexKonsolidasi: function(p,tahun,bulan){
+    return axios.get('/api/monitoring/indexKonsolidasi/' + tahun +'/'+ bulan, {params: p});
+  },
+
+  indexCu: function( p, cu, tp, status ){
+    return axios.get('/api/monitoring/indexCu/' + cu + '/' + tp + '/' + status,{params: p});
   },
 
   create: function(){
@@ -42,5 +46,9 @@ export default {
 
   history: function(){
     return axios.get('/api/monitoring/history');
+  },
+
+  getPeriode: function (tipe) {
+    return axios.get("/api/monitoring/getPeriode/" + tipe);
   },
 }

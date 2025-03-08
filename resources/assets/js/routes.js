@@ -101,6 +101,7 @@ const assesmentAccess_form = () => import("./views/assesmentAccess/form.vue");
 const monitoring = () => import("./views/monitoring/index.vue");
 const monitoring_form = () => import("./views/monitoring/form.vue");
 const monitoring_detail = () => import("./views/monitoring/detail.vue");
+const monitoring_konsolidasi = () => import("./views/monitoring/indexKonsolidasi.vue");
 const pemilihan = () => import("./views/pemilihan/index.vue");
 const pemilihan_form = () => import("./views/pemilihan/form.vue");
 const pemilihan_detail = () => import("./views/pemilihan/detail.vue");
@@ -134,6 +135,8 @@ const mentor = () => import("./views/mentor/index.vue");
 const mentor_form = () => import("./views/mentor/form.vue");
 const fasilitator = () => import("./views/fasilitator/index.vue");
 const fasilitator_form = () => import("./views/fasilitator/form.vue");
+const assesmentCuleg = () => import("./views/assesmentCuleg/index.vue");
+const assesmentCuleg_form = () => import("./views/assesmentCuleg/form.vue");
 
 const routes = [
   // login
@@ -1226,6 +1229,54 @@ const routes = [
     },
     meta: { requiresAuth: true, mode: "lihat" },
   },
+  
+  // assesment culeg
+  {
+    path: "/assesmentCuleg/cu/:cu",
+    name: "assesmentCulegCu",
+    components: { default: assesmentCuleg, header: header, footer: footer },
+    meta: { requiresAuth: true, mode: "cu" },
+  },
+  {
+    path: "/assesmentCuleg/create",
+    name: "assesmentCulegCreate",
+    components: {
+      default: assesmentCuleg_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true, mode: "create" },
+  },
+  {
+    path: "/assesmentCuleg/edit/:id",
+    name: "assesmentCulegEdit",
+    components: {
+      default: assesmentCuleg_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true, mode: "edit" },
+  },
+  {
+    path: "/assesmentCuleg/penilaian/:id",
+    name: "assesmentCulegPenilaian",
+    components: {
+      default: assesmentCuleg_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true, mode: "penilaianBkcu" },
+  },
+  {
+    path: "/assesmentCuleg/lihat/:id",
+    name: "assesmentCulegLihat",
+    components: {
+      default: assesmentCuleg_form,
+      header: header,
+      footer: footer,
+    },
+    meta: { requiresAuth: true, mode: "lihat" },
+  },
 
   // monitoring
   {
@@ -1250,6 +1301,12 @@ const routes = [
     path: "/monitoring/detail/:id",
     name: "monitoringDetail",
     components: { default: monitoring_detail, header: header, footer: footer },
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/monitoring/indexKonsolidasi/:tahun/:bulan",
+    name: "monitoringKonsolidasi",
+    components: { default: monitoring_konsolidasi, header: header, footer: footer },
     meta: { requiresAuth: true },
   },
 

@@ -12,6 +12,10 @@ export default {
     return axios.get('/api/cu/get');
   },
 
+  getUpdateESCETE: function(){
+    return axios.get('/api/cu/getUpdateESCETE');
+  },
+
   getHeader: function(){
     return axios.get('/api/cu/getHeader');
   },

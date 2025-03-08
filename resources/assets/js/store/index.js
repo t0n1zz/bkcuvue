@@ -66,6 +66,7 @@ import { mentor } from './modules/mentor';
 import { fasilitator } from './modules/fasilitator';
 import { umkm } from './modules/umkm';
 import { jenisDiklat } from './modules/jenisDiklat';
+import { assesmentCuleg } from './modules/assesmentCuleg';
 
 Vue.use(Vuex);
 
@@ -136,5 +137,6 @@ export default new Vuex.Store({
 		 fasilitator,
 		 jenisDiklat,
 		 umkm,
+		 assesmentCuleg
 	 }
 });

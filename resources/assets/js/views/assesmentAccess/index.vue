@@ -53,7 +53,7 @@
 				title: 'Self assesment ACCESS branding',
 				kelas: 'assesmentAccess',
 				titleDesc: 'Mengelola data self assesment ACCESS branding',
-				titleIcon: 'icon-home9',
+				titleIcon: 'icon-reading',
 				selectCuPath: 'assesmentAccessCu',
 			}
 		},

@@ -7,11 +7,13 @@ export const cu = {
   state: {
     data: {}, //single data
     dataS: [], //collection
+    dataS2: [], //collection
     dataDeletedS: [], //collection
     count: {},
     headerDataS: [],
     dataStat: '',
     dataStatS: '',
+    dataStatS2: '',
     dataDeletedStatS: '',
     countStat: '',
     headerDataStatS: '',
@@ -25,11 +27,13 @@ export const cu = {
   getters: {
     data: state => state.data,
     dataS: state => state.dataS,
+    dataS2: state => state.dataS2,
     dataDeletedS: state => state.dataDeletedS,
     count: state => state.count,
     headerDataS: state => state.headerDataS,
     dataStat: state => state.dataStat,
     dataStatS: state => state.dataStatS,
+    dataStatS2: state => state.dataStatS2,
     dataDeletedStatS: state => state.dataDeletedStatS,
     countStat: state => state.countStat,
     headerDataStatS: state => state.headerDataStatS,
@@ -81,6 +85,20 @@ export const cu = {
         .catch( error => {
           commit('setDataS', error.response);
           commit('setDataStatS', 'fail');
+        });
+    },
+
+    getUpdateESCETE( { commit } ){
+      commit('setDataStatS2', 'loading');
+      
+      CUAPI.getUpdateESCETE()
+        .then( function( response ){
+          commit('setDataS2', response.data.model );
+          commit('setDataStatS2', 'success');
+        })
+        .catch( error => {
+          commit('setDataS2', error.response);
+          commit('setDataStatS2', 'fail');
         });
     },
 
@@ -272,6 +290,9 @@ export const cu = {
     setDataS ( state, data ){
       state.dataS = data;
     },
+    setDataS2 ( state, data ){
+      state.dataS2 = data;
+    },
     setDataDeletedS ( state, data ){
       state.dataDeletedS = data;
     },
@@ -286,6 +307,9 @@ export const cu = {
     },
     setDataStatS( state, status ){
       state.dataStatS = status;
+    },
+    setDataStatS2( state, status ){
+      state.dataStatS2 = status;
     },
     setDataDeletedStatS( state, status ){
       state.dataDeletedStatS = status;

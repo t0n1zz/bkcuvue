@@ -407,7 +407,7 @@
 				}
 			},
 			fetchAnggota(params) {
-				this.$store.dispatch('anggotaCu/indexCu', [params, this.form.id_cu, 'semua'])
+				this.$store.dispatch('anggotaCu/indexCuFasilitator', [params, this.form.id_cu, 'semua'])
 			},
 			checkUser(permission,id_cu){
 				if(this.currentUser){

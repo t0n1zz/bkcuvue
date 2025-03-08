@@ -201,29 +201,29 @@
 										</div>
 									</div>
 
-									<!-- perspektif -->
+									<!-- aspek -->
 									<div class="col-md-4">
-										<div class="form-group" :class="{'has-error' : errors.has('form.perspektif')}">
+										<div class="form-group" :class="{'has-error' : errors.has('form.aspek')}">
 
 											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.perspektif')}">
-												<i class="icon-cross2" v-if="errors.has('form.perspektif')"></i>
-												Perspektif: <wajib-badge></wajib-badge>
+											<h5 :class="{ 'text-danger' : errors.has('form.aspek')}">
+												<i class="icon-cross2" v-if="errors.has('form.aspek')"></i>
+												Aspek: <wajib-badge></wajib-badge>
 											</h5>
 
 											<!-- select -->
-											<select name="perspektif" data-width="100%" class="form-control" v-model="form.perspektif" v-validate="'required'" data-vv-as="Perspektif">
-												<option disabled value="">Silahkan pilih perspektif</option>
+											<select name="aspek" data-width="100%" class="form-control" v-model="form.aspek" v-validate="'required'" data-vv-as="Aspek">
+												<option disabled value="">Silahkan pilih aspek</option>
 												<option value="KEUANGAN">KEUANGAN</option>
-												<option value="KEPUASAN ANGGOTA">KEPUASAN ANGGOTA</option>
-												<option value="BISNIS INTERNAL">BISNIS INTERNAL</option>
-												<option value="PEMBELAJARAN DAN PERTUMBUHAN">PEMBELAJARAN DAN PERTUMBUHAN</option>
+												<option value="SOSIAL">SOSIAL</option>
+												<option value="OPERASIONAL">OPERASIONAL</option>
+												<option value="KEPATUHAN">KEPATUHAN</option>
 											</select>
 
 											<!-- error message -->
 											<br/>
-											<small class="text-muted text-danger" v-if="errors.has('form.perspektif')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.perspektif') }}
+											<small class="text-muted text-danger" v-if="errors.has('form.aspek')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.aspek') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;
 											</small>

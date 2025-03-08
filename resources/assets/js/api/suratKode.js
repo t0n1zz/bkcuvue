@@ -7,12 +7,16 @@ export default {
   get: function(){
     return axios.get('/api/suratKode/get');
   },
+
+  getTipe: function(periode){
+    return axios.get('/api/suratKode/getTipe/' + periode);
+  },
   
   indexCu: function( p, id ){
     return axios.get('/api/suratKode/indexCu/' + id, {params: p});
   },
 
-  getCu: function(  id ){
+  getCu: function( id ){
     return axios.get('/api/suratKode/getCu/' + id);
   },
 

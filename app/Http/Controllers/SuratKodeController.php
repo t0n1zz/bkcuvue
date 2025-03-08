@@ -33,6 +33,21 @@ class SuratKodeController extends Controller{
 				'model' => $table_data
 			]);
   }
+
+	public function getTipe($periode)
+	{
+		$id_cu = Auth::user()->id_cu;
+		if($periode == 'semua'){
+			$table_data = SuratKode::where('id_cu',$id_cu)->get();
+		}else{
+			$table_data = SuratKode::where('id_cu',$id_cu)->where('periode',$periode)->get();
+		}
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+  }
   
   public function indexCu($id)
 	{

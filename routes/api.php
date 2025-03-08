@@ -173,6 +173,7 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::get('/cu/history', 'CuController@history');
         Route::get('/cu/getHeader', 'CuController@getHeader');
         Route::get('/cu/escete/{id}', 'CuController@escete');
+        Route::get('/cu/getUpdateESCETE', 'CuController@getUpdateESCETE');
         Route::group(['middleware' => ['permission:index_cu']], function () {
             Route::get('/cu', 'CuController@index');
             Route::get('/cu/deleted', 'CuController@indexDeleted');
@@ -529,6 +530,7 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
             Route::get('/suratKode/get', 'SuratKodeController@get');
             Route::get('/suratKode/indexCu/{id}', 'SuratKodeController@indexCu');
             Route::get('/suratKode/getCu/{id}', 'SuratKodeController@getCu');
+            Route::get('/suratKode/getTipe/{periode}', 'SuratKodeController@getTipe');
         });
         Route::group(['middleware' => ['permission:create_surat']], function () {
             Route::get('/suratKode/create', 'SuratKodeController@create');
@@ -626,14 +628,42 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
             Route::delete('/assesmentAccess/{id}', 'AssesmentAccessController@destroy');
         });
 
+
+        // assesment Culeg
+        Route::get('/assesmentCuleg/history', 'AssesmentCulegController@history');
+        Route::get(
+            '/assesmentCuleg/cariData/{cu}/{periode}',
+            'AssesmentAccessController@cariData'
+        );
+        Route::get('/assesmentCuleg/edit/{id}', 'AssesmentCulegController@edit');
+        Route::get('/assesmentCuleg/editPenilaian/{id}', 'AssesmentCulegController@editPenilaian');
+        Route::group(['middleware' => ['permission:index_assesment_culeg']], function () {
+            Route::get('/assesmentCuleg', 'AssesmentCulegController@index');
+            Route::get('/assesmentCuleg/indexCu/{id}', 'AssesmentCulegController@indexCu');
+            Route::get('/assesmentCuleg/count', 'AssesmentCulegController@count');
+        });
+        Route::group(['middleware' => ['permission:create_assesment_culeg']], function () {
+            Route::get('/assesmentCuleg/create', 'AssesmentCulegController@create');
+            Route::post('/assesmentCuleg/store', 'AssesmentCulegController@store');
+        });
+        Route::group(['middleware' => ['permission:update_assesment_culeg']], function () {
+            Route::post('/assesmentCuleg/update/{id}', 'AssesmentCulegController@update');
+            Route::post('/assesmentCuleg/updateSingle/{id}/{perspektif}', 'AssesmentCulegController@updateSingle');
+        });
+        Route::group(['middleware' => ['permission:destroy_assesment_culeg']], function () {
+            Route::delete('/assesmentCuleg/{id}', 'AssesmentCulegController@destroy');
+        });
+
         // monitoring
         Route::get('/monitoring/history', 'MonitoringController@history');
         Route::post('monitoring/laporan', 'MonitoringController@downloadLaporan');
+        Route::get('/monitoring/getPeriode/{cu}', 'MonitoringController@getPeriode');
         Route::group(['middleware' => ['permission:index_monitoring']], function () {
-            Route::get('/monitoring', 'MonitoringController@index');
-            Route::get('/monitoring/indexCu/{cu}/{tp}', 'MonitoringController@indexCu');
+            Route::get('/monitoring/{status}', 'MonitoringController@index');
+            Route::get('/monitoring/indexCu/{cu}/{tp}/{status}', 'MonitoringController@indexCu');
             Route::get('/monitoring/get/{id}', 'MonitoringController@get');
             Route::get('/monitoring/count', 'MonitoringController@count');
+            Route::get('/monitoring/indexKonsolidasi/{tahun}/{bulan}', 'MonitoringController@indexKonsolidasi');
         });
         Route::group(['middleware' => ['permission:create_monitoring']], function () {
             Route::get('/monitoring/create', 'MonitoringController@create');
@@ -716,6 +746,8 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::get('/anggotaCu/indexProdukSaldo/{id}', 'AnggotaProdukCuController@indexSaldo');
         Route::get('/anggotaCu', 'AnggotaCuController@index');
         Route::get('/anggotaCu/indexCu/{cu}/{tp}', 'AnggotaCuController@indexCu');
+        Route::get('/anggotaCu/indexCuFasilitator/{cu}/{tp}', 'AnggotaCuController@indexCuFasilitator');
+        Route::get('/anggotaCu/indexCuMentor/{cu}/{tp}', 'AnggotaCuController@indexCuMentor');
         Route::get('/anggotaCu/keluar', 'AnggotaCuController@indexKeluar');
         Route::get('/anggotaCu/indexMeninggal', 'AnggotaCuController@indexMeninggal');
         Route::get('/anggotaCu/indexCuKeluar/{cu}/{tp}', 'AnggotaCuController@indexCuKeluar');

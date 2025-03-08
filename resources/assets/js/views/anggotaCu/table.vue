@@ -155,7 +155,7 @@
             <check-value :value="props.item.keterangan_keluar"></check-value>
           </td>
           <td v-if="!columnData[5].hide">
-            <span v-if="props.item.escete == 1"><span class="badge bg-blue-400 align-self-center ml-auto" v-tooltip="'Data anggota berasal dari data ESCETE'">Terintegrasi</span></span>
+            <span v-if="props.item.escete == 1"><span class="badge bg-blue-400 align-self-center ml-auto" v-tooltip="'Data anggota berasal dari data ESCETE'">ESCETE</span></span>
             <span v-else>
               <span class="badge bg-brown-400 align-self-center ml-auto" v-tooltip="'Data anggota berasal dari input manual di simo'">Manual</span>
             </span>

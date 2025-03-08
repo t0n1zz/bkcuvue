@@ -1028,10 +1028,10 @@ class PublicController extends Controller
 	public function permission()
 	{
 		// create permission
-		\Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'informasi_anggota_cu']);
-		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'create_fasilitator']);
-		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'update_fasilitator']);
-		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'destroy_fasilitator']);
+		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'index_assesment_culeg']);
+		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'create_assesment_culeg']);
+		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'update_assesment_culeg']);
+		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'destroy_assesment_culeg']);
 
 		// give permission
 		// $users = App\User::where('id','!=',1)->where('id_cu',0)->get();

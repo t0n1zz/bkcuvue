@@ -1120,7 +1120,7 @@
 					</li>
 
 					<!-- tata kelola -->
-					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_laporan_cu'] || currentUser.can['create_assesment_access'] || currentUser.can['create_monitoring'] || currentUser.can['index_laporan_cu'] || currentUser.can['index_assesment_access'] || currentUser.can['index_monitoring']">
+					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_laporan_cu'] || currentUser.can['create_assesment_access'] || currentUser.can['create_assesment_culeg'] || currentUser.can['create_monitoring'] || currentUser.can['index_laporan_cu'] || currentUser.can['index_assesment_access'] || currentUser.can['index_assesment_culeg'] || currentUser.can['index_monitoring']">
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-microscope mr-2"></i>
 							Tata Kelola
@@ -1138,11 +1138,15 @@
 									<router-link :to="{ name:'laporanCuCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_laporan_cu']">
 										Laporan Statistik CU
 									</router-link>
-									<!-- tambah assesment -->
+									<!-- tambah access -->
 									<router-link :to="{ name:'assesmentAccessCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_assesment_access']">
 										Self Assesment ACCESS
 									</router-link>
-									<!-- tambah assesment -->
+									<!-- tambah culeg -->
+									<router-link :to="{ name:'assesmentCulegCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_assesment_access']">
+										Self Assesment CULEG
+									</router-link>
+									<!-- tambah monitoring -->
 									<router-link :to="{ name:'monitoringCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_monitoring'] && currentUser.id_cu == 0">
 										Monitoring
 									</router-link>
@@ -1233,6 +1237,35 @@
 								<i class="icon-reading"></i> Self Assesment ACCESS
 							</router-link>
 
+							<!-- assesment culeg -->
+							<!-- if bkcu account -->
+							<div class="dropdown-submenu" v-if="currentUser.can['index_assesment_culeg'] && currentUser.id_cu == '0'" :class="{'show' : dropdownMenu2 == 'assesmentCuleg'}">
+								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('assesmentCuleg')">
+									<i class="icon-bookmark4"></i> Self Assesment CULEG
+								</a>
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'assesmentCuleg'}">
+
+									<router-link :to="{ name: 'assesmentCulegCu',params: { cu: 'semua' } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_assesment_culeg'] && currentUser.id_cu == '0'">
+										 Semua CU
+									</router-link>
+
+									<!-- divider -->
+									<div class="dropdown-divider"></div> 
+
+									<template v-for="(cu, index) in modelCu">
+										<router-link :to="{ name: 'assesmentCulegCu',params: { cu: cu.id } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_assesment_culeg'] && currentUser.id_cu == '0' && cu" :key="index">
+											CU {{ cu.name }}
+										</router-link>
+									</template>
+
+								</div>
+							</div>
+
+							<!-- if cu account -->
+							<router-link :to="{ name: 'assesmentCulegCu', params:{cu: currentUser.id_cu} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_assesment_culeg'] && currentUser.id_cu != 0">
+							<i class="icon-bookmark4"></i> Self Assesment CULEG
+							</router-link>
+
 							<!--monitoring -->
 							<!-- if bkcu account -->
 							<div class="dropdown-submenu" v-if="currentUser.can['index_monitoring'] && currentUser.id_cu == '0'" :class="{'show' : dropdownMenu2 == 'monitoring'}">
@@ -1240,6 +1273,10 @@
 									<i class="icon-collaboration"></i> Monitoring
 								</a>
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'monitoring'}">
+
+									<router-link :to="{ name: 'monitoringKonsolidasi', params:{tahun:new Date().getFullYear() , bulan: new Date().getMonth() + 1 } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_monitoring'] && currentUser.id_cu == '0'">
+										Laporan Konsolidasi
+									</router-link>
 
 									<router-link :to="{ name: 'monitoringCu',params: { cu: 'semua', tp: 'semua' } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_monitoring'] && currentUser.id_cu == '0'">
 										 Semua CU
@@ -1669,7 +1706,7 @@
 		},
 		data(){
 			return{
-				clientVersion: '3.6',
+				clientVersion: '3.7',
 				dropdownMenu1: '',
 				dropdownMenu2: '',
 				state: '',

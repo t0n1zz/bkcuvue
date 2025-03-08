@@ -156,6 +156,11 @@
       <count-widget :title="'Self Assesment Access'" :color="'bg-warning-400'" :icon="'icon-reading'"></count-widget>
     </div>
 
+		<!-- assesment culeg -->
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_assesment_culeg']" @click.prevent="goTo(assesmentCulegWidgetRoute)">
+      <count-widget :title="'Self Assesment Culeg'" :color="'bg-warning-400'" :icon="'icon-bookmark4'"></count-widget>
+    </div>
+
 		<!-- monitoring -->
     <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_monitoring']" @click.prevent="goTo(monitoringWidgetRoute)">
       <count-widget :title="'Monitoring'" :color="'bg-green-400'" :icon="'icon-collaboration'"></count-widget>
@@ -224,6 +229,7 @@
 				laporanCUWidgetRoute: {},
 				laporanGerakanWidgetRoute: {},
 				assesmentAccessWidgetRoute: {},
+				assesmentCulegWidgetRoute: {},
 				monitoringAccessWidgetRoute: {},
 				dokumenGerakanPublikWidgetRoute: {},
 				dokumenWidgetRoute: {},
@@ -271,6 +277,7 @@
 					this.votingWidgetRoute = { name: 'voting', params:{cu: this.currentUser.id_cu} };
 					this.laporanCUWidgetRoute = { name: 'laporanCuCu', params:{cu: this.currentUser.id_cu, tp:'konsolidasi'} };
 					this.assesmentAccessWidgetRoute = { name: 'assesmentAccessCu', params:{cu: this.currentUser.id_cu} };
+					this.assesmentCulegWidgetRoute = { name: 'assesmentCulegCu', params:{cu: this.currentUser.id_cu} };
 					this.monitoringWidgetRoute = { name: 'monitoringCu', params:{cu: this.currentUser.id_cu, tp: 'semua'} };
 					this.dokumenWidgetRoute = { name: 'dokumenCu', params:{cu: this.currentUser.id_cu} };
 					this.kubnWidgetRoute = { name: 'kubnCu', params:{cu: this.currentUser.id_cu} };
@@ -288,6 +295,7 @@
 					this.votingWidgetRoute = { name: 'voting', params:{cu: 'semua'} };
 					this.laporanCUWidgetRoute = { name: 'laporanCu' };
 					this.assesmentAccessWidgetRoute = { name: 'assesmentAccessCu', params:{cu: 'semua'} };
+					this.assesmentCulegWidgetRoute = { name: 'assesmentCulegCu', params:{cu: 'semua'} };
 					this.monitoringWidgetRoute = { name: 'monitoringCu', params:{cu: 'semua', tp: 'semua'} };
 					this.dokumenWidgetRoute = { name: 'dokumenCu', params:{cu: 'semua'} };
 					this.asetTetapWidgetRoute = { name: 'asetTetap'};

@@ -141,6 +141,11 @@ class UserController extends Controller
 		'update_assesment_access',
 		'destroy_assesment_access',
 
+		'index_assesment_culeg',
+		'create_assesment_culeg',
+		'update_assesment_culeg',
+		'destroy_assesment_culeg',
+
 		'index_monitoring',
 		'create_monitoring',
 		'update_monitoring',

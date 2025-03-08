@@ -116,9 +116,9 @@
 											</td>
 										</tr>
 										<tr>
-											<td class="font-weight-semibold">Perspektif:</td>
+											<td class="font-weight-semibold">Aspek:</td>
 											<td class="text-right">
-												<check-value :value="item.perspektif"></check-value>
+												<check-value :value="item.aspek"></check-value>
 											</td>
 										</tr>
 									</tbody>

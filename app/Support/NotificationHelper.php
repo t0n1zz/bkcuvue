@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Cu;
 use App\Tp;
+use App\Monitoring;
 use App\Notifications\Notif;
 use App\Notifications\Laporan;
 use App\Notifications\DiklatBKCU;

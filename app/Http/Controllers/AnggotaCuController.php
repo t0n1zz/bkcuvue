@@ -16,10 +16,12 @@ use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\HeadingRowImport;
 use App\AnggotaProdukCu;
 use App\AnggotaProdukCuTransaksi;
+use App\Fasilitator;
 use Illuminate\Http\Request;
 use Venturecraft\Revisionable\Revision;
 use App\Imports\AnggotaCuDraftImport;
 use App\Imports\ProdukCuDraftImport;
+use App\Mentor;
 
 class AnggotaCuController extends Controller{
 
@@ -85,6 +87,54 @@ class AnggotaCuController extends Controller{
 		})->where(function($query) use ($kelas_cu){
 			$query->where('escete', $kelas_cu->escete)->where('status_jalinan','!=','MENINGGAL')->orWhere('status_jalinan', NULL);
 		})->where('escete', $kelas_cu->escete)->advancedFilter();
+
+		$table_data = $this->formatCuQuery($table_data, $cu, $tp);
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function indexCuFasilitator($cu, $tp)
+	{
+		$kelas_cu = CU::where('id',$cu)->select('id','escete')->first();
+
+		$fasilitator = Fasilitator::where('id_cu',$cu)->pluck('anggota_cu_id')->toArray();
+
+		$table_data = AnggotaCu::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_cu_not_keluar', function($query) use ($cu, $tp){ 
+			if($tp != 'semua'){
+				$query->where('anggota_cu_cu.cu_id',$cu)->where('anggota_cu_cu.tp_id',$tp)->whereNull('anggota_cu_cu.tanggal_keluar'); 
+			}else{
+				$query->where('anggota_cu_cu.cu_id',$cu)->whereNull('anggota_cu_cu.tanggal_keluar'); 
+			}
+		})->where(function($query) use ($kelas_cu){
+			$query->where('escete', $kelas_cu->escete)->where('status_jalinan','!=','MENINGGAL')->orWhere('status_jalinan', NULL);
+		})->where('escete', $kelas_cu->escete)->whereNotIn('id', $fasilitator)->advancedFilter();
+
+		$table_data = $this->formatCuQuery($table_data, $cu, $tp);
+
+		return response()
+			->json([
+				'model' => $table_data
+			]);
+	}
+
+	public function indexCuMentor($cu, $tp)
+	{
+		$kelas_cu = CU::where('id',$cu)->select('id','escete')->first();
+
+		$mentor = Mentor::where('id_cu',$cu)->pluck('anggota_cu_id')->toArray();
+
+		$table_data = AnggotaCu::with('anggota_cu_cu_not_keluar.cu','anggota_cu_cu_not_keluar.tp','Villages','Districts','Regencies','Provinces')->whereHas('anggota_cu_cu_not_keluar', function($query) use ($cu, $tp){ 
+			if($tp != 'semua'){
+				$query->where('anggota_cu_cu.cu_id',$cu)->where('anggota_cu_cu.tp_id',$tp)->whereNull('anggota_cu_cu.tanggal_keluar'); 
+			}else{
+				$query->where('anggota_cu_cu.cu_id',$cu)->whereNull('anggota_cu_cu.tanggal_keluar'); 
+			}
+		})->where(function($query) use ($kelas_cu){
+			$query->where('escete', $kelas_cu->escete)->where('status_jalinan','!=','MENINGGAL')->orWhere('status_jalinan', NULL);
+		})->where('escete', $kelas_cu->escete)->whereNotIn('id', $mentor)->advancedFilter();
 
 		$table_data = $this->formatCuQuery($table_data, $cu, $tp);
 

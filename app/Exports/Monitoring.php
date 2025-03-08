@@ -57,7 +57,7 @@ class Monitoring implements FromArray, WithHeadings, WithCustomStartCell, WithEv
 
                 $sheet->setCellValue('J2', "Jenis");
 
-                $sheet->setCellValue('K2', "Perspektif");
+                $sheet->setCellValue('K2', "Aspek");
 
                 $sheet->setCellValue('L2', "PIC CU");
 
@@ -238,7 +238,7 @@ class Monitoring implements FromArray, WithHeadings, WithCustomStartCell, WithEv
                     array_push($arrayNew, '-');
                 }
                 array_push($arrayNew, $monitoring['jenis']);
-                array_push($arrayNew, $monitoring['perspektif']);
+                array_push($arrayNew, $monitoring['aspek']);
                 if(isset($monitoring['aktivis_cu']['name'])){
                     array_push($arrayNew, $monitoring['aktivis_cu']['name']);
                 }else{

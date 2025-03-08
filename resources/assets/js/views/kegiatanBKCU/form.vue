@@ -368,6 +368,31 @@
 
 										</div>
 									</div>
+
+									<!-- sasaran cu -->
+									<div class="col-md-12">
+										<div class="form-group">
+											<!-- title -->
+											<h5>
+												Sasaran CU: <wajib-badge></wajib-badge>
+											</h5>
+											<div class="form-check form-check-inline">
+												<label class="form-check-label">
+													<input type="checkbox" class="form-check-input" v-model="formAllCu"
+														@change="selectAllCu">Semua CU
+												</label>
+											</div>
+											<div class="form-check form-check-inline" v-for="(cu, index) in modelCu"
+												:key="index">
+												<label class="form-check-label">
+													<input type="checkbox" class="form-check-input" :value="cu.id"
+														v-model="sasaranCu" :checked="formAllCu"
+														@change="updateFormCu(cu.id, $event.target.checked)">CU {{ cu.name
+														}}
+												</label>
+											</div>
+										</div>
+									</div>
 									
 								</div>
 							</div>
@@ -797,6 +822,9 @@
 				kelas: 'kegiatanBKCU',
 				sasaran: [],
 				tempatData: '',
+				formAllCu: false,
+				sasaranCu: [],
+				isSasaran_cu: '',
 				ckeditorNoImageConfig: {
 					toolbar: {
 						items: [
@@ -894,6 +922,14 @@
 						var i;
 						for(i = 0; i < this.form.sasaran.length; i++){
 							this.sasaran.push(this.form.sasaran[i].id.toString());
+						}
+
+						var n;
+						for (n = 0; n < this.form.sasaran_cu.length; n++) {
+							this.sasaranCu.push(this.form.sasaran_cu[n].id.toString());
+							if (n + 1 == this.modelCu.length) {
+								this.formAllCu = true;
+							}
 						}
 						
 						var valDalam;
@@ -1001,6 +1037,32 @@
 					this.$store.dispatch('kodeKegiatan/get');
 				}
 			},
+			fetchCu() {
+				if (this.modelCuStat != 'success') {
+					this.$store.dispatch('cu/getHeader');
+				}
+			},
+			selectAllCu() {
+				if (this.formAllCu) {
+					this.sasaranCu = this.modelCu.map(cu => cu.id);
+				} else {
+					this.sasaranCu = [];
+				}
+			},
+			updateFormCu(id, isChecked) {
+				if (isChecked && !this.sasaranCu.includes(id)) {
+					this.sasaranCu.push(id);
+				} else if (!isChecked && this.sasaranCu.includes(id)) {
+					const index = this.sasaranCu.indexOf(id);
+					this.sasaranCu.splice(index, 1);
+				}
+
+				if (this.sasaranCu.length != this.modelCu.length) {
+					this.formAllCu = false;
+				} else if (this.sasaranCu.length == this.modelCu.length) {
+					this.formAllCu = true;
+				}
+			},
 			checkTipe(tipe){
 				if(tipe == 'diklat_bkcu'){
 					this.level2Title = 'Diklat PUSKOPCUINA';
@@ -1071,6 +1133,7 @@
 				this.form.sasaran = this.sasaran;
 				this.form.panitia = this.itemDataPanitia;
 				this.form.pilih = this.itemDataPilih;
+				this.form.sasaranCu = this.sasaranCu.map(String);
 				this.state = '';
 				
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
@@ -1220,6 +1283,10 @@
 			...mapGetters('kodeKegiatan',{
 				itemKodeKegiatan: 'dataS2',
 				itemKodeKegiatanStat: 'dataStatS2'
+			}),
+			...mapGetters('cu', {
+				modelCu: 'headerDataS',
+				modelCuStat: 'headerDataStatS',
 			}),
 		}
 	}

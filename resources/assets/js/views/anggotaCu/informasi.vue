@@ -40,12 +40,20 @@
                  <button class="btn btn-primary" @click.prevent="cariData"  :disabled="nik == ''"><i class="icon-search4"></i> Cari</button>
                 <button class="btn btn-warning" @click.prevent="resetData" v-if="itemDataStat != ''"><i class="icon-reset"></i> Reset pencarian</button>
               </div>
+
+              <div class="col-md-5 col-lg-3 text-right d-none d-sm-block">
+                <button class="btn btn-light" @click.prevent="modalOpen"><i class="icon-folder-check"></i> Cek Tanggal Update Data</button>
+              </div>
         
               <div class="col-md-12 d-block d-sm-none">
                  <button class="btn btn-primary btn-block mb-1" @click.prevent="cariData"  :disabled="nik == ''"><i class="icon-search4"></i> Cari</button>
         
                  <button class="btn btn-warning btn-block mb-1" @click.prevent="resetData" v-if="itemDataStat != ''"><i class="icon-reset"></i> Reset pencarian</button>
+
+                 <button class="btn btn-light btn-block" @click.prevent="modalOpen"><i class="icon-folder-check"></i> Cek Tanggal Update Data</button>
               </div>  
+
+              
         
             </div>
         
@@ -66,6 +74,11 @@
           
           <!-- data exist -->
           <div v-if="itemDataStat == 'success'">
+
+            <div class="alert bg-warning text-white alert-styled-left">
+              <span class="font-weight-semibold">Data yang ditampilkan mungkin saja bukan data terbaru. Silahkan menghubungi masing-masing CU Primer untuk data yang paling baru.
+              </span>
+            </div>
 
             <!-- identitas -->
             <div class="card">
@@ -121,7 +134,7 @@
                   <tr class="text-nowrap">
                     <td>{{ props.index + 1 }}</td>
                     <td>
-                      <span v-if="props.item.escete == 1"><span class="badge bg-blue-400 align-self-center ml-auto" v-tooltip="'Data anggota berasal dari data ESCETE'">Terintegrasi</span></span>
+                      <span v-if="props.item.escete == 1"><span class="badge bg-blue-400 align-self-center ml-auto" v-tooltip="'Data anggota berasal dari data ESCETE'">ESCETE</span></span>
                       <span v-else>
                         <span class="badge bg-brown-400 align-self-center ml-auto" v-tooltip="'Data anggota berasal dari input manual di simo'">Manual</span>
                       </span>
@@ -186,6 +199,50 @@
       </div>
     </div>
 
+    		<!-- modal -->
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :size="modalSize" :color="modalColor" @batal="modalTutup" @tutup="modalTutup" @successOk="modalTutup" @failOk="modalTutup"  @backgroundClick="modalBackgroundClick">
+
+      <!-- title -->
+      <template slot="modal-title">
+        {{ modalTitle }}
+      </template>
+
+      <template slot="modal-body1">
+        <data-table :items="itemDataUpdateESCETE" :columnData="columnDataUpdateESCETE" :itemDataStat="itemDataUpdateESCETEStat">
+          <template slot="item-desktop" slot-scope="props">
+            <tr class="text-nowrap" v-if="props.item">
+              <td>{{ props.index + 1 }}</td>
+              <td>{{ props.item.name }}</td>
+              <td>
+                <span v-if="props.item.escete == 1"><span class="badge bg-blue-400 align-self-center ml-auto" v-tooltip="'Data anggota berasal dari data ESCETE'">ESCETE</span></span>
+                <span v-else>
+                  <span class="badge bg-brown-400 align-self-center ml-auto" v-tooltip="'Data anggota berasal dari input manual di simo'">Manual</span>
+                </span>
+              </td>
+              <td>
+                <span v-if="props.item.tanggal_update_data" v-html="$options.filters.date(props.item.tanggal_update_data)"></span>
+                <span v-else>-</span>
+              </td>
+            </tr>
+          </template>	
+        </data-table>
+
+        <!-- tombol desktop-->
+        <div class="text-center d-none d-md-block">
+          <button type="button" class="btn btn-light" @click.prevent="modalTutup">
+            <i class="icon-cross"></i> Tutup</button>
+        </div>  
+
+        <!-- tombol mobile-->
+        <div class="d-block d-md-none">
+          <button type="button" class="btn btn-light btn-block pb-2" @click.prevent="modalTutup">
+            <i class="icon-cross"></i> Tutup</button>
+        </div>
+
+      </template>
+
+    </app-modal>
+
   </div>
 </template>
 
@@ -196,6 +253,7 @@
   import dataTable from '../../components/datatable.vue';
   import checkValue from "../../components/checkValue.vue";
   import Cleave from 'vue-cleave-component';
+  import appModal from '../../components/modal';
 
   export default {
     components: {
@@ -204,6 +262,7 @@
       dataTable,
       checkValue,
 			Cleave,
+      appModal,
 		},
     data(){
       return {
@@ -249,6 +308,18 @@
 					{ title: 'Kolektibilitas' },
 					{ title: 'Tgl. Buat' },
 				],
+        columnDataUpdateESCETE:[
+					{ title: 'No.' },
+					{ title: 'Nama' },
+          { title: 'Jenis' },
+					{ title: 'Tgl. Update' },
+				],
+        modalShow: false,
+				modalState: '',
+				modalTitle: '',
+				modalColor: '',
+				modalContent: '',
+				modalSize: '',
       }
     },
     created(){
@@ -307,7 +378,30 @@
 						}
 					}
 				}
-			}
+			},
+      modalOpen() {
+				this.modalShow = true;
+
+        this.modalState = 'normal1';
+        this.modalColor = 'bg-primary';
+        this.modalTitle = 'Cek Tanggal Update';
+        this.modalButton = 'Ok';
+        this.modalSize = 'modal-lg';
+
+        this.$store.dispatch('cu/getUpdateESCETE');
+			},
+      modalTutup() {
+				this.modalShow = false;
+			},
+      modalBackgroundClick(){
+				if(this.modalState === 'success'){
+					this.modalTutup();
+				}else if(this.modalState === 'loading'){
+					// do nothing
+				}else{
+					this.modalTutup();
+				}
+			},
     },
     computed: {
 			...mapGetters('auth', {
@@ -317,6 +411,10 @@
 				itemData: 'data',
 				itemDataStat: 'dataStat'
 			}),
+      ...mapGetters("cu", {
+        itemDataUpdateESCETE: "dataS2",
+        itemDataUpdateESCETEStat: "dataStatS2",
+      }),
 		}
   }
 </script>

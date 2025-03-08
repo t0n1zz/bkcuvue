@@ -31,7 +31,7 @@ class Kegiatan extends Model {
     }
     
     protected $fillable = [
-      'id_regencies','id_districts','id_regencies','id_provinces','id_tempat','id_sertifikat','id_kode','kode_diklat','name','periode','durasi','mulai','selesai','jadwal','keterangan','keteranganBatal','status','tipe','peserta_max','peserta_max_cu','peserta_min','created_at','updated_at','deleted_at','gambar','tipe_tempat','keputusan_cu','keputusan_user','pertanyaan_cu','pertanyaan_user'
+      'id_regencies','id_districts','id_regencies','id_provinces','id_tempat','id_sertifikat','id_kode','kode_diklat','name','periode','durasi','mulai','selesai','jadwal','keterangan','keteranganBatal','status','tipe','peserta_max','peserta_max_cu','peserta_min','created_at','updated_at','deleted_at','gambar','tipe_tempat','keputusan_cu','keputusan_user','pertanyaan_cu','pertanyaan_user','isSasaran_cu'
     ];
 
     protected $allowedFilters = [
@@ -48,7 +48,7 @@ class Kegiatan extends Model {
     
     public static function initialize(){
         return [
-            'id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '', 'id_tempat' => '', 'kode_diklat' => '', 'name' => '', 'kota' => '', 'tipe' => '', 'periode' => '','durasi' => '', 'mulai' => '', 'selesai' => '','jadwal' => '', 'keterangan' => '', 'status' => '', 'peserta_max' => '', 'peserta_min' => '', 'gambar' => '', 'tipe_tempat' => ''
+            'id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '', 'id_tempat' => '', 'kode_diklat' => '', 'name' => '', 'kota' => '', 'tipe' => '', 'periode' => '','durasi' => '', 'mulai' => '', 'selesai' => '','jadwal' => '', 'keterangan' => '', 'status' => '', 'peserta_max' => '', 'peserta_min' => '', 'gambar' => '', 'tipe_tempat' => '','isSasaran_cu' => ''
         ];
     }
         
@@ -78,6 +78,10 @@ class Kegiatan extends Model {
 
     public function sasaran(){
         return $this->belongsToMany('App\Sasaran','kegiatan_sasaran')->withTimestamps();
+    }
+
+    public function sasaranCu(){
+        return $this->belongsToMany('App\CU', 'kegiatan_sasaran_cu')->withTimestamps();
     }
 
     public function panitia_dalam(){
