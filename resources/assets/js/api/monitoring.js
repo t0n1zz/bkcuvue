@@ -12,6 +12,10 @@ export default {
     return axios.get('/api/monitoring/indexCu/' + cu + '/' + tp + '/' + status,{params: p});
   },
 
+  summary: function( cu ){
+    return axios.get('/api/monitoring/summary/' + cu);
+  },
+
   create: function(){
     return axios.get('/api/monitoring/create');
   },

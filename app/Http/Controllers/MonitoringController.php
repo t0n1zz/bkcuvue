@@ -11,6 +11,7 @@ use App\MonitoringPencapaian;
 use App\Support\NotificationHelper;
 use Illuminate\Http\Request;
 use App\Exports\Monitoring as ExportMonitoring;
+use App\Exports\MonitoringKonsolidasi;
 use Maatwebsite\Excel\Facades\Excel;
 use Venturecraft\Revisionable\Revision;
 use Carbon\Carbon;
@@ -194,7 +195,7 @@ class MonitoringController extends Controller{
 			} elseif($status == 'keputusan'){
 				$table_data = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')
 					->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->where('id_cu', $cu)->where('id_tp', $tp)
-					->havingRaw("monitoring_pencapaian_count > 0")
+					->havingRaw("monitoring_pencapaian_count >= 0")
 					->havingRaw("monitoring_rekom_ok_count < monitoring_rekom_count")->get();
 			} elseif($status == 'tidak_keputusan'){
 				$table_data = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')
@@ -213,7 +214,7 @@ class MonitoringController extends Controller{
 			} elseif($status == 'keputusan'){
 				$table_data = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')
 					->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->where('id_cu', $cu)
-					->havingRaw("monitoring_pencapaian_count > 0")
+					->havingRaw("monitoring_pencapaian_count >= 0")
 					->havingRaw("monitoring_rekom_ok_count < monitoring_rekom_count")->get();
 			} elseif($status == 'tidak_keputusan'){
 				$table_data = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')
@@ -226,17 +227,23 @@ class MonitoringController extends Controller{
 		if($status !='semua'){
 			$table_data = $this->filter($status,$request,$table_data);
 		}
+		
+		return response()
+		->json([
+			'model' => $table_data,
+		]);
+	}
 
+	public function summary($id_cu){
 		$sum_tercapai= 0;
 		$sum_rekom = 0;
-		$data_sum = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->where('id_cu', $cu)->get();
-		
+		$data_sum = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->where('id_cu', $id_cu)->get();
 		$data_sum->each(function ($monitoring) use(&$sum_tercapai, &$sum_rekom) {
 			$sum_rekom = $sum_rekom + $monitoring->monitoring_rekom_count;
 			$sum_tercapai = $sum_tercapai + $monitoring->monitoring_rekom_ok_count;
 		});
 		$sum_tidak_tercapai = $sum_rekom - $sum_tercapai;
-
+		
 		$summary = [];
 		$sum_persen_tercapai = $sum_rekom != 0 && $sum_tercapai != 0 ?  round(($sum_tercapai / $sum_rekom) * 100, 2) : 0;
 		$sum_persen_tidak_tercapai = $sum_rekom != 0 && $sum_tidak_tercapai != 0 ?  round(($sum_tidak_tercapai / $sum_rekom) * 100, 2) : 0;
@@ -245,7 +252,7 @@ class MonitoringController extends Controller{
 		$summary['sum_persen_tercapai'] = $sum_persen_tercapai;
 		$summary['sum_persen_tidak_tercapai'] = $sum_persen_tidak_tercapai;
 		$summary['sum_rekom'] = $sum_rekom;
-
+		
 		if ($sum_persen_tercapai  >= 0 && $sum_persen_tercapai <= 20.99) {
 			$summary['kategori'] = 'Sangat Tidak Tercapai';
 		} elseif ($sum_persen_tercapai  >= 21 && $sum_persen_tercapai <= 40.99) {
@@ -258,11 +265,10 @@ class MonitoringController extends Controller{
 			$summary['kategori'] = 'Sangat Tercapai';
 		}
 		
-
 		return response()
-		->json([
-			'model' => $table_data
-		]);
+			->json([
+				'summary'=> $summary
+			]);
 	}
 
 	public function filter($status, $request, $table_data)
@@ -495,8 +501,66 @@ class MonitoringController extends Controller{
 			]);
 	}
 
-	public function downloadLaporan(Request $request){
-		return Excel::download(new ExportMonitoring($request->id_cu,$request->id_tp), 'Laporan.xlsx');
+	public function downloadLaporan(Request $request)
+	{
+		
+		$sum_tercapai= 0;
+		$sum_rekom = 0;
+		$sum_pencapaian = 0;
+		$data_sum = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->where('id_cu', $request->id_cu)->get();
+
+		$data_sum->each(function ($monitoring) use(&$sum_tercapai, &$sum_rekom, &$sum_pencapaian) {
+			$sum_rekom = $sum_rekom + $monitoring->monitoring_rekom_count;
+			$sum_tercapai = $sum_tercapai + $monitoring->monitoring_rekom_ok_count;
+			$sum_pencapaian = $sum_pencapaian + $monitoring->monitoring_pencapaian_count;
+		});
+
+		$sum_tidak_tercapai = $sum_rekom - $sum_tercapai;
+		$summary = [];
+		$sum_persen_tercapai = $sum_rekom != 0 && $sum_tercapai != 0 ?  round(($sum_tercapai / $sum_rekom) * 100, 2) : 0;
+		$sum_persen_tidak_tercapai = $sum_rekom != 0 && $sum_tidak_tercapai != 0 ?  round(($sum_tidak_tercapai / $sum_rekom) * 100, 2) : 0;
+		$summary['sum_tercapai'] = $sum_tercapai;
+		$summary['sum_tidak_tercapai'] = $sum_tidak_tercapai;
+		$summary['sum_persen_tercapai'] = $sum_persen_tercapai;
+		$summary['sum_persen_tidak_tercapai'] = $sum_persen_tidak_tercapai;
+		$summary['sum_rekom'] = $sum_rekom;
+		$summary['sum_pencapaian'] = $sum_pencapaian;
+		
+		if ($sum_persen_tercapai  >= 0 && $sum_persen_tercapai <= 20.99) {
+			$summary['kategori'] = 'Sangat Tidak Tercapai';
+		} elseif ($sum_persen_tercapai  >= 21 && $sum_persen_tercapai <= 40.99) {
+			$summary['kategori'] = 'Tidak Tercapai';
+		} elseif ($sum_persen_tercapai  >= 41 && $sum_persen_tercapai  <= 60.99) {
+			$summary['kategori'] = 'Cukup Tercapai';
+		} elseif ($sum_persen_tercapai >= 61 && $sum_persen_tercapai  <= 80.99) {
+			$summary['kategori'] = 'Tercapai';
+		} elseif ($sum_persen_tercapai  >= 81 && $sum_persen_tercapai  <= 100) {
+			$summary['kategori'] = 'Sangat Tercapai';
+		}
+
+		$count_temuan = null;
+		$start = Carbon::createFromFormat('Y-m-d', $request->tgl_mulai);
+		$end = Carbon::createFromFormat('Y-m-d', $request->tgl_akhir);
+		if ($request->id_tp != 'semua') {
+			if ($request->semua == true) {
+				$count_temuan = Monitoring::where('id_cu', $request->id_cu)->where('id_tp', $request->id_tp)->orderBy('aspek', 'desc')->count();
+			} else {
+				$count_temuan = Monitoring::where('id_cu', $request->id_cu)->where('id_tp', $request->id_tp)->whereBetween('tanggal', [$start, $end])->count();
+			}
+		} else {
+			if ($request->semua == true) {
+				$count_temuan = Monitoring::where('id_cu', $request->id_cu)->orderBy('aspek', 'desc')->count();
+			} else {
+				$count_temuan = Monitoring::where('id_cu', $request->id_cu)->whereBetween('tanggal', [$start, $end])->count();
+			}
+		}
+
+		return Excel::download(new ExportMonitoring($request->id_cu, $request->id_tp, $request->tgl_mulai, $request->tgl_akhir, $request->semua, $count_temuan,$summary), 'Laporan.xlsx');
+	}
+
+	public function downloadLaporanKonsolidasi(Request $request)
+	{
+		return Excel::download(new MonitoringKonsolidasi($request->tahun, $request->bulan), 'Laporan.xlsx');
 	}
 
 	public function getPeriode($kegiatan_tipe)

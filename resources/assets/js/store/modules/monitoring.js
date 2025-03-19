@@ -94,6 +94,23 @@ export const monitoring = {
         });
     },
 
+    summary( { commit }, cu ){
+          commit('setDataStatS', 'loading');
+          
+          MonitoringAPI.summary( cu )
+            .then( function( response ){
+              console.log(response.data.summary);
+              
+              commit('setSummary', response.data.summary );
+              commit('setDataStatS', 'success');
+            })
+            .catch( error => {
+              commit('setDataS', error.response);
+              commit('setDataStatS', 'fail');
+            });
+        },
+
+
     get( { commit }, cu ){
       commit('setDataStatS', 'loading');
       

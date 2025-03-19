@@ -198,22 +198,32 @@ class NotificationHelper
 	public static function monitoring_pencapaian($request, $message)
 	{
 
-		$id_cu = Monitoring::findOrFail($request->id_monitoring)->id_cu;
-		if (Auth::user()->id_cu == 0) {
-			$users = User::permission(['index_monitoring'])->where('id_cu', $id_cu)->where('status', 1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();
-			$cu_name = ' (PUSKOPCUINA) ';
-		} else {
-			$users = User::permission(['index_monitoring'])->where('id_cu', 0)->where('status', 1)->get();
-			$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
-			$cu_name = ' (CU ' . $cu->name . ') ';
-		}
-		$periode = \Carbon\Carbon::parse($request->periode)->format('d M Y');
+		try {
+			//code...
+			$id_cu = Monitoring::findOrFail($request->id_monitoring)->id_cu;
+			if (Auth::user()->id_cu == 0) {
+				$users = User::permission(['index_monitoring'])->where('id_cu', $id_cu)->where('status', 1)->where('login', '>=', \Carbon\Carbon::now()->subMonth(3))->get();
+				$cu_name = ' (PUSKOPCUINA) ';
+				Notification::sendNow($users, new Notif(
+					'monitoring',
+					$request->id_monitoring,
+					Auth::user()->username . $cu_name . strtolower($message)
+				));
+			} else {
+				$users = User::permission(['index_monitoring'])->where('id_cu', 0)->where('status', 1)->get();
+				$cu = Cu::where('id', Auth::user()->id_cu)->select('id', 'name')->first();
+				$cu_name = ' (CU ' . $cu->name . ') ';
 
-		Notification::send($users, new Notif(
-			'monitoring',
-			$request->id_monitoring,
-			Auth::user()->username . $cu_name . strtolower($message)
-		));
+				Notification::sendNow($users, new Notif(
+					'monitoring',
+					$request->id_monitoring,
+					Auth::user()->username . $cu_name . strtolower($message)
+				));
+			}
+			$periode = \Carbon\Carbon::parse($request->periode)->format('d M Y');
+		} catch (\Throwable $th) {
+			//throw $th;
+		}
 	}
 
 	public static function klaim_jalinan_verifikasi($request, $message)

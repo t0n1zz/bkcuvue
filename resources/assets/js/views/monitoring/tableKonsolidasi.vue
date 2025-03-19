@@ -4,6 +4,15 @@
 		<!-- main panel -->
 		<data-viewer :title="title" :columnData="columnData" :itemData="itemData" :query="query"
 			:itemDataStat="itemDataStat" :excelDownloadUrl="excelDownloadUrl" @fetch="fetch">
+			<template slot="button-desktop">
+
+				<button @click.prevent="downloadLaporanKonsolidasi" class="btn btn-light mb-1"
+					v-if="currentUser.can && currentUser.id_cu == 0 && $route.params.cu != 'semua'"
+					:disabled="!itemData">
+					<i class="icon-book"></i> Laporan
+				</button>
+
+			</template>
 			<template slot="item-desktop" slot-scope="props">
 				<tr :class="{ 'bg-info': selectedItem.id == props.item.id }" @click="selectedRow(props.item)"
 					class="text-nowrap">
@@ -99,14 +108,17 @@ import { mapGetters } from 'vuex';
 import DataViewer from '../../components/dataviewer2.vue';
 import appModal from '../../components/modal';
 import checkValue from '../../components/checkValue.vue';
+import FileSaver from 'file-saver';
+
 
 export default {
 	components: {
 		DataViewer,
 		appModal,
 		checkValue,
+		FileSaver,
 	},
-	props: ['title', 'kelas','itemData','itemDataStat'],
+	props: ['title', 'kelas', 'itemData', 'itemDataStat'],
 	data() {
 		return {
 			selectedItem: [],
@@ -164,13 +176,13 @@ export default {
 					hide: false,
 				},
 				{
-					title: 'Presentase tercapai',
+					title: 'Persentase tercapai',
 					name: 'presentase_tercapai',
 					tipe: 'number',
 					hide: false,
 				},
 				{
-					title: 'presentase tidak tercapai',
+					title: 'Persentase tidak tercapai',
 					name: 'presentase_tidak_tercapai',
 					tipe: 'number',
 					hide: false,
@@ -203,20 +215,20 @@ export default {
 					hide: false,
 				},
 				{
-					title: 'Presentase Pencapaian Des Tahun Lalu',
+					title: 'Persentase Pencapaian Des Tahun Lalu',
 					name: 'presentase_rekom_ok_tahun_lalu',
 					tipe: 'number',
 					hide: false,
 				},
 
 				{
-					title: 'Presentase Pencapaian Bulan Lalu',
+					title: 'Persentase Pencapaian Bulan Lalu',
 					name: 'presentase_rekom_ok_bulan_lalu',
 					tipe: 'number',
 					hide: false,
 				},
 				{
-					title: 'Presentase Pencapaian Bulan ini',
+					title: 'Persentase Pencapaian Bulan ini',
 					name: 'presentase_rekom_ok_bulan_ini',
 					tipe: 'number',
 					hide: false,
@@ -282,8 +294,8 @@ export default {
 		},
 		fetch(params) {
 			this.disableColumnCu(false);
-			this.$store.dispatch(this.kelas + '/indexKonsolidasi',[params,this.$route.params.tahun,this.$route.params.bulan])
-			this.excelDownloadUrl = this.kelas + '/indexKonsolidasi/' + this.$route.params.tahun +'/'+ this.$route.params.bulan;
+			this.$store.dispatch(this.kelas + '/indexKonsolidasi', [params, this.$route.params.tahun, this.$route.params.bulan])
+			this.excelDownloadUrl = this.kelas + '/indexKonsolidasi/' + this.$route.params.tahun + '/' + this.$route.params.bulan;
 		},
 
 		disableColumnCu(status) {
@@ -292,6 +304,19 @@ export default {
 
 		selectedRow(item) {
 			this.selectedItem = item;
+		},
+
+		downloadLaporanKonsolidasi() {
+			this.modalState = 'loading'
+			this.modalShow = true
+			axios.post('/api/' + this.kelas + '/laporanKonsolidasi', { tahun: this.$route.params.tahun, bulan: this.$route.params.bulan }, {
+				responseType: 'blob'
+			}).then((response) => {
+				FileSaver.saveAs(response.data, 'Laporan Monitoring Konsolidasi.xlsx')
+				this.modalState = 'success';
+				this.modalTitle = 'Berhasil Di Download'
+				this.modalButton = 'Ok';
+			})
 		},
 	},
 	computed: {

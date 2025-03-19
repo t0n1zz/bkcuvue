@@ -95,7 +95,7 @@
 								<span class="text-default font-size-lg">
 									&nbsp;
 									{{ Math.round((props.item.monitoring_rekom_ok_count /
-			props.item.monitoring_rekom_count) * 100) + '%' }}
+										props.item.monitoring_rekom_count) * 100) + '%' }}
 									&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
 								</span>
 							</div>
@@ -124,9 +124,9 @@
 					</td>
 					<td v-if="!columnData[8].hide">
 						<span v-if="props.item.jenis == 'MAYOR'" class="badge badge-danger">{{ props.item.jenis
-							}}</span>
+						}}</span>
 						<span v-else-if="props.item.jenis == 'MINOR'" class="badge badge-success">{{ props.item.jenis
-							}}</span>
+						}}</span>
 					</td>
 					<td v-if="!columnData[9].hide">
 						<check-value :value="props.item.aspek"></check-value>
@@ -156,6 +156,12 @@
 		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent"
 			:button="modalButton" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup"
 			@failOk="modalTutup" @backgroundClick="modalTutup">
+			<template slot="modal-body1">
+				<div>
+					<tgl :id_cu="this.$route.params.cu" :id_tp="this.$route.params.tp" @tutup="modalTutup"
+						@stat="setLaporanStat" @loading="setLaporanStat" :params="query"></tgl>
+				</div>
+			</template>
 		</app-modal>
 
 	</div>
@@ -167,13 +173,15 @@ import DataViewer from '../../components/dataviewer2.vue';
 import appModal from '../../components/modal';
 import checkValue from '../../components/checkValue.vue';
 import FileSaver from 'file-saver';
+import Tgl from './formSelectTgl.vue';
 
 export default {
 	components: {
 		DataViewer,
 		appModal,
 		checkValue,
-		FileSaver
+		FileSaver,
+		Tgl
 	},
 	props: ['title', 'kelas', 'tab', 'itemData', 'itemDataStat'],
 	data() {
@@ -327,11 +335,13 @@ export default {
 	},
 	created() {
 		this.fetch(this.query);
+		this.$store.dispatch(this.kelas + '/summary',this.$route.params.cu);
 	},
 	watch: {
 		// check route changes
 		'$route'(to, from) {
 			this.fetch(this.query);
+			this.$store.dispatch(this.kelas + '/summary',this.$route.params.cu);
 		},
 
 		// when updating data
@@ -355,7 +365,7 @@ export default {
 			if (this.$route.params.cu == 'semua') {
 				if (this.tab == 'indexSemua') {
 					this.disableColumnCu(false);
-					this.$store.dispatch(this.kelas + '/index',[params,'semua'] );
+					this.$store.dispatch(this.kelas + '/index', [params, 'semua']);
 					this.excelDownloadUrl = this.kelas;
 				} else {
 					this.fetchByStatusSemua(params);
@@ -376,13 +386,13 @@ export default {
 		fetchByStatusSemua(params) {
 			if (this.tab == 'indexSelesai') {
 				this.disableColumnCu(false);
-				this.$store.dispatch(this.kelas + '/index',[params,'selesai'] );
+				this.$store.dispatch(this.kelas + '/index', [params, 'selesai']);
 			} else if (this.tab == 'indexKeputusan') {
 				this.disableColumnCu(false);
-				this.$store.dispatch(this.kelas + '/index',[params,'keputusan'] );
+				this.$store.dispatch(this.kelas + '/index', [params, 'keputusan']);
 			} else if (this.tab == 'indexTidakKeputusan') {
 				this.disableColumnCu(false);
-				this.$store.dispatch(this.kelas + '/index',[params,'tidak_keputusan'] );
+				this.$store.dispatch(this.kelas + '/index', [params, 'tidak_keputusan']);
 			}
 		},
 
@@ -443,16 +453,20 @@ export default {
 			}
 		},
 		downloadLaporan() {
-			this.modalState = 'loading'
-			this.modalShow = true
-			axios.post('/api/' + this.kelas + '/laporan', { id_cu: this.$route.params.cu, id_tp: this.$route.params.tp }, {
-				responseType: 'blob'
-			}).then((response) => {
-				FileSaver.saveAs(response.data, 'Monitoring.xlsx')
-				this.modalState = 'success';
-				this.modalTitle = 'Berhasil Di Download'
-				this.modalButton = 'Ok';
-			})
+			this.modalShow = true;
+			this.modalSize = '';
+			this.isDisableTable = true;
+			this.modalState = 'normal1';
+			this.modalColor = 'bg-primary';
+			this.modalSize = 'modal-md';
+			this.formModalMode = 'create';
+			this.modalTitle = 'Pilih Tanggal Laporan';
+		},
+
+		setLaporanStat() {
+			this.modalState = 'success';
+			this.modalTitle = 'Laporan Berhasil Di Download';
+			this.modalButton = 'Ok';
 		},
 	},
 	computed: {
