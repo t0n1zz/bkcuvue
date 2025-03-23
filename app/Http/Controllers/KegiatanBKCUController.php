@@ -57,7 +57,7 @@ class KegiatanBKCUController extends Controller
 			]);
 	}
 
-	ublic function indexPisah($kegiatan_tipe, $periode, $status)
+	public function indexPisah($kegiatan_tipe, $periode, $status)
 	{
 		$id_cu = \Auth::user()->id_cu;
 		if ($periode !== 'semua') {

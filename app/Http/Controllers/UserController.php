@@ -613,6 +613,9 @@ class UserController extends Controller
 				$user->revokePermissionTo($item);
 			}
 		}
+
+		// Clear the cached permissions so that changes take effect immediately.
+		app(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
 	}
 
 	public function count()

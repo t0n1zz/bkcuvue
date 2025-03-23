@@ -81,7 +81,7 @@ class Kegiatan extends Model {
     }
 
     public function sasaranCu(){
-        return $this->belongsToMany('App\CU', 'kegiatan_sasaran_cu')->withTimestamps();
+        return $this->belongsToMany('App\Cu', 'kegiatan_sasaran_cu')->withTimestamps();
     }
 
     public function panitia_dalam(){

@@ -657,9 +657,11 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         // monitoring
         Route::get('/monitoring/history', 'MonitoringController@history');
         Route::post('monitoring/laporan', 'MonitoringController@downloadLaporan');
+        Route::post('monitoring/laporanKonsolidasi', 'MonitoringController@downloadLaporanKonsolidasi');
         Route::get('/monitoring/getPeriode/{cu}', 'MonitoringController@getPeriode');
         Route::group(['middleware' => ['permission:index_monitoring']], function () {
             Route::get('/monitoring/{status}', 'MonitoringController@index');
+            Route::get('/monitoring/summary/{cu}', 'MonitoringController@summary');
             Route::get('/monitoring/indexCu/{cu}/{tp}/{status}', 'MonitoringController@indexCu');
             Route::get('/monitoring/get/{id}', 'MonitoringController@get');
             Route::get('/monitoring/count', 'MonitoringController@count');

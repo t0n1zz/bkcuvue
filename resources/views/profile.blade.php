@@ -273,6 +273,36 @@
         </div>
       </section>
 
+      <!-- penasihat -->
+      <section>
+        <div class="fancy-title title-border title-center mt-5">
+          <h3>KOMITE</h3>
+        </div>
+  
+        <div class="row col-mb-50 mb-0">
+          @foreach($komite as $item)
+          @php
+          if(!empty($item->gambar) && is_file($imagepath.$item->gambar.".jpg")){
+            $gambar = $imagepath . $item->gambar . '.jpg';
+          }else{
+            $gambar = 'images/no_image_man.jpg';
+          }
+          @endphp
+          <div class="col-lg-3 col-md-6">
+            <div class="team">
+              <div class="team-image">
+                <img src="{{ asset($gambar) }}" alt="{{ $item->name }}" class="rounded-6">
+              </div>
+              <div class="team-desc">
+                <div class="team-title"><h4>{{ $item->name }}</h4><span>{{ $item->pekerjaan_aktif ? $item->pekerjaan_aktif->name : '' }}</span></div>
+              </div>
+            </div>
+          </div>
+          @endforeach
+  
+        </div>
+      </section>
+
       <!-- manajemen -->
       <section>
         <div class="fancy-title title-border title-center mt-5">

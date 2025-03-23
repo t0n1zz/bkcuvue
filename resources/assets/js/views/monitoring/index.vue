@@ -26,7 +26,7 @@
 								<a href="#" class="nav-link" :class="{ active: tabName == 'indexKeputusan' }"
 									@click.prevent="changeTab('indexKeputusan')"><i
 										class="icon-checkbox-unchecked mr-2"></i> Belum
-									Selesai, Ada Keputusan</a>
+									Selesai</a>
 							</li>
 
 							<li class="nav-item">

@@ -86,6 +86,23 @@ export const monitoring = {
       MonitoringAPI.indexCu( p, cu, tp, status )
         .then( function( response ){
           commit('setDataS', response.data.model);
+          commit('setSummary', response.data.summary);
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
+    summary( { commit }, cu ){
+      commit('setDataStatS', 'loading');
+
+      MonitoringAPI.summary( cu )
+        .then( function( response ){
+          console.log(response.data.summary);
+
+          commit('setSummary', response.data.summary );
           commit('setDataStatS', 'success');
         })
         .catch( error => {

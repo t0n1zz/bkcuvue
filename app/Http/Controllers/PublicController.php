@@ -327,6 +327,16 @@ class PublicController extends Controller
 
 		$penasihat = $this->profileFormatQuery($penasihat);
 
+		$komite = Aktivis::with(['pekerjaans' => function ($q) {
+			$q->with('cu')->where('tipe', 3)->where('id_tempat', 1)
+				->where('status', 1);
+		}])->whereHas('pekerjaan', function ($query) {
+			$query->where('tingkat', 3)->where('tipe', 3)->where('id_tempat', 1)
+				->where('status', 1);
+		})->select('id', 'name', 'gambar')->orderBy('name')->get();
+
+		$komite = $this->profileFormatQuery($komite);
+
 		$manajemen = Aktivis::with(['pekerjaans' => function ($q) {
 			$q->with('cu')->where('tipe', 3)->where('id_tempat', 1)
 				->where('status', 1);
@@ -337,7 +347,7 @@ class PublicController extends Controller
 
 		$manajemen = $this->profileFormatQuery($manajemen);
 
-		return view('profile', compact('pengurus', 'pengawas', 'penasihat', 'manajemen'));
+		return view('profile', compact('pengurus', 'pengawas', 'penasihat','komite', 'manajemen'));
 	}
 
 	public function profileFormatQuery($table_data)
