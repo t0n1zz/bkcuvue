@@ -44,17 +44,25 @@ class StoreAnggotaDraft implements ShouldQueue
       $flag = false;
       $anggotaCuByName = null;
       $anggotaCuByNik = null;
+      $jalinan = false;
 
       try {
         if ($item['anggota_cu_by_name'] != null) {
           $anggotaCuByName = $item['anggota_cu_by_name']['id'];
+          if($item['anggota_cu_by_name']['status_jalinan'] != null){
+            $jalinan = true;
+          }
         }
 
         if ($item['anggota_cu_by_nik'] != null) {
           $anggotaCuByNik = $item['anggota_cu_by_nik']['id'];
+          if($item['anggota_cu_by_nik']['status_jalinan'] != null){
+            $jalinan = true;
+          }
         }
 
-
+        
+       if(!$jalinan){
         $kelas2 = null;
         if (array_key_exists('anggota_cu_cu', $item)) {
           if ($item['anggota_cu_cu'] != null) {
@@ -163,10 +171,16 @@ class StoreAnggotaDraft implements ShouldQueue
           } else {
             if ($anggotaCuByName) {
               $data['id'] = $anggotaCuByName;
+              // if(!$sp_anggota && !$rek_anggota){
+              //   $data['deleted_at'] = \Date::now();
+              // }
               $anggota_cu_update[] = $data;
               $id = $anggotaCuByName;
             } elseif ($anggotaCuByNik) {
               $data['id'] = $anggotaCuByNik;
+              // if(!$sp_anggota && !$rek_anggota){
+              //   $data['deleted_at'] = \Date::now();
+              // }
               $anggota_cu_update[] = $data;
               $id = $anggotaCuByNik;
             }
@@ -199,9 +213,12 @@ class StoreAnggotaDraft implements ShouldQueue
               // }
               $data2[0]['id'] = $a['anggota']['id'];
               unset($data2[0]['tanggal_masuk']);
-              unset($data2[0]['anggota_cu_id']);
+              // unset($data2[0]['anggota_cu_id']);
               unset($data2[0]['cu_id']);
               unset($data2[0]['no_ba']);
+              // if(!$sp_anggota && !$rek_anggota){
+              //   $data2[0]['deleted_at'] = \Date::now();
+              // }
               $anggota_cu_cu_update[] = $data2[0];
             }
           } else if ((!$sp_anggota && $rek_anggota) || (!$sp_anggota && $kelas2[0]['anggota']['keterangan_masuk'] == 'CALON ANGGOTA')) {
@@ -213,9 +230,12 @@ class StoreAnggotaDraft implements ShouldQueue
             } else {
               $data2[0]['id'] = $a['anggota']['id'];
               unset($data2[0]['tanggal_masuk']);
-              unset($data2[0]['anggota_cu_id']);
+              // unset($data2[0]['anggota_cu_id']);
               unset($data2[0]['cu_id']);
               unset($data2[0]['no_ba']);
+              // if(!$sp_anggota && !$rek_anggota){
+              //   $data2[0]['deleted_at'] = \Date::now();
+              // }
               $anggota_cu_cu_update[] = $data2[0];
             }
           }
@@ -244,6 +264,7 @@ class StoreAnggotaDraft implements ShouldQueue
           \DB::table('anggota_cu_draft')->where('id', $item['id'])->delete();
         }
         \DB::commit();
+       }
       } catch (\Throwable $th) {
         \DB::rollback();
       }
