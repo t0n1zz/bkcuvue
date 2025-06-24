@@ -61,7 +61,7 @@ class AnggotaCuEsceteController extends Controller
     public function store(Request $request)
     {
 
-        $kelas = AnggotaCuDraft::with(['anggota_cu_cu.anggota', 'anggota_cu_by_name', 'anggota_cu_by_nik', 'anggota_cu_cu.rekening', 'anggota_cu_cu.sp', 'anggota_cu_cu.anggota.anggota_produk_cu.draft_produk'])->chunkById(200, function ($kelas) {
+        $kelas = AnggotaCuDraft::with(['anggota_cu_cu.anggota', 'anggota_cu_by_name.status_jalinan', 'anggota_cu_by_nik.status_jalinan', 'anggota_cu_cu.rekening', 'anggota_cu_cu.sp', 'anggota_cu_cu.anggota.anggota_produk_cu.draft_produk'])->chunkById(200, function ($kelas) {
             $kelas_ktp = System::findOrFail(1);
             $no_nik = count($kelas->where('nik', ''));
             $ktp = $kelas_ktp->nik;
@@ -77,7 +77,6 @@ class AnggotaCuEsceteController extends Controller
 
 
         SendNotification::dispatch(Auth::user()->id, 'NotifSimpanDraft', 'Draft Berhasil Disimpan');
-
 
         return response()->json([
             'processed' => true,
