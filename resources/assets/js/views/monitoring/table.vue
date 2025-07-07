@@ -366,7 +366,7 @@ export default {
 				if (this.tab == 'indexSemua') {
 					this.disableColumnCu(false);
 					this.$store.dispatch(this.kelas + '/index', [params, 'semua']);
-					this.excelDownloadUrl = this.kelas;
+					this.excelDownloadUrl = this.kelas + '/semua';
 				} else {
 					this.fetchByStatusSemua(params);
 				}
@@ -387,12 +387,15 @@ export default {
 			if (this.tab == 'indexSelesai') {
 				this.disableColumnCu(false);
 				this.$store.dispatch(this.kelas + '/index', [params, 'selesai']);
+				this.excelDownloadUrl = this.kelas + '/selesai';
 			} else if (this.tab == 'indexKeputusan') {
 				this.disableColumnCu(false);
 				this.$store.dispatch(this.kelas + '/index', [params, 'keputusan']);
+				this.excelDownloadUrl = this.kelas + '/keputusan';
 			} else if (this.tab == 'indexTidakKeputusan') {
 				this.disableColumnCu(false);
 				this.$store.dispatch(this.kelas + '/index', [params, 'tidak_keputusan']);
+				this.excelDownloadUrl = this.kelas + '/tidak_keputusan';
 			}
 		},
 

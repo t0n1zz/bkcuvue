@@ -262,46 +262,30 @@ class Monitoring implements FromArray, WithHeadings, WithCustomStartCell, WithEv
 
             if($this->id_tp !='semua'){
                 if($this->semua == true){
-                    $model = AppMonitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom', 'monitoring_pencapaian','monitoring_rekom_ok')->where('id_cu', $this->id_cu)->where('id_tp',$this->id_tp)->orderBy('aspek', 'desc')->get()->toArray();
+                    $model = AppMonitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom', 'monitoring_pencapaian_latest', 'monitoring_pencapaian','monitoring_rekom_ok')->where('id_cu', $this->id_cu)->where('id_tp',$this->id_tp)->orderBy('aspek', 'desc')->get()->toArray();
                 }else{
-                    $model = AppMonitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom', 'monitoring_pencapaian','monitoring_rekom_ok')->where('id_cu', $this->id_cu)->where('id_tp',$this->id_tp)->whereBetween('tanggal', [$start, $end])->orderBy('aspek', 'desc')->get()->toArray();
+                    $model = AppMonitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom', 'monitoring_pencapaian_latest', 'monitoring_pencapaian','monitoring_rekom_ok')->where('id_cu', $this->id_cu)->where('id_tp',$this->id_tp)->whereBetween('tanggal', [$start, $end])->orderBy('aspek', 'desc')->get()->toArray();
                 }
             }else{
                 if($this->semua == true){
-                    $model = AppMonitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom', 'monitoring_pencapaian','monitoring_rekom_ok')->where('id_cu', $this->id_cu)->orderBy('aspek', 'desc')->get()->toArray();
+                    $model = AppMonitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom', 'monitoring_pencapaian_latest', 'monitoring_pencapaian','monitoring_rekom_ok')->where('id_cu', $this->id_cu)->orderBy('aspek', 'desc')->get()->toArray();
                 }else{
-                    $model = AppMonitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom', 'monitoring_pencapaian','monitoring_rekom_ok')->where('id_cu', $this->id_cu)->whereBetween('tanggal', [$start, $end])->orderBy('aspek', 'desc')->get()->toArray();
+                    $model = AppMonitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom', 'monitoring_pencapaian_latest', 'monitoring_pencapaian','monitoring_rekom_ok')->where('id_cu', $this->id_cu)->whereBetween('tanggal', [$start, $end])->orderBy('aspek', 'desc')->get()->toArray();
                 }
             }
         
-            // dd($model[0]['monitoring_pencapaian']);
             $arrayComplete = [];
             foreach ($model as $monitoring) {
+                // dd($monitoring['monitoring_pencapaian_latest']['pencapaian']);
 
                 $count = 0;
                 $arrayNew = [];
                 $arrayRekom = [];
-                $arrayPencapaian =[];
-                $arrayKendala = [];
-                $arrayTindak = [];
-
+          
                 foreach ($monitoring['monitoring_rekom'] as $rekom) {
                     array_push($arrayRekom, $rekom['rekomendasi']);
                 }
 
-                foreach ($monitoring['monitoring_pencapaian'] as $pencapaian) {
-
-                    array_push($arrayPencapaian, $pencapaian['pencapaian']);
-                    if(isset($pencapaian['kendala'])){
-                        array_push($arrayKendala,$pencapaian['kendala']);
-                    }
-
-                    if(isset($pencapaian['tindak'])){
-                        array_push($arrayTindak,$pencapaian['tindak']);
-                    }
-
-                }
-    
                 if(isset($monitoring['monitoring_rekom'])){
                     array_push($arrayNew, count($monitoring['monitoring_rekom']));
                 }else{
@@ -332,20 +316,20 @@ class Monitoring implements FromArray, WithHeadings, WithCustomStartCell, WithEv
                     array_push($arrayNew, '-');
                 }
 
-                if(isset($arrayPencapaian)){
-                    array_push($arrayNew, implode("\n", $arrayPencapaian));
+                if(isset($monitoring['monitoring_pencapaian_latest']['pencapaian'])){
+                    array_push($arrayNew, $monitoring['monitoring_pencapaian_latest']['pencapaian']);
                 }else{
                     array_push($arrayNew, '-');
                 }
 
-                if(isset($arrayKendala)){
-                    array_push($arrayNew, implode("\n", $arrayKendala));
+                if(isset($monitoring['monitoring_pencapaian_latest']['kendala'])){
+                    array_push($arrayNew, $monitoring['monitoring_pencapaian_latest']['kendala']);
                 }else{
                     array_push($arrayNew, '-');
                 }
 
-                if(isset($arrayTindak)){
-                    array_push($arrayNew, implode("\n", $arrayTindak));
+                if(isset($monitoring['monitoring_pencapaian_latest']['tindak'])){
+                    array_push($arrayNew, $monitoring['monitoring_pencapaian_latest']['tindak']);
                 }else{
                     array_push($arrayNew, '-');
                 }
@@ -372,6 +356,7 @@ class Monitoring implements FromArray, WithHeadings, WithCustomStartCell, WithEv
             return $arrayComplete;
         } catch (\Throwable $th) {
             //throw $th;
+            dd($th);
         }
        
     }

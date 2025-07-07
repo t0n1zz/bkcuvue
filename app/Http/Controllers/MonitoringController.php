@@ -237,11 +237,19 @@ class MonitoringController extends Controller{
 	public function summary($id_cu){
 		$sum_tercapai= 0;
 		$sum_rekom = 0;
-		$data_sum = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->where('id_cu', $id_cu)->get();
+		$data_sum = [];
+		if($id_cu == 'semua'){
+			$data_sum = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->get();
+		}else{
+			$data_sum = Monitoring::with('cu', 'tp', 'aktivis_cu', 'aktivis_bkcu', 'monitoring_rekom')->withCount('monitoring_pencapaian', 'monitoring_rekom', 'monitoring_rekom_ok')->where('id_cu', $id_cu)->get();
+		}
+		
+		
 		$data_sum->each(function ($monitoring) use(&$sum_tercapai, &$sum_rekom) {
 			$sum_rekom = $sum_rekom + $monitoring->monitoring_rekom_count;
 			$sum_tercapai = $sum_tercapai + $monitoring->monitoring_rekom_ok_count;
 		});
+
 		$sum_tidak_tercapai = $sum_rekom - $sum_tercapai;
 		
 		$summary = [];
