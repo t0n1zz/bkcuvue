@@ -81,6 +81,10 @@ export default {
     return axios.get("/api/kegiatanBKCU/indexListMateri/" + id);
   },
 
+  indexPanitia: function (id) {
+    return axios.get("/api/kegiatanBKCU/indexPanitia/" + id);
+  },
+
   indexNilaiListMateri: function (id) {
     return axios.get("/api/kegiatanBKCU/indexNilaiListMateri/" + id);
   },
@@ -149,6 +153,10 @@ export default {
     return axios.get("/api/kegiatanBKCU/kegiatan");
   },
 
+  getNomorSertifikat(id) {
+    return axios.post("/api/kegiatanBKCU/getNomorSertifikat/" + id);
+  },
+
   checkPeserta: function (kegiatan_id, aktivis_id) {
     return axios.get(
       "/api/kegiatanBKCU/checkPeserta/" + kegiatan_id + "/" + aktivis_id
@@ -167,6 +175,10 @@ export default {
 
   create: function () {
     return axios.get("/api/kegiatanBKCU/create");
+  },
+
+  penerimaSertifikat: function (form) {
+    return axios.post("/api/kegiatanBKCU/penerimaSertifikat" , form);
   },
 
   store: function (tipe, form) {
@@ -190,6 +202,7 @@ export default {
       form
     );
   },
+
 
   saveNilai: function (id, form) {
     return axios.post("/api/kegiatanBKCU/saveNilai/" + id, form);

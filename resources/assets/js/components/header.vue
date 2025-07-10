@@ -387,6 +387,11 @@
 										Kode Diklat
 									</router-link>
 
+									<!-- tambah booking -->
+									<router-link :to="{ name:'sertifikatKegiatanGetNomor' }" class="dropdown-item" active-class="active" exact v-if="currentUser.id_cu == 0">
+										Ambil Nomor Sertifikat
+									</router-link>
+
 									<!-- tambah voting -->
 									<router-link :to="{ name:'votingCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_voting']">
 										Voting
@@ -506,6 +511,9 @@
 										Kode Diklat
 									</router-link>
 
+									<router-link :to="{ name: 'sertifikatKegiatanGetNomor' }" class="dropdown-item" active-class="active" exact>
+										Ambil Nomor Sertifikat
+									</router-link>
 								</div>
 							</div>
 

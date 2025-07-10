@@ -31,7 +31,7 @@ class Kegiatan extends Model {
     }
     
     protected $fillable = [
-      'id_regencies','id_districts','id_regencies','id_provinces','id_tempat','id_sertifikat','id_kode','kode_diklat','name','periode','durasi','mulai','selesai','jadwal','keterangan','keteranganBatal','status','tipe','peserta_max','peserta_max_cu','peserta_min','created_at','updated_at','deleted_at','gambar','tipe_tempat','keputusan_cu','keputusan_user','pertanyaan_cu','pertanyaan_user'
+      'tema','id_regencies','id_districts','id_regencies','id_provinces','id_tempat','id_sertifikat','id_sertifikatPanitia','id_kode','kode_diklat','name','periode','durasi','mulai','selesai','jadwal','keterangan','keteranganBatal','status','tipe','peserta_max','peserta_max_cu','peserta_min','created_at','updated_at','deleted_at','gambar','tipe_tempat','keputusan_cu','keputusan_user','pertanyaan_cu','pertanyaan_user','isSasaran_cu'
     ];
 
     protected $allowedFilters = [
@@ -48,7 +48,7 @@ class Kegiatan extends Model {
     
     public static function initialize(){
         return [
-            'id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '', 'id_tempat' => '', 'kode_diklat' => '', 'name' => '', 'kota' => '', 'tipe' => '', 'periode' => '','durasi' => '', 'mulai' => '', 'selesai' => '','jadwal' => '', 'keterangan' => '', 'status' => '', 'peserta_max' => '', 'peserta_min' => '', 'gambar' => '', 'tipe_tempat' => ''
+            'tema' =>'','id_villages' => '', 'id_districts' => '', 'id_regencies' => '', 'id_provinces' => '', 'id_tempat' => '', 'kode_diklat' => '', 'name' => '', 'kota' => '', 'tipe' => '', 'periode' => '','durasi' => '', 'mulai' => '', 'selesai' => '','jadwal' => '', 'keterangan' => '', 'status' => '', 'peserta_max' => '', 'peserta_min' => '', 'gambar' => '', 'tipe_tempat' => '','isSasaran_cu' => ''
         ];
     }
         
@@ -80,16 +80,20 @@ class Kegiatan extends Model {
         return $this->belongsToMany('App\Sasaran','kegiatan_sasaran')->withTimestamps();
     }
 
+    public function sasaranCu(){
+        return $this->belongsToMany('App\Cu', 'kegiatan_sasaran_cu')->withTimestamps();
+    }
+    
     public function panitia_dalam(){
-        return $this->belongsToMany('App\Aktivis','kegiatan_panitia')->where('asal','dalam')->withPivot('peran','keterangan','asal')->withTimestamps();
+        return $this->belongsToMany('App\Aktivis','kegiatan_panitia')->where('asal','dalam')->withPivot('peran','keterangan','asal', 'isGetSertifikat')->withTimestamps();
     }
 
     public function panitia_luar(){
-        return $this->belongsToMany('App\MitraOrang','kegiatan_panitia','kegiatan_id','aktivis_id')->where('asal','luar')->withPivot('peran','keterangan','asal')->withTimestamps();
+        return $this->belongsToMany('App\MitraOrang','kegiatan_panitia','kegiatan_id','aktivis_id')->where('asal','luar')->withPivot('peran','keterangan','asal', 'isGetSertifikat')->withTimestamps();
     }
 
     public function panitia_luar_lembaga(){
-        return $this->belongsToMany('App\MitraLembaga','kegiatan_panitia','kegiatan_id','aktivis_id')->where('asal','luar lembaga')->withPivot('peran','keterangan','asal')->withTimestamps();
+        return $this->belongsToMany('App\MitraLembaga','kegiatan_panitia','kegiatan_id','aktivis_id')->where('asal','luar lembaga')->withPivot('peran','keterangan','asal', 'isGetSertifikat')->withTimestamps();
     }
 
     public function peserta(){

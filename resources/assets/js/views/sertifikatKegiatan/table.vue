@@ -54,6 +54,9 @@
 					<td v-if="!columnData[2].hide">
 						<check-value :value="props.item.name"></check-value>
 					</td>
+					<td v-if="!columnData[3].hide">
+						<check-value :value="props.item.tipe"></check-value>
+					</td>
 					
 				</tr>
 			</template>
@@ -85,6 +88,11 @@
 								<div class="col-sm-6">
 									<ul class="list list-unstyled mb-1">
 										<li>Nama: <span class="text-muted">{{ props.item.name }}</span></li>
+										</ul>
+								</div>
+								<div class="col-sm-6">
+									<ul class="list list-unstyled mb-1">
+										<li>Tipe: <span class="text-muted">{{ props.item.tipe }}</span></li>
 										</ul>
 								</div>
 							</div>
@@ -154,7 +162,18 @@
 						title: 'Nama',
 						name: 'name',
 						tipe: 'string',
-						sort: false,
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+						filterDefault: false
+						
+					},
+					{
+						title: 'Tipe',
+						name: 'tipe',
+						tipe: 'string',
+						sort: true,
 						hide: false,
 						disable: false,
 						filter: true,
@@ -175,9 +194,6 @@
 		created(){
 			this.fetch(this.query);
 		},
-		// updated(){
-		// 	console.log(this.selectedItem);
-		// },
 		watch: {
 			'$route' (to, from){
 				// check current page meta

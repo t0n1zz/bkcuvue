@@ -1,25 +1,47 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[162],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/artikel/index.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/artikel/index.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/pageHeader.vue */ "./resources/assets/js/components/pageHeader.vue");
-/* harmony import */ var _components_message_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/message.vue */ "./resources/assets/js/components/message.vue");
-/* harmony import */ var _components_selectCu_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/selectCu.vue */ "./resources/assets/js/components/selectCu.vue");
-/* harmony import */ var _table_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./table.vue */ "./resources/assets/js/views/artikel/table.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/pageHeader.vue */ "./resources/assets/js/components/pageHeader.vue");
+/* harmony import */ var _components_infoIcon_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/infoIcon.vue */ "./resources/assets/js/components/infoIcon.vue");
+/* harmony import */ var _components_wajibBadge_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/wajibBadge.vue */ "./resources/assets/js/components/wajibBadge.vue");
+/* harmony import */ var _components_wajibUkuran_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/wajibUkuran.vue */ "./resources/assets/js/components/wajibUkuran.vue");
+/* harmony import */ var _helpers_form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../helpers/form */ "./resources/assets/js/helpers/form.js");
+/* harmony import */ var _components_ImageUpload_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/ImageUpload.vue */ "./resources/assets/js/components/ImageUpload.vue");
+/* harmony import */ var _components_message_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/message.vue */ "./resources/assets/js/components/message.vue");
+/* harmony import */ var _components_formButton_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/formButton.vue */ "./resources/assets/js/components/formButton.vue");
+/* harmony import */ var _components_formInfo_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/formInfo.vue */ "./resources/assets/js/components/formInfo.vue");
+/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
+/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
+/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_12__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 //
 //
 //
@@ -56,6 +78,181 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
 
 
 
@@ -63,334 +260,246 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    pageHeader: _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    message: _components_message_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    selectCu: _components_selectCu_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    tableData: _table_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    pageHeader: _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    appModal: _components_modal__WEBPACK_IMPORTED_MODULE_11__["default"],
+    appImageUpload: _components_ImageUpload_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+    message: _components_message_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
+    formButton: _components_formButton_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
+    formInfo: _components_formInfo_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+    infoIcon: _components_infoIcon_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    wajibBadge: _components_wajibBadge_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    wajibUkuran: _components_wajibUkuran_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    Cleave: vue_cleave_component__WEBPACK_IMPORTED_MODULE_12___default.a
   },
   data: function data() {
     return {
-      title: 'Artikel',
-      kelas: 'artikel',
-      titleDesc: 'Mengelola data artikel',
-      titleIcon: 'icon-magazine',
-      selectCuPath: 'artikelCu'
-    };
-  },
-  created: function created() {
-    this.checkUser('index_artikel', this.$route.params.cu);
-  },
-  methods: {
-    checkUser: function checkUser(permission, id_cu) {
-      if (this.currentUser) {
-        if (!this.currentUser.can || !this.currentUser.can[permission]) {
-          this.$router.push('/notFound');
+      title: '',
+      localMode: this.mode,
+      formNomorSertifikatKegiatan: {
+        id_kegiatan: '',
+        nama_kegiatan: '',
+        jumlah_nomor_sertifikat: '',
+        periode: '',
+        peserta: []
+      },
+      cleaveOption: {
+        date: {
+          date: true,
+          datePattern: ['Y', 'm', 'd'],
+          delimiter: '-'
+        },
+        year: {
+          date: true,
+          datePattern: ['Y']
+        },
+        number12: {
+          numeral: true,
+          numeralIntegerScale: 12,
+          numeralDecimalScale: 0,
+          stripLeadingZeroes: false,
+          delimiter: ''
+        },
+        number3: {
+          numeral: true,
+          numeralIntegerScale: 3,
+          numeralDecimalScale: 0,
+          stripLeadingZeroes: false
+        },
+        numeric: {
+          numeral: true,
+          numeralThousandsGroupStyle: 'thousand',
+          numeralDecimalScale: 2,
+          numeralDecimalMark: ',',
+          delimiter: '.'
         }
-
-        if (!id_cu || this.currentUser.id_cu) {
-          if (this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu) {
-            this.$router.push('/notFound');
-          }
-        }
-      }
-    }
-  },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
-    currentUser: 'currentUser'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('artikel', {
-    itemData: 'dataS',
-    itemDataStat: 'dataStatS'
-  }))
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/artikel/table.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/artikel/table.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _components_dataviewer2_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/dataviewer2.vue */ "./resources/assets/js/components/dataviewer2.vue");
-/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
-/* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    DataViewer: _components_dataviewer2_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    appModal: _components_modal__WEBPACK_IMPORTED_MODULE_2__["default"],
-    checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
-  },
-  props: ['title', 'kelas'],
-  data: function data() {
-    return {
-      selectedItem: [],
+      },
       query: {
-        order_column: "name",
+        order_column: "id",
         order_direction: "asc",
         filter_match: "and",
-        limit: 10,
+        limit: 100,
         page: 1
       },
-      excelDownloadUrl: '',
-      columnData: [{
-        title: 'No.',
-        name: 'No.'
-      }, {
-        title: 'Foto',
-        name: 'gambar',
-        hide: false
-      }, {
-        title: 'Judul',
-        name: 'name',
-        tipe: 'string',
-        sort: true,
-        hide: false,
-        disable: false,
-        filter: true,
-        filterDefault: true
-      }, {
-        title: 'Kategori',
-        name: 'kategori.name',
-        tipe: 'string',
-        sort: false,
-        hide: false,
-        disable: false,
-        filter: true
-      }, {
-        title: 'Penulis',
-        name: 'penulis.name',
-        sort: false,
-        hide: false,
-        disable: false,
-        filter: true
-      }, {
-        title: 'CU',
-        name: 'cu.name',
-        sort: false,
-        hide: false,
-        disable: false,
-        filter: true
-      }, {
-        title: 'Terbitkan',
-        name: 'terbitkan',
-        sort: true,
-        hide: false,
-        disable: false
-      }, {
-        title: 'Utamakan',
-        name: 'utamakan',
-        sort: true,
-        hide: false,
-        disable: false
-      }, {
-        title: 'Tgl. Tulis',
-        name: 'created_at',
-        tipe: 'datetime',
-        sort: true,
-        hide: false,
-        disable: false,
-        filter: true
-      }, {
-        title: 'Tgl. Ubah',
-        name: 'updated_at',
-        tipe: 'datetime',
-        sort: true,
-        hide: false,
-        disable: false,
-        filter: true
-      }],
+      titleDesc: '',
+      titleIcon: '',
+      level: 2,
+      level2Title: 'Sertifikat Kegiatan',
+      kelas: 'sertifikatKegiatan',
+      cancelState: 'methods',
       state: '',
       modalShow: false,
       modalState: '',
       modalTitle: '',
+      modalColor: '',
       modalContent: '',
-      modalButton: ''
+      modalSize: '',
+      submited: false
     };
   },
   created: function created() {
-    this.fetch(this.query);
+    if (this.$route.meta.mode === 'edit') {
+      this.$store.dispatch(this.kelas + '/editFormNomor', this.$route.params.id);
+      this.title = 'Ubah Ambil Nomor Sertifikat Kegiatan';
+      this.titleDesc = 'Mengubah nomor sertifikat kegiatan yang diambil';
+      this.titleIcon = 'icon-pencil5';
+    } else if (this.$route.meta.mode === 'detail') {
+      this.$store.dispatch(this.kelas + '/editFormNomor', this.$route.params.id);
+      this.title = 'Detail Nomor Sertifikat Kegiatan';
+      this.titleDesc = 'Detail nomor sertifikat kegiatan yang diambil';
+      this.titleIcon = 'icon-stack2';
+    } else {
+      this.title = 'Ambil Nomor Sertifikat Kegiatan';
+      this.titleDesc = 'Menambah nomor sertifikat kegiatan';
+      this.titleIcon = 'icon-plus3';
+    }
+
+    this.isDisabled();
   },
   watch: {
-    // check route changes
-    '$route': function $route(to, from) {
-      this.fetch(this.query);
+    mode: function mode(newValue) {
+      this.localMode = newValue;
     },
-    // when updating data
-    updateStat: function updateStat(value) {
-      this.modalState = value;
-      this.modalButton = 'Ok';
+    'formNomorSertifikatKegiatan.jumlah_nomor_sertifikat': function formNomorSertifikatKegiatanJumlah_nomor_sertifikat(val) {
+      this.updatePesertaInputs();
 
-      if (value == "success") {
-        this.modalTitle = this.updateMessage.message;
-        this.modalContent = '';
-        this.fetch();
-      } else if (value == "fail") {
-        this.modalContent = this.updateMessage;
+      if (this.formNomorSertifikatKegiatan.jumlah_nomor_sertifikat == 0) {
+        this.formNomorSertifikatKegiatan.jumlah_nomor_sertifikat = '';
+      }
+    },
+    itemData: function itemData(value) {
+      if ((this.$route.meta.mode === 'edit' || this.$route.meta.mode === 'detail') && value) {
+        if (value.id !== 0 || value.id !== '' || value.id !== null) {
+          this.jenisKegiatan = 'YA';
+          this.formNomorSertifikatKegiatan.id_kegiatan = value.id;
+        } else {
+          this.jenisKegiatan = 'TIDAK';
+        }
+
+        this.formNomorSertifikatKegiatan.nama_kegiatan = value.kegiatan_name;
+        this.formNomorSertifikatKegiatan.jumlah_nomor_sertifikat = value.jumlah_nomor_sertifikat;
+
+        if (Array.isArray(value.has_nomor) && value.has_nomor.length > 0) {
+          this.formNomorSertifikatKegiatan.periode = value.has_nomor[0].periode;
+        }
+
+        this.formNomorSertifikatKegiatan.peserta = value.has_nomor.map(function (item) {
+          var _item$peserta_non_akt, _item$peserta_non_akt2, _item$peserta_non_akt3;
+
+          return {
+            _uid: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+            id: ((_item$peserta_non_akt = item.peserta_non_aktivis) === null || _item$peserta_non_akt === void 0 ? void 0 : _item$peserta_non_akt.id) || '',
+            nama: ((_item$peserta_non_akt2 = item.peserta_non_aktivis) === null || _item$peserta_non_akt2 === void 0 ? void 0 : _item$peserta_non_akt2.nama) || '',
+            keterangan: ((_item$peserta_non_akt3 = item.peserta_non_aktivis) === null || _item$peserta_non_akt3 === void 0 ? void 0 : _item$peserta_non_akt3.keterangan) || '',
+            nomor: item.nomor || ''
+          };
+        });
+      }
+    },
+    updateStat: function updateStat(value) {
+      this.modalShow = true;
+      this.modalState = value;
+      this.modalColor = '';
+
+      if (value === "success") {
+        if (this.$route.meta.mode === 'edit') {
+          this.modalTitle = 'Ambil Nomor Sertifikat ' + this.formNomorSertifikatKegiatan.nama_kegiatan + ' Berhasil Diupdate';
+        } else {
+          this.modalTitle = 'Nomor Sertifikat Berhasil Diambil';
+        }
       } else {
-        this.modalContent = '';
+        this.modalTitle = 'Oops terjadi kesalahan :(';
+        this.modalContent = this.updateResponse;
       }
     }
   },
   methods: {
-    fetch: function fetch(params) {
-      if (this.$route.params.cu == 'semua') {
-        this.disableColumnCu(false);
-        this.$store.dispatch(this.kelas + '/index', params);
-        this.excelDownloadUrl = this.kelas;
+    isDisabled: function isDisabled() {
+      if (this.$route.meta.mode === 'detail') {
+        return true;
       } else {
-        this.disableColumnCu(true);
-        this.$store.dispatch(this.kelas + '/indexCu', [params, this.$route.params.cu]);
-        this.excelDownloadUrl = this.kelas + '/indexCu/' + this.$route.params.cu;
+        return false;
       }
     },
-    disableColumnCu: function disableColumnCu(status) {
-      this.columnData[5].disable = status;
+    tambahInput: function tambahInput() {
+      this.formNomorSertifikatKegiatan.peserta.push({
+        _uid: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+        nama: '',
+        keterangan: '',
+        id: ''
+      });
+      this.formNomorSertifikatKegiatan.jumlah_nomor_sertifikat = this.formNomorSertifikatKegiatan.peserta.length;
+    },
+    hapusInput: function hapusInput(index) {
+      this.formNomorSertifikatKegiatan.peserta.splice(index, 1);
+      this.formNomorSertifikatKegiatan.jumlah_nomor_sertifikat = this.formNomorSertifikatKegiatan.peserta.length;
+    },
+    updatePesertaInputs: function updatePesertaInputs() {
+      var jumlahPeserta = parseInt(this.formNomorSertifikatKegiatan.jumlah_nomor_sertifikat || 0);
+      var pesertaLama = this.formNomorSertifikatKegiatan.peserta;
+
+      var pesertaBaru = _toConsumableArray(pesertaLama);
+
+      while (pesertaBaru.length < jumlahPeserta) {
+        pesertaBaru.push({
+          _uid: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+          nama: '',
+          keterangan: '',
+          id: ''
+        });
+      }
+
+      while (pesertaBaru.length > jumlahPeserta) {
+        pesertaBaru.pop();
+      }
+
+      this.formNomorSertifikatKegiatan.peserta = pesertaBaru;
+    },
+    save: function save() {
+      var _this = this;
+
+      var formData = Object(_helpers_form__WEBPACK_IMPORTED_MODULE_6__["toMulipartedForm"])(this.formNomorSertifikatKegiatan, this.mode);
+      this.$validator.validateAll('formNomorSertifikatKegiatan').then(function (result) {
+        if (result) {
+          if (_this.$route.meta.mode == 'edit') {
+            _this.$store.dispatch(_this.kelas + '/updateNomorSertifikatKegiatan', [_this.$route.params.id, formData]);
+          } else {
+            _this.$store.dispatch(_this.kelas + '/storeNomorSertifikatKegiatan', [_this.currentUser.id, formData]);
+          }
+        } else {
+          _this.submited = true;
+        }
+      });
+    },
+    back: function back() {
+      this.$router.push({
+        name: this.kelas + 'GetNomor'
+      });
+    },
+    modalBackgroundClick: function modalBackgroundClick() {
+      if (this.modalState === 'success') {
+        this.modalTutup;
+      } else if (this.modalState === 'loading') {// do nothing
+      } else {
+        this.modalShow = false;
+      }
+    },
+    tutup: function tutup() {
+      this.localMode = '';
+      this.$emit('tutup');
     },
     selectedRow: function selectedRow(item) {
       this.selectedItem = item;
     },
-    ubahData: function ubahData(id, id_cu) {
-      this.$router.push({
-        name: this.kelas + 'Edit',
-        params: {
-          id: id
-        }
-      });
+    tambah: function tambah() {
+      this.mode = 'tambah';
+      this.modalConfirmOpen('nomorSertifikatKegiatan');
+    },
+    ubahData: function ubahData() {
+      this.mode = 'edit';
+      this.modalConfirmOpen('nomorSertifikatKegiatan');
     },
     modalConfirmOpen: function modalConfirmOpen(state, isMobile, itemMobile) {
       this.modalShow = true;
-      this.modalState = 'confirm-tutup';
       this.state = state;
 
       if (isMobile) {
@@ -398,67 +507,123 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       if (state == 'hapus') {
-        this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.name + ' ?';
+        this.modalState = 'confirm-tutup';
+        this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.kegiatan_name + ' ini?';
         this.modalButton = 'Iya, Hapus';
-      } else if (state == 'updateTerbitkan') {
-        if (this.selectedItem.terbitkan == 0) {
-          this.modalTitle = 'Terbitkan ' + this.title + ' ' + this.selectedItem.name + ' ?';
-          this.modalButton = 'Iya, terbitkan';
-        } else {
-          this.modalTitle = 'Tidak terbitkan ' + this.title + ' ' + this.selectedItem.name + ' ?';
-          this.modalButton = 'Iya, tidak terbitkan';
-        }
-      } else if (state == 'updateUtamakan') {
-        if (this.selectedItem.utamakan == 0) {
-          this.modalTitle = 'Utamakan ' + this.title + ' ' + this.selectedItem.name + ' ?';
-          this.modalButton = 'Iya, utamakan';
-        } else {
-          this.modalTitle = 'Tidak utamakan ' + this.title + ' ' + this.selectedItem.name + ' ?';
-          this.modalButton = 'Iya, tidak utamakan';
-        }
+        this.modalColor = '';
+      }
+
+      if (state == 'nomorSertifikatKegiatan') {
+        this.modalState = 'normal1';
+        this.modalColor = 'bg-primary';
+        this.modalSize = 'modal-full';
+        this.modalTitle = 'Mengambil Nomor Sertifikat';
       }
     },
+    modalKeteranganBatalOpen: function modalKeteranganBatalOpen(value) {
+      this.modalShow = true;
+      this.modalState = 'normal2';
+      this.modalTitle = 'Keterangan pembatalan ' + this.title + ' ' + this.selectedItem.name;
+      this.modalColor = 'bg-primary';
+      this.keteranganBatal = value;
+    },
     modalTutup: function modalTutup() {
-      this.modalShow = false;
+      this.selectedItem = '';
       this.$store.dispatch(this.kelas + '/resetUpdateStat');
+      this.back();
+      this.modalShow = false;
     },
     modalConfirmOk: function modalConfirmOk() {
       if (this.state == 'hapus') {
-        this.$store.dispatch(this.kelas + '/destroy', this.selectedItem.id);
-      } else if (this.state == "updateTerbitkan") {
-        this.$store.dispatch(this.kelas + '/updateTerbitkan', this.selectedItem.id);
-      } else if (this.state == "updateUtamakan") {
-        this.$store.dispatch(this.kelas + '/updateUtamakan', this.selectedItem.id);
+        this.$store.dispatch(this.kelas + '/destroyNomorSertifikatKegiatan', this.selectedItem.id);
+      }
+    },
+    gridColor: function gridColor(value) {
+      if (value == 1) {
+        return 'border-left-primary-400';
+      } else if (value == 2) {
+        return 'border-left-warning-400';
+      } else if (value == 3) {
+        return 'border-left-secondary-400';
+      } else if (value == 4) {
+        return 'border-left-success-400';
+      } else if (value == 5) {
+        return 'border-left-primary-400';
+      } else if (value == 6) {
+        return 'border-left-danger-400';
       }
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
     currentUser: 'currentUser'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('global', {
-    idCu: 'idCu'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('cu', {
-    modelCu: 'dataS',
-    modelCuStat: 'dataStatS'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('artikel', {
-    itemData: 'dataS',
-    itemDataStat: 'dataStatS',
-    updateMessage: 'update',
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('sertifikatKegiatan', {
+    itemData: 'dataSS',
+    itemDataStat: 'dataStatSS',
+    rules: 'rules',
+    options: 'options',
+    updateResponse: 'update',
     updateStat: 'updateStat'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('artikelKategori', {
-    modelKategori: 'data',
-    modelKategoriStat: 'dataStat'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('artikelPenulis', {
-    modelPenulis: 'data',
-    modelPenulisStat: 'dataStat'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('kegiatanBKCU', {
+    modelData: 'periode',
+    modelDataStat: 'periodeStat'
   }))
 });
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/artikel/index.vue?vue&type=template&id=47768de8&":
-/*!******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/artikel/index.vue?vue&type=template&id=47768de8& ***!
-  \******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue?vue&type=style&index=0&id=f96702da&scoped=true&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue?vue&type=style&index=0&id=f96702da&scoped=true&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\ninput.disabled-visible[disabled][data-v-f96702da] {\r\n  background-color: #fff !important;\r\n  color: #333 !important;\r\n  opacity: 1 !important;\r\n  -webkit-text-fill-color: #333 !important;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue?vue&type=style&index=0&id=f96702da&scoped=true&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue?vue&type=style&index=0&id=f96702da&scoped=true&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./formNomorSertifikatKegiatan.vue?vue&type=style&index=0&id=f96702da&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue?vue&type=style&index=0&id=f96702da&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue?vue&type=template&id=f96702da&scoped=true&":
+/*!***************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue?vue&type=template&id=f96702da&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -466,7 +631,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -477,8 +642,16 @@ var render = function() {
         attrs: {
           title: _vm.title,
           titleDesc: _vm.titleDesc,
-          titleIcon: _vm.titleIcon
-        }
+          titleIcon: _vm.titleIcon,
+          level: _vm.level,
+          level2Title: _vm.level2Title,
+          level2Route: _vm.kelas,
+        },
+        on: {
+          level2Back: function ($event) {
+            return _vm.back()
+          },
+        },
       }),
       _vm._v(" "),
       _c("div", { staticClass: "page-content pt-0" }, [
@@ -487,471 +660,673 @@ var render = function() {
             "div",
             { staticClass: "content" },
             [
-              _vm.itemDataStat === "fail"
+              _vm.errors.any("formNomorSertifikatKegiatan") && _vm.submited
                 ? _c("message", {
                     attrs: {
-                      title: "Oops terjadi kesalahan:",
-                      errorData: _vm.itemData
-                    }
-                  })
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.currentUser.id_cu == 0
-                ? _c("select-cu", {
-                    attrs: {
-                      kelas: _vm.kelas,
-                      path: _vm.selectCuPath,
-                      isPus: true
-                    }
-                  })
-                : _vm._e(),
-              _vm._v(" "),
-              _c("table-data", {
-                attrs: { title: _vm.title, kelas: _vm.kelas }
-              })
-            ],
-            1
-          )
-        ])
-      ])
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/artikel/table.vue?vue&type=template&id=d44023f0&":
-/*!******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/artikel/table.vue?vue&type=template&id=d44023f0& ***!
-  \******************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "data-viewer",
-        {
-          attrs: {
-            title: _vm.title,
-            columnData: _vm.columnData,
-            itemData: _vm.itemData,
-            query: _vm.query,
-            itemDataStat: _vm.itemDataStat,
-            excelDownloadUrl: _vm.excelDownloadUrl
-          },
-          on: { fetch: _vm.fetch },
-          scopedSlots: _vm._u([
-            {
-              key: "item-desktop",
-              fn: function(props) {
-                return [
-                  _c(
-                    "tr",
-                    {
-                      staticClass: "text-nowrap",
-                      class: {
-                        "bg-info": _vm.selectedItem.id == props.item.id
-                      },
-                      on: {
-                        click: function($event) {
-                          return _vm.selectedRow(props.item)
-                        }
-                      }
+                      title: "Oops, terjadi kesalahan",
+                      errorItem: _vm.errors.items,
                     },
-                    [
-                      !_vm.columnData[0].hide
-                        ? _c("td", [
-                            _vm._v(
-                              "\n\t\t\t\t\t" +
-                                _vm._s(
-                                  props.index +
-                                    1 +
-                                    (+_vm.itemData.current_page - 1) *
-                                      +_vm.itemData.per_page +
-                                    "."
-                                ) +
-                                "\n\t\t\t\t"
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !_vm.columnData[1].hide
-                        ? _c("td", [
-                            props.item.gambar
-                              ? _c("img", {
-                                  staticClass: "img-rounded img-fluid wmin-sm",
-                                  attrs: {
-                                    src:
-                                      "/images/artikel/" +
-                                      props.item.gambar +
-                                      "n.jpg",
-                                    width: "40"
-                                  }
-                                })
-                              : _c("img", {
-                                  staticClass: "img-rounded img-fluid wmin-sm",
-                                  attrs: {
-                                    src: "/images/no_image.jpg",
-                                    width: "40"
-                                  }
-                                })
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !_vm.columnData[2].hide
-                        ? _c(
-                            "td",
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  attrs: {
+                    enctype: "multipart/form-data",
+                    "data-vv-scope": "formNomorSertifikatKegiatan",
+                  },
+                  on: {
+                    submit: function ($event) {
+                      $event.preventDefault()
+                      return _vm.save.apply(null, arguments)
+                    },
+                  },
+                },
+                [
+                  _c("div", { staticClass: "card" }, [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group",
+                              class: {
+                                "has-error": _vm.errors.has(
+                                  "formNomorSertifikatKegiatan.nama_kegiatan"
+                                ),
+                              },
+                            },
                             [
-                              _c("check-value", {
-                                attrs: { value: props.item.name }
-                              })
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !_vm.columnData[3].hide && !_vm.columnData[3].disable
-                        ? _c(
-                            "td",
-                            [
-                              props.item.kategori
-                                ? _c("check-value", {
-                                    attrs: { value: props.item.kategori.name }
-                                  })
-                                : _c("span", [_vm._v("-")])
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !_vm.columnData[4].hide && !_vm.columnData[4].disable
-                        ? _c(
-                            "td",
-                            [
-                              props.item.penulis
-                                ? _c("check-value", {
-                                    attrs: { value: props.item.penulis.name }
-                                  })
-                                : _c("span", [_vm._v("-")])
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !_vm.columnData[5].hide && !_vm.columnData[5].disable
-                        ? _c(
-                            "td",
-                            [
-                              props.item.cu
-                                ? _c("check-value", {
-                                    attrs: { value: props.item.cu.name }
-                                  })
-                                : _c("span", [_vm._v("PUSKOPCUINA")])
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !_vm.columnData[6].hide
-                        ? _c("td", {
-                            domProps: {
-                              innerHTML: _vm._s(
-                                _vm.$options.filters.checkStatus(
-                                  props.item.terbitkan
-                                )
-                              )
-                            }
-                          })
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !_vm.columnData[7].hide
-                        ? _c("td", {
-                            domProps: {
-                              innerHTML: _vm._s(
-                                _vm.$options.filters.checkStatus(
-                                  props.item.utamakan
-                                )
-                              )
-                            }
-                          })
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !_vm.columnData[8].hide
-                        ? _c("td", {
-                            domProps: {
-                              innerHTML: _vm._s(
-                                _vm.$options.filters.dateTime(
-                                  props.item.created_at
-                                )
-                              )
-                            }
-                          })
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !_vm.columnData[9].hide
-                        ? _c("td", [
-                            props.item.created_at !== props.item.updated_at
-                              ? _c("span", {
-                                  domProps: {
-                                    innerHTML: _vm._s(
-                                      _vm.$options.filters.dateTime(
-                                        props.item.updated_at
-                                      )
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "formNomorSertifikatKegiatan.nama_kegiatan"
+                                    ),
+                                  },
+                                },
+                                [
+                                  _vm.errors.has(
+                                    "formNomorSertifikatKegiatan.nama_kegiatan"
+                                  )
+                                    ? _c("i", { staticClass: "icon-cross2" })
+                                    : _vm._e(),
+                                  _vm._v(
+                                    "\n\t\t\t\t\t\t\t\t\t\t\tNama Kegiatan: "
+                                  ),
+                                  _c("wajib-badge"),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required",
+                                    expression: "'required'",
+                                  },
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value:
+                                      _vm.formNomorSertifikatKegiatan
+                                        .nama_kegiatan,
+                                    expression:
+                                      "formNomorSertifikatKegiatan.nama_kegiatan",
+                                  },
+                                ],
+                                staticClass: "form-control disabled-visible",
+                                attrs: {
+                                  type: "text",
+                                  name: "nama_kegiatan",
+                                  placeholder:
+                                    "Silahkan masukkan nama kegiatan",
+                                  "data-vv-as": "Nama Kegiatan",
+                                  disabled: _vm.isDisabled(),
+                                },
+                                domProps: {
+                                  value:
+                                    _vm.formNomorSertifikatKegiatan
+                                      .nama_kegiatan,
+                                },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.formNomorSertifikatKegiatan,
+                                      "nama_kegiatan",
+                                      $event.target.value
                                     )
-                                  }
-                                })
-                              : _c("span", [_vm._v("-")])
-                          ])
-                        : _vm._e()
-                    ]
-                  )
-                ]
-              }
-            }
-          ])
-        },
-        [
-          _c(
-            "template",
-            { slot: "button-desktop" },
-            [
-              _vm.currentUser.can && _vm.currentUser.can["create_" + _vm.kelas]
-                ? _c(
-                    "router-link",
-                    {
-                      staticClass: "btn btn-light mb-1",
-                      attrs: { to: { name: _vm.kelas + "Create" } }
-                    },
-                    [
-                      _c("i", { staticClass: "icon-plus3" }),
-                      _vm._v(" Tambah\n\t\t\t")
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.currentUser.can && _vm.currentUser.can["update_" + _vm.kelas]
-                ? _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-light mb-1",
-                      attrs: { disabled: !_vm.selectedItem.id },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.ubahData(
-                            _vm.selectedItem.id,
-                            _vm.selectedItem.id_cu
-                          )
-                        }
-                      }
-                    },
-                    [
-                      _c("i", { staticClass: "icon-pencil5" }),
-                      _vm._v(" Ubah\n\t\t\t")
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.currentUser.can && _vm.currentUser.can["destroy_" + _vm.kelas]
-                ? _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-light mb-1",
-                      attrs: { disabled: !_vm.selectedItem.id },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.modalConfirmOpen("hapus")
-                        }
-                      }
-                    },
-                    [
-                      _c("i", { staticClass: "icon-bin2" }),
-                      _vm._v(" Hapus\n\t\t\t")
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.currentUser.can &&
-              _vm.currentUser.can["terbitkan_" + _vm.kelas]
-                ? _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-light mb-1",
-                      attrs: { disabled: !_vm.selectedItem.id },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.modalConfirmOpen("updateTerbitkan")
-                        }
-                      }
-                    },
-                    [
-                      _c("i", { staticClass: "icon-file-upload" }),
+                                  },
+                                },
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.has(
+                                "formNomorSertifikatKegiatan.nama_kegiatan"
+                              )
+                                ? _c(
+                                    "small",
+                                    { staticClass: "text-muted text-danger" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-arrow-small-right",
+                                      }),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.errors.first(
+                                              "formNomorSertifikatKegiatan.nama_kegiatan"
+                                            )
+                                          ) +
+                                          "\n\t\t\t\t\t\t\t\t\t\t"
+                                      ),
+                                    ]
+                                  )
+                                : _c("small", { staticClass: "text-muted" }, [
+                                    _vm._v(" \n\t\t\t\t\t\t\t\t\t\t"),
+                                  ]),
+                            ]
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group",
+                              class: {
+                                "has-error": _vm.errors.has(
+                                  "formNomorSertifikatKegiatan.periode"
+                                ),
+                              },
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "formNomorSertifikatKegiatan.periode"
+                                    ),
+                                  },
+                                },
+                                [
+                                  _vm.errors.has(
+                                    "formNomorSertifikatKegiatan.periode"
+                                  )
+                                    ? _c("i", { staticClass: "icon-cross2" })
+                                    : _vm._e(),
+                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\tPeriode: "),
+                                  _c("wajib-badge"),
+                                  _vm._v(" "),
+                                  _c("info-icon", {
+                                    attrs: {
+                                      message: "Format: tahun. Contoh: 2025",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("cleave", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required",
+                                    expression: "'required'",
+                                  },
+                                ],
+                                staticClass: "form-control disabled-visible",
+                                attrs: {
+                                  name: "periode",
+                                  raw: false,
+                                  options: _vm.cleaveOption.year,
+                                  placeholder: "Silahkan masukkan periode",
+                                  "data-vv-as": "Periode",
+                                  disabled: _vm.isDisabled(),
+                                },
+                                model: {
+                                  value:
+                                    _vm.formNomorSertifikatKegiatan.periode,
+                                  callback: function ($$v) {
+                                    _vm.$set(
+                                      _vm.formNomorSertifikatKegiatan,
+                                      "periode",
+                                      $$v
+                                    )
+                                  },
+                                  expression:
+                                    "formNomorSertifikatKegiatan.periode",
+                                },
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.has(
+                                "formNomorSertifikatKegiatan.periode"
+                              )
+                                ? _c(
+                                    "small",
+                                    { staticClass: "text-muted text-danger" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-arrow-small-right",
+                                      }),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.errors.first(
+                                              "formNomorSertifikatKegiatan.periode"
+                                            )
+                                          ) +
+                                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                      ),
+                                    ]
+                                  )
+                                : _c("small", { staticClass: "text-muted" }, [
+                                    _vm._v(" "),
+                                  ]),
+                            ],
+                            1
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group",
+                              class: {
+                                "has-error": _vm.errors.has(
+                                  "formNomorSertifikatKegiatan.jumlah_nomor_sertifikat"
+                                ),
+                              },
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "formNomorSertifikatKegiatan.jumlah_nomor_sertifikat"
+                                    ),
+                                  },
+                                },
+                                [
+                                  _vm.errors.has(
+                                    "formNomorSertifikatKegiatan.jumlah_nomor_sertifikat"
+                                  )
+                                    ? _c("i", { staticClass: "icon-cross2" })
+                                    : _vm._e(),
+                                  _vm._v(
+                                    "\n\t\t\t\t\t\t\t\t\t\t\t\tJumlah Nomor Sertifikat: "
+                                  ),
+                                  _c("wajib-badge"),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("cleave", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required|numeric|min_value:1",
+                                    expression:
+                                      "'required|numeric|min_value:1'",
+                                  },
+                                ],
+                                staticClass: "form-control disabled-visible",
+                                attrs: {
+                                  name: "jumlah_nomor_sertifikat",
+                                  raw: false,
+                                  options: _vm.cleaveOption.number3,
+                                  placeholder: "0",
+                                  "data-vv-as": "Jumlah Nomor Sertifikat",
+                                  disabled: _vm.isDisabled(),
+                                  readonly: "",
+                                },
+                                model: {
+                                  value:
+                                    _vm.formNomorSertifikatKegiatan
+                                      .jumlah_nomor_sertifikat,
+                                  callback: function ($$v) {
+                                    _vm.$set(
+                                      _vm.formNomorSertifikatKegiatan,
+                                      "jumlah_nomor_sertifikat",
+                                      $$v
+                                    )
+                                  },
+                                  expression:
+                                    "formNomorSertifikatKegiatan.jumlah_nomor_sertifikat",
+                                },
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.has(
+                                "formNomorSertifikatKegiatan.jumlah_nomor_sertifikat"
+                              )
+                                ? _c(
+                                    "small",
+                                    { staticClass: "text-muted text-danger" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-arrow-small-right",
+                                      }),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.errors.first(
+                                              "formNomorSertifikatKegiatan.jumlah_nomor_sertifikat"
+                                            )
+                                          ) +
+                                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                      ),
+                                    ]
+                                  )
+                                : _c("small", { staticClass: "text-muted" }, [
+                                    _vm._v(" "),
+                                  ]),
+                            ],
+                            1
+                          ),
+                        ]),
+                      ]),
                       _vm._v(" "),
-                      _vm.selectedItem.terbitkan == 1
-                        ? _c("span", [_vm._v("Tidak Terbitkan")])
-                        : _c("span", [_vm._v("Terbitkan")])
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.currentUser.can &&
-              _vm.currentUser.can["utamakan_" + _vm.kelas]
-                ? _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-light mb-1",
-                      attrs: { disabled: !_vm.selectedItem.id },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.modalConfirmOpen("updateUtamakan")
-                        }
-                      }
-                    },
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c("table", { staticClass: "table table-bordered" }, [
+                            _c("thead", { staticClass: "table-header" }, [
+                              _c("tr", [
+                                _c("th", { staticClass: "col-md-4" }, [
+                                  _vm._v("Nama"),
+                                ]),
+                                _vm._v(" "),
+                                _c("th", { staticClass: "col-md-4" }, [
+                                  _vm._v("Keterangan"),
+                                ]),
+                                _vm._v(" "),
+                                _vm.$route.meta.mode === "detail"
+                                  ? _c("th", { staticClass: "col-md-2" }, [
+                                      _vm._v(" Nomor Sertifikat"),
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.$route.meta.mode !== "detail"
+                                  ? _c("th", { staticClass: "col-md-1" }, [
+                                      _vm._v("Action"),
+                                    ])
+                                  : _vm._e(),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "tbody",
+                              _vm._l(
+                                _vm.formNomorSertifikatKegiatan.peserta,
+                                function (peserta, index) {
+                                  return _c("tr", { key: peserta._uid }, [
+                                    _c("td", { staticClass: "col-md-4" }, [
+                                      _c(
+                                        "div",
+                                        {
+                                          class: {
+                                            "has-error": _vm.errors.has(
+                                              "formNomorSertifikatKegiatan.nama_peserta." +
+                                                index
+                                            ),
+                                          },
+                                        },
+                                        [
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value:
+                                                  _vm
+                                                    .formNomorSertifikatKegiatan
+                                                    .peserta[index].nama,
+                                                expression:
+                                                  "formNomorSertifikatKegiatan.peserta[index].nama",
+                                              },
+                                              {
+                                                name: "validate",
+                                                rawName: "v-validate",
+                                                value: "required",
+                                                expression: "'required'",
+                                              },
+                                            ],
+                                            staticClass:
+                                              "form-control disabled-visible",
+                                            attrs: {
+                                              type: "text",
+                                              "data-vv-as": "Nama Peserta",
+                                              name:
+                                                "formNomorSertifikatKegiatan.nama_peserta." +
+                                                index,
+                                              placeholder:
+                                                "Masukkan nama peserta",
+                                              disabled: _vm.isDisabled(),
+                                            },
+                                            domProps: {
+                                              value:
+                                                _vm.formNomorSertifikatKegiatan
+                                                  .peserta[index].nama,
+                                            },
+                                            on: {
+                                              input: function ($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm
+                                                    .formNomorSertifikatKegiatan
+                                                    .peserta[index],
+                                                  "nama",
+                                                  $event.target.value
+                                                )
+                                              },
+                                            },
+                                          }),
+                                        ]
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", { staticClass: "col-md-4" }, [
+                                      _c(
+                                        "div",
+                                        {
+                                          class: {
+                                            "has-error": _vm.errors.has(
+                                              "formNomorSertifikatKegiatan.keterangan." +
+                                                index
+                                            ),
+                                          },
+                                        },
+                                        [
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value:
+                                                  _vm
+                                                    .formNomorSertifikatKegiatan
+                                                    .peserta[index].keterangan,
+                                                expression:
+                                                  "formNomorSertifikatKegiatan.peserta[index].keterangan",
+                                              },
+                                            ],
+                                            staticClass:
+                                              "form-control disabled-visible",
+                                            attrs: {
+                                              type: "text",
+                                              "data-vv-as": "Keterangan",
+                                              name:
+                                                "formNomorSertifikatKegiatan.keterangan." +
+                                                index,
+                                              placeholder:
+                                                "Masukkan keterangan",
+                                              disabled: _vm.isDisabled(),
+                                            },
+                                            domProps: {
+                                              value:
+                                                _vm.formNomorSertifikatKegiatan
+                                                  .peserta[index].keterangan,
+                                            },
+                                            on: {
+                                              input: function ($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm
+                                                    .formNomorSertifikatKegiatan
+                                                    .peserta[index],
+                                                  "keterangan",
+                                                  $event.target.value
+                                                )
+                                              },
+                                            },
+                                          }),
+                                        ]
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm.$route.meta.mode === "detail"
+                                      ? _c("td", [
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value:
+                                                  _vm
+                                                    .formNomorSertifikatKegiatan
+                                                    .peserta[index].nomor,
+                                                expression:
+                                                  "formNomorSertifikatKegiatan.peserta[index].nomor",
+                                              },
+                                              {
+                                                name: "validate",
+                                                rawName: "v-validate",
+                                                value: "required",
+                                                expression: "'required'",
+                                              },
+                                            ],
+                                            staticClass:
+                                              "form-control disabled-visible",
+                                            attrs: {
+                                              type: "text",
+                                              "data-vv-as": "Nomor",
+                                              name:
+                                                "formNomorSertifikatKegiatan.nomor." +
+                                                index,
+                                              placeholder: "Nomor",
+                                              disabled: _vm.isDisabled(),
+                                            },
+                                            domProps: {
+                                              value:
+                                                _vm.formNomorSertifikatKegiatan
+                                                  .peserta[index].nomor,
+                                            },
+                                            on: {
+                                              input: function ($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.$set(
+                                                  _vm
+                                                    .formNomorSertifikatKegiatan
+                                                    .peserta[index],
+                                                  "nomor",
+                                                  $event.target.value
+                                                )
+                                              },
+                                            },
+                                          }),
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.$route.meta.mode !== "detail"
+                                      ? _c("td", { staticClass: "col-md-1" }, [
+                                          _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "btn btn-danger btn-sm",
+                                              attrs: { type: "button" },
+                                              on: {
+                                                click: function ($event) {
+                                                  return _vm.hapusInput(index)
+                                                },
+                                              },
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "icon-bin",
+                                              }),
+                                              _vm._v(
+                                                " Hapus\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                              ),
+                                            ]
+                                          ),
+                                        ])
+                                      : _vm._e(),
+                                  ])
+                                }
+                              ),
+                              0
+                            ),
+                          ]),
+                          _vm._v(" "),
+                          this.$route.meta.mode !== "detail"
+                            ? _c("div", { staticClass: "row" }, [
+                                _c("div", { staticClass: "col-md-4" }, [
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-primary",
+                                        attrs: { type: "button" },
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.tambahInput()
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass:
+                                            "icon-plus3 position-left",
+                                        }),
+                                        _vm._v(
+                                          " Tambah\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                        ),
+                                      ]
+                                    ),
+                                  ]),
+                                ]),
+                              ])
+                            : _vm._e(),
+                        ]),
+                      ]),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  this.$route.meta.mode !== "detail"
+                    ? _c("form-info")
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "card card-body" },
                     [
-                      _c("i", { staticClass: "icon-pushpin" }),
-                      _vm._v(" "),
-                      _vm.selectedItem.utamakan == 1
-                        ? _c("span", [_vm._v("Tidak Utamakan")])
-                        : _c("span", [_vm._v("Utamakan")])
-                    ]
-                  )
-                : _vm._e()
+                      this.$route.meta.mode !== "detail"
+                        ? _c("form-button", {
+                            attrs: {
+                              cancelState: _vm.cancelState,
+                              formValidation: "formNomorSertifikatKegiatan",
+                            },
+                            on: { cancelClick: _vm.back },
+                          })
+                        : _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-default",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function ($event) {
+                                  return _vm.back()
+                                },
+                              },
+                            },
+                            [
+                              _c("i", { staticClass: "icon-arrow-left13" }),
+                              _vm._v(" Back\n\t\t\t\t\t\t\t\t\t"),
+                            ]
+                          ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
             ],
             1
           ),
-          _vm._v(" "),
-          _c(
-            "template",
-            { slot: "button-mobile" },
-            [
-              _vm.currentUser.can && _vm.currentUser.can["create_" + _vm.kelas]
-                ? _c(
-                    "router-link",
-                    {
-                      staticClass: "btn btn-light btn-block mb-1",
-                      attrs: { to: { name: _vm.kelas + "Create" } }
-                    },
-                    [
-                      _c("i", { staticClass: "icon-plus3" }),
-                      _vm._v(" Tambah\n\t\t\t")
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.currentUser.can && _vm.currentUser.can["update_" + _vm.kelas]
-                ? _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-light btn-block mb-1",
-                      attrs: { disabled: !_vm.selectedItem.id },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.ubahData(
-                            _vm.selectedItem.id,
-                            _vm.selectedItem.id_cu
-                          )
-                        }
-                      }
-                    },
-                    [
-                      _c("i", { staticClass: "icon-pencil5" }),
-                      _vm._v(" Ubah\n\t\t\t")
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.currentUser.can && _vm.currentUser.can["destroy_" + _vm.kelas]
-                ? _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-light btn-block mb-1",
-                      attrs: { disabled: !_vm.selectedItem.id },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.modalConfirmOpen("hapus")
-                        }
-                      }
-                    },
-                    [
-                      _c("i", { staticClass: "icon-bin2" }),
-                      _vm._v(" Hapus\n\t\t\t")
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.currentUser.can &&
-              _vm.currentUser.can["terbitkan_" + _vm.kelas]
-                ? _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-light btn-block mb-1",
-                      attrs: { disabled: !_vm.selectedItem.id },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.modalConfirmOpen("updateTerbitkan")
-                        }
-                      }
-                    },
-                    [
-                      _c("i", { staticClass: "icon-file-upload" }),
-                      _vm._v(" "),
-                      _vm.selectedItem.terbitkan == 1
-                        ? _c("span", [_vm._v("Tidak Terbitkan")])
-                        : _c("span", [_vm._v("Terbitkan")])
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.currentUser.can &&
-              _vm.currentUser.can["utamakan_" + _vm.kelas]
-                ? _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-light btn-block mb-1",
-                      attrs: { disabled: !_vm.selectedItem.id },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.modalConfirmOpen("updateUtamakan")
-                        }
-                      }
-                    },
-                    [
-                      _c("i", { staticClass: "icon-pushpin" }),
-                      _vm._v(" "),
-                      _vm.selectedItem.utamakan == 1
-                        ? _c("span", [_vm._v("Tidak Utamakan")])
-                        : _c("span", [_vm._v("Utamakan")])
-                    ]
-                  )
-                : _vm._e()
-            ],
-            1
-          )
-        ],
-        2
-      ),
+        ]),
+      ]),
       _vm._v(" "),
       _c("app-modal", {
         attrs: {
@@ -959,16 +1334,16 @@ var render = function() {
           state: _vm.modalState,
           title: _vm.modalTitle,
           content: _vm.modalContent,
-          button: _vm.modalButton
+          color: _vm.modalColor,
         },
         on: {
+          batal: _vm.modalTutup,
           tutup: _vm.modalTutup,
-          confirmOk: _vm.modalConfirmOk,
           successOk: _vm.modalTutup,
           failOk: _vm.modalTutup,
-          backgroundClick: _vm.modalTutup
-        }
-      })
+          backgroundClick: _vm.modalBackgroundClick,
+        },
+      }),
     ],
     1
   )
@@ -980,18 +1355,20 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/artikel/index.vue":
-/*!*****************************************************!*\
-  !*** ./resources/assets/js/views/artikel/index.vue ***!
-  \*****************************************************/
+/***/ "./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue":
+/*!**************************************************************************************!*\
+  !*** ./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue ***!
+  \**************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _index_vue_vue_type_template_id_47768de8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=47768de8& */ "./resources/assets/js/views/artikel/index.vue?vue&type=template&id=47768de8&");
-/* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/artikel/index.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _formNomorSertifikatKegiatan_vue_vue_type_template_id_f96702da_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./formNomorSertifikatKegiatan.vue?vue&type=template&id=f96702da&scoped=true& */ "./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue?vue&type=template&id=f96702da&scoped=true&");
+/* harmony import */ var _formNomorSertifikatKegiatan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./formNomorSertifikatKegiatan.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _formNomorSertifikatKegiatan_vue_vue_type_style_index_0_id_f96702da_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./formNomorSertifikatKegiatan.vue?vue&type=style&index=0&id=f96702da&scoped=true&lang=css& */ "./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue?vue&type=style&index=0&id=f96702da&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -999,120 +1376,67 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _index_vue_vue_type_template_id_47768de8___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _index_vue_vue_type_template_id_47768de8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _formNomorSertifikatKegiatan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _formNomorSertifikatKegiatan_vue_vue_type_template_id_f96702da_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _formNomorSertifikatKegiatan_vue_vue_type_template_id_f96702da_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "f96702da",
   null
   
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/views/artikel/index.vue"
+component.options.__file = "resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/artikel/index.vue?vue&type=script&lang=js&":
-/*!******************************************************************************!*\
-  !*** ./resources/assets/js/views/artikel/index.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************/
+/***/ "./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/artikel/index.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_formNomorSertifikatKegiatan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./formNomorSertifikatKegiatan.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_formNomorSertifikatKegiatan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/artikel/index.vue?vue&type=template&id=47768de8&":
-/*!************************************************************************************!*\
-  !*** ./resources/assets/js/views/artikel/index.vue?vue&type=template&id=47768de8& ***!
-  \************************************************************************************/
+/***/ "./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue?vue&type=style&index=0&id=f96702da&scoped=true&lang=css&":
+/*!***********************************************************************************************************************************************!*\
+  !*** ./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue?vue&type=style&index=0&id=f96702da&scoped=true&lang=css& ***!
+  \***********************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_formNomorSertifikatKegiatan_vue_vue_type_style_index_0_id_f96702da_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./formNomorSertifikatKegiatan.vue?vue&type=style&index=0&id=f96702da&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue?vue&type=style&index=0&id=f96702da&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_formNomorSertifikatKegiatan_vue_vue_type_style_index_0_id_f96702da_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_formNomorSertifikatKegiatan_vue_vue_type_style_index_0_id_f96702da_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_formNomorSertifikatKegiatan_vue_vue_type_style_index_0_id_f96702da_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_formNomorSertifikatKegiatan_vue_vue_type_style_index_0_id_f96702da_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue?vue&type=template&id=f96702da&scoped=true&":
+/*!*********************************************************************************************************************************!*\
+  !*** ./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue?vue&type=template&id=f96702da&scoped=true& ***!
+  \*********************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_47768de8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=47768de8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/artikel/index.vue?vue&type=template&id=47768de8&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_47768de8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_formNomorSertifikatKegiatan_vue_vue_type_template_id_f96702da_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./formNomorSertifikatKegiatan.vue?vue&type=template&id=f96702da&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue?vue&type=template&id=f96702da&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_formNomorSertifikatKegiatan_vue_vue_type_template_id_f96702da_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_47768de8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/views/artikel/table.vue":
-/*!*****************************************************!*\
-  !*** ./resources/assets/js/views/artikel/table.vue ***!
-  \*****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _table_vue_vue_type_template_id_d44023f0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./table.vue?vue&type=template&id=d44023f0& */ "./resources/assets/js/views/artikel/table.vue?vue&type=template&id=d44023f0&");
-/* harmony import */ var _table_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./table.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/artikel/table.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _table_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _table_vue_vue_type_template_id_d44023f0___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _table_vue_vue_type_template_id_d44023f0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/assets/js/views/artikel/table.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/assets/js/views/artikel/table.vue?vue&type=script&lang=js&":
-/*!******************************************************************************!*\
-  !*** ./resources/assets/js/views/artikel/table.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./table.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/artikel/table.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/assets/js/views/artikel/table.vue?vue&type=template&id=d44023f0&":
-/*!************************************************************************************!*\
-  !*** ./resources/assets/js/views/artikel/table.vue?vue&type=template&id=d44023f0& ***!
-  \************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_template_id_d44023f0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./table.vue?vue&type=template&id=d44023f0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/artikel/table.vue?vue&type=template&id=d44023f0&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_template_id_d44023f0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_template_id_d44023f0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_formNomorSertifikatKegiatan_vue_vue_type_template_id_f96702da_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

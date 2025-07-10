@@ -36,7 +36,7 @@
 									</div>
 
 									<!-- kode diklat bkcu -->
-									<div class="col-md-12" v-if="$route.params.tipe == 'diklat_bkcu' || $route.params.tipe == 'diklat_bkcu_internal'">
+									<div class="col-md-12">
 										<div class="form-group" :class="{'has-error' : errors.has('form.kode_kegiatan')}">
 
 											<!-- title -->
@@ -56,47 +56,6 @@
 											<!-- error message -->
 											<small class="text-muted text-danger" v-if="errors.has('form.kode_kegiatan')">
 												<i class="icon-arrow-small-right"></i> {{ errors.first('form.kode_kegiatan') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- kode pertemuan bkcu -->
-									<div class="col-md-6" v-else>
-										<div class="form-group" :class="{'has-error' : errors.has('form.kode_diklat')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.kode_diklat')}">
-												<i class="icon-cross2" v-if="errors.has('form.kode_diklat')"></i>
-												Kode Kegiatan: <wajib-badge></wajib-badge></h5>
-
-											<!-- text -->
-											<input type="text" name="kode kegiatan" class="form-control" placeholder="Silahkan masukkan kode kegiatan" v-validate="'required|min:5'" data-vv-as="Kode Kegiatan" v-model="form.kode_diklat">
-											
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.kode_diklat')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.kode_diklat') }}
-											</small>
-											<small class="text-muted" v-else>&nbsp;</small>
-										</div>
-									</div>
-
-									<!-- name -->
-									<div class="col-md-6" v-if="$route.params.tipe != 'diklat_bkcu' && $route.params.tipe != 'diklat_bkcu_internal'">
-										<div class="form-group" :class="{'has-error' : errors.has('form.name')}">
-
-											<!-- title -->
-											<h5 :class="{ 'text-danger' : errors.has('form.name')}">
-												<i class="icon-cross2" v-if="errors.has('form.name')"></i>
-												Nama: <wajib-badge></wajib-badge></h5>
-
-											<!-- text -->
-											<input type="text" name="name" class="form-control" placeholder="Silahkan masukkan nama diklat" v-validate="'required|min:5'" data-vv-as="Nama" v-model="form.name">
-
-											<!-- error message -->
-											<small class="text-muted text-danger" v-if="errors.has('form.name')">
-												<i class="icon-arrow-small-right"></i> {{ errors.first('form.name') }}
 											</small>
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
@@ -278,6 +237,21 @@
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
 									</div>
+									<!-- tema -->
+									<div class="col-md-8">
+										<div class="form-group" :class="{'has-error' : errors.has('form.tema')}">
+											<!-- title -->
+											<h5>
+												Tema Kegiatan: </h5>
+											<!-- input -->
+											<input type="text" name="tema" 
+											class="form-control" 
+											placeholder="Silahkan masukkan tema kegiatan" 
+											data-vv-as="Tema" v-model="form.tema">
+
+						
+										</div>
+									</div>
 									
 
 									<!-- peserta -->
@@ -368,6 +342,30 @@
 
 										</div>
 									</div>
+									<!-- sasaran cu -->
+									<div class="col-md-12" v-if="this.$route.params.tipe == 'diklat_bkcu'">
+										<div class="form-group">
+											<!-- title -->
+											<h5>
+												Sasaran CU: <wajib-badge></wajib-badge>
+											</h5>
+											<div class="form-check form-check-inline">
+												<label class="form-check-label">
+													<input type="checkbox" class="form-check-input" v-model="formAllCu"
+														@change="selectAllCu">Semua CU
+												</label>
+											</div>
+											<div class="form-check form-check-inline" v-for="(cu, index) in modelCu"
+												:key="index">
+												<label class="form-check-label">
+													<input type="checkbox" class="form-check-input" :value="cu.id"
+														v-model="sasaranCu" :checked="formAllCu"
+														@change="updateFormCu(cu.id, $event.target.checked)">CU {{ cu.name
+														}}
+												</label>
+											</div>
+										</div>
+									</div>
 									
 								</div>
 							</div>
@@ -396,6 +394,7 @@
 												<option disabled value="">Silahkan pilih tipe tempat</option>
 												<option value="ONLINE">ONLINE</option>
 												<option value="OFFLINE">OFFLINE</option>
+												<option value="HYBRID"> HYBRID / OFFLINE & ONLINE</option>
 											</select>
 
 											<!-- error message -->
@@ -407,7 +406,7 @@
 									</div>
 
 									<!-- Provinsi -->
-									<div class="col-md-4" v-if="form.tipe_tempat == 'OFFLINE'">
+									<div class="col-md-4" v-if="form.tipe_tempat == 'OFFLINE' || form.tipe_tempat == 'HYBRID'">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_provinces')}">
 
 											<!-- title -->
@@ -435,7 +434,7 @@
 									</div>
 
 									<!-- kabupaten -->
-									<div class="col-md-4" v-if="form.tipe_tempat == 'OFFLINE'">
+									<div class="col-md-4" v-if="form.tipe_tempat == 'OFFLINE' || form.tipe_tempat == 'HYBRID'">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_regencies')}">
 
 											<!-- title -->
@@ -463,7 +462,7 @@
 									</div>
 
 									<!-- tempat -->
-									<div class="col-md-4" v-if="form.tipe_tempat == 'OFFLINE'">
+									<div class="col-md-4" v-if="form.tipe_tempat == 'OFFLINE' || form.tipe_tempat == 'HYBRID'">
 										<div class="form-group" :class="{'has-error' : errors.has('form.id_tempat')}">
 
 											<!-- title -->
@@ -502,7 +501,7 @@
 									</div>
 
 									<!-- tempat data -->
-									<div class="col-md-12" v-if="form.tipe_tempat == 'OFFLINE' && tempatData != ''">
+									<div class="col-md-12" v-if="(form.tipe_tempat == 'OFFLINE' && tempatData != '') || (form.tipe_tempat == 'HYBRID' && tempatData != '')">
 
 										<div class="card card-body" v-if="tempatData">
 											<div class="media flex-column flex-sm-row mt-0 mb-3">
@@ -652,8 +651,18 @@
 									<tr :class="{ 'bg-info': selectedItemPanitia.index == props.index + 1}" class="text-nowrap" @click="selectedRow(props.item, props.index + 1, 'panitia')" v-if="props.item">
 										<td>{{ props.index + 1 }}</td>
 										<td>
-											<img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
-											<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+											<template v-if="props.item.asal == 'dalam'">
+												<img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+												<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+											</template>
+											<template v-else-if="props.item.asal == 'luar'">
+												<img :src="'/images/mitra_orang/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+												<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+											</template>
+											<template v-else-if="props.item.asal == 'luar lembaga'">
+												<img :src="'/images/mitra_lembaga/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+												<img :src="'/images/no_image.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+											</template>	
 										</td>
 										<td>{{ props.item.name }}</td>
 										<td>{{ props.item.lembaga }}</td>
@@ -671,7 +680,26 @@
 						<!-- sertifikat -->
 						<div class="card">
 							<div class="card-header bg-white">
-								<h5 class="card-title">5. Sertifikat <wajib-badge></wajib-badge></h5>
+								<h5 class="card-title">5. Sertifikat Panitia dan Fasilitator <wajib-badge></wajib-badge></h5>
+							</div>
+
+							<div class="card-body">
+								<div class="row col-md-12">
+									<select class="form-control"  name="id_sertifikat" v-model="form.id_sertifikatPanitia" data-width="100%" data-vv-as="Sertifikat" @change="changeSertifikatPanitia($event.target.value)" :disabled="itemDataStat.length === 0">
+										<option disabled value="">
+											<span v-if="itemDataStat === 'loading'">Mohon tunggu...</span>
+											<span v-else>Silahkan pilih sertifikat</span>
+										</option>
+										<option value="0">Tidak menggunakan sertifikat</option>
+										<option v-for="(sertifikat, index) in this.piagamData" :value="sertifikat.id" :key="index">{{sertifikat.name}} -- {{sertifikat.kode_sertifikat}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<!-- sertifikat peserta -->
+						<div class="card">
+							<div class="card-header bg-white">
+								<h5 class="card-title">6. Sertifikat Peserta <wajib-badge></wajib-badge></h5>
 							</div>
 
 							<div class="card-body">
@@ -787,6 +815,9 @@
 				kelas: 'kegiatanBKCU',
 				sasaran: [],
 				tempatData: '',
+				formAllCu: false,
+				sasaranCu: [],
+				isSasaran_cu: '',
 				ckeditorNoImageConfig: {
 					toolbar: {
 						items: [
@@ -858,6 +889,7 @@
 				selectedItemPanitia: '',
 				formPanitiaMode: '',
 				itemDataPanitia: [],
+				piagamData:[],
 				itemDataPanitiaStat: 'success',
 				cancelState: 'methods',
 				state: '',
@@ -872,11 +904,17 @@
 		},
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
-		},
-		watch: {
+	},
+	watch: {
+			itemDataStat(value) {
+				if (value === "success") {
+					this.piagamData = this.itemData.data.filter(item => item.tipe === 'piagam');
+					}
+			},
+			
 			formStat(value){
-				if(value === "success"){
-					if(this.$route.meta.mode == 'edit'){
+			if (value === "success") {
+					if (this.$route.meta.mode == 'edit') {
 						this.checkTipe(this.form.tipe);
 						this.changeProvinces(this.form.id_provinces);
 						this.changeRegencies(this.form.id_regencies);
@@ -884,6 +922,14 @@
 						var i;
 						for(i = 0; i < this.form.sasaran.length; i++){
 							this.sasaran.push(this.form.sasaran[i].id.toString());
+						}
+
+						var n;
+						for (n = 0; n < this.form.sasaran_cu.length; n++) {
+							this.sasaranCu.push(this.form.sasaran_cu[n].id.toString());
+							if (n + 1 == this.modelCu.length) {
+								this.formAllCu = true;
+							}
 						}
 						
 						var valDalam;
@@ -944,6 +990,7 @@
 						}
 
 					}
+					
 				}
 			},
 			modelTempatStat(value){
@@ -978,17 +1025,41 @@
 			}
     },
 		methods: {
-			fetch(){
-				if(this.$route.meta.mode == 'edit'){
-					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
+			fetch() {
+				this.$store.dispatch('kodeKegiatan/get');
+				if (this.$route.meta.mode == 'edit') {
+					this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
 				} else {
 					this.checkTipe(this.$route.params.tipe);
 					this.$store.dispatch(this.kelas + '/create');
 				}
 				this.$store.dispatch('provinces/get');
 				this.$store.dispatch('sertifikatKegiatan/index');
-				if(this.$route.params.tipe == 'diklat_bkcu' || this.$route.params.tipe == 'diklat_bkcu_internal'){
-					this.$store.dispatch('kodeKegiatan/get');
+			},
+			fetchCu() {
+				if (this.modelCuStat != 'success') {
+					this.$store.dispatch('cu/getHeader');
+				}
+			},
+			selectAllCu() {
+				if (this.formAllCu) {
+					this.sasaranCu = this.modelCu.map(cu => cu.id);
+				} else {
+					this.sasaranCu = [];
+				}
+			},
+			updateFormCu(id, isChecked) {
+				if (isChecked && !this.sasaranCu.includes(id)) {
+					this.sasaranCu.push(id);
+				} else if (!isChecked && this.sasaranCu.includes(id)) {
+					const index = this.sasaranCu.indexOf(id);
+					this.sasaranCu.splice(index, 1);
+				}
+
+				if (this.sasaranCu.length != this.modelCu.length) {
+					this.formAllCu = false;
+				} else if (this.sasaranCu.length == this.modelCu.length) {
+					this.formAllCu = true;
 				}
 			},
 			checkTipe(tipe){
@@ -1013,6 +1084,9 @@
 			},
 			changeSertifikat(event){
 				this.form.formSertifikat = event;
+			},
+			changeSertifikatPanitia(event){
+				this.form.formSertifikatPanitia = event;
 			},
 			changeKodeKegiatan(event){
 				this.form.id_kode = event;
@@ -1061,6 +1135,7 @@
 				this.form.sasaran = this.sasaran;
 				this.form.panitia = this.itemDataPanitia;
 				this.form.pilih = this.itemDataPilih;
+				this.form.sasaranCu = this.sasaranCu.map(String);
 				this.state = '';
 				
 				const formData = toMulipartedForm(this.form, this.$route.meta.mode);
@@ -1210,6 +1285,10 @@
 			...mapGetters('kodeKegiatan',{
 				itemKodeKegiatan: 'dataS2',
 				itemKodeKegiatanStat: 'dataStatS2'
+			}),
+			...mapGetters('cu', {
+				modelCu: 'headerDataS',
+				modelCuStat: 'headerDataStatS',
 			}),
 		}
 	}

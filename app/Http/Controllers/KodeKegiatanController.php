@@ -21,7 +21,7 @@ class KodeKegiatanController extends Controller
 
     public function get()
     {
-        $table_data = KodeKegiatan::get();
+        $table_data = KodeKegiatan::orderBy('kode','asc')->get();
 
         return response()
             ->json([

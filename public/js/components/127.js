@@ -1,150 +1,110 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[127],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/pageHeader.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/pageHeader.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/ImageUpload.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/ImageUpload.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      image: ''
+    };
+  },
+  props: {
+    image_loc: {
+      type: [String],
+      "default": ''
+    },
+    image_type: {
+      type: [String],
+      "default": '.jpg'
+    },
+    image_temp: {
+      "default": ''
+    },
+    value: {
+      type: [String, File],
+      "default": 'no_image'
+    }
+  },
+  methods: {
+    upload: function upload(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length) return;
+      this.createImage(files[0]);
+      this.$emit('input', files[0]);
+    },
+    createImage: function createImage(file) {
+      var reader = new FileReader();
+      var vm = this;
+
+      reader.onload = function (e) {
+        vm.image = e.target.result; // this.$emit('input', vm.image)
+      };
+
+      reader.readAsDataURL(file);
+    },
+    close: function close() {
+      this.$emit('input', 'no_image');
+      this.image = '/images/no_image.jpg';
+      this.$refs.fileInput.value = '';
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/user/form.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/user/form.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    title: {
-      "default": ''
-    },
-    titleIcon: {
-      "default": ''
-    },
-    titleDesc: {
-      "default": ''
-    },
-    level: {
-      "default": 1
-    },
-    level2Title: {
-      "default": ''
-    },
-    level2Route: {
-      "default": ''
-    }
-  },
-  methods: {
-    level2Back: function level2Back() {
-      this.$emit('level2Back');
-    },
-    route1: function route1() {
-      if (this.btn1RouteParams) {
-        this.$router.push({
-          name: this.btn1Route,
-          params: {
-            cu: this.btn1RouteParams
-          }
-        });
-      } else {
-        this.$router.push({
-          name: this.btn1Route
-        });
-      }
-    },
-    route2: function route2() {
-      if (this.btn2RouteParams) {
-        this.$router.push({
-          name: this.btn2Route,
-          params: {
-            cu: this.btn2RouteParams
-          }
-        });
-      } else {
-        this.$router.push({
-          name: this.btn2Route
-        });
-      }
-    },
-    route3: function route3() {
-      if (this.btn3RouteParams) {
-        this.$router.push({
-          name: this.btn3Route,
-          params: {
-            cu: this.btn3RouteParams
-          }
-        });
-      } else {
-        this.$router.push({
-          name: this.btn3Route
-        });
-      }
-    }
-  },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
-    currentUser: 'currentUser'
-  }))
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sistem/notification.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/sistem/notification.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/pageHeader.vue */ "./resources/assets/js/components/pageHeader.vue");
-/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
+/* harmony import */ var _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/pageHeader.vue */ "./resources/assets/js/components/pageHeader.vue");
+/* harmony import */ var _components_ImageUpload_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/ImageUpload.vue */ "./resources/assets/js/components/ImageUpload.vue");
+/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/modal */ "./resources/assets/js/components/modal.vue");
+/* harmony import */ var _components_hakAkses_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/hakAkses.vue */ "./resources/assets/js/components/hakAkses.vue");
+/* harmony import */ var _components_message_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/message.vue */ "./resources/assets/js/components/message.vue");
+/* harmony import */ var _components_formButton_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/formButton.vue */ "./resources/assets/js/components/formButton.vue");
+/* harmony import */ var _components_formInfo_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/formInfo.vue */ "./resources/assets/js/components/formInfo.vue");
+/* harmony import */ var _components_wajibBadge_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/wajibBadge.vue */ "./resources/assets/js/components/wajibBadge.vue");
+/* harmony import */ var _components_dataviewer2_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/dataviewer2.vue */ "./resources/assets/js/components/dataviewer2.vue");
+/* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
+/* harmony import */ var _identitas_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./identitas.vue */ "./resources/assets/js/views/user/identitas.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -393,47 +353,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
+
+
+
+
+
 
 
 
@@ -441,126 +367,242 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    pageHeader: _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    appModal: _components_modal__WEBPACK_IMPORTED_MODULE_4__["default"]
+    pageHeader: _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    appModal: _components_modal__WEBPACK_IMPORTED_MODULE_3__["default"],
+    appImageUpload: _components_ImageUpload_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    hakAkses: _components_hakAkses_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    message: _components_message_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    formButton: _components_formButton_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    formInfo: _components_formInfo_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+    wajibBadge: _components_wajibBadge_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
+    DataViewer: _components_dataviewer2_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
+    checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+    identitas: _identitas_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
   },
   data: function data() {
     return {
-      title: 'Notifikasi',
-      kelas: 'notification',
-      titleDesc: 'Melihat semua notifikasi',
-      titleIcon: 'icon-bell2',
-      state: '',
+      title: 'Tambah User',
+      titleDesc: 'Menambah user baru',
+      titleIcon: 'icon-plus3',
+      level2Title: 'User',
+      kelas: 'user',
+      tipeUser: '',
+      selectedItem: [],
+      query: {
+        order_column: "name",
+        order_direction: "asc",
+        filter_match: "and",
+        limit: 10,
+        page: 1
+      },
+      columnData: [{
+        title: 'No.'
+      }, {
+        title: 'Foto'
+      }, {
+        title: 'Nama',
+        name: 'name',
+        tipe: 'string',
+        sort: true,
+        hide: false,
+        disable: false,
+        filter: true,
+        filterDefault: true
+      }, {
+        title: 'Gender'
+      }, {
+        title: 'CU',
+        disable: false
+      }, {
+        title: 'Tingkat'
+      }, {
+        title: 'Jabatan'
+      }, {
+        title: 'Pendidikan'
+      }, {
+        title: 'Jurusan'
+      }, {
+        title: 'Tgl. Lahir'
+      }, {
+        title: 'Tempat Lahir'
+      }, {
+        title: 'Tinggi'
+      }, {
+        title: 'Agama'
+      }, {
+        title: 'Status Pernikahan'
+      }],
       modalShow: false,
       modalState: '',
       modalTitle: '',
-      modalSize: '',
       modalColor: '',
-      modalButton: '',
       modalContent: '',
-      tabName: 'semua'
+      submited: false
     };
   },
-  created: function created() {
-    this.fetch();
+  beforeRouteEnter: function beforeRouteEnter(to, from, next) {
+    next(function (vm) {
+      return vm.fetch();
+    });
   },
+  created: function created() {},
   watch: {
-    '$route': function $route(to, from) {
-      // check current page meta
-      this.fetch();
+    formStat: function formStat(value) {
+      if (value == 'success') {
+        if (this.currentUser.id_cu != 0) {
+          this.form.id_cu = this.currentUser.id_cu;
+          this.changeCU(this.currentUser.id_cu);
+        } else {
+          if (this.modelCuStat != 'success') {
+            this.$store.dispatch('cu/getHeader');
+          }
+        }
+      }
     },
-    // when updating data
-    markNotifStat: function markNotifStat(value) {
+    updateStat: function updateStat(value) {
+      this.modalShow = true;
       this.modalState = value;
-      this.modalButton = 'Ok';
+      this.modalColor = '';
 
       if (value === "success") {
-        this.modalTitle = "Notifikasi berhasil ditandai";
-        this.modalContent = '';
-        this.fetch();
+        this.modalTitle = this.updateResponse.message;
+      } else {
+        this.modalTitle = 'Oops terjadi kesalahan :(';
+        this.modalContent = this.updateResponse;
       }
     }
   },
   methods: {
     fetch: function fetch() {
-      this.$store.dispatch(this.kelas + '/getAll');
+      this.$store.dispatch(this.kelas + '/create');
     },
-    goToPage: function goToPage(notif) {
-      if (notif.data.tipe == 'laporanCu') {
-        this.$router.push({
-          name: 'laporanCuDetail',
-          params: {
-            id: notif.data.url
-          }
-        });
-      } else if (notif.data.tipe == 'laporanTp') {
-        this.$router.push({
-          name: 'laporanTpDetail',
-          params: {
-            id: notif.data.url
-          }
-        });
-      } else if (notif.data.tipe == 'diklatBKCU') {
-        this.$router.push({
-          name: 'diklatBKCUDetail',
-          params: {
-            id: notif.data.url
-          }
-        });
-      } else if (notif.data.tipe == 'pertemuanBKCU') {
-        this.$router.push({
-          name: 'pertemuanBKCUDetail',
-          params: {
-            id: notif.data.url
-          }
-        });
-      }
+    fetchAktivis: function fetchAktivis(params) {
+      this.$store.dispatch('aktivis/indexCu', [params, this.form.id_cu, 'semua', 'aktif']);
+      this.disableColumnCu(true);
+    },
+    changeCU: function changeCU(value) {
+      this.fetchAktivis(this.query);
 
-      this.$store.dispatch('notification/markRead', notif.id);
+      if (value == 0) {
+        this.tipeUser = 'bkcu';
+      } else {
+        this.tipeUser = 'cu';
+      }
     },
-    changeTab: function changeTab(value) {
-      this.tabName = value;
+    disableColumnCu: function disableColumnCu(value) {
+      this.columnData[4].disable = value;
     },
-    modalConfirmOpen: function modalConfirmOpen(state, isMobile, itemMobile) {
-      this.modalShow = true;
-      this.modalState = 'confirm-tutup';
-      this.state = state;
+    selectedRow: function selectedRow(item) {
+      this.selectedItem = item;
+      this.form.id_aktivis = item.id;
+      this.form.aktivis = item;
+    },
+    deleteSelected: function deleteSelected() {
+      this.selectedItem = [];
+      this.form.id_aktivis = '';
+      this.form.aktivis = {};
+    },
+    hakForm: function hakForm(value) {
+      this.form.permission = value;
+    },
+    changeRole: function changeRole(id) {
+      this.$store.dispatch('loadRolePermission', id);
+    },
+    checkUser: function checkUser(permission, id_cu) {
+      if (this.currentUser) {
+        if (!this.currentUser.can || !this.currentUser.can[permission]) {
+          this.$router.push('/notFound');
+        }
 
-      if (isMobile) {
-        this.selectedItem = itemMobile;
-      }
-
-      if (state == 'tandai') {
-        this.modalTitle = 'Tandai semua ' + this.title + ' sudah dibaca?';
-        this.modalButton = 'Iya, Tandai semua';
+        if (!id_cu || this.currentUser.id_cu) {
+          if (this.currentUser.id_cu != 0 && this.currentUser.id_cu != id_cu) {
+            this.$router.push('/notFound');
+          }
+        }
       }
     },
-    modalConfirmOk: function modalConfirmOk() {
-      // execute destroy
-      if (this.state == 'tandai') {
-        this.$store.dispatch(this.kelas + '/markAllRead');
-      }
+    save: function save() {
+      var _this = this;
+
+      this.$validator.validateAll('form').then(function (result) {
+        if (result) {
+          _this.$store.dispatch(_this.kelas + '/store', _this.form);
+
+          _this.submited = false;
+        } else {
+          window.scrollTo(0, 0);
+          _this.submited = true;
+        }
+      });
+    },
+    back: function back() {
+      this.$router.push({
+        name: this.kelas + 'Cu',
+        params: {
+          cu: this.currentUser.id_cu
+        }
+      });
     },
     modalTutup: function modalTutup() {
       this.modalShow = false;
+
+      if (this.updateStat == 'success') {
+        this.back();
+      }
+    },
+    modalBackgroundClick: function modalBackgroundClick() {
+      if (this.modalState === 'success') {
+        this.modalTutup;
+      } else if (this.modalState === 'loading') {// do nothing
+      } else {
+        this.modalShow = false;
+      }
+    },
+    processFile: function processFile(event) {
+      this.form.gambar = event.target.files[0];
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('auth', {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
     currentUser: 'currentUser'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('notification', {
-    notification: 'dataS',
-    notifStat: 'dataStatS',
-    unreadNotification: 'unreadNotification',
-    markNotifStat: 'markNotifStat'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('user', {
+    form: 'data',
+    formStat: 'dataStat',
+    rules: 'rules',
+    options: 'options',
+    updateResponse: 'update',
+    updateStat: 'updateStat'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('aktivis', {
+    itemData: 'dataS',
+    itemDataStat: 'dataStatS'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('cu', {
+    modelCu: 'headerDataS',
+    modelCuStat: 'headerDataStatS'
   }))
 });
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/pageHeader.vue?vue&type=template&id=0af8ed53&":
-/*!********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/pageHeader.vue?vue&type=template&id=0af8ed53& ***!
-  \********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/file-saver/dist/FileSaver.min.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/file-saver/dist/FileSaver.min.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(a,b){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (b),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else {}})(this,function(){"use strict";function b(a,b){return"undefined"==typeof b?b={autoBom:!1}:"object"!=typeof b&&(console.warn("Deprecated: Expected third argument to be a object"),b={autoBom:!b}),b.autoBom&&/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(a.type)?new Blob(["\uFEFF",a],{type:a.type}):a}function c(a,b,c){var d=new XMLHttpRequest;d.open("GET",a),d.responseType="blob",d.onload=function(){g(d.response,b,c)},d.onerror=function(){console.error("could not download file")},d.send()}function d(a){var b=new XMLHttpRequest;b.open("HEAD",a,!1);try{b.send()}catch(a){}return 200<=b.status&&299>=b.status}function e(a){try{a.dispatchEvent(new MouseEvent("click"))}catch(c){var b=document.createEvent("MouseEvents");b.initMouseEvent("click",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),a.dispatchEvent(b)}}var f="object"==typeof window&&window.window===window?window:"object"==typeof self&&self.self===self?self:"object"==typeof global&&global.global===global?global:void 0,a=f.navigator&&/Macintosh/.test(navigator.userAgent)&&/AppleWebKit/.test(navigator.userAgent)&&!/Safari/.test(navigator.userAgent),g=f.saveAs||("object"!=typeof window||window!==f?function(){}:"download"in HTMLAnchorElement.prototype&&!a?function(b,g,h){var i=f.URL||f.webkitURL,j=document.createElement("a");g=g||b.name||"download",j.download=g,j.rel="noopener","string"==typeof b?(j.href=b,j.origin===location.origin?e(j):d(j.href)?c(b,g,h):e(j,j.target="_blank")):(j.href=i.createObjectURL(b),setTimeout(function(){i.revokeObjectURL(j.href)},4E4),setTimeout(function(){e(j)},0))}:"msSaveOrOpenBlob"in navigator?function(f,g,h){if(g=g||f.name||"download","string"!=typeof f)navigator.msSaveOrOpenBlob(b(f,h),g);else if(d(f))c(f,g,h);else{var i=document.createElement("a");i.href=f,i.target="_blank",setTimeout(function(){e(i)})}}:function(b,d,e,g){if(g=g||open("","_blank"),g&&(g.document.title=g.document.body.innerText="downloading..."),"string"==typeof b)return c(b,d,e);var h="application/octet-stream"===b.type,i=/constructor/i.test(f.HTMLElement)||f.safari,j=/CriOS\/[\d]+/.test(navigator.userAgent);if((j||h&&i||a)&&"undefined"!=typeof FileReader){var k=new FileReader;k.onloadend=function(){var a=k.result;a=j?a:a.replace(/^data:[^;]*;/,"data:attachment/file;"),g?g.location.href=a:location=a,g=null},k.readAsDataURL(b)}else{var l=f.URL||f.webkitURL,m=l.createObjectURL(b);g?g.location=m:location.href=m,g=null,setTimeout(function(){l.revokeObjectURL(m)},4E4)}});f.saveAs=g.saveAs=g, true&&(module.exports=g)});
+
+//# sourceMappingURL=FileSaver.min.js.map
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/ImageUpload.vue?vue&type=template&id=319f68d5&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/ImageUpload.vue?vue&type=template&id=319f68d5& ***!
+  \*********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -573,106 +615,52 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "page-header" }, [
-      _c(
-        "div",
-        { staticClass: "page-header-content header-elements-md-inline" },
-        [
-          _c("div", { staticClass: "page-title d-flex" }, [
-            _c("h4", [
-              _c("i", { staticClass: "mr-2", class: _vm.titleIcon }),
-              _vm._v(" "),
-              _c("span", { staticClass: "font-weight-semibold" }, [
-                _vm._v(_vm._s(_vm.title)),
-              ]),
-              _vm._v(" "),
-              _c("small", { staticClass: "d-block text-muted" }, [
-                _vm._v(_vm._s(_vm.titleDesc)),
-              ]),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "header-elements d-none py-0 mb-3 mb-md-0" },
-            [
-              _vm.level === 1
-                ? _c(
-                    "div",
-                    { staticClass: "breadcrumb" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "breadcrumb-item",
-                          attrs: { to: { name: "dashboard" } },
-                        },
-                        [
-                          _c("i", { staticClass: "icon-home4" }),
-                          _vm._v("  Dashboard "),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "breadcrumb-item active" }, [
-                        _vm._v(_vm._s(_vm.title)),
-                      ]),
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.level === 2
-                ? _c(
-                    "div",
-                    { staticClass: "breadcrumb" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "breadcrumb-item",
-                          attrs: { to: { name: "dashboard" } },
-                        },
-                        [
-                          _c("i", { staticClass: "icon-home4" }),
-                          _vm._v(" Dashboard "),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "breadcrumb-item",
-                          attrs: { href: "#" },
-                          on: {
-                            click: function ($event) {
-                              $event.preventDefault()
-                              return _vm.level2Back()
-                            },
-                          },
-                        },
-                        [_vm._v(_vm._s(_vm.level2Title))]
-                      ),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "breadcrumb-item active" }, [
-                        _vm._v(_vm._s(_vm.title)),
-                      ]),
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.level === 3
-                ? _c(
-                    "div",
-                    { staticClass: "breadcrumb" },
-                    [_vm._t("breadcrumb")],
-                    2
-                  )
-                : _vm._e(),
-            ]
-          ),
-        ]
-      ),
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-body text-center" }, [
+        (_vm.image == "" && _vm.image_temp == "") ||
+        (!_vm.image && !_vm.image_temp)
+          ? _c("img", {
+              staticStyle: { width: "15em" },
+              attrs: { src: "/images/no_image.jpg" },
+            })
+          : _vm.image == "" && _vm.image_temp !== ""
+          ? _c("img", {
+              staticStyle: { width: "15em" },
+              attrs: { src: _vm.image_loc + _vm.image_temp + _vm.image_type },
+            })
+          : _c("img", {
+              staticStyle: { width: "15em" },
+              attrs: { src: _vm.image },
+            }),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-10" }, [
+        _c("input", {
+          ref: "fileInput",
+          staticClass: "form-control",
+          attrs: { type: "file", accept: ".jpg, .jpeg, .png" },
+          on: { change: _vm.upload },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-2" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-light btn-block",
+            attrs: { type: "button", disabled: _vm.image_temp === "" },
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                return _vm.close()
+              },
+            },
+          },
+          [_c("i", { staticClass: "icon-cross" }), _vm._v(" Batal")]
+        ),
+      ]),
     ]),
   ])
 }
@@ -683,10 +671,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sistem/notification.vue?vue&type=template&id=6c10fef8&":
-/*!************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/sistem/notification.vue?vue&type=template&id=6c10fef8& ***!
-  \************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/user/form.vue?vue&type=template&id=fadbbf36&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/user/form.vue?vue&type=template&id=fadbbf36& ***!
+  \**************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -706,1214 +694,866 @@ var render = function () {
           title: _vm.title,
           titleDesc: _vm.titleDesc,
           titleIcon: _vm.titleIcon,
+          level: 2,
+          level2Title: _vm.level2Title,
+        },
+        on: {
+          level2Back: function ($event) {
+            return _vm.back()
+          },
         },
       }),
       _vm._v(" "),
-      _c("div", { staticClass: "page-container" }, [
-        _c("div", { staticClass: "page-content" }, [
-          _c("div", { staticClass: "content-wrapper" }, [
-            _c("div", { staticClass: "card card-body d-print-none" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-sm-10 d-none d-sm-block" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-light btn-icon",
-                      attrs: {
-                        type: "button",
-                        disabled:
-                          _vm.markNotifStat === "loading" ||
-                          _vm.unreadNotification == 0,
-                      },
-                      on: {
-                        click: function ($event) {
-                          $event.preventDefault()
-                          return _vm.modalConfirmOpen("tandai")
-                        },
-                      },
+      _c("div", { staticClass: "page-content pt-0" }, [
+        _c("div", { staticClass: "content-wrapper" }, [
+          _c(
+            "div",
+            { staticClass: "content" },
+            [
+              _vm.errors.any("form") && _vm.submited
+                ? _c("message", {
+                    attrs: {
+                      title: "Oops, terjadi kesalahan",
+                      errorItem: _vm.errors.items,
                     },
-                    [
-                      _c("i", { staticClass: "icon-checkbox-checked" }),
-                      _vm._v(" Tandai sudah baca semua\n\t\t\t\t\t\t\t\t"),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-sm-2 text-right d-none d-sm-block" },
-                  [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-light btn-icon",
-                        attrs: {
-                          type: "button",
-                          disabled: _vm.notifStat == "loading",
-                        },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            return _vm.fetch()
-                          },
-                        },
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "icon-sync",
-                          class: { spinner: _vm.notifStat === "loading" },
-                        }),
-                      ]
-                    ),
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-sm-12 d-block d-sm-none" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-light btn-icon btn-block mb-1",
-                      attrs: {
-                        type: "button",
-                        disabled:
-                          _vm.markNotifStat === "loading" ||
-                          _vm.unreadNotification == 0,
-                      },
-                      on: {
-                        click: function ($event) {
-                          $event.preventDefault()
-                          return _vm.modalConfirmOpen("tandai")
-                        },
-                      },
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  attrs: {
+                    enctype: "multipart/form-data",
+                    "data-vv-scope": "form",
+                  },
+                  on: {
+                    submit: function ($event) {
+                      $event.preventDefault()
+                      return _vm.save.apply(null, arguments)
                     },
-                    [
-                      _c("i", { staticClass: "icon-checkbox-checked" }),
-                      _vm._v(" Tandai sudah baca semua\n\t\t\t\t\t\t\t\t"),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-light btn-icon btn-block mb-1",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function ($event) {
-                          $event.preventDefault()
-                          return _vm.fetch()
-                        },
-                      },
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "icon-sync",
-                        class: { spinner: _vm.notifStat === "loading" },
-                      }),
-                      _vm._v(" Reload\n\t\t\t\t\t\t\t\t"),
-                    ]
-                  ),
-                ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _vm._m(0),
-            _vm._v(" "),
-            _vm.notifStat == "loading"
-              ? _c("div", [_vm._m(1)])
-              : _c("div", [
-                  _vm.notification && _vm.notification.length > 0
-                    ? _c(
-                        "div",
-                        [
+                  },
+                },
+                [
+                  _c("div", { staticClass: "card" }, [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _vm._m(0),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-12" }, [
                           _c(
                             "div",
-                            { staticClass: "nav-tabs-responsive mb-3" },
-                            [
-                              _c(
-                                "ul",
-                                {
-                                  staticClass:
-                                    "nav nav-tabs nav-tabs-solid bg-light",
-                                },
-                                [
-                                  _c("li", { staticClass: "nav-item" }, [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "nav-link",
-                                        class: {
-                                          active: _vm.tabName == "semua",
-                                        },
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.changeTab("semua")
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "icon-table2 mr-2",
-                                        }),
-                                        _vm._v(" Semua"),
-                                      ]
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("li", { staticClass: "nav-item" }, [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "nav-link",
-                                        class: {
-                                          active: _vm.tabName == "laporanCu",
-                                        },
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.changeTab("laporanCu")
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "icon-stats-bars2 mr-2",
-                                        }),
-                                        _vm._v(" Laporan CU"),
-                                      ]
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("li", { staticClass: "nav-item" }, [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "nav-link",
-                                        class: {
-                                          active: _vm.tabName == "diklatBKCU",
-                                        },
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.changeTab("diklatBKCU")
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "icon-graduation2 mr-2",
-                                        }),
-                                        _vm._v(" Diklat BKCU"),
-                                      ]
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("li", { staticClass: "nav-item" }, [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "nav-link",
-                                        class: {
-                                          active:
-                                            _vm.tabName == "pertemuanBKCU",
-                                        },
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.changeTab(
-                                              "pertemuanBKCU"
-                                            )
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "icon-ungroup mr-2",
-                                        }),
-                                        _vm._v(" Pertemuan BKCU"),
-                                      ]
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("li", { staticClass: "nav-item" }, [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "nav-link",
-                                        class: {
-                                          active:
-                                            _vm.tabName == "selfAssesment",
-                                        },
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.changeTab(
-                                              "selfAssesment"
-                                            )
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "icon-reading mr-2",
-                                        }),
-                                        _vm._v(" Self Assesment ACCESS"),
-                                      ]
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("li", { staticClass: "nav-item" }, [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "nav-link",
-                                        class: {
-                                          active: _vm.tabName == "monitoring",
-                                        },
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.changeTab("monitoring")
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass:
-                                            "icon-collaboration mr-2",
-                                        }),
-                                        _vm._v(" Monitoring"),
-                                      ]
-                                    ),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("li", { staticClass: "nav-item" }, [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "nav-link",
-                                        class: {
-                                          active: _vm.tabName == "klaimJALINAN",
-                                        },
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function ($event) {
-                                            $event.preventDefault()
-                                            return _vm.changeTab("klaimJALINAN")
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass:
-                                            "icon-accessibility2 mr-2",
-                                        }),
-                                        _vm._v(" Bantuan Solidaritas Jalinan"),
-                                      ]
-                                    ),
-                                  ]),
-                                ]
-                              ),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "transition",
                             {
-                              attrs: {
-                                "enter-active-class": "animated fadeIn",
-                                mode: "out-in",
+                              staticClass: "form-group",
+                              class: {
+                                "has-error": _vm.errors.has("form.username"),
                               },
                             },
                             [
                               _c(
-                                "div",
+                                "h5",
                                 {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.tabName == "semua",
-                                      expression: "tabName == 'semua'",
-                                    },
-                                  ],
-                                  staticClass: "row",
+                                  class: {
+                                    "text-danger":
+                                      _vm.errors.has("form.username"),
+                                  },
                                 },
-                                _vm._l(
-                                  _vm.notification,
-                                  function (notif, index) {
-                                    return _c(
-                                      "div",
-                                      { key: index, staticClass: "col-md-6" },
-                                      [
-                                        _c(
-                                          "div",
+                                [
+                                  _vm.errors.has("form.username")
+                                    ? _c("i", { staticClass: "icon-cross2" })
+                                    : _vm._e(),
+                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tUsername: "),
+                                  _c("wajib-badge"),
+                                  _vm._v(" "),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _vm._m(1),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required|min:5|alpha_dash",
+                                    expression: "'required|min:5|alpha_dash'",
+                                  },
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.username,
+                                    expression: "form.username",
+                                  },
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "username",
+                                  placeholder: "Silahkan masukkan username",
+                                  "data-vv-as": "Username",
+                                },
+                                domProps: { value: _vm.form.username },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "username",
+                                      $event.target.value
+                                    )
+                                  },
+                                },
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.has("form.username")
+                                ? _c(
+                                    "small",
+                                    { staticClass: "text-muted text-danger" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-arrow-small-right",
+                                      }),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.errors.first("form.username")
+                                          ) +
+                                          "\n\t\t\t\t\t\t\t\t\t\t"
+                                      ),
+                                    ]
+                                  )
+                                : _c("small", { staticClass: "text-muted" }, [
+                                    _vm._v(" \n\t\t\t\t\t\t\t\t\t\t"),
+                                  ]),
+                            ]
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group",
+                              class: {
+                                "has-error": _vm.errors.has("form.password"),
+                              },
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger":
+                                      _vm.errors.has("form.password"),
+                                  },
+                                },
+                                [
+                                  _vm.errors.has("form.password")
+                                    ? _c("i", { staticClass: "icon-cross2" })
+                                    : _vm._e(),
+                                  _vm._v("\n\t\t\t\t\t\t\t\t\t\t\tPassword: "),
+                                  _c("wajib-badge"),
+                                  _vm._v(" "),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _vm._m(2),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required|min:8|verify_password",
+                                    expression:
+                                      "'required|min:8|verify_password'",
+                                  },
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.password,
+                                    expression: "form.password",
+                                  },
+                                ],
+                                ref: "password",
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "password",
+                                  name: "password",
+                                  placeholder: "Silahkan masukkan password",
+                                },
+                                domProps: { value: _vm.form.password },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "password",
+                                      $event.target.value
+                                    )
+                                  },
+                                },
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.has("form.password")
+                                ? _c(
+                                    "small",
+                                    { staticClass: "text-muted text-danger" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-arrow-small-right",
+                                      }),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.errors.first("form.password")
+                                          ) +
+                                          "\n\t\t\t\t\t\t\t\t\t\t"
+                                      ),
+                                    ]
+                                  )
+                                : _c("small", { staticClass: "text-muted" }, [
+                                    _vm._v(" \n\t\t\t\t\t\t\t\t\t\t"),
+                                  ]),
+                            ]
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "form-group",
+                              class: {
+                                "has-error": _vm.errors.has(
+                                  "form.passwordConfirm"
+                                ),
+                              },
+                            },
+                            [
+                              _c(
+                                "h5",
+                                {
+                                  class: {
+                                    "text-danger": _vm.errors.has(
+                                      "form.passwordConfirm"
+                                    ),
+                                  },
+                                },
+                                [
+                                  _vm.errors.has("form.passwordConfirm")
+                                    ? _c("i", { staticClass: "icon-cross2" })
+                                    : _vm._e(),
+                                  _vm._v(
+                                    "\n\t\t\t\t\t\t\t\t\t\t\tKonfirmasi Password: "
+                                  ),
+                                  _c("wajib-badge"),
+                                  _vm._v(" "),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _vm._m(3),
+                                  _vm._v(" "),
+                                  _c("br"),
+                                  _c("br"),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required|confirmed:password",
+                                    expression: "'required|confirmed:password'",
+                                  },
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.passwordConfirm,
+                                    expression: "form.passwordConfirm",
+                                  },
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "password",
+                                  name: "passwordConfirm",
+                                  placeholder:
+                                    "Silahkan masukkan password konfirmasi",
+                                  "data-vv-as": "password",
+                                },
+                                domProps: { value: _vm.form.passwordConfirm },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "passwordConfirm",
+                                      $event.target.value
+                                    )
+                                  },
+                                },
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.has("form.passwordConfirm")
+                                ? _c(
+                                    "small",
+                                    { staticClass: "text-muted text-danger" },
+                                    [
+                                      _c("i", {
+                                        staticClass: "icon-arrow-small-right",
+                                      }),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(
+                                            _vm.errors.first(
+                                              "form.passwordConfirm"
+                                            )
+                                          ) +
+                                          "\n\t\t\t\t\t\t\t\t\t\t"
+                                      ),
+                                    ]
+                                  )
+                                : _c("small", { staticClass: "text-muted" }, [
+                                    _vm._v(" "),
+                                  ]),
+                            ]
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _vm.currentUser.id_cu == 0
+                          ? _c("div", { staticClass: "col-md-12" }, [
+                              _c("div", { staticClass: "form-group" }, [
+                                _c(
+                                  "h5",
+                                  [_vm._v("Tipe: "), _c("wajib-badge")],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.id_cu,
+                                        expression: "form.id_cu",
+                                      },
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: { name: "cu", "data-width": "100%" },
+                                    on: {
+                                      change: [
+                                        function ($event) {
+                                          var $$selectedVal =
+                                            Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function (o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function (o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                          _vm.$set(
+                                            _vm.form,
+                                            "id_cu",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        },
+                                        function ($event) {
+                                          return _vm.changeCU(
+                                            $event.target.value
+                                          )
+                                        },
+                                      ],
+                                    },
+                                  },
+                                  [
+                                    _c(
+                                      "option",
+                                      { attrs: { disabled: "", value: "" } },
+                                      [_vm._v("Silahkan pilih CU")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("option", { attrs: { value: "0" } }, [
+                                      _vm._v("PUSKOPCUINA"),
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.modelCu, function (cu, index) {
+                                      return _c(
+                                        "option",
+                                        {
+                                          key: index,
+                                          domProps: { value: cu.id },
+                                        },
+                                        [_vm._v(_vm._s(cu.name))]
+                                      )
+                                    }),
+                                  ],
+                                  2
+                                ),
+                              ]),
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.form.id_cu != "" && _vm.formStat == "success"
+                          ? _c(
+                              "div",
+                              { staticClass: "col-md-12" },
+                              [
+                                _c(
+                                  "h5",
+                                  [
+                                    _vm._v("Data Aktivis User: "),
+                                    _c("wajib-badge"),
+                                    _vm._v(" "),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _vm._m(4),
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _vm.form.id_aktivis != ""
+                                  ? _c("identitas", {
+                                      attrs: { itemData: _vm.form.aktivis },
+                                      on: {
+                                        deleteSelected: _vm.deleteSelected,
+                                      },
+                                    })
+                                  : _c("data-viewer", {
+                                      attrs: {
+                                        title: "Aktivis",
+                                        columnData: _vm.columnData,
+                                        itemData: _vm.itemData,
+                                        query: _vm.query,
+                                        itemDataStat: _vm.itemDataStat,
+                                        isDasar: "true",
+                                        isNoButtonRow: "true",
+                                      },
+                                      on: { fetch: _vm.fetchAktivis },
+                                      scopedSlots: _vm._u(
+                                        [
                                           {
-                                            staticClass: "card",
-                                            class: {
-                                              "text-muted":
-                                                notif.read_at != null,
-                                            },
-                                            staticStyle: { cursor: "pointer" },
-                                            on: {
-                                              click: function ($event) {
-                                                $event.preventDefault()
-                                                return _vm.goToPage(notif)
-                                              },
-                                            },
-                                          },
-                                          [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "card-header bg-white header-elements-inline",
-                                              },
-                                              [
+                                            key: "item-desktop",
+                                            fn: function (props) {
+                                              return [
                                                 _c(
-                                                  "span",
-                                                  { staticClass: "card-title" },
-                                                  [
-                                                    notif.data.tipe ==
-                                                      "laporanCu" ||
-                                                    notif.data.tipe ==
-                                                      "laporanTp"
-                                                      ? _c("span", [
-                                                          _c("i", {
-                                                            staticClass:
-                                                              "icon-stats-bars2",
-                                                          }),
-                                                          _vm._v(
-                                                            " Laporan Statistik CU"
-                                                          ),
-                                                        ])
-                                                      : notif.data.tipe ==
-                                                        "diklatBKCU"
-                                                      ? _c("span", [
-                                                          _c("i", {
-                                                            staticClass:
-                                                              "icon-graduation2",
-                                                          }),
-                                                          _vm._v(
-                                                            " Diklat BKCU"
-                                                          ),
-                                                        ])
-                                                      : notif.data.tipe ==
-                                                        "pertemuanBKCU"
-                                                      ? _c("span", [
-                                                          _c("i", {
-                                                            staticClass:
-                                                              "icon-ungroup",
-                                                          }),
-                                                          _vm._v(
-                                                            " Pertemuan BKCU"
-                                                          ),
-                                                        ])
-                                                      : notif.data.tipe ==
-                                                        "selfAssesment"
-                                                      ? _c("span", [
-                                                          _c("i", {
-                                                            staticClass:
-                                                              "icon-reading",
-                                                          }),
-                                                          _vm._v(
-                                                            " Self Assesment ACCESS"
-                                                          ),
-                                                        ])
-                                                      : notif.data.tipe ==
-                                                        "monitoring"
-                                                      ? _c("span", [
-                                                          _c("i", {
-                                                            staticClass:
-                                                              "icon-collaboration",
-                                                          }),
-                                                          _vm._v(" Monitoring"),
-                                                        ])
-                                                      : notif.data.tipe ==
-                                                        "klaimJALINAN"
-                                                      ? _c("span", [
-                                                          _c("i", {
-                                                            staticClass:
-                                                              "icon-accessibility2",
-                                                          }),
-                                                          _vm._v(
-                                                            " Bantuan Solidaritas Jalinan"
-                                                          ),
-                                                        ])
-                                                      : _c("span", [
-                                                          _c("i", {
-                                                            staticClass:
-                                                              "icon-bubble-notification",
-                                                          }),
-                                                          _vm._v(" Notifikasi"),
-                                                        ]),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
+                                                  "tr",
                                                   {
                                                     staticClass:
-                                                      "header-elements",
+                                                      "text-nowrap cursor-pointer",
+                                                    on: {
+                                                      click: function ($event) {
+                                                        return _vm.selectedRow(
+                                                          props.item
+                                                        )
+                                                      },
+                                                    },
                                                   },
                                                   [
-                                                    _vm._v(
-                                                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                                        _vm._s(
-                                                          _vm._f(
-                                                            "relativeHour"
-                                                          )(notif.created_at)
-                                                        ) +
-                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                    _c("td", [
+                                                      _vm._v(
+                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                          _vm._s(
+                                                            props.index +
+                                                              1 +
+                                                              (+_vm.itemData
+                                                                .current_page -
+                                                                1) *
+                                                                +_vm.itemData
+                                                                  .per_page +
+                                                              "."
+                                                          ) +
+                                                          "\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                      ),
+                                                    ]),
+                                                    _vm._v(" "),
+                                                    _c("td", [
+                                                      props.item.gambar
+                                                        ? _c("img", {
+                                                            staticClass:
+                                                              "img-rounded img-fluid wmin-sm",
+                                                            attrs: {
+                                                              src:
+                                                                "/images/aktivis/" +
+                                                                props.item
+                                                                  .gambar +
+                                                                "n.jpg",
+                                                            },
+                                                          })
+                                                        : _c("img", {
+                                                            staticClass:
+                                                              "img-rounded img-fluid wmin-sm",
+                                                            attrs: {
+                                                              src: "/images/no_image.jpg",
+                                                            },
+                                                          }),
+                                                    ]),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      [
+                                                        _c("check-value", {
+                                                          attrs: {
+                                                            value:
+                                                              props.item.name,
+                                                          },
+                                                        }),
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      [
+                                                        _c("check-value", {
+                                                          attrs: {
+                                                            value:
+                                                              props.item
+                                                                .kelamin,
+                                                          },
+                                                        }),
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    !_vm.columnData[4].disable
+                                                      ? _c("td", [
+                                                          props.item
+                                                            .pekerjaan_aktif &&
+                                                          props.item
+                                                            .pekerjaan_aktif
+                                                            .tipe == 1
+                                                            ? _c(
+                                                                "span",
+                                                                [
+                                                                  props.item
+                                                                    .pekerjaan_aktif
+                                                                    .cu
+                                                                    ? _c(
+                                                                        "check-value",
+                                                                        {
+                                                                          attrs:
+                                                                            {
+                                                                              value:
+                                                                                props
+                                                                                  .item
+                                                                                  .pekerjaan_aktif
+                                                                                  .cu
+                                                                                  .name,
+                                                                            },
+                                                                        }
+                                                                      )
+                                                                    : _c(
+                                                                        "span",
+                                                                        [
+                                                                          _vm._v(
+                                                                            "-"
+                                                                          ),
+                                                                        ]
+                                                                      ),
+                                                                ],
+                                                                1
+                                                              )
+                                                            : props.item
+                                                                .pekerjaan_aktif &&
+                                                              props.item
+                                                                .pekerjaan_aktif
+                                                                .tipe == 2
+                                                            ? _c(
+                                                                "span",
+                                                                [
+                                                                  props.item
+                                                                    .pekerjaan_aktif
+                                                                    .lembaga_lain
+                                                                    ? _c(
+                                                                        "check-value",
+                                                                        {
+                                                                          attrs:
+                                                                            {
+                                                                              value:
+                                                                                props
+                                                                                  .item
+                                                                                  .pekerjaan_aktif
+                                                                                  .lembaga_lain
+                                                                                  .name,
+                                                                            },
+                                                                        }
+                                                                      )
+                                                                    : _c(
+                                                                        "span",
+                                                                        [
+                                                                          _vm._v(
+                                                                            "-"
+                                                                          ),
+                                                                        ]
+                                                                      ),
+                                                                ],
+                                                                1
+                                                              )
+                                                            : props.item
+                                                                .pekerjaan_aktif &&
+                                                              props.item
+                                                                .pekerjaan_aktif
+                                                                .tipe == 3
+                                                            ? _c("span", [
+                                                                _vm._v(
+                                                                  "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tPUSKOPCUINA\n\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                                ),
+                                                              ])
+                                                            : _c("span", [
+                                                                _vm._v("-"),
+                                                              ]),
+                                                        ])
+                                                      : _vm._e(),
+                                                    _vm._v(" "),
+                                                    _c("td", {
+                                                      domProps: {
+                                                        innerHTML: _vm._s(
+                                                          _vm.$options.filters.checkTingkatAktivis(
+                                                            props.item
+                                                              .pekerjaan_aktif
+                                                              .tingkat
+                                                          )
+                                                        ),
+                                                      },
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      [
+                                                        props.item
+                                                          .pekerjaan_aktif
+                                                          ? _c("check-value", {
+                                                              attrs: {
+                                                                value:
+                                                                  props.item
+                                                                    .pekerjaan_aktif
+                                                                    .name,
+                                                              },
+                                                            })
+                                                          : _c("span", [
+                                                              _vm._v("-"),
+                                                            ]),
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      [
+                                                        props.item
+                                                          .pendidikan_tertinggi
+                                                          ? _c("check-value", {
+                                                              attrs: {
+                                                                value:
+                                                                  props.item
+                                                                    .pendidikan_tertinggi
+                                                                    .tingkat,
+                                                              },
+                                                            })
+                                                          : _c("span", [
+                                                              _vm._v("-"),
+                                                            ]),
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      [
+                                                        props.item
+                                                          .pendidikan_tertinggi
+                                                          ? _c("check-value", {
+                                                              attrs: {
+                                                                value:
+                                                                  props.item
+                                                                    .pendidikan_tertinggi
+                                                                    .name,
+                                                              },
+                                                            })
+                                                          : _c("span", [
+                                                              _vm._v("-"),
+                                                            ]),
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c("td", {
+                                                      domProps: {
+                                                        innerHTML: _vm._s(
+                                                          _vm.$options.filters.date(
+                                                            props.item
+                                                              .tanggal_lahir
+                                                          )
+                                                        ),
+                                                      },
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      [
+                                                        _c("check-value", {
+                                                          attrs: {
+                                                            value:
+                                                              props.item
+                                                                .tempat_lahir,
+                                                          },
+                                                        }),
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      [
+                                                        _c("check-value", {
+                                                          attrs: {
+                                                            value:
+                                                              props.item.tinggi,
+                                                          },
+                                                        }),
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      [
+                                                        _c("check-value", {
+                                                          attrs: {
+                                                            value:
+                                                              props.item.agama,
+                                                          },
+                                                        }),
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      [
+                                                        _c("check-value", {
+                                                          attrs: {
+                                                            value:
+                                                              props.item.status,
+                                                          },
+                                                        }),
+                                                      ],
+                                                      1
                                                     ),
                                                   ]
                                                 ),
                                               ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "div",
-                                              { staticClass: "card-body" },
-                                              [
-                                                _vm._v(
-                                                  "\n\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                                    _vm._s(notif.data.message) +
-                                                    "\n\t\t\t\t\t\t\t\t\t\t\t"
-                                                ),
-                                              ]
-                                            ),
-                                          ]
-                                        ),
-                                      ]
-                                    )
-                                  }
-                                ),
-                                0
-                              ),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "transition",
-                            {
-                              attrs: {
-                                "enter-active-class": "animated fadeIn",
-                                mode: "out-in",
-                              },
-                            },
-                            [
-                              _c(
-                                "div",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.tabName == "laporanCu",
-                                      expression: "tabName == 'laporanCu'",
-                                    },
-                                  ],
-                                },
-                                _vm._l(
-                                  _vm.notification,
-                                  function (notif, index) {
-                                    return _c("div", { key: index }, [
-                                      notif.data.tipe == "laporanCu"
-                                        ? _c(
-                                            "div",
-                                            {
-                                              staticClass: "card",
-                                              class: {
-                                                "text-muted":
-                                                  notif.read_at != null,
-                                              },
-                                              staticStyle: {
-                                                cursor: "pointer",
-                                              },
-                                              on: {
-                                                click: function ($event) {
-                                                  $event.preventDefault()
-                                                  return _vm.goToPage(notif)
-                                                },
-                                              },
                                             },
-                                            [
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "card-header bg-white header-elements-inline",
-                                                },
-                                                [
-                                                  _c(
-                                                    "span",
-                                                    {
-                                                      staticClass: "card-title",
-                                                    },
-                                                    [
-                                                      _c("i", {
-                                                        staticClass:
-                                                          "icon-stats-bars2",
-                                                      }),
-                                                      _vm._v(
-                                                        " Laporan Statistik CU\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                      ),
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "header-elements",
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                                          _vm._s(
-                                                            _vm._f(
-                                                              "relativeHour"
-                                                            )(notif.created_at)
-                                                          ) +
-                                                          "\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                      ),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                { staticClass: "card-body" },
-                                                [
-                                                  _vm._v(
-                                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                                      _vm._s(
-                                                        notif.data.message
-                                                      ) +
-                                                      "\n\t\t\t\t\t\t\t\t\t\t\t"
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          )
-                                        : _vm._e(),
-                                    ])
-                                  }
-                                ),
-                                0
-                              ),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "transition",
-                            {
-                              attrs: {
-                                "enter-active-class": "animated fadeIn",
-                                mode: "out-in",
-                              },
-                            },
-                            [
-                              _c(
-                                "div",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.tabName == "diklatBKCU",
-                                      expression: "tabName == 'diklatBKCU'",
-                                    },
+                                          },
+                                        ],
+                                        null,
+                                        false,
+                                        952953435
+                                      ),
+                                    }),
+                              ],
+                              1
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.form.id_aktivis != "" && _vm.formStat == "success"
+                          ? _c(
+                              "div",
+                              { staticClass: "col-md-12" },
+                              [
+                                _c("br"),
+                                _vm._v(" "),
+                                _c(
+                                  "h5",
+                                  [
+                                    _vm._v("Hak Akses: "),
+                                    _c("wajib-badge"),
+                                    _vm._v(" "),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _vm._m(5),
                                   ],
-                                },
-                                _vm._l(
-                                  _vm.notification,
-                                  function (notif, index) {
-                                    return _c("div", { key: index }, [
-                                      notif.data.tipe == "diklatBKCU"
-                                        ? _c(
-                                            "div",
-                                            {
-                                              staticClass: "card",
-                                              class: {
-                                                "text-muted":
-                                                  notif.read_at != null,
-                                              },
-                                              staticStyle: {
-                                                cursor: "pointer",
-                                              },
-                                              on: {
-                                                click: function ($event) {
-                                                  $event.preventDefault()
-                                                  return _vm.goToPage(notif)
-                                                },
-                                              },
-                                            },
-                                            [
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "card-header bg-white header-elements-inline",
-                                                },
-                                                [
-                                                  _c(
-                                                    "span",
-                                                    {
-                                                      staticClass: "card-title",
-                                                    },
-                                                    [
-                                                      _c("i", {
-                                                        staticClass:
-                                                          "icon-graduation2",
-                                                      }),
-                                                      _vm._v(
-                                                        " Diklat BKCU\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                      ),
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "header-elements",
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                                          _vm._s(
-                                                            _vm._f(
-                                                              "relativeHour"
-                                                            )(notif.created_at)
-                                                          ) +
-                                                          "\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                      ),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                { staticClass: "card-body" },
-                                                [
-                                                  _vm._v(
-                                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                                      _vm._s(
-                                                        notif.data.message
-                                                      ) +
-                                                      "\n\t\t\t\t\t\t\t\t\t\t\t"
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          )
-                                        : _vm._e(),
-                                    ])
-                                  }
+                                  1
                                 ),
-                                0
-                              ),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "transition",
-                            {
-                              attrs: {
-                                "enter-active-class": "animated fadeIn",
-                                mode: "out-in",
-                              },
-                            },
-                            [
-                              _c(
-                                "div",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.tabName == "pertemuanBKCU",
-                                      expression: "tabName == 'pertemuanBKCU'",
-                                    },
-                                  ],
-                                },
-                                _vm._l(
-                                  _vm.notification,
-                                  function (notif, index) {
-                                    return _c("div", { key: index }, [
-                                      notif.data.tipe == "pertemuanBKCU"
-                                        ? _c(
-                                            "div",
-                                            {
-                                              staticClass: "card",
-                                              class: {
-                                                "text-muted":
-                                                  notif.read_at != null,
-                                              },
-                                              staticStyle: {
-                                                cursor: "pointer",
-                                              },
-                                              on: {
-                                                click: function ($event) {
-                                                  $event.preventDefault()
-                                                  return _vm.goToPage(notif)
-                                                },
-                                              },
-                                            },
-                                            [
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "card-header bg-white header-elements-inline",
-                                                },
-                                                [
-                                                  _c(
-                                                    "span",
-                                                    {
-                                                      staticClass: "card-title",
-                                                    },
-                                                    [
-                                                      _c("i", {
-                                                        staticClass:
-                                                          "icon-ungroup2",
-                                                      }),
-                                                      _vm._v(
-                                                        " Pertemuan BKCU\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                      ),
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "header-elements",
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                                          _vm._s(
-                                                            _vm._f(
-                                                              "relativeHour"
-                                                            )(notif.created_at)
-                                                          ) +
-                                                          "\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                      ),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                { staticClass: "card-body" },
-                                                [
-                                                  _vm._v(
-                                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                                      _vm._s(
-                                                        notif.data.message
-                                                      ) +
-                                                      "\n\t\t\t\t\t\t\t\t\t\t\t"
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          )
-                                        : _vm._e(),
-                                    ])
-                                  }
-                                ),
-                                0
-                              ),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "transition",
-                            {
-                              attrs: {
-                                "enter-active-class": "animated fadeIn",
-                                mode: "out-in",
-                              },
-                            },
-                            [
-                              _c(
-                                "div",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.tabName == "selfAssesment",
-                                      expression: "tabName == 'selfAssesment'",
-                                    },
-                                  ],
-                                },
-                                _vm._l(
-                                  _vm.notification,
-                                  function (notif, index) {
-                                    return _c("div", { key: index }, [
-                                      notif.data.tipe == "selfAssesment"
-                                        ? _c(
-                                            "div",
-                                            {
-                                              staticClass: "card",
-                                              class: {
-                                                "text-muted":
-                                                  notif.read_at != null,
-                                              },
-                                              staticStyle: {
-                                                cursor: "pointer",
-                                              },
-                                              on: {
-                                                click: function ($event) {
-                                                  $event.preventDefault()
-                                                  return _vm.goToPage(notif)
-                                                },
-                                              },
-                                            },
-                                            [
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "card-header bg-white header-elements-inline",
-                                                },
-                                                [
-                                                  _c(
-                                                    "span",
-                                                    {
-                                                      staticClass: "card-title",
-                                                    },
-                                                    [
-                                                      _c("i", {
-                                                        staticClass:
-                                                          "icon-reading",
-                                                      }),
-                                                      _vm._v(
-                                                        " Self Assesment ACCESS\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                      ),
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "header-elements",
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                                          _vm._s(
-                                                            _vm._f(
-                                                              "relativeHour"
-                                                            )(notif.created_at)
-                                                          ) +
-                                                          "\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                      ),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                { staticClass: "card-body" },
-                                                [
-                                                  _vm._v(
-                                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                                      _vm._s(
-                                                        notif.data.message
-                                                      ) +
-                                                      "\n\t\t\t\t\t\t\t\t\t\t\t"
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          )
-                                        : _vm._e(),
-                                    ])
-                                  }
-                                ),
-                                0
-                              ),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "transition",
-                            {
-                              attrs: {
-                                "enter-active-class": "animated fadeIn",
-                                mode: "out-in",
-                              },
-                            },
-                            [
-                              _c(
-                                "div",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.tabName == "monitoring",
-                                      expression: "tabName == 'monitoring'",
-                                    },
-                                  ],
-                                },
-                                _vm._l(
-                                  _vm.notification,
-                                  function (notif, index) {
-                                    return _c("div", { key: index }, [
-                                      notif.data.tipe == "monitoring"
-                                        ? _c(
-                                            "div",
-                                            {
-                                              staticClass: "card",
-                                              class: {
-                                                "text-muted":
-                                                  notif.read_at != null,
-                                              },
-                                              staticStyle: {
-                                                cursor: "pointer",
-                                              },
-                                              on: {
-                                                click: function ($event) {
-                                                  $event.preventDefault()
-                                                  return _vm.goToPage(notif)
-                                                },
-                                              },
-                                            },
-                                            [
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "card-header bg-white header-elements-inline",
-                                                },
-                                                [
-                                                  _c(
-                                                    "span",
-                                                    {
-                                                      staticClass: "card-title",
-                                                    },
-                                                    [
-                                                      _c("i", {
-                                                        staticClass:
-                                                          "icon-collaboration",
-                                                      }),
-                                                      _vm._v(
-                                                        " Monitoring\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                      ),
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "header-elements",
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                                          _vm._s(
-                                                            _vm._f(
-                                                              "relativeHour"
-                                                            )(notif.created_at)
-                                                          ) +
-                                                          "\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                      ),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                { staticClass: "card-body" },
-                                                [
-                                                  _vm._v(
-                                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                                      _vm._s(
-                                                        notif.data.message
-                                                      ) +
-                                                      "\n\t\t\t\t\t\t\t\t\t\t\t"
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          )
-                                        : _vm._e(),
-                                    ])
-                                  }
-                                ),
-                                0
-                              ),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "transition",
-                            {
-                              attrs: {
-                                "enter-active-class": "animated fadeIn",
-                                mode: "out-in",
-                              },
-                            },
-                            [
-                              _c(
-                                "div",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.tabName == "klaimJALINAN",
-                                      expression: "tabName == 'klaimJALINAN'",
-                                    },
-                                  ],
-                                },
-                                _vm._l(
-                                  _vm.notification,
-                                  function (notif, index) {
-                                    return _c("div", { key: index }, [
-                                      notif.data.tipe == "klaimJALINAN"
-                                        ? _c(
-                                            "div",
-                                            {
-                                              staticClass: "card",
-                                              class: {
-                                                "text-muted":
-                                                  notif.read_at != null,
-                                              },
-                                              staticStyle: {
-                                                cursor: "pointer",
-                                              },
-                                              on: {
-                                                click: function ($event) {
-                                                  $event.preventDefault()
-                                                  return _vm.goToPage(notif)
-                                                },
-                                              },
-                                            },
-                                            [
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "card-header bg-white header-elements-inline",
-                                                },
-                                                [
-                                                  _c(
-                                                    "span",
-                                                    {
-                                                      staticClass: "card-title",
-                                                    },
-                                                    [
-                                                      _c("i", {
-                                                        staticClass:
-                                                          "icon-accessibility2",
-                                                      }),
-                                                      _vm._v(
-                                                        " Bantuan Solidaritas Jalinan\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                      ),
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "header-elements",
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        "\n\t\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                                          _vm._s(
-                                                            _vm._f(
-                                                              "relativeHour"
-                                                            )(notif.created_at)
-                                                          ) +
-                                                          "\n\t\t\t\t\t\t\t\t\t\t\t\t"
-                                                      ),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                { staticClass: "card-body" },
-                                                [
-                                                  _vm._v(
-                                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t" +
-                                                      _vm._s(
-                                                        notif.data.message
-                                                      ) +
-                                                      "\n\t\t\t\t\t\t\t\t\t\t\t"
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          )
-                                        : _vm._e(),
-                                    ])
-                                  }
-                                ),
-                                0
-                              ),
-                            ]
-                          ),
-                        ],
-                        1
-                      )
-                    : _c("div", [_vm._m(2)]),
-                ]),
-          ]),
+                                _vm._v(" "),
+                                _c("hak-akses", {
+                                  attrs: {
+                                    isPeran: true,
+                                    tipeUser: _vm.tipeUser,
+                                    dataStat: "success",
+                                  },
+                                  on: { hakForm: _vm.hakForm },
+                                }),
+                              ],
+                              1
+                            )
+                          : _vm._e(),
+                      ]),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("form-info"),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "card card-body" },
+                    [
+                      _c("form-button", {
+                        attrs: {
+                          cancelState: "methods",
+                          formValidation: "form",
+                        },
+                        on: { cancelClick: _vm.back },
+                      }),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
         ]),
       ]),
       _vm._v(" "),
-      _c(
-        "app-modal",
-        {
-          attrs: {
-            show: _vm.modalShow,
-            state: _vm.modalState,
-            title: _vm.modalTitle,
-            size: _vm.modalSize,
-            color: _vm.modalColor,
-            button: _vm.modalButton,
-            content: _vm.modalContent,
-          },
-          on: {
-            confirmOk: _vm.modalConfirmOk,
-            tutup: _vm.modalTutup,
-            successOk: _vm.modalTutup,
-            failOk: _vm.modalTutup,
-            backgroundClick: _vm.modalTutup,
-          },
+      _c("app-modal", {
+        attrs: {
+          show: _vm.modalShow,
+          state: _vm.modalState,
+          title: _vm.modalTitle,
+          content: _vm.modalContent,
+          color: _vm.modalColor,
         },
-        [
-          _c("template", { slot: "modal-title" }, [
-            _vm._v(_vm._s(_vm.modalTitle)),
-          ]),
-          _vm._v(" "),
-          _c("template", { slot: "modal-body1" }),
-        ],
-        2
-      ),
+        on: {
+          batal: _vm.modalTutup,
+          tutup: _vm.modalTutup,
+          successOk: _vm.modalTutup,
+          failOk: _vm.modalTutup,
+          backgroundClick: _vm.modalBackgroundClick,
+        },
+      }),
     ],
     1
   )
@@ -1923,37 +1563,22 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "alert bg-info text-white alert-styled-left " },
-      [
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "alert alert-info alert-styled-left" }, [
         _c("span", { staticClass: "font-weight-semibold" }, [
-          _vm._v(
-            "Notifikasi yang ditampilkan adalah notifikasi selama 3 bulan terakhir.\n\t\t\t\t\t\t"
-          ),
+          _vm._v("Informasi!"),
         ]),
-      ]
-    )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-body" }, [
-        _c("h4", [_vm._v("Mohon tunggu...")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "progress" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "progress-bar progress-bar-info progress-bar-striped progress-bar-animated",
-              staticStyle: { width: "100%" },
-            },
-            [_c("span", { staticClass: "sr-only" }, [_vm._v("100% Complete")])]
-          ),
-        ]),
+        _vm._v(
+          " Mari menggunakan password dengan tingkat keamanan yang lebih tinggi!! \n\t\t\t\t\t\t\t\t\t\t"
+        ),
+        _c("br"),
+        _vm._v(
+          "\n\t\t\t\t\t\t\t\t\t\tDimana password anda harus minimal terdiri dari 8 karakter yang mengandung minimal 1 huruf besar, 1 huruf kecil dan 1 angka. \n\t\t\t\t\t\t\t\t\t\t"
+        ),
+        _c("br"),
+        _vm._v(
+          "\n\t\t\t\t\t\t\t\t\t\tUsahakan password anda bukan dari tanggal lahir, alamat, nomor telepon/hp dan dari kata yang sering anda gunakan atau mudah diketahui oleh orang lain.\n\t\t\t\t\t\t\t\t\t"
+        ),
       ]),
     ])
   },
@@ -1961,10 +1586,52 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-body" }, [
-        _c("h3", [_vm._v("Belum terdapat notifikasi apapun...")]),
+    return _c("small", { staticClass: "text-muted" }, [
+      _c("i", [
+        _vm._v(
+          'format penulisan "namapanggilan-namasingkatancu" tanpa spasi. contoh: tony-cubcd'
+        ),
       ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("small", { staticClass: "text-muted" }, [
+      _c("i", [
+        _vm._v(
+          "Minimal 8 karater yang mengandung minimal 1 huruf besar, 1 huruf kecil dan 1 angka"
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("small", { staticClass: "text-muted" }, [
+      _c("i", [_vm._v("Mengisi ulang password")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("small", { staticClass: "text-muted" }, [
+      _c("i", [
+        _vm._v(
+          "Silahkan memilih dari tabel dibawah data user ini terikat dengan data aktivis mana. untuk memilih dengan menekan nama di dalam tabel aktivis"
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("small", { staticClass: "text-muted" }, [
+      _c("i", [_vm._v("Silahkan memilih apa saja yang bisa dilakukan user.")]),
     ])
   },
 ]
@@ -1974,17 +1641,17 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/pageHeader.vue":
-/*!*******************************************************!*\
-  !*** ./resources/assets/js/components/pageHeader.vue ***!
-  \*******************************************************/
+/***/ "./resources/assets/js/components/ImageUpload.vue":
+/*!********************************************************!*\
+  !*** ./resources/assets/js/components/ImageUpload.vue ***!
+  \********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _pageHeader_vue_vue_type_template_id_0af8ed53___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pageHeader.vue?vue&type=template&id=0af8ed53& */ "./resources/assets/js/components/pageHeader.vue?vue&type=template&id=0af8ed53&");
-/* harmony import */ var _pageHeader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pageHeader.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/pageHeader.vue?vue&type=script&lang=js&");
+/* harmony import */ var _ImageUpload_vue_vue_type_template_id_319f68d5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ImageUpload.vue?vue&type=template&id=319f68d5& */ "./resources/assets/js/components/ImageUpload.vue?vue&type=template&id=319f68d5&");
+/* harmony import */ var _ImageUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ImageUpload.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/ImageUpload.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -1994,9 +1661,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _pageHeader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _pageHeader_vue_vue_type_template_id_0af8ed53___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _pageHeader_vue_vue_type_template_id_0af8ed53___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _ImageUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ImageUpload_vue_vue_type_template_id_319f68d5___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ImageUpload_vue_vue_type_template_id_319f68d5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -2006,54 +1673,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/components/pageHeader.vue"
+component.options.__file = "resources/assets/js/components/ImageUpload.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/pageHeader.vue?vue&type=script&lang=js&":
-/*!********************************************************************************!*\
-  !*** ./resources/assets/js/components/pageHeader.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************/
+/***/ "./resources/assets/js/components/ImageUpload.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/assets/js/components/ImageUpload.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_pageHeader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./pageHeader.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/pageHeader.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_pageHeader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ImageUpload.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/ImageUpload.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUpload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/pageHeader.vue?vue&type=template&id=0af8ed53&":
-/*!**************************************************************************************!*\
-  !*** ./resources/assets/js/components/pageHeader.vue?vue&type=template&id=0af8ed53& ***!
-  \**************************************************************************************/
+/***/ "./resources/assets/js/components/ImageUpload.vue?vue&type=template&id=319f68d5&":
+/*!***************************************************************************************!*\
+  !*** ./resources/assets/js/components/ImageUpload.vue?vue&type=template&id=319f68d5& ***!
+  \***************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_pageHeader_vue_vue_type_template_id_0af8ed53___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./pageHeader.vue?vue&type=template&id=0af8ed53& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/pageHeader.vue?vue&type=template&id=0af8ed53&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_pageHeader_vue_vue_type_template_id_0af8ed53___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUpload_vue_vue_type_template_id_319f68d5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ImageUpload.vue?vue&type=template&id=319f68d5& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/ImageUpload.vue?vue&type=template&id=319f68d5&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUpload_vue_vue_type_template_id_319f68d5___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_pageHeader_vue_vue_type_template_id_0af8ed53___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUpload_vue_vue_type_template_id_319f68d5___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/sistem/notification.vue":
-/*!***********************************************************!*\
-  !*** ./resources/assets/js/views/sistem/notification.vue ***!
-  \***********************************************************/
+/***/ "./resources/assets/js/views/user/form.vue":
+/*!*************************************************!*\
+  !*** ./resources/assets/js/views/user/form.vue ***!
+  \*************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _notification_vue_vue_type_template_id_6c10fef8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./notification.vue?vue&type=template&id=6c10fef8& */ "./resources/assets/js/views/sistem/notification.vue?vue&type=template&id=6c10fef8&");
-/* harmony import */ var _notification_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./notification.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/sistem/notification.vue?vue&type=script&lang=js&");
+/* harmony import */ var _form_vue_vue_type_template_id_fadbbf36___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./form.vue?vue&type=template&id=fadbbf36& */ "./resources/assets/js/views/user/form.vue?vue&type=template&id=fadbbf36&");
+/* harmony import */ var _form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./form.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/user/form.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -2063,9 +1730,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _notification_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _notification_vue_vue_type_template_id_6c10fef8___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _notification_vue_vue_type_template_id_6c10fef8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _form_vue_vue_type_template_id_fadbbf36___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _form_vue_vue_type_template_id_fadbbf36___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -2075,38 +1742,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/views/sistem/notification.vue"
+component.options.__file = "resources/assets/js/views/user/form.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/sistem/notification.vue?vue&type=script&lang=js&":
-/*!************************************************************************************!*\
-  !*** ./resources/assets/js/views/sistem/notification.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************/
+/***/ "./resources/assets/js/views/user/form.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/assets/js/views/user/form.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_notification_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./notification.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sistem/notification.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_notification_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./form.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/user/form.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/sistem/notification.vue?vue&type=template&id=6c10fef8&":
-/*!******************************************************************************************!*\
-  !*** ./resources/assets/js/views/sistem/notification.vue?vue&type=template&id=6c10fef8& ***!
-  \******************************************************************************************/
+/***/ "./resources/assets/js/views/user/form.vue?vue&type=template&id=fadbbf36&":
+/*!********************************************************************************!*\
+  !*** ./resources/assets/js/views/user/form.vue?vue&type=template&id=fadbbf36& ***!
+  \********************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_notification_vue_vue_type_template_id_6c10fef8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./notification.vue?vue&type=template&id=6c10fef8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/sistem/notification.vue?vue&type=template&id=6c10fef8&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_notification_vue_vue_type_template_id_6c10fef8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_fadbbf36___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./form.vue?vue&type=template&id=fadbbf36& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/user/form.vue?vue&type=template&id=fadbbf36&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_fadbbf36___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_notification_vue_vue_type_template_id_6c10fef8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_form_vue_vue_type_template_id_fadbbf36___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -61,4 +61,7 @@ class KegiatanPeserta extends Model
     {
         return $this->belongsTo('App\Kegiatan', 'kegiatan_id', 'id');
     }
+    public function sertifikat_generate(){
+        return $this->hasOne('App\SertifikatGenerate', 'kegiatan_peserta_id','id');
+    }
 }

@@ -18,13 +18,14 @@ class KegiatanListMateri extends Model
         'kegiatan_id' => 'required',
         'nama' => 'required',
         'waktu' => 'required',
+        'narasumber' => 'required'
     ];
 
-    protected $fillable = ['kegiatan_id', 'nama', 'waktu'];
+    protected $fillable = ['kegiatan_id', 'nama', 'waktu','narasumber'];
 
-    protected $allowedFilters = ['kegiatan_id', 'nama', 'waktu'];
+    protected $allowedFilters = ['kegiatan_id', 'nama', 'waktu','narasumber'];
 
-    protected $orderable = ['kegiatan_id', 'nama', 'waktu'];
+    protected $orderable = ['kegiatan_id', 'nama', 'waktu','narasumber'];
 
     public function nilai()
     {

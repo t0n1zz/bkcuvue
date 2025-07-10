@@ -560,7 +560,7 @@ export default {
 			}else{
 				this.excelUploads[1].enabled = false;
 			}
-    },
+	  },
     selectedRow(item) {
       this.selectedItem = item;
     },

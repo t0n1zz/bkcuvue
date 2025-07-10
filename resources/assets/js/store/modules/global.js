@@ -10,6 +10,7 @@ export const global = {
     message: '',
     messageType: '',
     isLoading: '',
+    dataExcel:'',
   },
 
   // getters
@@ -20,10 +21,15 @@ export const global = {
     message: state => state.message,
     messageType: state => state.messageType,
     isLoading: state => state.isLoading,
+    dataExcel: state => state.dataExcel,
   },
 
   // actions
   actions: {
+
+    getDataExcel({ commit }, dataExcel) {
+      commit('setDataExcel', dataExcel);
+    },
 
     // change data
     changeData({commit}, data){
@@ -70,6 +76,9 @@ export const global = {
 
   // mutations
   mutations: {
+    setDataExcel(state, dataExcel) {
+      state.dataExcel = dataExcel;
+    },
     setData ( state, data ){
       state.data = data;
     },

@@ -288,6 +288,10 @@
 				<option disabled value="">Silahkan pilih peran</option>
 				<option value="panitia">Panitia</option>
 				<option value="fasilitator">Fasilitator</option>
+				<option value="moderator">Moderator</option>
+				<option value="narasumber">Narasumber</option>
+				<option value="pimpinan">Pimpinan Rapat</option>
+				<option value="sekretaris">Sekretaris Rapat</option>
 			</select>
 
 			<!-- error message -->

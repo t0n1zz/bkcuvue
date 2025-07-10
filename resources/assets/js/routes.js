@@ -36,6 +36,8 @@ const kegiatanBKCU_detail = () => import("./views/kegiatanBKCU/detail.vue");
 const kegiatanPeserta = () => import("./views/kegiatanPeserta/index.vue");
 const sertifikatKegiatan = () => import("./views/sertifikatKegiatan/index.vue");
 const sertifikatKegiatan_form = () => import("./views/sertifikatKegiatan/form.vue");
+const sertifikatKegiatanGetNomor = () => import("./views/sertifikatKegiatan/indexNomorSertifikatKegiatan.vue");
+const sertifikatKegiatan_Getform = () => import("./views/sertifikatKegiatan/formNomorSertifikatKegiatan.vue");
 const kodeKegiatan = () => import("./views/kodeKegiatan/index.vue");
 const kodeKegiatan_form = () => import("./views/kodeKegiatan/form.vue");
 const tempat = () => import("./views/tempat/index.vue");
@@ -388,7 +390,7 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
-    path: "/kegiatanBKCU/edit/:id",
+    path: "/kegiatanBKCU/edit/:id/:tipe",
     name: "kegiatanBKCUEdit",
     components: { default: kegiatanBKCU_form, header: header, footer: footer },
     meta: { requiresAuth: true, mode: "edit" },
@@ -437,8 +439,8 @@ const routes = [
     meta: { requiresAuth: true, mode: "edit" },
   },
 
-  // sertifikat kegiatan
-  {
+   // sertifikat kegiatan
+   {
     path: "/sertifikatKegiatan",
     name: "sertifikatKegiatan",
     components: { default: sertifikatKegiatan, header: header, footer: footer },
@@ -463,6 +465,32 @@ const routes = [
       footer: footer,
     },
     meta: { requiresAuth: true, mode: "edit" },
+  },
+
+  // ambil nomor sertifikat
+  {
+    path: "/sertifikatKegiatan/getnomor",
+    name: "sertifikatKegiatanGetNomor",
+    components: { default: sertifikatKegiatanGetNomor, header: header, footer: footer },
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/sertifikatKegiatan/getCreate",
+    name: "sertifikatKegiatanGetCreate",
+    components: { default: sertifikatKegiatan_Getform, header: header, footer: footer },
+    meta: { requiresAuth: true, mode: 'create' },
+  },
+  {
+    path: "/sertifikatKegiatan/get/edit/:id",
+    name: "sertifikatKegiatanGetEdit",
+    components: { default: sertifikatKegiatan_Getform, header: header, footer: footer },
+    meta: { requiresAuth: true, mode: "edit" },
+  },
+  {
+    path: "/sertifikatKegiatan/get/detail/:id",
+    name: "sertifikatKegiatanGetDetail",
+    components: { default: sertifikatKegiatan_Getform, header: header, footer: footer },
+    meta: { requiresAuth: true, mode: "detail" },
   },
 
   // kode kegiatan

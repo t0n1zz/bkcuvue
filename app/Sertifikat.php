@@ -15,27 +15,28 @@ class Sertifikat extends Model
     protected static $logFillable = true;
 
     protected $fillable = [
-        'kode_sertifikat', 'name', 'gambar_depan', 'gambar_belakang', 'created_at', 'updated_at', 'deleted_at'
+        'kode_sertifikat', 'name', 'tipe', 'gambar_depan', 'gambar_belakang', 'created_at', 'updated_at', 'deleted_at'
     ];
 
     protected $allowedFilters = [
-        'id', 'kode_sertifikat', 'name'
+        'id', 'kode_sertifikat', 'name', 'tipe'
     ];
 
     protected $orderable = [
-        'id', 'kode_sertifikat', 'name'
+        'id', 'kode_sertifikat', 'name', 'tipe'
     ];
 
     public static function initialize()
     {
         return [
-            'kode_sertifikat' => '', 'name' => '', 'gambar_depan' => '', 'gambar_belakang' => ''
+            'kode_sertifikat' => '', 'name' => '', 'tipe' => '', 'gambar_depan' => '', 'gambar_belakang' => ''
         ];
     }
 
     public static $rules = [
         'kode_sertifikat' => 'required',
-        'name' => 'required'
+        'name' => 'required',
+        'tipe' => 'required'
     ];
 
     public function sluggable()

@@ -42,6 +42,7 @@
         "node-sass": "^6.0.1",
         "pusher-js": "^7.0.0",
         "qrcode.vue": "^1.7.0",
+        "uuid": "^7.0.3",
         "v-tooltip": "^2.0.2",
         "vee-validate": "^2.2.15",
         "vue-ckeditor5": "^0.3.1",

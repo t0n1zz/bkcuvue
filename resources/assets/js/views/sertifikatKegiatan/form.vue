@@ -85,6 +85,30 @@
 											<small class="text-muted" v-else>&nbsp;</small>
 										</div>
 									</div>
+									<div class="col-md-12">
+										<div class="form-group" :class="{'has-error' : errors.has('form.tipe')}">
+
+											<!-- title -->
+											<h5 :class="{ 'text-danger' : errors.has('form.tipe')}">
+												<i class="icon-cross2" v-if="errors.has('form.tipe')"></i>
+												Tipe Sertifikat: <wajib-badge></wajib-badge>
+											</h5>
+
+											<!-- select -->
+											<select class="form-control" name="tipe" v-model="form.tipe" data-width="100%" v-validate="'required'" data-vv-as="Tipe Tempat">
+												<option disabled value="">Silahkan pilih tipe sertifikat</option>
+												<option value="piagam">PIAGAM</option>
+												<option value="diklat">SERTIFIKAT DIKLAT UMUM</option>
+												<option value="rat">SERTIFIKAT RAT</option>
+											</select>
+
+											<!-- error message -->
+											<small class="text-muted text-danger" v-if="errors.has('form.tipe')">
+												<i class="icon-arrow-small-right"></i> {{ errors.first('form.tipe') }}
+											</small>
+											<small class="text-muted" v-else>&nbsp;</small>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -193,10 +217,8 @@
 				this.$validator.validateAll('form').then((result) => {
 					if (result) {
 						if(this.$route.meta.mode == 'edit'){
-							console.log(this.form.gambar_depan);
 							this.$store.dispatch(this.kelas + '/update',[this.$route.params.id, formData]);
 						}else{
-							console.log(this.form.gambar_depan);
 							this.$store.dispatch(this.kelas + '/store', formData);
 					}
 						this.submited = false;

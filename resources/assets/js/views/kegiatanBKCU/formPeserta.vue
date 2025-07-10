@@ -245,7 +245,7 @@
 			<div class="row" v-if="formPeserta.asal != ''">
 
 				<!-- name nametag -->
-				<div class="col-md-6" v-if="item.tipe_tempat == 'OFFLINE'">
+				<div class="col-md-6" v-if="item.tipe_tempat !== 'ONLINE'">
 					<div class="form-group" :class="{ 'has-error': errors.has('formPeserta.name_nametag') }">
 
 						<!-- title -->
@@ -269,7 +269,7 @@
 				</div>
 
 				<!-- name sertifikat -->
-				<div :class="{ 'col-md-6': item.tipe_tempat == 'OFFLINE', 'col-md-12': item.tipe_tempat == 'ONLINE' }">
+				<div :class="'col-md-6'">
 					<div class="form-group" :class="{ 'has-error': errors.has('formPeserta.name_sertifikat') }">
 
 						<!-- title -->
@@ -293,7 +293,7 @@
 				</div>
 
 				<!-- tgl kedatangan -->
-				<div class="col-md-6" v-if="item.tipe_tempat == 'OFFLINE'">
+				<div class="col-md-6" v-if="item.tipe_tempat !== 'ONLINE'">
 					<div class="form-group">
 
 						<!-- title -->
@@ -307,7 +307,7 @@
 				</div>
 
 				<!-- tgl pulang -->
-				<div class="col-md-6" v-if="item.tipe_tempat == 'OFFLINE'">
+				<div class="col-md-6" v-if="item.tipe_tempat !== 'ONLINE'">
 					<div class="form-group">
 
 						<!-- title -->
@@ -321,7 +321,7 @@
 				</div>
 
 				<!-- upload button -->
-				<div class="col-md-12" v-if="item.tipe_tempat == 'OFFLINE'">
+				<div class="col-md-12" v-if="item.tipe_tempat !== 'ONLINE'">
 					<div class="form-group">
 						<!-- title -->
 						<h5>Surat Tugas:</h5>
@@ -332,14 +332,14 @@
 				</div>
 
 				<!-- select -->
-				<div class="col-md-6" v-if="item.tipe_tempat == 'OFFLINE'">
+				<div class="col-md-6" v-if="item.tipe_tempat !== 'ONLINE'">
 					<div class="form-group">
 						<h5 :class="{ 'text-danger': errors.has('formPeserta.ukuran_baju') }">
 							<i class="icon-cross2" v-if="errors.has('formPeserta.ukuran_baju')"></i>
-							Ukuran Baju: <wajib-badge></wajib-badge>
+							Ukuran Baju: 
 						</h5>
 						<select class="form-control" name="ukuran_baju" v-model="formPeserta.ukuran_baju" data-width="100%"
-							v-validate="'required'" data-vv-as="ukuran_baju" @change="changeBaju($event.target.value)">
+							 data-vv-as="ukuran_baju" @change="changeBaju($event.target.value)">
 							<option disabled value="">Silahkan pilih ukuran baju</option>
 							<option value="XS">XS - L(51 cm) P(72 cm)</option>
 							<option value="S">S - L(53 cm) P(74 cm)</option>
@@ -352,7 +352,7 @@
 				</div>
 
 				<!-- select -->
-				<div class="col-md-6" v-if="item.tipe_tempat == 'OFFLINE'">
+				<div class="col-md-6" v-if="item.tipe_tempat !== 'ONLINE'">
 					<div class="form-group">
 						<h5>Status Kepesertaan:</h5>
 						<select class="form-control" name="status_kepesertaan" v-model="formPeserta.status_kepesertaan"
@@ -372,7 +372,7 @@
 
 				<!-- select -->
 
-				<div class="col-md-6" v-if="item.tipe_tempat == 'OFFLINE'">
+				<div class="col-md-6" v-if="item.tipe_tempat !== 'ONLINE'">
 					<div class=" form-group">
 						<h5>Penerimaan Vaksin:</h5>
 						<select class="form-control" name="penerimaan_vaksin" v-model="formPeserta.penerimaan_vaksin"
@@ -386,7 +386,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-6" v-if="item.tipe_tempat == 'OFFLINE'">
+				<div class="col-md-6" v-if="item.tipe_tempat !== 'ONLINE'">
 					<div class="form-group">
 						<!-- title -->
 						<h5>Pilih Riwayat Penyakit:</h5>
@@ -405,7 +405,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-6" v-if="item.tipe_tempat == 'OFFLINE'">
+				<div class="col-md-6" v-if="item.tipe_tempat !== 'ONLINE'">
 					<div class="form-group">
 						<h5>Apakah Merokok:</h5>
 						<div class="form-check">
@@ -427,7 +427,7 @@
 				</div>
 
 				<!-- sakit jantung  -->
-				<div class="col-md-6" v-if="item.tipe_tempat == 'OFFLINE'">
+				<div class="col-md-6" v-if="item.tipe_tempat !== 'ONLINE'">
 					<div class="form-group">
 						<h5>Apakah Anda Mengidap Sakit Jantung:</h5>
 						<div class="form-check">
@@ -450,7 +450,7 @@
 
 
 
-				<div class="col-md-12" v-if="item.tipe_tempat == 'OFFLINE'">
+				<div class="col-md-12" v-if="item.tipe_tempat !== 'ONLINE'">
 					<div class="form-group">
 
 						<!-- title -->

@@ -26,30 +26,42 @@
 				<button class="btn btn-light mb-1" @click.prevent="modalOpen('batalPeserta')" :disabled="!selectedItem.id">
 					<i class="icon-blocked"></i> Tolak
 				</button>
+
+				<!-- nomor sertifikat -->
+				<button v-if="this.isGetSertifikatButton === true && currentUser.can['create_diklat_bkcu'] && (item.status == 4 || item.status == 5)" class="btn btn-light bg-primary-400 mb-1" @click.prevent="modalOpen('penerimaSertifikat')">
+					<i class="icon-file-check"></i> Pilih Peserta Penerima Sertifikat
+				</button>
+				
 				<button class="btn btn-light mb-1" @click.prevent="downloadSuratTugas(selectedItem.surat_tugas)"
-					:disabled="!selectedItem.id" v-if="this.item.tipe_tempat == 'OFFLINE' && this.selectedItem.surat_tugas">
+					:disabled="!selectedItem.id" v-if="this.item.tipe_tempat !== 'ONLINE' && this.selectedItem.surat_tugas">
 					<i class="icon-download"></i> Download Surat Tugas
 				</button>
 
 				<button class="btn btn-light mb-1" @click.prevent="modalOpen('alasanPeserta')"
-					v-if="selectedItem.status == 3">
+					v-if="selectedItem.status == 7">
 					<i class="icon-eye"></i> Lihat Alasan Penolakan
 				</button>
 
 				<template v-if="item.id_sertifikat">
+					<button class="btn btn-light mb-1" @click.prevent="modalOpen('detailNomor')"
+						    v-if="(item.status == 4 || item.status == 5) && this.isGetSertifikatButton === true && currentUser.can['update_diklat_bkcu']">
+						    <i class="icon-stack2"></i> Detail Nomor Sertifikat
+				    	</button>
 					<button type="button" class="btn btn-light mb-1" @click.prevent="modalOpen('tambahNilai')"
 						v-if="selectedItem.status == 5 && selectedItem.status != 6 && currentUser.can['update_diklat_bkcu'] && itemDataListMateri">
 						<i class="icon-markup"></i> Nilai
 					</button>
 
 					<button class="btn btn-light mb-1" @click.prevent="generateSertifikat()"
-						v-if="selectedItem.status == 5 && selectedItem.status != 6">
+						v-if="selectedItem.status == 5 && selectedItem.status != 6 && sertifikatNumber"
+						>
 						<i class="icon-certificate"></i> Generate Sertifikat
 					</button>
 
 				</template>
 
 			</template>
+			
 			<template slot="button-mobile" v-if="currentUser.id_cu == 0">
 				<button class="btn bg-warning-400 btn-block mb-1" @click.prevent="modalOpen('tambahPeserta')">
 					<i class="icon-people"></i> Daftar Peserta
@@ -65,8 +77,13 @@
 					<i class="icon-bin2"></i> Hapus
 				</button>
 
+				<!-- nomor sertifikat -->
+				<button v-if="this.isGetSertifikatButton === true && currentUser.can['update_diklat_bkcu']" class="btn btn-light mb-1" @click.prevent="modalOpen('penerimaSertifikat')">
+					<i class="icon-file-check"></i> Pilih Peserta Penerima Sertifikat
+				</button>
+
 				<button class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('alasanPeserta')"
-					v-if="selectedItem.status == 3">
+					v-if="selectedItem.status == 7">
 					<i class="icon-eye"></i> Lihat Alasan Penolakan
 				</button>
 
@@ -77,7 +94,7 @@
 					</button>
 
 					<button class="btn btn-block mb-1" @click.prevent="generateSertifikat()"
-						v-if="selectedItem.status == 5 && !selectedItem.status == 6">
+						v-if="selectedItem.status == 5 && !selectedItem.status == 6 && sertifikatNumber">
 						<i class="icon-certificate"></i> Generate Sertifikat
 					</button>
 				</template>
@@ -113,19 +130,19 @@
 				</button>
 
 				<button class="btn btn-light mb-1" @click.prevent="modalOpen('alasanPeserta')"
-					v-if="selectedItem.status == 3">
+					v-if="selectedItem.status == 7">
 					<i class="icon-eye"></i> Lihat Alasan Penolakan
 				</button>
 
 				<template v-if="item.id_sertifikat">
 					<button class="btn btn-light mb-1" @click.prevent="generateSertifikat()"
-						v-if="selectedItem.status == 5 && selectedItem.status != 6">
+						v-if="selectedItem.status == 5 && selectedItem.status != 6 && sertifikatNumber">
 						<i class="icon-certificate"></i> Generate Sertifikat
 					</button>
 				</template>
 
 			</template>
-			<template slot="button-mobile" v-else>
+			<template slot="button-mobile" v-if="currentUser.id_cu != 0">
 				<template v-if="item.tipe == 'diklat_bkcu'">
 					<button class="btn bg-warning-400 btn-block mb-1" @click.prevent="modalOpen('tambahPeserta')"
 						v-if="currentUser.can && currentUser.can['index_diklat_bkcu'] && item.status == 2">
@@ -153,13 +170,13 @@
 				</button>
 
 				<button class="btn btn-light btn-block mb-1" @click.prevent="modalOpen('alasanPeserta')"
-					v-if="selectedItem.status == 3">
+					v-if="selectedItem.status == 7">
 					<i class="icon-eye"></i> Lihat Alasan Penolakan
 				</button>
 
 				<template v-if="item.id_sertifikat">
 					<button class="btn bg-light btn-block mb-1" @click.prevent="generateSertifikat()"
-						v-if="selectedItem.status == 5 && selectedItem.status != 6">
+						v-if="selectedItem.status == 5 && selectedItem.status != 6 && sertifikatNumber">
 						<i class="icon-certificate"></i> Generate Sertifikat
 					</button>
 				</template>
@@ -172,7 +189,7 @@
 					<td>
 						<span v-html="$options.filters.statusPeserta(props.item.status)"></span>
 					</td>
-					<td v-if="!columnDataPesertaTerdaftar[2].hide">
+					<td v-if="!columnDataPesertaTerdaftar[2].hide" @click="modalOpen('image', props.item)" class="cursor-pointer">
 						<!-- if aktivis -->
 						<template v-if="props.item.aktivis">
 							<img :src="'/images/aktivis/' + props.item.aktivis.gambar + 'n.jpg'" width="35px"
@@ -196,10 +213,10 @@
 						<check-value :value="props.item.name_nametag"></check-value>
 					</td>
 					<td v-if="!columnDataPesertaTerdaftar[5].hide && !columnDataPesertaTerdaftar[5].disable">
-						<span v-html="$options.filters.date(props.item.datang)"></span>
+						<span v-html="props.item.datang ? $options.filters.date(props.item.datang) : '-'"></span>
 					</td>
 					<td v-if="!columnDataPesertaTerdaftar[6].hide && !columnDataPesertaTerdaftar[6].disable">
-						<span v-html="$options.filters.date(props.item.pulang)"></span>
+						<span v-html="props.item.pulang ? $options.filters.date(props.item.pulang) : '-'"></span>
 					</td>
 					<td v-if="!columnDataPesertaTerdaftar[7].hide">
 						<check-value :value="props.item.keterangan"></check-value>
@@ -243,26 +260,26 @@
 					<td v-if="!columnDataPesertaTerdaftar[20].hide">
 						<check-value :value="props.item.hp"></check-value>
 					</td>
-					<td v-if="!columnDataPesertaTerdaftar[21].hide && item.tipe_tempat == 'OFFLINE'">
-						<check-value :value="props.item.ukuran_baju"></check-value>
+					<td v-if="!columnDataPesertaTerdaftar[21].hide && item.tipe_tempat !== 'ONLINE'">
+						<check-value :value="props.item.ukuran_baju ? props.item.ukuran_baju:'-'"></check-value>
 					</td>
-					<td v-if="!columnDataPesertaTerdaftar[22].hide && item.tipe_tempat == 'OFFLINE'">
-						<check-value :value="props.item.status_kepesertaan"></check-value>
+					<td v-if="!columnDataPesertaTerdaftar[22].hide && item.tipe_tempat !== 'ONLINE'">
+						<check-value :value="props.item.status_kepesertaan ? props.item.status_kepesertaan :'-'"></check-value>
 					</td>
-					<td v-if="!columnDataPesertaTerdaftar[23].hide && item.tipe_tempat == 'OFFLINE'">
-						<check-value :value="props.item.penerimaan_vaksin"></check-value>
+					<td v-if="!columnDataPesertaTerdaftar[23].hide && item.tipe_tempat !== 'ONLINE'">
+						<check-value :value="props.item.penerimaan_vaksin ? props.item.penerimaan_vaksin: ''"></check-value>
 					</td>
-					<td v-if="!columnDataPesertaTerdaftar[24].hide && item.tipe_tempat == 'OFFLINE'">
-						<check-value :value="props.item.merokok"></check-value>
+					<td v-if="!columnDataPesertaTerdaftar[24].hide && item.tipe_tempat !== 'ONLINE'">
+						<check-value :value="props.item.merokok ? props.item.merokok:'-'"></check-value>
 					</td>
-					<td v-if="!columnDataPesertaTerdaftar[25].hide && item.tipe_tempat == 'OFFLINE'">
-						<check-value :value="props.item.sakit_jantung"></check-value>
+					<td v-if="!columnDataPesertaTerdaftar[25].hide && item.tipe_tempat !== 'ONLINE'">
+						<check-value :value="props.item.sakit_jantung ? props.item.sakit_jantung : '-'"></check-value>
 					</td>
-					<td v-if="!columnDataPesertaTerdaftar[26].hide && item.tipe_tempat == 'OFFLINE'">
-						<check-value :value="props.item.riwayat_penyakit"></check-value>
+					<td v-if="!columnDataPesertaTerdaftar[26].hide && item.tipe_tempat !== 'ONLINE'">
+						<check-value :value="props.item.riwayat_penyakit ?props.item.riwayat_penyakit :'-'"></check-value>
 					</td>
-					<td v-if="!columnDataPesertaTerdaftar[27].hide && item.tipe_tempat == 'OFFLINE'">
-						<check-value :value="props.item.alergi_makanan"></check-value>
+					<td v-if="!columnDataPesertaTerdaftar[27].hide && item.tipe_tempat !== 'ONLINE'">
+						<check-value :value="props.item.alergi_makanan ? props.item.alergi_makanan :'-'"></check-value>
 					</td>
 					<td v-if="!columnDataPesertaTerdaftar[28].hide">
 						<check-value :value="props.item.kontak"></check-value>
@@ -286,11 +303,22 @@
 
 			<!-- peserta -->
 			<template slot="modal-body1">
+				<detail-nomor-sertifikat
+					:item="this.item"
+					:kelas="this.kelas"
+					:mode="'peserta'"
+					@tutup="modalTutup" v-if=" state=='detailNomor' "
+				></detail-nomor-sertifikat>
+
 				<form-peserta :mode="formModalMode" :selected="selectedItem" :item="item" :tingkat="item.sasaran"
 					@tutup="modalTutup" v-if="state == 'tambahPeserta' || state == 'ubahPeserta'"></form-peserta>
 
 				<form-peserta-batal :kelas="kelas" :id="selectedItem.id" :tipe="item.tipe" @tutup="modalTutup"
 					v-else-if="state == 'batalPeserta'"></form-peserta-batal>
+
+				<form-penerima-sertifikat :tipePenerima="this.tipePenerima" :kegiatan_id="item.id"
+				:kegiatan_tipe="item.tipe"
+				@tutup="modalTutup" v-if="state == 'penerimaSertifikat'"></form-penerima-sertifikat>			
 			</template>
 
 			<template slot="modal-body2">
@@ -316,6 +344,8 @@ import formPesertaBatal from "./formPesertaBatal.vue";
 import formNilai from "./formNilai.vue";
 import dataViewer from '../../components/dataviewer2.vue';
 import FileSaver from 'file-saver';
+import formPenerimaSertifikat from './formPenerimaSertifikat.vue';
+import detailNomorSertifikat from './detailNomorSertifikat.vue';
 
 export default {
 	props: ['kelas'],
@@ -330,13 +360,18 @@ export default {
 		formPeserta,
 		formPesertaBatal,
 		formNilai,
-		dataViewer
+		dataViewer,
+		formPenerimaSertifikat,
+		detailNomorSertifikat 
 	},
 	data() {
 		return {
 			excelDownloadUrl: '',
 			isDisableTable: false,
 			selectedItem: '',
+			isGetSertifikatButton: false,
+			sertifikatNumber: false,
+			tipePenerima: 'peserta',
 			queryPesertaTerdaftar: {
 				order_column: "created_at",
 				order_direction: "asc",
@@ -612,9 +647,21 @@ export default {
 	created() {
 		if (this.itemStat == 'success') {
 			this.fetchPesertaTerdaftar(this.queryPesertaTerdaftar);
+
+		const invalidValues = [null, 'null', 0,''];
+          if (!invalidValues.includes(this.item.id_sertifikat)) {
+            this.isGetSertifikatButton = true;
+          }
 		}
 	},
 	watch: {
+		selectedItem() {
+			if (this.selectedItem.sertifikat_generate !== null) {
+					this.sertifikatNumber = true;
+			} else {
+				this.sertifikatNumber = false;
+				}
+		},
 		itemStat(value) {
 			if (value == 'success') {
 				this.fetchPesertaTerdaftar(this.queryPesertaTerdaftar);
@@ -632,11 +679,14 @@ export default {
 				this.modalTitle = 'Oops terjadi kesalahan :(';
 				this.modalContent = this.updateResponse;
 			}
-		}
+		},
+		
 	},
 	methods: {
+		selectedRow(item) {
+        this.selectedItem = item;  // Set item yang diklik sebagai selectedItem
+    	},
 		fetchPesertaTerdaftar(params) {
-			if (this.item.status == '2') {
 				if (this.currentUser.id_cu == 0) {
 					this.$store.dispatch(this.kelas + '/indexPeserta', [params, this.item.id]);
 					this.excelDownloadUrl = this.kelas + '/indexPeserta/' + this.item.id;
@@ -644,11 +694,6 @@ export default {
 					this.$store.dispatch(this.kelas + '/indexPesertaCu', [params, this.item.id, this.currentUser.id_cu]);
 					this.excelDownloadUrl = this.kelas + '/indexPesertaCu/' + + this.item.id + '/' + this.$route.params.cu;
 				}
-			} else {
-				this.$store.dispatch(this.kelas + '/indexPeserta', [params, this.item.id]);
-				this.excelDownloadUrl = this.kelas + '/indexPeserta/' + this.item.id;
-			}
-
 			if (this.item.tipe_tempat == 'ONLINE') {
 				this.columnDataPesertaTerdaftar[4].disable = true;
 				this.columnDataPesertaTerdaftar[5].disable = true;
@@ -677,15 +722,22 @@ export default {
 			this.$store.dispatch(this.kelas + '/countPeserta', this.item.id);
 		},
 		generateSertifikat() {
-			this.modalShow = true;
-			this.modalState = 'loading';
-			axios.post('/api/generateSertifikat', this.selectedItem, {
-				responseType: 'blob'
-			}).then((response) => {
-				FileSaver.saveAs(response.data, this.selectedItem.kegiatan_name + ' ' + this.selectedItem.name_sertifikat + '.pdf')
-				this.state = "generateSertifikat";
-				this.modalOpen("generateSertifikat");
-			})
+			if(this.selectedItem.isGetSertifikat == 1){
+				this.modalShow = true;
+				this.modalState = 'loading';
+				const peran = 'peserta';
+				this.selectedItem.peran = peran;
+					axios.post('/api/generateSertifikat', this.selectedItem, {
+						responseType: 'blob'
+					}).then((response) => {
+						FileSaver.saveAs(response.data, this.selectedItem.kegiatan_name + ' ' + this.selectedItem.name_sertifikat + '.pdf')
+						this.state = "generateSertifikat";
+						this.modalOpen("generateSertifikat");
+					})
+					}
+				else {
+					this.modalOpen('notGetSertifikat');
+			}
 		},
 		downloadSuratTugas(filename) {
 			axios.get('/api/download_folder/' + filename + '/suratTugas', {
@@ -697,7 +749,7 @@ export default {
 		selectedRow(item) {
 			this.selectedItem = item;
 		},
-		modalOpen(state, isMobile, itemMobile) {
+		modalOpen(state, item) {
 			this.modalShow = true;
 			this.modalSize = '';
 			this.state = state;
@@ -712,7 +764,7 @@ export default {
 				this.modalState = 'content-tutup';
 				this.modalColor = '';
 				this.modalTitle = 'Maaf anda belum bisa mengikuti pertemuan ini';
-				this.modalContent = 'Alasan penolakkan: <br/>' + this.selectedItem.keteranganBatal;
+				this.modalContent = 'Alasan penolakan: ' + this.selectedItem.keteranganBatal;
 			} else if (state == 'batalPeserta') {
 				this.modalState = 'normal1';
 				this.modalColor = 'bg-primary';
@@ -755,7 +807,42 @@ export default {
 				this.modalColor = 'bg-primary';
 				this.modalTitle = 'Generate Sertifikat Berhasil';
 				this.modalButton = 'Ok';
+			} else if (this.state == 'image') {
+				this.modalState = 'image';
+				if(item.aktivis){
+					if(item.aktivis.gambar){
+						this.modalContent = '/images/aktivis/' + item.aktivis.gambar + '.jpg';
+					}else{
+						this.modalContent = '/images/no_image_man.jpg';
+					}
+				}else if(item.mitra_orang){
+					if(item.mitra_orang){
+						this.modalContent = '/images/mitra_orang/' + item.mitra_orang.gambar + '.jpg';
+					}else{
+						this.modalContent = '/images/no_image_man.jpg';
+					}
+				}else{
+					this.modalContent = '/images/no_image_man.jpg';
+				}
+			}else if (state == 'penerimaSertifikat') {
+					this.modalState = 'normal1';
+					this.modalColor = 'bg-primary';
+					this.modalTitle = 'Tambah Penerima Sertifikat';
+					this.modalSize = 'modal-full';
+					this.formModalMode = 'create';
+					this.modalTitle = 'Pilih Penerima Sertifikat';
+			}else if (state == 'notGetSertifikat') {
+				this.modalState = 'content-tutup';
+				this.modalColor = '';
+				this.modalTitle = 'Tidak mendapat sertifikat';
+				this.modalContent = 'Maaf anda belum bisa mendapat sertifikat kegiatan ini, mohon untuk menghubungi panitia untuk mendapat informasi alasannya';
+			}else if (state == 'detailNomor') {
+				this.modalState = 'normal1';
+				this.modalColor = 'bg-primary';
+				this.modalSize = 'modal-full';
+				this.modalTitle = 'Detail Nomor Sertifikat';
 			}
+			
 		},
 		modalConfirmOk() {
 			this.modalShow = false;

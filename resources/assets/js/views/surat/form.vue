@@ -350,6 +350,9 @@
 		},
 		beforeRouteEnter(to, from, next) {
 			next(vm => vm.fetch());
+	},
+	updated() {
+		console.log(this.form.id_surat_kode);
 		},
 		created(){
 			if(this.currentUser.id_cu === 0){

@@ -1348,9 +1348,10 @@
         axios.post('/api/' + this.excelUploads[index].url, this.files)
         .then(response => {
           if(response.data.uploaded){
+            this.$store.dispatch('global/getDataExcel', response.data);
             this.updateStat = 'success';
             this.updateResponse = response.data;
-          }else{
+          } else {
             this.updateStat = 'fail';
             this.updateResponse = response.data;
           }

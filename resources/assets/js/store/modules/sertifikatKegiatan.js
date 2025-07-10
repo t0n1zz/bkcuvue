@@ -7,9 +7,13 @@ export const sertifikatKegiatan = {
   state: {
     data: {},
     dataS: [], //collection
+    dataSS: [],
+    dataNomor: [], //collection
     count: {},
-    dataStat: "",
+    dataNomorStat: "",
+    dataStatSS: "",
     dataStatS: "",
+    dataStat: "",
     countStat: "",
     update: [], //update data
     updateStat: "",
@@ -20,9 +24,13 @@ export const sertifikatKegiatan = {
   // getters
   getters: {
     data: (state) => state.data,
+    dataSS: (state) => state.dataSS,
+    dataNomor: (state) => state.dataNomor,
     dataS: (state) => state.dataS,
     periode: (state) => state.periode,
     count: (state) => state.count,
+    dataNomorStat: (state) => state.dataNomorStat,
+    dataStatSS: (state) => state.dataStatSS,
     dataStat: (state) => state.dataStat,
     dataStatS: (state) => state.dataStatS,
     countStat: (state) => state.countStat,
@@ -45,6 +53,20 @@ export const sertifikatKegiatan = {
         .catch((error) => {
           commit("setDataS", error.response);
           commit("setDataStatS", "fail");
+        });
+    },
+
+    indexNomorSertifikat({ commit }, p) {
+      commit("setDataNomorStat", "loading");
+      sertifikatKegiatanAPI
+        .indexNomorSertifikat(p)
+        .then(function (response) {
+          commit("setDataNomor", response.data.model);
+          commit("setDataNomorStat", "success");
+        })
+        .catch((error) => {
+          commit("setDataNomor", error.response);
+          commit("setDataNomorStat", "fail");
         });
     },
 
@@ -87,6 +109,23 @@ export const sertifikatKegiatan = {
         });
     },
 
+    storeNomorSertifikatKegiatan({ commit }, [id, form]) {
+      commit('setUpdateStat', 'loading');
+      sertifikatKegiatanAPI.storeNomorSertifikatKegiatan(id, form)
+            .then(function (response) {
+              if (response.data.saved) {
+                commit('setUpdate', response.data);
+                commit('setUpdateStat', 'success');
+              } else {
+                commit('setUpdateStat', 'fail');
+              }
+            })
+            .catch(error => {
+              commit('setUpdate', error.response);
+              commit('setUpdateStat', 'fail');
+            });
+        },
+
     // edit page
     edit({ commit }, id) {
       commit("setDataStat", "loading");
@@ -106,11 +145,66 @@ export const sertifikatKegiatan = {
         });
     },
 
+    // edit page
+    editFormNomor({ commit }, id) {
+      commit("setDataStatSS", "loading");
+      sertifikatKegiatanAPI
+        .editFormNomor(id)
+        .then(function (response) {
+          commit("setDataSS", response.data.form);
+          commit("setRules", response.data.rules);
+          commit("setOptions", response.data.options);
+          commit("setDataStatSS", "success");
+        })
+        .catch((error) => {
+          commit("setData", error.response);
+          commit("setRules", []);
+          commit("setOptions", []);
+          commit("setDataStat", "fail");
+        });
+    },
+
     // update data
     update({ commit, state, dispatch }, [id, form]) {
       commit("setUpdateStat", "loading");
       sertifikatKegiatanAPI
         .update(id, form)
+        .then(function (response) {
+          if (response.data.saved) {
+            commit("setUpdate", response.data);
+            commit("setUpdateStat", "success");
+          } else {
+            commit("setUpdateStat", "fail");
+          }
+        })
+        .catch((error) => {
+          commit("setUpdate", error.response);
+          commit("setUpdateStat", "fail");
+        });
+    },
+
+    uploadExcelPeserta( {commit, state, dispatch}, form ){
+          commit('setUpdateStat', 'loading');
+    
+          sertifikatKegiatanAPI.uploadExcelPeserta( form )
+            .then( function( response ){
+              if(response.data.saved){
+                commit('setUpdate', response.data);
+                commit('setUpdateStat', 'success');
+              }else{
+                commit('setUpdateStat', 'fail');
+              }
+            })
+            .catch(error => {
+              commit('setUpdate', error.response);   
+              commit('setUpdateStat', 'fail');
+            });
+    },
+    
+    updateNomorSertifikatKegiatan({ commit }, [id, form]) {
+      commit("setUpdateStat", "loading");
+      sertifikatKegiatanAPI
+        .updateNomorSertifikatKegiatan(id, form)
         .then(function (response) {
           if (response.data.saved) {
             commit("setUpdate", response.data);
@@ -144,6 +238,24 @@ export const sertifikatKegiatan = {
           commit("setUpdateStat", "fail");
         });
     },
+    destroyNomorSertifikatKegiatan({ commit }, id) {
+      commit("setUpdateStat", "loading");
+
+      sertifikatKegiatanAPI
+        .destroyNomorSertifikatKegiatan(id)
+        .then(function (response) {
+          if (response.data.deleted) {
+            commit("setUpdate", response.data);
+            commit("setUpdateStat", "success");
+          } else {
+            commit("setUpdateStat", "fail");
+          }
+        })
+        .catch((error) => {
+          commit("setUpdate", error.response);
+          commit("setUpdateStat", "fail");
+        });
+    },
 
     // reset
     resetDataS({ commit }) {
@@ -163,11 +275,23 @@ export const sertifikatKegiatan = {
     setDataS(state, data) {
       state.dataS = data;
     },
+    setDataSS(state, data) {
+      state.dataSS = data;
+    },
+    setDataNomor(state, data) {
+      state.dataNomor = data;
+    },
     setCount(state, data) {
       state.count = data;
     },
     setDataStat(state, status) {
       state.dataStat = status;
+    },
+    setDataNomorStat(state, status) {
+      state.dataNomorStat = status;
+    },
+    setDataStatSS(state, status) {
+      state.dataStatSS = status;
     },
     setDataStatS(state, status) {
       state.dataStatS = status;

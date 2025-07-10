@@ -44,6 +44,25 @@
 				<small class="text-muted" v-else>&nbsp;
 				</small>
 			</div>
+			<!-- narasumber -->
+			<div class="form-group" :class="{'has-error' : errors.has('formListMateri.narasumber')}">
+
+			<!-- title -->
+			<h5 :class="{ 'text-danger' : errors.has('formListMateri.narasumber')}">
+				<i class="icon-cross2" v-if="errors.has('formListMateri.narasumber')"></i>
+				Narasumber :
+			</h5>
+
+			<!-- text -->
+			<input type="text" name="narasumber" class="form-control" placeholder="Silahkan masukkan narasumber" v-validate="'required'" v-model="formListMateri.narasumber">
+
+			<!-- error message -->
+			<small class="text-muted text-danger" v-if="errors.has('formListMateri.narasumber')">
+				<i class="icon-arrow-small-right"></i> {{ errors.first('formListMateri.narasumber') }}
+			</small>
+			<small class="text-muted" v-else>&nbsp;
+			</small>
+			</div>
 
       <!-- divider -->
       <hr>
@@ -83,17 +102,18 @@
 			message
 		},
 		data() {
-			return {
+			return { 	 
 				title: '',
 				formListMateri: { 
 					nama: '',
-					waktu:''
+					waktu: '',
+					narasumber:''
         },
         penjelasanStatus: '',
 				submited: false,
 			}
 		},
-		created() {
+	created() {
 			if(this.mode == 'edit'){
 				this.formListMateri = Object.assign({}, this.selected);
 			}

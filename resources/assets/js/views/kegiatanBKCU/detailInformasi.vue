@@ -32,6 +32,16 @@
                 <i class="icon-people"></i> Daftar Peserta
               </button>
             </template>
+
+            <!-- nomor sertifikat -->
+          <button v-if="(item.status == 4 || item.status == 5) && this.isGetSertifikatButtonPeserta === true && currentUser.can['update_diklat_bkcu']" class="btn bg-primary-400 btn-block mb-1" @click.prevent="penerimaSertifikat('peserta')">
+            <i class="icon-file-check" ></i> Pilih Peserta Penerima Sertifikat
+          </button>
+
+          <button class="btn bg-teal-400 btn-block mb-1" @click.prevent="getNomorSertifikat()" v-if="currentUser.can && currentUser.can['update_diklat_bkcu'] && currentUser.id_cu == 0 && (this.isGetSertifikatButtonPanitia == true || this.isGetSertifikatButtonPeserta == true) && (item.status == 4 || item.status == 5)" >
+              <b><i class="icon-cogs"></i></b> Dapatkan Nomor Sertifikat
+            </button>
+
           </div>
           <table class="table table-borderless table-xs border-top-0 my-2">
             <tbody>
@@ -228,6 +238,9 @@
                 <td>
                   <check-value :value="props.item.waktu"></check-value>
                 </td>
+                <td>
+                  <check-value :value="props.item.narasumber"></check-value>
+                </td>
               </tr>
             </template>
           </data-table>
@@ -237,9 +250,22 @@
           <div class="card-header bg-white">
             <h5 class="card-title">Panitia dan Fasilitator</h5>
           </div>
-          <data-table :items="itemDataPanitia" :columnData="columnDataPanitia" :itemDataStat="itemStat">
+          <div class="card-body pb-2" v-if="currentUser.id_cu == 0 && item.id_sertifikatPanitia !== 0 && item.id_sertifikatPanitia !== null" >
+              <button v-if="(item.status == 4 || item.status == 5) && this.isGetSertifikatButtonPanitia === true && currentUser.can['update_diklat_bkcu']" class="btn btn-light bg-primary-400 mb-1" @click.prevent="penerimaSertifikat('fasilitator')">
+					      <i class="icon-file-check"></i> Pilih Panitia & Fasilitator Penerima Sertifikat 
+				      </button>
+              <button class="btn btn-light mb-1" @click.prevent="modalOpen('detailNomor')"
+						    v-if="(item.status == 4 || item.status == 5) && this.isGetSertifikatButtonPanitia === true && currentUser.can['update_diklat_bkcu']">
+						    <i class="icon-stack2"></i> Detail Nomor Sertifikat
+				    	</button>
+              <button class="btn btn-light mb-1" @click.prevent="generateSertifikat()"
+						    v-if="this.selectedItemPanitia && this.selectedItemPanitia.isGetSertifikat == 1 && this.isGetSertifikatButtonPanitia && sertifikatNumber == true">
+						    <i class="icon-certificate"></i> Generate Sertifikat
+				    	</button>
+          </div>
+          <data-table :items="itemDataPanitia" :columnData="columnDataPanitia" :itemDataStat="itemDataPanitiaStat">
             <template slot="item-desktop" slot-scope="props">
-              <tr v-if="props.item">
+              <tr :class="{ 'bg-info': selectedItemPanitia.id === props.item.id }" class="text-nowrap" @click="selectedPanita(props.item)" v-if="props.item">
                 <td>{{ props.index + 1 }}</td>
                 <td>
                   <img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
@@ -248,34 +274,11 @@
                 <td>
                   <check-value :value="props.item.name"></check-value>
                 </td>
-                <td v-if="props.item.pivot.asal == 'dalam'">
-                  <span v-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 1">
-                    <check-value :front-text="'CU'" :value="props.item.pekerjaan_aktif.cu.name" v-if="props.item.pekerjaan_aktif.cu"></check-value>
-                    <span v-else>-</span>
-                  </span>
-                  <span v-else-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 2">
-                    <check-value :value="props.item.pekerjaan_aktif.lembaga_lain.name" v-if="props.item.pekerjaan_aktif.lembaga_lain"></check-value>
-                    <span v-else>-</span>
-                  </span>
-                  <span v-else-if="props.item.pekerjaan_aktif && props.item.pekerjaan_aktif.tipe == 3">
-                    PUSKOPCUINA
-                  </span>
-                  <span v-else>-</span>
-                </td>
-                <td v-else-if="props.item.pivot.asal == 'luar'">
-                  <check-value :value="props.item.lembaga"></check-value>
-                </td>
-                <td v-else-if="props.item.pivot.asal == 'luar lembaga'">
-                  <check-value :value="props.item.name"></check-value>
+                <td>
+                  <check-value :value="props.item.asal"></check-value>
                 </td>
                 <td>
-                  <check-value :value="props.item.pivot.asal"></check-value>
-                </td>
-                <td>
-                  <check-value :value="props.item.pivot.peran"></check-value>
-                </td>
-                <td>
-                  <check-value :value="props.item.pivot.keterangan"></check-value>
+                  <check-value :value="props.item.peran"></check-value>
                 </td>
                 <td>
                   <check-value :value="props.item.email"></check-value>
@@ -284,7 +287,7 @@
                   <check-value :value="props.item.hp"></check-value>
                 </td>
               </tr>
-            </template>	
+            </template>
           </data-table>
         </div>
       </div>
@@ -306,6 +309,21 @@
 				:item="item"
 				:tingkat="item.sasaran"
 				@tutup="modalTutup" v-if="state == 'tambahPeserta'"></form-peserta>
+
+        <form-penerima-sertifikat 
+        :tipePenerima="this.tipePenerima" 
+        :kegiatan_id="this.item.id"
+        :selected="selectedItemPanitia"
+				@tutup="modalTutup" v-if="state == 'penerimaSertifikat'">
+      </form-penerima-sertifikat>
+
+      <detail-nomor-sertifikat
+        :item="this.item"
+        :itemDataPanitia="this.itemDataPanitia"
+        :mode="'panitia'"
+        :kelas="this.kelas"
+        @tutup="modalTutup" v-if="state == 'detailNomor'"
+        ></detail-nomor-sertifikat>
 			</template>
 
       <template slot="modal-body2">
@@ -318,7 +336,10 @@
 				:kegiatan_id="item.id"
 				:kegiatan_tipe="item.tipe"
 				@tutup="modalTutup" v-if="state == 'tambahListMateri' || state == 'ubahListMateri'"></form-list-materi>
+        
+        
       </template>
+      
 
     </app-modal>
   </div>
@@ -336,7 +357,9 @@
   import formListMateri from "./formListMateri.vue";
   import formPeserta from "./formPeserta.vue";
   import formStatus from "./formStatus.vue";
-
+  import formPenerimaSertifikat from './formPenerimaSertifikat.vue';
+  import FileSaver from 'file-saver';
+  import detailNomorSertifikat from './detailNomorSertifikat.vue';
 	export default {
 		props: ['kelas'],
 		components: {
@@ -350,6 +373,9 @@
       formListMateri,
       formPeserta,
       formStatus,
+      formPenerimaSertifikat,
+      FileSaver,
+      detailNomorSertifikat
 		},
 		data() {
 			return {
@@ -359,16 +385,17 @@
         selectedItem: '',
         selectedItemListMateri: '',
         isDisableTable: false,
-        itemDataPanitia: [],
-				itemDataPanitiaStat: 'success',
-        columnDataPanitia: [
+        selectedItemPanitia: '',
+        isGetSertifikat:'',
+        isGetSertifikatButtonPanitia: false,
+        isGetSertifikatButtonPeserta: false,
+        tipePenerima: '',
+				columnDataPanitia: [
 					{ title: 'No.' },
 					{ title: 'Foto' },
-					{ title: 'Nama' },
-					{ title: 'Lembaga' },
+          { title: 'Nama' },
 					{ title: 'Asal' },
 					{ title: 'Peran' },
-					{ title: 'keterangan' },
 					{ title: 'Email' },
 					{ title: 'No. Hp' },
 				],
@@ -389,6 +416,15 @@
 					{
 						title: 'Waktu (Jam)',
 						name: 'waktu',
+						tipe: 'string',
+						sort: true,
+						hide: false,
+						disable: false,
+						filter: true,
+          },
+          {
+						title: 'Narasumber / Fasilitator',
+						name: 'narasumber',
 						tipe: 'string',
 						sort: true,
 						hide: false,
@@ -426,7 +462,8 @@
 						numeralDecimalMark: ',',
 						delimiter: '.'
 					}
-				},
+        },
+        sertifikatNumber : false,
         modalShow: false,
 				modalState: '',
 				modalTitle: '',
@@ -435,44 +472,50 @@
 				modalSize: '',
         state: '',
 			}
-		},
+  },
 		created() {
       if(this.itemStat == 'success'){
         this.fetchListMateri();
+        this.fetchPanitia();
       }
+
 		},
-		watch: {
-      itemStat(value){
-        if(value == 'success'){
+  watch: {
+    selectedItemPanitia() {
+			if (this.selectedItemPanitia.nomor !== null) {
+					this.sertifikatNumber = true;
+			} else {
+				this.sertifikatNumber = false;
+				}
+		},
+    itemStat(value) {
+      if (value == 'success') {
+        const invalidValues = [null, 'null', 0,''];
+          if (!invalidValues.includes(this.itemDataPanitia.id_sertifikat)) {
+            this.isGetSertifikatButtonPanitia = true;
+          }
+          if (!invalidValues.includes(this.item.id_sertifikat)) {
+            this.isGetSertifikatButtonPeserta = true;
+          }
           if(this.item.kode){
 						this.kode = this.item.kode.kode;
 					}
-
-          this.itemDataPanitia = [];
-
-          var valDalam;
-					for(valDalam of this.item.panitia_dalam){
-						this.itemDataPanitia.push(valDalam);
-					}
-
-					var valLuar;
-					for(valLuar of this.item.panitia_luar){
-						this.itemDataPanitia.push(valLuar);
-					}
-
-					var valLuarLembaga;
-					for(valLuarLembaga of this.item.panitia_luar_lembaga){
-						this.itemDataPanitia.push(valLuarLembaga);
-					}
           this.fetchListMateri();
+          this.fetchPanitia();
         }
-      },
+    },
+    itemNoSertifikatStat(value) {
+      if (value === 'success') {
+        this.modalOpen('getNomorSertifikat');
+     } 
+    },
       updateStat(value) {
 				this.modalState = value;
 				this.modalColor = '';
 
 				if (value === "success") {
           this.fetchListMateri();
+          this.fetchPanitia();
 					this.modalTitle = this.updateResponse.message;
 				} else {
 					this.modalTitle = 'Oops terjadi kesalahan :(';
@@ -480,57 +523,110 @@
 				}
 			}
 		},
-		methods: {
+  methods: {
+    getNomorSertifikat() {
+      this.modalShow = true;
+      this.modalState = 'loading';
+        this.$store.dispatch(this.kelas + '/getNomorSertifikat', this.item.id);
+      },
+      fetchPanitia(){
+        this.$store.dispatch(this.kelas + '/indexPanitia', this.item.id);
+      },
       fetchListMateri() {
 				this.$store.dispatch(this.kelas + '/indexListMateri', this.item.id);
 			},
       selectedRow(item) {
 				this.selectedItemListMateri = item;
-			},
+    },
+      selectedPanita(item) {
+        this.selectedItemPanitia = item; 
+      },
       ubahKegiatan(id) {
 				this.$router.push({name: this.kelas + 'EditDetail', params: { id: id }});
-			},
+      },
+      penerimaSertifikat(value) {
+        this.tipePenerima = value;
+        this.modalOpen('penerimaSertifikat');
+        this.selectedItemPanitia = '';
+    },
+      generateSertifikat() {
+			if(this.selectedItemPanitia.isGetSertifikat == 1){
+					this.modalShow = true;
+        this.modalState = 'loading';
+          axios.post('/api/generateSertifikat', this.selectedItemPanitia, {
+						responseType: 'blob'
+					}).then((response) => {
+						FileSaver.saveAs(response.data,'Piagam Kegiatan '+ this.item.name + ' - ' + this.selectedItemPanitia.name + '.pdf')
+						this.state = "generateSertifikatPanitia";
+						this.modalOpen("generateSertifikat");
+					})
+					}
+		},
       modalOpen(state, isMobile, itemMobile) {
-				this.modalShow = true;
-				this.modalSize = '';
-				this.state = state;
-				this.isDisableTable = true;
+        this.modalShow = true;
+        this.modalSize = '';
+        this.state = state;
+        this.isDisableTable = true;
 
         if (state == 'hapusKegiatan') {
-					this.modalState = 'confirm-tutup';
-					this.modalColor = '';
-					this.modalTitle = 'Hapus Diklat ' + this.item.name + ' ?';
-					this.modalButton = 'Iya, Hapus';
-				} else if (state == 'statusKegiatan') {
-					this.modalState = 'normal2';
-					this.modalTitle = 'Ubah status ' + this.item.name + ' ini?';
-					this.modalColor = 'bg-primary';
-				}
+          this.modalState = 'confirm-tutup';
+          this.modalColor = '';
+          this.modalTitle = 'Hapus Diklat ' + this.item.name + ' ?';
+          this.modalButton = 'Iya, Hapus';
+        } else if (state == 'statusKegiatan') {
+          this.modalState = 'normal2';
+          this.modalTitle = 'Ubah status ' + this.item.name + ' ini?';
+          this.modalColor = 'bg-primary';
+        }
 
-				if (state == 'ubahListMateri') {
-					this.modalState = 'normal2';
-					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Ubah List Materi';
-					this.formModalMode = 'edit';
-				} else if (state == 'tambahListMateri') {
-					this.modalState = 'normal2';
-					this.modalColor = 'bg-primary';
-					this.modalTitle = 'Tambah List Materi';
-					this.formModalMode = 'create';
-				} else if (state == 'hapusListMateri') {
-					this.modalState = 'confirm-tutup';
-					this.modalColor = '';
-					this.modalTitle = 'Hapus Materi ini ?';
-					this.modalButton = 'Iya, Hapus';
-				}
-			},
+        if (state == 'ubahListMateri') {
+          this.modalState = 'normal2';
+          this.modalColor = 'bg-primary';
+          this.modalTitle = 'Ubah List Materi';
+          this.formModalMode = 'edit';
+        } else if (state == 'tambahListMateri') {
+          this.modalState = 'normal2';
+          this.modalColor = 'bg-primary';
+          this.modalTitle = 'Tambah List Materi';
+          this.formModalMode = 'create';
+        } else if (state == 'hapusListMateri') {
+          this.modalState = 'confirm-tutup';
+          this.modalColor = '';
+          this.modalTitle = 'Hapus Materi ini ?';
+          this.modalButton = 'Iya, Hapus';
+        }else if (this.state == 'generateSertifikat') {
+				this.modalState = 'success';
+				this.modalColor = 'bg-primary';
+				this.modalTitle = 'Generate Sertifikat Berhasil';
+				this.modalButton = 'Ok';
+        }
+        else if (this.state == 'getNomorSertifikat') {
+          this.modalState = 'success';
+				this.modalColor = 'bg-primary';
+				this.modalTitle = 'Berhasil Mendapat Nomor Sertifikat';
+				this.modalButton = 'Ok';
+        }
+
+        else if (state == 'penerimaSertifikat') {
+          this.modalState = 'normal1';
+          this.modalColor = 'bg-primary';
+          this.modalSize = 'modal-full';
+          this.modalTitle = 'Pilih Penerima Sertifikat';
+        }
+        else if (state == 'detailNomor') {
+          this.modalState = 'normal1';
+          this.modalColor = 'bg-primary';
+          this.modalSize = 'modal-full';
+          this.modalTitle = 'Detail Nomor Sertifikat';
+        }
+      },
       tambahPeserta(){
         this.$emit('changeTab', 'pesertaTerdaftar');
       },
       modalConfirmOk() {
 				if (this.state == 'hapusListMateri') {
 					this.$store.dispatch(this.kelas + '/destroyListMateri', [this.item.tipe, this.selectedItemListMateri.id]);
-				}
+        }
 			},
       modalTutup() {
         if(this.state == 'tambahPeserta'){
@@ -543,8 +639,8 @@
 				}
         if(this.state == 'statusKegiatan'){
 					this.$emit('fetch');
-				}
-
+        }
+         
         this.isDisableTable = false;
 				this.modalShow = false;
       },
@@ -567,7 +663,11 @@
 				item: 'data',
 				itemStat: 'dataStat',
         countPeserta: 'count',
-				countPesertaStat: 'countStat',
+        countPesertaStat: 'countStat',
+        itemDataPanitia: 'dataPanitia',
+				itemDataPanitiaStat: 'dataPanitiaStat',
+        itemNoSertifikat: 'dataNoSertifikat',
+        itemNoSertifikatStat: 'dataNoSertifikatStat',
         itemDataListMateri: 'dataListMateri',
 				itemDataListMateriStat: 'dataListMateriStat',
         updateResponse: 'update',

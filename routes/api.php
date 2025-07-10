@@ -238,17 +238,25 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
             Route::delete('/produkcu/{id}', 'ProdukCuController@destroy');
         });
 
+        //booking nomor sertifikat
+        Route::post('/sertifikatKegiatan/uploadExcelPeserta', 'SertifikatController@uploadExcelPeserta');
+        Route::post('/sertifikatKegiatan/storeNomorSertifikatKegiatan/{id}', 'SertifikatController@storeNomorSertifikatKegiatan');
+        Route::get('/sertifikatKegiatan/index', 'SertifikatController@indexNomorSertifikat');
+        Route::post('/sertifikatKegiatan/updateNomorSertifikatKegiatan/{id}', 'SertifikatController@updateNomorSertifikatKegiatan');
+        Route::delete('/sertifikatKegiatan/destroyNomorSertifikatKegiatan/{id}', 'SertifikatController@destroyNomorSertifikatKegiatan');
+
         // sertifikat kegiatan
         Route::get('/sertifikatKegiatan', 'SertifikatController@index');
         Route::get('/sertifikatKegiatan/create', 'SertifikatController@create');
         Route::post('/sertifikatKegiatan/store', 'SertifikatController@store');
         Route::get('/sertifikatKegiatan/edit/{id}', 'SertifikatController@edit');
+        Route::get('/sertifikatKegiatan/editFormNomor/{id}', 'SertifikatController@editFormNomor');
         Route::post('/sertifikatKegiatan/update/{id}', 'SertifikatController@update');
         Route::delete('/sertifikatKegiatan/{id}', 'SertifikatController@destroy');
 
         //generate sertifikat
         Route::post('/generateSertifikat', 'SertifikatController@generateSertifikat');
-
+        Route::post('/generateSertifikatPanitia', 'SertifikatController@generateSertifikatPanitia');
         // kode kegiatan
         Route::get('/kodeKegiatan', 'KodeKegiatanController@index');
         Route::get('/kodeKegiatan/get', 'KodeKegiatanController@get');
@@ -278,6 +286,7 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::get('/kegiatanBKCU/indexPeserta/{id}', 'KegiatanBKCUController@indexPeserta');
         Route::get('/kegiatanBKCU/indexMateri/{id}', 'KegiatanBKCUController@indexMateri');
         Route::get('/kegiatanBKCU/indexListMateri/{id}', 'KegiatanBKCUController@indexListMateri');
+        Route::get('/kegiatanBKCU/indexPanitia/{id}', 'KegiatanBKCUController@indexPanitia');
         Route::get('/kegiatanBKCU/indexNilaiListMateri/{id}', 'KegiatanBKCUController@indexNilaiListMateri');
         Route::get('/kegiatanBKCU/indexKeputusan/{id}', 'KegiatanBKCUController@indexKeputusan');
         Route::get('/kegiatanBKCU/indexKeputusanKomentar/{id}', 'KegiatanBKCUController@indexKeputusanKomentar');
@@ -295,6 +304,7 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::get('/kegiatanBKCU/edit/{id}', 'KegiatanBKCUController@edit');
         Route::get('/kegiatanBKCU/checkPeserta/{kegiatan_id}/{aktivis_id}', 'KegiatanBKCUController@checkPeserta');
         Route::get('/kegiatanBKCU/checkPanitia/{kegiatan_id}/{aktivis_id}', 'KegiatanBKCUController@checkPanitia');
+        Route::post('/kegiatanBKCU/getNomorSertifikat/{id}', 'KegiatanBKCUController@getNomorSertifikat');
         Route::post('/kegiatanBKCU/updatePesertaHadir/{kegiatan_id}/{aktivis_id}', 'KegiatanBKCUController@updatePesertaHadir');
         Route::post('/kegiatanBKCU/updatePanitiaHadir/{kegiatan_id}/{aktivis_id}', 'KegiatanBKCUController@updatePanitiaHadir');
         Route::get('/kegiatanBKCU/countJalan', 'KegiatanBKCUController@countJalan');
@@ -336,7 +346,7 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::delete('/kegiatanBKCU/destroyTugas/{kegiatan_tipe}/{id}', 'KegiatanBKCUController@destroyTugas');
         Route::delete('/kegiatanBKCU/destroyTugasJawaban/{kegiatan_tipe}/{id}', 'KegiatanBKCUController@destroyTugasJawaban');
 
-
+        Route::post('/kegiatanBKCU/penerimaSertifikat', 'KegiatanBKCUController@PenerimaSertifikat');
         Route::post('/kegiatanBKCU/storeListMateri/{kegiatan_tipe}/{id}', 'KegiatanBKCUController@storeListMateri');
         Route::get('/kegiatanBKCU/editNilai/{id}/{kegiatan_id}', 'KegiatanBKCUController@editNilai');
         Route::post('/kegiatanBKCU/saveNilai/{id}', 'KegiatanBKCUController@saveNilai');

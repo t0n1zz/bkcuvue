@@ -242,7 +242,6 @@ export default {
 			submited: false,
 		}
 	},
-
 	created() {
 		this.fetch();
 	},
@@ -256,7 +255,7 @@ export default {
 		},
 		updateStat(value) {
 			if (value === "success") {
-
+				this.fetch();
 			}
 		},
 		checkPanitiaDataStat(value) {

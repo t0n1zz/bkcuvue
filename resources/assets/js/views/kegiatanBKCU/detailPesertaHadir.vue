@@ -395,6 +395,7 @@
 				this.modalSize = '';
 				this.state = state;
 				this.isDisableTable = true;
+				
 
 			},
       modalConfirmOk() {
