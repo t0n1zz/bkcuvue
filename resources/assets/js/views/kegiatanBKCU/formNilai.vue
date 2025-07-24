@@ -4,11 +4,18 @@
 			<template v-for="(materi, index) in itemNilai">
 				<div class="form-group" :key="index">
 					<h5>{{ materi.nama }}</h5>
-
-					<input type="text" name="nilai" class="form-control" placeholder="Silahkan masukkan nilai" v-model="materi.jumlah_nilai">
+						<!-- input -->
+						<cleave 
+							name="nilai"
+							v-model="materi.jumlah_nilai" 
+							class="form-control" 
+							:raw="false" 
+							:options="cleaveOption.number3" 
+							placeholder="Silahkan masukkan nilai"
+							data-vv-as="nilai">
+						</cleave>
 				</div>
 			</template>
-
 		<hr>
 		<!-- tombol desktop-->
 		<div class="text-center d-none d-md-block">
@@ -38,13 +45,14 @@
 	import checkValue from '../../components/checkValue.vue';
 	import DataViewer from '../../components/dataviewer2.vue';
 	import message from "../../components/message.vue";
-
+	import Cleave from 'vue-cleave-component';
 	export default {
 		props: ['selected'],
 		components: {
 			DataViewer,
 			checkValue,
-			message
+			message,
+			Cleave
 		},
 		data() {
 			return {
@@ -52,6 +60,14 @@
 				kelas: 'nilai',
 				selectedItem: [],
 				submited: false,
+				cleaveOption: {
+						number3: {
+						numeral: true,
+						numeralIntegerScale: 3,
+						numeralDecimalScale: 0,
+						stripLeadingZeroes: false
+					},
+				},
 			}
 		},
 		created(){
@@ -61,7 +77,7 @@
 			fetch(){
 				this.$store.dispatch('kegiatanBKCU/editNilai', [this.selected.id, this.selected.kegiatan_id]);
 			},
-			save(){
+			save() {
 				this.$store.dispatch('kegiatanBKCU/saveNilai', [this.selected.id, this.itemNilai]);
 			},
 			tutup(){

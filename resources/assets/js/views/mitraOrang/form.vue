@@ -236,10 +236,10 @@
 										<div class="form-group">
 
 											<!-- title -->
-											<h6>Lembaga:</h6>
+											<h6>Lembaga:<wajib-badge></wajib-badge></h6>
 
 											<!-- text -->
-											<input type="text" name="lembaga" class="form-control" placeholder="Silahkan masukkan lembaga" v-model="form.lembaga">
+											<input type="text" name="lembaga" class="form-control" placeholder="Silahkan masukkan lembaga" v-validate="'required'" v-model="form.lembaga">
 										</div>
 									</div>
 

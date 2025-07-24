@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use DB;
-use Auth;
-use File;
-use Image;
 use App\Kegiatan;
 use App\Support\Helper;
 use App\Sertifikat;
@@ -15,19 +12,14 @@ use Barryvdh\DomPDF\Facade as PDF;
 use DateTime;
 use App\KegiatanListMateri;
 use App\KegiatanMateriNilai;
-use App\Aktivis;
-use App\KegiatanPeserta;
 use App\SertifikatGetNomor;
 use App\SertifikatGetNomorPeserta;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\UploadPesertaImport;
 use App\Cu;
 
-
-
 class SertifikatController extends Controller
 {
-
   protected $imagepathSertifikat = 'images/sertifikatKegiatan/';
   protected $width = 300;
   protected $height = 200;
@@ -443,12 +435,12 @@ class SertifikatController extends Controller
   ]);
     
     $kegiatanData = Kegiatan::with('tempat')->where('id', $formData['kegiatan_id'])->first();
-
-    if($formData->peran === 'peserta'){ 
+    
+    if($formData->peran === 'peserta'){
           $nomorData = SertifikatGenerate::where('kegiatan_peserta_id',  $formData['id'])->first();
           $sertifikat = Sertifikat::where('id', $kegiatanData->id_sertifikat)->select('gambar_depan', 'gambar_belakang', 'kode_sertifikat','tipe')->first();
           $cekNilai = KegiatanMateriNilai::where('kegiatan_id', $formData->kegiatan_id)->first();
-
+          
         if ($cekNilai) {
           $listMateri = KegiatanListMateri::select("kegiatan_list_materi.waktu", "kegiatan_list_materi.nama","kegiatan_list_materi.narasumber","kegiatan_materi_nilai.nilai")
             ->join("kegiatan_materi_nilai", "kegiatan_materi_nilai.materi_id", "=", "kegiatan_list_materi.id")
@@ -472,17 +464,31 @@ class SertifikatController extends Controller
         }
         $nama = $formData->name_sertifikat;
         $jabatan = $formData->pekerjaan_name;
-        
-        $checkLembaga = cu::findOrFail($formData->lembaga_id);
-        if($checkLembaga){
-          $lembaga = 'CU '. $formData->lembaga_name;
-        }else{
-          $lembaga = $formData->lembaga_name;
+        if($formData->asal === 'dalam'){
+            $checkLembaga = cu::findOrFail($formData->lembaga_id);
+            
+            if($checkLembaga){
+              $lembaga = 'CU '. $formData->lembaga_name;
+            }else if ($checkLembaga =='' && $formData->lembaga_name){
+              $lembaga = $formData->lembaga_name;
+            }else{
+              $lembaga = '';
+            }
+        }else if ($formData->asal === 'luar'){
+          $lembaga=$formData->lembaga_name;
         }
     }else{
       $nomorData = SertifikatGenerate::where('id_kegiatan',  $formData['kegiatan_id'])->where('kegiatan_panitia_id', $formData['panitia_id'])->first();
       $sertifikat = Sertifikat::where('id', $kegiatanData->id_sertifikatPanitia)->select('gambar_depan','kode_sertifikat','tipe')->first();
-      $nama = $formData->name;
+      
+      if($formData->asal === 'dalam'){
+        $nama = $formData->aktivis_name;
+      }else if($formData->asal === 'luar'){
+        $nama = $formData->mitra_orang_name;
+      }else if($formData->asal === 'luar lembaga'){
+        $nama = $formData->mitra_lembaga_name;
+      }
+      
       $peran = $formData->peran;
     }
     $tempat = '';
@@ -520,16 +526,14 @@ class SertifikatController extends Controller
     $nomor = ($nomorData !== null) ? $nomorData['nomor'] . '/' . $sertifikat->kode_sertifikat . '/' . $selesai2 . '/' . $selesai->format('Y') : '';
    
     $hari = \Carbon\Carbon::parse($date_mulai)->diffInDays(\Carbon\Carbon::parse($date_selesai), false);
-
-    $hari = ($hari == 0 ? 1 : $hari);
-
     $tahun = $kegiatanData->periode;
-
-    if ($hari > 1) {
-      $tgl = $mulai->format('d') . ' ' . $mulai2 . ' ' . $mulai->format('Y') . " s.d " . $selesai->format('d') . ' ' . $selesai3 . ' ' . $selesai->format('Y');
-    } else {
-      $tgl = $mulai->format('d') . ' ' . $mulai2 . ' ' . $mulai->format('Y');
+    
+    if ($hari >= 1) {
+      $tgl = 'dari tanggal '.$mulai->format('d') . ' ' . $mulai2 . ' ' . $mulai->format('Y') . " s.d " . $selesai->format('d') . ' ' . $selesai3 . ' ' . $selesai->format('Y');
+    } else if($hari == 0){
+      $tgl = 'pada tanggal '.$mulai->format('d') . ' ' . $mulai2 . ' ' . $mulai->format('Y');
     }
+
     $tglGenerate = $selesai->format('d') . ' ' . $selesai3 . ' ' . $selesai->format('Y');
     
     if($formData->peran === 'peserta'){ 
@@ -607,5 +611,5 @@ function getNamaBulan($monthName) {
         'July' => 'Juli', 'August' => 'Agustus', 'September' => 'September',
         'October' => 'Oktober', 'November' => 'November', 'December' => 'Desember',
     ][$monthName] ?? '';
-}
+  }
 }

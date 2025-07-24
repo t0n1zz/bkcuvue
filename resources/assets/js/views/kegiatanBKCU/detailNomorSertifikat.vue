@@ -13,8 +13,18 @@
 						</thead>
 						<tbody v-if="this.mode == 'panitia'">
 							<tr v-for="(panitia, index) in itemPanitia" :key="index">
-							<td>{{ panitia.name }}</td>
-							<td>{{ panitia.sertifikat_nomor }}</td>
+							<template v-if="panitia.asal == 'dalam'">
+								<td>{{ panitia.aktivis_name }}</td>
+								<td>{{ panitia.sertifikat_nomor }}</td>
+							</template>
+							<template v-if="panitia.asal == 'luar'">
+								<td>{{ panitia.mitra_orang_name }}</td>
+								<td>{{ panitia.sertifikat_nomor }}</td>
+							</template>
+							<template v-if="panitia.asal == 'luar lembaga'">
+								<td>{{ panitia.mitra_lembaga_name }}</td>
+								<td>{{ panitia.sertifikat_nomor }}</td>
+							</template>
 							</tr>
 						</tbody>
 						<tbody v-else>
@@ -77,6 +87,7 @@
 	},
 	created() {
 		this.fetch(this.queryPesertaTerdaftar);	
+		
 	},
 	watch: {
 		itemDataPanitia: {

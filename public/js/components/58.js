@@ -1946,10 +1946,20 @@ var render = function () {
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-4" }, [
                           _c("div", { staticClass: "form-group" }, [
-                            _c("h6", [_vm._v("Lembaga:")]),
+                            _c(
+                              "h6",
+                              [_vm._v("Lembaga:"), _c("wajib-badge")],
+                              1
+                            ),
                             _vm._v(" "),
                             _c("input", {
                               directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "required",
+                                  expression: "'required'",
+                                },
                                 {
                                   name: "model",
                                   rawName: "v-model",

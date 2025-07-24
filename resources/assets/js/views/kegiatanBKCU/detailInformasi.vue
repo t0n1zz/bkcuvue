@@ -268,11 +268,29 @@
               <tr :class="{ 'bg-info': selectedItemPanitia.id === props.item.id }" class="text-nowrap" @click="selectedPanita(props.item)" v-if="props.item">
                 <td>{{ props.index + 1 }}</td>
                 <td>
-                  <img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
-                  <img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+                 <template v-if="props.item.asal == 'dalam'">
+                    <img :src="'/images/aktivis/' + props.item.aktivis_gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+                    <img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+                  </template>
+                  <template v-else-if="props.item.asal == 'luar'">
+                    <img :src="'/images/mitra_orang/' + props.item.mitra_orang_gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+                    <img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+                  </template>
+                  <template v-else-if="props.item.asal == 'luar lembaga'">
+                    <img :src="'/images/mitra_lembaga/' + props.item.mitra_lembaga_gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+                    <img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+                  </template>
                 </td>
                 <td>
-                  <check-value :value="props.item.name"></check-value>
+                  <template v-if="props.item.asal == 'dalam'">
+                    <check-value :value="props.item.aktivis_name"></check-value>
+                  </template>
+                  <template v-if="props.item.asal == 'luar'">
+                    <check-value :value="props.item.mitra_orang_name"></check-value>
+                  </template>
+                  <template v-if="props.item.asal == 'luar lembaga'">
+                    <check-value :value="props.item.mitra_lembaga_name"></check-value>
+                  </template>
                 </td>
                 <td>
                   <check-value :value="props.item.asal"></check-value>
@@ -281,10 +299,26 @@
                   <check-value :value="props.item.peran"></check-value>
                 </td>
                 <td>
-                  <check-value :value="props.item.email"></check-value>
+                  <template v-if="props.item.asal == 'dalam'">
+                    <check-value :value="props.item.aktivis_email"></check-value>
+                  </template>
+                  <template v-if="props.item.asal == 'luar'">
+                    <check-value :value="props.item.mitra_orang_email"></check-value>
+                  </template>
+                  <template v-if="props.item.asal == 'luar lembaga'">
+                    <check-value :value="props.item.mitra_lembaga_email"></check-value>
+                  </template>
                 </td>
                 <td>
-                  <check-value :value="props.item.hp"></check-value>
+                  <template v-if="props.item.asal == 'dalam'">
+                    <check-value :value="props.item.aktivis_hp"></check-value>
+                  </template>
+                  <template v-if="props.item.asal == 'luar'">
+                    <check-value :value="props.item.mitra_orang_hp"></check-value>
+                  </template>
+                  <template v-if="props.item.asal == 'luar lembaga'">
+                    <check-value :value="props.item.mitra_lembaga_hp"></check-value>
+                  </template>
                 </td>
               </tr>
             </template>
@@ -478,7 +512,6 @@
         this.fetchListMateri();
         this.fetchPanitia();
       }
-
 		},
   watch: {
     selectedItemPanitia() {
@@ -542,7 +575,7 @@
         this.selectedItemPanitia = item; 
       },
       ubahKegiatan(id) {
-				this.$router.push({name: this.kelas + 'EditDetail', params: { id: id }});
+				this.$router.push({name: this.kelas + 'EditDetail', params: { id: id, tipe:this.$route.params.tipe }});
       },
       penerimaSertifikat(value) {
         this.tipePenerima = value;
@@ -556,12 +589,18 @@
           axios.post('/api/generateSertifikat', this.selectedItemPanitia, {
 						responseType: 'blob'
 					}).then((response) => {
-						FileSaver.saveAs(response.data,'Piagam Kegiatan '+ this.item.name + ' - ' + this.selectedItemPanitia.name + '.pdf')
-						this.state = "generateSertifikatPanitia";
+            if (this.selectedItemPanitia.asal === 'dalam') {
+              FileSaver.saveAs(response.data, 'Piagam Kegiatan ' + this.item.name + ' - ' + this.selectedItemPanitia.aktivis_name + '.pdf');
+            }else if (this.selectedItemPanitia.asal === 'luar') {
+              FileSaver.saveAs(response.data,'Piagam Kegiatan '+ this.item.name + ' - ' + this.selectedItemPanitia.mitra_orang_name + '.pdf')
+            }else if (this.selectedItemPanitia.asal === 'luar lembaga') {
+              FileSaver.saveAs(response.data,'Piagam Kegiatan '+ this.item.name + ' - ' + this.selectedItemPanitia.mitra_lembaga_name + '.pdf')
+            }
+            this.state = "generateSertifikatPanitia";
 						this.modalOpen("generateSertifikat");
 					})
 					}
-		},
+    },
       modalOpen(state, isMobile, itemMobile) {
         this.modalShow = true;
         this.modalSize = '';

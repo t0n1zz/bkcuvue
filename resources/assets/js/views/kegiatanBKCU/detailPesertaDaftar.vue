@@ -39,7 +39,7 @@
 
 				<button class="btn btn-light mb-1" @click.prevent="modalOpen('alasanPeserta')"
 					v-if="selectedItem.status == 7">
-					<i class="icon-eye"></i> Lihat Alasan Penolakan
+						<i class="icon-eye"></i> Lihat Alasan Penolakan
 				</button>
 
 				<template v-if="item.id_sertifikat">
@@ -239,8 +239,10 @@
 					<td v-if="!columnDataPesertaTerdaftar[13].hide">
 						<check-value :value="props.item.pendidikan_name"></check-value>
 					</td>
-					<td v-if="!columnDataPesertaTerdaftar[14].hide"
-						v-html="$options.filters.date(props.item.tanggal_lahir)">
+					<td v-if="!columnDataPesertaTerdaftar[14].hide">
+						<span>
+							{{ props.item.tanggal_lahir ? $options.filters.date(props.item.tanggal_lahir) : '-'}}
+						</span>
 					</td>
 					<td v-if="!columnDataPesertaTerdaftar[15].hide">
 						<check-value :value="props.item.tempat_lahir"></check-value>
@@ -372,6 +374,8 @@ export default {
 			isGetSertifikatButton: false,
 			sertifikatNumber: false,
 			tipePenerima: 'peserta',
+			asal: '',
+			lembaga:'',
 			queryPesertaTerdaftar: {
 				order_column: "created_at",
 				order_direction: "asc",
@@ -647,14 +651,27 @@ export default {
 	created() {
 		if (this.itemStat == 'success') {
 			this.fetchPesertaTerdaftar(this.queryPesertaTerdaftar);
-
-		const invalidValues = [null, 'null', 0,''];
-          if (!invalidValues.includes(this.item.id_sertifikat)) {
-            this.isGetSertifikatButton = true;
-          }
+			const invalidValues = [null, 'null', 0,''];
+        	if (!invalidValues.includes(this.item.id_sertifikat)) {
+            	this.isGetSertifikatButton = true;
+			}
 		}
 	},
 	watch: {
+		itemDataPesertaTerdaftarStat(val) {
+			if (val === 'success' && Array.isArray(this.itemDataPesertaTerdaftar.data)) {
+			this.itemDataPesertaTerdaftar.data.forEach((peserta) => {
+				if (peserta.mitra_orang_id) {
+					peserta.asal = 'luar';
+					peserta.lembaga_name = peserta.mitra_orang?.lembaga || '';
+					peserta.tanggal_lahir = peserta.mitra_orang?.tanggal_lahir || '';
+					}
+				if (peserta.aktivis) {
+					peserta.asal = 'dalam';	
+				}
+			});
+			}
+		},
 		selectedItem() {
 			if (this.selectedItem.sertifikat_generate !== null) {
 					this.sertifikatNumber = true;
@@ -670,7 +687,6 @@ export default {
 		updateStat(value) {
 			this.modalState = value;
 			this.modalColor = '';
-
 			if (value === "success") {
 				this.fetchPesertaTerdaftar(this.queryPesertaTerdaftar);
 				this.fetchCountPeserta();
@@ -679,12 +695,11 @@ export default {
 				this.modalTitle = 'Oops terjadi kesalahan :(';
 				this.modalContent = this.updateResponse;
 			}
-		},
-		
+		}
 	},
 	methods: {
 		selectedRow(item) {
-        this.selectedItem = item;  // Set item yang diklik sebagai selectedItem
+        	this.selectedItem = item; 
     	},
 		fetchPesertaTerdaftar(params) {
 				if (this.currentUser.id_cu == 0) {

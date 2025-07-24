@@ -114,16 +114,30 @@
 		</div>
 
 		@if($averageNilai != 0)
-		<div class="rentangNilai">
-			<p><span>Rentang Nilai :</p>
-		</div>
-		<div class="gradeBawah">
-			<table class="tb">
-				<tr><td class="fontNilai">85.0 - 100</td><td class="fontNilai">A (Baik Sekali)</td></tr>
-				<tr><td class="fontNilai">75.0 - 84.9</td><td class="fontNilai">B (Baik)</td></tr>
-				<tr><td class="fontNilai">60.0 - 74.9</td><td class="fontNilai">C (Cukup)</td></tr>
-				<tr><td class="fontNilai">45.0 - 59.9</td><td class="fontNilai">D (Kurang)</td></tr>
-				<tr><td class="fontNilai">0 - 44.9</td><td class="fontNilai">E (Buruk)</td></tr>
+		<div style="margin-top: 830px; margin-left: 255px;">
+			<p style="font-family: Calibri, sans-serif; font-size: 40px;">Rentang Nilai :</p>
+
+			<table style="border-collapse: collapse; width: 800px; font-family: Calibri, sans-serif; font-size: 40px; border: 1px solid black;">
+				<tr>
+					<td style="border: 1px solid black; padding: 10px 20px; text-align: left;">85.0 - 100</td>
+					<td style="border: 1px solid black; padding: 10px 20px; text-align: left;">A (Baik Sekali)</td>
+				</tr>
+				<tr>
+					<td style="border: 1px solid black; padding: 10px 20px; text-align: left;">75.0 - 84.9</td>
+					<td style="border: 1px solid black; padding: 10px 20px; text-align: left;">B (Baik)</td>
+				</tr>
+				<tr>
+					<td style="border: 1px solid black; padding: 10px 20px; text-align: left;">60.0 - 74.9</td>
+					<td style="border: 1px solid black; padding: 10px 20px; text-align: left;">C (Cukup)</td>
+				</tr>
+				<tr>
+					<td style="border: 1px solid black; padding: 10px 20px; text-align: left;">45.0 - 59.9</td>
+					<td style="border: 1px solid black; padding: 10px 20px; text-align: left;">D (Kurang)</td>
+				</tr>
+				<tr>
+					<td style="border: 1px solid black; padding: 10px 20px; text-align: left;">0 - 44.9</td>
+					<td style="border: 1px solid black; padding: 10px 20px; text-align: left;">E (Buruk)</td>
+				</tr>
 			</table>
 		</div>
 		@endif
@@ -132,12 +146,23 @@
 @endif
 
 <style>
-	@page { margin: 0 !important; padding: 0 !important }
+	@font-face {
+		font-family: 'Edwardian Script ITC';
+		src: url({{url('css/public/fonts/edw.ttf')}});
+	}
 
-	body { margin: 0px; padding: 0px; }
+	@page {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
+	body {
+		margin: 0;
+		padding: 0;
+	}
 
 	th, td {
-		font-family: 'Calibri';
+		font-family: 'Calibri', sans-serif;
 		font-size: 40px;
 	}
 
@@ -185,14 +210,15 @@
 	}
 
 	.ttdAtas {
-		left: 0;
-		right: 0;
 		position: absolute;
 		bottom: 420px;
+		left: 0;
+		right: 0;
 		text-align: center;
 		font-size: 55px;
 		transform: translateX(8%);
 		width: 100%;
+		font-family: 'Calibri';
 	}
 
 	.ttdBawah {
@@ -201,31 +227,7 @@
 		margin-left: 1820px;
 		font-size: 55px;
 		text-align: left;
-	}
-
-	.rentangNilai {
-		position: absolute;
-		bottom: 430px;
-		margin-left: 255px;
-		font-size: 55px;
-		text-align: left;
-	}
-
-	.gradeBawah {
-		position: absolute;
-		bottom: 90px;
-		margin-left: 255px;
-		font-size: 55px;
-		text-align: left;
-	}
-
-	table.tb {
-		border: 1px solid #ddd;
-		border-collapse: collapse;
-	}
-
-	.tb td {
-		text-align: center;
+		font-family: 'Calibri';
 	}
 
 	.center {
@@ -233,10 +235,5 @@
 		margin-right: auto;
 		margin-top: 300px;
 		font-size: 4em;
-	}
-
-	@font-face {
-		font-family: 'Edwardian Script ITC';
-		src: url({{url('css/public/fonts/edw.ttf')}});
 	}
 </style>

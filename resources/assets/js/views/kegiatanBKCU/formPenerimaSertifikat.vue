@@ -59,14 +59,14 @@
 					<i class="icon-cross"></i> Tutup</button>
 
 				<button type="submit" class="btn btn-primary"
-					:disabled="formPenerimaSertifikat.aktivis_id == '' && formPenerimaSertifikat.mitra_orang_id == ''">
+					:disabled="selectedItems.length === 0">
 					<i class="icon-floppy-disk"></i> Simpan</button>
 			</div>
 
 			<!-- tombol mobile-->
 			<div class="d-block d-md-none">
 				<button type="submit" class="btn btn-primary btn-block pb-2"
-					:disabled="formPenerimaSertifikat.aktivis_id == '' && formPenerimaSertifikat.mitra_orang_id == ''">
+					:disabled="selectedItems.length === 0">
 					<i class="icon-floppy-disk"></i> Simpan</button>
 
 				<button type="button" class="btn btn-light btn-block pb-2" @click.prevent="tutup">
@@ -89,11 +89,29 @@
 						<tr v-if="props.item">
 							<td>{{ props.index + 1 }}</td>
 							<td>
-							<img :src="'/images/aktivis/' + props.item.gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
-							<img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+							<template v-if="props.item.asal == 'dalam'">
+								<img :src="'/images/aktivis/' + props.item.aktivis_gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+								<img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+							</template>
+							<template v-else-if="props.item.asal == 'luar'">
+								<img :src="'/images/mitra_orang/' + props.item.mitra_orang_gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+								<img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+							</template>
+							<template v-else-if="props.item.asal == 'luar lembaga'">
+								<img :src="'/images/mitra_lembaga/' + props.item.mitra_lembaga_gambar + 'n.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-if="props.item.gambar">
+								<img :src="'/images/no_image_man.jpg'" width="35px" class="img-rounded img-fluid wmin-sm" v-else>
+							</template>
 							</td>
 							<td>
-							<check-value :value="props.item.name"></check-value>
+							<template v-if="props.item.asal == 'dalam'">
+								<check-value :value="props.item.aktivis_name"></check-value>
+							</template>
+							<template v-if="props.item.asal == 'luar'">
+								<check-value :value="props.item.mitra_orang_name"></check-value>
+							</template>
+							<template v-if="props.item.asal == 'luar lembaga'">
+								<check-value :value="props.item.mitra_lembaga_name"></check-value>
+							</template>
 							</td>
 							<td>
 							<check-value :value="props.item.asal"></check-value>
@@ -102,10 +120,26 @@
 							<check-value :value="props.item.peran"></check-value>
 							</td>
 							<td>
-							<check-value :value="props.item.email"></check-value>
+							<template v-if="props.item.asal == 'dalam'">
+								<check-value :value="props.item.aktivis_email"></check-value>
+							</template>
+							<template v-if="props.item.asal == 'luar'">
+								<check-value :value="props.item.mitra_orang_email"></check-value>
+							</template>
+							<template v-if="props.item.asal == 'luar lembaga'">
+								<check-value :value="props.item.mitra_lembaga_email"></check-value>
+							</template>
 							</td>
 							<td>
-							<check-value :value="props.item.hp"></check-value>
+							<template v-if="props.item.asal == 'dalam'">
+								<check-value :value="props.item.aktivis_hp"></check-value>
+							</template>
+							<template v-if="props.item.asal == 'luar'">
+								<check-value :value="props.item.mitra_orang_hp"></check-value>
+							</template>
+							<template v-if="props.item.asal == 'luar lembaga'">
+								<check-value :value="props.item.mitra_lembaga_hp"></check-value>
+							</template>
 							</td>
 							<td>
 							<input type="checkbox" @change="toggleSelection(props.item)" :checked="isSelected(props.item)" />
@@ -231,9 +265,6 @@ export default {
 			submited: false,
 		}
 	},
-	updated() {
-		console.log(this.formPenerimaSertifikat);
-	},
 	created() {
 		this.fetchPeserta(this.queryPeserta);
 		},
@@ -250,10 +281,27 @@ export default {
 		},
 	},
 	methods: {
+		getAktivisId(item) {
+			return item.aktivis_id || (item.mitra_orang && item.mitra_orang.id) || null;
+		},
+
 		initializeSelection() {
-			if(this.tipePenerima === 'peserta'){
+			if (this.tipePenerima === 'peserta') {
 				if (this.itemPesertaStat === 'success' && this.itemPeserta.data) {
-				this.selectedItems = this.itemPeserta.data
+						this.selectedItems = this.itemPeserta.data
+							.filter(item => item.isGetSertifikat === 1)
+							.map(item => ({
+								aktivis_id: this.getAktivisId(item),
+								kegiatan_id: this.kegiatan_id,
+								isGetSertifikat: 1,
+								tipePenerima: this.tipePenerima,
+								asal : this.asalPeserta(item)
+							}));
+				} 
+			}
+			else {
+				if (this.itemStat === 'success') {
+					this.selectedItems = this.itemDataPanitia
 				.filter(itemSertifikat => itemSertifikat.isGetSertifikat === 1) // Hanya yang isGetSertifikat = 1 yang dipilih
 				.map(itemSertifikat => ({
 					aktivis_id: itemSertifikat.aktivis_id,
@@ -263,75 +311,62 @@ export default {
 				}));
 				}
 			}
-			else {
-				if (this.itemStat === 'success') {
-					this.selectedItems = this.itemDataPanitia
-				.filter(itemSertifikat => itemSertifikat.isGetSertifikat === 1) // Hanya yang isGetSertifikat = 1 yang dipilih
-				.map(itemSertifikat => ({
-					aktivis_id: itemSertifikat.id,
-					kegiatan_id: this.kegiatan_id,
-					isGetSertifikat: 1,
-					tipePenerima: this.tipePenerima
-				}));
-				}
-			}
 		},
 		// Toggle item selection
 		toggleSelection(item) {
-			if (this.tipePenerima === 'peserta') {
-				const index = this.selectedItems.findIndex(i => i.aktivis_id === item.aktivis_id);
-				if (index !== -1) {
-					this.selectedItems.splice(index, 1);
-				} else {
-					this.selectedItems.push({
-						aktivis_id: item.aktivis_id,
-						kegiatan_id: this.kegiatan_id,
-						isGetSertifikat: 1,
-						tipePenerima: this.tipePenerima
-					});
-				}
-			} else if (this.tipePenerima === 'fasilitator') {
-				const index = this.selectedItems.findIndex(i => i.aktivis_id === item.id);
-				if (index !== -1) {
-					this.selectedItems.splice(index, 1);
-				} else {
-					this.selectedItems.push({
-						aktivis_id: item.id,
-						kegiatan_id: this.kegiatan_id,
-						isGetSertifikat: 1,
-						tipePenerima: this.tipePenerima
-					});
-				}
+			const id = this.tipePenerima === 'peserta' ? this.getAktivisId(item) : item.aktivis_id;
+			const index = this.selectedItems.findIndex(i => i.aktivis_id === id);
+
+			if (index !== -1) {
+				this.selectedItems.splice(index, 1);
+			} else {
+				const newItem = {
+					aktivis_id: id,
+					kegiatan_id: this.kegiatan_id,
+					isGetSertifikat: 1,
+					tipePenerima: this.tipePenerima,
+				};
+				if (this.tipePenerima === 'peserta') newItem.asal = this.asalPeserta(item);
+				this.selectedItems.push(newItem);
 			}
 		},
-
 		// Cek apakah item sudah terpilih
 		isSelected(item) {
 			if (this.tipePenerima === 'peserta') {
+				return this.selectedItems.some(i => i.aktivis_id === this.getAktivisId(item));
+			} else if (this.tipePenerima === 'fasilitator') {
 				return this.selectedItems.some(i => i.aktivis_id === item.aktivis_id);
-			} else if(this.tipePenerima === 'fasilitator') {
-				return this.selectedItems.some(i => i.aktivis_id === item.id);
+			}
+			return false;
+		},
+
+		asalPeserta(item) {
+			if (this.tipePenerima === 'peserta') {
+				if (item.mitra_orang_id) {
+					return 'luar';
+				} else {
+					return 'dalam';
+				}
 			}
 		},
 
-
 		// Pilih semua peserta
 		selectAll() {
-			if(this.tipePenerima === 'peserta'){
-				if (this.itemPesertaStat === 'success' && this.itemPeserta.data) {
-					this.selectedItems = this.itemPeserta.data.map(item => ({
-						aktivis_id: item.aktivis_id,
-						kegiatan_id: this.kegiatan_id,
-						isGetSertifikat: 1,
-						tipePenerima: this.tipePenerima
-					}));
-					}
+			if (this.tipePenerima === 'peserta') {
+				this.selectedItems = this.itemPeserta.data.map(item => ({
+				aktivis_id: this.getAktivisId(item),
+				kegiatan_id: this.kegiatan_id,
+				isGetSertifikat: 1,
+				tipePenerima: this.tipePenerima,
+				asal : this.asalPeserta(item)
+				}));
+
 			}
 			else if(this.tipePenerima === 'fasilitator') {
 				
 				if (this.itemStat === 'success' && this.itemDataPanitia) {
 					this.selectedItems = this.itemDataPanitia.map(item => ({
-						aktivis_id: item.id,
+						aktivis_id: item.aktivis_id,
 						kegiatan_id: this.kegiatan_id,
 						isGetSertifikat: 1,
 						tipePenerima: this.tipePenerima
@@ -347,15 +382,16 @@ export default {
 
 		prepareFormData() {
 			if(this.tipePenerima === 'peserta'){
-			this.formPenerimaSertifikat = this.itemPeserta.data.map(item => ({
-				aktivis_id: item.aktivis_id,
+				this.formPenerimaSertifikat = this.itemPeserta.data.map(item => ({
+				aktivis_id: this.getAktivisId(item),
 				kegiatan_id: this.kegiatan_id,
-				isGetSertifikat: this.isSelected(item) ? 1 : 0, // Jika tidak dipilih, atur ke 0
-				tipePenerima: this.tipePenerima
+				isGetSertifikat: this.isSelected(item) ? 1 : 0,
+				tipePenerima: this.tipePenerima,
+				asal : this.asalPeserta(item)
 			}));
 			}else if(this.tipePenerima === 'fasilitator'){
 			this.formPenerimaSertifikat = this.itemDataPanitia.map(item => ({
-				aktivis_id: item.id,
+				aktivis_id: item.aktivis_id,
 				kegiatan_id: this.kegiatan_id,
 				isGetSertifikat: this.isSelected(item) ? 1 : 0, // Jika tidak dipilih, atur ke 0
 				tipePenerima: this.tipePenerima

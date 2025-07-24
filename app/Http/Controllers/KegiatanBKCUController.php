@@ -511,16 +511,41 @@ class KegiatanBKCUController extends Controller
 				'model' => $table_data
 			]);
 	}
-	public function indexPanitia($id)
-	{
-		$table_data = DB::table('kegiatan_panitia as kp')
-        ->join('aktivis as a', 'kp.aktivis_id', '=', 'a.id')
-		->leftJoin('sertifikat_generate as s', 'kp.id','=','s.kegiatan_panitia_id')
+	public function indexPanitia($id){	
+		$table_data = DB::table('kegiatan_panitia as kp')	
+        // Sertifikat
+        ->leftJoin('sertifikat_generate as s', 'kp.id', '=', 's.kegiatan_panitia_id')
+        // Aktivis (dalam)
+        ->leftJoin('aktivis as a', 'kp.aktivis_id', '=', 'a.id')
+        // Mitra orang (luar)
+        ->leftJoin('mitra_orang as mo', 'kp.aktivis_id', '=', 'mo.id')
+        // Mitra lembaga (luar lembaga)
+        ->leftJoin('mitra_lembaga as ml', 'kp.aktivis_id', '=', 'ml.id')
+        // Filter kegiatan
         ->where('kp.kegiatan_id', $id)
-        ->select('kp.*', 'a.*','kp.id as panitia_id','s.nomor')
+        // Select data dari tiga sumber tergantung 'asal'
+        ->select(
+            'kp.*',
+            's.nomor',
+            'kp.id as panitia_id',
+            // Aktivis
+			'a.gambar as aktivis_gambar',
+            'a.name as aktivis_name',
+            'a.hp as aktivis_hp',
+            'a.email as aktivis_email',
+            // Mitra Orang
+			'mo.gambar as mitra_orang_gambar',
+            'mo.name as mitra_orang_name',
+            'mo.hp as mitra_orang_hp',
+            'mo.email as mitra_orang_email',
+            // Mitra Lembaga
+			'ml.gambar as mitra_lembaga_gambar',
+            'ml.name as mitra_lembaga_name',
+            'ml.hp as mitra_lembaga_hp',
+            'ml.email as mitra_lembaga_email'
+        )
         ->get();
 		
-
 		return response()
 			->json([
 				'model' => $table_data
@@ -738,12 +763,21 @@ class KegiatanBKCUController extends Controller
         // Loop untuk update setiap data
         foreach ($data as $peserta) {
 			if($peserta['tipePenerima'] == 'peserta'){
-				DB::table('kegiatan_peserta')
-					->where('aktivis_id', $peserta['aktivis_id'])
-					->where('kegiatan_id', $peserta['kegiatan_id'])
-					->update([
-						'isGetSertifikat' => DB::raw($peserta['isGetSertifikat'])
+				if($peserta['asal'] == 'dalam'){
+					DB::table('kegiatan_peserta')
+						->where('aktivis_id', $peserta['aktivis_id'])
+						->where('kegiatan_id', $peserta['kegiatan_id'])
+						->update([
+							'isGetSertifikat' => DB::raw($peserta['isGetSertifikat'])
 					]);
+				} else if ($peserta['asal'] == 'luar') {
+					DB::table('kegiatan_peserta')
+						->where('mitra_orang_id', $peserta['aktivis_id'])
+						->where('kegiatan_id', $peserta['kegiatan_id'])
+						->update([
+							'isGetSertifikat' => DB::raw($peserta['isGetSertifikat'])
+					]);
+				}
 			} else if($peserta['tipePenerima'] == 'fasilitator'){
 				DB::table('kegiatan_panitia')
 					->where('aktivis_id', $peserta['aktivis_id'])

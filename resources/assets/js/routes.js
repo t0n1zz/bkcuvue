@@ -396,13 +396,13 @@ const routes = [
     meta: { requiresAuth: true, mode: "edit" },
   },
   {
-    path: "/kegiatanBKCU/editDetail/:id",
+    path: "/kegiatanBKCU/editDetail/:id/:tipe",
     name: "kegiatanBKCUEditDetail",
     components: { default: kegiatanBKCU_form, header: header, footer: footer },
     meta: { requiresAuth: true, mode: "edit", isDetail: true },
   },
   {
-    path: "/kegiatanBKCU/detail/:id",
+    path: "/kegiatanBKCU/detail/:id/:tipe",
     name: "kegiatanBKCUDetail",
     components: {
       default: kegiatanBKCU_detail,

@@ -130,7 +130,7 @@
         <!-- 5. Kegiatan dan deskripsi jadi 1 kalimat -->
         <div class="blok-kegiatan">
              {{ $kegiatan }}<br> 
-             <span style="line-height: 1">dari tanggal {{ $tgl }} {{$tempat}}</span><br>
+             <span style="line-height: 1">{{ $tgl }} {{$tempat}}</span><br>
              <div class="tgl">Pontianak, {{ $tglGenerate }}</div>
         </div>
     </div>

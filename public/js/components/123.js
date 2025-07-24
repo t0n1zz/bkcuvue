@@ -1331,7 +1331,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$router.push({
         name: this.kelas + "Detail",
         params: {
-          id: id
+          id: id,
+          tipe: this.$route.params.tipe
         }
       });
     },

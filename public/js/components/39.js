@@ -1140,6 +1140,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1343,7 +1377,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$router.push({
         name: this.kelas + 'EditDetail',
         params: {
-          id: id
+          id: id,
+          tipe: this.$route.params.tipe
         }
       });
     },
@@ -1361,7 +1396,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         axios.post('/api/generateSertifikat', this.selectedItemPanitia, {
           responseType: 'blob'
         }).then(function (response) {
-          file_saver__WEBPACK_IMPORTED_MODULE_12___default.a.saveAs(response.data, 'Piagam Kegiatan ' + _this.item.name + ' - ' + _this.selectedItemPanitia.name + '.pdf');
+          if (_this.selectedItemPanitia.asal === 'dalam') {
+            file_saver__WEBPACK_IMPORTED_MODULE_12___default.a.saveAs(response.data, 'Piagam Kegiatan ' + _this.item.name + ' - ' + _this.selectedItemPanitia.aktivis_name + '.pdf');
+          } else if (_this.selectedItemPanitia.asal === 'luar') {
+            file_saver__WEBPACK_IMPORTED_MODULE_12___default.a.saveAs(response.data, 'Piagam Kegiatan ' + _this.item.name + ' - ' + _this.selectedItemPanitia.mitra_orang_name + '.pdf');
+          } else if (_this.selectedItemPanitia.asal === 'luar lembaga') {
+            file_saver__WEBPACK_IMPORTED_MODULE_12___default.a.saveAs(response.data, 'Piagam Kegiatan ' + _this.item.name + ' - ' + _this.selectedItemPanitia.mitra_lembaga_name + '.pdf');
+          }
+
           _this.state = "generateSertifikatPanitia";
 
           _this.modalOpen("generateSertifikat");
@@ -1499,6 +1541,16 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2004,6 +2056,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -2044,6 +2098,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       isGetSertifikatButton: false,
       sertifikatNumber: false,
       tipePenerima: 'peserta',
+      asal: '',
+      lembaga: '',
       queryPesertaTerdaftar: {
         order_column: "created_at",
         order_direction: "asc",
@@ -2296,6 +2352,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   watch: {
+    itemDataPesertaTerdaftarStat: function itemDataPesertaTerdaftarStat(val) {
+      if (val === 'success' && Array.isArray(this.itemDataPesertaTerdaftar.data)) {
+        this.itemDataPesertaTerdaftar.data.forEach(function (peserta) {
+          if (peserta.mitra_orang_id) {
+            var _peserta$mitra_orang, _peserta$mitra_orang2;
+
+            peserta.asal = 'luar';
+            peserta.lembaga_name = ((_peserta$mitra_orang = peserta.mitra_orang) === null || _peserta$mitra_orang === void 0 ? void 0 : _peserta$mitra_orang.lembaga) || '';
+            peserta.tanggal_lahir = ((_peserta$mitra_orang2 = peserta.mitra_orang) === null || _peserta$mitra_orang2 === void 0 ? void 0 : _peserta$mitra_orang2.tanggal_lahir) || '';
+          }
+
+          if (peserta.aktivis) {
+            peserta.asal = 'dalam';
+          }
+        });
+      }
+    },
     selectedItem: function selectedItem() {
       if (this.selectedItem.sertifikat_generate !== null) {
         this.sertifikatNumber = true;
@@ -2324,7 +2397,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: (_methods = {
     selectedRow: function selectedRow(item) {
-      this.selectedItem = item; // Set item yang diklik sebagai selectedItem
+      this.selectedItem = item;
     },
     fetchPesertaTerdaftar: function fetchPesertaTerdaftar(params) {
       if (this.currentUser.id_cu == 0) {
@@ -3861,6 +3934,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/checkValue.vue */ "./resources/assets/js/components/checkValue.vue");
 /* harmony import */ var _components_dataviewer2_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/dataviewer2.vue */ "./resources/assets/js/components/dataviewer2.vue");
 /* harmony import */ var _components_message_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/message.vue */ "./resources/assets/js/components/message.vue");
+/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-cleave-component */ "./node_modules/vue-cleave-component/dist/vue-cleave.min.js");
+/* harmony import */ var vue_cleave_component__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_cleave_component__WEBPACK_IMPORTED_MODULE_4__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -3902,6 +3977,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -3911,14 +3994,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     DataViewer: _components_dataviewer2_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     checkValue: _components_checkValue_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    message: _components_message_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    message: _components_message_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    Cleave: vue_cleave_component__WEBPACK_IMPORTED_MODULE_4___default.a
   },
   data: function data() {
     return {
       title: '',
       kelas: 'nilai',
       selectedItem: [],
-      submited: false
+      submited: false,
+      cleaveOption: {
+        number3: {
+          numeral: true,
+          numeralIntegerScale: 3,
+          numeralDecimalScale: 0,
+          stripLeadingZeroes: false
+        }
+      }
     };
   },
   created: function created() {
@@ -3971,6 +4063,40 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4204,9 +4330,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       submited: false
     };
   },
-  updated: function updated() {
-    console.log(this.formPenerimaSertifikat);
-  },
   created: function created() {
     this.fetchPeserta(this.queryPeserta);
   },
@@ -4223,12 +4346,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   methods: {
+    getAktivisId: function getAktivisId(item) {
+      return item.aktivis_id || item.mitra_orang && item.mitra_orang.id || null;
+    },
     initializeSelection: function initializeSelection() {
       var _this = this;
 
       if (this.tipePenerima === 'peserta') {
         if (this.itemPesertaStat === 'success' && this.itemPeserta.data) {
-          this.selectedItems = this.itemPeserta.data.filter(function (itemSertifikat) {
+          this.selectedItems = this.itemPeserta.data.filter(function (item) {
+            return item.isGetSertifikat === 1;
+          }).map(function (item) {
+            return {
+              aktivis_id: _this.getAktivisId(item),
+              kegiatan_id: _this.kegiatan_id,
+              isGetSertifikat: 1,
+              tipePenerima: _this.tipePenerima,
+              asal: _this.asalPeserta(item)
+            };
+          });
+        }
+      } else {
+        if (this.itemStat === 'success') {
+          this.selectedItems = this.itemDataPanitia.filter(function (itemSertifikat) {
             return itemSertifikat.isGetSertifikat === 1;
           }) // Hanya yang isGetSertifikat = 1 yang dipilih
           .map(function (itemSertifikat) {
@@ -4240,91 +4380,75 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             };
           });
         }
-      } else {
-        if (this.itemStat === 'success') {
-          this.selectedItems = this.itemDataPanitia.filter(function (itemSertifikat) {
-            return itemSertifikat.isGetSertifikat === 1;
-          }) // Hanya yang isGetSertifikat = 1 yang dipilih
-          .map(function (itemSertifikat) {
-            return {
-              aktivis_id: itemSertifikat.id,
-              kegiatan_id: _this.kegiatan_id,
-              isGetSertifikat: 1,
-              tipePenerima: _this.tipePenerima
-            };
-          });
-        }
       }
     },
     // Toggle item selection
     toggleSelection: function toggleSelection(item) {
-      if (this.tipePenerima === 'peserta') {
-        var index = this.selectedItems.findIndex(function (i) {
-          return i.aktivis_id === item.aktivis_id;
-        });
+      var id = this.tipePenerima === 'peserta' ? this.getAktivisId(item) : item.aktivis_id;
+      var index = this.selectedItems.findIndex(function (i) {
+        return i.aktivis_id === id;
+      });
 
-        if (index !== -1) {
-          this.selectedItems.splice(index, 1);
-        } else {
-          this.selectedItems.push({
-            aktivis_id: item.aktivis_id,
-            kegiatan_id: this.kegiatan_id,
-            isGetSertifikat: 1,
-            tipePenerima: this.tipePenerima
-          });
-        }
-      } else if (this.tipePenerima === 'fasilitator') {
-        var _index = this.selectedItems.findIndex(function (i) {
-          return i.aktivis_id === item.id;
-        });
-
-        if (_index !== -1) {
-          this.selectedItems.splice(_index, 1);
-        } else {
-          this.selectedItems.push({
-            aktivis_id: item.id,
-            kegiatan_id: this.kegiatan_id,
-            isGetSertifikat: 1,
-            tipePenerima: this.tipePenerima
-          });
-        }
+      if (index !== -1) {
+        this.selectedItems.splice(index, 1);
+      } else {
+        var newItem = {
+          aktivis_id: id,
+          kegiatan_id: this.kegiatan_id,
+          isGetSertifikat: 1,
+          tipePenerima: this.tipePenerima
+        };
+        if (this.tipePenerima === 'peserta') newItem.asal = this.asalPeserta(item);
+        this.selectedItems.push(newItem);
       }
     },
     // Cek apakah item sudah terpilih
     isSelected: function isSelected(item) {
+      var _this2 = this;
+
       if (this.tipePenerima === 'peserta') {
         return this.selectedItems.some(function (i) {
-          return i.aktivis_id === item.aktivis_id;
+          return i.aktivis_id === _this2.getAktivisId(item);
         });
       } else if (this.tipePenerima === 'fasilitator') {
         return this.selectedItems.some(function (i) {
-          return i.aktivis_id === item.id;
+          return i.aktivis_id === item.aktivis_id;
         });
+      }
+
+      return false;
+    },
+    asalPeserta: function asalPeserta(item) {
+      if (this.tipePenerima === 'peserta') {
+        if (item.mitra_orang_id) {
+          return 'luar';
+        } else {
+          return 'dalam';
+        }
       }
     },
     // Pilih semua peserta
     selectAll: function selectAll() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (this.tipePenerima === 'peserta') {
-        if (this.itemPesertaStat === 'success' && this.itemPeserta.data) {
-          this.selectedItems = this.itemPeserta.data.map(function (item) {
-            return {
-              aktivis_id: item.aktivis_id,
-              kegiatan_id: _this2.kegiatan_id,
-              isGetSertifikat: 1,
-              tipePenerima: _this2.tipePenerima
-            };
-          });
-        }
+        this.selectedItems = this.itemPeserta.data.map(function (item) {
+          return {
+            aktivis_id: _this3.getAktivisId(item),
+            kegiatan_id: _this3.kegiatan_id,
+            isGetSertifikat: 1,
+            tipePenerima: _this3.tipePenerima,
+            asal: _this3.asalPeserta(item)
+          };
+        });
       } else if (this.tipePenerima === 'fasilitator') {
         if (this.itemStat === 'success' && this.itemDataPanitia) {
           this.selectedItems = this.itemDataPanitia.map(function (item) {
             return {
-              aktivis_id: item.id,
-              kegiatan_id: _this2.kegiatan_id,
+              aktivis_id: item.aktivis_id,
+              kegiatan_id: _this3.kegiatan_id,
               isGetSertifikat: 1,
-              tipePenerima: _this2.tipePenerima
+              tipePenerima: _this3.tipePenerima
             };
           });
         }
@@ -4335,26 +4459,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.selectedItems = [];
     },
     prepareFormData: function prepareFormData() {
-      var _this3 = this;
+      var _this4 = this;
 
       if (this.tipePenerima === 'peserta') {
         this.formPenerimaSertifikat = this.itemPeserta.data.map(function (item) {
           return {
-            aktivis_id: item.aktivis_id,
-            kegiatan_id: _this3.kegiatan_id,
-            isGetSertifikat: _this3.isSelected(item) ? 1 : 0,
-            // Jika tidak dipilih, atur ke 0
-            tipePenerima: _this3.tipePenerima
+            aktivis_id: _this4.getAktivisId(item),
+            kegiatan_id: _this4.kegiatan_id,
+            isGetSertifikat: _this4.isSelected(item) ? 1 : 0,
+            tipePenerima: _this4.tipePenerima,
+            asal: _this4.asalPeserta(item)
           };
         });
       } else if (this.tipePenerima === 'fasilitator') {
         this.formPenerimaSertifikat = this.itemDataPanitia.map(function (item) {
           return {
-            aktivis_id: item.id,
-            kegiatan_id: _this3.kegiatan_id,
-            isGetSertifikat: _this3.isSelected(item) ? 1 : 0,
+            aktivis_id: item.aktivis_id,
+            kegiatan_id: _this4.kegiatan_id,
+            isGetSertifikat: _this4.isSelected(item) ? 1 : 0,
             // Jika tidak dipilih, atur ke 0
-            tipePenerima: _this3.tipePenerima
+            tipePenerima: _this4.tipePenerima
           };
         });
       }
@@ -4363,15 +4487,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch(this.kelas + '/indexPeserta', [params, this.kegiatan_id]);
     },
     save: function save() {
-      var _this4 = this;
+      var _this5 = this;
 
       this.prepareFormData();
       var formData = Object(_helpers_form__WEBPACK_IMPORTED_MODULE_9__["toMulipartedForm"])(this.formPenerimaSertifikat, this.$route.meta.mode);
       this.$validator.validateAll('formPenerimaSertifikat').then(function (result) {
         if (result) {
-          _this4.$store.dispatch(_this4.kelas + '/penerimaSertifikat', formData);
+          _this5.$store.dispatch(_this5.kelas + '/penerimaSertifikat', formData);
         } else {
-          _this4.submited = true;
+          _this5.submited = true;
         }
       });
     },
@@ -7927,37 +8051,125 @@ var render = function () {
                                         _vm._v(_vm._s(props.index + 1)),
                                       ]),
                                       _vm._v(" "),
-                                      _c("td", [
-                                        props.item.gambar
-                                          ? _c("img", {
-                                              staticClass:
-                                                "img-rounded img-fluid wmin-sm",
-                                              attrs: {
-                                                src:
-                                                  "/images/aktivis/" +
-                                                  props.item.gambar +
-                                                  "n.jpg",
-                                                width: "35px",
-                                              },
-                                            })
-                                          : _c("img", {
-                                              staticClass:
-                                                "img-rounded img-fluid wmin-sm",
-                                              attrs: {
-                                                src: "/images/no_image_man.jpg",
-                                                width: "35px",
-                                              },
-                                            }),
-                                      ]),
+                                      _c(
+                                        "td",
+                                        [
+                                          props.item.asal == "dalam"
+                                            ? [
+                                                props.item.gambar
+                                                  ? _c("img", {
+                                                      staticClass:
+                                                        "img-rounded img-fluid wmin-sm",
+                                                      attrs: {
+                                                        src:
+                                                          "/images/aktivis/" +
+                                                          props.item
+                                                            .aktivis_gambar +
+                                                          "n.jpg",
+                                                        width: "35px",
+                                                      },
+                                                    })
+                                                  : _c("img", {
+                                                      staticClass:
+                                                        "img-rounded img-fluid wmin-sm",
+                                                      attrs: {
+                                                        src: "/images/no_image_man.jpg",
+                                                        width: "35px",
+                                                      },
+                                                    }),
+                                              ]
+                                            : props.item.asal == "luar"
+                                            ? [
+                                                props.item.gambar
+                                                  ? _c("img", {
+                                                      staticClass:
+                                                        "img-rounded img-fluid wmin-sm",
+                                                      attrs: {
+                                                        src:
+                                                          "/images/mitra_orang/" +
+                                                          props.item
+                                                            .mitra_orang_gambar +
+                                                          "n.jpg",
+                                                        width: "35px",
+                                                      },
+                                                    })
+                                                  : _c("img", {
+                                                      staticClass:
+                                                        "img-rounded img-fluid wmin-sm",
+                                                      attrs: {
+                                                        src: "/images/no_image_man.jpg",
+                                                        width: "35px",
+                                                      },
+                                                    }),
+                                              ]
+                                            : props.item.asal == "luar lembaga"
+                                            ? [
+                                                props.item.gambar
+                                                  ? _c("img", {
+                                                      staticClass:
+                                                        "img-rounded img-fluid wmin-sm",
+                                                      attrs: {
+                                                        src:
+                                                          "/images/mitra_lembaga/" +
+                                                          props.item
+                                                            .mitra_lembaga_gambar +
+                                                          "n.jpg",
+                                                        width: "35px",
+                                                      },
+                                                    })
+                                                  : _c("img", {
+                                                      staticClass:
+                                                        "img-rounded img-fluid wmin-sm",
+                                                      attrs: {
+                                                        src: "/images/no_image_man.jpg",
+                                                        width: "35px",
+                                                      },
+                                                    }),
+                                              ]
+                                            : _vm._e(),
+                                        ],
+                                        2
+                                      ),
                                       _vm._v(" "),
                                       _c(
                                         "td",
                                         [
-                                          _c("check-value", {
-                                            attrs: { value: props.item.name },
-                                          }),
+                                          props.item.asal == "dalam"
+                                            ? [
+                                                _c("check-value", {
+                                                  attrs: {
+                                                    value:
+                                                      props.item.aktivis_name,
+                                                  },
+                                                }),
+                                              ]
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          props.item.asal == "luar"
+                                            ? [
+                                                _c("check-value", {
+                                                  attrs: {
+                                                    value:
+                                                      props.item
+                                                        .mitra_orang_name,
+                                                  },
+                                                }),
+                                              ]
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          props.item.asal == "luar lembaga"
+                                            ? [
+                                                _c("check-value", {
+                                                  attrs: {
+                                                    value:
+                                                      props.item
+                                                        .mitra_lembaga_name,
+                                                  },
+                                                }),
+                                              ]
+                                            : _vm._e(),
                                         ],
-                                        1
+                                        2
                                       ),
                                       _vm._v(" "),
                                       _c(
@@ -7983,21 +8195,82 @@ var render = function () {
                                       _c(
                                         "td",
                                         [
-                                          _c("check-value", {
-                                            attrs: { value: props.item.email },
-                                          }),
+                                          props.item.asal == "dalam"
+                                            ? [
+                                                _c("check-value", {
+                                                  attrs: {
+                                                    value:
+                                                      props.item.aktivis_email,
+                                                  },
+                                                }),
+                                              ]
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          props.item.asal == "luar"
+                                            ? [
+                                                _c("check-value", {
+                                                  attrs: {
+                                                    value:
+                                                      props.item
+                                                        .mitra_orang_email,
+                                                  },
+                                                }),
+                                              ]
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          props.item.asal == "luar lembaga"
+                                            ? [
+                                                _c("check-value", {
+                                                  attrs: {
+                                                    value:
+                                                      props.item
+                                                        .mitra_lembaga_email,
+                                                  },
+                                                }),
+                                              ]
+                                            : _vm._e(),
                                         ],
-                                        1
+                                        2
                                       ),
                                       _vm._v(" "),
                                       _c(
                                         "td",
                                         [
-                                          _c("check-value", {
-                                            attrs: { value: props.item.hp },
-                                          }),
+                                          props.item.asal == "dalam"
+                                            ? [
+                                                _c("check-value", {
+                                                  attrs: {
+                                                    value:
+                                                      props.item.aktivis_hp,
+                                                  },
+                                                }),
+                                              ]
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          props.item.asal == "luar"
+                                            ? [
+                                                _c("check-value", {
+                                                  attrs: {
+                                                    value:
+                                                      props.item.mitra_orang_hp,
+                                                  },
+                                                }),
+                                              ]
+                                            : _vm._e(),
+                                          _vm._v(" "),
+                                          props.item.asal == "luar lembaga"
+                                            ? [
+                                                _c("check-value", {
+                                                  attrs: {
+                                                    value:
+                                                      props.item
+                                                        .mitra_lembaga_hp,
+                                                  },
+                                                }),
+                                              ]
+                                            : _vm._e(),
                                         ],
-                                        1
+                                        2
                                       ),
                                     ]
                                   )
@@ -8008,7 +8281,7 @@ var render = function () {
                       ],
                       null,
                       false,
-                      1362632481
+                      886540616
                     ),
                   }),
                 ],
@@ -8322,11 +8595,46 @@ var render = function () {
               ? _c(
                   "tbody",
                   _vm._l(_vm.itemPanitia, function (panitia, index) {
-                    return _c("tr", { key: index }, [
-                      _c("td", [_vm._v(_vm._s(panitia.name))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(panitia.sertifikat_nomor))]),
-                    ])
+                    return _c(
+                      "tr",
+                      { key: index },
+                      [
+                        panitia.asal == "dalam"
+                          ? [
+                              _c("td", [_vm._v(_vm._s(panitia.aktivis_name))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(_vm._s(panitia.sertifikat_nomor)),
+                              ]),
+                            ]
+                          : _vm._e(),
+                        _vm._v(" "),
+                        panitia.asal == "luar"
+                          ? [
+                              _c("td", [
+                                _vm._v(_vm._s(panitia.mitra_orang_name)),
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(_vm._s(panitia.sertifikat_nomor)),
+                              ]),
+                            ]
+                          : _vm._e(),
+                        _vm._v(" "),
+                        panitia.asal == "luar lembaga"
+                          ? [
+                              _c("td", [
+                                _vm._v(_vm._s(panitia.mitra_lembaga_name)),
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(_vm._s(panitia.sertifikat_nomor)),
+                              ]),
+                            ]
+                          : _vm._e(),
+                      ],
+                      2
+                    )
                   }),
                   0
                 )
@@ -8692,15 +9000,21 @@ var render = function () {
                             : _vm._e(),
                           _vm._v(" "),
                           !_vm.columnDataPesertaTerdaftar[14].hide
-                            ? _c("td", {
-                                domProps: {
-                                  innerHTML: _vm._s(
-                                    _vm.$options.filters.date(
-                                      props.item.tanggal_lahir
-                                    )
+                            ? _c("td", [
+                                _c("span", [
+                                  _vm._v(
+                                    "\n\t\t\t\t\t\t" +
+                                      _vm._s(
+                                        props.item.tanggal_lahir
+                                          ? _vm.$options.filters.date(
+                                              props.item.tanggal_lahir
+                                            )
+                                          : "-"
+                                      ) +
+                                      "\n\t\t\t\t\t"
                                   ),
-                                },
-                              })
+                                ]),
+                              ])
                             : _vm._e(),
                           _vm._v(" "),
                           !_vm.columnDataPesertaTerdaftar[15].hide
@@ -11343,35 +11657,32 @@ var render = function () {
       [
         _vm._l(_vm.itemNilai, function (materi, index) {
           return [
-            _c("div", { key: index, staticClass: "form-group" }, [
-              _c("h5", [_vm._v(_vm._s(materi.nama))]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
+            _c(
+              "div",
+              { key: index, staticClass: "form-group" },
+              [
+                _c("h5", [_vm._v(_vm._s(materi.nama))]),
+                _vm._v(" "),
+                _c("cleave", {
+                  staticClass: "form-control",
+                  attrs: {
+                    name: "nilai",
+                    raw: false,
+                    options: _vm.cleaveOption.number3,
+                    placeholder: "Silahkan masukkan nilai",
+                    "data-vv-as": "nilai",
+                  },
+                  model: {
                     value: materi.jumlah_nilai,
+                    callback: function ($$v) {
+                      _vm.$set(materi, "jumlah_nilai", $$v)
+                    },
                     expression: "materi.jumlah_nilai",
                   },
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  name: "nilai",
-                  placeholder: "Silahkan masukkan nilai",
-                },
-                domProps: { value: materi.jumlah_nilai },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(materi, "jumlah_nilai", $event.target.value)
-                  },
-                },
-              }),
-            ]),
+                }),
+              ],
+              1
+            ),
           ]
         }),
         _vm._v(" "),
@@ -11678,9 +11989,7 @@ var render = function () {
                       staticClass: "btn btn-primary",
                       attrs: {
                         type: "submit",
-                        disabled:
-                          _vm.formPenerimaSertifikat.aktivis_id == "" &&
-                          _vm.formPenerimaSertifikat.mitra_orang_id == "",
+                        disabled: _vm.selectedItems.length === 0,
                       },
                     },
                     [
@@ -11697,9 +12006,7 @@ var render = function () {
                       staticClass: "btn btn-primary btn-block pb-2",
                       attrs: {
                         type: "submit",
-                        disabled:
-                          _vm.formPenerimaSertifikat.aktivis_id == "" &&
-                          _vm.formPenerimaSertifikat.mitra_orang_id == "",
+                        disabled: _vm.selectedItems.length === 0,
                       },
                     },
                     [
@@ -11775,37 +12082,124 @@ var render = function () {
                                 ? _c("tr", [
                                     _c("td", [_vm._v(_vm._s(props.index + 1))]),
                                     _vm._v(" "),
-                                    _c("td", [
-                                      props.item.gambar
-                                        ? _c("img", {
-                                            staticClass:
-                                              "img-rounded img-fluid wmin-sm",
-                                            attrs: {
-                                              src:
-                                                "/images/aktivis/" +
-                                                props.item.gambar +
-                                                "n.jpg",
-                                              width: "35px",
-                                            },
-                                          })
-                                        : _c("img", {
-                                            staticClass:
-                                              "img-rounded img-fluid wmin-sm",
-                                            attrs: {
-                                              src: "/images/no_image_man.jpg",
-                                              width: "35px",
-                                            },
-                                          }),
-                                    ]),
+                                    _c(
+                                      "td",
+                                      [
+                                        props.item.asal == "dalam"
+                                          ? [
+                                              props.item.gambar
+                                                ? _c("img", {
+                                                    staticClass:
+                                                      "img-rounded img-fluid wmin-sm",
+                                                    attrs: {
+                                                      src:
+                                                        "/images/aktivis/" +
+                                                        props.item
+                                                          .aktivis_gambar +
+                                                        "n.jpg",
+                                                      width: "35px",
+                                                    },
+                                                  })
+                                                : _c("img", {
+                                                    staticClass:
+                                                      "img-rounded img-fluid wmin-sm",
+                                                    attrs: {
+                                                      src: "/images/no_image_man.jpg",
+                                                      width: "35px",
+                                                    },
+                                                  }),
+                                            ]
+                                          : props.item.asal == "luar"
+                                          ? [
+                                              props.item.gambar
+                                                ? _c("img", {
+                                                    staticClass:
+                                                      "img-rounded img-fluid wmin-sm",
+                                                    attrs: {
+                                                      src:
+                                                        "/images/mitra_orang/" +
+                                                        props.item
+                                                          .mitra_orang_gambar +
+                                                        "n.jpg",
+                                                      width: "35px",
+                                                    },
+                                                  })
+                                                : _c("img", {
+                                                    staticClass:
+                                                      "img-rounded img-fluid wmin-sm",
+                                                    attrs: {
+                                                      src: "/images/no_image_man.jpg",
+                                                      width: "35px",
+                                                    },
+                                                  }),
+                                            ]
+                                          : props.item.asal == "luar lembaga"
+                                          ? [
+                                              props.item.gambar
+                                                ? _c("img", {
+                                                    staticClass:
+                                                      "img-rounded img-fluid wmin-sm",
+                                                    attrs: {
+                                                      src:
+                                                        "/images/mitra_lembaga/" +
+                                                        props.item
+                                                          .mitra_lembaga_gambar +
+                                                        "n.jpg",
+                                                      width: "35px",
+                                                    },
+                                                  })
+                                                : _c("img", {
+                                                    staticClass:
+                                                      "img-rounded img-fluid wmin-sm",
+                                                    attrs: {
+                                                      src: "/images/no_image_man.jpg",
+                                                      width: "35px",
+                                                    },
+                                                  }),
+                                            ]
+                                          : _vm._e(),
+                                      ],
+                                      2
+                                    ),
                                     _vm._v(" "),
                                     _c(
                                       "td",
                                       [
-                                        _c("check-value", {
-                                          attrs: { value: props.item.name },
-                                        }),
+                                        props.item.asal == "dalam"
+                                          ? [
+                                              _c("check-value", {
+                                                attrs: {
+                                                  value:
+                                                    props.item.aktivis_name,
+                                                },
+                                              }),
+                                            ]
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        props.item.asal == "luar"
+                                          ? [
+                                              _c("check-value", {
+                                                attrs: {
+                                                  value:
+                                                    props.item.mitra_orang_name,
+                                                },
+                                              }),
+                                            ]
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        props.item.asal == "luar lembaga"
+                                          ? [
+                                              _c("check-value", {
+                                                attrs: {
+                                                  value:
+                                                    props.item
+                                                      .mitra_lembaga_name,
+                                                },
+                                              }),
+                                            ]
+                                          : _vm._e(),
                                       ],
-                                      1
+                                      2
                                     ),
                                     _vm._v(" "),
                                     _c(
@@ -11831,21 +12225,80 @@ var render = function () {
                                     _c(
                                       "td",
                                       [
-                                        _c("check-value", {
-                                          attrs: { value: props.item.email },
-                                        }),
+                                        props.item.asal == "dalam"
+                                          ? [
+                                              _c("check-value", {
+                                                attrs: {
+                                                  value:
+                                                    props.item.aktivis_email,
+                                                },
+                                              }),
+                                            ]
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        props.item.asal == "luar"
+                                          ? [
+                                              _c("check-value", {
+                                                attrs: {
+                                                  value:
+                                                    props.item
+                                                      .mitra_orang_email,
+                                                },
+                                              }),
+                                            ]
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        props.item.asal == "luar lembaga"
+                                          ? [
+                                              _c("check-value", {
+                                                attrs: {
+                                                  value:
+                                                    props.item
+                                                      .mitra_lembaga_email,
+                                                },
+                                              }),
+                                            ]
+                                          : _vm._e(),
                                       ],
-                                      1
+                                      2
                                     ),
                                     _vm._v(" "),
                                     _c(
                                       "td",
                                       [
-                                        _c("check-value", {
-                                          attrs: { value: props.item.hp },
-                                        }),
+                                        props.item.asal == "dalam"
+                                          ? [
+                                              _c("check-value", {
+                                                attrs: {
+                                                  value: props.item.aktivis_hp,
+                                                },
+                                              }),
+                                            ]
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        props.item.asal == "luar"
+                                          ? [
+                                              _c("check-value", {
+                                                attrs: {
+                                                  value:
+                                                    props.item.mitra_orang_hp,
+                                                },
+                                              }),
+                                            ]
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        props.item.asal == "luar lembaga"
+                                          ? [
+                                              _c("check-value", {
+                                                attrs: {
+                                                  value:
+                                                    props.item.mitra_lembaga_hp,
+                                                },
+                                              }),
+                                            ]
+                                          : _vm._e(),
                                       ],
-                                      1
+                                      2
                                     ),
                                     _vm._v(" "),
                                     _c("td", [
@@ -11871,7 +12324,7 @@ var render = function () {
                       ],
                       null,
                       false,
-                      2456094799
+                      3090732614
                     ),
                   }),
                 ],
