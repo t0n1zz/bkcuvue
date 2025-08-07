@@ -44,4 +44,9 @@ class AnggotaProdukCuDraft extends Model {
         return $this->hasOne('App\AnggotaProdukCu',['no_rek','produk_cu_id'],['no_rek','produk_cu_id'])->select('no_rek','produk_cu_id','id','saldo');
     }
 
+    public function anggota_cu_produk()
+    {
+        return $this->hasOne('App\AnggotaCuCu', ['cu_id', 'no_ba'], ['id_cu', 'no_ba'])->select('cu_id', 'id', 'anggota_cu_id', 'no_ba');
+    }
+
 }

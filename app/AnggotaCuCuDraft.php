@@ -29,15 +29,17 @@ class AnggotaCuCuDraft extends Model {
     }
 
     public function rekening(){
-        return $this->hasMany('App\AnggotaProdukCuDraft','no_ba','no_ba');
+        return $this->hasMany('App\AnggotaProdukCuDraft','no_ba','no_ba')->select('no_ba','id','produk_cu_id');
     }
     
     public function anggota(){
-        return $this->hasOne('App\AnggotaCuCu',['no_ba','cu_id'],['no_ba','cu_id'])->select('no_ba','id','keterangan_masuk','cu_id');
+        return $this->hasOne('App\AnggotaCuCu',['no_ba','cu_id'],['no_ba','cu_id'])->select('no_ba','id','keterangan_masuk','cu_id','anggota_cu_id');
     }
+
     
-    public function sp(){
-        return $this->hasOne('App\ProdukCU','id_cu','cu_id')->where('tipe','Simpanan Pokok')->select('id_cu','id');
+    public function sp()
+    {
+        return $this->hasOne('App\ProdukCu', 'id_cu', 'cu_id')->where('tipe', 'Simpanan Pokok')->select('id_cu', 'id')->whereNull('deleted_at');
     }
     
 

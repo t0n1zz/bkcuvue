@@ -74,12 +74,14 @@ class AnggotaCuDraft extends Model {
         return $this->belongsTo('App\Region\Villages','id_villages','id')->select('id','name');
     }
 
-    public function anggota_cu_by_name(){
-        return $this->hasOne('App\AnggotaCu',['name','tanggal_lahir'],['name','tanggal_lahir'])->select('name','tanggal_lahir','nik','id');
+    public function anggota_cu_by_name()
+    {
+        return $this->hasOne('App\AnggotaCu', ['name', 'tanggal_lahir'], ['name', 'tanggal_lahir'])->withTrashed()->select('name', 'tanggal_lahir', 'nik', 'id');
     }
-    
-    public function anggota_cu_by_nik(){
-        return $this->hasOne('App\AnggotaCu',['nik','name'],['nik','name'])->select('nik','name','id');
+
+    public function anggota_cu_by_nik()
+    {
+        return $this->hasOne('App\AnggotaCu', 'nik', 'nik')->withTrashed()->select('nik', 'name', 'id', 'tanggal_lahir');
     }
     
 }

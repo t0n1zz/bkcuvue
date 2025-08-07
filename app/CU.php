@@ -47,7 +47,7 @@ class Cu extends Model {
     
     protected $fillable = [
       'id_villages','id_districts','id_regencies','id_provinces','no_ba','name','name_legal','gambar','badan_hukum','npwp','nik','situ','siusp','izin_operasional','alamat','pos','telp','hp','website','email','app','misi','visi','nilai','slogan','sejarah','deskripsi','ultah',
-      'bergabung','created_at','updated_at','deleted_at','escete','logo','facebook','instagram','youtube','tiktok','lat','lng'
+      'bergabung','created_at','updated_at','deleted_at','escete','logo','facebook','instagram','youtube','tiktok','lat','lng', 'tanggal_update_data'
     ];
 
     protected $allowedFilters = [

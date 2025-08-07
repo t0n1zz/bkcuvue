@@ -72,4 +72,9 @@ class AnggotaProdukCu extends BaseEloquent {
         return \Carbon\Carbon::parse($this->tanggal)->diff(\Carbon\Carbon::parse($tanggal_masuk))->format('%d');
     }
 
+    public function draft_produk()
+    {
+        return $this->hasOne('App\AnggotaProdukCuDraft', ['no_rek', 'produk_cu_id'], ['no_rek', 'produk_cu_id'])->select('no_rek', 'produk_cu_id');
+    }
+
 }
