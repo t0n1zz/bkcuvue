@@ -363,6 +363,7 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
 
         // aktivis
         Route::get('/aktivis/get/{id}', 'AktivisController@get');
+        Route::get('/aktivis/get_monitoring_cu/{id}', 'AktivisController@get_monitoring_cu');
         Route::get('/aktivis/history', 'AktivisController@history');
         Route::get('/aktivis/cariData/{nik}', 'AktivisController@cariData');
         Route::get('/aktivis/count', 'AktivisController@count');
@@ -660,7 +661,7 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         Route::post('monitoring/laporanKonsolidasi', 'MonitoringController@downloadLaporanKonsolidasi');
         Route::get('/monitoring/getPeriode/{cu}', 'MonitoringController@getPeriode');
         Route::group(['middleware' => ['permission:index_monitoring']], function () {
-            Route::get('/monitoring/{status}', 'MonitoringController@index');
+            Route::get('/monitoring/status/{status}', 'MonitoringController@index');
             Route::get('/monitoring/summary/{cu}', 'MonitoringController@summary');
             Route::get('/monitoring/indexCu/{cu}/{tp}/{status}', 'MonitoringController@indexCu');
             Route::get('/monitoring/get/{id}', 'MonitoringController@get');
@@ -694,6 +695,50 @@ Route::group(['middleware' => 'throttle:200,1'], function () {
         });
         Route::group(['middleware' => ['permission:destroy_monitoring']], function () {
             Route::delete('/monitoringPencapaian/{id}', 'MonitoringPencapaianController@destroy');
+        });
+
+        // monitoring cu
+        Route::get('/monitoringCu/history', 'MonitoringCuController@history');
+        Route::post('monitoringCu/laporan', 'MonitoringCuController@downloadLaporan');
+        Route::post('monitoringCu/laporanKonsolidasi', 'MonitoringCuController@downloadLaporanKonsolidasi');
+        Route::get('/monitoringCu/getPeriode/{cu}', 'MonitoringCuController@getPeriode');
+        Route::group(['middleware' => ['permission:index_monitoring_cu']], function () {
+            Route::get('/monitoringCu/status/{status}', 'MonitoringCuController@index');
+            Route::get('/monitoringCu/summary/{cu}', 'MonitoringCuController@summary');
+            Route::get('/monitoringCu/indexCu/{cu}/{tp}/{status}', 'MonitoringCuController@indexCu');
+            Route::get('/monitoringCu/get/{id}', 'MonitoringCuController@get');
+            Route::get('/monitoringCu/count', 'MonitoringCuController@count');
+            Route::get('/monitoringCu/indexKonsolidasi/{tahun}/{bulan}', 'MonitoringCuController@indexKonsolidasi');
+        });
+        Route::group(['middleware' => ['permission:create_monitoring_cu']], function () {
+            Route::get('/monitoringCu/create', 'MonitoringCuController@create');
+            Route::post('/monitoringCu/store', 'MonitoringCuController@store');
+        });
+        Route::group(['middleware' => ['permission:update_monitoring_cu|create_monitoring_cu_keputusan']], function () {
+            Route::get('/monitoringCu/edit/{id}', 'MonitoringCuController@edit');
+        });
+        Route::group(['middleware' => ['permission:update_monitoring_cu']], function () {
+            Route::post('/monitoringCu/update/{id}', 'MonitoringCuController@update');
+            Route::post('/monitoringCu/updateRekom/{id}', 'MonitoringCuController@updateRekom');
+        });
+        Route::group(['middleware' => ['permission:destroy_monitoring_cu']], function () {
+            Route::delete('/monitoringCu/{id}', 'MonitoringCuController@destroy');
+        });
+
+         // monitoring pencapaian cu
+        Route::get('/monitoringPencapaianCu/history', 'MonitoringPencapaianCuController@history');
+        Route::group(['middleware' => ['permission:index_monitoring_cu|create_monitoring_cu_keputusan']], function () {
+            Route::get('/monitoringPencapaianCu/get/{id}', 'MonitoringPencapaianCuController@get');
+            Route::get('/monitoringPencapaianCu/count', 'MonitoringPencapaianCuController@count');
+        });
+        Route::group(['middleware' => ['permission:create_monitoring_cu|create_monitoring_cu_keputusan']], function () {
+            Route::post('/monitoringPencapaianCu/store', 'MonitoringPencapaianCuController@store');
+        });
+        Route::group(['middleware' => ['permission:update_monitoring_cu|create_monitoring_cu_keputusan']], function () {
+            Route::post('/monitoringPencapaianCu/update/{id}', 'MonitoringPencapaianCuController@update');
+        });
+        Route::group(['middleware' => ['permission:destroy_monitoring_cu|create_monitoring_cu_keputusan']], function () {
+            Route::delete('/monitoringPencapaianCu/{id}', 'MonitoringPencapaianCuController@destroy');
         });
 
         // mitra perserorangan

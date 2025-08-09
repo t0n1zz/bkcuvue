@@ -327,11 +327,11 @@
 		},
 		data() {
 			return {
-				title: 'Detail Monitoring',
-				titleDesc: 'Informasi detail monitoring',
+				title: 'Detail Monitoring PUSKOPCUINA',
+				titleDesc: 'Informasi detail monitoring PUSKOPCUINA',
 				titleIcon: 'icon-stack2',
 				level: 2,
-				level2Title: 'Monitoring',
+				level2Title: 'Monitoring PUSKOPCUINA',
 				kelas: 'monitoring',
 				selectedItem: {},
 				cleaveOption: {

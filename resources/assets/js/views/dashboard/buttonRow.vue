@@ -163,28 +163,33 @@
 
 		<!-- monitoring -->
     <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_monitoring']" @click.prevent="goTo(monitoringWidgetRoute)">
-      <count-widget :title="'Monitoring'" :color="'bg-green-400'" :icon="'icon-collaboration'"></count-widget>
+      <count-widget :title="'Monitoring PUSKOPCUINA'" :color="'bg-green-400'" :icon="'icon-collaboration'"></count-widget>
+    </div>
+
+		<!-- monitoring CU -->
+    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_monitoring_cu']" @click.prevent="goTo(monitoringCuWidgetRoute)">
+      <count-widget :title="'Monitoring CU'" :color="'bg-primary-400'" :icon="'icon-spotlight2'"></count-widget>
     </div>
 
 		<!-- KUBN -->
-    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_kubn']" @click.prevent="goTo(kubnWidgetRoute)">
+    <!-- <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_kubn']" @click.prevent="goTo(kubnWidgetRoute)">
       <count-widget :title="'KUBN'" :color="'bg-info-400'" :icon="'icon-versions'"></count-widget>
-    </div>
+    </div> -->
 
 		<!-- Kombas -->
-    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_kubn']" @click.prevent="goTo(kombasWidgetRoute)">
+    <!-- <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_kubn']" @click.prevent="goTo(kombasWidgetRoute)">
       <count-widget :title="'Komunitas'" :color="'bg-teal-400'" :icon="'icon-circles2'"></count-widget>
-    </div>
+    </div> -->
 
 		<!-- Enterpreneur -->
-    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_enterpreneur']" @click.prevent="goTo(enterpreneurWidgetRoute)">
+    <!-- <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_enterpreneur']" @click.prevent="goTo(enterpreneurWidgetRoute)">
       <count-widget :title="'Enterpreneur'" :color="'bg-warning-400'" :icon="'icon-hat'"></count-widget>
-    </div>
+    </div> -->
 
 		<!-- Umkm -->
-    <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_umkm']" @click.prevent="goTo(umkmWidgetRoute)">
+    <!-- <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_umkm']" @click.prevent="goTo(umkmWidgetRoute)">
       <count-widget :title="'Umkm'" :color="'bg-green-400'" :icon="'icon-store2'"></count-widget>
-    </div>
+    </div> -->
 
     <!-- user -->
     <div class="col-lg-2 col-md-3 col-sm-6 col-6 cursor-pointer" v-if="currentUser.can && currentUser.can['index_user']" @click.prevent="goTo(userWidgetRoute)">
@@ -230,7 +235,8 @@
 				laporanGerakanWidgetRoute: {},
 				assesmentAccessWidgetRoute: {},
 				assesmentCulegWidgetRoute: {},
-				monitoringAccessWidgetRoute: {},
+				monitoringWidgetRoute: {},
+				monitoringCuWidgetRoute: {},
 				dokumenGerakanPublikWidgetRoute: {},
 				dokumenWidgetRoute: {},
 				suratKeluarWidgetRoute: {},
@@ -279,6 +285,7 @@
 					this.assesmentAccessWidgetRoute = { name: 'assesmentAccessCu', params:{cu: this.currentUser.id_cu} };
 					this.assesmentCulegWidgetRoute = { name: 'assesmentCulegCu', params:{cu: this.currentUser.id_cu} };
 					this.monitoringWidgetRoute = { name: 'monitoringCu', params:{cu: this.currentUser.id_cu, tp: 'semua'} };
+					this.monitoringCuWidgetRoute = { name: 'monitoringCuCu', params:{cu: this.currentUser.id_cu, tp: 'semua'} };
 					this.dokumenWidgetRoute = { name: 'dokumenCu', params:{cu: this.currentUser.id_cu} };
 					this.kubnWidgetRoute = { name: 'kubnCu', params:{cu: this.currentUser.id_cu} };
 					this.kombasWidgetRoute = { name: 'kombasCu', params:{cu: this.currentUser.id_cu, tipe: 'semua'} };
@@ -297,6 +304,7 @@
 					this.assesmentAccessWidgetRoute = { name: 'assesmentAccessCu', params:{cu: 'semua'} };
 					this.assesmentCulegWidgetRoute = { name: 'assesmentCulegCu', params:{cu: 'semua'} };
 					this.monitoringWidgetRoute = { name: 'monitoringCu', params:{cu: 'semua', tp: 'semua'} };
+					this.monitoringCuWidgetRoute = { name: 'monitoringCuCu', params:{cu: 'semua', tp: 'semua'} };
 					this.dokumenWidgetRoute = { name: 'dokumenCu', params:{cu: 'semua'} };
 					this.asetTetapWidgetRoute = { name: 'asetTetap'};
 					this.kubnWidgetRoute = { name: 'kubnCu', params:{cu: 'semua'} };

@@ -75,7 +75,7 @@
         >
           <div class="media">
             <div class="media-body">
-              <h3 class="mb-0">BKCU: {{ jumlahPenilaianBKCU(1) }}</h3>
+              <h3 class="mb-0">PUSKOPCUINA: {{ jumlahPenilaianBKCU(1) }}</h3>
               <span class="text-uppercase font-size-xs">Jumlah penilaian Poor(1)</span>
             </div>
           </div>
@@ -90,7 +90,7 @@
         >
           <div class="media">
             <div class="media-body">
-              <h3 class="mb-0">BKCU: {{ jumlahPenilaianBKCU(2) }}</h3>
+              <h3 class="mb-0">PUSKOPCUINA: {{ jumlahPenilaianBKCU(2) }}</h3>
               <span class="text-uppercase font-size-xs">Jumlah penilaian Fair(2)</span>
             </div>
           </div>
@@ -105,7 +105,7 @@
         >
           <div class="media">
             <div class="media-body">
-              <h3 class="mb-0">BKCU: {{ jumlahPenilaianBKCU(3) }}</h3>
+              <h3 class="mb-0">PUSKOPCUINA: {{ jumlahPenilaianBKCU(3) }}</h3>
               <span class="text-uppercase font-size-xs">Jumlah penilaian Good(3)</span>
             </div>
           </div>
@@ -120,7 +120,7 @@
         >
           <div class="media">
             <div class="media-body">
-              <h3 class="mb-0">BKCU: {{ jumlahPenilaianBKCU(4) }}</h3>
+              <h3 class="mb-0">PUSKOPCUINA: {{ jumlahPenilaianBKCU(4) }}</h3>
               <span class="text-uppercase font-size-xs">Jumlah penilaian Excellent(4)</span>
             </div>
           </div>

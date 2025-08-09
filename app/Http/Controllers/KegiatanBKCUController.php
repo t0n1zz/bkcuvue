@@ -6,6 +6,7 @@ use DB;
 use Auth;
 use File;
 use Image;
+use App\Cu;
 use App\Nilai;
 use App\Kegiatan;
 use Response;
@@ -691,7 +692,7 @@ class KegiatanBKCUController extends Controller
 	{
 		$this->validate($request, Kegiatan::$rules);
 
-		if ($kegiatan_tipe == 'diklat_bkcu') {
+		if ($kegiatan_tipe == 'diklat_bkcu' || $kegiatan_tipe == 'diklat_bkcu_internal') {
 			$kodeKegiatan = KodeKegiatan::where('id', $request->id_kode)->first();
 			$name = $kodeKegiatan->name;
 			$kode_diklat = $kodeKegiatan->kode;
@@ -712,12 +713,18 @@ class KegiatanBKCUController extends Controller
 			$fileName = '';
 		}
 
-		$kelas = Kegiatan::create($request->except('tipe', 'status', 'gambar', 'name', 'kode_diklat') + [
+		$isSasaran_cu = null;
+		if ($request->sasaranCu) {
+			$isSasaran_cu = 1;	
+		}
+
+		$kelas = Kegiatan::create($request->except('tipe', 'status', 'gambar', 'name', 'kode_diklat','isSasaran_cu') + [
 			'tipe' => $kegiatan_tipe,
 			'status' => '1',
 			'gambar' => $fileName,
 			'name' => $name,
-			'kode_diklat' => $kode_diklat
+			'kode_diklat' => $kode_diklat,
+			'isSasaran_cu' => $isSasaran_cu,
 		]);
 
 		$sasaran_ar = array();
@@ -1109,10 +1116,17 @@ class KegiatanBKCUController extends Controller
 			$fileName = '';
 		}
 
-		$kelas->update($request->except('gambar', 'name', 'kode_diklat') + [
+		$isSasaran_cu = null;
+		if ($request->sasaranCu) {
+			$isSasaran_cu = 1;	
+		}
+
+
+		$kelas->update($request->except('gambar', 'name', 'kode_diklat','isSasaran_cu') + [
 			'gambar' => $fileName,
 			'name' => $name,
-			'kode_diklat' => $kode_diklat
+			'kode_diklat' => $kode_diklat,
+			'isSasaran_cu' => $isSasaran_cu,
 		]);
 
 		$sasaran_ar = array();

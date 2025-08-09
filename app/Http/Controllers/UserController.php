@@ -151,6 +151,12 @@ class UserController extends Controller
 		'update_monitoring',
 		'destroy_monitoring',
 
+		'index_monitoring_cu',
+		'create_monitoring_cu',
+		'create_monitoring_cu_keputusan',
+		'update_monitoring_cu',
+		'destroy_monitoring_cu',
+
 		'index_mitra_orang',
 		'create_mitra_orang',
 		'update_mitra_orang',

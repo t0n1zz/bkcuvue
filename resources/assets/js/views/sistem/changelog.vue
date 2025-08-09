@@ -10,14 +10,39 @@
 
             <div class="card-group-control card-group-control-right" id="accordion-control-right">
 
+               <!-- Version 3.8 -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">
+                    <a data-toggle="collapse" class="text-default" href="#v38">Version 3.8<small class="text-muted"> / 9 Agustus 2025</small></a> </h5>
+                </div>
+
+                <div id="v37" class="collapse show" data-parent="#accordion-control-right" style="">
+                  <div class="card-body">
+                    <p class="mb-3">Update versi ini menambahkan monitoring untuk CU
+                    <br/><br/>
+                    Berikut adalah rincian perubahan pada versi ini:</p>
+
+                    <ul class="list">
+                      <li>Penambahan fitur monitoring untuk CU</li>
+                      <li>Peningkatan tampilan pada form tambah kegiatan</li>
+                      <li>Peningkatan tampilan pada form informasi anggota CU</li>
+                      <li>Perbaikan bug pada tab monitoring PUSKOPCUINA</li>
+                      <li>Mengubah label menu Monitoring menjadi Monitoring PUSKOPCUINA</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /version 3.8 -->
+
               <!-- Version 3.7 -->
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">
-                    <a data-toggle="collapse" class="text-default" href="#v37">Version 3.7<small class="text-muted"> / 8 Maret 2025</small></a> </h5>
+                    <a data-toggle="collapse" class="text-default collapsed" href="#v37">Version 3.7<small class="text-muted"> / 8 Maret 2025</small></a> </h5>
                 </div>
 
-                <div id="v37" class="collapse show" data-parent="#accordion-control-right" style="">
+                <div id="v37" class="collapse" data-parent="#accordion-control-right" style="">
                   <div class="card-body">
                     <p class="mb-3">Update versi ini menambahkan assesment culeg dan peningkatan pada monitoring 
                     <br/><br/>
@@ -34,7 +59,7 @@
                   </div>
                 </div>
               </div>
-              <!-- /version 3.6 -->
+              <!-- /version 3.7 -->
 
               <!-- Version 3.6 -->
               <div class="card">

@@ -341,12 +341,14 @@
 						<select class="form-control" name="ukuran_baju" v-model="formPeserta.ukuran_baju" data-width="100%"
 							v-validate="'required'" data-vv-as="ukuran_baju" @change="changeBaju($event.target.value)">
 							<option disabled value="">Silahkan pilih ukuran baju</option>
-							<option value="XS">XS - L(51 cm) P(72 cm)</option>
-							<option value="S">S - L(53 cm) P(74 cm)</option>
-							<option value="M">M - L(55 cm) P(76 cm)</option>
-							<option value="L">L - L(57 cm) P(78 cm)</option>
-							<option value="XL">XL - L(59 cm) P(80 cm)</option>
-							<option value="XXL">XXL - L(61 cm) P(82 cm)</option>
+							<option value="XS">XS</option>
+							<option value="S">S</option>
+							<option value="M">M</option>
+							<option value="L">L</option>
+							<option value="XL">XL</option>
+							<option value="XXL">XXL</option>
+							<option value="XXXL">XXXL</option>
+							<option value="4XL">4XL</option>
 						</select>
 					</div>
 				</div>

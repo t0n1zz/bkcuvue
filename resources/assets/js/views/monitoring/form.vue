@@ -349,10 +349,10 @@
 		},
 		data() {
 			return {
-				title: 'Tambah Temuan',
+				title: 'Tambah Temuan PUSKOPCUINA',
 				titleDesc: 'Menambah temuan',
 				titleIcon: 'icon-plus3',
-				level2Title: 'Monitoring',
+				level2Title: 'Monitoring PUSKOPCUINA',
 				kelas: 'monitoring',
 				cleaveOption: {
           date:{

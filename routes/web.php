@@ -40,6 +40,9 @@ Route::group(['middleware' => 'throttle:60,10'], function () {
 
 		// panduan
 		Route::get('panduan',array( 'as' => 'panduan','uses' => 'PublicController@panduan'));
+
+		//  escete privacy 
+		Route::get('/escete/privacy-policy',array( 'as' => 'profile','uses' => 'PublicController@escetePrivacy'));
 	};
 
 	Route::group(array('domain' => 'bkcuvue.test'), $appRoutes);

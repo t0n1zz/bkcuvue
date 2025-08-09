@@ -1,25 +1,40 @@
 <template>
-  <div class="col-md-12 allign-center">
-      <div style="margin-top: 10px;">
-          <h5>Tanggal Mulai:</h5>
-          <date-picker @dateSelected="tanggal_mulai = $event" :defaultDate="tanggal_mulai"></date-picker>
-      </div>
-      <div style="margin-top: 10px;">
-          <h5>Tanggal Akhir:</h5>
-          <date-picker @dateSelected="tanggal_akhir = $event" :defaultDate="tanggal_akhir"></date-picker>
-      </div>
-
-      <div style="margin-top: 10px;">
-          <input type="checkbox" v-model="semua"> Semua
-      </div>
-      <div class="text-center" style="margin-top: 10px;">
-          <button class="btn btn-warning" @click.prevent="batal">
-              <i class="icon-x"></i>Batal</button>
-          <button type="submit" value="submit" class="btn btn-primary" @click.prevent="downloadLaporan">
-              <i class="icon-floppy-disk"></i>Download</button>
-      </div>
-
-  </div>
+  <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <h5>Silahkan pilih rentang waktu laporan:</h5>
+                <div class="border p-3 rounded">
+                    <div class="form-group">
+                        <h6>Tanggal Mulai:</h6>
+                        <date-picker @dateSelected="tanggal_mulai = $event" :defaultDate="tanggal_mulai"></date-picker>
+                    </div>
+                    <div class="form-group">
+                        <h6>Tanggal Akhir:</h6>
+                        <date-picker @dateSelected="tanggal_akhir = $event" :defaultDate="tanggal_akhir"></date-picker>
+                    </div>
+                </div>    
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <h5>Atau centang dibawah untuk semua laporan:</h5>
+                <div class="border p-3 rounded">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="dc_ls_c" checked="" v-model="semua">
+                        <label class="form-check-label" for="dc_ls_c">Pilih Semua Laporan</label>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <div class="col-md-12">
+            <div class="text-center" style="margin-top: 10px;">
+                <button class="btn btn-warning" @click.prevent="batal">
+                    <i class="icon-x"></i> Batal</button>
+                <button type="submit" value="submit" class="btn btn-primary" @click.prevent="downloadLaporan">
+                    <i class="icon-floppy-disk"></i> Download</button>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>

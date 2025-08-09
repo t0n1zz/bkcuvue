@@ -92,7 +92,7 @@ class CuController extends Controller{
 
 	public function getUpdateESCETE()
 	{
-		$table_data = Cu::where('id','!=',0)->select('id','name','escete','tanggal_update_data')->orderby('tanggal_update_data','desc')->get();
+		$table_data = Cu::where('id','!=',0)->select('id','name','escete','tanggal_update_data')->where('escete','1')->orderby('tanggal_update_data','desc')->get();
 
 		return response()
 			->json([

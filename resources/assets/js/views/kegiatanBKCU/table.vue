@@ -852,7 +852,8 @@ export default {
       this.selectedItem = item;
     },
     ubahData(id) {
-      this.$router.push({ name: this.kelas + "Edit", params: { id: id } });
+      this.$router.push({ name: this.kelas + "Edit", params: { id: id, tipe: this.$route.params.tipe} });
+
     },
     detail(id) {
       this.$router.push({ name: this.kelas + "Detail", params: { id: id } });

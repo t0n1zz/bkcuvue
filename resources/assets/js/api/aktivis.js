@@ -60,6 +60,10 @@ export default {
     return axios.get('/api/aktivis/get/' + id);
   },
 
+  getMonitoringCu: function( id ){
+    return axios.get('/api/aktivis/get_monitoring_cu/' + id);
+  },
+
   create: function(){
     return axios.get('/api/aktivis/create');
   },

@@ -49,41 +49,40 @@
 					<span class="text-muted font-size-sm">Lembaga Mitra</span>
 				</div>
 
-				<div class="col-lg-2 col-sm-4 col-xs-6 pb-3 cursor-pointer" v-if="currentUser.can['index_kubn']" @click.prevent="detail('kubn')">
+				<!-- <div class="col-lg-2 col-sm-4 col-xs-6 pb-3 cursor-pointer" v-if="currentUser.can['index_kubn']" @click.prevent="detail('kubn')">
 					<p><i class="icon-versions icon-2x d-inline-block text-info"></i></p>
 					<h5 class="font-weight-semibold mb-0">{{ countKubn }} <i class="icon-spinner2 spinner font-size-xs" v-if="itemdataStat == 'loading'"></i> </h5>
 					<span class="text-muted font-size-sm">KUBN</span>
-				</div>
+				</div> -->
 
-				<div class="col-lg-2 col-sm-4 col-xs-6 pb-3 cursor-pointer" v-if="currentUser.can['index_kubn']" @click.prevent="detail('komunitas')">
+				<!-- <div class="col-lg-2 col-sm-4 col-xs-6 pb-3 cursor-pointer" v-if="currentUser.can['index_kubn']" @click.prevent="detail('komunitas')">
 					<p><i class="icon-circles2 icon-2x d-inline-block text-info"></i></p>
 					<h5 class="font-weight-semibold mb-0">{{ countKombas }} <i class="icon-spinner2 spinner font-size-xs" v-if="itemdataStat == 'loading'"></i> </h5>
 					<span class="text-muted font-size-sm">Komunitas</span>
-				</div>
+				</div> -->
 
-				<div class="col-lg-2 col-sm-4 col-xs-6 pb-3 cursor-pointer" v-if="currentUser.can['index_umkm']" @click.prevent="detail('umkm')">
+				<!-- <div class="col-lg-2 col-sm-4 col-xs-6 pb-3 cursor-pointer" v-if="currentUser.can['index_umkm']" @click.prevent="detail('umkm')">
 					<p><i class="icon-store2 icon-2x d-inline-block text-info"></i></p>
 					<h5 class="font-weight-semibold mb-0">{{ countUmkm }} <i class="icon-spinner2 spinner font-size-xs" v-if="itemdataStat == 'loading'"></i> </h5>
 					<span class="text-muted font-size-sm">Umkm</span>
-				</div>
+				</div> -->
 
-				<div class="col-lg-2 col-sm-4 col-xs-6 pb-3 cursor-pointer" v-if="currentUser.can['index_enterpreneur']" @click.prevent="detail('enterpreneur')">
+				<!-- <div class="col-lg-2 col-sm-4 col-xs-6 pb-3 cursor-pointer" v-if="currentUser.can['index_enterpreneur']" @click.prevent="detail('enterpreneur')">
 					<p><i class="icon-hat icon-2x d-inline-block text-info"></i></p>
 					<h5 class="font-weight-semibold mb-0">{{ countEnterpreneur }} <i class="icon-spinner2 spinner font-size-xs" v-if="itemdataStat == 'loading'"></i> </h5>
 					<span class="text-muted font-size-sm">Enterpreneur</span>
-				</div>
+				</div> -->
 
-				<div class="col-lg-2 col-sm-4 col-xs-6 pb-3 cursor-pointer" v-if="currentUser.can['index_mentor']" @click.prevent="detail('mentor')">
-					<p><i class="icon-brain icon-2x d-inline-block text-info"></i></p>
+				<!-- <div class="col-lg-2 col-sm-4 col-xs-6 pb-3 cursor-pointer" v-if="currentUser.can['index_mentor']" @click.prevent="detail('mentor')"> <p><i class="icon-brain icon-2x d-inline-block text-info"></i></p>
 					<h5 class="font-weight-semibold mb-0">{{ countMentor }} <i class="icon-spinner2 spinner font-size-xs" v-if="itemdataStat == 'loading'"></i> </h5>
 					<span class="text-muted font-size-sm">Mentor</span>
-				</div>
+				</div> -->
 
-				<div class="col-lg-2 col-sm-4 col-xs-6 pb-3 cursor-pointer" v-if="currentUser.can['index_fasilitator']" @click.prevent="detail('fasilitator')">
+				<!-- <div class="col-lg-2 col-sm-4 col-xs-6 pb-3 cursor-pointer" v-if="currentUser.can['index_fasilitator']" @click.prevent="detail('fasilitator')">
 					<p><i class="icon-unlink2 icon-2x d-inline-block text-info"></i></p>
 					<h5 class="font-weight-semibold mb-0">{{ countFasilitator }} <i class="icon-spinner2 spinner font-size-xs" v-if="itemdataStat == 'loading'"></i> </h5>
 					<span class="text-muted font-size-sm">Fasilitator</span>
-				</div>
+				</div> -->
 				
 			</div>
 		</div>

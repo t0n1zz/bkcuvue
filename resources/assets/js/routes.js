@@ -137,6 +137,10 @@ const fasilitator = () => import("./views/fasilitator/index.vue");
 const fasilitator_form = () => import("./views/fasilitator/form.vue");
 const assesmentCuleg = () => import("./views/assesmentCuleg/index.vue");
 const assesmentCuleg_form = () => import("./views/assesmentCuleg/form.vue");
+const monitoringCu = () => import("./views/monitoringCu/index.vue");
+const monitoringCu_form = () => import("./views/monitoringCu/form.vue");
+const monitoringCu_detail = () => import("./views/monitoringCu/detail.vue");
+const monitoringCu_konsolidasi = () => import("./views/monitoringCu/indexKonsolidasi.vue");
 
 const routes = [
   // login
@@ -411,7 +415,7 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
-    path: "/kegiatanBKCU/edit/:id",
+    path: "/kegiatanBKCU/edit/:id/:tipe",
     name: "kegiatanBKCUEdit",
     components: { default: kegiatanBKCU_form, header: header, footer: footer },
     meta: { requiresAuth: true, mode: "edit" },
@@ -1307,6 +1311,39 @@ const routes = [
     path: "/monitoring/indexKonsolidasi/:tahun/:bulan",
     name: "monitoringKonsolidasi",
     components: { default: monitoring_konsolidasi, header: header, footer: footer },
+    meta: { requiresAuth: true },
+  },
+
+
+  // monitoringCu
+  {
+    path: "/monitoringCu/cu/:cu/:tp",
+    name: "monitoringCuCu",
+    components: { default: monitoringCu, header: header, footer: footer },
+    meta: { requiresAuth: true, mode: "cu" },
+  },
+  {
+    path: "/monitoringCu/create",
+    name: "monitoringCuCreate",
+    components: { default: monitoringCu_form, header: header, footer: footer },
+    meta: { requiresAuth: true, mode: "create" },
+  },
+  {
+    path: "/monitoringCu/edit/:id",
+    name: "monitoringCuEdit",
+    components: { default: monitoringCu_form, header: header, footer: footer },
+    meta: { requiresAuth: true, mode: "edit" },
+  },
+  {
+    path: "/monitoringCu/detail/:id",
+    name: "monitoringCuDetail",
+    components: { default: monitoringCu_detail, header: header, footer: footer },
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/monitoringCu/indexKonsolidasi/:tahun/:bulan",
+    name: "monitoringCuKonsolidasi",
+    components: { default: monitoringCu_konsolidasi, header: header, footer: footer },
     meta: { requiresAuth: true },
   },
 

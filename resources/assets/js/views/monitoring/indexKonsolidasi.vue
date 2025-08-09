@@ -47,10 +47,10 @@ export default {
 	},
 	data() {
 		return {
-			title: 'Laporan Konsolidasi Monitoring',
+			title: 'Laporan Konsolidasi Monitoring PUSKOPCUINA',
 			kelas: 'monitoring',
-			titleDesc: 'Laporan konsolidasi monitoring',
-			titleIcon: 'icon-collaboration',
+			titleDesc: 'Laporan konsolidasi monitoring PUSKOPCUINA',
+			titleIcon: 'icon-spotlight2',
 			data: '',
 			stat: ''
 		}

@@ -495,6 +495,23 @@ class AktivisController extends Controller{
 		]);
 	}
 
+	public function get_monitoring_cu($id)
+	{
+		if($id != 0){
+			$tipe = 1;
+			$table_data = Aktivis::with('pekerjaan_aktif')
+			->whereHas('pekerjaan', function($query) use ($id,$tipe){
+				$query->whereIn('tingkat',[1,2,3,4,5,6,7,8])->where('tipe',$tipe)->where('id_tempat',$id)
+				->where('status',1);
+			})->orderBy('name')->get();
+		}
+
+		return response()
+		->json([
+			'model' => $table_data
+		]);
+	}
+
 
 	public function create()
 	{

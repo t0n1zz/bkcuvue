@@ -1,7 +1,7 @@
 export default {
   
   index: function( p,status ){
-    return axios.get('/api/monitoring/'+ status , {params: p});
+    return axios.get('/api/monitoring/status/'+ status , {params: p});
   },
 
   indexKonsolidasi: function(p,tahun,bulan){

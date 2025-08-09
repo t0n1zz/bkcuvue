@@ -1120,7 +1120,7 @@
 					</li>
 
 					<!-- tata kelola -->
-					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_laporan_cu'] || currentUser.can['create_assesment_access'] || currentUser.can['create_assesment_culeg'] || currentUser.can['create_monitoring'] || currentUser.can['index_laporan_cu'] || currentUser.can['index_assesment_access'] || currentUser.can['index_assesment_culeg'] || currentUser.can['index_monitoring']">
+					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_laporan_cu'] || currentUser.can['create_assesment_access'] || currentUser.can['create_assesment_culeg'] || currentUser.can['create_monitoring'] || currentUser.can['index_laporan_cu'] || currentUser.can['index_assesment_access'] || currentUser.can['index_assesment_culeg'] || currentUser.can['index_monitoring'] || currentUser.can['index_monitoring_cu']" >
 						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-microscope mr-2"></i>
 							Tata Kelola
@@ -1129,7 +1129,7 @@
 						<div class="dropdown-menu">
 
 							<!-- tambah -->
-							<div class="dropdown-submenu" v-if="currentUser && currentUser.can['create_laporan_cu'] || currentUser.can['create_assesment_access']">
+							<div class="dropdown-submenu" v-if="currentUser && currentUser.can['create_laporan_cu'] || currentUser.can['create_assesment_access'] || currentUser.can['create_monitoring'] || currentUser.can['create_monitoring_cu']">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('tambahKeuangan')">
 									<i class="icon-plus22"></i> Tambah
 								</a>
@@ -1148,7 +1148,11 @@
 									</router-link>
 									<!-- tambah monitoring -->
 									<router-link :to="{ name:'monitoringCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_monitoring'] && currentUser.id_cu == 0">
-										Monitoring
+										Monitoring PUSKOPCUINA
+									</router-link>
+									<!-- tambah monitoring cu -->
+									<router-link :to="{ name:'monitoringCuCreate' }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_monitoring_cu'] && currentUser.id_cu == 0">
+										Monitoring CU
 									</router-link>
 								</div>
 							</div>		
@@ -1266,11 +1270,11 @@
 							<i class="icon-bookmark4"></i> Self Assesment CULEG
 							</router-link>
 
-							<!--monitoring -->
+							<!-- monitoring -->
 							<!-- if bkcu account -->
 							<div class="dropdown-submenu" v-if="currentUser.can['index_monitoring'] && currentUser.id_cu == '0'" :class="{'show' : dropdownMenu2 == 'monitoring'}">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('monitoring')">
-									<i class="icon-collaboration"></i> Monitoring
+									<i class="icon-collaboration"></i> Monitoring PUSKOPCUINA
 								</a>
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'monitoring'}">
 
@@ -1296,7 +1300,40 @@
 
 							<!-- if cu account -->
 							<router-link :to="{ name: 'monitoringCu', params:{cu: currentUser.id_cu, tp: 'semua'} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_monitoring'] && currentUser.id_cu != 0">
-								<i class="icon-collaboration"></i> Monitoring
+								<i class="icon-collaboration"></i> Monitoring PUSKOPCUINA
+							</router-link>
+
+							<!-- monitoring cu -->
+							<!-- if bkcu account -->
+							<div class="dropdown-submenu" v-if="currentUser.can['index_monitoring_cu'] && currentUser.id_cu == '0'" :class="{'show' : dropdownMenu2 == 'monitoringCu'}">
+								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('monitoringCu')">
+									<i class="icon-spotlight2"></i> Monitoring CU
+								</a>
+								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'monitoringCu'}">
+
+									<router-link :to="{ name: 'monitoringCuKonsolidasi', params:{tahun:new Date().getFullYear() , bulan: new Date().getMonth() + 1 } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_monitoring_cu'] && currentUser.id_cu == '0'">
+										Laporan Konsolidasi
+									</router-link>
+
+									<router-link :to="{ name: 'monitoringCuCu',params: { cu: 'semua', tp: 'semua' } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_monitoring_cu'] && currentUser.id_cu == '0'">
+										 Semua CU
+									</router-link>
+
+									<!-- divider -->
+									<div class="dropdown-divider"></div> 
+
+									<template v-for="(cu, index) in modelCu">
+										<router-link :to="{ name: 'monitoringCuCu',params: { cu: cu.id, tp: 'semua' } }" class="dropdown-item" active-class="active" exact v-if="currentUser.can['index_monitoring_cu'] && currentUser.id_cu == '0' && cu" :key="index">
+											CU {{ cu.name }}
+										</router-link>
+									</template>
+
+								</div>
+							</div>
+
+							<!-- if cu account -->
+							<router-link :to="{ name: 'monitoringCuCu', params:{cu: currentUser.id_cu, tp: 'semua'} }" class="dropdown-item" active-class="active" exact v-if="currentUser && currentUser.can['index_monitoring_cu'] && currentUser.id_cu != 0">
+								<i class="icon-spotlight2"></i> Monitoring CU
 							</router-link>
 
 							<!-- divider -->
@@ -1312,20 +1349,18 @@
 
 					<!-- pemberdayaan -->
 					<li class="nav-item dropdown" v-if="currentUser && currentUser.can['create_kubn'] || currentUser.can['index_kubn']"">
-						<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+						<!-- <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 							<i class="icon-accessibility mr-2"></i>
 							Pemberdayaan
-						</a>
+						</a> -->
 
 						<div class="dropdown-menu">
-							
-							<!-- tambah -->
+
 							<div class="dropdown-submenu" v-if="currentUser && currentUser.can['create_kubn']">
 								<a href="#" class="dropdown-item dropdown-toggle" @click.stop="dropdown('tambahPemberdayaan')">
 									<i class="icon-plus22"></i> Tambah
 								</a>
 								<div class="dropdown-menu dropdown-scrollable" :class="{'show' : dropdownMenu2 == 'tambahPemberdayaan'}">
-									<!-- tambah kubn -->
 									<router-link :to="{ name:'kubnCreate'}" class="dropdown-item" active-class="active" exact v-if="currentUser.can['create_kubn']">
 										KUBN
 									</router-link>
@@ -1706,7 +1741,7 @@
 		},
 		data(){
 			return{
-				clientVersion: '3.7',
+				clientVersion: '3.8',
 				dropdownMenu1: '',
 				dropdownMenu2: '',
 				state: '',

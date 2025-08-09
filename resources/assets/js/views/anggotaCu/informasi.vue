@@ -102,8 +102,7 @@
                           <li><b>Nama:</b> {{itemData.name}}</li>
                           <li><b>Gender:</b> {{itemData.kelamin}}</li>
                           <li><b>Agama:</b> {{itemData.agama}}</li>
-                          <li v-if="itemData.tanggal_meninggal == null"><b>Usia:</b> <span v-if="itemData.tanggal_lahir" v-html="$options.filters.age(itemData.tanggal_lahir)"></span></li>
-                          <li v-else><b>Usia Saat Meninggal:</b> <span v-if="itemData.tanggal_lahir" v-html="$options.filters.ageDiff(itemData.tanggal_meninggal, itemData.tanggal_lahir)"></span></li>
+                          <li><b>Usia:</b> <span v-if="itemData.tanggal_lahir" v-html="$options.filters.age(itemData.tanggal_lahir)"></span></li>
                           <li><b>Status:</b> {{ itemData.status}}</li>
                         </ul>
                       </div>
@@ -178,6 +177,10 @@
                     <td><check-value :value="props.item.tipe"></check-value></td>
                     <td><check-value :value="props.item.pivot.dpd"></check-value></td>
                     <td><check-value :value="props.item.pivot.kolekbi"></check-value></td>
+                    <td>
+                      <span v-if="props.item.cu.tanggal_update_data" v-html="$options.filters.date(props.item.pivot.tanggal_update_data)"></span>
+                      <span v-else>-</span>
+                    </td>
                     <td class="text-nowrap">
                       <span v-if="props.item.pivot.tanggal" v-html="$options.filters.date(props.item.pivot.tanggal)"></span>
 						          <span v-else>-</span>
@@ -213,12 +216,6 @@
             <tr class="text-nowrap" v-if="props.item">
               <td>{{ props.index + 1 }}</td>
               <td>{{ props.item.name }}</td>
-              <td>
-                <span v-if="props.item.escete == 1"><span class="badge bg-blue-400 align-self-center ml-auto" v-tooltip="'Data anggota berasal dari data ESCETE'">ESCETE</span></span>
-                <span v-else>
-                  <span class="badge bg-brown-400 align-self-center ml-auto" v-tooltip="'Data anggota berasal dari input manual di simo'">Manual</span>
-                </span>
-              </td>
               <td>
                 <span v-if="props.item.tanggal_update_data" v-html="$options.filters.date(props.item.tanggal_update_data)"></span>
                 <span v-else>-</span>
@@ -306,12 +303,12 @@
 					{ title: 'Tipe' },
 					{ title: 'DPD' },
 					{ title: 'Kolektibilitas' },
+					{ title: 'Tgl. Update Data' },
 					{ title: 'Tgl. Buat' },
 				],
         columnDataUpdateESCETE:[
 					{ title: 'No.' },
 					{ title: 'Nama' },
-          { title: 'Jenis' },
 					{ title: 'Tgl. Update' },
 				],
         modalShow: false,

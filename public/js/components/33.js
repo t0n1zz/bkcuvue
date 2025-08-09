@@ -1109,8 +1109,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           group: 'Assesment CULEG'
         }]
       }, {
-        name: 'Monitoring',
-        keterangan: 'Mengelola data monitoring CU',
+        name: 'Monitoring PUSKOPCUINA',
+        keterangan: 'Mengelola data monitoring PUSKOPCUINA',
         icon: 'icon-collaboration',
         secondRow: true,
         tipe: 'all',
@@ -1142,6 +1142,48 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           tipe: 'all',
           value: false,
           group: 'Monitoring'
+        }]
+      }, {
+        name: 'Monitoring CU',
+        keterangan: 'Mengelola data monitoring CU',
+        icon: 'icon-spotlight2',
+        secondRow: true,
+        tipe: 'all',
+        permission: [{
+          name: 'Lihat',
+          key: 'index_monitoring_cu',
+          icon: 'icon-eye',
+          tipe: 'all',
+          value: false,
+          group: 'Monitoring CU'
+        }, {
+          name: 'Tambah Temuan',
+          key: 'create_monitoring_cu',
+          icon: 'icon-plus3',
+          tipe: 'all',
+          value: false,
+          group: 'Monitoring CU'
+        }, {
+          name: 'Tambah Keputusan',
+          key: 'create_monitoring_cu_keputusan',
+          icon: 'icon-plus3',
+          tipe: 'all',
+          value: false,
+          group: 'Monitoring CU'
+        }, {
+          name: 'Ubah Temuan',
+          key: 'update_monitoring_cu',
+          icon: 'icon-pencil',
+          tipe: 'all',
+          value: false,
+          group: 'Monitoring CU'
+        }, {
+          name: 'Hapus',
+          key: 'destroy_monitoring_cu',
+          icon: 'icon-bin2',
+          tipe: 'all',
+          value: false,
+          group: 'Monitoring CU'
         }]
       }, {
         name: 'Mitra Perseorangan',

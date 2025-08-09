@@ -50,10 +50,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/tp/index.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/tp/index.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/assesmentAccess/index.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/assesmentAccess/index.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -61,7 +61,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _components_pageHeader_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/pageHeader.vue */ "./resources/assets/js/components/pageHeader.vue");
-/* harmony import */ var _table_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./table.vue */ "./resources/assets/js/views/tp/table.vue");
+/* harmony import */ var _table_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./table.vue */ "./resources/assets/js/views/assesmentAccess/table.vue");
 /* harmony import */ var _components_message_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/message.vue */ "./resources/assets/js/components/message.vue");
 /* harmony import */ var _components_selectCu_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/selectCu.vue */ "./resources/assets/js/components/selectCu.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -120,15 +120,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      title: 'TP/KP',
-      kelas: 'tp',
-      titleDesc: 'Mengelola data TP/KP',
-      titleIcon: 'icon-home9',
-      selectCuPath: 'tpCu'
+      title: 'Self assesment ACCESS branding',
+      kelas: 'assesmentAccess',
+      titleDesc: 'Mengelola data self assesment ACCESS branding',
+      titleIcon: 'icon-reading',
+      selectCuPath: 'assesmentAccessCu'
     };
   },
   created: function created() {
-    this.checkUser('index_tp', this.$route.params.cu);
+    this.checkUser('index_assesment_access', this.$route.params.cu);
   },
   methods: {
     checkUser: function checkUser(permission, id_cu) {
@@ -147,7 +147,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('auth', {
     currentUser: 'currentUser'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('tp', {
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('assesmentAccess', {
     itemData: 'dataS',
     itemDataStat: 'dataStatS'
   }))
@@ -155,10 +155,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/tp/table.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/tp/table.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/assesmentAccess/table.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/assesmentAccess/table.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -175,6 +175,53 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -307,8 +354,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       selectedItem: [],
       query: {
-        order_column: "no_tp",
-        order_direction: "asc",
+        order_column: "periode",
+        order_direction: "desc",
         filter_match: "and",
         limit: 10,
         page: 1
@@ -318,28 +365,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         title: 'No.',
         name: 'No.'
       }, {
-        title: 'Foto',
-        name: 'gambar',
-        hide: false
-      }, {
-        title: 'Nama',
-        name: 'name',
+        title: 'Status',
+        name: 'status',
         tipe: 'string',
         sort: true,
         hide: false,
         disable: false,
-        filter: true,
-        filterType: 'string',
-        filterDefault: true
+        filter: true
       }, {
-        title: 'No. Tp/Kp',
-        name: 'no_tp',
-        tipe: 'numeric',
+        title: 'Periode',
+        name: 'periode',
+        tipe: 'datetime',
         sort: true,
         hide: false,
         disable: false,
         filter: true,
-        filterType: 'number'
+        filterDefault: true
       }, {
         title: 'CU',
         name: 'cu.name',
@@ -349,85 +390,165 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         disable: false,
         filter: true
       }, {
-        title: 'Provinsi',
-        name: 'provinces.name',
-        tipe: 'string',
+        title: "Total Skor CU",
+        name: "total_skor_cu",
+        tipe: "numeric",
         sort: false,
         hide: false,
         disable: false,
-        filter: true
+        filter: false
       }, {
-        title: 'Kabupaten',
-        name: 'regencies.name',
-        tipe: 'string',
+        title: "Total Skor PUSKOPCUINA",
+        name: "total_skor_bkcu",
+        tipe: "numeric",
         sort: false,
         hide: false,
         disable: false,
-        filter: true
+        filter: false
       }, {
-        title: 'Kecamatan',
-        name: 'districts.name',
-        tipe: 'string',
+        title: "Total Bobot CU",
+        name: "total_bobot_cu",
+        tipe: "numeric",
         sort: false,
         hide: false,
         disable: false,
-        filter: true
+        filter: false
       }, {
-        title: 'Kelurahan',
-        name: 'villages.name',
-        tipe: 'string',
+        title: "Total Bobot PUSKOPCUINA",
+        name: "total_bobot_bkcu",
+        tipe: "numeric",
         sort: false,
         hide: false,
         disable: false,
-        filter: true
+        filter: false
       }, {
-        title: 'Alamat',
-        name: 'alamat',
-        tipe: 'string',
+        title: "Skor Prsp. Keuangan (CU)",
+        name: "p1.skor_cu_p1",
+        tipe: "numeric",
         sort: false,
         hide: false,
         disable: false,
-        filter: true
+        filter: false
       }, {
-        title: 'Tgl. Berdiri',
-        name: 'ultah',
-        tipe: 'datetime',
-        sort: true,
+        title: "Skor Prsp. Anggota/Pelanggan (CU)",
+        name: "p2.skor_cu_p2",
+        tipe: "numeric",
+        sort: false,
         hide: false,
         disable: false,
-        filter: true
+        filter: false
       }, {
-        title: 'E-mail',
-        name: 'email',
-        tipe: 'string',
-        sort: true,
+        title: "Skor Prsp. Bisnis Internal (CU)",
+        name: "p3.skor_cu_p3",
+        tipe: "numeric",
+        sort: false,
         hide: false,
         disable: false,
-        filter: true
+        filter: false
       }, {
-        title: 'No. Telp',
-        name: 'telp',
-        tipe: 'numeric',
-        sort: true,
+        title: "Skor Prsp. Pembelajaran (CU)",
+        name: "p4.skor_cu_p4",
+        tipe: "numeric",
+        sort: false,
         hide: false,
         disable: false,
-        filter: true
+        filter: false
       }, {
-        title: 'No. Hp',
-        name: 'hp',
-        tipe: 'numeric',
-        sort: true,
+        title: "Skor Prsp. Keuangan (PUSKOPCUINA)",
+        name: "p1.skor_bkcu_p1",
+        tipe: "numeric",
+        sort: false,
         hide: false,
         disable: false,
-        filter: true
+        filter: false
       }, {
-        title: 'Kode Pos',
-        name: 'pos',
-        tipe: 'numeric',
-        sort: true,
+        title: "Skor Prsp. Anggota/Pelanggan (PUSKOPCUINA)",
+        name: "p2.skor_bkcu_p2",
+        tipe: "numeric",
+        sort: false,
         hide: false,
         disable: false,
-        filter: true
+        filter: false
+      }, {
+        title: "Skor Prsp. Bisnis Internal (PUSKOPCUINA)",
+        name: "p3.skor_bkcu_p3",
+        tipe: "numeric",
+        sort: false,
+        hide: false,
+        disable: false,
+        filter: false
+      }, {
+        title: "Skor Prsp. Pembelajaran (PUSKOPCUINA)",
+        name: "p4.skor_bkcu_p4",
+        tipe: "numeric",
+        sort: false,
+        hide: false,
+        disable: false,
+        filter: false
+      }, {
+        title: "Bobot Prsp. Keuangan (CU)",
+        name: "bobot_cu_p1",
+        tipe: "numeric",
+        sort: false,
+        hide: false,
+        disable: false,
+        filter: false
+      }, {
+        title: "Bobot Prsp. Anggota/Pelanggan (CU)",
+        name: "bobot_cu_p2",
+        tipe: "numeric",
+        sort: false,
+        hide: false,
+        disable: false,
+        filter: false
+      }, {
+        title: "Bobot Prsp. Bisnis Internal (CU)",
+        name: "bobot_cu_p3",
+        tipe: "numeric",
+        sort: false,
+        hide: false,
+        disable: false,
+        filter: false
+      }, {
+        title: "Bobot Prsp. Pembelajaran (CU)",
+        name: "bobot_cu_p4",
+        tipe: "numeric",
+        sort: false,
+        hide: false,
+        disable: false,
+        filter: false
+      }, {
+        title: "Bobot Prsp. Keuangan (PUSKOPCUINA)",
+        name: "bobot_bkcu_p1",
+        tipe: "numeric",
+        sort: false,
+        hide: false,
+        disable: false,
+        filter: false
+      }, {
+        title: "Bobot Prsp. Anggota/Pelanggan (PUSKOPCUINA)",
+        name: "bobot_bkcu_p2",
+        tipe: "numeric",
+        sort: false,
+        hide: false,
+        disable: false,
+        filter: false
+      }, {
+        title: "Bobot Prsp. Bisnis Internal (PUSKOPCUINA)",
+        name: "bobot_bkcu_p3",
+        tipe: "numeric",
+        sort: false,
+        hide: false,
+        disable: false,
+        filter: false
+      }, {
+        title: "Bobot Prsp. Pembelajaran (PUSKOPCUINA)",
+        name: "bobot_bkcu_p4",
+        tipe: "numeric",
+        sort: false,
+        hide: false,
+        disable: false,
+        filter: false
       }, {
         title: 'Tgl. / Waktu Buat',
         name: 'created_at',
@@ -489,18 +610,46 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     disableColumnCu: function disableColumnCu(status) {
-      this.columnData[4].disable = status;
+      this.columnData[3].disable = status;
     },
     selectedRow: function selectedRow(item) {
       this.selectedItem = item;
     },
-    ubahData: function ubahData(id) {
-      this.$router.push({
-        name: this.kelas + 'Edit',
-        params: {
-          id: id
+    goTo: function goTo(id, tipe) {
+      if (tipe == 'edit') {
+        if (this.selectedItem.status == 'BELUM DINILAI' || this.selectedItem.status == 'BELUM SELESAI DIISI') {
+          this.$router.push({
+            name: this.kelas + 'Edit',
+            params: {
+              id: id
+            }
+          });
+        } else {
+          this.modalShow = true;
+          this.modalState = 'tutup';
+          this.modalTitle = 'Maaf, data ini sudah dilakukan penilaian dan tidak bisa diubah lagi.';
         }
-      });
+      } else if (tipe == 'penilaian') {
+        if (this.selectedItem.status == 'BELUM SELESAI DIISI') {
+          this.modalShow = true;
+          this.modalState = 'tutup';
+          this.modalTitle = 'Maaf, data ini belum selesai diisi oleh pihak CU.';
+        } else {
+          this.$router.push({
+            name: this.kelas + 'Penilaian',
+            params: {
+              id: id
+            }
+          });
+        }
+      } else if (tipe == 'lihat') {
+        this.$router.push({
+          name: this.kelas + 'Lihat',
+          params: {
+            id: id
+          }
+        });
+      }
     },
     modalConfirmOpen: function modalConfirmOpen(state, isMobile, itemMobile) {
       this.modalShow = true;
@@ -512,7 +661,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       if (state == 'hapus') {
-        this.modalTitle = 'Hapus ' + this.title + ' ' + this.selectedItem.name + ' ini?';
+        this.modalTitle = 'Hapus ' + this.title + ' periode ' + this.selectedItem.periode + ' ini?';
         this.modalButton = 'Iya, Hapus';
       }
     },
@@ -531,7 +680,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('cu', {
     modelCu: 'dataS',
     modelCuStat: 'dataStatS'
-  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('tp', {
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('assesmentAccess', {
     itemData: 'dataS',
     itemDataStat: 'dataStatS',
     updateMessage: 'update',
@@ -587,10 +736,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/tp/index.vue?vue&type=template&id=642a74b2&":
-/*!*************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/tp/index.vue?vue&type=template&id=642a74b2& ***!
-  \*************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/assesmentAccess/index.vue?vue&type=template&id=dc7b779e&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/assesmentAccess/index.vue?vue&type=template&id=dc7b779e& ***!
+  \**************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -657,10 +806,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/tp/table.vue?vue&type=template&id=1dc5a9ae&":
-/*!*************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/tp/table.vue?vue&type=template&id=1dc5a9ae& ***!
-  \*************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/assesmentAccess/table.vue?vue&type=template&id=4b5d792d&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/views/assesmentAccess/table.vue?vue&type=template&id=4b5d792d& ***!
+  \**************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -725,26 +874,31 @@ var render = function () {
                       _vm._v(" "),
                       !_vm.columnData[1].hide
                         ? _c("td", [
-                            props.item.gambar
-                              ? _c("img", {
-                                  staticClass: "img-rounded img-fluid wmin-sm",
-                                  attrs: {
-                                    src:
-                                      "/images/" +
-                                      _vm.kelas +
-                                      "/" +
-                                      props.item.gambar +
-                                      "n.jpg",
-                                    width: "40",
-                                  },
-                                })
-                              : _c("img", {
-                                  staticClass: "img-rounded  img-fluid wmin-sm",
-                                  attrs: {
-                                    src: "/images/no_image.jpg",
-                                    width: "40",
-                                  },
-                                }),
+                            props.item.status == "BELUM DINILAI"
+                              ? _c(
+                                  "span",
+                                  { staticClass: "badge badge-secondary" },
+                                  [_vm._v(_vm._s(props.item.status))]
+                                )
+                              : props.item.status == "SUDAH DINILAI"
+                              ? _c(
+                                  "span",
+                                  { staticClass: "badge badge-primary" },
+                                  [_vm._v(_vm._s(props.item.status))]
+                                )
+                              : props.item.status == "BELUM SELESAI DIISI"
+                              ? _c(
+                                  "span",
+                                  { staticClass: "badge badge-warning" },
+                                  [_vm._v(_vm._s(props.item.status))]
+                                )
+                              : props.item.status == "BELUM SELESAI DINILAI"
+                              ? _c(
+                                  "span",
+                                  { staticClass: "badge badge-success" },
+                                  [_vm._v(_vm._s(props.item.status))]
+                                )
+                              : _vm._e(),
                           ])
                         : _vm._e(),
                       _vm._v(" "),
@@ -753,26 +907,14 @@ var render = function () {
                             "td",
                             [
                               _c("check-value", {
-                                attrs: { value: props.item.name },
+                                attrs: { value: props.item.periode },
                               }),
                             ],
                             1
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[3].hide
-                        ? _c(
-                            "td",
-                            [
-                              _c("check-value", {
-                                attrs: { value: props.item.no_tp },
-                              }),
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !_vm.columnData[4].hide && !_vm.columnData[4].disable
+                      !_vm.columnData[3].hide && !_vm.columnData[3].disable
                         ? _c(
                             "td",
                             [
@@ -786,57 +928,78 @@ var render = function () {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[5].hide && !_vm.columnData[5].disable
+                      !_vm.columnData[4].hide
                         ? _c(
                             "td",
                             [
-                              props.item.provinces
-                                ? _c("check-value", {
-                                    attrs: { value: props.item.provinces.name },
-                                  })
-                                : _c("span", [_vm._v("-")]),
+                              _c("check-value", {
+                                attrs: {
+                                  value: props.item.total_skor_cu,
+                                  valueType: "decimal",
+                                },
+                              }),
                             ],
                             1
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[6].hide && !_vm.columnData[6].disable
+                      !_vm.columnData[5].hide
                         ? _c(
                             "td",
                             [
-                              props.item.regencies
-                                ? _c("check-value", {
-                                    attrs: { value: props.item.regencies.name },
-                                  })
-                                : _c("span", [_vm._v("-")]),
+                              _c("check-value", {
+                                attrs: {
+                                  value: props.item.total_skor_bkcu,
+                                  valueType: "decimal",
+                                },
+                              }),
                             ],
                             1
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[7].hide && !_vm.columnData[7].disable
+                      !_vm.columnData[6].hide
                         ? _c(
                             "td",
                             [
-                              props.item.districts
-                                ? _c("check-value", {
-                                    attrs: { value: props.item.districts.name },
-                                  })
-                                : _c("span", [_vm._v("-")]),
+                              _c("check-value", {
+                                attrs: {
+                                  value: props.item.total_bobot_cu,
+                                  valueType: "decimal",
+                                },
+                              }),
                             ],
                             1
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[8].hide && !_vm.columnData[8].disable
+                      !_vm.columnData[7].hide
                         ? _c(
                             "td",
                             [
-                              props.item.villages
+                              _c("check-value", {
+                                attrs: {
+                                  value: props.item.total_bobot_bkcu,
+                                  valueType: "decimal",
+                                },
+                              }),
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[8].hide
+                        ? _c(
+                            "td",
+                            [
+                              props.item.p1
                                 ? _c("check-value", {
-                                    attrs: { value: props.item.villages.name },
+                                    attrs: {
+                                      value: props.item.p1.skor_cu_p1,
+                                      valueType: "decimal",
+                                    },
                                   })
-                                : _c("span", [_vm._v("-")]),
+                                : _vm._e(),
                             ],
                             1
                           )
@@ -846,31 +1009,48 @@ var render = function () {
                         ? _c(
                             "td",
                             [
-                              _c("check-value", {
-                                attrs: { value: props.item.alamat },
-                              }),
+                              props.item.p2
+                                ? _c("check-value", {
+                                    attrs: {
+                                      value: props.item.p2.skor_cu_p2,
+                                      valueType: "decimal",
+                                    },
+                                  })
+                                : _vm._e(),
                             ],
                             1
                           )
                         : _vm._e(),
                       _vm._v(" "),
                       !_vm.columnData[10].hide
-                        ? _c("td", {
-                            domProps: {
-                              innerHTML: _vm._s(
-                                _vm.$options.filters.date(props.item.ultah)
-                              ),
-                            },
-                          })
+                        ? _c(
+                            "td",
+                            [
+                              props.item.p3
+                                ? _c("check-value", {
+                                    attrs: {
+                                      value: props.item.p3.skor_cu_p3,
+                                      valueType: "decimal",
+                                    },
+                                  })
+                                : _vm._e(),
+                            ],
+                            1
+                          )
                         : _vm._e(),
                       _vm._v(" "),
                       !_vm.columnData[11].hide
                         ? _c(
                             "td",
                             [
-                              _c("check-value", {
-                                attrs: { value: props.item.email },
-                              }),
+                              props.item.p4
+                                ? _c("check-value", {
+                                    attrs: {
+                                      value: props.item.p4.skor_cu_p4,
+                                      valueType: "decimal",
+                                    },
+                                  })
+                                : _vm._e(),
                             ],
                             1
                           )
@@ -880,9 +1060,14 @@ var render = function () {
                         ? _c(
                             "td",
                             [
-                              _c("check-value", {
-                                attrs: { value: props.item.telp },
-                              }),
+                              props.item.p1
+                                ? _c("check-value", {
+                                    attrs: {
+                                      value: props.item.p1.skor_bkcu_p1,
+                                      valueType: "decimal",
+                                    },
+                                  })
+                                : _vm._e(),
                             ],
                             1
                           )
@@ -892,9 +1077,14 @@ var render = function () {
                         ? _c(
                             "td",
                             [
-                              _c("check-value", {
-                                attrs: { value: props.item.hp },
-                              }),
+                              props.item.p2
+                                ? _c("check-value", {
+                                    attrs: {
+                                      value: props.item.p2.skor_bkcu_p2,
+                                      valueType: "decimal",
+                                    },
+                                  })
+                                : _vm._e(),
                             ],
                             1
                           )
@@ -904,15 +1094,173 @@ var render = function () {
                         ? _c(
                             "td",
                             [
-                              _c("check-value", {
-                                attrs: { value: props.item.pos },
-                              }),
+                              props.item.p3
+                                ? _c("check-value", {
+                                    attrs: {
+                                      value: props.item.p3.skor_bkcu_p3,
+                                      valueType: "decimal",
+                                    },
+                                  })
+                                : _vm._e(),
                             ],
                             1
                           )
                         : _vm._e(),
                       _vm._v(" "),
                       !_vm.columnData[15].hide
+                        ? _c(
+                            "td",
+                            [
+                              props.item.p4
+                                ? _c("check-value", {
+                                    attrs: {
+                                      value: props.item.p4.skor_bkcu_p4,
+                                      valueType: "decimal",
+                                    },
+                                  })
+                                : _vm._e(),
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[16].hide
+                        ? _c(
+                            "td",
+                            [
+                              props.item.p1
+                                ? _c("check-value", {
+                                    attrs: {
+                                      value: props.item.bobot_cu_p1,
+                                      valueType: "decimal",
+                                    },
+                                  })
+                                : _vm._e(),
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[17].hide
+                        ? _c(
+                            "td",
+                            [
+                              props.item.p2
+                                ? _c("check-value", {
+                                    attrs: {
+                                      value: props.item.bobot_cu_p2,
+                                      valueType: "decimal",
+                                    },
+                                  })
+                                : _vm._e(),
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[18].hide
+                        ? _c(
+                            "td",
+                            [
+                              props.item.p3
+                                ? _c("check-value", {
+                                    attrs: {
+                                      value: props.item.bobot_cu_p3,
+                                      valueType: "decimal",
+                                    },
+                                  })
+                                : _vm._e(),
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[19].hide
+                        ? _c(
+                            "td",
+                            [
+                              props.item.p4
+                                ? _c("check-value", {
+                                    attrs: {
+                                      value: props.item.bobot_cu_p4,
+                                      valueType: "decimal",
+                                    },
+                                  })
+                                : _vm._e(),
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[20].hide
+                        ? _c(
+                            "td",
+                            [
+                              props.item.p1
+                                ? _c("check-value", {
+                                    attrs: {
+                                      value: props.item.bobot_bkcu_p1,
+                                      valueType: "decimal",
+                                    },
+                                  })
+                                : _vm._e(),
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[21].hide
+                        ? _c(
+                            "td",
+                            [
+                              props.item.p2
+                                ? _c("check-value", {
+                                    attrs: {
+                                      value: props.item.bobot_bkcu_p2,
+                                      valueType: "decimal",
+                                    },
+                                  })
+                                : _vm._e(),
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[22].hide
+                        ? _c(
+                            "td",
+                            [
+                              props.item.p3
+                                ? _c("check-value", {
+                                    attrs: {
+                                      value: props.item.bobot_bkcu_p3,
+                                      valueType: "decimal",
+                                    },
+                                  })
+                                : _vm._e(),
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[23].hide
+                        ? _c(
+                            "td",
+                            [
+                              props.item.p4
+                                ? _c("check-value", {
+                                    attrs: {
+                                      value: props.item.bobot_bkcu_p4,
+                                      valueType: "decimal",
+                                    },
+                                  })
+                                : _vm._e(),
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.columnData[24].hide
                         ? _c("td", {
                             staticClass: "text-nowrap",
                             domProps: {
@@ -925,7 +1273,7 @@ var render = function () {
                           })
                         : _vm._e(),
                       _vm._v(" "),
-                      !_vm.columnData[16].hide
+                      !_vm.columnData[25].hide
                         ? _c("td", [
                             props.item.created_at !== props.item.updated_at
                               ? _c("span", {
@@ -952,7 +1300,8 @@ var render = function () {
             "template",
             { slot: "button-desktop" },
             [
-              _vm.currentUser.can && _vm.currentUser.can["create_" + _vm.kelas]
+              _vm.currentUser.can &&
+              _vm.currentUser.can["create_assesment_access"]
                 ? _c(
                     "router-link",
                     {
@@ -966,7 +1315,8 @@ var render = function () {
                   )
                 : _vm._e(),
               _vm._v(" "),
-              _vm.currentUser.can && _vm.currentUser.can["update_" + _vm.kelas]
+              _vm.currentUser.can &&
+              _vm.currentUser.can["update_assesment_access"]
                 ? _c(
                     "button",
                     {
@@ -975,7 +1325,7 @@ var render = function () {
                       on: {
                         click: function ($event) {
                           $event.preventDefault()
-                          return _vm.ubahData(_vm.selectedItem.id)
+                          return _vm.goTo(_vm.selectedItem.id, "edit")
                         },
                       },
                     },
@@ -986,7 +1336,48 @@ var render = function () {
                   )
                 : _vm._e(),
               _vm._v(" "),
-              _vm.currentUser.can && _vm.currentUser.can["destroy_" + _vm.kelas]
+              _vm.currentUser.id_cu == 0 &&
+              _vm.currentUser.can &&
+              _vm.currentUser.can["update_assesment_access"]
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-light btn-icon mb-1",
+                      attrs: { disabled: !_vm.selectedItem.id },
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          return _vm.goTo(_vm.selectedItem.id, "penilaian")
+                        },
+                      },
+                    },
+                    [
+                      _c("i", { staticClass: "icon-law" }),
+                      _vm._v(" Penilaian PUSKOPCUINA\n\t\t\t"),
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-light btn-icon mb-1",
+                  attrs: { disabled: !_vm.selectedItem.id },
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      return _vm.goTo(_vm.selectedItem.id, "lihat")
+                    },
+                  },
+                },
+                [
+                  _c("i", { staticClass: "icon-file-eye" }),
+                  _vm._v(" Lihat\n\t\t\t"),
+                ]
+              ),
+              _vm._v(" "),
+              _vm.currentUser.can &&
+              _vm.currentUser.can["destroy_assesment_access"]
                 ? _c(
                     "button",
                     {
@@ -1013,7 +1404,8 @@ var render = function () {
             "template",
             { slot: "button-mobile" },
             [
-              _vm.currentUser.can && _vm.currentUser.can["create_" + _vm.kelas]
+              _vm.currentUser.can &&
+              _vm.currentUser.can["create_assesment_access"]
                 ? _c(
                     "router-link",
                     {
@@ -1022,12 +1414,13 @@ var render = function () {
                     },
                     [
                       _c("i", { staticClass: "icon-plus3" }),
-                      _vm._v(" Tambah " + _vm._s(_vm.title) + "\n\t\t\t"),
+                      _vm._v(" Tambah\n\t\t\t"),
                     ]
                   )
                 : _vm._e(),
               _vm._v(" "),
-              _vm.currentUser.can && _vm.currentUser.can["update_" + _vm.kelas]
+              _vm.currentUser.can &&
+              _vm.currentUser.can["update_assesment_access"]
                 ? _c(
                     "button",
                     {
@@ -1036,18 +1429,59 @@ var render = function () {
                       on: {
                         click: function ($event) {
                           $event.preventDefault()
-                          return _vm.ubahData(_vm.selectedItem.id)
+                          return _vm.goTo(_vm.selectedItem.id, "edit")
                         },
                       },
                     },
                     [
                       _c("i", { staticClass: "icon-pencil5" }),
-                      _vm._v(" Ubah " + _vm._s(_vm.title) + "\n\t\t\t"),
+                      _vm._v(" Ubah\n\t\t\t"),
                     ]
                   )
                 : _vm._e(),
               _vm._v(" "),
-              _vm.currentUser.can && _vm.currentUser.can["destroy_" + _vm.kelas]
+              _vm.currentUser.id_cu == 0 &&
+              _vm.currentUser.can &&
+              _vm.currentUser.can["update_assesment_access"]
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-light btn-icon btn-block mb-1",
+                      attrs: { disabled: !_vm.selectedItem.id },
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          return _vm.goTo(_vm.selectedItem.id, "penilaian")
+                        },
+                      },
+                    },
+                    [
+                      _c("i", { staticClass: "icon-law" }),
+                      _vm._v(" Penilaian PUSKOPCUINA\n\t\t\t"),
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-light btn-icon btn-block mb-1",
+                  attrs: { disabled: !_vm.selectedItem.id },
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      return _vm.goTo(_vm.selectedItem.id, "lihat")
+                    },
+                  },
+                },
+                [
+                  _c("i", { staticClass: "icon-file-eye" }),
+                  _vm._v(" Lihat\n\t\t\t"),
+                ]
+              ),
+              _vm._v(" "),
+              _vm.currentUser.can &&
+              _vm.currentUser.can["destroy_assesment_access"]
                 ? _c(
                     "button",
                     {
@@ -1062,7 +1496,7 @@ var render = function () {
                     },
                     [
                       _c("i", { staticClass: "icon-bin2" }),
-                      _vm._v(" Hapus " + _vm._s(_vm.title) + "\n\t\t\t"),
+                      _vm._v(" Hapus\n\t\t\t"),
                     ]
                   )
                 : _vm._e(),
@@ -1169,17 +1603,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/tp/index.vue":
-/*!************************************************!*\
-  !*** ./resources/assets/js/views/tp/index.vue ***!
-  \************************************************/
+/***/ "./resources/assets/js/views/assesmentAccess/index.vue":
+/*!*************************************************************!*\
+  !*** ./resources/assets/js/views/assesmentAccess/index.vue ***!
+  \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _index_vue_vue_type_template_id_642a74b2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=642a74b2& */ "./resources/assets/js/views/tp/index.vue?vue&type=template&id=642a74b2&");
-/* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/tp/index.vue?vue&type=script&lang=js&");
+/* harmony import */ var _index_vue_vue_type_template_id_dc7b779e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=dc7b779e& */ "./resources/assets/js/views/assesmentAccess/index.vue?vue&type=template&id=dc7b779e&");
+/* harmony import */ var _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/assesmentAccess/index.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -1190,8 +1624,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _index_vue_vue_type_template_id_642a74b2___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _index_vue_vue_type_template_id_642a74b2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _index_vue_vue_type_template_id_dc7b779e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _index_vue_vue_type_template_id_dc7b779e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -1201,54 +1635,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/views/tp/index.vue"
+component.options.__file = "resources/assets/js/views/assesmentAccess/index.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/tp/index.vue?vue&type=script&lang=js&":
-/*!*************************************************************************!*\
-  !*** ./resources/assets/js/views/tp/index.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************/
+/***/ "./resources/assets/js/views/assesmentAccess/index.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/assets/js/views/assesmentAccess/index.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/tp/index.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/assesmentAccess/index.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/tp/index.vue?vue&type=template&id=642a74b2&":
-/*!*******************************************************************************!*\
-  !*** ./resources/assets/js/views/tp/index.vue?vue&type=template&id=642a74b2& ***!
-  \*******************************************************************************/
+/***/ "./resources/assets/js/views/assesmentAccess/index.vue?vue&type=template&id=dc7b779e&":
+/*!********************************************************************************************!*\
+  !*** ./resources/assets/js/views/assesmentAccess/index.vue?vue&type=template&id=dc7b779e& ***!
+  \********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_642a74b2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=642a74b2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/tp/index.vue?vue&type=template&id=642a74b2&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_642a74b2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_dc7b779e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=dc7b779e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/assesmentAccess/index.vue?vue&type=template&id=dc7b779e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_dc7b779e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_642a74b2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_template_id_dc7b779e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/tp/table.vue":
-/*!************************************************!*\
-  !*** ./resources/assets/js/views/tp/table.vue ***!
-  \************************************************/
+/***/ "./resources/assets/js/views/assesmentAccess/table.vue":
+/*!*************************************************************!*\
+  !*** ./resources/assets/js/views/assesmentAccess/table.vue ***!
+  \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _table_vue_vue_type_template_id_1dc5a9ae___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./table.vue?vue&type=template&id=1dc5a9ae& */ "./resources/assets/js/views/tp/table.vue?vue&type=template&id=1dc5a9ae&");
-/* harmony import */ var _table_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./table.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/tp/table.vue?vue&type=script&lang=js&");
+/* harmony import */ var _table_vue_vue_type_template_id_4b5d792d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./table.vue?vue&type=template&id=4b5d792d& */ "./resources/assets/js/views/assesmentAccess/table.vue?vue&type=template&id=4b5d792d&");
+/* harmony import */ var _table_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./table.vue?vue&type=script&lang=js& */ "./resources/assets/js/views/assesmentAccess/table.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -1259,8 +1693,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _table_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _table_vue_vue_type_template_id_1dc5a9ae___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _table_vue_vue_type_template_id_1dc5a9ae___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _table_vue_vue_type_template_id_4b5d792d___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _table_vue_vue_type_template_id_4b5d792d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -1270,38 +1704,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/assets/js/views/tp/table.vue"
+component.options.__file = "resources/assets/js/views/assesmentAccess/table.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/tp/table.vue?vue&type=script&lang=js&":
-/*!*************************************************************************!*\
-  !*** ./resources/assets/js/views/tp/table.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************/
+/***/ "./resources/assets/js/views/assesmentAccess/table.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/assets/js/views/assesmentAccess/table.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./table.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/tp/table.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./table.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/assesmentAccess/table.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/assets/js/views/tp/table.vue?vue&type=template&id=1dc5a9ae&":
-/*!*******************************************************************************!*\
-  !*** ./resources/assets/js/views/tp/table.vue?vue&type=template&id=1dc5a9ae& ***!
-  \*******************************************************************************/
+/***/ "./resources/assets/js/views/assesmentAccess/table.vue?vue&type=template&id=4b5d792d&":
+/*!********************************************************************************************!*\
+  !*** ./resources/assets/js/views/assesmentAccess/table.vue?vue&type=template&id=4b5d792d& ***!
+  \********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_template_id_1dc5a9ae___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./table.vue?vue&type=template&id=1dc5a9ae& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/tp/table.vue?vue&type=template&id=1dc5a9ae&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_template_id_1dc5a9ae___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_template_id_4b5d792d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./table.vue?vue&type=template&id=4b5d792d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/views/assesmentAccess/table.vue?vue&type=template&id=4b5d792d&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_template_id_4b5d792d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_template_id_1dc5a9ae___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_table_vue_vue_type_template_id_4b5d792d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

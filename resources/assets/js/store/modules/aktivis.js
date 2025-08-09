@@ -309,6 +309,20 @@ export const aktivis = {
         });
     },
 
+    getMonitoringCu( { commit }, id){
+      commit('setDataStatS', 'loading');
+      
+      aktivisAPI.getMonitoringCu( id )
+        .then( function( response ){
+          commit('setDataS', response.data.model );
+          commit('setDataStatS', 'success');
+        })
+        .catch( error => {
+          commit('setDataS', error.response);
+          commit('setDataStatS', 'fail');
+        });
+    },
+
     cariData( {commit}, nik ){
       commit('setDataStat', 'loading');
       

@@ -394,39 +394,15 @@ class PublicController extends Controller
 		return $table_data;
 	}
 
+
+	public function escetePrivacy()
+	{
+		return view('escetePrivacy');
+	}
+
 	public function admins()
 	{
 		return view('admins');
-	}
-
-	public function testroute()
-	{
-		// abort(404);
-
-		// $kelas = \App\JalinanIuran::with('anggota.anggota_cu','anggota.anggota_cu_cu')->findOrFail(1);
-		// $produks = \App\ProdukCu::where('id_cu',22)->where('jalinan',1)->get();
-		// $kelas = \App\JalinanIuranAnggota::with('anggota_cu','anggota_cu_cu')->where('jalinan_iuran_id',1)->where('lokasi', 5)->get();
-
-		// $result = array();
-		// foreach($kelas as $anggota){
-		// 	$result[$anggota->anggota_cu_id] = $anggota;	
-		// }
-
-		// foreach($result as $r){
-		// 	foreach($kelas as $anggota){
-		// 		if($r->anggota_cu_id == $anggota->anggota_cu_id){
-		// 			foreach($produks as $produk){
-		// 				if($produk->id == $anggota->produk_cu_id){
-		// 					$r["X$produk->id"] = $r->saldo;
-		// 				}
-		// 			}
-		// 		}
-		// 	}
-		// }
-
-		// return response()->json($result);
-
-		$this->permission();
 	}
 
 	public function iuran()
@@ -1035,13 +1011,45 @@ class PublicController extends Controller
 		}
 	}
 
+
+	public function testroute()
+	{
+		// abort(404);
+
+		// $kelas = \App\JalinanIuran::with('anggota.anggota_cu','anggota.anggota_cu_cu')->findOrFail(1);
+		// $produks = \App\ProdukCu::where('id_cu',22)->where('jalinan',1)->get();
+		// $kelas = \App\JalinanIuranAnggota::with('anggota_cu','anggota_cu_cu')->where('jalinan_iuran_id',1)->where('lokasi', 5)->get();
+
+		// $result = array();
+		// foreach($kelas as $anggota){
+		// 	$result[$anggota->anggota_cu_id] = $anggota;	
+		// }
+
+		// foreach($result as $r){
+		// 	foreach($kelas as $anggota){
+		// 		if($r->anggota_cu_id == $anggota->anggota_cu_id){
+		// 			foreach($produks as $produk){
+		// 				if($produk->id == $anggota->produk_cu_id){
+		// 					$r["X$produk->id"] = $r->saldo;
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// }
+
+		// return response()->json($result);
+
+		// $this->permission();
+	}
+
 	public function permission()
 	{
 		// create permission
-		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'index_assesment_culeg']);
-		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'create_assesment_culeg']);
-		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'update_assesment_culeg']);
-		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'destroy_assesment_culeg']);
+		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'index_monitoring_cu']);
+		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'create_monitoring_cu']);
+		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'create_monitoring_cu_keputusan']);
+		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'update_monitoring_cu']);
+		// \Spatie\Permission\Models\Permission::create(['guard_name' => 'api', 'name' => 'destroy_monitoring_cu']);
 
 		// give permission
 		// $users = App\User::where('id','!=',1)->where('id_cu',0)->get();

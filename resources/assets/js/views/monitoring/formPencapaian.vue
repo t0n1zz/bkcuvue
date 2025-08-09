@@ -78,10 +78,10 @@
 				<div class="form-group">
 
 					<!-- title -->
-					<h6>Catatan BKCU:</h6>
+					<h6>Catatan PUSKOPCUINA:</h6>
 
 					<!-- text -->
-					<textarea rows="3" cols="3" class="form-control" placeholder="Silahkan masukkan catatan bkcu" v-model="formDataLanjut.catatan"></textarea>
+					<textarea rows="3" cols="3" class="form-control" placeholder="Silahkan masukkan catatan" v-model="formDataLanjut.catatan"></textarea>
 
 				</div>
 			</div>

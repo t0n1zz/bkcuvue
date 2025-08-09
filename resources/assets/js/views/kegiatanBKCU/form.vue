@@ -36,7 +36,7 @@
 									</div>
 
 									<!-- kode diklat bkcu -->
-									<div class="col-md-12" v-if="$route.params.tipe == 'diklat_bkcu' || $route.params.tipe == 'diklat_bkcu_internal'">
+									<div class="col-md-12" v-if="($route.params.tipe == 'diklat_bkcu' && $route.meta.mode == 'edit') || ($route.params.tipe == 'diklat_bkcu_internal' && $route.meta.mode == 'edit') || $route.params.tipe == 'diklat_bkcu' || $route.params.tipe == 'diklat_bkcu_internal'">
 										<div class="form-group" :class="{'has-error' : errors.has('form.kode_kegiatan')}">
 
 											<!-- title -->
@@ -287,85 +287,115 @@
 											<!-- title -->
 											<h5>Sasaran Peserta: <wajib-badge></wajib-badge></h5>
 
-											<div class="form-check form-check-inline">
-												<label class="form-check-label">
-													<input type="checkbox" class="form-check-input" value="1" v-model="sasaran">
-													Pengurus
-												</label>
-											</div>	
-											<div class="form-check form-check-inline">
-												<label class="form-check-label">
-													<input type="checkbox" class="form-check-input" value="2" v-model="sasaran">
-													Pengawas
-												</label>
-											</div>	
-											<div class="form-check form-check-inline">	
-												<label class="form-check-label">
-													<input type="checkbox" class="form-check-input" value="3" v-model="sasaran">
-													Komite
-												</label>
-											</div>	
-											<div class="form-check form-check-inline">	
-												<label class="form-check-label">
-													<input type="checkbox" class="form-check-input" value="4" v-model="sasaran">
-													Penasihat
-												</label>
-											</div>	
-											<div class="form-check form-check-inline">
-												<label class="form-check-label">
-													<input type="checkbox" class="form-check-input" value="5" v-model="sasaran">
-													Senior Manajer
-												</label>
-											</div>	
-											<div class="form-check form-check-inline">
-												<label class="form-check-label">
-													<input type="checkbox" class="form-check-input" value="6" v-model="sasaran">
-													Manajer
-												</label>
-											</div>	
-											<div class="form-check form-check-inline">
-												<label class="form-check-label">
-													<input type="checkbox" class="form-check-input" value="7" v-model="sasaran">
-													Supervisor
-												</label>
-											</div>
-											<div class="form-check form-check-inline">
-												<label class="form-check-label">
-													<input type="checkbox" class="form-check-input" value="8" v-model="sasaran">
-													Staf
-												</label>
-											</div>
-											<div class="form-check form-check-inline">
-												<label class="form-check-label">
-													<input type="checkbox" class="form-check-input" value="9" v-model="sasaran">
-													Kontrak
-												</label>
-											</div>
-											<div class="form-check form-check-inline">
-												<label class="form-check-label">
-													<input type="checkbox" class="form-check-input" value="10" v-model="sasaran">
-													Kolektor
-												</label>
-											</div>
-											<div class="form-check form-check-inline">
-												<label class="form-check-label">
-													<input type="checkbox" class="form-check-input" value="11" v-model="sasaran">
-													Kelompok inti
-												</label>
-											</div>
-											<div class="form-check form-check-inline">
-												<label class="form-check-label">
-													<input type="checkbox" class="form-check-input" value="12" v-model="sasaran">
-													Supporting Unit
-												</label>
-											</div>
-											<div class="form-check form-check-inline">
-												<label class="form-check-label">
-													<input type="checkbox" class="form-check-input" value="13" v-model="sasaran">
-													Vendor sMartCU
-												</label>
-											</div>
+											<div class="border p-3 rounded">
+												<div class="row">
+													<div class="col-md-2">
+														<div class="form-check form-check-inline">
+															<label class="form-check-label">
+																<input type="checkbox" class="form-check-input" value="1" v-model="sasaran">
+																Pengurus
+															</label>
+														</div>	
+													</div>
+													<div class="col-md-2">
+														<div class="form-check form-check-inline">
+															<label class="form-check-label">
+																<input type="checkbox" class="form-check-input" value="2" v-model="sasaran">
+																Pengawas
+															</label>
+														</div>	
+													</div>
+													<div class="col-md-2">
+														<div class="form-check form-check-inline">	
+															<label class="form-check-label">
+																<input type="checkbox" class="form-check-input" value="3" v-model="sasaran">
+																Komite
+															</label>
+														</div>	
+													</div>
+													<div class="col-md-2">
+														<div class="form-check form-check-inline">	
+															<label class="form-check-label">
+																<input type="checkbox" class="form-check-input" value="4" v-model="sasaran">
+																Penasihat
+															</label>
+														</div>	
+													</div>
+													<div class="col-md-2">
+														<div class="form-check form-check-inline">
+															<label class="form-check-label">
+																<input type="checkbox" class="form-check-input" value="5" v-model="sasaran">
+																Senior Manajer
+															</label>
+														</div>	
+													</div>
+													<div class="col-md-2">
+														<div class="form-check form-check-inline">
+															<label class="form-check-label">
+																<input type="checkbox" class="form-check-input" value="6" v-model="sasaran">
+																Manajer
+															</label>
+														</div>	
+													</div>
+													<div class="col-md-2">
+														<div class="form-check form-check-inline">
+															<label class="form-check-label">
+																<input type="checkbox" class="form-check-input" value="7" v-model="sasaran">
+																Supervisor
+															</label>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="form-check form-check-inline">
+															<label class="form-check-label">
+																<input type="checkbox" class="form-check-input" value="8" v-model="sasaran">
+																Staf
+															</label>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="form-check form-check-inline">
+															<label class="form-check-label">
+																<input type="checkbox" class="form-check-input" value="9" v-model="sasaran">
+																Kontrak
+															</label>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="form-check form-check-inline">
+															<label class="form-check-label">
+																<input type="checkbox" class="form-check-input" value="10" v-model="sasaran">
+																Kolektor
+															</label>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="form-check form-check-inline">
+															<label class="form-check-label">
+																<input type="checkbox" class="form-check-input" value="11" v-model="sasaran">
+																Kelompok inti
+															</label>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="form-check form-check-inline">
+															<label class="form-check-label">
+																<input type="checkbox" class="form-check-input" value="12" v-model="sasaran">
+																Supporting Unit
+															</label>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<div class="form-check form-check-inline">
+															<label class="form-check-label">
+																<input type="checkbox" class="form-check-input" value="13" v-model="sasaran">
+																Vendor sMartCU
+															</label>
+														</div>
+													</div>
+												</div>
 
+											</div>
 										</div>
 									</div>
 
@@ -376,20 +406,28 @@
 											<h5>
 												Sasaran CU: <wajib-badge></wajib-badge>
 											</h5>
-											<div class="form-check form-check-inline">
-												<label class="form-check-label">
-													<input type="checkbox" class="form-check-input" v-model="formAllCu"
-														@change="selectAllCu">Semua CU
-												</label>
+											<div class="border p-3 mb-2 rounded">
+												<div class="form-check form-check-inline">
+													<label class="form-check-label">
+														<input type="checkbox" class="form-check-input" v-model="formAllCu"
+															@change="selectAllCu">Semua CU
+													</label>
+												</div>
 											</div>
-											<div class="form-check form-check-inline" v-for="(cu, index) in modelCu"
-												:key="index">
-												<label class="form-check-label">
-													<input type="checkbox" class="form-check-input" :value="cu.id"
-														v-model="sasaranCu" :checked="formAllCu"
-														@change="updateFormCu(cu.id, $event.target.checked)">CU {{ cu.name
-														}}
-												</label>
+											<div class="border p-3 rounded">
+												<div class="row">
+													<div class="col-md-2" v-for="(cu, index) in modelCu"
+														:key="index">
+														<div class="form-check form-check-inline">
+															<label class="form-check-label">
+																<input type="checkbox" class="form-check-input" :value="cu.id"
+																	v-model="sasaranCu" :checked="formAllCu"
+																	@change="updateFormCu(cu.id, $event.target.checked)">{{ cu.name
+																	}}
+															</label>
+														</div>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -1025,8 +1063,11 @@
     },
 		methods: {
 			fetch(){
-				if(this.$route.meta.mode == 'edit'){
-					this.$store.dispatch(this.kelas + '/edit',this.$route.params.id);	
+				if (this.$route.meta.mode == 'edit') {
+					this.$store.dispatch(this.kelas + '/edit', this.$route.params.id);
+					if(this.$route.params.tipe == 'diklat_bkcu' || this.$route.params.tipe == 'diklat_bkcu_internal'){
+						this.$store.dispatch('kodeKegiatan/get');
+					}
 				} else {
 					this.checkTipe(this.$route.params.tipe);
 					this.$store.dispatch(this.kelas + '/create');
@@ -1036,6 +1077,7 @@
 				if(this.$route.params.tipe == 'diklat_bkcu' || this.$route.params.tipe == 'diklat_bkcu_internal'){
 					this.$store.dispatch('kodeKegiatan/get');
 				}
+
 			},
 			fetchCu() {
 				if (this.modelCuStat != 'success') {

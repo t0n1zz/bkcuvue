@@ -198,6 +198,11 @@ class Cu extends Model {
     {
         return $this->hasMany('App\Monitoring','id_cu','id')->select('id','id_cu');
     }
+
+    public function hasMonitoringCu()
+    {
+        return $this->hasMany('App\MonitoringCu','id_cu','id')->select('id','id_cu');
+    }
     
     public function Provinces()
     {

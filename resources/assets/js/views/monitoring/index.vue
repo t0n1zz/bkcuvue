@@ -114,9 +114,9 @@ export default {
 	},
 	data() {
 		return {
-			title: 'Monitoring',
+			title: 'Monitoring PUSKOPCUINA',
 			kelas: 'monitoring',
-			titleDesc: 'Mengelola data monitoring',
+			titleDesc: 'Mengelola data monitoring PUSKOPCUINA',
 			titleIcon: 'icon-collaboration',
 			selectCuPath: 'monitoringCu',
 			tabName: "indexSemua",

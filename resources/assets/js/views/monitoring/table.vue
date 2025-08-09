@@ -153,15 +153,23 @@
 		</data-viewer>
 
 		<!-- modal -->
-		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent"
-			:button="modalButton" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup"
-			@failOk="modalTutup" @backgroundClick="modalTutup">
+		<app-modal :show="modalShow" :state="modalState" :title="modalTitle" :content="modalContent" :size="modalSize" :color="modalColor"
+		 @batal="modalTutup" @tutup="modalTutup" @confirmOk="modalConfirmOk" @successOk="modalTutup" @failOk="modalTutup"
+		 @backgroundClick="modalBackgroundClick">
+
+			<!-- title -->
+			<template slot="modal-title">
+				{{ modalTitle }}
+			</template>
+
+			<!-- download laporan -->
 			<template slot="modal-body1">
 				<div>
 					<tgl :id_cu="this.$route.params.cu" :id_tp="this.$route.params.tp" @tutup="modalTutup"
 						@stat="setLaporanStat" @loading="setLaporanStat" :params="query"></tgl>
 				</div>
 			</template>
+
 		</app-modal>
 
 	</div>
@@ -288,7 +296,7 @@ export default {
 					filter: true,
 				},
 				{
-					title: 'PIC BKCU',
+					title: 'PIC PUSKOPCUINA',
 					name: 'aktivis_bkcu.name',
 					tipe: 'string',
 					sort: false,
@@ -329,6 +337,7 @@ export default {
 			modalShow: false,
 			modalState: '',
 			modalTitle: '',
+			modalColor: '',
 			modalContent: '',
 			modalButton: ''
 		}

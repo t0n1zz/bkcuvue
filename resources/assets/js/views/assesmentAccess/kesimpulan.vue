@@ -39,8 +39,11 @@
 										<span v-if="a1 < 5 && e9 >= 10">		
 											EMAS (GOLD)
 										</span>
+										<span v-else-if="a1 < 7 && e9 >= 8">
+											PERAK (SILVER)							
+										</span>
 										<span v-else>
-											PERAK (SILVER)
+											PERUNGGU (BRONZE)
 										</span>
 									</span>
 									<span v-else-if="nilaiTotalBobotCU > 90">

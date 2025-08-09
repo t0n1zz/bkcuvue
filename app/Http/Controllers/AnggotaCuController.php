@@ -956,7 +956,7 @@ class AnggotaCuController extends Controller{
 
 	public function cariDataInformasi($nik)
 	{
-		$table_data = AnggotaCu::with('anggota_cu_cu_informasi.cu','anggota_cu_cu_informasi.tp','anggota_produk_cu_informasi.cu','Villages','Districts','Regencies','Provinces')->where('nik',$nik)->first();
+		$table_data = AnggotaCu::with('anggota_cu_cu_informasi.cu','anggota_cu_cu_informasi.tp','anggota_produk_cu_informasi.cu','Villages','Districts','Regencies','Provinces')->where('escete','1')->where('nik',$nik)->first();
 		
 		if($table_data){
 			return response()
